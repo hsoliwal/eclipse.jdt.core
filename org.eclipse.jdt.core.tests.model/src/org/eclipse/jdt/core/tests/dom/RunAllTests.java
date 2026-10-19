@@ -29,6 +29,7 @@ public static Class[] getAllTestClasses() {
 	return new Class[] {
 		RunConverterTests.class,
 		ASTTest.class,
+		ASTNodeListArrayTest.class,
 		ASTVisitorTest.class,
 		ASTMatcherTest.class,
 		ASTStructuralPropertyTest.class,
