@@ -1,5 +1,6 @@
 /*******************************************************************************
  * Copyright (c) 2000, 2018 IBM Corporation and others.
+ * Copyright (c) 2026 Hitesh Soliwal and contributors.
  *
  * This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -9,6 +10,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
+ *     Hitesh Soliwal - Java 21 source-compatible unused lambda parameter
  *     IBM Corporation - initial API and implementation
  *     Terry Parker <tparker@google.com> - [performance] Low hit rates in JavaModel caches - https://bugs.eclipse.org/421165
  *******************************************************************************/
@@ -900,7 +902,7 @@ private Set<IProject> collectDependents() {
 			for (IClasspathEntry entry : jProject.getResolvedClasspath()) {
 				if (entry.getEntryKind() == IClasspathEntry.CPE_PROJECT) {
 					IProject required = root.getProject(entry.getPath().lastSegment());
-					directDependents.computeIfAbsent(required, _ -> new ArrayList<>()).add(project);
+					directDependents.computeIfAbsent(required, unused -> new ArrayList<>()).add(project);
 				}
 			}
 		} catch (JavaModelException e) {
