@@ -1,5 +1,6 @@
 /*******************************************************************************
  * Copyright (c) 2004, 2021 IBM Corporation and others.
+ * Copyright (c) 2026 Hitesh Soliwal and Contributors to the Synexia Project.
  *
  * This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +11,7 @@
  *
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Hitesh Soliwal and Contributors to the Synexia Project - original-node rewrite view
  *     Microsoft Corporation - read formatting options from the compilation unit
  *******************************************************************************/
 package org.eclipse.jdt.core.dom.rewrite;
@@ -504,6 +506,41 @@ public class ASTRewrite {
 			throw new IllegalArgumentException("Use the list rewriter to access nodes in a list"); //$NON-NLS-1$
 		}
 		return this.eventStore.getNewValue(node, property);
+	}
+
+	/**
+	 * Returns the actual AST node represented by a single-node copy or move
+	 * placeholder created by this rewriter. An ordinary original or newly
+	 * constructed node is returned unchanged. No source text is parsed, no node
+	 * is copied, and neither the AST nor the rewrite plan is changed.
+	 * <p>
+	 * The caller must supply an ordinary node or a placeholder from this
+	 * rewriter. A placeholder created by a different rewriter of the same AST
+	 * is not supported. String, group, and multi-node range placeholders have
+	 * no single semantic node and are rejected. The returned node's parent,
+	 * source range and bindings remain those of the original AST generation;
+	 * they are not coordinates or bindings for the rewritten document. Use
+	 * {@link #get(ASTNode, StructuralPropertyDescriptor)} and
+	 * {@link ListRewrite#getRewrittenList()} for this rewriter's planned
+	 * structural properties, and {@link #track(ASTNode)} for emitted ranges.
+	 * </p>
+	 *
+	 * @param node an ordinary node or a placeholder created by this rewriter
+	 * @return the actual single AST node, with its identity preserved
+	 * @throws IllegalArgumentException if the node is null, belongs to another
+	 * AST, or is a string, group, or multi-node range placeholder
+	 * @since 3.48
+	 */
+	public final ASTNode getOriginalNode(ASTNode node) {
+		if (node == null) {
+			throw new IllegalArgumentException();
+		}
+		validateIsCorrectAST(node);
+		ASTNode original= this.nodeStore.getOriginalNode(node);
+		if (this.eventStore.isRangeCopyPlaceholder(original)) {
+			throw new IllegalArgumentException("Range placeholder has no single original node"); //$NON-NLS-1$
+		}
+		return original;
 	}
 
 	/**
