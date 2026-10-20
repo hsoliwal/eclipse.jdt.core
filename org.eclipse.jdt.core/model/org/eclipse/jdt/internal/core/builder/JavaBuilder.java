@@ -900,7 +900,7 @@ private Set<IProject> collectDependents() {
 			for (IClasspathEntry entry : jProject.getResolvedClasspath()) {
 				if (entry.getEntryKind() == IClasspathEntry.CPE_PROJECT) {
 					IProject required = root.getProject(entry.getPath().lastSegment());
-					directDependents.computeIfAbsent(required, _ -> new ArrayList<>()).add(project);
+					directDependents.computeIfAbsent(required, unused -> new ArrayList<>()).add(project);
 				}
 			}
 		} catch (JavaModelException e) {
