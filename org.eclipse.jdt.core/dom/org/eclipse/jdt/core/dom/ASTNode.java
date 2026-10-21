@@ -1,5 +1,6 @@
 /*******************************************************************************
  * Copyright (c) 2000, 2024 IBM Corporation and others.
+ * Copyright (c) 2026 Hitesh Soliwal and contributors.
  *
  * This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,17 +11,20 @@
  *
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Hitesh Soliwal and contributors - direct child-list array storage
  *******************************************************************************/
 
 package org.eclipse.jdt.core.dom;
 
 import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import org.eclipse.jdt.internal.core.dom.NaiveASTFlattener;
 
 /**
@@ -1480,25 +1484,21 @@ public abstract class ASTNode {
 	 */
 	static final boolean OPTIONAL = false;
 
+	/** Shared empty storage; child lists allocate an array only when populated. */
+	private static final ASTNode[] EMPTY_NODE_ARRAY = new ASTNode[0];
+
 	/**
-	 * A specialized implementation of a list of ASTNodes. The
-	 * implementation is based on an ArrayList.
+	 * A specialized list of ASTNodes backed directly by a growable array.
+	 * Node identity, parent links, change events and visitor cursors remain
+	 * owned by this list; the array stores only its live child references.
 	 */
 	class NodeList extends AbstractList {
 
-		/**
-		 * The underlying list in which the nodes of this list are
-		 * stored (element type: {@link ASTNode}).
-		 * <p>
-		 * Be stingy on storage - assume that list will be empty.
-		 * </p>
-		 * <p>
-		 * This field declared default visibility (rather than private)
-		 * so that accesses from <code>NodeList.Cursor</code> do not require
-		 * a synthetic accessor method.
-		 * </p>
-		 */
-		ArrayList store = new ArrayList(0);
+		/** Live children occupy {@code [0, size)}; unused slots are null. */
+		private ASTNode[] store = EMPTY_NODE_ARRAY;
+
+		/** Logical size, independent of the capacity retained after removal. */
+		private int size;
 
 		/**
 		 * The property descriptor for this list.
@@ -1521,12 +1521,12 @@ public abstract class ASTNode {
 
 			@Override
 			public boolean hasNext() {
-				return this.position < NodeList.this.store.size();
+				return this.position < NodeList.this.size;
 			}
 
 			@Override
 			public Object next() {
-				Object result = NodeList.this.store.get(this.position);
+				Object result = NodeList.this.get(this.position);
 				this.position++;
 				return result;
 		    }
@@ -1582,12 +1582,12 @@ public abstract class ASTNode {
 
 		@Override
 		public int size() {
-			return this.store.size();
+			return this.size;
 		}
 
 		@Override
 		public Object get(int index) {
-			return this.store.get(index);
+			return this.store[Objects.checkIndex(index, this.size)];
 		}
 
 		@Override
@@ -1601,7 +1601,7 @@ public abstract class ASTNode {
 			}
 			// delink old child from parent, and link new child to parent
 			ASTNode newChild = (ASTNode) element;
-			ASTNode oldChild = (ASTNode) this.store.get(index);
+			ASTNode oldChild = (ASTNode) get(index);
 			if (oldChild == newChild) {
 				return oldChild;
 			}
@@ -1612,7 +1612,8 @@ public abstract class ASTNode {
 			ASTNode.checkNewChild(ASTNode.this, newChild, this.propertyDescriptor.cycleRisk, this.propertyDescriptor.elementType);
 			ASTNode.this.ast.preReplaceChildEvent(ASTNode.this, oldChild, newChild, this.propertyDescriptor);
 
-			Object result = this.store.set(index, newChild);
+			Object result = get(index);
+			this.store[index] = newChild;
 			// n.b. setParent will call ast.modifying()
 			oldChild.setParent(null, null);
 			newChild.setParent(ASTNode.this, this.propertyDescriptor);
@@ -1635,7 +1636,20 @@ public abstract class ASTNode {
 			ASTNode.this.ast.preAddChildEvent(ASTNode.this, newChild, this.propertyDescriptor);
 
 
-			this.store.add(index, element);
+			// Preserve the backing list's bounds check after the pre-add event.
+			if (index < 0 || index > this.size) {
+				throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + this.size); //$NON-NLS-1$ //$NON-NLS-2$
+			}
+			if (this.size == Integer.MAX_VALUE) {
+				throw new OutOfMemoryError("Required array length too large"); //$NON-NLS-1$
+			}
+			if (this.size == this.store.length) {
+				int capacity = Math.max(this.size + 1, this.store.length + (this.store.length >>> 1));
+				this.store = Arrays.copyOf(this.store, capacity);
+			}
+			System.arraycopy(this.store, index, this.store, index + 1, this.size - index);
+			this.store[index] = newChild;
+			this.size++;
 			updateCursors(index, +1);
 			// n.b. setParent will call ast.modifying()
 			newChild.setParent(ASTNode.this, this.propertyDescriptor);
@@ -1649,7 +1663,7 @@ public abstract class ASTNode {
 				throw new IllegalArgumentException("AST node cannot be modified"); //$NON-NLS-1$
 			}
 			// delink old child from parent
-			ASTNode oldChild = (ASTNode) this.store.get(index);
+			ASTNode oldChild = (ASTNode) get(index);
 			if ((oldChild.typeAndFlags & PROTECT) != 0) {
 				// old child is protected => cannot be unparented
 				throw new IllegalArgumentException("AST node cannot be modified"); //$NON-NLS-1$
@@ -1658,7 +1672,12 @@ public abstract class ASTNode {
 			ASTNode.this.ast.preRemoveChildEvent(ASTNode.this, oldChild, this.propertyDescriptor);
 			// n.b. setParent will call ast.modifying()
 			oldChild.setParent(null, null);
-			Object result = this.store.remove(index);
+			Object result = get(index);
+			int moved = this.size - index - 1;
+			if (moved > 0) {
+				System.arraycopy(this.store, index + 1, this.store, index, moved);
+			}
+			this.store[--this.size] = null;
 			updateCursors(index, -1);
 			ASTNode.this.ast.postRemoveChildEvent(ASTNode.this, oldChild, this.propertyDescriptor);
 			return result;
@@ -1734,18 +1753,12 @@ public abstract class ASTNode {
 		}
 
 		/**
-		 * Returns an estimate of the memory footprint of this node list
-		 * instance in bytes.
-	     * <ul>
-	     * <li>1 object header for the NodeList instance</li>
-	     * <li>5 4-byte fields of the NodeList instance</li>
-	     * <li>0 for cursors since null unless walk in progress</li>
-	     * <li>1 object header for the ArrayList instance</li>
-	     * <li>2 4-byte fields of the ArrayList instance</li>
-	     * <li>1 object header for an Object[] instance</li>
-	     * <li>4 bytes in array for each element</li>
-	     * </ul>
-	 	 *
+		 * Returns the historical memory cost estimate used by
+		 * {@link ASTNode#subtreeBytes()}. Preserve this observable estimate
+		 * independently of the physical child-list representation: the model
+		 * charges for the former list wrapper and the logical child count,
+		 * rather than retained array capacity.
+		 *
 		 * @return the size of this node list in bytes
 		 */
 		int memSize() {
