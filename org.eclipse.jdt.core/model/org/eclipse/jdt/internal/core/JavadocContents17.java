@@ -79,7 +79,7 @@ public class JavadocContents17 extends JavadocContents {
 	protected String createSignatureAnchor(BinaryMethod method, String methodName, IBinaryMethod info)
 			throws JavaModelException {
 		String anchor = super.createSignatureAnchor(method, methodName, info);
-		anchor = anchor.replaceAll(" ", "");  //$NON-NLS-1$//$NON-NLS-2$
+		anchor = anchor.replace(" ", "");  //$NON-NLS-1$//$NON-NLS-2$
 		return anchor;
 	}
 
