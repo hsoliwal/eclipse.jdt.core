@@ -100,10 +100,12 @@ public abstract class IdeProcessingEnvImpl extends BaseProcessingEnvImpl {
 		return _processorOptions;
 	}
 
+	private static final Pattern REPLACE_PLACEHOLDERS_USING_PATTERN = Pattern.compile("%([^%]+)%");
+
 	private Function<Entry<String, String>, String> replacePlaceholdersUsing(Map<String, String> commandLineOptions) {
 		return option -> {
 			String variable, replacement, optionValue = option.getValue() == null ? "" : option.getValue();
-			Matcher placeholder = Pattern.compile("%([^%]+)%").matcher(optionValue);
+			Matcher placeholder = REPLACE_PLACEHOLDERS_USING_PATTERN.matcher(optionValue);
 			if (placeholder.find() && (variable = placeholder.group(1)) != null
 					&& (replacement = commandLineOptions.get(variable)) != null) {
 				optionValue = optionValue.replace("%" + variable + "%", replacement);
