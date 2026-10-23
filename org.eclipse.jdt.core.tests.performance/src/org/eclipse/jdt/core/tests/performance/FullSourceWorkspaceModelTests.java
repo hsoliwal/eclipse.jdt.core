@@ -116,7 +116,7 @@ private void setUpBigProject() throws CoreException, IOException { //FLLDCIM: MA
 		// Print for log in case of project creation troubles...
 		File wkspDir = new File(targetWorkspacePath);
 		File projectDir = new File(wkspDir, BIG_PROJECT_NAME);
-		if (projectDir.exists()) {
+		if (projectDir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			System.out.print("Add existing project "+BIG_PROJECT_NAME+" in "+workspaceRoot.getLocation()+" to workspace..."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IProject bigProject = workspaceRoot.getProject(BIG_PROJECT_NAME);
 			if (bigProject.exists()) {
@@ -140,7 +140,7 @@ private void setUpBigProject() throws CoreException, IOException { //FLLDCIM: MA
 				if (PRINT && i>0 && i%10==0) System.out.print("		+ folder src"+i+"..."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				long topNanos = System.nanoTime();
 				for (int j = 0; j < PACKAGES_COUNT; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
-					new java.io.File(path + i + "/org/eclipse/jdt/core/tests" + i + "/performance" + j).mkdirs(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+					new java.io.File(path + i + "/org/eclipse/jdt/core/tests" + i + "/performance" + j).mkdirs(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				}
 				if (PRINT && i > 0 && i % 10 == 0) {
 					System.out.println("(" + (System.nanoTime() - topNanos) / 1_000_000L + " ms)"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -199,7 +199,7 @@ private void setUpBigJars() throws Exception { //FLLDCIM: MARK — ML METHOD_SPL
 	String bigProjectLocation = BIG_PROJECT.getResource().getLocation().toOSString();
 	int size = PACKAGES_COUNT * 10;
 	File bigJar1 = new File(bigProjectLocation, BIG_JAR1_NAME);
-	if (!bigJar1.exists()) {
+	if (!bigJar1.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		String[] pathAndContents = new String[size * 2];
 		for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			pathAndContents[i*2] = "/p" + i + "/X" + i + ".java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -212,7 +212,7 @@ private void setUpBigJars() throws Exception { //FLLDCIM: MARK — ML METHOD_SPL
 		BIG_PROJECT.getProject().refreshLocal(IResource.DEPTH_INFINITE, null);
 	}
 	File bigJar2 = new File(bigProjectLocation, BIG_JAR2_NAME);
-	if (!bigJar2.exists()) {
+	if (!bigJar2.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		String[] pathAndContents = new String[size * 2];
 		for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			pathAndContents[i*2] = "/q" + i + "/Y" + i + ".java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -1477,7 +1477,7 @@ public void testRefreshExternalArchives() throws Exception { //FLLDCIM: MARK —
 	} finally {
 		BIG_PROJECT.setRawClasspath(oldClasspath, null);
 		for(int index=0; index < files.length; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
-			files[index].delete();
+			files[index].delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 }
@@ -1540,8 +1540,8 @@ public void testResolveClasspath() throws Exception { //FLLDCIM: MARK — ML MET
 	} finally {
 		BIG_PROJECT.setRawClasspath(oldClasspath, null);
 		for (int index = 0; index < libraryFiles.length; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
-			libraryFiles[index].delete();
-			srcAttachmentFiles[index].delete();
+			libraryFiles[index].delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			srcAttachmentFiles[index].delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 }

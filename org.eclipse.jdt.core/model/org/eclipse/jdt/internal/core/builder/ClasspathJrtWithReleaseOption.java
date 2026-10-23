@@ -83,13 +83,13 @@ public class ClasspathJrtWithReleaseOption extends ClasspathJrt {
 		this.fs = this.ctSym.getFs();
 		this.releasePath = this.ctSym.getRoot();
 		Path modPath = this.fs.getPath(this.releaseCode + (this.ctSym.isJRE12Plus() ? "" : "-modules")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		this.modPathString = !Files.exists(modPath) ? null: (this.zipFilename + "|"+ modPath.toString()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		this.modPathString = !Files.exists(modPath) ? null: (this.zipFilename + "|"+ modPath.toString()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
-		if (!Files.exists(this.releasePath.resolve(this.releaseCode))) {
+		if (!Files.exists(this.releasePath.resolve(this.releaseCode))) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			Exception e = new IllegalArgumentException("release " + this.release + " is not found in the system"); //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			throw new CoreException(Status.error(e.getMessage(), e));
 		}
-		if (Files.exists(this.fs.getPath(this.releaseCode, "system-modules"))) { //$NON-NLS-1$
+		if (Files.exists(this.fs.getPath(this.releaseCode, "system-modules"))) { //$NON-NLS-1$ //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			this.fs = null;  // Fallback to default version, all classes are on jrt fs, not here.
 		}
 
@@ -133,7 +133,7 @@ public class ClasspathJrtWithReleaseOption extends ClasspathJrt {
 			Map<String, IModule> newCache = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			for (Path root : releaseRoots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
-					Files.walkFileTree(root, Collections.emptySet(), 2, new SimpleFileVisitor<Path>() {
+					Files.walkFileTree(root, Collections.emptySet(), 2, new SimpleFileVisitor<Path>() { //FLLDCIM: MARK — M24 M3FILE_STREAMS CALL
 						@Override
 						public FileVisitResult visitFile(Path f, BasicFileAttributes attrs)	throws IOException {
 							if (attrs.isDirectory() || f.getNameCount() < 3) {

@@ -153,7 +153,7 @@ public class ExternalFoldersManager {
 		// Test if this an absolute path in local file system (not the workspace path)
 		BasicFileAttributes externalAttributes = null;
 		try {
-			externalAttributes = Files.readAttributes(externalPath.toPath(), BasicFileAttributes.class);
+			externalAttributes = Files.readAttributes(externalPath.toPath(), BasicFileAttributes.class); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		} catch (IOException e) { // assume not existing
 		}
 		if (externalAttributes != null && externalAttributes.isRegularFile()) {
@@ -385,8 +385,8 @@ public class ExternalFoldersManager {
 				IPath stateLocation = JavaCore.getPlugin().getStateLocation();
 				IPath projectPath = stateLocation.append(EXTERNAL_PROJECT_NAME);
 				try {
-					Files.createDirectories(projectPath.toFile().toPath());
-					try (FileOutputStream output = new FileOutputStream(projectPath.append(".project").toOSString())){ //$NON-NLS-1$
+					Files.createDirectories(projectPath.toFile().toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+					try (FileOutputStream output = new FileOutputStream(projectPath.append(".project").toOSString())){ //$NON-NLS-1$ //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				        output.write((
 				        		"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				        		"<projectDescription>\n" + //$NON-NLS-1$

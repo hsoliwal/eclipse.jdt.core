@@ -435,7 +435,7 @@ public void test004_no_dash_d_option() throws IOException { //FLLDCIM: MARK — 
 		return;
 	}
 	File binDirectory = new File(OUTPUT_DIR + File.separator + "bin"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	binDirectory.mkdirs();
+	binDirectory.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	StandardJavaFileManager javacStandardJavaFileManager =  JAVAC_COMPILER.getStandardFileManager(null, null, null); // will pick defaults up
 	javacStandardJavaFileManager.setLocation(
 			StandardLocation.CLASS_OUTPUT,
@@ -508,7 +508,7 @@ public void test006_no_dash_d_option_custom_file_manager() throws IOException { 
 		return;
 	}
 	File binDirectory = new File(OUTPUT_DIR + File.separator + "bin"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	binDirectory.mkdirs();
+	binDirectory.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	GetLocationDetector customJavaFileManager =
 		new GetLocationDetector(
 				JAVAC_COMPILER.getStandardFileManager(null, null, null),
@@ -944,8 +944,8 @@ public void _test018_sourcepath_with_destination() throws IOException { //FLLDCI
 public void test019_sourcepath_without_destination() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String sourceDirectoryName = OUTPUT_DIR + "/src2"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	File sourceFolder = new File(sourceDirectoryName);
-	if (!sourceFolder.exists()) {
-		if (!sourceFolder.mkdirs()) {
+	if (!sourceFolder.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		if (!sourceFolder.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			// source folder could not be built
 			return;
 		}

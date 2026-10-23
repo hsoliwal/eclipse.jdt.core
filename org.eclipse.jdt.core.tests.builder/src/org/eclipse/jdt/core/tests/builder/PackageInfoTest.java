@@ -832,7 +832,7 @@ public void testIssue803_5() throws JavaModelException { //FLLDCIM: MARK — ML 
 void setupProjectForNullAnnotations(IPath projectPath) throws JavaModelException {
 	// add the org.eclipse.jdt.annotation library (bin/ folder or jar) to the project:
 	File bundleFile = FileLocator.getBundleFileLocation(Platform.getBundle("org.eclipse.jdt.annotation")).get();
-	String annotationsLib = bundleFile.isDirectory() ? bundleFile.getPath()+"/bin" : bundleFile.getPath(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	String annotationsLib = bundleFile.isDirectory() ? bundleFile.getPath()+"/bin" : bundleFile.getPath(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	IJavaProject javaProject = env.getJavaProject(projectPath);
 	IClasspathEntry[] rawClasspath = javaProject.getRawClasspath();
 	int len = rawClasspath.length;

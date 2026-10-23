@@ -158,7 +158,7 @@ private void assertEncodeDecodeEntry(String projectName, String expectedEncoded,
 }
 protected File createFile(File parent, String name, String content) throws IOException {
 	File file = new File(parent, name);
-	try (FileOutputStream out = new FileOutputStream(file)) {
+	try (FileOutputStream out = new FileOutputStream(file)) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		out.write(content.getBytes());
 	}
 	/*
@@ -2971,7 +2971,7 @@ public void testEncoding2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPL
 		IJavaProject p = createJavaProject("P", new String[] {"src"}, "bin");
 		IFile file = getFile("/P/.classpath");
 		byte[] contents = org.eclipse.jdt.internal.core.util.Util.getResourceContentsAsByteArray(file);
-		try (FileOutputStream output = new FileOutputStream(file.getLocation().toFile())) {
+		try (FileOutputStream output = new FileOutputStream(file.getLocation().toFile())) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			output.write(IContentDescription.BOM_UTF_8); // UTF-8 BOM
 			output.write(contents);
 			output.flush();
@@ -6016,18 +6016,18 @@ public void testBug276373() throws Exception { //FLLDCIM: MARK — ML METHOD_SPL
 		IPath libPath = proj.getResource().getLocation().append("lib");
 		JavaCore.setClasspathVariable("MyVar", libPath, null);
 		libDir = new File(libPath.toPortableString());
-		libDir.mkdirs();
+		libDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		IClasspathEntry[] classpath = new IClasspathEntry[3];
 		File libJar = new File(libDir, "variableLib.jar");
-		libJar.createNewFile();
+		libJar.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		classpath[0] = JavaCore.newVariableEntry(new Path("/MyVar/variableLib.jar"), null, null);
 
 		libJar = new File(libDir, "externalLib.jar");
-		libJar.createNewFile();
+		libJar.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		classpath[1] = JavaCore.newLibraryEntry(new Path(libJar.getAbsolutePath()), null, null);
 
 		libJar = new File(libDir, "userLib.jar");
-		libJar.createNewFile();
+		libJar.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		ClasspathContainerInitializer initializer= JavaCore.getClasspathContainerInitializer(JavaCore.USER_LIBRARY_CONTAINER_ID);
 		String libraryName = "TestUserLibrary";
@@ -6586,7 +6586,7 @@ public void testBug304081() throws Exception { //FLLDCIM: MARK — ML METHOD_SPL
 		libDir = new File(libPath.toPortableString());
 		IClasspathEntry[] classpath = new IClasspathEntry[1];
 		File libJar = new File(libDir, "variable.jar");
-		libJar.createNewFile();
+		libJar.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		addLibrary(proj, "variable.jar", null, new String[0],
 				new String[] {
@@ -6769,7 +6769,7 @@ public void testBug305037() throws Exception { //FLLDCIM: MARK — ML METHOD_SPL
 		libDir = new File(libPath.toPortableString());
 		IClasspathEntry[] classpath = new IClasspathEntry[1];
 		File libJar = new File(libDir, "variable.jar");
-		libJar.createNewFile();
+		libJar.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		addLibrary(proj, "variable.jar", null, new String[0],
 				new String[] {

@@ -66,8 +66,8 @@ public class FactoryClassLoaderTests extends TestCase {
 			((Closeable) loader).close();
 		}
 		_loaders.clear();
-		try (Stream<Path> paths = Files.walk(_dir)) {
-			paths.sorted(Comparator.reverseOrder()).forEach(p -> p.toFile().delete());
+		try (Stream<Path> paths = Files.walk(_dir)) { //FLLDCIM: MARK — M24 M3FILE_STREAMS CALL
+			paths.sorted(Comparator.reverseOrder()).forEach(p -> p.toFile().delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 		super.tearDown();
 	}
@@ -81,7 +81,7 @@ public class FactoryClassLoaderTests extends TestCase {
 		assertEquals("content of a", read(loader, "a.txt")); //$NON-NLS-1$ //$NON-NLS-2$
 
 		// On Windows this fails if the class loader holds the original jar
-		Files.delete(jar.toPath());
+		Files.delete(jar.toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		assertEquals("content of a", read(loader, "a.txt")); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
@@ -105,13 +105,13 @@ public class FactoryClassLoaderTests extends TestCase {
 		File copyDir = copy.getParentFile();
 		// read through the class loader, so that it actually holds the copy open
 		assertEquals("content of a", read(loader, "a.txt")); //$NON-NLS-1$ //$NON-NLS-2$
-		assertTrue(copy.isFile());
+		assertTrue(copy.isFile()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		((Closeable) loader).close();
 
-		assertFalse("The copy should be deleted on close", copy.exists()); //$NON-NLS-1$
-		assertFalse("The copy directory should be deleted on close", copyDir.exists()); //$NON-NLS-1$
-		assertTrue("The original jar must be left alone", jar.isFile()); //$NON-NLS-1$
+		assertFalse("The copy should be deleted on close", copy.exists()); //$NON-NLS-1$ //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertFalse("The copy directory should be deleted on close", copyDir.exists()); //$NON-NLS-1$ //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue("The original jar must be left alone", jar.isFile()); //$NON-NLS-1$ //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	public void testJarsWithSameName() throws Exception {
@@ -134,8 +134,8 @@ public class FactoryClassLoaderTests extends TestCase {
 	}
 
 	public void testFolderEntry() throws Exception {
-		Path folder = Files.createDirectories(_dir.resolve("classes")); //$NON-NLS-1$
-		Files.write(folder.resolve("c.txt"), "content of c".getBytes(StandardCharsets.UTF_8)); //$NON-NLS-1$ //$NON-NLS-2$
+		Path folder = Files.createDirectories(_dir.resolve("classes")); //$NON-NLS-1$ //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		Files.write(folder.resolve("c.txt"), "content of c".getBytes(StandardCharsets.UTF_8)); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File jar = createJar("processor.jar", null, "a.txt", "content of a"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		ClassLoader loader = createClassLoader(folder.toFile(), jar);
 
@@ -143,7 +143,7 @@ public class FactoryClassLoaderTests extends TestCase {
 		assertEquals("content of a", read(loader, "a.txt")); //$NON-NLS-1$ //$NON-NLS-2$
 
 		((Closeable) loader).close();
-		assertTrue("A folder entry must be left alone", Files.isRegularFile(folder.resolve("c.txt"))); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue("A folder entry must be left alone", Files.isRegularFile(folder.resolve("c.txt"))); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	public void testMissingEntry() throws Exception {
@@ -157,7 +157,7 @@ public class FactoryClassLoaderTests extends TestCase {
 
 	public void testFileThatIsNotAJar() throws Exception {
 		File notAJar = _dir.resolve("broken.jar").toFile(); //$NON-NLS-1$
-		Files.write(notAJar.toPath(), "this is not a jar".getBytes(StandardCharsets.UTF_8)); //$NON-NLS-1$
+		Files.write(notAJar.toPath(), "this is not a jar".getBytes(StandardCharsets.UTF_8)); //$NON-NLS-1$ //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File jar = createJar("processor.jar", null, "a.txt", "content of a"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		ClassLoader loader = createClassLoader(notAJar, jar);
 
@@ -193,7 +193,7 @@ public class FactoryClassLoaderTests extends TestCase {
 			assertEquals("content of a", read(loader, "a.txt")); //$NON-NLS-1$ //$NON-NLS-2$
 
 			((Closeable) loader).close();
-			assertTrue("The original jar must be left alone", jar.isFile()); //$NON-NLS-1$
+			assertTrue("The original jar must be left alone", jar.isFile()); //$NON-NLS-1$ //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		} finally {
 			System.clearProperty(AnnotationProcessorFactoryLoader.COPY_FACTORY_JARS_PROPERTY);
 		}
@@ -213,8 +213,8 @@ public class FactoryClassLoaderTests extends TestCase {
 	 */
 	private File createJar(String path, String classPath, String entryName, String content) throws IOException {
 		Path jar = _dir.resolve(path);
-		Files.createDirectories(jar.getParent());
-		try (OutputStream out = Files.newOutputStream(jar);
+		Files.createDirectories(jar.getParent()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		try (OutputStream out = Files.newOutputStream(jar); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				JarOutputStream jarOut = classPath == null ? new JarOutputStream(out) : new JarOutputStream(out, manifest(classPath))) {
 			jarOut.putNextEntry(new ZipEntry(entryName));
 			jarOut.write(content.getBytes(StandardCharsets.UTF_8));

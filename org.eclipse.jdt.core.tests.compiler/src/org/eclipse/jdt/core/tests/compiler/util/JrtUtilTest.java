@@ -47,7 +47,7 @@ public class JrtUtilTest extends TestCase {
 		this.javaHome = System.getProperty("java.home", null);
 		assertNotNull("java.home is not defined", this.javaHome);
 		this.image = Paths.get(this.javaHome).toFile();
-		assertTrue("java.home points to invalid path", this.image.isDirectory());
+		assertTrue("java.home points to invalid path", this.image.isDirectory()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		this.jdkRelease = JRTUtil.getJdkRelease(this.image);
 	}
 

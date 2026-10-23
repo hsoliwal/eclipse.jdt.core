@@ -1660,7 +1660,7 @@ abstract UnconditionalFlowInfo output(UnconditionalFlowInfo input, TestLocalVari
 void printTruthTables(File outputDirectory) {
 	try {
 		String outputFileName = outputDirectory.getPath() + File.separator + this.name + ".txt"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		PrintWriter out = new PrintWriter(new FileOutputStream(
+		PrintWriter out = new PrintWriter(new FileOutputStream( //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				new File(outputFileName)));
 		System.out.println("Printing " + outputFileName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		out.println("======================================================");
@@ -2291,7 +2291,7 @@ void printTruthTables(File outputDirectory) {
 	for (int bit = 1; bit <= State.stateWidth; bit++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		try {
 			String outputFileName = outputDirectory.getPath() + File.separator + this.name + "_" + bit + ".txt"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-			PrintWriter out = new PrintWriter(new FileOutputStream(
+			PrintWriter out = new PrintWriter(new FileOutputStream( //FLLDCIM: MARK — M31 M3FILE_IO NEW
 					new File(outputFileName)));
 			System.out.println("Printing " + outputFileName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			out.println("======================================================");

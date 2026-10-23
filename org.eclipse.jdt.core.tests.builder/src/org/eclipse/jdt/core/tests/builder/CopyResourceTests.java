@@ -325,7 +325,7 @@ public class CopyResourceTests extends BuilderTests {
 		}
 
 		java.io.File file = new java.io.File(zFile.getLocation().toOSString());
-		file.delete();
+		file.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		fullBuild();
 		expectingNoProblems();
@@ -348,7 +348,7 @@ public class CopyResourceTests extends BuilderTests {
 		}
 
 		env.addFile(folder, "z.txt", "about to be deleted"); //$NON-NLS-1$ //$NON-NLS-2$
-		file.delete();
+		file.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		incrementalBuild();
 		expectingNoProblems();

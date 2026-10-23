@@ -148,7 +148,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		try {
 			zipFile = new ZipFile(fileName); //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM NEW
 			ZipEntry zipEntry = zipFile.getEntry(zipEntryName);
-			inputStream = new BufferedInputStream(zipFile.getInputStream(zipEntry));
+			inputStream = new BufferedInputStream(zipFile.getInputStream(zipEntry)); //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 			return new String(org.eclipse.jdt.internal.compiler.util.Util.getInputStreamAsCharArray(inputStream, null));
 		} catch (IOException e) {
 		} finally {

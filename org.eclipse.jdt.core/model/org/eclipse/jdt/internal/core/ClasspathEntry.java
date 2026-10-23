@@ -1027,7 +1027,7 @@ public class ClasspathEntry implements IClasspathEntry {
 			if (manifest == null) {
 				return null;
 			}
-			try (InputStream inputStream = zip.getInputStream(manifest)) {
+			try (InputStream inputStream = zip.getInputStream(manifest)) { //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 				char[] chars = getInputStreamAsCharArray(inputStream, UTF_8);
 				return chars;
 			}
@@ -1335,7 +1335,7 @@ public class ClasspathEntry implements IClasspathEntry {
 				IResource resource = project.getWorkspace().getRoot().findMember(annotationPath);
 				if (resource != null) {
 					return resource.getLocation();
-				} else if (new File(annotationPath.toOSString()).exists()) { // absolute, not in workspace, must be Filesystem-absolute
+				} else if (new File(annotationPath.toOSString()).exists()) { // absolute, not in workspace, must be Filesystem-absolute //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					return annotationPath;
 				}
 				invalidExternalAnnotationPath(project);
@@ -1451,7 +1451,7 @@ public class ClasspathEntry implements IClasspathEntry {
 		IProject project = javaProject.getProject();
 		if (annotationPath.isAbsolute()) {
 			if (project.getWorkspace().getRoot().exists(annotationPath) // workspace absolute
-					|| new File(annotationPath.toOSString()).exists())  // file system abolute
+					|| new File(annotationPath.toOSString()).exists())  // file system abolute //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			{
 				return null;
 			}
@@ -2539,7 +2539,7 @@ public class ClasspathEntry implements IClasspathEntry {
 					}
 					// https://bugs.eclipse.org/bugs/show_bug.cgi?id=229042
 					// Validate the contents of the archive
-					if(file.isFile()) {
+					if(file.isFile()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 						IJavaModelStatus status = validateLibraryContents(path, project, entryPathMsg);
 						if (status != JavaModelStatus.VERIFIED_OK)
 							return status;

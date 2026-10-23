@@ -253,7 +253,7 @@ void formatUnit(String packageName, String unitName, int kind, int indentationLe
 	File expectedFile = getExpectedOutput(this.workingCopies[0]);
 	String expectedOutput;
 	try {
-		expectedOutput = expectedFile == null ? null : Files.readString(expectedFile.toPath());
+		expectedOutput = expectedFile == null ? null : Files.readString(expectedFile.toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	} catch (IOException e) {
 		throw new RuntimeException(e);
 	}
@@ -294,14 +294,14 @@ private File getExpectedOutput(ICompilationUnit unit) throws JavaModelException 
 		.append(getOutputFolder())
 		.append(unit.getElementName());
 	File outputFile = outputPath.toFile();
-	if (!outputFile.exists()) {
+	if (!outputFile.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		outputFile = JAVA_PROJECT.getProject().getLocation().removeLastSegments(1)
 			.append(unit.getParent().getPath())
 			.append("out")
 			.append("default")
 			.append(unit.getElementName())
 			.toFile();
-		if (!outputFile.exists()) {
+		if (!outputFile.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			// will use the unit source in this case
 			return null;
 		}

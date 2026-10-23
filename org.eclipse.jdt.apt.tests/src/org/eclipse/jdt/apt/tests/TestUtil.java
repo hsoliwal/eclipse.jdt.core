@@ -273,8 +273,8 @@ public class TestUtil
 		FileOutputStream fos = null;
 		try
 		{
-			fis = new FileInputStream( from );
-			fos = new FileOutputStream(new File(toPath));
+			fis = new FileInputStream( from ); //FLLDCIM: MARK — M31 M3FILE_IO NEW
+			fos = new FileOutputStream(new File(toPath)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			int b;
 			while ( ( b = fis.read() ) != -1) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				fos.write( b );
@@ -296,7 +296,7 @@ public class TestUtil
 	public static void zip(String zipPath, Map<File, FileFilter> input)
 		throws IOException
 	{
-		try (ZipOutputStream zip = new ZipOutputStream( new FileOutputStream( zipPath ) ))
+		try (ZipOutputStream zip = new ZipOutputStream( new FileOutputStream( zipPath ) )) //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		{
 			// +1 for last slash
 			for (Map.Entry<File, FileFilter> e : input.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
@@ -308,7 +308,7 @@ public class TestUtil
 	private static void zip(ZipOutputStream zip, File dir, int rootPathLength, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		FileFilter filter) throws IOException
 	{
-		String[] list = dir.list();
+		String[] list = dir.list(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		if( list != null )
 		{
 			for( int i = 0, length = list.length; i < length; i++ ) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
@@ -317,7 +317,7 @@ public class TestUtil
 				File file = new File( dir, name );
 				if( filter == null || filter.accept( file ) )
 				{
-					if( file.isDirectory() )
+					if( file.isDirectory() ) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					{
 						zip( zip, file, rootPathLength, filter );
 					}
@@ -343,7 +343,7 @@ public class TestUtil
 		byte[] rtrn = new byte[0];
 		try
 		{
-			fis = new FileInputStream( f );
+			fis = new FileInputStream( f ); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			baos = new ByteArrayOutputStream();
 			int b;
 			while ( ( b = fis.read() ) != -1) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
@@ -361,7 +361,7 @@ public class TestUtil
 	private static File getZipEntryFile(File destDir, ZipEntry e, String canonicalDestDirPath) throws IOException {
 		  String result = e.getName();
 		  File destfile = new File(destDir, result);
-		  String canonicalDestFile = destfile.getCanonicalPath();
+		  String canonicalDestFile = destfile.getCanonicalPath(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		  if (!canonicalDestFile.startsWith(canonicalDestDirPath + File.separator)) { //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			  throw new ZipEntryStorageException("Entry is outside of the target dir: " + e.getName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		  }
@@ -370,8 +370,8 @@ public class TestUtil
 
 	public static void unzip (File srcZip, File destDir) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ZipFile zf = new ZipFile(srcZip); //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM NEW
-		String canonicalDestDirPath = destDir.getCanonicalPath();
-		for (Enumeration<? extends ZipEntry> entries = zf.entries(); entries.hasMoreElements();) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		String canonicalDestDirPath = destDir.getCanonicalPath(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		for (Enumeration<? extends ZipEntry> entries = zf.entries(); entries.hasMoreElements();) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 			ZipEntry entry = entries.nextElement();
 			File dest = getZipEntryFile(destDir, entry, canonicalDestDirPath);
 			if (entry.isDirectory()) {
@@ -383,8 +383,8 @@ public class TestUtil
 				InputStream from = null;
 	            OutputStream to = null;
 	            try {
-	                from = zf.getInputStream(entry);
-	                to = new FileOutputStream(dest);
+	                from = zf.getInputStream(entry); //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
+	                to = new FileOutputStream(dest); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 	                byte[] buffer = new byte[4096];
 	                int bytesRead;
 	                while ((bytesRead = from.read(buffer)) != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
@@ -402,8 +402,8 @@ public class TestUtil
 
 	public static void unzip (ZipInputStream srcZip, File destDir) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ZipEntry entry;
-		String canonicalDestDirPath = destDir.getCanonicalPath();
-		while ((entry = srcZip.getNextEntry()) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		String canonicalDestDirPath = destDir.getCanonicalPath(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		while ((entry = srcZip.getNextEntry()) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 			File dest = getZipEntryFile(destDir, entry, canonicalDestDirPath);
 			if (entry.isDirectory()) {
 				FileSystemUtil.mkdirs(dest);
@@ -413,7 +413,7 @@ public class TestUtil
 				FileSystemUtil.mkdirs(parent);
 	            OutputStream to = null;
 	            try {
-	                to = new FileOutputStream(dest);
+	                to = new FileOutputStream(dest); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 	                byte[] buffer = new byte[4096];
 	                int bytesRead;
 	                while ((bytesRead = srcZip.read(buffer)) != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
@@ -460,7 +460,7 @@ public class TestUtil
 		 * in which the compiled classes are to be found.
 		 */
 		public PackageFileFilter(String packageSubset, String binDir) {
-			_packageParts = packageSubset.split("\\."); //$NON-NLS-1$
+			_packageParts = packageSubset.split("\\."); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			_binDir = new Path(binDir);
 		}
 

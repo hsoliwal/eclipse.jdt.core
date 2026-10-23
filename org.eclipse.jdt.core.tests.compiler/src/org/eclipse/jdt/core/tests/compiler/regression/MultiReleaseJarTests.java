@@ -97,11 +97,11 @@ public class MultiReleaseJarTests extends AbstractBatchCompilerTest {
 				version11Classes.getAbsolutePath(),
 				JavaCore.VERSION_11);
 
-		if (jarContent.exists()) {
+		if (jarContent.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			if (!Util.flushDirectoryContent(jarContent)) {
 				throw new IOException("Could not clear " + jarContent); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
-		} else if (!jarContent.mkdirs()) {
+		} else if (!jarContent.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			throw new IOException("Could not create " + jarContent); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		Util.copy(baseClasses.getAbsolutePath(), jarContent.getAbsolutePath());
@@ -109,7 +109,7 @@ public class MultiReleaseJarTests extends AbstractBatchCompilerTest {
 			Util.copy(moduleClasses.getAbsolutePath(), jarContent.getAbsolutePath());
 		}
 		File version9Content = new File(jarContent, "META-INF" + File.separator + "versions" + File.separator + "9"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		if (!version9Content.mkdirs()) {
+		if (!version9Content.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			throw new IOException("Could not create " + version9Content); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		Util.copy(version9Classes.getAbsolutePath(), version9Content.getAbsolutePath());
@@ -117,7 +117,7 @@ public class MultiReleaseJarTests extends AbstractBatchCompilerTest {
 			Util.copy(moduleClasses.getAbsolutePath(), version9Content.getAbsolutePath());
 		}
 		File version11Content = new File(jarContent, "META-INF" + File.separator + "versions" + File.separator + "11"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		if (!version11Content.mkdirs()) {
+		if (!version11Content.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			throw new IOException("Could not create " + version11Content); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		Util.copy(version11Classes.getAbsolutePath(), version11Content.getAbsolutePath());
@@ -153,16 +153,16 @@ public class MultiReleaseJarTests extends AbstractBatchCompilerTest {
 				version9Classes.getAbsolutePath(),
 				JavaCore.VERSION_9);
 
-		if (jarContent.exists()) {
+		if (jarContent.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			if (!Util.flushDirectoryContent(jarContent)) {
 				throw new IOException("Could not clear " + jarContent); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
-		} else if (!jarContent.mkdirs()) {
+		} else if (!jarContent.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			throw new IOException("Could not create " + jarContent); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		Util.copy(baseClasses.getAbsolutePath(), jarContent.getAbsolutePath());
 		File version9Content = new File(jarContent, "META-INF" + File.separator + "versions" + File.separator + "9"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		if (!version9Content.mkdirs()) {
+		if (!version9Content.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			throw new IOException("Could not create " + version9Content); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		Util.copy(version9Classes.getAbsolutePath(), version9Content.getAbsolutePath());
@@ -280,14 +280,14 @@ public class MultiReleaseJarTests extends AbstractBatchCompilerTest {
 		libs[0] = path;
 		File directory = new File(OUTPUT_DIR +  File.separator + "src" + File.separator + "MyModule" ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		File out = new File(OUTPUT_DIR +  File.separator + "out" ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		if (!directory.exists()) {
-			if (!directory.mkdirs()) {
+		if (!directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			if (!directory.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				System.out.println("Could not create " + directory.toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return;
 			}
 		}
-		if (!out.exists()) {
-			if (!out.mkdirs()) {
+		if (!out.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			if (!out.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				System.out.println("Could not create " + directory.toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return;
 			}
@@ -326,14 +326,14 @@ public class MultiReleaseJarTests extends AbstractBatchCompilerTest {
 		libs[0] = path;
 		File directory = new File(OUTPUT_DIR +  File.separator + "src" + File.separator + "MyModule" ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		File out = new File(OUTPUT_DIR +  File.separator + "out" ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		if (!directory.exists()) {
-			if (!directory.mkdirs()) {
+		if (!directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			if (!directory.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				System.out.println("Could not create " + directory.toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return;
 			}
 		}
-		if (!out.exists()) {
-			if (!directory.mkdirs()) {
+		if (!out.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			if (!directory.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				System.out.println("Could not create " + directory.toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return;
 			}

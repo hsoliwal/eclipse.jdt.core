@@ -148,7 +148,7 @@ public void testEmptyCU() {
 public void testForce() throws JavaModelException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPackageFragment pkg = getPackage("/P/p");
 	File folder = pkg.getResource().getLocation().toFile();
-	new File(folder, "X.java").createNewFile();
+	new File(folder, "X.java").createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	ICompilationUnit cu = pkg.createCompilationUnit(
 		"X.java",
 		"package p;\n" +

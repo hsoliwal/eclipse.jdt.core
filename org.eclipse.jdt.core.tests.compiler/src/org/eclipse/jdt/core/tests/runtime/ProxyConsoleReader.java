@@ -37,7 +37,7 @@ public ProxyConsoleReader(String name, InputStream input, String fileName) {
 		this.output= System.out;
 	} else {
 		try {
-			this.output= new FileOutputStream(fileName);
+			this.output= new FileOutputStream(fileName); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		} catch (IOException e) {
 			System.out.println("Could not create file " + fileName + ". Redirecting to stdout"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			this.output= System.out;

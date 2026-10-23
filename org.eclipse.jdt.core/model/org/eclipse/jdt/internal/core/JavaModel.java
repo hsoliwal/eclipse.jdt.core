@@ -379,7 +379,7 @@ public static Object getExternalTarget(IPath path, boolean checkResourceExistenc
 		if (checkResourceExistence) {
 			// check if external folder is present
 			File externalFile = new File(path.toOSString());
-			if (!externalFile.isDirectory()) {
+			if (!externalFile.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				return null;
 			}
 		}
@@ -425,7 +425,7 @@ static private boolean isExternalFile(IPath path) {
 	if (JavaModelManager.ZIP_ACCESS_VERBOSE) {
 		JavaModelManager.trace("(" + Thread.currentThread() + ") [JavaModel.isExternalFile(...)] Checking existence of " + path.toString()); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	boolean isFile = path.toFile().isFile();
+	boolean isFile = path.toFile().isFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	JavaModelManager.getJavaModelManager().addExternalFile(path, isFile);
 	return isFile;
 }

@@ -84,9 +84,9 @@ public class IdeTestUtils {
 	 *            the full path to the destination location.
 	 */
 	private static void copyResource(File src, File dest) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (dest.exists() &&
-				src.lastModified() < dest.lastModified() &&
-				src.length() == dest.length())
+		if (dest.exists() && //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				src.lastModified() < dest.lastModified() && //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				src.length() == dest.length()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		{
 			return;
 		}
@@ -102,13 +102,13 @@ public class IdeTestUtils {
 		}
 
 		File destFolder = dest.getParentFile();
-		if (!destFolder.exists()) {
-			if (!destFolder.mkdirs()) {
+		if (!destFolder.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			if (!destFolder.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				throw new IOException("Unable to create directory " + destFolder); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		// write bytes to dest
-		try (FileOutputStream out = new FileOutputStream(dest)) {
+		try (FileOutputStream out = new FileOutputStream(dest)) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			out.write(srcBytes);
 			out.flush();
 		}
@@ -119,7 +119,7 @@ public class IdeTestUtils {
 			return;
 		}
 		// Copy all resources in this folder
-		String[] children = resourceFolder.list();
+		String[] children = resourceFolder.list(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		if (null == children) {
 			return;
 		}
@@ -130,7 +130,7 @@ public class IdeTestUtils {
 			}
 			File childRes = new File(resourceFolder, child);
 			File childDest = new File(destFolder, child);
-			if (childRes.isDirectory()) {
+			if (childRes.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				copyResources(childRes, childDest);
 			}
 			else {
@@ -141,8 +141,8 @@ public class IdeTestUtils {
 
 	private static byte[] read(java.io.File file) throws java.io.IOException {
 		int fileLength;
-		byte[] fileBytes = new byte[fileLength = (int) file.length()];
-		try (java.io.FileInputStream stream = new java.io.FileInputStream(file)) {
+		byte[] fileBytes = new byte[fileLength = (int) file.length()]; //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		try (java.io.FileInputStream stream = new java.io.FileInputStream(file)) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			int bytesRead = 0;
 			int lastReadSize = 0;
 			while ((lastReadSize != -1) && (bytesRead != fileLength)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP

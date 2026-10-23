@@ -226,13 +226,13 @@ public class JavaModelManagerTests extends AbstractJavaModelTests {
 		File file = File.createTempFile("jmm-gzip", ".tmp");
 		try {
 			byte[] content = "HELLO GZIP CONTENT".getBytes(StandardCharsets.UTF_8);
-			try (OutputStream out = new GZIPOutputStream(new FileOutputStream(file))) {
+			try (OutputStream out = new GZIPOutputStream(new FileOutputStream(file))) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				out.write(content);
 			}
 			byte[] read = readAll(invokeCreateInputStream(file));
 			assertEquals("gzip content mismatch", new String(content, StandardCharsets.UTF_8), new String(read, StandardCharsets.UTF_8));
 		} finally {
-			assertTrue("temp file should be deletable (no leaked handle)", file.delete() || !file.exists());
+			assertTrue("temp file should be deletable (no leaked handle)", file.delete() || !file.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 
@@ -241,11 +241,11 @@ public class JavaModelManagerTests extends AbstractJavaModelTests {
 		File file = File.createTempFile("jmm-plain", ".tmp");
 		try {
 			byte[] content = "PLAINDATA-not-gzip".getBytes(StandardCharsets.UTF_8);
-			Files.write(file.toPath(), content);
+			Files.write(file.toPath(), content); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			byte[] read = readAll(invokeCreateInputStream(file));
 			assertEquals("plain content mismatch", new String(content, StandardCharsets.UTF_8), new String(read, StandardCharsets.UTF_8));
 		} finally {
-			assertTrue("temp file should be deletable (no leaked handle)", file.delete() || !file.exists());
+			assertTrue("temp file should be deletable (no leaked handle)", file.delete() || !file.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 
@@ -253,7 +253,7 @@ public class JavaModelManagerTests extends AbstractJavaModelTests {
 		File file = File.createTempFile("jmm-trunc", ".tmp");
 		try {
 			// 0x1f 0x8b = gzip magic, then EOF before the rest of the 10-byte header.
-			Files.write(file.toPath(), new byte[] { (byte) 0x1f, (byte) 0x8b });
+			Files.write(file.toPath(), new byte[] { (byte) 0x1f, (byte) 0x8b }); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			try {
 				InputStream in = invokeCreateInputStream(file);
 				in.close();
@@ -262,10 +262,10 @@ public class JavaModelManagerTests extends AbstractJavaModelTests {
 				// expected: truncated header
 			}
 			// Best-effort FD-leak check: on Windows a leaked handle would prevent deletion.
-			assertTrue("truncated file must be deletable -> underlying stream was closed (no FD leak)", file.delete());
+			assertTrue("truncated file must be deletable -> underlying stream was closed (no FD leak)", file.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		} finally {
-			if (file.exists()) {
-				file.delete();
+			if (file.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				file.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			}
 		}
 	}

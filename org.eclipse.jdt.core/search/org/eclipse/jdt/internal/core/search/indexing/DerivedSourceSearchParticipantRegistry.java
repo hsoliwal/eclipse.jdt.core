@@ -73,7 +73,7 @@ public class DerivedSourceSearchParticipantRegistry implements IRegistryEventLis
 			if (!ELEMENT_NAME.equals(element.getName())) continue;
 			String fileExtensions = element.getAttribute(ATTR_FILE_EXTENSIONS);
 			if (fileExtensions == null || fileExtensions.isBlank()) continue;
-			for (String ext : fileExtensions.split(",")) { //$NON-NLS-1$ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (String ext : fileExtensions.split(",")) { //$NON-NLS-1$ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 				String trimmed = ext.trim().toLowerCase();
 				if (!trimmed.isEmpty()) {
 					extensionsByConfig.computeIfAbsent(element, k -> new LinkedHashSet<>()).add(trimmed);

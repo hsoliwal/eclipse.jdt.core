@@ -226,7 +226,7 @@ private int matchModule(TypeDeclarationPattern typePattern, TypeBinding type) { 
 	} else {// use pattern matching
 		for (Pattern p : typePattern.modulePatterns) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Matcher matcher = p.matcher(bindModName); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
-			if (matcher.matches()) return ACCURATE_MATCH;
+			if (matcher.matches()) return ACCURATE_MATCH; //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		}
 	}
 	return IMPOSSIBLE_MATCH;

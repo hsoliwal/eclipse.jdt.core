@@ -99,11 +99,11 @@ public class ScalingTests extends TestBase
 			// check that file was generated
 			String genFileName = String.format(".apt_generated/g/Generated%05d.java", i); //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
 			File genFile = new File(projPath.append(genFileName).toOSString());
-			assertTrue("Expected generated source file " + genFileName + " was not found", genFile != null && genFile.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertTrue("Expected generated source file " + genFileName + " was not found", genFile != null && genFile.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			// check that generated file was compiled
 			String genClassName = String.format("bin/g/Generated%05d.class", i); //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
 			File genClass = new File(projPath.append(genClassName).toOSString());
-			assertTrue("Compiled file " + genClassName + " was not found", genClass != null && genClass.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertTrue("Compiled file " + genClassName + " was not found", genClass != null && genClass.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 
 		if (VERBOSE)

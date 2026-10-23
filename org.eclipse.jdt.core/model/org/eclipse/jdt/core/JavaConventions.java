@@ -48,8 +48,8 @@ import org.eclipse.jdt.internal.core.util.Messages;
 public final class JavaConventions {
 
 	private static final char DOT= '.';
-    private static final Pattern DOT_DOT = Pattern.compile("(\\.)(\\1)+"); //$NON-NLS-1$
-    private static final Pattern PREFIX_JAVA = Pattern.compile("java$"); //$NON-NLS-1$
+    private static final Pattern DOT_DOT = Pattern.compile("(\\.)(\\1)+"); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+    private static final Pattern PREFIX_JAVA = Pattern.compile("java$"); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 	private static final Scanner SCANNER = new Scanner(false /*comment*/, true /*whitespace*/, false /*nls*/, CompilerOptions.getFirstSupportedJdkLevel() /*sourceLevel*/, null/*taskTag*/, null/*taskPriorities*/, true /*taskCaseSensitive*/);
 	private static Map<String, Set<String>> restrictedIdentifiersMap, restrictedIdentifierPreviewMap;
 	private static List<String> javaVersions;

@@ -130,7 +130,7 @@ public class JarPackageFragmentRoot extends PackageFragmentRoot {
 				String versionsPrefix = Util.METAINF_VERSIONS;
 				this.multiVersion = Util.isMultiRelease(getManifest());
 				int length = versionsPrefix.length();
-				for (Enumeration<? extends ZipEntry> e= jar.entries(); e.hasMoreElements();) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				for (Enumeration<? extends ZipEntry> e= jar.entries(); e.hasMoreElements();) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 					ZipEntry member= e.nextElement();
 					String name = Util.getEntryName(jar.getName(), member);
 					if (name == null)  {
@@ -446,7 +446,7 @@ public class JarPackageFragmentRoot extends PackageFragmentRoot {
 			jar = getJar();
 			ZipEntry mfEntry = jar.getEntry(TypeConstants.META_INF_MANIFEST_MF);
 			if (mfEntry != null) {
-				try (InputStream is = jar.getInputStream(mfEntry)) {
+				try (InputStream is = jar.getInputStream(mfEntry)) { //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 					return new Manifest(is);
 				}
 			}

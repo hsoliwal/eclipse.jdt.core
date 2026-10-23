@@ -47,7 +47,7 @@ public class TokenManager implements Iterable<Token> {
 	 */
 	public static final TerminalToken ANY = TerminalToken.TokenNameInvalid;
 
-	private static final Pattern COMMENT_LINE_ANNOTATION_PATTERN = Pattern.compile("^(\\s*\\*?\\s*)(@)"); //$NON-NLS-1$
+	private static final Pattern COMMENT_LINE_ANNOTATION_PATTERN = Pattern.compile("^(\\s*\\*?\\s*)(@)"); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 
 	private final List<Token> tokens;
 	private final String source;
@@ -321,7 +321,7 @@ public class TokenManager implements Iterable<Token> {
 		} else if (token.tokenType == TokenNameNotAToken || token.tokenType == TokenNameCOMMENT_JAVADOC) {
 			String text = token.toString(this.source);
 			Matcher matcher = COMMENT_LINE_ANNOTATION_PATTERN.matcher(text); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
-			if (matcher.find()) {
+			if (matcher.find()) { //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 				return matcher.group(1) + "&#64;" + text.substring(matcher.end(2)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
@@ -340,7 +340,7 @@ public class TokenManager implements Iterable<Token> {
 				length += 4; // 4 = "&#64;".length() - "@".length()
 			} else if (token.tokenType == TokenNameNotAToken) {
 				Matcher matcher = COMMENT_LINE_ANNOTATION_PATTERN.matcher(token.toString(this.source)); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
-				if (matcher.find()) {
+				if (matcher.find()) { //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 					length += 4; // 4 = "&#64;".length() - "@".length()
 				}
 			}

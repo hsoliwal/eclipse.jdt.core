@@ -1233,7 +1233,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 						int firstAsterix = fragmentString.indexOf('*');
 						return fragmentString.substring(0, firstAsterix != -1 ? firstAsterix : fragmentString.length());
 					}) //
-					.flatMap(fragment -> (Stream<String>)Stream.of(fragment.split("\\s+"))) // //$NON-NLS-1$
+					.flatMap(fragment -> (Stream<String>)Stream.of(fragment.split("\\s+"))) // //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 					.filter(category -> category.length() > 0) //
 					.map(category -> (category).toCharArray()) //
 					.toArray(char[][]::new);

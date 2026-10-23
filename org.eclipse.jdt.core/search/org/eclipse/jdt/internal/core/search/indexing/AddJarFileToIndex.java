@@ -182,7 +182,7 @@ class AddJarFileToIndex extends BinaryContainer {
 					SimpleLookupTable indexedFileNames = new SimpleLookupTable(max == 0 ? 33 : max + 11);
 					for (int i = 0; i < max; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						indexedFileNames.put(paths[i], DELETED);
-					for (Enumeration<? extends ZipEntry> e = zip.entries(); e.hasMoreElements();) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					for (Enumeration<? extends ZipEntry> e = zip.entries(); e.hasMoreElements();) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 						// iterate each entry to index it
 						ZipEntry ze = e.nextElement();
 						String zipEntryName = ze.getName();
@@ -225,7 +225,7 @@ class AddJarFileToIndex extends BinaryContainer {
 					indexPath = indexLocation.getIndexPath();
 				}
 				boolean hasModuleInfoClass = false;
-				for (Enumeration<? extends ZipEntry> e = zip.entries(); e.hasMoreElements();) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				for (Enumeration<? extends ZipEntry> e = zip.entries(); e.hasMoreElements();) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 					if (this.isCancelled) {
 						if (JobManager.VERBOSE)
 							trace("-> indexing of " + zip.getName() + " has been cancelled"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT

@@ -344,7 +344,7 @@ public class JavaProject
 		IPath canonicalPath = null;
 		try {
 			canonicalPath =
-				new Path(new File(externalPath.toOSString()).getCanonicalPath());
+				new Path(new File(externalPath.toOSString()).getCanonicalPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		} catch (IOException e) {
 			// default to original path
 			return externalPath;
@@ -755,7 +755,7 @@ public class JavaProject
 								List<String> rootModules = null;
 								String limitModules = ClasspathEntry.getExtraAttribute(resolvedEntry, IClasspathAttribute.LIMIT_MODULES);
 								if (limitModules != null) {
-									rootModules = Arrays.asList(limitModules.split(",")); //$NON-NLS-1$
+									rootModules = Arrays.asList(limitModules.split(",")); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 								} else if (isUnNamedModule()) {
 									String release = JavaCore.ENABLED.equals(getOption(JavaCore.COMPILER_RELEASE, true))
 											? getOption(JavaCore.COMPILER_COMPLIANCE, true) : null;
@@ -772,7 +772,7 @@ public class JavaProject
 						else {
 							root = new JarPackageFragmentRoot(null, entryPath, this, resolvedEntry.getExtraAttributes());
 						}
-					} else if ((tf).isDirectory()) {
+					} else if ((tf).isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 						root = new ExternalPackageFragmentRoot(entryPath, this);
 					}
 				}
@@ -2547,7 +2547,7 @@ public class JavaProject
 			URI location = rscFile.getLocationURI();
 			if (location != null) {
 				File file = Util.toLocalFile(location, null/*no progress monitor available*/);
-				if (file != null && file.exists()) {
+				if (file != null && file.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					byte[] bytes;
 					try {
 						bytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(file);
@@ -2790,13 +2790,13 @@ public class JavaProject
 	 	IPath projectMetaLocation = getPluginWorkingLocation();
 		if (projectMetaLocation != null) {
 			File prefFile = projectMetaLocation.append(PREF_FILENAME).toFile();
-			if (prefFile.exists()) { // load preferences from file
-				try (InputStream in = new BufferedInputStream(new FileInputStream(prefFile))){
+			if (prefFile.exists()) { // load preferences from file //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				try (InputStream in = new BufferedInputStream(new FileInputStream(prefFile))){ //FLLDCIM: MARK — M31 M3FILE_IO NEW
 					preferences = Platform.getPreferencesService().readPreferences(in);
 				} catch (CoreException | IOException e) { // problems loading preference store - quietly ignore
 				}
 				// one shot read, delete old preferences
-				prefFile.delete();
+				prefFile.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				return preferences;
 			}
 		}
@@ -3059,7 +3059,7 @@ public class JavaProject
 			try {
 				bytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(file);
 			} catch (IOException e) {
-				if (!file.exists())
+				if (!file.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					return new IClasspathEntry[][]{defaultClasspath(), ClasspathEntry.NO_ENTRIES};
 				throw e;
 			}
@@ -3375,7 +3375,7 @@ public class JavaProject
 		if (drive == null) return true;
 		Boolean good = (Boolean)knownDrives.get(drive);
 		if (good == null) {
-			if (new File(drive).exists()) {
+			if (new File(drive).exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				knownDrives.put(drive, Boolean.TRUE);
 				return true;
 			} else {
@@ -3912,12 +3912,12 @@ public class JavaProject
 		if (patchModules != null) {
 			List<String> result = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			IPath prjPath = getPath();
-			for (String patchModule : patchModules.split("::")) { //$NON-NLS-1$ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (String patchModule : patchModules.split("::")) { //$NON-NLS-1$ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 				int equalsIdx = patchModule.indexOf('=');
 				if (equalsIdx != -1) {
 					if (equalsIdx < patchModule.length()-1) { // otherwise malformed?
 						String locations = patchModule.substring(equalsIdx + 1);
-						for (String location : locations.split(File.pathSeparator)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+						for (String location : locations.split(File.pathSeparator)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 							if (prjPath.isPrefixOf(new Path(location))) {
 								result.add(patchModule.substring(0, equalsIdx));
 								break;

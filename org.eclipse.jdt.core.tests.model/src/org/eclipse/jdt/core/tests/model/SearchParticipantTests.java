@@ -50,7 +50,7 @@ public class SearchParticipantTests extends ModifyingResourceTests implements IJ
 			private final SearchDocument document;
 
 			WrapperDocument(SearchDocument document, SearchParticipant participant) {
-				super(document.getPath().replaceAll(".test", ".java"), participant);
+				super(document.getPath().replaceAll(".test", ".java"), participant); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 				this.document = document;
 			}
 
@@ -133,7 +133,7 @@ public class SearchParticipantTests extends ModifyingResourceTests implements IJ
 		}
 		@Override
 		protected String getPathString(IResource resource, IJavaElement element) {
-			return super.getPathString(resource, element).replaceAll(".java", ".test");
+			return super.getPathString(resource, element).replaceAll(".java", ".test"); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		}
 	}
 
@@ -239,11 +239,11 @@ public class SearchParticipantTests extends ModifyingResourceTests implements IJ
 		document = new TestSearchDocument("/P/no", participant);
 		participant.scheduleDocumentIndexing(document, getIndexLocation());
 		waitUntilIndexesReady();
-		assertTrue("Index file should have been written",  getIndexLocation().toFile().length() > 0);
+		assertTrue("Index file should have been written",  getIndexLocation().toFile().length() > 0); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		// remove index file
 		participant.removeIndex(getIndexLocation());
-		assertFalse("Index file should have been removed",  getIndexLocation().toFile().exists());
+		assertFalse("Index file should have been removed",  getIndexLocation().toFile().exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	/*
@@ -269,16 +269,16 @@ public class SearchParticipantTests extends ModifyingResourceTests implements IJ
 		participant.scheduleDocumentIndexing(document, getIndexLocation());
 		waitUntilIndexesReady();
 		wait(1100); // wait more than 1000ms so as to allow for the index to be saved on disk
-		assertTrue("Index file should have been written",  getIndexLocation().toFile().length() > 0);
+		assertTrue("Index file should have been written",  getIndexLocation().toFile().length() > 0); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		// shutdown
 		simulateExit();
-		assertTrue("Index file should stay after shutdown",  getIndexLocation().toFile().length() > 0);
+		assertTrue("Index file should stay after shutdown",  getIndexLocation().toFile().length() > 0); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		this.deleteProject = false;
 
 		// remove index file
 		participant.removeIndex(getIndexLocation());
-		assertFalse("Index file should have been removed",  getIndexLocation().toFile().exists());
+		assertFalse("Index file should have been removed",  getIndexLocation().toFile().exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		// restart
 		simulateRestart();
@@ -301,11 +301,11 @@ public class SearchParticipantTests extends ModifyingResourceTests implements IJ
 		document = new TestSearchDocument("/P/no", participant);
 		participant.scheduleDocumentIndexing(document, getIndexLocation());
 		waitUntilIndexesReady();
-		assertTrue("Index file should have been written",  getIndexLocation().toFile().length() > 0);
+		assertTrue("Index file should have been written",  getIndexLocation().toFile().length() > 0); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		// remove index file
 		participant.removeIndex(getIndexLocation());
-		assertFalse("Index file should have been removed",  getIndexLocation().toFile().exists());
+		assertFalse("Index file should have been removed",  getIndexLocation().toFile().exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	/*

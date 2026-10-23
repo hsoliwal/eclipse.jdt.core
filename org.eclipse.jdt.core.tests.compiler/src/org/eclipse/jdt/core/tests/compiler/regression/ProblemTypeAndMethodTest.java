@@ -9402,7 +9402,7 @@ public void testMissingClass_returnType_OK() { //FLLDCIM: MARK — ML METHOD_SPL
 	// temporarily move A.class to A.moved (i.e. simulate removing it from classpath for the next compile)
 	File classFileA = new File(OUTPUT_DIR, "p1" + File.separator + "A.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	File movedFileA = new File(OUTPUT_DIR, "p1" + File.separator + "A.moved"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	classFileA.renameTo(movedFileA);
+	classFileA.renameTo(movedFileA); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	runner.shouldFlushOutputDirectory = false;
 
 	runner.testFiles = new String[] {
@@ -9434,7 +9434,7 @@ public void testMissingClass_returnType_OK() { //FLLDCIM: MARK — ML METHOD_SPL
 			"""
 		};
 	// restore A.class and expect execution of Main to succeed
-	movedFileA.renameTo(classFileA);
+	movedFileA.renameTo(classFileA); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	runner.expectedOutputString = "B.m()new A()SUCCESS";
 	runner.shouldFlushOutputDirectory = false;
 	runner.expectedErrorString = null;

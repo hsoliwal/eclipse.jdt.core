@@ -1028,7 +1028,7 @@ private MethodBinding getClosestMatchMethodBinding(MethodPattern methodPattern) 
 private List<String> getInverseFullName(char[] qualifier, char[] simpleName) {
 	List <String> result = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	if (qualifier != null && qualifier.length > 0) {
-		result.addAll(Arrays.asList(new String(qualifier).split("\\.")));//$NON-NLS-1$
+		result.addAll(Arrays.asList(new String(qualifier).split("\\.")));//$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		Collections.reverse(result);
 	}
 	if (simpleName != null) result.add(0, new String(simpleName));
@@ -1534,7 +1534,7 @@ public void locateMatches(SearchDocument[] searchDocuments) throws CoreException
 				IPath path = resource.getFullPath();
 				String s = (pathString.contains(path.lastSegment())) ?
 						JavaModelManager.getLocalFile(path).toPath().toAbsolutePath().toString() :
-						pathString.split(Pattern.quote("|"))[0]; //$NON-NLS-1$
+						pathString.split(Pattern.quote("|"))[0]; //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 				possibleMatch.autoModuleName = new String(AutomaticModuleNaming.determineAutomaticModuleName(s));
 			}
 		}

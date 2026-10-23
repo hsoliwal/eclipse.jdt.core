@@ -67,7 +67,7 @@ public class PerfTests extends BuilderTests
 
 		File tempPath = fetchFromBinariesProject("perf-test-project.zip", 3_307_492);
 		
-		InputStream in = new FileInputStream(tempPath);
+		InputStream in = new FileInputStream(tempPath); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		
 		try (ZipInputStream zipIn = new ZipInputStream(in)) {
 			TestUtil.unzip(zipIn, destRoot);
@@ -87,10 +87,10 @@ public class PerfTests extends BuilderTests
 	private static File fetchFromBinariesProject(String nameInProject, long size) throws IOException, MalformedURLException {
 		String tmpRoot = System.getProperty("java.io.tmpdir");
 		File tempFile = new File(tmpRoot, nameInProject);
-		if (!tempFile.isFile() || tempFile.length() != size) {			
+		if (!tempFile.isFile() || tempFile.length() != size) {			 //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			String githubUrl = GITHUB_TESTS_BINARIES + nameInProject; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			try(BufferedInputStream bin = new BufferedInputStream(URI.create(githubUrl).toURL().openStream())){
-				Files.copy(bin, tempFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+				Files.copy(bin, tempFile.toPath(), StandardCopyOption.REPLACE_EXISTING); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			}
 		}
 		return tempFile;

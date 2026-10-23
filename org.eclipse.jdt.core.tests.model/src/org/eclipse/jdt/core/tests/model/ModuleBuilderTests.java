@@ -2674,7 +2674,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 				IPath path = rawClasspath[i].getPath();
 				if (path.lastSegment().equals("jrt-fs.jar")) {
 					path = path.removeLastSegments(2).append("jmods").append("java.base.jmod");
-					if (!path.toFile().exists()) {
+					if (!path.toFile().exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 						// No jmod? Then this test is not applicable.
 						return;
 					}
@@ -2714,7 +2714,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 				IPath path = rawClasspath[i].getPath();
 				if (path.lastSegment().equals("jrt-fs.jar")) {
 					path = path.removeLastSegments(2).append("jmods").append("java.base.jmod");
-					if (!path.toFile().exists()) {
+					if (!path.toFile().exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 						// No jmod? Then this test is not applicable.
 						return;
 					}
@@ -6961,7 +6961,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 				deleteProject(project1);
 			if (project2 != null)
 				deleteProject(project2);
-			new File(jarPath).delete();
+			new File(jarPath).delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 
@@ -7016,7 +7016,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		} finally {
 			if (project1 != null)
 				deleteProject(project1);
-			new File(jarPath).delete();
+			new File(jarPath).delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 	public void testBug527569a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
@@ -8056,7 +8056,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject(p);
 			// clean up output dir
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
@@ -8086,7 +8086,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 					null, jar2Path, new String[] { jar1Path }, "9");
 
 			File jar1File = new File(jar1Path);
-			jar1File.delete();
+			jar1File.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 			addModularLibraryEntry(p, new Path(jar2Path), null);
 			createFile("p/src/module-info.java",
@@ -8107,7 +8107,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		} finally {
 			deleteProject(p);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
@@ -8225,7 +8225,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject(x);
 			deleteProject(y);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
@@ -8280,7 +8280,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		} finally {
 			deleteProject(p);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
@@ -8356,7 +8356,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(options);
 			deleteProject(p);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
@@ -8390,7 +8390,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(options);
 			deleteProject(p);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
@@ -8423,7 +8423,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(options);
 			deleteProject(p);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
@@ -8454,7 +8454,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(options);
 			deleteProject(p);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
@@ -8486,7 +8486,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(options);
 			deleteProject(p);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
@@ -8516,7 +8516,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(options);
 			deleteProject(p);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
@@ -8546,7 +8546,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(options);
 			deleteProject(p);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
@@ -8582,7 +8582,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(options);
 			deleteProject(p);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
@@ -8618,7 +8618,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(options);
 			deleteProject(p);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
@@ -8659,7 +8659,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(options);
 			deleteProject(p);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
@@ -8693,7 +8693,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(options);
 			deleteProject(p);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}

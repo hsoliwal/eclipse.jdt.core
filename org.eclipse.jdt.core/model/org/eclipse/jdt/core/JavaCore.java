@@ -6635,7 +6635,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.14
 	 */
 	public static String getModuleNameFromJar(File file) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (!file.isFile()) {
+		if (!file.isFile()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			return null;
 		}
 
@@ -6667,7 +6667,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.14
 	 */
 	public static Set<String> getRequiredModulesFromJar(File file) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (!file.isFile()) {
+		if (!file.isFile()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			return Collections.emptySet();
 		}
 		try (ZipFile zipFile = new ZipFile(file)) { //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM NEW

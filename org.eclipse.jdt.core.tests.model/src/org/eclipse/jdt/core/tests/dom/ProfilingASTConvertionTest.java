@@ -258,8 +258,8 @@ public class ProfilingASTConvertionTest extends AbstractJavaModelTests {
 				if (resource instanceof IFile) {
 					IFile file = (IFile) resource;
 					File f = new File(file.getLocation().toOSString());
-					if (f.exists()) {
-						arrayList.add(new Result(String.valueOf(buffer), times[i], f.length()));
+					if (f.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+						arrayList.add(new Result(String.valueOf(buffer), times[i], f.length())); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					}
 				}
 			}
@@ -296,8 +296,8 @@ public class ProfilingASTConvertionTest extends AbstractJavaModelTests {
 				if (resource instanceof IFile) {
 					IFile file = (IFile) resource;
 					File f = new File(file.getLocation().toOSString());
-					if (f.exists()) {
-						arrayList.add(new Result(String.valueOf(buffer), times[i], f.length()));
+					if (f.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+						arrayList.add(new Result(String.valueOf(buffer), times[i], f.length())); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					}
 				}
 			}
@@ -335,8 +335,8 @@ public class ProfilingASTConvertionTest extends AbstractJavaModelTests {
 				if (resource instanceof IFile) {
 					IFile file = (IFile) resource;
 					File f = new File(file.getLocation().toOSString());
-					if (f.exists()) {
-						arrayList.add(new Result(String.valueOf(buffer), times[i], f.length()));
+					if (f.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+						arrayList.add(new Result(String.valueOf(buffer), times[i], f.length())); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					}
 				}
 			}
@@ -375,8 +375,8 @@ public class ProfilingASTConvertionTest extends AbstractJavaModelTests {
 				if (resource instanceof IFile) {
 					IFile file = (IFile) resource;
 					File f = new File(file.getLocation().toOSString());
-					if (f.exists()) {
-						arrayList.add(new Result(String.valueOf(buffer), times[i], f.length()));
+					if (f.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+						arrayList.add(new Result(String.valueOf(buffer), times[i], f.length())); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					}
 				}
 			}
@@ -415,8 +415,8 @@ public class ProfilingASTConvertionTest extends AbstractJavaModelTests {
 				if (resource instanceof IFile) {
 					IFile file = (IFile) resource;
 					File f = new File(file.getLocation().toOSString());
-					if (f.exists()) {
-						arrayList.add(new Result(String.valueOf(buffer), times[i], f.length()));
+					if (f.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+						arrayList.add(new Result(String.valueOf(buffer), times[i], f.length())); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					}
 				}
 			}

@@ -800,7 +800,7 @@ public void testBug546315() throws Exception { //FLLDCIM: MARK — ML METHOD_SPL
 		deleteExternalResource("externalLib");
 		deleteProject(p);
 		File outputDir = new File(outputDirectory);
-		if (outputDir.exists())
+		if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			Util.flushDirectoryContent(outputDir);
 	}
 }
@@ -1018,7 +1018,7 @@ public void testBug564289_001() throws Exception { //FLLDCIM: MARK — ML METHOD
 		deleteExternalResource("externalLib");
 		deleteProject(p);
 		File outputDir = new File(outputDirectory);
-		if (outputDir.exists())
+		if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			Util.flushDirectoryContent(outputDir);
 	}
 }

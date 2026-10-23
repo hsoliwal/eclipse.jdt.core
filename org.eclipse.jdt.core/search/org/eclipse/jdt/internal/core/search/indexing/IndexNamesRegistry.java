@@ -101,7 +101,7 @@ public class IndexNamesRegistry {
 
 		subMonitor.setWorkRemaining(newContents.length);
 
-		try (BufferedWriter writer = new BufferedWriter(new FileWriter(this.savedIndexNamesFile))) {
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(this.savedIndexNamesFile))) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(DiskIndex.SIGNATURE);
 			writer.write('+');
 			writer.write(this.javaPluginWorkingLocation.toOSString());
@@ -136,6 +136,6 @@ public class IndexNamesRegistry {
 		synchronized (this.queueMutex) {
 			this.pendingWrite = null;
 		}
-		this.savedIndexNamesFile.delete();
+		this.savedIndexNamesFile.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 }

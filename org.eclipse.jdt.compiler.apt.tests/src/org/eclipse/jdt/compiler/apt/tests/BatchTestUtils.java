@@ -403,11 +403,11 @@ public class BatchTestUtils {
 	 * @param files the set of Files under a root folder to return.
 	 */
 	public static void findFilesUnder(File rootFolder, List<File> files) {
-		for (File child : rootFolder.listFiles()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		for (File child : rootFolder.listFiles()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			if ("CVS".equals(child.getName())) {
 				continue;
 			}
-			if (child.isDirectory()) {
+			if (child.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				findFilesUnder(child, files);
 			}
 			else {
@@ -417,9 +417,9 @@ public class BatchTestUtils {
 	}
 
 	protected static void findClassesUnderModules(Path modulePath, List<String> classes) throws IOException {
-		try (DirectoryStream<Path> stream = Files.newDirectoryStream(modulePath)) {
+		try (DirectoryStream<Path> stream = Files.newDirectoryStream(modulePath)) { //FLLDCIM: MARK — M24 M3FILE_STREAMS CALL
 	        for (Path entry : stream) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
-	        	if (Files.isDirectory(entry)) {
+	        	if (Files.isDirectory(entry)) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	        		findClassesUnder(entry, entry, classes, entry.getFileName().toString());
 	        	}
 	        }
@@ -428,9 +428,9 @@ public class BatchTestUtils {
 	protected static void findClassesUnder(Path root, Path folder, List<String> classes, String moduleName) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (folder == null)
 			folder = root;
-		try (DirectoryStream<Path> stream = Files.newDirectoryStream(folder)) {
+		try (DirectoryStream<Path> stream = Files.newDirectoryStream(folder)) { //FLLDCIM: MARK — M24 M3FILE_STREAMS CALL
 	        for (Path entry : stream) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
-	            if (Files.isDirectory(entry)) {
+	            if (Files.isDirectory(entry)) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	            	findClassesUnder(root, entry, classes, moduleName);
 	            } else {
 	            	String fileName = entry.getFileName().toString();
@@ -484,20 +484,20 @@ public class BatchTestUtils {
 		_tmpBinFolderName = _tmpFolder + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		_tmpBinDir = new File(_tmpBinFolderName);
 		BatchTestUtils.deleteTree(_tmpBinDir); // remove existing contents
-		_tmpBinDir.mkdirs();
-		assert _tmpBinDir.exists() : "couldn't mkdirs " + _tmpBinFolderName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		_tmpBinDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assert _tmpBinDir.exists() : "couldn't mkdirs " + _tmpBinFolderName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		_tmpGenFolderName = _tmpFolder + File.separator + "gen-src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		_tmpGenDir = new File(_tmpGenFolderName);
 		BatchTestUtils.deleteTree(_tmpGenDir); // remove existing contents
-		_tmpGenDir.mkdirs();
-		assert _tmpGenDir.exists() : "couldn't mkdirs " + _tmpGenFolderName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		_tmpGenDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assert _tmpGenDir.exists() : "couldn't mkdirs " + _tmpGenFolderName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		_tmpSrcFolderName = _tmpFolder + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		_tmpSrcDir = new File(_tmpSrcFolderName);
 		BatchTestUtils.deleteTree(_tmpSrcDir); // remove existing contents
-		_tmpSrcDir.mkdirs();
-		assert _tmpSrcDir.exists() : "couldn't mkdirs " + _tmpSrcFolderName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		_tmpSrcDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assert _tmpSrcDir.exists() : "couldn't mkdirs " + _tmpSrcFolderName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		try {
 			_processorJarPath = setupProcessorJar(PROCESSOR_JAR_NAME, _tmpFolder);
@@ -507,7 +507,7 @@ public class BatchTestUtils {
 		}
 		junit.framework.TestCase.assertNotNull("No processor jar path set", _processorJarPath);
 		File processorJar = new File(_processorJarPath);
-		junit.framework.TestCase.assertTrue("Couldn't find processor jar at " + processorJar.getAbsolutePath(), processorJar.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		junit.framework.TestCase.assertTrue("Couldn't find processor jar at " + processorJar.getAbsolutePath(), processorJar.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		ServiceLoader<JavaCompiler> javaCompilerLoader = ServiceLoader.load(JavaCompiler.class, BatchTestUtils.class.getClassLoader());
 		Class<?> c = null;
@@ -566,8 +566,8 @@ public class BatchTestUtils {
 	}
 	public static byte[] read(java.io.File file) throws java.io.IOException {
 		int fileLength;
-		byte[] fileBytes = new byte[fileLength = (int) file.length()];
-		try (java.io.FileInputStream stream = new java.io.FileInputStream(file)) {
+		byte[] fileBytes = new byte[fileLength = (int) file.length()]; //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		try (java.io.FileInputStream stream = new java.io.FileInputStream(file)) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			int bytesRead = 0;
 			int lastReadSize = 0;
 			while ((lastReadSize != -1) && (bytesRead != fileLength)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
@@ -597,9 +597,9 @@ public class BatchTestUtils {
 	 *            the full path to the destination location.
 	 */
 	public static void copyResource(File src, File dest) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (dest.exists() &&
-				src.lastModified() < dest.lastModified() &&
-				src.length() == dest.length())
+		if (dest.exists() && //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				src.lastModified() < dest.lastModified() && //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				src.length() == dest.length()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		{
 			return;
 		}
@@ -619,13 +619,13 @@ public class BatchTestUtils {
 	public static void writeFile(File dest, byte[] srcBytes) throws IOException {
 
 		File destFolder = dest.getParentFile();
-		if (!destFolder.exists()) {
-			if (!destFolder.mkdirs()) {
+		if (!destFolder.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			if (!destFolder.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				throw new IOException("Unable to create directory " + destFolder); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		// write bytes to dest
-		try (FileOutputStream out = new FileOutputStream(dest)) {
+		try (FileOutputStream out = new FileOutputStream(dest)) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			out.write(srcBytes);
 			out.flush();
 		}
@@ -674,7 +674,7 @@ public class BatchTestUtils {
 			return;
 		}
 		// Copy all resources in this folder
-		String[] children = resourceFolder.list();
+		String[] children = resourceFolder.list(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		if (null == children) {
 			return;
 		}
@@ -685,7 +685,7 @@ public class BatchTestUtils {
 			}
 			File childRes = new File(resourceFolder, child);
 			File childDest = new File(destFolder, child);
-			if (childRes.isDirectory()) {
+			if (childRes.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				copyResources(childRes, childDest);
 			}
 			else {
@@ -714,7 +714,7 @@ public class BatchTestUtils {
 		if (null == f) {
 			return;
 		}
-		File[] children = f.listFiles();
+		File[] children = f.listFiles(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		if (null != children) {
 			// if f has any children, (recursively) delete them
 			for (File child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
@@ -722,7 +722,7 @@ public class BatchTestUtils {
 			}
 		}
 		// At this point f is either a normal file or an empty directory
-		f.delete();
+		f.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	/**
@@ -730,7 +730,7 @@ public class BatchTestUtils {
 	 * @return true if the contents of <code>genTextFile</code> exactly match <code>string</code>
 	 */
 	public static boolean fileContentsEqualText(File genTextFile, String input) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		long length = genTextFile.length();
+		long length = genTextFile.length(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		if (length != input.length()) {
 			return false;
 		}
@@ -738,7 +738,7 @@ public class BatchTestUtils {
 
 		Reader r = null;
 		try {
-			r = new BufferedReader(new FileReader(genTextFile));
+			r = new BufferedReader(new FileReader(genTextFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			int ofs = 0;
 			while (length > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int read = r.read(contents);

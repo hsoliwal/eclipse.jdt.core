@@ -205,7 +205,7 @@ public void setBatchFileName(String batchFileName) {
 protected void writeBatchFile(String fileName, List<String> commandLine) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	FileOutputStream output = null;
 	try {
-		output = new FileOutputStream(fileName);
+		output = new FileOutputStream(fileName); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		PrintWriter out= new PrintWriter(output);
 		for (String string : commandLine) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			out.print(string);

@@ -58,7 +58,7 @@ public class BatchCompilerTest_17 extends AbstractBatchCompilerTest {
 	 * @see <a href="https://github.com/eclipse-jdt/eclipse.jdt.core/issues/183">bug 183</a>
 	 */
 	public void testParallelCompilation() throws Throwable { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		Path root = Files.createDirectories(Paths.get(OUTPUT_DIR));
+		Path root = Files.createDirectories(Paths.get(OUTPUT_DIR)); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		String[] sources = new String[] {
 				"X.java",
 				"public class X {\n"
@@ -118,7 +118,7 @@ public class BatchCompilerTest_17 extends AbstractBatchCompilerTest {
 	private String compile(String[] sources, CountDownLatch startLatch) throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String folder = "BatchCompilerTest_17_" + Thread.currentThread().getName(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		File outputFolder = new File(OUTPUT_DIR, folder);
-		Files.createDirectories(outputFolder.toPath());
+		Files.createDirectories(outputFolder.toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		StringBuilder output = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		StringBuilder error = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		startLatch.await();

@@ -50,11 +50,11 @@ public class ClassFileReaderTest_1_5 extends AbstractRegressionTest {
 		BufferedInputStream inputStream = null;
 		try {
 			File directory = new File(EVAL_DIRECTORY, directoryName);
-			if (!directory.exists()) {
+			if (!directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				assertTrue(".class file not generated properly in " + directory, false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			File f = new File(directory, className + ".class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-			inputStream = new BufferedInputStream(new FileInputStream(f));
+			inputStream = new BufferedInputStream(new FileInputStream(f)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			IClassFileReader classFileReader = ToolFactory.createDefaultClassFileReader(inputStream, IClassFileReader.ALL);
 			assertNotNull(classFileReader);
 			String result = ToolFactory.createDefaultClassFileDisassembler().disassemble(classFileReader, "\n", mode);

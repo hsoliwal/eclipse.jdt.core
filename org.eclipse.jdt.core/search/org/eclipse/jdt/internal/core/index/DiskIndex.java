@@ -436,7 +436,7 @@ void initialize(boolean reuseExistingFile) throws IOException { //FLLDCIM: MARK 
 		}
 	}
 	if (this.indexLocation.createNewFile()) {
-		try (OutputStream stream = new BufferedOutputStream(new FileOutputStream(this.indexLocation.getIndexFile(), false));) {
+		try (OutputStream stream = new BufferedOutputStream(new FileOutputStream(this.indexLocation.getIndexFile(), false));) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			this.streamBuffer = new byte[BUFFER_READ_SIZE];
 			this.bufferIndex = 0;
 			writeStreamChars(stream, SIGNATURE_CHARS);
@@ -454,10 +454,10 @@ void initialize(boolean reuseExistingFile) throws IOException { //FLLDCIM: MARK 
 	}
 }
 private void initializeFrom(DiskIndex diskIndex, File newIndexFile) throws IOException {
-	if (newIndexFile.exists() && !newIndexFile.delete()) { // delete the temporary index file
+	if (newIndexFile.exists() && !newIndexFile.delete()) { // delete the temporary index file //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		if (DEBUG)
 			System.out.println("initializeFrom - Failed to delete temp index " + this.indexLocation); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	} else if (!newIndexFile.createNewFile()) {
+	} else if (!newIndexFile.createNewFile()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		if (DEBUG)
 			System.out.println("initializeFrom - Failed to create temp index " + this.indexLocation); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		throw new IOException("Failed to create temp index " + this.indexLocation); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -562,7 +562,7 @@ DiskIndex mergeWith(MemoryIndex memoryIndex) throws IOException { //FLLDCIM: MAR
 	try {
 		newDiskIndex.initializeFrom(this, newIndexFile);
 		int offsetToHeader = -1;
-		try (OutputStream stream = new BufferedOutputStream(new FileOutputStream(newIndexFile, false))) {
+		try (OutputStream stream = new BufferedOutputStream(new FileOutputStream(newIndexFile, false))) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			newDiskIndex.writeAllDocumentNames(docNames, stream);
 			docNames = null; // free up the space
 
@@ -592,13 +592,13 @@ DiskIndex mergeWith(MemoryIndex memoryIndex) throws IOException { //FLLDCIM: MAR
 
 		// rename file by deleting previous index file & renaming temp one
 		try {
-			Files.deleteIfExists(oldIndexFile.toPath());
+			Files.deleteIfExists(oldIndexFile.toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		} catch (Exception e2) {
 			throw new IOException("Failed to delete index file " + this.indexLocation, e2); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		if (!usingTmp) {
 			try {
-				Files.move(newIndexFile.toPath(), oldIndexFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+				Files.move(newIndexFile.toPath(), oldIndexFile.toPath(), StandardCopyOption.REPLACE_EXISTING); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			} catch (IOException ioe) {
 				// try again after waiting for two milli secs
 				try {
@@ -607,7 +607,7 @@ DiskIndex mergeWith(MemoryIndex memoryIndex) throws IOException { //FLLDCIM: MAR
 					//ignore
 				}
 				try {
-					Files.move(newIndexFile.toPath(), oldIndexFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+					Files.move(newIndexFile.toPath(), oldIndexFile.toPath(), StandardCopyOption.REPLACE_EXISTING); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				} catch (IOException e) {
 					Util.log(ioe, "mergeWith - Failed to rename index " + this.indexLocation); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					usingTmp = true;
@@ -616,7 +616,7 @@ DiskIndex mergeWith(MemoryIndex memoryIndex) throws IOException { //FLLDCIM: MAR
 		}
 	} catch (IOException e) {
 		try {
-			Files.deleteIfExists(newIndexFile.toPath());
+			Files.deleteIfExists(newIndexFile.toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		} catch (Exception e2) {
 			Util.log(e2, "mergeWith - Failed to delete temp index " + newDiskIndex.indexLocation); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
@@ -1255,7 +1255,7 @@ private void writeHeaderInfo(OutputStream stream) throws IOException { //FLLDCIM
 }
 private void writeOffsetToHeader(int offsetToHeader) throws IOException {
 	if (offsetToHeader > 0) {
-		try (RandomAccessFile file = new RandomAccessFile(this.indexLocation.getIndexFile(), "rw")) { //$NON-NLS-1$ )
+		try (RandomAccessFile file = new RandomAccessFile(this.indexLocation.getIndexFile(), "rw")) { //$NON-NLS-1$ ) //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			file.seek(this.headerInfoOffset); // offset to position in header
 			file.writeInt(offsetToHeader);
 			this.headerInfoOffset = offsetToHeader; // update to reflect the correct offset

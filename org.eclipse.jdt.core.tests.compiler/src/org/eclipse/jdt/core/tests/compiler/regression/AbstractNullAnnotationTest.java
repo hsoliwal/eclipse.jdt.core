@@ -95,7 +95,7 @@ public abstract class AbstractNullAnnotationTest extends AbstractComparableTest 
 			File bundleFile = Arrays.stream(bundles)
 					.filter(b -> "org.eclipse.jdt.annotation".equals(b.getSymbolicName())) //
 					.findFirst().flatMap(FileLocator::getBundleFileLocation).orElseThrow();
-			if (bundleFile.isDirectory())
+			if (bundleFile.isDirectory()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				this.LIBS[len] = bundleFile.getPath()+"/bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			else
 				this.LIBS[len] = bundleFile.getPath();
@@ -105,7 +105,7 @@ public abstract class AbstractNullAnnotationTest extends AbstractComparableTest 
 	protected String getAnnotationLibPath() throws IOException {
 		Bundle bundle = Platform.getBundle("org.eclipse.jdt.annotation");
 		File bundleFile = FileLocator.getBundleFileLocation(bundle).get();
-		if (bundleFile.isDirectory())
+		if (bundleFile.isDirectory()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			return bundleFile.getPath()+"/bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		else
 			return bundleFile.getPath();

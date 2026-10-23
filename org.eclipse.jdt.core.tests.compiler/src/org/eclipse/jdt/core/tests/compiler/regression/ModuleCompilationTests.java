@@ -471,13 +471,13 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		if (!modDir.exists()) {
-			if (!modDir.mkdirs()) {
+		if (!modDir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			if (!modDir.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				fail("Coult not create folder " + modDir); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		File mod2 = new File(modDir, "mod.two");
-		if (!mod2.mkdir()) {
+		if (!mod2.mkdir()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			fail("Coult not create folder " + mod2); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		Util.copy(outDir + File.separator + "mod.two", mod2.getAbsolutePath()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -1572,7 +1572,7 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 	public void test033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File libDir = new File(LIB_DIR);
 		Util.delete(libDir); // make sure we recycle the libs
- 		libDir.mkdirs();
+ 		libDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		try {
 			Util.createJar(
 				new String[] {
@@ -1628,7 +1628,7 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 	public void test034() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File libDir = new File(LIB_DIR);
 		Util.delete(libDir); // make sure we recycle the libs
- 		libDir.mkdirs();
+ 		libDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		try {
 			Util.createJar(
 				new String[] {
@@ -1685,7 +1685,7 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 	public void test035() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File libDir = new File(LIB_DIR);
 		Util.delete(libDir); // make sure we recycle the libs
- 		libDir.mkdirs();
+ 		libDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		try {
 			Util.createJar(
 				new String[] {
@@ -5183,8 +5183,8 @@ public void testBug521362_emptyFile() { //FLLDCIM: MARK — ML METHOD_SPLIT METH
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		if (!modDir.exists()) {
-			if (!modDir.mkdirs()) {
+		if (!modDir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			if (!modDir.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				fail("Coult not create folder " + modDir); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}

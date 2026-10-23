@@ -89,7 +89,7 @@ public class InMemoryCompilationTest extends TestCase {
 			throws ReflectiveOperationException, IllegalArgumentException, SecurityException {
 		testInMemoryCompilationStaticMethod();
 		File file = new File("/my/pkg/");
-		assertEquals(false, file.isDirectory());
+		assertEquals(false, file.isDirectory()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	private Class<?> compile(String absClassName, String sourceCode) throws ClassNotFoundException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD

@@ -416,7 +416,7 @@ public void testTransitionFromInvalidToValidJar() throws CoreException, IOExcept
 		type = getNameLookup(proj).findType("test1.IResource", false, NameLookup.ACCEPT_CLASSES);
 		assertFalse("Name lookup should be able to find types in the valid jar", type == null);
 	} finally {
-		Files.deleteIfExists(transitioningJarPath);
+		Files.deleteIfExists(transitioningJarPath); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		deleteProject("P");
 	}
 }

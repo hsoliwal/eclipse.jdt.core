@@ -151,12 +151,12 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 				String cmdLineAsString;
 				// WORK improve double-quotes management on Linux
 				if ("Linux".equals(System.getProperty("os.name"))) {
-					cmdLineAsString = cmdLine.toString().replaceAll("\"", "");
+					cmdLineAsString = cmdLine.toString().replaceAll("\"", ""); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 				} else {
 					cmdLineAsString = cmdLine.toString();
 				}
 				// Launch process
-				process = Runtime.getRuntime().exec(cmdLineAsString.split("\\s"), null, GenericTypeSignatureTest.this.dirPath.toFile());
+				process = Runtime.getRuntime().exec(cmdLineAsString.split("\\s"), null, GenericTypeSignatureTest.this.dirPath.toFile()); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 	            // Log errors
 	            Logger errorLogger = new Logger(process.getErrorStream(), "ERROR");
 
@@ -930,8 +930,8 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		// Compute and create specific dir
 		IPath dirFilePath = (IPath) this.dirPath.clone();
 		File dir = dirFilePath.toFile();
-		if (!dir.exists()) {
-			dir.mkdirs();
+		if (!dir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			dir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 
 		// For each given test files
@@ -943,8 +943,8 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 			if (fileName.lastIndexOf('/') >= 0) {
 				dirFilePath = filePath.removeLastSegments(1);
 				dir = dirFilePath.toFile();
-				if (!dir.exists()) {
-					dir.mkdirs();
+				if (!dir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+					dir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				}
 			}
 			Util.writeToFile(contents, filePath.toString());

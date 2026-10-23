@@ -153,12 +153,12 @@ public class EvaluationContextWrapperTest extends EvaluationTest {
 		result.put(BIN_DIR, binDir);
 
 		File directory = new File(srcDir);
-		if (!directory.exists()) {
-			Files.createDirectories(directory.toPath());
+		if (!directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			Files.createDirectories(directory.toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 
 		String fileName = srcDir + File.separator + className + ".java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		Files.write(Paths.get(fileName), source.getBytes());
+		Files.write(Paths.get(fileName), source.getBytes()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append("\"")

@@ -86,7 +86,7 @@ public class AbstractSyntaxTreeTest extends AbstractCompilerTest implements IDoc
 				if (this.referenceCompiler != null && (parserToCheck & CHECK_JAVAC_PARSER) != 0) {
 					String javaFilePath = this.referenceCompilerTestsScratchArea + "\\Xyz.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					File f = new File(javaFilePath);
-					FileOutputStream o = new FileOutputStream(f);
+					FileOutputStream o = new FileOutputStream(f); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 					OutputStreamWriter w = new OutputStreamWriter(o);
 					w.write(source);
 					w.close();

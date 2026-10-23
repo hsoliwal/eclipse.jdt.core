@@ -114,10 +114,10 @@ public class OneLineEnforcer extends ASTVisitor {
 				Type returnType = method.getReturnType2();
 				boolean returnsVoid = returnType instanceof PrimitiveType
 						&& ((PrimitiveType) returnType).getPrimitiveTypeCode() == PrimitiveType.VOID;
-				boolean isGetter = name.matches("(is|get)\\p{Lu}.*") //$NON-NLS-1$
+				boolean isGetter = name.matches("(is|get)\\p{Lu}.*") //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 						&& !method.isConstructor() && !returnsVoid && method.parameters().isEmpty()
 						&& statements.size() == 1 && statements.get(0) instanceof ReturnStatement;
-				boolean isSetter = name.matches("set\\p{Lu}.*") //$NON-NLS-1$
+				boolean isSetter = name.matches("set\\p{Lu}.*") //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 						&& !method.isConstructor() && returnsVoid && method.parameters().size() == 1
 						&& statements.size() == 1 && statements.get(0) instanceof ExpressionStatement
 						&& ((ExpressionStatement) statements.get(0)).getExpression() instanceof Assignment;

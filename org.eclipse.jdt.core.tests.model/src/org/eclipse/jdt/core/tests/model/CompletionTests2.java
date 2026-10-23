@@ -163,7 +163,7 @@ public static Test suite() {
 
 static File createFile(File parent, String name, String content) throws IOException {
 	File file = new File(parent, name);
-	try (FileOutputStream out = new FileOutputStream(file)) {
+	try (FileOutputStream out = new FileOutputStream(file)) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		out.write(content.getBytes());
 	}
 	return file;
@@ -171,7 +171,7 @@ static File createFile(File parent, String name, String content) throws IOExcept
 
 static File createDirectory(File parent, String name) {
 	File dir = new File(parent, name);
-	dir.mkdirs();
+	dir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	return dir;
 }
 

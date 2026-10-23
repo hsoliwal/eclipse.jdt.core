@@ -39,8 +39,8 @@ public class ReferenceExpressionSyntaxTest extends AbstractSyntaxTreeTest {
 		super(testName, referenceCompiler, jsr335TestScratchArea);
 		if (referenceCompiler != null) {
 			File f = new File(jsr335TestScratchArea);
-			if (!f.exists()) {
-				f.mkdir();
+			if (!f.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				f.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			}
 			CHECK_ALL |= CHECK_JAVAC_PARSER;
 		}
@@ -49,7 +49,7 @@ public class ReferenceExpressionSyntaxTest extends AbstractSyntaxTreeTest {
 	static {
 		//		TESTS_NAMES = new String[] { "test0012" };
 		//		TESTS_NUMBERS = new int[] { 133, 134, 135 };
-		if (!(new File(referenceCompiler).exists())) {
+		if (!(new File(referenceCompiler).exists())) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			referenceCompiler = null;
 			jsr335TestScratchArea = null;
 		}

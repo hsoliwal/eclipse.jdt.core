@@ -39,7 +39,7 @@ public String[] getCommandLine() {
 	    File.separator +
 	    "javaw";
 	final String osName = System.getProperty("os.name");
-	if (osName.indexOf("win32") == -1 && !new File(vmLocation).exists()) {
+	if (osName.indexOf("win32") == -1 && !new File(vmLocation).exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	    vmLocation = vmLocation.substring(0, vmLocation.length()-1);
 	}
 	commandLine.add(vmLocation);

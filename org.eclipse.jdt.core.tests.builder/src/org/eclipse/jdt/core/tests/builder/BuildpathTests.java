@@ -282,7 +282,7 @@ public void testChangeExternalFolder() throws CoreException { //FLLDCIM: MARK �
 	String externalLib = Util.getOutputDirectory() + File.separator + "externalLib"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	IPath projectPath = env.addProject("Project");
 	try {
-		new File(externalLib).mkdirs();
+		new File(externalLib).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		Util.compile(
 			new String[] {
 				"p/X.java",
@@ -316,7 +316,7 @@ public void testChangeExternalFolder() throws CoreException { //FLLDCIM: MARK �
 		expectingNoProblems();
 
 		String externalClassFile = externalLib + File.separator + "p" + File.separator + "X.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		long lastModified = new java.io.File(externalClassFile).lastModified();
+		long lastModified = new java.io.File(externalClassFile).lastModified(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		try {
 			Thread.sleep(1000);
 		} catch(InterruptedException e) {
@@ -343,7 +343,7 @@ public void testChangeExternalFolder() throws CoreException { //FLLDCIM: MARK �
 			"Problem : The method foo() is undefined for the type X [ resource : </Project/q/Y.java> range : <54,57> category : <50> severity : <2>]"
 		);
 	} finally {
-		new File(externalLib).delete();
+		new File(externalLib).delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		env.removeProject(projectPath);
 	}
 }
@@ -369,7 +369,7 @@ public void testChangeZIPArchive1() throws Exception { //FLLDCIM: MARK — ML ME
 
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.addExternalJars(projectPath, new String[] {externalLib});
-		long lastModified = new File(externalLib).lastModified();
+		long lastModified = new File(externalLib).lastModified(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		IPath root = env.getPackageFragmentRootPath(projectPath, ""); //$NON-NLS-1$
 		env.setOutputFolder(projectPath, "");
 
@@ -404,7 +404,7 @@ public void testChangeZIPArchive1() throws Exception { //FLLDCIM: MARK — ML ME
 			"Problem : The method foo() is undefined for the type X [ resource : </Project/q/Y.java> range : <54,57> category : <50> severity : <2>]"
 		);
 	} finally {
-		new File(externalLib).delete();
+		new File(externalLib).delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		env.removeProject(projectPath);
 	}
 }

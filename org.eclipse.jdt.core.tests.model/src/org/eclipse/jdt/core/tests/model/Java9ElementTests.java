@@ -785,7 +785,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 				IPath path = rawClasspath[i].getPath();
 				if (path.lastSegment().equals("jrt-fs.jar")) {
 					path = path.removeLastSegments(2).append("jmods").append("java.base.jmod");
-					if (!path.toFile().exists()) {
+					if (!path.toFile().exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 						// No jmod files in JDK? This test is not applicable
 						return;
 					}
@@ -844,7 +844,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 				IPath path = rawClasspath[i].getPath();
 				if (path.lastSegment().equals("jrt-fs.jar")) {
 					path = path.removeLastSegments(2).append("jmods").append("java.base.jmod");
-					if (!path.toFile().exists()) {
+					if (!path.toFile().exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 						// No jmod files? Then this test is not applicable
 						return;
 					}
@@ -868,7 +868,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			assertTrue("Invalid selection result", (elements[0] instanceof BinaryModule));
 			IModuleDescription mod = (IModuleDescription) elements[0];
 			String id = mod.getHandleIdentifier();
-			assertTrue("incorrect id", id.matches("=Java9Elements/.*"+Pattern.quote("\\/jmods\\/java.base.jmod=/module=/true=/<'`java.base"))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertTrue("incorrect id", id.matches("=Java9Elements/.*"+Pattern.quote("\\/jmods\\/java.base.jmod=/module=/true=/<'`java.base"))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			IJavaElement element = JavaCore.create(id);
 			assertEquals("incorrect element type", IJavaElement.JAVA_MODULE, element.getElementType());
 			assertEquals("incorrect module name", "java.base", element.getElementName());
@@ -1406,7 +1406,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			IPackageFragment pkg = (IPackageFragment) parent;
 			IPackageFragmentRoot root = (IPackageFragmentRoot) pkg.getParent();
 			String id = root.getHandleIdentifier();
-			assertTrue("incorrect id", id.matches("=Java9Elements/work\\\\/src\\\\/java"));
+			assertTrue("incorrect id", id.matches("=Java9Elements/work\\\\/src\\\\/java")); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			IJavaElement element = JavaCore.create(id);
 			assertEquals("incorrect element type", IJavaElement.PACKAGE_FRAGMENT_ROOT, element.getElementType());
 			id = "=Java9Elements/work/src/java";
@@ -1440,7 +1440,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			IPath path = rawClasspath[i].getPath();
 			if (path.lastSegment().equals("jrt-fs.jar")) {
 				path = path.removeLastSegments(2).append("jmods").append("java.base.jmod");
-				if (!path.toFile().exists()) {
+				if (!path.toFile().exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					// No jmod files? Just proceed with the jrt-fs.
 					newClasspath[i] = rawClasspath[i];
 					continue;
@@ -1616,7 +1616,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 				if (path.lastSegment().equals("jrt-fs.jar")) {
 					jdkRootPath = path.removeLastSegments(2);
 					path = jdkRootPath.append("jmods").append("java.base.jmod");
-					if (!path.toFile().exists()) {
+					if (!path.toFile().exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 						// No jmod files? Then this test is not applicable
 						return;
 					}

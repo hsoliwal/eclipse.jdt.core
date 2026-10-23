@@ -964,14 +964,14 @@ protected JavaSearchResultCollector resultCollector;
 		if (COPY_DIRS) {
 			super.copyDirectory(sourceDir, targetDir);
 		} else {
-			targetDir.mkdirs();
+			targetDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			File sourceFile = new File(sourceDir, ".project");
 			File targetFile = new File(targetDir, ".project");
-			targetFile.createNewFile();
+			targetFile.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			copy(sourceFile, targetFile);
 			sourceFile = new File(sourceDir, ".classpath");
 			targetFile = new File(targetDir, ".classpath");
-			targetFile.createNewFile();
+			targetFile.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			copy(sourceFile, targetFile);
 		}
 	}

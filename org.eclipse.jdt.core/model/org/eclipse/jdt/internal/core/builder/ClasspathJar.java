@@ -99,7 +99,7 @@ private Set<String> getCachedPackageNames() {
 protected Set<String> readPackageNames() {
 	final Set<String> packageSet = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 	packageSet.add(""); //$NON-NLS-1$
-	for (Enumeration<? extends ZipEntry> e = this.zipFile.entries(); e.hasMoreElements(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+	for (Enumeration<? extends ZipEntry> e = this.zipFile.entries(); e.hasMoreElements(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 		String fileName = e.nextElement().getName();
 		if (fileName.startsWith("META-INF/")) //$NON-NLS-1$
 			continue;
@@ -285,7 +285,7 @@ public boolean hasCompilationUnit(String pkgName, String moduleName) {
 		// Even if knownPackageNames contained the pkg we're looking for, we still need to verify
 		// that the package in this jar actually contains at least one .class file (since
 		// knownPackageNames includes empty packages)
-		for (Enumeration<? extends ZipEntry> e = this.zipFile.entries(); e.hasMoreElements(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		for (Enumeration<? extends ZipEntry> e = this.zipFile.entries(); e.hasMoreElements(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 			String fileName = e.nextElement().getName();
 			if (fileName.startsWith(pkgName)
 					&& fileName.toLowerCase().endsWith(SuffixConstants.SUFFIX_STRING_class)
@@ -319,7 +319,7 @@ public long lastModified() {
 		long lastMod=-1;
 		long size=-1;
 		try {
-			BasicFileAttributes attributes = Files.readAttributes(Path.of(this.zipFilename), BasicFileAttributes.class);
+			BasicFileAttributes attributes = Files.readAttributes(Path.of(this.zipFilename), BasicFileAttributes.class); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			lastMod = attributes.lastModifiedTime().toMillis();
 			size = attributes.size();
 		} catch (IOException e) {
@@ -366,7 +366,7 @@ public Manifest getManifest() {
 	if (entry == null) {
 		return null;
 	}
-	try(InputStream is = this.zipFile.getInputStream(entry)) {
+	try(InputStream is = this.zipFile.getInputStream(entry)) { //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 		return new Manifest(is);
 	} catch (IOException e) {
 		// cannot use manifest
@@ -396,7 +396,7 @@ protected IBinaryType decorateWithExternalAnnotations(IBinaryType reader, String
 		String qualifiedBinaryFileName = fileNameWithoutExtension + ExternalAnnotationProvider.ANNOTATION_FILE_SUFFIX; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		ZipEntry entry = this.zipFile.getEntry(qualifiedBinaryFileName);
 		if (entry != null) {
-			try(InputStream is = this.zipFile.getInputStream(entry)) {
+			try(InputStream is = this.zipFile.getInputStream(entry)) { //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 				return new ExternalAnnotationDecorator(reader, new ExternalAnnotationProvider(is, fileNameWithoutExtension));
 			} catch (IOException e) {
 				// ignore

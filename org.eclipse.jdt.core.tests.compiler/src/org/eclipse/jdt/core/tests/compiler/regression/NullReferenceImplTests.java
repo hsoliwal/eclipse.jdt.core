@@ -1621,7 +1621,7 @@ public static void main(String[] args) { //FLLDCIM: MARK — ML METHOD_SPLIT MET
 		case 2:
 			if (args[0].equals("--printTruthTables")) {
 				File outputDir = new File(args[1]);
-				if (outputDir.isDirectory()) {
+				if (outputDir.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					for (int i = 0, length = NullReferenceImplTransformations.transformations.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						NullReferenceImplTransformations.transformations[i].printTruthTables(outputDir);
 					}
@@ -1669,8 +1669,8 @@ private static void reinitializeFromComments( //FLLDCIM: MARK — ML METHOD_SPLI
 		BufferedWriter out;
 		NullReferenceImplTests.State.reinitializeFromComment(
 			in = new BufferedReader(
-				new FileReader(statesSource)),
-			out = new BufferedWriter(new FileWriter(statesTarget)));
+				new FileReader(statesSource)), //FLLDCIM: MARK — M31 M3FILE_IO NEW
+			out = new BufferedWriter(new FileWriter(statesTarget))); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		in.close();
 		out.close();
 		File[] tempFiles = new File[2];
@@ -1678,23 +1678,23 @@ private static void reinitializeFromComments( //FLLDCIM: MARK — ML METHOD_SPLI
 		tempFiles[1] = File.createTempFile("generator", "java");
 		NullReferenceImplTransformations.transformations[0].reinitializeFromComments(
 			in = new BufferedReader(
-				new FileReader(transformationsSource)),
-			out = new BufferedWriter(new FileWriter(tempFiles[0])));
+				new FileReader(transformationsSource)), //FLLDCIM: MARK — M31 M3FILE_IO NEW
+			out = new BufferedWriter(new FileWriter(tempFiles[0]))); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		in.close();
 		out.close();
 		int i, length;
 		for (i = 1, length = NullReferenceImplTransformations.transformations.length - 1; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			NullReferenceImplTransformations.transformations[i].reinitializeFromComments(
 				in = new BufferedReader(
-					new FileReader(tempFiles[(i + 1) % 2])),
-				out = new BufferedWriter(new FileWriter(tempFiles[i % 2])));
+					new FileReader(tempFiles[(i + 1) % 2])), //FLLDCIM: MARK — M31 M3FILE_IO NEW
+				out = new BufferedWriter(new FileWriter(tempFiles[i % 2]))); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			in.close();
 			out.close();
 		}
 		NullReferenceImplTransformations.transformations[i].reinitializeFromComments(
 			in = new BufferedReader(
-				new FileReader(tempFiles[(i + 1) % 2])),
-			out = new BufferedWriter(new FileWriter(transformationsTarget)));
+				new FileReader(tempFiles[(i + 1) % 2])), //FLLDCIM: MARK — M31 M3FILE_IO NEW
+			out = new BufferedWriter(new FileWriter(transformationsTarget))); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		in.close();
 		out.close();
 	} catch (Throwable t) {
@@ -1725,8 +1725,8 @@ private static void reinitializeFromComputedValues(String source, String target)
 		tempFiles[1] = File.createTempFile("generator", "java");
 		NullReferenceImplTransformations.transformations[0].reinitializeFromComputedValues(
 			in = new BufferedReader(
-				new FileReader(source)),
-			out = new BufferedWriter(new FileWriter(tempFiles[0])),
+				new FileReader(source)), //FLLDCIM: MARK — M31 M3FILE_IO NEW
+			out = new BufferedWriter(new FileWriter(tempFiles[0])), //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			transitiveClosure);
 		in.close();
 		out.close();
@@ -1734,16 +1734,16 @@ private static void reinitializeFromComputedValues(String source, String target)
 		for (i = 1, length = NullReferenceImplTransformations.transformations.length - 1; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			NullReferenceImplTransformations.transformations[i].reinitializeFromComputedValues(
 				in = new BufferedReader(
-					new FileReader(tempFiles[(i + 1) % 2])),
-				out = new BufferedWriter(new FileWriter(tempFiles[i % 2])),
+					new FileReader(tempFiles[(i + 1) % 2])), //FLLDCIM: MARK — M31 M3FILE_IO NEW
+				out = new BufferedWriter(new FileWriter(tempFiles[i % 2])), //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				transitiveClosure);
 			in.close();
 			out.close();
 		}
 		NullReferenceImplTransformations.transformations[i].reinitializeFromComputedValues(
 			in = new BufferedReader(
-				new FileReader(tempFiles[(i + 1) % 2])),
-			out = new BufferedWriter(new FileWriter(target)),
+				new FileReader(tempFiles[(i + 1) % 2])), //FLLDCIM: MARK — M31 M3FILE_IO NEW
+			out = new BufferedWriter(new FileWriter(target)), //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			transitiveClosure);
 		in.close();
 		out.close();

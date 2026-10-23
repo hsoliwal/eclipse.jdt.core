@@ -467,7 +467,7 @@ public class MultiReleaseTests extends BuilderTests {
 		File classFile = env.getWorkspaceRootPath().append(clazz).toFile();
 		assertNotNull(classFile);
 		IClassFileReader reader;
-		try (FileInputStream stream = new FileInputStream(classFile)) {
+		try (FileInputStream stream = new FileInputStream(classFile)) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			reader = ToolFactory.createDefaultClassFileReader(stream, IClassFileReader.ALL);
 		}
 		return reader.getMajorVersion();

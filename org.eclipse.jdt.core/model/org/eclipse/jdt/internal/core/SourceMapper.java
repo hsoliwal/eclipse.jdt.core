@@ -564,7 +564,7 @@ public class SourceMapper
 			ZipFile zip = null;
 			try {
 				zip = manager.getZipFile(pkgFragmentRootPath);
-				for (Enumeration<? extends ZipEntry> entries = zip.entries(); entries.hasMoreElements(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				for (Enumeration<? extends ZipEntry> entries = zip.entries(); entries.hasMoreElements(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 					ZipEntry entry = entries.nextElement();
 					String entryName = entry.getName();
 					if (!entry.isDirectory()) {
@@ -642,7 +642,7 @@ public class SourceMapper
 				ZipFile zip = null;
 				try {
 					zip = manager.getZipFile(this.sourcePath);
-					for (Enumeration<? extends ZipEntry> entries = zip.entries(); entries.hasMoreElements(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					for (Enumeration<? extends ZipEntry> entries = zip.entries(); entries.hasMoreElements(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 						ZipEntry entry = entries.nextElement();
 						String entryName;
 						if (!entry.isDirectory()

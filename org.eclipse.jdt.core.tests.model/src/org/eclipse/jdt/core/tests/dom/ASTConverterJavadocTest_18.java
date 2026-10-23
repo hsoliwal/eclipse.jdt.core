@@ -127,14 +127,14 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 		if (COPY_DIR) {
 			super.copyDirectory(sourceDir, targetDir);
 		} else {
-			targetDir.mkdirs();
+			targetDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			File sourceFile = new File(sourceDir, ".project");
 			File targetFile = new File(targetDir, ".project");
-			targetFile.createNewFile();
+			targetFile.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			copy(sourceFile, targetFile);
 			sourceFile = new File(sourceDir, ".classpath");
 			targetFile = new File(targetDir, ".classpath");
-			targetFile.createNewFile();
+			targetFile.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			copy(sourceFile, targetFile);
 		}
 	}
@@ -1082,8 +1082,8 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 		TagElement snippetTag = getSnippetTag(javadoc);
 		List<TextElement> snippetFrags = snippetTag.fragments();
 		assertEquals("Invalid snippet elements", 3, snippetFrags.size());
-		assertEquals("Incorrect content for firstElemnt", " 	int a = 1;\n", snippetFrags.get(0).getText().replaceAll("\\R", "\n"));
-		assertEquals("Incorrect content for secondElemnt", " 	int b = 2;\n", snippetFrags.get(1).getText().replaceAll("\\R", "\n"));
+		assertEquals("Incorrect content for firstElemnt", " 	int a = 1;\n", snippetFrags.get(0).getText().replaceAll("\\R", "\n")); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+		assertEquals("Incorrect content for secondElemnt", " 	int b = 2;\n", snippetFrags.get(1).getText().replaceAll("\\R", "\n")); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 
 	}
 

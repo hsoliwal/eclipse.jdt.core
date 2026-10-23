@@ -1406,7 +1406,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 		} catch (IOException e) {
 			System.err.println("could not write to current working directory ");
 		} finally {
-			new File(lib1Path).delete();
+			new File(lib1Path).delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 
 	}

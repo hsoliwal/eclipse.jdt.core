@@ -199,11 +199,11 @@ public class AnnotationProcessorTests extends TestCase {
 		File srcFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "AnnotationProcessorTests", "bug317216");
 		BatchTestUtils.copyResources("targets/AnnotationProcessorTests/bug530665", srcFolder);
 		File binFolder = TestUtils.concatPath(BatchTestUtils.getBinFolderName(), "targets", "AnnotationProcessorTests", "bug530665");
-		binFolder.mkdirs();
+		binFolder.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File preexistsFile = new File(binFolder, "preexists.txt");
-		assertTrue(preexistsFile.createNewFile());
+		assertTrue(preexistsFile.createNewFile()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File nonexistsFile = new File(binFolder, "nonexists.txt");
-		assertTrue(!nonexistsFile.exists());
+		assertTrue(!nonexistsFile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		final String PROC = "org.eclipse.jdt.compiler.apt.tests.processors.AnnotationProcessorTests.Bug530665Proc";
@@ -215,8 +215,8 @@ public class AnnotationProcessorTests extends TestCase {
 		BatchTestUtils.compileTree(compiler, options, srcFolder, false, diagnosticListener);
 		assertEquals("succeeded", System.getProperty(PROC));
 
-		assertTrue(!preexistsFile.exists()); // deleted
-		assertTrue(nonexistsFile.exists()); // rewritten
+		assertTrue(!preexistsFile.exists()); // deleted //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue(nonexistsFile.exists()); // rewritten //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 	public void testGHIssue2347_1() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		JavaCompiler compiler = BatchTestUtils.getEclipseCompiler();
@@ -290,9 +290,9 @@ public class AnnotationProcessorTests extends TestCase {
 		BatchTestUtils.compileTree(compiler, options, folder, null);
 		folder = TestUtils.concatPath(BatchTestUtils.getBinFolderName(), "targets", "AnnotationProcessorTests", "bug540090");
 		File classfile = new File(folder, "B.class");
-		assertFalse(classfile.exists());
+		assertFalse(classfile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		folder = TestUtils.concatPath(BatchTestUtils.getGenFolderName(), "gen");
 		classfile = new File(folder, "GenClass.java");
-		assertTrue(classfile.exists());
+		assertTrue(classfile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 }

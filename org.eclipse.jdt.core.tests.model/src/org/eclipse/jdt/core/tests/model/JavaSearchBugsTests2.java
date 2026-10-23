@@ -3185,15 +3185,15 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 	}
 
 	private static void printZipContents(File jarFile, PrintStream output) throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (jarFile.exists()) {
+		if (jarFile.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			output.println("Listing contents of jar file: " + jarFile); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			try (ZipFile zipFile = new ZipFile(jarFile)) { //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM NEW
-				Enumeration<? extends ZipEntry> entries = zipFile.entries();
+				Enumeration<? extends ZipEntry> entries = zipFile.entries(); //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 				while (entries.hasMoreElements()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					ZipEntry zipEntry = entries.nextElement();
 					String zipEntryName = zipEntry.getName();
 					output.println("Listing contents of zip entry: " + zipEntryName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-					InputStream zipEntryInputStream = zipFile.getInputStream(zipEntry);
+					InputStream zipEntryInputStream = zipFile.getInputStream(zipEntry); //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 					if (zipEntryName.endsWith(".class")) {
 						byte[] classFileBytes = toByteArray(zipEntryInputStream);
 						ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
@@ -3243,10 +3243,10 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 		if (Constants.OS_LINUX.equals(System.getProperty("osgi.os"))) {
 			assertNotNull("expected LANG environment variable to be set" + errorMessage, langEnvVariable); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String utf8LANGRegexp = ".*\\.(UTF-8|UTF8|utf-8|utf8)";
-			Pattern utf8LANGPattern = Pattern.compile(utf8LANGRegexp);
+			Pattern utf8LANGPattern = Pattern.compile(utf8LANGRegexp); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			Matcher LANGMatcher = utf8LANGPattern.matcher(langEnvVariable); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			assertTrue("expected encoding set with LANG environment variable to match regexp: " + utf8LANGRegexp + ", LANG=" + langEnvVariable + errorMessage, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-					LANGMatcher.matches());
+					LANGMatcher.matches()); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		}
 	}
 }

@@ -48,7 +48,7 @@ public class IncrementalTests18 extends BuilderTests {
 		// add the org.eclipse.jdt.annotation library (bin/ folder or jar) to the project:
 		Bundle[] bundles = Platform.getBundles("org.eclipse.jdt.annotation","[2.0.0,3.0.0)");
 		File bundleFile = FileLocator.getBundleFileLocation(bundles[0]).get();
-		String annotationsLib = bundleFile.isDirectory() ? bundleFile.getPath()+"/bin" : bundleFile.getPath(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String annotationsLib = bundleFile.isDirectory() ? bundleFile.getPath()+"/bin" : bundleFile.getPath(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		IJavaProject javaProject = env.getJavaProject("Project");
 		IClasspathEntry[] rawClasspath = javaProject.getRawClasspath();
 		int len = rawClasspath.length;
@@ -308,7 +308,7 @@ public class IncrementalTests18 extends BuilderTests {
 		String jreDirectory = Util.getJREDirectory();
 		String jfxJar = Util.toNativePath(jreDirectory + "/lib/ext/jfxrt.jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		File file = new File(jfxJar);
-		if (file.exists())
+		if (file.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			env.addExternalJars(projectPath, Util.concatWithClassLibs(jfxJar, false));
 		else
 			return;

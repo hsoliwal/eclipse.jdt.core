@@ -422,7 +422,7 @@ protected static Test suite(File inputDir, String profile, Map directories) { //
 			@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			public boolean accept(File pathname) {
 				String path = pathname.getPath();
-				if (pathname.isDirectory()) {
+				if (pathname.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					String dirName = path.substring(path.lastIndexOf(File.separatorChar)+1);
 					return !dirName.equals("bin");
 				}
@@ -437,7 +437,7 @@ protected static Test suite(File inputDir, String profile, Map directories) { //
 							case 3: // Starts with + same length
 								return fileName.startsWith(FILES_FILTER) && fileName.length() == FILES_FILTER.length();
 							case 4: // Pattern
-								return fileName.matches(FILES_FILTER);
+								return fileName.matches(FILES_FILTER); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 						}
 					} else {
 						return true;
@@ -451,21 +451,21 @@ protected static Test suite(File inputDir, String profile, Map directories) { //
 		BufferedWriter listFileWriter = null;
 		if (allFiles == null) {
 			System.out.print("Get all files from ");
-			if (LIST || !listFile.exists()) {
+			if (LIST || !listFile.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				// Get the files list
 				System.out.print(inputDir+"..."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				allFiles = ModelTestsUtil.getAllFiles(inputDir, filter);
 				// Delete the files list
-				if (listFile.exists()) {
-					listFile.delete();
+				if (listFile.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+					listFile.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				}
 				// Initialize the files list writer
-				listFileWriter = new BufferedWriter(new FileWriter(listFile));
+				listFileWriter = new BufferedWriter(new FileWriter(listFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				listFileWriter.write(Integer.toString(allFiles.length));
 				listFileWriter.newLine();
 			} else {
 				System.out.print("stored list in "+listFile.getPath()+"..."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-				try (BufferedReader listFileReader = new BufferedReader(new InputStreamReader(new FileInputStream(listFile.getAbsolutePath())))) {
+				try (BufferedReader listFileReader = new BufferedReader(new InputStreamReader(new FileInputStream(listFile.getAbsolutePath())))) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 					// First line is the number of files
 					String line = listFileReader.readLine();
 					int maxFiles = Integer.parseInt(line);
@@ -473,7 +473,7 @@ protected static Test suite(File inputDir, String profile, Map directories) { //
 					allFiles = new File[maxFiles];
 					for (int i=0; i<maxFiles; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						allFiles[i] = new File(inputDir, listFileReader.readLine());
-						if (!allFiles[i].exists()) {
+						if (!allFiles[i].exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 							throw new IOException("Cannot find file "+allFiles[i]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
 					}
@@ -623,7 +623,7 @@ private static int initProfiles(String profile) { //FLLDCIM: MARK — ML METHOD_
 private static void initDirectories(File inputDir, int profiles, boolean verify) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Verify input directory
-	if (!inputDir.exists() && !inputDir.isDirectory()) {
+	if (!inputDir.exists() && !inputDir.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		System.err.println(inputDir+" does not exist or is not a directory!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		System.exit(1);
 	}
@@ -652,7 +652,7 @@ private static void initDirectories(File inputDir, int profiles, boolean verify)
 				System.exit(1);
 			}
 			return;
-		} else if (!OUTPUT_DIR.exists()) {
+		} else if (!OUTPUT_DIR.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			System.err.println("            WARNING: The output directory "+OUTPUT_DIR+" does not exist..."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			System.err.println("            => NO comparison could be done!");
 			CAN_COMPARE = false;
@@ -675,10 +675,10 @@ private static void initDirectories(File inputDir, int profiles, boolean verify)
 	String wdir = System.getProperty("writeDir"); //$NON-NLS-1$
 	if (wdir != null) {
 		WRITE_DIR = new File(wdir);
-		if (WRITE_DIR.exists()) {
+		if (WRITE_DIR.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			Util.delete(WRITE_DIR);
 		}
-		WRITE_DIR.mkdirs();
+		WRITE_DIR.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 }
 
@@ -686,8 +686,8 @@ private static void setLogDir(File inputDir, int profiles, boolean verify) throw
 
 	// Compute log dir
 	File rootLogDir = new File(System.getProperty("logDir"));
-	if (!rootLogDir.exists()) {
-		if (!rootLogDir.mkdirs()) {
+	if (!rootLogDir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		if (!rootLogDir.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			System.err.println("Cannot create specified log directory: "+rootLogDir+"!!!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			return;
 		}
@@ -721,12 +721,12 @@ private static void setLogDir(File inputDir, int profiles, boolean verify) throw
 
 	// Create log stream
 	File logDir = createDir(new File (rootLogDir, subRootDir), subDirs);
-	String filePrefix = inputDir.getName().replaceAll("\\.", "");
+	String filePrefix = inputDir.getName().replaceAll("\\.", ""); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 	String logFileName = filePrefix+".txt"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	LOG_FILE = new File(logDir, logFileName);
-	if (verify && LOG_FILE.exists()) {
+	if (verify && LOG_FILE.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File saveDir = new File(new File(rootLogDir, "save"), subRootDir);
-		saveDir.mkdirs();
+		saveDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		int i=0;
 		while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String dirN = Integer.toString(i);
@@ -734,13 +734,13 @@ private static void setLogDir(File inputDir, int profiles, boolean verify) throw
 			saveDir = new File(saveDir, dirN);
 			logDir = createDir(saveDir, subDirs);
 			File renamedFile = new File(logDir, logFileName);
-			if (LOG_FILE.renameTo(renamedFile)) break;
+			if (LOG_FILE.renameTo(renamedFile)) break; //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			i++;
 		}
 	}
 //	LOG_RESOURCE = folder.getFile(logFileName);
 	try {
-		LOG_STREAM = new PrintStream(new BufferedOutputStream(new FileOutputStream(LOG_FILE)));
+		LOG_STREAM = new PrintStream(new BufferedOutputStream(new FileOutputStream(LOG_FILE))); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		LOG_STREAM.flush();
 	}
 	catch (FileNotFoundException fnfe) {
@@ -757,7 +757,7 @@ private static File createDir(File rootDir, List subDirs) {
 	for (int i=0, s=subDirs.size(); i<s; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		dir = new File (dir, (String) subDirs.get(i));
 	}
-	dir.mkdirs();
+	dir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	return dir;
 }
 
@@ -895,7 +895,7 @@ private static void setOutputDir(File inputDir, String dir, int profiles) { //FL
 		try {
 			int version = Integer.parseInt(ECLIPSE_VERSION.substring(1));
 			File maintenance = new File(OUTPUT_DIR, "v"+(version-1)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-			if (maintenance.exists()) {
+			if (maintenance.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				parent = maintenance;
 			}
 		}
@@ -926,7 +926,7 @@ private static void initVersion() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	    try {
 			URL platformURL = Platform.getBundle("org.eclipse.jdt.core").getEntry("/");
 			String path = new File(FileLocator.toFileURL(platformURL).getFile(), "buildnotes_jdt-core.html").getAbsolutePath();
-		    buildnotesReader = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
+		    buildnotesReader = new BufferedReader(new InputStreamReader(new FileInputStream(path))); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 	    } catch (IOException ioe) {
 		    ioe.printStackTrace();
 		    return;
@@ -1143,7 +1143,7 @@ public void setUpSuite() throws Exception {
 	// Dump the version
 	if (CLEAN) {
 		File versionFile = new Path(OUTPUT_DIR.getPath()).append("version.txt").toFile();
-		OUTPUT_DIR.mkdirs();
+		OUTPUT_DIR.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		String version = JDT_CORE_VERSION;
 		if (TEMP_OUTPUT != null) {
 				version += " + " + TEMP_OUTPUT; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -1237,7 +1237,7 @@ private void print() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!CLEAN) {
 			buffer.append("Compare vs: "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			File versionFile = new File(OUTPUT_DIR, "version.txt");
-			if (versionFile.exists()) {
+			if (versionFile.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				String fileContent = Util.fileContent(versionFile.getAbsolutePath());
 				if (TEMP_OUTPUT != null) {
 					buffer.append(TEMP_OUTPUT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
@@ -1428,7 +1428,7 @@ void compareFormattedSource() throws IOException, Exception { //FLLDCIM: MARK �
 		if (actualResult != null) {
 			if (WRITE_DIR != null) {
 				File writtenFile = new Path(WRITE_DIR.getPath()).append(this.path).toFile();
-				writtenFile.getParentFile().mkdirs();
+				writtenFile.getParentFile().mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.writeToFile(actualResult, writtenFile.getAbsolutePath());
 			}
 		}
@@ -1723,7 +1723,7 @@ public void testReference() throws IOException, Exception { //FLLDCIM: MARK — 
 			String formatResult = org.eclipse.jdt.internal.core.util.Util.editedString(source, edit);
 			String inputPath = this.file.getPath().substring(this.inputDir.getPath().length()+1);
 			File writtenFile = new Path(OUTPUT_DIR.getPath()).append(inputPath).toFile();
-			writtenFile.getParentFile().mkdirs();
+			writtenFile.getParentFile().mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			Util.writeToFile(formatResult, writtenFile.getAbsolutePath());
 		}
 	}

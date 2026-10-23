@@ -914,7 +914,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 		} catch (IOException e) {
 			System.err.println("RecordPatternTest.test25() could not write to current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} finally {
-			new File(this.extraLibPath).delete();
+			new File(this.extraLibPath).delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 	// Test that pattern variables declared in instanceof can't be used in a switch/case

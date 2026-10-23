@@ -412,7 +412,7 @@ public void testBug568802() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	} catch (IOException e) {
 		System.err.println("BatchCompilerTest2#testBug568802 could not write to current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} finally {
-		new File(libPath).delete();
+		new File(libPath).delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 }
 public void testIssue114() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD

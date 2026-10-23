@@ -176,7 +176,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		File inputFile = new File(tmpFolder, "X.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(
 				"package p;\n" +
 				"public class X {}");
@@ -248,7 +248,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
  	 		assertTrue("Compilation failed ", false);
  		}
 		// check that the .class file exist for X
-		assertTrue("delete failed", inputFile.delete());
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	/*
@@ -266,7 +266,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		File inputFile = new File(tmpFolder, "X.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(
 				"package p;\n" +
 				"public class X {}");
@@ -364,7 +364,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			assertTrue("Compilation failed ", false);
 		}
 		// check that the .class file exist for X
-		assertTrue("delete failed", inputFile.delete());
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	public void testCompilerOneClassWithEclipseCompiler() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
@@ -372,7 +372,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		File inputFile = new File(tmpFolder, "X.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(
 				"package p;\n" +
 				"public class X {}");
@@ -457,7 +457,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		// This needs fix. This test case by design will produce different output every compiler version.
  		assertEquals("Wrong value", ClassFileConstants.getLatestJDKLevel(), reader.getVersion()); // TODO: Fix this for JDK11
 		// check that the .class file exist for X
-		assertTrue("delete failed", inputFile.delete());
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	public void testCompilerOneClassWithEclipseCompiler2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
@@ -465,7 +465,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		File inputFile = new File(tmpFolder, "X.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(
 				"package p;\n" +
 				"public class X {}");
@@ -524,7 +524,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			assertTrue("Compilation failed ", false);
 		}
 		File outputFile = new File(tmpFolder, "p/X.class");
-		assertTrue(outputFile.exists());
+		assertTrue(outputFile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		ClassFileReader reader = null;
 		try {
 			reader = ClassFileReader.read(outputFile);
@@ -549,7 +549,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			assertTrue("Compilation failed ", false);
 		}
 		// check that the .class file exist for X
-		assertTrue("delete failed", inputFile.delete());
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	public void testCompilerOneClassWithEclipseCompiler3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
@@ -557,7 +557,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		File inputFile = new File(tmpFolder, "X.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(
 				"package p;\n" +
 				"public class X {}");
@@ -624,7 +624,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		}
 
 		// check that the .class file exist for X
-		assertTrue("delete failed", inputFile.delete());
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	public void testCompilerOneClassWithEclipseCompiler4() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
@@ -637,7 +637,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		File inputFile = new File(tmpFolder, "X.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(
 				"package p;\n" +
 				"public class X {}");
@@ -675,7 +675,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			assertTrue("Compilation failed ", false);
 		}
 		// check that the .class file exist for X
-		assertTrue("delete failed", inputFile.delete());
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		manager.close();
 	}
 
@@ -684,7 +684,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		File inputFile = new File(tmpFolder, "X.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(
 				"package p;\n" +
 				"public class X extends File {}");
@@ -724,19 +724,19 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			assertFalse("Compilation did not fail", false);
 		}
 		// check that the .class file exist for X
-		assertTrue("delete failed", inputFile.delete());
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	public void testCompilerOneClassWithEclipseCompiler6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String tmpFolder = System.getProperty("java.io.tmpdir");
 		File packageFolder = new File(tmpFolder, "p");
-		if (!packageFolder.mkdirs()) {
+		if (!packageFolder.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			return;
 		}
 		File inputFile = new File(packageFolder, "X.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(
 				"package p;\n" +
 				"public class X extends File {}");
@@ -785,8 +785,8 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			assertFalse("Compilation did not fail", false);
 		}
 		// check that the .class file exist for X
-		assertTrue("delete failed", inputFile.delete());
-		assertTrue("delete failed", packageFolder.delete());
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue("delete failed", packageFolder.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	public void testCompilerOneClassWithEclipseCompiler7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
@@ -794,7 +794,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		File inputFile = new File(tmpFolder, "X.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(
 				"package p;\n" +
 				"public class X extends File {}");
@@ -843,7 +843,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			assertFalse("Compilation did not fail", false);
 		}
 		// check that the .class file exist for X
-		assertTrue("delete failed", inputFile.delete());
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	private PrintWriter ignoreOutput() {
@@ -853,11 +853,11 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 	public void testCompilerOneModuleWithEclipseCompiler() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String tmpFolder = System.getProperty("java.io.tmpdir") + "/src/java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		File tempDir= new File(tmpFolder + "/bar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		tempDir.mkdirs();
+		tempDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File inputFile1 = new File(tmpFolder, "module-info.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile1));
+			writer = new BufferedWriter(new FileWriter(inputFile1)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(
 				"module bar {\n" + 
 				"    exports bar;\n" + 
@@ -878,7 +878,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		File inputFile2 = new File(tmpFolder + "/bar", "Library.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile2));
+			writer = new BufferedWriter(new FileWriter(inputFile2)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(
 				"package bar;\n" + 
 				"public class Library { /**/ }\n");
@@ -966,19 +966,19 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			assertTrue("Should not happen", false);
 		}
 		// check that the .class file exist for module-info.class and library.class
-		assertTrue("delete failed", inputFile1.delete());
-		assertTrue("delete failed", inputFile2.delete());
+		assertTrue("delete failed", inputFile1.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue("delete failed", inputFile2.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	// Test that JavaFileManager#inferBinaryName returns null for invalid file
 	public void testInferBinaryName() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String tmpFolder = System.getProperty("java.io.tmpdir");
 		File dir = new File(tmpFolder, "src" + System.currentTimeMillis()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		dir.mkdirs();
+		dir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File inputFile = new File(dir, "test.txt");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write("This is not a valid Java file");
 			writer.flush();
 			writer.close();
@@ -1014,17 +1014,17 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		assertTrue("delete failed", inputFile.delete());
-		assertTrue("delete failed", dir.delete());
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue("delete failed", dir.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 	public void testFileManager() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String tmpFolder = System.getProperty("java.io.tmpdir");
 		File dir = new File(tmpFolder, "src" + System.currentTimeMillis()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		dir.mkdirs();
+		dir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File inputFile = new File(dir, "X.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write("public class X {}");
 			writer.flush();
 			writer.close();
@@ -1079,19 +1079,19 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			e.printStackTrace();
 		}
 		// check that the .class file exist for X
-		assertTrue("delete failed", inputFile.delete());
-		assertTrue("delete failed", dir.delete());
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue("delete failed", dir.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 	public void testFileManager2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String tmpFolder = System.getProperty("java.io.tmpdir");
 		File dir = new File(tmpFolder, "src" + System.currentTimeMillis()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		dir.mkdirs();
+		dir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File dir2 = new File(dir, "src2");
-		dir2.mkdirs();
+		dir2.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File inputFile = new File(dir, "X.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write("public class X {}");
 			writer.flush();
 			writer.close();
@@ -1109,7 +1109,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		File inputFile2 = new File(dir2, "X2.java");
 		writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile2));
+			writer = new BufferedWriter(new FileWriter(inputFile2)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write("public class X2 {}");
 			writer.flush();
 			writer.close();
@@ -1155,10 +1155,10 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			e.printStackTrace();
 		}
 		// check that the .class file exist for X
-		assertTrue("delete failed", inputFile2.delete());
-		assertTrue("delete failed", dir2.delete());
-		assertTrue("delete failed", inputFile.delete());
-		assertTrue("delete failed", dir.delete());
+		assertTrue("delete failed", inputFile2.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue("delete failed", dir2.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue("delete failed", dir.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 
@@ -1167,7 +1167,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		File inputFile = new File(tmpFolder, "NoWarn.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(
 				"package p;\n" +
 				"public class NoWarn {"
@@ -1218,7 +1218,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		File inputFile = new File(tmpFolder, "NoWarn.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(
 				"package p;\n" +
 				"public class NoWarn {\n" +
@@ -1274,7 +1274,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		File inputFile = new File(tmpFolder, fileName);
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(source);
 			writer.flush();
 			writer.close();
@@ -1325,7 +1325,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 				.collect(Collectors.joining("\n")));
 
 		
-		String expected = expectedOutput.replaceAll(OUTPUT_DIR_PLACEHOLDER, normalized(tmpFolder));
+		String expected = expectedOutput.replaceAll(OUTPUT_DIR_PLACEHOLDER, normalized(tmpFolder)); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		String actual = normalized(stringWriter.toString());
 		
 		assertEquals("Unexpected output:", expected, actual);
@@ -1448,7 +1448,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		final String sep = File.separator;
 		final String classes = "clazzes";
 		Path targetDir = Paths.get(tempDir, sep, classes, sep, "de", sep, "tk", sep, "foo");
-		Files.createDirectories(targetDir);
+		Files.createDirectories(targetDir); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		// ********************************************************************************
 		// 							Compile first source file
@@ -1525,14 +1525,14 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		// 										Cleanup
 		// ********************************************************************************
 
-		Files.walk(clsDir)
+		Files.walk(clsDir) //FLLDCIM: MARK — M24 M3FILE_STREAMS CALL
 			.sorted(Comparator.reverseOrder())
 			.map(Path::toFile)
 			.forEach(File::delete);
 
-		assertTrue("Delete failed", Files.deleteIfExists(tempPath.resolve("Foo.class")));
-		assertFalse("Delete failed", Files.exists(sourceFile1));
-		assertTrue("Delete failed", Files.deleteIfExists(sourceFile2));
+		assertTrue("Delete failed", Files.deleteIfExists(tempPath.resolve("Foo.class"))); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertFalse("Delete failed", Files.exists(sourceFile1)); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue("Delete failed", Files.deleteIfExists(sourceFile2)); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	/**
@@ -1546,7 +1546,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 	private Path createSourceFile(Path dir, String fileName, String content) throws IOException {
 		Path file = dir.resolve(fileName);
 
-		try (BufferedWriter writer = Files.newBufferedWriter(file, StandardCharsets.UTF_8)) {
+		try (BufferedWriter writer = Files.newBufferedWriter(file, StandardCharsets.UTF_8)) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			writer.write(content);
 			writer.flush();
 		}

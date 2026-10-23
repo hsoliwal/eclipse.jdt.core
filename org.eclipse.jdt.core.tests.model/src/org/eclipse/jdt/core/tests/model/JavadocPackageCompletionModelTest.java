@@ -81,10 +81,10 @@ protected void writeFiles(String[] sources) {
 		// Create package dirs or delete dirs if already exist
 		File packageDir = new File(WRITE_DIR_FILE, fileDir);
 		if (!PACKAGE_FILES.contains(packageDir)) {
-			if (packageDir.exists()) {
+			if (packageDir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				PACKAGE_FILES.add(packageDir);
 				Util.flushDirectoryContent(packageDir);
-			} else if (packageDir.mkdirs()) {
+			} else if (packageDir.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				PACKAGE_FILES.add(packageDir);
 			} else {
 				System.err.println(packageDir+" does not exist and CANNOT be created!!!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -94,7 +94,7 @@ protected void writeFiles(String[] sources) {
 
 		// Create test dir
 		File testDir = new File(packageDir, testName);
-		if (!testDir.exists() && !testDir.mkdir()) {
+		if (!testDir.exists() && !testDir.mkdir()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			System.err.println(testDir+" does not exist and CANNOT be created!!!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			continue;
 		}

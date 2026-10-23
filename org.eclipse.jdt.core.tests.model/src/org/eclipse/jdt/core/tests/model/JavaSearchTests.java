@@ -72,7 +72,7 @@ static {
  */
 @Override
 protected void copyDirectory(File sourceDir, File targetDir) throws IOException {
-	if (!targetDir.exists()) {
+	if (!targetDir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		super.copyDirectory(sourceDir, targetDir);
 	}
 }
@@ -4623,7 +4623,7 @@ public void testAnonymousTypeMethodReferenceJarSearchGh375() throws Exception { 
 		IMethod testMethod = findMethod(project, "TestGh375", "helloWorld");
 		String foundReferences = searchForMethodReferences(testMethod);
 		assertFalse("Expected search to find references of method: " + testMethod + ", in snippet:\n" + libSource, foundReferences.isEmpty()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		List<String> results = Arrays.asList(foundReferences.split(System.lineSeparator()));
+		List<String> results = Arrays.asList(foundReferences.split(System.lineSeparator())); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		String[] expectedResults = {
 				"call() (not open) [in <anonymous> [in TestGh375$2.class [in <default> [in libGh375.jar [in P]]]]]",
 		};
@@ -4736,7 +4736,7 @@ public void testAnonymousTypeMethodReferenceSearchGh432() throws Exception { //F
 			IMethod testMethod = findMethod(p, "p.TestGh432", "missingReference");
 			String foundReferences = searchForMethodReferences(testMethod).strip();
 			assertFalse("Expected search to find references of method: " + testMethod + ", in snippet:\n" + fileContent, foundReferences.isEmpty()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-			List<String> results = Arrays.asList(foundReferences.split("\n"));
+			List<String> results = Arrays.asList(foundReferences.split("\n")); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			assertEquals("Unexpected search result for snippet:\n" + fileContent, expectedResults, String.join("\n", results)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	} finally {

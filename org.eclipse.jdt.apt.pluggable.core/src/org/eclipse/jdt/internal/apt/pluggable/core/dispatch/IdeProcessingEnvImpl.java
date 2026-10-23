@@ -104,7 +104,7 @@ public abstract class IdeProcessingEnvImpl extends BaseProcessingEnvImpl {
 		return option -> {
 			String variable, replacement, optionValue = option.getValue() == null ? "" : option.getValue();
 			Matcher placeholder = Pattern.compile("%([^%]+)%").matcher(optionValue); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
-			if (placeholder.find() && (variable = placeholder.group(1)) != null
+			if (placeholder.find() && (variable = placeholder.group(1)) != null //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 					&& (replacement = commandLineOptions.get(variable)) != null) {
 				optionValue = optionValue.replace("%" + variable + "%", replacement); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}

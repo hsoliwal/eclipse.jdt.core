@@ -3619,14 +3619,14 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	private Set<IPath> loadClasspathListCache(String cacheName) {
 		Set<IPath> pathCache = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		File cacheFile = getClasspathListFile(cacheName);
-		try (DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(cacheFile)))) {
+		try (DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(cacheFile)))) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			int size = in.readInt();
 			while (size-- > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String path = in.readUTF();
 				pathCache.add(Path.fromPortableString(path));
 			}
 		} catch (IOException e) {
-			if (cacheFile.exists()) {
+			if (cacheFile.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.log(e, "Unable to read JavaModelManager " + cacheName + " file"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
@@ -3720,7 +3720,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 
 		// load variables and containers from saved file into cache
 		File file = getVariableAndContainersFile();
-		try (DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(file)))) {
+		try (DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(file)))) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			switch (in.readInt()) {
 				case 2 :
 					new VariablesAndContainersLoadHelper(in).load();
@@ -3756,10 +3756,10 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 					break;
 			}
 		} catch (IOException e) {
-			if (file.exists())
+			if (file.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.log(e, "Unable to read variable and containers file"); //$NON-NLS-1$
 		} catch (RuntimeException e) {
-			if (file.exists())
+			if (file.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.log(e, "Unable to read variable and containers file (file is corrupt)"); //$NON-NLS-1$
 		}
 
@@ -4208,7 +4208,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 
 	private Object readStateTimed(IProject project) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File file = getSerializationFile(project);
-		if (file != null && file.exists()) {
+		if (file != null && file.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			try (DataInputStream in = new DataInputStream(createInputStream(file))) {
 				String pluginID = in.readUTF();
 				if (!pluginID.equals(JavaCore.PLUGIN_ID))
@@ -4473,7 +4473,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			}
 		} catch (RuntimeException | IOException e) {
 			try {
-				file.delete();
+				file.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			} catch(SecurityException se) {
 				// could not delete file: cannot do much more
 			}
@@ -4488,7 +4488,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	}
 
 	private InputStream createInputStream(File file) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		InputStream in = new FileInputStream(file);
+		InputStream in = new FileInputStream(file); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		// Ownership of 'in' is transferred to the returned stream on success; on any abnormal
 		// exit (incl. a non-ZipException IOException such as EOFException from a truncated file)
 		// the finally block closes 'in' to avoid leaking the file descriptor.
@@ -4501,13 +4501,13 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			// probably not zipped (old format), but may also be corrupted.
 			in.close();
 			boolean isZip;
-			try (DataInputStream din = new DataInputStream(new BufferedInputStream(new FileInputStream(file)))) {
+			try (DataInputStream din = new DataInputStream(new BufferedInputStream(new FileInputStream(file)))) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				isZip = din.readShort() == (short) java.util.zip.GZIPInputStream.GZIP_MAGIC;
 			}
 			if (isZip) {
 				throw e; // corrupted
 			}
-			return new BufferedInputStream(new FileInputStream(file));
+			return new BufferedInputStream(new FileInputStream(file)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		} finally {
 			if (!ownershipTransferred) {
 				in.close(); // idempotent: harmless if already closed on the ZipException path
@@ -4517,7 +4517,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 
 	private OutputStream createOutputStream(File file) throws IOException {
 		if (SAVE_ZIPPED) {
-			FileOutputStream fileOutput = new FileOutputStream(file);
+			FileOutputStream fileOutput = new FileOutputStream(file); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			boolean ownershipTransferred = false;
 			try {
 				BufferedOutputStream result = new BufferedOutputStream(new java.util.zip.GZIPOutputStream(fileOutput, 8192));
@@ -4529,13 +4529,13 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 				}
 			}
 		} else {
-			return new BufferedOutputStream(new FileOutputStream(file));
+			return new BufferedOutputStream(new FileOutputStream(file)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		}
 	}
 
 	private void saveClasspathListCache(String cacheName) throws CoreException {
 		File file = getClasspathListFile(cacheName);
-		try (DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(file)))){
+		try (DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(file)))){ //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			Set<IPath> pathCache = getClasspathListCache(cacheName);
 			synchronized (pathCache) {
 				out.writeInt(pathCache.size());
@@ -4551,7 +4551,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 
 	private void saveVariablesAndContainers(ISaveContext context) throws CoreException {
 		File file = getVariableAndContainersFile();
-		try (DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(file)))) {
+		try (DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(file)))) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			out.writeInt(VARIABLES_AND_CONTAINERS_FILE_VERSION);
 			new VariablesAndContainersSaveHelper(out).save(context);
 		} catch (IOException e) {
@@ -4778,7 +4778,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	private void traceVariableAndContainers(String action, long start) {
 
 		Long delta = Long.valueOf(System.currentTimeMillis() - start);
-		Long length = Long.valueOf(getVariableAndContainersFile().length());
+		Long length = Long.valueOf(getVariableAndContainersFile().length()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		String pattern = "{0} {1} bytes in variablesAndContainers.dat in {2}ms"; //$NON-NLS-1$
 		String message = MessageFormat.format(pattern, new Object[]{action, length, delta});
 
@@ -5376,8 +5376,8 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		if (state == null) { // delete state file to ensure a full build happens if the workspace crashes
 			try {
 				File file = getSerializationFile(project);
-				if (file != null && file.exists())
-					file.delete();
+				if (file != null && file.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
+					file.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			} catch(SecurityException se) {
 				// could not delete file: cannot do much more
 			}

@@ -37,7 +37,7 @@ public class ClasspathLocationTest extends AbstractJavaModelTests {
 		String javaHome = System.getProperty("java.home", null);
 		assertNotNull("java.home is not defined", javaHome);
 		File image = Paths.get(javaHome).toFile();
-		assertTrue("java.home points to invalid path", image.isDirectory());
+		assertTrue("java.home points to invalid path", image.isDirectory()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		String releaseVersion = JRTUtil.getJdkRelease(image);
 
 		String jrt = "lib/" + org.eclipse.jdt.internal.compiler.util.JRTUtil.JRT_FS_JAR; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT

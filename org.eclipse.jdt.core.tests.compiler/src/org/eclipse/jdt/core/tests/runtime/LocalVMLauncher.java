@@ -80,7 +80,7 @@ public static LocalVMLauncher getLauncher() { //FLLDCIM: MARK — ML METHOD_SPLI
 	String javaVersion = System.getProperty("java.version");
 	boolean isJrt = javaVersion != null && javaVersion.length() > 0 && JavaCore.compareJavaVersions(javaVersion, "9") >= 0;
 	File file = new File(Util.getJREDirectory() + (isJrt ?	"/lib/jrt-fs.jar" :  "/lib/rt.jar")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	if (file.exists()) {
+	if (file.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		return new StandardVMLauncher();
 	}
 	if ("IBM J9SE VM".equals(vmName)) {
@@ -296,19 +296,19 @@ public String getVMPath() {
 protected void initTargetPath() throws TargetException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// create directories
 	File directory = new File(this.evalTargetPath);
-	directory.mkdirs();
-	if (!directory.exists()) {
+	directory.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+	if (!directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		throw new TargetException("Could not create directory " + this.evalTargetPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	if (TARGET_HAS_FILE_SYSTEM) {
 		File classesDirectory = new File(directory, REGULAR_CLASSPATH_DIRECTORY);
-		classesDirectory.mkdir();
-		if (!classesDirectory.exists()) {
+		classesDirectory.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		if (!classesDirectory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			throw new TargetException("Could not create directory " + classesDirectory.getPath()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		File bootDirectory = new File(directory, BOOT_CLASSPATH_DIRECTORY);
-		bootDirectory.mkdir();
-		if (!bootDirectory.exists()) {
+		bootDirectory.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		if (!bootDirectory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			throw new TargetException("Could not create directory " + bootDirectory.getPath()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		/*
@@ -376,7 +376,7 @@ protected void initTargetPath() throws TargetException { //FLLDCIM: MARK — ML 
 		int bufferLength = 1024;
 		byte[] buffer = new byte[bufferLength];
 		File file = new File(directory, SUPPORT_ZIP_FILE_NAME);
-		out = new FileOutputStream(file);
+		out = new FileOutputStream(file); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		int read = 0;
 		while (read != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			read = in.read(buffer, 0, bufferLength);

@@ -49,17 +49,17 @@ public class SecondaryTypesPerformanceTest extends PerformanceTestCase {
 		super.setUp();
 
 		File testScratchAreaFile = new File(testScratchArea);
-		if(!testScratchAreaFile.exists()) {
-			testScratchAreaFile.mkdir();
+		if(!testScratchAreaFile.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			testScratchAreaFile.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 			File packageFile = new File(testScratchAreaFile, "test" + File.separator + "performance"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-			packageFile.mkdirs();
+			packageFile.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			writeDummySourceClasses(packageFile, "test.performance");
 
 			Set<String> paths = createClasspathStrings();
 			for(String path: paths) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				File pathFile = new File(path);
-				pathFile.mkdir();
+				pathFile.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 				writeDummySourceClasses(pathFile, "test.performance." + pathFile.getName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
@@ -71,7 +71,7 @@ public class SecondaryTypesPerformanceTest extends PerformanceTestCase {
 		super.tearDown();
 
 		File testScratchAreaFile = new File(testScratchArea);
-		if(testScratchAreaFile.exists()) {
+		if(testScratchAreaFile.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			Util.delete(testScratchAreaFile);
 		}
 	}
@@ -162,7 +162,7 @@ public class SecondaryTypesPerformanceTest extends PerformanceTestCase {
 
 	private void writeFile(File aFile, String aSource) throws IOException {
 
-		try (FileWriter fileWriter = new FileWriter(aFile)) {
+		try (FileWriter fileWriter = new FileWriter(aFile)) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			fileWriter.write(aSource);
 		}
 	}

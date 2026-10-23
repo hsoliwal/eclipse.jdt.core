@@ -210,7 +210,7 @@ public void test001() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT
 			);
 		File tmpDir = env.getTmpDirectory();
 		File externalPackageDir = new File(tmpDir.getAbsolutePath() + File.separator + "q"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		externalPackageDir.mkdir();
+		externalPackageDir.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		IFolder folder = env.getWorkspace().getRoot().getFolder(src.append("p/q"));
 		folder.createLink(externalPackageDir.toURI(), 0, null);
 		env.addClass(src, "p.q", "Y",
@@ -223,7 +223,7 @@ public void test001() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT
 				"public class Z extends p.q.Y {\n" +
 				"}\n"
 				);
-		assertTrue(new File(externalPackageDir.getAbsolutePath() + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertTrue(new File(externalPackageDir.getAbsolutePath() + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				File.separator + "r" + File.separator + "Z.java").exists());
 		fullBuild();
 		expectingPresenceOf(bin.append("p/q/r/Z.class"));
@@ -270,7 +270,7 @@ public void test002() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT
 				"public class Z extends p.q.Y {\n" +
 				"}\n"
 				);
-		assertTrue(new File(externalFolder.getLocation() + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertTrue(new File(externalFolder.getLocation() + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				File.separator + "r" + File.separator + "Z.java").exists());
 		env.incrementalBuild(projectPath);
 		expectingPresenceOf(bin.append("p/q/r/Z.class"));

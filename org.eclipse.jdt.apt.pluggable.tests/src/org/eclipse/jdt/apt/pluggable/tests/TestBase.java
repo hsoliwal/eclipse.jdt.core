@@ -169,7 +169,7 @@ public class TestBase extends BuilderTests
 	{
 		IPath path = proj.getLocation().append(fileName);
 		File file = new File(path.toOSString());
-		assertTrue("Expected file " + fileName + " was missing from project", file != null && file.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertTrue("Expected file " + fileName + " was missing from project", file != null && file.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	/**
@@ -180,13 +180,13 @@ public class TestBase extends BuilderTests
 	{
 		IPath path = proj.getLocation().append(fileName);
 		File file = new File(path.toOSString());
-		boolean exists = file.exists();
+		boolean exists = file.exists(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		// work around a timing bug in some versions of JRE 1.6 on Linux:
 		// Before assuming the test has failed, wait half a second and try again.
 		// This delay is not encountered when the test is passing normally.
 		if (exists) {
 			Thread.sleep(500);
-			exists = file.exists();
+			exists = file.exists(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 		assertTrue("File " + fileName + " was expected to not exist", file == null || !exists); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}

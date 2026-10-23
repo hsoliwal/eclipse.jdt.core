@@ -787,9 +787,9 @@ public void testGetFileWithinBaseDir_benign() throws Exception {
 		File resolved = Util.getFileWithinBaseDir(base.toString(), relative);
 		assertNotNull("benign name should resolve", resolved);
 		assertTrue("resolved file must stay within base directory",
-			resolved.getCanonicalPath().startsWith(base.toFile().getCanonicalPath()));
+			resolved.getCanonicalPath().startsWith(base.toFile().getCanonicalPath())); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	} finally {
-		Files.deleteIfExists(base);
+		Files.deleteIfExists(base); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 }
 
@@ -804,7 +804,7 @@ public void testGetFileWithinBaseDir_traversalReturnsNull() throws Exception {
 		assertNull("null base must return null",
 			Util.getFileWithinBaseDir(null, "Foo" + ExternalAnnotationProvider.ANNOTATION_FILE_SUFFIX)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} finally {
-		Files.deleteIfExists(base);
+		Files.deleteIfExists(base); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 }
 }

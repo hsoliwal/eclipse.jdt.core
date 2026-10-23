@@ -182,7 +182,7 @@ protected void addModuleNames(char[] modNames) { //FLLDCIM: MARK — ML METHOD_S
 		return;
 	}
 	final String explicit_unnamed = new String(IJavaSearchConstants.ALL_UNNAMED);
-	String[] names = new String(modNames).split(String.valueOf(CharOperation.COMMA_SEPARATOR));
+	String[] names = new String(modNames).split(String.valueOf(CharOperation.COMMA_SEPARATOR)); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 	int len = names.length;
 	for (int i = 0; i < len; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		names[i] = names[i].trim();

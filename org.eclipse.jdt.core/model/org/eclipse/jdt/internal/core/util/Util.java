@@ -937,7 +937,7 @@ public class Util {
 						path = ((IResource)targetLibrary).getFullPath();
 					} else if (targetLibrary instanceof File){
 						File f = (File) targetLibrary;
-						if (!f.isDirectory()) {
+						if (!f.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 							path = new Path(((File)targetLibrary).getPath());
 						}
 					}
@@ -946,7 +946,7 @@ public class Util {
 							return ClassFileConstants.JDK9;
 						} else {
 							jar = JavaModelManager.getJavaModelManager().getZipFile(path);
-							for (Enumeration<? extends ZipEntry> e= jar.entries(); e.hasMoreElements();) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+							for (Enumeration<? extends ZipEntry> e= jar.entries(); e.hasMoreElements();) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 								ZipEntry member= e.nextElement();
 								String entryName= member.getName();
 								// Ignore class files in META-INF/versions as they are provided for higher JLS and not

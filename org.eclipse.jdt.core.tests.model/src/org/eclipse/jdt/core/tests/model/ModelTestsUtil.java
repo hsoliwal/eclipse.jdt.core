@@ -45,10 +45,10 @@ import org.eclipse.jdt.internal.core.JarPackageFragmentRoot;
 public class ModelTestsUtil {
 
 static private void collectAllFiles(File root, ArrayList collector, FileFilter fileFilter) {
-	File[] files = root.listFiles(fileFilter);
+	File[] files = root.listFiles(fileFilter); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	for (int i = 0; i < files.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		final File currentFile = files[i];
-		if (currentFile.isDirectory()) {
+		if (currentFile.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			collectAllFiles(currentFile, collector, fileFilter);
 		} else {
 			collector.add(currentFile);
@@ -74,7 +74,7 @@ static public void copy(File src, File dest) throws IOException {
 	}
 
 	// write bytes to dest
-	try (FileOutputStream out = new FileOutputStream(dest)) {
+	try (FileOutputStream out = new FileOutputStream(dest)) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		out.write(srcBytes);
 	}
 }
@@ -83,17 +83,17 @@ static public void copy(File src, File dest) throws IOException {
  * Copy the given source directory (and all its contents) to the given target directory.
  */
 static public void copyDirectory(File source, File target) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (!target.exists()) {
-		target.mkdirs();
+	if (!target.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		target.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
-	File[] files = source.listFiles();
+	File[] files = source.listFiles(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	if (files == null) return;
 	for (int i = 0; i < files.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		File sourceChild = files[i];
 		String name =  sourceChild.getName();
 		if (name.equals("CVS") || name.equals(".svn")) continue;
 		File targetChild = new File(target, name);
-		if (sourceChild.isDirectory()) {
+		if (sourceChild.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			copyDirectory(sourceChild, targetChild);
 		} else {
 			copy(sourceChild, targetChild);
@@ -103,7 +103,7 @@ static public void copyDirectory(File source, File target) throws IOException { 
 
 public static File[] getAllFiles(File root, FileFilter fileFilter) {
 	ArrayList files = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
-	if (root.isDirectory()) {
+	if (root.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		collectAllFiles(root, files, fileFilter);
 		File[] result = new File[files.size()];
 		files.toArray(result);
@@ -355,8 +355,8 @@ static public IWorkspaceRoot getWorkspaceRoot() {
 
 static public byte[] read(java.io.File file) throws java.io.IOException {
 	int fileLength;
-	byte[] fileBytes = new byte[fileLength = (int) file.length()];
-	java.io.FileInputStream stream = new java.io.FileInputStream(file);
+	byte[] fileBytes = new byte[fileLength = (int) file.length()]; //FLLDCIM: MARK — M31 M3FILE_IO CALL
+	java.io.FileInputStream stream = new java.io.FileInputStream(file); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 	int bytesRead = 0;
 	int lastReadSize = 0;
 	try {
@@ -397,8 +397,8 @@ static public void setupExternalJCL(String jclName) throws IOException { //FLLDC
 	java.io.File jclMin =
 		new java.io.File(externalPath + jclName + ".jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	java.io.File jclMinsrc = new java.io.File(externalPath + jclName + "src.zip"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	if (!jclDir.exists()) {
-		if (!jclDir.mkdir()) {
+	if (!jclDir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		if (!jclDir.mkdir()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			//mkdir failed
 			throw new IOException("Could not create the directory " + jclDir); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
@@ -414,14 +414,14 @@ static public void setupExternalJCL(String jclName) throws IOException { //FLLDC
 		//copy either file that is missing or less recent than the one in workspace
 		java.io.File resourceJCLMin =
 			new java.io.File(resourceJCLDir + separator + jclName + ".jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		if ((jclMin.lastModified() < resourceJCLMin.lastModified())
-                || (jclMin.length() != resourceJCLMin.length())) {
+		if ((jclMin.lastModified() < resourceJCLMin.lastModified()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
+                || (jclMin.length() != resourceJCLMin.length())) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			copy(resourceJCLMin, jclMin);
 		}
 		java.io.File resourceJCLMinsrc =
 			new java.io.File(resourceJCLDir + separator + jclName + "src.zip"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		if ((jclMinsrc.lastModified() < resourceJCLMinsrc.lastModified())
-                || (jclMinsrc.length() != resourceJCLMinsrc.length())) {
+		if ((jclMinsrc.lastModified() < resourceJCLMinsrc.lastModified()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
+                || (jclMinsrc.length() != resourceJCLMinsrc.length())) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			copy(resourceJCLMinsrc, jclMinsrc);
 		}
 	}

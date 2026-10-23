@@ -85,7 +85,7 @@ public class Bug530366Test extends BuilderTests {
 		IFile myClass1InnerClass = testProject.getFile("bin/somepackage/MyClass1$InnerClass.class");
 
 		URI compilationArtifactUri = myClass1InnerClass.getLocationURI();
-		byte[] expectedContents = Files.readAllBytes(Paths.get(compilationArtifactUri));
+		byte[] expectedContents = Files.readAllBytes(Paths.get(compilationArtifactUri)); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		String sourceName = "MyClass2";
 		String className = "MyClass1"; // deliberately mismatched source and class names
@@ -94,7 +94,7 @@ public class Bug530366Test extends BuilderTests {
 		incrementalBuild();
 		expectProblems(myClass2);
 
-		byte[] actualContents = Files.readAllBytes(Paths.get(compilationArtifactUri));
+		byte[] actualContents = Files.readAllBytes(Paths.get(compilationArtifactUri)); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		assertEqualContents(expectedContents, actualContents);
 

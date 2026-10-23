@@ -54,12 +54,12 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 	 * @return the program snippet with placeholders filled in.
 	 */
 	private static String fillIn(String template, int idx) {
-		return template.replaceAll("PRIM", PRIMITIVES[idx]).replaceAll("BOX", BOXES[idx])
+		return template.replaceAll("PRIM", PRIMITIVES[idx]).replaceAll("BOX", BOXES[idx]) //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 						.replace("NEGVAL", NEGVALUES[idx]).replace("VAL", GOODVALUES[idx]).replace("MAX", MAXVALUES[idx]);
 	}
 	/** like {@link #fillIn(String, int)}, but may use {@link #MAXVALUES} if 'maxValue' is true. */
 	private static String fillInMax(String template, int idx, boolean useMax) {
-		return template.replaceAll("PRIM", PRIMITIVES[idx]).replaceAll("BOX", BOXES[idx])
+		return template.replaceAll("PRIM", PRIMITIVES[idx]).replaceAll("BOX", BOXES[idx]) //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 						.replace("NEGVAL", NEGVALUES[idx]).replace("VAL", useMax ? MAXVALUES[idx] : GOODVALUES[idx]);
 	}
 
@@ -1301,7 +1301,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 		StringBuilder methods = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		StringBuilder calls = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		String classTmpl =
-				"""
+				""" //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 				SUPPRESS public class X {
 				METHODS
 					public static void main(String... args) {
@@ -1320,7 +1320,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 					}
 				""".replace("FROM", from);
 		String callTmpl =
-				"""
+				""" //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 						System.out.print(X.switchPRIM(vFROM));
 						System.out.print('|');
 				""".replaceAll("FROM", from); // leaves only PRIM for replacement in the loop
@@ -1330,7 +1330,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			methods.append(fillIn(methodTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			calls.append(fillIn(callTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		String classX = classTmpl.replace("METHODS", methods.toString()).replaceAll("CALLS", calls.toString());
+		String classX = classTmpl.replace("METHODS", methods.toString()).replaceAll("CALLS", calls.toString()); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		runNegativeTest(new String[] { "X.java", classX },
 				expectedError);
 	}
@@ -1867,8 +1867,8 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			if (!IS_NUMERICAL[i]) continue;
 			String constVal = toConstantOfType(CONSTANTS[i], from);
 			String val10 = String.valueOf(i*10);
-			cases.append(casesTmpl.replaceAll("PRIM", PRIMITIVES[i]).replace("CONST", constVal).replace("VAL", val10)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			calls.append(callsTmpl.replaceAll("FROM", from).replaceAll("CONST", constVal)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			cases.append(casesTmpl.replaceAll("PRIM", PRIMITIVES[i]).replace("CONST", constVal).replace("VAL", val10)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+			calls.append(callsTmpl.replaceAll("FROM", from).replaceAll("CONST", constVal)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		}
 		String retType = idx <= 4 /*int*/ ? "int" : from; // no syntax exists for constants below int
 		String classX = classTmpl.replace("FROM", from).replace("RET", retType)

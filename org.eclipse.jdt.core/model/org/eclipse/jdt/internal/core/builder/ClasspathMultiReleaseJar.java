@@ -115,7 +115,7 @@ public class ClasspathMultiReleaseJar extends ClasspathJar {
 	protected Set<String> readPackageNames() {
 		final Set<String> packageSet = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		packageSet.add(""); //$NON-NLS-1$
-		for (Enumeration<? extends ZipEntry> e = this.zipFile.entries(); e.hasMoreElements(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		for (Enumeration<? extends ZipEntry> e = this.zipFile.entries(); e.hasMoreElements(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 			String fileName = e.nextElement().getName();
 			if (fileName.startsWith(META_INF_VERSIONS) && fileName.length() > META_INF_LENGTH) {
 				int i = fileName.indexOf('/', META_INF_LENGTH);

@@ -95,7 +95,7 @@ public final class FactoryPathUtil {
 			// If project is null, use workspace-level data
 			if (jproj == null) {
 				File file = getFileForWorkspace();
-				if (!file.exists()) {
+				if (!file.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					return null;
 				}
 				data = FileSystemUtil.getContentsOfFile(file);
@@ -150,7 +150,7 @@ public final class FactoryPathUtil {
 					projFile.delete(true, null);
 				}
 				else {
-					wkspFile.delete();
+					wkspFile.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				}
 			}
 		}
@@ -317,7 +317,7 @@ public final class FactoryPathUtil {
 	public static boolean doesFactoryPathFileExist(IJavaProject jproj) {
 		if (jproj == null) {
 			File wkspFile = getFileForWorkspace();
-			return wkspFile.exists();
+			return wkspFile.exists(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 		else {
 			IFile projFile = getIFileForProject(jproj);

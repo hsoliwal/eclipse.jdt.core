@@ -2314,7 +2314,7 @@ private static SearchPattern createTypePattern(char[] simpleName, char[] package
 	return null;
 }
 private static SearchPattern createTypePattern(String patternString, int limitTo, int matchRule, char indexSuffix) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	String[] arr = patternString.split(String.valueOf(IIndexConstants.SEPARATOR));
+	String[] arr = patternString.split(String.valueOf(IIndexConstants.SEPARATOR)); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 	String moduleName = null;
 	if (arr.length == 2) {
 		moduleName = arr[0];

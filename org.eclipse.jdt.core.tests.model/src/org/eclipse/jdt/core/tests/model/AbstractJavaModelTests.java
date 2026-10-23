@@ -624,7 +624,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		assertSearchResults(message, expected, collector, true /* assertion */);
 	}
 	private static String sortLines(String toSplit) {
-		return Arrays.stream(toSplit.split("\n")).sorted().collect(Collectors.joining("\n"));
+		return Arrays.stream(toSplit.split("\n")).sorted().collect(Collectors.joining("\n")); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 	}
 	protected void assertSearchResults(String message, String expectedString, Object collector, boolean assertion) {
 		String expected = sortLines(expectedString);
@@ -1421,7 +1421,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	}
 	private String sortModules(String text) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-		String[] lines = text.split("\n");
+		String[] lines = text.split("\n"); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		int idx = 0;
 
 		// prefix before first module:
@@ -1605,7 +1605,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		}
 
 		// write bytes to dest
-		try (FileOutputStream out = new FileOutputStream(dest)) {
+		try (FileOutputStream out = new FileOutputStream(dest)) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			out.write(srcBytes);
 		}
 	}
@@ -1618,10 +1618,10 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	 * Copy the given source directory (and all its contents) to the given target directory.
 	 */
 	protected void copyDirectory(File source, File target) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (!target.exists()) {
-			Files.createDirectories(target.toPath());
+		if (!target.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			Files.createDirectories(target.toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
-		File[] files = source.listFiles();
+		File[] files = source.listFiles(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		// JavaProjectTests.testBug183923() calls setUpJavaProject()
 		// with invalid data, so ignore that
 		if (files == null) {
@@ -1636,7 +1636,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 					continue;
 				}
 				File targetChild = new File(target, name);
-				if (sourceChild.isDirectory()) {
+				if (sourceChild.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					copyDirectory(sourceChild, targetChild);
 				} else {
 					copy(sourceChild, targetChild);
@@ -2874,10 +2874,10 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		URL platformURL = Platform.getBundle("org.eclipse.jdt.core.tests.model").getEntry("/");
 		String absolutePath = new File(FileLocator.toFileURL(platformURL).getFile()).getAbsolutePath();
 		java.nio.file.Path rootDir = Paths.get(absolutePath);
-		if (!Files.isDirectory(rootDir)){
+		if (!Files.isDirectory(rootDir)){ //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			throw new IOException("Directory for 'org.eclipse.jdt.core.tests.model' bundle is not readable: " + rootDir); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		if(Files.list(rootDir).count() == 0){
+		if(Files.list(rootDir).count() == 0){ //FLLDCIM: MARK — M24 M3FILE_STREAMS CALL
 			throw new IOException("Directory for 'org.eclipse.jdt.core.tests.model' bundle is empty: " + rootDir); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return absolutePath;
@@ -3064,7 +3064,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	}
 
 	public byte[] read(java.io.File file) throws IOException {
-		return Files.readAllBytes(file.toPath());
+		return Files.readAllBytes(file.toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	public void refresh(final IJavaProject javaProject) throws CoreException {
@@ -3409,9 +3409,9 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	public void setupExternalJCL(String jclName) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String externalPath = getExternalPath();
 		java.nio.file.Path rootPath = Paths.get(externalPath);
-		if(!Files.isDirectory(rootPath)) {
-			Files.deleteIfExists(rootPath);
-			Files.createDirectories(rootPath);
+		if(!Files.isDirectory(rootPath)) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			Files.deleteIfExists(rootPath); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			Files.createDirectories(rootPath); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 		String separator = java.io.File.separator;
 		String resourceJCLDir = getPluginDirectoryPath() + separator + "JCL"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -3422,7 +3422,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		jclMin.deleteOnExit();
 		java.io.File jclMinsrc = new java.io.File(externalPath + jclName + "src.zip"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		jclMinsrc.deleteOnExit();
-		if (!jclDir.exists()) {
+		if (!jclDir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			Files.createDirectory(jclDir.toPath());
 			//copy the two files to the JCL directory
 			java.io.File resourceJCLMin =
@@ -3436,12 +3436,12 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 			//copy either file that is missing or less recent than the one in workspace
 			java.io.File resourceJCLMin =
 				new java.io.File(resourceJCLDir + separator + jclName + ".jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-			if (!jclMin.exists() || !Files.isSameFile(jclMin.toPath(), resourceJCLMin.toPath())) {
+			if (!jclMin.exists() || !Files.isSameFile(jclMin.toPath(), resourceJCLMin.toPath())) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				copy(resourceJCLMin, jclMin);
 			}
 			java.io.File resourceJCLMinsrc =
 				new java.io.File(resourceJCLDir + separator + jclName + "src.zip"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-			if (!jclMinsrc.exists() || !Files.isSameFile(jclMinsrc.toPath(), resourceJCLMinsrc.toPath())) {
+			if (!jclMinsrc.exists() || !Files.isSameFile(jclMinsrc.toPath(), resourceJCLMinsrc.toPath())) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				copy(resourceJCLMinsrc, jclMinsrc);
 			}
 		}
@@ -3779,7 +3779,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 			}
 			IPath varPath = JavaCore.getClasspathVariable(variable);
 			if(varPath != null) {
-				System.out.println("Classpath variable '" + variable + "', path: '" + varPath + "', file size: " + varPath.toFile().length()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				System.out.println("Classpath variable '" + variable + "', path: '" + varPath + "', file size: " + varPath.toFile().length()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			}
 			if(variable.startsWith("CONVERTER_JCL") && variable.endsWith("_SRCROOT")) {
 				// CONVERTER_JCL10_SRCROOT is not properly defined
@@ -3790,7 +3790,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 				continue;
 			}
 			assertNotNull("Should have path defined: '" + variable + "'", varPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-			assertTrue("Should exist on disk: '" + variable + "' defined as " + varPath, varPath.toFile().exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertTrue("Should exist on disk: '" + variable + "' defined as " + varPath, varPath.toFile().exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
@@ -4019,14 +4019,14 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	}
 	protected void touch(File f) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final int time = 1000;
-		long lastModified = f.lastModified();
+		long lastModified = f.lastModified(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		org.eclipse.jdt.core.tests.util.Util.waitAtLeast(time);
 		f.setLastModified(lastModified + time);
 		// Loop until the last modified time has really changed on the file
 		// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=295619
 		int n = 1;
 		while (n < 10) { // retry 9 times more if necessary //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
-			if (f.lastModified() != lastModified) {
+			if (f.lastModified() != lastModified) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				// We can leave the loop as the file has been really touched
 				return;
 			}
@@ -4034,7 +4034,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 			org.eclipse.jdt.core.tests.util.Util.waitAtLeast(time);
 			n++;
 		}
-		assertFalse("The file "+f.getAbsolutePath()+" was not touched!", lastModified == f.lastModified()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertFalse("The file "+f.getAbsolutePath()+" was not touched!", lastModified == f.lastModified()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	protected String toString(String[] strings) {

@@ -39,7 +39,7 @@ public class DecodeCodeFormatterPreferences extends DefaultHandler {
 
 	public static Map decodeCodeFormatterOptions(String fileName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
-			LineNumberReader reader = new LineNumberReader(new FileReader(fileName));
+			LineNumberReader reader = new LineNumberReader(new FileReader(fileName)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			Map options = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			String line;
 			while ((line = reader.readLine()) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
@@ -85,7 +85,7 @@ public class DecodeCodeFormatterPreferences extends DefaultHandler {
 			if (zipEntry == null) {
 				return null;
 			}
-			inputStream = new BufferedInputStream(zipFile.getInputStream(zipEntry));
+			inputStream = new BufferedInputStream(zipFile.getInputStream(zipEntry)); //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 			@SuppressWarnings("restriction")
 			SAXParser saxParser = org.eclipse.core.internal.runtime.XmlProcessorFactory.createSAXParserWithErrorOnDOCTYPE();
 			final DecodeCodeFormatterPreferences preferences = new DecodeCodeFormatterPreferences(profileName);

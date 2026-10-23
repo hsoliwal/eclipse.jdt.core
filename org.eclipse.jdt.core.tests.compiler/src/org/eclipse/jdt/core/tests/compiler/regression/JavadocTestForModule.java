@@ -60,15 +60,15 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 
 	protected void writeFile(String directoryName, String fileName, String source) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File directory = new File(directoryName);
-		if (!directory.exists()) {
-			if (!directory.mkdirs()) {
+		if (!directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			if (!directory.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				System.out.println("Could not create " + directoryName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return;
 			}
 		}
 		String filePath = directory.getAbsolutePath() + File.separator + fileName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(filePath)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(source);
 			writer.flush();
 			writer.close();
@@ -277,7 +277,7 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 	 * @return commandLine adjusted for javac
 	 */
 	String adjustForJavac(String commandLine, String versionOptions) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		String[] tokens = commandLine.split(" ");
+		String[] tokens = commandLine.split(" "); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		boolean skipNext = false;
 		for (int i = 0; i < tokens.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
@@ -317,10 +317,10 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 	}
 
 	private void walkOutFiles(final String outputLocation, final Set<String> fileNames, boolean add) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (!(new File(outputLocation)).exists())
+		if (!(new File(outputLocation)).exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			return;
 		try {
-			Files.walkFileTree(Path.of(outputLocation), new SimpleFileVisitor<Path>() {
+			Files.walkFileTree(Path.of(outputLocation), new SimpleFileVisitor<Path>() { //FLLDCIM: MARK — M24 M3FILE_STREAMS CALL
 				@Override
 				public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
 					if (file.toString().endsWith(".class")) {
@@ -330,7 +330,7 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 							if (!fileNames.remove(file.toString()))
 								System.err.println("Unexpected output file from javac: "+file.toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
-						Files.delete(file);
+						Files.delete(file); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					}
 					return FileVisitResult.CONTINUE;
 				}
@@ -338,7 +338,7 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
 					if (!dir.toString().equals(outputLocation)) {
 						try {
-							Files.delete(dir);
+							Files.delete(dir); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 						} catch (DirectoryNotEmptyException ex) {
 							// expected
 						}

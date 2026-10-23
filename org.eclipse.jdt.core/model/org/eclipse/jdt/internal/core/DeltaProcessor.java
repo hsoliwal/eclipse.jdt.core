@@ -227,7 +227,7 @@ public class DeltaProcessor {
 	 * Used for detecting external JAR changes
 	 */
 	public static long getTimeStamp(File file) {
-		return file.lastModified() + Long.hashCode(file.length()) * 31;
+		return file.lastModified() + Long.hashCode(file.length()) * 31; //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	/*

@@ -64,7 +64,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 	}
 	protected File createFile(File dir, String fileName, String contents) throws IOException {
 		File file = new File(dir, fileName);
-		try (Writer writer = new BufferedWriter(new FileWriter(file))) {
+		try (Writer writer = new BufferedWriter(new FileWriter(file))) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(contents);
 		}
 		return file;
@@ -185,11 +185,11 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 			"}";
 
 		File packageDir = new File(rootDir, "p");
-		packageDir.mkdir();
+		packageDir.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File file = new File(packageDir, "X.java");
 		Writer writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(file));
+			writer = new BufferedWriter(new FileWriter(file)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(contents);
 		} finally {
 			if (writer != null) {
@@ -207,7 +207,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 		File fileY = new File(packageDir, "Y.java");
 		Writer writer2 = null;
 		try {
-			writer2 = new BufferedWriter(new FileWriter(fileY));
+			writer2 = new BufferedWriter(new FileWriter(fileY)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer2.write(contents2);
 		} finally {
 			if (writer2 != null) {
@@ -248,8 +248,8 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 			assertNotNull("No ast", units[0]);
 			assertEquals("No problem", 0, units[0].getProblems().length);
 		} finally {
-			file.delete();
-			fileY.delete();
+			file.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			fileY.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 
@@ -296,11 +296,11 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 			"}";
 
 		File packageDir = new File(rootDir, "p");
-		packageDir.mkdir();
+		packageDir.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File file = new File(packageDir, "X.java");
 		Writer writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(file));
+			writer = new BufferedWriter(new FileWriter(file)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(contents);
 		} finally {
 			if (writer != null) {
@@ -318,7 +318,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 		File fileY = new File(packageDir, "Y.java");
 		Writer writer2 = null;
 		try {
-			writer2 = new BufferedWriter(new FileWriter(fileY));
+			writer2 = new BufferedWriter(new FileWriter(fileY)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer2.write(contents2);
 		} finally {
 			if (writer2 != null) {
@@ -369,8 +369,8 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 			typeBinding = (ITypeBinding) bindings[1];
 			assertEquals("Wrong binding", "java.lang.Object", typeBinding.getQualifiedName());
 		} finally {
-			file.delete();
-			fileY.delete();
+			file.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			fileY.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 
@@ -395,11 +395,11 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 			"class B{}";
 
 		File packageDir = new File(rootDir, "p");
-		packageDir.mkdir();
+		packageDir.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File file = new File(packageDir, "A.java");
 		Writer writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(file));
+			writer = new BufferedWriter(new FileWriter(file)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(contents);
 		} finally {
 			if (writer != null) {
@@ -417,7 +417,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 		File fileY = new File(packageDir, "C.java");
 		Writer writer2 = null;
 		try {
-			writer2 = new BufferedWriter(new FileWriter(fileY));
+			writer2 = new BufferedWriter(new FileWriter(fileY)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer2.write(contents2);
 		} finally {
 			if (writer2 != null) {
@@ -456,8 +456,8 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 			assertNotNull("No ast", units[0]);
 			assertEquals("No problem", 0, units[0].getProblems().length);
 		} finally {
-			file.delete();
-			fileY.delete();
+			file.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			fileY.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 
@@ -483,11 +483,11 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 			"class B{}";
 
 		File packageDir = new File(rootDir, "p");
-		packageDir.mkdir();
+		packageDir.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File file = new File(packageDir, "A.java");
 		Writer writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(file));
+			writer = new BufferedWriter(new FileWriter(file)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(contents);
 		} finally {
 			if (writer != null) {
@@ -506,7 +506,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 		File fileY = new File(packageDir, "C.java");
 		Writer writer2 = null;
 		try {
-			writer2 = new BufferedWriter(new FileWriter(fileY));
+			writer2 = new BufferedWriter(new FileWriter(fileY)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer2.write(contents2);
 		} finally {
 			if (writer2 != null) {
@@ -546,8 +546,8 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 			assertEquals("No problem", 1, problems.length);
 			assertEquals("Pb(3) The type B is not visible", problems[0].toString());
 		} finally {
-			file.delete();
-			fileY.delete();
+			file.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			fileY.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 
@@ -563,7 +563,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 		File file = new File(rootDir, "X.java");
 		Writer writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(file));
+			writer = new BufferedWriter(new FileWriter(file)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(contents);
 		} finally {
 			if (writer != null) {
@@ -579,11 +579,11 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 			"package p;\n" +
 			"class Y {}";
 		File packageDir = new File(rootDir, "p");
-		packageDir.mkdir();
+		packageDir.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File fileY = new File(packageDir, "Y.java");
 		Writer writer2 = null;
 		try {
-			writer2 = new BufferedWriter(new FileWriter(fileY));
+			writer2 = new BufferedWriter(new FileWriter(fileY)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer2.write(contents2);
 		} finally {
 			if (writer2 != null) {
@@ -606,8 +606,8 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 					new FileASTRequestor() {},
 					null);
 		} finally {
-			file.delete();
-			fileY.delete();
+			file.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			fileY.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 
@@ -719,7 +719,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 		Writer writer = null;
 		try {
 			try {
-				writer = new BufferedWriter(new FileWriter(file));
+				writer = new BufferedWriter(new FileWriter(file)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				writer.write(contents);
 			} catch (IOException e1) {
 				// ignore
@@ -749,7 +749,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 		Writer writer2 = null;
 		try {
 			try {
-				writer2 = new BufferedWriter(new FileWriter(fileY));
+				writer2 = new BufferedWriter(new FileWriter(fileY)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				writer2.write(contents2);
 			} catch (IOException e) {
 				// ignore
@@ -778,8 +778,8 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 					fileY.toPath().normalize().toAbsolutePath().toString() };
 			parser.createASTs(files, null, new String[0], astRequestor, null);
 		} finally {
-			file.delete();
-			fileY.delete();
+			file.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			fileY.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 	public void testBug526996_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
@@ -1192,7 +1192,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 		Writer writer = null;
 		try {
 			try {
-				writer = new BufferedWriter(new FileWriter(file));
+				writer = new BufferedWriter(new FileWriter(file)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				writer.write(contents);
 			} catch (IOException e1) {
 				// ignore
@@ -1546,7 +1546,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 		Writer writer2 = null;
 		try {
 			try {
-				writer2 = new BufferedWriter(new FileWriter(fileY));
+				writer2 = new BufferedWriter(new FileWriter(fileY)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				writer2.write(contents2);
 			} catch (IOException e) {
 				// ignore
@@ -1575,8 +1575,8 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 					fileY.toPath().normalize().toAbsolutePath().toString() };
 			parser.createASTs(files, null, new String[0], astRequestor, null);
 		} finally {
-			file.delete();
-			fileY.delete();
+			file.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			fileY.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 	public void testBug530299_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
@@ -1623,7 +1623,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 		File file = new File(rootDir, "X.java");
 		Writer writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(file));
+			writer = new BufferedWriter(new FileWriter(file)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(contents);
 		} finally {
 			if (writer != null) {
@@ -1636,12 +1636,12 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 		}
 
 		File packageDir = new File(rootDir, "p");
-		packageDir.mkdir();
+		packageDir.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File fileY = new File(packageDir, "Y.java");
 		String fileYPath = fileY.toPath().normalize().toAbsolutePath().toString();
 
 		packageDir = new File(rootDir, "p");
-		packageDir.mkdir();
+		packageDir.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		fileY = new File(packageDir, "Z.java");
 		String fileZPath = fileY.toPath().normalize().toAbsolutePath().toString();
 
@@ -1654,7 +1654,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 			File file2 = new File(rootDir, "X.java");
 			writer = null;
 			try {
-				writer = new BufferedWriter(new FileWriter(file2));
+				writer = new BufferedWriter(new FileWriter(file2)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				writer.write(contents);
 			} finally {
 				if (writer != null) {
@@ -1679,8 +1679,8 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 					new FileASTRequestor() {},
 					null);
 		} finally {
-			file.delete();
-			fileY.delete();
+			file.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			fileY.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 
@@ -1795,7 +1795,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 		try {
 			File rootDir = new File(System.getProperty("java.io.tmpdir"));
 			packDir = new File(rootDir, "P/src/x");
-			packDir.mkdirs();
+			packDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 			String fileName1 = "EnsureImpl$1.java";
 			String fileName2 = "C9947f.java";
@@ -1833,9 +1833,9 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 					null);
 			// just ensure the above doesn't throw NPE
 		} finally {
-			f1.delete();
-			f2.delete();
-			packDir.delete();
+			f1.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			f2.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			packDir.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 

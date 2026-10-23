@@ -316,7 +316,7 @@ public class IndexReDoSTest extends TestCase {
 	 */
 	public void testReDoSViaDiskIndexQueryPath() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File indexFile = File.createTempFile("redos", ".index"); //$NON-NLS-1$ //$NON-NLS-2$
-		indexFile.delete(); // let the Index create a fresh file
+		indexFile.delete(); // let the Index create a fresh file //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		indexFile.deleteOnExit();
 
 		char[] category = "typeDecl".toCharArray(); //$NON-NLS-1$
@@ -361,7 +361,7 @@ public class IndexReDoSTest extends TestCase {
 			}
 		} finally {
 			executor.shutdownNow();
-			indexFile.delete();
+			indexFile.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 }

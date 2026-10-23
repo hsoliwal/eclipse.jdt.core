@@ -300,7 +300,7 @@ private char[] getJavaCoreClassSource() throws IOException, ZipException { //FLL
 	String stringPath = path.toString() + "/model/" + PATH_JAVA_CORE_JAVA; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	File javaCoreSourceFile = new File(stringPath);
 	char[] sourceChars = null;
-	if (javaCoreSourceFile.exists()) {
+	if (javaCoreSourceFile.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		sourceChars = Util.getFileCharContent(javaCoreSourceFile, null);
 	} else {
 		// 2. attempt: locate org.eclipse.jdt.core.source jar next to org.eclipse.jdt.core jar:
@@ -313,7 +313,7 @@ private char[] getJavaCoreClassSource() throws IOException, ZipException { //FLL
 			File jarFile = new File(location);
 			try (ZipFile zipFile = new ZipFile(jarFile)) { //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM NEW
 				ZipEntry entry = zipFile.getEntry(PATH_JAVA_CORE_JAVA);
-				try (InputStream inputStream = zipFile.getInputStream(entry)) {
+				try (InputStream inputStream = zipFile.getInputStream(entry)) { //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 					sourceChars = Util.getInputStreamAsCharArray(inputStream, null);
 				}
 			}

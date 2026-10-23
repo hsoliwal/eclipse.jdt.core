@@ -1152,7 +1152,7 @@ public void testBug397818() throws CoreException {
 		try {
 			URL newURL = newFile.getLocationURI().toURL();
 			IndexLocation indexLoc = IndexLocation.createIndexLocation(newURL);
-			assertTrue("Malformed index location", indexLoc.getIndexFile().exists());
+			assertTrue("Malformed index location", indexLoc.getIndexFile().exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		} catch (MalformedURLException e) {
 			fail("Malformed index location");
 		}
@@ -1192,7 +1192,7 @@ public void testModuleJarSearchBugGh332() throws Exception { //FLLDCIM: MARK —
 
 		String foundReferences = resultCollector.toString();
 		assertFalse("Expected search to find references of method: " + schedMethod, foundReferences.isEmpty()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		List<String> results = Arrays.asList(foundReferences.split("\n"));
+		List<String> results = Arrays.asList(foundReferences.split("\n")); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		String[] expectedResults = {
 				"void java.util.Timer.schedule(java.util.TimerTask, long)",
 				"void java.util.Timer.schedule(java.util.TimerTask, java.util.Date)",

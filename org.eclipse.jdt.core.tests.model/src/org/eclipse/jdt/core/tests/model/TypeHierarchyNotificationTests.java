@@ -1439,8 +1439,8 @@ public void testBug316654_b() throws CoreException { //FLLDCIM: MARK — ML METH
 	refreshExternalArchives(project);
 	String externalJCLPathString = getExternalJCLPathString(CompilerOptions.getFirstSupportedJavaVersion());
 	File jarFile = new File(externalJCLPathString);
-	long oldTimestamp = jarFile.lastModified();
-	assertTrue("File does not exist", jarFile.exists());
+	long oldTimestamp = jarFile.lastModified(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+	assertTrue("File does not exist", jarFile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 	IType throwableClass = getClassFile("TypeHierarchyNotification", externalJCLPathString, "java.lang", "Throwable.class").getType();
 	ITypeHierarchy h = throwableClass.newTypeHierarchy(project, null);

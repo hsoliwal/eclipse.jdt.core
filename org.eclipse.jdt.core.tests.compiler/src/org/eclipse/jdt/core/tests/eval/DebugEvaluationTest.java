@@ -87,15 +87,15 @@ public class DebugEvaluationTest extends EvaluationTest {
 	public void compileAndDeploy(String source, String className) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		resetEnv(); // needed to reinitialize the caches
 		File directory = new File(SOURCE_DIRECTORY);
-		if (!directory.exists()) {
-			if (!directory.mkdir()) {
+		if (!directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			if (!directory.mkdir()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				System.out.println("Could not create " + SOURCE_DIRECTORY); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return;
 			}
 		}
 		String fileName = SOURCE_DIRECTORY + File.separator + className + ".java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(source);
 			writer.flush();
 			writer.close();
@@ -118,15 +118,15 @@ public class DebugEvaluationTest extends EvaluationTest {
 	public void compileAndDeploy15(String source, String className) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		resetEnv(); // needed to reinitialize the caches
 		File directory = new File(SOURCE_DIRECTORY);
-		if (!directory.exists()) {
-			if (!directory.mkdir()) {
+		if (!directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			if (!directory.mkdir()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				System.out.println("Could not create " + SOURCE_DIRECTORY); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return;
 			}
 		}
 		String fileName = SOURCE_DIRECTORY + File.separator + className + ".java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(source);
 			writer.flush();
 			writer.close();

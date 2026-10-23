@@ -297,9 +297,9 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 	private static void removeFromJar(String jar, String entryName) throws IOException {
 		java.nio.file.Path path = java.nio.file.Path.of(jar);
 		java.nio.file.Path copy = java.nio.file.Path.of(jar + ".tmp"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		try (ZipInputStream in = new ZipInputStream(Files.newInputStream(path));
-				ZipOutputStream out = new ZipOutputStream(Files.newOutputStream(copy))) {
-			for (ZipEntry entry = in.getNextEntry(); entry != null; entry = in.getNextEntry()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		try (ZipInputStream in = new ZipInputStream(Files.newInputStream(path)); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				ZipOutputStream out = new ZipOutputStream(Files.newOutputStream(copy))) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			for (ZipEntry entry = in.getNextEntry(); entry != null; entry = in.getNextEntry()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 				if (!entry.getName().equals(entryName)) {
 					out.putNextEntry(new ZipEntry(entry.getName()));
 					in.transferTo(out);
@@ -307,7 +307,7 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 				}
 			}
 		}
-		Files.move(copy, path, StandardCopyOption.REPLACE_EXISTING);
+		Files.move(copy, path, StandardCopyOption.REPLACE_EXISTING); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	/**

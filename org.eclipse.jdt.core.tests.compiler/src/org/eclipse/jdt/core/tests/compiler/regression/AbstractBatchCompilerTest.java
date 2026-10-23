@@ -165,7 +165,7 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 		}
 		File libDir = new File(LIB_DIR);
 		Util.delete(libDir); // make sure we recycle the libs
- 		libDir.mkdirs();
+ 		libDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		Util.createJar(
 			new String[] {
 				"p/A.java",
@@ -260,7 +260,7 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 			},
 			LIB_DIR + "/lib5.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			CompilerOptions.getFirstSupportedJavaVersion());
-		new File(LIB_DIR + "/s").mkdir(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		new File(LIB_DIR + "/s").mkdir(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		Util.createJar(
 			new String[] {
 				"p/D.java",
@@ -413,7 +413,7 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 			},
 			LIB_DIR + "/lib16.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			CompilerOptions.getFirstSupportedJavaVersion());
-		new File(LIB_DIR + "/dir").mkdir(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		new File(LIB_DIR + "/dir").mkdir(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		Util.createJar(
 			new String[] {
 				"p/A.java",
@@ -546,8 +546,8 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 		if (shouldFlushOutputDirectory)
 			Util.flushDirectoryContent(outputDirectory);
 		try {
-			if (!outputDirectory.isDirectory()) {
-				outputDirectory.mkdirs();
+			if (!outputDirectory.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				outputDirectory.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			}
 			if (testFiles != null) {
 				PrintWriter sourceFileWriter;
@@ -555,10 +555,10 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 					String fileName = OUTPUT_DIR + File.separator + testFiles[i]; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					File file = new File(fileName), innerOutputDirectory = file
 							.getParentFile();
-					if (!innerOutputDirectory.isDirectory()) {
-						innerOutputDirectory.mkdirs();
+					if (!innerOutputDirectory.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+						innerOutputDirectory.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					}
-					sourceFileWriter = new PrintWriter(new FileOutputStream(file));
+					sourceFileWriter = new PrintWriter(new FileOutputStream(file)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 					try {
 						sourceFileWriter.write(testFiles[i + 1]);
 					} finally {
@@ -578,8 +578,8 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 		boolean compileOK;
 		try {
 			try {
-				out = new PrintWriter(new FileOutputStream(outFileName));
-				err = new PrintWriter(new FileOutputStream(errFileName));
+				out = new PrintWriter(new FileOutputStream(outFileName)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
+				err = new PrintWriter(new FileOutputStream(errFileName)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			} catch (FileNotFoundException e) {
 				System.out.println(getClass().getName() + '#' + getName());
 				e.printStackTrace();
@@ -681,18 +681,18 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 		if (shouldFlushOutputDirectory)
 			Util.flushDirectoryContent(outputDirectory);
 		try {
-			if (!outputDirectory.isDirectory()) {
-				outputDirectory.mkdirs();
+			if (!outputDirectory.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				outputDirectory.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			}
 			PrintWriter sourceFileWriter;
 			for (int i = 0; i < testFiles.length; i += 2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String fileName = OUTPUT_DIR + File.separator + testFiles[i]; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				File file = new File(fileName), innerOutputDirectory = file
 						.getParentFile();
-				if (!innerOutputDirectory.isDirectory()) {
-					innerOutputDirectory.mkdirs();
+				if (!innerOutputDirectory.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+					innerOutputDirectory.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				}
-				sourceFileWriter = new PrintWriter(new FileOutputStream(file));
+				sourceFileWriter = new PrintWriter(new FileOutputStream(file)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				try {
 					sourceFileWriter.write(testFiles[i + 1]);
 				} finally {
@@ -712,8 +712,8 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 		boolean compileOK;
 		try {
 			try {
-				out = new PrintWriter(new FileOutputStream(outFileName));
-				err = new PrintWriter(new FileOutputStream(errFileName));
+				out = new PrintWriter(new FileOutputStream(outFileName)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
+				err = new PrintWriter(new FileOutputStream(errFileName)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				batchCompiler = new Main(out, err, false/*systemExit*/, null/*options*/, null/*progress*/);
 			} catch (FileNotFoundException e) {
 				System.out.println(getClass().getName() + '#' + getName());
@@ -810,8 +810,8 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 
 	protected void runClasspathTest(String classpathInput, String[] expectedClasspathEntries, String expectedError) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
-		if (!outputDirectory.isDirectory()) {
-			outputDirectory.mkdirs();
+		if (!outputDirectory.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			outputDirectory.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 		ArrayList<FileSystem.Classpath> paths = new ArrayList<>(Main.DEFAULT_SIZE_CLASSPATH); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		try {
@@ -872,7 +872,7 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 	 */
 	protected void checkWidth(String message, int width) {
 		BufferedReader reader = new BufferedReader(
-				new StringReader(message.replaceAll("\t", "    ")));
+				new StringReader(message.replaceAll("\t", "    "))); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		String line;
 		try {
 			while ((line = reader.readLine()) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP

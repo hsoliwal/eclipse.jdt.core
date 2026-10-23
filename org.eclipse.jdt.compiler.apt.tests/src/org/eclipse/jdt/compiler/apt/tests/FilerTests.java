@@ -66,13 +66,13 @@ public class FilerTests extends TestCase {
 
 		// check that the resource and class files were generated
  		File genTextFile = TestUtils.concatPath(BatchTestUtils.getGenFolderName(), "resources", "txt", "text.txt");
- 		assertTrue("generated text file does not exist", genTextFile.exists());
+ 		assertTrue("generated text file does not exist", genTextFile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
  		File genBinaryFile = TestUtils.concatPath(BatchTestUtils.getGenFolderName(), "resources", "dat", "binary.dat");
- 		assertTrue("generated binary file does not exist", genBinaryFile.exists());
+ 		assertTrue("generated binary file does not exist", genBinaryFile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
  		File classFile = TestUtils.concatPath(BatchTestUtils.getBinFolderName(), "targets", "filer", "FilerTarget1.class");
- 		assertTrue("ordinary src file was not compiled", classFile.exists());
+ 		assertTrue("ordinary src file was not compiled", classFile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
  		// See corresponding test data in FilerTarget1.java
  		assertTrue(BatchTestUtils.fileContentsEqualText(genTextFile, "A generated string"));

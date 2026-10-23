@@ -159,33 +159,33 @@ public TypeAnnotationSyntaxTest(String testName){ //FLLDCIM: MARK — ML METHOD_
 	super(testName, referenceCompiler, jsr308TestScratchArea);
 	if (referenceCompiler != null) {
 		File f = new File(jsr308TestScratchArea);
-		if (!f.exists()) {
-			f.mkdir();
+		if (!f.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			f.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
-		if (f.exists()) {
+		if (f.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			try {
-				OutputStreamWriter w = new OutputStreamWriter(new FileOutputStream(new File(jsr308TestScratchArea + File.separator + "Marker.java"))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				OutputStreamWriter w = new OutputStreamWriter(new FileOutputStream(new File(jsr308TestScratchArea + File.separator + "Marker.java"))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				w.write("@interface Marker {}\n".toCharArray());
 				w.close();
-				w = new OutputStreamWriter(new FileOutputStream(new File(jsr308TestScratchArea + File.separator + "Normal.java"))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				w = new OutputStreamWriter(new FileOutputStream(new File(jsr308TestScratchArea + File.separator + "Normal.java"))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				w.write("@interface Normal {\n\tint value() default 10;\n}\n".toCharArray());
 				w.close();
-				w = new OutputStreamWriter(new FileOutputStream(new File(jsr308TestScratchArea + File.separator + "SingleMember.java"))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				w = new OutputStreamWriter(new FileOutputStream(new File(jsr308TestScratchArea + File.separator + "SingleMember.java"))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				w.write("@interface SingleMember {\n\tint value() default 10;\n}\n".toCharArray());
 				w.close();
-				w = new OutputStreamWriter(new FileOutputStream(new File(jsr308TestScratchArea + File.separator + "Positive.java"))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				w = new OutputStreamWriter(new FileOutputStream(new File(jsr308TestScratchArea + File.separator + "Positive.java"))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				w.write("@interface Positive {}\n".toCharArray());
 				w.close();
-				w = new OutputStreamWriter(new FileOutputStream(new File(jsr308TestScratchArea + File.separator + "Negative.java"))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				w = new OutputStreamWriter(new FileOutputStream(new File(jsr308TestScratchArea + File.separator + "Negative.java"))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				w.write("@interface Negative{}\n".toCharArray());
 				w.close();
-				w = new OutputStreamWriter(new FileOutputStream(new File(jsr308TestScratchArea + File.separator + "Readonly.java"))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				w = new OutputStreamWriter(new FileOutputStream(new File(jsr308TestScratchArea + File.separator + "Readonly.java"))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				w.write("@interface Readonly {}\n".toCharArray());
 				w.close();
-				w = new OutputStreamWriter(new FileOutputStream(new File(jsr308TestScratchArea + File.separator + "NonNull.java"))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				w = new OutputStreamWriter(new FileOutputStream(new File(jsr308TestScratchArea + File.separator + "NonNull.java"))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				w.write("@interface NonNull {}\n".toCharArray());
 				w.close();
-				w = new OutputStreamWriter(new FileOutputStream(new File(jsr308TestScratchArea + File.separator + "HashMap.java"))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				w = new OutputStreamWriter(new FileOutputStream(new File(jsr308TestScratchArea + File.separator + "HashMap.java"))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				w.write("class HashMap<X,Y> {\n class Iterator {}; \n}\n".toCharArray());
 				w.close();
 				CHECK_ALL |= CHECK_JAVAC_PARSER;
@@ -199,22 +199,22 @@ public TypeAnnotationSyntaxTest(String testName){ //FLLDCIM: MARK — ML METHOD_
 static {
 //	TESTS_NAMES = new String[] { "test0038", "test0039", "test0040a" };
 //	TESTS_NUMBERS = new int[] { 133, 134, 135 };
-	if (!(new File(referenceCompiler).exists())) {
+	if (!(new File(referenceCompiler).exists())) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		referenceCompiler = null;
 		jsr308TestScratchArea = null;
 	}
 }
 void traverse (File f) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (f.isDirectory()) {
-		File [] files = f.listFiles();
+	if (f.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		File [] files = f.listFiles(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		for (int i = 0; i < files.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			traverse(files[i]);
 		}
 	} else {
 		if (f.getName().endsWith(".java")) {
 			System.out.println(f.toPath().normalize().toAbsolutePath().toString());
-			char [] contents = new char[(int) f.length()];
-			FileInputStream fs = new FileInputStream(f);
+			char [] contents = new char[(int) f.length()]; //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			FileInputStream fs = new FileInputStream(f); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			InputStreamReader isr = null;
 			try {
 				isr = new InputStreamReader(fs);

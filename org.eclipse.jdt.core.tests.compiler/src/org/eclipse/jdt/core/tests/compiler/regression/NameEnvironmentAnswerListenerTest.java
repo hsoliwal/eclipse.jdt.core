@@ -137,8 +137,8 @@ public class NameEnvironmentAnswerListenerTest extends AbstractComparableTest {
 		classpath.add(unusedLibPath);
 
 		File outputDirectory = new File(Util.getOutputDirectory());
-		if (!outputDirectory.isDirectory()) {
-			outputDirectory.mkdirs();
+		if (!outputDirectory.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			outputDirectory.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 
 		List<String> ecjArguments = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
@@ -159,7 +159,7 @@ public class NameEnvironmentAnswerListenerTest extends AbstractComparableTest {
 
 		EclipseBatchCompiler compiler;
 		File logFile = new File(outputDirectory, "compile.log");
-		try(PrintWriter log = new PrintWriter(new FileOutputStream(logFile))) {
+		try(PrintWriter log = new PrintWriter(new FileOutputStream(logFile))) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			compiler = new EclipseBatchCompiler(log);
 			boolean compileOK;
 			compileOK = compiler.compile(ecjArguments.toArray(new String[ecjArguments.size()]));

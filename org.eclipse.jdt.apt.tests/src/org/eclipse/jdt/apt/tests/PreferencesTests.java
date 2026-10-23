@@ -116,8 +116,8 @@ public class PreferencesTests extends APTTestBase {
 			throw new RuntimeException("Could not create temp jar files", ioe);
 		}
 		finally {
-			if (jar1 != null) jar1.delete();
-			if (jar2 != null) jar2.delete();
+			if (jar1 != null) jar1.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			if (jar2 != null) jar2.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 

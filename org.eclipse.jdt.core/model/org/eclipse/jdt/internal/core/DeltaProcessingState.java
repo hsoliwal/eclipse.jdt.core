@@ -505,7 +505,7 @@ public class DeltaProcessingState implements IResourceChangeListener { //FLLDCIM
 		if (this.externalTimeStamps == null) {
 			Hashtable<IPath, Long> timeStamps = new Hashtable<>();
 			File timestampsFile = getTimeStampsFile();
-			try (DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(timestampsFile)))) {
+			try (DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(timestampsFile)))) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				int size = in.readInt();
 				while (size-- > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String key = in.readUTF();
@@ -513,7 +513,7 @@ public class DeltaProcessingState implements IResourceChangeListener { //FLLDCIM
 					timeStamps.put(Path.fromPortableString(key), Long.valueOf(timestamp));
 				}
 			} catch (IOException e) {
-				if (timestampsFile.exists())
+				if (timestampsFile.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					Util.log(e, "Unable to read external time stamps"); //$NON-NLS-1$
 			}
 			this.externalTimeStamps = timeStamps;
@@ -573,7 +573,7 @@ public class DeltaProcessingState implements IResourceChangeListener { //FLLDCIM
 		}
 
 		File timestamps = getTimeStampsFile();
-		try (DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(timestamps)))){
+		try (DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(timestamps)))){ //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			out.writeInt(this.externalTimeStamps.size() - toRemove.size());
 			for (Entry<IPath, Long> entry : this.externalTimeStamps.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPath key = entry.getKey();

@@ -2042,9 +2042,9 @@ public void testBug336046() throws Exception { //FLLDCIM: MARK — ML METHOD_SPL
 		copyDirectory(new File(sourceLocation.toString()), new File(destination.toString()));
 		project.getProject().close(null);
 
-		FileOutputStream fos = new FileOutputStream(classpathLocation);
+		FileOutputStream fos = new FileOutputStream(classpathLocation); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		fos.write(classpathContent.getBytes());
-		assertTrue(srcFolder.renameTo(new File(getExternalFolder() + File.separator + "336046src"))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertTrue(srcFolder.renameTo(new File(getExternalFolder() + File.separator + "336046src"))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		fos.close();
 
 		IProject newProject = workspace.getRoot().getProject("ImportedProject");

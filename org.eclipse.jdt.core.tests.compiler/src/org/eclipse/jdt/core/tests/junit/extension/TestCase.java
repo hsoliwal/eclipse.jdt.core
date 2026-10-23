@@ -683,8 +683,8 @@ private static File createMemLogFile() { //FLLDCIM: MARK — ML METHOD_SPLIT MET
 	File logFile = new File(MEM_LOG_DIR, STORE_MEMORY+".log"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	PrintStream stream = null;
 	try {
-		boolean fileExist = logFile.exists();
-		stream = new PrintStream(new FileOutputStream(logFile, true));
+		boolean fileExist = logFile.exists(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		stream = new PrintStream(new FileOutputStream(logFile, true)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		if (fileExist) {
 			stream.println();
 		}
@@ -744,14 +744,14 @@ protected static String showLineSeparators(String string) { //FLLDCIM: MARK — 
  * Returns whether a given file is a valid log directory or not.
  */
 private static boolean verifyLogDir(File logDir) {
-	if (logDir.exists()) {
-		if (logDir.isDirectory()) {
+	if (logDir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		if (logDir.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			return true;
 		} else {
 			System.err.println(logDir+" is not a valid directory. Log files will NOT be written!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	} else {
-		if (logDir.mkdir()) {
+		if (logDir.mkdir()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			return true;
 		} else {
 			System.err.println("Cannot create "+logDir+" as its parent does not exist. Log files will NOT be written!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -830,8 +830,8 @@ protected void setUp() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT ME
 	// Memory storage if specified
 	if (STORE_MEMORY != null && MEM_LOG_FILE != null) {
 		if (isFirstTestRun) runGarbageCollection();
-		if (ALL_TESTS_LOG && MEM_LOG_FILE.exists()) {
-			PrintStream stream = new PrintStream(new FileOutputStream(MEM_LOG_FILE, true));
+		if (ALL_TESTS_LOG && MEM_LOG_FILE.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			PrintStream stream = new PrintStream(new FileOutputStream(MEM_LOG_FILE, true)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			stream.print(CURRENT_CLASS_NAME);
 			stream.print('\t');
 			String testName = getName();
@@ -921,8 +921,8 @@ protected void tearDown() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT
 
 	// Memory storage if specified
 	if (STORE_MEMORY != null && MEM_LOG_FILE != null) {
-		if ((this.first || ALL_TESTS_LOG) && MEM_LOG_FILE.exists()) {
-			PrintStream stream = new PrintStream(new FileOutputStream(MEM_LOG_FILE, true));
+		if ((this.first || ALL_TESTS_LOG) && MEM_LOG_FILE.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			PrintStream stream = new PrintStream(new FileOutputStream(MEM_LOG_FILE, true)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			stream.print(CURRENT_CLASS_NAME);
 			stream.print('\t');
 			if (ALL_TESTS_LOG) {

@@ -92,7 +92,7 @@ public class ModuleImportTests extends TestCase {
 	}
 	public static void addModuleSourcePath(StandardJavaFileManager fileManager, String folder) throws IOException {
 		File moduleLoc = new File(folder);
-		File[] list = moduleLoc.listFiles(pathname -> pathname.isDirectory());
+		File[] list = moduleLoc.listFiles(pathname -> pathname.isDirectory()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		for (File file : list) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String modName = file.getName();
 			fileManager.setLocationForModule(

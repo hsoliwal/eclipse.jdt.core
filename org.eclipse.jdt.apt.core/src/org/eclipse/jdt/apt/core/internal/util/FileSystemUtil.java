@@ -97,10 +97,10 @@ public final class FileSystemUtil
         // It is necessary to synchronize to prevent timing issues while creating the parent directories
         // We can be codegening multiple files that go into the same directory at the same time.
         synchronized (FileSystemUtil.class) {
-            if (!parent.exists()) {
+            if (!parent.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
                 boolean succeed = false;
                 for (int i = 0 ; !succeed && i < 5 ; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
-                    succeed = parent.mkdirs();
+                    succeed = parent.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
             }
         }
     }
@@ -149,7 +149,7 @@ public final class FileSystemUtil
      * Returns the contents of a file as a string in UTF8 format
      */
 	public static String getContentsOfFile(File file) throws IOException {
-		return new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+		return new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
     /**
@@ -179,7 +179,7 @@ public final class FileSystemUtil
      */
     public static void writeStringToFile(File file, String contents) throws IOException {
     	byte[] data = contents.getBytes(StandardCharsets.UTF_8);
-    	OutputStream out = new BufferedOutputStream(new FileOutputStream(file));
+    	OutputStream out = new BufferedOutputStream(new FileOutputStream(file)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
     	try {
     		for (byte b : data) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     			out.write(b);

@@ -139,7 +139,7 @@ public static void generateClassFile(String className, String javaSource) throws
 	String cu = "d:/temp/" + className + ".java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	Util.createFile(cu, javaSource);
 	BatchCompiler.compile(cu + " -d d:/temp -classpath " + System.getProperty("java.home") + "/lib/rt.jar", new PrintWriter(System.out), new PrintWriter(System.err), null/*progress*/); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	try (FileInputStream input = new FileInputStream("d:/temp/" + className + ".class")) { //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	try (FileInputStream input = new FileInputStream("d:/temp/" + className + ".class")) { //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		System.out.println("{");
 		byte[] buffer = new byte[80];
 		int read = 0;
@@ -157,7 +157,7 @@ public static void generateClassFile(String className, String javaSource) throws
 }
 
 protected boolean createExternalFolder(String relativePath) {
-	return new File(getExternalPath(), relativePath).mkdirs();
+	return new File(getExternalPath(), relativePath).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 
 protected void createExternalFile(String relativePath, String contents) {
@@ -190,7 +190,7 @@ protected IFile createFile(String path, String content, String charsetName) thro
 }
 protected File createFolder(File parent, String name) {
 	File file = new File(parent, name);
-	file.mkdirs();
+	file.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	return file;
 }
 @Override

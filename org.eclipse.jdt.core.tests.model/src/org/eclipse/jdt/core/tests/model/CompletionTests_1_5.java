@@ -57,8 +57,8 @@ protected void assertResults(String expected, String actual) {
 		// TODO: after switching defaults from 1.4 to 1.8,
 		// source seem to format differently.
 		// Once it is understood what is breaking tests, the two lines below could be removed
-		expected = expected.replaceAll(" = ,", "=,");
-		actual = actual.replaceAll(" = ,", "=,");
+		expected = expected.replaceAll(" = ,", "=,"); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+		actual = actual.replaceAll(" = ,", "=,"); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 
 		assertEquals(expected, actual);
 	} catch(ComparisonFailure c) {

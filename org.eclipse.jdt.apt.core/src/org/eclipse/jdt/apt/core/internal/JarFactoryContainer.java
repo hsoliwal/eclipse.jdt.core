@@ -45,7 +45,7 @@ public abstract class JarFactoryContainer extends FactoryContainer
 			final File jarFile = getJarFile();
 			if(jarFile == null)
 				return false;
-			return getJarFile().exists();
+			return getJarFile().exists(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		} catch (SecurityException e) {
 			return false;
 		}
@@ -85,7 +85,7 @@ public abstract class JarFactoryContainer extends FactoryContainer
                     continue;
                 }
                 // Extract classnames from the service provider def file.
-                InputStream is = jarFile.getInputStream(provider);
+                InputStream is = jarFile.getInputStream(provider); //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
                 readServiceProvider(is, serviceName, classNames);
             }
         } catch (IOException ioe) {
@@ -113,7 +113,7 @@ public abstract class JarFactoryContainer extends FactoryContainer
 	                line = line.substring(0, iComment);
 	            }
 	            // add the first non-whitespace token to the list
-	            final String[] tokens = line.split("\\s", 2); //$NON-NLS-1$
+	            final String[] tokens = line.split("\\s", 2); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 	            if (tokens[0].length() > 0) {
 	                classNames.put(tokens[0], serviceName);
 	            }

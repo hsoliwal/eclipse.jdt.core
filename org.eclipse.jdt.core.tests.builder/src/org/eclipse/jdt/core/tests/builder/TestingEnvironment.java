@@ -823,10 +823,10 @@ public void cleanBuild(String projectName) {
 		if (this.tmpDirectory == null) {
 			this.tmpDirectory = new File(System.getProperty("java.io.tmpdir") + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					File.separator + "org.eclipse.jdt.core.builder.tests.tmp");
-			if (this.tmpDirectory.exists() && !this.tmpDirectory.isDirectory()) {
+			if (this.tmpDirectory.exists() && !this.tmpDirectory.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.delete(this.tmpDirectory);
 			}
-			this.tmpDirectory.mkdir();
+			this.tmpDirectory.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 		return this.tmpDirectory;
 	}

@@ -291,7 +291,7 @@ public class AnnotationProcessorFactoryLoader {
 					else {
 						// Lookup key is the canonical path of the resource
 						String key = null;
-						key = absolutePath.toFile().getCanonicalPath();
+						key = absolutePath.toFile().getCanonicalPath(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 						synchronized (cacheMutex) {
 							Set<IJavaProject> projects = _container2Project.get(key);
@@ -816,7 +816,7 @@ public class AnnotationProcessorFactoryLoader {
 					final File jarFile = ((JarFactoryContainer)fc).getJarFile();
 					// if null, will add to bad container set below.
 					if( jarFile != null ){
-						String key = jarFile.getCanonicalPath();
+						String key = jarFile.getCanonicalPath(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 						addToResourcesMap(key, jproj);
 					}
 				} catch (IOException e) {
@@ -953,10 +953,10 @@ public class AnnotationProcessorFactoryLoader {
 			List<File> copies = new ArrayList<>(files.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			for (int i=0;i<files.size();i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				File file = files.get(i);
-				if (file.isFile() && !hasManifestClassPath(file)) {
+				if (file.isFile() && !hasManifestClassPath(file)) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					// prefix with the index: jars from different folders may have the same name
 					File copy = copyDir.resolve(i + "_" + file.getName()).toFile(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-					Files.copy(file.toPath(), copy.toPath());
+					Files.copy(file.toPath(), copy.toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					copy.deleteOnExit();
 					copies.add(copy);
 				} else {
@@ -1017,10 +1017,10 @@ public class AnnotationProcessorFactoryLoader {
 		if (dir == null) {
 			return;
 		}
-		try (Stream<java.nio.file.Path> paths = Files.walk(dir)) {
+		try (Stream<java.nio.file.Path> paths = Files.walk(dir)) { //FLLDCIM: MARK — M24 M3FILE_STREAMS CALL
 			paths.sorted(Comparator.reverseOrder()).forEach(p -> {
 				try {
-					Files.delete(p);
+					Files.delete(p); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				} catch (IOException e) {
 					// leftovers are deleted on exit
 					AptPlugin.trace("Unable to delete " + p, e); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT

@@ -140,7 +140,7 @@ private void compileVerifyTests(String verifierDir) {
 
 	String dirName = verifierDir.replace('\\', '/') + "/" + packageName.replace('.', '/'); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	File dir = new File(dirName.replace('/', File.separatorChar));
-	if (!dir.exists() && !dir.mkdirs()) {
+	if (!dir.exists() && !dir.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		System.out.println("Could not create " + dir); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		return;
 	}
@@ -389,11 +389,11 @@ String getVerifyTestsCode() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (verifyTestCode == null) {
 			if (READ_VERIFY_TEST_FROM_FILE) {
 				String sourceFile = "src/org/eclipse/jdt/core/tests/util/VerifyTests.java";
-				if (!new File(sourceFile).exists()) {
+				if (!new File(sourceFile).exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					sourceFile = PROJECT_BASE_DIR + "/org.eclipse.jdt.core.tests.compiler/" + sourceFile; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				try {
-					verifyTestCode=Files.readString(Path.of(sourceFile));
+					verifyTestCode=Files.readString(Path.of(sourceFile)); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				}
 				catch (IOException e) {
 					System.out.println("WARNING: Cannot read & filter VerifyTests source code from file, using default value");

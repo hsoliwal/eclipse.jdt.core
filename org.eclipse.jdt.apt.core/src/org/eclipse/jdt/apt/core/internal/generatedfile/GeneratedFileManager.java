@@ -211,7 +211,7 @@ public class GeneratedFileManager
 	/**
 	 * The regex delimiter used to parse package names.
 	 */
-	private static final Pattern _PACKAGE_DELIMITER = Pattern.compile("\\."); //$NON-NLS-1$
+	private static final Pattern _PACKAGE_DELIMITER = Pattern.compile("\\."); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 
 	static {
 		// register element-changed listener to clean up working copies

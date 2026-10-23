@@ -165,12 +165,12 @@ public class FileGenerationTests extends APTTestBase {
 		String outputRootPath = options.get("-d");
 		File theFile = new File(new File(outputRootPath), TEXT_FILE_NAME);
 
-		assertTrue("File was not found: " + theFile.getAbsolutePath(), theFile.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertTrue("File was not found: " + theFile.getAbsolutePath(), theFile.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		incrementalBuild( project.getFullPath() );
 		expectingNoProblems();
 		checkProcessorResult(TextGenAnnotationProcessor.class);
-		assertTrue("File was not found: " + theFile.getAbsolutePath(), theFile.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertTrue("File was not found: " + theFile.getAbsolutePath(), theFile.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		// Change the annotation to specify an illegal filename, and an exception should be thrown
 		code =
@@ -185,7 +185,7 @@ public class FileGenerationTests extends APTTestBase {
 		incrementalBuild( project.getFullPath() );
 		expectingNoProblems();
 		assertEquals("Could not generate text file due to IOException", getProcessorResult(TextGenAnnotationProcessor.class));
-		assertTrue("File was found, but should be deleted: " + theFile.getAbsolutePath(), !theFile.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertTrue("File was found, but should be deleted: " + theFile.getAbsolutePath(), !theFile.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		// remove the annotation, and the file should be deleted and processor should not run
 		code =
@@ -198,7 +198,7 @@ public class FileGenerationTests extends APTTestBase {
 		incrementalBuild( project.getFullPath() );
 		expectingNoProblems();
 		assertEquals(null, getProcessorResult(TextGenAnnotationProcessor.class));
-		assertTrue("File was found, but should be deleted: " + theFile.getAbsolutePath(), !theFile.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertTrue("File was found, but should be deleted: " + theFile.getAbsolutePath(), !theFile.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	public void testIsGeneratedOrParentFile() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD

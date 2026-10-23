@@ -1054,7 +1054,7 @@ public class JavadocTestOptions extends JavadocTest {
 				System.out.print("CLASSES_ERRORS");
 			}
 			System.out.print(" = {\n");
-			String[] errors = computedProblemLog.split("----------\n");
+			String[] errors = computedProblemLog.split("----------\n"); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			int length = errors.length;
 			int max = length / level;
 			for (int i=0, idx=1; i<level; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP

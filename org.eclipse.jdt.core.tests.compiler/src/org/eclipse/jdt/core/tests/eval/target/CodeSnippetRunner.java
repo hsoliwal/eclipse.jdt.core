@@ -504,11 +504,11 @@ private void writeClassOnDisk(String className, byte[] classDefinition) { //FLLD
 				this.bootclassPathDirectory :
 				this.classPathDirectory, fileName);
 		File parent = new File(classFile.getParent());
-		parent.mkdirs();
-		if (!parent.exists()) {
+		parent.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		if (!parent.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			throw new IOException("Could not create directory " + parent.getPath()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		try (FileOutputStream out = new FileOutputStream(classFile)) {
+		try (FileOutputStream out = new FileOutputStream(classFile)) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			out.write(classDefinition);
 		}
 	} catch (IOException e) {

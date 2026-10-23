@@ -207,9 +207,9 @@ public abstract class AbstractJavadocCompletionModelTest extends AbstractJavaMod
 		if (WRITE_DIR != null) {
 			// Create write directory if necessay
 			writeDir = new File(WRITE_DIR);
-			if (writeDir.exists()) {
+			if (writeDir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				// perhaps delete all files...
-			} else if (!writeDir.mkdirs()) {
+			} else if (!writeDir.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				System.err.println(WRITE_DIR+" does NOT exist and cannot be created!!!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				writeDir = null;
 			}
@@ -439,7 +439,7 @@ public abstract class AbstractJavadocCompletionModelTest extends AbstractJavaMod
 				toDisplay = buffer.toString();
 			}
 		}
-		return toDisplay.replaceAll(", 8}", ", \"+JAVADOC_RELEVANCE+\"}");
+		return toDisplay.replaceAll(", 8}", ", \"+JAVADOC_RELEVANCE+\"}"); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 	}
 
 	protected void setUpProjectOptions(String compliance) throws JavaModelException {
@@ -507,10 +507,10 @@ public abstract class AbstractJavadocCompletionModelTest extends AbstractJavaMod
 			// Create package dir or delete files if already exist
 			File packageDir = new File(WRITE_DIR_FILE, fileDir);
 			if (!PACKAGE_FILES.contains(packageDir)) {
-				if (packageDir.exists()) {
+				if (packageDir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					PACKAGE_FILES.add(packageDir);
 					Util.delete(packageDir);
-				} else if (packageDir.mkdirs()) {
+				} else if (packageDir.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					PACKAGE_FILES.add(packageDir);
 				} else {
 					System.err.println(packageDir+" does not exist and CANNOT be created!!!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -530,7 +530,7 @@ public abstract class AbstractJavadocCompletionModelTest extends AbstractJavaMod
 		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String contents = sources[2*i+1];
 			for (int j=0; j<length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
-				contents = contents.replaceAll(names[j][0], names[j][1]);
+				contents = contents.replaceAll(names[j][0], names[j][1]); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			}
 			String fullPathName = names[i][2];
 			System.out.println("Write file "+fullPathName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT

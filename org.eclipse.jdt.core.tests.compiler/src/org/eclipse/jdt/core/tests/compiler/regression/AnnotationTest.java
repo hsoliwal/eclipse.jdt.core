@@ -6237,14 +6237,14 @@ public void test190() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		"");
 	String binName1 = OUTPUT_DIR + File.separator + "bin1"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	File bin1 = new File(binName1);
-	bin1.mkdir();
+	bin1.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	String [] javaClassLibs = Util.getJavaClassLibs();
 	int javaClassLibsLength;
 	String [] xClassLibs = new String[(javaClassLibsLength = javaClassLibs.length) + 2];
 	System.arraycopy(javaClassLibs, 0, xClassLibs, 0, javaClassLibsLength);
 	xClassLibs[javaClassLibsLength] = OUTPUT_DIR;
 	xClassLibs[javaClassLibsLength + 1] = binName1;
-	(new File(OUTPUT_DIR + File.separator + "A.class")).renameTo(new File(binName1 + File.separator + "A.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	(new File(OUTPUT_DIR + File.separator + "A.class")).renameTo(new File(binName1 + File.separator + "A.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -6264,8 +6264,8 @@ public void test190() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		null);
 	String binName2 = OUTPUT_DIR + File.separator + "bin2"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	File bin2 = new File(binName2);
-	bin2.mkdir();
-	(new File(OUTPUT_DIR + File.separator + "X.class")).renameTo(new File(binName2 + File.separator + "X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	bin2.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+	(new File(OUTPUT_DIR + File.separator + "X.class")).renameTo(new File(binName2 + File.separator + "X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	String [] yClassLibs = new String[javaClassLibsLength + 2];
 	System.arraycopy(javaClassLibs, 0, yClassLibs, 0, javaClassLibsLength);
 	yClassLibs[javaClassLibsLength] = OUTPUT_DIR;
@@ -6299,14 +6299,14 @@ public void test191() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		"");
 	String binName1 = OUTPUT_DIR + File.separator + "bin1"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	File bin1 = new File(binName1);
-	bin1.mkdir();
+	bin1.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	String [] javaClassLibs = Util.getJavaClassLibs();
 	int javaClassLibsLength;
 	String [] xClassLibs = new String[(javaClassLibsLength = javaClassLibs.length) + 2];
 	System.arraycopy(javaClassLibs, 0, xClassLibs, 0, javaClassLibsLength);
 	xClassLibs[javaClassLibsLength] = OUTPUT_DIR;
 	xClassLibs[javaClassLibsLength + 1] = binName1;
-	(new File(OUTPUT_DIR + File.separator + "A.class")).renameTo(new File(binName1 + File.separator + "A.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	(new File(OUTPUT_DIR + File.separator + "A.class")).renameTo(new File(binName1 + File.separator + "A.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -6326,8 +6326,8 @@ public void test191() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		null);
 	String binName2 = OUTPUT_DIR + File.separator + "bin2"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	File bin2 = new File(binName2);
-	bin2.mkdir();
-	(new File(OUTPUT_DIR + File.separator + "X.class")).renameTo(new File(binName2 + File.separator + "X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	bin2.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+	(new File(OUTPUT_DIR + File.separator + "X.class")).renameTo(new File(binName2 + File.separator + "X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	String [] yClassLibs = new String[javaClassLibsLength + 2];
 	System.arraycopy(javaClassLibs, 0, yClassLibs, 0, javaClassLibsLength);
 	yClassLibs[javaClassLibsLength] = OUTPUT_DIR;

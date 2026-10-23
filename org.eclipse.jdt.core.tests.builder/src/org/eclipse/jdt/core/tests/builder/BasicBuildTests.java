@@ -828,22 +828,22 @@ public class BasicBuildTests extends BuilderTests {
 	private File copyFiles(String path, boolean reimportIfExists) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File from = new File(getSourceProjectDirectory(), path);
 		File to = new File(getWorkingProjectDirectory(), path);
-		if (to.exists()) {
+		if (to.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			if (!reimportIfExists) {
 				return to;
 			}
-			if (to.isFile()) {
-				Files.delete(to.toPath());
+			if (to.isFile()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				Files.delete(to.toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			} else {
 				deleteDirectory(to.toPath());
 			}
 		}
 
-		if (from.isDirectory()) {
+		if (from.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			copyDirectory(from.toPath(), to.toPath());
 		} else {
 			try {
-				Files.copy(from.toPath(), to.toPath(), StandardCopyOption.REPLACE_EXISTING);
+				Files.copy(from.toPath(), to.toPath(), StandardCopyOption.REPLACE_EXISTING); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			} catch (IOException e) {
 				ILog.get().error("Failed to copy the file - " + from.toPath().normalize().toAbsolutePath().toString(), e); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				throw e;
@@ -875,34 +875,34 @@ public class BasicBuildTests extends BuilderTests {
 
 	private File getWorkingProjectDirectory() throws IOException {
 		File dir = new File("target", "workingProjects");
-		if (!dir.exists()) {
-			dir.mkdirs();
+		if (!dir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			dir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 		return dir;
 	}
 
 	private static void deleteDirectory(Path path) throws IOException {
-		Files.walkFileTree(path, new SimpleFileVisitor<Path>() {
+		Files.walkFileTree(path, new SimpleFileVisitor<Path>() { //FLLDCIM: MARK — M24 M3FILE_STREAMS CALL
 			@Override
 			public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-				Files.delete(file);
+				Files.delete(file); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				return FileVisitResult.CONTINUE;
 			}
 
 			@Override
 			public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
-				Files.delete(dir);
+				Files.delete(dir); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				return FileVisitResult.CONTINUE;
 			}
 		});
 	}
 
 	private static void copyDirectory(Path sourceDirectory, Path targetDirectory) throws IOException {
-		Files.walk(sourceDirectory)
+		Files.walk(sourceDirectory) //FLLDCIM: MARK — M24 M3FILE_STREAMS CALL
 				.forEach(sourcePath -> {
 					Path targetPath = targetDirectory.resolve(sourceDirectory.relativize(sourcePath));
 					try {
-						Files.copy(sourcePath, targetPath, StandardCopyOption.REPLACE_EXISTING);
+						Files.copy(sourcePath, targetPath, StandardCopyOption.REPLACE_EXISTING); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					} catch (IOException e) {
 						// ignore
 					}

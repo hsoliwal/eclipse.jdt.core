@@ -115,20 +115,20 @@ public class CompilerToolJava9Tests extends TestCase {
 		_tmpBinFolderName = _tmpFolder + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		_tmpBinDir = new File(_tmpBinFolderName);
 		deleteTree(_tmpBinDir); // remove existing contents
-		Files.createDirectories(_tmpBinDir.toPath());
-		assertTrue("couldn't mkdirs " + _tmpBinFolderName, _tmpBinDir.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		Files.createDirectories(_tmpBinDir.toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue("couldn't mkdirs " + _tmpBinFolderName, _tmpBinDir.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		_tmpGenFolderName = _tmpFolder + File.separator + "gen-src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		_tmpGenDir = new File(_tmpGenFolderName);
 		deleteTree(_tmpGenDir); // remove existing contents
-		Files.createDirectories(_tmpGenDir.toPath());
-		assertTrue("couldn't mkdirs " + _tmpGenFolderName, _tmpGenDir.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		Files.createDirectories(_tmpGenDir.toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue("couldn't mkdirs " + _tmpGenFolderName, _tmpGenDir.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		_tmpSrcFolderName = _tmpFolder + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		_tmpSrcDir = new File(_tmpSrcFolderName);
 		deleteTree(_tmpSrcDir); // remove existing contents
-		Files.createDirectories(_tmpSrcDir.toPath());
-		assertTrue("couldn't mkdirs " + _tmpSrcFolderName, _tmpSrcDir.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		Files.createDirectories(_tmpSrcDir.toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue("couldn't mkdirs " + _tmpSrcFolderName, _tmpSrcDir.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		modules_directory = getPluginDirectoryPath() + File.separator + RESOURCES_DIR + File.separator + "module_locations"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
@@ -259,7 +259,7 @@ public class CompilerToolJava9Tests extends TestCase {
 		Consumer<JavaFileManager> cons = manager -> {
 			String tmpFolder = _tmpFolder;
 			File inputFile = new File(tmpFolder, "X.java");
-			try (Writer writer = new BufferedWriter(new FileWriter(inputFile))) {
+			try (Writer writer = new BufferedWriter(new FileWriter(inputFile))) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				writer.write(
 					"package p;\n" +
 					"public class X {}");
@@ -309,7 +309,7 @@ public class CompilerToolJava9Tests extends TestCase {
 			// This needs fix. This test case by design will produce different output every compiler version.
 	 		assertEquals("Wrong value", ClassFileConstants.JDK1_8, reader.getVersion());
 			// check that the .class file exist for X
-			assertTrue("delete failed", inputFile.delete());
+			assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		};
 		cons.accept(standardManager);
 		cons.accept(getFileManager(standardManager));
@@ -321,7 +321,7 @@ public class CompilerToolJava9Tests extends TestCase {
 		Consumer<JavaFileManager> cons = manager -> {
 			String tmpFolder = _tmpFolder;
 			File inputFile = new File(tmpFolder, "X.java");
-			try (Writer writer = new BufferedWriter(new FileWriter(inputFile))){
+			try (Writer writer = new BufferedWriter(new FileWriter(inputFile))){ //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				writer.write(
 					"package p;\n" +
 					"public class X {}");
@@ -372,7 +372,7 @@ public class CompilerToolJava9Tests extends TestCase {
 			// This needs fix. This test case by design will produce different output every compiler version.
 	 		assertEquals("Wrong value", ClassFileConstants.JDK1_8, reader.getVersion());
 			// check that the .class file exist for X
-			assertTrue("delete failed", inputFile.delete());
+			assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		};
 		cons.accept(standardManager);
 		cons.accept(getFileManager(standardManager));
@@ -384,7 +384,7 @@ public class CompilerToolJava9Tests extends TestCase {
 		Consumer<JavaFileManager> cons = manager -> {
 			String tmpFolder = _tmpFolder;
 			File inputFile = new File(tmpFolder, "X.java");
-			try (Writer writer = new BufferedWriter(new FileWriter(inputFile))){
+			try (Writer writer = new BufferedWriter(new FileWriter(inputFile))){ //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				writer.write(
 					"package p;\n" +
 					"public class X {}");
@@ -434,7 +434,7 @@ public class CompilerToolJava9Tests extends TestCase {
 		Consumer<JavaFileManager> cons = manager -> {
 			String tmpFolder = _tmpFolder;
 			File inputFile = new File(tmpFolder, "X.java");
-			try (Writer writer = new BufferedWriter(new FileWriter(inputFile))) {
+			try (Writer writer = new BufferedWriter(new FileWriter(inputFile))) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				writer.write(
 					"package p;\n" +
 					"import java.nio.Buffer;\n" +
@@ -511,7 +511,7 @@ public class CompilerToolJava9Tests extends TestCase {
 	 		}
 	 		assertTrue("No call to ByteBuffer.flip()", found);
 			// check that the .class file exist for X
-			assertTrue("delete failed", inputFile.delete());
+			assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		};
 		cons.accept(standardManager);
 		cons.accept(getFileManager(standardManager));
@@ -523,7 +523,7 @@ public class CompilerToolJava9Tests extends TestCase {
 		Consumer<JavaFileManager> cons = manager -> {
 			String tmpFolder = _tmpFolder;
 			File inputFile = new File(tmpFolder, "X.java");
-			try (Writer writer = new BufferedWriter(new FileWriter(inputFile))){
+			try (Writer writer = new BufferedWriter(new FileWriter(inputFile))){ //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				writer.write(
 						"public class X { \n" +
 						"	public Module getModule(String name) {\n" +
@@ -566,7 +566,7 @@ public class CompilerToolJava9Tests extends TestCase {
 		Consumer<JavaFileManager> cons = manager -> {
 			String tmpFolder = _tmpFolder;
 			File inputFile = new File(tmpFolder, "X.java");
-			try (Writer writer = new BufferedWriter(new FileWriter(inputFile))){
+			try (Writer writer = new BufferedWriter(new FileWriter(inputFile))){ //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				writer.write(
 						"public class X { \n" +
 						"	public Module getModule(String name) {\n" +
@@ -769,13 +769,13 @@ public class CompilerToolJava9Tests extends TestCase {
  		// Delete the module-info.class from the previously compiled modules
  		// and try compiling the same module mod.test
  		File file = new File(tmpFolder + File.separator + "mod.test" + File.separator + "module-info.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
- 		file.delete();
+ 		file.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
  		file = new File(tmpFolder + File.separator + "mod.test"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
- 		file.delete();
+ 		file.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
  		file = new File(tmpFolder + File.separator + "module.one" + File.separator + "module-info.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
- 		file.delete();
+ 		file.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
  		file = new File(tmpFolder + File.separator + "module.two" + File.separator + "module-info.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
- 		file.delete();
+ 		file.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
  		manager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
 
  		// create new list containing input file
@@ -1164,7 +1164,7 @@ public class CompilerToolJava9Tests extends TestCase {
 	private File createClassSource(String source) throws IOException {
 		String tmpFolder = _tmpFolder;
 		File inputFile = new File(tmpFolder, "X.java");
-		try (Writer writer = new FileWriter(inputFile)){
+		try (Writer writer = new FileWriter(inputFile)){ //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(source);
 			return inputFile;
 		}
@@ -1183,7 +1183,7 @@ public class CompilerToolJava9Tests extends TestCase {
 		if (null == f) {
 			return;
 		}
-		File[] children = f.listFiles();
+		File[] children = f.listFiles(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		if (null != children) {
 			// if f has any children, (recursively) delete them
 			for (File child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
@@ -1191,7 +1191,7 @@ public class CompilerToolJava9Tests extends TestCase {
 			}
 		}
 		// At this point f is either a normal file or an empty directory
-		Files.deleteIfExists(f.toPath());
+		Files.deleteIfExists(f.toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 	/**
 	 * Copy a file from one location to another, unless the destination file already exists and has
@@ -1204,9 +1204,9 @@ public class CompilerToolJava9Tests extends TestCase {
 	 *            the full path to the destination location.
 	 */
 	public static void copyResource(File src, File dest) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (dest.exists() &&
-				src.lastModified() < dest.lastModified() &&
-				src.length() == dest.length())
+		if (dest.exists() && //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				src.lastModified() < dest.lastModified() && //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				src.length() == dest.length()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		{
 			return;
 		}
@@ -1225,9 +1225,9 @@ public class CompilerToolJava9Tests extends TestCase {
 
 	public static void writeFile(File dest, byte[] srcBytes) throws IOException {
 		File destFolder = dest.getParentFile();
-		Files.createDirectories(destFolder.toPath());
+		Files.createDirectories(destFolder.toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		// write bytes to dest
-		Files.write(dest.toPath(), srcBytes);
+		Files.write(dest.toPath(), srcBytes); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	/**
@@ -1273,7 +1273,7 @@ public class CompilerToolJava9Tests extends TestCase {
 			return;
 		}
 		// Copy all resources in this folder
-		String[] children = resourceFolder.list();
+		String[] children = resourceFolder.list(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		if (null == children) {
 			return;
 		}
@@ -1284,7 +1284,7 @@ public class CompilerToolJava9Tests extends TestCase {
 			}
 			File childRes = new File(resourceFolder, child);
 			File childDest = new File(destFolder, child);
-			if (childRes.isDirectory()) {
+			if (childRes.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				copyResources(childRes, childDest);
 			}
 			else {
@@ -1307,7 +1307,7 @@ public class CompilerToolJava9Tests extends TestCase {
 		return file.getName().endsWith(".java");
 	}
 	public static byte[] read(java.io.File file) throws java.io.IOException {
-		return Files.readAllBytes(file.toPath());
+		return Files.readAllBytes(file.toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	public static String convertToIndependentLineDelimiter(String source) {

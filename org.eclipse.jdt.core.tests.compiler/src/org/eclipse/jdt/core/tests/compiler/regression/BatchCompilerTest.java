@@ -1452,7 +1452,7 @@ public void test017d(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		new Matcher() {
 			@Override
 			boolean match(String effective) {
-				lines: for (String line : effective.replace("\r\n", "\n").split("\n")) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				lines: for (String line : effective.replace("\r\n", "\n").split("\n")) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 					if (line.startsWith("File provided via -endorseddirs is not a valid jar:")) {
 						for (String suffix : new String[] {"test017dout.txt", "test017derr.txt", "not.zip"} ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (line.endsWith(suffix))
@@ -1479,7 +1479,7 @@ public void test018a(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String currentWorkingDirectoryPath = System.getProperty("user.dir");
 	if (currentWorkingDirectoryPath == null) {
 		System.err.println("BatchCompilerTest#18a could not access the current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	} else if (!new File(currentWorkingDirectoryPath).isDirectory()) {
+	} else if (!new File(currentWorkingDirectoryPath).isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		System.err.println("BatchCompilerTest#18a current working directory is not a directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} else {
 		String xPath = currentWorkingDirectoryPath + File.separator + "X.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -1487,7 +1487,7 @@ public void test018a(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		PrintWriter sourceFileWriter;
 		try {
 			File file = new File(xPath);
-			sourceFileWriter = new PrintWriter(new FileOutputStream(file));
+			sourceFileWriter = new PrintWriter(new FileOutputStream(file)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			try {
 				sourceFileWriter.write(
 					"/** */\n" +
@@ -1498,7 +1498,7 @@ public void test018a(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				sourceFileWriter.close();
 			}
 			file = new File(ok1Path);
-			sourceFileWriter = new PrintWriter(new FileOutputStream(file));
+			sourceFileWriter = new PrintWriter(new FileOutputStream(file)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			try {
 				sourceFileWriter.write(
 					"/** */\n" +
@@ -1525,8 +1525,8 @@ public void test018a(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		} catch (FileNotFoundException e) {
 			System.err.println("BatchCompilerTest#18a could not write to current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} finally {
-			new File(xPath).delete();
-			new File(ok1Path).delete();
+			new File(xPath).delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			new File(ok1Path).delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 }
@@ -1536,7 +1536,7 @@ public void _test018b(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String currentWorkingDirectoryPath = System.getProperty("user.dir");
 	if (currentWorkingDirectoryPath == null) {
 		System.err.println("BatchCompilerTest#18b could not access the current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	} else if (!new File(currentWorkingDirectoryPath).isDirectory()) {
+	} else if (!new File(currentWorkingDirectoryPath).isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		System.err.println("BatchCompilerTest#18b current working directory is not a directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} else {
 		String xPath = currentWorkingDirectoryPath + File.separator + "X.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -1544,7 +1544,7 @@ public void _test018b(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		PrintWriter sourceFileWriter;
 		try {
 			File file = new File(xPath);
-			sourceFileWriter = new PrintWriter(new FileOutputStream(file));
+			sourceFileWriter = new PrintWriter(new FileOutputStream(file)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			sourceFileWriter.write(
 				"/** */\n" +
 				"public class X {\n" +
@@ -1552,7 +1552,7 @@ public void _test018b(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				"}");
 			sourceFileWriter.close();
 			file = new File(ok1Path);
-			sourceFileWriter = new PrintWriter(new FileOutputStream(file));
+			sourceFileWriter = new PrintWriter(new FileOutputStream(file)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			sourceFileWriter.write(
 				"/** */\n" +
 				"public class OK1 {\n" +
@@ -1575,8 +1575,8 @@ public void _test018b(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		} catch (FileNotFoundException e) {
 			System.err.println("BatchCompilerTest#18b could not write to current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} finally {
-			new File(xPath).delete();
-			new File(ok1Path).delete();
+			new File(xPath).delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			new File(ok1Path).delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 }
@@ -3070,9 +3070,9 @@ public void test051(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=123476
 public void test052(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
-		new File(OUTPUT_DIR).mkdirs();
+		new File(OUTPUT_DIR).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File barFile = new File(OUTPUT_DIR +  File.separator + "Bar.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		try (FileOutputStream barOutput = new FileOutputStream(barFile)) {
+		try (FileOutputStream barOutput = new FileOutputStream(barFile)) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			String barContents =
 				"public class Bar	\n" +
 				"{	\n" +
@@ -3178,7 +3178,7 @@ public void test055(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	  	String tentativeOutputDirNameTail =
 	      	File.separator + "out"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	  	File outputDirectory = new File(OUTPUT_DIR + tentativeOutputDirNameTail); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	  	outputDirectory.mkdirs();
+	  	outputDirectory.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	  	outputDirectory.setReadOnly();
 	  	// read-only directories do not prevent file creation
 	  	// on under-gifted file systems
@@ -3269,7 +3269,7 @@ public void test057_access_restrictions_separator(){ //FLLDCIM: MARK — ML METH
 // as a sibling of the compiled file
 public void test058(){
   	File outputDirectory = new File(OUTPUT_DIR + File.separator + "foo.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-  	outputDirectory.mkdirs();
+  	outputDirectory.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3286,7 +3286,7 @@ public void test058(){
 // subdirectory of a compiled directory, unreferenced
 public void test060(){
 	File outputDirectory = new File(OUTPUT_DIR + File.separator + "foo.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	outputDirectory.mkdirs();
+	outputDirectory.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3304,7 +3304,7 @@ public void test060(){
 // subdirectory of a compiled directory, referenced
 public void test061(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File outputDirectory = new File(OUTPUT_DIR + File.separator + "foo.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	outputDirectory.mkdirs();
+	outputDirectory.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -3363,7 +3363,7 @@ public void _test062(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		true /* flush output directory */);
 	File outputDirectory = new File(outputDirName);
 	File metaInfDirectory = new File(metaInfDirName);
-	metaInfDirectory.mkdirs();
+	metaInfDirectory.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	try {
 		Util.createFile(metaInfDirName + File.separator + "MANIFEST.MF", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Manifest-Version: 1.0\n" +
@@ -3412,7 +3412,7 @@ public void test063(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		true /* flush output directory */);
 	File outputDirectory = new File(outputDirName);
 	File metaInfDirectory = new File(metaInfDirName);
-	metaInfDirectory.mkdirs();
+	metaInfDirectory.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	try {
 		Util.createFile(metaInfDirName + File.separator + "MANIFEST.MF", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Manifest-Version: 1.0\n" +
@@ -3490,10 +3490,10 @@ public void test065_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 		true);
 	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "Z.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -3519,9 +3519,9 @@ public void test066_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 		true);
 	String fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -3541,7 +3541,7 @@ public void test067_per_source_output_directory(){
 		"",
 		true);
 	String fileName = OUTPUT_DIR + File.separator + "X.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -3571,16 +3571,16 @@ public void test068_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 		true);
 	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + output2 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + output2 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "Z.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -3609,12 +3609,12 @@ public void test069_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 		true);
 	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -3642,9 +3642,9 @@ public void test070_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 		true);
 	String fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -3674,12 +3674,12 @@ public void test071_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 		true);
 	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -3760,16 +3760,16 @@ public void test074_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 		true);
 	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + output2 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + output2 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "Z.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -3798,12 +3798,12 @@ public void test075_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 		true);
 	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -3831,9 +3831,9 @@ public void test076_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 		true);
 	String fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -3863,12 +3863,12 @@ public void test077_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 		true);
 	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -3950,16 +3950,16 @@ public void test080_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 		true);
 	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + output2 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + output2 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "Z.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -3989,12 +3989,12 @@ public void test081_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 		true);
 	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -4023,9 +4023,9 @@ public void test082_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 		true);
 	String fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -4056,12 +4056,12 @@ public void test083_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 		true);
 	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -4125,12 +4125,12 @@ public void test086_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 	File outputDir = new File(OUTPUT_DIR),
 		sourceDir = new File(OUTPUT_DIR + File.separator + source1); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	try {
-		if (outputDir.exists()) {
+		if (outputDir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			Util.flushDirectoryContent(outputDir);
 		} else {
-			outputDir.mkdirs();
+			outputDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
-		sourceDir.mkdir();
+		sourceDir.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		Util.createFile(OUTPUT_DIR + File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			source1 + File.separator + "X.java",
 			"public class X {}");
@@ -4156,16 +4156,16 @@ public void test086_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 		false); // keep jar
 	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + output2 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + output2 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "Z.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -4225,17 +4225,17 @@ public void test089_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 		standardXOutputFile = new File(System.getProperty("user.dir") + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class");
 	try {
-		if (outputDir.exists()) {
+		if (outputDir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			Util.flushDirectoryContent(outputDir);
 		} else {
-			outputDir.mkdirs();
+			outputDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
-		sourceDir.mkdir();
+		sourceDir.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		Util.createFile(OUTPUT_DIR + File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			source1 + File.separator + "X.java",
 			"public class X {}");
 		Util.zip(sourceDir,	OUTPUT_DIR + File.separator + "X.jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		if (standardXOutputFile.exists()) {
+		if (standardXOutputFile.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			Util.delete(standardXOutputFile);
 		}
 	} catch (IOException e) {
@@ -4259,11 +4259,11 @@ public void test089_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 		false);
 	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	assertFalse("extraneous file: " + standardXOutputFile.getPath(), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		standardXOutputFile.exists());
+		standardXOutputFile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -4277,17 +4277,17 @@ public void test090_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 		standardXOutputFile = new File(System.getProperty("user.dir") + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class");
 	try {
-		if (outputDir.exists()) {
+		if (outputDir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			Util.flushDirectoryContent(outputDir);
 		} else {
-			outputDir.mkdirs();
+			outputDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
-		sourceDir.mkdir();
+		sourceDir.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		Util.createFile(OUTPUT_DIR + File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			source1 + File.separator + "X.java",
 			"public class X {}");
 		Util.zip(sourceDir,	OUTPUT_DIR + File.separator + "X.jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		if (standardXOutputFile.exists()) {
+		if (standardXOutputFile.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			Util.delete(standardXOutputFile);
 		}
 	} catch (IOException e) {
@@ -4310,11 +4310,11 @@ public void test090_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 		false);
 	String fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	assertFalse("extraneous file: " + standardXOutputFile.getPath(), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		standardXOutputFile.exists());
+		standardXOutputFile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -4328,17 +4328,17 @@ public void test091_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 		standardXOutputFile = new File(System.getProperty("user.dir") + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class");
 	try {
-		if (outputDir.exists()) {
+		if (outputDir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			Util.flushDirectoryContent(outputDir);
 		} else {
-			outputDir.mkdirs();
+			outputDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
-		sourceDir.mkdir();
+		sourceDir.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		Util.createFile(OUTPUT_DIR + File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			source1 + File.separator + "X.java",
 			"public class X {}");
 		Util.zip(sourceDir,	OUTPUT_DIR + File.separator + "X.jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		if (standardXOutputFile.exists()) {
+		if (standardXOutputFile.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			Util.delete(standardXOutputFile);
 		}
 	} catch (IOException e) {
@@ -4362,14 +4362,14 @@ public void test091_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 		false);
 	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + "X.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -4399,16 +4399,16 @@ public void test092_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 		true);
 	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + output2 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + output2 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "Z.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -4437,12 +4437,12 @@ public void test093_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 		true);
 	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -4470,9 +4470,9 @@ public void test094_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 		true);
 	String fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -4501,9 +4501,9 @@ public void test095_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 		true);
 	String fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -4533,12 +4533,12 @@ public void test096_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 		true);
 	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -4568,16 +4568,16 @@ public void test097_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD
 		true);
 	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + output2 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	fileName = OUTPUT_DIR + File.separator + source2 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "Z.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -4604,7 +4604,7 @@ public void test098_per_source_output_directory(){
 // changing the coding of -d none option
 public void test099_per_source_output_directory() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File none = new File(Main.NONE);
-	if (none.exists()) {
+	if (none.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		fail("unexpected file: " + none.getAbsolutePath() + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"; please cleanup the test environment");
 		// by design, we do not want to agressively destroy a directory that
@@ -4625,7 +4625,7 @@ public void test099_per_source_output_directory() { //FLLDCIM: MARK — ML METHO
 		"",
 		true);
 	String fileName = Main.NONE + File.separator + "X.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -4935,7 +4935,7 @@ public void test135_classpath() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=161996
 public void test136_classpath() {
 	String target = OUTPUT_DIR + File.separator + "[a]"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	(new File(target)).mkdirs();
+	(new File(target)).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	runClasspathTest(
 		target + File.separator, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		new String[] {
@@ -4946,7 +4946,7 @@ public void test136_classpath() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=161996
 public void test137_classpath() {
 	String target = OUTPUT_DIR + File.separator + "[a]"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	(new File(target)).mkdirs();
+	(new File(target)).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	runClasspathTest(
 		target + File.separator + "[~**/internal/*][-d dir]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		new String[] {
@@ -8157,7 +8157,7 @@ public void test230_sourcepath_vs_classpath() throws IOException, InterruptedExc
 	// store the modification time at a second precision)
 	File sourceFile = new File(OUTPUT_DIR + File.separator + "src1" + File.separator + "X.java"), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	  classFile = new File(OUTPUT_DIR + File.separator + "bin1" + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	while (classFile.lastModified() <= sourceFile.lastModified()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+	while (classFile.lastModified() <= sourceFile.lastModified()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		runConformTest(
 			null,
 			"\"" + OUTPUT_DIR +  File.separator + "src1" + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -8280,13 +8280,13 @@ public void test231_sourcepath_vs_classpath() throws IOException, InterruptedExc
 	// store the modification time at a second precision)
 	File sourceFile = new File(OUTPUT_DIR + File.separator + "src2" + File.separator + "X.java"), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	  classFile = new File(OUTPUT_DIR + File.separator + "bin1" + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	new File(OUTPUT_DIR + File.separator + "src2").mkdirs(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	new File(OUTPUT_DIR + File.separator + "src2").mkdirs(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		Util.writeToFile(
 			"public class X {\n" +
 			"}\n",
 			sourceFile.getPath());
-	} while (classFile.lastModified() >= sourceFile.lastModified());
+	} while (classFile.lastModified() >= sourceFile.lastModified()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	// compile with sourcepath and classpath: src2/X.java is preferred
 	String sourceFilePath = "\"" + OUTPUT_DIR +  File.separator + "Y.java\""; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String commonOptions =
@@ -8521,7 +8521,7 @@ public void test235_classpath() throws IOException, InterruptedException { //FLL
 	// store the modification time at a second precision)
 	File sourceFile = new File(OUTPUT_DIR + File.separator + "src2" + File.separator + "X.java"), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	  classFile = new File(OUTPUT_DIR + File.separator + "bin1" + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	while (classFile.lastModified() <= sourceFile.lastModified()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+	while (classFile.lastModified() <= sourceFile.lastModified()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		runTest(
 			true /* shouldCompileOK*/,
 			null /* testFiles */,
@@ -8612,7 +8612,7 @@ public void test236_classpath() throws IOException, InterruptedException { //FLL
 			"" /* expectedErrOutputString */,
 			false /* shouldFlushOutputDirectory */,
 			null /* progress */);
-	} while (bin2File.lastModified() <= bin1File.lastModified());
+	} while (bin2File.lastModified() <= bin1File.lastModified()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	String sourceFilePath = "\"" + OUTPUT_DIR +  File.separator + "Y.java\""; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String commonOptions =
 		" -classpath \"" + OUTPUT_DIR + File.separator + "bin1" + File.pathSeparator //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -8672,14 +8672,14 @@ public void test237_classpath() throws IOException, InterruptedException { //FLL
 		null /* progress */);
 	File sourceFile = new File(OUTPUT_DIR + File.separator + "src2" + File.separator + "X.java"), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	  classFile = new File(OUTPUT_DIR + File.separator + "bin1" + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	new File(OUTPUT_DIR + File.separator + "src2").mkdirs(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	new File(OUTPUT_DIR + File.separator + "src2").mkdirs(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		Util.writeToFile(
 			"public class X {\n" +
 			"  public static final int CONST = 2;\n" +
 			"}\n",
 			sourceFile.getPath());
-	} while (classFile.lastModified() >= sourceFile.lastModified());
+	} while (classFile.lastModified() >= sourceFile.lastModified()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	String sourceFilePath = "\"" + OUTPUT_DIR +  File.separator + "Y.java\""; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String commonOptions =
 		" -classpath \"" + OUTPUT_DIR + File.separator + "bin1" + File.pathSeparator //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -8724,7 +8724,7 @@ public void test237_classpath() throws IOException, InterruptedException { //FLL
 // classpath entry, ecj and javac pick the latter file up (in other words, if
 // only source files are involved, the classpath entries order prevails - no sourcepath here)
 public void test238_classpath() throws IOException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	new File(OUTPUT_DIR + File.separator + "src1").mkdirs(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	new File(OUTPUT_DIR + File.separator + "src1").mkdirs(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	File sourceFile1 = new File(OUTPUT_DIR + File.separator + "src1" + File.separator + "X.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	File sourceFile2 = new File(OUTPUT_DIR + File.separator + "src2" + File.separator + "X.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	Util.writeToFile(
@@ -8732,14 +8732,14 @@ public void test238_classpath() throws IOException, InterruptedException { //FLL
 		"  public static final int CONST = 1;\n" +
 		"}\n",
 		sourceFile1.getPath());
-	new File(OUTPUT_DIR + File.separator + "src2").mkdirs(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	new File(OUTPUT_DIR + File.separator + "src2").mkdirs(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		Util.writeToFile(
 			"public class X {\n" +
 			"  public static final int CONST = 2;\n" +
 			"}\n",
 			sourceFile2.getPath());
-	} while (sourceFile1.lastModified() >= sourceFile2.lastModified());
+	} while (sourceFile1.lastModified() >= sourceFile2.lastModified()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	String sourceFilePath = "\"" + OUTPUT_DIR +  File.separator + "Y.java\""; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String commonOptions =
 		" -classpath \"" + OUTPUT_DIR + File.separator + "src1" + File.pathSeparator //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -9427,7 +9427,7 @@ public void test262_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML M
 	String currentWorkingDirectoryPath = System.getProperty("user.dir");
 	if (currentWorkingDirectoryPath == null) {
 		System.err.println("BatchCompilerTest#235 could not access the current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	} else if (!new File(currentWorkingDirectoryPath).isDirectory()) {
+	} else if (!new File(currentWorkingDirectoryPath).isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		System.err.println("BatchCompilerTest#235 current working directory is not a directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} else {
 		String lib1Path = currentWorkingDirectoryPath + File.separator + "lib1.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -9474,8 +9474,8 @@ public void test262_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML M
 		} catch (IOException e) {
 			System.err.println("BatchCompilerTest#235 could not write to current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} finally {
-			new File(lib1Path).delete();
-			new File(lib2Path).delete();
+			new File(lib1Path).delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			new File(lib2Path).delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 }
@@ -9902,7 +9902,7 @@ public void test279_sourcepath_vs_classpath() throws IOException, InterruptedExc
 	// store the modification time at a second precision)
 	File sourceFile = new File(OUTPUT_DIR + File.separator + "src2" + File.separator + "X.java"), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	  classFile = new File(OUTPUT_DIR + File.separator + "bin1" + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	while (classFile.lastModified() <= sourceFile.lastModified()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+	while (classFile.lastModified() <= sourceFile.lastModified()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		runConformTest(
 			null,
 			"\"" + OUTPUT_DIR +  File.separator + "src1" + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -9954,14 +9954,14 @@ public void test280_sourcepath_vs_classpath() throws IOException, InterruptedExc
 	// store the modification time at a second precision)
 	File sourceFile = new File(OUTPUT_DIR + File.separator + "src2" + File.separator + "X.java"), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	  classFile = new File(OUTPUT_DIR + File.separator + "bin1" + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	new File(OUTPUT_DIR + File.separator + "src2").mkdirs(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	new File(OUTPUT_DIR + File.separator + "src2").mkdirs(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		Util.writeToFile(
 			"public class X {\n" +
 			"  public static final int CONST = 2;\n" +
 			"}\n",
 			sourceFile.getPath());
-	} while (classFile.lastModified() >= sourceFile.lastModified());
+	} while (classFile.lastModified() >= sourceFile.lastModified()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	// the ignore if better rule upon src2 leads to bin1 being selected even if
 	// src2/X.java is newer
 	runConformTest(
@@ -11040,7 +11040,7 @@ public void testInferenceIn15Project(){  // ensure 1.8 complains too //FLLDCIM: 
 	String currentWorkingDirectoryPath = System.getProperty("user.dir");
 	if (currentWorkingDirectoryPath == null) {
 		fail("BatchCompilerTest#testInference14 could not access the current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	} else if (!new File(currentWorkingDirectoryPath).isDirectory()) {
+	} else if (!new File(currentWorkingDirectoryPath).isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		fail("BatchCompilerTest#testInference14 current working directory is not a directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	String lib1Path = currentWorkingDirectoryPath + File.separator + "lib1.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -11083,7 +11083,7 @@ public void testInferenceIn15Project(){  // ensure 1.8 complains too //FLLDCIM: 
 	} catch (IOException e) {
 		System.err.println("BatchCompilerTest#testInference14 could not write to current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} finally {
-		new File(lib1Path).delete();
+		new File(lib1Path).delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 }
 
@@ -11092,7 +11092,7 @@ public void testBridgeMethodRetention(){ //FLLDCIM: MARK — ML METHOD_SPLIT MET
 	String currentWorkingDirectoryPath = System.getProperty("user.dir");
 	if (currentWorkingDirectoryPath == null) {
 		fail("BatchCompilerTest#testBridgeMethodRetention could not access the current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	} else if (!new File(currentWorkingDirectoryPath).isDirectory()) {
+	} else if (!new File(currentWorkingDirectoryPath).isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		fail("BatchCompilerTest#testBridgeMethodRetention current working directory is not a directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	String lib1Path = currentWorkingDirectoryPath + File.separator + "lib1.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -11135,7 +11135,7 @@ public void testBridgeMethodRetention(){ //FLLDCIM: MARK — ML METHOD_SPLIT MET
 	} catch (IOException e) {
 		System.err.println("BatchCompilerTest#testBridgeMethodRetention could not write to current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} finally {
-		new File(lib1Path).delete();
+		new File(lib1Path).delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=322817 -- with new option kicking in
@@ -12541,7 +12541,7 @@ public void testBug419351() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (backup == null)
 		return; // Don't bother running if it is JRE9, where there's no endorsed.dir
 	String endorsedPath = LIB_DIR + File.separator + "endorsed"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	new File(endorsedPath).mkdir();
+	new File(endorsedPath).mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	String lib1Path = endorsedPath + File.separator + "lib1.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	try {
 		System.setProperty("java.endorsed.dirs", endorsedPath);
@@ -12575,8 +12575,8 @@ public void testBug419351() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	} catch (IOException e) {
 	} finally {
 		System.setProperty("java.endorsed.dirs", backup);
-		new File(endorsedPath).delete();
-		new File(lib1Path).delete();
+		new File(endorsedPath).delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		new File(lib1Path).delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 }
 
@@ -12647,11 +12647,11 @@ public void testFileSystem_findSecondaryInClass() { //FLLDCIM: MARK — ML METHO
 
 	File testScratchAreaFile = new File(Util.getOutputDirectory(), testScratchArea);
 	try {
-		if(!testScratchAreaFile.exists()) {
-			testScratchAreaFile.mkdirs();
+		if(!testScratchAreaFile.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			testScratchAreaFile.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 
-		assertTrue(testScratchAreaFile.exists());
+		assertTrue(testScratchAreaFile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		Classpath classpath = FileSystem.getClasspath(testScratchAreaFile.getPath(), null, null);
 		assertNotNull(classpath);
@@ -12668,7 +12668,7 @@ public void testFileSystem_findSecondaryInClass() { //FLLDCIM: MARK — ML METHO
 			fail("An exception is expected, because the parameter qualifiedPackageName can not be NULL!");
 		} catch(Exception e) {}
 	} finally {
-		if(testScratchAreaFile.exists()) {
+		if(testScratchAreaFile.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			Util.delete(testScratchAreaFile);
 		}
 	}
@@ -13213,20 +13213,20 @@ public void test3445() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File testScratchAreaFile = new File(Util.getOutputDirectory(), testScratchArea);
 	File packsFile = null;
 	try {
-		if(!testScratchAreaFile.exists()) {
-			testScratchAreaFile.mkdirs();
+		if(!testScratchAreaFile.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			testScratchAreaFile.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 
 
-		assertTrue(testScratchAreaFile.exists());
+		assertTrue(testScratchAreaFile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		String packComponent = "AAAA";
 		final String packs = packComponent + File.separator + packComponent + File.separator + packComponent; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		 packsFile = new File(testScratchAreaFile,  packs);
 
 		try {
-			if(!packsFile.exists()) {
-				packsFile.mkdirs();
+			if(!packsFile.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				packsFile.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			}
 		} finally {
 			// do nothing
@@ -13240,11 +13240,11 @@ public void test3445() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		classpathDirectory.getModulesDeclaringPackage(packs, ""); // //Just testing the concurrenthashmap implementation.
 
 	} finally {
-		if(packsFile.exists()) {
+		if(packsFile.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			Util.delete(packsFile);
 		}
 
-		if(testScratchAreaFile.exists()) {
+		if(testScratchAreaFile.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			Util.delete(testScratchAreaFile);
 		}
 	}

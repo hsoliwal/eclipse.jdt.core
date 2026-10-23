@@ -535,8 +535,8 @@ public class FilerTests extends TestBase
 		expectingUniqueCompiledClasses(expectedClasses);
 		IPath path = proj.getLocation().append("bin/p/Trigger.class");
 		File file = new File(path.toOSString());
-		assertTrue("File should exist", file.exists());
-		long lastModified = file.lastModified();
+		assertTrue("File should exist", file.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		long lastModified = file.lastModified(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		Thread.sleep(1000);
 		ClassFile[] classFiles = this.debugRequestor.getClassFiles();
 		FilerTesterProc.classContent = classFiles[0].getBytes();
@@ -549,8 +549,8 @@ public class FilerTests extends TestBase
 
 		incrementalBuild();
 		assertEquals("should have triggered 5 rounds", 5, FilerTesterProc.roundNo);
-		assertTrue("File should exist", file.exists());
-		long lastModified2 = file.lastModified();
+		assertTrue("File should exist", file.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		long lastModified2 = file.lastModified(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		assertTrue("file should have been overwritten", (lastModified2 > lastModified));
 	}
 	public void testCreateClass2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
@@ -575,8 +575,8 @@ public class FilerTests extends TestBase
 		expectingUniqueCompiledClasses(expectedClasses);
 		IPath path = proj.getLocation().append("bin/p/Trigger.class");
 		File file = new File(path.toOSString());
-		assertTrue("File should exist", file.exists());
-		long lastModified = file.lastModified();
+		assertTrue("File should exist", file.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		long lastModified = file.lastModified(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		Thread.sleep(1000);
 		ClassFile[] classFiles = this.debugRequestor.getClassFiles();
 		FilerTesterProc.classContent = classFiles[0].getBytes();
@@ -589,8 +589,8 @@ public class FilerTests extends TestBase
 
 		incrementalBuild();
 		assertEquals("should have triggered 5 rounds", 5, FilerTesterProc.roundNo);
-		assertTrue("File should exist", file.exists());
-		long lastModified2 = file.lastModified();
+		assertTrue("File should exist", file.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		long lastModified2 = file.lastModified(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		assertTrue("file should have been overwritten", (lastModified2 > lastModified));
 	}
 }

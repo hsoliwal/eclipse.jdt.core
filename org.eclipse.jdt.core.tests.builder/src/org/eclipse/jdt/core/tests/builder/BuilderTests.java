@@ -151,7 +151,7 @@ public class BuilderTests extends TestCase {
 		IPath wRoot = env.getWorkspaceRootPath();
 
 		for (int i = 0; i < paths.length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
-			assertTrue(paths[i] + " is not present", wRoot.append(paths[i]).toFile().exists()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertTrue(paths[i] + " is not present", wRoot.append(paths[i]).toFile().exists()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	/** Verifies that given element is not present.
@@ -166,7 +166,7 @@ public class BuilderTests extends TestCase {
 		IPath wRoot = env.getWorkspaceRootPath();
 
 		for (int i = 0; i < paths.length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
-			assertTrue(paths[i] + " is present", !wRoot.append(paths[i]).toFile().exists()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertTrue(paths[i] + " is present", !wRoot.append(paths[i]).toFile().exists()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	/** Verifies that given classes have been compiled.
@@ -633,7 +633,7 @@ public class BuilderTests extends TestCase {
 		String jarFile = project.getLocation().append(jarName).toOSString();
 		Util.createEmptyJar(jarFile, CompilerOptions.getFirstSupportedJavaVersion());
 		IPath jarPath = null;
-		try (FileInputStream fis = new FileInputStream(jarFile)) {
+		try (FileInputStream fis = new FileInputStream(jarFile)) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			int length = fis.available();
 			byte[] jarContent = new byte[length];
 			fis.read(jarContent);

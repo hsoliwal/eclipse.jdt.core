@@ -148,7 +148,7 @@ public class ASTRewritingTest extends AbstractJavaModelTests {
 					int index = name.indexOf(ONLY_AST_STRING);
 					if (index != -1) {
 						String suffix = name.substring(index + ONLY_AST_STRING.length() + 1);
-						String[] levels = suffix.split(STRING_);
+						String[] levels = suffix.split(STRING_); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 						for (int l= 0; l < levels.length; l++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
                             int level = Integer.valueOf(levels[l]);
                             if (AST.isSupportedVersion(level)) {

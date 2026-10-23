@@ -235,7 +235,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 	class FullSourceProjectsFilter implements FileFilter {
 		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public boolean accept(File project) {
-			if (project.isDirectory()) {
+			if (project.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				StringTokenizer tokenizer = new StringTokenizer(project.getName(), ".");
 				String token = tokenizer.nextToken();
 				if (token.equals("org") && tokenizer.hasMoreTokens()) {
@@ -277,8 +277,8 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 		if (logDir != null) {
 			// Verify that parent log dir is valid if exist
 			dir = new File(logDir);
-			if (dir.exists()) {
-				if (!dir.isDirectory()) {
+			if (dir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				if (!dir.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					System.err.println(logDir+" is not a valid directory, log files will NOT be written!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					dir = INVALID_DIR;
 				}
@@ -287,7 +287,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 				int n=0;
 				boolean created = false;
 				while (!created && n<3) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
-					created = dir.mkdir();
+					created = dir.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					if (!created) {
 						dir = dir.getParentFile();
 					}
@@ -305,13 +305,13 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 				: new String[] {LOG_VERSION, PATCH_ID, RUN_ID };
 			for (int i=0; i<subdirs.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				dir = new File(dir, subdirs[i]);
-				if (dir.exists()) {
-					if (!dir.isDirectory()) {
+				if (dir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+					if (!dir.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 						System.err.println(dir.getPath()+" is not a valid directory, log files will NOT be written!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						dir= INVALID_DIR;
 						break;
 					}
-				} else if (!dir.mkdirs()) {
+				} else if (!dir.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					System.err.println("Cannot create "+dir.getPath()+", log files will NOT be written!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					dir = INVALID_DIR;
 					break;
@@ -381,11 +381,11 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 					return;
 				}
 				try {
-					boolean fileExist = logFile.exists();
+					boolean fileExist = logFile.exists(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					if (logStreams[i] != null) { // closing previous series; last series is closed by the process
 						logStreams[i].close();
 					}
-					logStreams[i] = new PrintStream(new FileOutputStream(logFile, true));
+					logStreams[i] = new PrintStream(new FileOutputStream(logFile, true)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 					if (logStreams[i] != null) {
 						if (!fileExist) {
 							logStreams[i].print("Date  \tTime  \t");
@@ -417,10 +417,10 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 	public static File fetchFromBinariesProject(String nameInProject, long size) throws IOException, MalformedURLException {
 		String tmpRoot = System.getProperty("java.io.tmpdir");
 		File tempFile = new File(tmpRoot, nameInProject);
-		if (!tempFile.isFile() || tempFile.length() != size) {
+		if (!tempFile.isFile() || tempFile.length() != size) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			String githubUrl = GITHUB_TESTS_BINARIES + nameInProject; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			try(BufferedInputStream bin = new BufferedInputStream(URI.create(githubUrl).toURL().openStream())){
-				Files.copy(bin, tempFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+				Files.copy(bin, tempFile.toPath(), StandardCopyOption.REPLACE_EXISTING); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			}
 		}
 		return tempFile;
@@ -628,7 +628,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 		// Get projects directories
 		File wkspDir = new File(targetWorkspacePath);
 		FullSourceProjectsFilter filter = new FullSourceProjectsFilter();
-		File[] directories = wkspDir.listFiles(filter);
+		File[] directories = wkspDir.listFiles(filter); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		long startNano = System.nanoTime();
 		int dirLength = directories.length;
 		if (dirLength < 62) {
@@ -638,7 +638,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 			System.out.print("	in "+targetWorkspacePath+"..."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			Util.unzip(fullSourceZipPath, targetWorkspacePath);
 			System.out.println(" done in " + (System.nanoTime() - startNano) / 1_000_000L + "ms."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-			directories = wkspDir.listFiles(filter);
+			directories = wkspDir.listFiles(filter); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			dirLength = directories.length;
 		}
 
@@ -902,10 +902,10 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 	}
 
 	private void collectAllFiles(File root, ArrayList collector, FileFilter fileFilter) {
-		File[] files = root.listFiles(fileFilter);
+		File[] files = root.listFiles(fileFilter); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		for (int i = 0; i < files.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final File currentFile = files[i];
-			if (currentFile.isDirectory()) {
+			if (currentFile.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				collectAllFiles(currentFile, collector, fileFilter);
 			} else {
 				collector.add(currentFile);
@@ -915,7 +915,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 
 	protected File[] getAllFiles(File root, FileFilter fileFilter) {
 		ArrayList files = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
-		if (root.isDirectory()) {
+		if (root.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			collectAllFiles(root, files, fileFilter);
 			File[] result = new File[files.size()];
 			files.toArray(result);

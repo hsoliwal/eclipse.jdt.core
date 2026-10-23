@@ -384,7 +384,7 @@ public synchronized void deleteIndexFiles(IProgressMonitor monitor) {
 	this.metaIndex = null;
 }
 private void deleteIndexFiles(SimpleSet pathsToKeep, IProgressMonitor monitor) {
-	File[] indexesFiles = getSavedIndexesDirectory().listFiles();
+	File[] indexesFiles = getSavedIndexesDirectory().listFiles(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	if (indexesFiles == null) return;
 
 	SubMonitor subMonitor = SubMonitor.convert(monitor, indexesFiles.length);
@@ -396,7 +396,7 @@ private void deleteIndexFiles(SimpleSet pathsToKeep, IProgressMonitor monitor) {
 		if (fileName.regionMatches(true, fileName.length() - suffix.length(), suffix, 0, suffix.length())) {
 			if (VERBOSE || DEBUG)
 				trace("Deleting index file " + indexesFile); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-			indexesFile.delete();
+			indexesFile.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 }
@@ -563,10 +563,10 @@ public synchronized Index[] getIndexes(IndexLocation[] locations, IProgressMonit
 					// non jar files indexes (i.e. containing sources) need to be rebuilt.
 					// see bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=286379
 					File indexFile = index.getIndexFile();
-					if (indexFile.exists()) {
+					if (indexFile.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 						if (DEBUG)
 							trace("Change in javaLikeNames - removing index file for " + containerPath ); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-						indexFile.delete();
+						indexFile.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					}
 					this.indexes.put(indexLocation, null);
 					rebuildIndex(indexLocation, containerPath);
@@ -921,7 +921,7 @@ private char[][] readJavaLikeNamesFile() {
 	try {
 		String pathName = getJavaPluginWorkingLocation().toOSString();
 		File javaLikeNamesFile = new File(pathName, "javaLikeNames.txt"); //$NON-NLS-1$
-		if (!javaLikeNamesFile.exists())
+		if (!javaLikeNamesFile.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			return null;
 		char[] javaLikeNames = org.eclipse.jdt.internal.compiler.util.Util.getFileCharContent(javaLikeNamesFile, null);
 		if (javaLikeNames.length > 0) {
@@ -1023,10 +1023,10 @@ public void removeIndex(IPath containerPath) { //FLLDCIM: MARK — ML METHOD_SPL
 		if (this.indexStates.get(indexLocation) == REUSE_STATE) {
 			indexLocation.close();
 			this.indexLocations.put(containerPath, null);
-		} else if (indexFile != null && indexFile.exists()) {
+		} else if (indexFile != null && indexFile.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			if (DEBUG)
 				trace("removing index file " + indexFile); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-			indexFile.delete();
+			indexFile.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 		this.indexes.removeKey(indexLocation);
 		if (IS_MANAGING_PRODUCT_INDEXES_PROPERTY) {
@@ -1514,7 +1514,7 @@ private void writeJavaLikeNamesFile() { //FLLDCIM: MARK — ML METHOD_SPLIT METH
 			Util.sort(currentNames);
 		}
 		File javaLikeNamesFile = new File(pathName, "javaLikeNames.txt"); //$NON-NLS-1$
-		try (BufferedWriter writer = new BufferedWriter(new FileWriter(javaLikeNamesFile))) {
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(javaLikeNamesFile))) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			for (int i = 0; i < length-1; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				writer.write(currentNames[i]);
 				writer.write('\n');
@@ -1529,7 +1529,7 @@ private void writeJavaLikeNamesFile() { //FLLDCIM: MARK — ML METHOD_SPLIT METH
 	}
 }
 private void writeIndexMapFile() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	try (BufferedWriter writer = new BufferedWriter(new FileWriter(this.indexNamesMapFile))) {
+	try (BufferedWriter writer = new BufferedWriter(new FileWriter(this.indexNamesMapFile))) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		writer.write(DiskIndex.SIGNATURE);
 		writer.write('\n');
 		Object[] keys = this.indexStates.keyTable;
@@ -1553,7 +1553,7 @@ private void writeIndexMapFile() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	}
 }
 private void writeParticipantsIndexNamesFile() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	try (BufferedWriter writer = new BufferedWriter(new FileWriter(this.participantIndexNamesFile))) {
+	try (BufferedWriter writer = new BufferedWriter(new FileWriter(this.participantIndexNamesFile))) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		writer.write(DiskIndex.SIGNATURE);
 		writer.write('\n');
 		Object[] indexFiles = this.participantsContainers.keyTable;

@@ -101,6 +101,6 @@ class ModuleEntryProcessor {
 			return null;
 
 		// collect the transitive closure of modules contained in limitSet
-		return new LinkedHashSet<>(Arrays.asList(extraAttribute.split(","))); //$NON-NLS-1$
+		return new LinkedHashSet<>(Arrays.asList(extraAttribute.split(","))); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 	}
 }

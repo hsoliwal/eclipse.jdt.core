@@ -149,7 +149,7 @@ protected void setUp() throws Exception {
 		this.assertLib = new String[len+1];
 		System.arraycopy(defaultLibs, 0, this.assertLib, 0, len);
 		File bundleFile = FileLocator.getBundleFileLocation(Platform.getBundle("org.eclipse.equinox.common")).get();
-		if (bundleFile.isDirectory())
+		if (bundleFile.isDirectory()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			this.assertLib[len] = bundleFile.getPath()+"/bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		else
 			this.assertLib[len] = bundleFile.getPath();

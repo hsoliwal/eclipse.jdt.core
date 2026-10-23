@@ -1653,7 +1653,7 @@ public void testPackageFragmentRootNonJavaResources8() throws CoreException {
  */
 public void testPackageFragmentRootNonJavaResources9() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
-		try (ZipOutputStream zip = new ZipOutputStream(new FileOutputStream(getExternalFile("lib.jar")))) {
+		try (ZipOutputStream zip = new ZipOutputStream(new FileOutputStream(getExternalFile("lib.jar")))) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			// the bug occurred only if META-INF/MANIFEST.MF was before META-INF in the ZIP file
 			// Altered the test for 534624. Usage of Zip file system for traversal no longer sees two different entries, but just the file.
 			zip.putNextEntry(new ZipEntry("META-INF/MANIFEST.MF"));
@@ -1728,12 +1728,12 @@ public void testPackageFragmentRootRawEntry1() throws CoreException, IOException
 		JavaCore.setClasspathVariable("MyVar", new Path(libPath), null);
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "bin");
 		libDir = new File(libPath);
-		libDir.mkdirs();
+		libDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		final int length = 200;
 		IClasspathEntry[] classpath = new IClasspathEntry[length];
 		for (int i = 0; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			File libJar = new File(libDir, "lib"+i+".jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-			libJar.createNewFile();
+			libJar.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			classpath[i] = JavaCore.newVariableEntry(new Path("/MyVar/lib"+i+".jar"), null, null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		proj.setRawClasspath(classpath, null);
@@ -1766,10 +1766,10 @@ public void testPackageFragmentRootRawEntry2() throws CoreException, IOException
 		JavaCore.setClasspathVariable("MyVar", new Path(externalPath), null);
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "bin");
 		libDir = new File(libPath);
-		libDir.mkdirs();
+		libDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		IClasspathEntry[] classpath = new IClasspathEntry[2];
 		File libJar = new File(libDir, "lib.jar");
-		libJar.createNewFile();
+		libJar.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		classpath[0] = JavaCore.newLibraryEntry(new Path(libPath).append("lib.jar"), null, null);
 		classpath[1] = JavaCore.newVariableEntry(new Path("/MyVar").append("lib.jar"), null, null);
 		proj.setRawClasspath(classpath, null);
@@ -1800,12 +1800,12 @@ public void testPackageFragmentRootRawEntry3() throws CoreException, IOException
 		JavaCore.setClasspathVariable("MyVar", new Path(libPath), null);
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "bin");
 		libDir = new File(libPath);
-		libDir.mkdirs();
+		libDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		final int length = 10;
 		IClasspathEntry[] classpath = new IClasspathEntry[length];
 		for (int i = 0; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			File libJar = new File(libDir, "lib"+i+".jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-			libJar.createNewFile();
+			libJar.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			classpath[i] = JavaCore.newVariableEntry(new Path("/MyVar/lib"+i+".jar"), null, null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		proj.setRawClasspath(classpath, null);
@@ -2706,7 +2706,7 @@ public void testBug462756() throws CoreException { //FLLDCIM: MARK — ML METHOD
 				"org.eclipse.jdt.core.compiler.source=" + compliance + "\n";
 
 		IFile file = getFile("/P/.settings/org.eclipse.jdt.core.prefs");
-		try (BufferedWriter output = new BufferedWriter(new FileWriter(file.getLocation().toFile()))) {
+		try (BufferedWriter output = new BufferedWriter(new FileWriter(file.getLocation().toFile()))) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			output.write(content);
 			output.flush();
 		} catch(Exception e) {

@@ -134,7 +134,7 @@ public class JavaIndexerApplication implements IApplication {
 		if (execute) {
 			if (this.jarToIndex != null && this.indexFile != null) {
 				File f = new File(this.jarToIndex);
-				if (f.exists()) {
+				if (f.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					if (this.verbose) {
 						System.out.println(Messages.bind(Messages.CommandLineProcessing, this.indexFile, this.jarToIndex));
 					}

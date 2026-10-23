@@ -1546,7 +1546,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		ArrayList markers= new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		String formatted= this.formatter.getFormattedResult(node, initialIndentLevel, minimumIndentInSpaces, markers);
 		if (initialIndentLevel * this.formatter.getIndentWidth() < minimumIndentInSpaces) {
-			String[] lines= formatted.split("\n"); //$NON-NLS-1$
+			String[] lines= formatted.split("\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			for (int i= 0; i < markers.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				NodeMarker curr= (NodeMarker) markers.get(i);
 				int offset= curr.offset;
@@ -1634,7 +1634,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 				} else if (data instanceof StringPlaceholderData) { // replace with a placeholder
 					String code= ((StringPlaceholderData) data).code;
 					int destIndentStringInSpaces= this.formatter.computeIndentInSpaces(destIndentString);
-					String lines[]= code.split("\n"); //$NON-NLS-1$
+					String lines[]= code.split("\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 					boolean needIndent= false;
 					if (minimumIndentInSpaces == destIndentStringInSpaces &&
 							minimumIndentInSpaces % this.formatter.getIndentWidth() != 0 && lines.length > 1) {

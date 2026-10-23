@@ -67,7 +67,7 @@ public class NullAnnotationModelTests extends ReconcilerTests {
 		super.setUp();
 		Bundle[] bundles = org.eclipse.jdt.core.tests.Activator.getPackageAdmin().getBundles("org.eclipse.jdt.annotation", "[2.0.0,3.0.0)");
 		File bundleFile = FileLocator.getBundleFileLocation(bundles[0]).get();
-		this.ANNOTATION_LIB = bundleFile.isDirectory() ? bundleFile.getPath()+"/bin" : bundleFile.getPath(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		this.ANNOTATION_LIB = bundleFile.isDirectory() ? bundleFile.getPath()+"/bin" : bundleFile.getPath(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		this.ANNOTATION_LIB_V1 = AbstractNullAnnotationTest.getAnnotationV1LibPath();
 	}

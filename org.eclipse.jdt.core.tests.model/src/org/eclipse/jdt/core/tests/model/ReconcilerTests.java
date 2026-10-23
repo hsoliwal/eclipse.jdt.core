@@ -5429,7 +5429,7 @@ public void testBug485092() throws CoreException, InterruptedException { //FLLDC
 		project18.setOption(JavaCore.COMPILER_ANNOTATION_NULL_ANALYSIS, JavaCore.ENABLED);
 		Bundle[] bundles = Platform.getBundles("org.eclipse.jdt.annotation","[2.0.0,3.0.0)");
 		File bundleFile = FileLocator.getBundleFileLocation(bundles[0]).get();
-		String annotationsLib = bundleFile.isDirectory() ? bundleFile.getPath()+"/bin" : bundleFile.getPath(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String annotationsLib = bundleFile.isDirectory() ? bundleFile.getPath()+"/bin" : bundleFile.getPath(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		IClasspathEntry nullAnnotationsClassPathEntry = JavaCore.newLibraryEntry(new Path(annotationsLib), null, null);
 
 		IClasspathEntry[] oldClasspath = project18.getRawClasspath();

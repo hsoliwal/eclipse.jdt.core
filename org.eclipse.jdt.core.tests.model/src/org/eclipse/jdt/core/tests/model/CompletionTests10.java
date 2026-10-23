@@ -593,7 +593,7 @@ public void testIssue4649_5() throws JavaModelException { //FLLDCIM: MARK — ML
 			result.proposals);
 }
 private void assertProposalCount(String proposal, int expectedCount, int expectedOtherCount, CompletionResult result) {
-	String[] proposals = result.proposals.split("\n");
+	String[] proposals = result.proposals.split("\n"); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 	long proposalsCount = Stream.of(proposals).filter(s -> s.startsWith(proposal)).count();
 	assertEquals(
 			"Unexpected occurrences of " + proposal + " - result was " + result.proposals, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT

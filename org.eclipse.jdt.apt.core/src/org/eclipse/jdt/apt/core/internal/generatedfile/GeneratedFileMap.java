@@ -121,8 +121,8 @@ public class GeneratedFileMap extends ManyToMany<IFile, IFile> {
 		clear();
 		File state = getStateFile(_proj, _isTestCode);
 		if (state != null) {
-			boolean successfullyDeleted = state.delete();
-			if (!successfullyDeleted && state.exists()) {
+			boolean successfullyDeleted = state.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			if (!successfullyDeleted && state.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				AptPlugin.log(new IOException("Could not delete apt dependency state file"), //$NON-NLS-1$
 						state.getPath());
 			}
@@ -217,13 +217,13 @@ public class GeneratedFileMap extends ManyToMany<IFile, IFile> {
 	 */
 	private void readState() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File file = getStateFile(_proj, _isTestCode);
-		if (file == null || !file.exists()) {
+		if (file == null || !file.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			// We'll just start with no dependencies
 			return;
 		}
 		DataInputStream in = null;
 		try {
-			in= new DataInputStream(new BufferedInputStream(new FileInputStream(file)));
+			in= new DataInputStream(new BufferedInputStream(new FileInputStream(file))); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			int version = in.readInt();
 			if (version != SERIALIZATION_VERSION) {
 				throw new IOException("Dependency map file version does not match. Expected "  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -298,11 +298,11 @@ public class GeneratedFileMap extends ManyToMany<IFile, IFile> {
 			// Cannot write state, as project has been deleted
 			return;
 		}
-		file.delete();
+		file.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		DataOutputStream out = null;
 		try {
-			out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
+			out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(file))); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 
 			out.writeInt(SERIALIZATION_VERSION);
 

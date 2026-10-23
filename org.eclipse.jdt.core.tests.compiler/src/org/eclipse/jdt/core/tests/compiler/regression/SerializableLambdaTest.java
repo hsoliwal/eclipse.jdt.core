@@ -2369,7 +2369,7 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 	private void printIt(String text) {
 		String quotedText = text;
 		if (!quotedText.startsWith("\"")) {
-			quotedText = "\""+quotedText.replaceAll("\n", "\\\\n\"+\n\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			quotedText = "\""+quotedText.replaceAll("\n", "\\\\n\"+\n\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			quotedText = quotedText.substring(0,quotedText.length()-3);
 		}
 		System.out.println(quotedText);

@@ -999,7 +999,7 @@ private static boolean existsOnDisk(IContainer defaultOutputLocation) {
 	if (!exists) {
 		return false;
 	}
-	// check that the folder *really* exists on disk and is a folder
+	// check that the folder *really* exists on disk and is a folder //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	IPath location = defaultOutputLocation.getLocation();
 	return location != null && location.toFile().isDirectory();
 }

@@ -158,7 +158,7 @@ public class Bug564905Test extends BuilderTests {
 	}
 
 	private static void deleteFolderInFileSystem(URI uri) throws IOException {
-		Files.walkFileTree(Paths.get(uri), new DeleteVisitor());
+		Files.walkFileTree(Paths.get(uri), new DeleteVisitor()); //FLLDCIM: MARK — M24 M3FILE_STREAMS CALL
 	}
 
 	private void assertOutputFolderEmpty() throws CoreException {
@@ -184,7 +184,7 @@ public class Bug564905Test extends BuilderTests {
 	static class DeleteVisitor extends SimpleFileVisitor<Path> {
 		@Override
 		public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-			Files.delete(file);
+			Files.delete(file); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			return FileVisitResult.CONTINUE;
 		}
 
@@ -193,7 +193,7 @@ public class Bug564905Test extends BuilderTests {
 			if (exc != null) {
 				throw exc;
 			}
-			Files.delete(dir);
+			Files.delete(dir); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			return FileVisitResult.CONTINUE;
 		}
 	}

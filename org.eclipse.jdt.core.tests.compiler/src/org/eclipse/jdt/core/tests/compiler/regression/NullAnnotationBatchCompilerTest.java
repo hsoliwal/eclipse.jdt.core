@@ -521,7 +521,7 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 					false);
 			// force reading of BinaryTypeBinding(p.X):
 			String xPath = OUTPUT_DIR + File.separator + "p" + File.separator + "X.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-			new File(xPath).delete();
+			new File(xPath).delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 
@@ -568,7 +568,7 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 
 		// force reading of BinaryTypeBinding(p.X):
 		String xPath = OUTPUT_DIR + File.separator + "p" + File.separator + "X.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		new File(xPath).delete();
+		new File(xPath).delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		this.runNegativeTest(
 				new String[] {
@@ -717,7 +717,7 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 	public void test440477() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String annots_dir = Util.getOutputDirectory() + File.separator + "annots"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String annots_java_util = annots_dir + File.separator + "java/util"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		new File(annots_java_util).mkdirs();
+		new File(annots_java_util).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		Util.createFile(
 				annots_java_util + File.separator + "Map.eea", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				TEST_440687_MAP_EEA_CONTENT);
@@ -860,13 +860,13 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 
 		String annots_dir1 = Util.getOutputDirectory() + File.separator + "annots1"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String annots_java_util = annots_dir1 + File.separator + "java/util"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		new File(annots_java_util).mkdirs();
+		new File(annots_java_util).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		Util.createFile(annots_java_util + File.separator + "Map.eea", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				TEST_440687_MAP_EEA_CONTENT);
 
 		String annots_dir2 = Util.getOutputDirectory() + File.separator + "annots2"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String annots_java_lang = annots_dir2 + File.separator + "java/lang"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		new File(annots_java_lang).mkdirs();
+		new File(annots_java_lang).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		Util.createFile(annots_java_lang + File.separator + "Object.eea", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				TEST_440687_OBJECT_EEA_CONTENT);
 
@@ -881,14 +881,14 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 
 		String annots_dir = Util.getOutputDirectory() + File.separator + "annots1"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String annots_java_util = annots_dir + File.separator + "java/util"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		new File(annots_java_util).mkdirs();
+		new File(annots_java_util).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		Util.createFile(
 				annots_java_util + File.separator + "Map.eea", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				TEST_440687_MAP_EEA_CONTENT);
 
 		String annots_dir2 = Util.getOutputDirectory() + File.separator + "annots2"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String annots_java_lang = annots_dir2 + File.separator + "java/lang"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		new File(annots_java_lang).mkdirs();
+		new File(annots_java_lang).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		Util.createFile(
 				annots_java_lang + File.separator + "Object.eea", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				TEST_440687_OBJECT_EEA_CONTENT);
@@ -903,7 +903,7 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 	public void test440687c() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		String annots_dir = Util.getOutputDirectory() + File.separator + "annots"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		new File(annots_dir).mkdirs();
+		new File(annots_dir).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		String annotsZipFile = annots_dir+ File.separator + "jre-annots.zip"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Util.createSourceZip(
 			new String[] {
@@ -932,11 +932,11 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 	public void test490010NoEeaFile1() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		String annots_dir1 = Util.getOutputDirectory() + File.separator + "annots1"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		new File(annots_dir1).mkdirs();
+		new File(annots_dir1).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		String annots_dir2 = Util.getOutputDirectory() + File.separator + "annots2"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String annots_java_lang = annots_dir2 + File.separator + "java/lang"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		new File(annots_java_lang).mkdirs();
+		new File(annots_java_lang).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		Util.createFile(annots_java_lang + File.separator + "Object.eea", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				TEST_440687_OBJECT_EEA_CONTENT);
 
@@ -971,11 +971,11 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 	public void test490010NoEeaFile2() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		String annots_dir1 = Util.getOutputDirectory() + File.separator + "annots1"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		new File(annots_dir1).mkdirs();
+		new File(annots_dir1).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		String annots_dir2 = Util.getOutputDirectory() + File.separator + "annots2"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String annots_java_lang = annots_dir2 + File.separator + "java/lang"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		new File(annots_java_lang).mkdirs();
+		new File(annots_java_lang).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		Util.createFile(annots_java_lang + File.separator + "Object.eea", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				TEST_440687_OBJECT_EEA_CONTENT);
 		String zipName = Util.getOutputDirectory() + File.separator + "annots2.zip"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -1013,11 +1013,11 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 	public void test490010NoEeaFile3() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		String annots_dir1 = Util.getOutputDirectory() + File.separator + "annots1"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		new File(annots_dir1).mkdirs();
+		new File(annots_dir1).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		String annots_dir2 = Util.getOutputDirectory() + File.separator + "annots2"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String annots_java_lang = annots_dir2 + File.separator + "java/lang"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		new File(annots_java_lang).mkdirs();
+		new File(annots_java_lang).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		Util.createFile(annots_java_lang + File.separator + "Object.eea", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				TEST_440687_OBJECT_EEA_CONTENT);
 		String zipName = Util.getOutputDirectory() + File.separator + "annots2.zip"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -1062,7 +1062,7 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 	private void runTestBug571055(boolean inheritAnnotations, boolean dedicatedAnnotationPath) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String annots_dir = Util.getOutputDirectory() + File.separator + "annots"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String annots_api = annots_dir + File.separator + "api"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		new File(annots_api).mkdirs();
+		new File(annots_api).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		Util.createFile(
 				annots_api + File.separator + "Foo.eea", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"class api/Foo\n" +
@@ -1072,7 +1072,7 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 		if (!inheritAnnotations) {
 			// 'manually' establish consistency:
 			String annots_impl = annots_dir + File.separator + "impl"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-			new File(annots_impl).mkdirs();
+			new File(annots_impl).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			Util.createFile(
 					annots_impl + File.separator + "FooImpl.eea", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"class impl/FooImpl\n" +
@@ -1150,7 +1150,7 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 			// tests external annotations with --release option
 			String annotDir = OUTPUT_DIR + File.separator + "eea"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String annotJavaUtilDir = annotDir + "/java/util".replace('/', File.separatorChar); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-			new File(annotJavaUtilDir).mkdirs();
+			new File(annotJavaUtilDir).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			Util.createFile(annotJavaUtilDir + File.separatorChar + "Objects.eea", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"class java/util/Objects\n" +
 					"requireNonNull\n" +
@@ -1223,7 +1223,7 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 	}
 	public void testGH1452_src() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String annotationPath = "/annotations";
-		new File(OUTPUT_DIR+annotationPath+"/some/sillyPackage").mkdirs(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		new File(OUTPUT_DIR+annotationPath+"/some/sillyPackage").mkdirs(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		Util.createFile(OUTPUT_DIR+annotationPath+"/some/sillyPackage/Foo.eea", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"class some/sillyPackage/Foo\n" +
 				"get\n" +

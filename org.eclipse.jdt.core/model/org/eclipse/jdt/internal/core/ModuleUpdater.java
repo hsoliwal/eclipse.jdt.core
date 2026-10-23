@@ -60,7 +60,7 @@ public class ModuleUpdater {
 			String attributeName = attribute.getName();
 			String values = attribute.getValue(); // the attributes considered here may have multiple values separated by ':'
 			if (attributeName.equals(IClasspathAttribute.ADD_EXPORTS)) {
-				for (String value : values.split(":")) { // format: <source-module>/<package>=<target-module>(,<target-module>)* //$NON-NLS-1$ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				for (String value : values.split(":")) { // format: <source-module>/<package>=<target-module>(,<target-module>)* //$NON-NLS-1$ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 					int slash = value.indexOf('/');
 					int equals = value.indexOf('=');
 					if (slash != -1 && equals != -1) {
@@ -73,7 +73,7 @@ public class ModuleUpdater {
 					}
 				}
 			} else if (attributeName.equals(IClasspathAttribute.ADD_READS)) {
-				for (String value : values.split(":")) { // format: <source-module>=<target-module> //$NON-NLS-1$ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				for (String value : values.split(":")) { // format: <source-module>=<target-module> //$NON-NLS-1$ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 					int equals = value.indexOf('=');
 					if (equals != -1) {
 						String srcMod = value.substring(0, equals);

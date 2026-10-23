@@ -50,7 +50,7 @@ public class PreviewFeatureTest extends AbstractRegressionTest9 {
 	private String[] getClasspathWithPreviewAPI() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File libDir = new File(LIB_DIR);
 		Util.delete(libDir); // make sure we recycle the libs
- 		libDir.mkdirs();
+ 		libDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		String jarPath = LIB_DIR + "/lib1.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try {
 			Util.createJar(

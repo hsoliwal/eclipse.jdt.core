@@ -36,7 +36,7 @@ public abstract class AbstractModuleCompilationTest extends AbstractBatchCompile
 
 	// use -source rather than --release but suppress: warning: [options] bootstrap class path not set in conjunction with -source 9:
 	protected static final String JAVAC_SOURCE_9_OPTIONS = "-source 9 -Xlint:-options";
-	protected static Pattern ECJ_VERSION_OPTION_PATTERN = Pattern.compile("-([0-9]+)");
+	protected static Pattern ECJ_VERSION_OPTION_PATTERN = Pattern.compile("-([0-9]+)"); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 
 	public AbstractModuleCompilationTest(String name) {
 		super(name);
@@ -94,15 +94,15 @@ public abstract class AbstractModuleCompilationTest extends AbstractBatchCompile
 
 	protected void writeFile(String directoryName, String fileName, String source) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File directory = new File(directoryName);
-		if (!directory.exists()) {
-			if (!directory.mkdirs()) {
+		if (!directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			if (!directory.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				System.out.println("Could not create " + directoryName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return;
 			}
 		}
 		String filePath = directory.getAbsolutePath() + File.separator + fileName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(filePath)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(source);
 			writer.flush();
 			writer.close();
@@ -135,8 +135,8 @@ public abstract class AbstractModuleCompilationTest extends AbstractBatchCompile
 			String javacCommandLine) {
 				String ecjOutput = getEcjOutputDir();
 				File ecjOutFile = new File(ecjOutput);
-				if (!ecjOutFile.exists()) {
-					ecjOutFile.mkdir();
+				if (!ecjOutFile.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+					ecjOutFile.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				}
 				String ecjCommandLine = commandLine.contains("-d ")
 						? commandLine
@@ -228,8 +228,8 @@ public abstract class AbstractModuleCompilationTest extends AbstractBatchCompile
 			JavacTestOptions options) {
 		String ecjOutput = getEcjOutputDir();
 		File ecjOutFile = new File(ecjOutput);
-		if (!ecjOutFile.exists()) {
-			ecjOutFile.mkdir();
+		if (!ecjOutFile.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			ecjOutFile.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 		String ecjCommandLine = commandLine.contains("-d ")
 				? commandLine
@@ -293,7 +293,7 @@ public abstract class AbstractModuleCompilationTest extends AbstractBatchCompile
 	 * @return commandLine adjusted for javac
 	 */
 	protected String adjustForJavac(String commandLine, String versionOptions) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		String[] tokens = commandLine.split(" ");
+		String[] tokens = commandLine.split(" "); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		boolean skipNext = false;
 		for (int i = 0; i < tokens.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
@@ -302,7 +302,7 @@ public abstract class AbstractModuleCompilationTest extends AbstractBatchCompile
 				continue;
 			}
 			java.util.regex.Matcher matcher = ECJ_VERSION_OPTION_PATTERN.matcher(tokens[i].trim()); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
-			if (matcher.matches()) {
+			if (matcher.matches()) { //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 				if (versionOptions == null)
 					buf.append(' ').append(" --release ").append(matcher.group(1)).append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				continue;
@@ -325,10 +325,10 @@ public abstract class AbstractModuleCompilationTest extends AbstractBatchCompile
 	}
 
 	private void walkOutFiles(final String outputLocation, final Set<String> fileNames, boolean add) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (!(new File(outputLocation)).exists())
+		if (!(new File(outputLocation)).exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			return;
 		try {
-			Files.walkFileTree(Path.of(outputLocation), new SimpleFileVisitor<Path>() {
+			Files.walkFileTree(Path.of(outputLocation), new SimpleFileVisitor<Path>() { //FLLDCIM: MARK — M24 M3FILE_STREAMS CALL
 				@Override
 				public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
 					if (file.toString().endsWith(".class")) {
@@ -352,7 +352,7 @@ public abstract class AbstractModuleCompilationTest extends AbstractBatchCompile
 		if (classFiles != null) {
 			assertTrue(msg, classFiles.contains(fileName));
 		} else {
-			assertTrue(msg, (new File(fileName).exists()));
+			assertTrue(msg, (new File(fileName).exists())); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 	@Override

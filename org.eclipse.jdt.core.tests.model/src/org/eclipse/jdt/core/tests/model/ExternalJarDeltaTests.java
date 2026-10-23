@@ -72,7 +72,7 @@ public void testExternalJar0() throws CoreException, IOException { //FLLDCIM: MA
 		setClasspath(project, new IClasspathEntry[]{JavaCore.newLibraryEntry(new Path(pPath), null, null)});
 
 		f = new File(pPath);
-		f.createNewFile();
+		f.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		getJavaModel().refreshExternalArchives(null,null);
 		waitUntilIndexesReady();
 
@@ -104,7 +104,7 @@ public void testExternalJarChanged1() throws CoreException, IOException { //FLLD
 		setClasspath(project, new IClasspathEntry[]{JavaCore.newLibraryEntry(new Path(pPath), null, null)});
 
 		f = new File(pPath);
-		f.createNewFile();
+		f.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		getJavaModel().refreshExternalArchives(null,null);
 		waitUntilIndexesReady();
 		startDeltas();
@@ -137,7 +137,7 @@ public void testExternalJarChanged2() throws CoreException, IOException { //FLLD
 		setClasspath(project, new IClasspathEntry[]{JavaCore.newLibraryEntry(new Path(pPath), null, null)});
 
 		f = new File(pPath);
-		f.createNewFile();
+		f.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		getJavaModel().refreshExternalArchives(null,null);
 		waitUntilIndexesReady();
 		startDeltas();
@@ -170,7 +170,7 @@ public void testExternalJarChanged3() throws CoreException, IOException { //FLLD
 		setClasspath(project, new IClasspathEntry[]{JavaCore.newLibraryEntry(new Path(pPath), null, null)});
 
 		f = new File(pPath);
-		f.createNewFile();
+		f.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		getJavaModel().refreshExternalArchives(null,null);
 		waitUntilIndexesReady();
 		startDeltas();
@@ -205,7 +205,7 @@ public void testExternalJarChanged4() throws CoreException, IOException { //FLLD
 		setClasspath(project, new IClasspathEntry[]{JavaCore.newLibraryEntry(new Path(pPath), null, null)});
 
 		f = new File(pPath);
-		f.createNewFile();
+		f.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		getJavaModel().refreshExternalArchives(null,null);
 		waitUntilIndexesReady();
 
@@ -247,7 +247,7 @@ public void testExternalJarChanged5() throws CoreException, IOException { //FLLD
 		setClasspath(project, new IClasspathEntry[]{JavaCore.newLibraryEntry(new Path(pPath), null, null)});
 
 		f = new File(pPath);
-		f.createNewFile();
+		f.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		getJavaModel().refreshExternalArchives(null,null);
 		waitUntilIndexesReady();
 
@@ -288,7 +288,7 @@ public void testExternalJarChanged6() throws CoreException, IOException { //FLLD
 		setClasspath(project, new IClasspathEntry[]{JavaCore.newLibraryEntry(new Path(pPath), null, null)});
 
 		f = new File(pPath);
-		f.createNewFile();
+		f.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		getJavaModel().refreshExternalArchives(null,null);
 		waitUntilIndexesReady();
 		startDeltas();
@@ -327,7 +327,7 @@ public void testExternalJarAdded1() throws CoreException, IOException { //FLLDCI
 		startDeltas();
 
 		f = new File(pPath);
-		f.createNewFile();
+		f.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		getJavaModel().refreshExternalArchives(null,null);
 
 		assertDeltas(
@@ -359,7 +359,7 @@ public void testExternalJarAdded2() throws CoreException, IOException { //FLLDCI
 		startDeltas();
 
 		f = new File(pPath);
-		f.createNewFile();
+		f.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		getJavaModel().refreshExternalArchives(new IJavaElement[]{project},null);
 
 		assertDeltas(
@@ -391,7 +391,7 @@ public void testExternalJarAdded3() throws CoreException, IOException { //FLLDCI
 		startDeltas();
 
 		f = new File(pPath);
-		f.createNewFile();
+		f.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		IPackageFragmentRoot root = project.getPackageFragmentRoot(pPath);
 		getJavaModel().refreshExternalArchives(new IJavaElement[]{root},null);
 
@@ -420,7 +420,7 @@ public void testExternalJarRemoved1() throws CoreException, IOException { //FLLD
 		setClasspath(project, new IClasspathEntry[]{JavaCore.newLibraryEntry(new Path(pPath), null, null)});
 
 		f = new File(pPath);
-		f.createNewFile();
+		f.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		getJavaModel().refreshExternalArchives(null,null);
 		waitUntilIndexesReady();
 		startDeltas();
@@ -453,7 +453,7 @@ public void testExternalJarRemoved2() throws CoreException, IOException { //FLLD
 		setClasspath(project, new IClasspathEntry[]{JavaCore.newLibraryEntry(new Path(pPath), null, null)});
 
 		f = new File(pPath);
-		f.createNewFile();
+		f.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		getJavaModel().refreshExternalArchives(null,null);
 		waitUntilIndexesReady();
 		startDeltas();
@@ -486,7 +486,7 @@ public void testExternalJarRemoved3() throws CoreException, IOException { //FLLD
 		setClasspath(project, new IClasspathEntry[]{JavaCore.newLibraryEntry(new Path(pPath), null, null)});
 
 		f = new File(pPath);
-		f.createNewFile();
+		f.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		getJavaModel().refreshExternalArchives(null,null);
 		waitUntilIndexesReady();
 		startDeltas();

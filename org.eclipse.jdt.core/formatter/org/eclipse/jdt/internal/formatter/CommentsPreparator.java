@@ -50,8 +50,8 @@ public class CommentsPreparator extends ASTVisitor {
 
 	public static final int COMMENT_LINE_SEPARATOR_LENGTH = 3;
 
-	private final static Pattern NLS_TAG_PATTERN = Pattern.compile("//\\$NON-NLS-([0-9]+)\\$"); //$NON-NLS-1$
-	private final static Pattern STRING_LITERAL_PATTERN = Pattern.compile("\".*?(\\\\(\\\\\\\\)*\".*?)*\""); //$NON-NLS-1$
+	private final static Pattern NLS_TAG_PATTERN = Pattern.compile("//\\$NON-NLS-([0-9]+)\\$"); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+	private final static Pattern STRING_LITERAL_PATTERN = Pattern.compile("\".*?(\\\\(\\\\\\\\)*\".*?)*\""); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 	private final static Pattern HTML_TAG_PATTERN;
 	private final static Pattern HTML_ATTRIBUTE_PATTERN;
 	static {
@@ -65,13 +65,13 @@ public class CommentsPreparator extends ASTVisitor {
 		String ws = "(?>[ \\t]++|[\\r\\n]++[ \\t]*+\\*?)"; // whitespace or line break with optional asterisk //$NON-NLS-1$
 		String attributeValue = "(?>\"[^\"]*\")|(?>\'[^\']*\')|[\\S&&[^/>\"\']]++"; //$NON-NLS-1$
 		String attribute = "(?>" + ws + "+[\\S&&[^=]]+" + ws + "*(=)" + ws + "*(?>" + attributeValue  + "))"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		HTML_TAG_PATTERN = Pattern.compile("<(/)?+(?:" //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		HTML_TAG_PATTERN = Pattern.compile("<(/)?+(?:" //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 				+ formatCodeTags + '|' + separateLineTags + '|' + breakBeforeTags + '|' + breakAfterTags + '|' + noFormatTags + '|' + blockTags + '|' + otherTags + ')'
 				+ "(" + attribute + "*)" + ws + "*/?>", Pattern.CASE_INSENSITIVE); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		HTML_ATTRIBUTE_PATTERN = Pattern.compile(attribute);
+		HTML_ATTRIBUTE_PATTERN = Pattern.compile(attribute); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 	}
 
-	private final static Pattern HTML_ENTITY_PATTERN = Pattern
+	private final static Pattern HTML_ENTITY_PATTERN = Pattern //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			.compile("&(#x[0-9a-fA-F]+)?(#[0-9]+)?(lt)?(gt)?(nbsp)?(amp)?(circ)?(tilde)?(quot)?;"); //$NON-NLS-1$
 	private final static String HTML_ENTITY_REPLACE = "   <> &^~\""; //$NON-NLS-1$
 
@@ -86,18 +86,18 @@ public class CommentsPreparator extends ASTVisitor {
 		String attributeValue = "(?>\"[^\"]*\")|(?>\'[^\']*\')|[\\S&&[^\"':]]++"; //$NON-NLS-1$
 		String snippetAttribute = "(?>" + ws + "*" + attributeNames + ws + "*(=)" + ws + "*(" + attributeValue  + "))"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String markupTagArgument = "(?>[ \\t]*\\w+(?>[ \\t]*(=)[ \\t]*(" + attributeValue  + "))?)"; //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		SNIPPET_ATTRIBUTE_PATTERN = Pattern.compile(snippetAttribute);
-		SNIPPET_ATTRIBUTES_PATTERN = Pattern.compile(snippetAttribute + "*" + ws + "*(?<colon>:?)"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		SNIPPET_MARKUP_TAG_ARGUMENT_PATTERN = Pattern.compile(markupTagArgument);
-		SNIPPET_MARKUP_TAG_PATTERN = Pattern.compile(markupTagNames + markupTagArgument + "*"); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		SNIPPET_ATTRIBUTE_PATTERN = Pattern.compile(snippetAttribute); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+		SNIPPET_ATTRIBUTES_PATTERN = Pattern.compile(snippetAttribute + "*" + ws + "*(?<colon>:?)"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+		SNIPPET_MARKUP_TAG_ARGUMENT_PATTERN = Pattern.compile(markupTagArgument); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+		SNIPPET_MARKUP_TAG_PATTERN = Pattern.compile(markupTagNames + markupTagArgument + "*"); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 	}
 
-	private final static Pattern MARKDOWN_LEADING_SPACES_PATTERN = Pattern.compile("(?m)^[ \\t]*///( *)[^ ]"); //$NON-NLS-1$
-	private final static Pattern MARKDOWN_HEADINGS_PATTERN_1 = Pattern.compile("(?:(?<=^)|(?<=///[ \\t]*))(#{1,6})([ \\t]+)([^\\r\\n]*)"); //$NON-NLS-1$
-	private final static Pattern MARKDOWN_HEADINGS_PATTERN_2 = Pattern.compile("(?:^|(?<=///[ \\t]+))[ \\t]*([=-])\\1*[ \\t]*(?=\\r?\\n|$)"); //$NON-NLS-1$
-	private final static Pattern MARKDOWN_FENCE_PATTERN = Pattern.compile("(`{3,}|~{3,})(.*)"); //$NON-NLS-1$
-	private final static Pattern MARKDOWN_TABLE_START = Pattern.compile("(?m)(?<=^[ \\t]*)\\|"); //$NON-NLS-1$
-	private final static Pattern MARKDOWN_TABLE_END = Pattern.compile("(?m)\\|(?!.*\\|)"); //$NON-NLS-1$
+	private final static Pattern MARKDOWN_LEADING_SPACES_PATTERN = Pattern.compile("(?m)^[ \\t]*///( *)[^ ]"); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+	private final static Pattern MARKDOWN_HEADINGS_PATTERN_1 = Pattern.compile("(?:(?<=^)|(?<=///[ \\t]*))(#{1,6})([ \\t]+)([^\\r\\n]*)"); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+	private final static Pattern MARKDOWN_HEADINGS_PATTERN_2 = Pattern.compile("(?:^|(?<=///[ \\t]+))[ \\t]*([=-])\\1*[ \\t]*(?=\\r?\\n|$)"); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+	private final static Pattern MARKDOWN_FENCE_PATTERN = Pattern.compile("(`{3,}|~{3,})(.*)"); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+	private final static Pattern MARKDOWN_TABLE_START = Pattern.compile("(?m)(?<=^[ \\t]*)\\|"); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+	private final static Pattern MARKDOWN_TABLE_END = Pattern.compile("(?m)\\|(?!.*\\|)"); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 
 	// Param tags list copied from IJavaDocTagConstants in legacy formatter for compatibility.
 	// There were the following comments:
@@ -291,7 +291,7 @@ public class CommentsPreparator extends ASTVisitor {
 		Matcher matcher = NLS_TAG_PATTERN.matcher(this.tm.toString(comment)); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		int previousMatcherEnd = 0;
 		boolean nlsFound = false;
-		while (matcher.find()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		while (matcher.find()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			int nlsNumber = Integer.parseInt(matcher.group(1));
 			if (nlsNumber > 0 && nlsNumber <= stringLiterals.size()) {
 				if (matcher.start() > previousMatcherEnd) {
@@ -344,9 +344,9 @@ public class CommentsPreparator extends ASTVisitor {
 		String commentText = this.tm.toString(commentToken);
 
 		Matcher m = SNIPPET_MARKUP_TAG_PATTERN.matcher(commentText); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
-		while (m.find()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		while (m.find()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			Matcher m2 = SNIPPET_MARKUP_TAG_ARGUMENT_PATTERN.matcher(m.group()); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
-			if (!m2.find())
+			if (!m2.find()) //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 				continue;
 			this.commentStructure = commentToken.getInternalStructure();
 			this.ctm = new TokenManager(this.commentStructure, this.tm);
@@ -355,7 +355,7 @@ public class CommentsPreparator extends ASTVisitor {
 			do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				handleFoundAssignment(m2, 1, commentToken.originalStart + m.start());
 				handleFoundStringLiteral(m2, 2, commentToken.originalStart + m.start());
-			} while (m2.find());
+			} while (m2.find()); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		}
 	}
 
@@ -803,7 +803,7 @@ public class CommentsPreparator extends ASTVisitor {
 		String text = this.tm.toString(node);
 
 		Matcher matcher = MARKDOWN_HEADINGS_PATTERN_1.matcher(text); // Check for MarkDown headings #h1 - #h6 //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
-		while (matcher.find()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		while (matcher.find()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			int startPos = matcher.start() + node.getStartPosition();
 			int tokenIndex = tokenStartingAt(startPos);
 			Token headingToken = this.ctm.get(tokenIndex);
@@ -818,7 +818,7 @@ public class CommentsPreparator extends ASTVisitor {
 		}
 
 		matcher = MARKDOWN_HEADINGS_PATTERN_2.matcher(text); // Check for MarkDown headings with styles '-- & ===' //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
-		while (matcher.find()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		while (matcher.find()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			int startPos = matcher.start() + node.getStartPosition();
 			int tokenIndex = tokenStartingAt(startPos);
 			Token headingToken = this.ctm.get(tokenIndex);
@@ -830,7 +830,7 @@ public class CommentsPreparator extends ASTVisitor {
 
 		int leadingSpaces = Integer.MAX_VALUE;
 		Matcher m = MARKDOWN_LEADING_SPACES_PATTERN.matcher(this.tm.toString(node)); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
-		while (m.find()) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		while (m.find()) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			leadingSpaces = Math.min(leadingSpaces, m.group(1).length());
 		leadingSpaces = leadingSpaces == Integer.MAX_VALUE ? 0 : leadingSpaces;
 		List<ASTNode> fragments = node.fragments();
@@ -855,10 +855,10 @@ public class CommentsPreparator extends ASTVisitor {
 			boolean isBullet = false;
 			if (fragment instanceof TextElement && (firstTokenIndex < 2
 					|| this.ctm.countLineBreaksBetween(this.ctm.get(firstTokenIndex - 1), firstToken) > 0)) {
-				isBullet = firstString.matches("[-+*]"); //$NON-NLS-1$
+				isBullet = firstString.matches("[-+*]"); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 				if (isBullet) {
 					thisItemType = firstString.charAt(0);
-				} else if (firstString.matches("\\d+[.)]")) { //$NON-NLS-1$
+				} else if (firstString.matches("\\d+[.)]")) { //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 					thisItemType = firstString.charAt(firstString.length() - 1);
 				}
 			}
@@ -950,7 +950,7 @@ public class CommentsPreparator extends ASTVisitor {
 				} else {
 					boolean isLineStart = isListItem || firstTokenIndex <= 1
 							|| this.ctm.countLineBreaksBetween(this.ctm.get(firstTokenIndex - 1), firstToken) > 0;
-					if (isLineStart && fenceMatcher.matches()) {
+					if (isLineStart && fenceMatcher.matches()) { //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 						codeBlockStartIndex = lastTokenIndex;
 						openingFence = fenceMatcher.group(1);
 						String infoString = fenceMatcher.group(2).trim().toLowerCase();
@@ -965,7 +965,7 @@ public class CommentsPreparator extends ASTVisitor {
 				}
 			} else if (indentDiff <= 4) {
 				if (openingFence != null) {
-					if (fenceMatcher.matches() && openingFence.equals(fenceMatcher.group(1)) && fenceMatcher.group(2).trim().isEmpty()) {
+					if (fenceMatcher.matches() && openingFence.equals(fenceMatcher.group(1)) && fenceMatcher.group(2).trim().isEmpty()) { //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 						codeBlockEndIndex = firstTokenIndex - 1;
 						firstToken.breakBefore();
 						if (firstTokenIndex < this.tm.size())
@@ -1006,7 +1006,7 @@ public class CommentsPreparator extends ASTVisitor {
 			if (fragment instanceof TextElement textElement) {
 				String textContent = textElement.getText();
 				matcher = MARKDOWN_TABLE_START.matcher(textContent); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
-				if (matcher.find()) {
+				if (matcher.find()) { //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 					if (tableStartIndex == -1) {
 						int startPos = matcher.start() + textElement.getStartPosition();
 						tableStartIndex = tokenStartingAt(startPos);
@@ -1018,7 +1018,7 @@ public class CommentsPreparator extends ASTVisitor {
 						}
 					} else if (columnUnderlineFound) {
 						matcher = MARKDOWN_TABLE_END.matcher(textContent); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
-						matcher.find(); // find the last one
+						matcher.find(); // find the last one //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 						int startPos = matcher.start() + textElement.getStartPosition();
 						tableLastIndex = tokenStartingAt(startPos);
 					}
@@ -1040,7 +1040,7 @@ public class CommentsPreparator extends ASTVisitor {
 			return;
 		String text = this.tm.toString(node);
 		Matcher matcher = HTML_TAG_PATTERN.matcher(text); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
-		while (matcher.find()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		while (matcher.find()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			int startPos = matcher.start() + node.getStartPosition();
 			int endPos = matcher.end() - 1 + node.getStartPosition();
 			boolean isOpeningTag = (matcher.start(1) == matcher.end(1));
@@ -1058,7 +1058,7 @@ public class CommentsPreparator extends ASTVisitor {
 				String attributesText = matcher.group(9);
 				Matcher attrMatcher = HTML_ATTRIBUTE_PATTERN.matcher(attributesText); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 				final int commentStart = this.ctm.get(0).originalStart;
-				while (attrMatcher.find()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				while (attrMatcher.find()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 					int equalPos = node.getStartPosition() + matcher.start(9) + attrMatcher.start(1);
 					assert this.tm.charAt(equalPos) == '=';
 					this.allowSubstituteWrapping[equalPos - commentStart] = true;
@@ -1142,7 +1142,7 @@ public class CommentsPreparator extends ASTVisitor {
 
 	private void handleStringLiterals(String text, int textStartPosition) {
 		Matcher matcher = STRING_LITERAL_PATTERN.matcher(text); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
-		while (matcher.find()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		while (matcher.find()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			handleFoundStringLiteral(matcher, 0, textStartPosition);
 		}
 	}
@@ -1314,10 +1314,10 @@ public class CommentsPreparator extends ASTVisitor {
 		int snippetTextStartPos = startToken.originalEnd + 1;
 		String snippetText = this.ctm.getSource().substring(snippetTextStartPos, endToken.originalEnd + 1);
 		Matcher m = SNIPPET_ATTRIBUTES_PATTERN.matcher(snippetText); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
-		if (m.find() && m.start() == 0) {
+		if (m.find() && m.start() == 0) { //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			isInline = !m.group("colon").isEmpty(); //$NON-NLS-1$
 			Matcher m2 = SNIPPET_ATTRIBUTE_PATTERN.matcher(snippetText); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
-			while (m2.find()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			while (m2.find()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 				handleFoundAssignment(m2, 2, snippetTextStartPos);
 				handleFoundStringLiteral(m2, 3, snippetTextStartPos);
 				if (m2.group(1).equals("lang")) //$NON-NLS-1$
@@ -1330,7 +1330,7 @@ public class CommentsPreparator extends ASTVisitor {
 			int openingIndex = this.ctm.firstIndexBefore(fragments.get(0), ANY);
 			int closingIndex = tokenStartingAt(endToken.originalEnd);
 			this.ctm.get(closingIndex).breakBefore();
-			boolean formatted = (lang == null || lang.matches("['\"]?java['\"]?")) //$NON-NLS-1$
+			boolean formatted = (lang == null || lang.matches("['\"]?java['\"]?")) //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 					&& formatCode(openingIndex, closingIndex, true, false);
 			if (!formatted)
 				disableFormattingExclusively(openingIndex, closingIndex, true);
@@ -1743,7 +1743,7 @@ public class CommentsPreparator extends ASTVisitor {
 
 	private char getHtmlEntityChar(String entity) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Matcher matcher = HTML_ENTITY_PATTERN.matcher(entity); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
-		if (matcher.find()) {
+		if (matcher.find()) { //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			char replaceChar = 0;
 			for (int i = 1; i < HTML_ENTITY_REPLACE.length(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int start = matcher.start(i);

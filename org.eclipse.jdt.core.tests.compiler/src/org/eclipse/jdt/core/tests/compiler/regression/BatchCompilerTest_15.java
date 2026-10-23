@@ -51,7 +51,7 @@ public class BatchCompilerTest_15 extends AbstractBatchCompilerTest {
 		String currentWorkingDirectoryPath = System.getProperty("user.dir");
 		if (currentWorkingDirectoryPath == null) {
 			System.err.println("BatchCompilerTest#testBug564047_001 could not access the current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		} else if (!new File(currentWorkingDirectoryPath).isDirectory()) {
+		} else if (!new File(currentWorkingDirectoryPath).isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			System.err.println("BatchCompilerTest#testBug564047_001 current working directory is not a directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
 			String lib1Path = currentWorkingDirectoryPath + File.separator + "lib1.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -101,7 +101,7 @@ public class BatchCompilerTest_15 extends AbstractBatchCompilerTest {
 			} catch (IOException e) {
 				System.err.println("BatchCompilerTest#testBug563430_001 could not write to current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			} finally {
-				new File(lib1Path).delete();
+				new File(lib1Path).delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			}
 		}
 	}

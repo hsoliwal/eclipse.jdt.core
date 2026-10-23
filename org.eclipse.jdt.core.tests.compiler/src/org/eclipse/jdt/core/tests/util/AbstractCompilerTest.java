@@ -391,7 +391,7 @@ public class AbstractCompilerTest extends TestCase {
 			}
 			if (compliances != null) {
 				possibleComplianceLevels = 0;
-				for (String compliance : compliances.split(",")) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				for (String compliance : compliances.split(",")) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 					boolean versionValid = false;
 					for(int i = 0; i < complianceTestLevelMapping.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						int[] versionMap = complianceTestLevelMapping[i];
@@ -633,8 +633,8 @@ public class AbstractCompilerTest extends TestCase {
 	 */
 	protected void createOutputTestDirectory(String suffixPath) {
 		this.outputTestDirectory =  new File(this.outputRootDirectoryPath.toFile(), suffixPath);
-		if (!this.outputTestDirectory.exists()) {
-			this.outputTestDirectory.mkdirs();
+		if (!this.outputTestDirectory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			this.outputTestDirectory.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 	/*
@@ -651,8 +651,8 @@ public class AbstractCompilerTest extends TestCase {
 			File file = new File(this.outputTestDirectory, fileName);
 			if (fileName.lastIndexOf('/') >= 0) {
 				File dir = file.getParentFile();
-				if (!dir.exists()) {
-					dir.mkdirs();
+				if (!dir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+					dir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				}
 			}
 			Util.writeToFile(contents, file.getPath());

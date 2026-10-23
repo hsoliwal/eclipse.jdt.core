@@ -1461,7 +1461,7 @@ public class EncodingTests extends ModifyingResourceTests {
 			assertFalse("Sources should not be decoded the same way", encodedContents.equals(source));
 		}
 		finally {
-			if (externalSourceZip != null) externalSourceZip.delete();
+			if (externalSourceZip != null) externalSourceZip.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			if (externalSource != null) deleteExternalResource("testShiftJIS");
 			this.encodingProject.setDefaultCharset(oldEncoding, null);
 			deleteProject("Encoding2");

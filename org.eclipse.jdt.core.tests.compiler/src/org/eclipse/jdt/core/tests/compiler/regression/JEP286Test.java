@@ -85,7 +85,7 @@ static void assertInferredType(LocalDeclaration varDecl) {
 	int underscoreIndex = varName.indexOf('_');
 	Assert.assertNotEquals(-1, underscoreIndex);
 	String typeNamePart = varName.substring(underscoreIndex+1);
-	typeNamePart = typeNamePart.replaceAll("ARRAY", "[]"); // So that we assume that x_intARRAY is of type int[]
+	typeNamePart = typeNamePart.replaceAll("ARRAY", "[]"); // So that we assume that x_intARRAY is of type int[] //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 	String expectedTypeName = simpleTypeNames.getOrDefault(typeNamePart, typeNamePart);
 	String actualTypeName = varDecl.binding.type.debugName();
 	// System.out.println("For " + varName + ", we expect " + expectedTypeName + ", the type was: "

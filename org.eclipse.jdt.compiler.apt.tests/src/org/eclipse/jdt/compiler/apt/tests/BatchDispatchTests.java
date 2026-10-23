@@ -132,7 +132,7 @@ public class BatchDispatchTests extends TestCase {
 
 		// check that the gen-src and class files were generated
  		File genSrcFile = TestUtils.concatPath(BatchTestUtils.getGenFolderName(), "foobar", "ImmutableComp.java");
- 		assertTrue("generated src file does not exist", genSrcFile.exists());
+ 		assertTrue("generated src file does not exist", genSrcFile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		inputFile = BatchTestUtils.copyResource("targets/gh4687/Container.java", targetFolder);
 		assertNotNull("No input file", inputFile);
@@ -141,7 +141,7 @@ public class BatchDispatchTests extends TestCase {
 		BatchTestUtils.compileOneClass(compiler, options, inputFile);
 		// check that the gen-src and class files were generated
  		genSrcFile = TestUtils.concatPath(BatchTestUtils.getGenFolderName(), "foobar", "WorkingRecordBuilder.java");
- 		assertTrue("generated src file does not exist", genSrcFile.exists());
+ 		assertTrue("generated src file does not exist", genSrcFile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 	
 	/**
@@ -191,13 +191,13 @@ public class BatchDispatchTests extends TestCase {
 
 		// check that the gen-src and class files were generated
  		File genSrcFile = TestUtils.concatPath(BatchTestUtils.getGenFolderName(), "gen", "WarnGen.java");
- 		assertTrue("generated src file does not exist", genSrcFile.exists());
+ 		assertTrue("generated src file does not exist", genSrcFile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
  		File classFile = TestUtils.concatPath(BatchTestUtils.getBinFolderName(), "targets", "dispatch", "WarnGenClass.class");
- 		assertTrue("ordinary src file was not compiled", classFile.exists());
+ 		assertTrue("ordinary src file was not compiled", classFile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
  		File genClassFile = TestUtils.concatPath(BatchTestUtils.getBinFolderName(), "gen", "WarnGen.class");
- 		assertTrue("generated src file was not compiled", genClassFile.exists());
+ 		assertTrue("generated src file was not compiled", genClassFile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
  		assertEquals("Wrong number of warnings", numberOfWarnings,
  				diagnostics.get(Diagnostic.Kind.WARNING, Diagnostic.Kind.MANDATORY_WARNING).size());
@@ -241,13 +241,13 @@ public class BatchDispatchTests extends TestCase {
 
 		// check that the src and class files were generated
  		File genSrcFile = TestUtils.concatPath(BatchTestUtils.getGenFolderName(), "gen", "TwoAnnotationsGen.java");
- 		assertTrue("generated src file does not exist", genSrcFile.exists());
+ 		assertTrue("generated src file does not exist", genSrcFile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
  		File classFile = TestUtils.concatPath(BatchTestUtils.getBinFolderName(), "targets", "dispatch", "TwoAnnotations.class");
- 		assertTrue("ordinary src file was not compiled", classFile.exists());
+ 		assertTrue("ordinary src file was not compiled", classFile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
  		File genClassFile = TestUtils.concatPath(BatchTestUtils.getBinFolderName(), "gen", "TwoAnnotationsGen.class");
- 		assertTrue("generated src file was not compiled", genClassFile.exists());
+ 		assertTrue("generated src file was not compiled", genClassFile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	// Called with system compiler and Eclipse compiler
@@ -261,13 +261,13 @@ public class BatchDispatchTests extends TestCase {
 
 		// check that the gen-src and class files were generated
  		File genSrcFile = TestUtils.concatPath(BatchTestUtils.getGenFolderName(), "gen", "HgcGen.java");
- 		assertTrue("generated src file does not exist", genSrcFile.exists());
+ 		assertTrue("generated src file does not exist", genSrcFile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
  		File classFile = TestUtils.concatPath(BatchTestUtils.getBinFolderName(), "targets", "dispatch", "HasGenClass.class");
- 		assertTrue("ordinary src file was not compiled", classFile.exists());
+ 		assertTrue("ordinary src file was not compiled", classFile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
  		File genClassFile = TestUtils.concatPath(BatchTestUtils.getBinFolderName(), "gen", "HgcGen.class");
- 		assertTrue("generated src file was not compiled", genClassFile.exists());
+ 		assertTrue("generated src file was not compiled", genClassFile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	// Called with system compiler and Eclipse compiler

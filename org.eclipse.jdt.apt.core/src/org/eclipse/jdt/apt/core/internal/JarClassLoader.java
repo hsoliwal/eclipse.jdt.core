@@ -176,7 +176,7 @@ public class JarClassLoader extends ClassLoader {
 			try {
 				ZipEntry entry = j.getEntry(name);
 				if (entry != null) {
-					InputStream zipInput = j.getInputStream(entry);
+					InputStream zipInput = j.getInputStream(entry); //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 					return openInputStream(zipInput);
 				}
 			}
@@ -286,7 +286,7 @@ public class JarClassLoader extends ClassLoader {
 	 * to the set of manifest jars.
 	 */
     private static void _recursiveGetManifestJars(File jarFile, Set<File> manifestJars) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-        if (!jarFile.exists())
+        if (!jarFile.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
             return;
 
         JarFile jar = null;
@@ -302,14 +302,14 @@ public class JarClassLoader extends ClassLoader {
             // We've got some entries
             File parent = jarFile.getParentFile();
 
-            String[] rgPaths = classpath.split(" "); //$NON-NLS-1$
+            String[] rgPaths = classpath.split(" "); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
             for (String path : rgPaths) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
             {
                 if (path.length() == 0)
                     continue;
                 File file = new File(parent, path);
                 // If we haven't seen this, we need to get its manifest jars as well
-                if (!manifestJars.contains(file) && file.exists()) {
+                if (!manifestJars.contains(file) && file.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
                     manifestJars.add(file);
                     _recursiveGetManifestJars(file, manifestJars);
                 }

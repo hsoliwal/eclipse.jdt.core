@@ -1292,8 +1292,8 @@ public void testGH1382_qualifiedName() throws Exception { //FLLDCIM: MARK — ML
 
 void assertContainsClassConstant(String disassembled, String className) {
 	className = className.replace("/", "\\/").replace("$", "\\$");
-	Pattern pattern = Pattern.compile(".*constant #[0-9]+ class: #[0-9]+ "+className+".*", Pattern.DOTALL); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-	assertTrue("Should contain class constant for "+className, pattern.matcher(disassembled).matches()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	Pattern pattern = Pattern.compile(".*constant #[0-9]+ class: #[0-9]+ "+className+".*", Pattern.DOTALL); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+	assertTrue("Should contain class constant for "+className, pattern.matcher(disassembled).matches()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 }
 
 public static Class testClass() {

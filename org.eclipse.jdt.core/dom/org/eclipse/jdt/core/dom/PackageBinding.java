@@ -270,7 +270,7 @@ class PackageBinding implements IPackageBinding {
 		if (nameString == null || nameString.isEmpty()) {
 			return null;
 		}
-		String[] segments = nameString.split("[.]"); //$NON-NLS-1$
+		String[] segments = nameString.split("[.]"); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		int i = 0;
 		org.eclipse.jdt.internal.compiler.lookup.PackageBinding pkgBinding = this.binding;
 		Binding foundBinding = null;

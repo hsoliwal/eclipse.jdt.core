@@ -42,15 +42,15 @@ public class ClassFileComparatorTest extends AbstractRegressionTest {
 
 	private void compileAndDeploy(String source, String className) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File directory = new File(SOURCE_DIRECTORY);
-		if (!directory.exists()) {
-			if (!directory.mkdirs()) {
+		if (!directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			if (!directory.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				System.out.println("Could not create " + SOURCE_DIRECTORY); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return;
 			}
 		}
 		String fileName = SOURCE_DIRECTORY + File.separator + className + ".java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(source);
 			writer.flush();
 			writer.close();
@@ -77,8 +77,8 @@ public class ClassFileComparatorTest extends AbstractRegressionTest {
 			ClassFileReader reader = ClassFileReader.read(EVAL_DIRECTORY + File.separator + classFile1 + ".class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			int fileLength;
 			File file = new File(EVAL_DIRECTORY + File.separator + classFile2 + ".class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-			byte classFileBytes[] = new byte[fileLength = (int) file.length()];
-			stream = new java.io.FileInputStream(file);
+			byte classFileBytes[] = new byte[fileLength = (int) file.length()]; //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			stream = new java.io.FileInputStream(file); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			int bytesRead = 0;
 			int lastReadSize = 0;
 			while ((lastReadSize != -1) && (bytesRead != fileLength)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP

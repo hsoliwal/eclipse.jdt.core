@@ -57,11 +57,11 @@ public class FileManagerTests extends TestCase {
 	public void testFileManager() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String tmpFolder = System.getProperty("java.io.tmpdir");
 		File dir = new File(tmpFolder, "src" + System.currentTimeMillis()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		dir.mkdirs();
+		dir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File inputFile = new File(dir, "X.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write("public class X {}");
 			writer.flush();
 			writer.close();
@@ -121,18 +121,18 @@ public class FileManagerTests extends TestCase {
 			}
 		}
 		// check that the .class file exist for X
-		assertTrue("delete failed", inputFile.delete());
-		assertTrue("delete failed", dir.delete());
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue("delete failed", dir.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 	// Test that JavaFileManager#inferBinaryName returns null for invalid file
 	public void testInferBinaryName() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String tmpFolder = System.getProperty("java.io.tmpdir");
 		File dir = new File(tmpFolder, "src" + System.currentTimeMillis()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		dir.mkdirs();
+		dir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File inputFile = new File(dir, "test.txt");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write("This is not a valid Java file");
 			writer.flush();
 			writer.close();
@@ -168,8 +168,8 @@ public class FileManagerTests extends TestCase {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		assertTrue("delete failed", inputFile.delete());
-		assertTrue("delete failed", dir.delete());
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue("delete failed", dir.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	public void testBug460085() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
@@ -230,15 +230,15 @@ public class FileManagerTests extends TestCase {
 		Path dir = Files.createTempDirectory("repro573287-");
 		Path target = dir.resolve("copy573287.zip");
 		File src = new File(BatchTestUtils.getPluginDirectoryPath(), "resources/targets/filemanager/dependency.zip");
-		Path copy = Files.copy(src.toPath(), target);
+		Path copy = Files.copy(src.toPath(), target); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		extracted_ArchiveFileObject_openInputStream(copy); //do not inline (!) - otherwise the reference to local variables are not lost
 		try {
 			// Try to clean up:
 			// On Windows this resulted in java.nio.file.FileSystemException because copy
 			// was still open until GC:
-			Files.delete(copy); // (impossible to delete a open file under Windows)
-			Files.delete(dir);
+			Files.delete(copy); // (impossible to delete a open file under Windows) //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			Files.delete(dir); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		} catch (Exception e) {
 			// clean up temp files:
 			try {
@@ -247,8 +247,8 @@ public class FileManagerTests extends TestCase {
 				// runs finalize() - but only if extracted_ArchiveFileObject_openInputStream is not inlined(!):
 				System.runFinalization();
 				// clean up files - now it works:
-				Files.delete(copy);
-				Files.delete(dir);
+				Files.delete(copy); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				Files.delete(dir); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			} catch (Exception e2) {
 				e.addSuppressed(e2);
 			}

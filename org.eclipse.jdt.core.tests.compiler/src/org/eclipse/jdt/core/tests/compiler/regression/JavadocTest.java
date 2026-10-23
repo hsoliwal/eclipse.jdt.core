@@ -451,7 +451,7 @@ public abstract class JavadocTest extends AbstractRegressionTest {
 					String packName = subdirs.replace('/', '.');
 					contents = "package "+packName+";"+contents.substring(contents.indexOf(';')+1); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					File dir = new File(dirFileName, subdirs);
-					if (!dir.exists()) dir.mkdirs();
+					if (!dir.exists()) dir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					if (shouldRunJavac()) {
 						Util.writeToFile(contents, dirFileName+"/"+fileName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						// PREMATURE this results into a duplicate file.
@@ -514,7 +514,7 @@ public abstract class JavadocTest extends AbstractRegressionTest {
 
 			// Launch process
 			compileProcess = Runtime.getRuntime().exec(
-				cmdLine.toString().split("\\s"), null, this.outputTestDirectory);
+				cmdLine.toString().split("\\s"), null, this.outputTestDirectory); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 
 			// Log errors
       Logger errorLogger = new Logger(compileProcess.getErrorStream(), "ERROR");

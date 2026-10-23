@@ -158,7 +158,7 @@ private static boolean regexpMatch(char[] pattern, char[] word) {
  */
 static Pattern compileRegexp(char[] pattern) {
 	try {
-		return Pattern.compile(new String(pattern));
+		return Pattern.compile(new String(pattern)); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 	} catch (PatternSyntaxException e) {
 		return null;
 	}

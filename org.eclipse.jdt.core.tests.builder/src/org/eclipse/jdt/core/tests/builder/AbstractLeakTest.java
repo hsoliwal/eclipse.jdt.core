@@ -156,9 +156,9 @@ public abstract class AbstractLeakTest extends BuilderTests {
 		} catch (CoreException e) {
 			try {
 				// second attempt to avoid delays on teardown
-				Files.deleteIfExists(file.getLocation().toFile().toPath());
+				Files.deleteIfExists(file.getLocation().toFile().toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			} catch (Exception e2) {
-				file.getLocation().toFile().delete();
+				file.getLocation().toFile().delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				// ignore
 			}
 			throw new IllegalStateException("File leaked during build: " + file, e); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -192,9 +192,9 @@ public abstract class AbstractLeakTest extends BuilderTests {
 
 	private void selfTestLsof() throws Exception {
 		Path tempFile = Files.createTempFile("testLsof", "tmp");
-		Files.deleteIfExists(tempFile);
-		Files.write(tempFile, "Hello\nselfTestLsof".getBytes());
-		try(InputStream is = new FileInputStream(tempFile.toFile())){
+		Files.deleteIfExists(tempFile); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		Files.write(tempFile, "Hello\nselfTestLsof".getBytes()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		try(InputStream is = new FileInputStream(tempFile.toFile())){ //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			is.read();
 			List<String> list = getProcessesOpenedFile(tempFile);
 			assertEquals("lsof doesn't work in this environment!", 1, list.size());
@@ -231,7 +231,7 @@ public abstract class AbstractLeakTest extends BuilderTests {
 
 	private static List<String> readLsofLines(String cmd, boolean skipFirst) throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		List<String> lines = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
-		Process process = Runtime.getRuntime().exec(cmd.split("\\s"));
+		Process process = Runtime.getRuntime().exec(cmd.split("\\s")); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		try (BufferedReader rdr = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
 			if (skipFirst) {
 				rdr.readLine();

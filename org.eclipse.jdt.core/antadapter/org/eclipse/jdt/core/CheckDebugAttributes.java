@@ -59,7 +59,7 @@ public final class CheckDebugAttributes extends Task {
 				hasDebugAttributes = checkClassFile(classFileReader);
 			} else {
 				try (ZipFile jarFile = new ZipFile(this.file)) { //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM NEW
-					for (Enumeration<? extends ZipEntry> entries = jarFile.entries(); !hasDebugAttributes && entries.hasMoreElements(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					for (Enumeration<? extends ZipEntry> entries = jarFile.entries(); !hasDebugAttributes && entries.hasMoreElements(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 						ZipEntry entry = entries.nextElement();
 						if (org.eclipse.jdt.internal.compiler.util.Util.isClassFileName(entry.getName())) {
 							IClassFileReader classFileReader = ToolFactory.createDefaultClassFileReader(this.file, entry.getName(), IClassFileReader.ALL);

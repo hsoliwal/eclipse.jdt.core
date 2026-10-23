@@ -41,7 +41,7 @@ public class AutomaticModuleNamingTest extends AbstractRegressionTest {
 		String dirName = OUTPUT_DIR + File.separator + "automatic"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try {
 			String metaInfDir = dirName + File.separator + "META-INF"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-			new File(metaInfDir).mkdirs();
+			new File(metaInfDir).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 			Util.createFile(metaInfDir + File.separator + "MANIFEST.MF", // //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"Manifest-Version: 1.0\n" //

@@ -210,11 +210,11 @@ public class FactoryLoaderTests extends APTTestBase {
 
 		// On Windows this fails if the jar is still held by the class loader
 		File savedJar = new File(_extJar.getPath() + ".saved"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
-		Files.copy(_extJar.toPath(), savedJar.toPath());
+		Files.copy(_extJar.toPath(), savedJar.toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		try {
-			Files.delete(_extJar.toPath());
+			Files.delete(_extJar.toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		} finally {
-			Files.move(savedJar.toPath(), _extJar.toPath(), StandardCopyOption.REPLACE_EXISTING);
+			Files.move(savedJar.toPath(), _extJar.toPath(), StandardCopyOption.REPLACE_EXISTING); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 
 		// discarding the class loaders deletes the copies
@@ -301,9 +301,9 @@ public class FactoryLoaderTests extends APTTestBase {
 	private static List<java.nio.file.Path> findCopies(File jar) throws IOException {
 		java.nio.file.Path tempDir = Paths.get(System.getProperty("java.io.tmpdir"));
 		List<java.nio.file.Path> copies = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
-		try (DirectoryStream<java.nio.file.Path> copyDirs = Files.newDirectoryStream(tempDir, "jdt-apt-*")) {
+		try (DirectoryStream<java.nio.file.Path> copyDirs = Files.newDirectoryStream(tempDir, "jdt-apt-*")) { //FLLDCIM: MARK — M24 M3FILE_STREAMS CALL
 			for (java.nio.file.Path copyDir : copyDirs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
-				try (DirectoryStream<java.nio.file.Path> files = Files.newDirectoryStream(copyDir, "*_" + jar.getName())) { //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				try (DirectoryStream<java.nio.file.Path> files = Files.newDirectoryStream(copyDir, "*_" + jar.getName())) { //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M24 M3FILE_STREAMS CALL
 					files.forEach(copies::add);
 				} catch (NoSuchFileException | NotDirectoryException e) {
 					// deleted in the meantime, or not ours

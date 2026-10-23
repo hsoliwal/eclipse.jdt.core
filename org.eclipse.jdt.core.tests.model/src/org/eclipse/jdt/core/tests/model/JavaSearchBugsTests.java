@@ -8777,13 +8777,13 @@ public void testBug181488a() throws CoreException {
 	long lastModified = 0;
 	simulateExit();
 	try {
-		lastModified = indexFile.lastModified();
+		lastModified = indexFile.lastModified(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	} finally {
 		simulateRestart();
 	}
 	waitUntilIndexesReady();
 	Index newIndex = manager.getIndex(JAVA_PROJECT.getPath(), true, false);
-	assertEquals("Index file should be unchanged!!!", lastModified, newIndex.getIndexFile().lastModified());
+	assertEquals("Index file should be unchanged!!!", lastModified, newIndex.getIndexFile().lastModified()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 }
 public void testBug181488b() throws CoreException {
 	IJavaProject project = createJavaProject("Bug181488");
@@ -8791,7 +8791,7 @@ public void testBug181488b() throws CoreException {
 		waitUntilIndexesReady();
 		IndexManager manager = JavaModelManager.getIndexManager();
 		Index index = manager.getIndex(project.getPath(), true, false);
-		assertEquals("Index file should at least contains the signature!!!", DiskIndex.SIGNATURE.length()+6, index.getIndexFile().length());
+		assertEquals("Index file should at least contains the signature!!!", DiskIndex.SIGNATURE.length()+6, index.getIndexFile().length()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 	finally {
 		deleteProject(project);

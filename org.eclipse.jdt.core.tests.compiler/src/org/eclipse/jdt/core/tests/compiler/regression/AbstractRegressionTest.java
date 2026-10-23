@@ -635,8 +635,8 @@ static class JavacCompiler {
 		long result = 0L;
 		// WORK classpath should depend on the compiler, not on the default runtime
 		try {
-			if (!directory.exists()) {
-				directory.mkdir();
+			if (!directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				directory.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			}
 			StringBuilder cmdLine = new StringBuilder(this.javacPathName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			cmdLine.append(this.classpath); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
@@ -651,11 +651,11 @@ static class JavacCompiler {
 			String cmdLineAsString;
 			// WORK improve double-quotes management on Linux
 			if ("Linux".equals(System.getProperty("os.name"))) {
-				cmdLineAsString = cmdLine.toString().replaceAll("\"", "");
+				cmdLineAsString = cmdLine.toString().replaceAll("\"", ""); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			} else {
 				cmdLineAsString = cmdLine.toString();
 			}
-			compileProcess = Runtime.getRuntime().exec(cmdLineAsString.split("\\s+"), env, directory);
+			compileProcess = Runtime.getRuntime().exec(cmdLineAsString.split("\\s+"), env, directory); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			Logger errorLogger = new Logger(compileProcess.getErrorStream(),
 					"ERROR", log == null ? new StringBuilder() : log); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			errorLogger.start();
@@ -722,7 +722,7 @@ static class JavaRuntime {
 			cmdLine.append(options); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			cmdLine.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			cmdLine.append(className); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			executionProcess = Runtime.getRuntime().exec(cmdLine.toString().split("\\s+"), env, directory);
+			executionProcess = Runtime.getRuntime().exec(cmdLine.toString().split("\\s+"), env, directory); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			Logger outputLogger = new Logger(executionProcess.getInputStream(),
 					"RUNTIME OUTPUT", stdout == null ? new StringBuilder() : stdout); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			outputLogger.start();
@@ -1479,7 +1479,7 @@ protected static class JavacTestOptions {
 		compileAndDeploy(source, directoryName, className, suppressConsole);
 		try {
 			File directory = new File(EVAL_DIRECTORY, directoryName);
-			if (!directory.exists()) {
+			if (!directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				assertTrue(".class file not generated properly in " + directory, false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			File f = new File(directory, disassembledClassName + ".class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -1494,7 +1494,7 @@ protected static class JavacTestOptions {
 				assertEquals("Wrong contents", expectedOutput, result);
 			}
 			try {
-				ClassFileReader.read(Files.readAllBytes(f.toPath()), className + ".class", true); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				ClassFileReader.read(Files.readAllBytes(f.toPath()), className + ".class", true); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			} catch (Exception e) {
 				throw new AssertionError(e);
 			}
@@ -1511,13 +1511,13 @@ protected static class JavacTestOptions {
 		compileAndDeploy(source, directoryName, className, true);
 		try {
 			File directory = new File(EVAL_DIRECTORY, directoryName);
-			if (!directory.exists()) {
+			if (!directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				assertTrue(".class file not generated properly in " + directory, false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			File f = new File(directory, disassembledClassName + ".class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			ClassFileReader classFileReader = null;
 			try {
-				classFileReader = ClassFileReader.read(Files.readAllBytes(f.toPath()), className + ".class", true); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				classFileReader = ClassFileReader.read(Files.readAllBytes(f.toPath()), className + ".class", true); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			} catch (Exception e) {
 				throw new AssertionError(e);
 			}
@@ -1532,7 +1532,7 @@ protected static class JavacTestOptions {
 	}
 	protected void checkDisassembledClassFile(String fileName, String className, String expectedOutput, int mode) throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File classFile = new File(fileName);
-		if (!classFile.exists()) {
+		if (!classFile.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			assertTrue(".class file doesn't exist", false);
 		}
 		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(classFile);
@@ -1552,7 +1552,7 @@ protected static class JavacTestOptions {
 			fail("ClassFormatException swallowed in Disassembler:\n..." + result.substring(start, end)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
-		ClassFileReader.read(Files.readAllBytes(classFile.toPath()), className + ".class", true); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		ClassFileReader.read(Files.readAllBytes(classFile.toPath()), className + ".class", true); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	protected static void verifyClassFile(String expectedOutput, String unexpectedOutput, String classFileName, int mode) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
@@ -1591,16 +1591,16 @@ protected static class JavacTestOptions {
 
 	protected void compileAndDeploy(String source, String directoryName, String className, boolean suppressConsole) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File directory = new File(SOURCE_DIRECTORY);
-		if (!directory.exists()) {
-			if (!directory.mkdirs()) {
+		if (!directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			if (!directory.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				System.out.println("Could not create " + SOURCE_DIRECTORY); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return;
 			}
 		}
 		if (directoryName != null && directoryName.length() != 0) {
 			directory = new File(SOURCE_DIRECTORY, directoryName);
-			if (!directory.exists()) {
-				if (!directory.mkdirs()) {
+			if (!directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				if (!directory.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					System.out.println("Could not create " + directory); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					return;
 				}
@@ -1608,7 +1608,7 @@ protected static class JavacTestOptions {
 		}
 		String fileName = directory.getAbsolutePath() + File.separator + className + ".java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(source);
 			writer.flush();
 			writer.close();
@@ -1687,12 +1687,12 @@ protected static class JavacTestOptions {
 		final Set<String> logEntry = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 
 		public ProblemLog(String log) {
-			String[] entries = log.split("----------\n");
-			Pattern pattern = Pattern.compile("\\A(\\d*\\. )");
+			String[] entries = log.split("----------\n"); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+			Pattern pattern = Pattern.compile("\\A(\\d*\\. )"); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 
 			for (String entry : entries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Matcher matcher = pattern.matcher(entry); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
-				if (matcher.find()) {
+				if (matcher.find()) { //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 					entry = entry.substring(matcher.end());
 				}
 				this.logEntry.add(entry);
@@ -1810,9 +1810,9 @@ protected static class JavacTestOptions {
 
 	protected ClassFileReader getClassFileReader(String fileName, String className) {
 		File classFile = new File(fileName);
-		assertTrue(".class file doesn't exist:" + fileName, classFile.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertTrue(".class file doesn't exist:" + fileName, classFile.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		try {
-			ClassFileReader reader = ClassFileReader.read(Files.readAllBytes(classFile.toPath()), className + ".class", true); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			ClassFileReader reader = ClassFileReader.read(Files.readAllBytes(classFile.toPath()), className + ".class", true); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			return reader;
 		} catch (org.eclipse.jdt.internal.compiler.classfmt.ClassFormatException e) {
 			throw new AssertionError(e);
@@ -1892,7 +1892,7 @@ protected static class JavacTestOptions {
 		System.arraycopy(defaultLibs, 0, libs, 0, len);
 		Bundle[] bundles = Platform.getBundles("org.eclipse.jdt.annotation", "[2.0.0,3.0.0)");
 		File bundleFile = FileLocator.getBundleFileLocation(bundles[0]).get();
-		if (bundleFile.isDirectory())
+		if (bundleFile.isDirectory()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			libs[len] = bundleFile.getPath()+"/bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		else
 			libs[len] = bundleFile.getPath();
@@ -2009,7 +2009,7 @@ protected static class JavacTestOptions {
 	}
 	protected void removeTempClass(String className) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File dir = new File(SOURCE_DIRECTORY);
-		String[] fileNames = dir.list();
+		String[] fileNames = dir.list(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		if (fileNames != null) {
 			for (int i = 0, max = fileNames.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (fileNames[i].indexOf(className) != -1) {
@@ -2019,7 +2019,7 @@ protected static class JavacTestOptions {
 		}
 
 		dir = new File(EVAL_DIRECTORY);
-		fileNames = dir.list();
+		fileNames = dir.list(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		if (fileNames != null) {
 			for (int i = 0, max = fileNames.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (fileNames[i].indexOf(className) != -1) {
@@ -2414,7 +2414,7 @@ protected static class JavacTestOptions {
 
 			// Launch process
 			compileProcess = Runtime.getRuntime().exec(
-				cmdLine.toString().split("\\s"), env, this.outputTestDirectory);
+				cmdLine.toString().split("\\s"), env, this.outputTestDirectory); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 
 			// Log errors
       Logger errorLogger = new Logger(compileProcess.getErrorStream(), "ERROR");
@@ -2479,7 +2479,7 @@ protected static class JavacTestOptions {
 						javaCmdLine.append(cp); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						javaCmdLine.append(' ').append(testFiles[0].substring(0, testFiles[0].indexOf('.'))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							// assume executable class is name of first test file - PREMATURE check if this is also the case in other test fwk classes
-						execProcess = Runtime.getRuntime().exec(javaCmdLine.toString().split("\\s"), env, this.outputTestDirectory);
+						execProcess = Runtime.getRuntime().exec(javaCmdLine.toString().split("\\s"), env, this.outputTestDirectory); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 						Logger logger = new Logger(execProcess.getInputStream(), "");
 						// PREMATURE implement consistent error policy
 	     				logger.start();
@@ -2568,7 +2568,7 @@ protected static class JavacTestOptions {
 			// Launch process
 			File currentDirectory = new File(currentDirectoryPath);
 			compileProcess = Runtime.getRuntime().exec(
-				cmdLine.toString().split("\\s"), env, currentDirectory);
+				cmdLine.toString().split("\\s"), env, currentDirectory); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 
 			// Log errors
 			Logger errorLogger = new Logger(compileProcess.getErrorStream(), "ERROR");
@@ -2682,7 +2682,7 @@ protected void runJavac( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				} else {
 					deleteSourceFiles(javacOutputDirectory);
 				}
-				javacOutputDirectory.mkdirs();
+				javacOutputDirectory.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				// write test files
 				for (int i = 0, length = testFiles.length; i < length; ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String fileName = testFiles[i++];
@@ -2691,8 +2691,8 @@ protected void runJavac( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 					File file = new File(javacOutputDirectory, fileName);
 					if (fileName.lastIndexOf('/') >= 0) {
 						File dir = file.getParentFile();
-						if (!dir.exists()) {
-							dir.mkdirs();
+						if (!dir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+							dir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 						}
 					}
 					Util.writeToFile(contents, file.getPath());
@@ -2804,9 +2804,9 @@ protected void runJavac( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 private void deleteSourceFiles(File directory) {
 	try {
-		if (!directory.exists())
+		if (!directory.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			return;
-		Files.walk(directory.toPath())
+		Files.walk(directory.toPath()) //FLLDCIM: MARK — M24 M3FILE_STREAMS CALL
 			.filter(f -> f.toString().endsWith(SuffixConstants.SUFFIX_STRING_java))
 			.map(java.nio.file.Path::toFile)
 			.filter(File::isFile)
@@ -4239,7 +4239,7 @@ protected void runNegativeTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				// REVIEW consider enabling all warnings instead? Philippe does not see
 				//        this as ez to use (too many changes in logs)
 				javacCommandLineHeader = cmdLineHeader.toString();
-				new File(Util.getOutputDirectory()).mkdirs();
+				new File(Util.getOutputDirectory()).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				// TODO maxime check why this happens to miss in some cases
 				// WORK if we keep a full log, it should not mix javac versions...
 				javacFullLogFileName = Util.getOutputDirectory() +	File.separatorChar + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -4247,7 +4247,7 @@ protected void runNegativeTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		        					    (new SimpleDateFormat("yyyyMMdd_HHmmss")).format(new Date()) +
 		        					    ".txt";
 				javacFullLog =
-				  	new PrintWriter(new FileOutputStream(javacFullLogFileName)); // static that is initialized once, closed at process end
+				  	new PrintWriter(new FileOutputStream(javacFullLogFileName)); // static that is initialized once, closed at process end //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				javacFullLog.println(version); // so that the contents is self sufficient
 				System.out.println("***************************************************************************");
 				System.out.println("* OpenJDK javac compiler "+JavacCompiler.getBuild(javaCommandLineHeader)+" output archived into file:"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -4289,16 +4289,16 @@ protected void runNegativeTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		}
 		// clean up output dir
 		File outputDir = new File(OUTPUT_DIR);
-		if (outputDir.exists()) {
+		if (outputDir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			Util.flushDirectoryContent(outputDir);
 		}
 		File libDir = new File(LIB_DIR);
-		if (libDir.exists()) {
+		if (libDir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			Util.flushDirectoryContent(libDir);
 		}
 		super.tearDown();
 		if (shouldRunJavac()) {
-			if (JAVAC_OUTPUT_DIR.exists()) {
+			if (JAVAC_OUTPUT_DIR.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(JAVAC_OUTPUT_DIR);
 			}
 			printJavacResultsSummary();

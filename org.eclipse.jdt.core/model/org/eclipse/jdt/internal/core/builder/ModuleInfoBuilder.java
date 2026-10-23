@@ -80,7 +80,7 @@ public class ModuleInfoBuilder {
 		String modulePackageNames = classFileAttributes.remove(String.valueOf(IAttributeNamesConstants.MODULE_PACKAGES));
 		if (modulePackageNames != null) {
 			SimpleSetOfCharArray namesSet = new SimpleSetOfCharArray();
-			String[] providedNames = modulePackageNames.split(","); //$NON-NLS-1$
+			String[] providedNames = modulePackageNames.split(","); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			for (String providedName : providedNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				namesSet.add(providedName.trim().toCharArray());
 			}

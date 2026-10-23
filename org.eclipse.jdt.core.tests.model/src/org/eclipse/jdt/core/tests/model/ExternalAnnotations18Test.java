@@ -178,7 +178,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 
 		Bundle[] bundles = getAnnotationBundles();
 		File bundleFile = FileLocator.getBundleFileLocation(bundles[0]).get();
-		this.ANNOTATION_LIB = bundleFile.isDirectory() ? bundleFile.getPath()+"/bin" : bundleFile.getPath(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		this.ANNOTATION_LIB = bundleFile.isDirectory() ? bundleFile.getPath()+"/bin" : bundleFile.getPath(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		// set up class path container bridging to the host JRE:
 		ContainerInitializer.setInitializer(new TestContainerInitializer(IClasspathContainer.K_DEFAULT_SYSTEM));

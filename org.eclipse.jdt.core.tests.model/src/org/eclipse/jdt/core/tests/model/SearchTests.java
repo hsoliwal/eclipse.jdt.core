@@ -601,7 +601,7 @@ public void testConcurrentJob() throws Exception { //FLLDCIM: MARK — ML METHOD
 		monitor.sem.acquire(30000); // wait 30s max
 
 		// change jar contents
-		getFile("/P1/" + library).setContents(new FileInputStream(getExternalJCLPathString()), IResource.NONE, null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		getFile("/P1/" + library).setContents(new FileInputStream(getExternalJCLPathString()), IResource.NONE, null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			// setContents closes the stream
 
 		// resume waiting job
