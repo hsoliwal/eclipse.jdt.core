@@ -24,6 +24,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+import java.util.regex.Pattern;
+
 import org.eclipse.jdt.apt.core.internal.util.FactoryContainer;
 
 /**
@@ -96,6 +98,8 @@ public abstract class JarFactoryContainer extends FactoryContainer
         return classNames;
     }
 
+    private static final Pattern TOKENS_PATTERN = Pattern.compile("\\s"); //$NON-NLS-1$
+
     /**
      * Read service classnames from a service provider definition.
      * @param is an input stream corresponding to a Sun-style service provider
@@ -113,7 +117,7 @@ public abstract class JarFactoryContainer extends FactoryContainer
 	                line = line.substring(0, iComment);
 	            }
 	            // add the first non-whitespace token to the list
-	            final String[] tokens = line.split("\\s", 2); //$NON-NLS-1$
+	            final String[] tokens = TOKENS_PATTERN.split(line, 2);
 	            if (tokens[0].length() > 0) {
 	                classNames.put(tokens[0], serviceName);
 	            }

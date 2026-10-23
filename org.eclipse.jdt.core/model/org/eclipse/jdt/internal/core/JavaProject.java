@@ -34,6 +34,7 @@ import java.util.*;
 import java.util.Map.Entry;
 import java.util.function.Function;
 import java.util.jar.Manifest;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.ParserConfigurationException;
@@ -3907,12 +3908,14 @@ public class JavaProject
 		return info.getModule();
 	}
 
+	private static final Pattern GET_PATCHED_MODULES_PATTERN = Pattern.compile("::"); //$NON-NLS-1$
+
 	public List<String> getPatchedModules(IClasspathEntry cpEntry) {
 		String patchModules = ClasspathEntry.getExtraAttribute(cpEntry, IClasspathAttribute.PATCH_MODULE);
 		if (patchModules != null) {
 			List<String> result = new ArrayList<>();
 			IPath prjPath = getPath();
-			for (String patchModule : patchModules.split("::")) { //$NON-NLS-1$
+			for (String patchModule : GET_PATCHED_MODULES_PATTERN.split(patchModules)) {
 				int equalsIdx = patchModule.indexOf('=');
 				if (equalsIdx != -1) {
 					if (equalsIdx < patchModule.length()-1) { // otherwise malformed?
