@@ -1,5 +1,6 @@
 /*******************************************************************************
  * Copyright (c) 2000, 2013 IBM Corporation and others.
+ * Copyright (c) 2026 Hitesh Soliwal and Contributors to the Synexia Project.
  *
  * This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +11,7 @@
  *
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Hitesh Soliwal and Contributors to the Synexia Project - original-node rewrite view
  *******************************************************************************/
 package org.eclipse.jdt.internal.core.dom.rewrite;
 
@@ -125,6 +127,34 @@ public final class NodeInfoStore {
 			return this.placeholderNodes.get(node);
 		}
 		return null;
+	}
+
+	/**
+	 * Returns the actual node represented by a single-node copy/move placeholder,
+	 * or the supplied ordinary node. The existing placeholder store remains the
+	 * only owner of this relation. String and collapsed/range placeholders have
+	 * no single parsed semantic node and are rejected.
+	 *
+	 * @param node a node of this store's AST
+	 * @return the actual single node, without copying or modifying it
+	 * @throws IllegalArgumentException if the node belongs to another AST or
+	 * represents text or a group rather than one semantic node
+	 */
+	public ASTNode getOriginalNode(ASTNode node) {
+		if (node == null || node.getAST() != this.ast || isCollapsed(node)) {
+			throw new IllegalArgumentException("Not a single node of this AST"); //$NON-NLS-1$
+		}
+		Object data= getPlaceholderData(node);
+		if (data == null) {
+			return node;
+		}
+		if (data instanceof CopyPlaceholderData copy) {
+			ASTNode original= copy.copySource.getNode();
+			if (!isCollapsed(original)) {
+				return original;
+			}
+		}
+		throw new IllegalArgumentException("Placeholder has no single original semantic node"); //$NON-NLS-1$
 	}
 
 	private void setPlaceholderData(ASTNode node, PlaceholderData data) {
