@@ -21,6 +21,8 @@ import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.core.compiler.CharOperation;
 import org.eclipse.jdt.internal.compiler.env.IBinaryMethod;
 
+import java.util.regex.Pattern;
+
 /**
  * Javadoc tool format compatible with Java 17 and later versions (up to 21 including)
  */
@@ -75,11 +77,13 @@ public class JavadocContents17 extends JavadocContents {
 		return methodName;
 	}
 
+	private static final Pattern ANCHOR_PATTERN = Pattern.compile(" ");
+
 	@Override
 	protected String createSignatureAnchor(BinaryMethod method, String methodName, IBinaryMethod info)
 			throws JavaModelException {
 		String anchor = super.createSignatureAnchor(method, methodName, info);
-		anchor = anchor.replaceAll(" ", "");  //$NON-NLS-1$//$NON-NLS-2$
+		anchor = ANCHOR_PATTERN.matcher(anchor).replaceAll("");  //$NON-NLS-1$//$NON-NLS-2$
 		return anchor;
 	}
 

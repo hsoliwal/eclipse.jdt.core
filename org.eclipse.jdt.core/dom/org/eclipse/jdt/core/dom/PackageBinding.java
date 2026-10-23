@@ -16,6 +16,8 @@ package org.eclipse.jdt.core.dom;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Pattern;
+
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jdt.core.ICompilationUnit;
@@ -265,12 +267,14 @@ class PackageBinding implements IPackageBinding {
 		return this.binding.toString();
 	}
 
+	private static final Pattern SEGMENTS_PATTERN = Pattern.compile("[.]"); //$NON-NLS-1$
+
 	@Override
 	public ITypeBinding findTypeBinding(String nameString) {
 		if (nameString == null || nameString.isEmpty()) {
 			return null;
 		}
-		String[] segments = nameString.split("[.]"); //$NON-NLS-1$
+		String[] segments = SEGMENTS_PATTERN.split(nameString);
 		int i = 0;
 		org.eclipse.jdt.internal.compiler.lookup.PackageBinding pkgBinding = this.binding;
 		Binding foundBinding = null;
