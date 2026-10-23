@@ -41,7 +41,7 @@ public static Test suite() {
 	return buildModelTestSuite(CompletionWithMissingTypesTests_1_8.class);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=563010
-public void testStaticInterfaceMethod() throws JavaModelException {
+public void testStaticInterfaceMethod() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.oldOptions = JavaCore.getOptions();
 
 	try {
@@ -81,7 +81,7 @@ public void testStaticInterfaceMethod() throws JavaModelException {
 		int start2 = str.indexOf("MissingType");
 		int end2 = start2 + "MissingType".length();
 		assertResults(
-				"foo2[METHOD_REF]{foo2(), Lmissing.MissingType;, ()V, foo2, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" +
+				"foo2[METHOD_REF]{foo2(), Lmissing.MissingType;, ()V, foo2, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"   MissingType[TYPE_REF]{missing.MissingType, missing, Lmissing.MissingType;, null, null, ["+start2+", "+end2+"], " + (relevance1) + "}",
 				requestor.getResults());
 	} finally {

@@ -55,18 +55,18 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 
 	protected void writeFileCollecting(List<String> collectedFiles, String directoryName, String fileName, String source) {
 		writeFile(directoryName, fileName, source);
-		collectedFiles.add(directoryName+File.separator+fileName);
+		collectedFiles.add(directoryName+File.separator+fileName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
-	protected void writeFile(String directoryName, String fileName, String source) {
+	protected void writeFile(String directoryName, String fileName, String source) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File directory = new File(directoryName);
 		if (!directory.exists()) {
 			if (!directory.mkdirs()) {
-				System.out.println("Could not create " + directoryName);
+				System.out.println("Could not create " + directoryName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return;
 			}
 		}
-		String filePath = directory.getAbsolutePath() + File.separator + fileName;
+		String filePath = directory.getAbsolutePath() + File.separator + fileName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
 			writer.write(source);
@@ -79,9 +79,9 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 	}
 
 	class Runner extends AbstractRegressionTest.Runner {
-		StringBuilder commandLine = new StringBuilder();
-		String outputDir = OUTPUT_DIR + File.separator + "javac";
-		List<String> fileNames = new ArrayList<>();
+		StringBuilder commandLine = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		String outputDir = OUTPUT_DIR + File.separator + "javac"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> fileNames = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		/** will replace any -8, -9 ... option for javac */
 		String javacVersionOptions;
 
@@ -99,8 +99,8 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				this.shouldFlushOutputDirectory = false;
 				if (this.testFiles == null)
 					this.testFiles = new String[0];
-				for (String fileName : this.fileNames) {
-					this.commandLine.append(" \"").append(fileName).append("\"");
+				for (String fileName : this.fileNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					this.commandLine.append(" \"").append(fileName).append("\""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
 			String commandLineString = this.commandLine.toString();
@@ -117,15 +117,15 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 			boolean shouldFlushOutputDirectory)
 	{
 		runConformModuleTest(testFileNames, commandLine,
-				expectedFailureOutOutputString, expectedFailureErrOutputString, shouldFlushOutputDirectory, OUTPUT_DIR + File.separator + "javac");
+				expectedFailureOutOutputString, expectedFailureErrOutputString, shouldFlushOutputDirectory, OUTPUT_DIR + File.separator + "javac"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	void runConformModuleTest(List<String> testFileNames, StringBuilder commandLine,
 			String expectedFailureOutOutputString, String expectedFailureErrOutputString,
 			boolean shouldFlushOutputDirectory, String output)
 	{
-		for (String file : testFileNames)
-			commandLine.append(" \"").append(file).append("\"");
+		for (String file : testFileNames) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			commandLine.append(" \"").append(file).append("\""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		runConformModuleTest(new String[0], commandLine.toString(),
 				expectedFailureOutOutputString, expectedFailureErrOutputString, shouldFlushOutputDirectory,
 				output, JavacTestOptions.DEFAULT, null);
@@ -139,30 +139,30 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				shouldFlushOutputDirectory, OUTPUT_DIR, JavacTestOptions.DEFAULT, null);
 	}
 
-	Set<String> runConformModuleTest(String[] testFiles, String commandLine,
+	Set<String> runConformModuleTest(String[] testFiles, String commandLine, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String expectedFailureOutOutputString, String expectedFailureErrOutputString,
 			boolean shouldFlushOutputDirectory, String output, JavacTestOptions options, String javacCommandLine)
 	{
 		this.runConformTest(testFiles, commandLine, expectedFailureOutOutputString, expectedFailureErrOutputString, shouldFlushOutputDirectory);
 		if (shouldRunJavac()) {
 			File outputDir = new File(output);
-			final Set<String> outFiles = new HashSet<>();
+			final Set<String> outFiles = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			walkOutFiles(output, outFiles, true);
 			String[] testFileNames = new String[testFiles.length/2];
-			for (int i = 0; i < testFileNames.length; i++) {
+			for (int i = 0; i < testFileNames.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				testFileNames[i] = testFiles[i*2];
 			}
 			if (javacCommandLine == null) {
 				javacCommandLine = adjustForJavac(commandLine, null);
 			}
-			for (JavacCompiler javacCompiler : javacCompilers) {
+			for (JavacCompiler javacCompiler : javacCompilers) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (javacCompiler.compliance < ClassFileConstants.JDK9)
 					continue;
 				if (options.skip(javacCompiler)) {
-					System.err.println("Skip testing javac in "+testName());
+					System.err.println("Skip testing javac in "+testName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					continue;
 				}
-				StringBuilder log = new StringBuilder();
+				StringBuilder log = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 				try {
 					long compileResult = javacCompiler.compile(
 											outputDir, /* directory */
@@ -171,17 +171,17 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 											log,
 											false); // don't repeat filenames on the command line
 					if (compileResult != 0) {
-						System.err.println("Previous error was from "+testName());
+						System.err.println("Previous error was from "+testName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						fail("Unexpected error from javac");
 					}
 				} catch (IOException | InterruptedException e) {
 					e.printStackTrace();
 					throw new AssertionFailedError(e.getMessage());
 				}
-				final Set<String> expectedFiles = new HashSet<>(outFiles);
+				final Set<String> expectedFiles = new HashSet<>(outFiles); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 				walkOutFiles(output, expectedFiles, false);
-				for (String missingFile : expectedFiles)
-					System.err.println("Missing output file from javac:    "+missingFile);
+				for (String missingFile : expectedFiles) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					System.err.println("Missing output file from javac:    "+missingFile); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			return outFiles;
 		}
@@ -192,7 +192,7 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 			String expectedFailureOutOutputString, String expectedFailureErrOutputString,
 			boolean shouldFlushOutputDirectory, String javacErrorMatch) {
 		runNegativeModuleTest(testFileNames, commandLine, expectedFailureOutOutputString,
-				expectedFailureErrOutputString, shouldFlushOutputDirectory, javacErrorMatch, OUTPUT_DIR + File.separator + "javac");
+				expectedFailureErrOutputString, shouldFlushOutputDirectory, javacErrorMatch, OUTPUT_DIR + File.separator + "javac"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	void runNegativeModuleTest(List<String> testFileNames, StringBuilder commandLine,
@@ -206,8 +206,8 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 			String expectedFailureOutOutputString, String expectedFailureErrOutputString,
 			boolean shouldFlushOutputDirectory, String javacErrorMatch, String output, JavacTestOptions options)
 	{
-		for (String file : testFileNames)
-			commandLine.append(" \"").append(file).append("\"");
+		for (String file : testFileNames) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			commandLine.append(" \"").append(file).append("\""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		runNegativeModuleTest(new String[0], commandLine.toString(),
 				expectedFailureOutOutputString, expectedFailureErrOutputString, shouldFlushOutputDirectory, javacErrorMatch, output,
 				options);
@@ -219,27 +219,27 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				shouldFlushOutputDirectory, javacErrorMatch, OUTPUT_DIR, JavacTestOptions.DEFAULT);
 	}
 
-	void runNegativeModuleTest(String[] testFiles, String commandLine,
+	void runNegativeModuleTest(String[] testFiles, String commandLine, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String expectedFailureOutOutputString, String expectedFailureErrOutputString,
 			boolean shouldFlushOutputDirectory, String javacErrorMatch, String output, JavacTestOptions options)
 	{
 		this.runNegativeTest(testFiles, commandLine, expectedFailureOutOutputString, expectedFailureErrOutputString, shouldFlushOutputDirectory);
 		if (shouldRunJavac()) {
 			String[] testFileNames = new String[testFiles.length/2];
-			for (int i = 0; i < testFileNames.length; i++) {
+			for (int i = 0; i < testFileNames.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				testFileNames[i] = testFiles[i*2];
 			}
 			File outputDir = new File(OUTPUT_DIR);
-			final Set<String> outFiles = new HashSet<>();
+			final Set<String> outFiles = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			walkOutFiles(output, outFiles, true);
-			for (JavacCompiler javacCompiler : javacCompilers) {
+			for (JavacCompiler javacCompiler : javacCompilers) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (javacCompiler.compliance < ClassFileConstants.JDK9)
 					continue;
 				JavacTestOptions.Excuse excuse = options.excuseFor(javacCompiler);
 				numRunJavacTests++;
 
 				commandLine = adjustForJavac(commandLine, null);
-				StringBuilder log = new StringBuilder();
+				StringBuilder log = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 				int mismatch = 0;
 				try {
 					long compileResult = javacCompiler.compile(
@@ -250,10 +250,10 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 					if (compileResult == 0) {
 						mismatch = JavacTestOptions.MismatchType.EclipseErrorsJavacNone;
 						javacErrorMatch = expectedFailureErrOutputString;
-						System.err.println("Previous error was from "+testName());
+						System.err.println("Previous error was from "+testName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					} else if (!log.toString().contains(javacErrorMatch)) {
 						mismatch = JavacTestOptions.MismatchType.CompileErrorMismatch;
-						System.err.println(testName()+": Error match " + javacErrorMatch + " not found in \n"+log.toString());
+						System.err.println(testName()+": Error match " + javacErrorMatch + " not found in \n"+log.toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 				} catch (IOException | InterruptedException e) {
 					e.printStackTrace();
@@ -262,10 +262,10 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				handleMismatch(javacCompiler, testName(), testFiles, javacErrorMatch,
 						"", "", log, "", "",
 						excuse, mismatch);
-				final Set<String> expectedFiles = new HashSet<>(outFiles);
+				final Set<String> expectedFiles = new HashSet<>(outFiles); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 				walkOutFiles(output, expectedFiles, false);
-				for (String missingFile : expectedFiles)
-					System.err.println("Missing output file from javac:    "+missingFile);
+				for (String missingFile : expectedFiles) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					System.err.println("Missing output file from javac:    "+missingFile); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
@@ -276,28 +276,28 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 	 * 		If ecj-specific arg is not found, append anyway
 	 * @return commandLine adjusted for javac
 	 */
-	String adjustForJavac(String commandLine, String versionOptions) {
+	String adjustForJavac(String commandLine, String versionOptions) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] tokens = commandLine.split(" ");
-		StringBuilder buf = new StringBuilder();
+		StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		boolean skipNext = false;
-		for (int i = 0; i < tokens.length; i++) {
+		for (int i = 0; i < tokens.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (skipNext) {
 				skipNext = false;
 				continue;
 			}
 			if (tokens[i].trim().equals("-9")) {
 				if (versionOptions == null)
-					buf.append(' ').append(" --release 9 ");
+					buf.append(' ').append(" --release 9 "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				continue;
 			}
 			if (tokens[i].trim().equals("-8")) {
 				if (versionOptions == null)
-					buf.append(' ').append(" --release 8 ");
+					buf.append(' ').append(" --release 8 "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				continue;
 			}
 			if (tokens[i].startsWith("-warn") || tokens[i].startsWith("-err") || tokens[i].startsWith("-info")) {
 				if (tokens[i].contains("exports") && !tokens[i].contains("-exports"))
-					buf.append(" -Xlint:exports ");
+					buf.append(" -Xlint:exports "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				continue;
 			}
 			if (tokens[i].trim().equals("-classNames")) {
@@ -305,18 +305,18 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				continue;
 			}
 			if (tokens[i].trim().equals("-enableJavadoc")) {
-				buf.append(" -Xdoclint:all ");
+				buf.append(" -Xdoclint:all "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				continue;
 			}
-			buf.append(tokens[i]).append(' ');
+			buf.append(tokens[i]).append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (versionOptions != null) {
-			buf.append(versionOptions);
+			buf.append(versionOptions); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return buf.toString();
 	}
 
-	private void walkOutFiles(final String outputLocation, final Set<String> fileNames, boolean add) {
+	private void walkOutFiles(final String outputLocation, final Set<String> fileNames, boolean add) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!(new File(outputLocation)).exists())
 			return;
 		try {
@@ -328,7 +328,7 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 							fileNames.add(file.toString());
 						} else {
 							if (!fileNames.remove(file.toString()))
-								System.err.println("Unexpected output file from javac: "+file.toString());
+								System.err.println("Unexpected output file from javac: "+file.toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
 						Files.delete(file);
 					}
@@ -352,13 +352,13 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 		}
 	}
 
-	public void testBug549855a() {
+	public void testBug549855a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"/**\n" +
 						" */\n" +
@@ -367,7 +367,7 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 						" provides p.I1 with p.P1;\n" +
 						" uses java.util.Currency;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "I1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "I1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p;\n" +
 				"/**\n" +
 				" * interface I1\n" +
@@ -379,7 +379,7 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				"    */\n" +
 				"	public int foo();\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "P1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "P1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p;\n" +
 				"/**\n" +
 				" * class P1\n" +
@@ -389,8 +389,8 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				"	public int foo() { return 0; }\n" +
 				"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -enableJavadoc ")
 			.append(" -err:allJavadoc ")
@@ -398,10 +398,10 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
 			.append(" -warn:-unused")
-			.append(" --module-source-path " + "\"" + directory + "\" ")
-			.append(moduleLoc + File.separator + "module-info.java ")
-			.append(moduleLoc + File.separator + "p" + File.separator + "I1.java ")
-			.append(moduleLoc + File.separator + "p" + File.separator + "P1.java");
+			.append(" --module-source-path " + "\"" + directory + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "module-info.java ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "p" + File.separator + "I1.java ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "p" + File.separator + "P1.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(
 				new String[0],
@@ -425,13 +425,13 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				JavacTestOptions.JavacHasABug.NoWarningForMissingJavadocTag);
 	}
 
-	public void testBug549855b() {
+	public void testBug549855b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"/**\n" +
 						" @provides p.I\n" +
@@ -442,7 +442,7 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 						" provides p.I1 with p.P1;\n" +
 						" uses java.util.Currency;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "I1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "I1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p;\n" +
 				"/**\n" +
 				" * interface I1\n" +
@@ -454,7 +454,7 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				"    */\n" +
 				"	public int foo();\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "P1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "P1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p;\n" +
 				"/**\n" +
 				" * class P1\n" +
@@ -464,8 +464,8 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				"	public int foo() { return 0; }\n" +
 				"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -enableJavadoc ")
 			.append(" -err:allJavadoc ")
@@ -473,10 +473,10 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
 			.append(" -warn:-unused")
-			.append(" --module-source-path " + "\"" + directory + "\" ")
-			.append(moduleLoc + File.separator + "module-info.java ")
-			.append(moduleLoc + File.separator + "p" + File.separator + "I1.java ")
-			.append(moduleLoc + File.separator + "p" + File.separator + "P1.java");
+			.append(" --module-source-path " + "\"" + directory + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "module-info.java ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "p" + File.separator + "I1.java ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "p" + File.separator + "P1.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(
 				new String[0],
@@ -498,13 +498,13 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				"service-type not found");
 	}
 
-	public void testBug549855c() {
+	public void testBug549855c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"/**\n" +
 						" @provides p.I1\n" +
@@ -517,7 +517,7 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 						" provides p.I1 with p.P1;\n" +
 						" uses java.util.Currency;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "I1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "I1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p;\n" +
 				"/**\n" +
 				" * interface I1\n" +
@@ -529,7 +529,7 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				"    */\n" +
 				"	public int foo();\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "P1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "P1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p;\n" +
 				"/**\n" +
 				" * class P1\n" +
@@ -539,8 +539,8 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				"	public int foo() { return 0; }\n" +
 				"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -enableJavadoc ")
 			.append(" -err:allJavadoc ")
@@ -548,10 +548,10 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
 			.append(" -warn:-unused")
-			.append(" --module-source-path " + "\"" + directory + "\" ")
-			.append(moduleLoc + File.separator + "module-info.java ")
-			.append(moduleLoc + File.separator + "p" + File.separator + "I1.java ")
-			.append(moduleLoc + File.separator + "p" + File.separator + "P1.java");
+			.append(" --module-source-path " + "\"" + directory + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "module-info.java ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "p" + File.separator + "I1.java ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "p" + File.separator + "P1.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(
 				new String[0],
@@ -575,13 +575,13 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				JavacTestOptions.JavacHasABug.NoWarningForDuplicateJavadocTag);
 	}
 
-	public void testBug549855d() {
+	public void testBug549855d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"/**\n" +
 						" @provides p.I1\n" +
@@ -592,7 +592,7 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 						" provides p.I1 with p.P1;\n" +
 						" uses java.util.Currency;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "I1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "I1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p;\n" +
 				"/**\n" +
 				" * interface I1\n" +
@@ -604,7 +604,7 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				"    */\n" +
 				"	public int foo();\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "P1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "P1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p;\n" +
 				"/**\n" +
 				" * class P1\n" +
@@ -614,8 +614,8 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				"	public int foo() { return 0; }\n" +
 				"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -enableJavadoc ")
 			.append(" -err:allJavadoc ")
@@ -623,18 +623,18 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
 			.append(" -warn:-unused")
-			.append(" --module-source-path " + "\"" + directory + "\" ");
+			.append(" --module-source-path " + "\"" + directory + "\" "); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runConformModuleTest(files, buffer, "", "", false);
 	}
 
-	public void testBug549855e() {
+	public void testBug549855e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"/**\n" +
 						" @provides p.I1\n" +
@@ -644,7 +644,7 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 						" provides p.I1 with p.P1;\n" +
 						" uses java.util.Currency;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "I1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "I1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p;\n" +
 				"/**\n" +
 				" * interface I1\n" +
@@ -656,7 +656,7 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				"    */\n" +
 				"	public int foo();\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "P1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "P1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p;\n" +
 				"/**\n" +
 				" * class P1\n" +
@@ -666,8 +666,8 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				"	public int foo() { return 0; }\n" +
 				"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -enableJavadoc ")
 			.append(" -err:allJavadoc ")
@@ -675,10 +675,10 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
 			.append(" -warn:-unused")
-			.append(" --module-source-path " + "\"" + directory + "\" ")
-			.append(moduleLoc + File.separator + "module-info.java ")
-			.append(moduleLoc + File.separator + "p" + File.separator + "I1.java ")
-			.append(moduleLoc + File.separator + "p" + File.separator + "P1.java");
+			.append(" --module-source-path " + "\"" + directory + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "module-info.java ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "p" + File.separator + "I1.java ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "p" + File.separator + "P1.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(
 				new String[0],
@@ -697,13 +697,13 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				JavacTestOptions.JavacHasABug.NoWarningForMissingJavadocTag);
 	}
 
-	public void testBug549855f() {
+	public void testBug549855f() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"/**\n" +
 						" @uses java.util.Currency\n" +
@@ -713,7 +713,7 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 						" provides p.I1 with p.P1;\n" +
 						" uses java.util.Currency;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "I1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "I1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p;\n" +
 				"/**\n" +
 				" * interface I1\n" +
@@ -725,7 +725,7 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				"    */\n" +
 				"	public int foo();\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "P1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "P1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p;\n" +
 				"/**\n" +
 				" * class P1\n" +
@@ -735,8 +735,8 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				"	public int foo() { return 0; }\n" +
 				"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -enableJavadoc ")
 			.append(" -err:allJavadoc ")
@@ -744,10 +744,10 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
 			.append(" -warn:-unused")
-			.append(" --module-source-path " + "\"" + directory + "\" ")
-			.append(moduleLoc + File.separator + "module-info.java ")
-			.append(moduleLoc + File.separator + "p" + File.separator + "I1.java ")
-			.append(moduleLoc + File.separator + "p" + File.separator + "P1.java");
+			.append(" --module-source-path " + "\"" + directory + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "module-info.java ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "p" + File.separator + "I1.java ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "p" + File.separator + "P1.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(
 				new String[0],
@@ -766,13 +766,13 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				JavacTestOptions.JavacHasABug.NoWarningForMissingJavadocTag);
 	}
 
-	public void testBug549855g() {
+	public void testBug549855g() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"/**\n" +
 						" */\n" +
@@ -781,7 +781,7 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 						" provides p.I1 with p.P1;\n" +
 						" uses java.util.Currency;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "I1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "I1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p;\n" +
 				"/**\n" +
 				" * interface I1\n" +
@@ -793,7 +793,7 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				"    */\n" +
 				"	public int foo();\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "P1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "P1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p;\n" +
 				"/**\n" +
 				" * class P1\n" +
@@ -803,8 +803,8 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				"	public int foo() { return 0; }\n" +
 				"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -enableJavadoc ")
 			.append(" -err:allJavadoc ")
@@ -812,10 +812,10 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
 			.append(" -warn:-unused")
-			.append(" --module-source-path " + "\"" + directory + "\" ")
-			.append(moduleLoc + File.separator + "module-info.java ")
-			.append(moduleLoc + File.separator + "p" + File.separator + "I1.java ")
-			.append(moduleLoc + File.separator + "p" + File.separator + "P1.java");
+			.append(" --module-source-path " + "\"" + directory + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "module-info.java ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "p" + File.separator + "I1.java ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "p" + File.separator + "P1.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(
 				new String[0],
@@ -839,13 +839,13 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				JavacTestOptions.JavacHasABug.NoWarningForMissingJavadocTag);
 	}
 
-	public void testBug549855h() {
+	public void testBug549855h() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"/**\n" +
 						" * @provides p.I\n" +
@@ -856,7 +856,7 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 						" provides p.I1 with p.P1;\n" +
 						" uses java.util.Currency;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "I1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "I1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p;\n" +
 				"/**\n" +
 				" * interface I1\n" +
@@ -868,7 +868,7 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				"    */\n" +
 				"	public int foo();\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "P1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "P1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p;\n" +
 				"/**\n" +
 				" * class P1\n" +
@@ -878,8 +878,8 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				"	public int foo() { return 0; }\n" +
 				"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -enableJavadoc ")
 			.append(" -err:allJavadoc ")
@@ -887,10 +887,10 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
 			.append(" -warn:-unused")
-			.append(" --module-source-path " + "\"" + directory + "\" ")
-			.append(moduleLoc + File.separator + "module-info.java ")
-			.append(moduleLoc + File.separator + "p" + File.separator + "I1.java ")
-			.append(moduleLoc + File.separator + "p" + File.separator + "P1.java");
+			.append(" --module-source-path " + "\"" + directory + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "module-info.java ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "p" + File.separator + "I1.java ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "p" + File.separator + "P1.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(
 				new String[0],
@@ -912,19 +912,19 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				"reference not found");
 	}
 
-	public void testBug549855i() {
+	public void testBug549855i() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one {\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -enableJavadoc ")
 			.append(" -err:allJavadoc ")
@@ -932,8 +932,8 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
 			.append(" -warn:-unused")
-			.append(" --module-source-path " + "\"" + directory + "\" ")
-			.append(moduleLoc + File.separator + "module-info.java ");
+			.append(" --module-source-path " + "\"" + directory + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "module-info.java "); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(
 				new String[0],
@@ -950,14 +950,14 @@ public class JavadocTestForModule extends AbstractBatchCompilerTest {
 				"no comment");
 	}
 
-	public void testBug562960() {
+	public void testBug562960() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		String options =
-			"-d " + OUTPUT_DIR + File.separator + out +
+			"-d " + OUTPUT_DIR + File.separator + out + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			" -9 " +
 			" -enableJavadoc " +
 			" -err:allJavadoc " +

@@ -65,7 +65,7 @@ public class GetResourcesTests extends BuilderTests {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=6584
-	public void test001() throws JavaModelException {
+	public void test001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		fullBuild(projectPath);
@@ -102,7 +102,7 @@ public class GetResourcesTests extends BuilderTests {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=6584
-	public void test002() throws JavaModelException {
+	public void test002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		fullBuild(projectPath);
@@ -146,7 +146,7 @@ public class GetResourcesTests extends BuilderTests {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=6584
-	public void test003() throws JavaModelException {
+	public void test003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		fullBuild(projectPath);
@@ -189,7 +189,7 @@ public class GetResourcesTests extends BuilderTests {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=6584
-	public void test004() throws JavaModelException {
+	public void test004() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		fullBuild(projectPath);
@@ -236,7 +236,7 @@ public class GetResourcesTests extends BuilderTests {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=6584
-	public void test005() throws JavaModelException {
+	public void test005() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		fullBuild(projectPath);
@@ -400,7 +400,7 @@ public class GetResourcesTests extends BuilderTests {
 	private String getResourceOuput(IResource[] resources) {
 		StringWriter stringWriter = new StringWriter();
 		PrintWriter writer = new PrintWriter(stringWriter);
-		for (int i = 0, max = resources.length; i < max; i++) {
+		for (int i = 0, max = resources.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			writer.println(resources[i].getFullPath().toString());
 		}
 		writer.flush();
@@ -409,7 +409,7 @@ public class GetResourcesTests extends BuilderTests {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=6584
-	public void test007() throws JavaModelException {
+	public void test007() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		fullBuild(projectPath);
@@ -445,7 +445,7 @@ public class GetResourcesTests extends BuilderTests {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=6584
-	public void test008() throws JavaModelException {
+	public void test008() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		fullBuild(projectPath);
@@ -485,7 +485,7 @@ public class GetResourcesTests extends BuilderTests {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=6584
-	public void test009() throws JavaModelException {
+	public void test009() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		fullBuild(projectPath);
@@ -519,7 +519,7 @@ public class GetResourcesTests extends BuilderTests {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=6584
-	public void test010() throws JavaModelException {
+	public void test010() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		fullBuild(projectPath);
@@ -571,7 +571,7 @@ public class GetResourcesTests extends BuilderTests {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=6584
-	public void test011() throws JavaModelException {
+	public void test011() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		fullBuild(projectPath);
@@ -625,7 +625,7 @@ public class GetResourcesTests extends BuilderTests {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=6584
-	public void test012() throws JavaModelException {
+	public void test012() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		fullBuild(projectPath);
@@ -677,7 +677,7 @@ public class GetResourcesTests extends BuilderTests {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=6584
-	public void test013() throws JavaModelException {
+	public void test013() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		fullBuild(projectPath);
@@ -730,7 +730,7 @@ public class GetResourcesTests extends BuilderTests {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=6584
-	public void test014() throws JavaModelException {
+	public void test014() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		fullBuild(projectPath);
@@ -785,7 +785,7 @@ public class GetResourcesTests extends BuilderTests {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=6584
-	public void test015() throws JavaModelException {
+	public void test015() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		fullBuild(projectPath);

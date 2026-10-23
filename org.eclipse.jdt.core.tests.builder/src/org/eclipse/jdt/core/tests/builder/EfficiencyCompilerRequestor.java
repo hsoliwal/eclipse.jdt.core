@@ -22,9 +22,9 @@ import org.eclipse.jdt.internal.core.util.Util;
 public class EfficiencyCompilerRequestor implements IDebugRequestor {
 	private boolean isActive = false;
 
-	private final ArrayList<String> compiledClasses = new ArrayList<>();
-	private final ArrayList<String> compiledFiles = new ArrayList<>();
-	private final ArrayList<ClassFile> classes = new ArrayList<>();
+	private final ArrayList<String> compiledClasses = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	private final ArrayList<String> compiledFiles = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	private final ArrayList<ClassFile> classes = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 
 	public void acceptDebugResult(CompilationResult result){
@@ -37,7 +37,7 @@ public class EfficiencyCompilerRequestor implements IDebugRequestor {
 				return aName.compareTo(bName);
 			}
 		});
-		for (int i = 0; i < classFiles.length; i++) {
+		for (int i = 0; i < classFiles.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ClassFile c = classFiles[i];
 			this.classes.add(c);
 			String className = new String(c.fileName());

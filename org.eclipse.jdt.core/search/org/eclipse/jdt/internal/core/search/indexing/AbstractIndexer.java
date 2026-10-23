@@ -48,7 +48,7 @@ public abstract class AbstractIndexer implements IIndexConstants {
 		addIndexEntry(ANNOTATION_REF, CharOperation.lastSegment(typeName, '.'));
 		addIndexMetaQualification(typeName, false);
 	}
-	public void addClassDeclaration(
+	public void addClassDeclaration( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			int modifiers,
 			char[] packageName,
 			char[] name,
@@ -68,7 +68,7 @@ public abstract class AbstractIndexer implements IIndexConstants {
 			SuperTypeReferencePattern.createIndexKey(
 				modifiers, packageName, name, enclosingTypeNames, typeParameterSignatures, CLASS_SUFFIX, superclass, CLASS_SUFFIX));
 		if (superinterfaces != null) {
-			for (char[] si : superinterfaces) {
+			for (char[] si : superinterfaces) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				char[] superinterface = erasure(si);
 				addTypeReference(superinterface, true);
 				addIndexEntry(
@@ -84,7 +84,7 @@ public abstract class AbstractIndexer implements IIndexConstants {
 			typeName = CharOperation.subarray(typeName, 0, genericStart);
 		return typeName;
 	}
-	public void addConstructorDeclaration(
+	public void addConstructorDeclaration( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			char[] typeName,
 			int argCount,
 			char[] signature,
@@ -109,11 +109,11 @@ public abstract class AbstractIndexer implements IIndexConstants {
 						extraFlags));
 
 		if (parameterTypes != null) {
-			for (int i = 0; i < argCount; i++)
+			for (int i = 0; i < argCount; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				addTypeReference(parameterTypes[i]);
 		}
 		if (exceptionTypes != null)
-			for (char[] exceptionType : exceptionTypes)
+			for (char[] exceptionType : exceptionTypes) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				addTypeReference(exceptionType);
 	}
 	public void addConstructorReference(char[] typeName, int argCount) {
@@ -132,7 +132,7 @@ public abstract class AbstractIndexer implements IIndexConstants {
 			int extraFlags) {
 		addIndexEntry(CONSTRUCTOR_DECL, ConstructorPattern.createDefaultDeclarationIndexKey(CharOperation.lastSegment(typeName,'.'), packageName, typeModifiers, extraFlags));
 	}
-	public void addEnumDeclaration(int modifiers, char[] packageName, char[] name, char[][] enclosingTypeNames, char[] superclass, char[][] superinterfaces, boolean secondary) {
+	public void addEnumDeclaration(int modifiers, char[] packageName, char[] name, char[][] enclosingTypeNames, char[] superclass, char[][] superinterfaces, boolean secondary) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		addTypeDeclaration(modifiers, packageName, name, enclosingTypeNames, secondary);
 
 		addIndexEntry(
@@ -142,7 +142,7 @@ public abstract class AbstractIndexer implements IIndexConstants {
 		addIndexMetaQualification(superclass, true);
 
 		if (superinterfaces != null) {
-			for (char[] si : superinterfaces) {
+			for (char[] si : superinterfaces) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				char[] superinterface = erasure(si);
 				addTypeReference(superinterface, true);
 				addIndexEntry(
@@ -169,7 +169,7 @@ public abstract class AbstractIndexer implements IIndexConstants {
 		addTypeDeclaration(modifiers, packageName, name, enclosingTypeNames, secondary);
 
 		if (superinterfaces != null) {
-			for (char[] si : superinterfaces) {
+			for (char[] si : superinterfaces) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				char[] superinterface = erasure(si);
 				addTypeReference(superinterface, true);
 				addIndexEntry(
@@ -179,7 +179,7 @@ public abstract class AbstractIndexer implements IIndexConstants {
 			}
 		}
 	}
-	public void addMethodDeclaration(
+	public void addMethodDeclaration( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			char[] typeName,
 			char[] declaringQualification,
 			char[] methodName,
@@ -219,11 +219,11 @@ public abstract class AbstractIndexer implements IIndexConstants {
 		addIndexEntry(METHOD_DECL, MethodPattern.createIndexKey(methodName, argCount));
 
 		if (parameterTypes != null) {
-			for (int i = 0; i < argCount; i++)
+			for (int i = 0; i < argCount; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				addTypeReference(parameterTypes[i]);
 		}
 		if (exceptionTypes != null)
-			for (char[] exceptionType : exceptionTypes)
+			for (char[] exceptionType : exceptionTypes) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				addTypeReference(exceptionType);
 		if (returnType != null)
 			addTypeReference(returnType);
@@ -236,7 +236,7 @@ public abstract class AbstractIndexer implements IIndexConstants {
 	}
 	public void addModuleExportedPackages(char[] packageName) {
 		char[][] tokens = CharOperation.splitOn('.', packageName);
-		for (char[] token : tokens)
+		for (char[] token : tokens) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			addNameReference(token);
 	}
 	public void addModuleReference(char[] moduleName) {
@@ -245,7 +245,7 @@ public abstract class AbstractIndexer implements IIndexConstants {
 	public void addNameReference(char[] name) {
 		addIndexEntry(REF, name);
 	}
-	protected void addTypeDeclaration(int modifiers, char[] packageName, char[] name, char[][] enclosingTypeNames, boolean secondary) {
+	protected void addTypeDeclaration(int modifiers, char[] packageName, char[] name, char[][] enclosingTypeNames, boolean secondary) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] indexKey = TypeDeclarationPattern.createIndexKey(modifiers, name, packageName, enclosingTypeNames, secondary);
 		if (secondary)
 			JavaModelManager.getJavaModelManager().secondaryTypeAdding(

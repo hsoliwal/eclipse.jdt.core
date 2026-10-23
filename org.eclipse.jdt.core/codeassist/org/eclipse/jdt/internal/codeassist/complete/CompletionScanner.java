@@ -77,7 +77,7 @@ protected boolean isAtAssistIdentifier() {
  * Truncate the current identifier if it is containing the cursor location. Since completion is performed
  * on an identifier prefix.
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public char[] getCurrentIdentifierSource() {
 
 	if (this.completionIdentifier == null){
@@ -105,7 +105,7 @@ public char[] getCurrentIdentifierSource() {
 	return super.getCurrentIdentifierSource();
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public char[] getCurrentTokenSourceString() {
 	if (this.completionIdentifier == null){
 		if (this.cursorLocation+1 >= this.startPosition && this.cursorLocation < this.currentPosition){
@@ -125,7 +125,7 @@ public char[] getCurrentTokenSourceString() {
 	}
 	return super.getCurrentTokenSourceString();
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected TerminalToken getNextToken0() throws InvalidInputException {
 
 	this.wasAcr = false;
@@ -137,7 +137,7 @@ protected TerminalToken getNextToken0() throws InvalidInputException {
 	}
 	int whiteStart = 0;
 	try {
-		while (true) { //loop for jumping over comments
+		while (true) { //loop for jumping over comments //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.withoutUnicodePtr = 0;
 			//start with a new token (even comment written with unicode )
 
@@ -145,7 +145,7 @@ protected TerminalToken getNextToken0() throws InvalidInputException {
 			whiteStart = this.currentPosition;
 			boolean isWhiteSpace, hasWhiteSpaces = false;
 			int offset = 0;
-			do {
+			do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.startPosition = this.currentPosition;
 				boolean checkIfUnicode = false;
 				try {
@@ -212,7 +212,7 @@ protected TerminalToken getNextToken0() throws InvalidInputException {
 					// empty identifier is the end of the next token (e.g. "<empty token>next").
 					int temp = this.eofPosition;
 					this.eofPosition = this.source.length;
-				 	while(getNextCharAsJavaIdentifierPart()){/*empty*/}
+				 	while(getNextCharAsJavaIdentifierPart()){/*empty*/} //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				 	this.eofPosition = temp;
 				 	this.endOfEmptyToken = this.currentPosition - 1;
 					this.currentPosition = this.startPosition; // for being detected as empty free identifier
@@ -369,7 +369,7 @@ protected TerminalToken getNextToken0() throws InvalidInputException {
 						}
 						if (test > 0) {
 							// relocate if finding another quote fairly close: thus unicode '/u000D' will be fully consumed
-							for (int lookAhead = 0; lookAhead < 3; lookAhead++) {
+							for (int lookAhead = 0; lookAhead < 3; lookAhead++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								if (this.currentPosition + lookAhead == this.eofPosition)
 									break;
 								if (this.source[this.currentPosition + lookAhead] == '\n')
@@ -384,7 +384,7 @@ protected TerminalToken getNextToken0() throws InvalidInputException {
 					}
 					if (getNextChar('\'')) {
 						// relocate if finding another quote fairly close: thus unicode '/u000D' will be fully consumed
-						for (int lookAhead = 0; lookAhead < 3; lookAhead++) {
+						for (int lookAhead = 0; lookAhead < 3; lookAhead++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (this.currentPosition + lookAhead == this.eofPosition)
 								break;
 							if (this.source[this.currentPosition + lookAhead] == '\n')
@@ -432,7 +432,7 @@ protected TerminalToken getNextToken0() throws InvalidInputException {
 					if (getNextChar('\''))
 						return TokenNameCharacterLiteral;
 					// relocate if finding another quote fairly close: thus unicode '/u000D' will be fully consumed
-					for (int lookAhead = 0; lookAhead < 20; lookAhead++) {
+					for (int lookAhead = 0; lookAhead < 20; lookAhead++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (this.currentPosition + lookAhead == this.eofPosition)
 							break;
 						if (this.source[this.currentPosition + lookAhead] == '\n')
@@ -474,7 +474,7 @@ protected TerminalToken getNextToken0() throws InvalidInputException {
 									//-------------unicode traitement ------------
 									int c1 = 0, c2 = 0, c3 = 0, c4 = 0;
 									this.currentPosition++;
-									while (this.source[this.currentPosition] == 'u') {
+									while (this.source[this.currentPosition] == 'u') { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 										this.currentPosition++;
 									}
 									if ((c1 = ScannerHelper.getHexadecimalValue(this.source[this.currentPosition++])) > 15
@@ -497,7 +497,7 @@ protected TerminalToken getNextToken0() throws InvalidInputException {
 										this.currentPosition++;
 								} //jump over the \\
 								boolean isUnicode = false;
-								while (true) {
+								while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 									this.lastCommentLinePosition = this.currentPosition;
 									isUnicode = false;
 									/*
@@ -514,7 +514,7 @@ protected TerminalToken getNextToken0() throws InvalidInputException {
 											char unicodeChar;
 											int index = this.currentPosition + 1;
 											index++;
-											while (this.source[index] == 'u') {
+											while (this.source[index] == 'u') { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 												index++;
 											}
 											//-------------unicode treatment ------------
@@ -549,7 +549,7 @@ protected TerminalToken getNextToken0() throws InvalidInputException {
 										//-------------unicode traitement ------------
 										int c1 = 0, c2 = 0, c3 = 0, c4 = 0;
 										this.currentPosition++;
-										while (this.source[this.currentPosition] == 'u') {
+										while (this.source[this.currentPosition] == 'u') { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 											this.currentPosition++;
 										}
 										if ((c1 = ScannerHelper.getHexadecimalValue(this.source[this.currentPosition++])) > 15
@@ -655,7 +655,7 @@ protected TerminalToken getNextToken0() throws InvalidInputException {
 								}
 								//loop until end of comment */
 								int firstTag = 0;
-								while ((this.currentCharacter != '/') || (!star)) {
+								while ((this.currentCharacter != '/') || (!star)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 									if ((this.currentCharacter == '\r') || (this.currentCharacter == '\n')) {
 										//checkNonExternalizedString();
 										if (this.recordLineSeparator) {
@@ -834,7 +834,7 @@ public final void jumpOverBlock() {
 // * In case we actually read a keyword, but the cursor is located inside,
 // * we pretend we read an identifier.
 // */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public TerminalToken scanIdentifierOrKeyword() {
 
 	TerminalToken id = super.scanIdentifierOrKeyword();
@@ -846,7 +846,7 @@ public TerminalToken scanIdentifierOrKeyword() {
 		if (this.cursorLocation+1 == this.eofPosition) {
 			int temp = this.eofPosition;
 			this.eofPosition = this.source.length;
-		 	while(getNextCharAsJavaIdentifierPart()){/*empty*/}
+		 	while(getNextCharAsJavaIdentifierPart()){/*empty*/} //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.eofPosition = temp;
 		}
 		// convert completed keyword into an identifier

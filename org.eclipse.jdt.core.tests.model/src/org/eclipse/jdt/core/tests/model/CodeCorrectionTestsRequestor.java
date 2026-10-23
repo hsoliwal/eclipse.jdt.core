@@ -50,7 +50,7 @@ public class CodeCorrectionTestsRequestor implements ICorrectionRequestor {
 	}
 
 
-	private final List<Suggestion> suggestions = new ArrayList<>(5);
+	private final List<Suggestion> suggestions = new ArrayList<>(5); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 	public void acceptClass(char[] packageName,char[] className,char[] correctionName,int modifiers,int correctionStart,int correctionEnd){
 		this.suggestions.add(new Suggestion(correctionName, correctionStart, correctionEnd));
@@ -79,12 +79,12 @@ public class CodeCorrectionTestsRequestor implements ICorrectionRequestor {
 	public String getSuggestions(){
 		Suggestion[] sortedSuggestions = getSortedSuggestions();
 
-		StringBuilder result = new StringBuilder();
-		for (int i = 0; i < sortedSuggestions.length; i++) {
+		StringBuilder result = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0; i < sortedSuggestions.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(i != 0)
-				result.append('\n');
+				result.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
-			result.append(sortedSuggestions[i].text);
+			result.append(sortedSuggestions[i].text); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return result.toString();
 	}
@@ -92,12 +92,12 @@ public class CodeCorrectionTestsRequestor implements ICorrectionRequestor {
 	public String getStarts(){
 		Suggestion[] sortedSuggestions = getSortedSuggestions();
 
-		StringBuilder result = new StringBuilder();
-		for (int i = 0; i < sortedSuggestions.length; i++) {
+		StringBuilder result = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0; i < sortedSuggestions.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(i != 0)
-				result.append('\n');
+				result.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
-			result.append(sortedSuggestions[i].start);
+			result.append(sortedSuggestions[i].start); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return result.toString();
 	}
@@ -105,12 +105,12 @@ public class CodeCorrectionTestsRequestor implements ICorrectionRequestor {
 	public String getEnds(){
 		Suggestion[] sortedSuggestions = getSortedSuggestions();
 
-		StringBuilder result = new StringBuilder();
-		for (int i = 0; i < sortedSuggestions.length; i++) {
+		StringBuilder result = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0; i < sortedSuggestions.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(i != 0)
-				result.append('\n');
+				result.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
-			result.append(sortedSuggestions[i].end);
+			result.append(sortedSuggestions[i].end); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return result.toString();
 	}

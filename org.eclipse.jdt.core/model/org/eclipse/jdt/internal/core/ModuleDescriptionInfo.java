@@ -88,13 +88,13 @@ public class ModuleDescriptionInfo extends AnnotatableInfo implements ISourceMod
 
 		@Override
 		public String toString() {
-			StringBuilder builder = new StringBuilder();
-			builder.append("ModuleReferenceInfo ["); //$NON-NLS-1$
+			StringBuilder builder = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			builder.append("ModuleReferenceInfo ["); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (this.name() != null) {
-				builder.append("name="); //$NON-NLS-1$
-				builder.append(String.valueOf(this.name()));
+				builder.append("name="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				builder.append(String.valueOf(this.name())); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			builder.append("]"); //$NON-NLS-1$
+			builder.append("]"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return builder.toString();
 		}
 	}
@@ -104,15 +104,15 @@ public class ModuleDescriptionInfo extends AnnotatableInfo implements ISourceMod
 		char[][] target;
 		@Override
 		public String toString() {
-			StringBuilder buffer = new StringBuilder();
-			buffer.append(this.pack);
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buffer.append(this.pack); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (this.target != null) {
-				buffer.append(" to "); //$NON-NLS-1$
-				for (char[] mod : this.target) {
-					buffer.append(mod);
+				buffer.append(" to "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (char[] mod : this.target) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					buffer.append(mod); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
-			buffer.append(';');
+			buffer.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return buffer.toString();
 		}
 
@@ -140,15 +140,15 @@ public class ModuleDescriptionInfo extends AnnotatableInfo implements ISourceMod
 		}
 		@Override
 		public String toString() {
-			StringBuilder buffer = new StringBuilder();
-			buffer.append(this.serviceName);
-			buffer.append(" with "); //$NON-NLS-1$
-			for (int i = 0; i < this.implNames.length; i++) {
-				buffer.append(this.implNames[i]);
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buffer.append(this.serviceName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(" with "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (int i = 0; i < this.implNames.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append(this.implNames[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (i < this.implNames.length - 1)
-					buffer.append(", "); //$NON-NLS-1$
+					buffer.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buffer.append(';');
+			buffer.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return buffer.toString();
 		}
 
@@ -175,7 +175,7 @@ public class ModuleDescriptionInfo extends AnnotatableInfo implements ISourceMod
 		}
 	}
 
-	public static ModuleDescriptionInfo createModule(ModuleDeclaration module) {
+	public static ModuleDescriptionInfo createModule(ModuleDeclaration module) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ModuleDescriptionInfo mod = new ModuleDescriptionInfo();
 		mod.name = module.moduleName;
 		mod.setFlags(module.modifiers);
@@ -183,7 +183,7 @@ public class ModuleDescriptionInfo extends AnnotatableInfo implements ISourceMod
 			RequiresStatement[] refs = module.requires;
 			mod.requires = new ModuleReferenceInfo[refs.length+1];
 			mod.requires[0] = getJavaBaseReference();
-			for (int i = 0; i < refs.length; i++) {
+			for (int i = 0; i < refs.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				mod.requires[i+1] = new ModuleReferenceInfo();
 				mod.requires[i+1].name = CharOperation.concatWith(refs[i].module.tokens, '.'); // Check why ModuleReference#tokens must be a char[][] and not a char[] or String;
 				mod.requires[i+1].modifiers = refs[i].modifiers;
@@ -196,7 +196,7 @@ public class ModuleDescriptionInfo extends AnnotatableInfo implements ISourceMod
 		if (module.exportsCount > 0) {
 			ExportsStatement[] refs = module.exports;
 			mod.exports = new PackageExportInfo[refs.length];
-			for (int i = 0; i < refs.length; i++) {
+			for (int i = 0; i < refs.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				PackageExportInfo exp = createPackageExport(refs[i]);
 				mod.exports[i] = exp;
 			}
@@ -206,7 +206,7 @@ public class ModuleDescriptionInfo extends AnnotatableInfo implements ISourceMod
 		if (module.usesCount > 0) {
 			UsesStatement[] uses = module.uses;
 			mod.usedServices = new char[uses.length][];
-			for (int i = 0; i < uses.length; i++) {
+			for (int i = 0; i < uses.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				mod.usedServices[i] = CharOperation.concatWith(uses[i].serviceInterface.getTypeName(), '.');
 			}
 		} else {
@@ -215,7 +215,7 @@ public class ModuleDescriptionInfo extends AnnotatableInfo implements ISourceMod
 		if (module.servicesCount > 0) {
 			ProvidesStatement[] provides = module.services;
 			mod.services = new ServiceInfo[provides.length];
-			for (int i = 0; i < provides.length; i++) {
+			for (int i = 0; i < provides.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				mod.services[i] = createService(provides[i]);
 			}
 		} else {
@@ -224,7 +224,7 @@ public class ModuleDescriptionInfo extends AnnotatableInfo implements ISourceMod
 		if (module.opensCount > 0) {
 			OpensStatement[] opens = module.opens;
 			mod.opens = new PackageExportInfo[opens.length];
-			for (int i = 0; i < opens.length; i++) {
+			for (int i = 0; i < opens.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				PackageExportInfo op = createOpensInfo(opens[i]);
 				mod.opens[i] = op;
 			}
@@ -246,7 +246,7 @@ public class ModuleDescriptionInfo extends AnnotatableInfo implements ISourceMod
 		ModuleReference[] imp = ref.targets;
 		if (imp != null) {
 			exp.target = new char[imp.length][];
-			for(int j = 0; j < imp.length; j++) {
+			for(int j = 0; j < imp.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				exp.target[j] = imp[j].moduleName;
 			}
 		}
@@ -258,7 +258,7 @@ public class ModuleDescriptionInfo extends AnnotatableInfo implements ISourceMod
 		ModuleReference[] imp = opens.targets;
 		if (imp != null) {
 			open.target = new char[imp.length][];
-			for(int j = 0; j < imp.length; j++) {
+			for(int j = 0; j < imp.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				open.target[j] = imp[j].moduleName;
 			}
 		}
@@ -270,7 +270,7 @@ public class ModuleDescriptionInfo extends AnnotatableInfo implements ISourceMod
 		info.serviceName = CharOperation.concatWith(provides.serviceInterface.getTypeName(), '.');
 		TypeReference[] implementations = provides.implementations;
 		info.implNames = new char[implementations.length][];
-		for(int i = 0; i < implementations.length; i++) {
+		for(int i = 0; i < implementations.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			info.implNames[i] = CharOperation.concatWith(implementations[i].getTypeName(), '.');
 		}
 		return info;
@@ -334,7 +334,7 @@ public class ModuleDescriptionInfo extends AnnotatableInfo implements ISourceMod
 	public void addCategories(IJavaElement element, char[][] elementCategories) {
 		if (elementCategories == null) return;
 		if (this.categories == null)
-			this.categories = new HashMap<>();
+			this.categories = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		this.categories.put(element, CharOperation.toStrings(elementCategories));
 	}
 
@@ -344,59 +344,59 @@ public class ModuleDescriptionInfo extends AnnotatableInfo implements ISourceMod
 
 	@Override
 	public String toString() {
-		StringBuilder buffer = new StringBuilder(getClass().getName());
+		StringBuilder buffer = new StringBuilder(getClass().getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		toStringContent(buffer);
 		return buffer.toString();
 	}
-	protected void toStringContent(StringBuilder buffer) {
-		buffer.append("\n"); //$NON-NLS-1$
+	protected void toStringContent(StringBuilder buffer) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		buffer.append("\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (this.isOpen())
-			buffer.append("open "); //$NON-NLS-1$
-		buffer.append("module "); //$NON-NLS-1$
-		buffer.append(this.name).append(' ');
-		buffer.append('{').append('\n');
+			buffer.append("open "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("module "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(this.name).append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append('{').append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (this.requires != null && this.requires.length > 0) {
-			buffer.append('\n');
-			for (ModuleReferenceInfo require : this.requires) {
-				buffer.append("\trequires "); //$NON-NLS-1$
+			buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (ModuleReferenceInfo require : this.requires) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append("\trequires "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (require.isTransitive()) {
-					buffer.append("transitive "); //$NON-NLS-1$
+					buffer.append("transitive "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				if (require.isStatic()) {
-					buffer.append("static "); //$NON-NLS-1$
+					buffer.append("static "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				buffer.append(require.name);
-				buffer.append(';').append('\n');
+				buffer.append(require.name); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(';').append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		if (this.exports != null && this.exports.length > 0) {
-			buffer.append('\n');
-			for (PackageExportInfo export : this.exports) {
-				buffer.append("\texports "); //$NON-NLS-1$
-				buffer.append(export.toString()).append('\n');
+			buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (PackageExportInfo export : this.exports) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append("\texports "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(export.toString()).append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		if (this.usedServices != null && this.usedServices.length > 0) {
-			buffer.append('\n');
-			for (char[] usedService : this.usedServices) {
-				buffer.append("\tuses "); //$NON-NLS-1$
-				buffer.append(usedService).append('\n');
+			buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (char[] usedService : this.usedServices) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append("\tuses "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(usedService).append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		if (this.services != null && this.services.length > 0) {
-			buffer.append('\n');
-			for (ServiceInfo service : this.services) {
-				buffer.append("\tprovides "); //$NON-NLS-1$
-				buffer.append(service.toString()).append('\n');
+			buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (ServiceInfo service : this.services) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append("\tprovides "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(service.toString()).append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		if (this.opens != null && this.opens.length > 0) {
-			buffer.append('\n');
-			for (PackageExportInfo open : this.opens) {
-				buffer.append("\topens "); //$NON-NLS-1$
-				buffer.append(open.toString()).append('\n');
+			buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (PackageExportInfo open : this.opens) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append("\topens "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(open.toString()).append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		buffer.append('\n').append('}').toString();
+		buffer.append('\n').append('}').toString(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 }

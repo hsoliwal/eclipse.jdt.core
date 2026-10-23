@@ -56,7 +56,7 @@ public CodeSnippetScope(BlockScope parent, int variableCount) {
 * NOTE: Cannot invoke this method with a compilation unit scope.
 */
 
-public final boolean canBeSeenByForCodeSnippet(FieldBinding fieldBinding, TypeBinding receiverType, InvocationSite invocationSite, Scope scope) {
+public final boolean canBeSeenByForCodeSnippet(FieldBinding fieldBinding, TypeBinding receiverType, InvocationSite invocationSite, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (fieldBinding.isPublic()) return true;
 
 	ReferenceBinding invocationType = (ReferenceBinding) receiverType;
@@ -90,14 +90,14 @@ public final boolean canBeSeenByForCodeSnippet(FieldBinding fieldBinding, TypeBi
 		if (TypeBinding.notEquals(invocationType, fieldBinding.declaringClass)) {
 			ReferenceBinding outerInvocationType = invocationType;
 			ReferenceBinding temp = outerInvocationType.enclosingType();
-			while (temp != null) {
+			while (temp != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				outerInvocationType = temp;
 				temp = temp.enclosingType();
 			}
 
 			ReferenceBinding outerDeclaringClass = fieldBinding.declaringClass;
 			temp = outerDeclaringClass.enclosingType();
-			while (temp != null) {
+			while (temp != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				outerDeclaringClass = temp;
 				temp = temp.enclosingType();
 			}
@@ -115,7 +115,7 @@ public final boolean canBeSeenByForCodeSnippet(FieldBinding fieldBinding, TypeBi
 	ReferenceBinding type = (ReferenceBinding) receiverType;
 	PackageBinding declaringPackage = fieldBinding.declaringClass.fPackage;
 	TypeBinding originalDeclaringClass = fieldBinding.declaringClass .original();
-	do {
+	do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (type.isCapture()) { // https://bugs.eclipse.org/bugs/show_bug.cgi?id=285002
 			if (TypeBinding.equalsEquals(originalDeclaringClass, type.erasure().original())) return true;
 		} else {
@@ -131,7 +131,7 @@ public final boolean canBeSeenByForCodeSnippet(FieldBinding fieldBinding, TypeBi
 *
 * NOTE: Cannot invoke this method with a compilation unit scope.
 */
-public final boolean canBeSeenByForCodeSnippet(MethodBinding methodBinding, TypeBinding receiverType, InvocationSite invocationSite, Scope scope) {
+public final boolean canBeSeenByForCodeSnippet(MethodBinding methodBinding, TypeBinding receiverType, InvocationSite invocationSite, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (methodBinding.isPublic()) return true;
 
 	ReferenceBinding invocationType = (ReferenceBinding) receiverType;
@@ -165,14 +165,14 @@ public final boolean canBeSeenByForCodeSnippet(MethodBinding methodBinding, Type
 		if (TypeBinding.notEquals(invocationType, methodBinding.declaringClass)) {
 			ReferenceBinding outerInvocationType = invocationType;
 			ReferenceBinding temp = outerInvocationType.enclosingType();
-			while (temp != null) {
+			while (temp != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				outerInvocationType = temp;
 				temp = temp.enclosingType();
 			}
 
 			ReferenceBinding outerDeclaringClass = methodBinding.declaringClass;
 			temp = outerDeclaringClass.enclosingType();
-			while (temp != null) {
+			while (temp != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				outerDeclaringClass = temp;
 				temp = temp.enclosingType();
 			}
@@ -190,7 +190,7 @@ public final boolean canBeSeenByForCodeSnippet(MethodBinding methodBinding, Type
 	ReferenceBinding type = (ReferenceBinding) receiverType;
 	PackageBinding declaringPackage = methodBinding.declaringClass.fPackage;
 	TypeBinding originalDeclaringClass = methodBinding.declaringClass .original();
-	do {
+	do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (type.isCapture()) { // https://bugs.eclipse.org/bugs/show_bug.cgi?id=285002
 			if (TypeBinding.equalsEquals(originalDeclaringClass, type.erasure().original())) return true;
 		} else {
@@ -207,7 +207,7 @@ public final boolean canBeSeenByForCodeSnippet(MethodBinding methodBinding, Type
 * NOTE: Cannot invoke this method with a compilation unit scope.
 */
 
-public final boolean canBeSeenByForCodeSnippet(ReferenceBinding referenceBinding, ReferenceBinding receiverType) {
+public final boolean canBeSeenByForCodeSnippet(ReferenceBinding referenceBinding, ReferenceBinding receiverType) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (referenceBinding.isPublic()) return true;
 
 	if (TypeBinding.equalsEquals(receiverType, referenceBinding)) return true;
@@ -225,14 +225,14 @@ public final boolean canBeSeenByForCodeSnippet(ReferenceBinding referenceBinding
 		// already know they are not the identical type
 		ReferenceBinding outerInvocationType = receiverType;
 		ReferenceBinding temp = outerInvocationType.enclosingType();
-		while (temp != null) {
+		while (temp != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			outerInvocationType = temp;
 			temp = temp.enclosingType();
 		}
 
 		ReferenceBinding outerDeclaringClass = referenceBinding;
 		temp = outerDeclaringClass.enclosingType();
-		while (temp != null) {
+		while (temp != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			outerDeclaringClass = temp;
 			temp = temp.enclosingType();
 		}
@@ -264,7 +264,7 @@ public MethodBinding findExactMethod(ReferenceBinding receiverType, char[] selec
 	If no visible field is discovered, null is answered.
 */
 
-public FieldBinding findFieldForCodeSnippet(TypeBinding receiverType, char[] fieldName, InvocationSite invocationSite) {
+public FieldBinding findFieldForCodeSnippet(TypeBinding receiverType, char[] fieldName, InvocationSite invocationSite) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (receiverType.isBaseType())
 		return null;
 	if (receiverType.isArrayType()) {
@@ -296,7 +296,7 @@ public FieldBinding findFieldForCodeSnippet(TypeBinding receiverType, char[] fie
 	FieldBinding visibleField = null;
 	boolean keepLooking = true;
 	boolean notVisible = false; // we could hold onto the not visible field for extra error reporting
-	while (keepLooking) {
+	while (keepLooking) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		ReferenceBinding[] itsInterfaces = currentType.superInterfaces();
 		if (itsInterfaces != Binding.NO_SUPERINTERFACES) {
 			if (interfacesToVisit == null)
@@ -325,9 +325,9 @@ public FieldBinding findFieldForCodeSnippet(TypeBinding receiverType, char[] fie
 	if (interfacesToVisit != null) {
 		ProblemFieldBinding ambiguous = null;
 		org.eclipse.jdt.internal.compiler.util.SimpleSet interfacesSeen = new org.eclipse.jdt.internal.compiler.util.SimpleSet(lastPosition * 2);
-		done : for (int i = 0; i <= lastPosition; i++) {
+		done : for (int i = 0; i <= lastPosition; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ReferenceBinding[] interfaces = interfacesToVisit[i];
-			for (int j = 0, length = interfaces.length; j < length; j++) {
+			for (int j = 0, length = interfaces.length; j < length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ReferenceBinding anInterface = interfaces[j];
 				if (interfacesSeen.addIfNotIncluded(anInterface) == anInterface) {
 					// if interface as not already been visited
@@ -369,7 +369,7 @@ public MethodBinding findMethod(ReferenceBinding receiverType, char[] selector, 
 }
 
 // Internal use only
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public MethodBinding findMethodForArray(ArrayBinding receiverType, char[] selector, TypeBinding[] argumentTypes, InvocationSite invocationSite) {
 	ReferenceBinding object = getJavaLangObject();
 	MethodBinding methodBinding = object.getExactMethod(selector, argumentTypes, null);
@@ -427,7 +427,7 @@ public MethodBinding findMethodForArray(ArrayBinding receiverType, char[] select
 	IMPORTANT NOTE: This method is written under the assumption that compoundName is longer than length 1.
 */
 
-public Binding getBinding(char[][] compoundName, int mask, InvocationSite invocationSite, ReferenceBinding receiverType) {
+public Binding getBinding(char[][] compoundName, int mask, InvocationSite invocationSite, ReferenceBinding receiverType) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Binding binding = getBinding(compoundName[0], mask | Binding.TYPE | Binding.PACKAGE, invocationSite, true /*resolve*/);
 	invocationSite.setFieldIndex(1);
 	if (!binding.isValidBinding() || binding instanceof VariableBinding)
@@ -438,7 +438,7 @@ public Binding getBinding(char[][] compoundName, int mask, InvocationSite invoca
 	foundType: if (binding instanceof PackageBinding) {
 		PackageBinding packageBinding = (PackageBinding) binding;
 
-		while (currentIndex < length) {
+		while (currentIndex < length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			binding = packageBinding.getTypeOrPackage(compoundName[currentIndex++], null, currentIndex<length);
 			invocationSite.setFieldIndex(currentIndex);
  			if (binding == null) {
@@ -465,7 +465,7 @@ public Binding getBinding(char[][] compoundName, int mask, InvocationSite invoca
 	}
 
 	// know binding is now a ReferenceBinding
-	while (currentIndex < length) {
+	while (currentIndex < length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		ReferenceBinding typeBinding = (ReferenceBinding) binding;
 		char[] nextName = compoundName[currentIndex++];
 		invocationSite.setFieldIndex(currentIndex);
@@ -518,7 +518,7 @@ public Binding getBinding(char[][] compoundName, int mask, InvocationSite invoca
 	If no visible constructor is discovered, an error binding is answered.
 */
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public MethodBinding getConstructor(ReferenceBinding receiverType, TypeBinding[] argumentTypes, InvocationSite invocationSite) {
 	MethodBinding methodBinding = receiverType.getExactConstructor(argumentTypes);
 	if (methodBinding != null) {
@@ -532,7 +532,7 @@ public MethodBinding getConstructor(ReferenceBinding receiverType, TypeBinding[]
 	}
 	MethodBinding[] compatible = new MethodBinding[methods.length];
 	int compatibleIndex = 0;
-	for (MethodBinding method : methods) {
+	for (MethodBinding method : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    MethodBinding compatibleMethod = computeCompatibleMethod(method, argumentTypes, invocationSite);
 		if (compatibleMethod != null)
 			compatible[compatibleIndex++] = compatibleMethod;
@@ -542,7 +542,7 @@ public MethodBinding getConstructor(ReferenceBinding receiverType, TypeBinding[]
 
 	MethodBinding[] visible = new MethodBinding[compatibleIndex];
 	int visibleIndex = 0;
-	for (int i = 0; i < compatibleIndex; i++) {
+	for (int i = 0; i < compatibleIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		MethodBinding method = compatible[i];
 		if (canBeSeenByForCodeSnippet(method, receiverType, invocationSite, this)) {
 			visible[visibleIndex++] = method;

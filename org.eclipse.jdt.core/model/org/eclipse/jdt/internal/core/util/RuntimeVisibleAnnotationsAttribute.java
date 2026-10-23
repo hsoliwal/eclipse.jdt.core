@@ -43,7 +43,7 @@ public class RuntimeVisibleAnnotationsAttribute
 		if (length != 0) {
 			int readOffset = 8;
 			this.annotations = new IAnnotation[length];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Annotation annotation = new Annotation(classFileBytes, constantPool, offset + readOffset);
 				this.annotations[i] = annotation;
 				readOffset += annotation.sizeInBytes();

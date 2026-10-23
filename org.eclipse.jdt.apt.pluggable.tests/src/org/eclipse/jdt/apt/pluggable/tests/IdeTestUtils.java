@@ -83,7 +83,7 @@ public class IdeTestUtils {
 	 * @param destFolder
 	 *            the full path to the destination location.
 	 */
-	private static void copyResource(File src, File dest) throws IOException {
+	private static void copyResource(File src, File dest) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (dest.exists() &&
 				src.lastModified() < dest.lastModified() &&
 				src.length() == dest.length())
@@ -104,7 +104,7 @@ public class IdeTestUtils {
 		File destFolder = dest.getParentFile();
 		if (!destFolder.exists()) {
 			if (!destFolder.mkdirs()) {
-				throw new IOException("Unable to create directory " + destFolder);
+				throw new IOException("Unable to create directory " + destFolder); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		// write bytes to dest
@@ -114,7 +114,7 @@ public class IdeTestUtils {
 		}
 	}
 
-	private static void copyResources(File resourceFolder, File destFolder) throws IOException {
+	private static void copyResources(File resourceFolder, File destFolder) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (resourceFolder == null) {
 			return;
 		}
@@ -124,7 +124,7 @@ public class IdeTestUtils {
 			return;
 		}
 		// if there are any children, (recursively) copy them
-		for (String child : children) {
+		for (String child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if ("CVS".equals(child)) {
 				continue;
 			}
@@ -145,7 +145,7 @@ public class IdeTestUtils {
 		try (java.io.FileInputStream stream = new java.io.FileInputStream(file)) {
 			int bytesRead = 0;
 			int lastReadSize = 0;
-			while ((lastReadSize != -1) && (bytesRead != fileLength)) {
+			while ((lastReadSize != -1) && (bytesRead != fileLength)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				lastReadSize = stream.read(fileBytes, bytesRead, fileLength - bytesRead);
 				bytesRead += lastReadSize;
 			}

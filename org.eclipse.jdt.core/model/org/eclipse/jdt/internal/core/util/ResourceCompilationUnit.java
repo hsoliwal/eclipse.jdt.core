@@ -45,7 +45,7 @@ public class ResourceCompilationUnit implements ICompilationUnit {
 		this.mainTypeName = f.substring(start, end).toCharArray();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public char[] getContents() {
 		SoftReference<char[]> cr = this.contentRef;
 		if (cr != null) {

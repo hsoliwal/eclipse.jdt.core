@@ -48,7 +48,7 @@ public class IncrementalTests18 extends BuilderTests {
 		// add the org.eclipse.jdt.annotation library (bin/ folder or jar) to the project:
 		Bundle[] bundles = Platform.getBundles("org.eclipse.jdt.annotation","[2.0.0,3.0.0)");
 		File bundleFile = FileLocator.getBundleFileLocation(bundles[0]).get();
-		String annotationsLib = bundleFile.isDirectory() ? bundleFile.getPath()+"/bin" : bundleFile.getPath();
+		String annotationsLib = bundleFile.isDirectory() ? bundleFile.getPath()+"/bin" : bundleFile.getPath(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IJavaProject javaProject = env.getJavaProject("Project");
 		IClasspathEntry[] rawClasspath = javaProject.getRawClasspath();
 		int len = rawClasspath.length;
@@ -60,7 +60,7 @@ public class IncrementalTests18 extends BuilderTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=423122, [1.8] Missing incremental build dependency from lambda expression to functional interface.
-	public void test423122() throws JavaModelException {
+	public void test423122() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "1.8");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -94,7 +94,7 @@ public class IncrementalTests18 extends BuilderTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=423122, [1.8] Missing incremental build dependency from lambda expression to functional interface.
-	public void test423122a() throws JavaModelException {
+	public void test423122a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "1.8");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -150,7 +150,7 @@ public class IncrementalTests18 extends BuilderTests {
 		expectingNoProblems();
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=427105, [1.8][builder] Differences between incremental and full builds in method contract verification in the presence of type annotations
-	public void test427105() throws JavaModelException {
+	public void test427105() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "1.8");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -205,7 +205,7 @@ public class IncrementalTests18 extends BuilderTests {
 			);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=427105, [1.8][builder] Differences between incremental and full builds in method contract verification in the presence of type annotations
-	public void test427105a() throws JavaModelException {
+	public void test427105a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "1.8");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -261,7 +261,7 @@ public class IncrementalTests18 extends BuilderTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=428071, [1.8][compiler] Bogus error about incompatible return type during override
-	public void test428071() throws JavaModelException {
+	public void test428071() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "1.8");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -303,10 +303,10 @@ public class IncrementalTests18 extends BuilderTests {
 		expectingNoProblems();
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=430425, [1.8][compiler] Type mismatch: cannot convert from StyleConverter<ParsedValue[],Insets> to StyleConverter<ParsedValue[],Insets>
-	public void test430425() throws JavaModelException {
+	public void test430425() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "1.8");
 		String jreDirectory = Util.getJREDirectory();
-		String jfxJar = Util.toNativePath(jreDirectory + "/lib/ext/jfxrt.jar");
+		String jfxJar = Util.toNativePath(jreDirectory + "/lib/ext/jfxrt.jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		File file = new File(jfxJar);
 		if (file.exists())
 			env.addExternalJars(projectPath, Util.concatWithClassLibs(jfxJar, false));
@@ -368,7 +368,7 @@ public class IncrementalTests18 extends BuilderTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=435544, [compiler][null] Enum constants not recognised as being NonNull (take2)
-	public void test435544() throws JavaModelException {
+	public void test435544() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "1.8");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -409,7 +409,7 @@ public class IncrementalTests18 extends BuilderTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=442452,  [compiler][regression] Bogus error: The interface Comparable cannot be implemented more than once with different arguments
-	public void testBug442452() throws JavaModelException {
+	public void testBug442452() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "1.8");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.setOutputFolder(projectPath, "bin"); //$NON-NLS-1$
@@ -449,7 +449,7 @@ public class IncrementalTests18 extends BuilderTests {
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=442755,
 	// [compiler] NPE at ProblemHandler.handle
-	public void testBug442755() throws JavaModelException {
+	public void testBug442755() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "1.8");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.setOutputFolder(projectPath, "bin");
@@ -481,7 +481,7 @@ public class IncrementalTests18 extends BuilderTests {
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=442755,
 	// [compiler] NPE at ProblemHandler.handle
 	// Simplified test case.
-	public void testBug442755a() throws JavaModelException {
+	public void testBug442755a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "1.8");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.setOutputFolder(projectPath, "bin");
@@ -507,7 +507,7 @@ public class IncrementalTests18 extends BuilderTests {
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=445049,
 	// [compiler] java.lang.ClassCastException: org.eclipse.jdt.internal.compiler.lookup.BinaryTypeBinding
 	// cannot be cast to org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding
-	public void test445049() throws JavaModelException {
+	public void test445049() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "1.8");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -533,7 +533,7 @@ public class IncrementalTests18 extends BuilderTests {
 			" resource : </Project/src/X.java> range : <31,38> category : <40> severity : <2>]");
 	}
 
-	public void testBug481276a() throws Exception {
+	public void testBug481276a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "1.8");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -604,7 +604,7 @@ public class IncrementalTests18 extends BuilderTests {
 			" resource : </Project/src/testNullAnnotations/Snippet.java> range : <316,323> category : <90> severity : <2>]");
 	}
 
-	public void testBug481276b() throws Exception {
+	public void testBug481276b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "1.8");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -676,7 +676,7 @@ public class IncrementalTests18 extends BuilderTests {
 		expectingNoProblems();
 	}
 
-	public void testBug481276c() throws Exception {
+	public void testBug481276c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "1.8");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -736,7 +736,7 @@ public class IncrementalTests18 extends BuilderTests {
 			" resource : </Project/src/testNullAnnotations/Snippet.java> range : <303,324> category : <90> severity : <1>]");
 	}
 
-	public void testBug483744_remove() throws JavaModelException {
+	public void testBug483744_remove() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "1.8");
 		env.getJavaProject(projectPath).setOption(JavaCore.COMPILER_PB_REDUNDANT_NULL_ANNOTATION, JavaCore.IGNORE);
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -813,7 +813,7 @@ public class IncrementalTests18 extends BuilderTests {
 		expectingNoProblems();
 	}
 
-	public void testGH1631() throws JavaModelException, IOException, ClassFormatException {
+	public void testGH1631() throws JavaModelException, IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "1.8");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.setOutputFolder(projectPath, "bin");

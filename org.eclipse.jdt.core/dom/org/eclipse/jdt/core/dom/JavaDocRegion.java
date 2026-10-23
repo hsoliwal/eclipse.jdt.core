@@ -80,7 +80,7 @@ public class JavaDocRegion extends AbstractTagElement{
 	private static final List PROPERTY_DESCRIPTORS;
 
 	static {
-		List propertyList = new ArrayList(6);
+		List propertyList = new ArrayList(6); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(JavaDocRegion.class, propertyList);
 		addProperty(TAG_NAME_PROPERTY, propertyList);
 		addProperty(FRAGMENTS_PROPERTY, propertyList);
@@ -113,7 +113,7 @@ public class JavaDocRegion extends AbstractTagElement{
 		return propertyDescriptors(apiLevel);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final boolean internalGetSetBooleanProperty(SimplePropertyDescriptor property, boolean get, boolean newValue) {
 		if (property == DUMMY_REGION_PROPERTY) {
 			if (get) {

@@ -524,37 +524,37 @@ public final class Flags {
 	 * @param flags the flags
 	 * @return the standard string representation of the given flags
 	 */
-	public static String toString(int flags) {
-		StringBuilder sb = new StringBuilder();
+	public static String toString(int flags) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
 		if (isPublic(flags))
-			sb.append("public "); //$NON-NLS-1$
+			sb.append("public "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (isProtected(flags))
-			sb.append("protected "); //$NON-NLS-1$
+			sb.append("protected "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (isPrivate(flags))
-			sb.append("private "); //$NON-NLS-1$
+			sb.append("private "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (isAbstract(flags))
-			sb.append("abstract "); //$NON-NLS-1$
+			sb.append("abstract "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (isDefaultMethod(flags))
-			sb.append("default "); //$NON-NLS-1$
+			sb.append("default "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (isStatic(flags))
-			sb.append("static "); //$NON-NLS-1$
+			sb.append("static "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (isFinal(flags))
-			sb.append("final "); //$NON-NLS-1$
+			sb.append("final "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (isSynchronized(flags))
-			sb.append("synchronized "); //$NON-NLS-1$
+			sb.append("synchronized "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (isNative(flags))
-			sb.append("native "); //$NON-NLS-1$
+			sb.append("native "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (isStrictfp(flags))
-			sb.append("strictfp "); //$NON-NLS-1$
+			sb.append("strictfp "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (isTransient(flags))
-			sb.append("transient "); //$NON-NLS-1$
+			sb.append("transient "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (isVolatile(flags))
-			sb.append("volatile "); //$NON-NLS-1$
+			sb.append("volatile "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (isSealed(flags))
-			sb.append("sealed "); //$NON-NLS-1$
+			sb.append("sealed "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (isNonSealed(flags))
-			sb.append("non-sealed "); //$NON-NLS-1$
+			sb.append("non-sealed "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		int len = sb.length();
 		if (len == 0)
 			return ""; //$NON-NLS-1$

@@ -74,7 +74,7 @@ public class TestingEnvironment {
 	 */
 	public IPath addBinaryClass(IPath packagePath, String className, byte[] contents) {
 		checkAssertion("a workspace must be open", this.isOpen); //$NON-NLS-1$
-		IPath classPath = packagePath.append(className + ".class"); //$NON-NLS-1$
+		IPath classPath = packagePath.append(className + ".class"); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createFile(classPath, contents);
 		return classPath;
 	}
@@ -106,7 +106,7 @@ public class TestingEnvironment {
 	 */
 	public IPath addClass(IPath packagePath, String className, String contents) {
 		checkAssertion("a workspace must be open", this.isOpen); //$NON-NLS-1$
-		IPath classPath = packagePath.append(className + ".java"); //$NON-NLS-1$
+		IPath classPath = packagePath.append(className + ".java"); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createFile(classPath, contents.getBytes(StandardCharsets.UTF_8));
 		return classPath;
 	}
@@ -166,7 +166,7 @@ public void addClassFolder(IPath projectPath, IPath classFolderPath, boolean isE
 	}
 
 	public IPath addTestPackageFragmentRoot(IPath projectPath, String sourceFolderName) throws JavaModelException {
-		return addPackageFragmentRoot(projectPath, sourceFolderName, null, null, "bin-"+sourceFolderName, true);
+		return addPackageFragmentRoot(projectPath, sourceFolderName, null, null, "bin-"+sourceFolderName, true); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/** Adds a package fragment root to the workspace.  If
@@ -197,7 +197,7 @@ public void addClassFolder(IPath projectPath, IPath classFolderPath, boolean isE
 		return addPackageFragmentRoot(projectPath, sourceFolderName, null, null, null, extraAttributes);
 	}
 
-	public IPath addPackageFragmentRoot(IPath projectPath, String sourceFolderName, IPath[] inclusionPatterns,
+	public IPath addPackageFragmentRoot(IPath projectPath, String sourceFolderName, IPath[] inclusionPatterns, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			IPath[] exclusionPatterns, String specificOutputLocation, IClasspathAttribute[] extraAttributes)
 			throws JavaModelException {
 		checkAssertion("a workspace must be open", this.isOpen); //$NON-NLS-1$
@@ -226,7 +226,7 @@ public void addClassFolder(IPath projectPath, IPath classFolderPath, boolean isE
 		return addProject(projectName, CompilerOptions.getFirstSupportedJavaVersion());
 	}
 
-	public IPath addProject(String projectName, String compliance){
+	public IPath addProject(String projectName, String compliance){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		checkAssertion("a workspace must be open", this.isOpen); //$NON-NLS-1$
 		IProject project = createProject(projectName);
 		long requiredComplianceFlag = 0;
@@ -293,13 +293,13 @@ public void addClassFolder(IPath projectPath, IPath classFolderPath, boolean isE
 			requiredComplianceFlag = ClassFileConstants.JDK26;
 			compilerVersion = CompilerOptions.VERSION_26;
 		} else {
-			throw new UnsupportedOperationException("Test framework doesn't support compliance level: " + compliance);
+			throw new UnsupportedOperationException("Test framework doesn't support compliance level: " + compliance); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		if (requiredComplianceFlag != 0) {
 			if (CompilerOptions.versionToJdkLevel(System.getProperty("java.specification.version")) < requiredComplianceFlag)
-				throw new RuntimeException("This test requires a " + compliance + " JRE");
+				throw new RuntimeException("This test requires a " + compliance + " JRE"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IJavaProject javaProject = JavaCore.create(project);
-			Map<String, String> options = new HashMap<>();
+			Map<String, String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			options.put(CompilerOptions.OPTION_Compliance, compilerVersion);
 			options.put(CompilerOptions.OPTION_Source, compilerVersion);
 			options.put(CompilerOptions.OPTION_TargetPlatform, compilerVersion);
@@ -360,7 +360,7 @@ public void addClassFolder(IPath projectPath, IPath classFolderPath, boolean isE
 	}
 
 	public void addExternalFolders(IPath projectPath, String[] folders, boolean isExported) throws JavaModelException {
-		for (int i = 0, max = folders.length; i < max; i++) {
+		for (int i = 0, max = folders.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String folder = folders[i];
 			checkAssertion("folder name must not end with .zip or .jar", !folder.endsWith(".zip") && !folder.endsWith(".jar")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			addEntry(projectPath, JavaCore.newLibraryEntry(new Path(folder), null, null, isExported));
@@ -378,7 +378,7 @@ public void addClassFolder(IPath projectPath, IPath classFolderPath, boolean isE
 	/** Adds an external jar to the classpath of a project.
 	 */
 	public void addExternalJars(IPath projectPath, String[] jars, boolean isExported) throws JavaModelException {
-		for (int i = 0, max = jars.length; i < max; i++) {
+		for (int i = 0, max = jars.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String jar = jars[i];
 			addEntry(projectPath, JavaCore.newLibraryEntry(new Path(jar), null, null, isExported));
 		}
@@ -481,7 +481,7 @@ public void cleanBuild(String projectName) {
 		try {
 			if (this.projects != null) {
 				Enumeration<String> projectNames = this.projects.keys();
-				while (projectNames.hasMoreElements()) {
+				while (projectNames.hasMoreElements()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String projectName = projectNames.nextElement();
 					getJavaProject(projectName).getJavaModel().close();
 				}
@@ -520,7 +520,7 @@ public void cleanBuild(String projectName) {
 		return null;
 	}
 
-	private IFolder createFolder(IPath path) {
+	private IFolder createFolder(IPath path) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		checkAssertion("root", !path.isRoot()); //$NON-NLS-1$
 
 		/* don't create folders for projects */
@@ -545,7 +545,7 @@ public void cleanBuild(String projectName) {
 	private IProject createProject(String projectName) {
 		final IProject project = this.workspace.getRoot().getProject(projectName);
 		try {
-			IWorkspaceRunnable create = new IWorkspaceRunnable() {
+			IWorkspaceRunnable create = new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
 					project.create(null, null);
 					project.open(null);
@@ -566,7 +566,7 @@ public void cleanBuild(String projectName) {
 	void deleteResource(IResource resource) {
 		int retryCount = 0; // wait 1 minute at most
 		IStatus status = null;
-		while (++retryCount <= 6) {
+		while (++retryCount <= 6) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			status = Util.delete(resource);
 			if (status.isOK()) {
 				return;
@@ -688,7 +688,7 @@ public void cleanBuild(String projectName) {
 	/**
 	 * Return all problems with the specified element.
 	 */
-	public Problem[] getProblemsFor(IPath path, String additionalMarkerType){
+	public Problem[] getProblemsFor(IPath path, String additionalMarkerType){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IResource resource;
 		if(path.equals(getWorkspaceRootPath())){
 			resource = getWorkspace().getRoot();
@@ -703,22 +703,22 @@ public void cleanBuild(String projectName) {
 			}
 		}
 		try {
-			ArrayList<Problem> problems = new ArrayList<>();
+			ArrayList<Problem> problems = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			IMarker[] markers = resource.findMarkers(IJavaModelMarker.JAVA_MODEL_PROBLEM_MARKER, true, IResource.DEPTH_INFINITE);
-			for (int i = 0; i < markers.length; i++)
+			for (int i = 0; i < markers.length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				problems.add(new Problem(markers[i]));
 
 			markers = resource.findMarkers(IJavaModelMarker.BUILDPATH_PROBLEM_MARKER, true, IResource.DEPTH_INFINITE);
-			for (int i = 0; i < markers.length; i++)
+			for (int i = 0; i < markers.length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				problems.add(new Problem(markers[i]));
 
 			markers = resource.findMarkers(IJavaModelMarker.TASK_MARKER, true, IResource.DEPTH_INFINITE);
-			for (int i = 0; i < markers.length; i++)
+			for (int i = 0; i < markers.length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				problems.add(new Problem(markers[i]));
 
 			if (additionalMarkerType != null) {
 				markers = resource.findMarkers(additionalMarkerType, true, IResource.DEPTH_INFINITE);
-				for (int i = 0; i < markers.length; i++)
+				for (int i = 0; i < markers.length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					problems.add(new Problem(markers[i]));
 			}
 
@@ -740,7 +740,7 @@ public void cleanBuild(String projectName) {
 	/**
 	 * Return all problems with the specified element.
 	 */
-	public IMarker[] getTaskMarkersFor(IPath path){
+	public IMarker[] getTaskMarkersFor(IPath path){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IResource resource = null;
 		if(path.equals(getWorkspaceRootPath())){
 			resource = getWorkspace().getRoot();
@@ -821,7 +821,7 @@ public void cleanBuild(String projectName) {
 	private File tmpDirectory;
 	File getTmpDirectory() {
 		if (this.tmpDirectory == null) {
-			this.tmpDirectory = new File(System.getProperty("java.io.tmpdir") +
+			this.tmpDirectory = new File(System.getProperty("java.io.tmpdir") + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					File.separator + "org.eclipse.jdt.core.builder.tests.tmp");
 			if (this.tmpDirectory.exists() && !this.tmpDirectory.isDirectory()) {
 				Util.delete(this.tmpDirectory);
@@ -863,21 +863,21 @@ public void cleanBuild(String projectName) {
 			throw ae;
 		} else {
 			e.printStackTrace();
-			Assert.isTrue(false, "Unhandled exception: " + e.toString());
+			Assert.isTrue(false, "Unhandled exception: " + e.toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
 	/**
 	 * Tries to find and return first exception from a status, if any.
 	 */
-	Throwable getRootCauseFromStatus(CoreException e) {
+	Throwable getRootCauseFromStatus(CoreException e) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IStatus status = e.getStatus();
-		while(status.getException() instanceof CoreException ce) {
+		while(status.getException() instanceof CoreException ce) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			status = ce.getStatus();
 		}
 		if(status instanceof MultiStatus ms) {
 			IStatus[] children = ms.getChildren();
-			for (IStatus s : children) {
+			for (IStatus s : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Throwable exception = s.getException();
 				if(exception instanceof CoreException ce) {
 					Throwable t = getRootCauseFromStatus(ce);
@@ -895,7 +895,7 @@ public void cleanBuild(String projectName) {
 	/**
 	* Handles a core exception thrown during a testing environment operation
 	*/
-	private void handleCoreException(CoreException e) {
+	private void handleCoreException(CoreException e) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Throwable throwable = getRootCauseFromStatus(e);
 		if(throwable instanceof AssertionError ae) {
 			throw ae;
@@ -906,12 +906,12 @@ public void cleanBuild(String projectName) {
 		if (status.isMultiStatus()) {
 			MultiStatus multiStatus = (MultiStatus) status;
 			IStatus[] children = multiStatus.getChildren();
-			StringBuilder buffer = new StringBuilder();
-			for (int i = 0, max = children.length; i < max; i++) {
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			for (int i = 0, max = children.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IStatus child = children[i];
 				if (child != null) {
-					buffer.append(child.getMessage());
-					buffer.append(System.getProperty("line.separator"));//$NON-NLS-1$
+					buffer.append(child.getMessage()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(System.getProperty("line.separator"));//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					Throwable childException = child.getException();
 					if (childException != null) {
 						childException.printStackTrace();
@@ -922,7 +922,7 @@ public void cleanBuild(String projectName) {
 		}
 		Assert.isTrue(
 			false,
-			"Core exception in testing environment: " + message); //$NON-NLS-1$
+			"Core exception in testing environment: " + message); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/** Incrementally builds the workspace.  A workspace must be
@@ -944,7 +944,7 @@ public void cleanBuild(String projectName) {
 		checkAssertion("a workspace must be open", this.isOpen); //$NON-NLS-1$
 		try {
 			IProject project = getProject(projectPath);
-			checkAssertion("project for path "+projectPath+" not found", project !=null);
+			checkAssertion("project for path "+projectPath+" not found", project !=null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			project.build(IncrementalProjectBuilder.INCREMENTAL_BUILD, null);
 		} catch (Throwable e) {
 			handle(e);
@@ -1078,7 +1078,7 @@ public void cleanBuild(String projectName) {
 	public void resetWorkspace(){
 		if (this.projects != null) {
 			Enumeration<String> projectNames = this.projects.keys();
-			while (projectNames.hasMoreElements()) {
+			while (projectNames.hasMoreElements()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String projectName = projectNames.nextElement();
 				removeProject(getProject(projectName).getFullPath());
 			}
@@ -1088,7 +1088,7 @@ public void cleanBuild(String projectName) {
 	/** Removes the given internal jar from the workspace.
 	 * A workspace must be open.
 	 */
-	public void removeInternalJar(IPath projectPath, String zipName) throws JavaModelException {
+	public void removeInternalJar(IPath projectPath, String zipName) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		checkAssertion("a workspace must be open", this.isOpen); //$NON-NLS-1$
 		checkAssertion("zipName must end with .zip or .jar", zipName.endsWith(".zip") || zipName.endsWith(".jar")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
@@ -1118,7 +1118,7 @@ public void cleanBuild(String projectName) {
 	private void removeEntry(IPath projectPath, IPath entryPath) throws JavaModelException {
 		checkAssertion("a workspace must be open", this.isOpen); //$NON-NLS-1$
 		IClasspathEntry[] oldEntries = getRawClasspath(projectPath);
-		for (int i = 0; i < oldEntries.length; ++i) {
+		for (int i = 0; i < oldEntries.length; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (oldEntries[i].getPath().equals(entryPath)) {
 				IClasspathEntry[] newEntries = new IClasspathEntry[oldEntries.length - 1];
 				System.arraycopy(oldEntries, 0, newEntries, 0, i);
@@ -1128,10 +1128,10 @@ public void cleanBuild(String projectName) {
 		}
 	}
 
-	public void changePackageFragmentRootTestAttribute(IPath projectPath, IPath entryPath, boolean isTest) throws JavaModelException {
+	public void changePackageFragmentRootTestAttribute(IPath projectPath, IPath entryPath, boolean isTest) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		checkAssertion("a workspace must be open", this.isOpen); //$NON-NLS-1$
 		IClasspathEntry[] oldEntries = getRawClasspath(projectPath);
-		for (int i = 0; i < oldEntries.length; ++i) {
+		for (int i = 0; i < oldEntries.length; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final IClasspathEntry oldEntry = oldEntries[i];
 			if (oldEntry.getPath().equals(entryPath)) {
 				IClasspathEntry[] newEntries = oldEntries.clone();
@@ -1276,7 +1276,7 @@ public void cleanBuild(String projectName) {
 	public void waitForAutoBuild() {
 		checkAssertion("a workspace must be open", this.isOpen); //$NON-NLS-1$
 		boolean wasInterrupted = false;
-		do {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				Job.getJobManager().join(ResourcesPlugin.FAMILY_AUTO_BUILD, null);
 				boolean enableIndex = true;
@@ -1293,7 +1293,7 @@ public void cleanBuild(String projectName) {
 	public void waitForManualRefresh() {
 		checkAssertion("a workspace must be open", this.isOpen); //$NON-NLS-1$
 		boolean wasInterrupted = false;
-		do {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				Job.getJobManager().join(ResourcesPlugin.FAMILY_MANUAL_REFRESH, null);
 				boolean enableIndex = true;

@@ -62,7 +62,7 @@ public class CreateImportsTests extends AbstractJavaModelTests {
 	private String createImport(String importName, int flags) throws JavaModelException {
 		return createImport(importName, flags, null/*no sibling*/);
 	}
-	private String createImport(String importName, int flags, IJavaElement sibling) throws JavaModelException {
+	private String createImport(String importName, int flags, IJavaElement sibling) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit workingCopy = this.workingCopies[0];
 		workingCopy.createImport(importName, sibling, flags, null/*no progress*/);
 		Map options = getJavaProject("P").getOptions(true);
@@ -180,7 +180,7 @@ public class CreateImportsTests extends AbstractJavaModelTests {
 	 * Ensures that adding an onDemand non-static import starting with an existing non-onDemand import
 	 * is reflected in the source.
 	 */
-	public void test006() throws JavaModelException {
+	public void test006() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setContents(
 			"import java.util.ZipFile;\n" +
 			"import static java.util.ZipFile.*;\n" +
@@ -219,7 +219,7 @@ public class CreateImportsTests extends AbstractJavaModelTests {
 	/*
 	 * Ensures that adding an import triggers the correct delta.
 	 */
-	public void test008() throws JavaModelException {
+	public void test008() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setContents(
 			"import static java.lang.Math.*;\n" +
 			"\n" +
@@ -242,7 +242,7 @@ public class CreateImportsTests extends AbstractJavaModelTests {
 	/*
 	 * Ensures that adding an import before a sibling is correctly reflected in the source.
 	 */
-	public void test009() throws JavaModelException {
+	public void test009() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setContents(
 			"import static java.lang.Math.*;\n" +
 			"\n" +

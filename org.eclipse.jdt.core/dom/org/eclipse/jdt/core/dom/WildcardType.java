@@ -69,13 +69,13 @@ public class WildcardType extends AnnotatableType {
 	private static final List PROPERTY_DESCRIPTORS_8_0;
 
 	static {
-		List propertyList = new ArrayList(3);
+		List propertyList = new ArrayList(3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(WildcardType.class, propertyList);
 		addProperty(BOUND_PROPERTY, propertyList);
 		addProperty(UPPER_BOUND_PROPERTY, propertyList);
 		PROPERTY_DESCRIPTORS = reapPropertyList(propertyList);
 
-		propertyList = new ArrayList(4);
+		propertyList = new ArrayList(4); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(WildcardType.class, propertyList);
 		addProperty(ANNOTATIONS_PROPERTY, propertyList);
 		addProperty(BOUND_PROPERTY, propertyList);

@@ -46,10 +46,10 @@ public class TestAll extends junit.framework.TestCase {
 public TestAll(String testName) {
 	super(testName);
 }
-public static Test suite() {
+public static Test suite() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Common test suites
-	ArrayList standardTests = new ArrayList();
+	ArrayList standardTests = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	standardTests.add(ArrayTest.class);
 	standardTests.add(AssignmentTest.class);
 	standardTests.add(BooleanTest.class);
@@ -154,12 +154,12 @@ public static Test suite() {
 	standardTests.add(DubiousOutcomeTest.class);
 
 	// add all javadoc tests
-	for (int i=0, l=JavadocTest.ALL_CLASSES.size(); i<l; i++) {
+	for (int i=0, l=JavadocTest.ALL_CLASSES.size(); i<l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		standardTests.add(JavadocTest.ALL_CLASSES.get(i));
 	}
 
 	// specific to ancient versions that are no longer supported:
-	ArrayList legacyTests = new ArrayList();
+	ArrayList legacyTests = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	legacyTests.add(Compliance_1_3.class);
 	legacyTests.add(JavadocTest_1_3.class);
 	legacyTests.add(Compliance_CLDC.class);
@@ -278,16 +278,16 @@ public static Test suite() {
 
 	int possibleComplianceLevels = AbstractCompilerTest.getPossibleComplianceLevels();
 
-	for (int v=0; v < AbstractCompilerTest.NUM_VERSIONS; v++) {
+	for (int v=0; v < AbstractCompilerTest.NUM_VERSIONS; v++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int level = AbstractCompilerTest.F_1_8 << v;
 		if ((possibleComplianceLevels & level) != 0) {
-			ArrayList complianceTests = new ArrayList(standardTests);
+			ArrayList complianceTests = new ArrayList(standardTests); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			if (level == AbstractCompilerTest.F_1_8) {
 				// invoke these only when 1.8 has been explicitly requested:
 				TestCase.resetForgottenFilters(legacyTests);
 				complianceTests.addAll(legacyTests);
 			}
-			for (int j=0; j<v; j++) {
+			for (int j=0; j<v; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				List<Class<?>> jList = Arrays.asList(sinceTests[j]);
 				complianceTests.addAll(jList);
 			}

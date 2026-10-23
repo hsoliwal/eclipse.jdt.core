@@ -57,9 +57,9 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 		super(name);
 	}
 
-	private void setJavadocLocationAttribute(String folderName) throws JavaModelException {
+	private void setJavadocLocationAttribute(String folderName) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IClasspathEntry[] entries = this.project.getRawClasspath();
-		IResource resource = this.project.getProject().findMember("/"+folderName+"/"); //$NON-NLS-1$
+		IResource resource = this.project.getProject().findMember("/"+folderName+"/"); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertNotNull("doc folder cannot be null", resource); //$NON-NLS-1$
 		URI locationURI = resource.getLocationURI();
 		assertNotNull("doc folder cannot be null", locationURI); //$NON-NLS-1$
@@ -72,7 +72,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 			assertTrue("Should not happen", false); //$NON-NLS-1$
 		}
 		IClasspathAttribute attribute = JavaCore.newClasspathAttribute(IClasspathAttribute.JAVADOC_LOCATION_ATTRIBUTE_NAME, docUrl.toExternalForm());
-		for (int i = 0, max = entries.length; i < max; i++) {
+		for (int i = 0, max = entries.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final IClasspathEntry entry = entries[i];
 			if (entry.getEntryKind() == IClasspathEntry.CPE_LIBRARY
 					&& entry.getContentKind() == IPackageFragmentRoot.K_BINARY
@@ -85,7 +85,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 	/**
 	 * Create project and set the jar placeholder.
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void setUpSuite() throws Exception {
 		super.setUpSuite();
 
@@ -97,7 +97,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 
 		IPackageFragmentRoot[] roots = this.project.getAllPackageFragmentRoots();
 		int count = 0;
-		for (int i = 0, max = roots.length; i < max; i++) {
+		for (int i = 0, max = roots.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final IPackageFragmentRoot packageFragmentRoot = roots[i];
 			switch(packageFragmentRoot.getKind()) {
 				case IPackageFragmentRoot.K_BINARY :
@@ -248,14 +248,14 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 	}
 
 	// test archive doc
-	public void test010() throws JavaModelException {
+	public void test010() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IClasspathEntry[] savedEntries = null;
 		try {
 			IClasspathEntry[] entries = this.project.getRawClasspath();
 			savedEntries = entries.clone();
 			final String path = "jar:" + "platform:/resource/AttachedJavadocProject/doc.zip" + "!/doc";
 			IClasspathAttribute attribute = JavaCore.newClasspathAttribute(IClasspathAttribute.JAVADOC_LOCATION_ATTRIBUTE_NAME, path);
-			for (int i = 0, max = entries.length; i < max; i++) {
+			for (int i = 0, max = entries.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				final IClasspathEntry entry = entries[i];
 				if (entry.getEntryKind() == IClasspathEntry.CPE_LIBRARY
 						&& entry.getContentKind() == IPackageFragmentRoot.K_BINARY
@@ -345,13 +345,13 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=120847
-	public void test016() throws JavaModelException {
+	public void test016() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IClasspathEntry[] savedEntries = null;
 		try {
 			IClasspathEntry[] entries = this.project.getRawClasspath();
 			savedEntries = entries.clone();
 			IClasspathAttribute attribute = JavaCore.newClasspathAttribute(IClasspathAttribute.JAVADOC_LOCATION_ATTRIBUTE_NAME, "invalid_path");
-			for (int i = 0, max = entries.length; i < max; i++) {
+			for (int i = 0, max = entries.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				final IClasspathEntry entry = entries[i];
 				if (entry.getEntryKind() == IClasspathEntry.CPE_LIBRARY
 						&& entry.getContentKind() == IPackageFragmentRoot.K_BINARY
@@ -400,7 +400,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 		IType type = classFile.getType();
 		IMethod[] methods = type.getMethods();
 		NullProgressMonitor monitor = new NullProgressMonitor();
-		for (int i = 0, max = methods.length; i < max; i++) {
+		for (int i = 0, max = methods.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IMethod method = methods[i];
 			String javadoc = method.getAttachedJavadoc(monitor);
 			assertNotNull("Should have a javadoc", javadoc);
@@ -429,7 +429,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=139160
-	public void test020() throws JavaModelException {
+	public void test020() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment packageFragment = this.root.getPackageFragment("p1.p2"); //$NON-NLS-1$
 		assertNotNull("Should not be null", packageFragment); //$NON-NLS-1$
 		IOrdinaryClassFile classFile = packageFragment.getOrdinaryClassFile("Z.class"); //$NON-NLS-1$
@@ -456,7 +456,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 	 * has no side-effect on the underlying Java model cache.
 	 * (regression test for bug 140879 Spontaneous error "java.util.Set cannot be resolved...")
 	 */
-	public void test021() throws CoreException, IOException {
+	public void test021() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit workingCopy = null;
 		try {
 			IPackageFragment p = this.root.getPackageFragment("p2");
@@ -487,7 +487,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=149154
-	public void test022() throws JavaModelException {
+	public void test022() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment packageFragment = this.root.getPackageFragment("p1.p2"); //$NON-NLS-1$
 		assertNotNull("Should not be null", packageFragment); //$NON-NLS-1$
 		IOrdinaryClassFile classFile = packageFragment.getOrdinaryClassFile("X.class"); //$NON-NLS-1$
@@ -511,7 +511,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=221723
 	// for a method
-	public void test023() throws JavaModelException {
+	public void test023() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			setJavadocLocationAttribute("specialDoc");
 
@@ -547,14 +547,14 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 		assertNull("Should have no javadoc", javadoc); //$NON-NLS-1$
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=304316
-	public void test025() throws JavaModelException {
+	public void test025() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IClasspathEntry[] savedEntries = null;
 		try {
 			IClasspathEntry[] entries = this.project.getRawClasspath();
 			savedEntries = entries.clone();
 			final String path = "http:/download.oracle.com/javase/6/docs/api/"; //$NON-NLS-1$
 			IClasspathAttribute attribute = JavaCore.newClasspathAttribute(IClasspathAttribute.JAVADOC_LOCATION_ATTRIBUTE_NAME, path);
-			for (int i = 0, max = entries.length; i < max; i++) {
+			for (int i = 0, max = entries.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				final IClasspathEntry entry = entries[i];
 				if (entry.getEntryKind() == IClasspathEntry.CPE_LIBRARY
 						&& entry.getContentKind() == IPackageFragmentRoot.K_BINARY
@@ -590,7 +590,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 	 *
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=304394"
 	 */
-	public void testBug304394() throws Exception {
+	public void testBug304394() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setJavadocLocationAttribute("specialDoc");
 		IClasspathEntry[] savedEntries = null;
 		try {
@@ -598,7 +598,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 			savedEntries = entries.clone();
 			IClasspathEntry chainedJar = null;
 			int max = entries.length;
-			for (int i = 0; i < max; i++) {
+			for (int i = 0; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				final IClasspathEntry entry = entries[i];
 				if (entry.getEntryKind() == IClasspathEntry.CPE_LIBRARY
 						&& entry.getContentKind() == IPackageFragmentRoot.K_BINARY
@@ -642,7 +642,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 	 *
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=304394"
 	 */
-	public void testBug304394a() throws Exception {
+	public void testBug304394a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setJavadocLocationAttribute("specialDoc");
 		IClasspathEntry[] savedEntries = null;
 		try {
@@ -650,7 +650,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 			savedEntries = entries.clone();
 			IClasspathEntry chainedJar = null;
 			int max = entries.length;
-			for (int i = 0; i < max; i++) {
+			for (int i = 0; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				final IClasspathEntry entry = entries[i];
 				if (entry.getEntryKind() == IClasspathEntry.CPE_LIBRARY
 						&& entry.getContentKind() == IPackageFragmentRoot.K_BINARY
@@ -691,7 +691,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=320167
 	// Test to verify that while trying to get javadoc contents from a malformed
 	// javadoc, CharOperation doesnt throw an IOOBE
-	public void testBug320167() throws JavaModelException {
+	public void testBug320167() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			setJavadocLocationAttribute("malformedDoc");
 
@@ -719,7 +719,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 		}
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=329671
-	public void testBug329671() throws CoreException, IOException {
+	public void testBug329671() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = this.project.getOptions(true);
 		Object timeout = options.get(JavaCore.TIMEOUT_FOR_PARAMETER_NAME_FROM_ATTACHED_JAVADOC);
 		options.put(JavaCore.TIMEOUT_FOR_PARAMETER_NAME_FROM_ATTACHED_JAVADOC, "0"); //$NON-NLS-1$
@@ -749,7 +749,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 				@Override
 				public void run() {
 					Object javadocContent = projectInfo.javadocCache.get(type);
-					while(javadocContent == null || javadocContent == BinaryType.EMPTY_JAVADOC) {
+					while(javadocContent == null || javadocContent == BinaryType.EMPTY_JAVADOC) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						try {
 							Thread.sleep(50);
 							javadocContent = projectInfo.javadocCache.get(type);
@@ -786,7 +786,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 		}
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=334652
-	public void testBug334652() throws CoreException, IOException {
+	public void testBug334652() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IClasspathEntry[] entries = this.project.getRawClasspath();
 
 		try {
@@ -822,7 +822,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 		}
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=334652
-	public void testBug334652_2() throws CoreException, IOException {
+	public void testBug334652_2() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IClasspathEntry[] entries = this.project.getRawClasspath();
 
 		try {
@@ -858,7 +858,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 		}
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=334652
-	public void testBug334652_3() throws CoreException, IOException {
+	public void testBug334652_3() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IClasspathEntry[] entries = this.project.getRawClasspath();
 
 		try {
@@ -895,7 +895,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 		}
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=334652
-	public void testBug334652_4() throws CoreException, IOException {
+	public void testBug334652_4() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IClasspathEntry[] entries = this.project.getRawClasspath();
 
 		try {
@@ -931,7 +931,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 		}
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=354766
-	public void testBug354766() throws CoreException, IOException {
+	public void testBug354766() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IClasspathEntry[] entries = this.project.getRawClasspath();
 
 		try {
@@ -970,7 +970,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 		}
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=354766
-	public void testBug354766_2() throws CoreException, IOException {
+	public void testBug354766_2() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IClasspathEntry[] entries = this.project.getRawClasspath();
 
 		try {
@@ -1009,7 +1009,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=394967
-	public void testBug394967() throws JavaModelException {
+	public void testBug394967() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IClasspathEntry[] entries = this.project.getRawClasspath();
 		try {
 			IClasspathAttribute attribute =
@@ -1050,7 +1050,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=394382
-	public void testBug394382() throws JavaModelException {
+	public void testBug394382() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IClasspathEntry[] oldClasspath = this.project.getRawClasspath();
 		try {
 			String encoding = "UTF-8";
@@ -1076,7 +1076,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 
 			IPackageFragmentRoot[] roots = this.project.getAllPackageFragmentRoots();
 			IPackageFragmentRoot packageRoot = null;
-			for(int i=0; i < roots.length; i++) {
+			for(int i=0; i < roots.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPath path = roots[i].getPath();
 				if (path.segment(path.segmentCount() - 1).equals("bug394382.jar")) {
 					packageRoot = roots[i];
@@ -1122,7 +1122,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=426058
-	public void testBug426058() throws Exception {
+	public void testBug426058() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IClasspathEntry[] oldClasspath = this.project.getRawClasspath();
 		String oldEncoding = this.project.getProject().getDefaultCharset();
 		try {
@@ -1150,7 +1150,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 
 			IPackageFragmentRoot[] roots = this.project.getAllPackageFragmentRoots();
 			IPackageFragmentRoot packageRoot = null;
-			for(int i=0; i < roots.length; i++) {
+			for(int i=0; i < roots.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPath path = roots[i].getPath();
 				if (path.segment(path.segmentCount() - 1).equals("bug394382.jar")) {
 					packageRoot = roots[i];
@@ -1186,7 +1186,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 			}
 		}
 	}
-	public void testAttachedJavadocWithModernMetaCharset() throws Exception {
+	public void testAttachedJavadocWithModernMetaCharset() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IClasspathEntry[] oldClasspath = this.project.getRawClasspath();
 		String oldEncoding = this.project.getProject().getDefaultCharset();
 		try {
@@ -1214,7 +1214,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 
 			IPackageFragmentRoot[] roots = this.project.getAllPackageFragmentRoots();
 			IPackageFragmentRoot packageRoot = null;
-			for(int i=0; i < roots.length; i++) {
+			for(int i=0; i < roots.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPath path = roots[i].getPath();
 				if (path.segment(path.segmentCount() - 1).equals("bug394382.jar")) {
 					packageRoot = roots[i];
@@ -1252,7 +1252,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=403154
-	public void testBug403154() throws Exception {
+	public void testBug403154() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IClasspathEntry[] oldClasspath = this.project.getRawClasspath();
 		try {
 			IResource invalid = this.project.getProject().getFolder("invalid");
@@ -1309,7 +1309,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 			IPackageFragmentRoot[] roots = this.project.getAllPackageFragmentRoots();
 			IPackageFragmentRoot validRoot = null;
 			IPackageFragmentRoot invalidRoot = null;
-			for(int i=0; i < roots.length; i++) {
+			for(int i=0; i < roots.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPath path = roots[i].getPath();
 				if (path.segment(path.segmentCount() - 1).equals("valid.jar")) {
 					validRoot = roots[i];
@@ -1348,7 +1348,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=418092
 	// Correctly parse Javadoc for methods that have parameterized annotations.
-	public void testBug418092() throws JavaModelException {
+	public void testBug418092() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IClasspathAttribute attribute =
 					JavaCore.newClasspathAttribute(
@@ -1374,7 +1374,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 			assertTrue("Should not happen", false);
 		}
 	}
-	public void testBug499196() throws JavaModelException {
+	public void testBug499196() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IClasspathAttribute attribute =
 					JavaCore.newClasspathAttribute(
@@ -1396,7 +1396,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 			assertTrue("Should not happen", false);
 		}
 	}
-	public void testBug521256() throws JavaModelException {
+	public void testBug521256() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IClasspathAttribute attribute =
 					JavaCore.newClasspathAttribute(
@@ -1421,7 +1421,7 @@ public class AttachedJavadocTests extends ModifyingResourceTests {
 			assertTrue("Should not happen", false);
 		}
 	}
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testBug574115() throws JavaModelException {
 		IClasspathEntry newEntry = JavaCore.newLibraryEntry(new Path("/AttachedJavadocProject/bug521256.jar"), null,
 				null, null, null, true);

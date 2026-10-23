@@ -115,7 +115,7 @@ public class AptCompilationParticipant extends CompilationParticipant
 		buildComplete();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void processAnnotations(BuildContext[] allfiles) {
 		// This should not happen. There should always be file that that needs
 		// building when
@@ -145,7 +145,7 @@ public class AptCompilationParticipant extends CompilationParticipant
 			int annoFileCount = 0;
 			int noAnnoFileCount = 0;
 			boolean test = false;
-			for( int i=0; i<total; i++ ){
+			for( int i=0; i<total; i++ ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				BuildContext bc = allfiles[i];
 				if(bc.isTestCode()) {
 					test = true;
@@ -180,7 +180,7 @@ public class AptCompilationParticipant extends CompilationParticipant
 				withoutAnnotation = new BuildContext[noAnnoFileCount];
 			int wIndex = 0; // index for 'withAnnotation' array
 			int woIndex = 0; // index of 'withoutAnnotation' array
-			for( int i=0; i<total; i++ ){
+			for( int i=0; i<total; i++ ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if( _processedFiles.containsKey( allfiles[i].getFile() ) )
 					continue;
 				if( allfiles[i].hasAnnotations() )
@@ -189,7 +189,7 @@ public class AptCompilationParticipant extends CompilationParticipant
 					withoutAnnotation[woIndex ++] = allfiles[i];
 			}
 
-			for( BuildContext file : allfiles )
+			for( BuildContext file : allfiles ) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				_processedFiles.put(file.getFile(), null);
 
 			Map<AnnotationProcessorFactory, FactoryPath.Attributes> factories =
@@ -213,9 +213,9 @@ public class AptCompilationParticipant extends CompilationParticipant
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public URI[] getAnnotationProcessorPaths(IJavaProject project, boolean isTest) {
-		List<URI> processorPaths = new ArrayList<>();
+		List<URI> processorPaths = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		FactoryPath factoryPath = FactoryPathUtil.getFactoryPath(project);
 		if (factoryPath == null) {
 			return null;
@@ -261,7 +261,7 @@ public class AptCompilationParticipant extends CompilationParticipant
 		if( javaProject == null )
 			return;
 		if (!AptConfig.shouldProcessDuringReconcile(javaProject)) {
-			AptPlugin.trace("Reconcile-time processing is disabled for project: " + javaProject.getElementName()); //$NON-NLS-1$
+			AptPlugin.trace("Reconcile-time processing is disabled for project: " + javaProject.getElementName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			return;
 		}
 		AptProject aptProject = AptPlugin.getAptProject(javaProject);
@@ -280,7 +280,7 @@ public class AptCompilationParticipant extends CompilationParticipant
 			// clear out all markers during a clean.
 			IMarker[] markers = p.findMarkers(AptPlugin.APT_BATCH_PROCESSOR_PROBLEM_MARKER, true, IResource.DEPTH_INFINITE);
 			if( markers != null ){
-				for( IMarker marker : markers )
+				for( IMarker marker : markers ) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					marker.delete();
 			}
 		}
@@ -307,8 +307,8 @@ public class AptCompilationParticipant extends CompilationParticipant
 		}
 		_buildRound = 0; // reset
 		// Note that for each project build, we blow away the last project's processed files.
-		_processedFiles = new HashMap<>();
-		_java6GeneratedFiles = new HashSet<>();
+		_processedFiles = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		_java6GeneratedFiles = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		// TODO: (wharley) if the factory path is different we need a full build
 		return CompilationParticipant.READY_FOR_BUILD;
 	}

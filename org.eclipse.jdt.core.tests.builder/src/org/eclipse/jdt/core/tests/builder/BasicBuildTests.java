@@ -79,7 +79,7 @@ public class BasicBuildTests extends BuilderTests {
 		return buildTestSuite(BasicBuildTests.class);
 	}
 
-	public void testBuild() throws JavaModelException {
+	public void testBuild() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		fullBuild(projectPath);
@@ -105,7 +105,7 @@ public class BasicBuildTests extends BuilderTests {
 	/*
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=23894
 	 */
-	public void testToDoMarker() throws JavaModelException {
+	public void testToDoMarker() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = JavaCore.getOptions();
 		Hashtable newOptions = JavaCore.getOptions();
 		newOptions.put(JavaCore.COMPILER_TASK_TAGS, "todo"); //$NON-NLS-1$
@@ -137,7 +137,7 @@ public class BasicBuildTests extends BuilderTests {
 	/*
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=91426
 	 */
-	public void testToDoMarker2() throws JavaModelException {
+	public void testToDoMarker2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = JavaCore.getOptions();
 		Hashtable newOptions = JavaCore.getOptions();
 		newOptions.put(JavaCore.COMPILER_TASK_TAGS, "TODO,FIXME,XXX"); //$NON-NLS-1$
@@ -199,7 +199,7 @@ public class BasicBuildTests extends BuilderTests {
 	/*
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=110797
 	 */
-	public void testTags() throws JavaModelException {
+	public void testTags() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = JavaCore.getOptions();
 		Hashtable newOptions = JavaCore.getOptions();
 		newOptions.put(JavaCore.COMPILER_TASK_TAGS, "TODO,FIXME,XXX"); //$NON-NLS-1$
@@ -255,7 +255,7 @@ public class BasicBuildTests extends BuilderTests {
 	/*
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=110797
 	 */
-	public void testTags2() throws JavaModelException {
+	public void testTags2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = JavaCore.getOptions();
 		Hashtable newOptions = JavaCore.getOptions();
 		newOptions.put(JavaCore.COMPILER_TASK_TAGS, "TODO,FIXME,XXX"); //$NON-NLS-1$
@@ -305,7 +305,7 @@ public class BasicBuildTests extends BuilderTests {
 	 * Ensures that a task tag is not user editable
 	 * (regression test for bug 123721 two types of 'remove' for TODO task tags)
 	 */
-	public void testTags3() throws CoreException {
+	public void testTags3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = JavaCore.getOptions();
 
 		try {
@@ -341,7 +341,7 @@ public class BasicBuildTests extends BuilderTests {
 	/*
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=92821
 	 */
-	public void testUnusedImport() throws JavaModelException {
+	public void testUnusedImport() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = JavaCore.getOptions();
 		Hashtable newOptions = JavaCore.getOptions();
 		newOptions.put(JavaCore.COMPILER_PB_UNUSED_IMPORT, JavaCore.WARNING);
@@ -385,7 +385,7 @@ public class BasicBuildTests extends BuilderTests {
 	/*
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=98667
 	 */
-	public void test98667() throws JavaModelException {
+	public void test98667() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -425,7 +425,7 @@ public class BasicBuildTests extends BuilderTests {
 	 * test Ensure that changing project preferences is well taking into account while rebuilding project
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=75471"
 	 */
-	public void _testUpdateProjectPreferences() throws JavaModelException {
+	public void _testUpdateProjectPreferences() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -460,7 +460,7 @@ public class BasicBuildTests extends BuilderTests {
 		incrementalBuild(projectPath);
 		expectingNoProblems();
 	}
-	public void _testUpdateWkspPreferences() throws JavaModelException {
+	public void _testUpdateWkspPreferences() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -509,7 +509,7 @@ public class BasicBuildTests extends BuilderTests {
 		}
 	}
 
-	public void testTags4() throws JavaModelException {
+	public void testTags4() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = JavaCore.getOptions();
 		Hashtable newOptions = JavaCore.getOptions();
 		newOptions.put(JavaCore.COMPILER_TASK_TAGS, "TODO!,TODO,TODO?"); //$NON-NLS-1$
@@ -557,7 +557,7 @@ public class BasicBuildTests extends BuilderTests {
 	}
 
 	// Bug 392727 - Cannot compile project when a java file contains $ in its file name
-	public void testBug392727() throws JavaModelException {
+	public void testBug392727() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int save = org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.MAX_AT_ONCE;
 		try {
 			IPath projectPath = env.addProject("Project");
@@ -607,7 +607,7 @@ public class BasicBuildTests extends BuilderTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=386901
-	public void testbBug386901() throws JavaModelException {
+	public void testbBug386901() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		int previous = org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.MAX_AT_ONCE;
 		try {
@@ -644,7 +644,7 @@ public class BasicBuildTests extends BuilderTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=425420
-	public void testBug425420() throws JavaModelException {
+	public void testBug425420() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion()); //$NON-NLS-1$
 		// don't env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -668,7 +668,7 @@ public class BasicBuildTests extends BuilderTests {
 				"Problem : The type java.lang.Object cannot be resolved. It is indirectly referenced from required .class files [ resource : </Project/src/X.java> range : <0,1> category : <10> severity : <2>]"
 			);
 	}
-	public void testBug549942() throws JavaModelException {
+	public void testBug549942() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int save = org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.MAX_AT_ONCE;
 		try {
 			IPath projectPath = env.addProject("Project");
@@ -719,7 +719,7 @@ public class BasicBuildTests extends BuilderTests {
 		}
 	}
 
-	public void testCustomCompilerFactory() throws JavaModelException {
+	public void testCustomCompilerFactory() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String CUSTOM_COMPILER_VALUE = MockCompilerFactory.class.getName();
 		try {
 			System.setProperty(AbstractImageBuilder.COMPILER_FACTORY_KEY, CUSTOM_COMPILER_VALUE);
@@ -754,9 +754,9 @@ public class BasicBuildTests extends BuilderTests {
 		}
 	}
 
-	public void testCustomerCompilerFactoryWithAP() throws Exception {
+	public void testCustomerCompilerFactoryWithAP() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String CUSTOM_COMPILER_VALUE = MockCompilerFactory.class.getName();
-		List<CompilerConfiguration> configs = new ArrayList<>();
+		List<CompilerConfiguration> configs = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		Consumer<Compiler> listener = (compiler) -> {
 			if (compiler instanceof MockCompiler mockCompiler) {
 				configs.add(mockCompiler.compilerConfig);
@@ -825,7 +825,7 @@ public class BasicBuildTests extends BuilderTests {
 		}
 	}
 
-	private File copyFiles(String path, boolean reimportIfExists) throws IOException {
+	private File copyFiles(String path, boolean reimportIfExists) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File from = new File(getSourceProjectDirectory(), path);
 		File to = new File(getWorkingProjectDirectory(), path);
 		if (to.exists()) {
@@ -845,7 +845,7 @@ public class BasicBuildTests extends BuilderTests {
 			try {
 				Files.copy(from.toPath(), to.toPath(), StandardCopyOption.REPLACE_EXISTING);
 			} catch (IOException e) {
-				ILog.get().error("Failed to copy the file - " + from.toPath().normalize().toAbsolutePath().toString(), e); //$NON-NLS-1$
+				ILog.get().error("Failed to copy the file - " + from.toPath().normalize().toAbsolutePath().toString(), e); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				throw e;
 			}
 		}
@@ -861,12 +861,12 @@ public class BasicBuildTests extends BuilderTests {
 	public static File getFileFromPlugin(String pluginId, String relativePath) throws IOException {
 		Bundle bundle = Platform.getBundle(pluginId);
 		if (bundle == null) {
-			throw new IOException("Plugin not found: " + pluginId);
+			throw new IOException("Plugin not found: " + pluginId); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		URL fileURL = bundle.getEntry(relativePath);
 		if (fileURL == null) {
-			throw new IOException("File not found: " + relativePath);
+			throw new IOException("File not found: " + relativePath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		URL resolvedFileURL = FileLocator.toFileURL(fileURL);
@@ -909,7 +909,7 @@ public class BasicBuildTests extends BuilderTests {
 				});
 	}
 
-	public void testFallbackForProblematicCompilerFactory() throws JavaModelException {
+	public void testFallbackForProblematicCompilerFactory() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String CUSTOM_COMPILER_VALUE = "x.y.NotFoundCompilerFactory";
 		try {
 			System.setProperty(AbstractImageBuilder.COMPILER_FACTORY_KEY, CUSTOM_COMPILER_VALUE);
@@ -947,7 +947,7 @@ public class BasicBuildTests extends BuilderTests {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4331
 	// Strange "heisenbug" error in Apache Lucene codebase when opened in Eclipse regarding sealed types
-	public void testGH4331() throws JavaModelException {
+	public void testGH4331() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int max = AbstractImageBuilder.MAX_AT_ONCE;
 		AbstractImageBuilder.MAX_AT_ONCE = 1;
 		try {

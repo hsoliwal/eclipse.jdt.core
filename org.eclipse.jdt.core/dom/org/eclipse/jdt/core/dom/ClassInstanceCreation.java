@@ -103,7 +103,7 @@ public class ClassInstanceCreation extends Expression {
 	private static final List PROPERTY_DESCRIPTORS_3_0;
 
 	static {
-		List properyList = new ArrayList(5);
+		List properyList = new ArrayList(5); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(ClassInstanceCreation.class, properyList);
 		addProperty(EXPRESSION_PROPERTY, properyList);
 		addProperty(NAME_PROPERTY, properyList);
@@ -111,7 +111,7 @@ public class ClassInstanceCreation extends Expression {
 		addProperty(ANONYMOUS_CLASS_DECLARATION_PROPERTY, properyList);
 		PROPERTY_DESCRIPTORS_2_0 = reapPropertyList(properyList);
 
-		properyList = new ArrayList(6);
+		properyList = new ArrayList(6); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(ClassInstanceCreation.class, properyList);
 		addProperty(EXPRESSION_PROPERTY, properyList);
 		addProperty(TYPE_ARGUMENTS_PROPERTY, properyList);
@@ -207,7 +207,7 @@ public class ClassInstanceCreation extends Expression {
 		return propertyDescriptors(apiLevel);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final ASTNode internalGetSetChildProperty(ChildPropertyDescriptor property, boolean get, ASTNode child) {
 		if (property == EXPRESSION_PROPERTY) {
 			if (get) {
@@ -262,7 +262,7 @@ public class ClassInstanceCreation extends Expression {
 		return CLASS_INSTANCE_CREATION;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ASTNode clone0(AST target) {
 		ClassInstanceCreation result = new ClassInstanceCreation(target);
 		result.setSourceRange(getStartPosition(), getLength());

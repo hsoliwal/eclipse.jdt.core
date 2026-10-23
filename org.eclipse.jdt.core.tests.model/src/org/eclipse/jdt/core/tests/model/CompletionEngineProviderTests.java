@@ -62,7 +62,7 @@ public class CompletionEngineProviderTests extends AbstractJavaModelCompletionTe
 		}
 	}
 
-	public void testAlwaysProvidesSameResult() throws JavaModelException {
+	public void testAlwaysProvidesSameResult() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/ArrayInitializer.java",

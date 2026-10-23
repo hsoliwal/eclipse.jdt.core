@@ -77,10 +77,10 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 	private static final int LINE_COMMENT = 100;
 	private static final int BLOCK_COMMENT =200;
 	private static final int DOC_COMMENT = 300;
-	List comments = new ArrayList();
+	List comments = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	private String chars;
 	// List of tags contained in each comment read from test source.
-	List allTags = new ArrayList();
+	List allTags = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	// tags inhibiting inline tags
 	static final String TAG_CODE = "code";
 	static final String TAG_LITERAL = "literal";
@@ -149,14 +149,14 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 	public static void buildSuite(TestSuite suite, String support) {
 		Class c = ASTConverterMarkdownTest.class;
 		Method[] methods = c.getMethods();
-		for (int i = 0, max = methods.length; i < max; i++) {
+		for (int i = 0, max = methods.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (methods[i].getName().startsWith("test")) { //$NON-NLS-1$
 				suite.addTest(new ASTConverterMarkdownTest(methods[i].getName(), support, UNIX_SUPPORT));
 			}
 		}
 		// when unix support not specified, also run using unix format
 		if (UNIX_SUPPORT == null && JavaCore.ENABLED.equals(support)) {
-			for (int i = 0, max = methods.length; i < max; i++) {
+			for (int i = 0, max = methods.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (methods[i].getName().startsWith("test")) { //$NON-NLS-1$
 					suite.addTest(new ASTConverterMarkdownTest(methods[i].getName(), support, "true"));
 				}
@@ -191,15 +191,15 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		super.setUp();
 		TEST_COUNTERS[0]++;
 		setCompliancesLevel();
-		this.failures = new ArrayList();
-		this.problems = new StringBuilder();
+		this.failures = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		this.problems = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		this.workingCopies = null;
 		this.savedLevel = this.astLevel;
 	}
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void tearDown() throws Exception {
 		int size = this.failures.size();
-		String title = size+" positions/bindings were incorrect in "+getName();
+		String title = size+" positions/bindings were incorrect in "+getName(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (size == 0) {
 			TEST_COUNTERS[1]++;
 		} else if (this.problems.length() > 0) {
@@ -210,9 +210,9 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 			TEST_COUNTERS[2]++;
 		} else {
 			TEST_COUNTERS[3]++;
-			System.out.println(title+":");
-			for (int i=0; i<size; i++) {
-				System.out.println("	- "+this.failures.get(i));
+			System.out.println(title+":"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			for (int i=0; i<size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				System.out.println("	- "+this.failures.get(i)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		assertTrue(title, size==0 || this.problems.length() > 0);
@@ -234,10 +234,10 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 			intFormat.setMinimumIntegerDigits(3);
 			intFormat.setMaximumIntegerDigits(3);
 			System.out.println("=====================================");
-			System.out.println(intFormat.format(TEST_COUNTERS[0])+" tests have been executed:");
-			System.out.println("  - "+intFormat.format(TEST_COUNTERS[1])+" tests have been actually executed.");
-			System.out.println("  - "+intFormat.format(TEST_COUNTERS[2])+" tests were skipped due to compilation errors.");
-			System.out.println("  - "+intFormat.format(TEST_COUNTERS[3])+" tests failed.");
+			System.out.println(intFormat.format(TEST_COUNTERS[0])+" tests have been executed:"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			System.out.println("  - "+intFormat.format(TEST_COUNTERS[1])+" tests have been actually executed."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			System.out.println("  - "+intFormat.format(TEST_COUNTERS[2])+" tests were skipped due to compilation errors."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			System.out.println("  - "+intFormat.format(TEST_COUNTERS[3])+" tests failed."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	@Override
@@ -267,7 +267,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		return runConversion(source, unitName, project);
 	}
 
-	private char getNextChar(char[] source, int idx) {
+	private char getNextChar(char[] source, int idx) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			// get next char
 			char ch = source[idx];
 			int charLength = 1;
@@ -277,7 +277,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 				//-------------unicode traitement ------------
 				int c1, c2, c3, c4;
 				charLength++;
-				while (source[idx+charLength] == 'u') charLength++;
+				while (source[idx+charLength] == 'u') charLength++; //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (((c1 = ScannerHelper.getHexadecimalValue(source[idx+charLength++])) > 15 || c1 < 0)
 					|| ((c2 = ScannerHelper.getHexadecimalValue(source[idx+charLength++])) > 15 || c2 < 0)
 					|| ((c3 = ScannerHelper.getHexadecimalValue(source[idx+charLength++])) > 15 || c3 < 0)
@@ -294,14 +294,14 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 	 * Store converted comments and their corresponding tags respectively
 	 * in comments and allTags fields
 	 */
-	protected void setSourceComment(char[] source) throws ArrayIndexOutOfBoundsException {
-		this.comments = new ArrayList();
-		this.allTags = new ArrayList();
+	protected void setSourceComment(char[] source) throws ArrayIndexOutOfBoundsException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		this.comments = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		this.allTags = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		StringBuilder buffer = null;
 		int comment = 0;
 		boolean end = false, lineStarted = false;
 		String tag = null;
-		List tags = new ArrayList();
+		List tags = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		int length = source.length;
 		// https://bugs.eclipse.org/bugs/show_bug.cgi?id=206345
 		// when parsing tags such as @code and @literal,
@@ -310,7 +310,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		boolean considerTagAsPlainText = false;
 		int openingBraces = 0;
 		char previousChar=0, currentChar=0;
-		for (int i=0; i<length;) {
+		for (int i=0; i<length;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			previousChar = currentChar;
 			// get next char
 			currentChar = getNextChar(source, i);
@@ -321,12 +321,12 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 					switch (currentChar) {
 						case '/':
 							comment = 1; // first char for comments...
-							buffer = new StringBuilder();
-							if (this.chars == null) buffer.append(currentChar);
-							else buffer.append(this.chars);
+							buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+							if (this.chars == null) buffer.append(currentChar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+							else buffer.append(this.chars); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							break;
 						case '\'':
-							while (i<length) {
+							while (i<length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								// get next char
 								currentChar = getNextChar(source, i);
 								i += (this.chars==null) ? 1 : this.chars.length();
@@ -342,7 +342,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 							}
 							break;
 						case '"':
-							while (i<length) {
+							while (i<length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								// get next char
 								currentChar = getNextChar(source, i);
 								i += (this.chars==null) ? 1 : this.chars.length();
@@ -368,13 +368,13 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 				case 1: // first '/' has been found...
 					switch (currentChar) {
 						case '/':
-							if (this.chars == null) buffer.append(currentChar);
-							else buffer.append(this.chars);
+							if (this.chars == null) buffer.append(currentChar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+							else buffer.append(this.chars); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							comment = LINE_COMMENT;
 							break;
 						case '*':
-							if (this.chars == null) buffer.append(currentChar);
-							else buffer.append(this.chars);
+							if (this.chars == null) buffer.append(currentChar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+							else buffer.append(this.chars); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							comment = 2; // next step
 							break;
 						default:
@@ -388,15 +388,15 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 					} else {
 						comment = BLOCK_COMMENT;
 					}
-					if (this.chars == null) buffer.append(currentChar);
-					else buffer.append(this.chars);
+					if (this.chars == null) buffer.append(currentChar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					else buffer.append(this.chars); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case 3: // '/**' has bee found, verify that's not an empty block comment
 					if (currentChar == '/') { // empty block comment
-						if (this.chars == null) buffer.append(currentChar);
-						else buffer.append(this.chars);
+						if (this.chars == null) buffer.append(currentChar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						else buffer.append(this.chars); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						this.comments.add(buffer.toString());
-						this.allTags.add(new ArrayList());
+						this.allTags.add(new ArrayList()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 						comment = 0;
 						break;
 					}
@@ -451,14 +451,14 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 					}
 					// $FALL-THROUGH$ - common treatment for block and javadoc comments
 				case BLOCK_COMMENT:
-					if (this.chars == null) buffer.append(currentChar);
-					else buffer.append(this.chars);
+					if (this.chars == null) buffer.append(currentChar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					else buffer.append(this.chars); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					if (end && currentChar == '/') {
 						comment = 0;
 						lineStarted = false;
 						this.comments.add(buffer.toString());
 						this.allTags.add(tags);
-						tags = new ArrayList();
+						tags = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 					}
 					end = currentChar == '*';
 					break;
@@ -473,8 +473,8 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 						this.comments.add(buffer.toString());
 						this.allTags.add(tags);
 					} else {
-						if (this.chars == null) buffer.append(currentChar);
-						else buffer.append(this.chars);
+						if (this.chars == null) buffer.append(currentChar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						else buffer.append(this.chars); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 					break;
 				default:
@@ -489,12 +489,12 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 	 * Store converted comments and their corresponding tags respectively
 	 * in comments and allTags fields
 	 */
-	char[] getUnicodeSource(char[] source) {
+	char[] getUnicodeSource(char[] source) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int length = source.length;
 		int unicodeLength = length*6;
 		char[] unicodeSource = new char[unicodeLength];
 		int u=0;
-		for (int i=0; i<length; i++) {
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// get next char
 			if (source[i] == '\\' && source[i+1] == 'u') {
 				//-------------unicode traitement ------------
@@ -505,9 +505,9 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 					|| ((c2 = ScannerHelper.getHexadecimalValue(source[i+2])) > 15 || c2 < 0)
 					|| ((c3 = ScannerHelper.getHexadecimalValue(source[i+3])) > 15 || c3 < 0)
 					|| ((c4 = ScannerHelper.getHexadecimalValue(source[i+4])) > 15 || c4 < 0)) {
-					throw new RuntimeException("Invalid unicode in source at "+i);
+					throw new RuntimeException("Invalid unicode in source at "+i); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
-				for (int j=0; j<4; j++) unicodeSource[u++] = source[++i];
+				for (int j=0; j<4; j++) unicodeSource[u++] = source[++i]; //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			} else {
 				unicodeSource[u++] = '\\';
 				unicodeSource[u++] = 'u';
@@ -533,12 +533,12 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 	 * Store converted comments and their corresponding tags respectively
 	 * in comments and allTags fields
 	 */
-	char[] getUnixSource(char[] source) {
+	char[] getUnixSource(char[] source) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int length = source.length;
 		int unixLength = length;
 		char[] unixSource = new char[unixLength];
 		int u=0;
-		for (int i=0; i<length; i++) {
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// get next char
 			if (source[i] == '\r' && source[i+1] == '\n') {
 				i++;
@@ -557,17 +557,17 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 	/*
 	 * Return all tags number for a given Javadoc
 	 */
-	int allTags(Javadoc docComment) {
+	int allTags(Javadoc docComment) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int all = 0;
 		// Count main tags
 		Iterator tags = docComment.tags().listIterator();
-		while (tags.hasNext()) {
+		while (tags.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TagElement tagElement = (TagElement) tags.next();
 			if (tagElement.getTagName() != null) {
 				all++;
 			}
 			Iterator fragments = tagElement.fragments().listIterator();
-			while (fragments.hasNext()) {
+			while (fragments.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ASTNode node = (ASTNode) fragments.next();
 				if (node.getNodeType() == ASTNode.TAG_ELEMENT) {
 					all++;
@@ -599,7 +599,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 
 	protected void assumeEquals(String msg, int expected, int actual) {
 		if (expected != actual) {
-			addFailure(msg+", expected="+expected+" actual="+actual);
+			addFailure(msg+", expected="+expected+" actual="+actual); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -608,34 +608,34 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 			return;
 		if (expected != null && expected.equals(actual))
 			return;
-		addFailure(msg+", expected:<"+expected+"> actual:<"+actual+'>');
+		addFailure(msg+", expected:<"+expected+"> actual:<"+actual+'>'); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
-	private void verifyPositions(Javadoc docComment, char[] source) {
+	private void verifyPositions(Javadoc docComment, char[] source) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Verify javadoc start and end position
 		int start = docComment.getStartPosition();
 		int end = start+docComment.getLength()-1;
-		assumeTrue(this.prefix+"Misplaced javadoc start at <"+start+">: "+docComment, source[start++] == '/' && source[start++] == '/' && source[start++] == '/');
+		assumeTrue(this.prefix+"Misplaced javadoc start at <"+start+">: "+docComment, source[start++] == '/' && source[start++] == '/' && source[start++] == '/'); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		// Get first meaningful character
 		int tagStart = start;
 		// Verify tags
 		Iterator tags = docComment.tags().listIterator();
-		while (tags.hasNext()) {
-			while (source[tagStart] == '/' || Character.isWhitespace(source[tagStart])) {
+		while (tags.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			while (source[tagStart] == '/' || Character.isWhitespace(source[tagStart])) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				tagStart++; // purge non-stored characters
 			}
 			TagElement tagElement = (TagElement) tags.next();
 			int teStart = tagElement.getStartPosition();
-			assumeEquals(this.prefix+"Wrong start position <"+teStart+"> for tag element: "+tagElement, tagStart, teStart);
+			assumeEquals(this.prefix+"Wrong start position <"+teStart+"> for tag element: "+tagElement, tagStart, teStart); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			verifyPositions(tagElement, source);
 			tagStart += tagElement.getLength();
 		}
-		while ((source[tagStart] == '/' || Character.isWhitespace(source[tagStart])) &&
+		while ((source[tagStart] == '/' || Character.isWhitespace(source[tagStart])) && //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				source[tagStart] != '\n') {
 			tagStart++; // purge non-stored characters
 		}
 		//assumeTrue(this.prefix+"Misplaced javadoc end at <"+tagStart+'>', source[tagStart-1] == '*' && source[tagStart] == '/');
-		assumeEquals(this.prefix+"Wrong javadoc length at <"+end+">: ", tagStart, end);
+		assumeEquals(this.prefix+"Wrong javadoc length at <"+end+">: ", tagStart, end); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (this.failures.size() > 0) {
 			String expected = new String(source, docComment.getStartPosition(), docComment.getLength());
 			ASTConverterJavadocFlattener flattener = new ASTConverterJavadocFlattener(expected);
@@ -648,16 +648,16 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 	 * Verify positions of fragments in source
 	 * @deprecated using deprecated code
 	 */
-	private void verifyPositions(TagElement tagElement, char[] source) {
+	private void verifyPositions(TagElement tagElement, char[] source) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String text = null;
 		// Verify tag name
 		String tagName = tagElement.getTagName();
 		int tagStart = tagElement.getStartPosition();
 		if (tagElement.isNested()) {
 			if (tagName.equals("@link") && source[tagStart] == '[') {
-				assumeEquals(this.prefix+"Wrong start position <"+tagStart+"> for "+tagElement, '[', source[tagStart++]);
+				assumeEquals(this.prefix+"Wrong start position <"+tagStart+"> for "+tagElement, '[', source[tagStart++]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			} else {
-				assumeEquals(this.prefix+"Wrong start position <"+tagStart+"> for "+tagElement, '{', source[tagStart++]);
+				assumeEquals(this.prefix+"Wrong start position <"+tagStart+"> for "+tagElement, '{', source[tagStart++]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		checkTagName: if (tagName != null) {
@@ -667,42 +667,42 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 				}
 			}
 			text= new String(source, tagStart, tagName.length());
-			assumeEquals(this.prefix+"Misplaced tag name at <"+tagStart+">: ", tagName, text);
+			assumeEquals(this.prefix+"Misplaced tag name at <"+tagStart+">: ", tagName, text); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			tagStart += tagName.length();
 		}
 		// Verify each fragment
 		ASTNode previousFragment = null;
 		Iterator elements = tagElement.fragments().listIterator();
-		while (elements.hasNext()) {
+		while (elements.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ASTNode fragment = (ASTNode) elements.next();
 			if (fragment.getNodeType() == ASTNode.TEXT_ELEMENT) {
 				if (previousFragment == null && TagElement.TAG_PARAM.equals(tagName) && ((TextElement)fragment).getText().equals("<")) { // special case here for @param <E> syntax
 					int start = tagStart;
 					// verify '<'
-					while (source[start] == ' ' || Character.isWhitespace(source[start])) {
+					while (source[start] == ' ' || Character.isWhitespace(source[start])) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						start++; // purge white characters
 					}
 					text = new String(source, start, fragment.getLength());
-					assumeEquals(this.prefix+"Misplaced text element at <"+fragment.getStartPosition()+">: ", text, ((TextElement) fragment).getText());
+					assumeEquals(this.prefix+"Misplaced text element at <"+fragment.getStartPosition()+">: ", text, ((TextElement) fragment).getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					start += fragment.getLength();
 					// verify simple name
-					assumeTrue(this.prefix+"Unexpected fragment end for "+tagElement, elements.hasNext());
+					assumeTrue(this.prefix+"Unexpected fragment end for "+tagElement, elements.hasNext()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					fragment = (ASTNode) elements.next();
-					while (source[start] == ' ' || Character.isWhitespace(source[start])) {
+					while (source[start] == ' ' || Character.isWhitespace(source[start])) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						start++; // purge white characters
 					}
-					assumeEquals(this.prefix+"Unexpected node type for tag element "+tagElement, ASTNode.SIMPLE_NAME, fragment.getNodeType());
+					assumeEquals(this.prefix+"Unexpected node type for tag element "+tagElement, ASTNode.SIMPLE_NAME, fragment.getNodeType()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					Name name = (Name) fragment;
 					verifyNamePositions(start, name, source);
 					start += fragment.getLength();
 					// verify simple name
-					assumeTrue(this.prefix+"Unexpected fragment end for "+tagElement, elements.hasNext());
+					assumeTrue(this.prefix+"Unexpected fragment end for "+tagElement, elements.hasNext()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					fragment = (ASTNode) elements.next();
-					while (source[start] == ' ' || Character.isWhitespace(source[start])) {
+					while (source[start] == ' ' || Character.isWhitespace(source[start])) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						start++; // purge white characters
 					}
 					text = new String(source, start, fragment.getLength());
-					assumeEquals(this.prefix+"Misplaced text element at <"+fragment.getStartPosition()+">: ", text, ((TextElement) fragment).getText());
+					assumeEquals(this.prefix+"Misplaced text element at <"+fragment.getStartPosition()+">: ", text, ((TextElement) fragment).getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					start += fragment.getLength();
 					// reset fragment as simple name to avoid issue with next text element
 					fragment = name;
@@ -710,24 +710,24 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 				} else {
 					if (previousFragment == null) {
 						if (tagName != null && (source[tagStart+1] == '\r' || source[tagStart+1] == '\n')) {
-							while (source[tagStart+1] == '/' || Character.isWhitespace(source[tagStart+1])) {
+							while (source[tagStart+1] == '/' || Character.isWhitespace(source[tagStart+1])) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								tagStart++; // purge non-stored characters
 							}
 						}
 					} else {
 						if (previousFragment.getNodeType() == ASTNode.TEXT_ELEMENT) {
-							assumeTrue(this.prefix+"Wrong length at <"+previousFragment.getStartPosition()+"> for text element "+previousFragment, (source[tagStart] == '\r' /* && source[tagStart+1] == '\n' */ || source[tagStart] == '\n'));
-							while (source[tagStart] == '/' || Character.isWhitespace(source[tagStart])) {
+							assumeTrue(this.prefix+"Wrong length at <"+previousFragment.getStartPosition()+"> for text element "+previousFragment, (source[tagStart] == '\r' /* && source[tagStart+1] == '\n' */ || source[tagStart] == '\n')); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+							while (source[tagStart] == '/' || Character.isWhitespace(source[tagStart])) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								tagStart++; // purge non-stored characters
 							}
 						} else if (TagElement.TAG_PARAM.equals(tagName) && previousFragment.getNodeType() == ASTNode.SIMPLE_NAME && ((TextElement)fragment).getText().equals(">")) {
-							while (source[tagStart+1] == ' ' || Character.isWhitespace(source[tagStart+1])) {
+							while (source[tagStart+1] == ' ' || Character.isWhitespace(source[tagStart+1])) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								tagStart++; // purge white characters
 							}
 						} else {
 							int start = tagStart;
 							if (source[tagStart] == '\r' || source[tagStart] == '\n') {
-								while (source[start] == '/' || Character.isWhitespace(source[start])) {
+								while (source[start] == '/' || Character.isWhitespace(source[start])) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 									start++; // purge non-stored characters
 								}
 								tagStart = start;
@@ -736,10 +736,10 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 					}
 					tagStart = getLinkTagStartPosition(tagName, source, tagStart);
 					text = new String(source, tagStart, fragment.getLength());
-					assumeEquals(this.prefix+"Misplaced text element at <"+fragment.getStartPosition()+">: ", text, ((TextElement) fragment).getText());
+					assumeEquals(this.prefix+"Misplaced text element at <"+fragment.getStartPosition()+">: ", text, ((TextElement) fragment).getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			} else {
-				while (source[tagStart] == '/' || Character.isWhitespace(source[tagStart])) {
+				while (source[tagStart] == '/' || Character.isWhitespace(source[tagStart])) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					tagStart++; // purge non-stored characters
 				}
 				tagStart = getLinkTagStartPosition(tagName, source, tagStart);
@@ -747,7 +747,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 					verifyNamePositions(tagStart, (Name) fragment, source);
 				} else if (fragment.getNodeType() == ASTNode.TAG_ELEMENT) {
 					TagElement inlineTag = (TagElement) fragment;
-					assumeEquals(this.prefix+"Tag element <"+inlineTag+"> has wrong start position", tagStart, inlineTag.getStartPosition());
+					assumeEquals(this.prefix+"Tag element <"+inlineTag+"> has wrong start position", tagStart, inlineTag.getStartPosition()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					verifyPositions(inlineTag, source);
 				} else if (fragment.getNodeType() == ASTNode.MEMBER_REF) {
 					MemberRef memberRef = (MemberRef) fragment;
@@ -758,20 +758,20 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 					if (qualifier != null) {
 						verifyNamePositions(start, qualifier, source);
 						start += qualifier.getLength();
-						while (source[start] == '/' || Character.isWhitespace(source[start])) {
+						while (source[start] == '/' || Character.isWhitespace(source[start])) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							start++; // purge non-stored characters
 						}
 					}
 					// Verify member separator position
-					assumeEquals(this.prefix+"Misplaced # separator at <"+start+"> for member ref "+memberRef, '#', source[start]);
+					assumeEquals(this.prefix+"Misplaced # separator at <"+start+"> for member ref "+memberRef, '#', source[start]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					start++;
-					while (source[start] == '/' || Character.isWhitespace(source[start])) {
+					while (source[start] == '/' || Character.isWhitespace(source[start])) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						start++; // purge non-stored characters
 					}
 					// Verify member name position
 					Name name = memberRef.getName();
 					text = new String(source, start, name.getLength());
-					assumeEquals(this.prefix+"Misplaced member ref at <"+start+">: ", text, name.toString());
+					assumeEquals(this.prefix+"Misplaced member ref at <"+start+">: ", text, name.toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					verifyNamePositions(start, name, source);
 				} else if (fragment.getNodeType() == ASTNode.METHOD_REF) {
 					MethodRef methodRef = (MethodRef) fragment;
@@ -782,14 +782,14 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 					if (qualifier != null) {
 						verifyNamePositions(start, qualifier, source);
 						start += qualifier.getLength();
-						while (source[start+1] == '/' || Character.isWhitespace(source[start+1])) {
+						while (source[start+1] == '/' || Character.isWhitespace(source[start+1])) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							start++; // purge non-stored characters
 						}
 					}
 					// Verify member separator position
-					assumeEquals(this.prefix+"Misplaced # separator at <"+start+"> for method ref: "+methodRef, '#', source[start]);
+					assumeEquals(this.prefix+"Misplaced # separator at <"+start+"> for method ref: "+methodRef, '#', source[start]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					start++;
-					while (source[start+1] == '/' || Character.isWhitespace(source[start+1])) {
+					while (source[start+1] == '/' || Character.isWhitespace(source[start+1])) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						start++; // purge non-stored characters
 					}
 					// Verify member name position
@@ -799,24 +799,24 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 					if (!text.equals(name.toString())) { // may have qualified constructor reference for inner classes
 						if (methodRef.getQualifier().isQualifiedName()) {
 							text = new String(source, start, methodRef.getQualifier().getLength());
-							assumeEquals(this.prefix+"Misplaced method ref name at <"+start+">: ", text, methodRef.getQualifier().toString());
-							while (source[start] != '.' || Character.isWhitespace(source[start])) {
+							assumeEquals(this.prefix+"Misplaced method ref name at <"+start+">: ", text, methodRef.getQualifier().toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+							while (source[start] != '.' || Character.isWhitespace(source[start])) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								start++; // purge non-stored characters
 							}
 							start++;
 						} else {
-							while (source[start] != '.' || Character.isWhitespace(source[start])) {
+							while (source[start] != '.' || Character.isWhitespace(source[start])) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								start++; // purge non-stored characters
 							}
 							start++;
 							text = new String(source, start, nameLength);
-							assumeEquals(this.prefix+"Misplaced method ref name at <"+start+">: ", text, name.toString());
+							assumeEquals(this.prefix+"Misplaced method ref name at <"+start+">: ", text, name.toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
 					}
 					verifyNamePositions(start, name, source);
 					start += nameLength;
 					// Verify arguments starting open parenthesis
-					while (source[start+1] == '/' || Character.isWhitespace(source[start+1])) {
+					while (source[start+1] == '/' || Character.isWhitespace(source[start+1])) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						start++; // purge non-stored characters
 					}
 //					assumeEquals(prefix+"Misplaced ( at <"+start+"> for method ref: "+methodRef, '(', source[start]);
@@ -824,11 +824,11 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 						start++;
 						// Verify parameters
 						Iterator parameters = methodRef.parameters().listIterator();
-						while (parameters.hasNext()) {
+						while (parameters.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							MethodRefParameter param = (MethodRefParameter) parameters.next();
 							boolean lastParam = !parameters.hasNext();
 							// Verify parameter type positions
-							while (source[start+1] == '/' || Character.isWhitespace(source[start+1])) {
+							while (source[start+1] == '/' || Character.isWhitespace(source[start+1])) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								 start++; // purge non-stored characters
 							}
 							Type type = param.getType();
@@ -836,41 +836,41 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 								verifyNamePositions(start, ((SimpleType)type).getName(), source);
 							} else if (type.isPrimitiveType()) {
 								text = new String(source, start, type.getLength());
-								assumeEquals(this.prefix+"Misplaced method ref parameter type at <"+start+"> for method ref: "+methodRef, text, type.toString());
+								assumeEquals(this.prefix+"Misplaced method ref parameter type at <"+start+"> for method ref: "+methodRef, text, type.toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							} else if (type.isArrayType()) {
 								Type elementType = ((ArrayType) param.getType()).getElementType();
 								if (elementType.isSimpleType()) {
 									verifyNamePositions(start, ((SimpleType)elementType).getName(), source);
 								} else if (elementType.isPrimitiveType()) {
 									text = new String(source, start, elementType.getLength());
-									assumeEquals(this.prefix+"Misplaced method ref parameter type at <"+start+"> for method ref: "+methodRef, text, elementType.toString());
+									assumeEquals(this.prefix+"Misplaced method ref parameter type at <"+start+"> for method ref: "+methodRef, text, elementType.toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								}
 							}
 							start += type.getLength();
 							// if last param then perhaps a varargs
-							while (Character.isWhitespace(source[start])) { // do NOT accept '*' in parameter declaration
+							while (Character.isWhitespace(source[start])) { // do NOT accept '*' in parameter declaration //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								 start++; // purge non-stored characters
 							}
 							if (lastParam && this.astLevel != AST.JLS2 && param.isVarargs()) {
-								for (int p=0;p<3;p++) {
-									assumeTrue(this.prefix+"Missing ellipsis for vararg method ref parameter at <"+start+"> for method ref: "+methodRef, source[start++]=='.');
+								for (int p=0;p<3;p++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+									assumeTrue(this.prefix+"Missing ellipsis for vararg method ref parameter at <"+start+"> for method ref: "+methodRef, source[start++]=='.'); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								}
 							}
 							// Verify parameter name positions
-							while (Character.isWhitespace(source[start])) { // do NOT accept '*' in parameter declaration
+							while (Character.isWhitespace(source[start])) { // do NOT accept '*' in parameter declaration //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								 start++; // purge non-stored characters
 							}
 							name = param.getName();
 							if (name != null) {
 								text = new String(source, start, name.getLength());
-								assumeEquals(this.prefix+"Misplaced method ref parameter name at <"+start+"> for method ref: "+methodRef, text, name.toString());
+								assumeEquals(this.prefix+"Misplaced method ref parameter name at <"+start+"> for method ref: "+methodRef, text, name.toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								start += name.getLength();
 							}
 							// Verify end parameter declaration
-							while (Character.isWhitespace(source[start])) {
+							while (Character.isWhitespace(source[start])) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								start++;
 							}
-							assumeTrue(this.prefix+"Misplaced parameter end at <"+start+"> for method ref: "+methodRef, source[start] == ',' || source[start] == ')');
+							assumeTrue(this.prefix+"Misplaced parameter end at <"+start+"> for method ref: "+methodRef, source[start] == ',' || source[start] == ')'); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							start++;
 							if (source[start] == ')') {
 								break;
@@ -884,10 +884,10 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		}
 		// https://bugs.eclipse.org/bugs/show_bug.cgi?id=206345
 		if (!(TAG_CODE.equalsIgnoreCase(tagName) || !TAG_LITERAL.equalsIgnoreCase(tagName)) && tagElement.isNested()) {
-			assumeEquals(this.prefix+"Wrong end character at <"+tagStart+"> for "+tagElement, '}', source[tagStart++]);
+			assumeEquals(this.prefix+"Wrong end character at <"+tagStart+"> for "+tagElement, '}', source[tagStart++]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
-	private int getLinkTagStartPosition(String tagName, char[] source, int tagStart) {
+	private int getLinkTagStartPosition(String tagName, char[] source, int tagStart) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// recognize both "@link ref" and "[ref]" links:
 		if (tagName != null && tagName.equals(TagElement.TAG_LINK)) {
 			int tagLinkLength = TagElement.TAG_LINK.length();
@@ -895,14 +895,14 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 				char[] tag = Arrays.copyOfRange(source, tagStart, tagStart+tagLinkLength);
 				if (TagElement.TAG_LINK.equals(String.valueOf(tag))) {
 					tagStart+=tagLinkLength;
-					while (Character.isWhitespace(source[tagStart])) {
+					while (Character.isWhitespace(source[tagStart])) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						tagStart++;
 					}
 					return tagStart;
 				}
 			}
 
-			while (source[tagStart] == '[' || source[tagStart] == ']') {
+			while (source[tagStart] == '[' || source[tagStart] == ']') { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				tagStart++; // purge non-stored characters
 			}
 		}
@@ -916,41 +916,41 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 			QualifiedName qualified = (QualifiedName) name;
 			int start = qualified.getName().getStartPosition();
 			String str = new String(source, start, qualified.getName().getLength());
-			assumeEquals(this.prefix+"Misplaced or wrong name for qualified name: "+name, str, qualified.getName().toString());
+			assumeEquals(this.prefix+"Misplaced or wrong name for qualified name: "+name, str, qualified.getName().toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			verifyNamePositions(nameStart, ((QualifiedName) name).getQualifier(), source);
 		}
 		String str = new String(source, nameStart, name.getLength());
 		if (str.indexOf('\n') < 0) { // cannot compare if text contains new line
-			assumeEquals(this.prefix+"Misplaced name for qualified name: ", str, name.toString());
+			assumeEquals(this.prefix+"Misplaced name for qualified name: ", str, name.toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else if (this.debug) {
-			System.out.println(this.prefix+"Name contains new line for qualified name: "+name);
+			System.out.println(this.prefix+"Name contains new line for qualified name: "+name); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
 	private void verifyBindings(Javadoc docComment) {
 		// Verify tags
 		Iterator tags = docComment.tags().listIterator();
-		while (tags.hasNext()) {
+		while (tags.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			verifyBindings((TagElement) tags.next());
 		}
 		assertTrue(this.failures.size()==0);
 	}
 
-	private void verifyBindings(TagElement tagElement) {
+	private void verifyBindings(TagElement tagElement) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Verify each fragment
 		Iterator elements = tagElement.fragments().listIterator();
 		IBinding previousBinding = null;
 		ASTNode previousFragment = null;
 		boolean resolvedBinding = false;
-		while (elements.hasNext()) {
+		while (elements.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ASTNode fragment = (ASTNode) elements.next();
 			if (fragment.getNodeType() == ASTNode.TEXT_ELEMENT) {
 				TextElement text = (TextElement) fragment;
 				if (resolvedBinding) {
 					if (previousBinding == null) {
-						assumeTrue(this.prefix+"Reference '"+previousFragment+"' should be bound!", text.getText().trim().indexOf("Unknown")>=0);
+						assumeTrue(this.prefix+"Reference '"+previousFragment+"' should be bound!", text.getText().trim().indexOf("Unknown")>=0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					} else {
-						assumeTrue(this.prefix+"Unknown reference '"+previousFragment+"' should NOT be bound!", text.getText().trim().indexOf("Unknown")<0);
+						assumeTrue(this.prefix+"Unknown reference '"+previousFragment+"' should NOT be bound!", text.getText().trim().indexOf("Unknown")<0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 				}
 				previousBinding = null;
@@ -972,7 +972,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 					previousBinding = memberRef.resolveBinding();
 					if (previousBinding != null) {
 						SimpleName name = memberRef.getName();
-						assumeNotNull(this.prefix+""+name+" binding was not foundfound in "+fragment, name.resolveBinding());
+						assumeNotNull(this.prefix+""+name+" binding was not foundfound in "+fragment, name.resolveBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						verifyNameBindings(memberRef.getQualifier());
 					}
 				} else if (fragment.getNodeType() == ASTNode.METHOD_REF) {
@@ -983,18 +983,18 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 						IBinding methNameBinding = methodName.resolveBinding();
 						Name methodQualifier = methodRef.getQualifier();
 						// TODO (frederic) Replace the two following lines by commented block when bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=62650 will be fixed
-						assumeNotNull(this.prefix+""+methodName+" binding was not found in "+fragment, methNameBinding);
+						assumeNotNull(this.prefix+""+methodName+" binding was not found in "+fragment, methNameBinding); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						verifyNameBindings(methodQualifier);
 						Iterator parameters = methodRef.parameters().listIterator();
-						while (parameters.hasNext()) {
+						while (parameters.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							MethodRefParameter param = (MethodRefParameter) parameters.next();
 							Type type = param.getType();
-							assumeNotNull(this.prefix+""+type+" binding was not found in "+fragment, type.resolveBinding());
+							assumeNotNull(this.prefix+""+type+" binding was not found in "+fragment, type.resolveBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							if (type.isSimpleType()) {
 								verifyNameBindings(((SimpleType)type).getName());
 							} else if (type.isArrayType()) {
 								Type elementType = ((ArrayType) param.getType()).getElementType();
-								assumeNotNull(this.prefix+""+elementType+" binding was not found in "+fragment, elementType.resolveBinding());
+								assumeNotNull(this.prefix+""+elementType+" binding was not found in "+fragment, elementType.resolveBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								if (elementType.isSimpleType()) {
 									verifyNameBindings(((SimpleType)elementType).getName());
 								}
@@ -1006,43 +1006,43 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 			}
 			previousFragment = fragment;
 		}
-		assumeTrue(this.prefix+"Reference '"+(previousFragment==null?tagElement:previousFragment)+"' should be bound!", (!resolvedBinding || previousBinding != null));
+		assumeTrue(this.prefix+"Reference '"+(previousFragment==null?tagElement:previousFragment)+"' should be bound!", (!resolvedBinding || previousBinding != null)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/*
 	 * Verify each name component binding.
 	 */
-	private void verifyNameBindings(Name name) {
+	private void verifyNameBindings(Name name) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (name != null) {
 			IBinding binding = name.resolveBinding();
 			if (name.toString().indexOf("Unknown") > 0) {
-				assumeNull(this.prefix+name+" binding should be null!", binding);
+				assumeNull(this.prefix+name+" binding should be null!", binding); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			} else {
-				assumeNotNull(this.prefix+name+" binding was not found!", binding);
+				assumeNotNull(this.prefix+name+" binding was not found!", binding); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			SimpleName simpleName = null;
 			int index = 0;
-			while (name.isQualifiedName()) {
+			while (name.isQualifiedName()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				simpleName = ((QualifiedName) name).getName();
 				binding = simpleName.resolveBinding();
 				if (simpleName.getIdentifier().equalsIgnoreCase("Unknown")) {
-					assumeNull(this.prefix+simpleName+" binding should be null!", binding);
+					assumeNull(this.prefix+simpleName+" binding should be null!", binding); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				} else {
-					assumeNotNull(this.prefix+simpleName+" binding was not found!", binding);
+					assumeNotNull(this.prefix+simpleName+" binding was not found!", binding); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				if (index > 0 && this.packageBinding) {
-					assumeEquals(this.prefix+"Wrong binding type!", IBinding.PACKAGE, binding.getKind());
+					assumeEquals(this.prefix+"Wrong binding type!", IBinding.PACKAGE, binding.getKind()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				index++;
 				name = ((QualifiedName) name).getQualifier();
 				binding = name.resolveBinding();
 				if (name.toString().indexOf("Unknown") > 0) {
-					assumeNull(this.prefix+name+" binding should be null!", binding);
+					assumeNull(this.prefix+name+" binding should be null!", binding); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				} else {
-					assumeNotNull(this.prefix+name+" binding was not found!", binding);
+					assumeNotNull(this.prefix+name+" binding was not found!", binding); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				if (this.packageBinding) {
-					assumeEquals(this.prefix+"Wrong binding type!", IBinding.PACKAGE, binding.getKind());
+					assumeEquals(this.prefix+"Wrong binding type!", IBinding.PACKAGE, binding.getKind()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}
@@ -1052,8 +1052,8 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 	 * @see junit.framework.TestCase#setUp()
 	 */
 	protected void verifyComments(String test) throws JavaModelException {
-		ICompilationUnit[] units = getCompilationUnits("Converter_23" , "src", "markdown."+test); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		for (int i=0; i<units.length; i++) {
+		ICompilationUnit[] units = getCompilationUnits("Converter_23" , "src", "markdown."+test); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		for (int i=0; i<units.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			verifyComments(units[i]);
 		}
 	}
@@ -1065,7 +1065,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		assumeNotNull("No working copies to verify!", this.workingCopies);
 		int length = this.workingCopies.length;
 		assumeTrue("We need to have at least one working copy to verify!", length>0);
-		for (int i=0; i<length; i++) {
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			verifyComments(this.workingCopies[i]);
 		}
 	}
@@ -1076,7 +1076,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 	protected CompilationUnit verifyComments(ICompilationUnit unit) throws JavaModelException {
 		// Get test file
 		this.sourceUnit = unit;
-		this.prefix = unit.getElementName()+": ";
+		this.prefix = unit.getElementName()+": "; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String sourceStr = this.sourceUnit.getSource();
 		// Verify source regardings converted comments
 		char[] source = sourceStr.toCharArray();
@@ -1106,7 +1106,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		this.currentProject.setOption(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_23);
 		this.astLevel = AST.JLS23;
 	}
-	protected CompilationUnit verifyComments(String fileName, char[] source, Map options) {
+	protected CompilationUnit verifyComments(String fileName, char[] source, Map options) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Verify comments either in unicode or not
 		char[] testedSource = source;
@@ -1127,27 +1127,27 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		setCompliancesLevel();
 		CompilationUnit compilUnit = (CompilationUnit) runConversion(testedSource, fileName, this.currentProject, options);
 		if (this.compilerOption.equals(JavaCore.ERROR)) {
-			assumeEquals(this.prefix+"Unexpected problems", 0, compilUnit.getProblems().length); //$NON-NLS-1$
+			assumeEquals(this.prefix+"Unexpected problems", 0, compilUnit.getProblems().length); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else if (this.compilerOption.equals(JavaCore.WARNING)) {
 			IProblem[] problemsList = compilUnit.getProblems();
 			int length = problemsList.length;
 			if (length > 0) {
-				this.problems.append("  - "+this.prefix+length+" problems:"); //$NON-NLS-1$
-				for (int i = 0; i < problemsList.length; i++) {
-					this.problems.append("	+ ");
-					this.problems.append(problemsList[i]);
-					this.problems.append("\n");
+				this.problems.append("  - "+this.prefix+length+" problems:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (int i = 0; i < problemsList.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					this.problems.append("	+ "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.problems.append(problemsList[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.problems.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
 		}
 		unitComments = compilUnit.getCommentList();
-		assumeNotNull(this.prefix+"Unexpected problems", unitComments);
+		assumeNotNull(this.prefix+"Unexpected problems", unitComments); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		// Basic comments verification
 		int size = unitComments.size();
 
 		// Verify comments positions and bindings
-		for (int i=0; i<size; i++) {
+		for (int i=0; i<size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Comment comment = (Comment) unitComments.get(i);
 			if (comment.isDocComment()) {
 				Javadoc docComment = (Javadoc)comment;
@@ -1165,23 +1165,23 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		// Return compilation unit for possible further verifications
 		return compilUnit;
 	}
-	protected void assertTagsAndTexts(List<ASTNode> tagList, String[] tags, String[][] liness) {
-		assertEquals(this.prefix+"Wrong number of tags", tags.length, tagList.size());
+	protected void assertTagsAndTexts(List<ASTNode> tagList, String[] tags, String[][] liness) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		assertEquals(this.prefix+"Wrong number of tags", tags.length, tagList.size()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		for (int i = 0; i < liness.length; i++) {
+		for (int i = 0; i < liness.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ASTNode tagNode = tagList.get(i);
 			String tag = tags[i];
-			assertEquals(this.prefix+"Invalid type for fragment ["+tagNode+"]", ASTNode.TAG_ELEMENT, tagNode.getNodeType());
+			assertEquals(this.prefix+"Invalid type for fragment ["+tagNode+"]", ASTNode.TAG_ELEMENT, tagNode.getNodeType()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			TagElement tagElement = (TagElement) tagNode;
-			assertEquals(this.prefix+"Invalid tag", tag, tagElement.getTagName());
+			assertEquals(this.prefix+"Invalid tag", tag, tagElement.getTagName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			List<? extends ASTNode> fragments = tagElement.fragments();
 			String[] lines = liness[i];
-			assertEquals(this.prefix+"Wrong number of fragments", lines.length, fragments.size());
-			for (int j = 0; j < lines.length; j++) {
+			assertEquals(this.prefix+"Wrong number of fragments", lines.length, fragments.size()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			for (int j = 0; j < lines.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ASTNode fragment = fragments.get(j);
 				String line = lines[j];
-				assertEquals(this.prefix+"Invalid type for fragment ["+fragment+"]", ASTNode.TEXT_ELEMENT, fragment.getNodeType());
-				assertEquals(this.prefix+"Wrong text content", line, ((TextElement) fragment).getText());
+				assertEquals(this.prefix+"Invalid type for fragment ["+fragment+"]", ASTNode.TEXT_ELEMENT, fragment.getNodeType()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				assertEquals(this.prefix+"Wrong text content", line, ((TextElement) fragment).getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
@@ -1273,7 +1273,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=47396"
 	 */
 	public void test011() throws JavaModelException {
-		this.problems = new StringBuilder();
+		this.problems = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		this.sourceUnit = getCompilationUnit("Converter_23" , "src", "markdown.test011", "Test.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		setCompliancesLevel();
 		ASTNode result = runConversion(this.sourceUnit, true);
@@ -1313,14 +1313,14 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 	/**
 	 * Verify DefaultCommentMapper heuristic to get leading and trailing comments
 	 */
-	protected void verifyMapper(String folder, int count, int[] indexes) throws JavaModelException {
-		ICompilationUnit[] units = getCompilationUnits("Converter_23" , "src", "markdown."+folder); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		for (int i=0; i<units.length; i++) {
+	protected void verifyMapper(String folder, int count, int[] indexes) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		ICompilationUnit[] units = getCompilationUnits("Converter_23" , "src", "markdown."+folder); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		for (int i=0; i<units.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.sourceUnit = units[i];
 			ASTNode result = runConversion(this.sourceUnit, false);
 			final CompilationUnit compilUnit = (CompilationUnit) result;
-			assumeEquals(this.prefix+"Wrong number of problems", 0, compilUnit.getProblems().length); //$NON-NLS-1$
-			assumeEquals(this.prefix+"Wrong number of comments", count, compilUnit.getCommentList().size());
+			assumeEquals(this.prefix+"Wrong number of problems", 0, compilUnit.getProblems().length); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assumeEquals(this.prefix+"Wrong number of comments", count, compilUnit.getCommentList().size()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			// Verify first method existence
 			ASTNode node = getASTNode((CompilationUnit) result, 0, 0);
 			assumeNotNull("We should get a non-null ast node", node);
@@ -1333,14 +1333,14 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 				commentStart = comment.getStartPosition();
 			}
 			int startPosition = compilUnit.getExtendedStartPosition(method);
-			assumeEquals("Method "+node+" does not start at the right position", commentStart, startPosition);
+			assumeEquals("Method "+node+" does not start at the right position", commentStart, startPosition); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			int methodEnd = startPosition + compilUnit.getExtendedLength(method) - 1;
 			int commentEnd = method.getStartPosition() + method.getLength() - 1;
 			if (indexes[1]>=0) {
 				Comment comment = (Comment) compilUnit.getCommentList().get(indexes[1]);
 				commentEnd = comment.getStartPosition() + comment.getLength() - 1;
 			}
-			assumeEquals("Method "+node+" does not have the correct length", commentEnd, methodEnd);
+			assumeEquals("Method "+node+" does not have the correct length", commentEnd, methodEnd); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			// Verify second method existence
 			node = getASTNode((CompilationUnit) result, 0, 1);
 			assumeNotNull("We should get a non-null ast node", node);
@@ -1353,18 +1353,18 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 				commentStart = comment.getStartPosition();
 			}
 			startPosition = compilUnit.getExtendedStartPosition(method);
-			assumeEquals("Method "+node+" does not start at the right position", commentStart, startPosition);
+			assumeEquals("Method "+node+" does not start at the right position", commentStart, startPosition); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			methodEnd = startPosition + compilUnit.getExtendedLength(method) - 1;
 			commentEnd = method.getStartPosition() + method.getLength() - 1;
 			if (indexes[3]>=0) {
 				Comment comment = (Comment) compilUnit.getCommentList().get(indexes[3]);
 				commentEnd = comment.getStartPosition() + comment.getLength() - 1;
 			}
-			assumeEquals("Method "+node+" does not have the correct length", commentEnd, methodEnd);
+			assumeEquals("Method "+node+" does not have the correct length", commentEnd, methodEnd); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
-	public void testGH2808() throws JavaModelException {
+	public void testGH2808() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Converter_23/src/markdown/gh2808/LineStarts.java",
 				"""
@@ -1417,17 +1417,17 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 				Comment comment = (Comment) unitComments.get(0);
 				assertEquals("Comment should be javadoc", comment.getNodeType(), ASTNode.JAVADOC);
 				Javadoc docComment = (Javadoc) comment;
-				assertTrue(this.prefix+"should be markdown", docComment.isMarkdown());
-				assertEquals(this.prefix+"Wrong number of tags", 1, docComment.tags().size());
+				assertTrue(this.prefix+"should be markdown", docComment.isMarkdown()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				assertEquals(this.prefix+"Wrong number of tags", 1, docComment.tags().size()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 				TagElement tagElement = (TagElement) docComment.tags().get(0);
-				assumeNull(this.prefix+"Wrong type of tag ["+tagElement+"]", tagElement.getTagName());
-				assertEquals(this.prefix+"Wrong number of fragments in tag ["+tagElement+"]", 4, tagElement.fragments().size());
+				assumeNull(this.prefix+"Wrong type of tag ["+tagElement+"]", tagElement.getTagName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				assertEquals(this.prefix+"Wrong number of fragments in tag ["+tagElement+"]", 4, tagElement.fragments().size()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				String[] lines = { " Three", "/ Four - show one slash", "// Five - show two slashes", " Drei" };
-				for (int i = 0; i < lines.length; i++) {
+				for (int i = 0; i < lines.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					ASTNode fragment = (ASTNode) tagElement.fragments().get(i);
-					assumeEquals(this.prefix+"Invalid type for fragment ["+fragment+"]", ASTNode.TEXT_ELEMENT, fragment.getNodeType());
-					assertEquals(this.prefix+"Wrong text content", lines[i], ((TextElement) fragment).getText());
+					assumeEquals(this.prefix+"Invalid type for fragment ["+fragment+"]", ASTNode.TEXT_ELEMENT, fragment.getNodeType()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+					assertEquals(this.prefix+"Wrong text content", lines[i], ((TextElement) fragment).getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 
@@ -1435,21 +1435,21 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 				Comment comment = (Comment) unitComments.get(1);
 				assertEquals("Comment should be javadoc", comment.getNodeType(), ASTNode.JAVADOC);
 				Javadoc docComment = (Javadoc) comment;
-				assertEquals(this.prefix+"Wrong number of tags", 1, docComment.tags().size());
+				assertEquals(this.prefix+"Wrong number of tags", 1, docComment.tags().size()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 				TagElement tagElement = (TagElement) docComment.tags().get(0);
-				assumeNull(this.prefix+"Wrong type of tag ["+tagElement+"]", tagElement.getTagName());
-				assertEquals(this.prefix+"Wrong number of fragments in tag ["+tagElement+"]", 4, tagElement.fragments().size());
+				assumeNull(this.prefix+"Wrong type of tag ["+tagElement+"]", tagElement.getTagName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				assertEquals(this.prefix+"Wrong number of fragments in tag ["+tagElement+"]", 4, tagElement.fragments().size()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				String[] lines = {
 						"  two",
 						"none - all leadings spaces will be relevant",
 						" public void one()",
 						"    public void four() // four spaces suffice for code"
 					};
-				for (int i = 0; i < lines.length; i++) {
+				for (int i = 0; i < lines.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					ASTNode fragment = (ASTNode) tagElement.fragments().get(i);
-					assumeEquals(this.prefix+"Invalid type for fragment ["+fragment+"]", ASTNode.TEXT_ELEMENT, fragment.getNodeType());
-					assertEquals(this.prefix+"Wrong text content", lines[i], ((TextElement) fragment).getText());
+					assumeEquals(this.prefix+"Invalid type for fragment ["+fragment+"]", ASTNode.TEXT_ELEMENT, fragment.getNodeType()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+					assertEquals(this.prefix+"Wrong text content", lines[i], ((TextElement) fragment).getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 
@@ -1457,11 +1457,11 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 				Comment comment = (Comment) unitComments.get(2);
 				assertEquals("Comment should be javadoc", comment.getNodeType(), ASTNode.JAVADOC);
 				Javadoc docComment = (Javadoc) comment;
-				assertEquals(this.prefix+"Wrong number of tags", 1, docComment.tags().size());
+				assertEquals(this.prefix+"Wrong number of tags", 1, docComment.tags().size()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 				TagElement tagElement = (TagElement) docComment.tags().get(0);
-				assumeNull(this.prefix+"Wrong type of tag ["+tagElement+"]", tagElement.getTagName());
-				assertEquals(this.prefix+"Wrong number of fragments in tag ["+tagElement+"]", 8, tagElement.fragments().size());
+				assumeNull(this.prefix+"Wrong type of tag ["+tagElement+"]", tagElement.getTagName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				assertEquals(this.prefix+"Wrong number of fragments in tag ["+tagElement+"]", 8, tagElement.fragments().size()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				String[] lines = {
 						" two",
 						"public void one()",
@@ -1472,16 +1472,16 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 						"   public void four()",
 						"    public void five() // 4 leading blanks"
 					};
-				for (int i = 0; i < lines.length; i++) {
+				for (int i = 0; i < lines.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					ASTNode fragment = (ASTNode) tagElement.fragments().get(i);
-					assumeEquals(this.prefix+"Invalid type for fragment ["+fragment+"]", ASTNode.TEXT_ELEMENT, fragment.getNodeType());
-					assertEquals(this.prefix+"Wrong text content", lines[i], ((TextElement) fragment).getText());
+					assumeEquals(this.prefix+"Invalid type for fragment ["+fragment+"]", ASTNode.TEXT_ELEMENT, fragment.getNodeType()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+					assertEquals(this.prefix+"Wrong text content", lines[i], ((TextElement) fragment).getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}
 	}
 
-	public void testGH2808_codeAfterPara() throws JavaModelException {
+	public void testGH2808_codeAfterPara() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Converter_23/src/markdown/gh2808/CodeAfterPara.java",
 				"""
@@ -1538,7 +1538,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		}
 	}
 
-	public void testGH2808_terminatingAnIndentedCodeBlock() throws JavaModelException {
+	public void testGH2808_terminatingAnIndentedCodeBlock() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Converter_23/src/markdown/gh2808/BlockEnding.java",
 				"""
@@ -1610,7 +1610,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		}
 	}
 
-	public void _testGH2808_fencedCode() throws JavaModelException {
+	public void _testGH2808_fencedCode() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// fence can only be terminated by same number of same fence chars
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Converter_23/src/markdown/gh2808/FencedCode.java",
@@ -1662,7 +1662,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		}
 	}
 
-	public void testGH2808_linkWithArrayReference() throws JavaModelException {
+	public void testGH2808_linkWithArrayReference() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// for a negative variant see org.eclipse.jdt.core.tests.compiler.regression.MarkdownCommentsTest.test021()
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Converter_23/src/markdown/gh2808/LinkWithArray.java",
@@ -1706,7 +1706,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 					"method 1",
 					"."
 				};
-			for (int i = 0; i < lines.length; i++) {
+			for (int i = 0; i < lines.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String tag = tags[i];
 				String line = lines[i];
 				ASTNode elem = (ASTNode) tagList.get(i);
@@ -1723,7 +1723,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 			}
 		}
 	}
-	public void testGH3239_1() throws JavaModelException {
+	public void testGH3239_1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// for a negative variant see org.eclipse.jdt.core.tests.compiler.regression.MarkdownCommentsTest.test021()
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Converter_23/src/markdown/gh3239/X.java",
@@ -1753,7 +1753,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 			assertEquals("incorrect text", "here", ((TextElement) text).getText());
 		}
 	}
-	public void testGH3239_2() throws JavaModelException {
+	public void testGH3239_2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// for a negative variant see org.eclipse.jdt.core.tests.compiler.regression.MarkdownCommentsTest.test021()
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Converter_23/src/markdown/gh3239/X.java",
@@ -1791,7 +1791,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		}
 	}
 
-	public void testArrayReferenceInCode() throws JavaModelException {
+	public void testArrayReferenceInCode() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source= """
 				package markdown.gh3761;
 				/// In the following indented code block, `[i]` is program text,
@@ -1834,13 +1834,13 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 					"int[] d = new int[i];",
 					"```"
 			};
-			for (int i = 0; i < lines.length; i++) {
-				assertEquals("Line "+i, lines[i], tag.fragments().get(i).toString());
+			for (int i = 0; i < lines.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				assertEquals("Line "+i, lines[i], tag.fragments().get(i).toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
 
-	public void testIllegelTagElement_01() throws JavaModelException {
+	public void testIllegelTagElement_01() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source= """
 				///{@link #getValue()
 				///value}
@@ -1867,7 +1867,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 	}
 
 	//this is a malfound test. Need to to analysis how it works
-	public void testIllegelTagElement_02() throws JavaModelException {
+	public void testIllegelTagElement_02() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source= """
 				///{@link #getValue()
 				///value{}}
@@ -1893,7 +1893,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		}
 	}
 
-	public void testIllegelASTPosition4188() throws JavaModelException {
+	public void testIllegelASTPosition4188() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source= """
 				/// <table>
 				///   <tr>
@@ -1931,7 +1931,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 			assertEquals("Incorrect TextElement value", "Where is my **bold text**???", textElement.getText());
 		}
 	}
-	public void testMarkdownURLs4531_01() throws JavaModelException {
+	public void testMarkdownURLs4531_01() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = """
 				/// @see [Ex Si](ex.com)
 				public class Markdown() {}
@@ -1951,7 +1951,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		}
 	}
 
-	public void testMarkdownURLs4531_02() throws JavaModelException {
+	public void testMarkdownURLs4531_02() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = """
 				/// @see [Ex Si](http://ex.com)
 				public class Markdown() {}
@@ -1971,7 +1971,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		}
 	}
 
-	public void testMarkdownURLs4531_03() throws JavaModelException {
+	public void testMarkdownURLs4531_03() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = """
 				/// @see [Ex Si](https://ex.com/a)
 				public class Markdown() {}
@@ -1991,7 +1991,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		}
 	}
 
-	public void testMarkdownURLs4531_04() throws JavaModelException {
+	public void testMarkdownURLs4531_04() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = """
 				/// @see [Ex Si](https://www.ex.net/a)
 				public class Markdown() {}
@@ -2012,7 +2012,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 	}
 
 	// invalid syntax
-	public void testMarkdownURLs4531_05() throws JavaModelException {
+	public void testMarkdownURLs4531_05() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = """
 				/// @see [Ex Si][http://ex.com]
 				public class Markdown() {}
@@ -2087,7 +2087,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		}
 	}
 
-	public void testMarkdownURLs4531_09() throws JavaModelException {
+	public void testMarkdownURLs4531_09() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = """
 				/// @see [Ex Si](                         http://ex.com)
 				public class Markdown() {}
@@ -2108,7 +2108,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		}
 	}
 
-	public void testMarkdownURLs4531_10() throws JavaModelException {
+	public void testMarkdownURLs4531_10() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = """
 				/// @see [Ex Si][java.lang.String]
 				public class Markdown() {}
@@ -2130,7 +2130,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		}
 	}
 
-	public void testMarkdownURLs4531_11() throws JavaModelException {
+	public void testMarkdownURLs4531_11() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = """
 				/// @see [Ex Si][               java.lang.String]
 				public class Markdown() {}
@@ -2152,7 +2152,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		}
 	}
 
-	public void testMarkdownURLs4531_12() throws JavaModelException {
+	public void testMarkdownURLs4531_12() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = """
 				/// @see [Ex Si](http://ex.com    ) [Ex Si](    https://www.ex.com)
 				public class Markdown() {}
@@ -2178,7 +2178,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		}
 	}
 
-	public void testIncorrectParsingBacktick4609_01() throws JavaModelException {
+	public void testIncorrectParsingBacktick4609_01() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = """
 				/// The following is some sample code which illustrates source formatting within markdown comments:
 				/// ``` public class Example { final int a = 1; final boolean b = true;} ```
@@ -2206,7 +2206,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 	}
 
 	// malfound test - single backtick should not be in single line
-	public void testIncorrectParsingBacktick4609_02() throws JavaModelException {
+	public void testIncorrectParsingBacktick4609_02() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = """
 				/// The following is some sample code which illustrates source formatting within markdown comments:
 				/// ` public class Example {
@@ -2235,7 +2235,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		}
 	}
 
-	public void testIncorrectLinkTagParsing4743_01() throws JavaModelException {
+	public void testIncorrectLinkTagParsing4743_01() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source ="""
 				/// {@link java.lang.String}
 				public class Markdown{}
@@ -2255,7 +2255,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		}
 	}
 
-	public void testIncorrectLinkTagParsing4743_02() throws JavaModelException {
+	public void testIncorrectLinkTagParsing4743_02() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source ="""
 				/// {@linkplain java.lang.String}
 				public class Markdown{}
@@ -2275,7 +2275,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		}
 	}
 
-	public void testIncorrectLinkTagParsing4743_03() throws JavaModelException {
+	public void testIncorrectLinkTagParsing4743_03() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source ="""
 				/// {@code List<String>}
 				public class Markdown{}
@@ -2295,7 +2295,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		}
 	}
 
-	public void testIncorrectLinkTagParsing4743_04() throws JavaModelException {
+	public void testIncorrectLinkTagParsing4743_04() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source ="""
 				/// {@literal List<String>}
 				public class Markdown{}
@@ -2315,7 +2315,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		}
 	}
 
-	public void testInconsistencyInCodeAndLiteralTagsMarkdown4609_01() throws JavaModelException {
+	public void testInconsistencyInCodeAndLiteralTagsMarkdown4609_01() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = """
 				/// Performs:
 				///
@@ -2366,7 +2366,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 
 	}
 
-	public void testInconsistencyInCodeAndLiteralTagsMarkdown4609_02() throws JavaModelException {
+	public void testInconsistencyInCodeAndLiteralTagsMarkdown4609_02() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = """
 				/// Performs:
 				///
@@ -2428,14 +2428,14 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 	 * with the lone closing brace, respectively, to isolate which one (if either)
 	 * triggers the corruption.
 	 */
-	private void verifyMultiLineCodeTagFragments(String clazName, String codeTagTrailingSpace, String closeBraceTrailingSpace) throws JavaModelException {
-		String source = "/// Here's some code {@code" + codeTagTrailingSpace + "\n"
+	private void verifyMultiLineCodeTagFragments(String clazName, String codeTagTrailingSpace, String closeBraceTrailingSpace) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		String source = "/// Here's some code {@code" + codeTagTrailingSpace + "\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "///     List<String> list = List.of(\"Hello World!\");\n"
 				+ "/// }" + closeBraceTrailingSpace + "\n"
 				+ "/// that does something.\n"
 				+ "public class " + clazName + "{}\n";
 		this.workingCopies = new ICompilationUnit[1];
-		this.workingCopies[0] = getWorkingCopy("/Converter_25/src/markdown/" + clazName + ".java", source, null);
+		this.workingCopies[0] = getWorkingCopy("/Converter_25/src/markdown/" + clazName + ".java", source, null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (!this.docCommentSupport.equals(JavaCore.ENABLED)) {
 			return;
 		}
@@ -2497,7 +2497,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		}
 	}
 
-	public void testJavadocIncorrectlyParsingAnnotationInlineTag5055_01() throws JavaModelException {
+	public void testJavadocIncorrectlyParsingAnnotationInlineTag5055_01() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = """
 				/// Example showing formatter bug with {@code @} in pre blocks.
 				///
@@ -2527,7 +2527,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		}
 	}
 
-	public void testJavadocIncorrectlyParsingAnnotationInlineTag5055_02() throws JavaModelException {
+	public void testJavadocIncorrectlyParsingAnnotationInlineTag5055_02() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = """
 				/// Example showing formatter bug with {@code @} in pre blocks.
 				///
@@ -2557,7 +2557,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		}
 	}
 
-	public void testMarkdownSupportSeeTag5299_01() throws JavaModelException {
+	public void testMarkdownSupportSeeTag5299_01() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = """
 				/// @see see [ArrayList](java.util.ArrayList)
 				public class Markdown {}
@@ -2577,7 +2577,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		}
 	}
 
-	public void testMarkdownSupportSeeTag5299_02() throws JavaModelException {
+	public void testMarkdownSupportSeeTag5299_02() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = """
 				/// @see see {@link java.util.ArrayList ArrayList}
 				public class Markdown {}
@@ -2597,7 +2597,7 @@ public class ASTConverterMarkdownTest extends ConverterTestSetup {
 		}
 	}
 
-	public void testMarkdownSupportSeeTag5299_03() throws JavaModelException {
+	public void testMarkdownSupportSeeTag5299_03() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = """
 				/// @see see java.util.ArrayList
 				public class Markdown {}

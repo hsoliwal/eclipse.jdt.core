@@ -34,7 +34,7 @@ boolean containsJavaResources() {
 /**
  * Returns an array of non-java resources contained in the receiver.
  */
-Object[] getNonJavaResources(IResource underlyingResource, PackageFragmentRoot rootHandle) {
+Object[] getNonJavaResources(IResource underlyingResource, PackageFragmentRoot rootHandle) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Object[] resources = this.nonJavaResources;
 	if (resources == null) {
 		try {

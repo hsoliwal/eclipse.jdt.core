@@ -199,7 +199,7 @@ public class CodeFormatterApplication implements IApplication {
 		if (files == null)
 			return;
 
-		for (File file : files) {
+		for (File file : files) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (file.isDirectory()) {
 				formatDirTree(file, codeFormatter);
 			} else if (Util.isJavaLikeFileName(file.getPath())) {
@@ -211,7 +211,7 @@ public class CodeFormatterApplication implements IApplication {
 	/**
 	 * Format the given Java source file.
 	 */
-	private void formatFile(File file, CodeFormatter codeFormatter) {
+	private void formatFile(File file, CodeFormatter codeFormatter) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IDocument doc = new Document();
 		try {
 			// read the file
@@ -247,7 +247,7 @@ public class CodeFormatterApplication implements IApplication {
 		}
 	}
 
-	private File[] processCommandLine(String[] argsArray) {
+	private File[] processCommandLine(String[] argsArray) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		int index = 0;
 		final int argCount = argsArray.length;
@@ -261,7 +261,7 @@ public class CodeFormatterApplication implements IApplication {
 
 		File[] filesToFormat = new File[INITIAL_SIZE];
 
-		loop: while (index < argCount) {
+		loop: while (index < argCount) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String currentArg = argsArray[index++];
 
 			switch(mode) {
@@ -344,7 +344,7 @@ public class CodeFormatterApplication implements IApplication {
 	 * Return a Java Properties file representing the options that are in the
 	 * specified configuration file.
 	 */
-	private Properties readConfig(String filename) {
+	private Properties readConfig(String filename) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File configFile = new File(filename);
 		try (BufferedInputStream stream = new BufferedInputStream(new FileInputStream(configFile))) {
 			final Properties formatterOptions = new Properties();
@@ -376,7 +376,7 @@ public class CodeFormatterApplication implements IApplication {
 	/**
 	 * Runs the Java code formatter application
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public Object start(IApplicationContext context) throws Exception {
 		File[] filesToFormat = processCommandLine((String[]) context.getArguments().get(IApplicationContext.APPLICATION_ARGS));
 
@@ -394,7 +394,7 @@ public class CodeFormatterApplication implements IApplication {
 		final CodeFormatter codeFormatter = ToolFactory.createCodeFormatter(this.options,
 				ToolFactory.M_FORMAT_EXISTING);
 		// format the list of files and/or directories
-		for (final File file : filesToFormat) {
+		for (final File file : filesToFormat) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (file.isDirectory()) {
 				formatDirTree(file, codeFormatter);
 			} else if (Util.isJavaLikeFileName(file.getPath())) {

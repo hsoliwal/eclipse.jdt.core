@@ -70,7 +70,7 @@ public final class NodeInfoStore {
 	/**
 	 * Creates a placeholder node of the given type. <code>null</code> if the type is not supported
 	 * @param nodeType Type of the node to create. Use the type constants in {@link NodeInfoStore}.
-	 * @return Returns a place holder node.
+	 * @return Returns a place holder node. //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	 */
 	public final ASTNode newPlaceholderNode(int nodeType) {
 		try {
@@ -107,7 +107,7 @@ public final class NodeInfoStore {
 	// in the target: one block node that is not flattened.
 
 	public Block createCollapsePlaceholder() {
-		Block placeHolder= this.ast.newBlock();
+		Block placeHolder= this.ast.newBlock(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		if (this.collapsedNodes == null) {
 			this.collapsedNodes= new HashSet();
 		}
@@ -129,7 +129,7 @@ public final class NodeInfoStore {
 		return null;
 	}
 
-	/**
+	/** //FLLDCIM: MARK — M06 M3_IDENTITY_WEAK_LANES NEW
 	 * Returns the actual node represented by a single-node copy/move placeholder,
 	 * or the supplied ordinary node. The existing placeholder store remains the
 	 * only owner of this relation. String and collapsed/range placeholders have
@@ -142,7 +142,7 @@ public final class NodeInfoStore {
 	 */
 	public ASTNode getOriginalNode(ASTNode node) {
 		if (node == null || node.getAST() != this.ast || isCollapsed(node)) {
-			throw new IllegalArgumentException("Not a single node of this AST"); //$NON-NLS-1$
+			throw new IllegalArgumentException("Not a single node of this AST"); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		Object data= getPlaceholderData(node);
 		if (data == null) {
@@ -150,7 +150,7 @@ public final class NodeInfoStore {
 		}
 		if (data instanceof CopyPlaceholderData copy) {
 			ASTNode original= copy.copySource.getNode();
-			if (!isCollapsed(original)) {
+			if (!isCollapsed(original)) { //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return original;
 			}
 		}

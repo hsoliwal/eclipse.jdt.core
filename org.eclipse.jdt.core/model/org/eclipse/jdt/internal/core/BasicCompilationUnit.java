@@ -74,12 +74,12 @@ public BasicCompilationUnit(char[] contents, char[][] packageName, String fileNa
  * a corresponding source file resource.
  * If we have a compilation unit, then get encoding from its resource directly...
  */
-private void initAttributes(IJavaElement javaElement) {
+private void initAttributes(IJavaElement javaElement) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (javaElement != null) {
 		try {
 				IModuleDescription module = null;
 
-				search: while (javaElement != null) {
+				search: while (javaElement != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					switch (javaElement.getElementType()) {
 						case IJavaElement.JAVA_PROJECT:
 							module = ((IJavaProject) javaElement).getModuleDescription();
@@ -145,7 +145,7 @@ public char[] getContents() {
 public char[] getFileName() {
 	return this.fileName;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public char[] getMainTypeName() {
 	if (this.mainTypeName == null) {
 		int start = CharOperation.lastIndexOf('/', this.fileName) + 1;
@@ -176,7 +176,7 @@ public boolean ignoreOptionalProblems() {
 }
 @Override
 public String toString(){
-	return "CompilationUnit: "+new String(this.fileName); //$NON-NLS-1$
+	return "CompilationUnit: "+new String(this.fileName); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 @Override

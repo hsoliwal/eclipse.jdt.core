@@ -66,7 +66,7 @@ public class ExternalFoldersManager {
 	private static final ExternalFoldersManager INSTANCE= new ExternalFoldersManager();
 	private RefreshJob refreshJob;
 
-	private ExternalFoldersManager() {
+	private ExternalFoldersManager() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Prevent instantiation
 		// https://bugs.eclipse.org/bugs/show_bug.cgi?id=377806
 		if (Platform.isRunning()) {
@@ -77,7 +77,7 @@ public class ExternalFoldersManager {
 			 *
 			 * See https://bugs.eclipse.org/bugs/show_bug.cgi?id=542860.
 			 */
-			class InitializeFolders extends WorkspaceJob {
+			class InitializeFolders extends WorkspaceJob { //FLLDCIM: MARK — T09  IMPLEMENTS
 				public InitializeFolders() {
 					super("Initialize external folders"); //$NON-NLS-1$
 				}
@@ -108,11 +108,11 @@ public class ExternalFoldersManager {
 	 * Returns a set of external paths to external folders referred to on the given classpath.
 	 * Returns <code>null</code> if there are none.
 	 */
-	public static Set<IPath> getExternalFolders(IClasspathEntry[] classpath) {
+	public static Set<IPath> getExternalFolders(IClasspathEntry[] classpath) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (classpath == null)
 			return null;
 		Set<IPath> folders = null;
-		for (IClasspathEntry entry : classpath) {
+		for (IClasspathEntry entry : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (entry.getEntryKind() == IClasspathEntry.CPE_LIBRARY) {
 				IPath entryPath = entry.getPath();
 				if (isExternalFolderPath(entryPath)) {
@@ -136,7 +136,7 @@ public class ExternalFoldersManager {
 	 * The path is expected to be one matching the {@link IClasspathEntry#CPE_LIBRARY} case in
 	 * {@link IClasspathEntry#getPath()} definition.
 	 */
-	public static boolean isExternalFolderPath(IPath externalPath) {
+	public static boolean isExternalFolderPath(IPath externalPath) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (externalPath == null || externalPath.isEmpty()) {
 			return false;
 		}
@@ -217,7 +217,7 @@ public class ExternalFoldersManager {
 		return addFolder(externalFolderPath, getExternalFoldersProject(), scheduleForCreation);
 	}
 
-	private IFolder addFolder(IPath externalFolderPath, IProject externalFoldersProject, boolean scheduleForCreation) {
+	private IFolder addFolder(IPath externalFolderPath, IProject externalFoldersProject, boolean scheduleForCreation) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<IPath, IFolder> knownFolders = getFolders();
 
 		IFolder existing;
@@ -229,8 +229,8 @@ public class ExternalFoldersManager {
 		}
 
 		IFolder result;
-		do {
-			result = externalFoldersProject.getFolder(LINKED_FOLDER_NAME + this.counter.incrementAndGet());
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			result = externalFoldersProject.getFolder(LINKED_FOLDER_NAME + this.counter.incrementAndGet()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} while (result.exists());
 
 		synchronized (this) {
@@ -283,7 +283,7 @@ public class ExternalFoldersManager {
 		return result;
 	}
 
-	public void createPendingFolders(IProgressMonitor monitor) throws JavaModelException{
+	public void createPendingFolders(IProgressMonitor monitor) throws JavaModelException{ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		synchronized (this) {
 			if (this.pendingFolders == null || this.pendingFolders.isEmpty()) return;
 		}
@@ -304,11 +304,11 @@ public class ExternalFoldersManager {
 			this.pendingFolders.clear();
 		}
 
-		for (Object arrayOfFolder : arrayOfFolders) {
+		for (Object arrayOfFolder : arrayOfFolders) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				createLinkFolder((IPath) arrayOfFolder, false, externalFoldersProject, monitor);
 			} catch (CoreException e) {
-				Util.log(e, "Error while creating a link for external folder :" + arrayOfFolder); //$NON-NLS-1$
+				Util.log(e, "Error while creating a link for external folder :" + arrayOfFolder); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
@@ -317,7 +317,7 @@ public class ExternalFoldersManager {
 		List<Entry<IPath, IFolder>> toDelete = getFoldersToCleanUp(monitor);
 		if (toDelete == null)
 			return;
-		for (Entry<IPath, IFolder> entry : toDelete) {
+		for (Entry<IPath, IFolder> entry : toDelete) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IFolder folder = entry.getValue();
 			folder.delete(true, monitor);
 			IPath key = entry.getKey();
@@ -328,7 +328,7 @@ public class ExternalFoldersManager {
 			project.delete(true, monitor);
 	}
 
-	private List<Entry<IPath, IFolder>> getFoldersToCleanUp(IProgressMonitor monitor) throws CoreException {
+	private List<Entry<IPath, IFolder>> getFoldersToCleanUp(IProgressMonitor monitor) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		DeltaProcessingState state = JavaModelManager.getDeltaState();
 		Map<IPath, RootInfo> roots = state.roots;
 		Map<IPath, IPath> sourceAttachments = state.sourceAttachments;
@@ -337,13 +337,13 @@ public class ExternalFoldersManager {
 		Map<IPath, IFolder> knownFolders = getFolders();
 		List<Entry<IPath, IFolder>> result = null;
 		synchronized (knownFolders) {
-			for (Entry<IPath, IFolder> entry : knownFolders.entrySet()) {
+			for (Entry<IPath, IFolder> entry : knownFolders.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPath path = entry.getKey();
 				if ((roots != null && !roots.containsKey(path))
 						&& (sourceAttachments != null && !sourceAttachments.containsKey(path))) {
 					if (entry.getValue() != null) {
 						if (result == null)
-							result = new ArrayList<>();
+							result = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 						result.add(entry);
 					}
 				}
@@ -371,7 +371,7 @@ public class ExternalFoldersManager {
 	 * Attempt to open the given project (assuming it exists).
 	 * If failing to open, make all attempts to recreate the missing pieces.
 	 */
-	private void openExternalFoldersProject(IProject project, IProgressMonitor monitor) throws CoreException {
+	private void openExternalFoldersProject(IProject project, IProgressMonitor monitor) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			project.open(monitor);
 		} catch (CoreException e1) {
@@ -388,7 +388,7 @@ public class ExternalFoldersManager {
 					Files.createDirectories(projectPath.toFile().toPath());
 					try (FileOutputStream output = new FileOutputStream(projectPath.append(".project").toOSString())){ //$NON-NLS-1$
 				        output.write((
-				        		"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + //$NON-NLS-1$
+				        		"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				        		"<projectDescription>\n" + //$NON-NLS-1$
 				        		"	<name>" + EXTERNAL_PROJECT_NAME + "</name>\n" + //$NON-NLS-1$ //$NON-NLS-2$
 				        		"	<comment></comment>\n" + //$NON-NLS-1$
@@ -429,9 +429,9 @@ public class ExternalFoldersManager {
 		return getFolders().get(externalFolderPath);
 	}
 
-	Map<IPath, IFolder> getFolders() {
+	Map<IPath, IFolder> getFolders() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.folders == null) {
-			Map<IPath, IFolder> tempFolders = new LinkedHashMap<>();
+			Map<IPath, IFolder> tempFolders = new LinkedHashMap<>(); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
 			IProject project = getExternalFoldersProject();
 			try {
 				if (!project.isAccessible()) {
@@ -444,7 +444,7 @@ public class ExternalFoldersManager {
 					}
 				}
 				IResource[] members = project.members();
-				for (IResource member : members) {
+				for (IResource member : members) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (member.getType() == IResource.FOLDER && member.isLinked() && member.getName().startsWith(LINKED_FOLDER_NAME)) {
 						IPath externalFolderPath = member.getLocation();
 						tempFolders.put(externalFolderPath, (IFolder) member);
@@ -477,11 +477,11 @@ public class ExternalFoldersManager {
 	/*
 	 * Refreshes the external folders referenced on the classpath of the given source project
 	 */
-	public void refreshReferences(final IProject[] sourceProjects, IProgressMonitor monitor) {
+	public void refreshReferences(final IProject[] sourceProjects, IProgressMonitor monitor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject externalProject = getExternalFoldersProject();
 		try {
 			Set<IPath> externalFolders = null;
-			for (IProject sourceProject : sourceProjects) {
+			for (IProject sourceProject : sourceProjects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (sourceProject.equals(externalProject))
 					continue;
 				if (!JavaProject.hasJavaNature(sourceProject))
@@ -554,11 +554,11 @@ public class ExternalFoldersManager {
 			}
 		}
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		protected IStatus run(IProgressMonitor pm) {
 			MultiStatus errors = new MultiStatus(JavaCore.PLUGIN_ID, IStatus.OK,
 					"Exception while refreshing external folders", null); //$NON-NLS-1$
-			while (true) {
+			while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPath externalPath;
 				synchronized (this.externalFolders) {
 					if (this.externalFolders.isEmpty()) {

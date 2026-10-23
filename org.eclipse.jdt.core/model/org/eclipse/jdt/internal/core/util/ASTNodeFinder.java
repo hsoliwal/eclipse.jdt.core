@@ -53,7 +53,7 @@ public class ASTNodeFinder {
 		FieldDeclaration[] fields = typeDecl.fields;
 		if (fields != null) {
 			char[] fieldName = fieldHandle.getElementName().toCharArray();
-			for (FieldDeclaration field : fields) {
+			for (FieldDeclaration field : fields) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (CharOperation.equals(fieldName, field.name)) {
 					return field;
 				}
@@ -72,7 +72,7 @@ public class ASTNodeFinder {
 		FieldDeclaration[] fields = typeDecl.fields;
 		if (fields != null) {
 			int occurenceCount = ((SourceRefElement)initializerHandle).getOccurrenceCount();
-			for (FieldDeclaration field : fields) {
+			for (FieldDeclaration field : fields) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (field instanceof Initializer && --occurenceCount == 0) {
 					return (Initializer)field;
 				}
@@ -85,7 +85,7 @@ public class ASTNodeFinder {
 	 * Finds the AbstractMethodDeclaration in the given ast corresponding to the given method handle.
 	 * Returns null if not found.
 	 */
-	public AbstractMethodDeclaration findMethod(IMethod methodHandle) {
+	public AbstractMethodDeclaration findMethod(IMethod methodHandle) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TypeDeclaration typeDecl = findType((IType)methodHandle.getParent());
 		if (typeDecl == null) return null;
 		AbstractMethodDeclaration[] methods = typeDecl.methods;
@@ -93,12 +93,12 @@ public class ASTNodeFinder {
 			char[] selector = methodHandle.getElementName().toCharArray();
 			String[] parameterTypeSignatures = methodHandle.getParameterTypes();
 			int parameterCount = parameterTypeSignatures.length;
-			nextMethod: for (AbstractMethodDeclaration method : methods) {
+			nextMethod: for (AbstractMethodDeclaration method : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (CharOperation.equals(selector, method.selector)) {
 					AbstractVariableDeclaration[] args = method.arguments(true);
 					int argsLength = args == null ? 0 : args.length;
 					if (argsLength == parameterCount) {
-						for (int j = 0; j < parameterCount; j++) {
+						for (int j = 0; j < parameterCount; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							TypeReference type = args[j].type;
 							String signature = Util.typeSignature(type);
 							if (!signature.equals(parameterTypeSignatures[j])) {
@@ -117,7 +117,7 @@ public class ASTNodeFinder {
 	 * Finds the TypeDeclaration in the given ast corresponding to the given type handle.
 	 * Returns null if not found.
 	 */
-	public TypeDeclaration findType(IType typeHandle) {
+	public TypeDeclaration findType(IType typeHandle) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaElement parent = typeHandle.getParent();
 		final char[] typeName = typeHandle.getElementName().toCharArray();
 		final int occurenceCount = ((SourceType)typeHandle).getOccurrenceCount();
@@ -144,7 +144,7 @@ public class ASTNodeFinder {
 			case IJavaElement.COMPILATION_UNIT:
 				TypeDeclaration[] types = this.unit.types;
 				if (types != null) {
-					for (TypeDeclaration type : types) {
+					for (TypeDeclaration type : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (CharOperation.equals(typeName, type.name)) {
 							return type;
 						}
@@ -156,7 +156,7 @@ public class ASTNodeFinder {
 				if (parentDecl == null) return null;
 				types = parentDecl.memberTypes;
 				if (types != null) {
-					for (TypeDeclaration type : types) {
+					for (TypeDeclaration type : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (CharOperation.equals(typeName, type.name)) {
 							return type;
 						}

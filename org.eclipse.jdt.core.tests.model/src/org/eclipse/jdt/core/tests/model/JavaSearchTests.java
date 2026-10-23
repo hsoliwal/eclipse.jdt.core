@@ -293,7 +293,7 @@ public void testConstructorReference10() throws CoreException { // was testConst
  * CoreException thrown during accept.
  * (regression test for PR #1G3UI7A)
  */
-public void testCoreException() throws CoreException {
+public void testCoreException() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IType type = getCompilationUnit("JavaSearch", "src", "p", "X.java").getType("X");
 	SearchRequestor result = new SearchRequestor() {
 		public void acceptSearchMatch(SearchMatch match) throws CoreException {
@@ -378,7 +378,7 @@ public void testDeclarationOfAccessedFields4() throws CoreException {
 /**
  * Declaration of referenced types test.
  */
-public void testDeclarationOfReferencedTypes01() throws CoreException {
+public void testDeclarationOfReferencedTypes01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IMethod method =
 		getCompilationUnit("JavaSearch", "src", "a3", "References.java").
 			getType("References").getMethod("foo", new String[] {});
@@ -387,7 +387,7 @@ public void testDeclarationOfReferencedTypes01() throws CoreException {
 		this.resultCollector
 	);
 	assertSearchResults(
-		"src/a3/X.java a3.X [X]\n" +
+		"src/a3/X.java a3.X [X]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"src/a3/Z.java a3.Z [Z]\n" +
 		"src/a3/b/A.java a3.b.A [A]\n" +
 		"src/a3/b/A.java a3.b.A$B$C [C]\n" +
@@ -516,7 +516,7 @@ public void testDeclarationOfReferencedTypes08() throws CoreException {
  * (Regression test for bug 68862 [1.5] ClassCastException when moving a a java file
 )
  */
-public void testDeclarationOfReferencedTypes09() throws CoreException {
+public void testDeclarationOfReferencedTypes09() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit cu = getCompilationUnit("JavaSearch15/src/p3/X.java");
 	JavaSearchResultCollector result = new JavaSearchResultCollector() {
 	    public void beginReporting() {
@@ -572,7 +572,7 @@ public void testDeclarationsOfSentMessages02() throws CoreException { // was tes
 /*
  * Ensures that a method declaration in an external library folder can be found
  */
-public void testExternalFolder1() throws CoreException {
+public void testExternalFolder1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createExternalFolder("externalLib");
 		Util.compile(
@@ -584,14 +584,14 @@ public void testExternalFolder1() throws CoreException {
 				"  }\n" +
 				"}"
 			},
-			new HashMap(),
+			new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			getExternalResourcePath("externalLib")
 		);
 		createJavaProject("P", new String[0], new String[] {getExternalResourcePath("externalLib")}, "");
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaProject[] {getJavaProject("P")});
 		search("foo", METHOD, DECLARATIONS, scope);
 		assertSearchResults(
-			getExternalPath() + "externalLib void p.X.foo()",
+			getExternalPath() + "externalLib void p.X.foo()", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			this.resultCollector);
 	} finally {
 		deleteProject("P");
@@ -602,7 +602,7 @@ public void testExternalFolder1() throws CoreException {
 /*
  * Ensures that search all type names returns the types in an external library folder
  */
-public void testExternalFolder2() throws CoreException {
+public void testExternalFolder2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createExternalFolder("externalLib");
 		Util.compile(
@@ -612,7 +612,7 @@ public void testExternalFolder2() throws CoreException {
 				"public class ExternalType {\n" +
 				"}"
 			},
-			new HashMap(),
+			new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			getExternalResourcePath("externalLib")
 		);
 		createJavaProject("P", new String[0], new String[] {getExternalResourcePath("externalLib")}, "");
@@ -630,7 +630,7 @@ public void testExternalFolder2() throws CoreException {
 			null
 		);
 		assertSearchResults(
-			"ExternalType (not open) [in ExternalType.class [in p [in "+ getExternalPath() + "externalLib]]]",
+			"ExternalType (not open) [in ExternalType.class [in p [in "+ getExternalPath() + "externalLib]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			collector
 		);
 	} finally {
@@ -645,7 +645,7 @@ public void testExternalFolder2() throws CoreException {
  * when using a workspace scope
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=229304 )
  */
-public void testExternalFolder3() throws CoreException {
+public void testExternalFolder3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createExternalFolder("externalLib");
 		Util.compile(
@@ -655,7 +655,7 @@ public void testExternalFolder3() throws CoreException {
 				"public class ExternalType229304 {\n" +
 				"}"
 			},
-			new HashMap(),
+			new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			getExternalResourcePath("externalLib")
 		);
 		createJavaProject("P", new String[0], new String[] {getExternalResourcePath("externalLib")}, "");
@@ -673,7 +673,7 @@ public void testExternalFolder3() throws CoreException {
 			null
 		);
 		assertSearchResults(
-			"ExternalType229304 (not open) [in ExternalType229304.class [in p [in "+ getExternalPath() + "externalLib]]]",
+			"ExternalType229304 (not open) [in ExternalType229304.class [in p [in "+ getExternalPath() + "externalLib]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			collector
 		);
 	} finally {
@@ -686,7 +686,7 @@ public void testExternalFolder3() throws CoreException {
 /*
  * Ensures that a method declaration in an external ZIP archive can be found
  */
-public void testZIPArchive1() throws Exception {
+public void testZIPArchive1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJar(
 			new String[] {
@@ -705,7 +705,7 @@ public void testZIPArchive1() throws Exception {
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaProject[] {getJavaProject("P")});
 		search("foo", METHOD, DECLARATIONS, scope);
 		assertSearchResults(
-			getExternalPath() + "externalLib.abc void p.X.foo()",
+			getExternalPath() + "externalLib.abc void p.X.foo()", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			this.resultCollector);
 	} finally {
 		deleteExternalResource("externalLib.abc");
@@ -716,7 +716,7 @@ public void testZIPArchive1() throws Exception {
 /*
  * Ensures that search all type names returns the types in an external ZIP archive
  */
-public void testZIPArchive2() throws Exception {
+public void testZIPArchive2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P", new String[0], new String[] {getExternalResourcePath("externalLib.abc")}, "");
 		createJar(
@@ -743,7 +743,7 @@ public void testZIPArchive2() throws Exception {
 			null
 		);
 		assertSearchResults(
-			"ExternalType (not open) [in ExternalType.class [in p [in "+ getExternalPath() + "externalLib.abc]]]",
+			"ExternalType (not open) [in ExternalType.class [in p [in "+ getExternalPath() + "externalLib.abc]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			collector
 		);
 	} finally {
@@ -882,7 +882,7 @@ public void testFieldReference04() throws CoreException {
  * Field reference test.
  * (regression test for bug 7987 Field reference search should do lookup in 1.4 mode)
  */
-public void testFieldReference05() throws CoreException {
+public void testFieldReference05() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IType type = getCompilationUnit("JavaSearch", "src", "b1", "A.java").getType("A");
 	IField field = type.getField("x");
 
@@ -1055,7 +1055,7 @@ public void testFieldReference14() throws CoreException { // was testFieldRefere
  * Field reference through subclass test.
  * (regression test for PR 1GKB9YH: ITPJCORE:WIN2000 - search for field refs - incorrect results)
  */
-public void testFieldReference15() throws CoreException { // was testFieldReferenceThroughSubclass
+public void testFieldReference15() throws CoreException { // was testFieldReferenceThroughSubclass //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IType type = getCompilationUnit("JavaSearch", "src", "p6", "A.java").getType("A");
 	IField field = type.getField("f");
 	search(
@@ -1086,7 +1086,7 @@ public void testFieldReference15() throws CoreException { // was testFieldRefere
  * Read and write access reference in compound expression test.
  * (regression test for bug 6158 Search - Prefix and postfix expression not found as write reference)
  */
-public void testFieldReference16() throws CoreException { // was testReadWriteFieldReferenceInCompoundExpression
+public void testFieldReference16() throws CoreException { // was testReadWriteFieldReferenceInCompoundExpression //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IType type = getCompilationUnit("JavaSearch", "src", "a4", "X.java").getType("X");
 	IField field = type.getField("field");
 
@@ -1176,7 +1176,7 @@ public void testFieldReference20() throws CoreException { // was testFieldRefere
 /**
  * Interface implementors test.
  */
-public void testInterfaceImplementors1() throws CoreException { // was testInterfaceImplementors
+public void testInterfaceImplementors1() throws CoreException { // was testInterfaceImplementors //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// implementors of an interface
 	IType type = getCompilationUnit("JavaSearch", "src", "p", "I.java").getType("I");
 	search(
@@ -1537,14 +1537,14 @@ public void testMethodDeclaration11() throws CoreException {
 		this.resultCollector);
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4757
-public void testSourceType() throws Exception {
+public void testSourceType() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String projectName = "JavadocProducer21";
 	try {
 		IJavaProject javaProject = setUpJavaProject(projectName, "21");
 		IType type = javaProject.findType("java.util.function.Consumer");
 		IMethod method = List.of(type.getMethods()).stream().filter(m -> m.getElementName().equals("accept")).findFirst().get();
 		IJavaSearchScope scope = SearchEngine.createHierarchyScope(method.getDeclaringType());
-		List <IMethod> results = new ArrayList<>();
+		List <IMethod> results = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		SearchRequestor requestor = new SearchRequestor() {
 			@Override
 			public void acceptSearchMatch(SearchMatch match) throws CoreException {
@@ -1845,7 +1845,7 @@ public void testMethodReference17() throws CoreException {
  * OrPattern test.
  * (regression test for bug 5862 search : too many matches on search with OrPattern)
  */
-public void testOrPattern() throws CoreException {
+public void testOrPattern() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IMethod leftMethod = getCompilationUnit("JavaSearch", "src", "q9", "I.java")
 		.getType("I").getMethod("m", new String[] {});
 	SearchPattern leftPattern = createPattern(leftMethod, ALL_OCCURRENCES);
@@ -1909,14 +1909,14 @@ public void testPackageDeclaration3() throws CoreException { // was testPackageD
 		getJavaSearchScope(),
 		this.resultCollector);
 	assertSearchResults(
-		getExternalJCLPath() + " java.lang",
+		getExternalJCLPath() + " java.lang", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		this.resultCollector);
 }
 /**
  * Package declaration with corrupt jar on the classpath test.
  * (regression test for bug 75561 Rename package results in I/O exception)
  */
-public void testPackageDeclaration4() throws CoreException {
+public void testPackageDeclaration4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = getJavaProject("JavaSearch");
 	IClasspathEntry[] originalCP = project.getRawClasspath();
 	try {
@@ -1955,7 +1955,7 @@ public void testPackageDeclarationBug73551() throws CoreException {
  * Bug 117020: [search] Search for '*' does not report empty packages
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=117020"
  */
-public void testPackageDeclarationBug117020() throws CoreException {
+public void testPackageDeclarationBug117020() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IFolder srcFolder = getFolder(new Path("/JavaSearch/src"));
 	IPackageFragmentRoot srcRoot = JAVA_PROJECT.getPackageFragmentRoot(srcFolder);
 	IPackageFragment test = null;
@@ -1977,7 +1977,7 @@ public void testPackageDeclarationBug117020() throws CoreException {
 		}
 	}
 }
-public void testPackageDeclarationBug183062a() throws CoreException {
+public void testPackageDeclarationBug183062a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	JavaSearchResultCollector packageCollector = new JavaSearchResultCollector(true);
 	search("j?",
 		PACKAGE,
@@ -1995,7 +1995,7 @@ public void testPackageDeclarationBug183062a() throws CoreException {
 		"test47909.jar j3 [No source]",
 		packageCollector);
 }
-public void testPackageDeclarationBug183062b() throws CoreException {
+public void testPackageDeclarationBug183062b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	JavaSearchResultCollector packageCollector = new JavaSearchResultCollector(true);
 	search("j*",
 		PACKAGE,
@@ -2003,7 +2003,7 @@ public void testPackageDeclarationBug183062b() throws CoreException {
 		getJavaSearchScope(),
 		packageCollector);
 	assertSearchResults(
-		""+ getExternalJCLPathString() + " java\n" +
+		""+ getExternalJCLPathString() + " java\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		""+ getExternalJCLPathString() + " java.io\n" +
 		""+ getExternalJCLPathString() + " java.lang\n" +
 		""+ getExternalJCLPathString() + " java.lang.annotation\n" +
@@ -2055,7 +2055,7 @@ public void testPackageDeclarationBug183062e() throws CoreException {
 		getJavaSearchScope(),
 		packageCollector);
 	assertSearchResults(
-		""+ getExternalJCLPathString() + " java.lang\n" +
+		""+ getExternalJCLPathString() + " java.lang\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		""+ getExternalJCLPathString() + " java.util",
 		packageCollector);
 }
@@ -2111,7 +2111,7 @@ public void testPackageReference3() throws CoreException {
 /**
  * Simple package reference test.
  */
-public void testPackageReference4() throws CoreException { // was testSimplePackageReference
+public void testPackageReference4() throws CoreException { // was testSimplePackageReference //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPackageFragment pkg = getPackageFragment("JavaSearch", "src", "p");
 
 	search(
@@ -2134,7 +2134,7 @@ public void testPackageReference4() throws CoreException { // was testSimplePack
 /**
  * Various package reference test.
  */
-public void testPackageReference5() throws CoreException { // was testVariousPackageReference
+public void testPackageReference5() throws CoreException { // was testVariousPackageReference //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPackageFragment pkg = getPackageFragment("JavaSearch", "src", "p3.p2.p");
 
 	search(
@@ -2173,7 +2173,7 @@ public void testPackageReference6() throws CoreException { // was testAccuratePa
 /**
  * Test pattern match package references
  */
-public void testPackageReference7() throws CoreException { // was testPatternMatchPackageReference
+public void testPackageReference7() throws CoreException { // was testPatternMatchPackageReference //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	search(
 		"*p2.*",
@@ -2214,7 +2214,7 @@ public void testPackageReference8() throws CoreException { // was testPatternMat
  * class file.
  * (Regression test for 1G4IN3E: ITPJCORE:WINNT - AbortCompilation using J9 to search for class declaration)
  */
-public void testSearchFieldInBinaryWithResolution() throws CoreException {
+public void testSearchFieldInBinaryWithResolution() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IClasspathEntry[] classpath = JAVA_PROJECT.getRawClasspath();
 	try {
 		// add AbortCompilation.jar to classpath
@@ -2238,7 +2238,7 @@ public void testSearchFieldInBinaryWithResolution() throws CoreException {
 	}
 }
 // bug 186333: Pattern which does not resolve should find all the matches exact
-public void testSearchFieldInBinaryNoResolution() throws CoreException {
+public void testSearchFieldInBinaryNoResolution() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IClasspathEntry[] classpath = JAVA_PROJECT.getRawClasspath();
 	try {
 		// add AbortCompilation.jar to classpath
@@ -2276,7 +2276,7 @@ public void testSearchFieldInBinaryNoResolution() throws CoreException {
  * class file.
  * (Regression test for 1G4IN3E: ITPJCORE:WINNT - AbortCompilation using J9 to search for class declaration)
  */
-public void testSearchMethodInBinaryWithResolution() throws CoreException {
+public void testSearchMethodInBinaryWithResolution() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IClasspathEntry[] classpath = JAVA_PROJECT.getRawClasspath();
 	try {
 		// add AbortCompilation.jar to classpath
@@ -2300,7 +2300,7 @@ public void testSearchMethodInBinaryWithResolution() throws CoreException {
 	}
 }
 // bug 186333: Pattern which does not resolve should find all the matches exact
-public void testSearchMethodInBinaryNoResolution() throws CoreException {
+public void testSearchMethodInBinaryNoResolution() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IClasspathEntry[] classpath = JAVA_PROJECT.getRawClasspath();
 	try {
 		// add AbortCompilation.jar to classpath
@@ -2339,7 +2339,7 @@ public void testSearchMethodInBinaryNoResolution() throws CoreException {
  * class file.
  * (Regression test for 1G4IN3E: ITPJCORE:WINNT - AbortCompilation using J9 to search for class declaration)
  */
-public void testSearchTypesInBinaryWithResolution() throws CoreException {
+public void testSearchTypesInBinaryWithResolution() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IClasspathEntry[] classpath = JAVA_PROJECT.getRawClasspath();
 	try {
 		// add AbortCompilation.jar to classpath
@@ -2362,7 +2362,7 @@ public void testSearchTypesInBinaryWithResolution() throws CoreException {
 		JAVA_PROJECT.setRawClasspath(classpath, null);
 	}
 }
-public void testSearchTypeInBinaryNoResolution() throws CoreException {
+public void testSearchTypeInBinaryNoResolution() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IClasspathEntry[] classpath = JAVA_PROJECT.getRawClasspath();
 	try {
 		// add AbortCompilation.jar to classpath
@@ -2456,7 +2456,7 @@ public void testSearchScope04() throws CoreException { // was testSubCUSearchSco
 /**
  * Java search scope on java element in external jar test.
  */
-public void testSearchScope05() throws CoreException, IOException { // was testExternalJarScope
+public void testSearchScope05() throws CoreException, IOException { // was testExternalJarScope //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IWorkspace workspace = ResourcesPlugin.getWorkspace();
 	File workspaceLocation = new File(workspace.getRoot().getLocation().toOSString());
 	File minimalJar = new File(workspaceLocation, "JavaSearch/MyJar.jar");
@@ -2482,7 +2482,7 @@ public void testSearchScope05() throws CoreException, IOException { // was testE
 			scope,
 			this.resultCollector);
 		assertSearchResults(
-			externalJar + " p0.X",
+			externalJar + " p0.X", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			this.resultCollector);
 
 		IOrdinaryClassFile classFile = pkg.getOrdinaryClassFile("X.class");
@@ -2494,7 +2494,7 @@ public void testSearchScope05() throws CoreException, IOException { // was testE
 			scope,
 			this.resultCollector);
 		assertSearchResults(
-			externalJar.toPath().normalize().toAbsolutePath().toString()+ " p0.X",
+			externalJar.toPath().normalize().toAbsolutePath().toString()+ " p0.X", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			this.resultCollector);
 
 	} finally {
@@ -2631,7 +2631,7 @@ public void testSearchScope14() throws CoreException {
 
         search("**", TYPE, DECLARATIONS, scope);
         assertSearchResults(
-        		"src/a10/B.java a10.A [A]\n" +
+        		"src/a10/B.java a10.A [A]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         		"src/a10/B.java a10.B [B]\n" +
         		"src/a10/C.java a10.C [C]\n" +
         		"src/a10/D.java a10.D [D]\n" +
@@ -2653,7 +2653,7 @@ public void testSearchScope14a() throws CoreException {
 
         search("**", TYPE, DECLARATIONS, scope);
         assertSearchResults(
-        		"src/a10/B.java a10.A [A]\n" +
+        		"src/a10/B.java a10.A [A]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         		"src/a10/B.java a10.B [B]\n" +
         		"src/a10/D.java a10.D [D]\n" +
         		"src/a10/E.java a10.E [E]\n" +
@@ -2666,7 +2666,7 @@ public void testSearchScope14a() throws CoreException {
  * Hierarchy scope test.
  * (test for enhancement bug 215139 search: find only subtypes - different call chain).
  */
-public void testSearchScope15() throws CoreException {
+public void testSearchScope15() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         ICompilationUnit cuC = this. getCompilationUnit("JavaSearch", "src", "a10", "C.java");
         IType type = cuC.getType("C");
         IJavaSearchScope scope = SearchEngine.createStrictHierarchyScope(null, type, true, false, null);
@@ -3082,7 +3082,7 @@ public void testTypeReference06() throws CoreException {
 /**
  * Simple type reference test.
  */
-public void testTypeReference07() throws CoreException { // was testTypeDeclaration01
+public void testTypeReference07() throws CoreException { // was testTypeDeclaration01 //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IType type = getCompilationUnit("JavaSearch", "src", "p", "X.java").getType("X");
 
 	search(
@@ -3137,7 +3137,7 @@ public void testTypeReference09() throws CoreException { // was testTypeReferenc
 /**
  * Member type reference test.
  */
-public void testTypeReference10() throws CoreException { // was testMemberTypeReference
+public void testTypeReference10() throws CoreException { // was testMemberTypeReference //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// references to second level member type
 
 	this.resultCollector.showAccuracy(true);
@@ -3292,7 +3292,7 @@ public void testTypeReference16() throws CoreException { // was testTypeReferenc
  * Type reference in a folder that is not in the classpath.
  * (regression test for PR #1G5N8KS)
  */
-public void testTypeReference17() throws CoreException { // was testTypeReferenceNotInClasspath
+public void testTypeReference17() throws CoreException { // was testTypeReferenceNotInClasspath //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IType type = getCompilationUnit("JavaSearch", "src", "p", "X.java").getType("X");
 
 	search(
@@ -3454,7 +3454,7 @@ public void testTypeReference25() throws CoreException { // was testInnacurateTy
  * Type reference test.
  * (Regression test for bug 9642 Search - missing inaccurate type matches)
  */
-public void testTypeReference26() throws CoreException { // was testInnacurateTypeReference2
+public void testTypeReference26() throws CoreException { // was testInnacurateTypeReference2 //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.resultCollector.showAccuracy(true);
 	this.resultCollector.showSelection();
@@ -3613,7 +3613,7 @@ public void testTypeReference34() throws CoreException { // was testTypeReferenc
  * Type reference with corrupt jar on the classpath test.
  * (Regression test for bug 39831 Search finds only "inexact" matches)
  */
-public void testTypeReference35() throws CoreException { // was testTypeReferenceWithCorruptJar
+public void testTypeReference35() throws CoreException { // was testTypeReferenceWithCorruptJar //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = getJavaProject("JavaSearch");
 	IClasspathEntry[] originalCP = project.getRawClasspath();
 	try {
@@ -3837,7 +3837,7 @@ public void testAnnotationType02() throws CoreException {
 /**
  * Search for auto-boxing
  */
-public void testAutoBoxing01() throws CoreException {
+public void testAutoBoxing01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearch15/src/p/X.java",
 		"package p;\n" +
@@ -4202,7 +4202,7 @@ public void testStaticImportPackage02() throws CoreException {
 public void testCamelCaseTypePattern01_CamelCase() throws CoreException {
 	search("RE", TYPE, DECLARATIONS, SearchPattern.R_CAMELCASE_MATCH);
 	assertSearchResults(
-		"src/a3/References.java a3.References [References]\n" +
+		"src/a3/References.java a3.References [References]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		""+ getExternalJCLPathString() + " java.lang.RuntimeException\n" +
 		""+ getExternalJCLPathString() + " java.lang.annotation.Retention\n" +
 		""+ getExternalJCLPathString() + " java.lang.annotation.RetentionPolicy"
@@ -4211,25 +4211,25 @@ public void testCamelCaseTypePattern01_CamelCase() throws CoreException {
 public void testCamelCaseTypePattern02_CamelCase() throws CoreException {
 	search("RException", TYPE, DECLARATIONS, SearchPattern.R_CAMELCASE_MATCH);
 	assertSearchResults(
-		""+ getExternalJCLPathString() + " java.lang.RuntimeException"
+		""+ getExternalJCLPathString() + " java.lang.RuntimeException" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 public void testCamelCaseTypePattern03_CamelCase() throws CoreException {
 	search("RuntimeException", TYPE, DECLARATIONS, SearchPattern.R_CAMELCASE_MATCH);
 	assertSearchResults(
-		""+ getExternalJCLPathString() + " java.lang.RuntimeException"
+		""+ getExternalJCLPathString() + " java.lang.RuntimeException" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 public void testCamelCaseTypePattern04_CamelCase() throws CoreException {
 	search("RUNTIMEEXCEPTION", TYPE, DECLARATIONS, SearchPattern.R_CAMELCASE_MATCH);
 	assertSearchResults(
-		""+ getExternalJCLPathString() + " java.lang.RuntimeException"
+		""+ getExternalJCLPathString() + " java.lang.RuntimeException" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 public void testCamelCaseTypePattern05_CamelCase() throws CoreException {
 	search("R*E*", TYPE, DECLARATIONS, SearchPattern.R_CAMELCASE_MATCH);
 	assertSearchResults(
-		"src/a3/References.java a3.References [References]\n" +
+		"src/a3/References.java a3.References [References]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		""+ getExternalJCLPathString() + " java.lang.RuntimeException\n" +
 		""+ getExternalJCLPathString() + " java.lang.annotation.Retention\n" +
 		""+ getExternalJCLPathString() + " java.lang.annotation.RetentionPolicy"
@@ -4277,7 +4277,7 @@ public void testCamelCaseTypePattern09_CamelCase() throws CoreException {
 		"q1.AA",
 		requestor);
 }
-public void testCamelCaseTypePattern10_CamelCase() throws CoreException {
+public void testCamelCaseTypePattern10_CamelCase() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearch/src/Test.java",
 		"class Null {}\n" +
@@ -4299,7 +4299,7 @@ public void testCamelCaseTypePattern10_CamelCase() throws CoreException {
 		"src/Test.java NULLPOINTEREXCEPTION [NULLPOINTEREXCEPTION]"
 	);
 }
-public void testCamelCaseTypePattern11_CamelCase() throws CoreException {
+public void testCamelCaseTypePattern11_CamelCase() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearch/src/Test.java",
 		"class Null {}\n" +
@@ -4321,7 +4321,7 @@ public void testCamelCaseTypePattern11_CamelCase() throws CoreException {
 		"src/Test.java NULLPOINTEREXCEPTION [NULLPOINTEREXCEPTION]"
 	);
 }
-public void testCamelCaseTypePattern12_CamelCase() throws CoreException {
+public void testCamelCaseTypePattern12_CamelCase() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearch/src/Test.java",
 		"class Null {}\n" +
@@ -4339,7 +4339,7 @@ public void testCamelCaseTypePattern12_CamelCase() throws CoreException {
 		"src/Test.java Nullpointerexception [Nullpointerexception]"
 	);
 }
-public void testCamelCaseTypePattern13_CamelCase() throws CoreException {
+public void testCamelCaseTypePattern13_CamelCase() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearch/src/Test.java",
 		"class Null {}\n" +
@@ -4361,19 +4361,19 @@ public void testCamelCaseTypePattern13_CamelCase() throws CoreException {
 public void testCamelCaseTypePattern01_CamelCaseSamePartCount() throws CoreException {
 	search("RE", TYPE, DECLARATIONS, SearchPattern.R_CAMELCASE_SAME_PART_COUNT_MATCH);
 	assertSearchResults(
-		""+ getExternalJCLPathString() + " java.lang.RuntimeException"
+		""+ getExternalJCLPathString() + " java.lang.RuntimeException" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 public void testCamelCaseTypePattern02_CamelCaseSamePartCount() throws CoreException {
 	search("RException", TYPE, DECLARATIONS, SearchPattern.R_CAMELCASE_SAME_PART_COUNT_MATCH);
 	assertSearchResults(
-		""+ getExternalJCLPathString() + " java.lang.RuntimeException"
+		""+ getExternalJCLPathString() + " java.lang.RuntimeException" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 public void testCamelCaseTypePattern03_CamelCaseSamePartCount() throws CoreException {
 	search("RuntimeException", TYPE, DECLARATIONS, SearchPattern.R_CAMELCASE_SAME_PART_COUNT_MATCH);
 	assertSearchResults(
-		""+ getExternalJCLPathString() + " java.lang.RuntimeException"
+		""+ getExternalJCLPathString() + " java.lang.RuntimeException" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 public void testCamelCaseTypePattern04_CamelCaseSamePartCount() throws CoreException {
@@ -4383,7 +4383,7 @@ public void testCamelCaseTypePattern04_CamelCaseSamePartCount() throws CoreExcep
 public void testCamelCaseTypePattern05_CamelCaseSamePartCount() throws CoreException {
 	search("R*E*", TYPE, DECLARATIONS, SearchPattern.R_CAMELCASE_SAME_PART_COUNT_MATCH);
 	assertSearchResults(
-		"src/a3/References.java a3.References [References]\n" +
+		"src/a3/References.java a3.References [References]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		""+ getExternalJCLPathString() + " java.lang.RuntimeException\n" +
 		""+ getExternalJCLPathString() + " java.lang.annotation.Retention\n" +
 		""+ getExternalJCLPathString() + " java.lang.annotation.RetentionPolicy"
@@ -4502,7 +4502,7 @@ public void testCamelCaseTypePattern13_CamelCaseSamePartCount() throws CoreExcep
  * test Ensure that match equals and hashCode methods return same values than those of stored {@link IType}.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=160323"
  */
-public void testBug160323() throws CoreException {
+public void testBug160323() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Search all type names with TypeNameMatchRequestor
 	TypeNameMatchCollector collector = new TypeNameMatchCollector() {
 		@Override
@@ -4536,7 +4536,7 @@ public void testBug160323() throws CoreException {
 	assertEquals("Found types sounds not to be correct", requestor.toString(), collector.toString());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=383908
-public void testBug383908() throws CoreException {
+public void testBug383908() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String fileContent = "package p;\n" +
 								"public class X {\n" +
@@ -4568,7 +4568,7 @@ public void testBug383908() throws CoreException {
  * if the primary type contains multiple anonymous types.
  * https://github.com/eclipse-jdt/eclipse.jdt.core/issues/375
  */
-public void testAnonymousTypeMethodReferenceJarSearchGh375() throws Exception {
+public void testAnonymousTypeMethodReferenceJarSearchGh375() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P", new String[] { "src" }, new String[] { "/P/libGh375.jar", "JCL18_LIB" }, "bin", "1.8");
 		createFile(
@@ -4622,7 +4622,7 @@ public void testAnonymousTypeMethodReferenceJarSearchGh375() throws Exception {
 
 		IMethod testMethod = findMethod(project, "TestGh375", "helloWorld");
 		String foundReferences = searchForMethodReferences(testMethod);
-		assertFalse("Expected search to find references of method: " + testMethod + ", in snippet:\n" + libSource, foundReferences.isEmpty());
+		assertFalse("Expected search to find references of method: " + testMethod + ", in snippet:\n" + libSource, foundReferences.isEmpty()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		List<String> results = Arrays.asList(foundReferences.split(System.lineSeparator()));
 		String[] expectedResults = {
 				"call() (not open) [in <anonymous> [in TestGh375$2.class [in <default> [in libGh375.jar [in P]]]]]",
@@ -4637,7 +4637,7 @@ public void testAnonymousTypeMethodReferenceJarSearchGh375() throws Exception {
  * Test that we can find method references called in an anonymous type defined in a method.
  * https://github.com/eclipse-jdt/eclipse.jdt.core/issues/432
  */
-public void testAnonymousTypeMethodReferenceSearchGh432() throws Exception {
+public void testAnonymousTypeMethodReferenceSearchGh432() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String testProjectName = "gh432MethodReferencesSearchBug";
 	String snippet1 = "package p;\n" +
 			"public class TestGh432 {\n" +
@@ -4719,11 +4719,11 @@ public void testAnonymousTypeMethodReferenceSearchGh432() throws Exception {
 	try {
 		IJavaProject p = createJava11Project(testProjectName, new String[] {"src"});
 		waitUntilIndexesReady();
-		String packageFolder = "/" + testProjectName + "/src/p";
+		String packageFolder = "/" + testProjectName + "/src/p"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createFolder(packageFolder);
-		String sourceFile = packageFolder + "/TestGh432.java";
+		String sourceFile = packageFolder + "/TestGh432.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		waitForAutoBuild();
-		for (int i = 0; i < testSnippets.length; ++i) {
+		for (int i = 0; i < testSnippets.length; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String fileContent = testSnippets[i];
 			String expectedResults = expectedMatches[i];
 			deleteFile(sourceFile);
@@ -4735,9 +4735,9 @@ public void testAnonymousTypeMethodReferenceSearchGh432() throws Exception {
 
 			IMethod testMethod = findMethod(p, "p.TestGh432", "missingReference");
 			String foundReferences = searchForMethodReferences(testMethod).strip();
-			assertFalse("Expected search to find references of method: " + testMethod + ", in snippet:\n" + fileContent, foundReferences.isEmpty());
+			assertFalse("Expected search to find references of method: " + testMethod + ", in snippet:\n" + fileContent, foundReferences.isEmpty()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			List<String> results = Arrays.asList(foundReferences.split("\n"));
-			assertEquals("Unexpected search result for snippet:\n" + fileContent, expectedResults, String.join("\n", results));
+			assertEquals("Unexpected search result for snippet:\n" + fileContent, expectedResults, String.join("\n", results)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	} finally {
 		JavaCore.setOptions(getDefaultJavaCoreOptions());
@@ -4746,10 +4746,10 @@ public void testAnonymousTypeMethodReferenceSearchGh432() throws Exception {
 }
 private static String searchForMethodReferences(IMethod testMethod) throws CoreException {
 	class JavaSearchResultCollector extends SearchRequestor {
-		private final StringBuilder result = new StringBuilder();
+		private final StringBuilder result = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		public void acceptSearchMatch(SearchMatch match) throws CoreException {
-			JavaSearchResultCollector.this.result.append(match.getElement());
-			JavaSearchResultCollector.this.result.append(System.lineSeparator());
+			JavaSearchResultCollector.this.result.append(match.getElement()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			JavaSearchResultCollector.this.result.append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 	JavaSearchResultCollector testResultCollector = new JavaSearchResultCollector();
@@ -4763,14 +4763,14 @@ private static String searchForMethodReferences(IMethod testMethod) throws CoreE
 }
 private static IMethod findMethod(IJavaProject project, String typeFqn, String methodName) throws JavaModelException {
 	IType testType = project.findType(typeFqn);
-	assertNotNull("Failed to find test type: " + typeFqn, testType);
+	assertNotNull("Failed to find test type: " + typeFqn, testType); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	IMethod testMethod = null;
-	for (IMethod method : testType.getMethods()) {
+	for (IMethod method : testType.getMethods()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (methodName.equals(method.getElementName())) {
 			testMethod = method;
 		}
 	}
-	assertNotNull("Failed to find method: " + methodName + ", in type: " + typeFqn, testMethod);
+	assertNotNull("Failed to find method: " + methodName + ", in type: " + typeFqn, testMethod); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	return testMethod;
 }
 }

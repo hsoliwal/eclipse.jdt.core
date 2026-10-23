@@ -60,7 +60,7 @@ public class ProjectEntry implements IModulePathEntry {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public char[][] getModulesDeclaringPackage(String qualifiedPackageName, String moduleName) {
 		// TODO(SHMOD): verify (is unnamed handled correctly?)
 		IModule mod = getModule();
@@ -82,7 +82,7 @@ public class ProjectEntry implements IModulePathEntry {
 	@Override
 	public boolean hasCompilationUnit(String qualifiedPackageName, String moduleName) {
 		try {
-			for (IPackageFragmentRoot root : this.project.getPackageFragmentRoots()) {
+			for (IPackageFragmentRoot root : this.project.getPackageFragmentRoots()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (root instanceof PackageFragmentRoot && ((PackageFragmentRoot) root).hasCompilationUnit(qualifiedPackageName, moduleName))
 					return true;
 			}

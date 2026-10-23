@@ -49,9 +49,9 @@ public class RunOnlyAssistModelTests18 extends TestCase {
 		addTestsToSuite(ts, testClasses);
 		return ts;
 	}
-	public static void addTestsToSuite(TestSuite suite, Class[] testClasses) {
+	public static void addTestsToSuite(TestSuite suite, Class[] testClasses) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
-		for (int i = 0; i < testClasses.length; i++) {
+		for (int i = 0; i < testClasses.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Class testClass = testClasses[i];
 			// call the suite() method and add the resulting suite to the suite
 			try {

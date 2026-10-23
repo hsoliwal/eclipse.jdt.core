@@ -59,7 +59,7 @@ public class CompressedWriterTest extends BuilderTests {
 		start();
 		try {
 			// test multiple times since output depends on context (lastName, dictionary)
-			for (int i = 1; i < 3; i++) {
+			for (int i = 1; i < 3; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				assertReadWhatsWritten();
 			}
 		} finally {
@@ -67,7 +67,7 @@ public class CompressedWriterTest extends BuilderTests {
 		}
 	}
 
-	private void assertReadWhatsWritten() throws Exception {
+	private void assertReadWhatsWritten() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		assertSame(new Integer[] { 0, 1, -1, 2, -2, (int) Byte.MAX_VALUE, (int) Byte.MIN_VALUE },
 				(w, v) -> w.writeByte(v.intValue()), r -> Integer.valueOf(r.readByte()));
 		assertSame(new Boolean[] { true, false }, (w, v) -> w.writeBoolean(v.booleanValue()),
@@ -80,7 +80,7 @@ public class CompressedWriterTest extends BuilderTests {
 		int[] ranges = new int[] { 5, Byte.MAX_VALUE, Byte.MAX_VALUE - 1, Byte.MAX_VALUE + 1, 254, 255, 256, 0xffff - 1,
 				0xffff, 0xffff + 1, 0xfffff, 0xfffff + 1, 0xffffff - 1, 0xffffff, 0xffffff + 1, 0xffffffff - 1,
 				0xffffffff, 0x12, 0x1234, 0x123456, 0x12345678 };
-		for (int range : ranges) {
+		for (int range : ranges) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			assertSame(new Integer[] { 0, 1, 2, range - 1 }, (w, v) -> w.writeIntInRange(v.intValue(), range),
 					r -> Integer.valueOf(r.readIntInRange(range)));
 		}
@@ -123,7 +123,7 @@ public class CompressedWriterTest extends BuilderTests {
 
 	private <V> void assertSame(V[] vs, ExceptionalBiConsumer<CompressedWriter, V> write,
 			ExceptionalFunction<CompressedReader, V> read) throws Exception {
-		for (V v : vs) {
+		for (V v : vs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			assertEquals(v, write, read);
 		}
 

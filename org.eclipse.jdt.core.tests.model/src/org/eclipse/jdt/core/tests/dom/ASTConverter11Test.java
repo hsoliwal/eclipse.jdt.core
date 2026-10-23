@@ -50,7 +50,7 @@ public class ASTConverter11Test extends ConverterTestSetup {
 		}
 	}
 
-	public void testBug535249_001() throws JavaModelException {
+	public void testBug535249_001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X {\n" +
 				"	public static void main(String[] args) {\n" +
@@ -82,7 +82,7 @@ public class ASTConverter11Test extends ConverterTestSetup {
 			assertTrue("null binding", binding != null);
 	}
 
-	public void testBug535249_002() throws JavaModelException {
+	public void testBug535249_002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X {\n" +
 				"	public static void main(String[] args) {\n" +
@@ -102,7 +102,7 @@ public class ASTConverter11Test extends ConverterTestSetup {
 			checkSourceRange(vStmt, "I lambda = (var x, var y) -> {System.out.println(x);};", contents);
 			VariableDeclarationFragment fragment = (VariableDeclarationFragment) vStmt.fragments().get(0);
 			LambdaExpression lambda = (LambdaExpression) fragment.getInitializer();
-			for (int i = 0, l = lambda.parameters().size(); i < l; ++i) {
+			for (int i = 0, l = lambda.parameters().size(); i < l; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				SingleVariableDeclaration varDecl = (SingleVariableDeclaration) lambda.parameters().get(i);
 				Type type = varDecl.getType();
 				assertTrue("Not SimpleType", type instanceof SimpleType);

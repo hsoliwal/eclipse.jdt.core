@@ -45,7 +45,7 @@ public final class FileSystemUtil
 	 * The resource is left untouched if it is no a folder or a file.
 	 * @return <code>true</code> iff the resource has been deleted.
 	 */
-	public static boolean deleteDerivedResources(final IResource resource)
+	public static boolean deleteDerivedResources(final IResource resource) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		throws CoreException
 	{
 		if (null == resource) {
@@ -54,7 +54,7 @@ public final class FileSystemUtil
 		if( resource.getType() == IResource.FOLDER ){
 			boolean deleteFolder = resource.isDerived();
 			IResource[] members = ((IFolder)resource).members();
-			for( int i=0, len=members.length; i<len; i++ ){
+			for( int i=0, len=members.length; i<len; i++ ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				deleteFolder &= deleteDerivedResources(members[i]);
 			}
 			if( deleteFolder ){
@@ -84,7 +84,7 @@ public final class FileSystemUtil
 		} catch (CoreException e) {
 			// might have been concurrently deleted
 			if (resource.exists()) {
-				AptPlugin.log(e, "Unable to delete derived resource " + resource); //$NON-NLS-1$
+				AptPlugin.log(e, "Unable to delete derived resource " + resource); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
@@ -99,7 +99,7 @@ public final class FileSystemUtil
         synchronized (FileSystemUtil.class) {
             if (!parent.exists()) {
                 boolean succeed = false;
-                for (int i = 0 ; !succeed && i < 5 ; i++)
+                for (int i = 0 ; !succeed && i < 5 ; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
                     succeed = parent.mkdirs();
             }
         }
@@ -181,7 +181,7 @@ public final class FileSystemUtil
     	byte[] data = contents.getBytes(StandardCharsets.UTF_8);
     	OutputStream out = new BufferedOutputStream(new FileOutputStream(file));
     	try {
-    		for (byte b : data) {
+    		for (byte b : data) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     			out.write(b);
     		}
     	}
@@ -194,10 +194,10 @@ public final class FileSystemUtil
 	 * Return true if the content of the streams is identical,
 	 * false if not.
 	 */
-	public static boolean compareStreams(InputStream is1, InputStream is2) {
+	public static boolean compareStreams(InputStream is1, InputStream is2) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			int b1 = is1.read();
-	        while(b1 != -1) {
+	        while(b1 != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	            int b2 = is2.read();
 	            if(b1 != b2) {
 	                return false;

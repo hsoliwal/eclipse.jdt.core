@@ -44,7 +44,7 @@ public void test1() throws Exception {
 		"  Inner classes:\n" +
 		"    [inner class info: #25 java/util/Map$Entry, outer class info: #27 java/util/Map\n" +
 		"     inner name: #29 Entry, accessflags: 1545 public abstract static]\n";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=275381
 public void test2() throws Exception {
@@ -61,7 +61,7 @@ public void test2() throws Exception {
 		"  Inner classes:\n" +
 		"    [inner class info: #21 java/util/Map$Entry, outer class info: #23 java/util/Map\n" +
 		"     inner name: #25 Entry, accessflags: 1545 public abstract static]\n";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "p" + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "p" + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=275381
 public void test3() throws Exception {
@@ -78,7 +78,7 @@ public void test3() throws Exception {
 		"  Inner classes:\n" +
 		"    [inner class info: #27 java/util/Map$Entry, outer class info: #29 java/util/Map\n" +
 		"     inner name: #31 Entry, accessflags: 1545 public abstract static]\n";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=275381
 public void test4() throws Exception {
@@ -92,7 +92,7 @@ public void test4() throws Exception {
 		"  Inner classes:\n" +
 		"    [inner class info: #21 java/util/Map$Entry, outer class info: #23 java/util/Map\n" +
 		"     inner name: #25 Entry, accessflags: 1545 public abstract static]\n";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=275381
 public void test5() throws Exception {
@@ -109,7 +109,7 @@ public void test5() throws Exception {
 		"  Inner classes:\n" +
 		"    [inner class info: #25 java/util/Map$Entry, outer class info: #27 java/util/Map\n" +
 		"     inner name: #29 Entry, accessflags: 1545 public abstract static]\n";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "p" + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "p" + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=275381
 public void test6() throws Exception {
@@ -126,7 +126,7 @@ public void test6() throws Exception {
 		"  Inner classes:\n" +
 		"    [inner class info: #21 java/util/Map$Entry, outer class info: #23 java/util/Map\n" +
 		"     inner name: #25 Entry, accessflags: 1545 public abstract static]\n";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "p" + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "p" + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=275381
 public void test7() throws Exception {
@@ -142,10 +142,10 @@ public void test7() throws Exception {
 		"  Inner classes:\n" +
 		"    [inner class info: #21 java/util/Map$Entry, outer class info: #23 java/util/Map\n" +
 		"     inner name: #25 Entry, accessflags: 1545 public abstract static]\n";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "p" + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "p" + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=275381
-public void test8() throws Exception {
+public void test8() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"p/X.java",
 		"package p;\n" +
@@ -163,10 +163,10 @@ public void test8() throws Exception {
 		"     inner name: #25 Entry, accessflags: 1545 public abstract static],\n" +
 		"    [inner class info: #26 p/A$B, outer class info: #28 p/A\n" +
 		"     inner name: #30 B, accessflags: 8 static]\n";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "p" + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "p" + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=275381
-public void test9() throws Exception {
+public void test9() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"p/X.java",
 		"package p;\n" +
@@ -185,10 +185,10 @@ public void test9() throws Exception {
 		"     inner name: #29 Entry, accessflags: 1545 public abstract static],\n" +
 		"    [inner class info: #30 p/A$B, outer class info: #32 p/A\n" +
 		"     inner name: #34 B, accessflags: 8 static]\n";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "p" + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "p" + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=275381
-public void test10() throws Exception {
+public void test10() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"p/X.java",
 		"package p;\n" +
@@ -212,10 +212,10 @@ public void test10() throws Exception {
 		"     inner name: #34 B, accessflags: 1544 abstract static],\n" +
 		"    [inner class info: #35 p/C$D, outer class info: #37 p/C\n" +
 		"     inner name: #39 D, accessflags: 8 static]\n";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "p" + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "p" + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=275381
-public void test11() throws Exception {
+public void test11() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"X.java",
 		"import java.util.*;\n" +
@@ -247,7 +247,7 @@ public void test11() throws Exception {
 		"     inner name: #40 SubType, accessflags: 8 static],\n" +
 		"    [inner class info: #41 X$SuperType, outer class info: #1 X\n" +
 		"     inner name: #43 SuperType, accessflags: 8 static]\n";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=275381
 public void test12() throws Exception {
@@ -264,10 +264,10 @@ public void test12() throws Exception {
 		"  Inner classes:\n" +
 		"    [inner class info: #21 java/util/Map$Entry, outer class info: #23 java/util/Map\n" +
 		"     inner name: #25 Entry, accessflags: 1545 public abstract static]\n";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "p" + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "p" + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=275381
-public void test13() throws Exception {
+public void test13() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"p/X.java",
 		"package p;\n" +
@@ -288,11 +288,11 @@ public void test13() throws Exception {
 		"     inner name: #21 B, accessflags: 1544 abstract static],\n" +
 		"    [inner class info: #3 p/C$D, outer class info: #22 p/C\n" +
 		"     inner name: #24 D, accessflags: 8 static]\n";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "p" + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "p" + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=343713
 // [compiler] bogus line number in constructor of inner class in 1.5 compliance
-public void test14() throws Exception {
+public void test14() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 		"LineNumberBug.java",
 		"public class LineNumberBug {\n" +
@@ -323,9 +323,9 @@ public void test14() throws Exception {
 		"        [pc: 0, line: 3]\n" +
 		"        [pc: 9, line: 4]\n" +
 		"        [pc: 17, line: 5]\n";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "LineNumberBug$Inner.class", "LineNumberBug$Inner", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "LineNumberBug$Inner.class", "LineNumberBug$Inner", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
-public void testBug546362() throws Exception {
+public void testBug546362() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 		"Schema.java",
 		"import java.util.HashMap;\n" +
@@ -342,7 +342,7 @@ public void testBug546362() throws Exception {
 			"    [inner class info: #41 java/util/Map$Entry, outer class info: #43 java/util/Map\n" +
 			"     inner name: #45 Entry, accessflags: 1545 public abstract static]\n" +
 			"";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "Schema.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "Schema.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 public static Class testClass() {
 	return InnerEmulationTest_1_5.class;

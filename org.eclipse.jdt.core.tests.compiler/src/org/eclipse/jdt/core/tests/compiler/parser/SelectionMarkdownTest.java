@@ -60,48 +60,48 @@ public class SelectionMarkdownTest extends AbstractSelectionTest {
 
 		public boolean visit(ConstructorDeclaration constructor, ClassScope scope) {
 			if (constructor.javadoc != null) {
-				assertTrue("Invalid type for Javadoc on " + constructor, constructor.javadoc instanceof SelectionJavadoc);
-				SelectionMarkdownTest.this.result.append(constructor.javadoc.toString());
+				assertTrue("Invalid type for Javadoc on " + constructor, constructor.javadoc instanceof SelectionJavadoc); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				SelectionMarkdownTest.this.result.append(constructor.javadoc.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			return super.visit(constructor, scope);
 		}
 
 		public boolean visit(FieldDeclaration field, MethodScope scope) {
 			if (field.javadoc != null) {
-				assertTrue("Invalid type for Javadoc on " + field, field.javadoc instanceof SelectionJavadoc);
-				SelectionMarkdownTest.this.result.append(field.javadoc.toString());
+				assertTrue("Invalid type for Javadoc on " + field, field.javadoc instanceof SelectionJavadoc); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				SelectionMarkdownTest.this.result.append(field.javadoc.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			return super.visit(field, scope);
 		}
 
 		public boolean visit(MethodDeclaration method, ClassScope scope) {
 			if (method.javadoc != null) {
-				assertTrue("Invalid type for Javadoc on " + method, method.javadoc instanceof SelectionJavadoc);
-				SelectionMarkdownTest.this.result.append(method.javadoc.toString());
+				assertTrue("Invalid type for Javadoc on " + method, method.javadoc instanceof SelectionJavadoc); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				SelectionMarkdownTest.this.result.append(method.javadoc.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			return super.visit(method, scope);
 		}
 
 		public boolean visit(TypeDeclaration type, BlockScope scope) {
 			if (type.javadoc != null) {
-				assertTrue("Invalid type for Javadoc on " + type, type.javadoc instanceof SelectionJavadoc);
-				SelectionMarkdownTest.this.result.append(type.javadoc.toString());
+				assertTrue("Invalid type for Javadoc on " + type, type.javadoc instanceof SelectionJavadoc); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				SelectionMarkdownTest.this.result.append(type.javadoc.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			return super.visit(type, scope);
 		}
 
 		public boolean visit(TypeDeclaration type, ClassScope scope) {
 			if (type.javadoc != null) {
-				assertTrue("Invalid type for Javadoc on " + type, type.javadoc instanceof SelectionJavadoc);
-				SelectionMarkdownTest.this.result.append(type.javadoc.toString());
+				assertTrue("Invalid type for Javadoc on " + type, type.javadoc instanceof SelectionJavadoc); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				SelectionMarkdownTest.this.result.append(type.javadoc.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			return super.visit(type, scope);
 		}
 
 		public boolean visit(TypeDeclaration type, CompilationUnitScope scope) {
 			if (type.javadoc != null) {
-				assertTrue("Invalid type for Javadoc on " + type, type.javadoc instanceof SelectionJavadoc);
-				SelectionMarkdownTest.this.result.append(type.javadoc.toString());
+				assertTrue("Invalid type for Javadoc on " + type, type.javadoc instanceof SelectionJavadoc); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				SelectionMarkdownTest.this.result.append(type.javadoc.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			return super.visit(type, scope);
 		}
@@ -110,7 +110,7 @@ public class SelectionMarkdownTest extends AbstractSelectionTest {
 	protected void assertValid(String expected) {
 		String actual = this.result.toString();
 		if (!actual.equals(expected)) {
-			System.out.println("Expected result for test "+testName()+":");
+			System.out.println("Expected result for test "+testName()+":"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			System.out.println(Util.displayString(actual, 3));
 			System.out.println("	source: [");
 			System.out.print(Util.indentString(this.source, 2));
@@ -127,7 +127,7 @@ public class SelectionMarkdownTest extends AbstractSelectionTest {
 	void setUnit(String name, String source) {
 		this.source = source;
 		this.unit = new CompilationUnit(source.toCharArray(), name, null);
-		this.result = new StringBuilder();
+		this.result = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	}
 
 	/*
@@ -137,7 +137,7 @@ public class SelectionMarkdownTest extends AbstractSelectionTest {
 		return findJavadoc(selection, 1);
 	}
 
-	protected CompilationResult findJavadoc(String selection, int occurences) {
+	protected CompilationResult findJavadoc(String selection, int occurences) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Verify unit
 		assertNotNull("Missing compilation unit!", this.unit);
@@ -146,7 +146,7 @@ public class SelectionMarkdownTest extends AbstractSelectionTest {
 		int selectionStart = this.source.indexOf(selection);
 		int length = selection.length();
 		int selectionEnd = selectionStart + length - 1;
-		for (int i = 1; i < occurences; i++) {
+		for (int i = 1; i < occurences; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			selectionStart = this.source.indexOf(selection, selectionEnd);
 			selectionEnd = selectionStart + length - 1;
 		}
@@ -253,7 +253,7 @@ public class SelectionMarkdownTest extends AbstractSelectionTest {
 		assertValid("/**<SelectOnField:#field>*/\n");
 	}
 
-	public void test07() {
+	public void test07() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 				"public class Test {\n" +
 				"	/// \n" +
@@ -286,7 +286,7 @@ public class SelectionMarkdownTest extends AbstractSelectionTest {
 			);
 	}
 
-	public void test08() {
+	public void test08() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"public class Test {\n" +
 			"	 /// \n" +
@@ -319,7 +319,7 @@ public class SelectionMarkdownTest extends AbstractSelectionTest {
 		);
 	}
 
-	public void test09() {
+	public void test09() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("test/junit/Test.java",
 			"package test.junit;\n" +
 			"public class Test {\n" +
@@ -366,7 +366,7 @@ public class SelectionMarkdownTest extends AbstractSelectionTest {
 		);
 	}
 
-	public void test10() {
+	public void test10() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("test/junit/Test.java",
 			"package test.junit;\n" +
 			"public class Test {\n" +
@@ -466,7 +466,7 @@ public class SelectionMarkdownTest extends AbstractSelectionTest {
 		);
 	}
 
-	public void test14() {
+	public void test14() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"/// \n" +
 			"/// Javadoc of {@link Test}\n" +
@@ -506,7 +506,7 @@ public class SelectionMarkdownTest extends AbstractSelectionTest {
 		);
 	}
 
-	public void test15() {
+	public void test15() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"/// \n" +
 			"/// Javadoc of {@link Test}\n" +
@@ -562,7 +562,7 @@ public class SelectionMarkdownTest extends AbstractSelectionTest {
 		);
 	}
 
-	public void test16() {
+	public void test16() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"/// \n" +
 			"/// Javadoc of {@link Test}\n" +
@@ -587,7 +587,7 @@ public class SelectionMarkdownTest extends AbstractSelectionTest {
 		);
 	}
 
-	public void test17() {
+	public void test17() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"/// \n" +
 			"/// @see Test.Field#foo\n" +
@@ -632,7 +632,7 @@ public class SelectionMarkdownTest extends AbstractSelectionTest {
 		);
 	}
 
-	public void test18() {
+	public void test18() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"/// \n" +
 			"/// @see Test.Method#foo()\n" +
@@ -677,7 +677,7 @@ public class SelectionMarkdownTest extends AbstractSelectionTest {
 		);
 	}
 
-	public void test19() {
+	public void test19() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"/// \n" +
 			"/// @see Test.Other\n" +
@@ -707,7 +707,7 @@ public class SelectionMarkdownTest extends AbstractSelectionTest {
 		);
 	}
 
-	public void test20() {
+	public void test20() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"public class Test {\n" +
 			"	void bar() {\n" +
@@ -738,7 +738,7 @@ public class SelectionMarkdownTest extends AbstractSelectionTest {
 		);
 	}
 
-	public void test21() {
+	public void test21() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"public class Test {\n" +
 			"	void bar() {\n" +
@@ -769,7 +769,7 @@ public class SelectionMarkdownTest extends AbstractSelectionTest {
 		);
 	}
 
-	public void test22() {
+	public void test22() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"public class Test {\n" +
 			"	void bar() {\n" +
@@ -789,7 +789,7 @@ public class SelectionMarkdownTest extends AbstractSelectionTest {
 		);
 	}
 
-	public void test23() {
+	public void test23() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"public class Test {\n" +
 			"	void bar() {\n" +
@@ -822,7 +822,7 @@ public class SelectionMarkdownTest extends AbstractSelectionTest {
 		);
 	}
 
-	public void test24() {
+	public void test24() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"public class Test {\n" +
 			"	void bar() {\n" +
@@ -855,7 +855,7 @@ public class SelectionMarkdownTest extends AbstractSelectionTest {
 		);
 	}
 
-	public void test25() {
+	public void test25() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"public class Test {\n" +
 			"	void bar() {\n" +
@@ -881,7 +881,7 @@ public class SelectionMarkdownTest extends AbstractSelectionTest {
 	 * bug 192449: [javadoc][assist] SelectionJavadocParser should not report problems
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=192449"
 	 */
-	public void test26() {
+	public void test26() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"/// \n" +
 			"/// @see \n" +

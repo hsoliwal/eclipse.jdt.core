@@ -134,10 +134,10 @@ public abstract class JobManager {
 	 * Remove the index from cache for a given project.
 	 * Passing null as a job family discards them all.
 	 */
-	public void discardJobs(String jobFamily) {
+	public void discardJobs(String jobFamily) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		if (VERBOSE) {
-			trace("DISCARD   background job family - " + jobFamily); //$NON-NLS-1$
+			trace("DISCARD   background job family - " + jobFamily); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		try {
@@ -152,10 +152,10 @@ public abstract class JobManager {
 
 				synchronized (this) {
 					// wait until current active job has finished
-					while (getProcessingThread() != null && this.executing){
+					while (getProcessingThread() != null && this.executing){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						try {
 							if (VERBOSE) {
-								trace("-> waiting end of current background job - " + currentJob); //$NON-NLS-1$
+								trace("-> waiting end of current background job - " + currentJob); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							}
 							this.wait(50);
 						} catch(InterruptedException e){
@@ -168,11 +168,11 @@ public abstract class JobManager {
 			synchronized(this) {
 				Iterator<IJob> it = this.awaitingJobs.iterator();
 				boolean notify = false;
-				while (it.hasNext()) {
+				while (it.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					currentJob = it.next();
 					if (jobFamily == null || currentJob.belongsTo(jobFamily)) {
 						if (VERBOSE) {
-							trace("-> discarding background job  - " + currentJob); //$NON-NLS-1$
+							trace("-> discarding background job  - " + currentJob); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
 						currentJob.cancel();
 						it.remove();
@@ -187,7 +187,7 @@ public abstract class JobManager {
 			enable();
 		}
 		if (VERBOSE) {
-			trace("DISCARD   DONE with background job family - " + jobFamily); //$NON-NLS-1$
+			trace("DISCARD   DONE with background job family - " + jobFamily); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	public synchronized void enable() {
@@ -204,7 +204,7 @@ public abstract class JobManager {
 		return hasPendingJobMatching(request::equals);
 	}
 
-	protected synchronized boolean hasPendingJobMatching(Predicate<IJob> request) {
+	protected synchronized boolean hasPendingJobMatching(Predicate<IJob> request) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int awaitingJobsCount = awaitingJobsCount();
 		if (awaitingJobsCount <= 1) {
 			return false;
@@ -212,7 +212,7 @@ public abstract class JobManager {
 		// Start at the end and go backwards
 		ListIterator<IJob> iterator = this.awaitingJobs.listIterator(awaitingJobsCount);
 		IJob first = this.awaitingJobs.get(0);
-		while (iterator.hasPrevious()) {
+		while (iterator.hasPrevious()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IJob job = iterator.previous();
 			// don't check first job, as it may have already started
 			if(job == first) {
@@ -260,9 +260,9 @@ public abstract class JobManager {
 	 * 		IJobConstants.CancelIfNotReadyToSearch
 	 * 		IJobConstants.WaitUntilReadyToSearch
 	 */
-	public boolean performConcurrentJob(IJob searchJob, int waitingPolicy, IProgressMonitor monitor) {
+	public boolean performConcurrentJob(IJob searchJob, int waitingPolicy, IProgressMonitor monitor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (VERBOSE) {
-			trace("STARTING  concurrent job - " + searchJob); //$NON-NLS-1$
+			trace("STARTING  concurrent job - " + searchJob); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		searchJob.ensureReadyToRun();
@@ -272,14 +272,14 @@ public abstract class JobManager {
 			SubMonitor subMonitor = SubMonitor.convert(monitor);
 			if (awaitingJobsCount() > 0) {
 				if (VERBOSE) {
-					trace("-> NOT READY - " + awaitingJobsCount() + " awaiting jobs - " + searchJob);//$NON-NLS-1$ //$NON-NLS-2$
+					trace("-> NOT READY - " + awaitingJobsCount() + " awaiting jobs - " + searchJob);//$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 
 				switch (waitingPolicy) {
 
 					case IJob.ForceImmediate :
 						if (VERBOSE) {
-							trace("-> NOT READY - forcing immediate - " + searchJob);//$NON-NLS-1$
+							trace("-> NOT READY - forcing immediate - " + searchJob);//$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
 						try {
 							disable(); // pause indexing
@@ -288,14 +288,14 @@ public abstract class JobManager {
 							enable();
 						}
 						if (VERBOSE) {
-							trace("FINISHED  concurrent job - " + searchJob); //$NON-NLS-1$
+							trace("FINISHED  concurrent job - " + searchJob); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
 						return status;
 
 					case IJob.CancelIfNotReady :
 						if (VERBOSE) {
-							trace("-> NOT READY - cancelling - " + searchJob); //$NON-NLS-1$
-							trace("CANCELED concurrent job - " + searchJob); //$NON-NLS-1$
+							trace("-> NOT READY - cancelling - " + searchJob); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+							trace("CANCELED concurrent job - " + searchJob); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
 						throw new OperationCanceledException();
 
@@ -315,7 +315,7 @@ public abstract class JobManager {
 							int lastJobsCount = totalWork;
 							float lastWorked = 0;
 							float totalWorked = 0;
-							while ((awaitingJobsCount = awaitingJobsCount()) > 0) {
+							while ((awaitingJobsCount = awaitingJobsCount()) > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								if (waitMonitor.isCanceled() || getProcessingThread() == null)
 									throw new OperationCanceledException();
 
@@ -324,7 +324,7 @@ public abstract class JobManager {
 								if (currentJob != null) {
 									if (!isEnabled()) {
 										if (VERBOSE) {
-											trace("-> NOT READY (" + this.enableCount //$NON-NLS-1$
+											trace("-> NOT READY (" + this.enableCount //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 													+ ") - enabling indexer to process " //$NON-NLS-1$
 													+ awaitingJobsCount + " jobs - " + searchJob);//$NON-NLS-1$
 										}
@@ -337,7 +337,7 @@ public abstract class JobManager {
 								}
 								if (currentJob != null && currentJob != previousJob) {
 									if (VERBOSE) {
-										trace("-> NOT READY - waiting until ready  to process " + awaitingJobsCount + " awaiting jobs - " + searchJob);//$NON-NLS-1$ //$NON-NLS-2$
+										trace("-> NOT READY - waiting until ready  to process " + awaitingJobsCount + " awaiting jobs - " + searchJob);//$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 									}
 									String indexing = Messages.bind(Messages.jobmanager_filesToIndex, currentJob.getJobFamily(), Integer.toString(awaitingJobsCount));
 									waitMonitor.subTask(indexing);
@@ -367,7 +367,7 @@ public abstract class JobManager {
 								}
 								if (shouldDisable) {
 									if (VERBOSE) {
-										trace("-> NOT READY (" + this.enableCount + ") - disabling indexer again, still awaiting jobs: " //$NON-NLS-1$ //$NON-NLS-2$
+										trace("-> NOT READY (" + this.enableCount + ") - disabling indexer again, still awaiting jobs: " //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 												+ awaitingJobsCount + " - " + searchJob);//$NON-NLS-1$
 									}
 									disable();
@@ -384,7 +384,7 @@ public abstract class JobManager {
 		} finally {
 			SubMonitor.done(monitor);
 			if (VERBOSE) {
-				trace("FINISHED  concurrent job - " + searchJob); //$NON-NLS-1$
+				trace("FINISHED  concurrent job - " + searchJob); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		return status;
@@ -410,15 +410,15 @@ public abstract class JobManager {
 		// append the job to the list of ones to process later on
 		this.awaitingJobs.add(job);
 		if (VERBOSE) {
-			trace("REQUEST   background job - " + job); //$NON-NLS-1$
-			trace("AWAITING JOBS count: " + awaitingJobsCount()); //$NON-NLS-1$
+			trace("REQUEST   background job - " + job); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			trace("AWAITING JOBS count: " + awaitingJobsCount()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		notifyAll(); // wake up the background thread if it is waiting
 	}
 	/**
 	 * Flush current state
 	 */
-	public void reset() {
+	public void reset() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (VERBOSE) {
 			trace("Reset"); //$NON-NLS-1$
 		}
@@ -446,7 +446,7 @@ public abstract class JobManager {
 	/**
 	 * Infinite loop performing resource indexing
 	 */
-	void indexerLoop() {
+	void indexerLoop() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		boolean cacheZipFiles = false;
 		Long idlingStart = null;
@@ -456,11 +456,11 @@ public abstract class JobManager {
 				ProgressJob(String name) {
 					super(name);
 				}
-				@Override
+				@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				protected IStatus run(IProgressMonitor monitor) {
 					IJob job = currentJob();
-					while (!monitor.isCanceled() && job != null) {
-						 String taskName = new StringBuilder(Messages.jobmanager_indexing)
+					while (!monitor.isCanceled() && job != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+						 String taskName = new StringBuilder(Messages.jobmanager_indexing) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							.append(Messages.bind(Messages.jobmanager_filesToIndex, job.getJobFamily(), Integer.toString(awaitingJobsCount())))
 							.toString();
 						monitor.subTask(taskName);
@@ -482,7 +482,7 @@ public abstract class JobManager {
 				}
 			}
 			this.progressJob = null;
-			while (getProcessingThread() != null) {
+			while (getProcessingThread() != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					IJob job;
 					synchronized (this) {
@@ -522,8 +522,8 @@ public abstract class JobManager {
 					}
 					idlingStart = null;
 					if (VERBOSE) {
-						trace(awaitingJobsCount() + " awaiting jobs"); //$NON-NLS-1$
-						trace("STARTING background job - " + job); //$NON-NLS-1$
+						trace(awaitingJobsCount() + " awaiting jobs"); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+						trace("STARTING background job - " + job); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 					try {
 						this.executing = true;
@@ -542,12 +542,12 @@ public abstract class JobManager {
 					} finally {
 						this.executing = false;
 						if (VERBOSE) {
-							trace("FINISHED background job - " + job); //$NON-NLS-1$
+							trace("FINISHED background job - " + job); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
 						moveToNextJob();
 						if (this.awaitingClients.get() == 0 && job.waitNeeded()) {
 							if (VERBOSE) {
-								trace("WAITING after job - " + job); //$NON-NLS-1$
+								trace("WAITING after job - " + job); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							}
 							synchronized (this.idleMonitor) {
 								this.idleMonitor.wait(5); // avoid sleep fixed time
@@ -580,7 +580,7 @@ public abstract class JobManager {
 	/**
 	 * Stop background processing, and wait until the current job is completed before returning
 	 */
-	public void shutdown() {
+	public void shutdown() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		if (VERBOSE) {
 			trace("Shutdown"); //$NON-NLS-1$
@@ -612,12 +612,12 @@ public abstract class JobManager {
 	}
 	@Override
 	public synchronized String toString() {
-		StringBuilder buffer = new StringBuilder(10);
-		buffer.append("Enable count:").append(this.enableCount).append('\n'); //$NON-NLS-1$
+		StringBuilder buffer = new StringBuilder(10); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("Enable count:").append(this.enableCount).append('\n'); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		int numJobs = this.awaitingJobs.size();
-		buffer.append("Jobs in queue:").append(numJobs).append('\n'); //$NON-NLS-1$
-		for (int i = 0; i < numJobs && i < 15; i++) {
-			buffer.append(i).append(" - job["+i+"]: ").append(this.awaitingJobs.get(i)).append('\n'); //$NON-NLS-1$ //$NON-NLS-2$
+		buffer.append("Jobs in queue:").append(numJobs).append('\n'); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (int i = 0; i < numJobs && i < 15; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(i).append(" - job["+i+"]: ").append(this.awaitingJobs.get(i)).append('\n'); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return buffer.toString();
 	}

@@ -65,7 +65,7 @@ protected void tearDown() throws Exception {
 	super.tearDown();
 }
 
-public void testModuleImport1() throws IOException, CoreException {
+public void testModuleImport1() throws IOException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String jarName = "mod.one.jar";
 	addModularLibrary(this.currentProject, jarName, "mod.one.zip",
 			new String[] {
@@ -94,7 +94,7 @@ public void testModuleImport1() throws IOException, CoreException {
 		removeLibrary(this.currentProject, jarName, null);
 	}
 }
-public void testModuleImport2_prefix() throws IOException, CoreException {
+public void testModuleImport2_prefix() throws IOException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String jarName = "mod.one.jar";
 	addModularLibrary(this.currentProject, jarName, "mod.one.zip",
 			new String[] {
@@ -123,7 +123,7 @@ public void testModuleImport2_prefix() throws IOException, CoreException {
 		removeLibrary(this.currentProject, jarName, null);
 	}
 }
-public void testModuleImport3_firstSegment() throws IOException, CoreException {
+public void testModuleImport3_firstSegment() throws IOException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// assert that selecting only the first segment of a module name still uses the full name for module lookup
 	String jarName1 = "mod.one.jar";
 	addModularLibrary(this.currentProject, jarName1, "mod.one.zip",

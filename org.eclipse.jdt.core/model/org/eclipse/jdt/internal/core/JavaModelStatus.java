@@ -188,7 +188,7 @@ public class JavaModelStatus extends Status implements IJavaModelStatus, IJavaMo
 	/**
 	 * Returns the message that is relevant to the code of this status.
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public String getMessage() {
 		Throwable exception = getException();
 		if (exception == null) {
@@ -227,12 +227,12 @@ public class JavaModelStatus extends Status implements IJavaModelStatus, IJavaMo
 					return Messages.bind(Messages.status_invalidDestination, ((JavaElement)this.elements[0]).toStringWithAncestors());
 
 				case INVALID_ELEMENT_TYPES:
-					StringBuilder buff= new StringBuilder(Messages.operation_notSupported);
-					for (int i= 0; i < this.elements.length; i++) {
+					StringBuilder buff= new StringBuilder(Messages.operation_notSupported); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+					for (int i= 0; i < this.elements.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (i > 0) {
-							buff.append(", "); //$NON-NLS-1$
+							buff.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
-						buff.append(((JavaElement)this.elements[i]).toStringWithAncestors());
+						buff.append(((JavaElement)this.elements[i]).toStringWithAncestors()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 					return buff.toString();
 
@@ -445,7 +445,7 @@ public class JavaModelStatus extends Status implements IJavaModelStatus, IJavaMo
 	public int getSeverity() {
 		if (this.children == NO_CHILDREN) return super.getSeverity();
 		int severity = -1;
-		for (IStatus child : this.children) {
+		for (IStatus child : this.children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int childrenSeverity = child.getSeverity();
 			if (childrenSeverity > severity) {
 				severity = childrenSeverity;
@@ -491,7 +491,7 @@ public class JavaModelStatus extends Status implements IJavaModelStatus, IJavaMo
 		if (! isMultiStatus()) {
 			return matches(this, mask);
 		} else {
-			for (IStatus child : this.children) {
+			for (IStatus child : this.children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (matches((JavaModelStatus) child, mask))
 					return true;
 			}
@@ -527,11 +527,11 @@ public class JavaModelStatus extends Status implements IJavaModelStatus, IJavaMo
 		if (this == VERIFIED_OK){
 			return "JavaModelStatus[OK]"; //$NON-NLS-1$
 		}
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("Error in Java Model (code "); //$NON-NLS-1$
-		buffer.append(this.getCode());
-		buffer.append("): "); //$NON-NLS-1$
-		buffer.append(getMessage());
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("Error in Java Model (code "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(this.getCode()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("): "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(getMessage()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return buffer.toString();
 	}
 }

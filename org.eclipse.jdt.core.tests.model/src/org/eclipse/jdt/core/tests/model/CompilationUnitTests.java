@@ -55,7 +55,7 @@ public CompilationUnitTests(String name) {
 	super(name);
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void setUpSuite() throws Exception {
 	super.setUpSuite();
 
@@ -396,7 +396,7 @@ public void testDefaultValue10() throws CoreException {
  * Ensures that the default value (a sign appended Qualified Name Reference) for an annotation method
  * doesn't throw an exception
  */
-public void testDefaultValue11() throws CoreException {
+public void testDefaultValue11() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String cuSource =
 			"package p;\n" +
@@ -502,7 +502,7 @@ public void testDeprecatedFlag09() throws JavaModelException {
  * Ensure that package level annotation is evaluated during AST creation.
  * Edit https://github.com/eclipse-jdt/eclipse.jdt.core/pull/4564: package deprecation has no effect
  */
-public void testDeprecatedFlag10() throws CoreException {
+public void testDeprecatedFlag10() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFolder("/P/src/p2");
 
@@ -550,7 +550,7 @@ public void testDeprecatedFlag10() throws CoreException {
  * a working copy for package-info exists and must be used.
  * Edit https://github.com/eclipse-jdt/eclipse.jdt.core/pull/4564: package deprecation has no effect
  */
-public void testDeprecatedFlag11() throws CoreException {
+public void testDeprecatedFlag11() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFolder("/P/src/p2");
 
@@ -1311,7 +1311,7 @@ public void testGetCategories09() throws CoreException {
 /*
  * Ensures that the categories for an element that has multiple category tags is correct.
  */
-public void testGetCategories10() throws CoreException {
+public void testGetCategories10() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createWorkingCopyComputingProblems(
 		"package p;\n" +
 		"public class Y {\n" +
@@ -1423,7 +1423,7 @@ public void testGetCategories15() throws CoreException {
 /*
  * Ensures that the children of a type for a given category are correct.
  */
-public void testGetChildrenForCategory01() throws CoreException {
+public void testGetChildrenForCategory01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createWorkingCopyComputingProblems(
 		"package p;\n" +
 		"public class Y {\n" +
@@ -1457,7 +1457,7 @@ public void testGetChildrenForCategory01() throws CoreException {
 /*
  * Ensures that the children of a type for a given category are correct.
  */
-public void testGetChildrenForCategory02() throws CoreException {
+public void testGetChildrenForCategory02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createWorkingCopyComputingProblems(
 		"package p;\n" +
 		"public class Y {\n" +
@@ -1482,7 +1482,7 @@ public void testGetChildrenForCategory02() throws CoreException {
 		"foo1() [in Y [in [Working copy] Y.java [in p [in src [in P]]]]]",
 		children);
 }
-public void testGetChildrenForCategory03() throws CoreException, IOException {
+public void testGetChildrenForCategory03() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createWorkingCopyComputingProblems(
 		"package p;\n" +
 		"public class Y {\n" +
@@ -1546,7 +1546,7 @@ public void testGetContentsForNotPresent() {
  * Ensures that getContents() doesn't throw a NullPointerException for a non-existing cu on a remote file system
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=213427 )
  */
-public void testGetContentsForNotPresentRemote() throws CoreException, URISyntaxException {
+public void testGetContentsForNotPresentRemote() throws CoreException, URISyntaxException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IWorkspace workspace = getWorkspace();
 	IProject project = workspace.getRoot().getProject("Foo");
 	try {
@@ -1668,13 +1668,13 @@ public void testGetFields() throws JavaModelException {
 	String[] flags = new String[] {"public", "protected", "private", "", "", "", "", ""};
 	String[] signatures = new String[] {"I", "QObject;", "QX;", "Qjava.lang.String;", "I", "I", "I", "I"};
 	assertEquals("Wrong number of fields returned",  fieldNames.length, fields.length);
-	for (int i = 0; i < fields.length; i++) {
-		assertEquals("Incorrect name for the " + i + " field", fieldNames[i], fields[i].getElementName());
+	for (int i = 0; i < fields.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		assertEquals("Incorrect name for the " + i + " field", fieldNames[i], fields[i].getElementName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String mod= Flags.toString(fields[i].getFlags());
-		assertEquals("Unexpected modifier for " + fields[i].getElementName(), flags[i], mod);
-		assertEquals("Unexpected type signature for " + fields[i].getElementName(), signatures[i], fields[i].getTypeSignature());
-		assertEquals("Unexpected declaring type for " + fields[i].getElementName(), type, fields[i].getDeclaringType());
-		assertTrue("Field should exist " + fields[i], fields[i].exists());
+		assertEquals("Unexpected modifier for " + fields[i].getElementName(), flags[i], mod); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertEquals("Unexpected type signature for " + fields[i].getElementName(), signatures[i], fields[i].getTypeSignature()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertEquals("Unexpected declaring type for " + fields[i].getElementName(), type, fields[i].getDeclaringType()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertTrue("Field should exist " + fields[i], fields[i].exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }
 /**
@@ -1684,33 +1684,33 @@ public void testGetFields() throws JavaModelException {
  */
 public void testGetImport() {
 	IImportDeclaration imprt = this.cu.getImport("java.lang");
-	assertTrue("Import should not exist " + imprt, !imprt.exists());
+	assertTrue("Import should not exist " + imprt, !imprt.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	imprt = this.cu.getImport("p2.*");
-	assertTrue("Import should exist " + imprt, imprt.exists());
+	assertTrue("Import should exist " + imprt, imprt.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	imprt = this.cu.getImport("p3.Z");
-	assertTrue("Import should exist " + imprt, imprt.exists());
+	assertTrue("Import should exist " + imprt, imprt.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 /**
  * Ensures that correct number of imports with the correct names
  * exist in "GraphicsTest" compilation unit.
  */
-public void testGetImports() throws JavaModelException {
+public void testGetImports() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IImportDeclaration[] imprts = this.cu.getImports();
 	IImportContainer container= this.cu.getImportContainer();
 	String[] importNames = new String[] {"p2.*", "p3.Z"};
 
 	assertEquals("Wrong number of imports returned", importNames.length, imprts.length);
-	for (int i = 0; i < imprts.length; i++) {
-		assertTrue("Incorrect name for the type in this position: " + imprts[i].getElementName(), imprts[i].getElementName().equals(importNames[i]));
-		assertTrue("Import does not exist " + imprts[i], imprts[i].exists());
+	for (int i = 0; i < imprts.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		assertTrue("Incorrect name for the type in this position: " + imprts[i].getElementName(), imprts[i].getElementName().equals(importNames[i])); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertTrue("Import does not exist " + imprts[i], imprts[i].exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (i == 0) {
-			assertTrue("Import is not on demand " + imprts[i], imprts[i].isOnDemand());
-			assertTrue("Import should be non-static " + imprts[i], imprts[i].getFlags() == Flags.AccDefault);
+			assertTrue("Import is not on demand " + imprts[i], imprts[i].isOnDemand()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertTrue("Import should be non-static " + imprts[i], imprts[i].getFlags() == Flags.AccDefault); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
-			assertTrue("Import is on demand " + imprts[i], !imprts[i].isOnDemand());
-			assertTrue("Import should be non-static " + imprts[i], imprts[i].getFlags() == Flags.AccDefault);
+			assertTrue("Import is on demand " + imprts[i], !imprts[i].isOnDemand()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertTrue("Import should be non-static " + imprts[i], imprts[i].getFlags() == Flags.AccDefault); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		assertTrue("Container import does not equal import", container.getImport(imprts[i].getElementName()).equals(imprts[i]));
 	}
@@ -1820,12 +1820,12 @@ public void testGetMethods() throws JavaModelException {
 	String[] methodNames = new String[] {"foo", "bar", "fred", "fred2", "testIsVarArgs", "X", "foo2", "foo3", "foo4"};
 	String[] flags = new String[] {"public", "protected static", "private", "private", "", "", "native", "volatile", "strictfp"};
 	assertEquals("Wrong number of methods returned", methodNames.length, methods.length);
-	for (int i = 0; i < methods.length; i++) {
-		assertEquals("Incorrect name for the " + i + " method", methodNames[i], methods[i].getElementName());
+	for (int i = 0; i < methods.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		assertEquals("Incorrect name for the " + i + " method", methodNames[i], methods[i].getElementName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		int modifiers = methods[i].getFlags() & ~Flags.AccVarargs;
 		String mod= Flags.toString(modifiers);
-		assertEquals("Unexpected modifier for " + methods[i].getElementName(), flags[i], mod);
-		assertTrue("Method does not exist " + methods[i], methods[i].exists());
+		assertEquals("Unexpected modifier for " + methods[i].getElementName(), flags[i], mod); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertTrue("Method does not exist " + methods[i], methods[i].exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }
 /**
@@ -1836,7 +1836,7 @@ public void testCheckInterfaceMethodModifiers() throws JavaModelException {
 	IMethod method = type.getMethod("run", new String[0]);
 	String expectedModifiers = "";
 	String modifiers = Flags.toString(method.getFlags() & ~Flags.AccVarargs);
-	assertEquals("Expected modifier for " + method.getElementName(), expectedModifiers, modifiers);
+	assertEquals("Expected modifier for " + method.getElementName(), expectedModifiers, modifiers); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 /*
  * Ensures that IType#getSuperInterfaceTypeSignatures() is correct for a source type.
@@ -1890,13 +1890,13 @@ public void testGetPackages() throws JavaModelException {
  */
 public void testGetType() {
 	IType type = this.cu.getType("someType");
-	assertTrue("Type should not exist " + type, !type.exists());
+	assertTrue("Type should not exist " + type, !type.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	type = this.cu.getType("X");
-	assertTrue("Type should exist " + type, type.exists());
+	assertTrue("Type should exist " + type, type.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	type = this.cu.getType("I"); // secondary type
-	assertTrue("Type should exist " + type, type.exists());
+	assertTrue("Type should exist " + type, type.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 /*
  * Ensures that getTypeQualifiedName() behaves correctly for a top level source type
@@ -1965,7 +1965,7 @@ public void testGetTypeQualifiedName8() {
  * Ensures that correct number of types with the correct names and modifiers
  * exist in a compilation unit.
  */
-public void testGetTypes() throws JavaModelException {
+public void testGetTypes() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IType[] types = this.cu.getTypes();
 	String[] typeNames = new String[] {"X", "I", "I2", "I3", "Y", "Colors", "Annot"};
 	String[] flags = new String[] {"public", "", "", "", "", "", ""};
@@ -1986,20 +1986,20 @@ public void testGetTypes() throws JavaModelException {
 	};
 
 	assertEquals("Wrong number of types returned", typeNames.length, types.length);
-	for (int i = 0; i < types.length; i++) {
-		assertEquals("Incorrect name for the " + i + " type", typeNames[i], types[i].getElementName());
+	for (int i = 0; i < types.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		assertEquals("Incorrect name for the " + i + " type", typeNames[i], types[i].getElementName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String mod= Flags.toString(types[i].getFlags());
-		assertEquals("Unexpected modifier for " + types[i].getElementName(), flags[i], mod);
-		assertTrue("Type does not exist " + types[i], types[i].exists());
-		assertEquals("Incorrect isClass for the " + i + " type", isClass[i], types[i].isClass());
-		assertEquals("Incorrect isInterface for the " + i + " type", isInterface[i], types[i].isInterface());
-		assertEquals("Incorrect isAnnotation for the " + i + " type", isAnnotation[i], types[i].isAnnotation());
-		assertEquals("Incorrect isEnum for the " + i + " type", isEnum[i], types[i].isEnum());
-		assertEquals("Incorrect superclassName for the " + i + " type", superclassName[i], types[i].getSuperclassName());
-		assertEquals("Incorrect superclassType for the " + i + " type", superclassType[i], types[i].getSuperclassTypeSignature());
-		assertEquals("Incorrect superInterfaceNames for the " + i + " type", superInterfaceNames[i].length, types[i].getSuperInterfaceNames().length);
-		assertEquals("Incorrect superInterfaceTypes for the " + i + " type", superInterfaceTypes[i].length, types[i].getSuperInterfaceTypeSignatures().length);
-		assertEquals("Incorrect formalTypeParameters for the " + i + " type", formalTypeParameters[i].length, types[i].getTypeParameters().length);
+		assertEquals("Unexpected modifier for " + types[i].getElementName(), flags[i], mod); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertTrue("Type does not exist " + types[i], types[i].exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertEquals("Incorrect isClass for the " + i + " type", isClass[i], types[i].isClass()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertEquals("Incorrect isInterface for the " + i + " type", isInterface[i], types[i].isInterface()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertEquals("Incorrect isAnnotation for the " + i + " type", isAnnotation[i], types[i].isAnnotation()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertEquals("Incorrect isEnum for the " + i + " type", isEnum[i], types[i].isEnum()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertEquals("Incorrect superclassName for the " + i + " type", superclassName[i], types[i].getSuperclassName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertEquals("Incorrect superclassType for the " + i + " type", superclassType[i], types[i].getSuperclassTypeSignature()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertEquals("Incorrect superInterfaceNames for the " + i + " type", superInterfaceNames[i].length, types[i].getSuperInterfaceNames().length); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertEquals("Incorrect superInterfaceTypes for the " + i + " type", superInterfaceTypes[i].length, types[i].getSuperInterfaceTypeSignatures().length); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertEquals("Incorrect formalTypeParameters for the " + i + " type", formalTypeParameters[i].length, types[i].getTypeParameters().length); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }
 /**
@@ -2255,7 +2255,7 @@ public void testTypeParameter5() throws CoreException {
  * Verify fix for bug 78275: [recovery] NPE in GoToNextPreviousMemberAction with syntax error
  * (see bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=78275)
  */
-public void testBug78275() throws CoreException {
+public void testBug78275() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String cuSource =
 			"public class X {\n" +
@@ -2273,7 +2273,7 @@ public void testBug78275() throws CoreException {
 		deleteFile("/P/src/X.java");
 	}
 }
-public void test110172() throws CoreException {
+public void test110172() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String source =
 			"/**\n" +
@@ -2339,7 +2339,7 @@ public void test110172() throws CoreException {
 		IJavaElement[] members = type.getChildren();
 		final int length = members.length;
 		assertEquals("Wrong number", 11, length);
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final IJavaElement element = members[i];
 			assertTrue(element instanceof IMember);
 			final ISourceRange javadocRange = ((IMember) element).getJavadocRange();
@@ -2406,7 +2406,7 @@ public void test110172() throws CoreException {
 		deleteFile("/P/src/X.java");
 	}
 }
-public void test120902() throws CoreException {
+public void test120902() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String source =
 			"/**\r\n" +
@@ -2431,7 +2431,7 @@ public void test120902() throws CoreException {
 	}
 }
 
-public void test543266() throws CoreException {
+public void test543266() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String source =
 				"/**\r\n" +
@@ -2460,7 +2460,7 @@ public void test543266() throws CoreException {
 		assertTrue("Wrong javadoc", javadocSourceClass.indexOf("enum A") != -1);
 
 		IJavaElement[] children = type.getChildren();
-		for(IJavaElement child : children) {
+		for(IJavaElement child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final ISourceRange javadocRange = ((IMember) child).getJavadocRange();
 			final String elementName = child.getElementName();
 
@@ -2488,7 +2488,7 @@ public void test543266() throws CoreException {
 	}
 }
 
-public void testApplyEdit() throws CoreException {
+public void testApplyEdit() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String source =
 			"public class X {\n" +
@@ -2514,7 +2514,7 @@ public void testApplyEdit() throws CoreException {
 	}
 }
 
-public void testApplyEdit2() throws CoreException {
+public void testApplyEdit2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String source =
 			"public class X {\n" +
@@ -2552,7 +2552,7 @@ public void testApplyEdit2() throws CoreException {
  * on a compilation unit since some implementations don't support such a call
  * (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=262389)
  */
-public void testApplyEdit3() throws CoreException {
+public void testApplyEdit3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	class DisabledTestBuffer extends Buffer implements IBuffer.ITextEditCapability {
 		public DisabledTestBuffer(IFile file, IOpenable owner, boolean readOnly) {
 			super(file, owner, readOnly);
@@ -2579,7 +2579,7 @@ public void testApplyEdit3() throws CoreException {
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=248312
  * Ensures that negative values work while annotating local variables.
  */
-public void testBug248312() throws CoreException{
+public void testBug248312() throws CoreException{ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createWorkingCopy(
 			"package p;\n" +
 			"interface A {\n" +
@@ -2643,7 +2643,7 @@ public void testBug246594a() throws CoreException {
 			typeParameters[0].getBoundsSignatures());
 
 }
-public void testBug495598_001() throws CoreException {
+public void testBug495598_001() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFolder("/P/src/a/b/C");
 		createFile("/P/src/a/b/C/readme.txt", "This is not a Java file");
@@ -2673,24 +2673,24 @@ public void testBug495598_001() throws CoreException {
 		deleteFolder("/P/src/a");
 	}
 }
-public void testBug526615() throws CoreException {
+public void testBug526615() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFolder("P/src/test1");
 		createFile("/P/src/test1/B.java",
 				"package test1;\n" +
 				"public abstract class B {}");
 
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("/**\n");
-		buf.append(" * Lore ipsum dolor sit amet, consectetur adipisici elit,\n");
-		buf.append(" * sed eiusmod tempor incidunt ut labore et dolore magna aliqua.\n");
-		buf.append(" */\n");
-		buf.append("@SuppressWarnings({\"rawtypes\", \"unchecked\"})\n");
-		buf.append("public class A {\n");
-		buf.append("    B run= new B(\n");
-		buf.append("    static class C {}\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("/**\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" * Lore ipsum dolor sit amet, consectetur adipisici elit,\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" * sed eiusmod tempor incidunt ut labore et dolore magna aliqua.\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@SuppressWarnings({\"rawtypes\", \"unchecked\"})\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class A {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    B run= new B(\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    static class C {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		String contents= buf.toString();
 		createFile("/P/src/test1/A.java", contents);
 
@@ -2702,7 +2702,7 @@ public void testBug526615() throws CoreException {
 		deleteFolder("/P/src/test1");
 	}
 }
-public void testBug559618_1() throws CoreException {
+public void testBug559618_1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 			createFile("/P/src/p/C.java",
 					"package p;\n" +
@@ -2731,7 +2731,7 @@ public void testBug559618_1() throws CoreException {
 			deleteFile("/P/src/p/D.java");
 	}
 }
-public void testBug559618_2() throws CoreException { // Same as testBug559618_1, but with wildcard import.
+public void testBug559618_2() throws CoreException { // Same as testBug559618_1, but with wildcard import. //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 			createFile("/P/src/p/C.java",
 					"package p;\n" +
@@ -2760,7 +2760,7 @@ public void testBug559618_2() throws CoreException { // Same as testBug559618_1,
 			deleteFile("/P/src/p/D.java");
 	}
 }
-public void testBug559618_3() throws CoreException { // Nested class imports must not be flagged as unused.
+public void testBug559618_3() throws CoreException { // Nested class imports must not be flagged as unused. //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFile("/P/src/p/C.java",
 				"package p;\n" +
@@ -2790,7 +2790,7 @@ public void testBug559618_3() throws CoreException { // Nested class imports mus
 		deleteFile("/P/src/p/D.java");
 	}
 }
-public void testBug560630() throws CoreException {
+public void testBug560630() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
   try {
           createFile("/P/src/p/C.java",
                   "package p;\n" +
@@ -2818,14 +2818,14 @@ public void testBug560630() throws CoreException {
 
 public void testSetOptions() throws CoreException {
 	try {
-		Map<String, String> newOptions = new HashMap<>();
+		Map<String, String> newOptions = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		newOptions.put(DefaultCodeFormatterConstants.FORMATTER_TAB_SIZE, "4");
 		newOptions.put(DefaultCodeFormatterConstants.FORMATTER_TAB_CHAR, JavaCore.SPACE);
 		this.cu.setOptions(newOptions);
 
 		Map<String, String> customOptions = this.cu.getCustomOptions();
 		assertEquals(newOptions.size(), customOptions.size());
-		for (Map.Entry<String, String> entry : newOptions.entrySet()) {
+		for (Map.Entry<String, String> entry : newOptions.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			assertEquals(entry.getValue(), customOptions.get(entry.getKey()));
 		}
 	} finally {
@@ -2833,7 +2833,7 @@ public void testSetOptions() throws CoreException {
 	}
 }
 
-public void testGetOptions() throws CoreException {
+public void testGetOptions() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String oldTabChar = this.testProject.getOption(DefaultCodeFormatterConstants.FORMATTER_TAB_CHAR, false);
 	try {
 		Map<String, String> projectOptions = this.testProject.getOptions(true);
@@ -2841,7 +2841,7 @@ public void testGetOptions() throws CoreException {
 		assertEquals("Should inherit the project options", unitOptions, projectOptions);
 
 		this.testProject.setOption(DefaultCodeFormatterConstants.FORMATTER_TAB_CHAR, JavaCore.TAB);
-		Map<String, String> newOptions = new HashMap<>();
+		Map<String, String> newOptions = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		newOptions.put(DefaultCodeFormatterConstants.FORMATTER_TAB_CHAR, JavaCore.SPACE);
 		this.cu.setOptions(newOptions);
 
@@ -2856,7 +2856,7 @@ public void testGetOptions() throws CoreException {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3754
 // Silent problems on CompilationUnit parsed with compilation errors
-public void testCompilationUnitProblemsWhenNonCompiling() throws CoreException {
+public void testCompilationUnitProblemsWhenNonCompiling() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	var sourceCode = """
 			package p1;
@@ -2897,7 +2897,7 @@ public void testCompilationUnitProblemsWhenNonCompiling() throws CoreException {
  * on the CU.  After the fix it uses JavaModelManager.getInfo(this) which
  * returns null without opening when the element is not yet cached.
  */
-public void testGetOptionsDoesNotLoadElementInfo() throws CoreException {
+public void testGetOptionsDoesNotLoadElementInfo() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     // Use a CU that is definitely not open (force-close it first).
     ICompilationUnit cu2 = getCompilationUnit("P", "src", "p", "X.java");
     cu2.close(); // ensure info is evicted from the model cache
@@ -2922,7 +2922,7 @@ public void testGetOptionsReturnsCustomOptionsWhenSet() throws CoreException {
     ICompilationUnit wc = null;
     try {
         wc = cu2.getWorkingCopy(null);
-        Map<String, String> opts = new HashMap<>();
+        Map<String, String> opts = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
         opts.put(JavaCore.COMPILER_SOURCE, "11");
         wc.setOptions(opts);
 

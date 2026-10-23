@@ -55,7 +55,7 @@ public final class ASTRewriteFormatter {
 
 		public ExtendedFlattener(RewriteEventStore store) {
 			super(store);
-			this.positions= new ArrayList();
+			this.positions= new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		}
 
 		@Override
@@ -101,7 +101,7 @@ public final class ASTRewriteFormatter {
 		}
 
 		private void fixupLength(Object data, int endOffset) {
-			for (int i= this.positions.size()-1; i >= 0 ; i--) {
+			for (int i= this.positions.size()-1; i >= 0 ; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				NodeMarker marker= (NodeMarker) this.positions.get(i);
 				if (marker.data == data) {
 					marker.length= endOffset - marker.offset;
@@ -129,7 +129,7 @@ public final class ASTRewriteFormatter {
 		this.placeholders= placeholders;
 		this.eventStore= eventStore;
 
-		this.options= options == null ? JavaCore.getOptions() : (Map) new HashMap(options);
+		this.options= options == null ? JavaCore.getOptions() : (Map) new HashMap(options); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		this.options.put(
 				DefaultCodeFormatterConstants.FORMATTER_ALIGNMENT_FOR_RESOURCES_IN_TRY,
 				DefaultCodeFormatterConstants.createAlignmentValue(true, DefaultCodeFormatterConstants.WRAP_NEXT_PER_LINE, DefaultCodeFormatterConstants.INDENT_DEFAULT));
@@ -172,7 +172,7 @@ public final class ASTRewriteFormatter {
 	 * @param resultingMarkers Resulting the updated NodeMarkers.
 	 * @return Returns the serialized and formatted code.
 	 */
-	public String getFormattedResult(ASTNode node, int initialIndentationLevel, int minimumIndentInSpaces, Collection resultingMarkers) {
+	public String getFormattedResult(ASTNode node, int initialIndentationLevel, int minimumIndentInSpaces, Collection resultingMarkers) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		ExtendedFlattener flattener= new ExtendedFlattener(this.eventStore);
 		node.accept(flattener);
@@ -188,7 +188,7 @@ public final class ASTRewriteFormatter {
 		        String indentString = createIndentString(initialIndentationLevel);
 		        int indentInSpaces= computeIndentInSpaces(indentString);
 		        if (indentInSpaces < minimumIndentInSpaces) {
-		        	indentString = " ".repeat(minimumIndentInSpaces - indentInSpaces) + indentString; //$NON-NLS-1$
+		        	indentString = " ".repeat(minimumIndentInSpaces - indentInSpaces) + indentString; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		        }
 				ReplaceEdit[] edits = IndentManipulation.getChangeIndentEdits(unformatted, 0, this.tabWidth, this.indentWidth, indentString);
 				edit= new MultiTextEdit();
@@ -209,7 +209,7 @@ public final class ASTRewriteFormatter {
     	String indent= ToolFactory.createCodeFormatter(this.options).createIndentationString(indentationUnits);
     	int indentInSpaces= computeIndentInSpaces(indent);
     	if (indentInSpaces < minimumIndentInSpaces) {
-    		indent= indent + " ".repeat(minimumIndentInSpaces - indentInSpaces); //$NON-NLS-1$
+    		indent= indent + " ".repeat(minimumIndentInSpaces - indentInSpaces); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     	}
     	return indent;
     }
@@ -220,7 +220,7 @@ public final class ASTRewriteFormatter {
 
     public String getIndentStringWithSpaces(String currentLine) {
     	int count= 0;
-    	while (count < currentLine.length() && IndentManipulation.isIndentChar(currentLine.charAt(count))) {
+    	while (count < currentLine.length() && IndentManipulation.isIndentChar(currentLine.charAt(count))) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     		++count;
     	}
     	return currentLine.substring(0, count);
@@ -252,14 +252,14 @@ public final class ASTRewriteFormatter {
 			Document doc= createDocument(string, positions);
 			edit.apply(doc, 0);
 			if (positions != null) {
-				for (Position position : positions) {
+				for (Position position : positions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Assert.isTrue(!position.isDeleted, "Position got deleted"); //$NON-NLS-1$
 				}
 			}
 			return doc.get();
 		} catch (BadLocationException e) {
 			//JavaPlugin.log(e); // bug in the formatter
-			Assert.isTrue(false, "Formatter created edits with wrong positions: " + e.getMessage()); //$NON-NLS-1$
+			Assert.isTrue(false, "Formatter created edits with wrong positions: " + e.getMessage()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return null;
 	}
@@ -278,7 +278,7 @@ public final class ASTRewriteFormatter {
 	 * @throws IllegalArgumentException If the offset and length are not inside the string, a
 	 *  IllegalArgumentException is thrown.
 	 */
-	private TextEdit formatNode(ASTNode node, String str, int indentationLevel, int minimumIndentInSpaces) {
+	private TextEdit formatNode(ASTNode node, String str, int indentationLevel, int minimumIndentInSpaces) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int code;
 		String prefix= ""; //$NON-NLS-1$
 		String suffix= ""; //$NON-NLS-1$
@@ -402,7 +402,7 @@ public final class ASTRewriteFormatter {
 			}
 		}
 
-		String concatStr= prefix + str + suffix;
+		String concatStr= prefix + str + suffix; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		TextEdit edit= formatString(code, concatStr, prefix.length(), str.length(), indentationLevel);
 
 		if (prefix.length() > 0) {
@@ -411,7 +411,7 @@ public final class ASTRewriteFormatter {
 		return edit;
 	}
 
-	private static TextEdit shifEdit(TextEdit oldEdit, int diff) {
+	private static TextEdit shifEdit(TextEdit oldEdit, int diff) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TextEdit newEdit;
 		if (oldEdit instanceof ReplaceEdit) {
 			ReplaceEdit edit= (ReplaceEdit) oldEdit;
@@ -428,7 +428,7 @@ public final class ASTRewriteFormatter {
 			return null; // not supported
 		}
 		TextEdit[] children= oldEdit.getChildren();
-		for (TextEdit child : children) {
+		for (TextEdit child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TextEdit shifted= shifEdit(child, diff);
 			if (shifted != null) {
 				newEdit.addChild(shifted);
@@ -437,7 +437,7 @@ public final class ASTRewriteFormatter {
 		return newEdit;
 	}
 
-	private static Document createDocument(String string, Position[] positions) throws IllegalArgumentException {
+	private static Document createDocument(String string, Position[] positions) throws IllegalArgumentException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Document doc= new Document(string);
 		try {
 			if (positions != null) {
@@ -456,11 +456,11 @@ public final class ASTRewriteFormatter {
 						return true;
 					}
 				});
-				for (Position position : positions) {
+				for (Position position : positions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					try {
 						doc.addPosition(POS_CATEGORY, position);
 					} catch (BadLocationException e) {
-						throw new IllegalArgumentException("Position outside of string. offset: " + position.offset + ", length: " + position.length + ", string size: " + string.length(), e);   //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
+						throw new IllegalArgumentException("Position outside of string. offset: " + position.offset + ", length: " + position.length + ", string size: " + string.length(), e);   //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 				}
 			}
@@ -530,7 +530,7 @@ public final class ASTRewriteFormatter {
 		@Override
 		public String[] getPrefixAndSuffix(int indent, ASTNode node, RewriteEventStore events) {
 			String nodeString= ASTRewriteFlattener.asString(node, events);
-			String str= this.prefix + nodeString;
+			String str= this.prefix + nodeString; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			Position pos= new Position(this.start, this.prefix.length() + 1 - this.start);
 
 			TextEdit res= formatString(CodeFormatter.K_STATEMENTS, str, 0, str.length(), indent);
@@ -552,13 +552,13 @@ public final class ASTRewriteFormatter {
 			this.prefix= prefix;
 		}
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public String[] getPrefixAndSuffix(int indent, ASTNode node, RewriteEventStore events) {
 			String nodeString= ASTRewriteFlattener.asString(node, events);
 			int nodeStart= this.prefix.length();
 			int nodeEnd= nodeStart + nodeString.length() - 1;
 
-			String str= this.prefix + nodeString + this.suffix;
+			String str= this.prefix + nodeString + this.suffix; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 			Position pos1= new Position(this.start, nodeStart + 1 - this.start);
 			Position pos2= new Position(nodeEnd, 2);

@@ -35,7 +35,7 @@ public class BatchCompilerTest_14 extends AbstractBatchCompilerTest {
 	public BatchCompilerTest_14(String name) {
 		super(name);
 	}
-public void testBatchBug565787_001() throws Exception {
+public void testBatchBug565787_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"X.java",
@@ -79,6 +79,6 @@ public void testBatchBug565787_001() throws Exception {
 			"		#46 (Ljava/lang/Object;Ljava/lang/Object;)I\n" +
 			"		#51 X$MR.mrCompare:(Ljava/lang/String;Ljava/lang/String;)I\n" +
 			"		#52 (Ljava/lang/String;Ljava/lang/String;)I\n";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 }

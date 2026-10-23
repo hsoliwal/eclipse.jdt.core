@@ -216,7 +216,7 @@ public class GeneratedFileManager
 	static {
 		// register element-changed listener to clean up working copies
 		int mask = ElementChangedEvent.POST_CHANGE;
-		JavaCore.addElementChangedListener(new WorkingCopyCleanupListener(), mask);
+		JavaCore.addElementChangedListener(new WorkingCopyCleanupListener(), mask); //FLLDCIM: MARK — T31 JAVA_ELEMENT_DELTA_ADAPTER CALL
 	}
 
 	/**
@@ -321,11 +321,11 @@ public class GeneratedFileManager
 		_jProject = aptProject.getJavaProject();
 		_gsfm = gsfm;
 		_buildDeps = new GeneratedFileMap(_jProject.getProject(), gsfm.isTestCode());
-		_clearDuringReconcile = new HashSet<>();
+		_clearDuringReconcile = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		_reconcileDeps = new ManyToMany<>();
 		_reconcileNonDeps = new ManyToMany<>();
-		_hiddenBuiltTypes = new HashMap<>();
-		_reconcileGenTypes = new HashMap<>();
+		_hiddenBuiltTypes = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		_reconcileGenTypes = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		_generatedPackageFragmentRoot = new GeneratedPackageFragmentRoot();
 	}
 
@@ -345,7 +345,7 @@ public class GeneratedFileManager
 	/**
 	 * Called at the start of build in order to cache our package fragment root
 	 */
-	public void compilationStarted()
+	public void compilationStarted() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		try {
 			// clear out any generated source folder config markers
@@ -353,7 +353,7 @@ public class GeneratedFileManager
 				IMarker[] markers = _jProject.getProject().findMarkers(AptPlugin.APT_CONFIG_PROBLEM_MARKER, true,
 						IResource.DEPTH_INFINITE);
 				if (markers != null) {
-					for (IMarker marker : markers)
+					for (IMarker marker : markers) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						marker.delete();
 				}
 			}
@@ -388,22 +388,22 @@ public class GeneratedFileManager
 	 * @return the set of source files that were actually deleted, or an empty set.
 	 *            The returned set does not include non-source (e.g. text or xml) files.
 	 */
-	public Set<IFile> deleteObsoleteFilesAfterBuild(IFile parentFile, Set<IFile> newlyGeneratedFiles)
+	public Set<IFile> deleteObsoleteFilesAfterBuild(IFile parentFile, Set<IFile> newlyGeneratedFiles) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		Set<IFile> deleted;
-		List<ICompilationUnit> toDiscard = new ArrayList<>();
-		Set<IFile> toReport = new HashSet<>();
+		List<ICompilationUnit> toDiscard = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		Set<IFile> toReport = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		deleted = computeObsoleteFiles(parentFile, newlyGeneratedFiles, toDiscard, toReport);
 
-		for (IFile toDelete : deleted) {
+		for (IFile toDelete : deleted) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (AptPlugin.DEBUG_GFM) AptPlugin.trace(
-					"deleted obsolete file during build: " + toDelete); //$NON-NLS-1$
+					"deleted obsolete file during build: " + toDelete); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			deletePhysicalFile(toDelete);
 		}
 
 		// Discard blank WCs *after* we delete the corresponding files:
 		// we don't want the type to become briefly visible to a reconcile thread.
-		for (ICompilationUnit wcToDiscard : toDiscard) {
+		for (ICompilationUnit wcToDiscard : toDiscard) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			_CUHELPER.discardWorkingCopy(wcToDiscard);
 		}
 
@@ -428,24 +428,24 @@ public class GeneratedFileManager
 	 *            the complete list of files generated during the reconcile (including
 	 *            files that exist on disk as well as files that only exist in memory)
 	 */
-	public void deleteObsoleteTypesAfterReconcile(ICompilationUnit parentWC, Set<IFile> newlyGeneratedFiles)
+	public void deleteObsoleteTypesAfterReconcile(ICompilationUnit parentWC, Set<IFile> newlyGeneratedFiles) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		IFile parentFile = (IFile) parentWC.getResource();
 
-		List<ICompilationUnit> toSetBlank = new ArrayList<>();
-		List<ICompilationUnit> toDiscard = new ArrayList<>();
+		List<ICompilationUnit> toSetBlank = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		List<ICompilationUnit> toDiscard = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		computeObsoleteReconcileTypes(parentFile, newlyGeneratedFiles, _CUHELPER, toSetBlank, toDiscard);
 
-		for (ICompilationUnit wcToDiscard : toDiscard) {
+		for (ICompilationUnit wcToDiscard : toDiscard) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (AptPlugin.DEBUG_GFM) AptPlugin.trace(
-					"discarded obsolete working copy during reconcile: " + wcToDiscard.getElementName()); //$NON-NLS-1$
+					"discarded obsolete working copy during reconcile: " + wcToDiscard.getElementName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			_CUHELPER.discardWorkingCopy(wcToDiscard);
 		}
 
 		WorkingCopyOwner workingCopyOwner = parentWC.getOwner();
-		for (ICompilationUnit wcToSetBlank : toSetBlank) {
+		for (ICompilationUnit wcToSetBlank : toSetBlank) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (AptPlugin.DEBUG_GFM) AptPlugin.trace(
-					"hiding file with blank working copy during reconcile: " + wcToSetBlank.getElementName()); //$NON-NLS-1$
+					"hiding file with blank working copy during reconcile: " + wcToSetBlank.getElementName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			_CUHELPER.updateWorkingCopyContents("", wcToSetBlank, workingCopyOwner, RECURSIVE_RECONCILE); //$NON-NLS-1$
 		}
 
@@ -462,7 +462,7 @@ public class GeneratedFileManager
 	{
 		List<IFile> toDelete = removeFileFromBuildMaps(f);
 
-		for (IFile fileToDelete : toDelete) {
+		for (IFile fileToDelete : toDelete) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			deletePhysicalFile(fileToDelete);
 		}
 
@@ -490,7 +490,7 @@ public class GeneratedFileManager
 	 *            a progress monitor. This may be null.
 	 * @return - the newly created IFile along with whether it was modified
 	 */
-	public FileGenerationResult generateFileDuringBuild(Collection<IFile> parentFiles, String typeName, String contents,
+	public FileGenerationResult generateFileDuringBuild(Collection<IFile> parentFiles, String typeName, String contents, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			boolean clearDuringReconcile, IProgressMonitor progressMonitor) throws CoreException
 	{
 		if (_skipTypeGeneration)
@@ -535,17 +535,17 @@ public class GeneratedFileManager
 					pkgFrag = root.getPackageFragment(pkgName);
 					// Force an error status
 					IStatus validatePath = root.getJavaProject().getProject().getWorkspace().validatePath(null, IResource.FOLDER);
-					String message = "invalid name for package:" + pkgName; //$NON-NLS-1$
+					String message = "invalid name for package:" + pkgName; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					AptPlugin.log(new CoreException(validatePath), message);
 					return null;
 				}
 
 				// Mark all newly created folders (but not pre-existing ones) as derived.
-				for (IContainer folder : newFolders) {
+				for (IContainer folder : newFolders) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					try {
 						folder.setDerived(true, progressMonitor);
 					} catch (CoreException e) {
-						AptPlugin.logWarning(e, "Unable to mark generated type folder as derived: " + folder.getName()); //$NON-NLS-1$
+						AptPlugin.logWarning(e, "Unable to mark generated type folder as derived: " + folder.getName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						break;
 					}
 				}
@@ -574,7 +574,7 @@ public class GeneratedFileManager
 
 			return new FileGenerationResult(file, contentsDiffer);
 		} catch (CoreException e) {
-			AptPlugin.log(e, "Unable to generate type " + typeName); //$NON-NLS-1$
+			AptPlugin.log(e, "Unable to generate type " + typeName); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			return null;
 		}
 	}
@@ -597,7 +597,7 @@ public class GeneratedFileManager
 	 *         folder is not configured, or if there is some other error during type
 	 *         generation.
 	 */
-	public FileGenerationResult generateFileDuringReconcile(ICompilationUnit parentCompilationUnit, String typeName,
+	public FileGenerationResult generateFileDuringReconcile(ICompilationUnit parentCompilationUnit, String typeName, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String contents) throws CoreException
 	{
 		if (!GENERATE_TYPE_DURING_RECONCILE)
@@ -612,9 +612,9 @@ public class GeneratedFileManager
 				contents, workingCopy, parentCompilationUnit.getOwner(), RECURSIVE_RECONCILE);
 		if (AptPlugin.DEBUG_GFM) {
 			if (modified)
-				AptPlugin.trace("working copy modified during reconcile: " + typeName); //$NON-NLS-1$
+				AptPlugin.trace("working copy modified during reconcile: " + typeName); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			else
-				AptPlugin.trace("working copy unmodified during reconcile: " + typeName); //$NON-NLS-1$
+				AptPlugin.trace("working copy unmodified during reconcile: " + typeName); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		IFile generatedFile = (IFile) workingCopy.getResource();
@@ -671,7 +671,7 @@ public class GeneratedFileManager
 	 */
 	public void projectCleaned() {
 		Iterable<ICompilationUnit> toDiscard = computeClean();
-		for (ICompilationUnit wc : toDiscard) {
+		for (ICompilationUnit wc : toDiscard) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			_CUHELPER.discardWorkingCopy(wc);
 		}
 		if (AptPlugin.DEBUG_GFM_MAPS) AptPlugin.trace(
@@ -689,7 +689,7 @@ public class GeneratedFileManager
 		if (AptPlugin.DEBUG_GFM) AptPlugin.trace("discarding working copy state"); //$NON-NLS-1$
 		List<ICompilationUnit> toDiscard;
 		toDiscard = computeProjectClosed(false);
-		for (ICompilationUnit wc : toDiscard) {
+		for (ICompilationUnit wc : toDiscard) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			_CUHELPER.discardWorkingCopy(wc);
 		}
 	}
@@ -704,7 +704,7 @@ public class GeneratedFileManager
 		if (AptPlugin.DEBUG_GFM) AptPlugin.trace("discarding all state"); //$NON-NLS-1$
 		List<ICompilationUnit> toDiscard;
 		toDiscard = computeProjectClosed(true);
-		for (ICompilationUnit wc : toDiscard) {
+		for (ICompilationUnit wc : toDiscard) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			_CUHELPER.discardWorkingCopy(wc);
 		}
 	}
@@ -728,9 +728,9 @@ public class GeneratedFileManager
 	{
 		List<ICompilationUnit> toDiscard = removeFileFromReconcileMaps((IFile)(wc.getResource()));
 		if (AptPlugin.DEBUG_GFM) AptPlugin.trace(
-				"Working copy discarded: " + wc.getElementName() + //$NON-NLS-1$
+				"Working copy discarded: " + wc.getElementName() + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				" removing " + toDiscard.size() + " children");  //$NON-NLS-1$//$NON-NLS-2$
-		for (ICompilationUnit obsoleteWC : toDiscard) {
+		for (ICompilationUnit obsoleteWC : toDiscard) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			_CUHELPER.discardWorkingCopy(obsoleteWC);
 		}
 	}
@@ -756,14 +756,14 @@ public class GeneratedFileManager
 	{
 		// during a batch build, parentFile will be null.
 		// Only keep track of ownership in iterative builds
-		for (IFile parentFile : parentFiles) {
+		for (IFile parentFile : parentFiles) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (parentFile != null) {
 				boolean added = _buildDeps.put(parentFile, generatedFile, isSource);
 				if (AptPlugin.DEBUG_GFM_MAPS) {
 					if (added)
-						AptPlugin.trace("build file dependency added: " + parentFile + " -> " + generatedFile); //$NON-NLS-1$//$NON-NLS-2$
+						AptPlugin.trace("build file dependency added: " + parentFile + " -> " + generatedFile); //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					else
-						AptPlugin.trace("build file dependency already exists: " + parentFile + " -> " + generatedFile); //$NON-NLS-1$//$NON-NLS-2$
+						AptPlugin.trace("build file dependency already exists: " + parentFile + " -> " + generatedFile); //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}
@@ -773,7 +773,7 @@ public class GeneratedFileManager
 	 * Check integrity of data structures.
 	 * @return true always, so that it can be called within an assert to turn it off at runtime
 	 */
-	private synchronized boolean checkIntegrity() throws IllegalStateException
+	private synchronized boolean checkIntegrity() throws IllegalStateException //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		if (!ENABLE_INTEGRITY_CHECKS || !AptPlugin.DEBUG_GFM_MAPS) {
 			return true;
@@ -783,8 +783,8 @@ public class GeneratedFileManager
 		// keys in _reconcileGenTypes.
 		Set<IFile> depChildren = _reconcileDeps.getValueSet(); // copy - safe to modify
 		Set<IFile> genTypes = _reconcileGenTypes.keySet(); // not a copy!
-		List<IFile> extraFiles = new ArrayList<>();
-		for (IFile f : genTypes) {
+		List<IFile> extraFiles = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (IFile f : genTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!depChildren.remove(f)) {
 				extraFiles.add(f);
 			}
@@ -799,8 +799,8 @@ public class GeneratedFileManager
 		}
 
 		// Every file in _clearDuringReconcile must be a value in _buildDeps.
-		List<IFile> extraClearDuringReconcileFiles = new ArrayList<>();
-		for (IFile clearDuringReconcile : _clearDuringReconcile) {
+		List<IFile> extraClearDuringReconcileFiles = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (IFile clearDuringReconcile : _clearDuringReconcile) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!_buildDeps.containsValue(clearDuringReconcile)) {
 				extraClearDuringReconcileFiles.add(clearDuringReconcile);
 			}
@@ -811,8 +811,8 @@ public class GeneratedFileManager
 		}
 
 		// Every key in _hiddenBuiltTypes must be a value in _reconcileNonDeps.
-		List<IFile> extraHiddenTypes = new ArrayList<>();
-		for (IFile hidden : _hiddenBuiltTypes.keySet()) {
+		List<IFile> extraHiddenTypes = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (IFile hidden : _hiddenBuiltTypes.keySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!_reconcileNonDeps.containsValue(hidden)) {
 				extraHiddenTypes.add(hidden);
 			}
@@ -824,9 +824,9 @@ public class GeneratedFileManager
 
 		// There can be no parent/child pairs that exist in both _reconcileDeps
 		// and _reconcileNonDeps.
-		Map<IFile, IFile> reconcileOverlaps = new HashMap<>();
-		for (IFile parent : _reconcileNonDeps.getKeySet()) {
-			for (IFile child : _reconcileNonDeps.getValues(parent)) {
+		Map<IFile, IFile> reconcileOverlaps = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		for (IFile parent : _reconcileNonDeps.getKeySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (IFile child : _reconcileNonDeps.getValues(parent)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (_reconcileDeps.containsKeyValuePair(parent, child)) {
 					reconcileOverlaps.put(parent, child);
 				}
@@ -839,9 +839,9 @@ public class GeneratedFileManager
 
 		// Every parent/child pair in _reconcileNonDeps must have a matching
 		// parent/child pair in _buildDeps.
-		Map<IFile, IFile> extraNonDeps = new HashMap<>();
-		for (IFile parent : _reconcileNonDeps.getKeySet()) {
-			for (IFile child : _reconcileNonDeps.getValues(parent)) {
+		Map<IFile, IFile> extraNonDeps = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		for (IFile parent : _reconcileNonDeps.getKeySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (IFile child : _reconcileNonDeps.getValues(parent)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (!_buildDeps.containsKeyValuePair(parent, child)) {
 					extraNonDeps.put(parent, child);
 				}
@@ -853,8 +853,8 @@ public class GeneratedFileManager
 		}
 
 		// Values in _hiddenBuiltTypes must not be null
-		List<IFile> nullHiddenTypes = new ArrayList<>();
-		for (Map.Entry<IFile, ICompilationUnit> entry : _hiddenBuiltTypes.entrySet()) {
+		List<IFile> nullHiddenTypes = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (Map.Entry<IFile, ICompilationUnit> entry : _hiddenBuiltTypes.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (entry.getValue() == null) {
 				nullHiddenTypes.add(entry.getKey());
 			}
@@ -864,8 +864,8 @@ public class GeneratedFileManager
 		}
 
 		// Values in _reconcileGenTypes must not be null
-		List<IFile> nullReconcileTypes = new ArrayList<>();
-		for (Map.Entry<IFile, ICompilationUnit> entry : _reconcileGenTypes.entrySet()) {
+		List<IFile> nullReconcileTypes = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (Map.Entry<IFile, ICompilationUnit> entry : _reconcileGenTypes.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (entry.getValue() == null) {
 				nullReconcileTypes.add(entry.getKey());
 			}
@@ -895,10 +895,10 @@ public class GeneratedFileManager
 	 *
 	 * @return a list of working copies which must be discarded by the caller
 	 */
-	private synchronized List<ICompilationUnit> computeProjectClosed(boolean deleteState)
+	private synchronized List<ICompilationUnit> computeProjectClosed(boolean deleteState) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		int size = _hiddenBuiltTypes.size() + _reconcileGenTypes.size();
-		List<ICompilationUnit> toDiscard = new ArrayList<>(size);
+		List<ICompilationUnit> toDiscard = new ArrayList<>(size); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		toDiscard.addAll(_hiddenBuiltTypes.values());
 		toDiscard.addAll(_reconcileGenTypes.values());
 		_reconcileGenTypes.clear();
@@ -924,7 +924,7 @@ public class GeneratedFileManager
 	 * @param file does not have to exist.
 	 * @return true if the file on disk cannot be read, or if its contents differ.
 	 */
-	private boolean compareFileContents(String contents, IFile file)
+	private boolean compareFileContents(String contents, IFile file) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		boolean contentsDiffer = true;
 		if (file.exists()) {
@@ -972,7 +972,7 @@ public class GeneratedFileManager
 		_buildDeps.clearState();
 		_clearDuringReconcile.clear();
 		_reconcileNonDeps.clear();
-		List<ICompilationUnit> toDiscard = new ArrayList<>(_hiddenBuiltTypes.values());
+		List<ICompilationUnit> toDiscard = new ArrayList<>(_hiddenBuiltTypes.values()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		_hiddenBuiltTypes.clear();
 
 		assert checkIntegrity();
@@ -989,9 +989,9 @@ public class GeneratedFileManager
 	 */
 	private Set<IFolder> computeNewPackageFolders(String pkgName, IFolder parent)
 	{
-		Set<IFolder> newFolders = new HashSet<>();
-		String[] folders = _PACKAGE_DELIMITER.split(pkgName);
-		for (String folderName : folders) {
+		Set<IFolder> newFolders = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+		String[] folders = _PACKAGE_DELIMITER.split(pkgName); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+		for (String folderName : folders) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final IFolder folder = parent.getFolder(folderName);
 			if (!folder.exists()) {
 				newFolders.add(folder);
@@ -1022,20 +1022,20 @@ public class GeneratedFileManager
 	 * @return a list of files which the caller should delete, ie by calling
 	 * {@link #deletePhysicalFile(IFile)}.
 	 */
-	private synchronized Set<IFile> computeObsoleteFiles(
+	private synchronized Set<IFile> computeObsoleteFiles( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			IFile parentFile, Set<IFile> newlyGeneratedFiles,
 			List<ICompilationUnit> toDiscard,
 			Set<IFile> toReport)
 	{
-		Set<IFile> deleted = new HashSet<>();
+		Set<IFile> deleted = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		Set<IFile> obsoleteFiles = _buildDeps.getValues(parentFile);
 		// spare all the newly generated files
 		obsoleteFiles.removeAll(newlyGeneratedFiles);
-		for (IFile generatedFile : obsoleteFiles) {
+		for (IFile generatedFile : obsoleteFiles) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			boolean isSource = _buildDeps.isSource(generatedFile);
 			_buildDeps.remove(parentFile, generatedFile);
 			if (AptPlugin.DEBUG_GFM_MAPS) AptPlugin.trace(
-					"removed build file dependency: " + parentFile + " -> " + generatedFile); //$NON-NLS-1$ //$NON-NLS-2$
+					"removed build file dependency: " + parentFile + " -> " + generatedFile); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			// If the file is still parented by any other parent, spare it
 			if (!_buildDeps.containsValue(generatedFile)) {
 				deleted.add(generatedFile);
@@ -1073,21 +1073,21 @@ public class GeneratedFileManager
 		 *            a list, to which this will add files that the caller must then discard
 		 *            with {@link CompilationUnitHelper#discardWorkingCopy(ICompilationUnit)}.
 		 */
-		private synchronized void computeObsoleteReconcileTypes(
+		private synchronized void computeObsoleteReconcileTypes( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				IFile parentFile, Set<IFile> newlyGeneratedFiles,
 				CompilationUnitHelper cuh,
 				List<ICompilationUnit> toSetBlank, List<ICompilationUnit> toDiscard)
 		{
 			// Get types previously but no longer generated during reconcile
 			Set<IFile> obsoleteFiles = _reconcileDeps.getValues(parentFile);
-			Map<IFile, ICompilationUnit> typesToDiscard = new HashMap<>();
+			Map<IFile, ICompilationUnit> typesToDiscard = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			obsoleteFiles.removeAll(newlyGeneratedFiles);
-			for (IFile obsoleteFile : obsoleteFiles) {
+			for (IFile obsoleteFile : obsoleteFiles) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				_reconcileDeps.remove(parentFile, obsoleteFile);
 				if (_reconcileDeps.getKeys(obsoleteFile).isEmpty()) {
 					ICompilationUnit wc = _reconcileGenTypes.remove(obsoleteFile);
 					assert wc != null :
-						"Value in reconcile deps missing from reconcile type list: " + obsoleteFile; //$NON-NLS-1$
+						"Value in reconcile deps missing from reconcile type list: " + obsoleteFile; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					typesToDiscard.put(obsoleteFile, wc);
 				}
 			}
@@ -1095,14 +1095,14 @@ public class GeneratedFileManager
 			Set<IFile> builtChildren = _buildDeps.getValues(parentFile);
 			builtChildren.retainAll(_clearDuringReconcile);
 			builtChildren.removeAll(newlyGeneratedFiles);
-			for (IFile builtChild : builtChildren) {
+			for (IFile builtChild : builtChildren) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				_reconcileNonDeps.put(parentFile, builtChild);
 				// If it's on typesToDiscard there are no other reconcile-time parents.
 				// If there are no other parents that are not masked by a nonDep entry...
 				boolean foundOtherParent = false;
 				Set<IFile> parents = _buildDeps.getKeys(builtChild);
 				parents.remove(parentFile);
-				for (IFile otherParent : parents) {
+				for (IFile otherParent : parents) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (!_reconcileNonDeps.containsKeyValuePair(otherParent, builtChild)) {
 						foundOtherParent = true;
 						break;
@@ -1146,8 +1146,8 @@ public class GeneratedFileManager
 	 */
 	private synchronized List<ICompilationUnit> computeObsoleteHiddenTypes(IFile parentFile, Set<IFile> deletedFiles)
 	{
-		List<ICompilationUnit> toDiscard = new ArrayList<>();
-		for (IFile deletedFile : deletedFiles) {
+		List<ICompilationUnit> toDiscard = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (IFile deletedFile : deletedFiles) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (_reconcileNonDeps.remove(parentFile, deletedFile)) {
 				ICompilationUnit wc = _hiddenBuiltTypes.remove(deletedFile);
 				if (wc != null) {
@@ -1168,7 +1168,7 @@ public class GeneratedFileManager
 	 *
 	 * @param file is assumed to be under the generated source folder.
 	 */
-	private void deletePhysicalFile(IFile file)
+	private void deletePhysicalFile(IFile file) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		final IFolder genFolder = _gsfm.getFolder();
 		assert genFolder != null : "Generated folder == null"; //$NON-NLS-1$
@@ -1176,19 +1176,19 @@ public class GeneratedFileManager
 		// not the typegen sense
 		try {
 			if (AptPlugin.DEBUG_GFM) AptPlugin.trace(
-					"delete physical file: " + file); //$NON-NLS-1$
+					"delete physical file: " + file); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			file.delete(true, true, /* progressMonitor */null);
 		} catch (CoreException e) {
 			// File was locked or read-only
-			AptPlugin.logWarning(e, "Unable to delete generated file: " + file); //$NON-NLS-1$
+			AptPlugin.logWarning(e, "Unable to delete generated file: " + file); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		// Delete the parent folders
-		while (!genFolder.equals(parent) && parent != null && parent.isDerived()) {
+		while (!genFolder.equals(parent) && parent != null && parent.isDerived()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IResource[] members = null;
 			try {
 				members = parent.members();
 			} catch (CoreException e) {
-				AptPlugin.logWarning(e, "Unable to read contents of generated file folder " + parent); //$NON-NLS-1$
+				AptPlugin.logWarning(e, "Unable to read contents of generated file folder " + parent); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			IContainer grandParent = parent.getParent();
 			// last one turns the light off.
@@ -1196,7 +1196,7 @@ public class GeneratedFileManager
 				try {
 					parent.delete(true, /* progressMonitor */null);
 				} catch (CoreException e) {
-					AptPlugin.logWarning(e, "Unable to delete generated file folder " + parent); //$NON-NLS-1$
+					AptPlugin.logWarning(e, "Unable to delete generated file folder " + parent); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			else
 				break;
@@ -1213,14 +1213,14 @@ public class GeneratedFileManager
 	public IFile getIFileForTypeName(String typeName)
 	{
 		// split the type name into its parts
-		String[] parts = _PACKAGE_DELIMITER.split(typeName);
+		String[] parts = _PACKAGE_DELIMITER.split(typeName); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 
 		IFolder folder = _gsfm.getFolder();
-		for (int i = 0; i < parts.length - 1; i++)
+		for (int i = 0; i < parts.length - 1; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			folder = folder.getFolder(parts[i]);
 
 		// the last part of the type name is the file name
-		String fileName = parts[parts.length - 1] + ".java"; //$NON-NLS-1$
+		String fileName = parts[parts.length - 1] + ".java"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IFile file = folder.getFile(fileName);
 		return file;
 	}
@@ -1260,7 +1260,7 @@ public class GeneratedFileManager
 	 * @param cuh the CompilationUnitHelper utility object
 	 * @return a working copy ready to be updated with the new type's contents
 	 */
-	private synchronized ICompilationUnit getWorkingCopyForReconcile(IFile parentFile, String typeName, CompilationUnitHelper cuh)
+	private synchronized ICompilationUnit getWorkingCopyForReconcile(IFile parentFile, String typeName, CompilationUnitHelper cuh) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		IPackageFragmentRoot root = _generatedPackageFragmentRoot.get().root;
 		IFile generatedFile = getIFileForTypeName(typeName);
@@ -1273,19 +1273,19 @@ public class GeneratedFileManager
 			_reconcileGenTypes.put(generatedFile, workingCopy);
 			_reconcileDeps.put(parentFile, generatedFile);
 			if (AptPlugin.DEBUG_GFM_MAPS) AptPlugin.trace(
-					"moved working copy from hidden to regular list: " + generatedFile); //$NON-NLS-1$
+					"moved working copy from hidden to regular list: " + generatedFile); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
 			workingCopy = _reconcileGenTypes.get(generatedFile);
 			if (null != workingCopy) {
 				if (AptPlugin.DEBUG_GFM_MAPS) AptPlugin.trace(
-						"obtained existing working copy from regular list: " + generatedFile); //$NON-NLS-1$
+						"obtained existing working copy from regular list: " + generatedFile); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			} else {
 				// we've not yet created a working copy for this file, so make one now.
 				workingCopy = cuh.getWorkingCopy(typeName, root);
 				_reconcileDeps.put(parentFile, generatedFile);
 				_reconcileGenTypes.put(generatedFile, workingCopy);
 				if (AptPlugin.DEBUG_GFM_MAPS) AptPlugin.trace(
-						"added new working copy to regular list: " + generatedFile); //$NON-NLS-1$
+						"added new working copy to regular list: " + generatedFile); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 
@@ -1314,18 +1314,18 @@ public class GeneratedFileManager
 	 * Assumes that pairs has at least one entry.
 	 */
 	private void logExtraFilePairs(String message, Map<IFile, IFile> pairs) {
-		StringBuilder sb = new StringBuilder();
-		sb.append(message);
+		StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		sb.append(message); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		Iterator<Map.Entry<IFile, IFile>> iter = pairs.entrySet().iterator();
-		while (true) {
+		while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Map.Entry<IFile, IFile> entry = iter.next();
-			sb.append(entry.getKey().getName());
-			sb.append("->"); //$NON-NLS-1$
-			sb.append(entry.getValue().getName());
+			sb.append(entry.getKey().getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			sb.append("->"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			sb.append(entry.getValue().getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (!iter.hasNext()) {
 				break;
 			}
-			sb.append(", "); //$NON-NLS-1$
+			sb.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		String s = sb.toString();
 		AptPlugin.log(new IllegalStateException(s), s);
@@ -1336,15 +1336,15 @@ public class GeneratedFileManager
 	 * Assumes that files has at least one entry.
 	 */
 	private void logExtraFiles(String message, Iterable<IFile> files) {
-		StringBuilder sb = new StringBuilder();
-		sb.append(message);
+		StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		sb.append(message); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		Iterator<IFile> iter = files.iterator();
-		while (true) {
-			sb.append(iter.next().getName());
+		while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			sb.append(iter.next().getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (!iter.hasNext()) {
 				break;
 			}
-			sb.append(", "); //$NON-NLS-1$
+			sb.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		String s = sb.toString();
 		AptPlugin.log(new IllegalStateException(s), s);
@@ -1362,7 +1362,7 @@ public class GeneratedFileManager
 	 *            a fully qualified type name
 	 * @return a String array containing {package name, filename}
 	 */
-	private static String[] parseTypeName(String qualifiedName) {
+	private static String[] parseTypeName(String qualifiedName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		//TODO: the code in CompilationUnitHelper doesn't perform this check.  Should it?
 		if (qualifiedName.indexOf('/') != -1)
@@ -1376,12 +1376,12 @@ public class GeneratedFileManager
 		{
 		    pkgName = qualifiedName.substring( 0, idx );
 		    fname =
-				qualifiedName.substring(idx + 1, qualifiedName.length()) + ".java"; //$NON-NLS-1$
+				qualifiedName.substring(idx + 1, qualifiedName.length()) + ".java"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		else
 		{
 			pkgName = ""; //$NON-NLS-1$
-			fname = qualifiedName + ".java"; //$NON-NLS-1$
+			fname = qualifiedName + ".java"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		names[0] = pkgName;
 		names[1] = fname;
@@ -1403,14 +1403,14 @@ public class GeneratedFileManager
 	 *         This operation must be done by the caller without holding any locks. The
 	 *         list may be empty but will not be null.
 	 */
-	private synchronized List<IFile> removeFileFromBuildMaps(IFile f)
+	private synchronized List<IFile> removeFileFromBuildMaps(IFile f) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
-		List<IFile> toDelete = new ArrayList<>();
+		List<IFile> toDelete = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		// Is this file the sole parent of files generated during build?
 		// If so, add them to the deletion list. Then remove the file from
 		// the build dependency list.
 		Set<IFile> childFiles = _buildDeps.getValues(f);
-		for (IFile childFile : childFiles) {
+		for (IFile childFile : childFiles) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Set<IFile> parentFiles = _buildDeps.getKeys(childFile);
 			if (parentFiles.size() == 1 && parentFiles.contains(f)) {
 				toDelete.add(childFile);
@@ -1419,7 +1419,7 @@ public class GeneratedFileManager
 		boolean removed = _buildDeps.removeKey(f);
 		if (removed) {
 			if (AptPlugin.DEBUG_GFM_MAPS) AptPlugin.trace(
-					"removed parent file from build dependencies: " + f); //$NON-NLS-1$
+					"removed parent file from build dependencies: " + f); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		assert checkIntegrity();
@@ -1442,12 +1442,12 @@ public class GeneratedFileManager
 	 *         be discarded by calling
 	 *         {@link CompilationUnitHelper#discardWorkingCopy(ICompilationUnit)}
 	 */
-	private synchronized List<ICompilationUnit> removeFileFromReconcileMaps(IFile file)
+	private synchronized List<ICompilationUnit> removeFileFromReconcileMaps(IFile file) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
-		List<ICompilationUnit> toDiscard = new ArrayList<>();
+		List<ICompilationUnit> toDiscard = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		// remove all the orphaned children
 		Set<IFile> genFiles = _reconcileDeps.getValues(file);
-		for (IFile child : genFiles) {
+		for (IFile child : genFiles) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (hasNoOtherReconcileParents(child, file)) {
 				ICompilationUnit childWC = _reconcileGenTypes.remove(child);
 				assert null != childWC : "Every value in _reconcileDeps must be a key in _reconcileGenTypes"; //$NON-NLS-1$
@@ -1458,7 +1458,7 @@ public class GeneratedFileManager
 
 		// remove obsolete entries in non-generated list
 		Set<IFile> nonGenFiles = _reconcileNonDeps.getValues(file);
-		for (IFile child : nonGenFiles) {
+		for (IFile child : nonGenFiles) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ICompilationUnit hidingWC = _hiddenBuiltTypes.remove(child);
 			if (null != hidingWC) {
 				toDiscard.add(hidingWC);
@@ -1495,7 +1495,7 @@ public class GeneratedFileManager
 	 * @param contents
 	 *            the text of the compilation unit
 	 */
-	private void saveCompilationUnit(IPackageFragment pkgFrag, final String cuName, String contents,
+	private void saveCompilationUnit(IPackageFragment pkgFrag, final String cuName, String contents, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			IProgressMonitor progressMonitor)
 	{
 
@@ -1507,7 +1507,7 @@ public class GeneratedFileManager
 				// need to do is update its contents and commit it...
 				_CUHELPER.commitNewContents(unit, contents, progressMonitor);
 				if (AptPlugin.DEBUG_GFM) AptPlugin.trace(
-						"Committed existing working copy during build: " + unit.getElementName()); //$NON-NLS-1$
+						"Committed existing working copy during build: " + unit.getElementName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			catch (JavaModelException e) {
 				// ...unless, that is, the resource has been deleted behind our back
@@ -1516,10 +1516,10 @@ public class GeneratedFileManager
 					_CUHELPER.discardWorkingCopy(unit);
 					isWorkingCopy = false;
 					if (AptPlugin.DEBUG_GFM) AptPlugin.trace(
-							"Discarded invalid existing working copy in order to try again: " + unit.getElementName()); //$NON-NLS-1$
+							"Discarded invalid existing working copy in order to try again: " + unit.getElementName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				else {
-					AptPlugin.log(e, "Unable to commit working copy to disk: " + unit.getElementName()); //$NON-NLS-1$
+					AptPlugin.log(e, "Unable to commit working copy to disk: " + unit.getElementName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					return;
 				}
 			}
@@ -1528,9 +1528,9 @@ public class GeneratedFileManager
 			try {
 				unit = pkgFrag.createCompilationUnit(cuName, contents, true, progressMonitor);
 				if (AptPlugin.DEBUG_GFM) AptPlugin.trace(
-						"Created compilation unit during build: " + unit.getElementName()); //$NON-NLS-1$
+						"Created compilation unit during build: " + unit.getElementName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			} catch (JavaModelException e) {
-				AptPlugin.log(e, "Unable to create compilation unit on disk: " +  //$NON-NLS-1$
+				AptPlugin.log(e, "Unable to create compilation unit on disk: " +  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						cuName + " in pkg fragment: " + pkgFrag.getElementName()); //$NON-NLS-1$
 			}
 		}

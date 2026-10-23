@@ -143,11 +143,11 @@ public class AnnotationProcessorFactoryLoader {
 	// See class comments for lifecycle of items in this cache.
 	// Guarded by cacheMutex
 	private final Map<IJavaProject, Map<AnnotationProcessorFactory, FactoryPath.Attributes>> _project2Java5Factories =
-		new HashMap<>();
+		new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	// Guarded by cacheMutex
 	private final Map<IJavaProject, Map<IServiceFactory, FactoryPath.Attributes>> _project2Java6Factories =
-		new HashMap<>();
+		new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	// Caches the iterative classloaders so that iterative processors
 	// are not reloaded on every batch build, unlike batch processors
@@ -155,29 +155,29 @@ public class AnnotationProcessorFactoryLoader {
 	// See class comments for lifecycle of items in this cache.
 	// Guarded by cacheMutex
 	private final Map<IJavaProject, ClassLoader> _iterativeLoaders =
-		new HashMap<>();
+		new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	// Guarded by cacheMutex
 	private final Map<IJavaProject,ClassLoader> _batchLoaders =
-		new HashMap<>();
+		new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	// Caches information about which resources affect which projects'
 	// factory paths.
 	// See class comments for lifecycle of items in this cache.
 	// Guarded by cacheMutex
 	private final Map<String, Set<IJavaProject>> _container2Project =
-		new HashMap<>();
+		new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 
 	/**
 	 * Listen for changes that would affect the factory caches or
 	 * build markers.
 	 */
-	private class ResourceListener implements IResourceChangeListener {
+	private class ResourceListener implements IResourceChangeListener { //FLLDCIM: MARK — T07  IMPLEMENTS
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public void resourceChanged(IResourceChangeEvent event) {
-			Map<IJavaProject, LoadFailureHandler> failureHandlers = new HashMap<>();
+			Map<IJavaProject, LoadFailureHandler> failureHandlers = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			switch (event.getType()) {
 
 			// Project deletion
@@ -207,7 +207,7 @@ public class AnnotationProcessorFactoryLoader {
 				break;
 
 			}
-			for (LoadFailureHandler handler : failureHandlers.values()) {
+			for (LoadFailureHandler handler : failureHandlers.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				handler.reportFailureMarkers();
 			}
 		}
@@ -218,7 +218,7 @@ public class AnnotationProcessorFactoryLoader {
 	 * a factory path or the containers it references.  If so,
 	 * re-validate the affected projects' factory paths.
 	 */
-	private class FactoryPathDeltaVisitor implements IResourceDeltaVisitor {
+	private class FactoryPathDeltaVisitor implements IResourceDeltaVisitor { //FLLDCIM: MARK — T07  IMPLEMENTS
 
 		// List of projects affected by this change.
 		// Lazy construction because we assume most changes won't affect any projects.
@@ -226,7 +226,7 @@ public class AnnotationProcessorFactoryLoader {
 
 		private void addAffected(Set<IJavaProject> projects) {
 			if (_affected == null) {
-				 _affected = new HashSet<>(5);
+				 _affected = new HashSet<>(5); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			}
 			_affected.addAll(projects);
 		}
@@ -244,7 +244,7 @@ public class AnnotationProcessorFactoryLoader {
 		/**
 		 * @return true to visit children
 		 */
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public boolean visit(IResourceDelta delta) {
 			switch (delta.getKind()) {
 			default:
@@ -280,7 +280,7 @@ public class AnnotationProcessorFactoryLoader {
 							// Jar file within a deleted project.  In this case getLocation()
 							// returns null, so we can't get a canonical path.  Bounce every
 							// factory path that contains anything resembling this jar.
-							for (Entry<String, Set<IJavaProject>> entry : _container2Project.entrySet()) {
+							for (Entry<String, Set<IJavaProject>> entry : _container2Project.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								IPath jarPath = new Path(entry.getKey());
 								if (relativePath.lastSegment().equals(jarPath.lastSegment())) {
 									addAffected(entry.getValue());
@@ -303,7 +303,7 @@ public class AnnotationProcessorFactoryLoader {
 				}
 			} catch (Exception e) {
 				AptPlugin.log(e,
-					"Couldn't determine whether any factory paths were affected by change to resource " + res.getName()); //$NON-NLS-1$
+					"Couldn't determine whether any factory paths were affected by change to resource " + res.getName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			return true;
 		}
@@ -349,7 +349,7 @@ public class AnnotationProcessorFactoryLoader {
 
     	// Validate all projects
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-		for (IProject proj : root.getProjects()) {
+		for (IProject proj : root.getProjects()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			verifyFactoryPath(JavaCore.create(proj));
 		}
     }
@@ -357,8 +357,8 @@ public class AnnotationProcessorFactoryLoader {
     /**
      * Clears all the caches and closes the iterative and batch classloaders.
      */
-    private void closeClassLoaders() {
-    	Set<ClassLoader> toClose = new HashSet<>();
+    private void closeClassLoaders() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+    	Set<ClassLoader> toClose = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 
     	synchronized (cacheMutex) {
     		toClose.addAll(_iterativeLoaders.values());
@@ -372,7 +372,7 @@ public class AnnotationProcessorFactoryLoader {
     	}
 
     	// Need to close the iterative and batch classloaders
-    	for (ClassLoader cl : toClose) {
+    	for (ClassLoader cl : toClose) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     		tryToCloseClassLoader(cl);
     	}
     }
@@ -381,7 +381,7 @@ public class AnnotationProcessorFactoryLoader {
      * Called when doing a clean build -- resets
      * the classloaders for the batch processors
      */
-    public void resetBatchProcessors(IJavaProject javaProj) {
+    public void resetBatchProcessors(IJavaProject javaProj) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	Iterable<Attributes> attrs = null;
 
     	Map<AnnotationProcessorFactory, Attributes> factories;
@@ -403,7 +403,7 @@ public class AnnotationProcessorFactoryLoader {
     		}
     	}
     	boolean batchProcsFound = false;
-    	for (Attributes attr : attrs) {
+    	for (Attributes attr : attrs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     		if (attr.runInBatchMode()) {
     			batchProcsFound = true;
     			break;
@@ -429,7 +429,7 @@ public class AnnotationProcessorFactoryLoader {
      * containers in <code>jproj</code>.  The map is unmodifiable, and may be empty but
      * will not be null.
      */
-    public Map<AnnotationProcessorFactory, FactoryPath.Attributes>
+    public Map<AnnotationProcessorFactory, FactoryPath.Attributes> //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	getJava5FactoriesAndAttributesForProject(IJavaProject jproj){
 
     	// We can't create problem markers inside synchronization -- see https://bugs.eclipse.org/bugs/show_bug.cgi?id=184923
@@ -467,7 +467,7 @@ public class AnnotationProcessorFactoryLoader {
      * containers in <code>jproj</code>.  The map is unmodifiable, and may be empty but
      * will not be null.
      */
-    public Map<IServiceFactory, FactoryPath.Attributes>
+    public Map<IServiceFactory, FactoryPath.Attributes> //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	getJava6FactoriesAndAttributesForProject(IJavaProject jproj) {
 
     	// We can't create problem markers inside synchronization -- see https://bugs.eclipse.org/bugs/show_bug.cgi?id=184923
@@ -505,7 +505,7 @@ public class AnnotationProcessorFactoryLoader {
     	Map<AnnotationProcessorFactory, FactoryPath.Attributes> factoriesAndAttrs =
     		getJava5FactoriesAndAttributesForProject(jproj);
     	final List<AnnotationProcessorFactory> factories =
-    		new ArrayList<>(factoriesAndAttrs.keySet());
+    		new ArrayList<>(factoriesAndAttrs.keySet()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
     	return Collections.unmodifiableList(factories);
     }
 
@@ -519,7 +519,7 @@ public class AnnotationProcessorFactoryLoader {
 		synchronized (cacheMutex) {
 			Set<IJavaProject> s = _container2Project.get(key);
 			if (s == null) {
-				s = new HashSet<>();
+				s = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 				_container2Project.put(key, s);
 			}
 			s.add(jproj);
@@ -529,7 +529,7 @@ public class AnnotationProcessorFactoryLoader {
 	/**
 	 * Wrapper around ClassLoader.loadClass().newInstance() to handle reporting of errors.
 	 */
-	private Object loadInstance( String factoryName, ClassLoader cl, IJavaProject jproj, LoadFailureHandler failureHandler )
+	private Object loadInstance( String factoryName, ClassLoader cl, IJavaProject jproj, LoadFailureHandler failureHandler ) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		Object f = null;
 		try
@@ -539,12 +539,12 @@ public class AnnotationProcessorFactoryLoader {
 		}
 		catch( Exception e )
 		{
-			AptPlugin.trace("Failed to load factory " + factoryName, e); //$NON-NLS-1$
+			AptPlugin.trace("Failed to load factory " + factoryName, e); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			failureHandler.addFailedFactory(factoryName);
 		}
 		catch ( NoClassDefFoundError ncdfe )
 		{
-			AptPlugin.trace("Failed to load " + factoryName, ncdfe); //$NON-NLS-1$
+			AptPlugin.trace("Failed to load " + factoryName, ncdfe); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			failureHandler.addFailedFactory(factoryName);
 		}
 		return f;
@@ -555,20 +555,20 @@ public class AnnotationProcessorFactoryLoader {
 	 * APT-related build problem markers.  Results are saved in the factory caches.
 	 * @param containers an ordered map.
 	 */
-	private void loadFactories(
+	private void loadFactories( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			Map<FactoryContainer, FactoryPath.Attributes> containers,
 			IJavaProject project,
 			LoadFailureHandler failureHandler)
 	{
 		Map<AnnotationProcessorFactory, FactoryPath.Attributes> java5Factories =
-			new LinkedHashMap<>();
+			new LinkedHashMap<>(); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
 		Map<IServiceFactory, FactoryPath.Attributes> java6Factories =
-			new LinkedHashMap<>();
+			new LinkedHashMap<>(); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
 
 		removeAptBuildProblemMarkers(project);
 		Set<FactoryContainer> badContainers = verifyFactoryPath(project);
 		if (badContainers != null) {
-			for (FactoryContainer badFC : badContainers) {
+			for (FactoryContainer badFC : badContainers) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				failureHandler.addFailedFactory(badFC.getId());
 				containers.remove(badFC);
 			}
@@ -597,7 +597,7 @@ public class AnnotationProcessorFactoryLoader {
 
 		ClassLoader batchClassLoader = _createBatchClassLoader(containers, project);
 
-		for ( Map.Entry<FactoryContainer, FactoryPath.Attributes> entry : containers.entrySet() )
+		for ( Map.Entry<FactoryContainer, FactoryPath.Attributes> entry : containers.entrySet() ) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		{
 			try {
 				final FactoryContainer fc = entry.getKey();
@@ -608,7 +608,7 @@ public class AnnotationProcessorFactoryLoader {
 				// First the Java 5 factories in this container...
 				List<AnnotationProcessorFactory> java5FactoriesInContainer;
 				java5FactoriesInContainer = loadJava5FactoryClasses(fc, cl, project, failureHandler);
-				for ( AnnotationProcessorFactory apf : java5FactoriesInContainer ) {
+				for ( AnnotationProcessorFactory apf : java5FactoriesInContainer ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					java5Factories.put( apf, entry.getValue() );
 				}
 
@@ -616,17 +616,17 @@ public class AnnotationProcessorFactoryLoader {
 					// Now the Java 6 factories.  Use the same classloader for the sake of sanity.
 					List<IServiceFactory> java6FactoriesInContainer;
 					java6FactoriesInContainer = loadJava6FactoryClasses(fc, cl, project, failureHandler);
-					for ( IServiceFactory isf : java6FactoriesInContainer ) {
+					for ( IServiceFactory isf : java6FactoriesInContainer ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						java6Factories.put( isf, entry.getValue() );
 					}
 				}
 			}
 			catch (FileNotFoundException fnfe) {
 				// it would be bizarre to get this, given that we already checked for file existence up above.
-				AptPlugin.log(fnfe, Messages.AnnotationProcessorFactoryLoader_jarNotFound + fnfe.getLocalizedMessage());
+				AptPlugin.log(fnfe, Messages.AnnotationProcessorFactoryLoader_jarNotFound + fnfe.getLocalizedMessage()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			catch (IOException ioe) {
-				AptPlugin.log(ioe, Messages.AnnotationProcessorFactoryLoader_ioError + ioe.getLocalizedMessage());
+				AptPlugin.log(ioe, Messages.AnnotationProcessorFactoryLoader_ioError + ioe.getLocalizedMessage()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 
@@ -636,13 +636,13 @@ public class AnnotationProcessorFactoryLoader {
 		}
 	}
 
-	private List<AnnotationProcessorFactory> loadJava5FactoryClasses(
+	private List<AnnotationProcessorFactory> loadJava5FactoryClasses( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			FactoryContainer fc, ClassLoader classLoader, IJavaProject jproj, LoadFailureHandler failureHandler )
 			throws IOException
 	{
 		Map<String, String> factoryNames = fc.getFactoryNames();
-		List<AnnotationProcessorFactory> factories = new ArrayList<>();
-		for ( Entry<String, String> entry : factoryNames.entrySet() )
+		List<AnnotationProcessorFactory> factories = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for ( Entry<String, String> entry : factoryNames.entrySet() ) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		{
 			if (AptPlugin.JAVA5_FACTORY_NAME.equals(entry.getValue())) {
 				String factoryName = entry.getKey();
@@ -659,13 +659,13 @@ public class AnnotationProcessorFactoryLoader {
 		return factories;
 	}
 
-	private List<IServiceFactory> loadJava6FactoryClasses(
+	private List<IServiceFactory> loadJava6FactoryClasses( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			FactoryContainer fc, ClassLoader classLoader, IJavaProject jproj, LoadFailureHandler failureHandler )
 			throws IOException
 	{
 		Map<String, String> factoryNames = fc.getFactoryNames();
-		List<IServiceFactory> factories = new ArrayList<>();
-		for ( Entry<String, String> entry : factoryNames.entrySet() )
+		List<IServiceFactory> factories = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for ( Entry<String, String> entry : factoryNames.entrySet() ) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		{
 			if (AptPlugin.JAVA6_FACTORY_NAME.equals(entry.getValue())) {
 				String factoryName = entry.getKey();
@@ -679,7 +679,7 @@ public class AnnotationProcessorFactoryLoader {
 						clazz = classLoader.loadClass(factoryName);
 						factory = new ClassServiceFactory(clazz);
 					} catch (ClassNotFoundException | ClassFormatError e) {
-						AptPlugin.trace("Unable to load annotation processor " + factoryName, e); //$NON-NLS-1$
+						AptPlugin.trace("Unable to load annotation processor " + factoryName, e); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						failureHandler.addFailedFactory(factoryName);
 					}
 				}
@@ -697,8 +697,8 @@ public class AnnotationProcessorFactoryLoader {
 	 * This will cause build problem markers to be removed and regenerated,
 	 * and factory class caches to be cleared.
 	 */
-	private void processChanges(Set<IJavaProject> affected, Map<IJavaProject,LoadFailureHandler> handlers) {
-		for (IJavaProject jproj : affected) {
+	private void processChanges(Set<IJavaProject> affected, Map<IJavaProject,LoadFailureHandler> handlers) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		for (IJavaProject jproj : affected) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			removeAptBuildProblemMarkers(jproj);
 			uncacheProject(jproj);
 		}
@@ -707,7 +707,7 @@ public class AnnotationProcessorFactoryLoader {
 		// have changed in the interim; and if we don't do it here, then
 		// we'll have an empty _resources2Project cache, so we'll ignore
 		// all resource changes until the next build.  Is that a problem?
-		for (IJavaProject jproj : affected) {
+		for (IJavaProject jproj : affected) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (jproj.exists()) {
 				Set<FactoryContainer> badContainers = verifyFactoryPath(jproj);
 				if (badContainers != null) {
@@ -716,7 +716,7 @@ public class AnnotationProcessorFactoryLoader {
 						handler = new LoadFailureHandler(jproj);
 						handlers.put(jproj, handler);
 					}
-					for (FactoryContainer container : badContainers) {
+					for (FactoryContainer container : badContainers) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						handler.addMissingLibrary(container.getId());
 					}
 				}
@@ -751,20 +751,20 @@ public class AnnotationProcessorFactoryLoader {
 	 * @param jproj if null, remove markers from all projects that have
 	 * factory paths associated with them.
 	 */
-	private void removeAptBuildProblemMarkers( IJavaProject jproj ) {
+	private void removeAptBuildProblemMarkers( IJavaProject jproj ) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// note that _project2Java6Factories.keySet() should be same as that for Java5.
 		Set<IJavaProject> jprojects;
 		synchronized (cacheMutex) {
-			jprojects = (jproj == null) ? new HashSet<>(_project2Java5Factories.keySet())
+			jprojects = (jproj == null) ? new HashSet<>(_project2Java5Factories.keySet()) //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 					: Collections.singleton(jproj);
 		}
 		try {
-			for (IJavaProject jp : jprojects) {
+			for (IJavaProject jp : jprojects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (jp.exists()) {
 					IProject p = jp.getProject();
 					IMarker[] markers = p.findMarkers(AptPlugin.APT_LOADER_PROBLEM_MARKER, false, IResource.DEPTH_ZERO);
 					if( markers != null ){
-						for( IMarker marker : markers )
+						for( IMarker marker : markers ) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							marker.delete();
 					}
 				}
@@ -783,7 +783,7 @@ public class AnnotationProcessorFactoryLoader {
 	private void removeProjectFromResourceMap(IJavaProject jproj) {
 		synchronized (cacheMutex) {
 			Iterator<Entry<String, Set<IJavaProject>>> i = _container2Project.entrySet().iterator();
-			while (i.hasNext()) {
+			while (i.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Entry<String, Set<IJavaProject>> e = i.next();
 				Set<IJavaProject> s = e.getValue();
 				s.remove(jproj);
@@ -806,11 +806,11 @@ public class AnnotationProcessorFactoryLoader {
      * @return a Set of all invalid containers, or null if all containers
      * on the path were valid.
      */
-    private Set<FactoryContainer> verifyFactoryPath(IJavaProject jproj) {
+    private Set<FactoryContainer> verifyFactoryPath(IJavaProject jproj) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	Set<FactoryContainer> badContainers = null;
 		FactoryPath fp = FactoryPathUtil.getFactoryPath(jproj);
 		Map<FactoryContainer, FactoryPath.Attributes> containers = fp.getEnabledContainers();
-		for (FactoryContainer fc : containers.keySet()) {
+		for (FactoryContainer fc : containers.keySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (fc instanceof JarFactoryContainer) {
 				try {
 					final File jarFile = ((JarFactoryContainer)fc).getJarFile();
@@ -829,7 +829,7 @@ public class AnnotationProcessorFactoryLoader {
 			}
 			if ( !fc.exists() ) {
 				if (badContainers == null) {
-					badContainers = new HashSet<>();
+					badContainers = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 				}
 				badContainers.add(fc);
 			}
@@ -840,10 +840,10 @@ public class AnnotationProcessorFactoryLoader {
 	/**
 	 * @param containers an ordered map.
 	 */
-	private static ClassLoader _createIterativeClassLoader( Map<FactoryContainer, FactoryPath.Attributes> containers )
+	private static ClassLoader _createIterativeClassLoader( Map<FactoryContainer, FactoryPath.Attributes> containers ) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
-		ArrayList<File> fileList = new ArrayList<>( containers.size() );
-		for (Map.Entry<FactoryContainer, FactoryPath.Attributes> entry : containers.entrySet()) {
+		ArrayList<File> fileList = new ArrayList<>( containers.size() ); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (Map.Entry<FactoryContainer, FactoryPath.Attributes> entry : containers.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			FactoryPath.Attributes attr = entry.getValue();
 			FactoryContainer fc = entry.getKey();
 			if (!attr.runInBatchMode() && fc instanceof JarFactoryContainer) {
@@ -865,10 +865,10 @@ public class AnnotationProcessorFactoryLoader {
 	/**
 	 * Returns the batch class loader or null if none
 	 */
-	private ClassLoader _createBatchClassLoader(Map<FactoryContainer, FactoryPath.Attributes> containers,
+	private ClassLoader _createBatchClassLoader(Map<FactoryContainer, FactoryPath.Attributes> containers, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			IJavaProject p) {
-		ArrayList<File> fileList = new ArrayList<>( containers.size() );
-		for (Map.Entry<FactoryContainer, FactoryPath.Attributes> entry : containers.entrySet()) {
+		ArrayList<File> fileList = new ArrayList<>( containers.size() ); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (Map.Entry<FactoryContainer, FactoryPath.Attributes> entry : containers.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			FactoryPath.Attributes attr = entry.getValue();
 			FactoryContainer fc = entry.getKey();
 			if (attr.runInBatchMode() && fc instanceof JarFactoryContainer) {
@@ -911,7 +911,7 @@ public class AnnotationProcessorFactoryLoader {
 		return result;
 	}
 
-	private static ClassLoader getParentClassLoader() {
+	private static ClassLoader getParentClassLoader() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final ClassLoader loaderForComSunMirrorClasses = AnnotationProcessorFactoryLoader.class.getClassLoader();
 		final ClassLoader loaderForEverythingElse = ClassLoader.getSystemClassLoader();
 		return new ClassLoader() {
@@ -936,7 +936,7 @@ public class AnnotationProcessorFactoryLoader {
 	 * unless {@link #COPY_FACTORY_JARS_PROPERTY} is set to "false".
 	 * Public for testing purposes.
 	 */
-	public static ClassLoader createClassLoader(List<File> files, ClassLoader parentCL) {
+	public static ClassLoader createClassLoader(List<File> files, ClassLoader parentCL) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		//return new JarClassLoader(files, parentCL);
 		// Load private copies of the jars, so that the original files are not locked
 		// (on Windows) for as long as the class loader is cached.
@@ -950,12 +950,12 @@ public class AnnotationProcessorFactoryLoader {
 			// Safety net for the copies that are not deleted by close(). Files are deleted
 			// on exit in the reverse order of their registration: the directory comes last.
 			copyDir.toFile().deleteOnExit();
-			List<File> copies = new ArrayList<>(files.size());
-			for (int i=0;i<files.size();i++) {
+			List<File> copies = new ArrayList<>(files.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			for (int i=0;i<files.size();i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				File file = files.get(i);
 				if (file.isFile() && !hasManifestClassPath(file)) {
 					// prefix with the index: jars from different folders may have the same name
-					File copy = copyDir.resolve(i + "_" + file.getName()).toFile(); //$NON-NLS-1$
+					File copy = copyDir.resolve(i + "_" + file.getName()).toFile(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					Files.copy(file.toPath(), copy.toPath());
 					copy.deleteOnExit();
 					copies.add(copy);
@@ -987,8 +987,8 @@ public class AnnotationProcessorFactoryLoader {
 	}
 
 	private static URL[] toURLs(List<File> files) {
-		List<URL> urls = new ArrayList<>(files.size());
-		for (int i=0;i<files.size();i++) {
+		List<URL> urls = new ArrayList<>(files.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (int i=0;i<files.size();i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				urls.add(files.get(i).toURI().toURL());
 			}
@@ -1013,7 +1013,7 @@ public class AnnotationProcessorFactoryLoader {
 		}
 	}
 
-	private static void deleteRecursively(java.nio.file.Path dir) {
+	private static void deleteRecursively(java.nio.file.Path dir) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (dir == null) {
 			return;
 		}
@@ -1023,12 +1023,12 @@ public class AnnotationProcessorFactoryLoader {
 					Files.delete(p);
 				} catch (IOException e) {
 					// leftovers are deleted on exit
-					AptPlugin.trace("Unable to delete " + p, e); //$NON-NLS-1$
+					AptPlugin.trace("Unable to delete " + p, e); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			});
 		} catch (IOException e) {
 			// leftovers are deleted on exit
-			AptPlugin.trace("Unable to delete " + dir, e); //$NON-NLS-1$
+			AptPlugin.trace("Unable to delete " + dir, e); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 

@@ -167,8 +167,8 @@ public IJavaElement getHandleFromMemento(String token, MementoTokenizer memento,
 protected void getHandleMemento(StringBuilder buff) {
 	super.getHandleMemento(buff);
 	if (this.occurrenceCount > 1) {
-		buff.append(JEM_COUNT);
-		buff.append(this.occurrenceCount);
+		buff.append(JEM_COUNT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buff.append(this.occurrenceCount); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 }
 /*
@@ -206,7 +206,7 @@ public void setOccurrenceCount(int occurrenceCount) {
 @Override
 public IOpenable getOpenableParent() {
 	IJavaElement current = getParent();
-	while (current != null){
+	while (current != null){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (current instanceof IOpenable){
 			return (IOpenable) current;
 		}
@@ -231,7 +231,7 @@ public IResource resource() {
 /**
  * @see ISourceReference
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public String getSource() throws JavaModelException {
 	IOpenable openable = getOpenableParent();
 	IBuffer buffer = openable.getBuffer();
@@ -316,8 +316,8 @@ public void rename(String newName, boolean force, IProgressMonitor monitor) thro
 protected void toStringName(StringBuilder buffer) {
 	super.toStringName(buffer);
 	if (this.occurrenceCount > 1) {
-		buffer.append("#"); //$NON-NLS-1$
-		buffer.append(this.occurrenceCount);
+		buffer.append("#"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(this.occurrenceCount); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 }
 }

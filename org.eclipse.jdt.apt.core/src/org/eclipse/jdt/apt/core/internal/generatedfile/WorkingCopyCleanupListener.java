@@ -27,7 +27,7 @@ import org.eclipse.jdt.core.IJavaProject;
 /**
  * Used by the GeneratedFileManager in order to clean up working copies after a build
  */
-public class WorkingCopyCleanupListener implements IElementChangedListener
+public class WorkingCopyCleanupListener implements IElementChangedListener //FLLDCIM: MARK — T31  IMPLEMENTS
 {
 	@Override
 	public void elementChanged(ElementChangedEvent event)
@@ -41,12 +41,12 @@ public class WorkingCopyCleanupListener implements IElementChangedListener
 		}
 	}
 
-	private void processElementDelta( IJavaElementDelta delta )
+	private void processElementDelta( IJavaElementDelta delta ) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		IJavaElementDelta[] deltas = delta.getAffectedChildren();
 		if ( deltas != null && deltas.length > 0 )
 		{
-			for( int i = 0; i<deltas.length; i++ )
+			for( int i = 0; i<deltas.length; i++ ) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				processElementDelta( deltas[i] );
 		}
 		if ( delta.getElement() instanceof ICompilationUnit )
@@ -68,7 +68,7 @@ public class WorkingCopyCleanupListener implements IElementChangedListener
 				try {
 					gfm.workingCopyDiscarded( cu );
 				} catch (CoreException e) {
-					AptPlugin.log(e, "Failure processing delta: " + delta); //$NON-NLS-1$
+					AptPlugin.log(e, "Failure processing delta: " + delta); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}

@@ -166,8 +166,8 @@ public abstract class JavaElement extends PlatformObject implements IJavaElement
 	 * @see #JEM_DELIMITER_ESCAPE
 	 */
 	protected void appendEscapedDelimiter(StringBuilder buffer, char delimiter) {
-		buffer.append(JEM_DELIMITER_ESCAPE);
-		buffer.append(delimiter);
+		buffer.append(JEM_DELIMITER_ESCAPE); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(delimiter); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	/*
 	 * Do not add new delimiters here
@@ -210,7 +210,7 @@ public abstract class JavaElement extends PlatformObject implements IJavaElement
 	public IJavaElement getAncestor(int ancestorType) {
 
 		IJavaElement element = this;
-		while (element != null) {
+		while (element != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (element.getElementType() == ancestorType)  return element;
 			element= element.getParent();
 		}
@@ -236,8 +236,8 @@ public abstract class JavaElement extends PlatformObject implements IJavaElement
 	public ArrayList getChildrenOfType(int type) throws JavaModelException {
 		IJavaElement[] children = getChildren();
 		int size = children.length;
-		ArrayList list = new ArrayList(size);
-		for (int i = 0; i < size; ++i) {
+		ArrayList list = new ArrayList(size); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (int i = 0; i < size; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JavaElement elt = (JavaElement)children[i];
 			if (elt.getElementType() == type) {
 				list.add(elt);
@@ -314,13 +314,13 @@ public abstract class JavaElement extends PlatformObject implements IJavaElement
 	 * @see JavaElement#getHandleMemento()
 	 */
 	public String getHandleMemento(){
-		StringBuilder buff = new StringBuilder();
+		StringBuilder buff = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		getHandleMemento(buff);
 		return buff.toString();
 	}
 	protected void getHandleMemento(StringBuilder buff) {
 		getParent().getHandleMemento(buff);
-		buff.append(getHandleMementoDelimiter());
+		buff.append(getHandleMementoDelimiter()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		escapeMementoName(buff, getElementName());
 	}
 	/**
@@ -388,10 +388,10 @@ public abstract class JavaElement extends PlatformObject implements IJavaElement
 	 * known to be within this element's source range already, and if no finer
 	 * grained element is found at the position, this element is returned.
 	 */
-	protected IJavaElement getSourceElementAt(int position) throws JavaModelException {
+	protected IJavaElement getSourceElementAt(int position) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this instanceof ISourceReference) {
 			IJavaElement[] children = getChildren();
-			for (int i = children.length-1; i >= 0; i--) {
+			for (int i = children.length-1; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IJavaElement aChild = children[i];
 				if (aChild instanceof SourceRefElement) {
 					SourceRefElement child = (SourceRefElement) aChild;
@@ -403,7 +403,7 @@ public abstract class JavaElement extends PlatformObject implements IJavaElement
 							// check muti-declaration case (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=39943)
 							int declarationStart = start;
 							SourceRefElement candidate = null;
-							do {
+							do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								// check name range
 								range = child.getNameRange();
 								if (position <= range.getOffset() + range.getLength()) {
@@ -438,7 +438,7 @@ public abstract class JavaElement extends PlatformObject implements IJavaElement
 		return getParent().getSourceMapper();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public ISchedulingRule getSchedulingRule() {
 		IResource resource = resource();
 		if (resource == null) {
@@ -516,7 +516,7 @@ public abstract class JavaElement extends PlatformObject implements IJavaElement
 	 */
 	public boolean isAncestorOf(IJavaElement e) {
 		IJavaElement parentElement= e.getParent();
-		while (parentElement != null && !parentElement.equals(this)) {
+		while (parentElement != null && !parentElement.equals(this)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			parentElement= parentElement.getParent();
 		}
 		return parentElement != null;
@@ -551,7 +551,7 @@ public abstract class JavaElement extends PlatformObject implements IJavaElement
 	 * Opens an <code>Openable</code> that is known to be closed (no check for <code>isOpen()</code>).
 	 * Returns the created element info.
 	 */
-	protected IElementInfo openWhenClosed(IElementInfo info, boolean forceAdd, IProgressMonitor monitor) throws JavaModelException {
+	protected IElementInfo openWhenClosed(IElementInfo info, boolean forceAdd, IProgressMonitor monitor) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		JavaModelManager manager = JavaModelManager.getJavaModelManager();
 		boolean hadTemporaryCache = manager.hasTemporaryCache();
 		try {
@@ -598,16 +598,16 @@ public abstract class JavaElement extends PlatformObject implements IJavaElement
 		return this;
 	}
 	protected String tabString(int tab) {
-		StringBuilder buffer = new StringBuilder();
-		for (int i = tab; i > 0; i--)
-			buffer.append("  "); //$NON-NLS-1$
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = tab; i > 0; i--) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append("  "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return buffer.toString();
 	}
 	/**
 	 * Debugging purposes
 	 */
 	public String toDebugString() {
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		this.toStringInfo(0, buffer, NO_INFO, true/*show resolved info*/);
 		return buffer.toString();
 	}
@@ -616,7 +616,7 @@ public abstract class JavaElement extends PlatformObject implements IJavaElement
 	 */
 	@Override
 	public String toString() {
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		toString(0, buffer);
 		return buffer.toString();
 	}
@@ -640,7 +640,7 @@ public abstract class JavaElement extends PlatformObject implements IJavaElement
 	 *  Debugging purposes
 	 */
 	public String toStringWithAncestors(boolean showResolvedInfo) {
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		this.toStringInfo(0, buffer, NO_INFO, showResolvedInfo);
 		toStringAncestors(buffer);
 		return buffer.toString();
@@ -651,10 +651,10 @@ public abstract class JavaElement extends PlatformObject implements IJavaElement
 	protected void toStringAncestors(StringBuilder buffer) {
 		JavaElement parentElement = getParent();
 		if (parentElement != null && parentElement.getParent() != null) {
-			buffer.append(" [in "); //$NON-NLS-1$
+			buffer.append(" [in "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			parentElement.toStringInfo(0, buffer, NO_INFO, false/*don't show resolved info*/);
 			parentElement.toStringAncestors(buffer);
-			buffer.append("]"); //$NON-NLS-1$
+			buffer.append("]"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 	/**
@@ -663,8 +663,8 @@ public abstract class JavaElement extends PlatformObject implements IJavaElement
 	protected void toStringChildren(int tab, StringBuilder buffer, Object info) {
 		if (info == null || !(info instanceof JavaElementInfo)) return;
 		IJavaElement[] children = ((JavaElementInfo)info).getChildren();
-		for (IJavaElement child : children) {
-			buffer.append("\n"); //$NON-NLS-1$
+		for (IJavaElement child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append("\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			((JavaElement)child).toString(tab + 1, buffer);
 		}
 	}
@@ -681,20 +681,20 @@ public abstract class JavaElement extends PlatformObject implements IJavaElement
 	 * @param showResolvedInfo TODO
 	 */
 	protected void toStringInfo(int tab, StringBuilder buffer, Object info, boolean showResolvedInfo) {
-		buffer.append(tabString(tab));
+		buffer.append(tabString(tab)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		toStringName(buffer);
 		if (info == null) {
-			buffer.append(" (not open)"); //$NON-NLS-1$
+			buffer.append(" (not open)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 	/**
 	 *  Debugging purposes
 	 */
 	protected void toStringName(StringBuilder buffer) {
-		buffer.append(getElementName());
+		buffer.append(getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
-	protected URL getJavadocBaseLocation() throws JavaModelException {
+	protected URL getJavadocBaseLocation() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragmentRoot root= (IPackageFragmentRoot) getAncestor(IJavaElement.PACKAGE_FRAGMENT_ROOT);
 		if (root == null) {
 			return null;
@@ -725,7 +725,7 @@ public abstract class JavaElement extends PlatformObject implements IJavaElement
 		return null;
 	}
 
-	protected static URL getLibraryJavadocLocation(IClasspathEntry entry) throws JavaModelException {
+	protected static URL getLibraryJavadocLocation(IClasspathEntry entry) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch(entry.getEntryKind()) {
 			case IClasspathEntry.CPE_LIBRARY :
 			case IClasspathEntry.CPE_VARIABLE :
@@ -735,7 +735,7 @@ public abstract class JavaElement extends PlatformObject implements IJavaElement
 		}
 
 		IClasspathAttribute[] extraAttributes= entry.getExtraAttributes();
-		for (IClasspathAttribute attrib : extraAttributes) {
+		for (IClasspathAttribute attrib : extraAttributes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (IClasspathAttribute.JAVADOC_LOCATION_ATTRIBUTE_NAME.equals(attrib.getName())) {
 				String value = attrib.getValue();
 				try {
@@ -756,7 +756,7 @@ public abstract class JavaElement extends PlatformObject implements IJavaElement
 	/*
 	 * This method caches a list of good and bad Javadoc locations in the current eclipse session.
 	 */
-	@SuppressWarnings("unused")
+	@SuppressWarnings("unused") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void validateAndCache(URL baseLoc, FileNotFoundException e) throws JavaModelException {
 		String url = baseLoc.toString();
 		if (validURLs != null && validURLs.contains(url)) return;
@@ -770,25 +770,25 @@ public abstract class JavaElement extends PlatformObject implements IJavaElement
 				// do nothing, only try to read
 			}
 			if (validURLs == null) {
-				validURLs = new HashSet<>(1);
+				validURLs = new HashSet<>(1); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			}
 			validURLs.add(url);
 		} catch (Exception e1) {
 			if (invalidURLs == null) {
-				invalidURLs = new HashSet<>(1);
+				invalidURLs = new HashSet<>(1); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			}
 			invalidURLs.add(url);
 			throw new JavaModelException(e, IJavaModelStatusConstants.CANNOT_RETRIEVE_ATTACHED_JAVADOC);
 		}
 	}
 
-	protected String getURLContents(URL baseLoc, String docUrlValue) throws JavaModelException {
+	protected String getURLContents(URL baseLoc, String docUrlValue) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		InputStream stream = null;
 		JarURLConnection connection2 = null;
 		URI docUri = null;
 		URLConnection connection = null;
 		try {
-			redirect: for (int i= 0; i < 5; i++) { // avoid endless redirects...
+			redirect: for (int i= 0; i < 5; i++) { // avoid endless redirects... //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				docUri = new URI(docUrlValue);
 				connection = docUri.toURL().openConnection();
 

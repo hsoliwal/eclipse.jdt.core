@@ -35,12 +35,12 @@ final class ReorderingImportAdder implements ImportAdder {
 	@Override
 	public List<ImportName> addImports(Collection<ImportName> existingImports, Collection<ImportName> importsToAdd) {
 		int setCapacity = 2 * (existingImports.size() + importsToAdd.size());
-		Set<ImportName> uniqueImportsWithAdditions = new HashSet<>(setCapacity);
+		Set<ImportName> uniqueImportsWithAdditions = new HashSet<>(setCapacity); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		uniqueImportsWithAdditions.addAll(existingImports);
 		uniqueImportsWithAdditions.addAll(importsToAdd);
 
-		List<ImportName> sortedImports = new ArrayList<>(uniqueImportsWithAdditions);
-		Collections.sort(sortedImports, this.importComparator);
+		List<ImportName> sortedImports = new ArrayList<>(uniqueImportsWithAdditions); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		Collections.sort(sortedImports, this.importComparator); //FLLDCIM: MARK — M16 SORT_LANE CALL
 
 		return sortedImports;
 	}

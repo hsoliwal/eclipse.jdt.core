@@ -112,7 +112,7 @@ public abstract class ASTRequestor {
 	public final IBinding[] createBindings(String[] bindingKeys) {
 		int length = bindingKeys.length;
 		IBinding[] result = new IBinding[length];
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			result[i] = null;
 			if (this.additionalBindingResolver != null) {
 				result[i] = this.additionalBindingResolver.apply(bindingKeys[i]);

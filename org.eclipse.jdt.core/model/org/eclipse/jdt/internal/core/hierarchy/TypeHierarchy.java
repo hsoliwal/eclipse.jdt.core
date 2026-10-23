@@ -53,7 +53,7 @@ import org.eclipse.jdt.internal.core.util.Util;
 /**
  * @see ITypeHierarchy
  */
-public class TypeHierarchy implements ITypeHierarchy, IElementChangedListener {
+public class TypeHierarchy implements ITypeHierarchy, IElementChangedListener { //FLLDCIM: MARK — T31  IMPLEMENTS
 
 	public static boolean DEBUG = false;
 
@@ -175,15 +175,15 @@ public TypeHierarchy(IType type, ICompilationUnit[] workingCopies, IJavaSearchSc
 /**
  * Initializes the file, package and project regions
  */
-protected void initializeRegions() {
+protected void initializeRegions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IType[] allTypes = getAllTypes();
-	for (IType type : allTypes) {
+	for (IType type : allTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		Openable o = (Openable) ((JavaElement) type).getOpenableParent();
 		if (o != null) {
 			ArrayList<IType> types = this.files.get(o);
 			if (types == null) {
-				types = new ArrayList<>();
+				types = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				this.files.put(o, types);
 			}
 			types.add(type);
@@ -228,12 +228,12 @@ protected void addSubtype(IType type, IType subtype) {
 public synchronized void addTypeHierarchyChangedListener(ITypeHierarchyChangedListener listener) {
 	ArrayList<ITypeHierarchyChangedListener> listeners = this.changeListeners;
 	if (listeners == null) {
-		this.changeListeners = listeners = new ArrayList<>();
+		this.changeListeners = listeners = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	}
 
 	// register with JavaCore to get Java element delta on first listener added
 	if (listeners.size() == 0) {
-		JavaCore.addElementChangedListener(this);
+		JavaCore.addElementChangedListener(this); //FLLDCIM: MARK — T31 JAVA_ELEMENT_DELTA_ADAPTER CALL
 	}
 
 	// add listener only if it is not already present
@@ -261,7 +261,7 @@ public void cacheFlags(IType type, int flags) {
 protected void cacheSuperclass(IType type, IType superclass) {
 	if (superclass != null) {
 		if (superclass.equals(type)) {
-			Util.log(IStatus.ERROR, "Type "+type.getFullyQualifiedName()+" is it's own superclass");  //$NON-NLS-1$//$NON-NLS-2$
+			Util.log(IStatus.ERROR, "Type "+type.getFullyQualifiedName()+" is it's own superclass");  //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			return; // refuse to enter what could lead to a stackoverflow later
 		}
 		this.classToSuperclass.put(type, superclass);
@@ -274,7 +274,7 @@ protected void cacheSuperclass(IType type, IType superclass) {
  */
 protected void cacheSuperInterfaces(IType type, IType[] superinterfaces) {
 	this.typeToSuperInterfaces.put(type, superinterfaces);
-	for (IType superinterface : superinterfaces) {
+	for (IType superinterface : superinterfaces) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (superinterface != null) {
 			addSubtype(superinterface, type);
 		}
@@ -351,19 +351,19 @@ public boolean exists() {
  * refreshing. Note that listeners can be removed as we iterate
  * through the list.
  */
-public void fireChange() {
+public void fireChange() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ArrayList<ITypeHierarchyChangedListener> listeners = getClonedChangeListeners(); // clone so that a listener cannot have a side-effect on this list when being notified
 	if (listeners == null) {
 		return;
 	}
 	if (DEBUG) {
-		trace("FIRING hierarchy change ["+Thread.currentThread()+"]"); //$NON-NLS-1$ //$NON-NLS-2$
+		trace("FIRING hierarchy change ["+Thread.currentThread()+"]"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (this.focusType != null) {
-			trace("    for hierarchy focused on " + ((JavaElement)this.focusType).toStringWithAncestors()); //$NON-NLS-1$
+			trace("    for hierarchy focused on " + ((JavaElement)this.focusType).toStringWithAncestors()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
-	for (final ITypeHierarchyChangedListener listener : listeners) {
+	for (final ITypeHierarchyChangedListener listener : listeners) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		SafeRunner.run(new ISafeRunnable() {
 			@Override
 			public void handleException(Throwable exception) {
@@ -418,13 +418,13 @@ public IType[]  getAllSubtypes(IType type) {
  * @see #getAllSubtypes(IType)
  */
 private IType[] getAllSubtypesForType(IType type) {
-	Set<IType> subTypes = new HashSet<>();
+	Set<IType> subTypes = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 	getAllSubtypesForType0(type, subTypes);
 	return subTypes.toArray(IType[]::new);
 }
 private void getAllSubtypesForType0(IType type, Set<IType> subs) {
 	IType[] subTypes = getSubtypesForType(type);
-	for (IType subType: subTypes) {
+	for (IType subType: subTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (subs.add(subType)) {
 			getAllSubtypesForType0(subType, subs);
 		}
@@ -437,7 +437,7 @@ private void getAllSubtypesForType0(IType type, Set<IType> subs) {
 public IType[] getAllSuperclasses(IType type) {
 	IType superclass = getSuperclass(type);
 	Set<IType> supers = new LinkedHashSet<>();
-	while (superclass != null) {
+	while (superclass != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		supers.add(superclass);
 		superclass = getSuperclass(superclass);
 	}
@@ -458,7 +458,7 @@ private Set<IType> getAllSuperInterfaces0(IType type, Set<IType> supers) {
 	IType[] superinterfaces = this.typeToSuperInterfaces.get(type);
 	if (superinterfaces == null) // type is not part of the hierarchy
 		return supers;
-	for (IType element:superinterfaces) {
+	for (IType element:superinterfaces) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (supers.add(element)) {
 			supers = getAllSuperInterfaces0(element, supers);
 		}
@@ -485,7 +485,7 @@ private Set<IType> getAllSupertypes0(IType type, Set<IType> supers) {
 	if (superinterfaces == null) {// type is not part of the hierarchy
 		return supers;
 	}
-	for (IType superinterface : superinterfaces) {
+	for (IType superinterface : superinterfaces) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (supers.add(superinterface)) {
 			supers = getAllSuperInterfaces0(superinterface, supers);
 		}
@@ -536,16 +536,16 @@ public IType[] getExtendingInterfaces(IType type) {
  * Assumes that the type is an interface
  * @see #getExtendingInterfaces
  */
-private IType[] getExtendingInterfaces0(IType extendedInterface) {
-	ArrayList<IType> interfaceList = new ArrayList<>();
-	for (Entry<IType, IType[]> entry : this.typeToSuperInterfaces.entrySet()) {
+private IType[] getExtendingInterfaces0(IType extendedInterface) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	ArrayList<IType> interfaceList = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	for (Entry<IType, IType[]> entry : this.typeToSuperInterfaces.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IType type = entry.getKey();
 		if (!isInterface(type)) {
 			continue;
 		}
 		IType[] superInterfaces = entry.getValue();
 		if (superInterfaces != null) {
-			for (IType superInterface : superInterfaces) {
+			for (IType superInterface : superInterfaces) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (superInterface.equals(extendedInterface)) {
 					interfaceList.add(type);
 				}
@@ -570,14 +570,14 @@ public IType[] getImplementingClasses(IType type) {
  */
 private IType[] getImplementingClasses0(IType interfce) {
 
-	ArrayList<IType> iMenters = new ArrayList<>();
-	for (Entry<IType, IType[]> entry : this.typeToSuperInterfaces.entrySet()) {
+	ArrayList<IType> iMenters = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	for (Entry<IType, IType[]> entry : this.typeToSuperInterfaces.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IType type = entry.getKey();
 		if (isInterface(type)) {
 			continue;
 		}
 		IType[] types = entry.getValue();
-		for (IType iFace : types) {
+		for (IType iFace : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (iFace.equals(interfce)) {
 				iMenters.add(type);
 			}
@@ -600,7 +600,7 @@ public IType[] getRootInterfaces() {
 	IType[] allInterfaces = getAllInterfaces();
 	IType[] roots = new IType[allInterfaces.length];
 	int rootNumber = 0;
-	for (IType anInterface : allInterfaces) {
+	for (IType anInterface : allInterfaces) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IType[] superInterfaces = getSuperInterfaces(anInterface);
 		if (superInterfaces == null || superInterfaces.length == 0) {
 			roots[rootNumber++] = anInterface;
@@ -733,7 +733,7 @@ private boolean hasSubtypeNamed(String name) {
 		return true;
 	}
 	IType[] types = this.focusType == null ? getAllTypes() : getAllSubtypes(this.focusType);
-	for (IType type : types) {
+	for (IType type : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (type.getElementName().equals(simpleName)) {
 			return true;
 		}
@@ -746,7 +746,7 @@ private boolean hasSubtypeNamed(String name) {
  */
 private boolean hasTypeNamed(String simpleName) {
 	IType[] types = getAllTypes();
-	for (IType type : types) {
+	for (IType type : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (type.getElementName().equals(simpleName)) {
 			return true;
 		}
@@ -758,7 +758,7 @@ private boolean hasTypeNamed(String simpleName) {
  * Returns whether the simple name of the given type or one of its supertypes is
  * the simple name of one of the types in this hierarchy.
  */
-boolean includesTypeOrSupertype(IType type) {
+boolean includesTypeOrSupertype(IType type) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// check type
 		if (hasTypeNamed(type.getElementName())) return true;
@@ -774,7 +774,7 @@ boolean includesTypeOrSupertype(IType type) {
 		// check superinterfaces
 		String[] superinterfaceNames = type.getSuperInterfaceNames();
 		if (superinterfaceNames != null) {
-			for (String superinterfaceName : superinterfaceNames) {
+			for (String superinterfaceName : superinterfaceNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int lastSeparator = superinterfaceName.lastIndexOf('.');
 				String simpleName = superinterfaceName.substring(lastSeparator+1);
 				if (hasTypeNamed(simpleName)) return true;
@@ -793,17 +793,17 @@ protected void initialize(int size) {
 		size = 10;
 	}
 	int smallSize = (size / 2);
-	this.classToSuperclass = new HashMap<>(size);
+	this.classToSuperclass = new HashMap<>(size); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	this.interfaces = new LinkedHashSet<>(smallSize);
 	this.missingTypes = new LinkedHashSet<>(smallSize);
 	this.rootClasses = new LinkedHashSet<>();
-	this.typeToSubtypes = new HashMap<>(smallSize);
-	this.typeToSuperInterfaces = new HashMap<>(smallSize);
-	this.typeFlags = new HashMap<>(smallSize);
+	this.typeToSubtypes = new HashMap<>(smallSize); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	this.typeToSuperInterfaces = new HashMap<>(smallSize); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	this.typeFlags = new HashMap<>(smallSize); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	this.projectRegion = new Region();
 	this.packageRegion = new Region();
-	this.files = new HashMap<>(5);
+	this.files = new HashMap<>(5); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 }
 /**
  * Returns true if the given delta could change this type hierarchy
@@ -835,7 +835,7 @@ public synchronized boolean isAffected(IJavaElementDelta delta, int eventType) {
 private boolean isAffectedByChildren(IJavaElementDelta delta, int eventType) {
 	if ((delta.getFlags() & IJavaElementDelta.F_CHILDREN) > 0) {
 		IJavaElementDelta[] children= delta.getAffectedChildren();
-		for (IJavaElementDelta child : children) {
+		for (IJavaElementDelta child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (isAffected(child, eventType)) {
 				return true;
 			}
@@ -861,7 +861,7 @@ private boolean isAffectedByJavaModel(IJavaElementDelta delta, IJavaElement elem
  * Returns true if the given java project delta could affect this type hierarchy
  * @param eventType TODO
  */
-private boolean isAffectedByJavaProject(IJavaElementDelta delta, IJavaElement element, int eventType) {
+private boolean isAffectedByJavaProject(IJavaElementDelta delta, IJavaElement element, int eventType) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     int kind = delta.getKind();
     int flags = delta.getFlags();
     if ((flags & IJavaElementDelta.F_OPENED) != 0) {
@@ -875,7 +875,7 @@ private boolean isAffectedByJavaProject(IJavaElementDelta delta, IJavaElement el
 			try {
 				// if the added project is on the classpath, then the hierarchy has changed
 				IClasspathEntry[] classpath = ((JavaProject)javaProject()).getExpandedClasspath();
-				for (IClasspathEntry cpe : classpath) {
+				for (IClasspathEntry cpe : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (cpe.getEntryKind() == IClasspathEntry.CPE_PROJECT
 							&& cpe.getPath().equals(element.getPath())) {
 						return true;
@@ -885,7 +885,7 @@ private boolean isAffectedByJavaProject(IJavaElementDelta delta, IJavaElement el
 					// if the hierarchy's project is on the added project classpath, then the hierarchy has changed
 					classpath = ((JavaProject)element).getExpandedClasspath();
 					IPath hierarchyProject = javaProject().getPath();
-					for (IClasspathEntry cpe : classpath) {
+					for (IClasspathEntry cpe : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (cpe.getEntryKind() == IClasspathEntry.CPE_PROJECT
 								&& cpe.getPath().equals(hierarchyProject)) {
 							return true;
@@ -900,7 +900,7 @@ private boolean isAffectedByJavaProject(IJavaElementDelta delta, IJavaElement el
 			// removed project - if it contains packages we are interested in
 			// then the type hierarchy has changed
 			IJavaElement[] pkgs = this.packageRegion.getElements();
-			for (IJavaElement pkg : pkgs) {
+			for (IJavaElement pkg : pkgs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IJavaProject javaProject = pkg.getJavaProject();
 				if (javaProject != null && javaProject.equals(element)) {
 					return true;
@@ -935,7 +935,7 @@ private boolean isAffectedByPackageFragment(IJavaElementDelta delta, PackageFrag
  * Returns true if the given package fragment root delta could affect this type hierarchy
  * @param eventType TODO
  */
-private boolean isAffectedByPackageFragmentRoot(IJavaElementDelta delta, IJavaElement element, int eventType) {
+private boolean isAffectedByPackageFragmentRoot(IJavaElementDelta delta, IJavaElement element, int eventType) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	switch (delta.getKind()) {
 		case IJavaElementDelta.ADDED :
 			return this.projectRegion.contains(element);
@@ -948,7 +948,7 @@ private boolean isAffectedByPackageFragmentRoot(IJavaElementDelta delta, IJavaEl
 					IPackageFragmentRoot root = (IPackageFragmentRoot)element;
 					IPath rootPath = root.getPath();
 					IJavaElement[] elements = this.projectRegion.getElements();
-					for (IJavaElement p : elements) {
+					for (IJavaElement p : elements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						JavaProject javaProject = (JavaProject)p;
 						try {
 							IClasspathEntry entry = javaProject.getClasspathEntryFor(rootPath);
@@ -967,7 +967,7 @@ private boolean isAffectedByPackageFragmentRoot(IJavaElementDelta delta, IJavaEl
 				// 2. content of a jar changed - if it contains packages we are interested in
 				// then the type hierarchy has changed
 				IJavaElement[] pkgs = this.packageRegion.getElements();
-				for (IJavaElement pkg : pkgs) {
+				for (IJavaElement pkg : pkgs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (pkg.getParent().equals(element)) {
 						return true;
 					}
@@ -982,7 +982,7 @@ private boolean isAffectedByPackageFragmentRoot(IJavaElementDelta delta, IJavaEl
  * could affect this type hierarchy.
  * @param eventType TODO
  */
-protected boolean isAffectedByOpenable(IJavaElementDelta delta, IJavaElement element, int eventType) {
+protected boolean isAffectedByOpenable(IJavaElementDelta delta, IJavaElement element, int eventType) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (element instanceof CompilationUnit) {
 		CompilationUnit cu = (CompilationUnit)element;
 		ICompilationUnit focusCU =
@@ -1028,7 +1028,7 @@ protected boolean isAffectedByOpenable(IJavaElementDelta delta, IJavaElement ele
 				break;
 			case IJavaElementDelta.CHANGED:
 				IJavaElementDelta[] children = delta.getAffectedChildren();
-				for (IJavaElementDelta child : children) {
+				for (IJavaElementDelta child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IJavaElement childElement = child.getElement();
 					if (childElement instanceof IType) {
 						type = (IType)childElement;
@@ -1070,7 +1070,7 @@ protected static byte[] readUntil(InputStream input, byte separator, int offset)
 	int length = 0;
 	byte[] bytes = new byte[SIZE];
 	byte b;
-	while((b = (byte)input.read()) != separator && b != -1) {
+	while((b = (byte)input.read()) != separator && b != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if(bytes.length == length) {
 			System.arraycopy(bytes, 0, bytes = new byte[length*2], 0, length);
 		}
@@ -1082,7 +1082,7 @@ protected static byte[] readUntil(InputStream input, byte separator, int offset)
 	System.arraycopy(bytes, 0, bytes = new byte[length + offset], offset, length);
 	return bytes;
 }
-public static ITypeHierarchy load(IType type, InputStream input, WorkingCopyOwner owner) throws JavaModelException {
+public static ITypeHierarchy load(IType type, InputStream input, WorkingCopyOwner owner) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		TypeHierarchy typeHierarchy = new TypeHierarchy();
 		typeHierarchy.initialize(1);
@@ -1119,7 +1119,7 @@ public static ITypeHierarchy load(IType type, InputStream input, WorkingCopyOwne
 			byte[] missing;
 			int j = 0;
 			int length = bytes.length;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				b = bytes[i];
 				if(b == SEPARATOR2) {
 					missing = new byte[i - j];
@@ -1133,7 +1133,7 @@ public static ITypeHierarchy load(IType type, InputStream input, WorkingCopyOwne
 		}
 
 		// read types
-		while((b = (byte)input.read()) != SEPARATOR1 && b != -1) {
+		while((b = (byte)input.read()) != SEPARATOR1 && b != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			bytes = readUntil(input, SEPARATOR4, 1);
 			bytes[0] = b;
 			IType element = (IType)JavaCore.create(new String(bytes), owner);
@@ -1168,7 +1168,7 @@ public static ITypeHierarchy load(IType type, InputStream input, WorkingCopyOwne
 		}
 
 		// read super class
-		while((b = (byte)input.read()) != SEPARATOR1 && b != -1) {
+		while((b = (byte)input.read()) != SEPARATOR1 && b != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			bytes = readUntil(input, SEPARATOR3, 1);
 			bytes[0] = b;
 			int subClass = Integer.parseInt(new String(bytes));
@@ -1183,7 +1183,7 @@ public static ITypeHierarchy load(IType type, InputStream input, WorkingCopyOwne
 		}
 
 		// read super interface
-		while((b = (byte)input.read()) != SEPARATOR1 && b != -1) {
+		while((b = (byte)input.read()) != SEPARATOR1 && b != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			bytes = readUntil(input, SEPARATOR3, 1);
 			bytes[0] = b;
 			int subClass = Integer.parseInt(new String(bytes));
@@ -1195,7 +1195,7 @@ public static ITypeHierarchy load(IType type, InputStream input, WorkingCopyOwne
 
 			int j = 0;
 			byte[] b2;
-			for (int i = 0; i < bytes.length; i++) {
+			for (int i = 0; i < bytes.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(bytes[i] == SEPARATOR2){
 					b2 = new byte[i - j];
 					System.arraycopy(bytes, j, b2, 0, i - j);
@@ -1226,7 +1226,7 @@ public static ITypeHierarchy load(IType type, InputStream input, WorkingCopyOwne
  */
 protected boolean packageRegionContainsSamePackageFragment(PackageFragment element) {
 	IJavaElement[] pkgs = this.packageRegion.getElements();
-	for (IJavaElement e : pkgs) {
+	for (IJavaElement e : pkgs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		PackageFragment pkg = (PackageFragment) e;
 		if (Util.equalArraysOrNull(pkg.names, element.names))
 			return true;
@@ -1239,7 +1239,7 @@ protected boolean packageRegionContainsSamePackageFragment(PackageFragment eleme
  * TODO (jerome) should use a PerThreadObject to build the hierarchy instead of synchronizing
  * (see also isAffected(IJavaElementDelta))
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public synchronized void refresh(IProgressMonitor monitor) throws JavaModelException {
 	try {
 		this.progressMonitor = SubMonitor.convert(monitor,
@@ -1251,12 +1251,12 @@ public synchronized void refresh(IProgressMonitor monitor) throws JavaModelExcep
 		if (DEBUG) {
 			start = System.currentTimeMillis();
 			if (this.computeSubtypes) {
-				trace("CREATING TYPE HIERARCHY [" + Thread.currentThread() + "]"); //$NON-NLS-1$ //$NON-NLS-2$
+				trace("CREATING TYPE HIERARCHY [" + Thread.currentThread() + "]"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			} else {
-				trace("CREATING SUPER TYPE HIERARCHY [" + Thread.currentThread() + "]"); //$NON-NLS-1$ //$NON-NLS-2$
+				trace("CREATING SUPER TYPE HIERARCHY [" + Thread.currentThread() + "]"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			if (this.focusType != null) {
-				trace("  on type " + ((JavaElement)this.focusType).toStringWithAncestors()); //$NON-NLS-1$
+				trace("  on type " + ((JavaElement)this.focusType).toStringWithAncestors()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 
@@ -1267,9 +1267,9 @@ public synchronized void refresh(IProgressMonitor monitor) throws JavaModelExcep
 
 		if (DEBUG) {
 			if (this.computeSubtypes) {
-				trace("CREATED TYPE HIERARCHY in " + (System.currentTimeMillis() - start) + "ms"); //$NON-NLS-1$ //$NON-NLS-2$
+				trace("CREATED TYPE HIERARCHY in " + (System.currentTimeMillis() - start) + "ms"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			} else {
-				trace("CREATED SUPER TYPE HIERARCHY in " + (System.currentTimeMillis() - start) + "ms"); //$NON-NLS-1$ //$NON-NLS-2$
+				trace("CREATED SUPER TYPE HIERARCHY in " + (System.currentTimeMillis() - start) + "ms"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			trace(this.toString());
 		}
@@ -1304,7 +1304,7 @@ public synchronized void removeTypeHierarchyChangedListener(ITypeHierarchyChange
 /**
  * @see ITypeHierarchy
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 @SuppressWarnings("unchecked")
 public void store(OutputStream output, IProgressMonitor monitor) throws JavaModelException {
 	try {
@@ -1319,7 +1319,7 @@ public void store(OutputStream output, IProgressMonitor monitor) throws JavaMode
 			hashtable2.put(index, this.focusType);
 		}
 		Object[] types = this.classToSuperclass.entrySet().toArray();
-		for (Object type : types) {
+		for (Object type : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Map.Entry<IType, IType> entry = (Map.Entry<IType, IType>) type;
 			IType t = entry.getKey();
 			if(hashtable.get(t) == null) {
@@ -1335,7 +1335,7 @@ public void store(OutputStream output, IProgressMonitor monitor) throws JavaMode
 			}
 		}
 		Object[] intfs = this.typeToSuperInterfaces.entrySet().toArray();
-		for (Object intf : intfs) {
+		for (Object intf : intfs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Map.Entry<IType, IType[]> entry = (Map.Entry<IType, IType[]>) intf;
 			IType t = entry.getKey();
 			if(hashtable.get(t) == null) {
@@ -1345,7 +1345,7 @@ public void store(OutputStream output, IProgressMonitor monitor) throws JavaMode
 			}
 			IType[] sp = entry.getValue();
 			if(sp != null) {
-				for (IType superInterface : sp) {
+				for (IType superInterface : sp) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if(superInterface != null && hashtable.get(superInterface) == null) {
 						Integer index = Integer.valueOf(count++);
 						hashtable.put(superInterface, index);
@@ -1375,7 +1375,7 @@ public void store(OutputStream output, IProgressMonitor monitor) throws JavaMode
 		output.write(SEPARATOR1);
 
 		// save types
-		for (int i = 0; i < count ; i++) {
+		for (int i = 0; i < count ; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IType t = hashtable2.get(Integer.valueOf(i));
 
 			// n bytes
@@ -1399,7 +1399,7 @@ public void store(OutputStream output, IProgressMonitor monitor) throws JavaMode
 
 		// save superclasses
 		types = this.classToSuperclass.entrySet().toArray();
-		for (Object type : types) {
+		for (Object type : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Map.Entry<IType, IType> entry = (Map.Entry<IType, IType>) type;
 			IJavaElement key = entry.getKey();
 			IJavaElement value = entry.getValue();
@@ -1413,7 +1413,7 @@ public void store(OutputStream output, IProgressMonitor monitor) throws JavaMode
 
 		// save superinterfaces
 		intfs = this.typeToSuperInterfaces.entrySet().toArray();
-		for (Object intf : intfs) {
+		for (Object intf : intfs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Map.Entry<IType, IType[]> entry = (Map.Entry<IType, IType[]>) intf;
 			IJavaElement key = entry.getKey();
 			IJavaElement[] values = entry.getValue();
@@ -1421,7 +1421,7 @@ public void store(OutputStream output, IProgressMonitor monitor) throws JavaMode
 			if(values.length > 0) {
 				output.write(hashtable.get(key).toString().getBytes());
 				output.write(SEPARATOR3);
-				for (int j = 0; j < values.length; j++) {
+				for (int j = 0; j < values.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IJavaElement value = values[j];
 					if(j != 0) output.write(SEPARATOR2);
 					output.write(hashtable.get(value).toString().getBytes());
@@ -1439,7 +1439,7 @@ public void store(OutputStream output, IProgressMonitor monitor) throws JavaMode
  * the simple name of one of the subtypes in this hierarchy or the
  * simple name of this type.
  */
-boolean subtypesIncludeSupertypeOf(IType type) {
+boolean subtypesIncludeSupertypeOf(IType type) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// look for superclass
 	String superclassName = null;
 	try {
@@ -1467,7 +1467,7 @@ boolean subtypesIncludeSupertypeOf(IType type) {
 		}
 		return false;
 	}
-	for (String interfaceName : interfaceNames) {
+	for (String interfaceName : interfaceNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (hasSubtypeNamed(interfaceName)) {
 			return true;
 		}
@@ -1478,44 +1478,44 @@ boolean subtypesIncludeSupertypeOf(IType type) {
 /**
  * @see ITypeHierarchy
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public String toString() {
-	StringBuilder buffer = new StringBuilder();
-	buffer.append("Focus: "); //$NON-NLS-1$
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	buffer.append("Focus: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (this.focusType == null) {
-		buffer.append("<NONE>\n"); //$NON-NLS-1$
+		buffer.append("<NONE>\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	} else {
 		toString(buffer, this.focusType, 0);
 	}
 	if (exists()) {
 		if (this.focusType != null) {
-			buffer.append("Super types:\n"); //$NON-NLS-1$
+			buffer.append("Super types:\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			toString(buffer, this.focusType, 0, true);
-			buffer.append("Sub types:\n"); //$NON-NLS-1$
+			buffer.append("Sub types:\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			toString(buffer, this.focusType, 0, false);
 		} else {
 			if (this.rootClasses.size() > 0) {
 				IJavaElement[] roots = Util.sortCopy(getRootClasses());
-				buffer.append("Super types of root classes:\n"); //$NON-NLS-1$
+				buffer.append("Super types of root classes:\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				int length = roots.length;
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IJavaElement root = roots[i];
 					toString(buffer, root, 1);
 					toString(buffer, root, 1, true);
 				}
-				buffer.append("Sub types of root classes:\n"); //$NON-NLS-1$
-				for (int i = 0; i < length; i++) {
+				buffer.append("Sub types of root classes:\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IJavaElement root = roots[i];
 					toString(buffer, root, 1);
 					toString(buffer, root, 1, false);
 				}
 			} else if (this.rootClasses.size() == 0) {
 				// see http://bugs.eclipse.org/bugs/show_bug.cgi?id=24691
-				buffer.append("No root classes"); //$NON-NLS-1$
+				buffer.append("No root classes"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 	} else {
-		buffer.append("(Hierarchy became stale)"); //$NON-NLS-1$
+		buffer.append("(Hierarchy became stale)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	return buffer.toString();
 }
@@ -1527,24 +1527,24 @@ public String toString() {
 private void toString(StringBuilder buffer, IJavaElement type, int indent, boolean ascendant) {
 	IType[] types= ascendant ? getSupertypes((IType) type) : getSubtypes((IType) type);
 	IJavaElement[] sortedTypes = Util.sortCopy(types);
-	for (IJavaElement sortedType : sortedTypes) {
+	for (IJavaElement sortedType : sortedTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		toString(buffer, sortedType, indent + 1);
 		toString(buffer, sortedType, indent + 1, ascendant);
 	}
 }
 private void toString(StringBuilder buffer, IJavaElement type, int indent) {
-	for (int j= 0; j < indent; j++) {
-		buffer.append("  "); //$NON-NLS-1$
+	for (int j= 0; j < indent; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		buffer.append("  "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	buffer.append(((JavaElement) type).toStringWithAncestors(false/*don't show key*/));
-	buffer.append('\n');
+	buffer.append(((JavaElement) type).toStringWithAncestors(false/*don't show key*/)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 }
 /**
  * Returns whether one of the types in this hierarchy has a supertype whose simple
  * name is the given simple name.
  */
 boolean hasSupertype(String simpleName) {
-	for (IType superType : this.classToSuperclass.values()) {
+	for (IType superType : this.classToSuperclass.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (superType.getElementName().equals(simpleName)) {
 			return true;
 		}

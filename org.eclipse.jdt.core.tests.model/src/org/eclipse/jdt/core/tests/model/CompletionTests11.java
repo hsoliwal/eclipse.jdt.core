@@ -35,7 +35,7 @@ public void setUpSuite() throws Exception {
 public static Test suite() {
 	return buildModelTestSuite(CompletionTests11.class);
 }
-public void test_var_in_parameter_in_lambda() throws JavaModelException {
+public void test_var_in_parameter_in_lambda() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/X.java",
@@ -60,7 +60,7 @@ public void test_var_in_parameter_in_lambda() throws JavaModelException {
 		requestor.getResults());
 }
 
-public void test_members_matching_paramater_name_on_getter() throws JavaModelException {
+public void test_members_matching_paramater_name_on_getter() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Smart.java",
@@ -83,13 +83,13 @@ public void test_members_matching_paramater_name_on_getter() throws JavaModelExc
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertTrue(requestor.getResults(), requestor.getResults()
-			.contains("getName[METHOD_REF]{getName(), Ltest.Smart$Task;, ()Ljava.lang.String;, getName, null, " +
+			.contains("getName[METHOD_REF]{getName(), Ltest.Smart$Task;, ()Ljava.lang.String;, getName, null, " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					(R_DEFAULT + R_INTERESTING + R_EXACT_NAME + R_CASE + R_CASE + R_EXACT_EXPECTED_TYPE
 							+ R_NON_STATIC + R_NON_RESTRICTED + R_RESOLVED)
 					+ "}"));
 }
 
-public void test_members_matching_paramater_name_on_non_getter() throws JavaModelException {
+public void test_members_matching_paramater_name_on_non_getter() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Smart.java",
@@ -114,13 +114,13 @@ public void test_members_matching_paramater_name_on_non_getter() throws JavaMode
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertTrue(requestor.getResults(), requestor.getResults()
-			.contains("details[METHOD_REF]{details(), Ltest.Smart$Task;, ()Ljava.lang.String;, details, null, " +
+			.contains("details[METHOD_REF]{details(), Ltest.Smart$Task;, ()Ljava.lang.String;, details, null, " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					(R_DEFAULT + R_INTERESTING + R_EXACT_NAME + R_CASE + R_CASE + R_EXACT_EXPECTED_TYPE
 							+ R_NON_STATIC + R_NON_RESTRICTED + R_RESOLVED)
 					+ "}"));
 }
 
-public void test_members_matching_paramater_name_on_boolean_getter() throws JavaModelException {
+public void test_members_matching_paramater_name_on_boolean_getter() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Smart.java",
@@ -146,14 +146,14 @@ public void test_members_matching_paramater_name_on_boolean_getter() throws Java
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertTrue(requestor.getResults(), requestor.getResults()
 			.contains(
-					"isCompleted[METHOD_REF]{isCompleted(), Ltest.Smart$Task;, ()Z, isCompleted, null, "
+					"isCompleted[METHOD_REF]{isCompleted(), Ltest.Smart$Task;, ()Z, isCompleted, null, " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							+
 							(R_DEFAULT + R_INTERESTING + R_EXACT_NAME + R_CASE + R_CASE + R_EXACT_EXPECTED_TYPE
 									+ R_NON_STATIC + R_NON_RESTRICTED + R_RESOLVED)
 							+ "}"));
 }
 
-public void test_members_matching_paramater_name_on_wrong_type() throws JavaModelException {
+public void test_members_matching_paramater_name_on_wrong_type() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Smart.java",
@@ -179,14 +179,14 @@ public void test_members_matching_paramater_name_on_wrong_type() throws JavaMode
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertFalse(requestor.getResults(), requestor.getResults()
 			.contains(
-					"getAssignee[METHOD_REF]{getAssignee(), Ltest.Smart$Task;, ()Ljava.lang.String;, getAssignee, null, "
+					"getAssignee[METHOD_REF]{getAssignee(), Ltest.Smart$Task;, ()Ljava.lang.String;, getAssignee, null, " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							+
 							(R_DEFAULT + R_INTERESTING + R_EXACT_NAME + R_EXACT_EXPECTED_TYPE + R_NON_STATIC
 									+ R_NON_RESTRICTED + R_RESOLVED)
 							+ "}"));
 }
 
-public void test_members_matching_paramater_name_on_field() throws JavaModelException {
+public void test_members_matching_paramater_name_on_field() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Smart.java",
@@ -213,14 +213,14 @@ public void test_members_matching_paramater_name_on_field() throws JavaModelExce
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertTrue(requestor.getResults(), requestor.getResults()
 			.contains(
-					"assignee[FIELD_REF]{assignee, Ltest.Smart$Task;, Ljava.lang.String;, assignee, null, "
+					"assignee[FIELD_REF]{assignee, Ltest.Smart$Task;, Ljava.lang.String;, assignee, null, " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							+
 							(R_DEFAULT + R_INTERESTING + R_EXACT_NAME + R_CASE + R_CASE + R_EXACT_EXPECTED_TYPE
 									+ R_NON_STATIC + R_NON_RESTRICTED + R_RESOLVED)
 							+ "}"));
 }
 
-public void test_members_matching_paramater_name_on_local_variable() throws JavaModelException {
+public void test_members_matching_paramater_name_on_local_variable() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Smart.java",
@@ -240,14 +240,14 @@ public void test_members_matching_paramater_name_on_local_variable() throws Java
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertTrue(requestor.getResults(), requestor.getResults()
 			.contains(
-					"name[LOCAL_VARIABLE_REF]{name, null, Ljava.lang.String;, name, null, "
+					"name[LOCAL_VARIABLE_REF]{name, null, Ljava.lang.String;, name, null, " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							+
 							(R_DEFAULT + R_INTERESTING + R_EXACT_NAME + R_CASE + R_NON_STATIC + R_NON_RESTRICTED
 									+ R_UNQUALIFIED)
 							+ "}"));
 }
 
-public void test_members_matching_constructors_parameter_name() throws JavaModelException {
+public void test_members_matching_constructors_parameter_name() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/Completion/src/test/Smart.java", """
 			package test;
@@ -280,7 +280,7 @@ public void test_members_matching_constructors_parameter_name() throws JavaModel
 	assertTrue(requestor.getResults(),
 			requestor.getResults()
 					.contains(
-							"getName[METHOD_REF]{getName(), Ltest.Smart$Task;, ()Ljava.lang.String;, getName, null, "
+							"getName[METHOD_REF]{getName(), Ltest.Smart$Task;, ()Ljava.lang.String;, getName, null, " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 									+ (R_DEFAULT + R_INTERESTING + R_EXACT_NAME + R_CASE + R_CASE
 											+ R_EXACT_EXPECTED_TYPE + R_NON_STATIC + R_NON_RESTRICTED + R_RESOLVED)
 									+ "}"));

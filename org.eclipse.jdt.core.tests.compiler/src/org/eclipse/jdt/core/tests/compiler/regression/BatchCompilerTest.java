@@ -121,7 +121,7 @@ public class BatchCompilerTest extends AbstractBatchCompilerTest {
 		}
 		@Override
 		String expected() {
-			return "*" + this.substring + "*";
+			return "*" + this.substring + "*"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	static final Matcher EMPTY_STRING_MATCHER = new Matcher() {
@@ -151,7 +151,7 @@ public class BatchCompilerTest extends AbstractBatchCompilerTest {
 		@Override
 		String normalized(String originalValue) {
 			String result;
-			StringBuilder normalizedValueBuffer = new StringBuilder(originalValue);
+			StringBuilder normalizedValueBuffer = new StringBuilder(originalValue); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			int classpathsStartTagStart = normalizedValueBuffer
 					.indexOf("<classpaths>"), classpathsEndTagStart = normalizedValueBuffer
 					.indexOf("</classpaths>");
@@ -202,7 +202,7 @@ public class BatchCompilerTest extends AbstractBatchCompilerTest {
 			this.number = linesNumber >= 0 ? linesNumber : 0;
 		}
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String normalized(String originalValue) {
 			String result;
 			if (this.number == 0 || originalValue.length() == 0)
@@ -215,17 +215,17 @@ public class BatchCompilerTest extends AbstractBatchCompilerTest {
 					state = SKIPING;
 				else
 					state = KEEPING;
-				StringBuilder normalizedValueBuffer = new StringBuilder(), source = new StringBuilder(
+				StringBuilder normalizedValueBuffer = new StringBuilder(), source = new StringBuilder( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 						originalValue);
 				sourceLength = source.length();
-				while (state != END && state != ERROR) {
+				while (state != END && state != ERROR) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (currentCharIndex < sourceLength) {
 						currentChar = source.charAt(currentCharIndex++);
 						switch (currentChar) {
 						case '\r':
 							switch (state) {
 							case KEEPING:
-								normalizedValueBuffer.append(currentChar);
+								normalizedValueBuffer.append(currentChar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 								state = KEEPING_R;
 								break;
 							case SKIPING:
@@ -240,7 +240,7 @@ public class BatchCompilerTest extends AbstractBatchCompilerTest {
 							switch (state) {
 							case KEEPING: // tolerate Linux line delimiters
 							case KEEPING_R:
-								normalizedValueBuffer.append(currentChar);
+								normalizedValueBuffer.append(currentChar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 								if (currentLineIndex == this.first) {
 									state = SKIPING;
 								}
@@ -251,7 +251,7 @@ public class BatchCompilerTest extends AbstractBatchCompilerTest {
 								// values
 								if (currentLineIndex >= this.first + this.number) {
 									if (currentCharIndex < sourceLength)
-										normalizedValueBuffer.append(source
+										normalizedValueBuffer.append(source //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 												.substring(currentCharIndex));
 									state = END;
 								} else {
@@ -265,7 +265,7 @@ public class BatchCompilerTest extends AbstractBatchCompilerTest {
 						default:
 							switch (state) {
 							case KEEPING:
-								normalizedValueBuffer.append(currentChar);
+								normalizedValueBuffer.append(currentChar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 								break;
 							case SKIPING:
 								break;
@@ -281,7 +281,7 @@ public class BatchCompilerTest extends AbstractBatchCompilerTest {
 						state = ERROR;
 				}
 				if (state == ERROR)
-					normalizedValueBuffer
+					normalizedValueBuffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							.append("UNEXPECTED ERROR in LinesRangeNormalizer");
 				result = super.normalized(normalizedValueBuffer.toString());
 			}
@@ -310,9 +310,9 @@ public void test001() {
 		String expected = " <-classpath> <D:/a folder;d:/jdk1.8/jre/lib/rt.jar> <-1.8> <-preserveAllLocals> <-g> <-verbose> <d:/eclipse/workspaces/development2.0/plugins/Bar/src2/> <-d> <d:/test>";
 
 		String[] args = Main.tokenize(commandLine);
-		StringBuilder  buffer = new StringBuilder(30);
-		for (int i = 0; i < args.length; i++){
-			buffer.append(" <"+args[i]+">");
+		StringBuilder  buffer = new StringBuilder(30); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0; i < args.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(" <"+args[i]+">"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		String result = buffer.toString();
 		//System.out.println(Util.displayString(result, 2));
@@ -326,9 +326,9 @@ public void test002() {
 		String expected = " <-classpath> <a folder;b folder>";
 
 		String[] args = Main.tokenize(commandLine);
-		StringBuilder  buffer = new StringBuilder(30);
-		for (int i = 0; i < args.length; i++){
-			buffer.append(" <"+args[i]+">");
+		StringBuilder  buffer = new StringBuilder(30); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0; i < args.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(" <"+args[i]+">"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		String result = buffer.toString();
 		//System.out.println(Util.displayString(result, 2));
@@ -342,9 +342,9 @@ public void test003() {
 		String expected = " <-classpath> <a folder;b folder>";
 
 		String[] args = Main.tokenize(commandLine);
-		StringBuilder  buffer = new StringBuilder(30);
-		for (int i = 0; i < args.length; i++){
-			buffer.append(" <"+args[i]+">");
+		StringBuilder  buffer = new StringBuilder(30); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0; i < args.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(" <"+args[i]+">"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		String result = buffer.toString();
 		//System.out.println(Util.displayString(result, 2));
@@ -358,9 +358,9 @@ public void test004() {
 		String expected = " <d:/tmp A/A.java> <-classpath> <d:/tmp A;d:/jars/rt.jar> <-nowarn> <-time> <-g> <-d> <d:/tmp>";
 
 		String[] args = Main.tokenize(commandLine);
-		StringBuilder  buffer = new StringBuilder(30);
-		for (int i = 0; i < args.length; i++){
-			buffer.append(" <"+args[i]+">");
+		StringBuilder  buffer = new StringBuilder(30); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0; i < args.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(" <"+args[i]+">"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		String result = buffer.toString();
 		//System.out.println(Util.displayString(result, 2));
@@ -374,9 +374,9 @@ public void test005() {
 		String expected = " <d:/tmp A/A.java> <-classpath> <d:/jars/rt.jar;d:/tmp A;toto> <-nowarn> <-time> <-g> <-d> <d:/tmp>";
 
 		String[] args = Main.tokenize(commandLine);
-		StringBuilder  buffer = new StringBuilder(30);
-		for (int i = 0; i < args.length; i++){
-			buffer.append(" <"+args[i]+">");
+		StringBuilder  buffer = new StringBuilder(30); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0; i < args.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(" <"+args[i]+">"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		String result = buffer.toString();
 		//System.out.println(Util.displayString(result, 2));
@@ -390,9 +390,9 @@ public void test006() {
 		String expected = " <d:/tmp A/A.java> <-classpath> <d:/jars/rt.jar;d:/tmp A;d:/tmpB/> <-nowarn> <-time> <-g> <-d> <d:/tmp>";
 
 		String[] args = Main.tokenize(commandLine);
-		StringBuilder  buffer = new StringBuilder(30);
-		for (int i = 0; i < args.length; i++){
-			buffer.append(" <"+args[i]+">");
+		StringBuilder  buffer = new StringBuilder(30); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0; i < args.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(" <"+args[i]+">"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		String result = buffer.toString();
 		//System.out.println(Util.displayString(result, 2));
@@ -401,7 +401,7 @@ public void test006() {
 			result);
 }
 // test the tester - runConformTest
-public void test007(){
+public void test007(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -419,7 +419,7 @@ public void test007(){
 			"	}\n" +
 			"}"
         },
-        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -bootclasspath " + getLibraryClassesAsQuotedString()
         + " -warn:+deprecation,syntheticAccess,uselessTypeCheck,unsafe,finalBound,unusedLocal"
@@ -439,7 +439,7 @@ public void test007(){
         true);
 }
 // test the tester - runNegativeTest
-public void test008(){
+public void test008(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -457,7 +457,7 @@ public void test008(){
 			"	}\n" +
 			"}"
         },
-        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -bootclasspath " + getLibraryClassesAsQuotedString()
         + " -warn:+deprecation,syntheticAccess,uselessTypeCheck,unsafe,finalBound,unusedLocal"
@@ -474,7 +474,7 @@ public void test008(){
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=92398 -- a case that works, another that does not
 // revisit this test case depending on https://bugs.eclipse.org/bugs/show_bug.cgi?id=95349
-public void test009(){
+public void test009(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -507,7 +507,7 @@ public void test009(){
 			"	// empty\n" +
 			"}",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -cp \"" + OUTPUT_DIR + "[+OK2" + File.pathSeparator + "~Warn"
         	+ File.pathSeparator + "-KO]\""
@@ -534,7 +534,7 @@ public void test009(){
         true);
 }
 // command line - no user classpath nor bootclasspath
-public void test010(){
+public void test010(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -552,7 +552,7 @@ public void test010(){
 			"	}\n" +
 			"}"
         },
-        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -verbose -warn:+deprecation,syntheticAccess,uselessTypeCheck,unsafe,finalBound,unusedLocal"
         + " -proceedOnError -referenceInfo -d \"" + OUTPUT_DIR + "\"",
@@ -578,7 +578,7 @@ public void test011_classpath(){
 			"public class X {\n" +
 			"}",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -cp \"" + OUTPUT_DIR + "[+**/OK2;~**/Warn;-KO]"
         + "\"" + File.pathSeparator
@@ -588,17 +588,17 @@ public void test011_classpath(){
         true);
 }
 private String getVersionOptions() {
-	StringBuilder builder = new StringBuilder();
+	StringBuilder builder = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	String template = "    -15 -15.0          use 15  compliance (-source 15  -target 15)\n";
-	for(int i = ClassFileConstants.MAJOR_VERSION_15; i <= ClassFileConstants.MAJOR_LATEST_VERSION; i++) {
-		builder.append(template.replace("15", "" + (i - ClassFileConstants.MAJOR_VERSION_0)));
+	for(int i = ClassFileConstants.MAJOR_VERSION_15; i <= ClassFileConstants.MAJOR_LATEST_VERSION; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		builder.append(template.replace("15", "" + (i - ClassFileConstants.MAJOR_VERSION_0))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	return builder.toString();
 }
 // command line - help
 // amended for https://bugs.eclipse.org/bugs/show_bug.cgi?id=141512 (checking
 // width)
-public void test012(){
+public void test012(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final String expectedOutput =
         "{0} {1}\n" +
         "{2}\n" +
@@ -809,9 +809,9 @@ public void test012(){
 // Progressive help text modifies the help options and messages.
 // amended for https://bugs.eclipse.org/bugs/show_bug.cgi?id=141512 (checking
 // width)
-public void test012b(){
+public void test012b(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final String expectedOutput =
-        "{0} {1}\n" +
+        "{0} {1}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         "{2}\n" +
         " \n" +
         " Warning options:\n" +
@@ -982,15 +982,15 @@ public void test012b(){
 }
 
 	// command line - xml log contents https://bugs.eclipse.org/bugs/show_bug.cgi?id=93904
-	public void test013() {
-		String logFileName = OUTPUT_DIR + File.separator + "log.xml";
+	public void test013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		String logFileName = OUTPUT_DIR + File.separator + "log.xml"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		this.runNegativeTest(new String[] {
 				"X.java",
 				"/** */\n" +
 				"public class X {\n" +
 				"	Zork z;\n" +
 				"}", },
-				"\"" + OUTPUT_DIR + File.separator + "X.java\""
+				"\"" + OUTPUT_DIR + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ " -1.8 -proceedOnError"
 				+ " -log \"" + logFileName + "\" -d \"" + OUTPUT_DIR + "\"",
 				"",
@@ -1004,7 +1004,7 @@ public void test012b(){
 				true);
 		String logContents = Util.fileContent(logFileName);
 		String expectedLogContents =
-			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"<!DOCTYPE compiler PUBLIC \"-//Eclipse.org//DTD Eclipse JDT 3.2.006 Compiler//EN\" \"https://www.eclipse.org/jdt/core/compiler_32_006.dtd\">\n" +
 			"<compiler copyright=\"{2}\" name=\"{1}\" version=\"{3}\">\n" +
 			"	<command_line>\n" +
@@ -1207,7 +1207,7 @@ public void test012b(){
 		if (!compareOK) {
 			System.out.println(getClass().getName() + '#' + getName());
 			System.out.println(
-					  "------------ [START LOG] ------------\n"
+					  "------------ [START LOG] ------------\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ "------------- Expected: -------------\n"
 					+ expectedLogContents
 				  + "\n------------- but was:  -------------\n"
@@ -1221,15 +1221,15 @@ public void test012b(){
 	}
 
 	// command line - txt log contents https://bugs.eclipse.org/bugs/show_bug.cgi?id=93904
-	public void test014() {
-		String logFileName = OUTPUT_DIR + File.separator + "log.txt";
+	public void test014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		String logFileName = OUTPUT_DIR + File.separator + "log.txt"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		this.runNegativeTest(new String[] {
 				"X.java",
 				"/** */\n" +
 				"public class X {\n" +
 				"	Zork z;\n" +
 				"}", },
-				"\"" + OUTPUT_DIR + File.separator + "X.java\""
+				"\"" + OUTPUT_DIR + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ " -1.8 -proceedOnError"
 				+ " -log \"" + logFileName + "\" -d \"" + OUTPUT_DIR + "\"",
 				"",
@@ -1243,7 +1243,7 @@ public void test012b(){
 				false);
 		String logContents = Util.fileContent(logFileName);
 		String expectedLogContents =
-			"----------\n" +
+			"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"1. ERROR in ---OUTPUT_DIR_PLACEHOLDER---" + File.separator + "X.java (at line 3)\n" +
 			"	Zork z;\n" +
 			"	^^^^\n" +
@@ -1255,7 +1255,7 @@ public void test012b(){
 		if (!compareOK) {
 			System.out.println(getClass().getName() + '#' + getName());
 			System.out.println(
-							  "------------ [START LOG] ------------\n"
+							  "------------ [START LOG] ------------\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							+ "------------- Expected: -------------\n"
 							+ expectedLogContents
 						  + "\n------------- but was:  -------------\n"
@@ -1268,15 +1268,15 @@ public void test012b(){
 	}
 
 	// command line - no extension log contents https://bugs.eclipse.org/bugs/show_bug.cgi?id=93904
-	public void test015() {
-		String logFileName = OUTPUT_DIR + File.separator + "log";
+	public void test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		String logFileName = OUTPUT_DIR + File.separator + "log"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		this.runNegativeTest(new String[] {
 				"X.java",
 				"/** */\n" +
 				"public class X {\n" +
 				"	Zork z;\n" +
 				"}", },
-				"\"" + OUTPUT_DIR + File.separator + "X.java\""
+				"\"" + OUTPUT_DIR + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ " -1.8 -proceedOnError"
 				+ " -log \"" + logFileName + "\" -d \"" + OUTPUT_DIR + "\"",
 				"",
@@ -1290,7 +1290,7 @@ public void test012b(){
 				false);
 		String logContents = Util.fileContent(logFileName);
 		String expectedLogContents =
-			"----------\n" +
+			"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"1. ERROR in ---OUTPUT_DIR_PLACEHOLDER---" + File.separator + "X.java (at line 3)\n" +
 			"	Zork z;\n" +
 			"	^^^^\n" +
@@ -1302,7 +1302,7 @@ public void test012b(){
 		if (!compareOK) {
 			System.out.println(getClass().getName() + '#' + getName());
 			System.out.println(
-					  "------------ [START LOG] ------------\n"
+					  "------------ [START LOG] ------------\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ "------------- Expected: -------------\n"
 					+ expectedLogContents
 				  + "\n------------- but was:  -------------\n"
@@ -1314,7 +1314,7 @@ public void test012b(){
 		assertTrue("unexpected log contents", compareOK);
 	}
 // command line - several path separators within the classpath
-public void test016(){
+public void test016(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String setting = System.getProperty("jdt.compiler.useSingleThread");
 	try {
 		System.setProperty("jdt.compiler.useSingleThread", "true");
@@ -1331,7 +1331,7 @@ public void test016(){
 					"	// empty\n" +
 					"}"
 			},
-	        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+	        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        + " -1.8 -g -preserveAllLocals"
 	        + " -cp ." + File.pathSeparator + File.pathSeparator + File.pathSeparator + "\"" + OUTPUT_DIR + "\""
 	        + " -verbose -proceedOnError -referenceInfo"
@@ -1353,7 +1353,7 @@ public void test016(){
 		System.setProperty("jdt.compiler.useSingleThread", setting == null ? "false" : setting);
 	}
 }
-public void test017(){
+public void test017(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 					"X.java",
@@ -1367,7 +1367,7 @@ public void test017(){
 					"	// empty\n" +
 					"}"
 			},
-	        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+	        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        + " -1.8 -g -preserveAllLocals"
 	        + " -cp dummmy_dir" + File.pathSeparator + "dummy.jar" + File.pathSeparator + File.pathSeparator + "\"" + OUTPUT_DIR + "\""
 	        + " -proceedOnError -referenceInfo"
@@ -1378,7 +1378,7 @@ public void test017(){
 	}
 // we tolerate inexisting jars on the classpath, and we don't even warn about
 // them (javac does the same as us)
-public void test017b(){
+public void test017b(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTest(
 		true,
 		new String[] {
@@ -1393,7 +1393,7 @@ public void test017b(){
 			"	// empty\n" +
 			"}"
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -cp dummy.jar" + File.pathSeparator + File.pathSeparator + "\"" + OUTPUT_DIR + "\""
         + " -verbose -proceedOnError -referenceInfo"
@@ -1404,7 +1404,7 @@ public void test017b(){
 }
 // we tolerate empty classpath entries, and we don't even warn about
 // them (javac does the same as us)
-public void test017c(){
+public void test017c(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTest(
 		true,
 		new String[] {
@@ -1419,7 +1419,7 @@ public void test017c(){
 			"	// empty\n" +
 			"}"
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -cp " + File.pathSeparator + File.pathSeparator + "\"" + OUTPUT_DIR + "\""
         + " -verbose -proceedOnError -referenceInfo"
@@ -1429,7 +1429,7 @@ public void test017c(){
         true);
 }
 // specific errors for unsuitable files on -bootclasspath, -endorseddirs etc.
-public void test017d(){
+public void test017d(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTest(
 		true,
 		new String[] {
@@ -1441,7 +1441,7 @@ public void test017d(){
 			"not.zip",
 			"not a zip archive\n",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -1.8 -g -preserveAllLocals"
 		+ " -bootclasspath \"" + OUTPUT_DIR + File.separator + "not.zip\""
 		+ File.pathSeparator + getLibraryClassesAsQuotedString()
@@ -1452,9 +1452,9 @@ public void test017d(){
 		new Matcher() {
 			@Override
 			boolean match(String effective) {
-				lines: for (String line : effective.replace("\r\n", "\n").split("\n")) {
+				lines: for (String line : effective.replace("\r\n", "\n").split("\n")) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (line.startsWith("File provided via -endorseddirs is not a valid jar:")) {
-						for (String suffix : new String[] {"test017dout.txt", "test017derr.txt", "not.zip"} ) {
+						for (String suffix : new String[] {"test017dout.txt", "test017derr.txt", "not.zip"} ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (line.endsWith(suffix))
 								continue lines;
 						}
@@ -1475,15 +1475,15 @@ public void test017d(){
 }
 // command line - unusual classpath (empty)
 // ok provided we explicit the sourcepath
-public void test018a(){
+public void test018a(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String currentWorkingDirectoryPath = System.getProperty("user.dir");
 	if (currentWorkingDirectoryPath == null) {
-		System.err.println("BatchCompilerTest#18a could not access the current working directory " + currentWorkingDirectoryPath);
+		System.err.println("BatchCompilerTest#18a could not access the current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} else if (!new File(currentWorkingDirectoryPath).isDirectory()) {
-		System.err.println("BatchCompilerTest#18a current working directory is not a directory " + currentWorkingDirectoryPath);
+		System.err.println("BatchCompilerTest#18a current working directory is not a directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} else {
-		String xPath = currentWorkingDirectoryPath + File.separator + "X.java";
-		String ok1Path = currentWorkingDirectoryPath + File.separator + "OK1.java";
+		String xPath = currentWorkingDirectoryPath + File.separator + "X.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String ok1Path = currentWorkingDirectoryPath + File.separator + "OK1.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		PrintWriter sourceFileWriter;
 		try {
 			File file = new File(xPath);
@@ -1514,7 +1514,7 @@ public void test018a(){
 					"dummy.java", // enforce output directory creation
 					""
 				},
-		        "X.java"
+		        "X.java" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		        + " -1.8 -g -preserveAllLocals"
 		        + " -verbose -proceedOnError"
 		        + " -sourcepath ."
@@ -1523,7 +1523,7 @@ public void test018a(){
 		        EMPTY_STRING_MATCHER,
 		        false);
 		} catch (FileNotFoundException e) {
-			System.err.println("BatchCompilerTest#18a could not write to current working directory " + currentWorkingDirectoryPath);
+			System.err.println("BatchCompilerTest#18a could not write to current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} finally {
 			new File(xPath).delete();
 			new File(ok1Path).delete();
@@ -1532,15 +1532,15 @@ public void test018a(){
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=214725
 // empty sourcepath works with javac but not with ecj
-public void _test018b(){
+public void _test018b(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String currentWorkingDirectoryPath = System.getProperty("user.dir");
 	if (currentWorkingDirectoryPath == null) {
-		System.err.println("BatchCompilerTest#18b could not access the current working directory " + currentWorkingDirectoryPath);
+		System.err.println("BatchCompilerTest#18b could not access the current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} else if (!new File(currentWorkingDirectoryPath).isDirectory()) {
-		System.err.println("BatchCompilerTest#18b current working directory is not a directory " + currentWorkingDirectoryPath);
+		System.err.println("BatchCompilerTest#18b current working directory is not a directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} else {
-		String xPath = currentWorkingDirectoryPath + File.separator + "X.java";
-		String ok1Path = currentWorkingDirectoryPath + File.separator + "OK1.java";
+		String xPath = currentWorkingDirectoryPath + File.separator + "X.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String ok1Path = currentWorkingDirectoryPath + File.separator + "OK1.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		PrintWriter sourceFileWriter;
 		try {
 			File file = new File(xPath);
@@ -1565,7 +1565,7 @@ public void _test018b(){
 					"dummy.java", // enforce output directory creation
 					""
 				},
-		        "X.java"
+		        "X.java" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		        + " -1.8 -g -preserveAllLocals"
 		        + " -verbose -proceedOnError"
 		        + " -d \"" + OUTPUT_DIR + "\"",
@@ -1573,14 +1573,14 @@ public void _test018b(){
 		        EMPTY_STRING_MATCHER,
 		        false);
 		} catch (FileNotFoundException e) {
-			System.err.println("BatchCompilerTest#18b could not write to current working directory " + currentWorkingDirectoryPath);
+			System.err.println("BatchCompilerTest#18b could not write to current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} finally {
 			new File(xPath).delete();
 			new File(ok1Path).delete();
 		}
 	}
 }
-public void test019(){
+public void test019(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1613,7 +1613,7 @@ public void test019(){
 				"	// empty\n" +
 				"}",
 			},
-	        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+	        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        + " -1.8 -g -preserveAllLocals"
 	        + " -cp \"" + OUTPUT_DIR + "[+OK2" + File.pathSeparator + "~Warn" + File.pathSeparator + "-KO]\""
 	        + " -warn:+deprecation,syntheticAccess,uselessTypeCheck,unsafe,finalBound,unusedLocal"
@@ -1640,7 +1640,7 @@ public void test019(){
 	        true);
 	}
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=88364 - skip options -O -Jxxx and -Xxxx, multiple times if needed
-	public void test020(){
+	public void test020(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 					"X.java",
@@ -1648,7 +1648,7 @@ public void test019(){
 					"public class X {\n" +
 					"}",
 			},
-	        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+	        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        + " -1.8 -g -preserveAllLocals"
 	        + " -verbose -proceedOnError -referenceInfo"
 	        + " -d \"" + OUTPUT_DIR + "\" -O -Xxxx -O -Jxyz -Xtyu -Jyu",
@@ -1663,7 +1663,7 @@ public void test019(){
 	        true);
 	}
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=88364 - -sourcepath finds additional source files
-	public void test021(){
+	public void test021(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String setting= System.getProperty("jdt.compiler.useSingleThread");
 		try {
 			System.setProperty("jdt.compiler.useSingleThread", "true");
@@ -1678,7 +1678,7 @@ public void test019(){
 						"public class Y extends X {\n" +
 						"}",
 				},
-		        "\"" + OUTPUT_DIR +  File.separator + "src2/Y.java\""
+		        "\"" + OUTPUT_DIR +  File.separator + "src2/Y.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src1\""
 				  + File.pathSeparator + "\"" + OUTPUT_DIR +  File.separator + "src2\""
 		        + " -1.8 -g -preserveAllLocals"
@@ -1703,7 +1703,7 @@ public void test019(){
 	}
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=88364 - repeated -sourcepath fails - even if the error is more
 // explicit here than what javac does
-	public void test022_repeated_sourcepath(){
+	public void test022_repeated_sourcepath(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 					"src1/X.java",
@@ -1715,7 +1715,7 @@ public void test019(){
 					"public class Y extends X {\n" +
 					"}",
 			},
-			" -sourcepath \"" + OUTPUT_DIR +  File.separator + "src1\""
+			" -sourcepath \"" + OUTPUT_DIR +  File.separator + "src1\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src2\""
 	        + " \"" + OUTPUT_DIR +  File.separator + "src2/Y.java\""
 	        + " -1.8 -g -preserveAllLocals"
@@ -1726,7 +1726,7 @@ public void test019(){
 	        true);
 	}
 //	 https://bugs.eclipse.org/bugs/show_bug.cgi?id=88364 - repeated -extdirs fails
-	public void test023(){
+	public void test023(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 					"src1/X.java",
@@ -1738,7 +1738,7 @@ public void test019(){
 					"public class Y extends X {\n" +
 					"}",
 			},
-			" -extdirs \"" + OUTPUT_DIR +  File.separator + "src1\""
+			" -extdirs \"" + OUTPUT_DIR +  File.separator + "src1\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -extdirs \"" + OUTPUT_DIR +  File.separator + "src2\""
 	        + " \"" + OUTPUT_DIR +  File.separator + "src1" + File.separator + "X.java\""
 	        + " -1.8 -g -preserveAllLocals"
@@ -1749,7 +1749,7 @@ public void test019(){
 	        true);
 	}
 //	 https://bugs.eclipse.org/bugs/show_bug.cgi?id=88364 - explicit empty -extdirs removes extensions
-	public void test024(){
+	public void test024(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!System.getProperty("java.vm.vendor").equals("Sun Microsystems Inc.")) return;
 		/* this tests is using Sun vm layout. The type sun.net.spi.nameservice.dns.DNSNameService
 		 * is located in the ext dir.
@@ -1762,7 +1762,7 @@ public void test019(){
 						"  sun.net.spi.nameservice.dns.DNSNameService dummy;\n" +
 						"}",
 				},
-				"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+				"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ " -extdirs \"\""
 				+ " -1.8 -g -preserveAllLocals"
 				+ " -proceedOnError -referenceInfo"
@@ -1778,13 +1778,13 @@ public void test019(){
 				true);
 	}
 //	 https://bugs.eclipse.org/bugs/show_bug.cgi?id=88364 - cumulative -extdirs extends the classpath
-	public void test025() throws Exception {
+	public void test025() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String path = LIB_DIR;
 		String libPath = null;
 		if (path.endsWith(File.separator)) {
-			libPath = path + "lib.jar";
+			libPath = path + "lib.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
-			libPath = path + File.separator + "lib.jar";
+			libPath = path + File.separator + "lib.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		String setting= System.getProperty("jdt.compiler.useSingleThread");
 		try {
@@ -1809,7 +1809,7 @@ public void test019(){
 						"public class Y extends X {\n" +
 						"}",
 				},
-		        "\"" + OUTPUT_DIR +  File.separator + "src2/Y.java\""
+		        "\"" + OUTPUT_DIR +  File.separator + "src2/Y.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		        + " -proc:none"
 				+ " -extdirs \"" + path + File.pathSeparator + OUTPUT_DIR +  File.separator + "src1\""
 				+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src1\""
@@ -1836,7 +1836,7 @@ public void test019(){
 		}
 	}
 //	 https://bugs.eclipse.org/bugs/show_bug.cgi?id=88364 - -extdirs extends the classpath before -classpath
-	public void test026(){
+	public void test026(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String setting= System.getProperty("jdt.compiler.useSingleThread");
 		try {
 			System.setProperty("jdt.compiler.useSingleThread", "true");
@@ -1856,7 +1856,7 @@ public void test019(){
 						"  Zork error;\n" +
 						"}",
 				},
-		        "\"" + OUTPUT_DIR +  File.separator + "src2/Y.java\""
+		        "\"" + OUTPUT_DIR +  File.separator + "src2/Y.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ " -classpath \"" + OUTPUT_DIR +  File.separator + "src3\""
 			    + " -proc:none"
 				+ " -extdirs \"" + getExtDirectory() + File.pathSeparator + OUTPUT_DIR +  File.separator + "src1\""
@@ -1882,7 +1882,7 @@ public void test019(){
 		}
 	}
 
-public void test027(){
+public void test027(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1915,7 +1915,7 @@ public void test027(){
 			"	// empty\n" +
 			"}",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -cp \"" + OUTPUT_DIR + "[+OK2" + File.pathSeparator + "-KO]" + File.pathSeparator
         + OUTPUT_DIR + File.separator + "p1[~Warn]\""
@@ -1943,7 +1943,7 @@ public void test027(){
         "3 problems (1 error, 2 warnings)\n",
         true);
 }
-public void test028(){
+public void test028(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.runConformTest(
 				new String[] {
 					"src1/X.java",
@@ -1951,7 +1951,7 @@ public void test028(){
 					"public class X {\n" +
 					"}",
 				},
-		        "\"" + OUTPUT_DIR +  File.separator + "src1/X.java\""
+		        "\"" + OUTPUT_DIR +  File.separator + "src1/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		        + " -1.8 -g -preserveAllLocals"
 		        + " -proceedOnError -referenceInfo"
 		        + " -d \"" + OUTPUT_DIR + File.separator + "bin/\"",
@@ -1965,7 +1965,7 @@ public void test028(){
 					"public class Y extends X {\n" +
 					"}",
 				},
-		        "\"" + OUTPUT_DIR +  File.separator + "src2/Y.java\""
+		        "\"" + OUTPUT_DIR +  File.separator + "src2/Y.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		        + " -1.8 -g -preserveAllLocals"
 		        + " -cp dummy" + File.pathSeparator + "\"" + OUTPUT_DIR + File.separator + "bin\"" + File.pathSeparator + "dummy"
 		        + " -proceedOnError -referenceInfo"
@@ -1976,7 +1976,7 @@ public void test028(){
 		        false);
 		}
 //Extraneous auto-build error message - https://bugs.eclipse.org/bugs/show_bug.cgi?id=93377
-public void test030(){
+public void test030(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// first series shows that a clean build is OK
 	this.runConformTest(
 		new String[] {
@@ -1996,7 +1996,7 @@ public void test030(){
 			"               S extends X.S> { \n" +
 			"}\n",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "Y.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "Y.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -cp \"" + OUTPUT_DIR + File.separator + "\""
         + " -proceedOnError -referenceInfo"
@@ -2018,7 +2018,7 @@ public void test030(){
 			"	}\n" +
 			"}\n",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -proceedOnError -referenceInfo"
         + " -d \"" + OUTPUT_DIR + "\"",
@@ -2033,7 +2033,7 @@ public void test030(){
 			"               S extends X.S> { \n" +
 			"}\n",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "Y.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "Y.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -cp \"" + OUTPUT_DIR + File.separator + "\""
         + " -proceedOnError -referenceInfo"
@@ -2044,7 +2044,7 @@ public void test030(){
 }
 // Extraneous auto-build error message - https://bugs.eclipse.org/bugs/show_bug.cgi?id=93377
 // More complex test case than test30
-public void test032(){
+public void test032(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// first series shows that a clean build is OK (warning messages only)
 	this.runConformTest(
 			new String[] {
@@ -2164,7 +2164,7 @@ public void test032(){
 				"	}\n" +
 				"}\n"
 			},
-	        "\"" + OUTPUT_DIR +  File.separator + "p/X.java\""
+	        "\"" + OUTPUT_DIR +  File.separator + "p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        + " \"" + OUTPUT_DIR +  File.separator + "p/Y.java\""
 	        + " \"" + OUTPUT_DIR +  File.separator + "p/Z.java\""
 	        + " -1.8 -g -preserveAllLocals"
@@ -2232,7 +2232,7 @@ public void test032(){
 			"	}\n" +
 			"}\n",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "p/X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -proceedOnError -referenceInfo"
         + " -d \"" + OUTPUT_DIR + "\"",
@@ -2344,7 +2344,7 @@ public void test032(){
 			"	}\n" +
 			"}\n"
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "p/Y.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "p/Y.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " \"" + OUTPUT_DIR +  File.separator + "p/Z.java\""
         + " -1.8 -g -preserveAllLocals"
         + " -cp \"" + OUTPUT_DIR + File.separator + "\""
@@ -2396,7 +2396,7 @@ public void test032(){
         false);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=104664
-public void test033(){
+public void test033(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2404,7 +2404,7 @@ public void test033(){
 			"public class X {\n" +
 			"}",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -cp \"" + OUTPUT_DIR
         + "\"" + File.pathSeparator
@@ -2422,7 +2422,7 @@ public void test034(){
 			"public class X {\n" +
 			"}",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -cp " + File.pathSeparator + "\"" + OUTPUT_DIR
         + "\"" + File.pathSeparator
@@ -2432,7 +2432,7 @@ public void test034(){
         true);
 }
 // check classpath value
-public void test035(){
+public void test035(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final String javaClassspath = System.getProperty("java.class.path");
 	final String javaUserDir = System.getProperty("user.dir");
 	try {
@@ -2443,7 +2443,7 @@ public void test035(){
 				"package p;\n" +
 				"public class Y { public static final String S = \"\"; }",
 			},
-	        "\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "Y.java\""
+	        "\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "Y.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        + " -1.8 -g -preserveAllLocals -proceedOnError -referenceInfo ",
 	        "",
 	        "",
@@ -2459,7 +2459,7 @@ public void test035(){
 					"	}\n" +
 					"}",
 				},
-		        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		        + " -1.8 -g -preserveAllLocals -proceedOnError -referenceInfo ",
 		        "",// this is not the runtime output
 		        "no classpath defined, using default directory instead\n",
@@ -2469,7 +2469,7 @@ public void test035(){
 		if (!Util.delete(f)) {
 			System.out.println("Could not delete X");
 		}
-		f = new File(userDir, "p" + File.separator + "Y.java");
+		f = new File(userDir, "p" + File.separator + "Y.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (!Util.delete(f)) {
 			System.out.println("Could not delete Y");
 		}
@@ -2482,7 +2482,7 @@ public void test035(){
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=119108
 // \ in call to AccessRulesSet.getViolatedRestriction
-public void test036(){
+public void test036(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"src1/p/X.java",
@@ -2491,7 +2491,7 @@ public void test036(){
 			"public class X {\n" +
 			"}",
 		},
-        "\"" + OUTPUT_DIR + "/src1/p/X.java\""
+        "\"" + OUTPUT_DIR + "/src1/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -proceedOnError -referenceInfo"
         + " -d \"" + OUTPUT_DIR + "/bin1/\"",
@@ -2505,7 +2505,7 @@ public void test036(){
 			"public class Y extends p.X {\n" +
 			"}",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "src2/Y.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "src2/Y.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -cp \"" + OUTPUT_DIR + File.separator + "bin1[~**/X]\""
         + " -proceedOnError -referenceInfo"
@@ -2523,7 +2523,7 @@ public void test036(){
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=53773
 // complain on assignment to parameters
-public void test037() {
+public void test037() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2533,7 +2533,7 @@ public void test037() {
 			"    j =  0; // error\n" +
 			"  }\n" +
 			"}\n"},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -1.8 "
 		+ " -cp \"" + OUTPUT_DIR + "\""
 		+ " -warn:+paramAssign"
@@ -2558,7 +2558,7 @@ public void test037() {
 // Missing access restriction violation error on generic type.
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=122995
 // Binary case.
-public void test039(){
+public void test039(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"src1/p/X.java",
@@ -2567,7 +2567,7 @@ public void test039(){
 			"	T m;\n" +
 			"}",
 		},
-        "\"" + OUTPUT_DIR + "/src1/p/X.java\""
+        "\"" + OUTPUT_DIR + "/src1/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -proceedOnError -referenceInfo"
         + " -d \"" + OUTPUT_DIR + "/bin1/\"",
@@ -2583,7 +2583,7 @@ public void test039(){
 			"	X<String> x2 = new X<String>();\n" +
 			"}",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "src2/Y.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "src2/Y.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -cp \"" + OUTPUT_DIR + File.separator + "bin1[~**/X]\""
         + " -proceedOnError -referenceInfo"
@@ -2620,7 +2620,7 @@ public void test039(){
 }
 
 // check we get appropriate combination of access rules
-public void test040(){
+public void test040(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p/X.java",
@@ -2634,7 +2634,7 @@ public void test040(){
 			"public class Z {\n" +
 			"}"
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "p"  +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "p"  +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " \"" + OUTPUT_DIR +  File.separator + "p"  +  File.separator + "Z.java\""
         + " -1.8 -g -preserveAllLocals"
         + " -nowarn"
@@ -2651,7 +2651,7 @@ public void test040(){
 			"  p.Z z;\n" +
 			"}",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "Y.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "Y.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -cp \"" + OUTPUT_DIR + "[+p/X" + File.pathSeparator + "-p/*]\""
         + " -warn:+deprecation,syntheticAccess,uselessTypeCheck,unsafe,finalBound,unusedLocal"
@@ -2669,7 +2669,7 @@ public void test040(){
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=124533
 // turn off discouraged references warnings
-public void test041(){
+public void test041(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p/X.java",
@@ -2683,7 +2683,7 @@ public void test041(){
 			"public class Z {\n" +
 			"}"
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "p"  +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "p"  +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " \"" + OUTPUT_DIR +  File.separator + "p"  +  File.separator + "Z.java\""
         + " -1.8 -g -preserveAllLocals"
         + " -nowarn"
@@ -2700,7 +2700,7 @@ public void test041(){
 			"  p.Z z;\n" +
 			"}",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "Y.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "Y.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -cp \"" + OUTPUT_DIR + "[~p/X" + File.pathSeparator + "-p/*]\""
         + " -warn:-discouraged -warn:+deprecation,syntheticAccess,uselessTypeCheck,unsafe,finalBound,unusedLocal"
@@ -2718,7 +2718,7 @@ public void test041(){
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=124533
 // turn off forbidden references warnings
-public void test042(){
+public void test042(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p/X.java",
@@ -2732,7 +2732,7 @@ public void test042(){
 			"public class Z {\n" +
 			"}"
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "p"  +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "p"  +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " \"" + OUTPUT_DIR +  File.separator + "p"  +  File.separator + "Z.java\""
         + " -1.8 -g -preserveAllLocals"
         + " -nowarn"
@@ -2749,7 +2749,7 @@ public void test042(){
 			"  p.Z z;\n" +
 			"}",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "Y.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "Y.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -cp \"" + OUTPUT_DIR + "[~p/X" + File.pathSeparator + "-p/*]\""
         + " -warn:-forbidden -warn:+deprecation,syntheticAccess,uselessTypeCheck,unsafe,finalBound,unusedLocal"
@@ -2767,7 +2767,7 @@ public void test042(){
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=124533
 // turn off discouraged and forbidden references warnings
-public void test043(){
+public void test043(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p/X.java",
@@ -2781,7 +2781,7 @@ public void test043(){
 			"public class Z {\n" +
 			"}"
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "p"  +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "p"  +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " \"" + OUTPUT_DIR +  File.separator + "p"  +  File.separator + "Z.java\""
         + " -1.8 -g -preserveAllLocals"
         + " -nowarn"
@@ -2798,7 +2798,7 @@ public void test043(){
 			"  p.Z z;\n" +
 			"}",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "Y.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "Y.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -cp \"" + OUTPUT_DIR + "[~p/X" + File.pathSeparator + "-p/*]\""
         + " -warn:-discouraged,forbidden -warn:+deprecation,syntheticAccess,uselessTypeCheck,unsafe,finalBound,unusedLocal"
@@ -2809,7 +2809,7 @@ public void test043(){
 }
 
 // null ref option
-public void test044(){
+public void test044(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2819,7 +2819,7 @@ public void test044(){
 			"    o.toString();\n" +
 			"  }\n" +
 			"}"},
-        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -bootclasspath " + getLibraryClassesAsQuotedString()
         + " -warn:+null"
@@ -2836,7 +2836,7 @@ public void test044(){
 }
 
 // null ref option
-public void test045(){
+public void test045(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2846,7 +2846,7 @@ public void test045(){
 			"    o.toString();\n" +
 			"  }\n" +
 			"}"},
-        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -bootclasspath " + getLibraryClassesAsQuotedString()
         + " -warn:-null" // contrast with test036
@@ -2857,7 +2857,7 @@ public void test045(){
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=114456
 // turn off discouraged and forbidden references warnings using SuppressWarnings all
-public void test046(){
+public void test046(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p/X.java",
@@ -2866,7 +2866,7 @@ public void test046(){
 			"public class X {\n" +
 			"}",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "p"  +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "p"  +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -nowarn"
         + " -proceedOnError -referenceInfo -d \"" + OUTPUT_DIR + "\"",
@@ -2882,7 +2882,7 @@ public void test046(){
 			"  p.X x;\n" +
 			"}",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "Y.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "Y.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -cp \"" + OUTPUT_DIR + "[~p/X" + File.pathSeparator + "-p/*]\""
         + " -warn:+discouraged,forbidden,deprecation,syntheticAccess,uselessTypeCheck,unsafe,finalBound,unusedLocal"
@@ -2894,7 +2894,7 @@ public void test046(){
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=114456
 // turn off discouraged and forbidden references warnings using SuppressWarnings restriction
-public void test047(){
+public void test047(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p/X.java",
@@ -2903,7 +2903,7 @@ public void test047(){
 			"public class X {\n" +
 			"}",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "p"  +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "p"  +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -nowarn"
         + " -proceedOnError -referenceInfo -d \"" + OUTPUT_DIR + "\"",
@@ -2919,7 +2919,7 @@ public void test047(){
 			"  p.X x;\n" +
 			"}",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "Y.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "Y.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -cp \"" + OUTPUT_DIR + "[~p/X" + File.pathSeparator + "-p/*]\""
         + " -warn:+discouraged,forbidden,deprecation,syntheticAccess,uselessTypeCheck,unsafe,finalBound,unusedLocal"
@@ -2931,7 +2931,7 @@ public void test047(){
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=114456
 // turn off discouraged and forbidden references warnings using SuppressWarnings
-public void test048(){
+public void test048(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p/X.java",
@@ -2940,7 +2940,7 @@ public void test048(){
 			"public class X {\n" +
 			"}",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "p"  +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "p"  +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -nowarn"
         + " -proceedOnError -referenceInfo -d \"" + OUTPUT_DIR + "\"",
@@ -2956,7 +2956,7 @@ public void test048(){
 			"  p.X x;\n" +
 			"}",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "Y.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "Y.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -cp \"" + OUTPUT_DIR + "[~p/X" + File.pathSeparator + "-p/*]\""
         + " -warn:+discouraged,forbidden,deprecation,syntheticAccess,uselessTypeCheck,unsafe,finalBound,unusedLocal"
@@ -2980,7 +2980,7 @@ public void test048(){
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=67836
 // [compiler] warning on fall through
 // disable warning on command line (implicit)
-public void test049(){
+public void test049(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2996,7 +2996,7 @@ public void test049(){
 			"    }\n" +
 			"}",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -nowarn"
         + " -proceedOnError -referenceInfo -d \"" + OUTPUT_DIR + "\"",
@@ -3008,7 +3008,7 @@ public void test049(){
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=67836
 // [compiler] warning on fall through
 // disable warning on command line (explicit)
-public void test050(){
+public void test050(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3024,7 +3024,7 @@ public void test050(){
 			"    }\n" +
 			"}",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -warn:-fallthrough"
         + " -proceedOnError -referenceInfo -d \"" + OUTPUT_DIR + "\"",
@@ -3036,7 +3036,7 @@ public void test050(){
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=67836
 // [compiler] warning on fall through
 // enable warning on command line
-public void test051(){
+public void test051(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3052,7 +3052,7 @@ public void test051(){
 			"    }\n" +
 			"}",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -warn:+fallthrough"
         + " -proceedOnError -referenceInfo -d \"" + OUTPUT_DIR + "\"",
@@ -3068,10 +3068,10 @@ public void test051(){
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=123476
-public void test052(){
+public void test052(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		new File(OUTPUT_DIR).mkdirs();
-		File barFile = new File(OUTPUT_DIR +  File.separator + "Bar.java");
+		File barFile = new File(OUTPUT_DIR +  File.separator + "Bar.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try (FileOutputStream barOutput = new FileOutputStream(barFile)) {
 			String barContents =
 				"public class Bar	\n" +
@@ -3097,7 +3097,7 @@ public void test052(){
 			"  }\n" +
 			"}\n",
 		},
-     "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+     "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
      + " -cp \"" + OUTPUT_DIR + File.pathSeparator + "\""
      + " -d \"" + OUTPUT_DIR + "\"",
      "",
@@ -3140,7 +3140,7 @@ public void test053(){
 			"X.java",
 			"public class X {}"
         },
-        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -d \"" + OUTPUT_DIR + File.separator + "X.java\"",
 		"",
@@ -3159,7 +3159,7 @@ public void test054(){
 			"f", // create simple file f
 			""
         },
-        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -d \"" + OUTPUT_DIR + "/f/out\"",
 		"",
@@ -3173,11 +3173,11 @@ public void test054(){
 // the file system and a true test case would call for instrumented
 // code)
 // this test only works on appropriate file systems
-public void test055(){
+public void test055(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (File.separatorChar == '/') {
 	  	String tentativeOutputDirNameTail =
-	      	File.separator + "out";
-	  	File outputDirectory = new File(OUTPUT_DIR + tentativeOutputDirNameTail);
+	      	File.separator + "out"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	  	File outputDirectory = new File(OUTPUT_DIR + tentativeOutputDirNameTail); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	  	outputDirectory.mkdirs();
 	  	outputDirectory.setReadOnly();
 	  	// read-only directories do not prevent file creation
@@ -3188,7 +3188,7 @@ public void test055(){
 				"package p;\n" +
 				"public class X {}",
 	        },
-	        "\"" + OUTPUT_DIR +  File.separator + "p/X.java\""
+	        "\"" + OUTPUT_DIR +  File.separator + "p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        + " -1.8 -g -preserveAllLocals"
 	        + " -d \"" + OUTPUT_DIR + "/out\"",
 			"",
@@ -3203,9 +3203,9 @@ public void test055(){
 // only checking messages (the bug itself involves concurrent access to
 // the file system and a true test case would call for instrumented
 // code)
-public void test056(){
+public void test056(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
   	String tentativeOutputDirNameTail =
-      	File.separator + "out";
+      	File.separator + "out"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	this.runConformTest(
 		new String[] {
 			"p/X.java",
@@ -3214,7 +3214,7 @@ public void test056(){
 			"out/p", // create simple file out/p
 			""
         },
-        "\"" + OUTPUT_DIR +  File.separator + "p/X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -d \"" + OUTPUT_DIR + tentativeOutputDirNameTail + "\"",
 		"",
@@ -3228,7 +3228,7 @@ public void test056(){
 // the compilation is successful because we do not check the classpath entries
 // given in the rules; accordingly OK<sep>-KO is seen as a directory that is
 // added to positive rules, and the compilation completes normally
-public void test057_access_restrictions_separator(){
+public void test057_access_restrictions_separator(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String oppositeSeparator = File.pathSeparatorChar == ':' ?
 			";" : ":";
 	this.runConformTest(
@@ -3256,7 +3256,7 @@ public void test057_access_restrictions_separator(){
 			"	// empty\n" +
 			"}",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -cp \"" + OUTPUT_DIR + "[+OK2" + oppositeSeparator + "-KO]\""
         + " -proceedOnError -referenceInfo -d \"" + OUTPUT_DIR + "\"",
@@ -3268,14 +3268,14 @@ public void test057_access_restrictions_separator(){
 // .java ending directory name
 // as a sibling of the compiled file
 public void test058(){
-  	File outputDirectory = new File(OUTPUT_DIR + File.separator + "foo.java");
+  	File outputDirectory = new File(OUTPUT_DIR + File.separator + "foo.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
   	outputDirectory.mkdirs();
 	this.runConformTest(
 		new String[] {
 			"X.java",
 			"public class X {}",
         },
-        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -d \"" + OUTPUT_DIR + "/out\"",
 		"",
@@ -3285,14 +3285,14 @@ public void test058(){
 // .java ending directory name
 // subdirectory of a compiled directory, unreferenced
 public void test060(){
-	File outputDirectory = new File(OUTPUT_DIR + File.separator + "foo.java");
+	File outputDirectory = new File(OUTPUT_DIR + File.separator + "foo.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	outputDirectory.mkdirs();
 	this.runConformTest(
 		new String[] {
 			"X.java",
 			"public class X {}",
         },
-	    "\"" + OUTPUT_DIR + "\""
+	    "\"" + OUTPUT_DIR + "\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	    + " -1.8 -g -preserveAllLocals"
 	    + " -d \"" + OUTPUT_DIR + "/out\"",
 		"",
@@ -3302,8 +3302,8 @@ public void test060(){
 
 // .java ending directory name
 // subdirectory of a compiled directory, referenced
-public void test061(){
-	File outputDirectory = new File(OUTPUT_DIR + File.separator + "foo.java");
+public void test061(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	File outputDirectory = new File(OUTPUT_DIR + File.separator + "foo.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	outputDirectory.mkdirs();
 	this.runNegativeTest(
 		new String[] {
@@ -3312,7 +3312,7 @@ public void test061(){
 				"  foo m;\n" +
 				"}",
 	        },
-	    "\"" + OUTPUT_DIR + "\""
+	    "\"" + OUTPUT_DIR + "\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	    + " -1.8 -g -preserveAllLocals"
 	    + " -d \"" + OUTPUT_DIR + "/out\"",
 		"",
@@ -3345,17 +3345,17 @@ public void test061(){
 // able to simulate command lines that would include relative paths; the
 // solution probably encompasses putting the effective working directory under
 // control;
-public void _test062(){
-	String outputDirName = OUTPUT_DIR + File.separator + "d",
-	  metaInfDirName = outputDirName + File.separator + "META-INF",
-	  jarFileName = outputDirName + File.separator + "L.jar";
+public void _test062(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String outputDirName = OUTPUT_DIR + File.separator + "d", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	  metaInfDirName = outputDirName + File.separator + "META-INF", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	  jarFileName = outputDirName + File.separator + "L.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 //	  currentWorkingDirectory = System.getProperty("user.dir");
 	this.runConformTest(
 		new String[] {
 			"d/Y.java",
 			"public class Y {\n" +
 			"}"},
-	    "\"" + outputDirName + "\""
+	    "\"" + outputDirName + "\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	    + " -1.8 -g -preserveAllLocals"
 	    + " -d \"" + outputDirName + "\"",
 		"",
@@ -3365,7 +3365,7 @@ public void _test062(){
 	File metaInfDirectory = new File(metaInfDirName);
 	metaInfDirectory.mkdirs();
 	try {
-		Util.createFile(metaInfDirName + File.separator + "MANIFEST.MF",
+		Util.createFile(metaInfDirName + File.separator + "MANIFEST.MF", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Manifest-Version: 1.0\n" +
 			"Class-Path: ../d/L.jar\n");
 	} catch (IOException e) {
@@ -3376,15 +3376,15 @@ public void _test062(){
 	} catch (IOException e) {
 		fail("could not create jar file");
 	}
-	Util.delete(outputDirName + File.separator + "Y.class");
-	Util.delete(outputDirName + File.separator + "Y.java");
+	Util.delete(outputDirName + File.separator + "Y.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	Util.delete(outputDirName + File.separator + "Y.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	this.runConformTest(
 		new String[] {
 			"d/X.java",
 			"public class X {\n" +
 			"  Y m;\n" +
 			"}"},
-	    "\"" + outputDirName + "\""
+	    "\"" + outputDirName + "\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	    + " -1.8 -g -preserveAllLocals"
 	    + " -cp L.jar"
 	    + " -d \"" + OUTPUT_DIR + "\"",
@@ -3395,16 +3395,16 @@ public void _test062(){
 
 // self-referential jar file
 // variant using an absolute path to the jar file in the -cp option
-public void test063(){
-	String outputDirName = OUTPUT_DIR + File.separator + "d",
-	  metaInfDirName = outputDirName + File.separator + "META-INF",
-	  jarFileName = outputDirName + File.separator + "L.jar";
+public void test063(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String outputDirName = OUTPUT_DIR + File.separator + "d", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	  metaInfDirName = outputDirName + File.separator + "META-INF", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	  jarFileName = outputDirName + File.separator + "L.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	this.runConformTest(
 		new String[] {
 			"d/Y.java",
 			"public class Y {\n" +
 			"}"},
-	    "\"" + outputDirName + "\""
+	    "\"" + outputDirName + "\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	    + " -1.8 -g -preserveAllLocals"
 	    + " -d \"" + outputDirName + "\"",
 		"",
@@ -3414,7 +3414,7 @@ public void test063(){
 	File metaInfDirectory = new File(metaInfDirName);
 	metaInfDirectory.mkdirs();
 	try {
-		Util.createFile(metaInfDirName + File.separator + "MANIFEST.MF",
+		Util.createFile(metaInfDirName + File.separator + "MANIFEST.MF", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Manifest-Version: 1.0\n" +
 			"Class-Path: ../d/L.jar\n");
 	} catch (IOException e) {
@@ -3425,15 +3425,15 @@ public void test063(){
 	} catch (IOException e) {
 		fail("could not create jar file");
 	}
-	Util.delete(outputDirName + File.separator + "Y.class");
-	Util.delete(outputDirName + File.separator + "Y.java");
+	Util.delete(outputDirName + File.separator + "Y.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	Util.delete(outputDirName + File.separator + "Y.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	this.runConformTest(
 		new String[] {
 			"d/X.java",
 			"public class X {\n" +
 			"  Y m;\n" +
 			"}"},
-	    "\"" + outputDirName + "\""
+	    "\"" + outputDirName + "\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	    + " -1.8 -g -preserveAllLocals"
 	    + " -cp \"" + jarFileName + "\""
 	    + " -d \"" + OUTPUT_DIR + "\"",
@@ -3444,18 +3444,18 @@ public void test063(){
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=155809
 // per sourcepath directory default encoding
-public void _test064_per_sourcepath_directory_default_encoding(){
+public void _test064_per_sourcepath_directory_default_encoding(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1";
 	this.runConformTest(
 		new String[] {
-			source1 + File.separator + "/X.java",
+			source1 + File.separator + "/X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {}",
 			"Z.java",
 			"public class Z {\n" +
 			"  X f;\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " -1.8"
         + " -sourcepath \"" + OUTPUT_DIR + File.separator + source1
@@ -3468,19 +3468,19 @@ public void _test064_per_sourcepath_directory_default_encoding(){
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
 // per source directory output directory
 // pre-existing case 1: using a single, definite output directory
-public void test065_per_source_output_directory(){
+public void test065_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1",
 		output1 = "bin1";
 	this.runConformTest(
 		new String[] {
-			source1 + File.separator + "/X.java",
+			source1 + File.separator + "/X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {}",
 			"Z.java",
 			"public class Z {\n" +
 			"  X f;\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " -1.8"
         + " -sourcepath \"" + OUTPUT_DIR + File.separator + source1 + "\""
@@ -3488,40 +3488,40 @@ public void test065_per_source_output_directory(){
 		"",
 		"",
 		true);
-	String fileName = OUTPUT_DIR + File.separator + output1 +
+	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + output1 +
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "Z.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
 // per source directory output directory
 // pre-existing case 2: using no definite output directory
-public void test066_per_source_output_directory(){
+public void test066_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1";
 	this.runConformTest(
 		new String[] {
-			source1 + File.separator + "/X.java",
+			source1 + File.separator + "/X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {}",
 			"Z.java",
 			"public class Z {\n" +
 			"  X f;\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " -1.8"
         + " -sourcepath \"" + OUTPUT_DIR + File.separator + source1 + "\"",
 		"",
 		"",
 		true);
-	String fileName = OUTPUT_DIR + File.separator + source1 +
+	String fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + "Z.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -3533,34 +3533,34 @@ public void test067_per_source_output_directory(){
 			"X.java",
 			"public class X {}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"X.java\""
         + " -1.8"
         + " -d none",
 		"",
 		"",
 		true);
-	String fileName = OUTPUT_DIR + File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
+	String fileName = OUTPUT_DIR + File.separator + "X.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
 // per source directory output directory
 // new case 1: overriding the default output directory for one of the sources
 // -sourcepath series
-public void test068_per_source_output_directory(){
+public void test068_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1",
 		output1 = "bin1", output2 = "bin2";
 	this.runConformTest(
 		new String[] {
-			source1 + File.separator + "/X.java",
+			source1 + File.separator + "/X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {}",
 			"Z.java",
 			"public class Z {\n" +
 			"  X f;\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " -1.8"
         + " -sourcepath \"" + OUTPUT_DIR + File.separator + source1 + "\""
@@ -3569,37 +3569,37 @@ public void test068_per_source_output_directory(){
 		"",
 		"",
 		true);
-	String fileName = OUTPUT_DIR + File.separator + output1 +
+	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + source1 +
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + output2 +
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + output2 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + output2 +
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + output2 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "Z.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
 // per source directory output directory
 // new case 2: specifying an output directory for a given source directory only
 // -sourcepath series
-public void test069_per_source_output_directory(){
+public void test069_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1",
 		output1 = "bin1";
 	this.runConformTest(
 		new String[] {
-			source1 + File.separator + "/X.java",
+			source1 + File.separator + "/X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {}",
 			"Z.java",
 			"public class Z {\n" +
 			"  X f;\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " -1.8"
         + " -sourcepath \"" + OUTPUT_DIR + File.separator + source1 + "\""
@@ -3607,32 +3607,32 @@ public void test069_per_source_output_directory(){
 		"",
 		"",
 		true);
-	String fileName = OUTPUT_DIR + File.separator + output1 +
+	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + source1 +
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + "Z.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
 // per source directory output directory
 // new case 3: [-d none] selectively absorbs output
 // -sourcepath series
-public void test070_per_source_output_directory(){
+public void test070_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1";
 	this.runConformTest(
 		new String[] {
-			source1 + File.separator + "/X.java",
+			source1 + File.separator + "/X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {}",
 			"Z.java",
 			"public class Z {\n" +
 			"  X f;\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " -1.8"
         + " -sourcepath \"" + OUTPUT_DIR + File.separator + source1 + "\""
@@ -3640,30 +3640,30 @@ public void test070_per_source_output_directory(){
 		"",
 		"",
 		true);
-	String fileName = OUTPUT_DIR + File.separator + source1 +
+	String fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + "Z.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
 // per source directory output directory
 // new case 4: overriding -d none for one of the sources
 // -sourcepath series
-public void test071_per_source_output_directory(){
+public void test071_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1",
 		output1 = "bin1";
 	this.runConformTest(
 		new String[] {
-			source1 + File.separator + "/X.java",
+			source1 + File.separator + "/X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {}",
 			"Z.java",
 			"public class Z {\n" +
 			"  X f;\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " -1.8"
         + " -sourcepath \"" + OUTPUT_DIR + File.separator + source1 + "\""
@@ -3672,14 +3672,14 @@ public void test071_per_source_output_directory(){
 		"",
 		"",
 		true);
-	String fileName = OUTPUT_DIR + File.separator + output1 +
+	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + source1 +
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + "Z.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -3692,7 +3692,7 @@ public void test072_per_source_output_directory(){
 			"X.java",
 			"public class X {\n" +
 			"}"},
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"X.java\""
         + " -1.8"
         + " -sourcepath \"" + OUTPUT_DIR + "\"" + "[-d dir][~**/internal/*]",
@@ -3705,19 +3705,19 @@ public void test072_per_source_output_directory(){
 // per source directory output directory
 // [rule][-d dir] is ok
 // -sourcepath series
-public void test073_per_source_output_directory(){
+public void test073_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1",
 		output1 = "bin1";
 	this.runConformTest(
 		new String[] {
-			source1 + File.separator + "/X.java",
+			source1 + File.separator + "/X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {}",
 			"Z.java",
 			"public class Z {\n" +
 			"  X f;\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " -1.8"
         + " -sourcepath \"" + OUTPUT_DIR + File.separator + source1 + "\"" +
@@ -3737,19 +3737,19 @@ public void test073_per_source_output_directory(){
 // per source directory output directory
 // new case 1: overriding the default output directory for one of the sources
 // -classpath series
-public void test074_per_source_output_directory(){
+public void test074_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1",
 		output1 = "bin1", output2 = "bin2";
 	this.runConformTest(
 		new String[] {
-			source1 + File.separator + "/X.java",
+			source1 + File.separator + "/X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {}",
 			"Z.java",
 			"public class Z {\n" +
 			"  X f;\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " -1.8"
         + " -classpath \"" + OUTPUT_DIR + File.separator + source1 + "\""
@@ -3758,37 +3758,37 @@ public void test074_per_source_output_directory(){
 		"",
 		"",
 		true);
-	String fileName = OUTPUT_DIR + File.separator + output1 +
+	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + source1 +
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + output2 +
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + output2 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + output2 +
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + output2 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "Z.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
 // per source directory output directory
 // new case 2: specifying an output directory for a given source directory only
 // -classpath series
-public void test075_per_source_output_directory(){
+public void test075_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1",
 		output1 = "bin1";
 	this.runConformTest(
 		new String[] {
-			source1 + File.separator + "/X.java",
+			source1 + File.separator + "/X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {}",
 			"Z.java",
 			"public class Z {\n" +
 			"  X f;\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " -1.8"
         + " -cp \"" + OUTPUT_DIR + File.separator + source1 + "\""
@@ -3796,32 +3796,32 @@ public void test075_per_source_output_directory(){
 		"",
 		"",
 		true);
-	String fileName = OUTPUT_DIR + File.separator + output1 +
+	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + source1 +
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + "Z.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
 // per source directory output directory
 // new case 3: [-d none] selectively absorbs output
 // -classpath series
-public void test076_per_source_output_directory(){
+public void test076_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1";
 	this.runConformTest(
 		new String[] {
-			source1 + File.separator + "/X.java",
+			source1 + File.separator + "/X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {}",
 			"Z.java",
 			"public class Z {\n" +
 			"  X f;\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " -1.8"
         + " -classpath \"" + OUTPUT_DIR + File.separator + source1 + "\""
@@ -3829,30 +3829,30 @@ public void test076_per_source_output_directory(){
 		"",
 		"",
 		true);
-	String fileName = OUTPUT_DIR + File.separator + source1 +
+	String fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + "Z.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
 // per source directory output directory
 // new case 4: overriding -d none for one of the sources
 // -classpath series
-public void test077_per_source_output_directory(){
+public void test077_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1",
 		output1 = "bin1";
 	this.runConformTest(
 		new String[] {
-			source1 + File.separator + "/X.java",
+			source1 + File.separator + "/X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {}",
 			"Z.java",
 			"public class Z {\n" +
 			"  X f;\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " -1.8"
         + " -classpath \"" + OUTPUT_DIR + File.separator + source1 + "\""
@@ -3861,14 +3861,14 @@ public void test077_per_source_output_directory(){
 		"",
 		"",
 		true);
-	String fileName = OUTPUT_DIR + File.separator + output1 +
+	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + source1 +
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + "Z.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -3881,7 +3881,7 @@ public void test078_per_source_output_directory(){
 			"X.java",
 			"public class X {\n" +
 			"}"},
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"X.java\""
         + " -1.8"
         + " -classpath \"" + OUTPUT_DIR + "\"" + "[-d dir][~**/internal/*]",
@@ -3894,19 +3894,19 @@ public void test078_per_source_output_directory(){
 // per source directory output directory
 // [rule][-d dir] is ok
 // -classpath series
-public void test079_per_source_output_directory(){
+public void test079_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1",
 		output1 = "bin1";
 	this.runConformTest(
 		new String[] {
-			source1 + File.separator + "/X.java",
+			source1 + File.separator + "/X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {}",
 			"Z.java",
 			"public class Z {\n" +
 			"  X f;\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " -1.8"
         + " -classpath \"" + OUTPUT_DIR + File.separator + source1 + "\"" +
@@ -3926,19 +3926,19 @@ public void test079_per_source_output_directory(){
 // per source directory output directory
 // new case 1: overriding the default output directory for one of the sources
 // -bootclasspath series
-public void test080_per_source_output_directory(){
+public void test080_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1",
 		output1 = "bin1", output2 = "bin2";
 	this.runConformTest(
 		new String[] {
-			source1 + File.separator + "/X.java",
+			source1 + File.separator + "/X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {}",
 			"Z.java",
 			"public class Z {\n" +
 			"  X f;\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " -1.8"
         + " -bootclasspath " + getLibraryClassesAsQuotedString() + File.pathSeparator + "\"" +
@@ -3948,37 +3948,37 @@ public void test080_per_source_output_directory(){
 		"",
 		"",
 		true);
-	String fileName = OUTPUT_DIR + File.separator + output1 +
+	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + source1 +
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + output2 +
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + output2 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + output2 +
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + output2 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "Z.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
 // per source directory output directory
 // new case 2: specifying an output directory for a given source directory only
 // -bootclasspath series
-public void test081_per_source_output_directory(){
+public void test081_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1",
 		output1 = "bin1";
 	this.runConformTest(
 		new String[] {
-			source1 + File.separator + "/X.java",
+			source1 + File.separator + "/X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {}",
 			"Z.java",
 			"public class Z {\n" +
 			"  X f;\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " -1.8"
         + " -bootclasspath " + getLibraryClassesAsQuotedString() + File.pathSeparator + "\"" +
@@ -3987,32 +3987,32 @@ public void test081_per_source_output_directory(){
 		"",
 		"",
 		true);
-	String fileName = OUTPUT_DIR + File.separator + output1 +
+	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + source1 +
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + "Z.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
 // per source directory output directory
 // new case 3: [-d none] selectively absorbs output
 // -bootclasspath series
-public void test082_per_source_output_directory(){
+public void test082_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1";
 	this.runConformTest(
 		new String[] {
-			source1 + File.separator + "/X.java",
+			source1 + File.separator + "/X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {}",
 			"Z.java",
 			"public class Z {\n" +
 			"  X f;\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " -1.8"
         + " -bootclasspath " + getLibraryClassesAsQuotedString() + File.pathSeparator + "\"" +
@@ -4021,30 +4021,30 @@ public void test082_per_source_output_directory(){
 		"",
 		"",
 		true);
-	String fileName = OUTPUT_DIR + File.separator + source1 +
+	String fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + "Z.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
 // per source directory output directory
 // new case 4: overriding -d none for one of the sources
 // -bootclasspath series
-public void test083_per_source_output_directory(){
+public void test083_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1",
 		output1 = "bin1";
 	this.runConformTest(
 		new String[] {
-			source1 + File.separator + "/X.java",
+			source1 + File.separator + "/X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {}",
 			"Z.java",
 			"public class Z {\n" +
 			"  X f;\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " -1.8"
         + " -bootclasspath " + getLibraryClassesAsQuotedString() + File.pathSeparator + "\"" +
@@ -4054,14 +4054,14 @@ public void test083_per_source_output_directory(){
 		"",
 		"",
 		true);
-	String fileName = OUTPUT_DIR + File.separator + output1 +
+	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + source1 +
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + File.separator + "Z.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -4074,7 +4074,7 @@ public void test084_per_source_output_directory(){
 			"X.java",
 			"public class X {\n" +
 			"}"},
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"X.java\""
         + " -1.8"
         + " -bootclasspath \"" + OUTPUT_DIR + "\"" + "[-d dir][~**/internal/*]",
@@ -4087,19 +4087,19 @@ public void test084_per_source_output_directory(){
 // per source directory output directory
 // [rule][-d dir] is ok
 // -bootclasspath series
-public void test085_per_source_output_directory(){
+public void test085_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1",
 		output1 = "bin1";
 	this.runConformTest(
 		new String[] {
-			source1 + File.separator + "/X.java",
+			source1 + File.separator + "/X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {}",
 			"Z.java",
 			"public class Z {\n" +
 			"  X f;\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " -1.8"
         + " -bootclasspath " + getLibraryClassesAsQuotedString() + File.pathSeparator +
@@ -4119,11 +4119,11 @@ public void test085_per_source_output_directory(){
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
 // per source directory output directory
 // jar / zip files in sourcepath
-public void test086_per_source_output_directory(){
+public void test086_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1",
 		output1 = "bin1", output2 = "bin2";
 	File outputDir = new File(OUTPUT_DIR),
-		sourceDir = new File(OUTPUT_DIR + File.separator + source1);
+		sourceDir = new File(OUTPUT_DIR + File.separator + source1); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	try {
 		if (outputDir.exists()) {
 			Util.flushDirectoryContent(outputDir);
@@ -4131,10 +4131,10 @@ public void test086_per_source_output_directory(){
 			outputDir.mkdirs();
 		}
 		sourceDir.mkdir();
-		Util.createFile(OUTPUT_DIR + File.separator +
+		Util.createFile(OUTPUT_DIR + File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			source1 + File.separator + "X.java",
 			"public class X {}");
-		Util.zip(sourceDir,	OUTPUT_DIR + File.separator + "X.jar");
+		Util.zip(sourceDir,	OUTPUT_DIR + File.separator + "X.jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} catch (IOException e) {
 		fail("could not create jar file");
 	}
@@ -4145,7 +4145,7 @@ public void test086_per_source_output_directory(){
 			"  X f;\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " -1.8"
         + " -sourcepath \"" + OUTPUT_DIR + File.separator + "X.jar\""
@@ -4154,24 +4154,24 @@ public void test086_per_source_output_directory(){
 		"",
 		"",
 		false); // keep jar
-	String fileName = OUTPUT_DIR + File.separator + output1 +
+	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + source1 +
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + output2 +
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + output2 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + output2 +
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + output2 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "Z.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
 // per source directory output directory
 // jar / zip files in classpath are binaries only: no -d argument
-public void test087_per_source_output_directory(){
+public void test087_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String output1 = "bin1", output2 = "bin2";
 	this.runNegativeTest(
 		new String[] {
@@ -4180,7 +4180,7 @@ public void test087_per_source_output_directory(){
 			"  X f;\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " -1.8"
         + " -classpath \"" + OUTPUT_DIR + File.separator + "X.jar\""
@@ -4194,7 +4194,7 @@ public void test087_per_source_output_directory(){
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
 // per source directory output directory
 // jar / zip files in bootclasspath are binaries only: no -d argument
-public void test088_per_source_output_directory(){
+public void test088_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String output1 = "bin1", output2 = "bin2";
 	this.runNegativeTest(
 		new String[] {
@@ -4202,7 +4202,7 @@ public void test088_per_source_output_directory(){
 			"public class Z {\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " -1.8"
         + " -bootclasspath \"" + OUTPUT_DIR + File.separator + "X.jar\""
@@ -4217,12 +4217,12 @@ public void test088_per_source_output_directory(){
 // per source directory output directory
 // new case 2: specifying an output directory for a given source directory only
 // jar / zip files in sourcepath
-public void test089_per_source_output_directory(){
+public void test089_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1",
 		output1 = "bin1";
 	File outputDir = new File(OUTPUT_DIR),
-		sourceDir = new File(OUTPUT_DIR + File.separator + source1),
-		standardXOutputFile = new File(System.getProperty("user.dir") +
+		sourceDir = new File(OUTPUT_DIR + File.separator + source1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		standardXOutputFile = new File(System.getProperty("user.dir") + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class");
 	try {
 		if (outputDir.exists()) {
@@ -4231,10 +4231,10 @@ public void test089_per_source_output_directory(){
 			outputDir.mkdirs();
 		}
 		sourceDir.mkdir();
-		Util.createFile(OUTPUT_DIR + File.separator +
+		Util.createFile(OUTPUT_DIR + File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			source1 + File.separator + "X.java",
 			"public class X {}");
-		Util.zip(sourceDir,	OUTPUT_DIR + File.separator + "X.jar");
+		Util.zip(sourceDir,	OUTPUT_DIR + File.separator + "X.jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (standardXOutputFile.exists()) {
 			Util.delete(standardXOutputFile);
 		}
@@ -4248,7 +4248,7 @@ public void test089_per_source_output_directory(){
 			"  X f;\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " -1.8"
         + " -sourcepath \"" + OUTPUT_DIR + File.separator + "X.jar\""
@@ -4257,24 +4257,24 @@ public void test089_per_source_output_directory(){
 		"",
 		"",
 		false);
-	String fileName = OUTPUT_DIR + File.separator + output1 +
+	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
-	assertFalse("extraneous file: " + standardXOutputFile.getPath(),
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + standardXOutputFile.getPath(), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		standardXOutputFile.exists());
-	fileName = OUTPUT_DIR + File.separator + "Z.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
+	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
 // per source directory output directory
 // new case 3: [-d none] selectively absorbs output
 // jar / zip files
-public void test090_per_source_output_directory(){
+public void test090_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1";
 	File outputDir = new File(OUTPUT_DIR),
-		sourceDir = new File(OUTPUT_DIR + File.separator + source1),
-		standardXOutputFile = new File(System.getProperty("user.dir") +
+		sourceDir = new File(OUTPUT_DIR + File.separator + source1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		standardXOutputFile = new File(System.getProperty("user.dir") + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class");
 	try {
 		if (outputDir.exists()) {
@@ -4283,10 +4283,10 @@ public void test090_per_source_output_directory(){
 			outputDir.mkdirs();
 		}
 		sourceDir.mkdir();
-		Util.createFile(OUTPUT_DIR + File.separator +
+		Util.createFile(OUTPUT_DIR + File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			source1 + File.separator + "X.java",
 			"public class X {}");
-		Util.zip(sourceDir,	OUTPUT_DIR + File.separator + "X.jar");
+		Util.zip(sourceDir,	OUTPUT_DIR + File.separator + "X.jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (standardXOutputFile.exists()) {
 			Util.delete(standardXOutputFile);
 		}
@@ -4300,7 +4300,7 @@ public void test090_per_source_output_directory(){
 			"  X f;\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " -1.8"
         + " -sourcepath \"" + OUTPUT_DIR + File.separator + "X.jar\""
@@ -4308,24 +4308,24 @@ public void test090_per_source_output_directory(){
 		"",
 		"",
 		false);
-	String fileName = OUTPUT_DIR + File.separator + source1 +
+	String fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	assertFalse("extraneous file: " + standardXOutputFile.getPath(),
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + standardXOutputFile.getPath(), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		standardXOutputFile.exists());
-	fileName = OUTPUT_DIR + File.separator + "Z.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
+	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
 // per source directory output directory
 // new case 4: overriding -d none for one of the sources
 // jar / zip files
-public void test091_per_source_output_directory(){
+public void test091_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1", output1 = "bin1";
 	File outputDir = new File(OUTPUT_DIR),
-		sourceDir = new File(OUTPUT_DIR + File.separator + source1),
-		standardXOutputFile = new File(System.getProperty("user.dir") +
+		sourceDir = new File(OUTPUT_DIR + File.separator + source1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		standardXOutputFile = new File(System.getProperty("user.dir") + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class");
 	try {
 		if (outputDir.exists()) {
@@ -4334,10 +4334,10 @@ public void test091_per_source_output_directory(){
 			outputDir.mkdirs();
 		}
 		sourceDir.mkdir();
-		Util.createFile(OUTPUT_DIR + File.separator +
+		Util.createFile(OUTPUT_DIR + File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			source1 + File.separator + "X.java",
 			"public class X {}");
-		Util.zip(sourceDir,	OUTPUT_DIR + File.separator + "X.jar");
+		Util.zip(sourceDir,	OUTPUT_DIR + File.separator + "X.jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (standardXOutputFile.exists()) {
 			Util.delete(standardXOutputFile);
 		}
@@ -4351,7 +4351,7 @@ public void test091_per_source_output_directory(){
 			"  X f;\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " -1.8"
         + " -sourcepath \"" + OUTPUT_DIR + File.separator + source1 + "\""
@@ -4360,35 +4360,35 @@ public void test091_per_source_output_directory(){
 		"",
 		"",
 		false);
-	String fileName = OUTPUT_DIR + File.separator + output1 +
+	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + source1 +
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + "Z.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + "X.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
 // per source directory output directory
 // new case 1: overriding the default output directory for one of the sources
 // source directories series
-public void test092_per_source_output_directory(){
+public void test092_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1",
 		output1 = "bin1", output2 = "bin2";
 	this.runConformTest(
 		new String[] {
-			source1 + File.separator + "/X.java",
+			source1 + File.separator + "/X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {}",
 			"Z.java",
 			"public class Z {\n" +
 			"  X f;\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " \"" + OUTPUT_DIR + File.separator + source1 + "\""
         + "[-d \"" + OUTPUT_DIR + File.separator + output1 + "\"]"
@@ -4397,37 +4397,37 @@ public void test092_per_source_output_directory(){
 		"",
 		"",
 		true);
-	String fileName = OUTPUT_DIR + File.separator + output1 +
+	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + source1 +
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + output2 +
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + output2 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + output2 +
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + output2 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "Z.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
 // per source directory output directory
 // new case 2: specifying an output directory for a given source directory only
 // source directories series
-public void test093_per_source_output_directory(){
+public void test093_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1",
 		output1 = "bin1";
 	this.runConformTest(
 		new String[] {
-			source1 + File.separator + "/X.java",
+			source1 + File.separator + "/X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {}",
 			"Z.java",
 			"public class Z {\n" +
 			"  X f;\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " \"" + OUTPUT_DIR + File.separator + source1 + "\""
         + "[-d \"" + OUTPUT_DIR + File.separator + output1 + "\"]"
@@ -4435,32 +4435,32 @@ public void test093_per_source_output_directory(){
 		"",
 		"",
 		true);
-	String fileName = OUTPUT_DIR + File.separator + output1 +
+	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + source1 +
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + "Z.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
 // per source directory output directory
 // new case 3: [-d none] selectively absorbs output
 // source directories series
-public void test094_per_source_output_directory(){
+public void test094_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1";
 	this.runConformTest(
 		new String[] {
-			source1 + File.separator + "/X.java",
+			source1 + File.separator + "/X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {}",
 			"Z.java",
 			"public class Z {\n" +
 			"  // X f;\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " \"" + OUTPUT_DIR + File.separator + source1 + "\""
         + "[-d none]"
@@ -4468,11 +4468,11 @@ public void test094_per_source_output_directory(){
 		"",
 		"",
 		true);
-	String fileName = OUTPUT_DIR + File.separator + source1 +
+	String fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + "Z.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -4480,18 +4480,18 @@ public void test094_per_source_output_directory(){
 // new case 3: [-d none] selectively absorbs output
 // source directories series
 // variant: swap entries
-public void test095_per_source_output_directory(){
+public void test095_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1";
 	this.runConformTest(
 		new String[] {
-			source1 + File.separator + "/X.java",
+			source1 + File.separator + "/X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {}",
 			"Z.java",
 			"public class Z {\n" +
 			"  // X f;\n" +
 			"}",
         },
-        " \"" + OUTPUT_DIR + File.separator + source1 + "\""
+        " \"" + OUTPUT_DIR + File.separator + source1 + "\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + "[-d none] "
         + "\"" + OUTPUT_DIR +  File.separator +
         	"Z.java\""
@@ -4499,30 +4499,30 @@ public void test095_per_source_output_directory(){
 		"",
 		"",
 		true);
-	String fileName = OUTPUT_DIR + File.separator + source1 +
+	String fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + "Z.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
 // per source directory output directory
 // new case 4: overriding -d none for one of the sources
 // source directories series
-public void test096_per_source_output_directory(){
+public void test096_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1",
 		output1 = "bin1";
 	this.runConformTest(
 		new String[] {
-			source1 + File.separator + "/X.java",
+			source1 + File.separator + "/X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {}",
 			"Z.java",
 			"public class Z {\n" +
 			"  X f;\n" +
 			"}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"Z.java\""
         + " \"" + OUTPUT_DIR + File.separator + source1 + "\""
         + "[-d \"" + OUTPUT_DIR + File.separator + output1 + "\"]"
@@ -4531,14 +4531,14 @@ public void test096_per_source_output_directory(){
 		"",
 		"",
 		true);
-	String fileName = OUTPUT_DIR + File.separator + output1 +
+	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + source1 +
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + "Z.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + "Z.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -4546,19 +4546,19 @@ public void test096_per_source_output_directory(){
 // new case 4: overriding -d none for one of the sources
 // source directories series
 // variant: two source folders
-public void test097_per_source_output_directory(){
+public void test097_per_source_output_directory(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source1 = "src1", source2 = "src2",
 		output1 = "bin1", output2 = "bin2";
 	this.runConformTest(
 		new String[] {
-			source1 + File.separator + "/X.java",
+			source1 + File.separator + "/X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {}",
-			source2 + File.separator + "Z.java",
+			source2 + File.separator + "Z.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class Z {\n" +
 			"  X f;\n" +
 			"}",
         },
-        " \"" + OUTPUT_DIR + File.separator + source2 + "\""
+        " \"" + OUTPUT_DIR + File.separator + source2 + "\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " \"" + OUTPUT_DIR + File.separator + source1 + "\""
         + "[-d \"" + OUTPUT_DIR + File.separator + output1 + "\"]"
         + " -1.8"
@@ -4566,18 +4566,18 @@ public void test097_per_source_output_directory(){
 		"",
 		"",
 		true);
-	String fileName = OUTPUT_DIR + File.separator + output1 +
+	String fileName = OUTPUT_DIR + File.separator + output1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertTrue("missing file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + source1 +
+	assertTrue("missing file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + source1 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + output2 +
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + output2 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
-	fileName = OUTPUT_DIR + File.separator + source2 +
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileName = OUTPUT_DIR + File.separator + source2 + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.separator + "Z.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -4587,11 +4587,11 @@ public void test098_per_source_output_directory(){
 	String source1 = "src1";
 	this.runNegativeTest(
 		new String[] {
-			source1 + File.separator + "X.java",
+			source1 + File.separator + "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {\n" +
 			"  Zork z;\n" +
 			"}"},
-        "\"" + OUTPUT_DIR +  File.separator + source1 + "\""
+        "\"" + OUTPUT_DIR +  File.separator + source1 + "\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + "[~**/internal/*]"
         + " -1.8",
 		"",
@@ -4602,10 +4602,10 @@ public void test098_per_source_output_directory(){
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
 // per source directory output directory
 // changing the coding of -d none option
-public void test099_per_source_output_directory() {
+public void test099_per_source_output_directory() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File none = new File(Main.NONE);
 	if (none.exists()) {
-		fail("unexpected file: " + none.getAbsolutePath() +
+		fail("unexpected file: " + none.getAbsolutePath() + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"; please cleanup the test environment");
 		// by design, we do not want to agressively destroy a directory that
 		// could well exist outside of our dedicated output area
@@ -4617,15 +4617,15 @@ public void test099_per_source_output_directory() {
 			"X.java",
 			"public class X {}",
         },
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"X.java\""
         + " -1.8"
         + " -d none",
 		"",
 		"",
 		true);
-	String fileName = Main.NONE + File.separator + "X.class";
-	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists());
+	String fileName = Main.NONE + File.separator + "X.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("extraneous file: " + fileName, (new File(fileName)).exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146554
@@ -4637,7 +4637,7 @@ public void test100_per_source_output_directory(){
 			"X.java",
 			"public class X {\n" +
 			"}"},
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"X.java\""
         + " -1.8"
         + " -extdirs \"" + OUTPUT_DIR + "\"" + "[-d dir]",
@@ -4655,7 +4655,7 @@ public void test101_per_source_output_directory(){
 			"X.java",
 			"public class X {\n" +
 			"}"},
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"X.java\""
         + " -1.8"
         + " -endorseddirs \"" + OUTPUT_DIR + "\"" + "[-d dir]",
@@ -4672,10 +4672,10 @@ public void test102_per_source_output_directory(){
 		output1 = "bin1";
 	this.runNegativeTest(
 		new String[] {
-			source1 + File.separator + "/X.java",
+			source1 + File.separator + "/X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {}",
         },
-        " \"" + OUTPUT_DIR + File.separator + source1 + "\""
+        " \"" + OUTPUT_DIR + File.separator + source1 + "\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + "[-d \"" + OUTPUT_DIR + File.separator + output1 + "\""
         + " -1.8"
         + " -d none",
@@ -4692,10 +4692,10 @@ public void test103_per_source_output_directory(){
 		output1 = "bin1";
 	this.runNegativeTest(
 		new String[] {
-			source1 + File.separator + "/X.java",
+			source1 + File.separator + "/X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {}",
         },
-        " \"" + OUTPUT_DIR + File.separator + source1 + "\""
+        " \"" + OUTPUT_DIR + File.separator + source1 + "\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " [-d \"" + OUTPUT_DIR + File.separator + output1 + "\"]"
         + " -1.8",
 		"",
@@ -4712,7 +4712,7 @@ public void test104_per_source_output_directory(){
 			"X.java",
 			"public class X {\n" +
 			"}"},
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"X.java\""
         + " -1.8"
         + " -sourcepath \"" + OUTPUT_DIR + "\"" + "[[-d dir]",
@@ -4730,7 +4730,7 @@ public void test105_per_source_output_directory(){
 			"X.java",
 			"public class X {\n" +
 			"}"},
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"X.java\""
         + " -1.8"
         + " -cp \"" + OUTPUT_DIR + "\"" + "[-d dir]]",
@@ -4748,13 +4748,13 @@ public void test106_per_source_output_directory(){
 			"X.java",
 			"public class X {\n" +
 			"}"},
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"X.java\""
         + " -1.8"
         + " -cp \"" + OUTPUT_DIR + "\"" + "[-d dir1" + File.pathSeparator +
         	"dir2]",
 		"",
-		"incorrect destination path entry: ---OUTPUT_DIR_PLACEHOLDER---" +
+		"incorrect destination path entry: ---OUTPUT_DIR_PLACEHOLDER---" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"[-d dir1" + File.pathSeparator + "dir2]\n",
 		true);
 }
@@ -4768,13 +4768,13 @@ public void test107() throws Exception {
 			"public class X {\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -1.8 -source 1.8 -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"",
 		true);
 	String expectedOutput = "// Compiled from X.java (version 1.8 : 52.0, super bit)";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=141830
 //compliance 1.6 source 1.8
@@ -4786,19 +4786,19 @@ public void test113() throws Exception {
 			"public class X {\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -1.8 -source 1.8 -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"",
 		true);
 	String expectedOutput = "// Compiled from X.java (version 1.8 : 52.0, super bit)";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // command line - unusual classpath (ends with ';;;', still OK)
 public void test122_classpath(){
 	runClasspathTest(
-		OUTPUT_DIR + "[+**/OK2]" + File.pathSeparator + File.pathSeparator +
+		OUTPUT_DIR + "[+**/OK2]" + File.pathSeparator + File.pathSeparator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				File.pathSeparator,
 		new String[] {
 			OUTPUT_DIR,	"{pattern=**/OK2 (ACCESSIBLE)}", null,
@@ -4808,7 +4808,7 @@ public void test122_classpath(){
 // command line - unusual classpath (rules with multiple path separators KO, but
 // without any error message though)
 public void test123_classpath(){
-	String cp = OUTPUT_DIR + "[+OK2" + File.pathSeparator + File.pathSeparator +
+	String cp = OUTPUT_DIR + "[+OK2" + File.pathSeparator + File.pathSeparator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.pathSeparator + "~Warn" + File.pathSeparator + "-KO]";
 	runClasspathTest(
 		cp,
@@ -4818,7 +4818,7 @@ public void test123_classpath(){
 // command line - unusual classpath (rules with embedded -d OK)
 public void test124_classpath (){
 	runClasspathTest(
-		OUTPUT_DIR + "[+OK2" + File.pathSeparator +	"-d ~Warn" +
+		OUTPUT_DIR + "[+OK2" + File.pathSeparator +	"-d ~Warn" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				File.pathSeparator + "-KO]",
 		new String[] {
 			OUTPUT_DIR,
@@ -4829,25 +4829,25 @@ public void test124_classpath (){
 }
 // command line - unusual classpath (rules starting with -d KO)
 public void test125_classpath() {
-	String cp = OUTPUT_DIR + "[-d +OK2" + File.pathSeparator + "~Warn" +
+	String cp = OUTPUT_DIR + "[-d +OK2" + File.pathSeparator + "~Warn" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.pathSeparator + "-KO]";
 	runClasspathTest(
 		cp,
 		null,
-		"incorrect destination path entry: " + cp);
+		"incorrect destination path entry: " + cp); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 // command line - unusual classpath (rules starting with -d KO)
 public void test126_classpath() {
-	String cp = OUTPUT_DIR + "[-d +OK2" + File.pathSeparator + "~Warn" +
+	String cp = OUTPUT_DIR + "[-d +OK2" + File.pathSeparator + "~Warn" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File.pathSeparator + "-KO][-d dummy]";
 	runClasspathTest(
 		cp,
 		null,
-		"incorrect destination path entry: " + cp);
+		"incorrect destination path entry: " + cp); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=161996
 public void test127_classpath() {
-	String jarFile = OUTPUT_DIR + File.separator + "[squarebracket].jar";
+	String jarFile = OUTPUT_DIR + File.separator + "[squarebracket].jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runClasspathTest(
 		jarFile,
 		new String[] {
@@ -4857,7 +4857,7 @@ public void test127_classpath() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=161996
 public void test128_classpath() {
-	String jarFile = OUTPUT_DIR + File.separator + "[square][bracket].jar";
+	String jarFile = OUTPUT_DIR + File.separator + "[square][bracket].jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runClasspathTest(
 		jarFile,
 		new String[] {
@@ -4868,7 +4868,7 @@ public void test128_classpath() {
 // command line - classpath order
 public void test129_classpath() {
 	runClasspathTest(
-		"file.jar[+A]" + File.pathSeparator + OUTPUT_DIR,
+		"file.jar[+A]" + File.pathSeparator + OUTPUT_DIR, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		new String[] {
 			"file.jar",	"{pattern=A (ACCESSIBLE)}", null,
 			OUTPUT_DIR, null, null,
@@ -4878,15 +4878,15 @@ public void test129_classpath() {
 // command line - output directories
 // see also test072
 public void test130_classpath() {
-	String cp = OUTPUT_DIR + "[-d dir][~**/internal/*]";
+	String cp = OUTPUT_DIR + "[-d dir][~**/internal/*]"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runClasspathTest(
 		cp,
 		null,
-		"access rules cannot follow destination path entries: " + cp);
+		"access rules cannot follow destination path entries: " + cp); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 // command line - output directories
 public void test131_classpath() {
-	String cp = OUTPUT_DIR + "[~**/internal/*][-d dir]";
+	String cp = OUTPUT_DIR + "[~**/internal/*][-d dir]"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runClasspathTest(
 		cp,
 		new String[] {
@@ -4897,7 +4897,7 @@ public void test131_classpath() {
 // command line - brackets in classpath
 // unbalanced brackets fail (without any message though)
 public void test132_classpath() {
-	String cp = OUTPUT_DIR + "[~**/internal/*[-d dir]";
+	String cp = OUTPUT_DIR + "[~**/internal/*[-d dir]"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runClasspathTest(
 		cp,
 		null,
@@ -4906,7 +4906,7 @@ public void test132_classpath() {
 // command line - brackets in classpath
 // unbalanced brackets fail (without any message though)
 public void test133_classpath() {
-	String cp = OUTPUT_DIR + "[~**/internal/*]-d dir]";
+	String cp = OUTPUT_DIR + "[~**/internal/*]-d dir]"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runClasspathTest(
 		cp,
 		null,
@@ -4914,9 +4914,9 @@ public void test133_classpath() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=161996
 public void test134_classpath() {
-	String jarFile = OUTPUT_DIR + File.separator + "[squarebracket].jar";
+	String jarFile = OUTPUT_DIR + File.separator + "[squarebracket].jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runClasspathTest(
-		jarFile + "[~**/internal/*][-d " + OUTPUT_DIR + "]",
+		jarFile + "[~**/internal/*][-d " + OUTPUT_DIR + "]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		new String[] {
 			jarFile, "{pattern=**/internal/* (DISCOURAGED)}", OUTPUT_DIR,
 		},
@@ -4924,9 +4924,9 @@ public void test134_classpath() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=161996
 public void test135_classpath() {
-	String jarFile = OUTPUT_DIR + File.separator + "[square][bracket].jar";
+	String jarFile = OUTPUT_DIR + File.separator + "[square][bracket].jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runClasspathTest(
-		jarFile + "[~**/internal/*][-d dir]",
+		jarFile + "[~**/internal/*][-d dir]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		new String[] {
 			jarFile, "{pattern=**/internal/* (DISCOURAGED)}", "dir",
 		},
@@ -4934,10 +4934,10 @@ public void test135_classpath() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=161996
 public void test136_classpath() {
-	String target = OUTPUT_DIR + File.separator + "[a]";
+	String target = OUTPUT_DIR + File.separator + "[a]"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	(new File(target)).mkdirs();
 	runClasspathTest(
-		target + File.separator,
+		target + File.separator, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		new String[] {
 			target, null, null,
 		},
@@ -4945,10 +4945,10 @@ public void test136_classpath() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=161996
 public void test137_classpath() {
-	String target = OUTPUT_DIR + File.separator + "[a]";
+	String target = OUTPUT_DIR + File.separator + "[a]"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	(new File(target)).mkdirs();
 	runClasspathTest(
-		target + File.separator + "[~**/internal/*][-d dir]",
+		target + File.separator + "[~**/internal/*][-d dir]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		new String[] {
 			target, "{pattern=**/internal/* (DISCOURAGED)}", "dir",
 		},
@@ -4958,7 +4958,7 @@ public void test137_classpath() {
 // too many brackets series KO (no error though)
 public void test138_classpath() {
 	runClasspathTest(
-		OUTPUT_DIR + File.separator + "[a][~**/internal/*][-d dir]",
+		OUTPUT_DIR + File.separator + "[a][~**/internal/*][-d dir]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		null,
 		null);
 }
@@ -4978,7 +4978,7 @@ public void test139_classpath() {
 public void test140_classpath() {
     String cp = "[a].jar";
     runClasspathTest(
-        cp + "[~**/internal/*][-d dir]",
+        cp + "[~**/internal/*][-d dir]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         new String [] {
             cp, "{pattern=**/internal/* (DISCOURAGED)}", "dir",
         },
@@ -4987,7 +4987,7 @@ public void test140_classpath() {
 // null ref option
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=170704
 // adding distinct options to control null checks in more detail
-public void test141_null_ref_option(){
+public void test141_null_ref_option(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4997,7 +4997,7 @@ public void test141_null_ref_option(){
 			"    o.toString();\n" +
 			"  }\n" +
 			"}"},
-     "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+     "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
      + " -1.8 -g -preserveAllLocals"
      + " -bootclasspath " + getLibraryClassesAsQuotedString()
      + " -warn:+nullDereference"
@@ -5015,7 +5015,7 @@ public void test141_null_ref_option(){
 // null ref option
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=170704
 // adding distinct options to control null checks in more detail
-public void test142_null_ref_option(){
+public void test142_null_ref_option(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -5025,7 +5025,7 @@ public void test142_null_ref_option(){
 			"    if (o == null) {}\n" +
 			"  }\n" +
 			"}"},
-  "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+  "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
   + " -1.8 -g -preserveAllLocals"
   + " -bootclasspath " + getLibraryClassesAsQuotedString()
   + " -warn:+null"
@@ -5043,7 +5043,7 @@ public void test142_null_ref_option(){
 // null ref option
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=170704
 // adding distinct options to control null checks in more detail
-public void test143_null_ref_option(){
+public void test143_null_ref_option(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -5053,7 +5053,7 @@ public void test143_null_ref_option(){
 			"    if (o == null) {}\n" +
 			"  }\n" +
 			"}"},
-"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 + " -1.8 -g -preserveAllLocals"
 + " -bootclasspath " + getLibraryClassesAsQuotedString()
 + " -warn:+nullDereference"
@@ -5074,7 +5074,7 @@ public void test145_declared_thrown_checked_exceptions(){
 			"  public void foo() throws IOException {\n" +
 			"  }\n" +
 			"}\n"},
-  "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+  "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
   + " -1.8 -g -preserveAllLocals"
   + " -bootclasspath " + getLibraryClassesAsQuotedString()
   + " -proceedOnError -referenceInfo -d \"" + OUTPUT_DIR + "\"",
@@ -5083,7 +5083,7 @@ public void test145_declared_thrown_checked_exceptions(){
   true);
 }
 // reporting unnecessary declaration of thrown checked exceptions
-public void test146_declared_thrown_checked_exceptions(){
+public void test146_declared_thrown_checked_exceptions(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -5092,7 +5092,7 @@ public void test146_declared_thrown_checked_exceptions(){
 			"  public void foo() throws IOException {\n" +
 			"  }\n" +
 			"}\n"},
-  "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+  "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
   + " -1.8 -g -preserveAllLocals"
   + " -bootclasspath " + getLibraryClassesAsQuotedString()
   + " -warn:+unusedThrown"
@@ -5110,7 +5110,7 @@ public void test146_declared_thrown_checked_exceptions(){
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=122885
 //coverage test
-public void test148_access_restrictions(){
+public void test148_access_restrictions(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -5131,7 +5131,7 @@ public void test148_access_restrictions(){
 			"  boolean m;\n" +
 			"}",
 		},
-  "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+  "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
   + " -1.8 -g -preserveAllLocals"
   + " -cp \"" + OUTPUT_DIR + "[-KO]\""
   + " -warn:+deprecation,syntheticAccess,uselessTypeCheck,unsafe,finalBound,unusedLocal"
@@ -5183,7 +5183,7 @@ public void test149() {
 			"	}\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -1.8 -warn:-unused -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"",
@@ -5191,7 +5191,7 @@ public void test149() {
 }
 // http://bugs.eclipse.org/bugs/show_bug.cgi?id=192875
 // default in now on for nullDereference
-public void test150_null_ref_options() {
+public void test150_null_ref_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -5203,7 +5203,7 @@ public void test150_null_ref_options() {
 			"	// Zork z;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -5217,7 +5217,7 @@ public void test150_null_ref_options() {
 }
 // http://bugs.eclipse.org/bugs/show_bug.cgi?id=192875
 // default in now on for nullDereference
-public void test151_null_ref_options() {
+public void test151_null_ref_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -5229,14 +5229,14 @@ public void test151_null_ref_options() {
 			"	// Zork z;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:-nullDereference -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"",
 		true);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=138018
-public void test152() {
+public void test152() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -5248,7 +5248,7 @@ public void test152() {
 			"	// Zork z;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:-nullDereferences -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"invalid warning token: 'nullDereferences'. Ignoring warning and compiling\n" +
@@ -5262,7 +5262,7 @@ public void test152() {
 		true);
 }
 // -warn option - regression tests
-public void test153_warn_options() {
+public void test153_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// check defaults
 	this.runConformTest(
 		new String[] {
@@ -5275,7 +5275,7 @@ public void test153_warn_options() {
 			"   }\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -proc:none -d \"" + OUTPUT_DIR + "\"",
 //		+ " -warn:none -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -5295,14 +5295,14 @@ public void test153_warn_options() {
 	// observe -warn options variations
 	this.runConformTest(
 		new String[] { },
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:none -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"",
 		false);
 }
 // -warn option - regression tests
-public void test154_warn_options() {
+public void test154_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 153, skip default checks
 	this.runConformTest(
 		new String[] {
@@ -5315,7 +5315,7 @@ public void test154_warn_options() {
 			"   }\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:null -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -5328,7 +5328,7 @@ public void test154_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test155_warn_options() {
+public void test155_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 153, skip default checks
 	this.runConformTest(
 		new String[] {
@@ -5341,7 +5341,7 @@ public void test155_warn_options() {
 			"   }\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:none -warn:null -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -5355,7 +5355,7 @@ public void test155_warn_options() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=210518
 // bad behavior for -warn:null -warn:unused
-public void test156_warn_options() {
+public void test156_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 153, skip default checks
 	this.runConformTest(
 		new String[] {
@@ -5368,7 +5368,7 @@ public void test156_warn_options() {
 			"   }\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:null -warn:unused -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -5382,7 +5382,7 @@ public void test156_warn_options() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=210518
 // variant
-public void test157_warn_options() {
+public void test157_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 153, skip default checks
 	this.runConformTest(
 		new String[] {
@@ -5395,7 +5395,7 @@ public void test157_warn_options() {
 			"   }\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:null -warn:+unused -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -5414,7 +5414,7 @@ public void test157_warn_options() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=210518
 // variant
-public void test158_warn_options() {
+public void test158_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 153, skip default checks
 	this.runConformTest(
 		new String[] {
@@ -5427,7 +5427,7 @@ public void test158_warn_options() {
 			"   }\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:null -warn:+unused -warn:-null -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -5440,7 +5440,7 @@ public void test158_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test159_warn_options() {
+public void test159_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 153, skip default checks
 	this.runConformTest(
 		new String[] {
@@ -5453,7 +5453,7 @@ public void test159_warn_options() {
 			"   }\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:unused -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -5466,7 +5466,7 @@ public void test159_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test160_warn_options() {
+public void test160_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 153, skip default checks
 	this.runConformTest(
 		new String[] {
@@ -5479,7 +5479,7 @@ public void test160_warn_options() {
 			"   }\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:none -warn:+unused,null -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -5498,7 +5498,7 @@ public void test160_warn_options() {
 }
 // -warn option - regression tests
 // this one is undocumented but makes some sense
-public void test161_warn_options() {
+public void test161_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 153, skip default checks
 	this.runConformTest(
 		new String[] {
@@ -5511,7 +5511,7 @@ public void test161_warn_options() {
 			"   }\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:-null,unused,+unused,null -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -5530,7 +5530,7 @@ public void test161_warn_options() {
 }
 // -warn option - regression tests
 // this one is undocumented but makes some sense
-public void test162_warn_options() {
+public void test162_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 153, skip default checks
 	this.runConformTest(
 		new String[] {
@@ -5543,14 +5543,14 @@ public void test162_warn_options() {
 			"   }\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -nowarn -warn:+null,unused,-unused,null -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"",
 		true);
 }
 // -warn option - regression tests
-public void test163_warn_options() {
+public void test163_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// check defaults
 	this.runConformTest(
 		new String[] {
@@ -5563,7 +5563,7 @@ public void test163_warn_options() {
 			"public class Y {\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -5578,7 +5578,7 @@ public void test163_warn_options() {
 	// observe -warn options variations
 	this.runConformTest(
 		new String[] { },
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -warn:none -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -5586,7 +5586,7 @@ public void test163_warn_options() {
 		false);
 }
 // -warn option - regression tests
-public void test164_warn_options() {
+public void test164_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 163, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -5599,7 +5599,7 @@ public void test164_warn_options() {
 			"public class Y {\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -nowarn -deprecation -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -5613,7 +5613,7 @@ public void test164_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test165_warn_options() {
+public void test165_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 163, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -5626,7 +5626,7 @@ public void test165_warn_options() {
 			"public class Y {\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -nowarn -deprecation -warn:-deprecation -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -5634,7 +5634,7 @@ public void test165_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test166_warn_options() {
+public void test166_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 163, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -5647,7 +5647,7 @@ public void test166_warn_options() {
 			"public class Y {\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -nowarn -deprecation -warn:-allDeprecation -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -5655,7 +5655,7 @@ public void test166_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test167_warn_options() {
+public void test167_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 163, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -5668,7 +5668,7 @@ public void test167_warn_options() {
 			"public class Y {\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -warn:allDeprecation -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -5682,7 +5682,7 @@ public void test167_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test168_warn_options() {
+public void test168_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// check defaults
 	this.runConformTest(
 		new String[] {
@@ -5695,7 +5695,7 @@ public void test168_warn_options() {
 			"  }\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"",
@@ -5703,7 +5703,7 @@ public void test168_warn_options() {
 	// observe -warn options variations
 	this.runConformTest(
 		new String[] { },
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:javadoc -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -5716,7 +5716,7 @@ public void test168_warn_options() {
 		false);
 }
 // -warn option - regression tests
-public void test169_warn_options() {
+public void test169_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 168, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -5729,7 +5729,7 @@ public void test169_warn_options() {
 			"  }\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:allJavadoc -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -5747,7 +5747,7 @@ public void test169_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test170_warn_options() {
+public void test170_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 168, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -5760,7 +5760,7 @@ public void test170_warn_options() {
 			"  }\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:javadoc -warn:-allJavadoc -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"",
@@ -5768,7 +5768,7 @@ public void test170_warn_options() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=210521
 // -warn option - regression tests
-public void test171_warn_options() {
+public void test171_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 168, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -5781,7 +5781,7 @@ public void test171_warn_options() {
 			"  }\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:allJavadoc -warn:-javadoc -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -5794,7 +5794,7 @@ public void test171_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test172_warn_options() {
+public void test172_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// check defaults
 	this.runConformTest(
 		new String[] {
@@ -5810,7 +5810,7 @@ public void test172_warn_options() {
 			"public class Y {\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -5825,7 +5825,7 @@ public void test172_warn_options() {
 	// observe -warn options variations
 	this.runConformTest(
 		new String[] { },
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -warn:allDeprecation -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -5845,7 +5845,7 @@ public void test172_warn_options() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=210524
 // -warn option - regression tests
-public void _test173_warn_options() {
+public void _test173_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 172, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -5861,7 +5861,7 @@ public void _test173_warn_options() {
 			"public class Y {\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -warn:allDeprecation -warn:-deprecation -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -5875,7 +5875,7 @@ public void _test173_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test174_warn_options() {
+public void test174_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// check defaults
 	this.runConformTest(
 		new String[] {
@@ -5907,7 +5907,7 @@ public void test174_warn_options() {
 			"  private static final long serialVersionUID = 1L;\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -5931,14 +5931,14 @@ public void test174_warn_options() {
 	// observe -warn options variations
 	this.runConformTest(
 		new String[] { },
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -nowarn -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"",
 		false);
 }
 // -warn option - regression tests
-public void test175_warn_options() {
+public void test175_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 174, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -5970,7 +5970,7 @@ public void test175_warn_options() {
 			"  private static final long serialVersionUID = 1L;\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:hiding -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -5998,7 +5998,7 @@ public void test175_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test176_warn_options() {
+public void test176_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 174, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -6030,7 +6030,7 @@ public void test176_warn_options() {
 			"  private static final long serialVersionUID = 1L;\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:fieldHiding -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -6043,7 +6043,7 @@ public void test176_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test177_warn_options() {
+public void test177_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 174, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -6075,7 +6075,7 @@ public void test177_warn_options() {
 			"  private static final long serialVersionUID = 1L;\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:localHiding -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -6088,7 +6088,7 @@ public void test177_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test178_warn_options() {
+public void test178_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 174, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -6120,7 +6120,7 @@ public void test178_warn_options() {
 			"  private static final long serialVersionUID = 1L;\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:maskedCatchBlock -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -6133,7 +6133,7 @@ public void test178_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test179_warn_options() {
+public void test179_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 174, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -6165,7 +6165,7 @@ public void test179_warn_options() {
 			"  private static final long serialVersionUID = 1L;\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:typeHiding -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -6178,7 +6178,7 @@ public void test179_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test180_warn_options() {
+public void test180_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 174, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -6210,7 +6210,7 @@ public void test180_warn_options() {
 			"  private static final long serialVersionUID = 1L;\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:hiding -warn:-fieldHiding -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -6233,7 +6233,7 @@ public void test180_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test181_warn_options() {
+public void test181_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 174, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -6265,7 +6265,7 @@ public void test181_warn_options() {
 			"  private static final long serialVersionUID = 1L;\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:hiding -warn:-localHiding -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -6288,7 +6288,7 @@ public void test181_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test182_warn_options() {
+public void test182_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 174, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -6320,7 +6320,7 @@ public void test182_warn_options() {
 			"  private static final long serialVersionUID = 1L;\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:hiding -warn:-maskedCatchBlock -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -6343,7 +6343,7 @@ public void test182_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test183_warn_options() {
+public void test183_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 174, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -6375,7 +6375,7 @@ public void test183_warn_options() {
 			"  private static final long serialVersionUID = 1L;\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:hiding -warn:-typeHiding -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -6398,7 +6398,7 @@ public void test183_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test184_warn_options() {
+public void test184_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// check defaults
 	this.runConformTest(
 		new String[] {
@@ -6414,7 +6414,7 @@ public void test184_warn_options() {
 			"  static int j;\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -6428,14 +6428,14 @@ public void test184_warn_options() {
 	// observe -warn options variations
 	this.runConformTest(
 		new String[] { },
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -nowarn -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"",
 		false);
 }
 // -warn option - regression tests
-public void test185_warn_options() {
+public void test185_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 184, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -6451,7 +6451,7 @@ public void test185_warn_options() {
 			"  static int j;\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:staticReceiver -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -6464,7 +6464,7 @@ public void test185_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test186_warn_options() {
+public void test186_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 184, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -6480,7 +6480,7 @@ public void test186_warn_options() {
 			"  static int j;\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:indirectStatic -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -6493,7 +6493,7 @@ public void test186_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test187_warn_options() {
+public void test187_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 184, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -6509,7 +6509,7 @@ public void test187_warn_options() {
 			"  static int j;\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:static-access -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -6527,7 +6527,7 @@ public void test187_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test188_warn_options() {
+public void test188_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 184, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -6543,7 +6543,7 @@ public void test188_warn_options() {
 			"  static int j;\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:static-access -warn:-staticReceiver -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -6556,7 +6556,7 @@ public void test188_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test189_warn_options() {
+public void test189_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 184, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -6572,7 +6572,7 @@ public void test189_warn_options() {
 			"  static int j;\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:static-access -warn:-indirectStatic -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -6585,7 +6585,7 @@ public void test189_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test190_warn_options() {
+public void test190_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// check defaults
 	this.runConformTest(
 		new String[] {
@@ -6607,7 +6607,7 @@ public void test190_warn_options() {
 			"  }\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -proc:none -1.8 -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -6641,14 +6641,14 @@ public void test190_warn_options() {
 	// observe -warn options variations
 	this.runConformTest(
 		new String[] { },
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -nowarn -proc:none -1.8 -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"",
 		false);
 }
 // -warn option - regression tests
-public void test191_warn_options() {
+public void test191_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 190, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -6670,7 +6670,7 @@ public void test191_warn_options() {
 			"  }\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:unused -proc:none -1.8 -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -6718,7 +6718,7 @@ public void test191_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test192_warn_options() {
+public void test192_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 190, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -6740,7 +6740,7 @@ public void test192_warn_options() {
 			"  }\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:unusedArgument -proc:none -1.8 -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -6753,7 +6753,7 @@ public void test192_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test193_warn_options() {
+public void test193_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 190, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -6775,7 +6775,7 @@ public void test193_warn_options() {
 			"  }\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:unusedImport -proc:none -1.8 -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -6788,7 +6788,7 @@ public void test193_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test194_warn_options() {
+public void test194_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 190, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -6810,7 +6810,7 @@ public void test194_warn_options() {
 			"  }\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:unusedLabel -proc:none -1.8 -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -6823,7 +6823,7 @@ public void test194_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test195_warn_options() {
+public void test195_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 190, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -6845,7 +6845,7 @@ public void test195_warn_options() {
 			"  }\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:unusedLocal -proc:none -1.8 -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -6858,7 +6858,7 @@ public void test195_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test196_warn_options() {
+public void test196_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 190, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -6880,7 +6880,7 @@ public void test196_warn_options() {
 			"  }\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:unusedPrivate -proc:none -1.8 -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -6893,7 +6893,7 @@ public void test196_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test197_warn_options() {
+public void test197_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 190, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -6915,7 +6915,7 @@ public void test197_warn_options() {
 			"  }\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:unusedTypeArgs -proc:none -1.8 -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -6928,7 +6928,7 @@ public void test197_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test198_warn_options() {
+public void test198_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 190, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -6950,7 +6950,7 @@ public void test198_warn_options() {
 			"  }\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:unusedThrown -proc:none -1.8 -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -6963,7 +6963,7 @@ public void test198_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test199_warn_options() {
+public void test199_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 190, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -6985,7 +6985,7 @@ public void test199_warn_options() {
 			"  }\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:unused -warn:-unusedArgument -proc:none -1.8 -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -7028,7 +7028,7 @@ public void test199_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test200_warn_options() {
+public void test200_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 190, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -7050,7 +7050,7 @@ public void test200_warn_options() {
 			"  }\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:unused -warn:-unusedImport -proc:none -1.8 -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -7093,7 +7093,7 @@ public void test200_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test201_warn_options() {
+public void test201_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 190, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -7115,7 +7115,7 @@ public void test201_warn_options() {
 			"  }\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:unused -warn:-unusedLabel -proc:none -1.8 -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -7158,7 +7158,7 @@ public void test201_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test202_warn_options() {
+public void test202_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 190, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -7180,7 +7180,7 @@ public void test202_warn_options() {
 			"  }\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:unused -warn:-unusedLocal -proc:none -1.8 -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -7223,7 +7223,7 @@ public void test202_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test203_warn_options() {
+public void test203_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 190, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -7245,7 +7245,7 @@ public void test203_warn_options() {
 			"  }\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:unused -warn:-unusedPrivate -proc:none -1.8 -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -7288,7 +7288,7 @@ public void test203_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test204_warn_options() {
+public void test204_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 190, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -7310,7 +7310,7 @@ public void test204_warn_options() {
 			"  }\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:unused -warn:-unusedThrown -proc:none -1.8 -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -7353,7 +7353,7 @@ public void test204_warn_options() {
 		true);
 }
 // -warn option - regression tests
-public void test205_warn_options() {
+public void test205_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 190, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -7375,7 +7375,7 @@ public void test205_warn_options() {
 			"  }\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:unused -warn:-unusedTypeArgs -proc:none -1.8 -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -7419,7 +7419,7 @@ public void test205_warn_options() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=211588
 // -warn option - regression tests
-public void test206_warn_options() {
+public void test206_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 168, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -7432,7 +7432,7 @@ public void test206_warn_options() {
 			"  }\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:allJavadoc -enableJavadoc -warn:-allJavadoc -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"",
@@ -7440,7 +7440,7 @@ public void test206_warn_options() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=211588
 // -warn option - regression tests
-public void test207_warn_options() {
+public void test207_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 168, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -7453,7 +7453,7 @@ public void test207_warn_options() {
 			"  }\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:javadoc -enableJavadoc -warn:-javadoc -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"",
@@ -7461,7 +7461,7 @@ public void test207_warn_options() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=211588
 // variant
-public void test208_warn_options() {
+public void test208_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -7473,7 +7473,7 @@ public void test208_warn_options() {
 			"  }\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:unused -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -7487,7 +7487,7 @@ public void test208_warn_options() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=211588
 // variant
-public void test209_warn_options() {
+public void test209_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -7499,7 +7499,7 @@ public void test209_warn_options() {
 			"  }\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:unused -enableJavadoc -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"",
@@ -7507,7 +7507,7 @@ public void test209_warn_options() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=211588
 // variant
-public void test210_warn_options() {
+public void test210_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -7519,7 +7519,7 @@ public void test210_warn_options() {
 			"  }\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:unused -warn:-allJavadoc -enableJavadoc -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"",
@@ -7527,7 +7527,7 @@ public void test210_warn_options() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=211588
 // variant
-public void test211_warn_options() {
+public void test211_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -7539,7 +7539,7 @@ public void test211_warn_options() {
 			"  }\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:unused -enableJavadoc -warn:-allJavadoc -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"",
@@ -7547,7 +7547,7 @@ public void test211_warn_options() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=211588
 // variant - javadoc and allJavadoc mistakenly imply enableJavadoc
-public void test212_warn_options() {
+public void test212_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -7559,7 +7559,7 @@ public void test212_warn_options() {
 			"  }\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:unused,allJavadoc -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -7578,7 +7578,7 @@ public void test212_warn_options() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=211588
 // variant - javadoc and allJavadoc mistakenly imply enableJavadoc
-public void test213_warn_options() {
+public void test213_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -7590,7 +7590,7 @@ public void test213_warn_options() {
 			"  }\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:unused,javadoc -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -7604,7 +7604,7 @@ public void test213_warn_options() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=211588
 // variant - check impact of javadoc upon other warnings
-public void _test216a_warn_options() {
+public void _test216a_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// check what if allJavadoc on
 	this.runConformTest(
 		new String[] {
@@ -7622,7 +7622,7 @@ public void _test216a_warn_options() {
 			"public class Y {\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:allJavadoc -proc:none -d \"" + OUTPUT_DIR + "\""
 		+ " -sourcepath \"" + OUTPUT_DIR + "\"",
 		"",
@@ -7631,7 +7631,7 @@ public void _test216a_warn_options() {
 	// same sources, what if we add -warn:+javadoc
 	this.runConformTest(
 		new String[] { },
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:allJavadoc -warn:+javadoc -proc:none -d \"" + OUTPUT_DIR + "\""
 		+ " -sourcepath \"" + OUTPUT_DIR + "\"",
 		"",
@@ -7640,7 +7640,7 @@ public void _test216a_warn_options() {
 	// same sources, what if we only have -warn:javadoc
 	this.runConformTest(
 		new String[] { },
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:javadoc -proc:none -d \"" + OUTPUT_DIR + "\""
 		+ " -sourcepath \"" + OUTPUT_DIR + "\"",
 		"",
@@ -7649,7 +7649,7 @@ public void _test216a_warn_options() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=211588
 // variant - check impact of javadoc upon other warnings
-public void test216b_warn_options() {
+public void test216b_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// check what if allJavadoc on
 	this.runConformTest(
 		new String[] {
@@ -7667,7 +7667,7 @@ public void test216b_warn_options() {
 			"public class Y {\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:+allJavadoc -proc:none -d \"" + OUTPUT_DIR + "\""
 		+ " -sourcepath \"" + OUTPUT_DIR + "\"",
 		"",
@@ -7682,7 +7682,7 @@ public void test216b_warn_options() {
 	// same sources, what if we add -warn:+javadoc
 	this.runConformTest(
 		new String[] { },
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:+allJavadoc -warn:+javadoc -proc:none -d \"" + OUTPUT_DIR + "\""
 		+ " -sourcepath \"" + OUTPUT_DIR + "\"",
 		"",
@@ -7697,7 +7697,7 @@ public void test216b_warn_options() {
 	// same sources, what if we only have -warn:javadoc
 	this.runConformTest(
 		new String[] { },
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:+javadoc -proc:none -d \"" + OUTPUT_DIR + "\""
 		+ " -sourcepath \"" + OUTPUT_DIR + "\"",
 		"",
@@ -7712,7 +7712,7 @@ public void test216b_warn_options() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=211588
 // variant - check impact of javadoc upon other warnings
-public void test217_warn_options() {
+public void test217_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// check what if allJavadoc on
 	this.runConformTest(
 		new String[] {
@@ -7729,7 +7729,7 @@ public void test217_warn_options() {
 			"  }\n" +
 			"}\n"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:allJavadoc -proc:none -d \"" + OUTPUT_DIR + "\""
 		+ " -sourcepath \"" + OUTPUT_DIR + "\"",
 		"",
@@ -7744,7 +7744,7 @@ public void test217_warn_options() {
 	// same sources, what if we add -warn:+javadoc
 	this.runConformTest(
 		new String[] { },
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:allJavadoc -warn:+javadoc -proc:none -d \"" + OUTPUT_DIR + "\""
 		+ " -sourcepath \"" + OUTPUT_DIR + "\"",
 		"",
@@ -7759,7 +7759,7 @@ public void test217_warn_options() {
 	// same sources, what if we only have -warn:javadoc
 	this.runConformTest(
 		new String[] { },
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:javadoc -proc:none -d \"" + OUTPUT_DIR + "\""
 		+ " -sourcepath \"" + OUTPUT_DIR + "\"",
 		"",
@@ -7790,7 +7790,7 @@ public void test219_batch_classpath_apis() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=210524
 // -warn option - regression tests
 // variant
-public void _test220_warn_options() {
+public void _test220_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 172, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -7806,7 +7806,7 @@ public void _test220_warn_options() {
 			"public class Y {\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -warn:allDeprecation -warn:+deprecation -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -7827,7 +7827,7 @@ public void _test220_warn_options() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=210524
 // -warn option - regression tests
 // variant
-public void test221_warn_options() {
+public void test221_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 172, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -7843,7 +7843,7 @@ public void test221_warn_options() {
 			"public class Y {\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -warn:allDeprecation -warn:deprecation -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -7859,7 +7859,7 @@ public void test221_warn_options() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=210524
 // -warn option - regression tests
 // variant
-public void test222_warn_options() {
+public void test222_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 172, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -7875,7 +7875,7 @@ public void test222_warn_options() {
 			"public class Y {\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -warn:allDeprecation -deprecation -proc:none -d \"" + OUTPUT_DIR + "\"",
 		// according to the documentation, equivalent to -warn:allDeprecation -warn:+deprecation
@@ -7897,7 +7897,7 @@ public void test222_warn_options() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=210524
 // -warn option - regression tests
 // variant
-public void test223_warn_options() {
+public void test223_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 172, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -7913,7 +7913,7 @@ public void test223_warn_options() {
 			"public class Y {\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -deprecation -warn:-allDeprecation -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -7923,7 +7923,7 @@ public void test223_warn_options() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=210524
 // -warn option - regression tests
 // variant
-public void _test224_warn_options() {
+public void _test224_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -7933,7 +7933,7 @@ public void _test224_warn_options() {
 			"  }\n" +
 			"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -warn:+localHiding,specialParamHiding -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -7948,7 +7948,7 @@ public void _test224_warn_options() {
 	// deprecation should erase whatever warnings have been set previously
 	this.runConformTest(
 		new String[] {},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -warn:+localHiding,specialParamHiding -warn:deprecation -warn:+localHiding -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -7958,7 +7958,7 @@ public void _test224_warn_options() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=210524
 // -warn option - regression tests
 // variant
-public void test225_warn_options() {
+public void test225_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -7974,7 +7974,7 @@ public void test225_warn_options() {
 			"public class Y {\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -1.8 -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -deprecation -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -7984,7 +7984,7 @@ public void test225_warn_options() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=210524
 // -warn option - regression tests
 // variant
-public void _test226_warn_options() {
+public void _test226_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -8000,7 +8000,7 @@ public void _test226_warn_options() {
 			"public class Y {\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -1.8 -sourcepath \"" + OUTPUT_DIR + "\""
 		// default -warn:+suppress gets overriden
 		+ " -warn:deprecation -proc:none -d \"" + OUTPUT_DIR + "\"",
@@ -8018,7 +8018,7 @@ public void _test226_warn_options() {
 // -warn option - regression tests
 // variant detected while exploring:
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=210524
-public void test227_warn_options() {
+public void test227_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -8030,7 +8030,7 @@ public void test227_warn_options() {
 			"  }\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:unused -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -8056,7 +8056,7 @@ public void test228_warn_options() {
 			"  }\n" +
 			"}\n",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:unusedThrown -enableJavadoc -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"",
@@ -8065,7 +8065,7 @@ public void test228_warn_options() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=211588
 // -warn option - regression tests
 // variant
-public void test229_warn_options() {
+public void test229_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -8076,7 +8076,7 @@ public void test229_warn_options() {
 			"  }\n" +
 			"}\n",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:unusedThrown -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -8089,7 +8089,7 @@ public void test229_warn_options() {
 		true);
 }
 //-warn option - regression tests
-public void test230_warn_options() {
+public void test230_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// same source as 190, skip check defaults
 	this.runConformTest(
 		new String[] {
@@ -8105,7 +8105,7 @@ public void test230_warn_options() {
 			"  }\n" +
 			"}\n"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:unusedTypeArgs -proc:none -1.8 -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -8128,7 +8128,7 @@ public void test230_warn_options() {
 // javac selects the class file over the source file when the class file is
 // newer than the source file, unless option -Xprefer:source is used (available
 // since 1.6)
-public void test230_sourcepath_vs_classpath() throws IOException, InterruptedException {
+public void test230_sourcepath_vs_classpath() throws IOException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		true /* shouldCompileOK*/,
 		new String[] { /* testFiles */
@@ -8141,7 +8141,7 @@ public void test230_sourcepath_vs_classpath() throws IOException, InterruptedExc
 			"  public static final int CONST = 2;\n" +
 			"}\n",
 		},
-		"\"" + OUTPUT_DIR + File.separator + "src1" + File.separator + "X.java\"" /* commandLine */
+		"\"" + OUTPUT_DIR + File.separator + "src1" + File.separator + "X.java\"" /* commandLine */ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -verbose -warn:-resource -proc:none -d \"" + OUTPUT_DIR + File.separator + "bin1" + "\"",
 		"[parsing    ---OUTPUT_DIR_PLACEHOLDER---/src1/X.java - #1/1]\n" + /* expectedOutOutputString */
 		"[reading    java/lang/Object.class]\n" +
@@ -8155,12 +8155,12 @@ public void test230_sourcepath_vs_classpath() throws IOException, InterruptedExc
 		null /* progress */);
 	// ensure that class file is newer than source file (some file systems
 	// store the modification time at a second precision)
-	File sourceFile = new File(OUTPUT_DIR + File.separator + "src1" + File.separator + "X.java"),
-	  classFile = new File(OUTPUT_DIR + File.separator + "bin1" + File.separator + "X.class");
-	while (classFile.lastModified() <= sourceFile.lastModified()) {
+	File sourceFile = new File(OUTPUT_DIR + File.separator + "src1" + File.separator + "X.java"), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	  classFile = new File(OUTPUT_DIR + File.separator + "bin1" + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	while (classFile.lastModified() <= sourceFile.lastModified()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		runConformTest(
 			null,
-			"\"" + OUTPUT_DIR +  File.separator + "src1" + File.separator + "X.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "src1" + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -proc:none -d \"" + OUTPUT_DIR + File.separator + "bin1" + "\"",
 			"",
 			"",
@@ -8176,7 +8176,7 @@ public void test230_sourcepath_vs_classpath() throws IOException, InterruptedExc
 			"  }\n" +
 			"}\n",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "Y.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "Y.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -classpath \"" + OUTPUT_DIR + File.separator + "bin1" + "\""
 		+ " -verbose -warn:-resource -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"[parsing    ---OUTPUT_DIR_PLACEHOLDER---/Y.java - #1/1]\n" +
@@ -8196,9 +8196,9 @@ public void test230_sourcepath_vs_classpath() throws IOException, InterruptedExc
 	// this matches -Xprefer:source option of javac - except that
 	// javac then does it for classpath too; by default, javac would select
 	// bin1/X.class (as shown below)
-	String sourceFilePath = "\"" + OUTPUT_DIR +  File.separator + "Y.java\"";
+	String sourceFilePath = "\"" + OUTPUT_DIR +  File.separator + "Y.java\""; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String commonOptions =
-		" -classpath \"" + OUTPUT_DIR + File.separator + "bin1" + "\""
+		" -classpath \"" + OUTPUT_DIR + File.separator + "bin1" + "\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + File.separator + "src2" + "\""
 		+ " -d \"" + OUTPUT_DIR + File.separator + "bin2" + "\""
 		+ " -warn:-resource";
@@ -8207,7 +8207,7 @@ public void test230_sourcepath_vs_classpath() throws IOException, InterruptedExc
 		System.setProperty("jdt.compiler.useSingleThread", "true");
 		runConformTest(
 			null,
-			sourceFilePath + commonOptions + " -verbose -proc:none",
+			sourceFilePath + commonOptions + " -verbose -proc:none", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"[parsing    ---OUTPUT_DIR_PLACEHOLDER---/Y.java - #1/1]\n" +
 			"[reading    java/lang/Object.class]\n" +
 			"[analyzing  ---OUTPUT_DIR_PLACEHOLDER---/Y.java - #1/1]\n" +
@@ -8229,22 +8229,22 @@ public void test230_sourcepath_vs_classpath() throws IOException, InterruptedExc
 	}
 	if (RUN_JAVAC) {
 		// run ecj result
-		this.verifier.execute("Y", new String[] {OUTPUT_DIR + File.separator + "bin2"});
+		this.verifier.execute("Y", new String[] {OUTPUT_DIR + File.separator + "bin2"}); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertTrue(this.verifier.getExecutionOutput().startsWith("2")); // skip trailing newline
 		// 2 means we selected src2
 		// recompile and run result using various levels of javac
 		Iterator<JavacCompiler> javacCompilersIterator = javacCompilers.iterator();
-		String specialOptions = commonOptions + " -Xprefer:source ";
+		String specialOptions = commonOptions + " -Xprefer:source "; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String sourceFileNames[] = new String[] {sourceFilePath};
 		File outputDir = new File(OUTPUT_DIR);
-		while (javacCompilersIterator.hasNext()) {
+		while (javacCompilersIterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JavacCompiler javacCompiler = javacCompilersIterator.next();
 			assertTrue(javacCompiler.compile(
 					outputDir, /* directory */
 					commonOptions /* options */,
 					sourceFileNames /* source file names */,
 					null /* log */) == 0);
-			this.verifier.execute("Y", new String[] {OUTPUT_DIR + File.separator + "bin2"});
+			this.verifier.execute("Y", new String[] {OUTPUT_DIR + File.separator + "bin2"}); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertEquals('1', this.verifier.getExecutionOutput().charAt(0)); // skip trailing newline
 			// 1 means javac selected bin1 by default
 			assertTrue(javacCompiler.compile(
@@ -8252,7 +8252,7 @@ public void test230_sourcepath_vs_classpath() throws IOException, InterruptedExc
 					specialOptions /* options */,
 					sourceFileNames /* source file names */,
 					null /* log */) == 0);
-			this.verifier.execute("Y", new String[] {OUTPUT_DIR + File.separator + "bin2"});
+			this.verifier.execute("Y", new String[] {OUTPUT_DIR + File.separator + "bin2"}); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertEquals('2', this.verifier.getExecutionOutput().charAt(0)); // skip trailing newline
 			// 2 means javac selected src2
 		}
@@ -8262,7 +8262,7 @@ public void test230_sourcepath_vs_classpath() throws IOException, InterruptedExc
 // .java/.class files precedence depending on sourcepath
 // ecj always selects sourcepath over classpath
 // javac takes the source file if it is more recent than the class file
-public void test231_sourcepath_vs_classpath() throws IOException, InterruptedException {
+public void test231_sourcepath_vs_classpath() throws IOException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// compile into bin1
 	runConformTest(
 		new String[] {
@@ -8271,26 +8271,26 @@ public void test231_sourcepath_vs_classpath() throws IOException, InterruptedExc
 			"  public static final int CONST = 1;\n" +
 			"}\n",
 		},
-		"\"" + OUTPUT_DIR + File.separator + "src1" + File.separator + "X.java\""
+		"\"" + OUTPUT_DIR + File.separator + "src1" + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -proc:none -d \"" + OUTPUT_DIR + File.separator + "bin1" + "\"",
 		"",
 		"",
 		true);
 	// ensure that source file is newer than class file (some file systems
 	// store the modification time at a second precision)
-	File sourceFile = new File(OUTPUT_DIR + File.separator + "src2" + File.separator + "X.java"),
-	  classFile = new File(OUTPUT_DIR + File.separator + "bin1" + File.separator + "X.class");
-	new File(OUTPUT_DIR + File.separator + "src2").mkdirs();
-	do {
+	File sourceFile = new File(OUTPUT_DIR + File.separator + "src2" + File.separator + "X.java"), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	  classFile = new File(OUTPUT_DIR + File.separator + "bin1" + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	new File(OUTPUT_DIR + File.separator + "src2").mkdirs(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		Util.writeToFile(
 			"public class X {\n" +
 			"}\n",
 			sourceFile.getPath());
 	} while (classFile.lastModified() >= sourceFile.lastModified());
 	// compile with sourcepath and classpath: src2/X.java is preferred
-	String sourceFilePath = "\"" + OUTPUT_DIR +  File.separator + "Y.java\"";
+	String sourceFilePath = "\"" + OUTPUT_DIR +  File.separator + "Y.java\""; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String commonOptions =
-		" -classpath \"" + OUTPUT_DIR + File.separator + "bin1" + "\""
+		" -classpath \"" + OUTPUT_DIR + File.separator + "bin1" + "\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + File.separator + "src2" + "\""
 		+ " -d \"" + OUTPUT_DIR + File.separator + "bin2" + "\"";
 	// sourcepath preferred over classpath
@@ -8304,7 +8304,7 @@ public void test231_sourcepath_vs_classpath() throws IOException, InterruptedExc
 			"  }\n" +
 			"}\n",
 		},
-		sourceFilePath + commonOptions + " -proc:none " /* commandLine */,
+		sourceFilePath + commonOptions + " -proc:none " /* commandLine */, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"" /* expectedOutOutputString */,
 		"----------\n" +  /* expectedErrOutputString */
 		"1. ERROR in ---OUTPUT_DIR_PLACEHOLDER---/Y.java (at line 3)\n" +
@@ -8319,7 +8319,7 @@ public void test231_sourcepath_vs_classpath() throws IOException, InterruptedExc
 		Iterator<JavacCompiler> javacCompilersIterator = javacCompilers.iterator();
 		String sourceFileNames[] = new String[] {sourceFilePath};
 		File outputDir = new File(OUTPUT_DIR);
-		while (javacCompilersIterator.hasNext()) {
+		while (javacCompilersIterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JavacCompiler javacCompiler = javacCompilersIterator.next();
 			assertFalse(javacCompiler.compile(
 					outputDir /* directory */,
@@ -8334,14 +8334,14 @@ public void test231_sourcepath_vs_classpath() throws IOException, InterruptedExc
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=216684
 // ecj different from javac: repeated -classpath concatenates entries, while javac
 // only keeps the last one (and swallows the others silently)
-public void test232_repeated_classpath() throws IOException, InterruptedException {
-	String commonOptions = " -d \"" + OUTPUT_DIR + File.separator + "bin"
+public void test232_repeated_classpath() throws IOException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String commonOptions = " -d \"" + OUTPUT_DIR + File.separator + "bin" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ "\" -classpath \"" + OUTPUT_DIR + File.separator + "src1";
-	String combinedClasspathOptions = commonOptions + File.pathSeparator
+	String combinedClasspathOptions = commonOptions + File.pathSeparator //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ OUTPUT_DIR + File.separator + "src2\" ";
-	String splitClasspathOptions = commonOptions
+	String splitClasspathOptions = commonOptions //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ "\" -classpath \"" + OUTPUT_DIR + File.separator + "src2\" ";
-	String sourceFilePath = "\"" + OUTPUT_DIR + File.separator + "src3" + File.separator + "Z.java\"";
+	String sourceFilePath = "\"" + OUTPUT_DIR + File.separator + "src3" + File.separator + "Z.java\""; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	// ecj considers repeated classpath entries as if they were concatenated
 	// into one
 	runTest(
@@ -8359,7 +8359,7 @@ public void test232_repeated_classpath() throws IOException, InterruptedExceptio
 			"  Y y;\n" +
 			"}\n",
 		},
-		sourceFilePath + " -proc:none " + combinedClasspathOptions /* commandLine */,
+		sourceFilePath + " -proc:none " + combinedClasspathOptions /* commandLine */, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"" /* expectedOutOutputString */,
 		"" /* expectedErrOutputString */,
 		true /* shouldFlushOutputDirectory */,
@@ -8367,7 +8367,7 @@ public void test232_repeated_classpath() throws IOException, InterruptedExceptio
 	runTest(
 		true /* shouldCompileOK*/,
 		null /* testFiles */,
-		sourceFilePath + " -proc:none " + splitClasspathOptions /* commandLine */,
+		sourceFilePath + " -proc:none " + splitClasspathOptions /* commandLine */, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"" /* expectedOutOutputString */,
 		"" /* expectedErrOutputString */,
 		false /* shouldFlushOutputDirectory */,
@@ -8378,7 +8378,7 @@ public void test232_repeated_classpath() throws IOException, InterruptedExceptio
 		Iterator<JavacCompiler> javacCompilersIterator = javacCompilers.iterator();
 		String sourceFileNames[] = new String[] {sourceFilePath};
 		File outputDir = new File(OUTPUT_DIR);
-		while (javacCompilersIterator.hasNext()) {
+		while (javacCompilersIterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JavacCompiler javacCompiler = javacCompilersIterator.next();
 			assertTrue(javacCompiler.compile(
 					outputDir /* directory */,
@@ -8396,12 +8396,12 @@ public void test232_repeated_classpath() throws IOException, InterruptedExceptio
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=216684
 // ecj different from javac: repeated -sourcepath yields an error, while javac
 // only keeps the last one (and swallows the others silently)
-public void test233_repeated_sourcepath() throws IOException, InterruptedException {
-	String commonOptions = " -d \"" + OUTPUT_DIR + "\""
+public void test233_repeated_sourcepath() throws IOException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String commonOptions = " -d \"" + OUTPUT_DIR + "\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + File.separator + "src1\""
 		+ " -sourcepath \"" + OUTPUT_DIR + File.separator + "src2\"";
-	String sourceFilePathZ = "\"" + OUTPUT_DIR + File.separator + "src3" + File.separator + "Z.java\"";
-	String sourceFilePathW = "\"" + OUTPUT_DIR + File.separator + "src3" + File.separator + "W.java\"";
+	String sourceFilePathZ = "\"" + OUTPUT_DIR + File.separator + "src3" + File.separator + "Z.java\""; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	String sourceFilePathW = "\"" + OUTPUT_DIR + File.separator + "src3" + File.separator + "W.java\""; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runTest(
 		false /* shouldCompileOK */,
 		new String[] { /* testFiles */
@@ -8421,7 +8421,7 @@ public void test233_repeated_sourcepath() throws IOException, InterruptedExcepti
 			"  Y y;\n" +
 			"}\n",
 		},
-		sourceFilePathZ + " -proc:none " + commonOptions /* commandLine */,
+		sourceFilePathZ + " -proc:none " + commonOptions /* commandLine */, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"" /* expectedOutOutputString */,
 		"duplicate sourcepath specification: -sourcepath ---OUTPUT_DIR_PLACEHOLDER---/src2\n" /* expectedErrOutputString */,
 		true /* shouldFlushOutputDirectory */,
@@ -8431,7 +8431,7 @@ public void test233_repeated_sourcepath() throws IOException, InterruptedExcepti
 		String sourceFileNamesZ[] = new String[] {sourceFilePathZ};
 		String sourceFileNamesW[] = new String[] {sourceFilePathW};
 		File outputDir = new File(OUTPUT_DIR);
-		while (javacCompilersIterator.hasNext()) {
+		while (javacCompilersIterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JavacCompiler javacCompiler = javacCompilersIterator.next();
 			// succeeds because it picks src2 up
 			assertTrue(javacCompiler.compile(
@@ -8451,11 +8451,11 @@ public void test233_repeated_sourcepath() throws IOException, InterruptedExcepti
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=216684
 // different from javac: javac sourcepath inhibits compile in classpath, while
 // ecj goes on finding source files there
-public void test234_sourcepath_vs_classpath() throws IOException, InterruptedException {
-	String commonOptions = " -d \"" + OUTPUT_DIR + File.separator + "bin\""
+public void test234_sourcepath_vs_classpath() throws IOException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String commonOptions = " -d \"" + OUTPUT_DIR + File.separator + "bin\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + File.separator + "src1\""
 		+ " -classpath \"" + OUTPUT_DIR + File.separator + "src2\" ";
-	String sourceFilePath = "\"" + OUTPUT_DIR + File.separator + "src3" + File.separator + "Z.java\"";
+	String sourceFilePath = "\"" + OUTPUT_DIR + File.separator + "src3" + File.separator + "Z.java\""; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	// ecj compiles src1 and src2 source files as needed, regardless of their
 	// being on the sourcepath or the classpath
 	runTest(
@@ -8473,7 +8473,7 @@ public void test234_sourcepath_vs_classpath() throws IOException, InterruptedExc
 			"  Y y;\n" +
 			"}\n",
 		},
-		sourceFilePath + " -proc:none " + commonOptions /* commandLine */,
+		sourceFilePath + " -proc:none " + commonOptions /* commandLine */, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"" /* expectedOutOutputString */,
 		"" /* expectedErrOutputString */,
 		true /* shouldFlushOutputDirectory */,
@@ -8485,7 +8485,7 @@ public void test234_sourcepath_vs_classpath() throws IOException, InterruptedExc
 		Iterator<JavacCompiler> javacCompilersIterator = javacCompilers.iterator();
 		String sourceFileNames[] = new String[] {sourceFilePath};
 		File outputDir = new File(OUTPUT_DIR);
-		while (javacCompilersIterator.hasNext()) {
+		while (javacCompilersIterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JavacCompiler javacCompiler = javacCompilersIterator.next();
 			assertFalse(javacCompiler.compile(
 					outputDir, /* directory */
@@ -8499,7 +8499,7 @@ public void test234_sourcepath_vs_classpath() throws IOException, InterruptedExc
 // different from javac: with javac, newer class file down the classpath wins
 // over source file upstream, while ecj selects the first source or binary found
 // in classpath order (no sourcepath involved here)
-public void test235_classpath() throws IOException, InterruptedException {
+public void test235_classpath() throws IOException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		true /* shouldCompileOK*/,
 		new String[] { /* testFiles */
@@ -8511,7 +8511,7 @@ public void test235_classpath() throws IOException, InterruptedException {
 			"public class X {\n" +
 			"}\n",
 		},
-		"\"" + OUTPUT_DIR + File.separator + "src1" + File.separator + "X.java\"" /* commandLine */
+		"\"" + OUTPUT_DIR + File.separator + "src1" + File.separator + "X.java\"" /* commandLine */ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -proc:none -d \"" + OUTPUT_DIR + File.separator + "bin1" + "\"",
 		"" /* expectedOutOutputString */,
 		"" /* expectedErrOutputString */,
@@ -8519,13 +8519,13 @@ public void test235_classpath() throws IOException, InterruptedException {
 		null /* progress */);
 	// ensure that class file is newer than source file (some file systems
 	// store the modification time at a second precision)
-	File sourceFile = new File(OUTPUT_DIR + File.separator + "src2" + File.separator + "X.java"),
-	  classFile = new File(OUTPUT_DIR + File.separator + "bin1" + File.separator + "X.class");
-	while (classFile.lastModified() <= sourceFile.lastModified()) {
+	File sourceFile = new File(OUTPUT_DIR + File.separator + "src2" + File.separator + "X.java"), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	  classFile = new File(OUTPUT_DIR + File.separator + "bin1" + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	while (classFile.lastModified() <= sourceFile.lastModified()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		runTest(
 			true /* shouldCompileOK*/,
 			null /* testFiles */,
-			"\"" + OUTPUT_DIR +  File.separator + "src1" + File.separator + "X.java\"" /* commandLine */
+			"\"" + OUTPUT_DIR +  File.separator + "src1" + File.separator + "X.java\"" /* commandLine */ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -proc:none -d \"" + OUTPUT_DIR + File.separator + "bin1" + "\"",
 			"" /* expectedOutOutputString */,
 			"" /* expectedErrOutputString */,
@@ -8534,9 +8534,9 @@ public void test235_classpath() throws IOException, InterruptedException {
 	}
 	// compile with (buggy) src2 before (correct) bin1 in the classpath
 	String sourceFilePath =
-		"\"" + OUTPUT_DIR + File.separator + "Y.java\"";
+		"\"" + OUTPUT_DIR + File.separator + "Y.java\""; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String commonOptions =
-		" -classpath \"" + OUTPUT_DIR + File.separator + "src2"
+		" -classpath \"" + OUTPUT_DIR + File.separator + "src2" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ File.pathSeparator + OUTPUT_DIR + File.separator + "bin1\""
 		+ " -d \"" + OUTPUT_DIR + File.separator + "bin2" + "\"";
 	runTest(
@@ -8549,7 +8549,7 @@ public void test235_classpath() throws IOException, InterruptedException {
 			"  }\n" +
 			"}\n",
 		},
-		sourceFilePath /* commandLine */
+		sourceFilePath /* commandLine */ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -proc:none " + commonOptions,
 		"" /* expectedOutOutputString */,
 		"----------\n" +
@@ -8567,7 +8567,7 @@ public void test235_classpath() throws IOException, InterruptedException {
 		Iterator<JavacCompiler> javacCompilersIterator = javacCompilers.iterator();
 		String sourceFileNames[] = new String[] {sourceFilePath};
 		File outputDir = new File(OUTPUT_DIR);
-		while (javacCompilersIterator.hasNext()) {
+		while (javacCompilersIterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JavacCompiler javacCompiler = javacCompilersIterator.next();
 			assertTrue(javacCompiler.compile(
 					outputDir /* directory */,
@@ -8580,7 +8580,7 @@ public void test235_classpath() throws IOException, InterruptedException {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=216684
 // when class files are ready in all classpath entries, ecj and javac pick
 // the first available class file up, regardless of which is newer  (no sourcepath here)
-public void test236_classpath() throws IOException, InterruptedException {
+public void test236_classpath() throws IOException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		true /* shouldCompileOK*/,
 		new String[] { /* testFiles */
@@ -8589,15 +8589,15 @@ public void test236_classpath() throws IOException, InterruptedException {
 			"  public static final int CONST = 1;\n" +
 			"}\n",
 		},
-		"\"" + OUTPUT_DIR + File.separator + "src1" + File.separator + "X.java\"" /* commandLine */
+		"\"" + OUTPUT_DIR + File.separator + "src1" + File.separator + "X.java\"" /* commandLine */ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -proc:none -d \"" + OUTPUT_DIR + File.separator + "bin1" + "\"",
 		"" /* expectedOutOutputString */,
 		"" /* expectedErrOutputString */,
 		true /* shouldFlushOutputDirectory */,
 		null /* progress */);
-	File bin1File = new File(OUTPUT_DIR + File.separator + "bin1" + File.separator + "X.class"),
-	  bin2File = new File(OUTPUT_DIR + File.separator + "bin2" + File.separator + "X.class");
-	do {
+	File bin1File = new File(OUTPUT_DIR + File.separator + "bin1" + File.separator + "X.class"), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	  bin2File = new File(OUTPUT_DIR + File.separator + "bin2" + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		runTest(
 			true /* shouldCompileOK*/,
 			new String[] { /* testFiles */
@@ -8606,16 +8606,16 @@ public void test236_classpath() throws IOException, InterruptedException {
 				"  public static final int CONST = 2;\n" +
 				"}\n",
 			},
-			"\"" + OUTPUT_DIR + File.separator + "src2" + File.separator + "X.java\"" /* commandLine */
+			"\"" + OUTPUT_DIR + File.separator + "src2" + File.separator + "X.java\"" /* commandLine */ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -proc:none -d \"" + OUTPUT_DIR + File.separator + "bin2" + "\"",
 			"" /* expectedOutOutputString */,
 			"" /* expectedErrOutputString */,
 			false /* shouldFlushOutputDirectory */,
 			null /* progress */);
 	} while (bin2File.lastModified() <= bin1File.lastModified());
-	String sourceFilePath = "\"" + OUTPUT_DIR +  File.separator + "Y.java\"";
+	String sourceFilePath = "\"" + OUTPUT_DIR +  File.separator + "Y.java\""; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String commonOptions =
-		" -classpath \"" + OUTPUT_DIR + File.separator + "bin1" + File.pathSeparator
+		" -classpath \"" + OUTPUT_DIR + File.separator + "bin1" + File.pathSeparator //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ OUTPUT_DIR + File.separator + "bin2" + "\""
 		+ " -d \"" + OUTPUT_DIR + File.separator + "bin" + "\"";
 	runTest(
@@ -8628,25 +8628,25 @@ public void test236_classpath() throws IOException, InterruptedException {
 			"  }\n" +
 			"}\n",
 		},
-		sourceFilePath + commonOptions	+ " -proc:none " /* commandLine */,
+		sourceFilePath + commonOptions	+ " -proc:none " /* commandLine */, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"" /* expectedOutOutputString */,
 		"" /* expectedErrOutputString */,
 		false /* shouldFlushOutputDirectory */,
 		null /* progress */);
-	this.verifier.execute("Y", new String[] {OUTPUT_DIR + File.separator + "bin"});
+	this.verifier.execute("Y", new String[] {OUTPUT_DIR + File.separator + "bin"}); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	assertTrue(this.verifier.getExecutionOutput().startsWith("1")); // skip trailing newline
 	if (RUN_JAVAC) {
 		Iterator<JavacCompiler> javacCompilersIterator = javacCompilers.iterator();
 		String sourceFileNames[] = new String[] {sourceFilePath};
 		File outputDir = new File(OUTPUT_DIR);
-		while (javacCompilersIterator.hasNext()) {
+		while (javacCompilersIterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JavacCompiler javacCompiler = javacCompilersIterator.next();
 			assertTrue(javacCompiler.compile(
 					outputDir /* directory */,
 					commonOptions /* options */,
 					sourceFileNames,
 					null /* log */) == 0);
-			this.verifier.execute("Y", new String[] {OUTPUT_DIR + File.separator + "bin"});
+			this.verifier.execute("Y", new String[] {OUTPUT_DIR + File.separator + "bin"}); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertEquals('1', this.verifier.getExecutionOutput().charAt(0)); // skip trailing newline
 		}
 	}
@@ -8655,7 +8655,7 @@ public void test236_classpath() throws IOException, InterruptedException {
 // when a source file is more recent than a class file in a former
 // classpath entry, ecj picks the class file up, while javac choses the
 // source file (no sourcepath here)
-public void test237_classpath() throws IOException, InterruptedException {
+public void test237_classpath() throws IOException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		true /* shouldCompileOK*/,
 		new String[] { /* testFiles */
@@ -8664,25 +8664,25 @@ public void test237_classpath() throws IOException, InterruptedException {
 			"  public static final int CONST = 1;\n" +
 			"}\n",
 		},
-		"\"" + OUTPUT_DIR + File.separator + "src1" + File.separator + "X.java\"" /* commandLine */
+		"\"" + OUTPUT_DIR + File.separator + "src1" + File.separator + "X.java\"" /* commandLine */ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -proc:none -d \"" + OUTPUT_DIR + File.separator + "bin1" + "\"",
 		"" /* expectedOutOutputString */,
 		"" /* expectedErrOutputString */,
 		true /* shouldFlushOutputDirectory */,
 		null /* progress */);
-	File sourceFile = new File(OUTPUT_DIR + File.separator + "src2" + File.separator + "X.java"),
-	  classFile = new File(OUTPUT_DIR + File.separator + "bin1" + File.separator + "X.class");
-	new File(OUTPUT_DIR + File.separator + "src2").mkdirs();
-	do {
+	File sourceFile = new File(OUTPUT_DIR + File.separator + "src2" + File.separator + "X.java"), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	  classFile = new File(OUTPUT_DIR + File.separator + "bin1" + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	new File(OUTPUT_DIR + File.separator + "src2").mkdirs(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		Util.writeToFile(
 			"public class X {\n" +
 			"  public static final int CONST = 2;\n" +
 			"}\n",
 			sourceFile.getPath());
 	} while (classFile.lastModified() >= sourceFile.lastModified());
-	String sourceFilePath = "\"" + OUTPUT_DIR +  File.separator + "Y.java\"";
+	String sourceFilePath = "\"" + OUTPUT_DIR +  File.separator + "Y.java\""; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String commonOptions =
-		" -classpath \"" + OUTPUT_DIR + File.separator + "bin1" + File.pathSeparator
+		" -classpath \"" + OUTPUT_DIR + File.separator + "bin1" + File.pathSeparator //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ OUTPUT_DIR + File.separator + "src2" + "\""
 		+ " -d \"" + OUTPUT_DIR + File.separator + "bin" + "\"";
 	runTest(
@@ -8695,25 +8695,25 @@ public void test237_classpath() throws IOException, InterruptedException {
 			"  }\n" +
 			"}\n",
 		},
-		sourceFilePath + commonOptions	+ " -proc:none " /* commandLine */,
+		sourceFilePath + commonOptions	+ " -proc:none " /* commandLine */, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"" /* expectedOutOutputString */,
 		"" /* expectedErrOutputString */,
 		false /* shouldFlushOutputDirectory */,
 		null /* progress */);
-	this.verifier.execute("Y", new String[] {OUTPUT_DIR + File.separator + "bin"});
+	this.verifier.execute("Y", new String[] {OUTPUT_DIR + File.separator + "bin"}); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	assertTrue(this.verifier.getExecutionOutput().startsWith("1")); // skip trailing newline
 	if (RUN_JAVAC) {
 		Iterator<JavacCompiler> javacCompilersIterator = javacCompilers.iterator();
 		String sourceFileNames[] = new String[] {sourceFilePath};
 		File outputDir = new File(OUTPUT_DIR);
-		while (javacCompilersIterator.hasNext()) {
+		while (javacCompilersIterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JavacCompiler javacCompiler = javacCompilersIterator.next();
 			assertTrue(javacCompiler.compile(
 					outputDir /* directory */,
 					commonOptions /* options */,
 					sourceFileNames /* source file names */,
 					null /* log */) == 0);
-			this.verifier.execute("Y", new String[] {OUTPUT_DIR + File.separator + "bin"});
+			this.verifier.execute("Y", new String[] {OUTPUT_DIR + File.separator + "bin"}); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertEquals('2', this.verifier.getExecutionOutput().charAt(0)); // skip trailing newline
 			// 2 means javac selected src2 (because the source file was more recent than bin1/X.class)
 		}
@@ -8723,26 +8723,26 @@ public void test237_classpath() throws IOException, InterruptedException {
 // when a source file is more recent than another source file in a former
 // classpath entry, ecj and javac pick the latter file up (in other words, if
 // only source files are involved, the classpath entries order prevails - no sourcepath here)
-public void test238_classpath() throws IOException, InterruptedException {
-	new File(OUTPUT_DIR + File.separator + "src1").mkdirs();
-	File sourceFile1 = new File(OUTPUT_DIR + File.separator + "src1" + File.separator + "X.java");
-	File sourceFile2 = new File(OUTPUT_DIR + File.separator + "src2" + File.separator + "X.java");
+public void test238_classpath() throws IOException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	new File(OUTPUT_DIR + File.separator + "src1").mkdirs(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	File sourceFile1 = new File(OUTPUT_DIR + File.separator + "src1" + File.separator + "X.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	File sourceFile2 = new File(OUTPUT_DIR + File.separator + "src2" + File.separator + "X.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	Util.writeToFile(
 		"public class X {\n" +
 		"  public static final int CONST = 1;\n" +
 		"}\n",
 		sourceFile1.getPath());
-	new File(OUTPUT_DIR + File.separator + "src2").mkdirs();
-	do {
+	new File(OUTPUT_DIR + File.separator + "src2").mkdirs(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		Util.writeToFile(
 			"public class X {\n" +
 			"  public static final int CONST = 2;\n" +
 			"}\n",
 			sourceFile2.getPath());
 	} while (sourceFile1.lastModified() >= sourceFile2.lastModified());
-	String sourceFilePath = "\"" + OUTPUT_DIR +  File.separator + "Y.java\"";
+	String sourceFilePath = "\"" + OUTPUT_DIR +  File.separator + "Y.java\""; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String commonOptions =
-		" -classpath \"" + OUTPUT_DIR + File.separator + "src1" + File.pathSeparator
+		" -classpath \"" + OUTPUT_DIR + File.separator + "src1" + File.pathSeparator //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ OUTPUT_DIR + File.separator + "src2" + "\""
 		+ " -d \"" + OUTPUT_DIR + File.separator + "bin" + "\"";
 	runTest(
@@ -8755,25 +8755,25 @@ public void test238_classpath() throws IOException, InterruptedException {
 			"  }\n" +
 			"}\n",
 		},
-		sourceFilePath + commonOptions	+ " -proc:none " /* commandLine */,
+		sourceFilePath + commonOptions	+ " -proc:none " /* commandLine */, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"" /* expectedOutOutputString */,
 		"" /* expectedErrOutputString */,
 		false /* shouldFlushOutputDirectory */,
 		null /* progress */);
-	this.verifier.execute("Y", new String[] {OUTPUT_DIR + File.separator + "bin"});
+	this.verifier.execute("Y", new String[] {OUTPUT_DIR + File.separator + "bin"}); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	assertTrue(this.verifier.getExecutionOutput().startsWith("1")); // skip trailing newline
 	if (RUN_JAVAC) {
 		Iterator<JavacCompiler> javacCompilersIterator = javacCompilers.iterator();
 		String sourceFileNames[] = new String[] {sourceFilePath};
 		File outputDir = new File(OUTPUT_DIR);
-		while (javacCompilersIterator.hasNext()) {
+		while (javacCompilersIterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JavacCompiler javacCompiler = javacCompilersIterator.next();
 			assertTrue(javacCompiler.compile(
 					outputDir /* directory */,
 					commonOptions /* options */,
 					sourceFileNames /* source file names */,
 					null /* log */) == 0);
-			this.verifier.execute("Y", new String[] {OUTPUT_DIR + File.separator + "bin"});
+			this.verifier.execute("Y", new String[] {OUTPUT_DIR + File.separator + "bin"}); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertEquals('1', this.verifier.getExecutionOutput().charAt(0)); // skip trailing newline
 			// 1 means javac selected src1 (because src1/X.java comes ahead of src2/X.java on the classpath)
 		}
@@ -8781,7 +8781,7 @@ public void test238_classpath() throws IOException, InterruptedException {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=97332 - jars pointed by jars
 // basic link: a jar only referenced in the manifest of the first one is found
-public void test239_jar_ref_in_jar() throws Exception {
+public void test239_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runConformTest(
 		new String[] {
@@ -8793,7 +8793,7 @@ public void test239_jar_ref_in_jar() throws Exception {
 			"  B b;\n" +
 			"}",
 		},
-     "\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+     "\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -cp \"" + LIB_DIR + File.separator + "lib1.jar\""
 		+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
      + " -1.8 -g -preserveAllLocals"
@@ -8805,7 +8805,7 @@ public void test239_jar_ref_in_jar() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=97332 - jars pointed by jars
 // links are followed recursively, eliminating dupes
-public void test240_jar_ref_in_jar() throws Exception {
+public void test240_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runConformTest(
 		new String[] {
@@ -8819,7 +8819,7 @@ public void test240_jar_ref_in_jar() throws Exception {
 			"  D d;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -cp \"" + LIB_DIR + File.separator + "lib3.jar\""
 		+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 		+ " -1.8 -g -preserveAllLocals"
@@ -8831,7 +8831,7 @@ public void test240_jar_ref_in_jar() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=97332 - jars pointed by jars
 // at first level, this is depth first, masking tailing libs
-public void test241_jar_ref_in_jar() throws Exception {
+public void test241_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runNegativeTest(
 			new String[] {
@@ -8843,7 +8843,7 @@ public void test241_jar_ref_in_jar() throws Exception {
 					"  int j = R.R3;\n" +
 					"}",
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -cp \"" + LIB_DIR + File.separator + "lib1.jar\""
 			+ " -cp \"" + LIB_DIR + File.separator + "lib3.jar\""
 			+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
@@ -8862,7 +8862,7 @@ public void test241_jar_ref_in_jar() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=97332 - jars pointed by jars
 // using only links, we adopt a depth first algorithm
-public void test242_jar_ref_in_jar() throws Exception {
+public void test242_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runNegativeTest(
 			new String[] {
@@ -8874,7 +8874,7 @@ public void test242_jar_ref_in_jar() throws Exception {
 					"  int j = R.R3;\n" +
 					"}",
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -cp \"" + LIB_DIR + File.separator + "lib4.jar\""
 			+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 			+ " -1.8 -g -preserveAllLocals"
@@ -8892,7 +8892,7 @@ public void test242_jar_ref_in_jar() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=97332 - jars pointed by jars
 // managing subdirectories and .. properly
-public void test243_jar_ref_in_jar() throws Exception {
+public void test243_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runConformTest(
 		new String[] {
@@ -8906,7 +8906,7 @@ public void test243_jar_ref_in_jar() throws Exception {
 			"  D d;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -cp \"" + LIB_DIR + File.separator + "lib5.jar\""
 		+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 		+ " -1.8 -g -preserveAllLocals"
@@ -8918,7 +8918,7 @@ public void test243_jar_ref_in_jar() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=97332 - jars pointed by jars
 // variant: the second jar on a line is found as well
-public void test244_jar_ref_in_jar() throws Exception {
+public void test244_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runConformTest(
 		new String[] {
@@ -8929,7 +8929,7 @@ public void test244_jar_ref_in_jar() throws Exception {
 			"  C c;\n" +
 			"}",
 		},
-  "\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+  "\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -cp \"" + LIB_DIR + File.separator + "lib4.jar\""
 		+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
   + " -1.8 -g -preserveAllLocals"
@@ -8941,7 +8941,7 @@ public void test244_jar_ref_in_jar() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=97332 - jars pointed by jars
 // we eat up absolute links silently
-public void test245_jar_ref_in_jar() throws Exception {
+public void test245_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runConformTest(
 		new String[] {
@@ -8952,7 +8952,7 @@ public void test245_jar_ref_in_jar() throws Exception {
 			"  F f;\n" +
 			"}",
 		},
-	"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+	"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -cp \"" + LIB_DIR + File.separator + "lib8.jar\""
 			+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 	+ " -1.8 -g -preserveAllLocals"
@@ -8964,7 +8964,7 @@ public void test245_jar_ref_in_jar() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=97332 - jars pointed by jars
 // absolute links do not mask following relative links
-public void test246_jar_ref_in_jar() throws Exception {
+public void test246_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runConformTest(
 		new String[] {
@@ -8976,7 +8976,7 @@ public void test246_jar_ref_in_jar() throws Exception {
 			"  F f;\n" +
 			"}",
 		},
-	"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+	"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -cp \"" + LIB_DIR + File.separator + "lib8.jar\""
 			+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 	+ " -1.8 -g -preserveAllLocals"
@@ -8988,7 +8988,7 @@ public void test246_jar_ref_in_jar() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=97332 - jars pointed by jars
 // absolute links are not followed
-public void test247_jar_ref_in_jar() throws Exception {
+public void test247_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runNegativeTest(
 		new String[] {
@@ -8999,7 +8999,7 @@ public void test247_jar_ref_in_jar() throws Exception {
 			"  C c;\n" +
 			"}",
 		},
-	"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+	"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -cp \"" + LIB_DIR + File.separator + "lib8.jar\""
 			+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 	+ " -1.8 -g -preserveAllLocals"
@@ -9018,7 +9018,7 @@ public void test247_jar_ref_in_jar() throws Exception {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=97332 - jars pointed by jars
 // we accept duplicate classpath lines in manifest and we follow the jars of the
 // second and following lines as well as the first line (emit a warning as javac does)
-public void test248_jar_ref_in_jar() throws Exception {
+public void test248_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runConformTest(
 		new String[] {
@@ -9030,7 +9030,7 @@ public void test248_jar_ref_in_jar() throws Exception {
 			"  G g;\n" +
 			"}",
 		},
-	"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+	"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -cp \"" + LIB_DIR + File.separator + "lib9.jar\""
 			+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 	+ " -1.8 -g -preserveAllLocals"
@@ -9043,7 +9043,7 @@ public void test248_jar_ref_in_jar() throws Exception {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=97332 - jars pointed by jars
 // we accept duplicate classpath lines in manifest and we follow the jars of the
 // second and following lines as well as the first line (emit a warning as javac does)
-public void test249_jar_ref_in_jar() throws Exception {
+public void test249_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runConformTest(
 		new String[] {
@@ -9055,7 +9055,7 @@ public void test249_jar_ref_in_jar() throws Exception {
 			"  G g;\n" +
 			"}",
 		},
-	"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+	"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -cp \"" + LIB_DIR + File.separator + "lib9.jar\""
 			+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 	+ " -1.8 -g -preserveAllLocals"
@@ -9067,7 +9067,7 @@ public void test249_jar_ref_in_jar() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=97332 - jars pointed by jars
 // bootclasspath does not get expanded with linked files
-public void test250_jar_ref_in_jar() throws Exception {
+public void test250_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runNegativeTest(
 		new String[] {
@@ -9079,7 +9079,7 @@ public void test250_jar_ref_in_jar() throws Exception {
 			"  B b;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	  	+ " -bootclasspath " + getLibraryClassesAsQuotedString()
 	  	+ File.pathSeparator + "\"" + LIB_DIR + File.separator + "lib1.jar\""
 		+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
@@ -9099,7 +9099,7 @@ public void test250_jar_ref_in_jar() throws Exception {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=97332 - jars pointed by jars
 // jar files reached indirectly bear the access rules of the entry that
 // references them
-public void test251_jar_ref_in_jar() throws Exception {
+public void test251_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runConformTest(
 		new String[] {
@@ -9110,7 +9110,7 @@ public void test251_jar_ref_in_jar() throws Exception {
 			"  A a;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -cp \"" + LIB_DIR + File.separator + "lib3.jar[~p/A]\""
 		+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 		+ " -1.8 -g -preserveAllLocals"
@@ -9128,14 +9128,14 @@ public void test251_jar_ref_in_jar() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=217233
 // compiler progress test (1 unit)
-public void test252_progress() {
+public void test252_progress() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runProgressTest(
 		new String[] {
 			"X.java",
 			"public class X {\n" +
 			"}\n",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -d \"" + OUTPUT_DIR + "\"",
 		""/*out output*/,
 		""/*err output*/,
@@ -9149,7 +9149,7 @@ public void test252_progress() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=217233
 // compiler progress test (2 units)
-public void test253_progress() {
+public void test253_progress() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runProgressTest(
 		new String[] {
 			"Y.java",
@@ -9159,7 +9159,7 @@ public void test253_progress() {
 			"public class X extends Y {\n" +
 			"}\n",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -cp " + File.pathSeparator + File.pathSeparator + "\"" + OUTPUT_DIR + "\""
 		+ " -d \"" + OUTPUT_DIR + "\"",
 		""/*out output*/,
@@ -9176,7 +9176,7 @@ public void test253_progress() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=217233
 // compiler progress test (multiple iterations)
-public void test254_progress() {
+public void test254_progress() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runProgressTest(
 		new String[] {
 			"X.java",
@@ -9186,7 +9186,7 @@ public void test254_progress() {
 			"public class Y {\n" +
 			"}\n",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " \"" + OUTPUT_DIR +  File.separator + "Y.java\""
         + " -cp " + File.pathSeparator + File.pathSeparator + "\"" + OUTPUT_DIR + "\""
 		+ " -d \"" + OUTPUT_DIR + "\""
@@ -9217,7 +9217,7 @@ public void test254_progress() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=217233
 // compiler progress test (cancellation)
-public void test255_progress() {
+public void test255_progress() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	TestCompilationProgress progress = new TestCompilationProgress() {
 		@Override
 		public void worked(int workIncrement, int remainingWork) {
@@ -9239,7 +9239,7 @@ public void test255_progress() {
 				"public class X extends Y {\n" +
 				"}\n",
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        + " -cp " + File.pathSeparator + File.pathSeparator + "\"" + OUTPUT_DIR + "\""
 			+ " -d \"" + OUTPUT_DIR + "\"",
 			""/*out output*/,
@@ -9260,7 +9260,7 @@ public void test255_progress() {
 // jar files reached indirectly bear the access rules of the entry that
 // references them - this hides the access rules of further instances of the
 // same jar on the classpath
-public void test256_jar_ref_in_jar() throws Exception {
+public void test256_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runConformTest(
 		new String[] {
@@ -9271,7 +9271,7 @@ public void test256_jar_ref_in_jar() throws Exception {
 			"  A a;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -cp \"" + LIB_DIR + File.separator + "lib3.jar[~p/A]\""
 		+ " -cp \"" + LIB_DIR + File.separator + "lib1.jar[-p/A]\""
 		+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
@@ -9292,7 +9292,7 @@ public void test256_jar_ref_in_jar() throws Exception {
 // jar files reached indirectly bear the access rules of the entry that
 // references them - this hides the access rules of further instances of the
 // same jar on the classpath
-public void test257_jar_ref_in_jar() throws Exception {
+public void test257_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runConformTest(
 		new String[] {
@@ -9303,7 +9303,7 @@ public void test257_jar_ref_in_jar() throws Exception {
 			"  A a;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -cp \"" + LIB_DIR + File.separator + "lib3.jar[-DUMMY]\""
 		+ " -cp \"" + LIB_DIR + File.separator + "lib1.jar[-p/A]\""
 		+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
@@ -9318,7 +9318,7 @@ public void test257_jar_ref_in_jar() throws Exception {
 // jar files reached indirectly bear the access rules of the entry that
 // references them - this hides the access rules of further instances of the
 // same jar on the classpath, to the point of absorbing it if none is specified
-public void test258_jar_ref_in_jar() throws Exception {
+public void test258_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runConformTest(
 		new String[] {
@@ -9329,7 +9329,7 @@ public void test258_jar_ref_in_jar() throws Exception {
 			"  A a;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -cp \"" + LIB_DIR + File.separator + "lib3.jar\""
 		+ " -cp \"" + LIB_DIR + File.separator + "lib1.jar[-p/A]\""
 		+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
@@ -9342,7 +9342,7 @@ public void test258_jar_ref_in_jar() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=97332 - jars pointed by jars
 // -sourcepath is OK at first level
-public void test259_jar_ref_in_jar() throws Exception {
+public void test259_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runConformTest(
 		new String[] {
@@ -9353,7 +9353,7 @@ public void test259_jar_ref_in_jar() throws Exception {
 			"  S1 s;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + LIB_DIR + File.separator + "lib1.jar\""
 		+ " -1.8 -g -preserveAllLocals"
 		+ " -proceedOnError -referenceInfo"
@@ -9365,7 +9365,7 @@ public void test259_jar_ref_in_jar() throws Exception {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=97332 - jars pointed by jars
 // -sourcepath is KO at second level (that is, it does not leverage the links
 // at all)
-public void test260_jar_ref_in_jar() throws Exception {
+public void test260_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runNegativeTest(
 		new String[] {
@@ -9376,7 +9376,7 @@ public void test260_jar_ref_in_jar() throws Exception {
 			"  S2 s;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + LIB_DIR + File.separator + "lib1.jar\""
 		+ " -1.8 -g -preserveAllLocals"
 		+ " -proceedOnError -referenceInfo"
@@ -9393,7 +9393,7 @@ public void test260_jar_ref_in_jar() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=97332 - jars pointed by jars
 // error case: the MANIFEST.MF is a directory; should fail gracefully
-public void test261_jar_ref_in_jar() throws Exception {
+public void test261_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runNegativeTest(
 		new String[] {
@@ -9405,7 +9405,7 @@ public void test261_jar_ref_in_jar() throws Exception {
 			"  B b;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ " -cp \"" + LIB_DIR + File.separator + "lib10.jar\""
 				+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 		+ " -1.8 -g -preserveAllLocals"
@@ -9423,15 +9423,15 @@ public void test261_jar_ref_in_jar() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=97332 - jars pointed by jars
 // using relative paths for libs
-public void test262_jar_ref_in_jar() throws Exception {
+public void test262_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String currentWorkingDirectoryPath = System.getProperty("user.dir");
 	if (currentWorkingDirectoryPath == null) {
-		System.err.println("BatchCompilerTest#235 could not access the current working directory " + currentWorkingDirectoryPath);
+		System.err.println("BatchCompilerTest#235 could not access the current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} else if (!new File(currentWorkingDirectoryPath).isDirectory()) {
-		System.err.println("BatchCompilerTest#235 current working directory is not a directory " + currentWorkingDirectoryPath);
+		System.err.println("BatchCompilerTest#235 current working directory is not a directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} else {
-		String lib1Path = currentWorkingDirectoryPath + File.separator + "lib1.jar";
-		String lib2Path = currentWorkingDirectoryPath + File.separator + "lib2.jar";
+		String lib1Path = currentWorkingDirectoryPath + File.separator + "lib1.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String lib2Path = currentWorkingDirectoryPath + File.separator + "lib2.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try {
 			Util.createJar(
 				null,
@@ -9462,7 +9462,7 @@ public void test262_jar_ref_in_jar() throws Exception {
 					"  A a;\n" +
 					"}",
 				},
-		        "\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+		        "\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ " -cp lib1.jar" // relative
 				+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 		        + " -1.8 -g -preserveAllLocals"
@@ -9472,7 +9472,7 @@ public void test262_jar_ref_in_jar() throws Exception {
 		        "",
 		        true);
 		} catch (IOException e) {
-			System.err.println("BatchCompilerTest#235 could not write to current working directory " + currentWorkingDirectoryPath);
+			System.err.println("BatchCompilerTest#235 could not write to current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} finally {
 			new File(lib1Path).delete();
 			new File(lib2Path).delete();
@@ -9485,7 +9485,7 @@ public void test262_jar_ref_in_jar() throws Exception {
 // java accepts the same jar (which makes the compiler responsible for the
 // error detection)
 // design: will issue a warning
-public void test263_jar_ref_in_jar() throws Exception {
+public void test263_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runTest(
 		true,
@@ -9497,7 +9497,7 @@ public void test263_jar_ref_in_jar() throws Exception {
 			"  A a;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -classpath \"" + LIB_DIR + File.separator + "lib11.jar\""
 		+ " -1.8 -g -preserveAllLocals"
 		+ " -verbose -proceedOnError -referenceInfo"
@@ -9510,7 +9510,7 @@ public void test263_jar_ref_in_jar() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=97332 - jars pointed by jars
 // missing space after ClassPath:
-public void test264_jar_ref_in_jar() throws Exception {
+public void test264_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runTest(
 		false,
@@ -9522,7 +9522,7 @@ public void test264_jar_ref_in_jar() throws Exception {
 			"  A a;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -classpath \"" + LIB_DIR + File.separator + "lib12.jar\""
 		+ " -1.8 -g -preserveAllLocals"
 		+ " -referenceInfo"
@@ -9544,7 +9544,7 @@ public void test264_jar_ref_in_jar() throws Exception {
 // javac reports an error (including an explicit manifest header error since
 // version 1.4); moreover, it stops interpreting the said header
 // design: we report a warning and eat up the remainding of the line
-public void test265_jar_ref_in_jar() throws Exception {
+public void test265_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runTest(
 		false,
@@ -9556,7 +9556,7 @@ public void test265_jar_ref_in_jar() throws Exception {
 			"  A a;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -classpath \"" + LIB_DIR + File.separator + "lib13.jar\""
 		+ " -1.8 -g -preserveAllLocals"
 		+ " -proceedOnError -referenceInfo"
@@ -9577,7 +9577,7 @@ public void test265_jar_ref_in_jar() throws Exception {
 // extra space before Class-Path header
 // the net result is that the line is part of the value of the previous header
 // we then simply don't see the remainding of the line as jars
-public void test266_jar_ref_in_jar() throws Exception {
+public void test266_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runTest(
 		false,
@@ -9589,7 +9589,7 @@ public void test266_jar_ref_in_jar() throws Exception {
 			"  A a;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -classpath \"" + LIB_DIR + File.separator + "lib14.jar\""
 		+ " -1.8 -g -preserveAllLocals"
 		+ " -proceedOnError -referenceInfo"
@@ -9609,7 +9609,7 @@ public void test266_jar_ref_in_jar() throws Exception {
 // missing newline at the end of the line
 // javac eats the line silently, which results into not finding A
 // design: we report a warning and eat up the remainding of the line
-public void test267_jar_ref_in_jar() throws Exception {
+public void test267_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runTest(
 		false,
@@ -9621,7 +9621,7 @@ public void test267_jar_ref_in_jar() throws Exception {
 			"  A a;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -classpath \"" + LIB_DIR + File.separator + "lib15.jar\""
 		+ " -1.8 -g -preserveAllLocals"
 		+ " -proceedOnError -referenceInfo"
@@ -9699,7 +9699,7 @@ public void test270_jar_ref_in_jar() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=97332 - jars pointed by jars
 // managing continuations properly
-public void test271_jar_ref_in_jar() throws Exception {
+public void test271_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runConformTest(
 		new String[] {
@@ -9711,7 +9711,7 @@ public void test271_jar_ref_in_jar() throws Exception {
 			"  B b;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ " -cp \"" + LIB_DIR + File.separator + "lib16.jar\""
 				+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 		+ " -1.8 -g -preserveAllLocals"
@@ -9742,7 +9742,7 @@ public void test272_jar_ref_in_jar() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=97332 - jars pointed by jars
 // white-box test: variants on continuations
-public void test273_jar_ref_in_jar() throws Exception {
+public void test273_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		ManifestAnalyzer analyzer = new ManifestAnalyzer();
 		assertTrue(analyzeManifestContents(
@@ -9817,7 +9817,7 @@ public void test276_jar_ref_in_jar() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=97332 - jars pointed by jars
 // extdirs jars do not follow links
-public void test277_jar_ref_in_jar() throws Exception {
+public void test277_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runNegativeTest(
 		new String[] {
@@ -9829,7 +9829,7 @@ public void test277_jar_ref_in_jar() throws Exception {
 			"  B b;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -proc:none"
 	  	+ " -extdirs \"" + LIB_DIR + File.separator + "dir\""
 		+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
@@ -9848,7 +9848,7 @@ public void test277_jar_ref_in_jar() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=97332 - jars pointed by jars
 // endorseddirs does not get expanded with linked files
-public void test278_jar_ref_in_jar() throws Exception {
+public void test278_jar_ref_in_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runNegativeTest(
 		new String[] {
@@ -9860,7 +9860,7 @@ public void test278_jar_ref_in_jar() throws Exception {
 			"  B b;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	  	+ " -endorseddirs \"" + LIB_DIR + File.separator + "dir\""
 		+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 		+ " -1.8 -g -preserveAllLocals"
@@ -9879,7 +9879,7 @@ public void test278_jar_ref_in_jar() throws Exception {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=216684
 // looking at access rules: ignore if better makes the class file selected if
 // it is newer, but see test#280 for what happens when it is not
-public void test279_sourcepath_vs_classpath() throws IOException, InterruptedException {
+public void test279_sourcepath_vs_classpath() throws IOException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		true /* shouldCompileOK*/,
 		new String[] { /* testFiles */
@@ -9892,7 +9892,7 @@ public void test279_sourcepath_vs_classpath() throws IOException, InterruptedExc
 			"  public static final int CONST = 2;\n" +
 			"}\n",
 		},
-		"\"" + OUTPUT_DIR + File.separator + "src1" + File.separator + "X.java\"" /* commandLine */
+		"\"" + OUTPUT_DIR + File.separator + "src1" + File.separator + "X.java\"" /* commandLine */ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -proc:none -d \"" + OUTPUT_DIR + File.separator + "bin1" + "\"",
 		"" /* expectedOutOutputString */,
 		"" /* expectedErrOutputString */,
@@ -9900,12 +9900,12 @@ public void test279_sourcepath_vs_classpath() throws IOException, InterruptedExc
 		null /* progress */);
 	// ensure that bin1/X.class file is newer than src2/X.java (some file systems
 	// store the modification time at a second precision)
-	File sourceFile = new File(OUTPUT_DIR + File.separator + "src2" + File.separator + "X.java"),
-	  classFile = new File(OUTPUT_DIR + File.separator + "bin1" + File.separator + "X.class");
-	while (classFile.lastModified() <= sourceFile.lastModified()) {
+	File sourceFile = new File(OUTPUT_DIR + File.separator + "src2" + File.separator + "X.java"), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	  classFile = new File(OUTPUT_DIR + File.separator + "bin1" + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	while (classFile.lastModified() <= sourceFile.lastModified()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		runConformTest(
 			null,
-			"\"" + OUTPUT_DIR +  File.separator + "src1" + File.separator + "X.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "src1" + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -proc:none -d \"" + OUTPUT_DIR + File.separator + "bin1" + "\"",
 			"",
 			"",
@@ -9921,7 +9921,7 @@ public void test279_sourcepath_vs_classpath() throws IOException, InterruptedExc
 			"  }\n" +
 			"}\n",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "Y.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "Y.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + File.separator + "src2[?**/*]" + "\""
 		+ " -classpath \"" + OUTPUT_DIR + File.separator + "bin1" + "\""
 		+ " -proc:none -d \"" + OUTPUT_DIR + "\"",
@@ -9935,7 +9935,7 @@ public void test279_sourcepath_vs_classpath() throws IOException, InterruptedExc
 // looking at access rules: ignore if better makes the class file selected even
 // if it is older (in test#279 it was newer); access rules are thus no work
 // around since they ignore modification dates
-public void test280_sourcepath_vs_classpath() throws IOException, InterruptedException {
+public void test280_sourcepath_vs_classpath() throws IOException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		true /* shouldCompileOK*/,
 		new String[] { /* testFiles */
@@ -9944,7 +9944,7 @@ public void test280_sourcepath_vs_classpath() throws IOException, InterruptedExc
 			"  public static final int CONST = 1;\n" +
 			"}\n",
 		},
-		"\"" + OUTPUT_DIR + File.separator + "src1" + File.separator + "X.java\"" /* commandLine */
+		"\"" + OUTPUT_DIR + File.separator + "src1" + File.separator + "X.java\"" /* commandLine */ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -proc:none -d \"" + OUTPUT_DIR + File.separator + "bin1" + "\"",
 		"" /* expectedOutOutputString */,
 		"" /* expectedErrOutputString */,
@@ -9952,10 +9952,10 @@ public void test280_sourcepath_vs_classpath() throws IOException, InterruptedExc
 		null /* progress */);
 	// ensure that bin1/X.class file is older than src2/X.java (some file systems
 	// store the modification time at a second precision)
-	File sourceFile = new File(OUTPUT_DIR + File.separator + "src2" + File.separator + "X.java"),
-	  classFile = new File(OUTPUT_DIR + File.separator + "bin1" + File.separator + "X.class");
-	new File(OUTPUT_DIR + File.separator + "src2").mkdirs();
-	do {
+	File sourceFile = new File(OUTPUT_DIR + File.separator + "src2" + File.separator + "X.java"), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	  classFile = new File(OUTPUT_DIR + File.separator + "bin1" + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	new File(OUTPUT_DIR + File.separator + "src2").mkdirs(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		Util.writeToFile(
 			"public class X {\n" +
 			"  public static final int CONST = 2;\n" +
@@ -9973,7 +9973,7 @@ public void test280_sourcepath_vs_classpath() throws IOException, InterruptedExc
 			"  }\n" +
 			"}\n",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "Y.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "Y.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + File.separator + "src2[?**/*]" + "\""
 		+ " -classpath \"" + OUTPUT_DIR + File.separator + "bin1" + "\""
 		+ " -proc:none -d \"" + OUTPUT_DIR + "\"",
@@ -9992,7 +9992,7 @@ public void test281_classpath() {
 			"public class X {\n" +
 			"}",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "src1/X.java\" -cp Y.java",
+        "\"" + OUTPUT_DIR +  File.separator + "src1/X.java\" -cp Y.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         "" /* expectedOutOutputString */,
         "incorrect classpath: Y.java\n",
         false/*shouldFlushOutput*/);
@@ -10006,7 +10006,7 @@ public void test282_classpath() {
 			"public class X {\n" +
 			"}",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "src1/X.java\" -cp p/Y.java",
+        "\"" + OUTPUT_DIR +  File.separator + "src1/X.java\" -cp p/Y.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         "" /* expectedOutOutputString */,
         "incorrect classpath: p/Y.java\n",
         false/*shouldFlushOutput*/);
@@ -10020,7 +10020,7 @@ public void test283_classpath() {
 			"public class X {\n" +
 			"}",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "src1/X.java\" -cp Y.class",
+        "\"" + OUTPUT_DIR +  File.separator + "src1/X.java\" -cp Y.class", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         "" /* expectedOutOutputString */,
         "incorrect classpath: Y.class\n",
         false/*shouldFlushOutput*/);
@@ -10034,7 +10034,7 @@ public void test284_classpath() {
 			"public class X {\n" +
 			"}",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "src1/X.java\" -cp p/Y.class",
+        "\"" + OUTPUT_DIR +  File.separator + "src1/X.java\" -cp p/Y.class", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         "" /* expectedOutOutputString */,
         "incorrect classpath: p/Y.class\n",
         false/*shouldFlushOutput*/);
@@ -10050,7 +10050,7 @@ public void test285_option_files() {
 			"options.txt",
 			"-source 1.8"
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "X.java\" " +
+        "\"" + OUTPUT_DIR +  File.separator + "X.java\" " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         "\"@" + OUTPUT_DIR +  File.separator + "options.txt\"",
         "" /* expectedOutOutputString */,
         "" /* stderr */,
@@ -10070,14 +10070,14 @@ public void test287_option_files() {
 			"options2.txt",
 			"@options1.txt"
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "X.java\" " +
+        "\"" + OUTPUT_DIR +  File.separator + "X.java\" " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         "\"@" + OUTPUT_DIR +  File.separator + "options1.txt\"",
         "" /* expectedOutOutputString */,
         "Unrecognized option : @options2.txt\n" /* stderr */,
         true /*shouldFlushOutput*/);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=246066
-public void test288_warn_options() {
+public void test288_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -10086,7 +10086,7 @@ public void test288_warn_options() {
 			"public class X extends BaseX implements IX {\n" +
 			"}\n",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -warn:+intfRedundant -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -10100,7 +10100,7 @@ public void test288_warn_options() {
 		true);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=246066 - variation
-public void test289_warn_options() {
+public void test289_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -10109,7 +10109,7 @@ public void test289_warn_options() {
 			"public class X extends BaseX implements IX {\n" +
 			"}\n",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -warn:+redundantSuperinterface -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -10132,7 +10132,7 @@ public void test290_warn_options() {
 			"public class X extends BaseX implements IX {\n" +
 			"}\n",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -warn:+intfRedundant -warn:-intfRedundant -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -10158,7 +10158,7 @@ public void test291_jar_ref_in_jar() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=163194
 // -warn option - regression tests to check option allOver-ann
-public void test292_warn_options() {
+public void test292_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -10173,7 +10173,7 @@ public void test292_warn_options() {
 			"  public String toString(){return \"HelloWorld\";}\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -warn:allOver-ann -1.8 -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -10201,7 +10201,7 @@ public void test292_warn_options() {
 // -warn option - regression tests to check option includeAssertNull
 // Null problems arising from asserts should be reported here
 // since includeAssertNull is enabled
-public void test293_warn_options() {
+public void test293_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -10234,7 +10234,7 @@ public void test293_warn_options() {
 			"	}\n" +
 			"}\n",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -warn:null,includeAssertNull -1.8 -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -10271,7 +10271,7 @@ public void test293_warn_options() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=318682
 // -warn option - regression test to check option static-method
 // Method can be static warning should be given
-public void test294_warn_options() {
+public void test294_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -10301,7 +10301,7 @@ public void test294_warn_options() {
 			"	}\n" +
 			"}\n",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -warn:static-method -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -10328,7 +10328,7 @@ public void test294_warn_options() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=318682
 // -warn option - regression test to check option all-static-method
 // Method can be static warning should be given
-public void test295_warn_options() {
+public void test295_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -10358,7 +10358,7 @@ public void test295_warn_options() {
 			"	}\n" +
 			"}\n",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -warn:all-static-method -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -10388,7 +10388,7 @@ public void test295_warn_options() {
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=280784
-public void test293() throws Exception {
+public void test293() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runNegativeTest(
 		new String[] {
@@ -10399,7 +10399,7 @@ public void test293() throws Exception {
 			"  A a;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -cp \"" + LIB_DIR + File.separator + "lib3.jar[~p/A]\""
 		+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 		+ " -1.8 -g -preserveAllLocals"
@@ -10423,7 +10423,7 @@ public void test294(){
 			"public class X {\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -cp \"" + LIB_DIR + "\""
 		+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 		+ " -1.8 -g -preserveAllLocals"
@@ -10441,7 +10441,7 @@ public void test296(){
 			"public class X {\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -cp \"" + LIB_DIR + "\""
 		+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 		+ " -1.8 -g -preserveAllLocals"
@@ -10459,7 +10459,7 @@ public void test297(){
 			"public class X {\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -cp \"" + LIB_DIR + "\""
 		+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 		+ " -1.8 -g -preserveAllLocals"
@@ -10479,7 +10479,7 @@ public void test298(){
 			"	private int i;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR + File.separator + "X.java\""
+		"\"" + OUTPUT_DIR + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -1.8 -g -preserveAllLocals"
 		+ " -proceedOnError -err:+unused,suppress -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -10487,7 +10487,7 @@ public void test298(){
 		true);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=295551
-public void test299(){
+public void test299(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -10496,7 +10496,7 @@ public void test299(){
 			"	private int i;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR + File.separator + "X.java\""
+		"\"" + OUTPUT_DIR + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -1.8 -g -preserveAllLocals"
 		+ " -proceedOnError -err:+unused -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -10524,7 +10524,7 @@ public void test300(){
 			"	private int i;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR + File.separator + "X.java\""
+		"\"" + OUTPUT_DIR + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -1.8 -g -preserveAllLocals"
 		+ " -proceedOnError -warn:-suppress -err:+suppress,unused -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -10532,7 +10532,7 @@ public void test300(){
 		true);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=295551
-public void test301(){
+public void test301(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -10541,7 +10541,7 @@ public void test301(){
 			"	private int i;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR + File.separator + "X.java\""
+		"\"" + OUTPUT_DIR + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -1.8 -g -preserveAllLocals"
 		+ " -proceedOnError -warn:-suppress -err:+unused -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -10555,7 +10555,7 @@ public void test301(){
 		true);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=295551
-public void test302(){
+public void test302(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -10564,7 +10564,7 @@ public void test302(){
 			"	private int i;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR + File.separator + "X.java\""
+		"\"" + OUTPUT_DIR + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -1.8 -g -preserveAllLocals"
 		+ " -proceedOnError -warn:-suppress -err:+suppress,unused -warn:-suppress -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -10578,7 +10578,7 @@ public void test302(){
 		true);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=295551
-public void test303(){
+public void test303(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -10587,7 +10587,7 @@ public void test303(){
 			"	private int i;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR + File.separator + "X.java\""
+		"\"" + OUTPUT_DIR + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -1.8 -g -preserveAllLocals"
 		+ " -proceedOnError -warn:-suppress -err:+suppress,unused -warn:+suppress -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -10606,7 +10606,7 @@ public void test303(){
 		true);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=295551
-public void test304(){
+public void test304(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -10615,7 +10615,7 @@ public void test304(){
 			"	private int i;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR + File.separator + "X.java\""
+		"\"" + OUTPUT_DIR + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -1.8 -g -preserveAllLocals"
 		+ " -proceedOnError -err:+suppress,unused -warn:-suppress -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -10635,7 +10635,7 @@ public void test305(){
 			"src/X.java",
 			"public class X {}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -encoding UTF-8 -1.8 -g -encoding ISO-8859-1",
 		"Found encoding ISO-8859-1. A different encoding was specified: UTF-8\n" +
 		"Multiple encoding specified: ISO-8859-1, UTF-8. The default encoding has been set to ISO-8859-1\n",
@@ -10649,7 +10649,7 @@ public void test306(){
 			"src/X.java",
 			"public class X {}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -encoding UTF-8 -1.8 -encoding Cp1252 -g -encoding ISO-8859-1",
 		"Found encoding Cp1252. A different encoding was specified: UTF-8\n" +
 		"Found encoding ISO-8859-1. Different encodings were specified: Cp1252, UTF-8\n" +
@@ -10658,7 +10658,7 @@ public void test306(){
 		true);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=321115
-public void test0307(){
+public void test0307(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String os= System.getProperty("os.name");
     if (!os.startsWith("Windows")) // https://bugs.eclipse.org/bugs/show_bug.cgi?id=323558
     	return;
@@ -10673,7 +10673,7 @@ public void test0307(){
 				"package p;\n" +
 				"public class Y { public class I {}; }",
 			},
-	        "\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "Y.java\""
+	        "\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "Y.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        + " -1.8 -g -preserveAllLocals -proceedOnError -referenceInfo ",
 	        "",
 	        "",
@@ -10690,7 +10690,7 @@ public void test0307(){
 					"	}\n" +
 					"}",
 				},
-		        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		        + " -1.8 -g -preserveAllLocals -proceedOnError -referenceInfo ",
 		        "",// this is not the runtime output
 		        "no classpath defined, using default directory instead\n",
@@ -10700,7 +10700,7 @@ public void test0307(){
 		if (!Util.delete(f)) {
 			System.out.println("Could not delete X");
 		}
-		f = new File(userDir, "p" + File.separator + "Y.java");
+		f = new File(userDir, "p" + File.separator + "Y.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (!Util.delete(f)) {
 			System.out.println("Could not delete Y");
 		}
@@ -10711,7 +10711,7 @@ public void test0307(){
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=321115
-public void test0307a(){
+public void test0307a(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String os= System.getProperty("os.name");
     if (!os.startsWith("Windows")) // https://bugs.eclipse.org/bugs/show_bug.cgi?id=323558
     	return;
@@ -10726,7 +10726,7 @@ public void test0307a(){
 				"package P;\n" +
 				"public class Y { public class I {}; }",
 			},
-	        "\"" + OUTPUT_DIR +  File.separator + "P" + File.separator + "Y.java\""
+	        "\"" + OUTPUT_DIR +  File.separator + "P" + File.separator + "Y.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        + " -1.8 -g -preserveAllLocals -proceedOnError -referenceInfo ",
 	        "",
 	        "",
@@ -10743,7 +10743,7 @@ public void test0307a(){
 					"	}\n" +
 					"}",
 				},
-		        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		        + " -1.8 -g -preserveAllLocals -proceedOnError -referenceInfo ",
 		        "",// this is not the runtime output
 		        "no classpath defined, using default directory instead\n" +
@@ -10765,7 +10765,7 @@ public void test0307a(){
 		if (!Util.delete(f)) {
 			System.out.println("Could not delete X");
 		}
-		f = new File(userDir, "p" + File.separator + "Y.java");
+		f = new File(userDir, "p" + File.separator + "Y.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (!Util.delete(f)) {
 			System.out.println("Could not delete Y");
 		}
@@ -10776,7 +10776,7 @@ public void test0307a(){
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=321115
-public void test0307b(){
+public void test0307b(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String os= System.getProperty("os.name");
     if (!os.startsWith("Windows")) // https://bugs.eclipse.org/bugs/show_bug.cgi?id=323558
     	return;
@@ -10791,7 +10791,7 @@ public void test0307b(){
 				"package p;\n" +
 				"public class y { public class I {}; }",
 			},
-	        "\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "y.java\""
+	        "\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "y.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        + " -1.8 -g -preserveAllLocals -proceedOnError -referenceInfo ",
 	        "",
 	        "",
@@ -10808,7 +10808,7 @@ public void test0307b(){
 					"	}\n" +
 					"}",
 				},
-		        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		        + " -1.8 -g -preserveAllLocals -proceedOnError -referenceInfo ",
 		        "",// this is not the runtime output
 		        "no classpath defined, using default directory instead\n" +
@@ -10830,7 +10830,7 @@ public void test0307b(){
 		if (!Util.delete(f)) {
 			System.out.println("Could not delete X");
 		}
-		f = new File(userDir, "p" + File.separator + "Y.java");
+		f = new File(userDir, "p" + File.separator + "Y.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (!Util.delete(f)) {
 			System.out.println("Could not delete Y");
 		}
@@ -10841,7 +10841,7 @@ public void test0307b(){
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=321115
-public void test0307c(){
+public void test0307c(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String os= System.getProperty("os.name");
     if (!os.startsWith("Windows")) // https://bugs.eclipse.org/bugs/show_bug.cgi?id=323558
     	return;
@@ -10856,7 +10856,7 @@ public void test0307c(){
 				"package p;\n" +
 				"public class Y { public class i {}; }",
 			},
-	        "\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "Y.java\""
+	        "\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "Y.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        + " -1.8 -g -preserveAllLocals -proceedOnError -referenceInfo ",
 	        "",
 	        "",
@@ -10873,7 +10873,7 @@ public void test0307c(){
 					"	}\n" +
 					"}",
 				},
-		        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		        + " -1.8 -g -preserveAllLocals -proceedOnError -referenceInfo ",
 		        "",// this is not the runtime output
 		        "no classpath defined, using default directory instead\n" +
@@ -10895,7 +10895,7 @@ public void test0307c(){
 		if (!Util.delete(f)) {
 			System.out.println("Could not delete X");
 		}
-		f = new File(userDir, "p" + File.separator + "Y.java");
+		f = new File(userDir, "p" + File.separator + "Y.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (!Util.delete(f)) {
 			System.out.println("Could not delete Y");
 		}
@@ -10906,7 +10906,7 @@ public void test0307c(){
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=321115
-public void test0307d(){
+public void test0307d(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String os= System.getProperty("os.name");
     if (!os.startsWith("Windows")) // https://bugs.eclipse.org/bugs/show_bug.cgi?id=323558
     	return;
@@ -10921,7 +10921,7 @@ public void test0307d(){
 				"package P;\n" +
 				"public class Y { public class I {}; }",
 			},
-	        "\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "Y.java\""
+	        "\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "Y.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        + " -1.8 -g -preserveAllLocals -proceedOnError -referenceInfo ",
 	        "",
 	        "",
@@ -10938,7 +10938,7 @@ public void test0307d(){
 					"	}\n" +
 					"}",
 				},
-		        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		        + " -1.8 -g -preserveAllLocals -proceedOnError -referenceInfo ",
 		        "",// this is not the runtime output
 		        "no classpath defined, using default directory instead\n" +
@@ -10960,7 +10960,7 @@ public void test0307d(){
 		if (!Util.delete(f)) {
 			System.out.println("Could not delete X");
 		}
-		f = new File(userDir, "p" + File.separator + "Y.java");
+		f = new File(userDir, "p" + File.separator + "Y.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (!Util.delete(f)) {
 			System.out.println("Could not delete Y");
 		}
@@ -10971,7 +10971,7 @@ public void test0307d(){
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=321115
-public void test0307e(){
+public void test0307e(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String os= System.getProperty("os.name");
     if (!os.startsWith("Windows")) // https://bugs.eclipse.org/bugs/show_bug.cgi?id=323558
     	return;
@@ -10986,7 +10986,7 @@ public void test0307e(){
 				"package P;\n" +
 				"public class Y { public class I {}; }",
 			},
-	        "\"" + OUTPUT_DIR +  File.separator + "P" + File.separator + "Y.java\""
+	        "\"" + OUTPUT_DIR +  File.separator + "P" + File.separator + "Y.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        + " -1.8 -g -preserveAllLocals -proceedOnError -referenceInfo ",
 	        "",
 	        "",
@@ -11003,7 +11003,7 @@ public void test0307e(){
 					"	}\n" +
 					"}",
 				},
-		        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		        + " -1.8 -g -preserveAllLocals -proceedOnError -referenceInfo ",
 		        "",// this is not the runtime output
 		        "no classpath defined, using default directory instead\n" +
@@ -11025,7 +11025,7 @@ public void test0307e(){
 		if (!Util.delete(f)) {
 			System.out.println("Could not delete X");
 		}
-		f = new File(userDir, "p" + File.separator + "Y.java");
+		f = new File(userDir, "p" + File.separator + "Y.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (!Util.delete(f)) {
 			System.out.println("Could not delete Y");
 		}
@@ -11036,14 +11036,14 @@ public void test0307e(){
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=328775 - Compiler fails to warn about invalid cast in 1.4 mode.
-public void testInferenceIn15Project(){  // ensure 1.8 complains too
+public void testInferenceIn15Project(){  // ensure 1.8 complains too //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String currentWorkingDirectoryPath = System.getProperty("user.dir");
 	if (currentWorkingDirectoryPath == null) {
-		fail("BatchCompilerTest#testInference14 could not access the current working directory " + currentWorkingDirectoryPath);
+		fail("BatchCompilerTest#testInference14 could not access the current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} else if (!new File(currentWorkingDirectoryPath).isDirectory()) {
-		fail("BatchCompilerTest#testInference14 current working directory is not a directory " + currentWorkingDirectoryPath);
+		fail("BatchCompilerTest#testInference14 current working directory is not a directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	String lib1Path = currentWorkingDirectoryPath + File.separator + "lib1.jar";
+	String lib1Path = currentWorkingDirectoryPath + File.separator + "lib1.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	try {
 		Util.createJar(
 				new String[] {
@@ -11065,7 +11065,7 @@ public void testInferenceIn15Project(){  // ensure 1.8 complains too
 						"}\n" +
 						"class BundleWiring {}\n",
 				},
-				"\"" + OUTPUT_DIR +  File.separator + "src/X.java\""
+				"\"" + OUTPUT_DIR +  File.separator + "src/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ " -cp lib1.jar" // relative
 				+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 				+ " -1.8 -g -preserveAllLocals"
@@ -11081,21 +11081,21 @@ public void testInferenceIn15Project(){  // ensure 1.8 complains too
 		        "1 problem (1 error)\n",
 		        true);
 	} catch (IOException e) {
-		System.err.println("BatchCompilerTest#testInference14 could not write to current working directory " + currentWorkingDirectoryPath);
+		System.err.println("BatchCompilerTest#testInference14 could not write to current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} finally {
 		new File(lib1Path).delete();
 	}
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=330347 - Test retention of bridge methods.
-public void testBridgeMethodRetention(){
+public void testBridgeMethodRetention(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String currentWorkingDirectoryPath = System.getProperty("user.dir");
 	if (currentWorkingDirectoryPath == null) {
-		fail("BatchCompilerTest#testBridgeMethodRetention could not access the current working directory " + currentWorkingDirectoryPath);
+		fail("BatchCompilerTest#testBridgeMethodRetention could not access the current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} else if (!new File(currentWorkingDirectoryPath).isDirectory()) {
-		fail("BatchCompilerTest#testBridgeMethodRetention current working directory is not a directory " + currentWorkingDirectoryPath);
+		fail("BatchCompilerTest#testBridgeMethodRetention current working directory is not a directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	String lib1Path = currentWorkingDirectoryPath + File.separator + "lib1.jar";
+	String lib1Path = currentWorkingDirectoryPath + File.separator + "lib1.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	try {
 		Util.createJar(
 				new String[] {
@@ -11123,7 +11123,7 @@ public void testBridgeMethodRetention(){
 						"    }\n" +
 						"}\n",
 				},
-				"\"" + OUTPUT_DIR +  File.separator + "src/X.java\""
+				"\"" + OUTPUT_DIR +  File.separator + "src/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ " -cp lib1.jar" // relative
 				+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 				+ " -1.8 -g -preserveAllLocals"
@@ -11133,13 +11133,13 @@ public void testBridgeMethodRetention(){
 		        "",
 		        true);
 	} catch (IOException e) {
-		System.err.println("BatchCompilerTest#testBridgeMethodRetention could not write to current working directory " + currentWorkingDirectoryPath);
+		System.err.println("BatchCompilerTest#testBridgeMethodRetention could not write to current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} finally {
 		new File(lib1Path).delete();
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=322817 -- with new option kicking in
-public void testReportingUnavoidableGenericProblems() {
+public void testReportingUnavoidableGenericProblems() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -11153,7 +11153,7 @@ public void testReportingUnavoidableGenericProblems() {
 			"    Zork z;\n" +
 			"}\n"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -1.8 -warn:-unavoidableGenericProblems -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -11171,7 +11171,7 @@ public void testReportingUnavoidableGenericProblems() {
 		true);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=322817  -- without new option kicking in
-public void testReportingUnavoidableGenericProblems2() {
+public void testReportingUnavoidableGenericProblems2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -11185,7 +11185,7 @@ public void testReportingUnavoidableGenericProblems2() {
 			"    Zork z;\n" +
 			"}\n"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -1.8 -warn:+unavoidableGenericProblems -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -11208,7 +11208,7 @@ public void testReportingUnavoidableGenericProblems2() {
 		true);
 }
 //-warn option - regression tests
-public void test0308_warn_options() {
+public void test0308_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// check the option introduced in bug 359721
 	this.runConformTest(
 		new String[] {
@@ -11222,14 +11222,14 @@ public void test0308_warn_options() {
 			"  }\n" +
 			"}\n"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:-resource -1.8 -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"",
 		true);
 }
 //-warn option - regression tests
-public void test0309_warn_options() {
+public void test0309_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// check the option introduced in bug 359721
 	this.runConformTest(
 		new String[] {
@@ -11244,7 +11244,7 @@ public void test0309_warn_options() {
 			"  }\n" +
 			"}\n"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:+resource -1.8 -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -11260,14 +11260,14 @@ public void test0309_warn_options() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=366829
 // -warn option - regression test to check option syncOverride
 // Warning when when a class overrides a synchronized method without synchronizing it
-public void test310_warn_options() {
+public void test310_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
 			"class X { synchronized void foo() {} }\n" +
 			"class Y extends X { @Override void foo() { } }"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -warn:syncOverride -1.8 -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -11284,7 +11284,7 @@ public void test310_warn_options() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=366829
 // -warn option - regression test to check option syncOverride
 // Warning when when a class overrides a synchronized method without synchronizing it
-public void test310b_warn_options() {
+public void test310b_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"X.java",
@@ -11293,7 +11293,7 @@ public void test310b_warn_options() {
 				"  synchronized void foo() { }\n"+
 				"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -warn:syncOverride -1.8 -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -11310,7 +11310,7 @@ public void test310b_warn_options() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=325342
 // -warn option - regression tests to check option nullAnnot (with args)
 // Null warnings because of annotations - custom annotation types used - challenging various kinds of diagnostics
-public void test312_warn_options() {
+public void test312_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"p/X.java",
@@ -11355,7 +11355,7 @@ public void test312_warn_options() {
 				"@interface NonNullByDefault{\n" +
 				"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 //		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -1.8"
 		+ " -warn:+nullAnnot(p.Nullable|p.NonNull|p.NonNullByDefault) -warn:+null -proc:none -d \"" + OUTPUT_DIR + "\"",
@@ -11412,7 +11412,7 @@ public void test312_warn_options() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=374605
 // -warn/-error option : enumSwitchPedantic
-public void test317_warn_options() {
+public void test317_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"p/X.java",
@@ -11427,7 +11427,7 @@ public void test317_warn_options() {
 				"     }\n" +
 				"}\n"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -1.8"
 		+ " -warn:+enumSwitchPedantic -proc:none -d \"" + OUTPUT_DIR + "\"",
@@ -11444,7 +11444,7 @@ public void test317_warn_options() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=374605
 // -warn/-error option : enumSwitchPedantic: increase severity to ERROR
-public void test318_warn_options() {
+public void test318_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"p/X.java",
@@ -11459,7 +11459,7 @@ public void test318_warn_options() {
 					"     }\n" +
 					"}\n"
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "X.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -sourcepath \"" + OUTPUT_DIR + "\""
 			+ " -1.8"
 			+ " -err:+enumSwitchPedantic -proc:none -d \"" + OUTPUT_DIR + "\"",
@@ -11476,7 +11476,7 @@ public void test318_warn_options() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=374605
 // -warn/-error option : switchDefault
-public void test319_warn_options() {
+public void test319_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"p/X.java",
@@ -11492,7 +11492,7 @@ public void test319_warn_options() {
 				"     }\n" +
 				"}\n"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -1.8"
 		+ " -warn:+switchDefault -proc:none -d \"" + OUTPUT_DIR + "\"",
@@ -11510,7 +11510,7 @@ public void test319_warn_options() {
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=220928
 //-nowarn option - regression tests
 //default
-public void test317_nowarn_options() {
+public void test317_nowarn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"src/X.java",
@@ -11522,7 +11522,7 @@ public void test317_nowarn_options() {
 				"  }\n" +
 				"}",
 			},
-			"\"" + OUTPUT_DIR + File.separator + "src/X.java\""
+			"\"" + OUTPUT_DIR + File.separator + "src/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -warn:javadoc -nowarn:[\"" +
 			OUTPUT_DIR + File.separator + "src" +
 			"\"] -proc:none -d \"" + OUTPUT_DIR + "\"",
@@ -11534,7 +11534,7 @@ public void test317_nowarn_options() {
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=220928
 //-nowarn option - regression tests
 //two different source folders ignore only from one
-public void test318_nowarn_options() {
+public void test318_nowarn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"src/X.java",
@@ -11554,7 +11554,7 @@ public void test318_nowarn_options() {
 				"  }\n" +
 				"}"
 			},
-			"\"" + OUTPUT_DIR + File.separator + "src/X.java\"" +
+			"\"" + OUTPUT_DIR + File.separator + "src/X.java\"" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			" \"" + OUTPUT_DIR + File.separator + "src2/Y.java\"" +
 			" -warn:javadoc -nowarn:[" +
 			"\"" + OUTPUT_DIR + File.separator + "src"
@@ -11573,7 +11573,7 @@ public void test318_nowarn_options() {
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=220928
 //-nowarn option - regression tests
 //two different source folders ignore from both
-public void test319_nowarn_options() {
+public void test319_nowarn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"src1/X.java",
@@ -11593,7 +11593,7 @@ public void test319_nowarn_options() {
 				"  }\n" +
 				"}"
 			},
-			"\"" + OUTPUT_DIR + File.separator + "src1/X.java\"" +
+			"\"" + OUTPUT_DIR + File.separator + "src1/X.java\"" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			" \"" + OUTPUT_DIR + File.separator + "src2/Y.java\"" +
 			" -warn:javadoc -nowarn:[" +
 			"\"" + OUTPUT_DIR + File.separator + "src1\"" + File.pathSeparator +
@@ -11607,7 +11607,7 @@ public void test319_nowarn_options() {
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=220928
 //-nowarn option - regression tests
 //two different source folders ignore from both using multiple -nowarn
-public void test320_nowarn_options() {
+public void test320_nowarn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"src1/X.java",
@@ -11627,7 +11627,7 @@ public void test320_nowarn_options() {
 				"  }\n" +
 				"}"
 			},
-			"\"" + OUTPUT_DIR + File.separator + "src1/X.java\"" +
+			"\"" + OUTPUT_DIR + File.separator + "src1/X.java\"" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			" \"" + OUTPUT_DIR + File.separator + "src2/Y.java\"" +
 			" -warn:javadoc -nowarn:[" +
 			"\"" + OUTPUT_DIR + File.separator + "src1\"] -nowarn:[" +
@@ -11641,7 +11641,7 @@ public void test320_nowarn_options() {
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=220928
 //-nowarn option - regression tests
 //option syntax error -nowarn:
-public void test321_nowarn_options() {
+public void test321_nowarn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"src/X.java",
@@ -11653,7 +11653,7 @@ public void test321_nowarn_options() {
 				"  }\n" +
 				"}",
 			},
-			"\"" + OUTPUT_DIR + File.separator + "src/X.java\""
+			"\"" + OUTPUT_DIR + File.separator + "src/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -warn:javadoc -nowarn: -proc:none -d \"" + OUTPUT_DIR + "\"",
 			"",
 			"invalid syntax for nowarn option: -nowarn:\n",
@@ -11663,7 +11663,7 @@ public void test321_nowarn_options() {
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=220928
 //-nowarn option - regression tests
 //option syntax error -nowarn:[
-public void test322_nowarn_options() {
+public void test322_nowarn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"src/X.java",
@@ -11675,7 +11675,7 @@ public void test322_nowarn_options() {
 				"  }\n" +
 				"}",
 			},
-			"\"" + OUTPUT_DIR + File.separator + "src/X.java\""
+			"\"" + OUTPUT_DIR + File.separator + "src/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -warn:javadoc -nowarn:[ -proc:none -d \"" + OUTPUT_DIR + "\"",
 			"",
 			"invalid syntax for nowarn option: -nowarn:[\n",
@@ -11685,7 +11685,7 @@ public void test322_nowarn_options() {
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=220928
 //-nowarn option - regression tests
 //option syntax error -nowarn:[src
-public void test323_nowarn_options() {
+public void test323_nowarn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"src/X.java",
@@ -11697,7 +11697,7 @@ public void test323_nowarn_options() {
 				"  }\n" +
 				"}",
 			},
-			"\"" + OUTPUT_DIR + File.separator + "src/X.java\""
+			"\"" + OUTPUT_DIR + File.separator + "src/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -warn:javadoc -nowarn:[src -proc:none -d \"" + OUTPUT_DIR + "\"",
 			"",
 			"invalid syntax for nowarn option: -nowarn:[src\n",
@@ -11707,7 +11707,7 @@ public void test323_nowarn_options() {
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=220928
 //-nowarn option - regression tests
 //option syntax error -nowarn:src]
-public void test324_nowarn_options() {
+public void test324_nowarn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"src/X.java",
@@ -11719,7 +11719,7 @@ public void test324_nowarn_options() {
 				"  }\n" +
 				"}",
 			},
-			"\"" + OUTPUT_DIR + File.separator + "src/X.java\""
+			"\"" + OUTPUT_DIR + File.separator + "src/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -warn:javadoc -nowarn:src] -proc:none -d \"" + OUTPUT_DIR + "\"",
 			"",
 			"invalid syntax for nowarn option: -nowarn:src]\n",
@@ -11729,7 +11729,7 @@ public void test324_nowarn_options() {
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=220928
 //-nowarn option - regression tests
 //option syntax error -nowarn[src]
-public void test325_nowarn_options() {
+public void test325_nowarn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"src/X.java",
@@ -11741,7 +11741,7 @@ public void test325_nowarn_options() {
 				"  }\n" +
 				"}",
 			},
-			"\"" + OUTPUT_DIR + File.separator + "src/X.java\""
+			"\"" + OUTPUT_DIR + File.separator + "src/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -warn:javadoc -nowarn[src] -proc:none -d \"" + OUTPUT_DIR + "\"",
 			"",
 			"invalid syntax for nowarn option: -nowarn[src]\n",
@@ -11751,7 +11751,7 @@ public void test325_nowarn_options() {
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=220928
 //-nowarn option - regression tests
 //option syntax error -nowarn:[src1]src2
-public void test326_nowarn_options() {
+public void test326_nowarn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"src/X.java",
@@ -11763,7 +11763,7 @@ public void test326_nowarn_options() {
 				"  }\n" +
 				"}",
 			},
-			"\"" + OUTPUT_DIR + File.separator + "src/X.java\""
+			"\"" + OUTPUT_DIR + File.separator + "src/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -warn:javadoc -nowarn:[src1]src2 -proc:none -d \"" + OUTPUT_DIR + "\"",
 			"",
 			"invalid syntax for nowarn option: -nowarn:[src1]src2\n",
@@ -11773,7 +11773,7 @@ public void test326_nowarn_options() {
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=220928
 //-nowarn option - regression tests
 //option syntax error -nowarn:[]
-public void test327_nowarn_options() {
+public void test327_nowarn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"src/X.java",
@@ -11785,7 +11785,7 @@ public void test327_nowarn_options() {
 				"  }\n" +
 				"}",
 			},
-			"\"" + OUTPUT_DIR + File.separator + "src/X.java\""
+			"\"" + OUTPUT_DIR + File.separator + "src/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -warn:javadoc -nowarn:[] -proc:none -d \"" + OUTPUT_DIR + "\"",
 			"",
 			"invalid syntax for nowarn option: -nowarn:[]\n",
@@ -11795,7 +11795,7 @@ public void test327_nowarn_options() {
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=220928
 //-nowarn option - regression tests
 //non-optional errors cannot be ignored
-public void test328_nowarn_options() {
+public void test328_nowarn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"src/X.java",
@@ -11808,7 +11808,7 @@ public void test328_nowarn_options() {
 				"  }\n" +
 				"}",
 			},
-			"\"" + OUTPUT_DIR + File.separator + "src/X.java\""
+			"\"" + OUTPUT_DIR + File.separator + "src/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -warn:javadoc -nowarn:[" +
 			"\"" + OUTPUT_DIR + File.separator + "src]\" -proc:none -d \"" + OUTPUT_DIR + "\"",
 			"",
@@ -11825,7 +11825,7 @@ public void test328_nowarn_options() {
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=220928
 //-nowarn option - regression tests
 //task tags cannot be ignored
-public void test329_nowarn_options() {
+public void test329_nowarn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"src/X.java",
@@ -11838,7 +11838,7 @@ public void test329_nowarn_options() {
 				"  }\n" +
 				"}",
 			},
-			"\"" + OUTPUT_DIR + File.separator + "src/X.java\""
+			"\"" + OUTPUT_DIR + File.separator + "src/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -warn:javadoc,tasks(TODO) -nowarn:[" +
 			"\"" + OUTPUT_DIR + File.separator + "src]\" -proc:none -d \"" + OUTPUT_DIR + "\"",
 			"",
@@ -11854,7 +11854,7 @@ public void test329_nowarn_options() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=408815
 // -warn option - regression tests to check option unlikelyCollectionMethodArgumentType
-public void test330_warn_options() {
+public void test330_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"p/X.java",
@@ -11866,7 +11866,7 @@ public void test330_warn_options() {
 				"  }\n" +
 				"}\n",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -1.8"
 		+ " -warn:-unlikelyCollectionMethodArgumentType -proc:none -d \"" + OUTPUT_DIR + "\"",
@@ -11875,7 +11875,7 @@ public void test330_warn_options() {
 		true);
 }//https://bugs.eclipse.org/bugs/show_bug.cgi?id=408815
 //-warn option - regression tests to check option unlikelyEqualsArgumentType
-public void test331_warn_options() {
+public void test331_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"p/X.java",
@@ -11886,7 +11886,7 @@ public void test331_warn_options() {
 				"  }\n" +
 				"}\n",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -1.8"
 		+ " -info:-unlikelyEqualsArgumentType -proc:none -d \"" + OUTPUT_DIR + "\"",
@@ -11896,7 +11896,7 @@ public void test331_warn_options() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=375409
-public void testBug375409a() {
+public void testBug375409a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"p/X.java",
@@ -11908,7 +11908,7 @@ public void testBug375409a() {
 				"*/\n" +
 				"public void foo(int i) {}}\n"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -1.8"
 		+ " -warn:invalidJavadoc -proc:none -d \"" + OUTPUT_DIR + "\"",
@@ -11933,7 +11933,7 @@ public void testBug375409a() {
 		true);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=375409
-public void testBug375409b() {
+public void testBug375409b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"p/X.java",
@@ -11945,7 +11945,7 @@ public void testBug375409b() {
 				"*/\n" +
 				"public void foo(int i) {}}\n"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -1.8"
 		+ " -warn:missingJavadocTags,missingJavadocTagsVisibility(public) -proc:none -d \"" + OUTPUT_DIR + "\"",
@@ -11960,7 +11960,7 @@ public void testBug375409b() {
 		true);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=375409
-public void testBug375409c() {
+public void testBug375409c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"p/X.java",
@@ -11972,7 +11972,7 @@ public void testBug375409c() {
 				"*/\n" +
 				"public void foo(int i) {}}\n"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -1.8"
 		+ " -warn:missingJavadocComments -proc:none -d \"" + OUTPUT_DIR + "\"",
@@ -11987,7 +11987,7 @@ public void testBug375409c() {
 		true);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=375409
-public void testBug375409d() {
+public void testBug375409d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"p/X.java",
@@ -12004,7 +12004,7 @@ public void testBug375409d() {
 				"*/\n" +
 				"public void foo2(int i2) {}}\n"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -1.8"
 		+ " -warn:missingJavadocTags,missingJavadocTagsVisibility(public) -proc:none -d \"" + OUTPUT_DIR + "\"",
@@ -12021,7 +12021,7 @@ public void testBug375409d() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=375409
 // -warn option - regression tests to check option nullAnnotConflict
-public void testBug375409e() {
+public void testBug375409e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"p/X.java",
@@ -12053,7 +12053,7 @@ public void testBug375409e() {
 				"@interface NonNullByDefault{\n" +
 				"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -1.8"
 		+ " -warn:+nullAnnot(p.Nullable|p.NonNull|p.NonNullByDefault),+null,-nullAnnotConflict "
 		+ "-proc:none -d \"" + OUTPUT_DIR + "\"",
@@ -12063,7 +12063,7 @@ public void testBug375409e() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=375409
 // -warn option - regression tests to check option nullAnnotRedundant
-public void testBug375409f() {
+public void testBug375409f() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"p/X.java",
@@ -12091,7 +12091,7 @@ public void testBug375409f() {
 				"@interface NonNullByDefault{\n" +
 				"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -1.8"
 		+ " -warn:+nullAnnot(p.Nullable|p.NonNull|p.NonNullByDefault),+null,-nullAnnotRedundant "
 		+ "-proc:none -d \"" + OUTPUT_DIR + "\"",
@@ -12107,7 +12107,7 @@ public void testBug375409f() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=375409
 // -warn option - regression tests to check option nullUncheckedConversion
-public void testBug375409g() {
+public void testBug375409g() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"p/X.java",
@@ -12138,7 +12138,7 @@ public void testBug375409g() {
 				"@interface NonNullByDefault{\n" +
 				"}"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "p" + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -1.8"
 		+ " -warn:+nullAnnot(p.Nullable|p.NonNull|p.NonNullByDefault) -warn:+null -warn:-nullUncheckedConversion "
 		+ "-proc:none -d \"" + OUTPUT_DIR + "\"",
@@ -12150,9 +12150,9 @@ public void testBug375409g() {
 
 // Bug 375366 - ECJ ignores unusedParameterIncludeDocCommentReference unless enableJavadoc option is set
 // when -properties is used process javadoc by default
-public void testBug375366a() throws IOException {
+public void testBug375366a() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createOutputTestDirectory("regression/.settings");
-	Util.createFile(OUTPUT_DIR+"/.settings/org.eclipse.jdt.core.prefs",
+	Util.createFile(OUTPUT_DIR+"/.settings/org.eclipse.jdt.core.prefs", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"eclipse.preferences.version=1\n" +
 			"org.eclipse.jdt.core.compiler.problem.unusedParameter=warning\n");
 	this.runConformTest(
@@ -12170,7 +12170,7 @@ public void testBug375366a() throws IOException {
 			"	}\n" +
 			"}\n"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "bugs" + File.separator + "warning" + File.separator + "ShowBug.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "bugs" + File.separator + "warning" + File.separator + "ShowBug.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -1.8"
 		+ " -properties " + OUTPUT_DIR + File.separator +".settings" + File.separator + "org.eclipse.jdt.core.prefs "
 		+ " -d \"" + OUTPUT_DIR + "\"",
@@ -12181,9 +12181,9 @@ public void testBug375366a() throws IOException {
 
 // Bug 375366 - ECJ ignores unusedParameterIncludeDocCommentReference unless enableJavadoc option is set
 // property file explicitly disables javadoc processing
-public void testBug375366b() throws IOException {
+public void testBug375366b() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createOutputTestDirectory("regression/.settings");
-	Util.createFile(OUTPUT_DIR+"/.settings/org.eclipse.jdt.core.prefs",
+	Util.createFile(OUTPUT_DIR+"/.settings/org.eclipse.jdt.core.prefs", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"eclipse.preferences.version=1\n" +
 			"org.eclipse.jdt.core.compiler.problem.unusedParameter=warning\n" +
 			"org.eclipse.jdt.core.compiler.doc.comment.support=disabled\n");
@@ -12203,7 +12203,7 @@ public void testBug375366b() throws IOException {
 			"	}\n" +
 			"}\n"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "bugs" + File.separator + "warning" + File.separator + "ShowBug.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "bugs" + File.separator + "warning" + File.separator + "ShowBug.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -1.8"
 		+ " -properties " + OUTPUT_DIR + File.separator +".settings" + File.separator + "org.eclipse.jdt.core.prefs "
 		+ " -d \"" + OUTPUT_DIR + "\"",
@@ -12223,7 +12223,7 @@ public void testBug375366b() throws IOException {
 // org.eclipse.jdt.core.tests.compiler.regression.NullAnnotationBatchCompilerTest.testBug375366d()
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=385780
-public void test385780_warn_option() {
+public void test385780_warn_option() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -12244,7 +12244,7 @@ public void test385780_warn_option() {
 			"}"+
 			"}\n"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:unusedTypeParameter -proc:none -1.8 -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"----------\n" +
@@ -12272,7 +12272,7 @@ public void test385780_warn_option() {
 		true);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=405225
-public void test405225_extdirs() {
+public void test405225_extdirs() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (AbstractCompilerTest.isJRE9Plus)
 		return;
 	this.runConformTest(
@@ -12287,14 +12287,14 @@ public void test405225_extdirs() {
 			"  }\n" +
 			"}\n"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -warn:-resource -1.8 -extdirs \"" + LIB_DIR + "\" -d \"" + OUTPUT_DIR + "\"",
 		"",
 		"",
 		true);
 }
 //Bug 408038 - Classes which implement Externalizable should not have an unused constructor warning
-public void test408038a() {
+public void test408038a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"externalizable/warning/X.java",
@@ -12314,7 +12314,7 @@ public void test408038a() {
 			"	}\n" +
 			"}",
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "externalizable" + File.separator + "warning" + File.separator + "X.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "externalizable" + File.separator + "warning" + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -1.8 -d none",
 			"",
 			"----------\n" +
@@ -12327,7 +12327,7 @@ public void test408038a() {
 			true);
 }
 //Bug 408038 - Classes which implement Externalizable should not have an unused constructor warning
-public void test408038b() {
+public void test408038b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"externalizable/warning/X.java",
@@ -12347,7 +12347,7 @@ public void test408038b() {
 			"	}\n" +
 			"}",
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "externalizable" + File.separator + "warning" + File.separator + "X.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "externalizable" + File.separator + "warning" + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -1.8 -d none",
 			"",
 			"----------\n" +
@@ -12360,7 +12360,7 @@ public void test408038b() {
 			true);
 }
 //Bug 408038 - Classes which implement Externalizable should not have an unused constructor warning
-public void test408038c() {
+public void test408038c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"externalizable/warning/X.java",
@@ -12393,14 +12393,14 @@ public void test408038c() {
 			"	}\n" +
 			"}",
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "externalizable" + File.separator + "warning" + File.separator + "X.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "externalizable" + File.separator + "warning" + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -1.8 -d none",
 			"",
 			"",
 			true);
 }
 //Bug 408038 - Classes which implement Externalizable should not have an unused constructor warning
-public void test408038d() {
+public void test408038d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"externalizable/warning/X.java",
@@ -12433,7 +12433,7 @@ public void test408038d() {
 			"	}\n" +
 			"}",
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "externalizable" + File.separator + "warning" + File.separator + "X.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "externalizable" + File.separator + "warning" + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -1.8 -d none",
 			"",
 			"----------\n" +
@@ -12448,7 +12448,7 @@ public void test408038d() {
 // Bug 408038 - Classes which implement Externalizable should not have an unused constructor warning
 // The test case is not directly related to the bug. It was discovered as a result
 // of the bug. Please see comment 16 bullet 4 in bugzilla.
-public void test408038e() {
+public void test408038e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"externalizable/warning/X.java",
@@ -12463,7 +12463,7 @@ public void test408038e() {
 			"	}\n" +
 			"}\n"
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "externalizable" + File.separator + "warning" + File.separator + "X.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "externalizable" + File.separator + "warning" + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -1.8 -d none",
 			"",
 			"----------\n" +
@@ -12475,13 +12475,13 @@ public void test408038e() {
 	        "1 problem (1 warning)\n",
 			true);
 }
-public void testBug574425() {
+public void testBug574425() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String path = LIB_DIR;
 	String libPath = null;
 	if (path.endsWith(File.separator)) {
-		libPath = path + "lib.jar";
+		libPath = path + "lib.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} else {
-		libPath = path + File.separator + "lib.jar";
+		libPath = path + File.separator + "lib.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	try {
 		Util.createJar(
@@ -12523,7 +12523,7 @@ public void testBug574425() {
 						+ "public class X {\n"
 						+ "}\n",
 				},
-				"\"" + OUTPUT_DIR +  File.separator + "src/org/apache/accumulo/test/fate/zookeeper/X.java\""
+				"\"" + OUTPUT_DIR +  File.separator + "src/org/apache/accumulo/test/fate/zookeeper/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ " -classpath \"" + libPath + "\""
 				+ " -1.8 -nowarn"
 				+ " -d \"" + OUTPUT_DIR + File.separator + "bin\" ",
@@ -12536,13 +12536,13 @@ public void testBug574425() {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=419351
-public void testBug419351() {
+public void testBug419351() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String backup = System.getProperty("java.endorsed.dirs");
 	if (backup == null)
 		return; // Don't bother running if it is JRE9, where there's no endorsed.dir
-	String endorsedPath = LIB_DIR + File.separator + "endorsed";
+	String endorsedPath = LIB_DIR + File.separator + "endorsed"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	new File(endorsedPath).mkdir();
-	String lib1Path = endorsedPath + File.separator + "lib1.jar";
+	String lib1Path = endorsedPath + File.separator + "lib1.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	try {
 		System.setProperty("java.endorsed.dirs", endorsedPath);
 		Util.createJar(
@@ -12565,7 +12565,7 @@ public void testBug419351() {
 						"	}\n" +
 						"}\n",
 				},
-				"\"" + OUTPUT_DIR +  File.separator + "src/X.java\""
+				"\"" + OUTPUT_DIR +  File.separator + "src/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 				+ " -1.8 -nowarn"
 				+ " -d \"" + OUTPUT_DIR + File.separator + "bin\" ",
@@ -12580,7 +12580,7 @@ public void testBug419351() {
 	}
 }
 
-public void test501457() throws IOException {
+public void test501457() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 			"FailingClass.java",
 			"import java.lang.invoke.MethodHandle;\n" +
@@ -12591,7 +12591,7 @@ public void test501457() throws IOException {
 			"    }\n" +
 			"}\n"
 		},
-		" -1.8 " +
+		" -1.8 " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		" -sourcepath \"" + OUTPUT_DIR + "\" " +
 		"\"" + OUTPUT_DIR +  File.separator + "FailingClass.java",
 		"",
@@ -12601,7 +12601,7 @@ public void test501457() throws IOException {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=439750
-public void test439750() {
+public void test439750() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"externalizable/warning/X.java",
@@ -12623,7 +12623,7 @@ public void test439750() {
  			"	}\n" +
 			"}\n"
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "externalizable" + File.separator + "warning" + File.separator + "X.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "externalizable" + File.separator + "warning" + File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -1.8 -warn:unused -warn:unusedExceptionParam -d none",
 			"",
 			"----------\n" +
@@ -12642,7 +12642,7 @@ public void test439750() {
  * This fast exit improves the performance, because the search for secondary types is very expensive regarding performance
  * (all classes of a package have to get loaded, parsed and analyzed).
  */
-public void testFileSystem_findSecondaryInClass() {
+public void testFileSystem_findSecondaryInClass() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final String testScratchArea = "fileSystemTestScratchArea";
 
 	File testScratchAreaFile = new File(Util.getOutputDirectory(), testScratchArea);
@@ -12674,7 +12674,7 @@ public void testFileSystem_findSecondaryInClass() {
 	}
 }
 //same as test293, but for -info: instead of -err:
-public void test496137a() throws Exception {
+public void test496137a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runConformTest(
 		new String[] {
@@ -12685,7 +12685,7 @@ public void test496137a() throws Exception {
 			"  A a;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -cp \"" + LIB_DIR + File.separator + "lib3.jar[~p/A]\""
 		+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 		+ " -1.8 -g -preserveAllLocals"
@@ -12709,7 +12709,7 @@ public void test496137b(){
 			"public class X {\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -cp \"" + LIB_DIR + "\""
 		+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 		+ " -1.8 -g -preserveAllLocals"
@@ -12727,7 +12727,7 @@ public void test496137c(){
 			"public class X {\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -cp \"" + LIB_DIR + "\""
 		+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 		+ " -1.8 -g -preserveAllLocals"
@@ -12745,7 +12745,7 @@ public void test496137d(){
 			"public class X {\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -cp \"" + LIB_DIR + "\""
 		+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 		+ " -1.8 -g -preserveAllLocals"
@@ -12756,9 +12756,9 @@ public void test496137d(){
 		true);
 }
 //same as testBug375366b, but for =info: instead of =warning:
-public void test496137e() throws IOException {
+public void test496137e() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createOutputTestDirectory("regression/.settings");
-	Util.createFile(OUTPUT_DIR+"/.settings/org.eclipse.jdt.core.prefs",
+	Util.createFile(OUTPUT_DIR+"/.settings/org.eclipse.jdt.core.prefs", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"eclipse.preferences.version=1\n" +
 			"org.eclipse.jdt.core.compiler.problem.unusedParameter=info\n" +
 			"org.eclipse.jdt.core.compiler.doc.comment.support=disabled\n");
@@ -12778,7 +12778,7 @@ public void test496137e() throws IOException {
 			"	}\n" +
 			"}\n"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "bugs" + File.separator + "warning" + File.separator + "ShowBug.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "bugs" + File.separator + "warning" + File.separator + "ShowBug.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -1.8"
 		+ " -properties " + OUTPUT_DIR + File.separator +".settings" + File.separator + "org.eclipse.jdt.core.prefs "
 		+ " -d \"" + OUTPUT_DIR + "\"",
@@ -12794,7 +12794,7 @@ public void test496137e() throws IOException {
 		null /* progress */);
 }
 // variation of test496137a to test that -warn:none turns off all info, too
-public void test496137f() throws Exception {
+public void test496137f() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createCascadedJars();
 	this.runConformTest(
 		new String[] {
@@ -12805,7 +12805,7 @@ public void test496137f() throws Exception {
 			"  A a;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -cp \"" + LIB_DIR + File.separator + "lib3.jar[~p/A]\""
 		+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 		+ " -1.8 -g -preserveAllLocals"
@@ -12815,7 +12815,7 @@ public void test496137f() throws Exception {
 		"",
 		true);
 }
-public void testReleaseOption() throws Exception {
+public void testReleaseOption() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		SourceVersion valueOf = SourceVersion.valueOf("RELEASE_9");
 		if (valueOf != null)
@@ -12830,14 +12830,14 @@ public void testReleaseOption() throws Exception {
 				"public class X {\n" +
 				"}",
 			},
-	     "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+	     "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	     + " --release 8 -d \"" + OUTPUT_DIR + "\"",
 	     "",
 	     "option --release is supported only when run with JDK 9 or above\n",
 	     true);
 }
 
-public void testBug531579() throws Exception {
+public void testBug531579() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9Plus) return;
 	// these types replace inaccessible types from JRE/javax.xml.bind:
 	runConformTest(new String[] {
@@ -12853,7 +12853,7 @@ public void testBug531579() throws Exception {
 			"package javax.xml.bind;\n" +
 			"public class JAXBException extends Exception {}\n"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/javax/xml/bind/JAXBContext.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/javax/xml/bind/JAXBContext.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " \"" + OUTPUT_DIR +  File.separator + "src/javax/xml/bind/JAXBException.java\""
 		+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 		+ " -1.8"
@@ -12877,7 +12877,7 @@ public void testBug531579() throws Exception {
 			"\n" +
 			"}\n"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "src/p1/ImportJAXBType.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "src/p1/ImportJAXBType.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -cp \"" + OUTPUT_DIR + File.separator + "bin\" "
 		+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 		+ " -1.9"
@@ -12896,7 +12896,7 @@ public void testFailOnWarnings_NoWarning() {
 			"public class X {\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -failOnWarning"
 		+ " -d \"" + OUTPUT_DIR + File.separator + "bin/\"",
 		"",
@@ -12905,7 +12905,7 @@ public void testFailOnWarnings_NoWarning() {
 
 }
 
-public void testFailOnWarnings_WithWarning() {
+public void testFailOnWarnings_WithWarning() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -12914,7 +12914,7 @@ public void testFailOnWarnings_WithWarning() {
 			"private int a;\n" +
 			"}",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -failOnWarning"
 		+ " -d \"" + OUTPUT_DIR + File.separator + "bin/\"",
 		"",
@@ -12929,7 +12929,7 @@ public void testFailOnWarnings_WithWarning() {
 		"",
 		true);
 }
-public void testUnusedObjectAllocation() {
+public void testUnusedObjectAllocation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -12939,7 +12939,7 @@ public void testUnusedObjectAllocation() {
 			"	}\n" +
 			"}\n"
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -err:+unused"
 		+ " -d \"" + OUTPUT_DIR + File.separator + "bin/\"",
 		"",
@@ -12965,7 +12965,7 @@ public void testBug573153() {
 	assertEquals("configure.source is not updated", template, output);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=413873
-public void test413873() {
+public void test413873() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"OuterClass.java",
@@ -12982,14 +12982,14 @@ public void test413873() {
 			"	}\n" +
 			"}"
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "OuterClass.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "OuterClass.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -1.8 -warn:all-static-method -proc:none -d none",
 			"",
 			"",
 			true);
 }
 //https://github.com/eclipse-jdt/eclipse.jdt.core/issues/89
-public void testIssue89_1() {
+public void testIssue89_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -13003,7 +13003,7 @@ public void testIssue89_1() {
 				+ "	}\n"
 				+ "}"
 				},
-				"\"" + OUTPUT_DIR +  File.separator + "X.java\" "
+				"\"" + OUTPUT_DIR +  File.separator + "X.java\" " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ " -failOnWarning"
 				+ " -1.8 -warn:all-static-method -proc:none -d none",
 				"",
@@ -13022,7 +13022,7 @@ public void testIssue89_1() {
 				"error: warnings found and -failOnWarning specified\n",
 				true);
 }
-public void testIssue89_2() {
+public void testIssue89_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -13038,14 +13038,14 @@ public void testIssue89_2() {
 				+ "	}\n"
 				+ "}"
 				},
-				"\"" + OUTPUT_DIR +  File.separator + "X.java\" "
+				"\"" + OUTPUT_DIR +  File.separator + "X.java\" " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ " -failOnWarning"
 				+ " -1.8 -warn:all-static-method -proc:none -d none",
 				"",
 				"",
 				true);
 }
-public void testIssue89_3() {
+public void testIssue89_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -13060,7 +13060,7 @@ public void testIssue89_3() {
 				+ "	}\n"
 				+ "}"
 				},
-				"\"" + OUTPUT_DIR +  File.separator + "X.java\" "
+				"\"" + OUTPUT_DIR +  File.separator + "X.java\" " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ " -failOnWarning"
 				+ " -1.8 -warn:all-static-method -proc:none -d none",
 				"",
@@ -13074,7 +13074,7 @@ public void testIssue89_3() {
 				"error: warnings found and -failOnWarning specified\n",
 				true);
 }
-public void testIssue89_4() {
+public void testIssue89_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -13089,7 +13089,7 @@ public void testIssue89_4() {
 				+ "	}\n"
 				+ "}"
 				},
-				"\"" + OUTPUT_DIR +  File.separator + "X.java\" "
+				"\"" + OUTPUT_DIR +  File.separator + "X.java\" " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ " -failOnWarning"
 				+ " -1.8 -warn:all-static-method -proc:none -d none",
 				"",
@@ -13103,7 +13103,7 @@ public void testIssue89_4() {
 				"error: warnings found and -failOnWarning specified\n",
 				true);
 }
-public void testIssue89_5() {
+public void testIssue89_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -13115,7 +13115,7 @@ public void testIssue89_5() {
 				+ "	}\n"
 				+ "}"
 				},
-				"\"" + OUTPUT_DIR +  File.separator + "X.java\" "
+				"\"" + OUTPUT_DIR +  File.separator + "X.java\" " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ " -failOnWarning"
 				+ " -1.8 -warn:all-static-method -proc:none -d none",
 				"",
@@ -13130,14 +13130,14 @@ public void testIssue89_5() {
 				true);
 }
 
-public void testGitHub316(){
+public void testGitHub316(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
 			"public class X {\n" +
 					"void m() { (1+2) = 3; }"+// was IllegalArgumentException in InfixExpression#setOperator
 			"}"},
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"X.java\"",
 		"",
 		"----------\n"
@@ -13150,7 +13150,7 @@ public void testGitHub316(){
 		+ "",
 		true);
 }
-public void testGitHub1122(){
+public void testGitHub1122(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -13159,7 +13159,7 @@ public void testGitHub1122(){
 					+ ".a() >0);"// was IllegalArgumentException in InfixExpression#setOperator
 					+ " }"+
 			"}"},
-        "\"" + OUTPUT_DIR +  File.separator +
+        "\"" + OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	"X.java\"",
 		"",
 		"----------\n"
@@ -13180,7 +13180,7 @@ public void testGitHub1122(){
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2434
 // Cannot read field "declaringClass" because "this.methodDeclaration.binding" is null
-public void testGH2434(){
+public void testGH2434(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"X.java",
@@ -13200,14 +13200,14 @@ public void testGH2434(){
 				+ "	}\n"
 				+ "}",
 		},
-        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         + " -1.8 -g -preserveAllLocals"
         + " -d \"" + OUTPUT_DIR + "\" -O -Xxxx -O -Jxyz -Xtyu -Jyu",
 		"",
         "",
         true);
 }
-public void test3445() {
+public void test3445() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final String testScratchArea = "fileSystemTestScratchArea";
 
 	File testScratchAreaFile = new File(Util.getOutputDirectory(), testScratchArea);
@@ -13221,7 +13221,7 @@ public void test3445() {
 		assertTrue(testScratchAreaFile.exists());
 
 		String packComponent = "AAAA";
-		final String packs = packComponent + File.separator + packComponent + File.separator + packComponent;
+		final String packs = packComponent + File.separator + packComponent + File.separator + packComponent; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		 packsFile = new File(testScratchAreaFile,  packs);
 
 		try {
@@ -13252,7 +13252,7 @@ public void test3445() {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3827
 // ECJ Incorrectly Compiles Java Switch Expressions from JEP 325 under --release 8 and --release 11
-public void testIssue3827() {
+public void testIssue3827() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -13272,7 +13272,7 @@ public void testIssue3827() {
 				}
 				"""
 				},
-				"\"" + OUTPUT_DIR +  File.separator + "X.java\" "
+				"\"" + OUTPUT_DIR +  File.separator + "X.java\" " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ " -failOnWarning"
 				+ " -1.8 "
 				+ "-d \"" + OUTPUT_DIR + "\"",
@@ -13298,7 +13298,7 @@ public void testIssue3827() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3827
 // ECJ Incorrectly Compiles Java Switch Expressions from JEP 325 under --release 8 and --release 11
-public void testIssue3827_2() {
+public void testIssue3827_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -13318,7 +13318,7 @@ public void testIssue3827_2() {
 				}
 				"""
 				},
-				"\"" + OUTPUT_DIR +  File.separator + "X.java\" "
+				"\"" + OUTPUT_DIR +  File.separator + "X.java\" " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ " -failOnWarning"
 				+ " -13 "
 				+ "-d \"" + OUTPUT_DIR + "\"",
@@ -13344,7 +13344,7 @@ public void testIssue3827_2() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3827
 // ECJ Incorrectly Compiles Java Switch Expressions from JEP 325 under --release 8 and --release 11
-public void testIssue3827_3() {
+public void testIssue3827_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -13364,7 +13364,7 @@ public void testIssue3827_3() {
 				}
 				"""
 				},
-				"\"" + OUTPUT_DIR +  File.separator + "X.java\" "
+				"\"" + OUTPUT_DIR +  File.separator + "X.java\" " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ " -failOnWarning"
 				+ " -14 "
 				+ "-d \"" + OUTPUT_DIR + "\"",
@@ -13372,7 +13372,7 @@ public void testIssue3827_3() {
 				"",
 				true);
 }
-public void testBug550255() {
+public void testBug550255() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -13390,7 +13390,7 @@ public void testBug550255() {
 			"	}\n" +
 			"}\n",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -warn:all-static-method -proc:none -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -13405,7 +13405,7 @@ public void testBug550255() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4750
 // Compilation error not raised with ECJ when warnings are raised
-public void testIssue4750() {
+public void testIssue4750() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -13426,7 +13426,7 @@ public void testIssue4750() {
 			}
 			""",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -13451,7 +13451,7 @@ public void testIssue4750() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4750
 // Compilation error not raised with ECJ when warnings are raised
-public void testIssue4750_nowarn() {
+public void testIssue4750_nowarn() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -13472,7 +13472,7 @@ public void testIssue4750_nowarn() {
 			}
 			""",
 		},
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -nowarn -d \"" + OUTPUT_DIR + "\"",
 		"",
@@ -13487,7 +13487,7 @@ public void testIssue4750_nowarn() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4768
 // Internal Compiler Error when a static field with custom annotation references a generic type parameter T
-public void testIssue4768(){
+public void testIssue4768(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -13509,7 +13509,7 @@ public void testIssue4768(){
 			""",
 		},
 
-		"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " -sourcepath \"" + OUTPUT_DIR + "\""
 		+ " -nowarn -d \"" + OUTPUT_DIR + "\"",
 		"",

@@ -50,7 +50,7 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 	static int getJSL9() {
 		return AST.JLS9;
 	}
-	public void testBug428178() throws Exception {
+	public void testBug428178() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Bug428178", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8");
 			project.open(null);
@@ -72,7 +72,7 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 			deleteProject("Bug428178");
 		}
 	}
-	public void testBug428178a() throws Exception {
+	public void testBug428178a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Bug428178", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8");
 			project.open(null);
@@ -96,7 +96,7 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 			deleteProject("Bug428178");
 		}
 	}
-	public void testBug429641() throws Exception {
+	public void testBug429641() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Bug429641", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8");
 			project.open(null);
@@ -123,7 +123,7 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 			deleteProject("Bug429641");
 		}
 	}
-	public void testBug429641a() throws Exception {
+	public void testBug429641a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Bug429641", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8");
 			project.open(null);
@@ -151,7 +151,7 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=429948, Unhandled event loop exception is thrown when a lambda expression is nested
-	public void test429948() throws Exception {
+	public void test429948() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Bug429948", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8");
 			project.open(null);
@@ -181,7 +181,7 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 			IType type = getCompilationUnit("/Bug429948/src/X.java").getType("X");
 			ITypeHierarchy h = type.newSupertypeHierarchy(null);
 			assertHierarchyEquals(
-					"Focus: X [in X.java [in <default> [in src [in Bug429948]]]]\n" +
+					"Focus: X [in X.java [in <default> [in src [in Bug429948]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"Super types:\n" +
 					"  Object [in Object.class [in java.lang [in "+ getExternalPath() + "jclMin1.8.jar]]]\n" +
 					"Sub types:\n",
@@ -192,7 +192,7 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=429948, Unhandled event loop exception is thrown when a lambda expression is nested
-	public void test429948a() throws Exception {
+	public void test429948a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Bug429948", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8");
 			project.open(null);
@@ -226,7 +226,7 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 			IType type = getCompilationUnit("/Bug429948/src/X.java").getType("X");
 			ITypeHierarchy h = type.newSupertypeHierarchy(null);
 			assertHierarchyEquals(
-					"Focus: X [in X.java [in <default> [in src [in Bug429948]]]]\n" +
+					"Focus: X [in X.java [in <default> [in src [in Bug429948]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"Super types:\n" +
 					"  Object [in Object.class [in java.lang [in "+ getExternalPath() + "jclMin1.8.jar]]]\n" +
 					"Sub types:\n",
@@ -237,7 +237,7 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=429966, [1.8] CUD#functionalExpressions may record lambda copies in nested lambda situations
-	public void test429966() throws CoreException {
+	public void test429966() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String projectName = "Bug429966";
 		try {
 			IJavaProject project = createJavaProject(projectName, new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8");
@@ -267,7 +267,7 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 					"	static void executeOuter(Runnable callback) {\n" +
 					"	}\n" +
 					"}\n";
-			String fileName = "/" + projectName + "/src/X.java";
+			String fileName = "/" + projectName + "/src/X.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			createFile(fileName, fileContent);
 			IType type = getCompilationUnit(fileName).getType("Runnable");
 			ITypeHierarchy h = type.newTypeHierarchy(null);
@@ -284,7 +284,7 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=429910
-	public void testBug429910() throws Exception {
+	public void testBug429910() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Bug429910", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8");
 			project.open(null);
@@ -318,7 +318,7 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=429910 [1.8][model] Superinterfaces of lambda element's IType are missing type arguments
-	public void testBug429910a() throws Exception {
+	public void testBug429910a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Bug429910", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8");
 			project.open(null);
@@ -350,7 +350,7 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=430026,  [1.8] Lambda parameter has wrong parent if it declares its type
-	public void test430026() throws CoreException {
+	public void test430026() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String projectName = "Bug429966";
 		try {
 			IJavaProject project = createJavaProject(projectName, new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8");
@@ -362,7 +362,7 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 					"        return (V v) -> apply(before.apply(v));\n" +
 					"    }\n" +
 					"}\n";
-			String fileName = "/" + projectName + "/src/X.java";
+			String fileName = "/" + projectName + "/src/X.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			createFile(fileName, fileContent);
 
 			ICompilationUnit unit = getCompilationUnit(fileName);
@@ -375,7 +375,7 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=430026,  [1.8] Lambda parameter has wrong parent if it declares its type
-	public void test430026a() throws CoreException {
+	public void test430026a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String projectName = "Bug429966";
 		try {
 			IJavaProject project = createJavaProject(projectName, new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8");
@@ -387,7 +387,7 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 					"        return v -> apply(before.apply(v));\n" +
 					"    }\n" +
 					"}\n";
-			String fileName = "/" + projectName + "/src/X.java";
+			String fileName = "/" + projectName + "/src/X.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			createFile(fileName, fileContent);
 
 			ICompilationUnit unit = getCompilationUnit(fileName);
@@ -400,7 +400,7 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=430033, [1.8][model] Lambda elements missing in ancestry for binary elements
-	public void test430033() throws CoreException, IOException {
+	public void test430033() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		String jarName = "Elements.jar";
 		String srcName = "Elements_src.zip";
@@ -420,7 +420,7 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 					"}\n"
 				};
 
-				HashMap libraryOptions = new HashMap(project.getOptions(true));
+				HashMap libraryOptions = new HashMap(project.getOptions(true)); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				libraryOptions.put(CompilerOptions.OPTION_Store_Annotations, CompilerOptions.ENABLED);
 				addLibrary(project, jarName, srcName, pathAndContents, JavaCore.VERSION_1_8, libraryOptions);
 
@@ -439,7 +439,7 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=430141,  [1.8][hierarchy] Incorrect hierarchy with lambda elements missing
-	public void test430141() throws Exception {
+	public void test430141() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Bug430141", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8");
 			project.open(null);
@@ -471,7 +471,7 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=430141,  [1.8][hierarchy] Incorrect hierarchy with lambda elements missing
-	public void test430141a() throws Exception {
+	public void test430141a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Bug430141", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8");
 			project.open(null);
@@ -503,7 +503,7 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=430136
-	public void test430136() throws CoreException {
+	public void test430136() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String projectName = "([Bug430136])";
 		try {
 			IJavaProject project = createJavaProject(projectName, new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8");
@@ -515,7 +515,7 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 					"        return v -> apply(before.apply(v));\n" +
 					"    }\n" +
 					"}\n";
-			String fileName = "/" + projectName + "/src/X.java";
+			String fileName = "/" + projectName + "/src/X.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			createFile(fileName, fileContent);
 
 			ICompilationUnit unit = getCompilationUnit(fileName);
@@ -534,7 +534,7 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=431716
-	public void test431716() throws CoreException {
+	public void test431716() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String projectName = "Bug431716";
 		try {
 			IJavaProject project = createJavaProject(projectName, new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8");
@@ -548,7 +548,7 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 					"interface ToIntFunction<T> {\n" +
 					"	int applyAsInt(T value);\n" +
 					"}\n";
-			String fileName = "/" + projectName + "/src/X.java";
+			String fileName = "/" + projectName + "/src/X.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			createFile(fileName, fileContent);
 
 			ICompilationUnit unit = getCompilationUnit(fileName);
@@ -592,7 +592,7 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=430195
-	public void test430195() throws CoreException {
+	public void test430195() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String projectName = "Bug430195";
 		try {
 			IJavaProject project = createJavaProject(projectName, new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8");
@@ -604,7 +604,7 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 					"        return v -> apply(before.apply(v));\n" +
 					"    }\n" +
 					"}\n";
-			String fileName = "/" + projectName + "/src/X.java";
+			String fileName = "/" + projectName + "/src/X.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			createFile(fileName, fileContent);
 
 			ICompilationUnit unit = getCompilationUnit(fileName);
@@ -619,7 +619,7 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 		}
 	}
 
-	public void testBug485080() throws Exception {
+	public void testBug485080() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String projectName = "Bug485080";
 		try {
 			IJavaProject project = createJavaProject(projectName, new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8");
@@ -629,11 +629,11 @@ public class JavaElement8Tests extends AbstractJavaModelTests {
 			IFolder folder= project.getProject().getFolder("nosrc");
 			folder.create(0, true, null);
 			IFile file= folder.getFile("X.java");
-			StringBuilder buf= new StringBuilder();
-			buf.append("public class X {\n");
-			buf.append("	public <T> void meth(T s) {\n");
-			buf.append("	}\n");
-			buf.append("}\n");
+			StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("	public <T> void meth(T s) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			String content= buf.toString();
 			file.create(content.getBytes(StandardCharsets.UTF_8), 0, null);
 

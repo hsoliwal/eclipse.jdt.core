@@ -37,12 +37,12 @@ public class Disassembler extends ClassFileBytesDisassembler {
 	private boolean appendModifier(StringBuilder buffer, int accessFlags, int modifierConstant, String modifier, boolean firstModifier) {
 		if ((accessFlags & modifierConstant) != 0) {
 			if (!firstModifier) {
-				buffer.append(Messages.disassembler_space);
+				buffer.append(Messages.disassembler_space); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			if (firstModifier) {
 				firstModifier = false;
 			}
-			buffer.append(modifier);
+			buffer.append(modifier); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return firstModifier;
 	}
@@ -51,10 +51,10 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		decodeModifiers(buffer, accessFlags, false, false, checkBits);
 	}
 
-	private void decodeModifiers(StringBuilder buffer, int accessFlags, boolean printDefault, boolean asBridge, int[] checkBits) {
+	private void decodeModifiers(StringBuilder buffer, int accessFlags, boolean printDefault, boolean asBridge, int[] checkBits) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkBits == null) return;
 		boolean firstModifier = true;
-		for (int checkBit : checkBits) {
+		for (int checkBit : checkBits) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch(checkBit) {
 				case IModifierConstants.ACC_PUBLIC :
 					firstModifier = appendModifier(buffer, accessFlags, IModifierConstants.ACC_PUBLIC, "public", firstModifier); //$NON-NLS-1$
@@ -106,10 +106,10 @@ public class Disassembler extends ClassFileBytesDisassembler {
 			}
 		}
 		if (!firstModifier) {
-			if (!printDefault) buffer.append(Messages.disassembler_space);
+			if (!printDefault) buffer.append(Messages.disassembler_space); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else if (printDefault) {
 			// no modifier: package default visibility
-			buffer.append("default"); //$NON-NLS-1$
+			buffer.append("default"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
@@ -179,13 +179,13 @@ public class Disassembler extends ClassFileBytesDisassembler {
 				IModifierConstants.ACC_FINAL,
 		});
 	}
-	private final void decodeModifiersForModuleRequires(StringBuilder buffer, int accessFlags) {
+	private final void decodeModifiersForModuleRequires(StringBuilder buffer, int accessFlags) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int[] checkBits = new int[] {
 				IModifierConstants.ACC_TRANSITIVE,
 				IModifierConstants.ACC_STATIC_PHASE,
 		};
 		boolean firstModifier = true;
-		for (int checkBit : checkBits) {
+		for (int checkBit : checkBits) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch(checkBit) {
 				case IModifierConstants.ACC_TRANSITIVE :
 					firstModifier = appendModifier(buffer, accessFlags, IModifierConstants.ACC_TRANSITIVE, "transitive", firstModifier); //$NON-NLS-1$
@@ -196,20 +196,20 @@ public class Disassembler extends ClassFileBytesDisassembler {
 			}
 		}
 		if (!firstModifier) {
-			buffer.append(Messages.disassembler_space);
+			buffer.append(Messages.disassembler_space); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 	private final void decodeModifiersForModule(StringBuilder buffer, int accessFlags) {
 		appendModifier(buffer, accessFlags, IModifierConstants.ACC_OPEN, "open", true); //$NON-NLS-1$
-		buffer.append(Messages.disassembler_space);
+		buffer.append(Messages.disassembler_space); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	public static String escapeString(String s) {
 		return decodeStringValue(s);
 	}
 
 	static String decodeStringValue(char[] chars) {
-		StringBuilder buffer = new StringBuilder();
-		for (char c : chars) {
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (char c : chars) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			org.eclipse.jdt.internal.compiler.util.Util.appendEscapedChar(buffer, c, true);
 		}
 		return buffer.toString();
@@ -251,35 +251,35 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		writeNewLine(buffer, lineSeparator, tabNumber + 1);
 		final int typeIndex = annotation.getTypeIndex();
 		final char[] typeName = CharOperation.replaceOnCopy(annotation.getTypeName(), '/', '.');
-		buffer.append(
+		buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			Messages.bind(Messages.disassembler_annotationentrystart, new String[] {
 				Integer.toString(typeIndex),
 				new String(returnClassName(Signature.toCharArray(typeName), '.', mode))
 			}));
 		final IAnnotationComponent[] components = annotation.getComponents();
-		for (IAnnotationComponent component : components) {
+		for (IAnnotationComponent component : components) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			disassemble(component, buffer, lineSeparator, tabNumber + 1, mode);
 		}
 		writeNewLine(buffer, lineSeparator, tabNumber + 1);
-		buffer.append(Messages.disassembler_annotationentryend);
+		buffer.append(Messages.disassembler_annotationentryend); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
-	private void disassemble(IExtendedAnnotation extendedAnnotation, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
+	private void disassemble(IExtendedAnnotation extendedAnnotation, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		writeNewLine(buffer, lineSeparator, tabNumber + 1);
 		final int typeIndex = extendedAnnotation.getTypeIndex();
 		final char[] typeName = CharOperation.replaceOnCopy(extendedAnnotation.getTypeName(), '/', '.');
-		buffer.append(
+		buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			Messages.bind(Messages.disassembler_extendedannotationentrystart, new String[] {
 				Integer.toString(typeIndex),
 				new String(returnClassName(Signature.toCharArray(typeName), '.', mode))
 			}));
 		final IAnnotationComponent[] components = extendedAnnotation.getComponents();
-		for (IAnnotationComponent component : components) {
+		for (IAnnotationComponent component : components) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			disassemble(component, buffer, lineSeparator, tabNumber + 1, mode);
 		}
 		writeNewLine(buffer, lineSeparator, tabNumber + 2);
 		int targetType = extendedAnnotation.getTargetType();
-		buffer.append(
+		buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				Messages.bind(Messages.disassembler_extendedannotation_targetType, new String[] {
 					Integer.toHexString(targetType),
 					getTargetType(targetType),
@@ -295,30 +295,30 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		}
 		disassembleTypePathContents(targetType, extendedAnnotation, buffer, lineSeparator, tabNumber, mode);
 		writeNewLine(buffer, lineSeparator, tabNumber + 1);
-		buffer.append(Messages.disassembler_extendedannotationentryend);
+		buffer.append(Messages.disassembler_extendedannotationentryend); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	private void disassembleTypePathContents(int targetType, IExtendedAnnotation extendedAnnotation,StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
 		int[][] typepath = extendedAnnotation.getTypePath();
 		if (typepath.length != 0) {
 			writeNewLine(buffer, lineSeparator, tabNumber + 2);
-			buffer.append(
+			buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				Messages.bind(Messages.disassembler_extendedannotation_typepath, new String[] {
 						toTypePathString(typepath),
 				}));
 		}
 	}
-	private void disassembleTargetTypeContents(boolean insideWildcard, int targetType, IExtendedAnnotation extendedAnnotation, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
+	private void disassembleTargetTypeContents(boolean insideWildcard, int targetType, IExtendedAnnotation extendedAnnotation, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch(targetType) {
 			case IExtendedAnnotationConstants.CLASS_TYPE_PARAMETER :
 			case IExtendedAnnotationConstants.METHOD_TYPE_PARAMETER :
-				buffer.append(
+				buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						Messages.bind(Messages.disassembler_extendedannotation_type_parameter, new String[] {
 							Integer.toString(extendedAnnotation.getTypeParameterIndex()),
 						}));
 				break;
 			case IExtendedAnnotationConstants.CLASS_EXTENDS :
-				buffer.append(
+				buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					Messages.bind(Messages.disassembler_extendedannotation_classextendsimplements, new String[] {
 						Integer.toString(extendedAnnotation.getAnnotationTypeIndex()),
 					}));
@@ -326,7 +326,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 
 			case IExtendedAnnotationConstants.CLASS_TYPE_PARAMETER_BOUND :
 			case IExtendedAnnotationConstants.METHOD_TYPE_PARAMETER_BOUND :
-				buffer.append(
+				buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						Messages.bind(Messages.disassembler_extendedannotation_type_parameter_with_bound, new String[] {
 							Integer.toString(extendedAnnotation.getTypeParameterIndex()),
 							Integer.toString(extendedAnnotation.getTypeParameterBoundIndex()),
@@ -337,13 +337,13 @@ public class Disassembler extends ClassFileBytesDisassembler {
 			case IExtendedAnnotationConstants.METHOD_RECEIVER :
 				break;
 			case IExtendedAnnotationConstants.METHOD_FORMAL_PARAMETER :
-				buffer.append(
+				buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						Messages.bind(Messages.disassembler_extendedannotation_method_parameter, new String[] {
 							Integer.toString(extendedAnnotation.getParameterIndex()),
 						}));
 				break;
 			case IExtendedAnnotationConstants.THROWS :
-				buffer.append(
+				buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						Messages.bind(Messages.disassembler_extendedannotation_throws, new String[] {
 							Integer.toString(extendedAnnotation.getAnnotationTypeIndex()),
 						}));
@@ -351,11 +351,11 @@ public class Disassembler extends ClassFileBytesDisassembler {
 
 			case IExtendedAnnotationConstants.LOCAL_VARIABLE :
 			case IExtendedAnnotationConstants.RESOURCE_VARIABLE :
-				buffer.append(Messages.disassembler_localvariabletargetheader);
+				buffer.append(Messages.disassembler_localvariabletargetheader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				writeNewLine(buffer, lineSeparator, tabNumber + 3);
 				int localVariableTableSize = extendedAnnotation.getLocalVariableRefenceInfoLength();
 				ILocalVariableReferenceInfo[] localVariableTable = extendedAnnotation.getLocalVariableTable();
-				for (int i = 0; i < localVariableTableSize; i++) {
+				for (int i = 0; i < localVariableTableSize; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (i != 0) {
 						writeNewLine(buffer, lineSeparator, tabNumber + 3);
 					}
@@ -363,7 +363,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 					int index= info.getIndex();
 					int startPC = info.getStartPC();
 					int length  = info.getLength();
-					buffer.append(Messages.bind(Messages.classfileformat_localvariablereferenceinfoentry,
+					buffer.append(Messages.bind(Messages.classfileformat_localvariablereferenceinfoentry, //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						new String[] {
 							Integer.toString(startPC),
 							Integer.toString(startPC + length),
@@ -372,7 +372,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 				}
 				break;
 			case IExtendedAnnotationConstants.EXCEPTION_PARAMETER :
-				buffer.append(
+				buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						Messages.bind(Messages.disassembler_extendedannotation_exception_table_index, new String[] {
 							Integer.toString(extendedAnnotation.getExceptionTableIndex()),
 						}));
@@ -382,7 +382,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 			case IExtendedAnnotationConstants.NEW :
 			case IExtendedAnnotationConstants.CONSTRUCTOR_REFERENCE :
 			case IExtendedAnnotationConstants.METHOD_REFERENCE :
-				buffer.append(
+				buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						Messages.bind(Messages.disassembler_extendedannotation_offset, new String[] {
 							Integer.toString(extendedAnnotation.getOffset()),
 						}));
@@ -392,19 +392,19 @@ public class Disassembler extends ClassFileBytesDisassembler {
 			case IExtendedAnnotationConstants.METHOD_INVOCATION_TYPE_ARGUMENT :
 			case IExtendedAnnotationConstants.CONSTRUCTOR_REFERENCE_TYPE_ARGUMENT :
 			case IExtendedAnnotationConstants.METHOD_REFERENCE_TYPE_ARGUMENT :
-				buffer.append(
+				buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						Messages.bind(Messages.disassembler_extendedannotation_offset, new String[] {
 							Integer.toString(extendedAnnotation.getOffset()),
 						}));
 				writeNewLine(buffer, lineSeparator, tabNumber + 2);
-				buffer.append(
+				buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						Messages.bind(Messages.disassembler_extendedannotation_type_argument, new String[] {
 							Integer.toString(extendedAnnotation.getAnnotationTypeIndex()),
 						}));
 				break;
 		}
 	}
-	private String getTargetType(int targetType) {
+	private String getTargetType(int targetType) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch(targetType) {
 			case IExtendedAnnotationConstants.CLASS_TYPE_PARAMETER :
 				return "CLASS_TYPE_PARAMETER"; //$NON-NLS-1$
@@ -460,7 +460,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 
 	private void disassemble(IAnnotationComponent annotationComponent, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
 		writeNewLine(buffer, lineSeparator, tabNumber + 1);
-		buffer.append(
+		buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			Messages.bind(Messages.disassembler_annotationcomponent,
 				new String[] {
 					Integer.toString(annotationComponent.getComponentNameIndex()),
@@ -469,7 +469,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		disassemble(annotationComponent.getComponentValue(), buffer, lineSeparator, tabNumber + 1, mode);
 	}
 
-	private void disassemble(IAnnotationComponentValue annotationComponentValue, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
+	private void disassemble(IAnnotationComponentValue annotationComponentValue, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch(annotationComponentValue.getTag()) {
 			case IAnnotationComponentValue.BYTE_TAG:
 			case IAnnotationComponentValue.CHAR_TAG:
@@ -484,47 +484,47 @@ public class Disassembler extends ClassFileBytesDisassembler {
 				String value = null;
 				switch(constantPoolEntry.getKind()) {
 					case IConstantPoolConstant.CONSTANT_Long :
-						value = constantPoolEntry.getLongValue() + "L"; //$NON-NLS-1$
+						value = constantPoolEntry.getLongValue() + "L"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						break;
 					case IConstantPoolConstant.CONSTANT_Float :
-						value = constantPoolEntry.getFloatValue() + "f"; //$NON-NLS-1$
+						value = constantPoolEntry.getFloatValue() + "f"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						break;
 					case IConstantPoolConstant.CONSTANT_Double :
 						value = Double.toString(constantPoolEntry.getDoubleValue());
 						break;
 					case IConstantPoolConstant.CONSTANT_Integer:
-						StringBuilder temp = new StringBuilder();
+						StringBuilder temp = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 						switch(annotationComponentValue.getTag()) {
 							case IAnnotationComponentValue.CHAR_TAG :
-								temp.append('\'');
+								temp.append('\''); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 								escapeChar(temp, (char) constantPoolEntry.getIntegerValue());
-								temp.append('\'');
+								temp.append('\''); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 								break;
 							case IAnnotationComponentValue.BOOLEAN_TAG :
-								temp.append(constantPoolEntry.getIntegerValue() == 1 ? "true" : "false");//$NON-NLS-1$//$NON-NLS-2$
+								temp.append(constantPoolEntry.getIntegerValue() == 1 ? "true" : "false");//$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 								break;
 							case IAnnotationComponentValue.BYTE_TAG :
-								temp.append("(byte) ").append(constantPoolEntry.getIntegerValue()); //$NON-NLS-1$
+								temp.append("(byte) ").append(constantPoolEntry.getIntegerValue()); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 								break;
 							case IAnnotationComponentValue.SHORT_TAG :
-								temp.append("(short) ").append(constantPoolEntry.getIntegerValue()); //$NON-NLS-1$
+								temp.append("(short) ").append(constantPoolEntry.getIntegerValue()); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 								break;
 							case IAnnotationComponentValue.INTEGER_TAG :
-								temp.append("(int) ").append(constantPoolEntry.getIntegerValue()); //$NON-NLS-1$
+								temp.append("(int) ").append(constantPoolEntry.getIntegerValue()); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
 						value = String.valueOf(temp);
 						break;
 					case IConstantPoolConstant.CONSTANT_Utf8:
-						value = "\"" + decodeStringValue(constantPoolEntry.getUtf8Value()) + "\"";//$NON-NLS-1$//$NON-NLS-2$
+						value = "\"" + decodeStringValue(constantPoolEntry.getUtf8Value()) + "\"";//$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
-				buffer.append(Messages.bind(Messages.disassembler_annotationdefaultvalue, value));
+				buffer.append(Messages.bind(Messages.disassembler_annotationdefaultvalue, value)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case IAnnotationComponentValue.ENUM_TAG:
 				final int enumConstantTypeNameIndex = annotationComponentValue.getEnumConstantTypeNameIndex();
 				final char[] typeName = CharOperation.replaceOnCopy(annotationComponentValue.getEnumConstantTypeName(), '/', '.');
 				final int enumConstantNameIndex = annotationComponentValue.getEnumConstantNameIndex();
 				final char[] constantName = annotationComponentValue.getEnumConstantName();
-				buffer.append(Messages.bind(Messages.disassembler_annotationenumvalue,
+				buffer.append(Messages.bind(Messages.disassembler_annotationenumvalue, //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					new String[] {
 						Integer.toString(enumConstantTypeNameIndex),
 						Integer.toString(enumConstantNameIndex),
@@ -536,32 +536,32 @@ public class Disassembler extends ClassFileBytesDisassembler {
 				final int classIndex = annotationComponentValue.getClassInfoIndex();
 				constantPoolEntry = annotationComponentValue.getClassInfo();
 				final char[] className = CharOperation.replaceOnCopy(constantPoolEntry.getUtf8Value(), '/', '.');
-				buffer.append(Messages.bind(Messages.disassembler_annotationclassvalue,
+				buffer.append(Messages.bind(Messages.disassembler_annotationclassvalue, //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					new String[] {
 						Integer.toString(classIndex),
 						new String(returnClassName(Signature.toCharArray(className), '.', mode))
 					}));
 				break;
 			case IAnnotationComponentValue.ANNOTATION_TAG:
-				buffer.append(Messages.disassembler_annotationannotationvalue);
+				buffer.append(Messages.disassembler_annotationannotationvalue); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				IAnnotation annotation = annotationComponentValue.getAnnotationValue();
 				disassemble(annotation, buffer, lineSeparator, tabNumber + 1, mode);
 				break;
 			case IAnnotationComponentValue.ARRAY_TAG:
-				buffer.append(Messages.disassembler_annotationarrayvaluestart);
+				buffer.append(Messages.disassembler_annotationarrayvaluestart); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				final IAnnotationComponentValue[] annotationComponentValues = annotationComponentValue.getAnnotationComponentValues();
-				for (IAnnotationComponentValue acv : annotationComponentValues) {
+				for (IAnnotationComponentValue acv : annotationComponentValues) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					writeNewLine(buffer, lineSeparator, tabNumber + 1);
 					disassemble(acv, buffer, lineSeparator, tabNumber + 1, mode);
 				}
 				writeNewLine(buffer, lineSeparator, tabNumber + 1);
-				buffer.append(Messages.disassembler_annotationarrayvalueend);
+				buffer.append(Messages.disassembler_annotationarrayvalueend); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
 	private void disassemble(IAnnotationDefaultAttribute annotationDefaultAttribute, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
 		writeNewLine(buffer, lineSeparator, tabNumber + 1);
-		buffer.append(Messages.disassembler_annotationdefaultheader);
+		buffer.append(Messages.disassembler_annotationdefaultheader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		IAnnotationComponentValue componentValue = annotationDefaultAttribute.getMemberValue();
 		writeNewLine(buffer, lineSeparator, tabNumber + 2);
 		disassemble(componentValue, buffer, lineSeparator, tabNumber + 1, mode);
@@ -569,7 +569,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 
 	private void disassemble(IClassFileAttribute classFileAttribute, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
 		writeNewLine(buffer, lineSeparator, tabNumber + 1);
-		buffer.append(Messages.bind(Messages.disassembler_genericattributeheader,
+		buffer.append(Messages.bind(Messages.disassembler_genericattributeheader, //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			new String[] {
 				new String(classFileAttribute.getAttributeName()),
 				Long.toString(classFileAttribute.getAttributeLength())
@@ -579,19 +579,19 @@ public class Disassembler extends ClassFileBytesDisassembler {
 	private void disassemble(IMethodParametersAttribute methodParametersAttribute, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
 		tabNumber += 2;
 		writeNewLine(buffer, lineSeparator, tabNumber);
-		buffer.append(Messages.disassembler_methodparametersheader);
-		for (int i = 0, length = methodParametersAttribute.getMethodParameterLength(); i < length; ++i) {
+		buffer.append(Messages.disassembler_methodparametersheader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (int i = 0, length = methodParametersAttribute.getMethodParameterLength(); i < length; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			writeNewLine(buffer, lineSeparator, tabNumber + 1);
 			short accessFlags = methodParametersAttribute.getAccessFlags(i);
 			decodeModifiersForMethodParameters(buffer, accessFlags);
 			char [] parameterName = methodParametersAttribute.getParameterName(i);
 			if (parameterName == null)
 				parameterName = Messages.disassembler_anonymousparametername.toCharArray();
-			buffer.append(parameterName);
+			buffer.append(parameterName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
-	private void disassembleEnumConstructor(IClassFileReader classFileReader, char[] className, IMethodInfo methodInfo, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
+	private void disassembleEnumConstructor(IClassFileReader classFileReader, char[] className, IMethodInfo methodInfo, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		writeNewLine(buffer, lineSeparator, tabNumber);
 		final ICodeAttribute codeAttribute = methodInfo.getCodeAttribute();
 		IMethodParametersAttribute methodParametersAttribute = (IMethodParametersAttribute) Util.getAttribute(methodInfo, IAttributeNamesConstants.METHOD_PARAMETERS);
@@ -614,27 +614,27 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		final char[] signature = Signature.toCharArray(methodDescriptor, returnClassName(className, '.', COMPACT), getParameterNames(methodDescriptor, codeAttribute, methodParametersAttribute, accessFlags) , !checkMode(mode, COMPACT), false, isVarArgs);
 		int index = CharOperation.indexOf(',', signature);
 		index = CharOperation.indexOf(',', signature, index + 1);
-		buffer.append(signature, 0, CharOperation.indexOf('(', signature) + 1);
-		buffer.append(signature, index + 2, signature.length - index - 2);
+		buffer.append(signature, 0, CharOperation.indexOf('(', signature) + 1); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(signature, index + 2, signature.length - index - 2); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		IExceptionAttribute exceptionAttribute = methodInfo.getExceptionAttribute();
 		if (exceptionAttribute != null) {
-			buffer.append(" throws "); //$NON-NLS-1$
+			buffer.append(" throws "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			char[][] exceptionNames = exceptionAttribute.getExceptionNames();
 			int length = exceptionNames.length;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (i != 0) {
-					buffer
+					buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
     					.append(Messages.disassembler_comma)
     					.append(Messages.disassembler_space);
 				}
 				char[] exceptionName = exceptionNames[i];
 				CharOperation.replace(exceptionName, '/', '.');
-				buffer.append(returnClassName(exceptionName, '.', mode));
+				buffer.append(returnClassName(exceptionName, '.', mode)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		if (((accessFlags & IModifierConstants.ACC_NATIVE) == 0)
 				&& ((accessFlags & IModifierConstants.ACC_ABSTRACT) == 0)) {
-			buffer.append(" {"); //$NON-NLS-1$
+			buffer.append(" {"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			final char[] returnType = Signature.getReturnType(methodDescriptor);
 			if (returnType.length == 1) {
 				switch(returnType[0]) {
@@ -649,31 +649,31 @@ public class Disassembler extends ClassFileBytesDisassembler {
 					case 'S' :
 					case 'C' :
 						writeNewLine(buffer, lineSeparator, tabNumber + 1);
-						buffer.append("return 0;"); //$NON-NLS-1$
+						buffer.append("return 0;"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						writeNewLine(buffer, lineSeparator, tabNumber);
 						break;
 					default :
 						// boolean
 						writeNewLine(buffer, lineSeparator, tabNumber + 1);
-						buffer.append("return false;"); //$NON-NLS-1$
+						buffer.append("return false;"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						writeNewLine(buffer, lineSeparator, tabNumber);
 				}
 			} else {
 				// object
 				writeNewLine(buffer, lineSeparator, tabNumber + 1);
-				buffer.append("return null;"); //$NON-NLS-1$
+				buffer.append("return null;"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				writeNewLine(buffer, lineSeparator, tabNumber);
 			}
-			buffer.append('}');
+			buffer.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
-			buffer.append(';');
+			buffer.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
 	/**
 	 * Disassemble a method info header
 	 */
-	private void disassemble(IClassFileReader classFileReader, char[] className, IMethodInfo methodInfo, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
+	private void disassemble(IClassFileReader classFileReader, char[] className, IMethodInfo methodInfo, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		writeNewLine(buffer, lineSeparator, tabNumber);
 		final ICodeAttribute codeAttribute = methodInfo.getCodeAttribute();
 		final char[] methodDescriptor = methodInfo.getDescriptor();
@@ -687,21 +687,21 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		final IClassFileAttribute methodParametersAttribute = Util.getAttribute(methodInfo, IAttributeNamesConstants.METHOD_PARAMETERS);
 		final IClassFileAttribute annotationDefaultAttribute = Util.getAttribute(methodInfo, IAttributeNamesConstants.ANNOTATION_DEFAULT);
 		if (checkMode(mode, SYSTEM | DETAILED)) {
-			buffer.append(Messages.bind(Messages.classfileformat_methoddescriptor,
+			buffer.append(Messages.bind(Messages.classfileformat_methoddescriptor, //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				new String[] {
 					Integer.toString(methodInfo.getDescriptorIndex()),
 					new String(methodDescriptor)
 				}));
 			if (methodInfo.isDeprecated()) {
-				buffer.append(Messages.disassembler_deprecated);
+				buffer.append(Messages.disassembler_deprecated); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			writeNewLine(buffer, lineSeparator, tabNumber);
 			if (signatureAttribute != null) {
-				buffer.append(Messages.bind(Messages.disassembler_signatureattributeheader, new String(signatureAttribute.getSignature())));
+				buffer.append(Messages.bind(Messages.disassembler_signatureattributeheader, new String(signatureAttribute.getSignature()))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				writeNewLine(buffer, lineSeparator, tabNumber);
 			}
 			if (codeAttribute != null) {
-				buffer.append(Messages.bind(Messages.classfileformat_stacksAndLocals,
+				buffer.append(Messages.bind(Messages.classfileformat_stacksAndLocals, //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					new String[] {
 						Integer.toString(codeAttribute.getMaxStack()),
 						Integer.toString(codeAttribute.getMaxLocals())
@@ -723,8 +723,8 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		final int accessFlags = methodInfo.getAccessFlags();
 		decodeModifiersForMethod(buffer, accessFlags);
 		if (methodInfo.isSynthetic() && !checkMode(mode, WORKING_COPY)) {
-			buffer.append("synthetic"); //$NON-NLS-1$
-			buffer.append(Messages.disassembler_space);
+			buffer.append("synthetic"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(Messages.disassembler_space); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		CharOperation.replace(methodDescriptor, '/', '.');
 		final boolean isVarArgs = isVarArgs(methodInfo);
@@ -738,7 +738,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 				final char[] signature = signatureAttribute.getSignature();
 				CharOperation.replace(signature, '/', '.');
 				disassembleGenericSignature(mode, buffer, signature);
-				buffer.append(' ');
+				buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				methodHeader = Signature.toCharArray(signature, returnClassName(className, '.', COMPACT), parameterNames, !checkMode(mode, COMPACT), false, isVarArgs);
 			} else {
 				methodHeader = Signature.toCharArray(methodDescriptor, returnClassName(className, '.', COMPACT), parameterNames, !checkMode(mode, COMPACT), false, isVarArgs);
@@ -750,7 +750,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 				final char[] signature = signatureAttribute.getSignature();
 				CharOperation.replace(signature, '/', '.');
 				disassembleGenericSignature(mode, buffer, signature);
-				buffer.append(' ');
+				buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				methodHeader = Signature.toCharArray(signature, methodInfo.getName(), parameterNames, !checkMode(mode, COMPACT), true, isVarArgs);
 			} else {
 				methodHeader = Signature.toCharArray(methodDescriptor, methodInfo.getName(), parameterNames, !checkMode(mode, COMPACT), true, isVarArgs);
@@ -788,11 +788,11 @@ public class Disassembler extends ClassFileBytesDisassembler {
 			}
 			int insertionPosition = CharOperation.indexOf('(', methodHeader) + 1;
 			int start = 0;
-			StringBuilder stringBuffer = new StringBuilder();
-			stringBuffer.append(methodHeader, 0, insertionPosition);
-			for (int i = 0; i < length; i++) {
+			StringBuilder stringBuffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			stringBuffer.append(methodHeader, 0, insertionPosition); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (i > 0) {
-					stringBuffer.append(' ');
+					stringBuffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				int stringBufferSize = stringBuffer.length();
 				if (visibleParameterAnnotations != null) {
@@ -800,57 +800,57 @@ public class Disassembler extends ClassFileBytesDisassembler {
 				}
 				if (invisibleParameterAnnotations != null) {
 					if (stringBuffer.length() != stringBufferSize) {
-						stringBuffer.append(' ');
+						stringBuffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						stringBufferSize = stringBuffer.length();
 					}
 					disassembleAsModifier(invisibleParameterAnnotations, stringBuffer, i, lineSeparator, tabNumber, mode);
 				}
 				if (i == 0 && stringBuffer.length() != stringBufferSize) {
-					stringBuffer.append(' ');
+					stringBuffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				start = insertionPosition;
 				insertionPosition = CharOperation.indexOf(',', methodHeader, start + 1) + 1;
 				if (insertionPosition == 0) {
-					stringBuffer.append(methodHeader, start, methodHeader.length - start);
+					stringBuffer.append(methodHeader, start, methodHeader.length - start); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else {
-					stringBuffer.append(methodHeader, start, insertionPosition - start);
+					stringBuffer.append(methodHeader, start, insertionPosition - start); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
-			buffer.append(stringBuffer);
+			buffer.append(stringBuffer); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
-			buffer.append(methodHeader);
+			buffer.append(methodHeader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		IExceptionAttribute exceptionAttribute = methodInfo.getExceptionAttribute();
 		if (exceptionAttribute != null) {
-			buffer.append(" throws "); //$NON-NLS-1$
+			buffer.append(" throws "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			char[][] exceptionNames = exceptionAttribute.getExceptionNames();
 			int length = exceptionNames.length;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (i != 0) {
-					buffer
+					buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						.append(Messages.disassembler_comma)
 						.append(Messages.disassembler_space);
 				}
 				char[] exceptionName = exceptionNames[i];
 				CharOperation.replace(exceptionName, '/', '.');
-				buffer.append(returnClassName(exceptionName, '.', mode));
+				buffer.append(returnClassName(exceptionName, '.', mode)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		if (checkMode(mode, DETAILED)) {
 			if (annotationDefaultAttribute != null) {
-				buffer.append(" default "); //$NON-NLS-1$
+				buffer.append(" default "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				disassembleAsModifier((IAnnotationDefaultAttribute) annotationDefaultAttribute, buffer, lineSeparator, tabNumber, mode);
 			}
 		}
 		if (checkMode(mode, WORKING_COPY)) {
 			// put the annotation default attribute if needed
 			if (annotationDefaultAttribute != null) {
-				buffer.append(" default "); //$NON-NLS-1$
+				buffer.append(" default "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				disassembleAsModifier((IAnnotationDefaultAttribute) annotationDefaultAttribute, buffer, lineSeparator, tabNumber, mode);
 			}
 			if (((accessFlags & IModifierConstants.ACC_NATIVE) == 0)
 					&& ((accessFlags & IModifierConstants.ACC_ABSTRACT) == 0)) {
-				buffer.append(" {"); //$NON-NLS-1$
+				buffer.append(" {"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				final char[] returnType = Signature.getReturnType(methodDescriptor);
 				if (returnType.length == 1) {
 					switch(returnType[0]) {
@@ -865,27 +865,27 @@ public class Disassembler extends ClassFileBytesDisassembler {
 						case 'S' :
 						case 'C' :
 							writeNewLine(buffer, lineSeparator, tabNumber + 1);
-							buffer.append("return 0;"); //$NON-NLS-1$
+							buffer.append("return 0;"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							writeNewLine(buffer, lineSeparator, tabNumber);
 							break;
 						default :
 							// boolean
 							writeNewLine(buffer, lineSeparator, tabNumber + 1);
-							buffer.append("return false;"); //$NON-NLS-1$
+							buffer.append("return false;"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							writeNewLine(buffer, lineSeparator, tabNumber);
 					}
 				} else {
 					// object
 					writeNewLine(buffer, lineSeparator, tabNumber + 1);
-					buffer.append("return null;"); //$NON-NLS-1$
+					buffer.append("return null;"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					writeNewLine(buffer, lineSeparator, tabNumber);
 				}
-				buffer.append('}');
+				buffer.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				buffer.append(';');
+				buffer.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		} else {
-			buffer.append(Messages.disassembler_endofmethodheader);
+			buffer.append(Messages.disassembler_endofmethodheader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		if (checkMode(mode, SYSTEM | DETAILED)) {
@@ -902,7 +902,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 			IClassFileAttribute[] attributes = methodInfo.getAttributes();
 			int length = attributes.length;
 			if (length != 0) {
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IClassFileAttribute attribute = attributes[i];
 					if (attribute != codeAttribute
 							&& attribute != exceptionAttribute
@@ -964,7 +964,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 	 *
 	 * @return the disassembled string of the IClassFileReader according to the mode
 	 */
-	public String disassemble(IClassFileReader classFileReader, String lineSeparator, int mode) {
+	public String disassemble(IClassFileReader classFileReader, String lineSeparator, int mode) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (classFileReader == null) return org.eclipse.jdt.internal.compiler.util.Util.EMPTY_STRING;
 		char[] className = classFileReader.getClassName();
 		if (className == null) {
@@ -976,17 +976,17 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		final int accessFlags = classFileReader.getAccessFlags();
 		final boolean isEnum = (accessFlags & IModifierConstants.ACC_ENUM) != 0;
 
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		ISourceAttribute sourceAttribute = classFileReader.getSourceFileAttribute();
 		IClassFileAttribute classFileAttribute = Util.getAttribute(classFileReader, IAttributeNamesConstants.SIGNATURE);
 		ISignatureAttribute signatureAttribute = (ISignatureAttribute) classFileAttribute;
 		if (checkMode(mode, SYSTEM | DETAILED)) {
 			int minorVersion = classFileReader.getMinorVersion();
 			int majorVersion = classFileReader.getMajorVersion();
-			buffer.append(Messages.disassembler_begincommentline);
+			buffer.append(Messages.disassembler_begincommentline); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (sourceAttribute != null) {
-				buffer.append(Messages.disassembler_sourceattributeheader);
-				buffer.append(sourceAttribute.getSourceFileName());
+				buffer.append(Messages.disassembler_sourceattributeheader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(sourceAttribute.getSourceFileName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			String versionNumber = VERSION_UNKNOWN;
 			if (minorVersion == 3 && majorVersion == 45) {
@@ -996,20 +996,20 @@ public class Disassembler extends ClassFileBytesDisassembler {
 				if (versionNumber.length() == 0)
 					versionNumber = VERSION_UNKNOWN;
 			}
-			buffer.append(
+			buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				Messages.bind(Messages.classfileformat_versiondetails,
 				new String[] {
 					versionNumber,
 					Integer.toString(majorVersion),
 					Integer.toString(minorVersion),
-					((accessFlags & IModifierConstants.ACC_SUPER) != 0
+					((accessFlags & IModifierConstants.ACC_SUPER) != 0 //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							? Messages.classfileformat_superflagisset
 							: Messages.classfileformat_superflagisnotset)
 					+ (isDeprecated(classFileReader) ? ", deprecated" : org.eclipse.jdt.internal.compiler.util.Util.EMPTY_STRING)//$NON-NLS-1$
 				}));
 			writeNewLine(buffer, lineSeparator, 0);
 			if (signatureAttribute != null) {
-				buffer.append(Messages.bind(Messages.disassembler_signatureattributeheader, new String(signatureAttribute.getSignature())));
+				buffer.append(Messages.bind(Messages.disassembler_signatureattributeheader, new String(signatureAttribute.getSignature()))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				writeNewLine(buffer, lineSeparator, 0);
 			}
 		}
@@ -1017,9 +1017,9 @@ public class Disassembler extends ClassFileBytesDisassembler {
 
 		if (checkMode(mode, WORKING_COPY) && lastDotIndexInClassName != -1) {
 			// we print a package declaration
-			buffer.append("package ");//$NON-NLS-1$
-			buffer.append(className, 0, lastDotIndexInClassName);
-			buffer.append(';');
+			buffer.append("package ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(className, 0, lastDotIndexInClassName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			writeNewLine(buffer, lineSeparator, 0);
 		}
 
@@ -1053,7 +1053,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 			if (innerClassesAttribute != null) {
 				// search the right entry
 				IInnerClassesAttributeEntry[] entries = innerClassesAttribute.getInnerClassAttributesEntries();
-				for (IInnerClassesAttributeEntry entry : entries) {
+				for (IInnerClassesAttributeEntry entry : entries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					char[] innerClassName = entry.getInnerClassName();
 					if (innerClassName != null) {
 						if (CharOperation.equals(classFileReader.getClassName(), innerClassName)) {
@@ -1066,8 +1066,8 @@ public class Disassembler extends ClassFileBytesDisassembler {
 			if (!decoded) {
 				decodeModifiersForType(buffer, accessFlags);
 				if (isSynthetic(classFileReader)) {
-					buffer.append("synthetic"); //$NON-NLS-1$
-					buffer.append(Messages.disassembler_space);
+					buffer.append("synthetic"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(Messages.disassembler_space); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
 		}
@@ -1076,42 +1076,42 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		final boolean isModule = (accessFlags & IModifierConstants.ACC_MODULE) != 0;
 		boolean isInterface = false;
 		if (isEnum) {
-			buffer.append("enum "); //$NON-NLS-1$
+			buffer.append("enum "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else if (isModule) {
 			// skip - process under module attribute
 		} else if (classFileReader.isClass()) {
 			if (CharOperation.equals(classFileReader.getSuperclassName(), TypeConstants.CharArray_JAVA_LANG_RECORD_SLASH)) {
-				buffer.append("record "); //$NON-NLS-1$
+				buffer.append("record "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			else {
-				buffer.append("class "); //$NON-NLS-1$
+				buffer.append("class "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		} else {
 			if (isAnnotation) {
-				buffer.append("@"); //$NON-NLS-1$
+				buffer.append("@"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buffer.append("interface "); //$NON-NLS-1$
+			buffer.append("interface "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			isInterface = true;
 		}
 
 		if (checkMode(mode, WORKING_COPY)) {
 			// we print the simple class name
 			final int start = lastDotIndexInClassName + 1;
-			buffer.append(className, start, classNameLength - start);
+			buffer.append(className, start, classNameLength - start); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			className = CharOperation.subarray(className, start, classNameLength);
 			if (signatureAttribute != null) {
 				disassembleGenericSignature(mode, buffer, signatureAttribute.getSignature());
 			}
 		} else if (!isModule) {
-			buffer.append(className);
+			buffer.append(className); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		char[] superclassName = classFileReader.getSuperclassName();
 		if (superclassName != null) {
 			CharOperation.replace(superclassName, '/', '.');
 			if (!isJavaLangObject(superclassName) && !isEnum) {
-				buffer.append(" extends "); //$NON-NLS-1$
-				buffer.append(returnClassName(superclassName, '.', mode));
+				buffer.append(" extends "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(returnClassName(superclassName, '.', mode)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		if (!isAnnotation || !checkMode(mode, WORKING_COPY)) {
@@ -1119,35 +1119,35 @@ public class Disassembler extends ClassFileBytesDisassembler {
 			int length = superclassInterfaces.length;
 			if (length != 0) {
 				if (isInterface) {
-					buffer.append(" extends "); //$NON-NLS-1$
+					buffer.append(" extends "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else {
-					buffer.append(" implements "); //$NON-NLS-1$
+					buffer.append(" implements "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (i != 0) {
-						buffer
+						buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							.append(Messages.disassembler_comma)
 							.append(Messages.disassembler_space);
 					}
 					char[] superinterface = superclassInterfaces[i];
 					CharOperation.replace(superinterface, '/', '.');
-					buffer
+					buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						.append(returnClassName(superinterface, '.', mode));
 				}
 			}
 		}
 		if (!isModule)
-			buffer.append(Messages.bind(Messages.disassembler_opentypedeclaration));
+			buffer.append(Messages.bind(Messages.disassembler_opentypedeclaration)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (checkMode(mode, SYSTEM)) {
 			disassemble(classFileReader.getConstantPool(), buffer, lineSeparator, 1);
 		}
 		if (isModule && moduleAttribute != null) { // print attributes - module package and main class only if the mandatory module attribute non-null
 			decodeModifiersForModule(buffer, accessFlags);
-			buffer.append("module"); //$NON-NLS-1$
-			buffer.append(Messages.disassembler_space);
-			buffer.append(moduleAttribute.getModuleName());
-			buffer.append(Messages.disassembler_space);
-			buffer.append(Messages.bind(Messages.disassembler_opentypedeclaration));
+			buffer.append("module"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(Messages.disassembler_space); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(moduleAttribute.getModuleName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(Messages.disassembler_space); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(Messages.bind(Messages.disassembler_opentypedeclaration)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			disassembleModule(moduleAttribute, buffer, lineSeparator, 1);
 			IModulePackagesAttribute modulePackagesAttribute = (IModulePackagesAttribute) Util.getAttribute(classFileReader, IAttributeNamesConstants.MODULE_PACKAGES);
 			disassembleModule(modulePackagesAttribute, buffer, lineSeparator, 1);
@@ -1237,7 +1237,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 					disassemble((IRuntimeInvisibleTypeAnnotationsAttribute) runtimeInvisibleTypeAnnotationsAttribute, buffer, lineSeparator, 0, mode);
 	 			}
 				if (length != 0) {
-					for (int i = 0; i < length; i++) {
+					for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						IClassFileAttribute attribute = attributes[i];
 						if (attribute != innerClassesAttribute
 								&& attribute != nestHostAttribute
@@ -1263,21 +1263,21 @@ public class Disassembler extends ClassFileBytesDisassembler {
 			}
 		}
 		writeNewLine(buffer, lineSeparator, 0);
-		buffer.append(Messages.disassembler_closetypedeclaration);
+		buffer.append(Messages.disassembler_closetypedeclaration); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return buffer.toString();
 	}
 
-	private void disassembleModule(IModuleAttribute moduleAttribute, StringBuilder buffer, String lineSeparator, int tabNumber) {
+	private void disassembleModule(IModuleAttribute moduleAttribute, StringBuilder buffer, String lineSeparator, int tabNumber) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		writeNewLine(buffer, lineSeparator, tabNumber);
 		char[] moduleVersion = moduleAttribute.getModuleVersionValue();
 		if (moduleVersion == null) {
 			moduleVersion = Messages.disassembler_module_version_none.toCharArray();
 		}
-		buffer.append(Messages.bind(Messages.disassembler_module_version, new String(moduleVersion)));
+		buffer.append(Messages.bind(Messages.disassembler_module_version, new String(moduleVersion))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		IRequiresInfo[] requiresInfo = moduleAttribute.getRequiresInfo();
 		if (requiresInfo.length > 0) {
 			writeNewLine(buffer, lineSeparator, 0);
-			for (IRequiresInfo info : requiresInfo) {
+			for (IRequiresInfo info : requiresInfo) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				writeNewLine(buffer, lineSeparator, tabNumber);
 				disassemble(info, buffer, lineSeparator, tabNumber);
 			}
@@ -1285,7 +1285,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		IPackageVisibilityInfo[] exportInfos = moduleAttribute.getExportsInfo();
 		if (exportInfos.length > 0) {
 			writeNewLine(buffer, lineSeparator, 0);
-			for (IPackageVisibilityInfo info : exportInfos) {
+			for (IPackageVisibilityInfo info : exportInfos) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				writeNewLine(buffer, lineSeparator, tabNumber);
 				disassemble(info, buffer, lineSeparator, tabNumber, true);
 			}
@@ -1293,7 +1293,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		IPackageVisibilityInfo[] opensInfos = moduleAttribute.getOpensInfo();
 		if (opensInfos.length > 0) {
 			writeNewLine(buffer, lineSeparator, 0);
-			for (IPackageVisibilityInfo info : opensInfos) {
+			for (IPackageVisibilityInfo info : opensInfos) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				writeNewLine(buffer, lineSeparator, tabNumber);
 				disassemble(info, buffer, lineSeparator, tabNumber, false);
 			}
@@ -1301,31 +1301,31 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		char[][] usesNames = moduleAttribute.getUsesClassNames();
 		if (usesNames.length > 0) {
 			writeNewLine(buffer, lineSeparator, 0);
-			for (char[] usesName : usesNames) {
+			for (char[] usesName : usesNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				writeNewLine(buffer, lineSeparator, tabNumber);
-				buffer.append("uses " + CharOperation.charToString(CharOperation.replaceOnCopy(usesName, '/','.'))); //$NON-NLS-1$
+				buffer.append("uses " + CharOperation.charToString(CharOperation.replaceOnCopy(usesName, '/','.'))); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		IProvidesInfo[] providesInfos = moduleAttribute.getProvidesInfo();
 		if (providesInfos.length > 0) {
 			writeNewLine(buffer, lineSeparator, 0);
-			for (IProvidesInfo info : providesInfos) {
+			for (IProvidesInfo info : providesInfos) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				writeNewLine(buffer, lineSeparator, tabNumber);
 				disassemble(info, buffer, lineSeparator, tabNumber);
 			}
 		}
 	}
 	private void convertModuleNames(StringBuilder buffer, char[] name) {
-		buffer.append(CharOperation.replaceOnCopy(CharOperation.replaceOnCopy(name, '$','.'), '/','.'));
+		buffer.append(CharOperation.replaceOnCopy(CharOperation.replaceOnCopy(name, '$','.'), '/','.')); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	private void disassembleModule(IModulePackagesAttribute modulePackagesAttribute, StringBuilder buffer, String lineSeparator, int tabNumber) {
 		if (modulePackagesAttribute == null) return;
 		writeNewLine(buffer, lineSeparator, tabNumber);
 		writeNewLine(buffer, lineSeparator, tabNumber);
-		buffer.append(Messages.disassembler_modulepackagesattributeheader);
+		buffer.append(Messages.disassembler_modulepackagesattributeheader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		char[][] names = modulePackagesAttribute.getPackageNames();
-		for (int i = 0, l = modulePackagesAttribute.getPackagesCount(); i < l; ++i) {
+		for (int i = 0, l = modulePackagesAttribute.getPackagesCount(); i < l; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			writeNewLine(buffer, lineSeparator, tabNumber + 1);
 			convertModuleNames(buffer, names[i]);
 		}
@@ -1335,38 +1335,38 @@ public class Disassembler extends ClassFileBytesDisassembler {
 	private void disassembleModule(IModuleMainClassAttribute moduleMainClassAttribute, StringBuilder buffer, String lineSeparator, int tabNumber) {
 		if (moduleMainClassAttribute == null) return;
 		writeNewLine(buffer, lineSeparator, tabNumber);
-		buffer.append(Messages.disassembler_modulemainclassattributeheader);
+		buffer.append(Messages.disassembler_modulemainclassattributeheader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		writeNewLine(buffer, lineSeparator, tabNumber + 1);
 		convertModuleNames(buffer, moduleMainClassAttribute.getMainClassName());
 		writeNewLine(buffer, lineSeparator, 0);
 	}
 
-	private void disassemble(IProvidesInfo iProvidesInfo, StringBuilder buffer, String lineSeparator, int tabNumber) {
-		buffer.append("provides"); //$NON-NLS-1$
-		buffer.append(Messages.disassembler_space);
+	private void disassemble(IProvidesInfo iProvidesInfo, StringBuilder buffer, String lineSeparator, int tabNumber) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		buffer.append("provides"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(Messages.disassembler_space); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		convertModuleNames(buffer, iProvidesInfo.getServiceName());
-		buffer.append(Messages.disassembler_space);
+		buffer.append(Messages.disassembler_space); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		char[][] implementations = iProvidesInfo.getImplementationNames();
 		if (implementations.length > 0) {
-			buffer.append( "with"); //$NON-NLS-1$
-			buffer.append(Messages.disassembler_space);
-			for (int i = 0, l = implementations.length; i < l; ++i) {
+			buffer.append( "with"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(Messages.disassembler_space); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (int i = 0, l = implementations.length; i < l; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (i != 0) {
-					buffer
+					buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						.append(Messages.disassembler_comma)
 						.append(Messages.disassembler_space);
 				}
 				convertModuleNames(buffer, implementations[i]);
 			}
 		}
-		buffer.append(';');
+		buffer.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	private void disassemble(INestHostAttribute nestHostAttribute, StringBuilder buffer, String lineSeparator, int tabNumber) {
 		writeNewLine(buffer, lineSeparator, tabNumber);
 		writeNewLine(buffer, lineSeparator, tabNumber); // additional line
-		buffer.append(Messages.disassembler_nesthost);
-		buffer
+		buffer.append(Messages.disassembler_nesthost); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(Messages.disassembler_constantpoolindex)
 			.append(nestHostAttribute.getNestHostIndex())
 			.append(" ")//$NON-NLS-1$
@@ -1375,31 +1375,31 @@ public class Disassembler extends ClassFileBytesDisassembler {
 	private void disassemble(IRecordAttribute recordAttribute, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
 		writeNewLine(buffer, lineSeparator, tabNumber);
 		writeNewLine(buffer, lineSeparator, tabNumber); // additional line
-		buffer.append(Messages.disassembler_record);
-		buffer
+		buffer.append(Messages.disassembler_record); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(Messages.disassembler_constantpoolindex)
 			.append(recordAttribute.getAttributeName());
 		writeNewLine(buffer, lineSeparator, tabNumber);
-		buffer.append(Messages.disassembler_components);
+		buffer.append(Messages.disassembler_components); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		writeNewLine(buffer, lineSeparator, tabNumber + 1);
 		IComponentInfo[] entries = recordAttribute.getComponentInfos();
-		for (IComponentInfo e : entries) {
+		for (IComponentInfo e : entries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			disassemble(e, buffer, lineSeparator, tabNumber, mode);
 		}
 	}
-	private void disassemble(IComponentInfo componentInfo, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
+	private void disassemble(IComponentInfo componentInfo, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		writeNewLine(buffer, lineSeparator, tabNumber);
 		final char[] descriptor = componentInfo.getDescriptor();
 		final ISignatureAttribute signatureAttribute = (ISignatureAttribute) Util.getAttribute(componentInfo, IAttributeNamesConstants.SIGNATURE);
 		if (checkMode(mode, SYSTEM | DETAILED)) {
-			buffer.append(Messages.bind(Messages.classfileformat_componentdescriptor,
+			buffer.append(Messages.bind(Messages.classfileformat_componentdescriptor, //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				new String[] {
 					Integer.toString(componentInfo.getDescriptorIndex()),
 					new String(descriptor)
 				}));
 			writeNewLine(buffer, lineSeparator, tabNumber);
 			if (signatureAttribute != null) {
-				buffer.append(Messages.bind(Messages.disassembler_signatureattributeheader, new String(signatureAttribute.getSignature())));
+				buffer.append(Messages.bind(Messages.disassembler_signatureattributeheader, new String(signatureAttribute.getSignature()))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				writeNewLine(buffer, lineSeparator, tabNumber);
 			}
 		}
@@ -1420,22 +1420,22 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		}
 		if (checkMode(mode, WORKING_COPY)) {
 			if (signatureAttribute != null) {
-				buffer.append(returnClassName(getSignatureForComponent(signatureAttribute.getSignature()), '.', mode));
+				buffer.append(returnClassName(getSignatureForComponent(signatureAttribute.getSignature()), '.', mode)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				buffer.append(returnClassName(getSignatureForComponent(descriptor), '.', mode));
+				buffer.append(returnClassName(getSignatureForComponent(descriptor), '.', mode)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		} else {
-			buffer.append(returnClassName(getSignatureForComponent(descriptor), '.', mode));
+			buffer.append(returnClassName(getSignatureForComponent(descriptor), '.', mode)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		buffer.append(' ');
-		buffer.append(new String(componentInfo.getName()));
+		buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(new String(componentInfo.getName())); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
-		buffer.append(Messages.disassembler_endofcomponent);
+		buffer.append(Messages.disassembler_endofcomponent); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (checkMode(mode, SYSTEM)) {
 			IClassFileAttribute[] attributes = componentInfo.getAttributes();
 			int length = attributes.length;
 			if (length != 0) {
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IClassFileAttribute attribute = attributes[i];
 					if (attribute != signatureAttribute
 						&& attribute != runtimeInvisibleAnnotationsAttribute
@@ -1461,96 +1461,96 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		}
 	}
 
-	private void disassemble(INestMembersAttribute nestMembersAttribute, StringBuilder buffer, String lineSeparator, int tabNumber) {
+	private void disassemble(INestMembersAttribute nestMembersAttribute, StringBuilder buffer, String lineSeparator, int tabNumber) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		writeNewLine(buffer, lineSeparator, tabNumber);
 		writeNewLine(buffer, lineSeparator, tabNumber); // additional line
-		buffer.append(Messages.disassembler_nestmembers);
+		buffer.append(Messages.disassembler_nestmembers); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		writeNewLine(buffer, lineSeparator, tabNumber + 1);
 		INestMemberAttributeEntry[] entries = nestMembersAttribute.getNestMemberAttributesEntries();
 		int length = entries.length;
 		int nestMemberIndex;
 		INestMemberAttributeEntry entry;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (i != 0) {
-				buffer.append(Messages.disassembler_comma);
+				buffer.append(Messages.disassembler_comma); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				writeNewLine(buffer, lineSeparator, tabNumber + 1);
 			}
 			entry = entries[i];
 			nestMemberIndex = entry.getNestMemberIndex();
-			buffer
+			buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				.append(Messages.disassembler_constantpoolindex)
 				.append(nestMemberIndex);
 			if (nestMemberIndex != 0) {
-				buffer
+				buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					.append(Messages.disassembler_space)
 					.append(entry.getNestMemberName());
 			}
 		}
 	}
-	private void disassemble(IPermittedSubclassesAttribute permittedSubclassesAttribute, StringBuilder buffer, String lineSeparator, int tabNumber) {
+	private void disassemble(IPermittedSubclassesAttribute permittedSubclassesAttribute, StringBuilder buffer, String lineSeparator, int tabNumber) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		writeNewLine(buffer, lineSeparator, tabNumber);
 		writeNewLine(buffer, lineSeparator, tabNumber); // additional line
-		buffer.append(Messages.disassembler_permittedsubclasses);
+		buffer.append(Messages.disassembler_permittedsubclasses); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		writeNewLine(buffer, lineSeparator, tabNumber + 1);
 		IPermittedSubclassesAttributeEntry[] entries = permittedSubclassesAttribute.getPermittedSubclassAttributesEntries();
-		for (int i = 0, length = entries.length; i < length; i++) {
+		for (int i = 0, length = entries.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (i != 0) {
-				buffer.append(Messages.disassembler_comma);
+				buffer.append(Messages.disassembler_comma); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				writeNewLine(buffer, lineSeparator, tabNumber + 1);
 			}
 			IPermittedSubclassesAttributeEntry entry = entries[i];
 			int permittedSubclassesIndex = entry.gePermittedSubclassIndex();
-			buffer
+			buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				.append(Messages.disassembler_constantpoolindex)
 				.append(permittedSubclassesIndex);
 			if (permittedSubclassesIndex != 0) {
-				buffer
+				buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					.append(Messages.disassembler_space)
 					.append(entry.getPermittedSubclassName());
 			}
 		}
 	}
-	private void disassemble(IPackageVisibilityInfo iPackageVisibilityInfo, StringBuilder buffer, String lineSeparator,
+	private void disassemble(IPackageVisibilityInfo iPackageVisibilityInfo, StringBuilder buffer, String lineSeparator, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			int tabNumber, boolean isExports) {
-		buffer.append(isExports ? "exports" : "opens"); //$NON-NLS-1$ //$NON-NLS-2$
-		buffer.append(Messages.disassembler_space);
+		buffer.append(isExports ? "exports" : "opens"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(Messages.disassembler_space); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		convertModuleNames(buffer, iPackageVisibilityInfo.getPackageName());
 		char[][] targets = iPackageVisibilityInfo.getTargetModuleNames();
 		if (targets.length > 0) {
-			buffer.append(Messages.disassembler_space);
-			buffer.append( "to"); //$NON-NLS-1$
-			buffer.append(Messages.disassembler_space);
-			for (int i = 0, l = targets.length; i < l; ++i) {
+			buffer.append(Messages.disassembler_space); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append( "to"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(Messages.disassembler_space); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (int i = 0, l = targets.length; i < l; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (i != 0) {
-					buffer
+					buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						.append(Messages.disassembler_comma)
 						.append(Messages.disassembler_space);
 				}
-				buffer.append(targets[i]);
+				buffer.append(targets[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		buffer.append(';');
+		buffer.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	private void disassemble(IRequiresInfo iRequiresInfo, StringBuilder buffer, String lineSeparator, int tabNumber) {
-		buffer.append("requires "); //$NON-NLS-1$
+		buffer.append("requires "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		decodeModifiersForModuleRequires(buffer, iRequiresInfo.getRequiresFlags());
-		buffer.append(iRequiresInfo.getRequiresModuleName());
-		buffer.append(';');
+		buffer.append(iRequiresInfo.getRequiresModuleName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
-	private void disassembleGenericSignature(int mode, StringBuilder buffer, final char[] signature) {
+	private void disassembleGenericSignature(int mode, StringBuilder buffer, final char[] signature) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		CharOperation.replace(signature, '/', '.');
 		final char[][] typeParameters = Signature.getTypeParameters(signature);
 		final int typeParametersLength = typeParameters.length;
 		if (typeParametersLength != 0) {
-			buffer.append('<');
-			for (int i = 0; i < typeParametersLength; i++) {
+			buffer.append('<'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (int i = 0; i < typeParametersLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (i != 0) {
-					buffer.append(Messages.disassembler_comma);
+					buffer.append(Messages.disassembler_comma); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				// extract the name
-				buffer.append(typeParameters[i], 0, CharOperation.indexOf(':', typeParameters[i]));
+				buffer.append(typeParameters[i], 0, CharOperation.indexOf(':', typeParameters[i])); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				final char[][] bounds = Signature.getTypeParameterBounds(typeParameters[i]);
 				final int boundsLength = bounds.length;
 				if (boundsLength != 0) {
@@ -1558,21 +1558,21 @@ public class Disassembler extends ClassFileBytesDisassembler {
 						final char[] bound = bounds[0];
 						// check if this is java.lang.Object
 						if (!isJavaLangObject(Signature.toCharArray(bound))) {
-							buffer.append(" extends "); //$NON-NLS-1$
-							buffer.append(returnClassName(Signature.toCharArray(bound), '.', mode));
+							buffer.append(" extends "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+							buffer.append(returnClassName(Signature.toCharArray(bound), '.', mode)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
 					} else {
-						buffer.append(" extends "); //$NON-NLS-1$
-						for (int j= 0; j < boundsLength; j++) {
+						buffer.append(" extends "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						for (int j= 0; j < boundsLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (j != 0) {
-								buffer.append(" & "); //$NON-NLS-1$
+								buffer.append(" & "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							}
-							buffer.append(returnClassName(Signature.toCharArray(bounds[j]), '.', mode));
+							buffer.append(returnClassName(Signature.toCharArray(bounds[j]), '.', mode)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
 					}
 				}
 			}
-			buffer.append('>');
+			buffer.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
@@ -1587,14 +1587,14 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		// check the presence of the unspecified Varargs attribute
 		return Util.getAttribute(methodInfo, AttributeNamesConstants.VarargsName) != null;
 	}
-	private void disassemble(ICodeAttribute codeAttribute, char[][] parameterNames, char[] methodDescriptor, boolean isStatic, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
+	private void disassemble(ICodeAttribute codeAttribute, char[][] parameterNames, char[] methodDescriptor, boolean isStatic, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		writeNewLine(buffer, lineSeparator, tabNumber - 1);
 		DefaultBytecodeVisitor visitor = new DefaultBytecodeVisitor(codeAttribute, parameterNames, methodDescriptor, isStatic, buffer, lineSeparator, tabNumber, mode);
 		try {
 			codeAttribute.traverse(visitor);
 		} catch(ClassFormatException e) {
 			dumpTab(tabNumber + 3, buffer);
-			buffer.append(Messages.classformat_classformatexception);
+			buffer.append(Messages.classformat_classformatexception); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			writeNewLine(buffer, lineSeparator, tabNumber - 1);
 		}
 		final int exceptionTableLength = codeAttribute.getExceptionTableLength();
@@ -1604,9 +1604,9 @@ public class Disassembler extends ClassFileBytesDisassembler {
 			isFirstAttribute = false;
 			dumpTab(tabNumberForExceptionAttribute, buffer);
 			final IExceptionTableEntry[] exceptionTableEntries = codeAttribute.getExceptionTable();
-			buffer.append(Messages.disassembler_exceptiontableheader);
+			buffer.append(Messages.disassembler_exceptiontableheader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			writeNewLine(buffer, lineSeparator, tabNumberForExceptionAttribute + 1);
-			for (int i = 0; i < exceptionTableLength; i++) {
+			for (int i = 0; i < exceptionTableLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (i != 0) {
 					writeNewLine(buffer, lineSeparator, tabNumberForExceptionAttribute + 1);
 				}
@@ -1619,7 +1619,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 				} else {
 					catchType = ANY_EXCEPTION;
 				}
-				buffer.append(Messages.bind(Messages.classfileformat_exceptiontableentry,
+				buffer.append(Messages.bind(Messages.classfileformat_exceptiontableentry, //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					new String[] {
 						Integer.toString(exceptionTableEntry.getStartPC()),
 						Integer.toString(exceptionTableEntry.getEndPC()),
@@ -1638,14 +1638,14 @@ public class Disassembler extends ClassFileBytesDisassembler {
 				dumpTab(tabNumberForLineAttribute, buffer);
 				isFirstAttribute = false;
 			}
-			buffer.append(Messages.disassembler_linenumberattributeheader);
+			buffer.append(Messages.disassembler_linenumberattributeheader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			writeNewLine(buffer, lineSeparator, tabNumberForLineAttribute + 1);
 			int[][] lineattributesEntries = lineNumberAttribute.getLineNumberTable();
-			for (int i = 0; i < lineAttributeLength; i++) {
+			for (int i = 0; i < lineAttributeLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (i != 0) {
 					writeNewLine(buffer, lineSeparator, tabNumberForLineAttribute + 1);
 				}
-				buffer.append(Messages.bind(Messages.classfileformat_linenumbertableentry,
+				buffer.append(Messages.bind(Messages.classfileformat_linenumbertableentry, //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					new String[] {
 						Integer.toString(lineattributesEntries[i][0]),
 						Integer.toString(lineattributesEntries[i][1])
@@ -1662,10 +1662,10 @@ public class Disassembler extends ClassFileBytesDisassembler {
 				isFirstAttribute = false;
 				dumpTab(tabNumberForLocalVariableAttribute, buffer);
 			}
-			buffer.append(Messages.disassembler_localvariabletableattributeheader);
+			buffer.append(Messages.disassembler_localvariabletableattributeheader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			writeNewLine(buffer, lineSeparator, tabNumberForLocalVariableAttribute + 1);
 			ILocalVariableTableEntry[] localVariableTableEntries = localVariableAttribute.getLocalVariableTable();
-			for (int i = 0; i < localVariableAttributeLength; i++) {
+			for (int i = 0; i < localVariableAttributeLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (i != 0) {
 					writeNewLine(buffer, lineSeparator, tabNumberForLocalVariableAttribute + 1);
 				}
@@ -1675,7 +1675,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 				int length  = localVariableTableEntry.getLength();
 				final char[] typeName = Signature.toCharArray(localVariableTableEntry.getDescriptor());
 				CharOperation.replace(typeName, '/', '.');
-				buffer.append(Messages.bind(Messages.classfileformat_localvariabletableentry,
+				buffer.append(Messages.bind(Messages.classfileformat_localvariabletableentry, //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					new String[] {
 						Integer.toString(startPC),
 						Integer.toString(startPC + length),
@@ -1695,10 +1695,10 @@ public class Disassembler extends ClassFileBytesDisassembler {
 				isFirstAttribute = false;
 				dumpTab(tabNumberForLocalVariableAttribute, buffer);
 			}
-			buffer.append(Messages.disassembler_localvariabletypetableattributeheader);
+			buffer.append(Messages.disassembler_localvariabletypetableattributeheader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			writeNewLine(buffer, lineSeparator, tabNumberForLocalVariableAttribute + 1);
 			ILocalVariableTypeTableEntry[] localVariableTypeTableEntries = localVariableTypeAttribute.getLocalVariableTypeTable();
-			for (int i = 0; i < localVariableTypeTableLength; i++) {
+			for (int i = 0; i < localVariableTypeTableLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (i != 0) {
 					writeNewLine(buffer, lineSeparator, tabNumberForLocalVariableAttribute + 1);
 				}
@@ -1708,7 +1708,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 				int length  = localVariableTypeTableEntry.getLength();
 				final char[] typeName = Signature.toCharArray(localVariableTypeTableEntry.getSignature());
 				CharOperation.replace(typeName, '/', '.');
-				buffer.append(Messages.bind(Messages.classfileformat_localvariabletableentry,
+				buffer.append(Messages.bind(Messages.classfileformat_localvariabletableentry, //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					new String[] {
 						Integer.toString(startPC),
 						Integer.toString(startPC + length),
@@ -1721,7 +1721,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		final int length = codeAttribute.getAttributesCount();
 		if (length != 0) {
 			IClassFileAttribute[] attributes = codeAttribute.getAttributes();
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IClassFileAttribute attribute = attributes[i];
 				if (CharOperation.equals(attribute.getAttributeName(), IAttributeNamesConstants.STACK_MAP_TABLE)) {
 					IStackMapTableAttribute stackMapTableAttribute = (IStackMapTableAttribute) attribute;
@@ -1732,7 +1732,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 						dumpTab(tabNumber + 1, buffer);
 					}
 					int numberOfEntries = stackMapTableAttribute.getNumberOfEntries();
-					buffer.append(Messages.bind(Messages.disassembler_stackmaptableattributeheader, Integer.toString(numberOfEntries)));
+					buffer.append(Messages.bind(Messages.disassembler_stackmaptableattributeheader, Integer.toString(numberOfEntries))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					if (numberOfEntries != 0) {
 						disassemble(stackMapTableAttribute, buffer, lineSeparator, tabNumber, mode);
 					}
@@ -1745,7 +1745,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 						dumpTab(tabNumber + 1, buffer);
 					}
 					int numberOfEntries = stackMapAttribute.getNumberOfEntries();
-					buffer.append(Messages.bind(Messages.disassembler_stackmapattributeheader, Integer.toString(numberOfEntries)));
+					buffer.append(Messages.bind(Messages.disassembler_stackmapattributeheader, Integer.toString(numberOfEntries))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					if (numberOfEntries != 0) {
 						disassemble(stackMapAttribute, buffer, lineSeparator, tabNumber, mode);
 					}
@@ -1762,7 +1762,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 						isFirstAttribute = false;
 						dumpTab(tabNumber + 1, buffer);
 					}
-					buffer.append(Messages.bind(Messages.disassembler_genericattributeheader,
+					buffer.append(Messages.bind(Messages.disassembler_genericattributeheader, //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						new String[] {
 							new String(attribute.getAttributeName()),
 							Long.toString(attribute.getAttributeLength())
@@ -1772,12 +1772,12 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		}
 	}
 
-	private void disassemble(IStackMapTableAttribute attribute, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
+	private void disassemble(IStackMapTableAttribute attribute, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		writeNewLine(buffer, lineSeparator, tabNumber + 3);
 		int numberOfEntries = attribute.getNumberOfEntries();
 		final IStackMapFrame[] stackMapFrames = attribute.getStackMapFrame();
 		int absolutePC = -1;
-		for (int j = 0; j < numberOfEntries; j++) {
+		for (int j = 0; j < numberOfEntries; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (j > 0) {
 				writeNewLine(buffer, lineSeparator, tabNumber + 3);
 			}
@@ -1792,7 +1792,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 			}
 			switch(type) {
 				case 247 : // SAME_LOCALS_1_STACK_ITEM_EXTENDED
-					buffer.append(
+					buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						Messages.bind(
 							Messages.disassembler_frame_same_locals_1_stack_item_extended,
 							Integer.toString(absolutePC),
@@ -1802,7 +1802,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 				case 249 :
 				case 250:
 					// CHOP
-					buffer.append(
+					buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							Messages.bind(
 								Messages.disassembler_frame_chop,
 								Integer.toString(absolutePC),
@@ -1810,7 +1810,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 					break;
 				case 251 :
 					// SAME_FRAME_EXTENDED
-					buffer.append(
+					buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							Messages.bind(
 								Messages.disassembler_frame_same_frame_extended,
 								Integer.toString(absolutePC)));
@@ -1819,7 +1819,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 				case 253 :
 				case 254 :
 					// APPEND
-					buffer.append(
+					buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							Messages.bind(
 								Messages.disassembler_frame_append,
 								Integer.toString(absolutePC),
@@ -1827,7 +1827,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 					break;
 				case 255 :
 					// FULL_FRAME
-					buffer.append(
+					buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							Messages.bind(
 								Messages.disassembler_frame_full_frame,
 								new String[] {
@@ -1843,14 +1843,14 @@ public class Disassembler extends ClassFileBytesDisassembler {
 					if (type <= 63) {
 						// SAME_FRAME
 						offsetDelta = type;
-						buffer.append(
+						buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 								Messages.bind(
 									Messages.disassembler_frame_same_frame,
 									Integer.toString(absolutePC)));
 					} else if (type <= 127) {
 						// SAME_LOCALS_1_STACK_ITEM
 						offsetDelta = type - 64;
-						buffer.append(
+						buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 								Messages.bind(
 									Messages.disassembler_frame_same_locals_1_stack_item,
 									Integer.toString(absolutePC),
@@ -1860,17 +1860,17 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		}
 	}
 
-	private void disassemble(IStackMapAttribute attribute, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
+	private void disassemble(IStackMapAttribute attribute, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		writeNewLine(buffer, lineSeparator, tabNumber + 3);
 		int numberOfEntries = attribute.getNumberOfEntries();
 		final IStackMapFrame[] stackMapFrames = attribute.getStackMapFrame();
-		for (int j = 0; j < numberOfEntries; j++) {
+		for (int j = 0; j < numberOfEntries; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (j > 0) {
 				writeNewLine(buffer, lineSeparator, tabNumber + 3);
 			}
 			final IStackMapFrame frame = stackMapFrames[j];
 			// disassemble each frame
-			buffer.append(
+			buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					Messages.bind(
 						Messages.disassembler_frame_full_frame,
 						new String[] {
@@ -1884,7 +1884,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		}
 	}
 
-	private String bootstrapMethodDescription(IBootstrapMethodsEntry entry, IConstantPool constantPool) {
+	private String bootstrapMethodDescription(IBootstrapMethodsEntry entry, IConstantPool constantPool) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// http://docs.oracle.com/javase/specs/jvms/se7/html/jvms-4.html
 		// The BootstrapMethods attribute records bootstrap method specifiers referenced by invokedynamic instructions.
 		// The value of the bootstrap_method_ref item must be a valid index into the constant_pool table. The constant_pool entry at that index must be a CONSTANT_MethodHandle_info structure (§4.4.8).
@@ -1901,13 +1901,13 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		if (constantPoolEntry2.getReferenceKind() != 6)
 			return null;
 		ConstantPoolEntry constantPoolEntry = (ConstantPoolEntry) constantPool.decodeEntry(constantPoolEntry2.getReferenceIndex());
-		StringBuilder builder = new StringBuilder();
+		StringBuilder builder = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		//String[] methodMsg = methodDescription(constantPoolEntry);
-		builder.append(Messages.bind("invokestatic {0}.{1}:{2}", methodDescription(constantPoolEntry))); //$NON-NLS-1$
+		builder.append(Messages.bind("invokestatic {0}.{1}:{2}", methodDescription(constantPoolEntry))); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return builder.toString();
 	}
 
-	private String[] bootstrapArgumentsDescription(IBootstrapMethodsEntry entry, IConstantPool constantPool) {
+	private String[] bootstrapArgumentsDescription(IBootstrapMethodsEntry entry, IConstantPool constantPool) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// http://docs.oracle.com/javase/specs/jvms/se7/html/jvms-4.html#jvms-4.7.21
 		// bootstrap_arguments
 		// 	    Each entry in the bootstrap_arguments array must be a valid index into the constant_pool table.
@@ -1918,7 +1918,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 			return null;
 		int[] bootstrapArguments = entry.getBootstrapArguments();
 		String[] arguments = new String[bootstrapArguments.length];
-		for (int i = 0, length = bootstrapArguments.length; i < length; i++) {
+		for (int i = 0, length = bootstrapArguments.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ConstantPoolEntry constantPoolEntry =  (ConstantPoolEntry) constantPool.decodeEntry(bootstrapArguments[i]);
 			switch(constantPoolEntry.getKind()) {
 				case IConstantPoolConstant.CONSTANT_Integer:
@@ -1940,21 +1940,21 @@ public class Disassembler extends ClassFileBytesDisassembler {
 					// index must be a CONSTANT_Methodref_info structure (§4.4.2) representing a class's method or
 					// constructor (§2.9) for which a method handle is to be created.
 					ConstantPoolEntry2 constantPoolEntry2 = (ConstantPoolEntry2) constantPoolEntry;
-					StringBuilder builder = new StringBuilder(10);
+					StringBuilder builder = new StringBuilder(10); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 					switch(constantPoolEntry2.getReferenceKind()) {
 						case IConstantPoolConstant.METHOD_TYPE_REF_GetField:
-							builder.append("REF_getField "); //$NON-NLS-1$
+							builder.append("REF_getField "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							constantPoolEntry = (ConstantPoolEntry) constantPool.decodeEntry(constantPoolEntry2.getReferenceIndex());
-							builder.append(Messages.bind("{0}:{1}", fieldDescription(constantPoolEntry))); //$NON-NLS-1$
+							builder.append(Messages.bind("{0}:{1}", fieldDescription(constantPoolEntry))); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							arguments[i] =  builder.toString();
 							break;
 						case IConstantPoolConstant.METHOD_TYPE_REF_InvokeStatic:
-							builder.append("invokestatic "); //$NON-NLS-1$
+							builder.append("invokestatic "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							//$FALL-THROUGH$
 						case IConstantPoolConstant.METHOD_TYPE_REF_InvokeVirtual:
 						case IConstantPoolConstant.METHOD_TYPE_REF_NewInvokeSpecial:
 							constantPoolEntry = (ConstantPoolEntry) constantPool.decodeEntry(constantPoolEntry2.getReferenceIndex());
-							builder.append(Messages.bind("{0}.{1}:{2}", methodDescription(constantPoolEntry))); //$NON-NLS-1$
+							builder.append(Messages.bind("{0}.{1}:{2}", methodDescription(constantPoolEntry))); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							arguments[i] =  builder.toString();
 							break;
 					}
@@ -1984,12 +1984,12 @@ public class Disassembler extends ClassFileBytesDisassembler {
 				new String(constantPoolEntry.getMethodDescriptor())};
 	}
 
-	private void disassemble(IConstantPool constantPool, StringBuilder buffer, String lineSeparator, int tabNumber) {
+	private void disassemble(IConstantPool constantPool, StringBuilder buffer, String lineSeparator, int tabNumber) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		writeNewLine(buffer, lineSeparator, tabNumber);
 		int length = constantPool.getConstantPoolCount();
-		buffer.append(Messages.disassembler_constantpoolheader);
+		buffer.append(Messages.disassembler_constantpoolheader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		writeNewLine(buffer, lineSeparator, tabNumber + 1);
-		for (int i = 1; i < length; i++) {
+		for (int i = 1; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (i != 1) {
 				writeNewLine(buffer, lineSeparator, tabNumber + 1);
 			}
@@ -1998,7 +1998,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 			int kind = constantPool.getEntryKind(i);
 			switch (kind) {
 				case IConstantPoolConstant.CONSTANT_Class :
-					buffer.append(
+					buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						Messages.bind(Messages.disassembler_constantpool_class,
 							new String[] {
 								Integer.toString(i),
@@ -2006,14 +2006,14 @@ public class Disassembler extends ClassFileBytesDisassembler {
 								new String(constantPoolEntry.getClassInfoName())}));
 					break;
 				case IConstantPoolConstant.CONSTANT_Double :
-					buffer.append(
+					buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						Messages.bind(Messages.disassembler_constantpool_double,
 							new String[] {
 								Integer.toString(i),
 								Double.toString(constantPoolEntry.getDoubleValue())}));
 					break;
 				case IConstantPoolConstant.CONSTANT_Fieldref :
-					buffer.append(
+					buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						Messages.bind(Messages.disassembler_constantpool_fieldref,
 							new String[] {
 								Integer.toString(i),
@@ -2025,14 +2025,14 @@ public class Disassembler extends ClassFileBytesDisassembler {
 							}));
 					break;
 				case IConstantPoolConstant.CONSTANT_Float :
-					buffer.append(
+					buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						Messages.bind(Messages.disassembler_constantpool_float,
 						new String[] {
 							Integer.toString(i),
 							Float.toString(constantPoolEntry.getFloatValue())}));
 					break;
 				case IConstantPoolConstant.CONSTANT_Integer :
-					buffer.append(
+					buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						Messages.bind(Messages.disassembler_constantpool_integer,
 							new String[] {
 								Integer.toString(i),
@@ -2040,7 +2040,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 					break;
 				case IConstantPoolConstant.CONSTANT_InterfaceMethodref :
 					methodDescription = methodDescription(constantPoolEntry);
-					buffer.append(
+					buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							Messages.bind(Messages.disassembler_constantpool_interfacemethodref,
 								new String[] {
 									Integer.toString(i),
@@ -2049,7 +2049,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 									methodDescription[0], methodDescription[1], methodDescription[2]}));
 					break;
 				case IConstantPoolConstant.CONSTANT_Long :
-					buffer.append(
+					buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						Messages.bind(Messages.disassembler_constantpool_long,
 							new String[] {
 								Integer.toString(i),
@@ -2057,7 +2057,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 					break;
 				case IConstantPoolConstant.CONSTANT_Methodref :
 					methodDescription = methodDescription(constantPoolEntry);
-					buffer.append(
+					buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							Messages.bind(Messages.disassembler_constantpool_methodref,
 								new String[] {
 									Integer.toString(i),
@@ -2072,7 +2072,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 					char[] nameValue = entry.getUtf8Value();
 					entry = constantPool.decodeEntry(typeIndex);
 					char[] typeValue = entry.getUtf8Value();
-					buffer.append(
+					buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						Messages.bind(Messages.disassembler_constantpool_name_and_type,
 							new String[] {
 								Integer.toString(i),
@@ -2082,7 +2082,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 								String.valueOf(typeValue)}));
 					break;
 				case IConstantPoolConstant.CONSTANT_String :
-					buffer.append(
+					buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						Messages.bind(Messages.disassembler_constantpool_string,
 							new String[] {
 								Integer.toString(i),
@@ -2090,7 +2090,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 								decodeStringValue(constantPoolEntry.getStringValue())}));
 					break;
 				case IConstantPoolConstant.CONSTANT_Utf8 :
-					buffer.append(
+					buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						Messages.bind(Messages.disassembler_constantpool_utf8,
 							new String[] {
 								Integer.toString(i),
@@ -2098,7 +2098,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 					break;
 				case IConstantPoolConstant.CONSTANT_MethodHandle :
 					IConstantPoolEntry2 entry2 = (IConstantPoolEntry2) constantPoolEntry;
-					buffer.append(
+					buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							Messages.bind(Messages.disassembler_constantpool_methodhandle,
 								new String[] {
 									Integer.toString(i),
@@ -2108,7 +2108,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 					break;
 				case IConstantPoolConstant.CONSTANT_MethodType :
 					entry2 = (IConstantPoolEntry2) constantPoolEntry;
-					buffer.append(
+					buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							Messages.bind(Messages.disassembler_constantpool_methodtype,
 								new String[] {
 									Integer.toString(i),
@@ -2118,7 +2118,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 					break;
 				case IConstantPoolConstant.CONSTANT_InvokeDynamic :
 					entry2 = (IConstantPoolEntry2) constantPoolEntry;
-					buffer.append(
+					buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						Messages.bind(Messages.disassembler_constantpool_invokedynamic,
 							new String[] {
 								Integer.toString(i),
@@ -2130,7 +2130,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 					break;
 				case IConstantPoolConstant.CONSTANT_Dynamic :
 					entry2 = (IConstantPoolEntry2) constantPoolEntry;
-					buffer.append(
+					buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						Messages.bind(Messages.disassembler_constantpool_dynamic,
 							new String[] {
 								Integer.toString(i),
@@ -2144,7 +2144,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		}
 	}
 
-	private String getReferenceKind(int referenceKind) {
+	private String getReferenceKind(int referenceKind) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String message = null;
 		switch(referenceKind) {
 			case IConstantPoolConstant.METHOD_TYPE_REF_GetField :
@@ -2177,10 +2177,10 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		return Messages.bind(message, new String[] { Integer.toString(referenceKind) });
 	}
 
-	private void disassemble(IEnclosingMethodAttribute enclosingMethodAttribute, StringBuilder buffer, String lineSeparator, int tabNumber) {
+	private void disassemble(IEnclosingMethodAttribute enclosingMethodAttribute, StringBuilder buffer, String lineSeparator, int tabNumber) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		writeNewLine(buffer, lineSeparator, tabNumber + 1);
-		buffer.append(Messages.disassembler_enclosingmethodheader);
-		buffer
+		buffer.append(Messages.disassembler_enclosingmethodheader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(Messages.disassembler_constantpoolindex)
 			.append(enclosingMethodAttribute.getEnclosingClassIndex())
 			.append(" ")//$NON-NLS-1$
@@ -2189,14 +2189,14 @@ public class Disassembler extends ClassFileBytesDisassembler {
 			.append(" ")//$NON-NLS-1$
 			.append(enclosingMethodAttribute.getEnclosingClass());
 		if (enclosingMethodAttribute.getMethodNameAndTypeIndex() != 0) {
-			buffer
+			buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				.append(".")//$NON-NLS-1$
 				.append(enclosingMethodAttribute.getMethodName())
 				.append(enclosingMethodAttribute.getMethodDescriptor());
 		}
 	}
 
-	private void disassembleEnumConstants(IFieldInfo fieldInfo, StringBuilder buffer, String lineSeparator, int tabNumber, char[][] argumentTypes, int mode) {
+	private void disassembleEnumConstants(IFieldInfo fieldInfo, StringBuilder buffer, String lineSeparator, int tabNumber, char[][] argumentTypes, int mode) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		writeNewLine(buffer, lineSeparator, tabNumber);
 		final IClassFileAttribute runtimeVisibleAnnotationsAttribute = Util.getAttribute(fieldInfo, IAttributeNamesConstants.RUNTIME_VISIBLE_ANNOTATIONS);
 		final IClassFileAttribute runtimeInvisibleAnnotationsAttribute = Util.getAttribute(fieldInfo, IAttributeNamesConstants.RUNTIME_INVISIBLE_ANNOTATIONS);
@@ -2209,14 +2209,14 @@ public class Disassembler extends ClassFileBytesDisassembler {
 			disassembleAsModifier((IRuntimeVisibleAnnotationsAttribute) runtimeVisibleAnnotationsAttribute, buffer, lineSeparator, tabNumber, mode);
 			writeNewLine(buffer, lineSeparator, tabNumber);
 		}
-		buffer.append(new String(fieldInfo.getName()));
-		buffer.append('(');
+		buffer.append(new String(fieldInfo.getName())); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		final int length = argumentTypes.length;
 		if (length != 0) {
 			// insert default value for corresponding argument types
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (i != 0) {
-					buffer.append(Messages.disassembler_comma);
+					buffer.append(Messages.disassembler_comma); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				final char[] type = argumentTypes[i];
 				switch(type.length) {
@@ -2228,43 +2228,43 @@ public class Disassembler extends ClassFileBytesDisassembler {
 							case 'D' :
 							case 'F' :
 							case 'S' :
-								buffer.append('0');
+								buffer.append('0'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 								break;
 							case 'Z' :
-								buffer.append("false"); //$NON-NLS-1$
+								buffer.append("false"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 								break;
 							case 'C' :
-								buffer.append("\' \'"); //$NON-NLS-1$
+								buffer.append("\' \'"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 								break;
 						}
 						break;
 					default :
-						buffer.append("null"); //$NON-NLS-1$
+						buffer.append("null"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
 		}
-		buffer.append(')').append(Messages.disassembler_comma);
+		buffer.append(')').append(Messages.disassembler_comma); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	/**
 	 * Disassemble a field info
 	 */
-	private void disassemble(IFieldInfo fieldInfo, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
+	private void disassemble(IFieldInfo fieldInfo, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		writeNewLine(buffer, lineSeparator, tabNumber);
 		final char[] fieldDescriptor = fieldInfo.getDescriptor();
 		final ISignatureAttribute signatureAttribute = (ISignatureAttribute) Util.getAttribute(fieldInfo, IAttributeNamesConstants.SIGNATURE);
 		if (checkMode(mode, SYSTEM | DETAILED)) {
-			buffer.append(Messages.bind(Messages.classfileformat_fieldddescriptor,
+			buffer.append(Messages.bind(Messages.classfileformat_fieldddescriptor, //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				new String[] {
 					Integer.toString(fieldInfo.getDescriptorIndex()),
 					new String(fieldDescriptor)
 				}));
 			if (fieldInfo.isDeprecated()) {
-				buffer.append(Messages.disassembler_deprecated);
+				buffer.append(Messages.disassembler_deprecated); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			writeNewLine(buffer, lineSeparator, tabNumber);
 			if (signatureAttribute != null) {
-				buffer.append(Messages.bind(Messages.disassembler_signatureattributeheader, new String(signatureAttribute.getSignature())));
+				buffer.append(Messages.bind(Messages.disassembler_signatureattributeheader, new String(signatureAttribute.getSignature()))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				writeNewLine(buffer, lineSeparator, tabNumber);
 			}
 		}
@@ -2286,73 +2286,73 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		if (checkMode(mode, WORKING_COPY)) {
 			decodeModifiersForFieldForWorkingCopy(buffer, fieldInfo.getAccessFlags());
 			if (signatureAttribute != null) {
-				buffer.append(returnClassName(getSignatureForField(signatureAttribute.getSignature()), '.', mode));
+				buffer.append(returnClassName(getSignatureForField(signatureAttribute.getSignature()), '.', mode)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				buffer.append(returnClassName(getSignatureForField(fieldDescriptor), '.', mode));
+				buffer.append(returnClassName(getSignatureForField(fieldDescriptor), '.', mode)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		} else {
 			decodeModifiersForField(buffer, fieldInfo.getAccessFlags());
 			if (fieldInfo.isSynthetic()) {
-				buffer.append("synthetic"); //$NON-NLS-1$
-				buffer.append(Messages.disassembler_space);
+				buffer.append("synthetic"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(Messages.disassembler_space); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buffer.append(returnClassName(getSignatureForField(fieldDescriptor), '.', mode));
+			buffer.append(returnClassName(getSignatureForField(fieldDescriptor), '.', mode)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		buffer.append(' ');
-		buffer.append(new String(fieldInfo.getName()));
+		buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(new String(fieldInfo.getName())); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		IConstantValueAttribute constantValueAttribute = fieldInfo.getConstantValueAttribute();
 		if (constantValueAttribute != null) {
-			buffer.append(Messages.disassembler_fieldhasconstant);
+			buffer.append(Messages.disassembler_fieldhasconstant); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			IConstantPoolEntry constantPoolEntry = constantValueAttribute.getConstantValue();
 			switch(constantPoolEntry.getKind()) {
 				case IConstantPoolConstant.CONSTANT_Long :
-					buffer.append(constantPoolEntry.getLongValue() + "L"); //$NON-NLS-1$
+					buffer.append(constantPoolEntry.getLongValue() + "L"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IConstantPoolConstant.CONSTANT_Float :
-					buffer.append(constantPoolEntry.getFloatValue() + "f"); //$NON-NLS-1$
+					buffer.append(constantPoolEntry.getFloatValue() + "f"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IConstantPoolConstant.CONSTANT_Double :
 					final double doubleValue = constantPoolEntry.getDoubleValue();
 					if (checkMode(mode, ClassFileBytesDisassembler.WORKING_COPY)) {
 						if (doubleValue == Double.POSITIVE_INFINITY) {
-							buffer.append("1.0 / 0.0"); //$NON-NLS-1$
+							buffer.append("1.0 / 0.0"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						} else if (doubleValue == Double.NEGATIVE_INFINITY) {
-							buffer.append("-1.0 / 0.0"); //$NON-NLS-1$
+							buffer.append("-1.0 / 0.0"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						} else {
-							buffer.append(constantPoolEntry.getDoubleValue());
+							buffer.append(constantPoolEntry.getDoubleValue()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
 					} else {
-						buffer.append(constantPoolEntry.getDoubleValue());
+						buffer.append(constantPoolEntry.getDoubleValue()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 					break;
 				case IConstantPoolConstant.CONSTANT_Integer:
 					switch(fieldDescriptor[0]) {
 						case 'C' :
-							buffer.append("'" + (char) constantPoolEntry.getIntegerValue() + "'"); //$NON-NLS-1$//$NON-NLS-2$
+							buffer.append("'" + (char) constantPoolEntry.getIntegerValue() + "'"); //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							break;
 						case 'Z' :
-							buffer.append(constantPoolEntry.getIntegerValue() == 1 ? "true" : "false");//$NON-NLS-1$//$NON-NLS-2$
+							buffer.append(constantPoolEntry.getIntegerValue() == 1 ? "true" : "false");//$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							break;
 						case 'B' :
-							buffer.append(constantPoolEntry.getIntegerValue());
+							buffer.append(constantPoolEntry.getIntegerValue()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							break;
 						case 'S' :
-							buffer.append(constantPoolEntry.getIntegerValue());
+							buffer.append(constantPoolEntry.getIntegerValue()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							break;
 						case 'I' :
-							buffer.append(constantPoolEntry.getIntegerValue());
+							buffer.append(constantPoolEntry.getIntegerValue()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 					break;
 				case IConstantPoolConstant.CONSTANT_String:
-					buffer.append("\"" + decodeStringValue(constantPoolEntry.getStringValue()) + "\"" );//$NON-NLS-1$//$NON-NLS-2$
+					buffer.append("\"" + decodeStringValue(constantPoolEntry.getStringValue()) + "\"" );//$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		buffer.append(Messages.disassembler_endoffieldheader);
+		buffer.append(Messages.disassembler_endoffieldheader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (checkMode(mode, SYSTEM)) {
 			IClassFileAttribute[] attributes = fieldInfo.getAttributes();
 			int length = attributes.length;
 			if (length != 0) {
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IClassFileAttribute attribute = attributes[i];
 					if (attribute != constantValueAttribute
 						&& attribute != signatureAttribute
@@ -2381,17 +2381,17 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		}
 	}
 
-	private void disassemble(IInnerClassesAttribute innerClassesAttribute, StringBuilder buffer, String lineSeparator, int tabNumber) {
+	private void disassemble(IInnerClassesAttribute innerClassesAttribute, StringBuilder buffer, String lineSeparator, int tabNumber) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		writeNewLine(buffer, lineSeparator, tabNumber);
-		buffer.append(Messages.disassembler_innerattributesheader);
+		buffer.append(Messages.disassembler_innerattributesheader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		writeNewLine(buffer, lineSeparator, tabNumber + 1);
 		IInnerClassesAttributeEntry[] innerClassesAttributeEntries = innerClassesAttribute.getInnerClassAttributesEntries();
 		int length = innerClassesAttributeEntries.length;
 		int innerClassNameIndex, outerClassNameIndex, innerNameIndex, accessFlags;
 		IInnerClassesAttributeEntry innerClassesAttributeEntry;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (i != 0) {
-				buffer.append(Messages.disassembler_comma);
+				buffer.append(Messages.disassembler_comma); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				writeNewLine(buffer, lineSeparator, tabNumber + 1);
 			}
 			innerClassesAttributeEntry = innerClassesAttributeEntries[i];
@@ -2399,66 +2399,66 @@ public class Disassembler extends ClassFileBytesDisassembler {
 			outerClassNameIndex = innerClassesAttributeEntry.getOuterClassNameIndex();
 			innerNameIndex = innerClassesAttributeEntry.getInnerNameIndex();
 			accessFlags = innerClassesAttributeEntry.getAccessFlags();
-			buffer
+			buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				.append(Messages.disassembler_openinnerclassentry)
 				.append(Messages.disassembler_inner_class_info_name)
 				.append(Messages.disassembler_constantpoolindex)
 				.append(innerClassNameIndex);
 			if (innerClassNameIndex != 0) {
-				buffer
+				buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					.append(Messages.disassembler_space)
 					.append(innerClassesAttributeEntry.getInnerClassName());
 			}
-			buffer
+			buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				.append(Messages.disassembler_comma)
 				.append(Messages.disassembler_space)
 				.append(Messages.disassembler_outer_class_info_name)
 				.append(Messages.disassembler_constantpoolindex)
 				.append(outerClassNameIndex);
 			if (outerClassNameIndex != 0) {
-				buffer
+				buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					.append(Messages.disassembler_space)
 					.append(innerClassesAttributeEntry.getOuterClassName());
 			}
 			writeNewLine(buffer, lineSeparator, tabNumber);
 			dumpTab(tabNumber, buffer);
-			buffer.append(Messages.disassembler_space);
-			buffer
+			buffer.append(Messages.disassembler_space); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				.append(Messages.disassembler_inner_name)
 				.append(Messages.disassembler_constantpoolindex)
 				.append(innerNameIndex);
 			if (innerNameIndex != 0) {
-				buffer
+				buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					.append(Messages.disassembler_space)
 					.append(innerClassesAttributeEntry.getInnerName());
 			}
-			buffer
+			buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				.append(Messages.disassembler_comma)
 				.append(Messages.disassembler_space)
 				.append(Messages.disassembler_inner_accessflags)
 				.append(accessFlags)
 				.append(Messages.disassembler_space);
 			decodeModifiersForInnerClasses(buffer, accessFlags, true);
-			buffer
+			buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				.append(Messages.disassembler_closeinnerclassentry);
 		}
 	}
 
-	private void disassemble(IBootstrapMethodsAttribute bootstrapMethodsAttribute, StringBuilder buffer, String lineSeparator, int tabNumber, IConstantPool constantPool) {
+	private void disassemble(IBootstrapMethodsAttribute bootstrapMethodsAttribute, StringBuilder buffer, String lineSeparator, int tabNumber, IConstantPool constantPool) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		writeNewLine(buffer, lineSeparator, tabNumber);
-		buffer.append(Messages.disassembler_bootstrapmethodattributesheader);
+		buffer.append(Messages.disassembler_bootstrapmethodattributesheader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		writeNewLine(buffer, lineSeparator, tabNumber + 1);
 		IBootstrapMethodsEntry[] entries = bootstrapMethodsAttribute.getBootstrapMethods();
 		int length = entries.length;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (i != 0) {
-				buffer.append(Messages.disassembler_comma);
+				buffer.append(Messages.disassembler_comma); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				writeNewLine(buffer, lineSeparator, tabNumber + 1);
 			}
 			IBootstrapMethodsEntry entry = entries[i];
 			String[] argumentsName = bootstrapArgumentsDescription(entry, constantPool);
 
-			buffer.append(
+			buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				Messages.bind(
 					Messages.disassembler_bootstrapmethodentry,
 					new String[] {
@@ -2471,9 +2471,9 @@ public class Disassembler extends ClassFileBytesDisassembler {
 	}
 
 	private String getArguments(int[] arguments, String[] argumentsName) {
-		StringBuilder buffer = new StringBuilder();
-		for (int i = 0, max = arguments.length; i < max; i++) {
-			buffer.append(
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0, max = arguments.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				Messages.bind(
 					Messages.disassembler_bootstrapmethodentry_argument,
 					new String[] {
@@ -2481,98 +2481,98 @@ public class Disassembler extends ClassFileBytesDisassembler {
 						argumentsName[i]
 					}));
 			if (i != arguments.length - 1)
-				buffer.append("\n\t\t"); //$NON-NLS-1$
+				buffer.append("\n\t\t"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return String.valueOf(buffer);
 	}
 	private void disassemble(int index, IParameterAnnotation parameterAnnotation, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
 		IAnnotation[] annotations = parameterAnnotation.getAnnotations();
 		writeNewLine(buffer, lineSeparator, tabNumber + 1);
-		buffer.append(
+		buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			Messages.bind(Messages.disassembler_parameterannotationentrystart, new String[] {Integer.toString(index), Integer.toString(annotations.length)}));
-		for (IAnnotation annotation : annotations) {
+		for (IAnnotation annotation : annotations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			disassemble(annotation, buffer, lineSeparator, tabNumber + 1, mode);
 		}
 	}
 
 	private void disassemble(IRuntimeInvisibleAnnotationsAttribute runtimeInvisibleAnnotationsAttribute, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
 		writeNewLine(buffer, lineSeparator, tabNumber + 1);
-		buffer.append(Messages.disassembler_runtimeinvisibleannotationsattributeheader);
+		buffer.append(Messages.disassembler_runtimeinvisibleannotationsattributeheader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		IAnnotation[] annotations = runtimeInvisibleAnnotationsAttribute.getAnnotations();
-		for (IAnnotation annotation : annotations) {
+		for (IAnnotation annotation : annotations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			disassemble(annotation, buffer, lineSeparator, tabNumber + 1, mode);
 		}
 	}
 
 	private void disassemble(IRuntimeInvisibleParameterAnnotationsAttribute runtimeInvisibleParameterAnnotationsAttribute, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
 		writeNewLine(buffer, lineSeparator, tabNumber + 1);
-		buffer.append(Messages.disassembler_runtimeinvisibleparameterannotationsattributeheader);
+		buffer.append(Messages.disassembler_runtimeinvisibleparameterannotationsattributeheader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		IParameterAnnotation[] parameterAnnotations = runtimeInvisibleParameterAnnotationsAttribute.getParameterAnnotations();
-		for (int i = 0, max = parameterAnnotations.length; i < max; i++) {
+		for (int i = 0, max = parameterAnnotations.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			disassemble(i, parameterAnnotations[i], buffer, lineSeparator, tabNumber + 1, mode);
 		}
 	}
 
 	private void disassemble(IRuntimeInvisibleTypeAnnotationsAttribute runtimeInvisibleTypeAnnotationsAttribute, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
 		writeNewLine(buffer, lineSeparator, tabNumber + 1);
-		buffer.append(Messages.disassembler_runtimeinvisibletypeannotationsattributeheader);
+		buffer.append(Messages.disassembler_runtimeinvisibletypeannotationsattributeheader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		IExtendedAnnotation[] extendedAnnotations = runtimeInvisibleTypeAnnotationsAttribute.getExtendedAnnotations();
-		for (IExtendedAnnotation extendedAnnotation : extendedAnnotations) {
+		for (IExtendedAnnotation extendedAnnotation : extendedAnnotations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			disassemble(extendedAnnotation, buffer, lineSeparator, tabNumber + 1, mode);
 		}
 	}
 
 	private void disassemble(IRuntimeVisibleAnnotationsAttribute runtimeVisibleAnnotationsAttribute, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
 		writeNewLine(buffer, lineSeparator, tabNumber + 1);
-		buffer.append(Messages.disassembler_runtimevisibleannotationsattributeheader);
+		buffer.append(Messages.disassembler_runtimevisibleannotationsattributeheader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		IAnnotation[] annotations = runtimeVisibleAnnotationsAttribute.getAnnotations();
-		for (IAnnotation annotation : annotations) {
+		for (IAnnotation annotation : annotations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			disassemble(annotation, buffer, lineSeparator, tabNumber + 1, mode);
 		}
 	}
 
 	private void disassemble(IRuntimeVisibleParameterAnnotationsAttribute runtimeVisibleParameterAnnotationsAttribute, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
 		writeNewLine(buffer, lineSeparator, tabNumber + 1);
-		buffer.append(Messages.disassembler_runtimevisibleparameterannotationsattributeheader);
+		buffer.append(Messages.disassembler_runtimevisibleparameterannotationsattributeheader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		IParameterAnnotation[] parameterAnnotations = runtimeVisibleParameterAnnotationsAttribute.getParameterAnnotations();
-		for (int i = 0, max = parameterAnnotations.length; i < max; i++) {
+		for (int i = 0, max = parameterAnnotations.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			disassemble(i, parameterAnnotations[i], buffer, lineSeparator, tabNumber + 1, mode);
 		}
 	}
 
 	private void disassemble(IRuntimeVisibleTypeAnnotationsAttribute runtimeVisibleTypeAnnotationsAttribute, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
 		writeNewLine(buffer, lineSeparator, tabNumber + 1);
-		buffer.append(Messages.disassembler_runtimevisibletypeannotationsattributeheader);
+		buffer.append(Messages.disassembler_runtimevisibletypeannotationsattributeheader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		IExtendedAnnotation[] extendedAnnotations = runtimeVisibleTypeAnnotationsAttribute.getExtendedAnnotations();
-		for (IExtendedAnnotation extendedAnnotation : extendedAnnotations) {
+		for (IExtendedAnnotation extendedAnnotation : extendedAnnotations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			disassemble(extendedAnnotation, buffer, lineSeparator, tabNumber + 1, mode);
  		}
  	}
 
-	private String disassemble(IVerificationTypeInfo[] infos, int mode) {
-		StringBuilder buffer = new StringBuilder();
-		buffer.append('{');
-		for (int i = 0, max = infos.length; i < max; i++) {
+	private String disassemble(IVerificationTypeInfo[] infos, int mode) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append('{'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (int i = 0, max = infos.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(i != 0) {
-				buffer
+				buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						.append(Messages.disassembler_comma)
 						.append(Messages.disassembler_space);
 			}
 			switch(infos[i].getTag()) {
 				case IVerificationTypeInfo.ITEM_DOUBLE :
-					buffer.append("double"); //$NON-NLS-1$
+					buffer.append("double"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IVerificationTypeInfo.ITEM_FLOAT :
-					buffer.append("float"); //$NON-NLS-1$
+					buffer.append("float"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IVerificationTypeInfo.ITEM_INTEGER :
-					buffer.append("int"); //$NON-NLS-1$
+					buffer.append("int"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IVerificationTypeInfo.ITEM_LONG :
-					buffer.append("long"); //$NON-NLS-1$
+					buffer.append("long"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IVerificationTypeInfo.ITEM_NULL :
-					buffer.append("null"); //$NON-NLS-1$
+					buffer.append("null"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IVerificationTypeInfo.ITEM_OBJECT :
 					char[] classTypeName = infos[i].getClassTypeName();
@@ -2580,48 +2580,48 @@ public class Disassembler extends ClassFileBytesDisassembler {
 					if (classTypeName.length > 0 && classTypeName[0] == '[') { // length check for resilience
 						classTypeName = Signature.toCharArray(classTypeName);
 					}
-					buffer.append(returnClassName(classTypeName, '.', mode));
+					buffer.append(returnClassName(classTypeName, '.', mode)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IVerificationTypeInfo.ITEM_TOP :
-					buffer.append("_"); //$NON-NLS-1$
+					buffer.append("_"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IVerificationTypeInfo.ITEM_UNINITIALIZED :
-					buffer.append("uninitialized("); //$NON-NLS-1$
-					buffer.append(infos[i].getOffset());
-					buffer.append(')');
+					buffer.append("uninitialized("); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(infos[i].getOffset()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IVerificationTypeInfo.ITEM_UNINITIALIZED_THIS :
-					buffer.append("uninitialized_this"); //$NON-NLS-1$
+					buffer.append("uninitialized_this"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		buffer.append('}');
+		buffer.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return String.valueOf(buffer);
 	}
 
 	private void disassembleAsModifier(IAnnotation annotation, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
 		final char[] typeName = CharOperation.replaceOnCopy(annotation.getTypeName(), '/', '.');
-		buffer.append('@').append(returnClassName(Signature.toCharArray(typeName), '.', mode));
+		buffer.append('@').append(returnClassName(Signature.toCharArray(typeName), '.', mode)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		final IAnnotationComponent[] components = annotation.getComponents();
 		final int length = components.length;
 		if (length != 0) {
-			buffer.append('(');
-			for (int i = 0; i < length; i++) {
+			buffer.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (i > 0) {
-					buffer.append(',');
+					buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					writeNewLine(buffer, lineSeparator, tabNumber);
 				}
 				disassembleAsModifier(components[i], buffer, lineSeparator, tabNumber + 1, mode);
 			}
-			buffer.append(')');
+			buffer.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
 	private void disassembleAsModifier(IAnnotationComponent annotationComponent, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
-		buffer.append(annotationComponent.getComponentName()).append('=');
+		buffer.append(annotationComponent.getComponentName()).append('='); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		disassembleAsModifier(annotationComponent.getComponentValue(), buffer, lineSeparator, tabNumber + 1, mode);
 	}
 
-	private void disassembleAsModifier(IAnnotationComponentValue annotationComponentValue, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
+	private void disassembleAsModifier(IAnnotationComponentValue annotationComponentValue, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch(annotationComponentValue.getTag()) {
 			case IAnnotationComponentValue.BYTE_TAG:
 			case IAnnotationComponentValue.CHAR_TAG:
@@ -2636,50 +2636,50 @@ public class Disassembler extends ClassFileBytesDisassembler {
 				String value = null;
 				switch(constantPoolEntry.getKind()) {
 					case IConstantPoolConstant.CONSTANT_Long :
-						value = constantPoolEntry.getLongValue() + "L"; //$NON-NLS-1$
+						value = constantPoolEntry.getLongValue() + "L"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						break;
 					case IConstantPoolConstant.CONSTANT_Float :
-						value = constantPoolEntry.getFloatValue() + "f"; //$NON-NLS-1$
+						value = constantPoolEntry.getFloatValue() + "f"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						break;
 					case IConstantPoolConstant.CONSTANT_Double :
 						value = Double.toString(constantPoolEntry.getDoubleValue());
 						break;
 					case IConstantPoolConstant.CONSTANT_Integer:
-						StringBuilder temp = new StringBuilder();
+						StringBuilder temp = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 						switch(annotationComponentValue.getTag()) {
 							case IAnnotationComponentValue.CHAR_TAG :
-								temp.append('\'');
+								temp.append('\''); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 								escapeChar(temp, (char) constantPoolEntry.getIntegerValue());
-								temp.append('\'');
+								temp.append('\''); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 								break;
 							case IAnnotationComponentValue.BOOLEAN_TAG :
-								temp.append(constantPoolEntry.getIntegerValue() == 1 ? "true" : "false");//$NON-NLS-1$//$NON-NLS-2$
+								temp.append(constantPoolEntry.getIntegerValue() == 1 ? "true" : "false");//$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 								break;
 							case IAnnotationComponentValue.BYTE_TAG :
-								temp.append("(byte) ").append(constantPoolEntry.getIntegerValue()); //$NON-NLS-1$
+								temp.append("(byte) ").append(constantPoolEntry.getIntegerValue()); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 								break;
 							case IAnnotationComponentValue.SHORT_TAG :
-								temp.append("(short) ").append(constantPoolEntry.getIntegerValue()); //$NON-NLS-1$
+								temp.append("(short) ").append(constantPoolEntry.getIntegerValue()); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 								break;
 							case IAnnotationComponentValue.INTEGER_TAG :
-								temp.append("(int) ").append(constantPoolEntry.getIntegerValue()); //$NON-NLS-1$
+								temp.append("(int) ").append(constantPoolEntry.getIntegerValue()); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
 						value = String.valueOf(temp);
 						break;
 					case IConstantPoolConstant.CONSTANT_Utf8:
-						value = "\"" + decodeStringValue(constantPoolEntry.getUtf8Value()) + "\"";//$NON-NLS-1$//$NON-NLS-2$
+						value = "\"" + decodeStringValue(constantPoolEntry.getUtf8Value()) + "\"";//$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
-				buffer.append(value);
+				buffer.append(value); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case IAnnotationComponentValue.ENUM_TAG:
 				final char[] typeName = CharOperation.replaceOnCopy(annotationComponentValue.getEnumConstantTypeName(), '/', '.');
 				final char[] constantName = annotationComponentValue.getEnumConstantName();
-				buffer.append(returnClassName(Signature.toCharArray(typeName), '.', mode)).append('.').append(constantName);
+				buffer.append(returnClassName(Signature.toCharArray(typeName), '.', mode)).append('.').append(constantName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case IAnnotationComponentValue.CLASS_TAG:
 				constantPoolEntry = annotationComponentValue.getClassInfo();
 				final char[] className = CharOperation.replaceOnCopy(constantPoolEntry.getUtf8Value(), '/', '.');
-				buffer.append(returnClassName(Signature.toCharArray(className), '.', mode));
+				buffer.append(returnClassName(Signature.toCharArray(className), '.', mode)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case IAnnotationComponentValue.ANNOTATION_TAG:
 				IAnnotation annotation = annotationComponentValue.getAnnotationValue();
@@ -2687,14 +2687,14 @@ public class Disassembler extends ClassFileBytesDisassembler {
 				break;
 			case IAnnotationComponentValue.ARRAY_TAG:
 				final IAnnotationComponentValue[] annotationComponentValues = annotationComponentValue.getAnnotationComponentValues();
-				buffer.append('{');
-				for (int i = 0, max = annotationComponentValues.length; i < max; i++) {
+				buffer.append('{'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (int i = 0, max = annotationComponentValues.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (i > 0) {
-						buffer.append(',');
+						buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 					disassembleAsModifier(annotationComponentValues[i], buffer, lineSeparator, tabNumber + 1, mode);
 				}
-				buffer.append('}');
+				buffer.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
@@ -2705,7 +2705,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 
 	private void disassembleAsModifier(IRuntimeInvisibleAnnotationsAttribute runtimeInvisibleAnnotationsAttribute, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
 		IAnnotation[] annotations = runtimeInvisibleAnnotationsAttribute.getAnnotations();
-		for (IAnnotation annotation : annotations) {
+		for (IAnnotation annotation : annotations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			disassembleAsModifier(annotation, buffer, lineSeparator, tabNumber + 1, mode);
 		}
 	}
@@ -2719,9 +2719,9 @@ public class Disassembler extends ClassFileBytesDisassembler {
 	private void disassembleAsModifier(IParameterAnnotation parameterAnnotation, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
 		if (parameterAnnotation == null) return;
 		IAnnotation[] annotations = parameterAnnotation.getAnnotations();
-		for (int i = 0, max = annotations.length; i < max; i++) {
+		for (int i = 0, max = annotations.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (i > 0) {
-				buffer.append(' ');
+				buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			disassembleAsModifier(annotations[i], buffer, lineSeparator, tabNumber + 1, mode);
 		}
@@ -2729,7 +2729,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 
 	private void disassembleAsModifier(IRuntimeVisibleAnnotationsAttribute runtimeVisibleAnnotationsAttribute, StringBuilder buffer, String lineSeparator, int tabNumber, int mode) {
 		IAnnotation[] annotations = runtimeVisibleAnnotationsAttribute.getAnnotations();
-		for (int i = 0, max = annotations.length; i < max; i++) {
+		for (int i = 0, max = annotations.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (i > 0) {
 				writeNewLine(buffer, lineSeparator, tabNumber);
 			}
@@ -2737,14 +2737,14 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		}
 	}
 
-	private void disassembleTypeMembers(IClassFileReader classFileReader, char[] className, StringBuilder buffer, String lineSeparator, int tabNumber, int mode, boolean isEnum) {
+	private void disassembleTypeMembers(IClassFileReader classFileReader, char[] className, StringBuilder buffer, String lineSeparator, int tabNumber, int mode, boolean isEnum) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IFieldInfo[] fields = classFileReader.getFieldInfos();
 		if (isEnum && checkMode(mode, WORKING_COPY)) {
 			int index = 0;
 			final int fieldsLength = fields.length;
 			IMethodInfo[] methods = classFileReader.getMethodInfos();
 			char[][] constructorArguments = getConstructorArgumentsForEnum(methods);
-			enumConstantLoop: for (; index < fieldsLength; index++) {
+			enumConstantLoop: for (; index < fieldsLength; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				final IFieldInfo fieldInfo = fields[index];
 				final int accessFlags = fieldInfo.getAccessFlags();
 				if ((accessFlags & IModifierConstants.ACC_ENUM) != 0) {
@@ -2754,9 +2754,9 @@ public class Disassembler extends ClassFileBytesDisassembler {
 					break enumConstantLoop;
 				}
 			}
-			buffer.append(';');
+			buffer.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			boolean foundSyntheticField = false;
-			fieldLoop: for (; index < fieldsLength; index++) {
+			fieldLoop: for (; index < fieldsLength; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (!foundSyntheticField && CharOperation.equals(TypeConstants.SYNTHETIC_ENUM_VALUES, fields[index].getName())) {
 					foundSyntheticField = true;
 					continue fieldLoop;
@@ -2764,7 +2764,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 				writeNewLine(buffer, lineSeparator, tabNumber);
 				disassemble(fields[index], buffer, lineSeparator, tabNumber, mode);
 			}
-			methodLoop: for (final IMethodInfo methodInfo : methods) {
+			methodLoop: for (final IMethodInfo methodInfo : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (CharOperation.equals(methodInfo.getName(), TypeConstants.VALUES)) {
 					final char[] descriptor = methodInfo.getDescriptor();
 					CharOperation.replace(descriptor, '/', '.');
@@ -2796,12 +2796,12 @@ public class Disassembler extends ClassFileBytesDisassembler {
 				}
 			}
 		} else {
-			for (IFieldInfo field : fields) {
+			for (IFieldInfo field : fields) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				writeNewLine(buffer, lineSeparator, tabNumber);
 				disassemble(field, buffer, lineSeparator, tabNumber, mode);
 			}
 			IMethodInfo[] methods = classFileReader.getMethodInfos();
-			for (IMethodInfo method : methods) {
+			for (IMethodInfo method : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				writeNewLine(buffer, lineSeparator, tabNumber);
 				disassemble(classFileReader, className, method, buffer, lineSeparator, tabNumber, mode);
 			}
@@ -2809,7 +2809,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 	}
 
 	private char[][] getConstructorArgumentsForEnum(final IMethodInfo[] methods) {
-		loop: for (IMethodInfo methodInfo : methods) {
+		loop: for (IMethodInfo methodInfo : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (methodInfo.isConstructor()) {
 				char[][] parameterTypes = Signature.getParameterTypes(methodInfo.getDescriptor());
 				final int length = parameterTypes.length;
@@ -2824,13 +2824,13 @@ public class Disassembler extends ClassFileBytesDisassembler {
 	}
 
 	private final void dumpTab(int tabNumber, StringBuilder buffer) {
-		for (int i = 0; i < tabNumber; i++) {
-			buffer.append(Messages.disassembler_indentation);
+		for (int i = 0; i < tabNumber; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(Messages.disassembler_indentation); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
 	private final String dumpNewLineWithTabs(String lineSeparator, int tabNumber) {
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		writeNewLine(buffer, lineSeparator, tabNumber);
 		return String.valueOf(buffer);
 	}
@@ -2843,13 +2843,13 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		return Messages.disassembler_description;
 	}
 
-	private char[][] getParameterNames(char[] methodDescriptor, ICodeAttribute codeAttribute, IMethodParametersAttribute parametersAttribute, int accessFlags) {
+	private char[][] getParameterNames(char[] methodDescriptor, ICodeAttribute codeAttribute, IMethodParametersAttribute parametersAttribute, int accessFlags) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int paramCount = Signature.getParameterCount(methodDescriptor);
 		char[][] parameterNames = new char[paramCount][];
 		// check if the code attribute has debug info for this method
 		if (parametersAttribute != null) {
 			int parameterCount = parametersAttribute.getMethodParameterLength();
-			for (int i = 0; i < paramCount; i++) {
+			for (int i = 0; i < paramCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (i < parameterCount && parametersAttribute.getParameterName(i) != null) {
 					parameterNames[i] = parametersAttribute.getParameterName(i);
 				} else {
@@ -2861,7 +2861,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 				if (localVariableAttribute != null) {
 					ILocalVariableTableEntry[] entries = localVariableAttribute.getLocalVariableTable();
 					final int startingIndex = (accessFlags & IModifierConstants.ACC_STATIC) != 0 ? 0 : 1;
-					for (int i = 0; i < paramCount; i++) {
+					for (int i = 0; i < paramCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ILocalVariableTableEntry searchedEntry = getEntryFor(getLocalIndex(startingIndex, i, methodDescriptor), entries);
 						if (searchedEntry != null) {
 							parameterNames[i] = searchedEntry.getName();
@@ -2870,22 +2870,22 @@ public class Disassembler extends ClassFileBytesDisassembler {
 						}
 					}
 				} else {
-					for (int i = 0; i < paramCount; i++) {
+					for (int i = 0; i < paramCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						parameterNames[i] = CharOperation.concat(Messages.disassembler_parametername.toCharArray(), Integer.toString(i).toCharArray());
 					}
 				}
 		} else {
-			for (int i = 0; i < paramCount; i++) {
+			for (int i = 0; i < paramCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				parameterNames[i] = CharOperation.concat(Messages.disassembler_parametername.toCharArray(), Integer.toString(i).toCharArray());
 			}
 		}
 		return parameterNames;
 	}
 
-	private int getLocalIndex(final int startingSlot, final int index, final char[] methodDescriptor) {
+	private int getLocalIndex(final int startingSlot, final int index, final char[] methodDescriptor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int slot = startingSlot;
 		final char[][] types = Signature.getParameterTypes(methodDescriptor);
-		for (int i = 0; i < index; i++) {
+		for (int i = 0; i < index; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final char[] type = types[i];
 			switch(type.length) {
 				case 1 :
@@ -2906,7 +2906,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 	}
 
 	private ILocalVariableTableEntry getEntryFor(final int index, final ILocalVariableTableEntry[] entries) {
-		for (ILocalVariableTableEntry entry : entries) {
+		for (ILocalVariableTableEntry entry : entries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (index == entry.getIndex()) {
 				return entry;
 			}
@@ -2931,7 +2931,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 
 	private boolean isDeprecated(IClassFileReader classFileReader) {
 		IClassFileAttribute[] attributes = classFileReader.getAttributes();
-		for (IClassFileAttribute attribute : attributes) {
+		for (IClassFileAttribute attribute : attributes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (CharOperation.equals(attribute.getAttributeName(), IAttributeNamesConstants.DEPRECATED)) {
 				return true;
 			}
@@ -2945,7 +2945,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 			return true;
 		}
 		IClassFileAttribute[] attributes = classFileReader.getAttributes();
-		for (IClassFileAttribute attribute : attributes) {
+		for (IClassFileAttribute attribute : attributes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (CharOperation.equals(attribute.getAttributeName(), IAttributeNamesConstants.SYNTHETIC)) {
 				return true;
 			}
@@ -2974,40 +2974,40 @@ public class Disassembler extends ClassFileBytesDisassembler {
 	}
 
 	private void writeNewLine(StringBuilder buffer, String lineSeparator, int tabNumber) {
-		buffer.append(lineSeparator);
+		buffer.append(lineSeparator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		dumpTab(tabNumber, buffer);
 	}
 
-	private String toTypePathString(int[][] typepath) {
-		StringBuilder buffer = new StringBuilder();
-		buffer.append('[');
-		for (int i = 0, max = typepath.length; i < max; i++) {
+	private String toTypePathString(int[][] typepath) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append('['); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (int i = 0, max = typepath.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int[] typepathElement = typepath[i];
 			if (i > 0) {
-				buffer.append(',').append(' ');
+				buffer.append(',').append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			switch (typepathElement[0]) {
 				case IExtendedAnnotationConstants.TYPE_PATH_DEEPER_IN_ARRAY:
-					buffer.append(Messages.disassembler_extendedannotation_typepath_array);
+					buffer.append(Messages.disassembler_extendedannotation_typepath_array); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IExtendedAnnotationConstants.TYPE_PATH_DEEPER_IN_INNER_TYPE:
-					buffer.append(Messages.disassembler_extendedannotation_typepath_innertype);
+					buffer.append(Messages.disassembler_extendedannotation_typepath_innertype); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IExtendedAnnotationConstants.TYPE_PATH_ANNOTATION_ON_WILDCARD_BOUND:
-					buffer.append(Messages.disassembler_extendedannotation_typepath_wildcard);
+					buffer.append(Messages.disassembler_extendedannotation_typepath_wildcard); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IExtendedAnnotationConstants.TYPE_PATH_TYPE_ARGUMENT_INDEX:
-					buffer.append(
+					buffer.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							Messages.bind(Messages.disassembler_extendedannotation_typepath_typeargument,
 								new String[] {
 									Integer.toString(typepathElement[1])
 								}));
 					break;
 				default:
-					throw new IllegalStateException("Unrecognized type_path_kind: "+typepathElement[0]); //$NON-NLS-1$
+					throw new IllegalStateException("Unrecognized type_path_kind: "+typepathElement[0]); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
-		buffer.append(']');
+		buffer.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return String.valueOf(buffer);
 	}
 

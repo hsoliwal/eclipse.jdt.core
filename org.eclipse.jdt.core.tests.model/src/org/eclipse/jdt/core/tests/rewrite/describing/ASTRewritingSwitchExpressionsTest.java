@@ -42,34 +42,34 @@ public class ASTRewritingSwitchExpressionsTest extends ASTRewritingTest {
 	@SuppressWarnings("deprecation")
 	private boolean checkAPILevel() {
 		if (this.apiLevel < 14) {
-			System.err.println("Test "+getName()+" requires a JRE 14");
+			System.err.println("Test "+getName()+" requires a JRE 14"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			return true;
 		}
 		return false;
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testSwitchExpressions_since_12() throws Exception {
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public class E {\n");
-		buf.append("    public void foo(int i) {\n");
-		buf.append("        switch (i) {\n");
-		buf.append("        }\n");
-		buf.append("        switch (i) {\n");
-		buf.append("            case 1, 2 ->\n");
-		buf.append("                i= 1;\n");
-		buf.append("            case 3 -> \n");
-		buf.append("                i= 3;\n");
-		buf.append("            default -> \n");
-		buf.append("                i= 4;\n");
-		buf.append("        }\n");
-		buf.append("    }\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class E {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    public void foo(int i) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        switch (i) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        switch (i) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("            case 1, 2 ->\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("                i= 1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("            case 3 -> \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("                i= 3;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("            default -> \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("                i= 4;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("E.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(this.apiLevel, cu);
@@ -136,41 +136,41 @@ public class ASTRewritingSwitchExpressionsTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public class E {\n");
-		buf.append("    public void foo(int i) {\n");
-		buf.append("        switch (x) {\n");
-		buf.append("            case 1, 2 -> return;\n");
-		buf.append("            default ->\n");
-		buf.append("        }\n");
-		buf.append("        switch (i) {\n");
-		buf.append("            case 10, 3, 12 -> \n");
-		buf.append("                i= 3;\n");
-		buf.append("            default -> \n");
-		buf.append("                i= 4;\n");
-		buf.append("        }\n");
-		buf.append("    }\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class E {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    public void foo(int i) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        switch (x) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("            case 1, 2 -> return;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("            default ->\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        switch (i) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("            case 10, 3, 12 -> \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("                i= 3;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("            default -> \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("                i= 4;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testSwitchExpressions_02_since_12() throws Exception {
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public class E {\n");
-		buf.append("    public void foo(int i) {\n");
-		buf.append("        switch (i) {\n");
-		buf.append("            case 1, 2 -> i= 1;\n");
-		buf.append("            case 3 -> i= 3;\n");
-		buf.append("            default -> i= 4;\n");
-		buf.append("        }\n");
-		buf.append("    }\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class E {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    public void foo(int i) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        switch (i) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("            case 1, 2 -> i= 1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("            case 3 -> i= 3;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("            default -> i= 4;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("E.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(this.apiLevel, cu);
@@ -201,22 +201,22 @@ public class ASTRewritingSwitchExpressionsTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public class E {\n");
-		buf.append("    public void foo(int i) {\n");
-		buf.append("        switch (i) {\n");
-		buf.append("            case 1, 2 -> i= 1;\n");
-		buf.append("            case 3 -> i= 3;\n");
-		buf.append("            case 1024 -> yield 2048;\n");
-		buf.append("            default -> i= 4;\n");
-		buf.append("        }\n");
-		buf.append("    }\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class E {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    public void foo(int i) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        switch (i) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("            case 1, 2 -> i= 1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("            case 3 -> i= 3;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("            case 1024 -> yield 2048;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("            default -> i= 4;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testSwitchExpressions_03_since_12() throws Exception {
 		if (checkAPILevel()) {
 			return;
@@ -242,7 +242,7 @@ public class ASTRewritingSwitchExpressionsTest extends ASTRewritingTest {
 				"		System.out.print(foo(1));\n"+
 				"	}\n"+
 				"}\n";
-		StringBuilder buf = new StringBuilder(s);
+		StringBuilder buf = new StringBuilder(s); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(this.apiLevel, cu);
@@ -281,33 +281,33 @@ public class ASTRewritingSwitchExpressionsTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public class X {\n");
-		buf.append("	static int foo(int i) {\n");
-		buf.append("		int tw = \n");
-		buf.append("		switch (i) {\n");
-		buf.append("			case 1 -> {\n");
-		buf.append(" 				int z = 100;\n");
-		buf.append(" 				yield z;\n");
-		buf.append("			}\n");
-		buf.append("			case 100, 200 -> {\n");
-		buf.append("    yield 2048;\n");
-		buf.append("}\n");
-		buf.append("            default -> {\n");
-		buf.append("				yield 12;\n");
-		buf.append("			}\n");
-		buf.append("		};\n");
-		buf.append("		return tw;\n");
-		buf.append("	}\n");
-		buf.append("	public static void main(String[] args) {\n");
-		buf.append("		System.out.print(foo(1));\n");
-		buf.append("	}\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	static int foo(int i) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		int tw = \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		switch (i) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			case 1 -> {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" 				int z = 100;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" 				yield z;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			case 100, 200 -> {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    yield 2048;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("            default -> {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("				yield 12;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		};\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		return tw;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public static void main(String[] args) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		System.out.print(foo(1));\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testSwitchStatement_Bug543720_since_12() throws Exception {
 		if (checkAPILevel()) {
 			return;
@@ -333,7 +333,7 @@ public class ASTRewritingSwitchExpressionsTest extends ASTRewritingTest {
 				"		System.out.print(foo(1));\n"+
 				"	}\n"+
 				"}\n";
-		StringBuilder buf = new StringBuilder(s);
+		StringBuilder buf = new StringBuilder(s); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(this.apiLevel, cu);
@@ -365,33 +365,33 @@ public class ASTRewritingSwitchExpressionsTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public class X {\n");
-		buf.append("	static int foo(int i) {\n");
-		buf.append("		int tw = 0;\n");
-		buf.append("		switch (i) {\n");
-		buf.append("			case 1 : {\n");
-		buf.append(" 				int z = 100;\n");
-		buf.append(" 				break;\n");
-		buf.append("			}\n");
-		buf.append("			case 100:\n");
-		buf.append("                {\n");
-		buf.append("                    break;\n");
-		buf.append("                }\n");
-		buf.append("            default : {\n");
-		buf.append("				break;\n");
-		buf.append("			}\n");
-		buf.append("		}\n");
-		buf.append("		return tw;\n");
-		buf.append("	}\n");
-		buf.append("	public static void main(String[] args) {\n");
-		buf.append("		System.out.print(foo(1));\n");
-		buf.append("	}\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	static int foo(int i) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		int tw = 0;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		switch (i) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			case 1 : {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" 				int z = 100;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" 				break;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			case 100:\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("                {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("                    break;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("                }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("            default : {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("				break;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		return tw;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public static void main(String[] args) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		System.out.print(foo(1));\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testSwitchExpressions_04_since_12() throws Exception {
 		if (checkAPILevel()) {
 			return;
@@ -417,7 +417,7 @@ public class ASTRewritingSwitchExpressionsTest extends ASTRewritingTest {
 				"		System.out.print(foo(1));\n"+
 				"	}\n"+
 				"}\n";
-		StringBuilder buf = new StringBuilder(s);
+		StringBuilder buf = new StringBuilder(s); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(this.apiLevel, cu);
@@ -446,28 +446,28 @@ public class ASTRewritingSwitchExpressionsTest extends ASTRewritingTest {
 		}
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public class X {\n");
-		buf.append("	static int foo(int i) {\n");
-		buf.append("		int tw =\n");
-		buf.append("		switch (x) {\n");
-		buf.append("			default -> {\n");
-		buf.append("				yield 12;\n");
-		buf.append("			}\n");
-		buf.append("		};\n");
-		buf.append("		return tw;\n");
-		buf.append("	}\n");
-		buf.append("	public static void main(String[] args) {\n");
-		buf.append("		System.out.print(foo(1));\n");
-		buf.append("	}\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	static int foo(int i) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		int tw =\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		switch (x) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			default -> {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("				yield 12;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		};\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		return tw;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public static void main(String[] args) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		System.out.print(foo(1));\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 	//Note: complete removal of statements under switch statements now added in ASTRSTest and hence not repeated here.
 
 	// replacing colon by ->
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testSwitchStatement_Bug543720_05_since_12() throws Exception {
 		if (checkAPILevel()) {
 			return;
@@ -496,7 +496,7 @@ public class ASTRewritingSwitchExpressionsTest extends ASTRewritingTest {
 				"		System.out.print(foo(1));\n"+
 				"	}\n"+
 				"}\n";
-		StringBuilder buf = new StringBuilder(s);
+		StringBuilder buf = new StringBuilder(s); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(this.apiLevel, cu);
@@ -509,7 +509,7 @@ public class ASTRewritingSwitchExpressionsTest extends ASTRewritingTest {
 		List blockStatements= block.statements();
 		{ // set switch labeled rule
 			SwitchStatement switchStmt = (SwitchStatement) blockStatements.get(1);
-			for (int i = 0, l = switchStmt.statements().size(); i < l; ++i) {
+			for (int i = 0, l = switchStmt.statements().size(); i < l; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Statement stmt = (Statement) switchStmt.statements().get(i);
 				if (stmt instanceof SwitchCase) {
 					SwitchCase switchCase = (SwitchCase) stmt;
@@ -521,34 +521,34 @@ public class ASTRewritingSwitchExpressionsTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public class X {\n");
-		buf.append("	static int foo(int i) {\n");
-		buf.append("		int tw = 0;\n");
-		buf.append("		switch (i) {\n");
-		buf.append("			case 1 -> {\n");
-		buf.append(" 				int z = 100;\n");
-		buf.append(" 				break;\n");
-		buf.append("			}\n");
-		buf.append("			case 2 -> {\n");
-		buf.append(" 				break;\n");
-		buf.append("			}\n");
-		buf.append("			default -> {\n");
-		buf.append("				break;\n");
-		buf.append("			}\n");
-		buf.append("		}\n");
-		buf.append("		return tw;\n");
-		buf.append("	}\n");
-		buf.append("	public static void main(String[] args) {\n");
-		buf.append("		System.out.print(foo(1));\n");
-		buf.append("	}\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	static int foo(int i) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		int tw = 0;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		switch (i) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			case 1 -> {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" 				int z = 100;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" 				break;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			case 2 -> {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" 				break;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			default -> {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("				break;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		return tw;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public static void main(String[] args) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		System.out.print(foo(1));\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
 	// replacing colon by ->
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testSwitchStatement_Bug543720_06_since_12() throws Exception {
 		if (checkAPILevel()) {
 			return;
@@ -577,7 +577,7 @@ public class ASTRewritingSwitchExpressionsTest extends ASTRewritingTest {
 				"		System.out.print(foo(1));\n"+
 				"	}\n"+
 				"}\n";
-		StringBuilder buf = new StringBuilder(s);
+		StringBuilder buf = new StringBuilder(s); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(this.apiLevel, cu);
@@ -590,7 +590,7 @@ public class ASTRewritingSwitchExpressionsTest extends ASTRewritingTest {
 		List blockStatements= block.statements();
 		{ // set switch labeled rule
 			SwitchStatement switchStmt = (SwitchStatement) blockStatements.get(1);
-			for (int i = 0, l = switchStmt.statements().size(); i < l; ++i) {
+			for (int i = 0, l = switchStmt.statements().size(); i < l; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Statement stmt = (Statement) switchStmt.statements().get(i);
 				if (stmt instanceof SwitchCase) {
 					SwitchCase switchCase = (SwitchCase) stmt;
@@ -602,33 +602,33 @@ public class ASTRewritingSwitchExpressionsTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public class X {\n");
-		buf.append("	static int foo(int i) {\n");
-		buf.append("		int tw = 0;\n");
-		buf.append("		switch (i) {\n");
-		buf.append("			case 1 : {\n");
-		buf.append(" 				int z = 100;\n");
-		buf.append(" 				break;\n");
-		buf.append("			}\n");
-		buf.append("			case 2 : {\n");
-		buf.append(" 				break;\n");
-		buf.append("			}\n");
-		buf.append("			default : {\n");
-		buf.append("				break;\n");
-		buf.append("			}\n");
-		buf.append("		}\n");
-		buf.append("		return tw;\n");
-		buf.append("	}\n");
-		buf.append("	public static void main(String[] args) {\n");
-		buf.append("		System.out.print(foo(1));\n");
-		buf.append("	}\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	static int foo(int i) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		int tw = 0;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		switch (i) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			case 1 : {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" 				int z = 100;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" 				break;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			case 2 : {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" 				break;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			default : {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("				break;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		return tw;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public static void main(String[] args) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		System.out.print(foo(1));\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 	// replacing colon by ->
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testSwitchExpression_Bug543720_07_since_12() throws Exception {
 		if (checkAPILevel()) {
 			return;
@@ -657,7 +657,7 @@ public class ASTRewritingSwitchExpressionsTest extends ASTRewritingTest {
 				"		System.out.print(foo(1));\n"+
 				"	}\n"+
 				"}\n";
-		StringBuilder buf = new StringBuilder(s);
+		StringBuilder buf = new StringBuilder(s); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(this.apiLevel, cu);
@@ -671,7 +671,7 @@ public class ASTRewritingSwitchExpressionsTest extends ASTRewritingTest {
 		{
 			VariableDeclarationStatement stmt = (VariableDeclarationStatement) blockStatements.get(0);
 			SwitchExpression switchExpression= (SwitchExpression) ((VariableDeclarationFragment) stmt.fragments().get(0)).getInitializer();
-			for (int i = 0, l = switchExpression.statements().size(); i < l; ++i) {
+			for (int i = 0, l = switchExpression.statements().size(); i < l; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Statement stmt1 = (Statement) switchExpression.statements().get(i);
 				if (stmt1 instanceof SwitchCase) {
 					SwitchCase switchCase = (SwitchCase) stmt1;
@@ -683,34 +683,34 @@ public class ASTRewritingSwitchExpressionsTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public class X {\n");
-		buf.append("	static int foo(int i) {\n");
-		buf.append("		int tw =\n");
-		buf.append("		switch (i) {\n");
-		buf.append("			case 1 -> {\n");
-		buf.append(" 				int z = 100;\n");
-		buf.append(" 				break;\n");
-		buf.append("			}\n");
-		buf.append("			case 2 -> {\n");
-		buf.append(" 				break;\n");
-		buf.append("			}\n");
-		buf.append("			default -> {\n");
-		buf.append("				break;\n");
-		buf.append("			}\n");
-		buf.append("		};\n");
-		buf.append("		return tw;\n");
-		buf.append("	}\n");
-		buf.append("	public static void main(String[] args) {\n");
-		buf.append("		System.out.print(foo(1));\n");
-		buf.append("	}\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	static int foo(int i) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		int tw =\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		switch (i) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			case 1 -> {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" 				int z = 100;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" 				break;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			case 2 -> {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" 				break;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			default -> {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("				break;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		};\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		return tw;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public static void main(String[] args) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		System.out.print(foo(1));\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
 	// replacing colon by ->
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testSwitchExpression_Bug543720_08_since_12() throws Exception {
 		if (checkAPILevel()) {
 			return;
@@ -739,7 +739,7 @@ public class ASTRewritingSwitchExpressionsTest extends ASTRewritingTest {
 				"		System.out.print(foo(1));\n"+
 				"	}\n"+
 				"}\n";
-		StringBuilder buf = new StringBuilder(s);
+		StringBuilder buf = new StringBuilder(s); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(this.apiLevel, cu);
@@ -753,7 +753,7 @@ public class ASTRewritingSwitchExpressionsTest extends ASTRewritingTest {
 		{
 			VariableDeclarationStatement stmt = (VariableDeclarationStatement) blockStatements.get(0);
 			SwitchExpression switchExpression= (SwitchExpression) ((VariableDeclarationFragment) stmt.fragments().get(0)).getInitializer();
-			for (int i = 0, l = switchExpression.statements().size(); i < l; ++i) {
+			for (int i = 0, l = switchExpression.statements().size(); i < l; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Statement stmt1 = (Statement) switchExpression.statements().get(i);
 				if (stmt1 instanceof SwitchCase) {
 					SwitchCase switchCase = (SwitchCase) stmt1;
@@ -765,48 +765,48 @@ public class ASTRewritingSwitchExpressionsTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public class X {\n");
-		buf.append("	static int foo(int i) {\n");
-		buf.append("		int tw =\n");
-		buf.append("		switch (i) {\n");
-		buf.append("			case 1 : {\n");
-		buf.append(" 				int z = 100;\n");
-		buf.append(" 				break;\n");
-		buf.append("			}\n");
-		buf.append("			case 2 : {\n");
-		buf.append(" 				break;\n");
-		buf.append("			}\n");
-		buf.append("			default : {\n");
-		buf.append("				break;\n");
-		buf.append("			}\n");
-		buf.append("		};\n");
-		buf.append("		return tw;\n");
-		buf.append("	}\n");
-		buf.append("	public static void main(String[] args) {\n");
-		buf.append("		System.out.print(foo(1));\n");
-		buf.append("	}\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	static int foo(int i) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		int tw =\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		switch (i) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			case 1 : {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" 				int z = 100;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" 				break;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			case 2 : {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" 				break;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			default : {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("				break;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		};\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		return tw;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public static void main(String[] args) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		System.out.print(foo(1));\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testSwitchExpressions_05_since_12() throws Exception {
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder builder= new StringBuilder();
-		builder.append("package test1;\n");
-		builder.append("public class X {\n");
-		builder.append("    public String foo(int i) {\n" +
+		StringBuilder builder= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		builder.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		builder.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		builder.append("    public String foo(int i) {\n" + //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				"		String ret = switch(i%2) {\n" +
 				"		case 0 -> \"even\";\n" +
 				"		default -> \"\";\n" +
 				"		};\n" +
 				"		return ret;");
-		builder.append("    }\n");
-		builder.append("}\n");
+		builder.append("    }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		builder.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", builder.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(this.apiLevel, cu);
@@ -846,10 +846,10 @@ public class ASTRewritingSwitchExpressionsTest extends ASTRewritingTest {
 
 		// Expected output is not ideal due to formatting issue Bug 545439
 		String preview= evaluateRewrite(cu, rewrite);
-		builder= new StringBuilder();
-		builder.append("package test1;\n");
-		builder.append("public class X {\n");
-		builder.append("    public String foo(int i) {\n" +
+		builder= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		builder.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		builder.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		builder.append("    public String foo(int i) {\n" + //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				"		String ret = switch(i%2) {\n" +
 				"		case 0 : \"even\";\n" +
 				"            case 1:\n" +
@@ -857,20 +857,20 @@ public class ASTRewritingSwitchExpressionsTest extends ASTRewritingTest {
 				"		default : \"\";\n" +
 				"		};\n" +
 				"		return ret;");
-		builder.append("    }\n");
-		builder.append("}\n");
+		builder.append("    }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		builder.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, builder.toString());
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testSwitchExpressions_06_since_12() throws Exception {
 		if (checkAPILevel()) {
 			return;
 		}
 		// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1508
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder builder= new StringBuilder();
-		builder.append(
+		StringBuilder builder= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		builder.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				"package test1;\n" +
 				"public class X {\n" +
 				"    public String foo(int i) {\n" +
@@ -911,8 +911,8 @@ public class ASTRewritingSwitchExpressionsTest extends ASTRewritingTest {
 			rewrite.replace(exp, newLiteral, null);
 		}
 		String preview= evaluateRewrite(cu, rewrite);
-		builder= new StringBuilder();
-		builder.append(
+		builder= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		builder.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				"package test1;\n" +
 				"public class X {\n" +
 				"    public String foo(int i) {\n" +
@@ -928,15 +928,15 @@ public class ASTRewritingSwitchExpressionsTest extends ASTRewritingTest {
 		assertEqualString(preview, builder.toString());
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testSwitchExpressions_Bug567975_since_12() throws Exception {
 		if (checkAPILevel()) {
 			return;
 		}
 		// https://bugs.eclipse.org/bugs/show_bug.cgi?id=567975
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder builder= new StringBuilder();
-		builder.append(
+		StringBuilder builder= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		builder.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				"package test1;\n" +
 				"public class X {\n" +
 				"    public String foo(int i) {\n" +
@@ -973,8 +973,8 @@ public class ASTRewritingSwitchExpressionsTest extends ASTRewritingTest {
 			rewrite.replace(exp, newLiteral, null);
 		}
 		String preview= evaluateRewrite(cu, rewrite);
-		builder= new StringBuilder();
-		builder.append(
+		builder= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		builder.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				"package test1;\n" +
 				"public class X {\n" +
 				"    public String foo(int i) {\n" +

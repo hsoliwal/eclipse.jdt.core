@@ -85,7 +85,7 @@ public class SearchParticipantTests extends ModifyingResourceTests implements IJ
 		public void locateMatches(SearchDocument[] documents, SearchPattern pattern, IJavaSearchScope scope, SearchRequestor requestor, IProgressMonitor monitor) throws CoreException {
 			int length = documents.length;
 			SearchDocument[] wrapperDocuments = new SearchDocument[length];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				wrapperDocuments[i] = new WrapperDocument(documents[i], this);
 			}
 			this.defaultSearchParticipant.locateMatches(wrapperDocuments, pattern, scope, requestor, monitor);
@@ -194,7 +194,7 @@ public class SearchParticipantTests extends ModifyingResourceTests implements IJ
 
 	IPath getIndexLocation() {
 		// use a non-canonical path to show that path does not need to be canonical
-		return new Path(getExternalPath() + "/dummy/../test.index");
+		return new Path(getExternalPath() + "/dummy/../test.index"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/*
@@ -225,7 +225,7 @@ public class SearchParticipantTests extends ModifyingResourceTests implements IJ
 	/*
 	 * Ensures that adding index entries through indexDocument() updates the index file.
 	 */
-	public synchronized void testIndexDocument01() throws CoreException, InterruptedException {
+	public synchronized void testIndexDocument01() throws CoreException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		createFile(
 			"/P/X.test",
 			"public class X {\n" +
@@ -250,13 +250,13 @@ public class SearchParticipantTests extends ModifyingResourceTests implements IJ
 	 * Ensures that adding index entries through indexDocument() updates the index file
 	 * and that exit session keeps it.
 	 */
-	public synchronized void testIndexDocument02() throws CoreException, InterruptedException {
+	public synchronized void testIndexDocument02() throws CoreException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TestSearchParticipant participant = new TestSearchParticipant(){
 			@Override
 			public void indexDocument(SearchDocument document, IPath indexLocation) {
 				if (!document.getPath().equals("/P/no")) {
-					for (int i = 0; i < 1000; i++) {
-						document.addIndexEntry(("category" + i).toCharArray(), ("key" + i).toCharArray());
+					for (int i = 0; i < 1000; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+						document.addIndexEntry(("category" + i).toCharArray(), ("key" + i).toCharArray()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 				}
 			}
@@ -287,7 +287,7 @@ public class SearchParticipantTests extends ModifyingResourceTests implements IJ
 	/*
 	 * Ensures that adding index entries through indexDocument() updates the index file.
 	 */
-	public synchronized void testIndexDocument03() throws CoreException, InterruptedException {
+	public synchronized void testIndexDocument03() throws CoreException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		createFile(
 			"/P/X.test",
 			"public class X {\n" +
@@ -311,7 +311,7 @@ public class SearchParticipantTests extends ModifyingResourceTests implements IJ
 	/*
 	 * Ensures that a simple search that forwards queries to the default participant works as expected
 	 */
-	public void testSearch() throws CoreException {
+	public void testSearch() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		createFile(
 			"/P/X.test",
 			"public class X {\n" +
@@ -338,7 +338,7 @@ public class SearchParticipantTests extends ModifyingResourceTests implements IJ
 	 * Ensures that a simple search that forwards queries to the default participant works as expected even after restart
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=308402
 	 */
-	public void testSearchAfterRestart() throws CoreException {
+	public void testSearchAfterRestart() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		createFile(
 			"/P/X.test",
 			"public class X {\n" +
@@ -374,7 +374,7 @@ public class SearchParticipantTests extends ModifyingResourceTests implements IJ
 	 * Ensures that a simple search that forwards queries to the default participant works as expected even after restart
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=308402
 	 */
-	public void testSearchAfterRemoveAndRestart() throws CoreException {
+	public void testSearchAfterRemoveAndRestart() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		createFile(
 			"/P/X.test",
 			"public class X {\n" +

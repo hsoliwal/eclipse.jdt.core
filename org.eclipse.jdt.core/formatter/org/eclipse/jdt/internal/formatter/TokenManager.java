@@ -58,7 +58,7 @@ public class TokenManager implements Iterable<Token> {
 	final CommentWrapExecutor commentWrapper;
 
 	private HashMap<Integer, Integer> tokenIndexToNLSAlign;
-	private final List<Token[]> formatOffTagPairs = new ArrayList<>();
+	private final List<Token[]> formatOffTagPairs = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	private int headerEndIndex = 0;
 
 	public TokenManager(List<Token> tokens, String source, DefaultCodeFormatterOptions options) {
@@ -151,10 +151,10 @@ public class TokenManager implements Iterable<Token> {
 		return this.source.length();
 	}
 
-	public int findIndex(int positionInSource, TerminalToken tokenType, boolean forward) {
+	public int findIndex(int positionInSource, TerminalToken tokenType, boolean forward) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// binary search
 		int left = 0, right = size() - 1;
-		while (left < right) {
+		while (left < right) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int index = (right + left) / 2;
 			Token token = get(index);
 			if (token.originalStart <= positionInSource && positionInSource <= token.originalEnd) {
@@ -174,7 +174,7 @@ public class TokenManager implements Iterable<Token> {
 		if (forward && get(index).originalEnd < positionInSource)
 			index++;
 		Token t;
-		while (tokenType != ANY && (t = get(index)).tokenType != tokenType) {
+		while (tokenType != ANY && (t = get(index)).tokenType != tokenType) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (TerminalToken.isRestrictedKeyword(tokenType) && t.tokenType == TerminalToken.TokenNameIdentifier) {
 				if (tokenType == TerminalToken.getRestrictedKeyword(toString(t)))
 					break;
@@ -238,9 +238,9 @@ public class TokenManager implements Iterable<Token> {
 		return countLineBreaksBetween(this.source, start, end);
 	}
 
-	public int countLineBreaksBetween(String text, int startPosition, int endPosition) {
+	public int countLineBreaksBetween(String text, int startPosition, int endPosition) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int result = 0;
-		for (int i = startPosition; i < endPosition; i++) {
+		for (int i = startPosition; i < endPosition; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch (text.charAt(i)) {
 				case '\r':
 					result++;
@@ -260,7 +260,7 @@ public class TokenManager implements Iterable<Token> {
 	private final TokenTraverser positionInLineCounter = new TokenTraverser() {
 		private boolean isNLSTagInLine = false;
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		protected boolean token(Token traversed, int index) {
 			if (index == this.value) {
 				this.isNLSTagInLine = false;
@@ -309,7 +309,7 @@ public class TokenManager implements Iterable<Token> {
 	public int findSourcePositionInLine(int position) {
 		int lineStartPosition = position;
 		char c;
-		while (lineStartPosition > 0 && (c = charAt(lineStartPosition)) != '\r' && c != '\n')
+		while (lineStartPosition > 0 && (c = charAt(lineStartPosition)) != '\r' && c != '\n') //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			lineStartPosition--;
 		int positionInLine = getLength(lineStartPosition, position - 1, 0);
 		return positionInLine;
@@ -317,12 +317,12 @@ public class TokenManager implements Iterable<Token> {
 
 	private String getEscapedTokenString(Token token) {
 		if (token.getLineBreaksBefore() > 0 && charAt(token.originalStart) == '@') {
-			return "&#64;" + this.source.substring(token.originalStart + 1, token.originalEnd + 1); //$NON-NLS-1$
+			return "&#64;" + this.source.substring(token.originalStart + 1, token.originalEnd + 1); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else if (token.tokenType == TokenNameNotAToken || token.tokenType == TokenNameCOMMENT_JAVADOC) {
 			String text = token.toString(this.source);
-			Matcher matcher = COMMENT_LINE_ANNOTATION_PATTERN.matcher(text);
+			Matcher matcher = COMMENT_LINE_ANNOTATION_PATTERN.matcher(text); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			if (matcher.find()) {
-				return matcher.group(1) + "&#64;" + text.substring(matcher.end(2)); //$NON-NLS-1$
+				return matcher.group(1) + "&#64;" + text.substring(matcher.end(2)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		return token.toString(this.source);
@@ -339,7 +339,7 @@ public class TokenManager implements Iterable<Token> {
 			if (token.getLineBreaksBefore() > 0 && charAt(token.originalStart) == '@') {
 				length += 4; // 4 = "&#64;".length() - "@".length()
 			} else if (token.tokenType == TokenNameNotAToken) {
-				Matcher matcher = COMMENT_LINE_ANNOTATION_PATTERN.matcher(token.toString(this.source));
+				Matcher matcher = COMMENT_LINE_ANNOTATION_PATTERN.matcher(token.toString(this.source)); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 				if (matcher.find()) {
 					length += 4; // 4 = "&#64;".length() - "@".length()
 				}
@@ -359,9 +359,9 @@ public class TokenManager implements Iterable<Token> {
 		return getLength(originalStart, originalEnd, startPosition, this.confTabSize);
 	}
 
-	public int getLength(int originalStart, int originalEnd, int startPosition, int tabSize) {
+	public int getLength(int originalStart, int originalEnd, int startPosition, int tabSize) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int position = startPosition;
-		for (int i = originalStart; i <= originalEnd; i++) {
+		for (int i = originalStart; i <= originalEnd; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch (this.source.charAt(i)) {
 				case '\t':
 					if (tabSize > 0)
@@ -403,7 +403,7 @@ public class TokenManager implements Iterable<Token> {
 
 	public int findFirstTokenInLine(int startIndex, boolean includeWraps, boolean includeIndents) {
 		Token previous = get(startIndex); // going backwards, previous has higher index than current
-		for (int i = startIndex - 1; i >= 0; i--) {
+		for (int i = startIndex - 1; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Token token = get(i);
 			if (token.getLineBreaksAfter() > 0 || previous.getLineBreaksBefore() > 0) {
 				boolean include = previous.getWrapPolicy() != null
@@ -424,10 +424,10 @@ public class TokenManager implements Iterable<Token> {
 	public boolean isStringConcatenation(InfixExpression node) {
 		if (!node.getOperator().equals(Operator.PLUS))
 			return false;
-		List<Expression> operands = new ArrayList<Expression>(node.extendedOperands());
+		List<Expression> operands = new ArrayList<Expression>(node.extendedOperands()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		operands.add(node.getLeftOperand());
 		operands.add(node.getRightOperand());
-		for (Expression o : operands) {
+		for (Expression o : operands) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (o instanceof StringLiteral)
 				return true;
 			if ((o instanceof InfixExpression) && isStringConcatenation((InfixExpression) o))
@@ -443,7 +443,7 @@ public class TokenManager implements Iterable<Token> {
 
 	public void addNLSAlignIndex(int index, int align) {
 		if (this.tokenIndexToNLSAlign == null)
-			this.tokenIndexToNLSAlign = new HashMap<>();
+			this.tokenIndexToNLSAlign = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		this.tokenIndexToNLSAlign.put(index, align);
 	}
 

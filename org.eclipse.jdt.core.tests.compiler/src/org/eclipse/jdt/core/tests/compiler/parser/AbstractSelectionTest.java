@@ -43,7 +43,7 @@ public AbstractSelectionTest(String testName){
 /*
  * DietParse with selectionNode check
  */
-public void checkDietParse(
+public void checkDietParse( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[] source,
 	int selectionStart,
 	int selectionEnd,
@@ -75,7 +75,7 @@ public void checkDietParse(
 									? NONE
 									: parser.assistNode.toString();
 	assertEquals(
-		"invalid selection node-" + testName,
+		"invalid selection node-" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		expectedSelection,
 		computedSelection);
 
@@ -83,7 +83,7 @@ public void checkDietParse(
 		System.out.println(Util.displayString(computedUnitToString, 2));
 	}
 	assertEquals(
-		"invalid selection unit-" + testName,
+		"invalid selection unit-" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		expectedUnitToString,
 		computedUnitToString);
 
@@ -91,7 +91,7 @@ public void checkDietParse(
 		char[] chars = ((SelectionScanner)parser.scanner).selectionIdentifier;
 		String computedSelectionIdentifier = chars == null ? NONE : new String(chars);
 		assertEquals(
-			"invalid selection identifier-" + testName,
+			"invalid selection identifier-" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedSelectionIdentifier,
 			computedSelectionIdentifier);
 	}
@@ -115,7 +115,7 @@ public void checkDietParse(
 		}
 		String computedSelectedSource  = chars == null ? NONE : new String(chars);
 		assertEquals(
-			"invalid replaced source-" + testName,
+			"invalid replaced source-" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedSelectedSource,
 			computedSelectedSource);
 	}
@@ -123,7 +123,7 @@ public void checkDietParse(
 /*
  * Parse a method with selectionNode check
  */
-public void checkMethodParse(
+public void checkMethodParse( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] source,
 		int selectionStart,
 		int selectionEnd,
@@ -149,7 +149,7 @@ public void checkMethodParse(
 
 	ASTNode foundMethod = null;
 	if (unit.types != null) {
-		for (int i = 0; i < unit.types.length; i++) {
+		for (int i = 0; i < unit.types.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeDeclaration type = unit.types[i];
 			ASTNode method = findMethod(type, selectionStart);
 			if (method != null) {
@@ -165,7 +165,7 @@ public void checkMethodParse(
 		TypeDeclaration type = (TypeDeclaration)foundMethod;
 		FieldDeclaration[] fields = type.fields;
 		if (fields != null) {
-			for (int i = 0; i < fields.length; i++) {
+			for (int i = 0; i < fields.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				FieldDeclaration field = fields[i];
 				if (field instanceof Initializer && field.sourceStart <= selectionStart && selectionStart <= field.sourceEnd) {
 					parser.parseBlockStatements((Initializer)field, type, unit);
@@ -183,7 +183,7 @@ public void checkMethodParse(
 								? NONE
 								: parser.assistNode.toString();
 	assertEquals(
-		"invalid selection node-" + testName,
+		"invalid selection node-" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		expectedSelection,
 		computedCompletion);
 
@@ -191,7 +191,7 @@ public void checkMethodParse(
 		System.out.println(Util.displayString(computedUnitToString, 2));
 	}
 	assertEquals(
-		"invalid selection unit-"+testName,
+		"invalid selection unit-"+testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		expectedUnitToString,
 		computedUnitToString);
 
@@ -199,7 +199,7 @@ public void checkMethodParse(
 		char[] chars = ((SelectionScanner)parser.scanner).selectionIdentifier;
 		String computedSelectionIdentifier = chars == null ? NONE : new String(chars);
 		assertEquals(
-			"invalid selection identifier-" + testName,
+			"invalid selection identifier-" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedSelectionIdentifier,
 			computedSelectionIdentifier);
 	}
@@ -223,7 +223,7 @@ public void checkMethodParse(
 		}
 		String computedReplacedSource  = chars == null ? NONE : new String(chars);
 		assertEquals(
-			"invalid replaced source-" + testName,
+			"invalid replaced source-" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedSelectedSource,
 			computedReplacedSource);
 	}
@@ -268,9 +268,9 @@ public void checkMethodParse(
  * at the cursor location in the given type.
  * Returns null if not found.
  */
-protected ASTNode findMethod(TypeDeclaration type, int cursorLocation) {
+protected ASTNode findMethod(TypeDeclaration type, int cursorLocation) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (type.methods != null) {
-		for (int i = 0; i < type.methods.length; i++) {
+		for (int i = 0; i < type.methods.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			AbstractMethodDeclaration method = type.methods[i];
 			if (method.declarationSourceStart <= cursorLocation && (cursorLocation <= method.declarationSourceEnd || method.declarationSourceEnd == 0)) {
 				return method;
@@ -278,7 +278,7 @@ protected ASTNode findMethod(TypeDeclaration type, int cursorLocation) {
 		}
 	}
 	if (type.memberTypes != null) {
-		for (int i = 0; i < type.memberTypes.length; i++) {
+		for (int i = 0; i < type.memberTypes.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeDeclaration memberType = type.memberTypes[i];
 			ASTNode method = findMethod(memberType, cursorLocation);
 			if (method != null) {
@@ -288,7 +288,7 @@ protected ASTNode findMethod(TypeDeclaration type, int cursorLocation) {
 	}
 	FieldDeclaration[] fields = type.fields;
 	if (fields != null) {
-		for (int i = 0; i < fields.length; i++) {
+		for (int i = 0; i < fields.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			FieldDeclaration field = fields[i];
 			if (field instanceof Initializer) {
 				Initializer initializer = (Initializer)field;
@@ -304,7 +304,7 @@ protected ASTNode findMethod(TypeDeclaration type, int cursorLocation) {
 /**
  * Runs the given test that checks that method completion parsing returns the given completion.
  */
-protected void runTestCheckMethodParse(
+protected void runTestCheckMethodParse( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String compilationUnit,
 		String selectionStartBehind,
 		String selectionEndBehind,

@@ -35,7 +35,7 @@ public class DependencyTests extends BuilderTests {
 		return buildTestSuite(DependencyTests.class);
 	}
 
-	public void testAbstractMethod() throws JavaModelException {
+	public void testAbstractMethod() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -74,7 +74,7 @@ public class DependencyTests extends BuilderTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=168208
-	public void testCaseInvariantType() throws JavaModelException {
+	public void testCaseInvariantType() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -120,7 +120,7 @@ public class DependencyTests extends BuilderTests {
 		expectingNoProblems();
 	}
 
-	public void testExactMethodDeleting() throws JavaModelException {
+	public void testExactMethodDeleting() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -207,7 +207,7 @@ public class DependencyTests extends BuilderTests {
 		expectingNoProblems();
 	}
 
-	public void testExactMethodVisibility() throws JavaModelException {
+	public void testExactMethodVisibility() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -292,7 +292,7 @@ public class DependencyTests extends BuilderTests {
 		expectingNoProblems();
 	}
 
-	public void testExternalJarChanged() throws CoreException, java.io.IOException {
+	public void testExternalJarChanged() throws CoreException, java.io.IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -305,7 +305,7 @@ public class DependencyTests extends BuilderTests {
 			"  }\n" + //$NON-NLS-1$
 			"}" //$NON-NLS-1$
 		);
-		String externalJar = Util.getOutputDirectory() + java.io.File.separator + "test.jar"; //$NON-NLS-1$
+		String externalJar = Util.getOutputDirectory() + java.io.File.separator + "test.jar"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Util.createJar(
 			new String[] {
 				"q/Y.java", //$NON-NLS-1$
@@ -313,7 +313,7 @@ public class DependencyTests extends BuilderTests {
 				"public class Y {\n" + //$NON-NLS-1$
 				"}" //$NON-NLS-1$
 			},
-			new java.util.HashMap(),
+			new java.util.HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			externalJar
 		);
 		env.addExternalJar(projectPath, externalJar);
@@ -335,7 +335,7 @@ public class DependencyTests extends BuilderTests {
 				"  }\n" + //$NON-NLS-1$
 				"}" //$NON-NLS-1$
 			},
-			new java.util.HashMap(),
+			new java.util.HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			externalJar
 		);
 		// add new class to trigger an incremental build
@@ -346,7 +346,7 @@ public class DependencyTests extends BuilderTests {
 		expectingNoProblems();
 	}
 
-	public void testFieldDeleting() throws JavaModelException {
+	public void testFieldDeleting() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -409,7 +409,7 @@ public class DependencyTests extends BuilderTests {
 		expectingNoProblems();
 	}
 
-	public void testFieldVisibility() throws JavaModelException {
+	public void testFieldVisibility() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -485,7 +485,7 @@ public class DependencyTests extends BuilderTests {
 	}
 
 	// 77272
-	public void testInterfaceDeleting() throws JavaModelException {
+	public void testInterfaceDeleting() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -536,7 +536,7 @@ public class DependencyTests extends BuilderTests {
 		expectingNoProblems();
 	}
 
-	public void testMemberTypeDeleting() throws JavaModelException {
+	public void testMemberTypeDeleting() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -599,7 +599,7 @@ public class DependencyTests extends BuilderTests {
 		expectingNoProblems();
 	}
 
-	public void testMemberTypeVisibility() throws JavaModelException {
+	public void testMemberTypeVisibility() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -674,7 +674,7 @@ public class DependencyTests extends BuilderTests {
 		expectingNoProblems();
 	}
 
-	public void testMethodDeleting() throws JavaModelException {
+	public void testMethodDeleting() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -765,7 +765,7 @@ public class DependencyTests extends BuilderTests {
 		expectingNoProblems();
 	}
 
-	public void testMethodVisibility() throws JavaModelException {
+	public void testMethodVisibility() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -858,7 +858,7 @@ public class DependencyTests extends BuilderTests {
 		expectingNoProblems();
 	}
 
-	public void testMissingClassFile() throws JavaModelException {
+	public void testMissingClassFile() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath project1Path = env.addProject("Project1", "1.8"); // tolerance of missing types not fully implemented below 1.8
 		env.addExternalJars(project1Path, Util.getJavaClassLibs());
 
@@ -931,7 +931,7 @@ public class DependencyTests extends BuilderTests {
 	}
 
 	// 181269
-	public void testSecondaryTypeDeleting() throws JavaModelException {
+	public void testSecondaryTypeDeleting() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -960,7 +960,7 @@ public class DependencyTests extends BuilderTests {
 	}
 
 	// 72468
-	public void testTypeDeleting() throws JavaModelException {
+	public void testTypeDeleting() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -1008,7 +1008,7 @@ public class DependencyTests extends BuilderTests {
 	}
 
 	// 72468
-	public void testTypeVisibility() throws JavaModelException {
+	public void testTypeVisibility() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -1074,7 +1074,7 @@ public class DependencyTests extends BuilderTests {
 	}
 
 	// 79163
-	public void testTypeVisibility2() throws JavaModelException {
+	public void testTypeVisibility2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -1147,7 +1147,7 @@ public class DependencyTests extends BuilderTests {
 		expectingSpecificProblemFor(aPath, new Problem("A", "The type Foos is not visible", aPath, 93, 119, CategorizedProblem.CAT_TYPE, IMarker.SEVERITY_ERROR)); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
-	public void testTypeVariable() throws JavaModelException {
+	public void testTypeVariable() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion()); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -1204,7 +1204,7 @@ public class DependencyTests extends BuilderTests {
 // builder is not the cause of the bug, but we want to ensure that the end to
 // end behavior is OK).
 // Edit https://github.com/eclipse-jdt/eclipse.jdt.core/pull/4564: package deprecation has no effect
-public void test0100() throws JavaModelException {
+public void test0100() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath projectPath = env.addProject("P");
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
 	IPath rootPath = env.getPackageFragmentRootPath(projectPath, "");

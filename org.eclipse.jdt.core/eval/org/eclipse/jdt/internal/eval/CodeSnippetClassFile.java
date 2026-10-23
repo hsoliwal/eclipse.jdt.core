@@ -39,7 +39,7 @@ public class CodeSnippetClassFile extends ClassFile {
  * @param enclosingClassFile org.eclipse.jdt.internal.compiler.ClassFile
  * @param creatingProblemType boolean
  */
-public CodeSnippetClassFile(
+public CodeSnippetClassFile( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding aType,
 	org.eclipse.jdt.internal.compiler.ClassFile enclosingClassFile,
 	boolean creatingProblemType) {
@@ -112,7 +112,7 @@ public CodeSnippetClassFile(
 	int interfacesCount = superInterfacesBinding.length;
 	this.contents[this.contentsOffset++] = (byte) (interfacesCount >> 8);
 	this.contents[this.contentsOffset++] = (byte) interfacesCount;
-	for (int i = 0; i < interfacesCount; i++) {
+	for (int i = 0; i < interfacesCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int interfaceIndex = this.constantPool.literalIndexForType(superInterfacesBinding[i]);
 		this.contents[this.contentsOffset++] = (byte) (interfaceIndex >> 8);
 		this.contents[this.contentsOffset++] = (byte) interfaceIndex;
@@ -133,7 +133,7 @@ public CodeSnippetClassFile(
  * @param typeDeclaration org.eclipse.jdt.internal.compiler.ast.TypeDeclaration
  * @param unitResult org.eclipse.jdt.internal.compiler.CompilationUnitResult
  */
-public static void createProblemType(TypeDeclaration typeDeclaration, CompilationResult unitResult) {
+public static void createProblemType(TypeDeclaration typeDeclaration, CompilationResult unitResult) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	SourceTypeBinding typeBinding = typeDeclaration.binding;
 	ClassFile classFile = new CodeSnippetClassFile(typeBinding, null, true);
 
@@ -141,7 +141,7 @@ public static void createProblemType(TypeDeclaration typeDeclaration, Compilatio
 	if (typeBinding.hasMemberTypes()) {
 		// see bug 180109
 		ReferenceBinding[] members = typeBinding.memberTypes;
-		for (ReferenceBinding member : members)
+		for (ReferenceBinding member : members) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			classFile.recordInnerClasses(member);
 	}
 	// TODO (olivier) handle cases where a field cannot be generated (name too long)
@@ -151,7 +151,7 @@ public static void createProblemType(TypeDeclaration typeDeclaration, Compilatio
 		classFile.recordInnerClasses(typeBinding);
 	}
 	TypeVariableBinding[] typeVariables = typeBinding.typeVariables();
-	for (TypeVariableBinding typeVariableBinding : typeVariables) {
+	for (TypeVariableBinding typeVariableBinding : typeVariables) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if ((typeVariableBinding.tagBits & TagBits.ContainsNestedTypeReferences) != 0) {
 			Util.recordNestedType(classFile, typeVariableBinding);
 		}
@@ -183,7 +183,7 @@ public static void createProblemType(TypeDeclaration typeDeclaration, Compilatio
 			// We generate a clinit which contains all the problems, since we may not be able to generate problem methods (< 1.8) and problem constructors (all levels).
 			classFile.addProblemClinit(problemsCopy);
 		}
-		for (AbstractMethodDeclaration methodDecl : methodDecls) {
+		for (AbstractMethodDeclaration methodDecl : methodDecls) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			MethodBinding method = methodDecl.binding;
 			if (method == null) continue;
 			if (abstractMethodsOnly) {
@@ -203,7 +203,7 @@ public static void createProblemType(TypeDeclaration typeDeclaration, Compilatio
 	}
 	// propagate generation of (problem) member types
 	if (typeDeclaration.memberTypes != null) {
-		for (TypeDeclaration memberType : typeDeclaration.memberTypes) {
+		for (TypeDeclaration memberType : typeDeclaration.memberTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (memberType.binding != null) {
 				ClassFile.createProblemType(memberType, unitResult);
 			}

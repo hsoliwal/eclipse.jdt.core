@@ -131,7 +131,7 @@ public class Assignment extends Expression {
 		 */
 		private static final Map CODES;
 		static {
-			CODES = new HashMap(20);
+			CODES = new HashMap(20); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			Operator[] ops = {
 					ASSIGN,
 					PLUS_ASSIGN,
@@ -146,7 +146,7 @@ public class Assignment extends Expression {
 					RIGHT_SHIFT_SIGNED_ASSIGN,
 					RIGHT_SHIFT_UNSIGNED_ASSIGN
 				};
-			for (Operator o : ops) {
+			for (Operator o : ops) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				CODES.put(o.toString(), o);
 			}
 		}
@@ -181,7 +181,7 @@ public class Assignment extends Expression {
 	private static final List PROPERTY_DESCRIPTORS;
 
 	static {
-		List properyList = new ArrayList(4);
+		List properyList = new ArrayList(4); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(Assignment.class, properyList);
 		addProperty(LEFT_HAND_SIDE_PROPERTY, properyList);
 		addProperty(OPERATOR_PROPERTY, properyList);
@@ -251,7 +251,7 @@ public class Assignment extends Expression {
 		return super.internalGetSetObjectProperty(property, get, value);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final ASTNode internalGetSetChildProperty(ChildPropertyDescriptor property, boolean get, ASTNode child) {
 		if (property == LEFT_HAND_SIDE_PROPERTY) {
 			if (get) {

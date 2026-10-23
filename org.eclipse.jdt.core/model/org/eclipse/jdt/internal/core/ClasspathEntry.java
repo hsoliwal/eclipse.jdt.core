@@ -279,7 +279,7 @@ public class ClasspathEntry implements IClasspathEntry {
 	/**
 	 * Creates a class path entry of the specified kind with the given path.
 	 */
-	public ClasspathEntry(
+	public ClasspathEntry( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int contentKind,
 		int entryKind,
 		IPath path,
@@ -330,7 +330,7 @@ public class ClasspathEntry implements IClasspathEntry {
 
 		String test = null;
 		String withoutTestCode = null;
-		for (IClasspathAttribute attribute : this.extraAttributes) {
+		for (IClasspathAttribute attribute : this.extraAttributes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (IClasspathAttribute.TEST.equals(attribute.getName())) {
 				test = attribute.getValue();
 			} else if (IClasspathAttribute.WITHOUT_TEST_CODE.equals(attribute.getName()) ) {
@@ -371,7 +371,7 @@ public class ClasspathEntry implements IClasspathEntry {
 	 * Used to perform export/restriction propagation across referring projects/containers.
 	 * Also: propagating extraAttributes.
 	 */
-	public ClasspathEntry combineWith(ClasspathEntry referringEntry) {
+	public ClasspathEntry combineWith(ClasspathEntry referringEntry) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (referringEntry == null) return this;
 		IClasspathAttribute[] referringExtraAttributes = referringEntry.getExtraAttributes();
 		if (referringEntry.isExported() || referringEntry.getAccessRuleSet() != null || referringExtraAttributes.length > 0) {
@@ -409,7 +409,7 @@ public class ClasspathEntry implements IClasspathEntry {
 	}
 
 
-	public ClasspathEntry withExtraAttributeRemoved(String attrName) {
+	public ClasspathEntry withExtraAttributeRemoved(String attrName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IClasspathAttribute[] changedAttributes = Arrays.stream(this.getExtraAttributes())
 				.filter(a -> !a.getName().equals(attrName)).toArray(IClasspathAttribute[]::new);
 		return new ClasspathEntry(
@@ -444,13 +444,13 @@ public class ClasspathEntry implements IClasspathEntry {
 		return result;
 	}
 
-	static IClasspathAttribute[] decodeExtraAttributes(NodeList attributes) {
+	static IClasspathAttribute[] decodeExtraAttributes(NodeList attributes) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (attributes == null) return NO_EXTRA_ATTRIBUTES;
 		int length = attributes.getLength();
 		if (length == 0) return NO_EXTRA_ATTRIBUTES;
 		IClasspathAttribute[] result = new IClasspathAttribute[length];
 		int index = 0;
-		for (int i = 0; i < length; ++i) {
+		for (int i = 0; i < length; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Node node = attributes.item(i);
 			if (node.getNodeType() == Node.ELEMENT_NODE) {
 				Element attribute = (Element)node;
@@ -466,13 +466,13 @@ public class ClasspathEntry implements IClasspathEntry {
 		return result;
 	}
 
-	static IAccessRule[] decodeAccessRules(NodeList list) {
+	static IAccessRule[] decodeAccessRules(NodeList list) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (list == null) return null;
 		int length = list.getLength();
 		if (length == 0) return null;
 		IAccessRule[] result = new IAccessRule[length];
 		int index = 0;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Node accessRule = list.item(i);
 			if (accessRule.getNodeType() == Node.ELEMENT_NODE) {
 				Element elementAccessRule = (Element) accessRule;
@@ -500,7 +500,7 @@ public class ClasspathEntry implements IClasspathEntry {
 	/**
 	 * Decode some element tag containing a sequence of patterns into IPath[]
 	 */
-	private static IPath[] decodePatterns(NamedNodeMap nodeMap, String tag) {
+	private static IPath[] decodePatterns(NamedNodeMap nodeMap, String tag) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String sequence = removeAttribute(tag, nodeMap);
 		if (!sequence.equals("")) { //$NON-NLS-1$
 			char[][] patterns = CharOperation.splitOn('|', sequence.toCharArray());
@@ -508,7 +508,7 @@ public class ClasspathEntry implements IClasspathEntry {
 			if ((patternCount = patterns.length) > 0) {
 				IPath[] paths = new IPath[patternCount];
 				int index = 0;
-				for (int j = 0; j < patternCount; j++) {
+				for (int j = 0; j < patternCount; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					char[] pattern = patterns[j];
 					if (pattern.length == 0) continue; // see https://bugs.eclipse.org/bugs/show_bug.cgi?id=105581
 					paths[index++] = new Path(new String(pattern));
@@ -527,10 +527,10 @@ public class ClasspathEntry implements IClasspathEntry {
 			decodeUnknownNode(node, xmlWriter, true/*insert new line*/);
 			xmlWriter.flush();
 		}
-		buffer.append(writer.toString());
+		buffer.append(writer.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
-	private static void decodeUnknownNode(Node node, XMLWriter xmlWriter, boolean insertNewLine) {
+	private static void decodeUnknownNode(Node node, XMLWriter xmlWriter, boolean insertNewLine) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch (node.getNodeType()) {
 		case Node.ELEMENT_NODE:
 			NamedNodeMap attributes;
@@ -538,8 +538,8 @@ public class ClasspathEntry implements IClasspathEntry {
 			if ((attributes = node.getAttributes()) != null) {
 				int length = attributes.getLength();
 				if (length > 0) {
-					parameters = new HashMap();
-					for (int i = 0; i < length; i++) {
+					parameters = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+					for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						Node attribute = attributes.item(i);
 						parameters.put(attribute.getNodeName(), attribute.getNodeValue());
 					}
@@ -550,7 +550,7 @@ public class ClasspathEntry implements IClasspathEntry {
 			String nodeName = node.getNodeName();
 			xmlWriter.printTag(nodeName, parameters, false/*don't insert tab*/, false/*don't insert new line*/, childrenLength == 0/*close tag if no children*/);
 			if (childrenLength > 0) {
-				for (int i = 0; i < childrenLength; i++) {
+				for (int i = 0; i < childrenLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					decodeUnknownNode(children.item(i), xmlWriter, false/*don't insert new line*/);
 				}
 				xmlWriter.endTag(nodeName, false/*don't insert tab*/, insertNewLine);
@@ -572,7 +572,7 @@ public class ClasspathEntry implements IClasspathEntry {
 			int length = this.exclusionPatterns.length;
 			char[][] chars = new char[length][];
 			IPath prefixPath = this.path.removeTrailingSeparator();
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				chars[i] = prefixPath.append(this.exclusionPatterns[i]).toString().toCharArray();
 			}
 			this.fullExclusionPatternChars = chars;
@@ -589,7 +589,7 @@ public class ClasspathEntry implements IClasspathEntry {
 			int length = this.inclusionPatterns.length;
 			char[][] chars = new char[length][];
 			IPath prefixPath = this.path.removeTrailingSeparator();
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				chars[i] = prefixPath.append(this.inclusionPatterns[i]).toString().toCharArray();
 			}
 			this.fullInclusionPatternChars = chars;
@@ -600,8 +600,8 @@ public class ClasspathEntry implements IClasspathEntry {
 	/**
 	 * Returns the XML encoding of the class path.
 	 */
-	public void elementEncode(XMLWriter writer, IPath projectPath, boolean indent, boolean newLine, Map unknownElements, boolean isReferencedEntry) {
-		HashMap parameters = new HashMap();
+	public void elementEncode(XMLWriter writer, IPath projectPath, boolean indent, boolean newLine, Map unknownElements, boolean isReferencedEntry) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		HashMap parameters = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 		parameters.put(TAG_KIND, ClasspathEntry.kindToString(this.entryKind));
 
@@ -648,7 +648,7 @@ public class ClasspathEntry implements IClasspathEntry {
 		UnknownXmlElements unknownXmlElements = unknownElements == null ? null : (UnknownXmlElements) unknownElements.get(this.path);
 		String[] unknownAttributes;
 		if (unknownXmlElements != null && (unknownAttributes = unknownXmlElements.attributes) != null)
-			for (int i = 0, length = unknownAttributes.length; i < length; i+=2) {
+			for (int i = 0, length = unknownAttributes.length; i < length; i+=2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String tagName = unknownAttributes[i];
 				String tagValue = unknownAttributes[i+1];
 				parameters.put(tagName, tagValue);
@@ -689,8 +689,8 @@ public class ClasspathEntry implements IClasspathEntry {
 
 	void encodeExtraAttributes(XMLWriter writer, boolean indent, boolean newLine) {
 		writer.startTag(TAG_ATTRIBUTES, indent);
-		for (IClasspathAttribute attribute : this.extraAttributes) {
-			HashMap parameters = new HashMap();
+		for (IClasspathAttribute attribute : this.extraAttributes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			HashMap parameters = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	    	parameters.put(TAG_ATTRIBUTE_NAME, attribute.getName());
 			parameters.put(TAG_ATTRIBUTE_VALUE, attribute.getValue());
 			writer.printTag(TAG_ATTRIBUTE, parameters, indent, newLine, true);
@@ -702,15 +702,15 @@ public class ClasspathEntry implements IClasspathEntry {
 
 		writer.startTag(TAG_ACCESS_RULES, indent);
 		AccessRule[] rules = getAccessRuleSet().getAccessRules();
-		for (AccessRule rule : rules) {
+		for (AccessRule rule : rules) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			encodeAccessRule(rule, writer, indent, newLine);
 		}
 		writer.endTag(TAG_ACCESS_RULES, indent, true/*insert new line*/);
 	}
 
-	private void encodeAccessRule(AccessRule accessRule, XMLWriter writer, boolean indent, boolean newLine) {
+	private void encodeAccessRule(AccessRule accessRule, XMLWriter writer, boolean indent, boolean newLine) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
-		HashMap parameters = new HashMap();
+		HashMap parameters = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		parameters.put(TAG_PATTERN, new String(accessRule.pattern));
 
 		switch (accessRule.getProblemId()) {
@@ -732,13 +732,13 @@ public class ClasspathEntry implements IClasspathEntry {
 	}
 
 	private void encodeUnknownChildren(XMLWriter writer, boolean indent, boolean newLine, ArrayList unknownChildren) {
-		for (Object unknownChild : unknownChildren) {
+		for (Object unknownChild : unknownChildren) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String child = (String) unknownChild;
 			writer.printString(child, indent, false/*don't insert new line*/);
 		}
 	}
 
-	public static IClasspathEntry elementDecode(Element element, IJavaProject project, Map unknownElements) {
+	public static IClasspathEntry elementDecode(Element element, IJavaProject project, Map unknownElements) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPath projectPath = project.getProject().getFullPath();
 		NamedNodeMap attributes = element.getAttributes();
@@ -806,7 +806,7 @@ public class ClasspathEntry implements IClasspathEntry {
 			int unknownAttributeLength = attributes.getLength();
 			if (unknownAttributeLength != 0) {
 				unknownAttributes = new String[unknownAttributeLength*2];
-				for (int i = 0; i < unknownAttributeLength; i++) {
+				for (int i = 0; i < unknownAttributeLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Node attribute = attributes.item(i);
 					unknownAttributes[i*2] = attribute.getNodeName();
 					unknownAttributes[i*2 + 1] = attribute.getNodeValue();
@@ -814,13 +814,13 @@ public class ClasspathEntry implements IClasspathEntry {
 			}
 
 			// unknown children
-			for (int i = 0, length = foundChildren.length; i < length; i++) {
+			for (int i = 0, length = foundChildren.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (!foundChildren[i]) {
 					Node node = children.item(i);
 					if (node.getNodeType() != Node.ELEMENT_NODE) continue;
 					if (unknownChildren == null)
-						unknownChildren = new ArrayList();
-					StringBuilder buffer = new StringBuilder();
+						unknownChildren = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+					StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 					decodeUnknownNode(node, buffer, project);
 					unknownChildren.add(buffer.toString());
 				}
@@ -935,7 +935,7 @@ public class ClasspathEntry implements IClasspathEntry {
 	 * Returns whether the given path as a ".." segment
 	 */
 	public static boolean hasDotDot(IPath path) {
-		for (int i = 0, length = path.segmentCount(); i < length; i++) {
+		for (int i = 0, length = path.segmentCount(); i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (DOT_DOT.equals(path.segment(i)))
 				return true;
 		}
@@ -943,7 +943,7 @@ public class ClasspathEntry implements IClasspathEntry {
 	}
 
 	public static NodeList getChildAttributes(String childName, NodeList children, boolean[] foundChildren) {
-		for (int i = 0, length = foundChildren.length; i < length; i++) {
+		for (int i = 0, length = foundChildren.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Node node = children.item(i);
 			if (childName.equals(node.getNodeName())) {
 				foundChildren[i] = true;
@@ -976,14 +976,14 @@ public class ClasspathEntry implements IClasspathEntry {
 	 * the corresponding paths.
 	 */
 	public static IPath[] resolvedChainedLibraries(IPath jarPath) {
-		ArrayList result = new ArrayList();
-		resolvedChainedLibraries(jarPath, new HashSet(), result);
+		ArrayList result = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		resolvedChainedLibraries(jarPath, new HashSet(), result); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		if (result.size() == 0)
 			return NO_PATHS;
 		return (IPath[]) result.toArray(new IPath[result.size()]);
 	}
 
-	private static void resolvedChainedLibraries(IPath jarPath, HashSet visited, ArrayList result) {
+	private static void resolvedChainedLibraries(IPath jarPath, HashSet visited, ArrayList result) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (visited.contains( jarPath))
 			return;
 		visited.add(jarPath);
@@ -996,18 +996,18 @@ public class ClasspathEntry implements IClasspathEntry {
 		} else {
 			Iterator calledFilesIterator = calledFileNames.iterator();
 			IPath directoryPath = jarPath.removeLastSegments(1);
-			while (calledFilesIterator.hasNext()) {
+			while (calledFilesIterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String calledFileName = (String) calledFilesIterator.next();
 				if (!directoryPath.isValidPath(calledFileName)) {
 					if (JavaModelManager.CP_RESOLVE_VERBOSE_FAILURE) {
-						trace("Invalid Class-Path entry " + calledFileName + " in manifest of jar file: " + jarPath.toOSString()); //$NON-NLS-1$ //$NON-NLS-2$
+						trace("Invalid Class-Path entry " + calledFileName + " in manifest of jar file: " + jarPath.toOSString()); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 				} else {
 					IPath calledJar = directoryPath.append(new Path(calledFileName));
 					// Ignore if segment count is Zero (https://bugs.eclipse.org/bugs/show_bug.cgi?id=308150)
 					if (calledJar.segmentCount() == 0) {
 						if (JavaModelManager.CP_RESOLVE_VERBOSE_FAILURE) {
-							trace("Invalid Class-Path entry " + calledFileName + " in manifest of jar file: " + jarPath.toOSString()); //$NON-NLS-1$ //$NON-NLS-2$
+							trace("Invalid Class-Path entry " + calledFileName + " in manifest of jar file: " + jarPath.toOSString()); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
 						continue;
 					}
@@ -1036,7 +1036,7 @@ public class ClasspathEntry implements IClasspathEntry {
 		}
 	}
 
-	private static List getCalledFileNames(IPath jarPath) {
+	private static List getCalledFileNames(IPath jarPath) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Object target = JavaModel.getTarget(jarPath, true/*check existence, otherwise the manifest cannot be read*/);
 		if (!(target instanceof IFile || target instanceof File))
 			return null;
@@ -1052,19 +1052,19 @@ public class ClasspathEntry implements IClasspathEntry {
 			calledFileNames = analyzer.getCalledFileNames();
 			if (!success || analyzer.getClasspathSectionsCount() == 1 && calledFileNames == null) {
 				if (JavaModelManager.CP_RESOLVE_VERBOSE_FAILURE) {
-					trace("Invalid Class-Path header in manifest of jar file: " + jarPath.toOSString()); //$NON-NLS-1$
+					trace("Invalid Class-Path header in manifest of jar file: " + jarPath.toOSString()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				return null;
 			} else if (analyzer.getClasspathSectionsCount() > 1) {
 				if (JavaModelManager.CP_RESOLVE_VERBOSE_FAILURE) {
-					trace("Multiple Class-Path headers in manifest of jar file: " + jarPath.toOSString()); //$NON-NLS-1$
+					trace("Multiple Class-Path headers in manifest of jar file: " + jarPath.toOSString()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				return null;
 			}
 		} catch (CoreException | IOException e) {
 			// not a zip file
 			if (JavaModelManager.CP_RESOLVE_VERBOSE_FAILURE) {
-				trace("Could not read Class-Path header in manifest of jar file: " + jarPath.toOSString(), e); //$NON-NLS-1$
+				trace("Could not read Class-Path header in manifest of jar file: " + jarPath.toOSString(), e); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		return calledFileNames;
@@ -1073,11 +1073,11 @@ public class ClasspathEntry implements IClasspathEntry {
 	/*
 	 * Resolves the ".." in the given path. Returns the given path if it contains no ".." segment.
 	 */
-	public static IPath resolveDotDot(IPath reference, IPath path) {
+	public static IPath resolveDotDot(IPath reference, IPath path) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath newPath = null;
 		IPath workspaceLocation = workspaceRoot.getLocation();
 		if (reference == null || workspaceLocation.isPrefixOf(reference)) {
-			for (int i = 0, length = path.segmentCount(); i < length; i++) {
+			for (int i = 0, length = path.segmentCount(); i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String segment = path.segment(i);
 				if (DOT_DOT.equals(segment)) {
 					if (newPath == null) {
@@ -1103,7 +1103,7 @@ public class ClasspathEntry implements IClasspathEntry {
 			}
 		}
 		else {
-			for (int i = 0, length = path.segmentCount(); i < length; i++) {
+			for (int i = 0, length = path.segmentCount(); i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String segment = path.segment(i);
 				if (DOT_DOT.equals(segment)) {
 					if (newPath == null){
@@ -1127,10 +1127,10 @@ public class ClasspathEntry implements IClasspathEntry {
 	 */
 	private static void encodePatterns(IPath[] patterns, String tag, Map parameters) {
 		if (patterns != null && patterns.length > 0) {
-			StringBuilder rule = new StringBuilder(10);
-			for (int i = 0, max = patterns.length; i < max; i++){
-				if (i > 0) rule.append('|');
-				rule.append(patterns[i]);
+			StringBuilder rule = new StringBuilder(10); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			for (int i = 0, max = patterns.length; i < max; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				if (i > 0) rule.append('|'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				rule.append(patterns[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			parameters.put(tag, String.valueOf(rule));
 		}
@@ -1140,7 +1140,7 @@ public class ClasspathEntry implements IClasspathEntry {
 	 * Returns true if the given object is a classpath entry
 	 * with equivalent attributes.
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean equals(Object object) {
 		if (this == object)
 			return true;
@@ -1211,7 +1211,7 @@ public class ClasspathEntry implements IClasspathEntry {
 			int length = firstAttributes.length;
 			if (secondAttributes == null || secondAttributes.length != length)
 				return false;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (!firstAttributes[i].equals(secondAttributes[i]))
 					return false;
 			}
@@ -1225,7 +1225,7 @@ public class ClasspathEntry implements IClasspathEntry {
 			int length = firstPatterns.length;
 			if (secondPatterns == null || secondPatterns.length != length)
 				return false;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				// compare toStrings instead of IPaths
 				// since IPath.equals is specified to ignore trailing separators
 				if (!firstPatterns[i].toString().equals(secondPatterns[i].toString()))
@@ -1322,7 +1322,7 @@ public class ClasspathEntry implements IClasspathEntry {
 		return this.sourceAttachmentRootPath;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public IPath getExternalAnnotationPath(IProject project, boolean resolve) {
 		String rawAnnotationPath = getRawExternalAnnotationPath(this);
 		if (rawAnnotationPath != null) {
@@ -1368,7 +1368,7 @@ public class ClasspathEntry implements IClasspathEntry {
 		return null;
 	}
 
-	public static IPath findAnnotationPathViaContainer(IProject project, String rawAnnotationPath, boolean resolve) {
+	public static IPath findAnnotationPathViaContainer(IProject project, String rawAnnotationPath, boolean resolve) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (rawAnnotationPath.indexOf('/') == -1)
 			return null;
 		IJavaProject jProject = JavaCore.create(project);
@@ -1376,9 +1376,9 @@ public class ClasspathEntry implements IClasspathEntry {
 			IClasspathContainer container = null;
 			String relative = null;
 			// scan containers:
-			for (IClasspathEntry rawEntry : jProject.getRawClasspath()) {
+			for (IClasspathEntry rawEntry : jProject.getRawClasspath()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (rawEntry.getEntryKind() == IClasspathEntry.CPE_CONTAINER) {
-					String containerName = rawEntry.getPath().toString()+'/';
+					String containerName = rawEntry.getPath().toString()+'/'; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					if (rawAnnotationPath.startsWith(containerName)) {
 						// this is the container referenced in the annotation path
 						container = JavaCore.getClasspathContainer(rawEntry.getPath(), jProject);
@@ -1389,7 +1389,7 @@ public class ClasspathEntry implements IClasspathEntry {
 			}
 			if (container != null) {
 				// now search container entries for the one matching the tail 'relative':
-				for (IClasspathEntry containerEntry : container.getClasspathEntries()) {
+				for (IClasspathEntry containerEntry : container.getClasspathEntries()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IPath path = containerEntry.getPath();
 					String entryName = path.lastSegment();
 					if (entryName.startsWith(relative)) {
@@ -1407,7 +1407,7 @@ public class ClasspathEntry implements IClasspathEntry {
 										return wsRoot.findMember(tgtJProject.getOutputLocation()).getLocation();
 									}
 									// in non-resolving scenarii return the unresolved source folder path
-									for (IClasspathEntry classpathEntry : tgtJProject.getRawClasspath()) {
+									for (IClasspathEntry classpathEntry : tgtJProject.getRawClasspath()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 										if (classpathEntry.getEntryKind() == CPE_SOURCE && classpathEntry.getOutputLocation() == null)
 											return classpathEntry.getPath();
 									}
@@ -1436,7 +1436,7 @@ public class ClasspathEntry implements IClasspathEntry {
 	private static void invalidExternalAnnotationPath(IProject project) {
 		try {
 			IMarker[] markers = project.findMarkers(IJavaModelMarker.BUILDPATH_PROBLEM_MARKER, false, IResource.DEPTH_ZERO);
-			for (IMarker marker : markers) {
+			for (IMarker marker : markers) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (marker.getAttribute(IMarker.SEVERITY, -1) == IMarker.SEVERITY_ERROR)
 					return; // one marker is enough
 			}
@@ -1447,7 +1447,7 @@ public class ClasspathEntry implements IClasspathEntry {
 		new ClasspathValidation((JavaProject) JavaCore.create(project)).validate();
 	}
 
-	private IJavaModelStatus validateExternalAnnotationPath(IJavaProject javaProject, IPath annotationPath) {
+	private IJavaModelStatus validateExternalAnnotationPath(IJavaProject javaProject, IPath annotationPath) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject project = javaProject.getProject();
 		if (annotationPath.isAbsolute()) {
 			if (project.getWorkspace().getRoot().exists(annotationPath) // workspace absolute
@@ -1473,7 +1473,7 @@ public class ClasspathEntry implements IClasspathEntry {
 
 	public static String getExtraAttribute(IClasspathEntry entry, String attributeName) {
 		IClasspathAttribute[] extraAttributes = entry.getExtraAttributes();
-		for (IClasspathAttribute attribute : extraAttributes) {
+		for (IClasspathAttribute attribute : extraAttributes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (attributeName.equals(attribute.getName())) {
 				return attribute.getValue();
 			}
@@ -1503,7 +1503,7 @@ public class ClasspathEntry implements IClasspathEntry {
 	}
 
 	public boolean isOptional() {
-		for (IClasspathAttribute attribute : this.extraAttributes) {
+		for (IClasspathAttribute attribute : this.extraAttributes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (IClasspathAttribute.OPTIONAL.equals(attribute.getName()) && "true".equals(attribute.getValue())) //$NON-NLS-1$
 				return true;
 		}
@@ -1514,7 +1514,7 @@ public class ClasspathEntry implements IClasspathEntry {
 	}
 
 	public String getSourceAttachmentEncoding() {
-		for (IClasspathAttribute attribute : this.extraAttributes) {
+		for (IClasspathAttribute attribute : this.extraAttributes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (IClasspathAttribute.SOURCE_ATTACHMENT_ENCODING.equals(attribute.getName()))
 				return attribute.getValue();
 		}
@@ -1544,7 +1544,7 @@ public class ClasspathEntry implements IClasspathEntry {
 	/**
 	 * Returns a <code>String</code> for the kind of a class path entry.
 	 */
-	static String kindToString(int kind) {
+	static String kindToString(int kind) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		switch (kind) {
 			case IClasspathEntry.CPE_PROJECT :
@@ -1573,10 +1573,10 @@ public class ClasspathEntry implements IClasspathEntry {
 		int length = accessibleFilesLength + nonAccessibleFilesLength;
 		if (length == 0) return null;
 		IAccessRule[] accessRules = new IAccessRule[length];
-		for (int i = 0; i < accessibleFilesLength; i++) {
+		for (int i = 0; i < accessibleFilesLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			accessRules[i] = JavaCore.newAccessRule(accessibleFiles[i], IAccessRule.K_ACCESSIBLE);
 		}
-		for (int i = 0; i < nonAccessibleFilesLength; i++) {
+		for (int i = 0; i < nonAccessibleFilesLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			accessRules[accessibleFilesLength + i] = JavaCore.newAccessRule(nonAccessibleFiles[i], IAccessRule.K_NON_ACCESSIBLE);
 		}
 		return accessRules;
@@ -1585,110 +1585,110 @@ public class ClasspathEntry implements IClasspathEntry {
 	/**
 	 * Returns a printable representation of this classpath entry.
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public String toString() {
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		Object target = JavaModel.getTarget(this, true);
 		if (target instanceof File)
-			buffer.append(getPath().toOSString());
+			buffer.append(getPath().toOSString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		else
-			buffer.append(String.valueOf(getPath()));
-		buffer.append('[');
+			buffer.append(String.valueOf(getPath())); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append('['); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		switch (getEntryKind()) {
 			case IClasspathEntry.CPE_LIBRARY :
-				buffer.append("CPE_LIBRARY"); //$NON-NLS-1$
+				buffer.append("CPE_LIBRARY"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case IClasspathEntry.CPE_PROJECT :
-				buffer.append("CPE_PROJECT"); //$NON-NLS-1$
+				buffer.append("CPE_PROJECT"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case IClasspathEntry.CPE_SOURCE :
-				buffer.append("CPE_SOURCE"); //$NON-NLS-1$
+				buffer.append("CPE_SOURCE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case IClasspathEntry.CPE_VARIABLE :
-				buffer.append("CPE_VARIABLE"); //$NON-NLS-1$
+				buffer.append("CPE_VARIABLE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case IClasspathEntry.CPE_CONTAINER :
-				buffer.append("CPE_CONTAINER"); //$NON-NLS-1$
+				buffer.append("CPE_CONTAINER"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 		}
-		buffer.append("]["); //$NON-NLS-1$
+		buffer.append("]["); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		switch (getContentKind()) {
 			case IPackageFragmentRoot.K_BINARY :
-				buffer.append("K_BINARY"); //$NON-NLS-1$
+				buffer.append("K_BINARY"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case IPackageFragmentRoot.K_SOURCE :
-				buffer.append("K_SOURCE"); //$NON-NLS-1$
+				buffer.append("K_SOURCE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case ClasspathEntry.K_OUTPUT :
-				buffer.append("K_OUTPUT"); //$NON-NLS-1$
+				buffer.append("K_OUTPUT"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 		}
-		buffer.append(']');
+		buffer.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (getSourceAttachmentPath() != null) {
-			buffer.append("[sourcePath:"); //$NON-NLS-1$
-			buffer.append(getSourceAttachmentPath());
-			buffer.append(']');
+			buffer.append("[sourcePath:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(getSourceAttachmentPath()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (getSourceAttachmentRootPath() != null) {
-			buffer.append("[rootPath:"); //$NON-NLS-1$
-			buffer.append(getSourceAttachmentRootPath());
-			buffer.append(']');
+			buffer.append("[rootPath:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(getSourceAttachmentRootPath()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		buffer.append("[isExported:"); //$NON-NLS-1$
-		buffer.append(this.isExported);
-		buffer.append(']');
+		buffer.append("[isExported:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(this.isExported); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		IPath[] patterns = this.inclusionPatterns;
 		int length;
 		if ((length = patterns == null ? 0 : patterns.length) > 0) {
-			buffer.append("[including:"); //$NON-NLS-1$
-			for (int i = 0; i < length; i++) {
-				buffer.append(patterns[i]);
+			buffer.append("[including:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append(patterns[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (i != length-1) {
-					buffer.append('|');
+					buffer.append('|'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
-			buffer.append(']');
+			buffer.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		patterns = this.exclusionPatterns;
 		if ((length = patterns == null ? 0 : patterns.length) > 0) {
-			buffer.append("[excluding:"); //$NON-NLS-1$
-			for (int i = 0; i < length; i++) {
-				buffer.append(patterns[i]);
+			buffer.append("[excluding:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append(patterns[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (i != length-1) {
-					buffer.append('|');
+					buffer.append('|'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
-			buffer.append(']');
+			buffer.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (this.accessRuleSet != null) {
-			buffer.append('[');
-			buffer.append(this.accessRuleSet.toString(false/*on one line*/));
-			buffer.append(']');
+			buffer.append('['); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(this.accessRuleSet.toString(false/*on one line*/)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (this.entryKind == CPE_PROJECT) {
-			buffer.append("[combine access rules:"); //$NON-NLS-1$
-			buffer.append(this.combineAccessRules);
-			buffer.append(']');
+			buffer.append("[combine access rules:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(this.combineAccessRules); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (getOutputLocation() != null) {
-			buffer.append("[output:"); //$NON-NLS-1$
-			buffer.append(getOutputLocation());
-			buffer.append(']');
+			buffer.append("[output:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(getOutputLocation()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if ((length = this.extraAttributes == null ? 0 : this.extraAttributes.length) > 0) {
-			buffer.append("[attributes:"); //$NON-NLS-1$
-			for (int i = 0; i < length; i++) {
-				buffer.append(this.extraAttributes[i]);
+			buffer.append("[attributes:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append(this.extraAttributes[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (i != length-1) {
-					buffer.append(',');
+					buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
-			buffer.append(']');
+			buffer.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return buffer.toString();
 	}
 
-	public ClasspathEntry resolvedDotDot(IPath reference) {
+	public ClasspathEntry resolvedDotDot(IPath reference) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath resolvedPath = resolveDotDot(reference, this.path);
 		if (resolvedPath == this.path)
 			return this;
@@ -1712,13 +1712,13 @@ public class ClasspathEntry implements IClasspathEntry {
 	 * Read the Class-Path clause of the manifest of the jar pointed by this entry, and return
 	 * the corresponding library entries.
 	 */
-	public ClasspathEntry[] resolvedChainedLibraries() {
+	public ClasspathEntry[] resolvedChainedLibraries() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath[] paths = resolvedChainedLibraries(getPath());
 		int length = paths.length;
 		if (length == 0)
 			return NO_ENTRIES;
 		ClasspathEntry[] result = new ClasspathEntry[length];
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// Chained(referenced) libraries can have their own attachment path. Hence, set them to null
 			result[i] = new ClasspathEntry(
 					getContentKind(),
@@ -1742,24 +1742,24 @@ public class ClasspathEntry implements IClasspathEntry {
 	 * Answers an ID which is used to distinguish entries during package
 	 * fragment root computations
 	 */
-	public String rootID(){
+	public String rootID(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		if (this.rootID == null) {
 			switch(this.entryKind){
 				case IClasspathEntry.CPE_LIBRARY :
-					this.rootID = "[LIB]"+this.path;  //$NON-NLS-1$
+					this.rootID = "[LIB]"+this.path;  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					break;
 				case IClasspathEntry.CPE_PROJECT :
-					this.rootID = "[PRJ]"+this.path;  //$NON-NLS-1$
+					this.rootID = "[PRJ]"+this.path;  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					break;
 				case IClasspathEntry.CPE_SOURCE :
-					this.rootID = "[SRC]"+this.path;  //$NON-NLS-1$
+					this.rootID = "[SRC]"+this.path;  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					break;
 				case IClasspathEntry.CPE_VARIABLE :
-					this.rootID = "[VAR]"+this.path;  //$NON-NLS-1$
+					this.rootID = "[VAR]"+this.path;  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					break;
 				case IClasspathEntry.CPE_CONTAINER :
-					this.rootID = "[CON]"+this.path;  //$NON-NLS-1$
+					this.rootID = "[CON]"+this.path;  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					break;
 				default :
 					this.rootID = "";  //$NON-NLS-1$
@@ -1783,7 +1783,7 @@ public class ClasspathEntry implements IClasspathEntry {
 	 * This function computes the URL of the index location for this classpath entry. It returns null if the URL is
 	 * invalid.
 	 */
-	public URL getLibraryIndexLocation() {
+	public URL getLibraryIndexLocation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch(getEntryKind()) {
 			case IClasspathEntry.CPE_LIBRARY :
 				if (SHARED_INDEX_LOCATION != null) {
@@ -1791,7 +1791,7 @@ public class ClasspathEntry implements IClasspathEntry {
 						String pathString = getPath().toPortableString();
 						CRC32 checksumCalculator = new CRC32();
 						checksumCalculator.update(pathString.getBytes());
-						String fileName = Long.toString(checksumCalculator.getValue()) + ".index"; //$NON-NLS-1$
+						String fileName = Long.toString(checksumCalculator.getValue()) + ".index"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						return Paths.get(SHARED_INDEX_LOCATION, DiskIndex.INDEX_VERSION, fileName).toUri().toURL();
 					} catch (MalformedURLException e1) {
 						Util.log(e1); // should not happen if protocol known (eg. 'file')
@@ -1804,7 +1804,7 @@ public class ClasspathEntry implements IClasspathEntry {
 				return null;
 		}
 		if (this.extraAttributes == null) return null;
-		for (IClasspathAttribute attrib : this.extraAttributes) {
+		for (IClasspathAttribute attrib : this.extraAttributes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (IClasspathAttribute.INDEX_LOCATION_ATTRIBUTE_NAME.equals(attrib.getName())) {
 				String value = attrib.getValue();
 				try {
@@ -1825,7 +1825,7 @@ public class ClasspathEntry implements IClasspathEntry {
 
 	public boolean ignoreOptionalProblems() {
 		if (this.entryKind == IClasspathEntry.CPE_SOURCE) {
-			for (IClasspathAttribute attrib : this.extraAttributes) {
+			for (IClasspathAttribute attrib : this.extraAttributes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (IClasspathAttribute.IGNORE_OPTIONAL_PROBLEMS.equals(attrib.getName())) {
 					return "true".equals(attrib.getValue()); //$NON-NLS-1$
 				}
@@ -1864,7 +1864,7 @@ public class ClasspathEntry implements IClasspathEntry {
 	 *		the given classpath and output location are compatible, otherwise a status
 	 *		object indicating what is wrong with the classpath or output location
 	 */
-	public static IJavaModelStatus validateClasspath(IJavaProject javaProject, IClasspathEntry[] rawClasspath, IPath projectOutputLocation) {
+	public static IJavaModelStatus validateClasspath(IJavaProject javaProject, IClasspathEntry[] rawClasspath, IPath projectOutputLocation) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IProject project = javaProject.getProject();
 		IPath projectPath= project.getFullPath();
@@ -1892,8 +1892,8 @@ public class ClasspathEntry implements IClasspathEntry {
 
 		// check duplicate entries on raw classpath only (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=175226 )
 		int rawLength = rawClasspath.length;
-		HashSet pathes = new HashSet(rawLength);
-		for (int i = 0 ; i < rawLength; i++) {
+		HashSet pathes = new HashSet(rawLength); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+		for (int i = 0 ; i < rawLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IPath entryPath = rawClasspath[i].getPath();
 			if (!pathes.add(entryPath)){
 				String entryPathMsg = projectName.equals(entryPath.segment(0)) ? entryPath.removeFirstSegments(1).toString() : entryPath.makeRelative().toString();
@@ -1920,9 +1920,9 @@ public class ClasspathEntry implements IClasspathEntry {
 		int sourceEntryCount = 0;
 		boolean disableExclusionPatterns = JavaCore.DISABLED.equals(javaProject.getOption(JavaCore.CORE_ENABLE_CLASSPATH_EXCLUSION_PATTERNS, true));
 		boolean disableCustomOutputLocations = JavaCore.DISABLED.equals(javaProject.getOption(JavaCore.CORE_ENABLE_CLASSPATH_MULTIPLE_OUTPUT_LOCATIONS, true));
-		ArrayList<IClasspathEntry> testSourcesFolders=new ArrayList<>();
-		HashSet<IPath> mainOutputLocations=new HashSet<>();
-		for (IClasspathEntry resolvedEntry : classpath) {
+		ArrayList<IClasspathEntry> testSourcesFolders=new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		HashSet<IPath> mainOutputLocations=new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+		for (IClasspathEntry resolvedEntry : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (disableExclusionPatterns &&
 			        ((resolvedEntry.getInclusionPatterns() != null && resolvedEntry.getInclusionPatterns().length > 0)
 			        || (resolvedEntry.getExclusionPatterns() != null && resolvedEntry.getExclusionPatterns().length > 0))) {
@@ -1964,7 +1964,7 @@ public class ClasspathEntry implements IClasspathEntry {
 			}
 		}
 		// check nesting across output locations
-		for (int i = 1 /*no check for default output*/ ; i < outputCount; i++) {
+		for (int i = 1 /*no check for default output*/ ; i < outputCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IPath customOutput = outputLocations[i];
 			int index;
 			// check nesting
@@ -1989,7 +1989,7 @@ public class ClasspathEntry implements IClasspathEntry {
 				mainOutputLocations.add(outputLocations[0]);
 			}
 		}
-		for (IClasspathEntry resolvedEntry : testSourcesFolders) {
+		for (IClasspathEntry resolvedEntry : testSourcesFolders) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IPath customOutput;
 			if ((customOutput = resolvedEntry.getOutputLocation()) != null) {
 				if(mainOutputLocations.contains(customOutput)) {
@@ -2002,7 +2002,7 @@ public class ClasspathEntry implements IClasspathEntry {
 			}
 		}
 
-		for (IClasspathEntry resolvedEntry : classpath) {
+		for (IClasspathEntry resolvedEntry : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IPath path = resolvedEntry.getPath();
 			int index;
 			switch(resolvedEntry.getEntryKind()){
@@ -2024,11 +2024,11 @@ public class ClasspathEntry implements IClasspathEntry {
 			}
 		}
 		if (!hasSource && !hasLibFolder) { // if no source and no lib folder, then allowed
-			for (int i = 0; i < outputCount; i++) allowNestingInOutputLocations[i] = true;
+			for (int i = 0; i < outputCount; i++) allowNestingInOutputLocations[i] = true; //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		}
 
 		// check all entries
-		for (IClasspathEntry entry : classpath) {
+		for (IClasspathEntry entry : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (entry == null) continue;
 			IPath entryPath = entry.getPath();
 			int kind = entry.getEntryKind();
@@ -2046,7 +2046,7 @@ public class ClasspathEntry implements IClasspathEntry {
 			// allow nesting source entries in each other as long as the outer entry excludes the inner one
 			if (kind == IClasspathEntry.CPE_SOURCE
 					|| (kind == IClasspathEntry.CPE_LIBRARY && (JavaModel.getTarget(entry, false/*don't check existence*/) instanceof IContainer))) {
-				for (IClasspathEntry otherEntry : classpath) {
+				for (IClasspathEntry otherEntry : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (otherEntry == null) continue;
 					int otherKind = otherEntry.getEntryKind();
 					if (entry != otherEntry
@@ -2081,7 +2081,7 @@ public class ClasspathEntry implements IClasspathEntry {
 			// prevent nesting output location inside entry unless enclosing is a source entry which explicitly exclude the output location
 			char[][] inclusionPatterns = ((ClasspathEntry)entry).fullInclusionPatternChars();
 			char[][] exclusionPatterns = ((ClasspathEntry)entry).fullExclusionPatternChars();
-			for (int j = 0; j < outputCount; j++){
+			for (int j = 0; j < outputCount; j++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPath currentOutput = outputLocations[j];
 				if (entryPath.equals(currentOutput)) continue;
 				if (entryPath.isPrefixOf(currentOutput)) {
@@ -2092,7 +2092,7 @@ public class ClasspathEntry implements IClasspathEntry {
 			}
 
 			// prevent nesting entry inside output location - when distinct from project or a source folder
-			for (int j = 0; j < outputCount; j++){
+			for (int j = 0; j < outputCount; j++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (allowNestingInOutputLocations[j]) continue;
 				IPath currentOutput = outputLocations[j];
 				if (currentOutput.isPrefixOf(entryPath)) {
@@ -2106,7 +2106,7 @@ public class ClasspathEntry implements IClasspathEntry {
 		// diagnose nesting source folder issue before this one, for example, [src]"Project/", [src]"Project/source/" and output="Project/" should
 		// first complain about missing exclusion pattern
 		IJavaModelStatus cachedStatus = null;
-		for (IClasspathEntry entry : classpath) {
+		for (IClasspathEntry entry : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (entry == null) continue;
 			IPath entryPath = entry.getPath();
 			int kind = entry.getEntryKind();
@@ -2118,7 +2118,7 @@ public class ClasspathEntry implements IClasspathEntry {
 			if (kind == IClasspathEntry.CPE_SOURCE) {
 				IPath output = entry.getOutputLocation();
 				if (output == null) output = projectOutputLocation; // if no specific output, still need to check using default output (this line would check default output)
-				for (IClasspathEntry otherEntry : classpath) {
+				for (IClasspathEntry otherEntry : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (otherEntry == entry) continue;
 
 					switch (otherEntry.getEntryKind()) {
@@ -2160,7 +2160,7 @@ public class ClasspathEntry implements IClasspathEntry {
 		}
 
 		if (hasSource && testSourcesFolders.size() == 0 && !JavaCore.IGNORE.equals(javaProject.getOption(JavaCore.CORE_MAIN_ONLY_PROJECT_HAS_TEST_ONLY_DEPENDENCY, true))) {
-			for (IClasspathEntry entry : classpath) {
+			for (IClasspathEntry entry : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (entry == null)
 					continue;
 				IPath entryPath = entry.getPath();
@@ -2171,7 +2171,7 @@ public class ClasspathEntry implements IClasspathEntry {
 						boolean hasMain = false;
 						boolean hasTest = false;
 						try {
-							for (IClasspathEntry nested : prereqProject.getRawClasspath()) {
+							for (IClasspathEntry nested : prereqProject.getRawClasspath()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								if (nested.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
 									if (nested.isTest()) {
 										hasTest = true;
@@ -2231,7 +2231,7 @@ public class ClasspathEntry implements IClasspathEntry {
 		return status;
 	}
 
-	private static IJavaModelStatus validateClasspathEntry(IJavaProject project, final IClasspathEntry entry, IClasspathContainer entryContainer, boolean checkSourceAttachment, boolean referredByContainer){
+	private static IJavaModelStatus validateClasspathEntry(IJavaProject project, final IClasspathEntry entry, IClasspathContainer entryContainer, boolean checkSourceAttachment, boolean referredByContainer){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		final IPath path = entry.getPath();
 
@@ -2251,8 +2251,8 @@ public class ClasspathEntry implements IClasspathEntry {
 						String addExports = null;
 						if (extraAttributes != null) {
 							int length = extraAttributes.length;
-							HashSet set = new HashSet(length);
-							for (int i=0; i<length; i++) {
+							HashSet set = new HashSet(length); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+							for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								String attName = extraAttributes[i].getName();
 								if (!set.add(attName)) {
 									status = new JavaModelStatus(IJavaModelStatusConstants.NAME_COLLISION, Messages.bind(Messages.classpath_duplicateEntryExtraAttribute, new String[] {attName, entryPathMsg, projectName}));
@@ -2292,7 +2292,7 @@ public class ClasspathEntry implements IClasspathEntry {
 						}
 						IClasspathEntry[] containerEntries = container.getClasspathEntries();
 						if (containerEntries != null){
-							for (IClasspathEntry containerEntry : containerEntries) {
+							for (IClasspathEntry containerEntry : containerEntries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								int kind = containerEntry == null ? 0 : containerEntry.getEntryKind();
 								if (containerEntry == null
 									|| kind == IClasspathEntry.CPE_SOURCE
@@ -2431,8 +2431,8 @@ public class ClasspathEntry implements IClasspathEntry {
 		IClasspathAttribute[] extraAttributes = entry.getExtraAttributes();
 		if (extraAttributes != null) {
 			int length = extraAttributes.length;
-			HashSet set = new HashSet(length);
-			for (int i=0; i<length; i++) {
+			HashSet set = new HashSet(length); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+			for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String attName = extraAttributes[i].getName();
 				if (!set.add(attName)) {
 					return new JavaModelStatus(IJavaModelStatusConstants.NAME_COLLISION, Messages.bind(Messages.classpath_duplicateEntryExtraAttribute, new String[] {attName, entryPathMsg, projectName}));
@@ -2446,7 +2446,7 @@ public class ClasspathEntry implements IClasspathEntry {
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=232816, Now we have the facility to include a container
 	// name in diagnostics. If the parameter ``container'' is not null, it is used to point to the library
 	// more fully.
-	private static IJavaModelStatus validateLibraryEntry(IPath path, IJavaProject project, String container, IPath sourceAttachment, String entryPathMsg, boolean isOptionalLibrary, boolean isTestLibrary) {
+	private static IJavaModelStatus validateLibraryEntry(IPath path, IJavaProject project, String container, IPath sourceAttachment, String entryPathMsg, boolean isOptionalLibrary, boolean isTestLibrary) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (path.isAbsolute() && !path.isEmpty()) {
 			boolean validateJdkLevelCompatibility = !JavaCore.IGNORE.equals(project.getOption(JavaCore.CORE_INCOMPATIBLE_JDK_LEVEL, true));
 			// https://bugs.eclipse.org/bugs/show_bug.cgi?id=412882, avoid validating optional entries
@@ -2605,7 +2605,7 @@ public class ClasspathEntry implements IClasspathEntry {
 	 */
 	public static boolean isModular(IClasspathEntry classpathEntry) {
 		IClasspathAttribute[] extraAttributes = classpathEntry.getExtraAttributes();
-		for (IClasspathAttribute attribute : extraAttributes) {
+		for (IClasspathAttribute attribute : extraAttributes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (IClasspathAttribute.MODULE.equals(attribute.getName()) && "true".equals(attribute.getValue())) //$NON-NLS-1$
 				return true;
 		}

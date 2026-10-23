@@ -41,7 +41,7 @@ public class PermittedSubclassesAttribute extends ClassFileAttribute implements 
 		if (length != 0) {
 			int readOffset = 8;
 			this.entries = new IPermittedSubclassesAttributeEntry[length];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.entries[i] = new PermittedSubclassesAttributeEntry(classFileBytes, constantPool, offset + readOffset);
 				readOffset += 2;
 			}

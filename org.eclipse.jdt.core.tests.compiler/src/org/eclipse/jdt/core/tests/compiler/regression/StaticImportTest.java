@@ -55,7 +55,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"");
 	}
 
-	public void test002() {
+	public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"p/X.java",
@@ -87,7 +87,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"");
 	}
 
-	public void test003() { // test inheritance
+	public void test003() { // test inheritance //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"p/X.java",
@@ -154,7 +154,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			JavacTestOptions.JavacHasABug.JavacBugFixed_6_10);
 	}
 
-	public void test004() { // test static vs. instance
+	public void test004() { // test static vs. instance //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p/X.java",
@@ -221,7 +221,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"----------\n");
 	}
 
-	public void test005() { // test visibility
+	public void test005() { // test visibility //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p/X.java",
@@ -288,7 +288,7 @@ public class StaticImportTest extends AbstractComparableTest {
 		"----------\n");
 	}
 
-	public void test006() { // test non static member types
+	public void test006() { // test non static member types //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p/X.java",
@@ -315,7 +315,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"----------\n");
 	}
 
-	public void test007() { // test non static member types vs. static field
+	public void test007() { // test non static member types vs. static field //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"p/X.java",
@@ -383,7 +383,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=76360
-	public void test011() {
+	public void test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -413,7 +413,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"----------\n");
 	}
 
-	public void test012() {
+	public void test012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -458,7 +458,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=77955
-	public void test013() {
+	public void test013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -559,7 +559,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=78075
-	public void test015() {
+	public void test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -608,7 +608,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=81724
-	public void test017() {
+	public void test017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"bug/A.java",
@@ -633,7 +633,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=81724 - variation
-	public void test018() {
+	public void test018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"bug/A.java",
@@ -674,7 +674,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=81718
-	public void test019() {
+	public void test019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -711,7 +711,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"----------\n"	);
 	}
 
-	public void test021() {
+	public void test021() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -756,7 +756,7 @@ public class StaticImportTest extends AbstractComparableTest {
 		);
 	}
 
-	public void test022() { // test field/method collisions
+	public void test022() { // test field/method collisions //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -836,7 +836,7 @@ public class StaticImportTest extends AbstractComparableTest {
 		);
 	}
 
-	public void test023() {
+	public void test023() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -882,7 +882,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=83376
-	public void test024() {
+	public void test024() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p/B.java",
@@ -918,7 +918,7 @@ public class StaticImportTest extends AbstractComparableTest {
 		);
 	}
 
-	public void test025() {
+	public void test025() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -949,7 +949,7 @@ public class StaticImportTest extends AbstractComparableTest {
 		);
 	}
 
-	public void test027() {
+	public void test027() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -973,7 +973,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=87490
-	public void test028() {
+	public void test028() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"p1/Z.java",//====================
@@ -1012,7 +1012,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=93913
-	public void test029() {
+	public void test029() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p1/A.java",
@@ -1049,7 +1049,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=94262
-	public void test030() {
+	public void test030() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p2/Test.java",
@@ -1096,7 +1096,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=95909
-	public void test031() {
+	public void test031() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"PointRadius.java",
@@ -1120,7 +1120,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	}
 
 	//http://bugs.eclipse.org/bugs/show_bug.cgi?id=97809
-	public void test032() {
+	public void test032() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1144,7 +1144,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	}
 
 	//http://bugs.eclipse.org/bugs/show_bug.cgi?id=97809
-	public void test032b() {
+	public void test032b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X2.java",
@@ -1173,7 +1173,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	}
 
 	//http://bugs.eclipse.org/bugs/show_bug.cgi?id=97809
-	public void test032c() {
+	public void test032c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X3.java",
@@ -1197,7 +1197,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	}
 
 	//http://bugs.eclipse.org/bugs/show_bug.cgi?id=97809
-	public void test032d() {
+	public void test032d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X4.java",
@@ -1220,7 +1220,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"true");
 	}
 
-	public void test033() {
+	public void test033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1243,7 +1243,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"true");
 	}
 
-	public void test033b() {
+	public void test033b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X2.java",
@@ -1266,7 +1266,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"true");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=104198
-	public void test034() {
+	public void test034() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"test/AbstractTest.java",
@@ -1291,7 +1291,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=117861
-	public void test035() {
+	public void test035() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"Bug.java",
@@ -1346,7 +1346,7 @@ public class StaticImportTest extends AbstractComparableTest {
 		);
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=126564
-	public void test036() {
+	public void test036() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1382,7 +1382,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=126564 - variation
-	public void test037() {
+	public void test037() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1403,7 +1403,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			JavacTestOptions.JavacHasABug.JavacBugFixed_6_10);
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=126564 - variation
-	public void test038() {
+	public void test038() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1454,7 +1454,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=126564 - variation
-	public void test039() {
+	public void test039() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1490,7 +1490,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=87490 - variation
-	public void test040() {
+	public void test040() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"p1/Z.java",//====================
@@ -1528,7 +1528,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			null);
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=134118
-	public void test041() {
+	public void test041() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			true,
 			new String[] {
@@ -1557,7 +1557,7 @@ public class StaticImportTest extends AbstractComparableTest {
 		);
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=133737
-	public void test042() {
+	public void test042() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"ImportTest.java",
@@ -1601,7 +1601,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			// toString() in java.lang.Object cannot be applied to (java.lang.Object[])
 		);
 	}
-	public void test042b() {
+	public void test042b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"ImportTest.java",
@@ -1622,7 +1622,7 @@ public class StaticImportTest extends AbstractComparableTest {
 		);
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=129388
-	public void test043() {
+	public void test043() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"B.java",
@@ -1643,7 +1643,7 @@ public class StaticImportTest extends AbstractComparableTest {
 		);
 	}
 	// names potential confusion
-	public void test044() {
+	public void test044() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"p/X.java",
@@ -1669,7 +1669,7 @@ public class StaticImportTest extends AbstractComparableTest {
 		);
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=142772
-	public void test045() {
+	public void test045() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1688,7 +1688,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			// arrayList(int) in X cannot be applied to ()
 		);
 	}
-	public void test045b() {
+	public void test045b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"test/One.java",
@@ -1733,7 +1733,7 @@ public class StaticImportTest extends AbstractComparableTest {
 		);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=133737
-	public void test046() {
+	public void test046() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"error/Exporter.java",
@@ -1770,7 +1770,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=165069
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=165081
-	public void test047() {
+	public void test047() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"sample/X.java",
@@ -1818,7 +1818,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=165069 - variation
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=165081 - variation
-	public void test048() {
+	public void test048() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"sample/X.java",
@@ -1859,7 +1859,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=165081 - variation
-	public void test049() {
+	public void test049() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"sample/X.java",
@@ -1886,7 +1886,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=187329
-	public void test050() {
+	public void test050() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"p/A.java",
@@ -1912,7 +1912,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=207433
-	public void test051() {
+	public void test051() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"p/X.java",
@@ -1941,7 +1941,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=207433 - variation
-	public void test052() {
+	public void test052() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"p/X.java",
@@ -1970,7 +1970,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=207433 - variation
-	public void test053() {
+	public void test053() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"p/X.java",
@@ -1997,7 +1997,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=193210
-	public void test055() {
+	public void test055() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"p/X.java",
@@ -2030,7 +2030,7 @@ public class StaticImportTest extends AbstractComparableTest {
 				"");
 		}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=193210 - variation
-	public void test056() {
+	public void test056() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"p/X.java",
@@ -2067,7 +2067,7 @@ public class StaticImportTest extends AbstractComparableTest {
 				"----------\n");
 		}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=193210 - variation
-	public void test057() {
+	public void test057() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"p/X.java",
@@ -2114,7 +2114,7 @@ public class StaticImportTest extends AbstractComparableTest {
 				"----------\n");
 		}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=216930
-	public void test058() {
+	public void test058() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"p/X.java",
@@ -2136,7 +2136,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"");
 		}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=183211
-	public void test059() {
+	public void test059() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"p/X.java",
@@ -2158,7 +2158,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"");
 		}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=183211 - variation
-	public void test060() {
+	public void test060() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"p/X.java",
@@ -2180,7 +2180,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"");
 		}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=183211 - variation
-	public void test061() {
+	public void test061() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			// test directory preparation
 			true /* flush output directory */,
@@ -2210,7 +2210,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			JavacTestOptions.DEFAULT /* javac test options */);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=183211 - variation
-	public void test062() {
+	public void test062() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p/X.java",
@@ -2237,7 +2237,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=183211 - variation
-	public void test063() {
+	public void test063() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p/X.java",
@@ -2282,7 +2282,7 @@ public class StaticImportTest extends AbstractComparableTest {
 		);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=183211 - variation
-	public void test064() {
+	public void test064() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p1/X.java",
@@ -2307,7 +2307,7 @@ public class StaticImportTest extends AbstractComparableTest {
 		);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=230026
-	public void test065() {
+	public void test065() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2328,7 +2328,7 @@ public class StaticImportTest extends AbstractComparableTest {
 		);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=230026 - variation
-	public void test066() {
+	public void test066() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2349,7 +2349,7 @@ public class StaticImportTest extends AbstractComparableTest {
 		);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=230026 - variation
-	public void test067() {
+	public void test067() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2374,7 +2374,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=230026 - variation
-	public void test068() {
+	public void test068() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2394,7 +2394,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=230026 - variation
-	public void test069() {
+	public void test069() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2431,7 +2431,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=250211 - variation
-	public void test071() {
+	public void test071() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"node/Test/node.java",//------------------------------
@@ -2464,7 +2464,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=93913 - variation
-	public void test072() {
+	public void test072() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p1/A.java",
@@ -2499,7 +2499,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=256375
-	public void test073() {
+	public void test073() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"test/Outer.java",
@@ -2546,7 +2546,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	// To verify that a static import importing a type which has already been
 	// imported by a single type import is reported as duplicate
 	// while the other static members imported by it are not shadowed.
-	public void test075() {
+	public void test075() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"A/A.java",
@@ -2574,7 +2574,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=302865
 	// To verify that a static import importing a static method doesn't collide
 	// with a single type import importing a non-static type with the same name as the method
-	public void test076() {
+	public void test076() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"A/A.java",
@@ -2601,7 +2601,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=302865
 	// To verify that two static imports importing the same type don't collide
-	public void test077() {
+	public void test077() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"p1/X.java",
@@ -2636,7 +2636,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	// To verify that a static import importing a type which has already been
 	// imported by a single type import is reported as duplicate
 	// while the other static members imported by it are not shadowed.
-	public void test078() {
+	public void test078() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"A/A.java",
@@ -2670,7 +2670,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	// To verify that a static import importing a type which has already been
 	// imported by a single type import is not reported as duplicate
 	// if they are just the same type
-	public void test079() {
+	public void test079() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"A/A.java",
@@ -2696,7 +2696,7 @@ public class StaticImportTest extends AbstractComparableTest {
 		);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=336934
-	public void test080() {
+	public void test080() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"a/B.java",
@@ -2726,7 +2726,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=318401
-	public void test081() {
+	public void test081() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"Test.java",
@@ -2767,7 +2767,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=318401
-	public void test082() {
+	public void test082() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p1/Bar.java",
@@ -2814,7 +2814,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=318401
-	public void test083() {
+	public void test083() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"Test.java",
@@ -2856,7 +2856,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	// Check if we're able to find the correct static member type being imported,
 	// even though the import originally resolved to the static field of the same name,
 	// coming from the supertype
-	public void test084() {
+	public void test084() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"Test.java",
@@ -2895,7 +2895,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=361327
 	// To verify that all static members are imported with a single static import statement
-	public void test085() {
+	public void test085() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"Test.java",
@@ -2934,7 +2934,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=361327
 	// To verify that all static members are imported with a single static import statement,
 	// even from a supertype
-	public void test085a() {
+	public void test085a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"Test.java",
@@ -2978,7 +2978,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=361327
 	// To verify that all static members are imported with a single static import statement
 	// this tests checks collision with single type import
-	public void test085b() {
+	public void test085b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"Test.java",
@@ -3017,7 +3017,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=361327
 	// To verify that all static members are imported with a single static import statement
 	// this tests checks collision with top level type
-	public void test085c() {
+	public void test085c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"Test.java",
@@ -3050,7 +3050,7 @@ public class StaticImportTest extends AbstractComparableTest {
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=361327
 	// Test obscuring rules defined in JLS 7.5.3
-	public void test086() {
+	public void test086() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"Test.java",
@@ -3083,7 +3083,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/401271 - StackOverflowError when searching for a methods references
-	public void testBug401271() {
+	public void testBug401271() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"a/b/c/a.java",
@@ -3112,7 +3112,7 @@ public class StaticImportTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=426544 - [1.8][compiler] Compiler over-eagerly detects collision of single static imports
-	public void test426544() {
+	public void test426544() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"p/X.java",
@@ -3161,7 +3161,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=479287
 	// erroneous compile error using static imports and generics
-	public void testBug479287() {
+	public void testBug479287() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"joetest/GenericsIssue.java",
@@ -3194,7 +3194,7 @@ public class StaticImportTest extends AbstractComparableTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=442580
 	// Explicit static import after two wildcard imports is ambiguous (works in javac)
-	public void testBug442580() {
+	public void testBug442580() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(new String [] {
 				"a/A.java",
 				"package a;\n" +
@@ -3224,7 +3224,7 @@ public class StaticImportTest extends AbstractComparableTest {
 				"}"
 		});
 	}
-	public void testBug520874a() {
+	public void testBug520874a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel <= ClassFileConstants.JDK1_8) {
 			return;
 		}
@@ -3256,7 +3256,7 @@ public class StaticImportTest extends AbstractComparableTest {
 				"The type Inner is not visible\n" +
 				"----------\n");
 	}
-	public void testBug520874b() {
+	public void testBug520874b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel <= ClassFileConstants.JDK1_8) {
 			return;
 		}
@@ -3279,7 +3279,7 @@ public class StaticImportTest extends AbstractComparableTest {
 				"The type Inner is not visible\n" +
 				"----------\n");
 	}
-	public void testBug520874c() {
+	public void testBug520874c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel <= ClassFileConstants.JDK1_8) {
 			return;
 		}
@@ -3321,7 +3321,7 @@ public class StaticImportTest extends AbstractComparableTest {
 				"Inner cannot be resolved to a type\n" +
 				"----------\n");
 	}
-	public void testBug520874d() {
+	public void testBug520874d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel <= ClassFileConstants.JDK1_8) {
 			return;
 		}
@@ -3353,7 +3353,7 @@ public class StaticImportTest extends AbstractComparableTest {
 				"The import p.Bar.Inner is never used\n" +
 				"----------\n");
 	}
-	public void testBug520874e() {
+	public void testBug520874e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel <= ClassFileConstants.JDK1_8) {
 			return;
 		}
@@ -3385,7 +3385,7 @@ public class StaticImportTest extends AbstractComparableTest {
 				"The import p.Bar is never used\n" +
 				"----------\n");
 	}
-	public void testGH809_field_a() {
+	public void testGH809_field_a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 			"p2/Client.java",
@@ -3414,7 +3414,7 @@ public class StaticImportTest extends AbstractComparableTest {
 		runner.expectedOutputString = "1";
 		runner.runConformTest();
 	}
-	public void testGH809_field_b() {
+	public void testGH809_field_b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 			"p2/Client.java",
@@ -3443,7 +3443,7 @@ public class StaticImportTest extends AbstractComparableTest {
 		runner.expectedOutputString = "1";
 		runner.runConformTest();
 	}
-	public void testGH809_field_c() {
+	public void testGH809_field_c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 			"p2/Client.java",
@@ -3472,7 +3472,7 @@ public class StaticImportTest extends AbstractComparableTest {
 		runner.expectedOutputString = "1";
 		runner.runConformTest();
 	}
-	public void testGH809_method_a() {
+	public void testGH809_method_a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 			"p2/Client.java",
@@ -3501,7 +3501,7 @@ public class StaticImportTest extends AbstractComparableTest {
 		runner.expectedOutputString = "1";
 		runner.runConformTest();
 	}
-	public void testGH809_method_b() {
+	public void testGH809_method_b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 			"p2/Client.java",
@@ -3530,7 +3530,7 @@ public class StaticImportTest extends AbstractComparableTest {
 		runner.expectedOutputString = "1";
 		runner.runConformTest();
 	}
-	public void testGH809_method_c() {
+	public void testGH809_method_c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 			"p2/Client.java",
@@ -3562,7 +3562,7 @@ public class StaticImportTest extends AbstractComparableTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4986
 	// Test that error message for inaccessible static import field is correctly formatted
-	public void testBug4986() {
+	public void testBug4986() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p/C.java",

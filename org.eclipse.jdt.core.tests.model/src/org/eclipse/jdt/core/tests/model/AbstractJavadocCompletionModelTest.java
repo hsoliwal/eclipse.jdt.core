@@ -201,7 +201,7 @@ public abstract class AbstractJavadocCompletionModelTest extends AbstractJavaMod
 	// Write file contents
 	protected static final String WRITE_DIR = System.getProperty("writeDir");
 	protected static final File WRITE_DIR_FILE;
-	protected static final Set PACKAGE_FILES = new HashSet();
+	protected static final Set PACKAGE_FILES = new HashSet(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 	static {
 		File writeDir = null;
 		if (WRITE_DIR != null) {
@@ -210,7 +210,7 @@ public abstract class AbstractJavadocCompletionModelTest extends AbstractJavaMod
 			if (writeDir.exists()) {
 				// perhaps delete all files...
 			} else if (!writeDir.mkdirs()) {
-				System.err.println(WRITE_DIR+" does NOT exist and cannot be created!!!");
+				System.err.println(WRITE_DIR+" does NOT exist and cannot be created!!!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				writeDir = null;
 			}
 
@@ -237,7 +237,7 @@ public abstract class AbstractJavadocCompletionModelTest extends AbstractJavaMod
 	protected void assertResults(String expected) throws JavaModelException {
 		int length = this.workingCopies.length;
 		String[] sources = new String[length*2];
-		for (int i=0; i<length; i++) {
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			sources[i*2] = this.workingCopies[i].getPath().toString();
 			sources[i*2+1] = this.workingCopies[i].getSource();
 		}
@@ -246,13 +246,13 @@ public abstract class AbstractJavadocCompletionModelTest extends AbstractJavaMod
 	protected void assertSortedResults(String expected) throws JavaModelException {
 		int length = this.workingCopies.length;
 		String[] sources = new String[length*2];
-		for (int i=0; i<length; i++) {
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			sources[i*2] = this.workingCopies[i].getPath().toString();
 			sources[i*2+1] = this.workingCopies[i].getSource();
 		}
 		assertResults(sources, expected, this.requestor.getReversedResults());
 	}
-	private void assertResults(String[] sources, String expected, String actual) {
+	private void assertResults(String[] sources, String expected, String actual) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int count = this.requestor.proposalsPtr+1;
 		if (!expected.equals(actual)) {
 			System.out.println("********************************************************************************");
@@ -275,7 +275,7 @@ public abstract class AbstractJavadocCompletionModelTest extends AbstractJavaMod
 				System.out.println(this.endChar);
 			}
 			System.out.println("--------------------------------------------------------------------------------");
-			for (int i=0, length = sources.length; i<length; i+=2) {
+			for (int i=0, length = sources.length; i<length; i+=2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				System.out.println(sources[i]);
 				System.out.println(sources[i+1]);
 			}
@@ -286,7 +286,7 @@ public abstract class AbstractJavadocCompletionModelTest extends AbstractJavaMod
 			actual
 		);
 	}
-	protected void assertNoProblem(String path) {
+	protected void assertNoProblem(String path) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String problem = this.requestor.getProblem();
 		if (problem.length() > 0) {
 			System.out.println("********************************************************************************");
@@ -296,14 +296,14 @@ public abstract class AbstractJavadocCompletionModelTest extends AbstractJavaMod
 			}
 			System.out.println(displayString(problem, this.tabs));
 			System.out.println("--------------------------------------------------------------------------------");
-			System.out.println(this.workingCopies[0].getPath().toString()+'\n');
+			System.out.println(this.workingCopies[0].getPath().toString()+'\n'); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			try {
 				System.out.println(this.workingCopies[0].getSource());
 			} catch (JavaModelException e) {
 				// forget it
 			}
 			assertEquals(
-				path+" should have NO problem!",
+				path+" should have NO problem!", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"",
 				problem
 			);
@@ -333,14 +333,14 @@ public abstract class AbstractJavadocCompletionModelTest extends AbstractJavaMod
 		completeInJavadoc(sources, showPositions, completeBehind, occurencePosition, null);
 	}
 
-	protected void completeInJavadoc(String[] sources, boolean showPositions, String completeBehind, int occurencePosition, int[] ignoreList) throws JavaModelException {
+	protected void completeInJavadoc(String[] sources, boolean showPositions, String completeBehind, int occurencePosition, int[] ignoreList) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		assertNotNull("We should have sources!!!", sources);
 		assertTrue("Invalid number of sources!!!",  sources.length%2==0);
 
 		// Build working copy(ies)
 		int length = sources.length / 2;
 		this.workingCopies = new ICompilationUnit[length];
-		for (int i=0; i<length; i++) {
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.workingCopies[i] = getWorkingCopy(sources[i*2], sources[i*2+1]);
 			if (WRITE_DIR != null) 	writeFiles(sources);
 		}
@@ -351,7 +351,7 @@ public abstract class AbstractJavadocCompletionModelTest extends AbstractJavaMod
 		// Complete
 		this.requestor = new CompletionTestsRequestor2(true, false, showPositions);
 		if (ignoreList != null) {
-			for (int i = 0; i < ignoreList.length; i++) {
+			for (int i = 0; i < ignoreList.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.requestor.setIgnored(ignoreList[i], true);
 			}
 		}
@@ -365,17 +365,17 @@ public abstract class AbstractJavadocCompletionModelTest extends AbstractJavaMod
 		} else if (occurencePosition < 0) {
 			this.completionStart = source.lastIndexOf(this.replacedText);
 			int max = -occurencePosition;
-			for (int i=1; i<max; i++) {
+			for (int i=1; i<max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.completionStart = source.lastIndexOf(this.replacedText, this.completionStart);
 			}
 		} else {
 			this.completionStart = source.indexOf(this.replacedText);
 			int shift = this.replacedText.length();
-			for (int i=1; i<occurencePosition && this.completionStart>0; i++) {
+			for (int i=1; i<occurencePosition && this.completionStart>0; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.completionStart = source.indexOf(this.replacedText, this.completionStart+shift);
 			}
 		}
-		assertTrue("We should have found "+occurencePosition+" occurence(s) of '"+this.replacedText+"' in:\n"+source, this.completionStart>0);
+		assertTrue("We should have found "+occurencePosition+" occurence(s) of '"+this.replacedText+"' in:\n"+source, this.completionStart>0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		this.cursorLocation =  this.completionStart + cursorPos;
 		this.workingCopies[0].codeComplete(this.cursorLocation, this.requestor, this.wcOwner);
 		assertNoProblem(sources[0]);
@@ -387,55 +387,55 @@ public abstract class AbstractJavadocCompletionModelTest extends AbstractJavaMod
 		int endPosition = this.cursorLocation;
 		char ch = source.charAt(endPosition);
 		if (Character.isJavaIdentifierPart(ch) || ch == '>' || ch == '}' || ch == '(' || ch == ')') {
-			do {
+			do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ch = source.charAt(++endPosition);
 			} while (Character.isJavaIdentifierPart(ch) || ch == '>' || ch == '}' || ch == '(' || ch == ')');
 		}
-		this.positions = "["+this.completionStart+", "+endPosition+"], ";
+		this.positions = "["+this.completionStart+", "+endPosition+"], "; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.jdt.core.tests.model.AbstractJavaModelTests#displayString(java.lang.String, int)
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected String displayString(String toPrint, int indent) {
 		String toDisplay = super.displayString(toPrint, indent);
 		int openBracket = toDisplay.indexOf(", [");
 		if (openBracket > 0) {
-			StringBuilder buffer = new StringBuilder();
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			int closeBracket = 0;
-			while (openBracket > 0) {
-				buffer.append(toDisplay.substring(closeBracket, openBracket+2));
+			while (openBracket > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append(toDisplay.substring(closeBracket, openBracket+2)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				closeBracket = toDisplay.indexOf("], ", openBracket+3);
 				if (closeBracket < 0) break; // invalid
 				closeBracket += 3;
-				buffer.append("\"+this.positions+");
+				buffer.append("\"+this.positions+"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				int i=0;
-				while (toDisplay.charAt(closeBracket+i) != '}') i++;
+				while (toDisplay.charAt(closeBracket+i) != '}') i++; //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					int relevance = Integer.parseInt(toDisplay.substring(closeBracket, closeBracket+i));
 					int length = RELEVANCES.length;
 					boolean found = false;
-					for (int r=0; !found && r<length; r++) {
+					for (int r=0; !found && r<length; r++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (RELEVANCES[r] == relevance) {
-							buffer.append(RELEVANCES_NAMES[r]);
-							buffer.append("+\"");
+							buffer.append(RELEVANCES_NAMES[r]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+							buffer.append("+\""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							found = true;
 						}
 					}
 					if (!found) {
-						buffer.append('"');
-						buffer.append(relevance);
+						buffer.append('"'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						buffer.append(relevance); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 					closeBracket += i;
 				}
 				catch (NumberFormatException nfe) {
-					System.err.println(nfe.getMessage()+" should not occur!");
+					System.err.println(nfe.getMessage()+" should not occur!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				openBracket = toDisplay.indexOf(", [", closeBracket);
 			}
 			if (closeBracket > 0) {
-				buffer.append(toDisplay.substring(closeBracket, toDisplay.length()));
+				buffer.append(toDisplay.substring(closeBracket, toDisplay.length())); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				toDisplay = buffer.toString();
 			}
 		}
@@ -446,7 +446,7 @@ public abstract class AbstractJavadocCompletionModelTest extends AbstractJavaMod
 		try {
 			setUpProjectCompliance(COMPLETION_PROJECT, compliance);
 		} catch (IOException e) {
-			assertTrue("Unexpected IOException: "+e.getMessage(), false);
+			assertTrue("Unexpected IOException: "+e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -480,7 +480,7 @@ public abstract class AbstractJavadocCompletionModelTest extends AbstractJavaMod
 	/*
 	 * Write files for self-hosting debug.
 	 */
-	protected void writeFiles(String[] sources) {
+	protected void writeFiles(String[] sources) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Get write directory path
 		if (WRITE_DIR_FILE == null) return;
@@ -496,7 +496,7 @@ public abstract class AbstractJavadocCompletionModelTest extends AbstractJavaMod
 		// Write sources to dir
 		int length = sources.length / 2;
 		String[][] names = new String[length][3];
-		for (int i=0; i<length; i++) {
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 			// Get pathes
 			IPath filePath = new Path(sources[2*i]).removeFirstSegments(2); // remove project and source folder
@@ -513,7 +513,7 @@ public abstract class AbstractJavadocCompletionModelTest extends AbstractJavaMod
 				} else if (packageDir.mkdirs()) {
 					PACKAGE_FILES.add(packageDir);
 				} else {
-					System.err.println(packageDir+" does not exist and CANNOT be created!!!");
+					System.err.println(packageDir+" does not exist and CANNOT be created!!!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					continue;
 				}
 			}
@@ -521,19 +521,19 @@ public abstract class AbstractJavadocCompletionModelTest extends AbstractJavaMod
 			// Store names info
 			names[i][0] = typeName;
 			String fileName = (typeName.length() <= 3) ? typeName : typeName.substring(0, typeName.length()-3);
-			fileName = fileName + testName.substring(4);
+			fileName = fileName + testName.substring(4); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			names[i][1] = fileName;
-			names[i][2] = packageDir.getAbsolutePath()+"\\"+fileName+".java";
+			names[i][2] = packageDir.getAbsolutePath()+"\\"+fileName+".java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		// Write modified contents
-		for (int i=0; i<length; i++) {
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String contents = sources[2*i+1];
-			for (int j=0; j<length; j++) {
+			for (int j=0; j<length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				contents = contents.replaceAll(names[j][0], names[j][1]);
 			}
 			String fullPathName = names[i][2];
-			System.out.println("Write file "+fullPathName);
+			System.out.println("Write file "+fullPathName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			Util.writeToFile(contents, fullPathName);
 		}
 	}

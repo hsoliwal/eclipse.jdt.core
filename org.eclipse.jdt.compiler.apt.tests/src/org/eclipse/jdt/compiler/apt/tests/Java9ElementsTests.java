@@ -433,7 +433,7 @@ public class Java9ElementsTests extends TestCase {
 		internalTest(compiler, MODULE_PROC, "testBug572673", null, "bug572673", true, 
 				options -> {
 					options.add("--module-path");
-					options.add(BatchTestUtils._jls8ProcessorJarPath + 
+					options.add(BatchTestUtils._jls8ProcessorJarPath +  //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							File.pathSeparator + autoModuleJar);
 				});
 	}
@@ -493,27 +493,27 @@ public class Java9ElementsTests extends TestCase {
 		JavaCompiler compiler = BatchTestUtils.getEclipseCompiler();
 		internalTest4(compiler, "20", MODULE_PROC, "testDeeplyNestedTypes", null, false);
 	}
-	protected void internalTestWithBinary(JavaCompiler compiler, String processor, String compliance, String testMethod, String testClass, String resourceArea) throws IOException {
+	protected void internalTestWithBinary(JavaCompiler compiler, String processor, String compliance, String testMethod, String testClass, String resourceArea) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!canRunJava9()) {
 			return;
 		}
 		System.clearProperty(processor);
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", resourceArea);
 		if (testClass == null || testClass.equals("")) {
-			BatchTestUtils.copyResources("targets/" + resourceArea, targetFolder);
+			BatchTestUtils.copyResources("targets/" + resourceArea, targetFolder); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
-			BatchTestUtils.copyResource("targets/" + resourceArea + "/" + testClass, targetFolder);
+			BatchTestUtils.copyResource("targets/" + resourceArea + "/" + testClass, targetFolder); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 
-		List<String> options = new ArrayList<>();
-		options.add("-A" + processor);
-		options.add("-A" + testMethod);
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		options.add("-A" + processor); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		options.add("-A" + testMethod); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		options.add("-processor");
 		options.add(processor);
 		// Javac 1.8 doesn't (yet?) support the -1.8 option
 		if (compiler instanceof EclipseCompiler) {
-			options.add("-" + compliance);
+			options.add("-" + compliance); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
 			options.add("-source");
 			options.add(compliance);
@@ -524,23 +524,23 @@ public class Java9ElementsTests extends TestCase {
 		// if not, it will set it to an error value.
 		assertEquals("succeeded", System.getProperty(processor));
 	}
-	private void internalTest(JavaCompiler compiler, String processor, String testMethod, String testClass, String[] source) throws IOException {
+	private void internalTest(JavaCompiler compiler, String processor, String testMethod, String testClass, String[] source) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!canRunJava9()) {
 			return;
 		}
 		if ((source.length % 2) != 0) return;
 
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName());
-		for(int i = 0; i < source.length;) {
+		for(int i = 0; i < source.length;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			File targetFile = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), source[i++]);
 			BatchTestUtils.writeFile(targetFile, source[i++].getBytes());
 		}
 
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		options.add("-processor");
 		options.add(MODULE_PROC);
-		options.add("-A" + processor);
-		options.add("-A" + testMethod);
+		options.add("-A" + processor); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		options.add("-A" + testMethod); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (compiler instanceof EclipseCompiler) {
 			options.add("-9");
 		}
@@ -553,7 +553,7 @@ public class Java9ElementsTests extends TestCase {
 	private void internalTest(JavaCompiler compiler, String processor, String testMethod, String testClass, String resourceArea) throws IOException {
 		internalTest(compiler, processor, testMethod, testClass, resourceArea, false, null);
 	}
-	private void internalTest(JavaCompiler compiler, String processor, String testMethod, String testClass, String resourceArea, 
+	private void internalTest(JavaCompiler compiler, String processor, String testMethod, String testClass, String resourceArea,  //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			boolean continueWithErrors, BatchTestUtils.InjectCustomOptions custom) throws IOException {
 		if (!canRunJava9()) {
 			return;
@@ -561,15 +561,15 @@ public class Java9ElementsTests extends TestCase {
 		System.clearProperty(processor);
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", resourceArea);
 		if (testClass == null || testClass.equals("")) {
-			BatchTestUtils.copyResources("targets/" + resourceArea, targetFolder);
+			BatchTestUtils.copyResources("targets/" + resourceArea, targetFolder); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
-			BatchTestUtils.copyResource("targets/" + resourceArea + "/" + testClass, targetFolder);
+			BatchTestUtils.copyResource("targets/" + resourceArea + "/" + testClass, targetFolder); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 
-		List<String> options = new ArrayList<>();
-		options.add("-A" + processor);
-		options.add("-A" + testMethod);
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		options.add("-A" + processor); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		options.add("-A" + testMethod); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (compiler instanceof EclipseCompiler) {
 			options.add("-9");
 		}
@@ -592,19 +592,19 @@ public class Java9ElementsTests extends TestCase {
 	private void internalTest2(JavaCompiler compiler, String processor, String testMethod, String testClass) throws IOException {
 		internalTest2(compiler, processor, "modules", testMethod, testClass);
 	}
-	private void internalTest2(JavaCompiler compiler, String processor, String modLocation, String testMethod, String testClass) throws IOException {
+	private void internalTest2(JavaCompiler compiler, String processor, String modLocation, String testMethod, String testClass) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!canRunJava9()) {
 			return;
 		}
 		System.clearProperty(processor);
 		File srcRoot = TestUtils.concatPath(BatchTestUtils.getSrcFolderName());
-		BatchTestUtils.copyResources("mod_locations" + File.separator + modLocation, srcRoot);
+		BatchTestUtils.copyResources("mod_locations" + File.separator + modLocation, srcRoot); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		options.add("-processor");
 		options.add(processor);
-		options.add("-A" + processor);
-		options.add("-A" + testMethod);
+		options.add("-A" + processor); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		options.add("-A" + testMethod); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (compiler instanceof EclipseCompiler) {
 			options.add("-17");
 		}
@@ -614,7 +614,7 @@ public class Java9ElementsTests extends TestCase {
 	/*
 	 * Tests are run in multi-module mode but only compiling a module path
 	 */
-	private void internalTest3(JavaCompiler compiler, String processor, String testMethod, String testClass, boolean binaryMode) throws IOException {
+	private void internalTest3(JavaCompiler compiler, String processor, String testMethod, String testClass, boolean binaryMode) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!canRunJava9()) {
 			return;
 		}
@@ -622,11 +622,11 @@ public class Java9ElementsTests extends TestCase {
 		File srcRoot = TestUtils.concatPath(BatchTestUtils.getSrcFolderName());
 		BatchTestUtils.copyResources("mod_locations/modules", srcRoot);
 
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		options.add("-processor");
 		options.add(processor);
-		options.add("-A" + processor);
-		options.add("-A" + testMethod);
+		options.add("-A" + processor); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		options.add("-A" + testMethod); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (compiler instanceof EclipseCompiler) {
 			options.add("-17");
 		}
@@ -636,7 +636,7 @@ public class Java9ElementsTests extends TestCase {
 	/*
 	 * Tests are run in multi-module mode but only compiling a module path
 	 */
-	private void internalTest4(JavaCompiler compiler, String compliance, String processor, String testMethod, String testClass, boolean binaryMode) throws IOException {
+	private void internalTest4(JavaCompiler compiler, String compliance, String processor, String testMethod, String testClass, boolean binaryMode) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!canRunJava9()) {
 			return;
 		}
@@ -644,13 +644,13 @@ public class Java9ElementsTests extends TestCase {
 		File srcRoot = TestUtils.concatPath(BatchTestUtils.getSrcFolderName());
 		BatchTestUtils.copyResources("mod_locations/modules", srcRoot);
 
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		options.add("-processor");
 		options.add(processor);
-		options.add("-A" + processor);
-		options.add("-A" + testMethod);
+		options.add("-A" + processor); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		options.add("-A" + testMethod); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (compiler instanceof EclipseCompiler) {
-			options.add("-" + compliance);
+			options.add("-" + compliance); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
 			options.add("-source");
 			options.add(compliance);

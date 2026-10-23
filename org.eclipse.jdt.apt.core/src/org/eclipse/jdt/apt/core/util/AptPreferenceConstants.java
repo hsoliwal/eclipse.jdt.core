@@ -25,23 +25,23 @@ import java.util.Map;
  */
 public class AptPreferenceConstants {
 	public static final String APT_STRING_BASE = "org.eclipse.jdt.apt"; //$NON-NLS-1$
-	public static final String APT_GENSRCDIR = APT_STRING_BASE + ".genSrcDir"; //$NON-NLS-1$
+	public static final String APT_GENSRCDIR = APT_STRING_BASE + ".genSrcDir"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * @since 3.6
 	 */
-	public static final String APT_GENTESTSRCDIR = APT_STRING_BASE + ".genTestSrcDir"; //$NON-NLS-1$
-	public static final String APT_PROCESSOROPTIONS = APT_STRING_BASE + ".processorOptions"; //$NON-NLS-1$
-	public static final String APT_RECONCILEENABLED = APT_STRING_BASE + ".reconcileEnabled"; //$NON-NLS-1$
+	public static final String APT_GENTESTSRCDIR = APT_STRING_BASE + ".genTestSrcDir"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	public static final String APT_PROCESSOROPTIONS = APT_STRING_BASE + ".processorOptions"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	public static final String APT_RECONCILEENABLED = APT_STRING_BASE + ".reconcileEnabled"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	public static final String APT_PROCESSANNOTATIONS = "org.eclipse.jdt.core.compiler.processAnnotations"; //$NON-NLS-1$
 	// backward compatibility prior to Eclipse 3.3:
-	public static final String APT_ENABLED = APT_STRING_BASE + ".aptEnabled"; //$NON-NLS-1$
+	public static final String APT_ENABLED = APT_STRING_BASE + ".aptEnabled"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	// used for APT_PROCESSANNOTATIONS setting:
 	public static final String ENABLED = "enabled"; //$NON-NLS-1$
 	public static final String DISABLED = "disabled"; //$NON-NLS-1$
 
 	// Used in preference to indicate null value for processor option
-	public static final String APT_NULLVALUE = APT_STRING_BASE + ".NULLVALUE"; //$NON-NLS-1$
+	public static final String APT_NULLVALUE = APT_STRING_BASE + ".NULLVALUE"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	public static final String DEFAULT_GENERATED_SOURCE_FOLDER_NAME = ".apt_generated"; //$NON-NLS-1$
 	/**
@@ -69,7 +69,7 @@ public class AptPreferenceConstants {
 	public static Map<String,String> DEFAULT_OPTIONS_MAP;
 
 	static {
-		Map<String,String> options = new HashMap<>();
+		Map<String,String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		options.put(AptPreferenceConstants.APT_ENABLED, "false"); //$NON-NLS-1$
 		options.put(AptPreferenceConstants.APT_GENSRCDIR, DEFAULT_GENERATED_SOURCE_FOLDER_NAME);
 		options.put(AptPreferenceConstants.APT_GENTESTSRCDIR, DEFAULT_GENERATED_TEST_SOURCE_FOLDER_NAME);

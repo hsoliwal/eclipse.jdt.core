@@ -95,7 +95,7 @@ public class FieldDeclaration extends BodyDeclaration {
 	private static final List PROPERTY_DESCRIPTORS_3_0;
 
 	static {
-		List properyList = new ArrayList(5);
+		List properyList = new ArrayList(5); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(FieldDeclaration.class, properyList);
 		addProperty(JAVADOC_PROPERTY, properyList);
 		addProperty(MODIFIERS_PROPERTY, properyList);
@@ -103,7 +103,7 @@ public class FieldDeclaration extends BodyDeclaration {
 		addProperty(FRAGMENTS_PROPERTY, properyList);
 		PROPERTY_DESCRIPTORS_2_0 = reapPropertyList(properyList);
 
-		properyList = new ArrayList(5);
+		properyList = new ArrayList(5); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(FieldDeclaration.class, properyList);
 		addProperty(JAVADOC_PROPERTY, properyList);
 		addProperty(MODIFIERS2_PROPERTY, properyList);
@@ -182,7 +182,7 @@ public class FieldDeclaration extends BodyDeclaration {
 		return super.internalGetSetIntProperty(property, get, value);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final ASTNode internalGetSetChildProperty(ChildPropertyDescriptor property, boolean get, ASTNode child) {
 		if (property == JAVADOC_PROPERTY) {
 			if (get) {

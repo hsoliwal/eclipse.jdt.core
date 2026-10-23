@@ -85,7 +85,7 @@ public class JavaModelCache {
 	 */
 	protected LRUCache<IJavaElement, IElementInfo> jarTypeCache;
 
-public JavaModelCache() {
+public JavaModelCache() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	double openableRatio = getOpenableRatio();
 	int rootCacheSize = sizeLimit(DEFAULT_ROOT_SIZE * openableRatio);
 	int packageCacheeSize = sizeLimit(DEFAULT_PKG_SIZE * openableRatio);
@@ -93,7 +93,7 @@ public JavaModelCache() {
 
 	// NB: Don't use a LRUCache for projects as they are
 	// constantly reopened (e.g. during delta processing)
-	this.projectCache = new HashMap<>();  // HashMap size adjusts automatically
+	this.projectCache = new HashMap<>();  // HashMap size adjusts automatically //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	if (VERBOSE) {
 		this.rootCache = new VerboseElementCache<>(rootCacheSize, "Root cache"); //$NON-NLS-1$
 		this.pkgCache = new VerboseElementCache<>(packageCacheeSize, "Package cache"); //$NON-NLS-1$
@@ -103,7 +103,7 @@ public JavaModelCache() {
 		this.pkgCache = new ElementCache<>(packageCacheeSize);
 		this.openableCache = new ElementCache<>(openableCacheSize);
 	}
-	this.childrenCache = new HashMap<>(); // HashMap size adjusts automatically
+	this.childrenCache = new HashMap<>(); // HashMap size adjusts automatically //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	resetJarTypeCache();
 }
 
@@ -126,7 +126,7 @@ private double getRatioForProperty(String propertyName) {
 			return Double.parseDouble(property);
 		} catch (NumberFormatException e) {
 			// ignore
-			Util.log(e, "Could not parse value for " + propertyName + ": " + property); //$NON-NLS-1$ //$NON-NLS-2$
+			Util.log(e, "Could not parse value for " + propertyName + ": " + property); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	return 1.0;
@@ -135,7 +135,7 @@ private double getRatioForProperty(String propertyName) {
 /**
  *  Returns the info for the element.
  */
-public IElementInfo getInfo(IJavaElement element) {
+public IElementInfo getInfo(IJavaElement element) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	switch (element.getElementType()) {
 		case IJavaElement.JAVA_MODEL:
 			return this.modelInfo;
@@ -163,7 +163,7 @@ public IElementInfo getInfo(IJavaElement element) {
  *  Returns the existing element that is equal to the given element if present in the cache.
  *  Returns the given element otherwise.
  */
-public IJavaElement getExistingElement(IJavaElement element) {
+public IJavaElement getExistingElement(IJavaElement element) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	switch (element.getElementType()) {
 		case IJavaElement.JAVA_MODEL:
 			return element;
@@ -187,7 +187,7 @@ public IJavaElement getExistingElement(IJavaElement element) {
  *  Returns the info for this element without
  *  disturbing the cache ordering.
  */
-protected IElementInfo peekAtInfo(IJavaElement element) {
+protected IElementInfo peekAtInfo(IJavaElement element) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	switch (element.getElementType()) {
 		case IJavaElement.JAVA_MODEL:
 			return this.modelInfo;
@@ -214,7 +214,7 @@ protected IElementInfo peekAtInfo(IJavaElement element) {
 /**
  * Remember the info for the element.
  */
-protected void putInfo(IJavaElement element, IElementInfo info) {
+protected void putInfo(IJavaElement element, IElementInfo info) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	switch (element.getElementType()) {
 		case IJavaElement.JAVA_MODEL:
 			this.modelInfo = (JavaElementInfo) info;
@@ -240,11 +240,11 @@ protected void putInfo(IJavaElement element, IElementInfo info) {
 			return; // don't trace children -- too many
 	}
 	if (DEBUG_CACHE_INSERTIONS) {
-		JavaModelManager.trace(Thread.currentThread() + " cache putInfo " + getCacheType(element) + " " + element.getElementName() + ", " + info.getClass().getSimpleName());  //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
+		JavaModelManager.trace(Thread.currentThread() + " cache putInfo " + getCacheType(element) + " " + element.getElementName() + ", " + info.getClass().getSimpleName());  //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }
 
-static String getCacheType(IJavaElement element) {
+static String getCacheType(IJavaElement element) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String elementType;
 	switch (element.getElementType()) {
 		case IJavaElement.JAVA_MODEL:
@@ -268,13 +268,13 @@ static String getCacheType(IJavaElement element) {
 		default:
 			elementType = "CHILD"; //$NON-NLS-1$
 	}
-	return elementType + ", " + element.getClass().getSimpleName(); //$NON-NLS-1$
+	return elementType + ", " + element.getClass().getSimpleName(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 /**
  * Removes the info of the element from the cache.
  */
-protected void removeInfo(JavaElement element) {
+protected void removeInfo(JavaElement element) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	switch (element.getElementType()) {
 		case IJavaElement.JAVA_MODEL:
 			this.modelInfo = null;
@@ -304,7 +304,7 @@ protected void removeInfo(JavaElement element) {
 			return; // don't trace children -- too many
 	}
 	if (DEBUG_CACHE_INSERTIONS) {
-		JavaModelManager.trace(Thread.currentThread() + " cache removeInfo " + getCacheType(element) + " " + element.getElementName());  //$NON-NLS-1$//$NON-NLS-2$
+		JavaModelManager.trace(Thread.currentThread() + " cache removeInfo " + getCacheType(element) + " " + element.getElementName());  //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }
 protected void resetJarTypeCache() {
@@ -318,24 +318,24 @@ protected void removeFromJarTypeCache(BinaryType type) {
 public String toString() {
 	return toStringFillingRation(""); //$NON-NLS-1$
 }
-public String toStringFillingRation(String prefix) {
-	StringBuilder buffer = new StringBuilder();
-	buffer.append(prefix);
-	buffer.append("Project cache: "); //$NON-NLS-1$
-	buffer.append(this.projectCache.size());
-	buffer.append(" projects\n"); //$NON-NLS-1$
-	buffer.append(prefix);
-	buffer.append(this.rootCache.toStringFillingRation("Root cache")); //$NON-NLS-1$
-	buffer.append('\n');
-	buffer.append(prefix);
-	buffer.append(this.pkgCache.toStringFillingRation("Package cache")); //$NON-NLS-1$
-	buffer.append('\n');
-	buffer.append(prefix);
-	buffer.append(this.openableCache.toStringFillingRation("Openable cache")); //$NON-NLS-1$
-	buffer.append('\n');
-	buffer.append(prefix);
-	buffer.append(this.jarTypeCache.toStringFillingRation("Jar type cache")); //$NON-NLS-1$
-	buffer.append('\n');
+public String toStringFillingRation(String prefix) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	buffer.append(prefix); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append("Project cache: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(this.projectCache.size()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(" projects\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(prefix); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(this.rootCache.toStringFillingRation("Root cache")); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(prefix); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(this.pkgCache.toStringFillingRation("Package cache")); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(prefix); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(this.openableCache.toStringFillingRation("Openable cache")); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(prefix); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(this.jarTypeCache.toStringFillingRation("Jar type cache")); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return buffer.toString();
 }
 }

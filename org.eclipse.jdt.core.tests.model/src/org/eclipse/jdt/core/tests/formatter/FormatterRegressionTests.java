@@ -137,16 +137,16 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 
 	private String getResource(String packageName, String resourceName) {
 		IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
-		IResource resource = workspaceRoot.findMember(new Path("/Formatter/" + packageName + "/" + resourceName));
+		IResource resource = workspaceRoot.findMember(new Path("/Formatter/" + packageName + "/" + resourceName)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertNotNull("No resource found", resource);
 		return resource.getLocation().toOSString();
 	}
 
-	private String getZipEntryContents(String fileName, String zipEntryName) {
+	private String getZipEntryContents(String fileName, String zipEntryName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ZipFile zipFile = null;
 		BufferedInputStream inputStream  = null;
 		try {
-			zipFile = new ZipFile(fileName);
+			zipFile = new ZipFile(fileName); //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM NEW
 			ZipEntry zipEntry = zipFile.getEntry(zipEntryName);
 			inputStream = new BufferedInputStream(zipFile.getInputStream(zipEntry));
 			return new String(org.eclipse.jdt.internal.compiler.util.Util.getInputStreamAsCharArray(inputStream, null));
@@ -172,7 +172,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 	*/
 
-	String runFormatter(CodeFormatter codeFormatter, String source, int kind, int indentationLevel, int offset, int length, String lineSeparator, boolean repeat) {
+	String runFormatter(CodeFormatter codeFormatter, String source, int kind, int indentationLevel, int offset, int length, String lineSeparator, boolean repeat) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 //		long time = System.currentTimeMillis();
 		TextEdit edit = codeFormatter.format(kind, source, offset, length, indentationLevel, lineSeparator);//$NON-NLS-1$
 //		System.out.println((System.currentTimeMillis() - time) + " ms");
@@ -244,7 +244,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		deleteProject(JAVA_PROJECT); //$NON-NLS-1$
 		JAVA_PROJECT = null;
 		if (DEBUG) {
-			System.out.println("Time spent = " + (System.nanoTime() - this.startNanos) / 1_000_000L);//$NON-NLS-1$
+			System.out.println("Time spent = " + (System.nanoTime() - this.startNanos) / 1_000_000L);//$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		super.tearDownSuite();
 	}
@@ -253,14 +253,14 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		assertNotNull(compilationUnitName);
 		int dotIndex = compilationUnitName.indexOf('.');
 		assertTrue(dotIndex != -1);
-		return compilationUnitName.substring(0, dotIndex) + IN + compilationUnitName.substring(dotIndex);
+		return compilationUnitName.substring(0, dotIndex) + IN + compilationUnitName.substring(dotIndex); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	private String getOut(String compilationUnitName) {
 		assertNotNull(compilationUnitName);
 		int dotIndex = compilationUnitName.indexOf('.');
 		assertTrue(dotIndex != -1);
-		return compilationUnitName.substring(0, dotIndex) + OUT + compilationUnitName.substring(dotIndex);
+		return compilationUnitName.substring(0, dotIndex) + OUT + compilationUnitName.substring(dotIndex); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	void assertLineEquals(String actualContents, String originalSource, String expectedContents, boolean checkNull) {
@@ -302,23 +302,23 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		formatSource(source, formattedOutput, CodeFormatter.K_COMPILATION_UNIT | CodeFormatter.F_INCLUDE_COMMENTS, 0, repeat);
 	}
 
-	void formatSource(String source, String formattedOutput, int kind, int indentationLevel, boolean repeat) {
+	void formatSource(String source, String formattedOutput, int kind, int indentationLevel, boolean repeat) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int regionStart = source.indexOf("[#");
 		if (regionStart != -1) {
-			ArrayList<IRegion> regions =  new ArrayList<>();
+			ArrayList<IRegion> regions =  new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			int start = 0;
 			int delta = 0;
-			StringBuilder buffer = new StringBuilder();
-			while (regionStart != -1) {
-				buffer.append(source.substring(start, regionStart));
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			while (regionStart != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append(source.substring(start, regionStart)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				int regionEnd = source.indexOf("#]", regionStart+2);
-				buffer.append(source.substring(regionStart+2, regionEnd));
+				buffer.append(source.substring(regionStart+2, regionEnd)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				regions.add(new Region(regionStart-delta, regionEnd-(regionStart+2)));
 				delta += 4;
 				start = regionEnd + 2;
 				regionStart = source.indexOf("[#", start);
 			}
-			buffer.append(source.substring(start, source.length()));
+			buffer.append(source.substring(start, source.length())); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			String newSource = buffer.toString();
 			String result;
 			if (regions.size() == 1) {
@@ -412,7 +412,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		assertLineEquals(result, source, expectedResult, checkNull);
 	}
 
-	private void runTest(CodeFormatter codeFormatter, String packageName, String compilationUnitName, int kind, int indentationLevel, boolean checkNull, int offset, int length, String lineSeparator) {
+	private void runTest(CodeFormatter codeFormatter, String packageName, String compilationUnitName, int kind, int indentationLevel, boolean checkNull, int offset, int length, String lineSeparator) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			ICompilationUnit sourceUnit = getCompilationUnit("Formatter" , "", packageName, getIn(compilationUnitName)); //$NON-NLS-1$ //$NON-NLS-2$
 			String source = sourceUnit.getSource();
@@ -451,7 +451,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	String getSource(ASTNode astNode, char[] source) {
 		String result = new String(CharOperation.subarray(source, astNode.getStartPosition() + 1, astNode.getStartPosition() + astNode.getLength() - 1));
 		if (result.endsWith("\\n")) {
-			return result.substring(0, result.length() - 2) + LINE_SEPARATOR;
+			return result.substring(0, result.length() - 2) + LINE_SEPARATOR; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return result;
 	}
@@ -3140,7 +3140,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		runTest(codeFormatter, "test251", "A.java", CodeFormatter.K_CLASS_BODY_DECLARATIONS);//$NON-NLS-1$ //$NON-NLS-2$
 	}
 
-	public void test252() {
+	public void test252() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = new Hashtable();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_CATCH_IN_TRY_STATEMENT, JavaCore.DO_NOT_INSERT);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_ELSE_IN_IF_STATEMENT, JavaCore.DO_NOT_INSERT);
@@ -3159,7 +3159,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		runTest(codeFormatter, "test252", "A.java", CodeFormatter.K_CLASS_BODY_DECLARATIONS);//$NON-NLS-1$ //$NON-NLS-2$
 	}
 
-	public void test253() {
+	public void test253() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = new Hashtable();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_CATCH_IN_TRY_STATEMENT, JavaCore.INSERT);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_ELSE_IN_IF_STATEMENT, JavaCore.INSERT);
@@ -3178,7 +3178,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		runTest(codeFormatter, "test253", "A.java", CodeFormatter.K_CLASS_BODY_DECLARATIONS);//$NON-NLS-1$ //$NON-NLS-2$
 	}
 
-	public void test254() {
+	public void test254() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = new Hashtable();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_CATCH_IN_TRY_STATEMENT, JavaCore.DO_NOT_INSERT);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_ELSE_IN_IF_STATEMENT, JavaCore.DO_NOT_INSERT);
@@ -3197,7 +3197,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		runTest(codeFormatter, "test254", "A.java", CodeFormatter.K_CLASS_BODY_DECLARATIONS);//$NON-NLS-1$ //$NON-NLS-2$
 	}
 
-	public void test255() {
+	public void test255() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = new Hashtable();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_CATCH_IN_TRY_STATEMENT, JavaCore.INSERT);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_ELSE_IN_IF_STATEMENT, JavaCore.INSERT);
@@ -3396,7 +3396,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		runTest(codeFormatter, "test265", "A.java", CodeFormatter.K_COMPILATION_UNIT);//$NON-NLS-1$ //$NON-NLS-2$
 	}
 
-	public void test266() {
+	public void test266() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = new Hashtable();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_CATCH_IN_TRY_STATEMENT, JavaCore.DO_NOT_INSERT);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_ELSE_IN_IF_STATEMENT, JavaCore.DO_NOT_INSERT);
@@ -3415,7 +3415,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		runTest(codeFormatter, "test266", "A.java", CodeFormatter.K_STATEMENTS);//$NON-NLS-1$ //$NON-NLS-2$
 	}
 
-	public void test267() {
+	public void test267() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = new Hashtable();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_CATCH_IN_TRY_STATEMENT, JavaCore.INSERT);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_ELSE_IN_IF_STATEMENT, JavaCore.INSERT);
@@ -3434,7 +3434,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		runTest(codeFormatter, "test267", "A.java", CodeFormatter.K_STATEMENTS);//$NON-NLS-1$ //$NON-NLS-2$
 	}
 
-	public void test268() {
+	public void test268() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = new Hashtable();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_CATCH_IN_TRY_STATEMENT, JavaCore.DO_NOT_INSERT);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_ELSE_IN_IF_STATEMENT, JavaCore.DO_NOT_INSERT);
@@ -3453,7 +3453,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		runTest(codeFormatter, "test268", "A.java", CodeFormatter.K_CLASS_BODY_DECLARATIONS);//$NON-NLS-1$ //$NON-NLS-2$
 	}
 
-	public void test269() {
+	public void test269() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = new Hashtable();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_CATCH_IN_TRY_STATEMENT, JavaCore.INSERT);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_ELSE_IN_IF_STATEMENT, JavaCore.INSERT);
@@ -3508,7 +3508,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		runTest(codeFormatter, "test271", "A.java", CodeFormatter.K_COMPILATION_UNIT);//$NON-NLS-1$ //$NON-NLS-2$
 	}
 
-	public void test272() {
+	public void test272() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = new Hashtable();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_CATCH_IN_TRY_STATEMENT, JavaCore.DO_NOT_INSERT);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_ELSE_IN_IF_STATEMENT, JavaCore.DO_NOT_INSERT);
@@ -3527,7 +3527,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		runTest(codeFormatter, "test272", "A.java", CodeFormatter.K_COMPILATION_UNIT);//$NON-NLS-1$ //$NON-NLS-2$
 	}
 
-	public void test273() {
+	public void test273() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = new Hashtable();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_CATCH_IN_TRY_STATEMENT, JavaCore.INSERT);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_ELSE_IN_IF_STATEMENT, JavaCore.INSERT);
@@ -3870,7 +3870,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		runTest(codeFormatter, "test291", "A.java", CodeFormatter.K_CLASS_BODY_DECLARATIONS);//$NON-NLS-1$ //$NON-NLS-2$
 	}
 
-	public void test292() {
+	public void test292() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = new Hashtable();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_CATCH_IN_TRY_STATEMENT, JavaCore.DO_NOT_INSERT);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_ELSE_IN_IF_STATEMENT, JavaCore.DO_NOT_INSERT);
@@ -3961,7 +3961,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		runTest(codeFormatter, "test296", "A.java", CodeFormatter.K_CLASS_BODY_DECLARATIONS);//$NON-NLS-1$ //$NON-NLS-2$
 	}
 
-	public void test297() {
+	public void test297() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = new Hashtable();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_CATCH_IN_TRY_STATEMENT, JavaCore.INSERT);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_ELSE_IN_IF_STATEMENT, JavaCore.INSERT);
@@ -3982,7 +3982,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		runTest(codeFormatter, "test297", "A.java", CodeFormatter.K_CLASS_BODY_DECLARATIONS);//$NON-NLS-1$ //$NON-NLS-2$
 	}
 
-	public void test298() {
+	public void test298() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = new Hashtable();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_CATCH_IN_TRY_STATEMENT, JavaCore.DO_NOT_INSERT);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_ELSE_IN_IF_STATEMENT, JavaCore.DO_NOT_INSERT);
@@ -4001,7 +4001,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		runTest(codeFormatter, "test298", "A.java", CodeFormatter.K_CLASS_BODY_DECLARATIONS);//$NON-NLS-1$ //$NON-NLS-2$
 	}
 
-	public void test299() {
+	public void test299() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = new Hashtable();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_CATCH_IN_TRY_STATEMENT, JavaCore.INSERT);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_ELSE_IN_IF_STATEMENT, JavaCore.INSERT);
@@ -4038,7 +4038,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		runTest(codeFormatter, "test300", "A.java", CodeFormatter.K_EXPRESSION, 2);//$NON-NLS-1$ //$NON-NLS-2$
 	}
 
-	public void test301() {
+	public void test301() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = new Hashtable();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_CATCH_IN_TRY_STATEMENT, JavaCore.INSERT);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_ELSE_IN_IF_STATEMENT, JavaCore.INSERT);
@@ -4057,7 +4057,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		runTest(codeFormatter, "test301", "A.java", CodeFormatter.K_STATEMENTS);//$NON-NLS-1$ //$NON-NLS-2$
 	}
 
-	public void test302() {
+	public void test302() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = new Hashtable();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_CATCH_IN_TRY_STATEMENT, JavaCore.INSERT);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_ELSE_IN_IF_STATEMENT, JavaCore.INSERT);
@@ -4174,7 +4174,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		runTest(codeFormatter, "test312", "A.java", CodeFormatter.K_STATEMENTS);//$NON-NLS-1$ //$NON-NLS-2$
 	}
 
-	public void test313() {
+	public void test313() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = new Hashtable();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_CATCH_IN_TRY_STATEMENT, JavaCore.DO_NOT_INSERT);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_ELSE_IN_IF_STATEMENT, JavaCore.DO_NOT_INSERT);
@@ -4193,7 +4193,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		runTest(codeFormatter, "test313", "A.java", CodeFormatter.K_CLASS_BODY_DECLARATIONS);//$NON-NLS-1$ //$NON-NLS-2$
 	}
 
-	public void test314() {
+	public void test314() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = new Hashtable();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_CATCH_IN_TRY_STATEMENT, JavaCore.DO_NOT_INSERT);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_ELSE_IN_IF_STATEMENT, JavaCore.DO_NOT_INSERT);
@@ -4248,7 +4248,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		runTest(source, expectedResult, codeFormatter, CodeFormatter.K_CLASS_BODY_DECLARATIONS, 0, false, 0, -1);
 	}
 
-	public void test317() {
+	public void test317() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(DefaultCodeFormatterConstants.getEclipse21Settings());
 		preferences.tab_char = DefaultCodeFormatterOptions.TAB;
 		preferences.line_separator = "\n";
@@ -4267,7 +4267,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		runTest(source, expectedResult, codeFormatter, CodeFormatter.K_CLASS_BODY_DECLARATIONS, 0, false, 0, -1);
 	}
 
-	public void test318() {
+	public void test318() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(DefaultCodeFormatterConstants.getEclipse21Settings());
 		preferences.tab_char = DefaultCodeFormatterOptions.TAB;
 		preferences.line_separator = "\r";
@@ -4468,7 +4468,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=46023
 	 */
-	public void test336() {
+	public void test336() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = new Hashtable();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_CATCH_IN_TRY_STATEMENT, JavaCore.INSERT);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_ELSE_IN_IF_STATEMENT, JavaCore.INSERT);
@@ -5014,7 +5014,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=47997
 	 */
-	public void test380() {
+	public void test380() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = new Hashtable();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_CATCH_IN_TRY_STATEMENT, JavaCore.INSERT);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_BEFORE_ELSE_IN_IF_STATEMENT, JavaCore.INSERT);
@@ -6074,7 +6074,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=51158
 	 */
-	public void test459() {
+	public void test459() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipse21Settings();
 		options.put(
 				DefaultCodeFormatterConstants.FORMATTER_ALIGNMENT_FOR_ARGUMENTS_IN_METHOD_INVOCATION,
@@ -6161,7 +6161,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=51128
 	 */
-	public void test464() {
+	public void test464() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipse21Settings();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_SPACE_AFTER_OPENING_PAREN_IN_FOR, JavaCore.INSERT);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_SPACE_BEFORE_OPENING_PAREN_IN_FOR, JavaCore.INSERT);
@@ -6184,7 +6184,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=44642
 	 * @deprecated
 	 */
-	public void test465() {
+	public void test465() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipse21Settings();
 		options.put(
 			DefaultCodeFormatterConstants.FORMATTER_ALIGNMENT_FOR_SELECTOR_IN_METHOD_INVOCATION,
@@ -6207,7 +6207,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=44642
 	 * @deprecated
 	 */
-	public void test466() {
+	public void test466() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipse21Settings();
 		options.put(
 			DefaultCodeFormatterConstants.FORMATTER_ALIGNMENT_FOR_SELECTOR_IN_METHOD_INVOCATION,
@@ -6230,7 +6230,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=44642
 	 * @deprecated
 	 */
-	public void test467() {
+	public void test467() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipse21Settings();
 		options.put(
 			DefaultCodeFormatterConstants.FORMATTER_ALIGNMENT_FOR_SELECTOR_IN_METHOD_INVOCATION,
@@ -6374,7 +6374,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=51768
 	 */
-	public void test476() {
+	public void test476() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipse21Settings();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_TAB_CHAR, JavaCore.TAB);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INDENT_BODY_DECLARATIONS_COMPARE_TO_TYPE_HEADER, DefaultCodeFormatterConstants.FALSE);
@@ -6407,7 +6407,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=51603
 	 */
-	public void test477() {
+	public void test477() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String option =
 			DefaultCodeFormatterConstants.createAlignmentValue(
 				true,
@@ -6765,7 +6765,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
         preferences.tab_size = 4;
 		preferences.tab_char = DefaultCodeFormatterOptions.TAB;
-		Map compilerOptions = new HashMap();
+		Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 		compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 		compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -6776,7 +6776,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * Formatting parameterized type
 	 */
-	public void test504() {
+	public void test504() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.tab_char = DefaultCodeFormatterOptions.TAB;
@@ -6789,7 +6789,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -6803,7 +6803,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * Formatting parameterized type
 	 */
-	public void test505() {
+	public void test505() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
         preferences.tab_size = 4;
@@ -6816,7 +6816,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -6830,7 +6830,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * Formatting parameterized type
 	 */
-	public void test506() {
+	public void test506() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
         preferences.tab_size = 4;
@@ -6844,7 +6844,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -6858,7 +6858,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * Formatting enum declaration
 	 */
-	public void test507() {
+	public void test507() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
         preferences.tab_size = 4;
@@ -6871,7 +6871,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -6885,7 +6885,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * Formatting annotation type declaration
 	 */
-	public void test508() {
+	public void test508() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.tab_char = DefaultCodeFormatterOptions.TAB;
@@ -6898,7 +6898,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -6976,7 +6976,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=73371
 	 */
-	public void test513() {
+	public void test513() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.tab_char = DefaultCodeFormatterOptions.TAB;
@@ -6989,7 +6989,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7016,7 +7016,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=75720
 	 */
-	public void test515() {
+	public void test515() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
         preferences.tab_size = 4;
@@ -7029,7 +7029,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7043,7 +7043,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=75720
 	 */
-	public void test516() {
+	public void test516() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_SPACE_AFTER_ELLIPSIS, JavaCore.DO_NOT_INSERT);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_SPACE_BEFORE_ELLIPSIS, JavaCore.DO_NOT_INSERT);
@@ -7058,7 +7058,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7072,7 +7072,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=75720
 	 */
-	public void test517() {
+	public void test517() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_SPACE_AFTER_ELLIPSIS, JavaCore.INSERT);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_SPACE_BEFORE_ELLIPSIS, JavaCore.INSERT);
@@ -7087,7 +7087,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7101,7 +7101,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=75720
 	 */
-	public void test518() {
+	public void test518() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_SPACE_AFTER_ELLIPSIS, JavaCore.DO_NOT_INSERT);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_SPACE_BEFORE_ELLIPSIS, JavaCore.INSERT);
@@ -7116,7 +7116,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7130,7 +7130,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=75720
 	 */
-	public void test519() {
+	public void test519() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_SPACE_AFTER_ELLIPSIS, JavaCore.INSERT);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_SPACE_BEFORE_ELLIPSIS, JavaCore.DO_NOT_INSERT);
@@ -7145,7 +7145,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7159,7 +7159,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * Formatting enum declaration
 	 */
-	public void test520() {
+	public void test520() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.tab_char = DefaultCodeFormatterOptions.TAB;
@@ -7172,7 +7172,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7186,7 +7186,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=76642
 	 */
-	public void test521() {
+	public void test521() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.tab_char = DefaultCodeFormatterOptions.TAB;
@@ -7199,7 +7199,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7213,7 +7213,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=76642
 	 */
-	public void test522() {
+	public void test522() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.tab_char = DefaultCodeFormatterOptions.TAB;
@@ -7226,7 +7226,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7240,7 +7240,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=76766
 	 */
-	public void test523() {
+	public void test523() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.tab_char = DefaultCodeFormatterOptions.TAB;
@@ -7256,7 +7256,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7270,7 +7270,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=76766
 	 */
-	public void test524() {
+	public void test524() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.tab_char = DefaultCodeFormatterOptions.TAB;
@@ -7286,7 +7286,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7300,7 +7300,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=76766
 	 */
-	public void test525() {
+	public void test525() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.tab_char = DefaultCodeFormatterOptions.TAB;
@@ -7316,7 +7316,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7330,7 +7330,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=76766
 	 */
-	public void test526() {
+	public void test526() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.tab_char = DefaultCodeFormatterOptions.TAB;
@@ -7346,7 +7346,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7360,7 +7360,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=77249
 	 */
-	public void test527() {
+	public void test527() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.tab_char = DefaultCodeFormatterOptions.TAB;
@@ -7374,7 +7374,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7384,7 +7384,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			JavaCore.setOptions(javaCoreOptions);
 		}
 	}
-	public void test527b() {
+	public void test527b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.tab_char = DefaultCodeFormatterOptions.TAB;
@@ -7399,7 +7399,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7413,7 +7413,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=79779
 	 */
-	public void test528() {
+	public void test528() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.tab_char = DefaultCodeFormatterOptions.TAB;
@@ -7426,7 +7426,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7440,7 +7440,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=79779
 	 */
-	public void test529() {
+	public void test529() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.tab_char = DefaultCodeFormatterOptions.TAB;
@@ -7453,7 +7453,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7467,7 +7467,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=79795
 	 */
-	public void test530() {
+	public void test530() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.tab_char = DefaultCodeFormatterOptions.TAB;
@@ -7480,7 +7480,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7494,7 +7494,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=79795
 	 */
-	public void test531() {
+	public void test531() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.tab_char = DefaultCodeFormatterOptions.TAB;
@@ -7507,7 +7507,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7521,7 +7521,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=79795
 	 */
-	public void test532() {
+	public void test532() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.tab_char = DefaultCodeFormatterOptions.TAB;
@@ -7534,7 +7534,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7548,7 +7548,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=79795
 	 */
-	public void test533() {
+	public void test533() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.tab_char = DefaultCodeFormatterOptions.TAB;
@@ -7561,7 +7561,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7575,7 +7575,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=78698
 	 */
-	public void test534() {
+	public void test534() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.tab_char = DefaultCodeFormatterOptions.TAB;
@@ -7588,7 +7588,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7602,7 +7602,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=78698
 	 */
-	public void test535() {
+	public void test535() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.tab_char = DefaultCodeFormatterOptions.TAB;
@@ -7615,7 +7615,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7629,7 +7629,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=78698
 	 */
-	public void test536() {
+	public void test536() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.tab_char = DefaultCodeFormatterOptions.TAB;
@@ -7644,7 +7644,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7658,7 +7658,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=78698
 	 */
-	public void test537() {
+	public void test537() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.tab_char = DefaultCodeFormatterOptions.TAB;
@@ -7673,7 +7673,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7697,7 +7697,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=83515
 	 */
-	public void test539() {
+	public void test539() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
         preferences.tab_size = 4;
@@ -7709,7 +7709,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7723,7 +7723,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=83515
 	 */
-	public void test540() {
+	public void test540() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
         preferences.tab_size = 4;
@@ -7735,7 +7735,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7749,7 +7749,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=83684
 	 */
-	public void test541() {
+	public void test541() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
         preferences.tab_char = DefaultCodeFormatterOptions.SPACE;
@@ -7762,7 +7762,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7792,7 +7792,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=86410
 	 */
-	public void test544() {
+	public void test544() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
         preferences.tab_size = 4;
@@ -7807,7 +7807,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7821,7 +7821,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=86878
 	 */
-	public void test545() {
+	public void test545() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
         preferences.tab_size = 4;
@@ -7834,7 +7834,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7909,7 +7909,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=73104
-	public void test551() {
+	public void test551() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		options.put(
 				DefaultCodeFormatterConstants.FORMATTER_ALIGNMENT_FOR_PARAMETERS_IN_METHOD_DECLARATION,
@@ -7930,7 +7930,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=73104
-	public void test552() {
+	public void test552() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		options.put(
 				DefaultCodeFormatterConstants.FORMATTER_ALIGNMENT_FOR_PARAMETERS_IN_METHOD_DECLARATION,
@@ -8024,7 +8024,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	 * @deprecated
 	 * @see <a href="http://bugs.eclipse.org/bugs/show_bug.cgi?id=122247">bug 122247</a>
 	 */
-	public void test558() {
+	public void test558() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_AFTER_ANNOTATION_ON_ENUM_CONSTANT, null);
@@ -8048,7 +8048,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -8066,7 +8066,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	 * @deprecated
 	 * @see <a href="http://bugs.eclipse.org/bugs/show_bug.cgi?id=122247">bug 122247</a>
 	 */
-	public void test559() {
+	public void test559() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_AFTER_ANNOTATION_ON_ENUM_CONSTANT, null);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_AFTER_ANNOTATION_ON_FIELD, null);
@@ -8089,7 +8089,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -8131,7 +8131,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=89318
-	public void test562() {
+	public void test562() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
         preferences.tab_char = DefaultCodeFormatterOptions.SPACE;
@@ -8145,7 +8145,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -8157,7 +8157,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=89318
-	public void test563() {
+	public void test563() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
         preferences.tab_size = 4;
@@ -8172,7 +8172,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -8212,7 +8212,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}*/
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=73658
-	public void test566() {
+	public void test566() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getJavaConventionsSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
         preferences.tab_size = 4;
@@ -8227,7 +8227,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -8284,7 +8284,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=77809
-	public void test570() {
+	public void test570() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		options.put(
 				DefaultCodeFormatterConstants.FORMATTER_ALIGNMENT_FOR_ENUM_CONSTANTS,
@@ -8298,7 +8298,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -8310,7 +8310,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=77809
-	public void test571() {
+	public void test571() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		options.put(
 				DefaultCodeFormatterConstants.FORMATTER_ALIGNMENT_FOR_ENUM_CONSTANTS,
@@ -8324,7 +8324,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -8372,7 +8372,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	 * @see <a href="http://bugs.eclipse.org/bugs/show_bug.cgi?id=122247">bug 122247</a>
 	 */
 
-	public void test575() {
+	public void test575() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_AFTER_ANNOTATION_ON_ENUM_CONSTANT, null);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_AFTER_ANNOTATION_ON_FIELD, null);
@@ -8392,7 +8392,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -8404,7 +8404,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=95431
-	public void test576() {
+	public void test576() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		Hashtable javaCoreOptions = JavaCore.getOptions();
@@ -8415,7 +8415,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -8459,7 +8459,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=99084
-	public void test581() {
+	public void test581() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		Hashtable javaCoreOptions = JavaCore.getOptions();
@@ -8470,7 +8470,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -8482,7 +8482,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=99084
-	public void test582() {
+	public void test582() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.insert_space_after_closing_angle_bracket_in_type_arguments = false;
@@ -8494,7 +8494,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -8506,7 +8506,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=100062
-	public void test583() {
+	public void test583() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		Hashtable javaCoreOptions = JavaCore.getOptions();
@@ -8517,7 +8517,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -8529,7 +8529,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=49896
-	public void test584() {
+	public void test584() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_USE_TABS_ONLY_FOR_LEADING_INDENTATIONS, DefaultCodeFormatterConstants.TRUE);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_TAB_CHAR, DefaultCodeFormatterConstants.MIXED);
@@ -8544,7 +8544,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -8556,7 +8556,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=49896
-	public void test585() {
+	public void test585() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_USE_TABS_ONLY_FOR_LEADING_INDENTATIONS, DefaultCodeFormatterConstants.TRUE);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_TAB_CHAR, DefaultCodeFormatterConstants.MIXED);
@@ -8571,7 +8571,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -8583,7 +8583,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=49896
-	public void test586() {
+	public void test586() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_USE_TABS_ONLY_FOR_LEADING_INDENTATIONS, DefaultCodeFormatterConstants.TRUE);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_TAB_CHAR, JavaCore.TAB);
@@ -8598,7 +8598,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -8610,7 +8610,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=49896
-	public void test587() {
+	public void test587() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_USE_TABS_ONLY_FOR_LEADING_INDENTATIONS, DefaultCodeFormatterConstants.TRUE);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_TAB_CHAR, JavaCore.TAB);
@@ -8625,7 +8625,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -8637,7 +8637,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=101230
-	public void test588() {
+	public void test588() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		Hashtable javaCoreOptions = JavaCore.getOptions();
@@ -8648,7 +8648,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -8802,7 +8802,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		runTest(codeFormatter, "test601", "A.java", CodeFormatter.K_COMPILATION_UNIT, false);//$NON-NLS-1$ //$NON-NLS-2$
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=108916
-	public void test605() {
+	public void test605() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		options.put(
 				DefaultCodeFormatterConstants.FORMATTER_ALIGNMENT_FOR_ENUM_CONSTANTS,
@@ -8819,7 +8819,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -8875,7 +8875,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=111446
 	 */
-	public void test611() {
+	public void test611() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		{
 			// only tabs, indentation size = 4, tab size = 4
 			Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
@@ -8938,7 +8938,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=126625
-	public void test612() {
+	public void test612() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.indent_body_declarations_compare_to_annotation_declaration_header = false;
@@ -8953,7 +8953,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -8964,7 +8964,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=126625
-	public void test613() {
+	public void test613() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.indent_body_declarations_compare_to_annotation_declaration_header = true;
@@ -8979,7 +8979,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -9039,7 +9039,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		runTest(codeFormatter, "test619", "A.java", CodeFormatter.K_CLASS_BODY_DECLARATIONS, false);//$NON-NLS-1$ //$NON-NLS-2$
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=139291
-	public void test620() {
+	public void test620() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_SPACE_AFTER_CLOSING_ANGLE_BRACKET_IN_TYPE_ARGUMENTS, JavaCore.DO_NOT_INSERT);
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
@@ -9051,7 +9051,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -9062,7 +9062,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=139291
-	public void test621() {
+	public void test621() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_SPACE_AFTER_CLOSING_ANGLE_BRACKET_IN_TYPE_ARGUMENTS, JavaCore.DO_NOT_INSERT);
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
@@ -9074,7 +9074,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -9085,7 +9085,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=148370
-	public void test622() {
+	public void test622() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		Hashtable javaCoreOptions = JavaCore.getOptions();
@@ -9096,7 +9096,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -9107,7 +9107,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=148370
-	public void test623() {
+	public void test623() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		Hashtable javaCoreOptions = JavaCore.getOptions();
@@ -9118,7 +9118,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -9129,7 +9129,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=148370
-	public void test624() {
+	public void test624() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		Hashtable javaCoreOptions = JavaCore.getOptions();
@@ -9140,7 +9140,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -9164,7 +9164,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		runTest(codeFormatter, "test625", "A.java", CodeFormatter.K_COMPILATION_UNIT, false);//$NON-NLS-1$ //$NON-NLS-2$
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=152725
-	public void test626() {
+	public void test626() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		Hashtable javaCoreOptions = JavaCore.getOptions();
@@ -9175,7 +9175,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -9187,7 +9187,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=158267
-	public void test627() {
+	public void test627() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.brace_position_for_type_declaration = DefaultCodeFormatterConstants.NEXT_LINE_ON_WRAP;
@@ -9199,7 +9199,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -9210,7 +9210,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=158267
-	public void test628() {
+	public void test628() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.brace_position_for_type_declaration = DefaultCodeFormatterConstants.NEXT_LINE_ON_WRAP;
@@ -9222,7 +9222,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -9233,7 +9233,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=158267
-	public void test629() {
+	public void test629() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.brace_position_for_type_declaration = DefaultCodeFormatterConstants.NEXT_LINE_ON_WRAP;
@@ -9245,7 +9245,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -9564,7 +9564,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=79068
 	 */
-	public void test664() {
+	public void test664() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipse21Settings();
 		options.put(
 				DefaultCodeFormatterConstants.FORMATTER_ALIGNMENT_FOR_ARGUMENTS_IN_METHOD_INVOCATION,
@@ -9609,7 +9609,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=192285
-	public void test667() {
+	public void test667() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.brace_position_for_type_declaration = DefaultCodeFormatterConstants.NEXT_LINE_ON_WRAP;
@@ -9621,7 +9621,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -9657,7 +9657,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=203304
-	public void test671() {
+	public void test671() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		/* old version
 		final Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
@@ -9715,7 +9715,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=203304
-	public void test674() {
+	public void test674() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		/* old version
 		final Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
@@ -9913,7 +9913,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 //	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=208541
-	public void test685() {
+	public void test685() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		/* old version
 		final Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
@@ -9960,7 +9960,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=208541
-	public void test688a() {
+	public void test688a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		/* old version
 		final Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
@@ -9987,7 +9987,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 		);
 	}
 
-	public void test688b() {
+	public void test688b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		/* old version
 		final Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
@@ -10024,7 +10024,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=208541
-	public void test690() {
+	public void test690() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		/* old version
 		final Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
@@ -10058,7 +10058,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=208541
-	public void test691() {
+	public void test691() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		/* old version
 		final Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
@@ -10104,7 +10104,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=210922
-	public void test693() {
+	public void test693() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final class MyRegion implements IRegion {
 			public int getLength() {
 				return 0;
@@ -10148,7 +10148,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=213284
-	public void test695() {
+	public void test695() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		/* old version
 		final Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
@@ -10208,7 +10208,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// variation on bugs 208541, 213283, 213284
-	public void test697a() {
+	public void test697a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		/* old version
 		final Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
@@ -10248,7 +10248,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// variation on bugs 208541, 213283, 213284
-	public void test697b() {
+	public void test697b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		/* old version
 		final Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
@@ -10399,7 +10399,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=122247
 	// test706 through test712 format the same CU with different combination of annotation formatting options
-	public void test706() {
+	public void test706() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.line_separator = "\n";//$NON-NLS-1$
@@ -10422,7 +10422,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -10434,7 +10434,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=122247
-	public void test707() {
+	public void test707() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.insert_new_line_after_annotation_on_type = true;
@@ -10453,7 +10453,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -10465,7 +10465,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=122247
-	public void test708() {
+	public void test708() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.line_separator = "\n";//$NON-NLS-1$
@@ -10485,7 +10485,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -10497,7 +10497,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=122247
-	public void test709() {
+	public void test709() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.insert_new_line_after_annotation_on_type = false;
@@ -10521,7 +10521,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -10533,7 +10533,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=122247
-	public void test710() {
+	public void test710() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.insert_new_line_after_annotation_on_type = false;
@@ -10555,7 +10555,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -10567,7 +10567,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=122247
-	public void test711() {
+	public void test711() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.insert_new_line_after_annotation_on_type = false;
@@ -10590,7 +10590,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -10602,7 +10602,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=122247
-	public void test712() {
+	public void test712() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
 		preferences.line_separator = "\n";//$NON-NLS-1$
@@ -10616,7 +10616,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 			newJavaCoreOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 			JavaCore.setOptions(newJavaCoreOptions);
 
-			Map compilerOptions = new HashMap();
+			Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 			compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -10628,7 +10628,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=222182
-	public void test713() {
+	public void test713() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String resourcePath = getResource("test713", "formatter.xml");
 		Map options = DecodeCodeFormatterPreferences.decodeCodeFormatterOptions(resourcePath, "Dani");
 		assertNotNull("No preferences", options);
@@ -10719,7 +10719,7 @@ public class FormatterRegressionTests extends AbstractJavaModelTests {
 public void test720() {
 	final Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 	DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
-	Map compilerOptions = new HashMap();
+	Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 	compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 	compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -10730,7 +10730,7 @@ public void test720() {
 public void test721() {
 	final Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 	DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
-	Map compilerOptions = new HashMap();
+	Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 	compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 	compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -10749,7 +10749,7 @@ public void test722() {
 public void test723() {
 	final Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 	DefaultCodeFormatterOptions preferences = new DefaultCodeFormatterOptions(options);
-	Map compilerOptions = new HashMap();
+	Map compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	compilerOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 	compilerOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 	compilerOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -10757,7 +10757,7 @@ public void test723() {
 	runTest(codeFormatter, "test723", "A.java", CodeFormatter.K_COMPILATION_UNIT, false);//$NON-NLS-1$ //$NON-NLS-2$
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=150741
-public void test724() {
+public void test724() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.insert_new_line_after_label = true;
 	String source =
 		"public class X {\n" +
@@ -10780,7 +10780,7 @@ public void test724() {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=308000
-public void test725() {
+public void test725() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_6);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_6);
@@ -10815,7 +10815,7 @@ public void test725() {
 		"}\n"
 	);
 }
-public void test726() {
+public void test726() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_6);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_6);
@@ -10852,7 +10852,7 @@ public void test726() {
 /**
  * @deprecated Use a deprecated formatter option.
  */
-public void test727() {
+public void test727() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_6);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_6);
@@ -10892,7 +10892,7 @@ public void test727() {
 /**
  * @deprecated Use a deprecated formatter option.
  */
-public void test728() {
+public void test728() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.remove(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_AFTER_ANNOTATION_ON_ENUM_CONSTANT);
 	this.formatterOptions.remove(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_AFTER_ANNOTATION_ON_FIELD);
@@ -10929,7 +10929,7 @@ public void test728() {
 		"}\n"
 	);
 }
-public void test729() {
+public void test729() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	String profilePath = getResource("profiles", "b308000.xml");
 	this.formatterOptions = DecodeCodeFormatterPreferences.decodeCodeFormatterOptions(profilePath, "b308000");
@@ -11023,7 +11023,7 @@ public void test733() {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=282988
-public void test734() {
+public void test734() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_COMMENT_PRESERVE_WHITE_SPACE_BETWEEN_CODE_AND_LINE_COMMENT, DefaultCodeFormatterConstants.TRUE);
 	String source =
@@ -11053,7 +11053,7 @@ public void test734() {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=282988
-public void test735() {
+public void test735() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_COMMENT_PRESERVE_WHITE_SPACE_BETWEEN_CODE_AND_LINE_COMMENT, DefaultCodeFormatterConstants.FALSE);
 	String source =
@@ -11083,7 +11083,7 @@ public void test735() {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=282988
-public void test736() {
+public void test736() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_COMMENT_PRESERVE_WHITE_SPACE_BETWEEN_CODE_AND_LINE_COMMENT, DefaultCodeFormatterConstants.TRUE);
 	String source =
@@ -11113,7 +11113,7 @@ public void test736() {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=282988
-public void test737() {
+public void test737() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_COMMENT_PRESERVE_WHITE_SPACE_BETWEEN_CODE_AND_LINE_COMMENT, DefaultCodeFormatterConstants.FALSE);
 	String source =
@@ -11143,7 +11143,7 @@ public void test737() {
 	);
 }
 // binary literals / underscores in literals / multi catch
-public void test738() {
+public void test738() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -11176,7 +11176,7 @@ public void test738() {
 	);
 }
 //try-with-resources
-public void test739() {
+public void test739() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -11204,7 +11204,7 @@ public void test739() {
 	);
 }
 //try-with-resources
-public void test740() {
+public void test740() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -11232,7 +11232,7 @@ public void test740() {
 	);
 }
 //try-with-resources
-public void test741() {
+public void test741() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -11264,7 +11264,7 @@ public void test741() {
 	);
 }
 //try-with-resources
-public void test742() {
+public void test742() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -11296,7 +11296,7 @@ public void test742() {
 	);
 }
 //try-with-resources
-public void test743() {
+public void test743() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -11328,7 +11328,7 @@ public void test743() {
 	);
 }
 //try-with-resources
-public void test744() {
+public void test744() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -11364,7 +11364,7 @@ public void test744() {
 	);
 }
 //try-with-resources
-public void test745() {
+public void test745() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -11400,7 +11400,7 @@ public void test745() {
 	);
 }
 //diamond
-public void test746() {
+public void test746() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -11424,7 +11424,7 @@ public void test746() {
 	);
 }
 //diamond
-public void test747() {
+public void test747() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -11458,7 +11458,7 @@ public void test748() {
 	runTest(codeFormatter, "test748", "RecipeDocumentProvider.java", CodeFormatter.K_COMPILATION_UNIT, 0, true, regions, "\n");//$NON-NLS-1$ //$NON-NLS-2$
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349008
-public void test749() throws Exception {
+public void test749() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -11487,7 +11487,7 @@ public void test749() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349396
 // To verify that the whitespace options for resources in try statement work correctly
-public void test750() throws Exception {
+public void test750() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -11520,7 +11520,7 @@ public void test750() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349396
 // To check behavior with different line wrapping and indentation policies.
-public void test751() throws Exception {
+public void test751() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -11553,7 +11553,7 @@ public void test751() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349396
 // To check behavior with different line wrapping and indentation policies.
-public void test752() throws Exception {
+public void test752() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -11585,7 +11585,7 @@ public void test752() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349396
 // To check behavior with different line wrapping and indentation policies.
-public void test753() throws Exception {
+public void test753() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -11617,7 +11617,7 @@ public void test753() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349396
 // To check behavior with different line wrapping and indentation policies.
-public void test754() throws Exception {
+public void test754() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -11649,7 +11649,7 @@ public void test754() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349396
 // To check behavior with different line wrapping and indentation policies.
-public void test755() throws Exception {
+public void test755() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -11681,7 +11681,7 @@ public void test755() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349396
 // To check behavior with different line wrapping and indentation policies.
-public void test756() throws Exception {
+public void test756() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -11713,7 +11713,7 @@ public void test756() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349396
 // To check behavior with different line wrapping and indentation policies.
-public void test757() throws Exception {
+public void test757() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -11746,7 +11746,7 @@ public void test757() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349396
 // To check behavior with different line wrapping and indentation policies.
-public void test758() throws Exception {
+public void test758() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -11779,7 +11779,7 @@ public void test758() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349396
 // To check behavior with different line wrapping and indentation policies.
-public void test759() throws Exception {
+public void test759() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -11812,7 +11812,7 @@ public void test759() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349396
 // To check behavior with different line wrapping and indentation policies.
-public void test760() throws Exception {
+public void test760() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -11846,7 +11846,7 @@ public void test760() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349396
 // To check behavior with different line wrapping and indentation policies.
-public void test761() throws Exception {
+public void test761() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -11880,7 +11880,7 @@ public void test761() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349396
 // To check behavior with different line wrapping and indentation policies.
-public void test762() throws Exception {
+public void test762() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -11914,7 +11914,7 @@ public void test762() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349396
 // To check behavior with different line wrapping and indentation policies.
-public void test763() throws Exception {
+public void test763() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -11948,7 +11948,7 @@ public void test763() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349396
 // To check behavior with different line wrapping and indentation policies.
-public void test764() throws Exception {
+public void test764() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -11982,7 +11982,7 @@ public void test764() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349396
 // To check behavior with different line wrapping and indentation policies.
-public void test765() throws Exception {
+public void test765() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -12016,7 +12016,7 @@ public void test765() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349314
 // To check behavior with different line wrapping and indentation policies.
-public void test766() throws Exception {
+public void test766() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -12060,7 +12060,7 @@ public void test766() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349314
 // To check behavior with default settings.
-public void test767() throws Exception {
+public void test767() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -12103,7 +12103,7 @@ public void test767() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349314
 // To check behavior with default settings.
-public void test767a() throws Exception {
+public void test767a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -12147,7 +12147,7 @@ public void test767a() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349314
 // To check behavior with default settings, and spaces before '|' and not after them.
-public void test767b() throws Exception {
+public void test767b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -12192,7 +12192,7 @@ public void test767b() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349314
 // To check behavior with different line wrapping and indentation policies.
-public void test768() throws Exception {
+public void test768() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -12238,7 +12238,7 @@ public void test768() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349314
 // To check behavior with different line wrapping and indentation policies.
-public void test769() throws Exception {
+public void test769() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -12284,7 +12284,7 @@ public void test769() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349314
 // To check behavior with different line wrapping and indentation policies.
-public void test770() throws Exception {
+public void test770() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -12331,7 +12331,7 @@ public void test770() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349314
 // To check behavior with different line wrapping and indentation policies.
-public void test771() throws Exception {
+public void test771() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -12378,7 +12378,7 @@ public void test771() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349314
 // To check behavior with different line wrapping and indentation policies.
-public void test772() throws Exception {
+public void test772() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -12426,7 +12426,7 @@ public void test772() throws Exception {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349314
 // To check behavior with different line wrapping and indentation policies.
-public void test773() throws Exception {
+public void test773() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -12474,7 +12474,7 @@ public void test773() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349314
 // To check behavior with different line wrapping and indentation policies.
-public void test774() throws Exception {
+public void test774() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -12522,7 +12522,7 @@ public void test774() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349314
 // To check behavior with different line wrapping and indentation policies.
-public void test775() throws Exception {
+public void test775() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -12570,7 +12570,7 @@ public void test775() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349314
 // To check behavior with different line wrapping and indentation policies.
-public void test776() throws Exception {
+public void test776() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -12619,7 +12619,7 @@ public void test776() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349314
 // To check behavior with different line wrapping and indentation policies.
-public void test777() throws Exception {
+public void test777() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -12668,7 +12668,7 @@ public void test777() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349314
 // To check behavior with different line wrapping and indentation policies.
-public void test778() throws Exception {
+public void test778() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -12717,7 +12717,7 @@ public void test778() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349314
 // To check behavior with different line wrapping and indentation policies.
-public void test779() throws Exception {
+public void test779() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -12766,7 +12766,7 @@ public void test779() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349314
 // To check behavior with different line wrapping and indentation policies.
-public void test780() throws Exception {
+public void test780() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -12815,7 +12815,7 @@ public void test780() throws Exception {
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=349314
 //To check behavior with different line wrapping and indentation policies.
-public void test781() throws Exception {
+public void test781() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -12864,7 +12864,7 @@ public void test781() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=350895
 // To check behavior with default settings and wrap before '|' operator disabled.
-public void test782() throws Exception {
+public void test782() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
 	this.formatterOptions.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_7);
@@ -12927,7 +12927,7 @@ public void test783() throws Exception {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=379793
 // To verify that the whitespace options for resources in try statement work correctly
-public void testBug379793() throws Exception {
+public void testBug379793() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_LINE_SPLIT, "80");
 	this.formatterOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_7);
@@ -12986,7 +12986,7 @@ public void testBug379793() throws Exception {
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=405038
 //To verify that the whitespace options for resources in try statement work correctly
-public void testBug405038() throws Exception {
+public void testBug405038() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_SPACE_BEFORE_ADDITIVE_OPERATOR, JavaCore.DO_NOT_INSERT);
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_SPACE_AFTER_ADDITIVE_OPERATOR, JavaCore.DO_NOT_INSERT);
@@ -13006,7 +13006,7 @@ public void testBug405038() throws Exception {
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=405038
 //To verify that the whitespace options for resources in try statement work correctly
-public void testBug405038_2() throws Exception {
+public void testBug405038_2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_SPACE_BEFORE_ADDITIVE_OPERATOR, JavaCore.DO_NOT_INSERT);
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_SPACE_AFTER_ADDITIVE_OPERATOR, JavaCore.DO_NOT_INSERT);
@@ -13026,7 +13026,7 @@ public void testBug405038_2() throws Exception {
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=405038
 //To verify that the whitespace options for resources in try statement work correctly
-public void testBug405038_3() throws Exception {
+public void testBug405038_3() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_SPACE_BEFORE_ADDITIVE_OPERATOR, JavaCore.DO_NOT_INSERT);
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_SPACE_AFTER_ADDITIVE_OPERATOR, JavaCore.DO_NOT_INSERT);
@@ -13046,7 +13046,7 @@ public void testBug405038_3() throws Exception {
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=405038
 //To verify that the whitespace options for resources in try statement work correctly
-public void testBug405038_4() throws Exception {
+public void testBug405038_4() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_SPACE_BEFORE_ADDITIVE_OPERATOR, JavaCore.DO_NOT_INSERT);
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_SPACE_AFTER_ADDITIVE_OPERATOR, JavaCore.DO_NOT_INSERT);
@@ -13066,7 +13066,7 @@ public void testBug405038_4() throws Exception {
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=405038
 //To verify that the whitespace options for resources in try statement work correctly
-public void testBug405038_5() throws Exception {
+public void testBug405038_5() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_SPACE_BEFORE_ADDITIVE_OPERATOR, JavaCore.DO_NOT_INSERT);
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_SPACE_AFTER_ADDITIVE_OPERATOR, JavaCore.DO_NOT_INSERT);
@@ -13086,7 +13086,7 @@ public void testBug405038_5() throws Exception {
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=432593
-public void testBug432593() throws IOException {
+public void testBug432593() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit sourceUnit;
 	try {
 		sourceUnit = getCompilationUnit("Formatter" , "", "test432593", getIn("A.java"));
@@ -13105,7 +13105,7 @@ public void testBug432593() throws IOException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=467229
-public void testBug467229() throws IOException {
+public void testBug467229() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final Map<String, String> optionsMap = JavaCore.getOptions();
 	int tabSize = 3;
 	int indentSize = 5;
@@ -13113,8 +13113,8 @@ public void testBug467229() throws IOException {
 			DefaultCodeFormatterConstants.FORMATTER_TAB_SIZE,
 			DefaultCodeFormatterConstants.FORMATTER_INDENTATION_SIZE };
 
-	optionsMap.put(DefaultCodeFormatterConstants.FORMATTER_TAB_SIZE, tabSize + "");
-	optionsMap.put(DefaultCodeFormatterConstants.FORMATTER_INDENTATION_SIZE, indentSize + "");
+	optionsMap.put(DefaultCodeFormatterConstants.FORMATTER_TAB_SIZE, tabSize + ""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	optionsMap.put(DefaultCodeFormatterConstants.FORMATTER_INDENTATION_SIZE, indentSize + ""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/* compare with org.eclipse.jdt.internal.ui.preferences.formatter.IndentationTabPage.updateTabPreferences() */
 	optionsMap.put(DefaultCodeFormatterConstants.FORMATTER_TAB_CHAR, DefaultCodeFormatterConstants.MIXED);
@@ -13122,7 +13122,7 @@ public void testBug467229() throws IOException {
 	assertEquals(tabSize, options.tab_size);
 	assertEquals(indentSize, options.indentation_size);
 	Map<String, String> optionsMap2 = options.getMap();
-	for (String key : keysToCheck) {
+	for (String key : keysToCheck) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		assertEquals(key, optionsMap.get(key), optionsMap2.get(key));
 	}
 
@@ -13131,7 +13131,7 @@ public void testBug467229() throws IOException {
 	assertEquals(indentSize, options.tab_size);
 	assertEquals(tabSize, options.indentation_size);
 	optionsMap2 = options.getMap();
-	for (String key : keysToCheck) {
+	for (String key : keysToCheck) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		assertEquals(key, optionsMap.get(key), optionsMap2.get(key));
 	}
 
@@ -13168,7 +13168,7 @@ public void testBug477476b() {
 /**
  * https://bugs.eclipse.org/485495 - [Formatter] does not insert space before semicolon at the end of the statement
  */
-public void testBug485495() {
+public void testBug485495() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.insert_space_before_semicolon = true;
 	String source =
 		"package test ;\n" +
@@ -13220,7 +13220,7 @@ public void testBug485495() {
 /**
  * https://bugs.eclipse.org/479109 - [formatter] Add option to group aligned fields with blank lines
  */
-public void testBug479109a() {
+public void testBug479109a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.align_type_members_on_columns = true;
 	this.formatterPrefs.align_fields_grouping_blank_lines = 1;
 	String source =
@@ -13245,7 +13245,7 @@ public void testBug479109a() {
 /**
  * https://bugs.eclipse.org/479109 - [formatter] Add option to group aligned fields with blank lines
  */
-public void testBug479109b() {
+public void testBug479109b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.align_type_members_on_columns = true;
 	this.formatterPrefs.align_fields_grouping_blank_lines = 2;
 	String source =
@@ -13270,7 +13270,7 @@ public void testBug479109b() {
 /**
  * https://bugs.eclipse.org/479109 - [formatter] Add option to group aligned fields with blank lines
  */
-public void testBug479109c() {
+public void testBug479109c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.align_type_members_on_columns = true;
 	this.formatterPrefs.align_fields_grouping_blank_lines = 2;
 	this.formatterPrefs.number_of_empty_lines_to_preserve = 2;
@@ -13297,7 +13297,7 @@ public void testBug479109c() {
 /**
  * https://bugs.eclipse.org/479109 - [formatter] Add option to group aligned fields with blank lines
  */
-public void testBug479109d() {
+public void testBug479109d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setFormatLineCommentOnFirstColumn();
 	this.formatterPrefs.align_type_members_on_columns = true;
 	this.formatterPrefs.align_fields_grouping_blank_lines = 2;
@@ -13412,7 +13412,7 @@ public void testBug118264a() {
 /**
  * https://bugs.eclipse.org/118264 - [formatter] Enable wrapping of for loop setup
  */
-public void testBug118264b() {
+public void testBug118264b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_expressions_in_for_loop_header = Alignment.M_COMPACT_SPLIT;
 	this.formatterPrefs.page_width = 50;
 	String source =
@@ -13437,7 +13437,7 @@ public void testBug118264b() {
 /**
  * https://bugs.eclipse.org/118264 - [formatter] Enable wrapping of for loop setup
  */
-public void testBug118264c() {
+public void testBug118264c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_expressions_in_for_loop_header = Alignment.M_ONE_PER_LINE_SPLIT + Alignment.M_FORCE;
 	String source =
 		"class Example {\n" +
@@ -13463,7 +13463,7 @@ public void testBug118264c() {
 /**
  * https://bugs.eclipse.org/118264 - [formatter] Enable wrapping of for loop setup
  */
-public void testBug118264d() {
+public void testBug118264d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_expressions_in_for_loop_header = Alignment.M_ONE_PER_LINE_SPLIT + Alignment.M_FORCE;
 	String source =
 		"class Example {\n" +
@@ -13487,7 +13487,7 @@ public void testBug118264d() {
 /**
  * https://bugs.eclipse.org/118264 - [formatter] Enable wrapping of for loop setup
  */
-public void testBug118264e() {
+public void testBug118264e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_expressions_in_for_loop_header = Alignment.M_ONE_PER_LINE_SPLIT + Alignment.M_FORCE;
 	String source =
 		"class Example {\n" +
@@ -13526,7 +13526,7 @@ public void testBug118264f() {
 /**
  * https://bugs.eclipse.org/465910 - [formatter] add a 'wrap before operator' option for conditional expressions
  */
-public void testBug465910() {
+public void testBug465910() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_conditional_expression = Alignment.M_ONE_PER_LINE_SPLIT + Alignment.M_FORCE;
 	String source =
 		"class Example {\n" +
@@ -13557,7 +13557,7 @@ public void testBug465910() {
 /**
  * https://bugs.eclipse.org/325631 - [formatter] Code formatter Expressions > Assignments lacks "Wrap before operator" option
  */
-public void testBug325631() {
+public void testBug325631() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_assignment = Alignment.M_ONE_PER_LINE_SPLIT + Alignment.M_FORCE;
 	String source =
 		"class Example {\n" +
@@ -13763,7 +13763,7 @@ public void testBug370540q() throws JavaModelException {
 /**
  * https://bugs.eclipse.org/370540 - [Formatter] New settings for parentheses positions
  */
-public void testBug370540r() throws JavaModelException {
+public void testBug370540r() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.parenthesis_positions_in_method_invocation = DefaultCodeFormatterConstants.SEPARATE_LINES;
 	String source =
 		"public class Test extends Exception {\n" +
@@ -13883,7 +13883,7 @@ public void testBug384959g() throws JavaModelException {
 /**
  * https://bugs.eclipse.org/488642 - [formatter] IOOBE with block comment inside anonymous class
  */
-public void testBug488642a() {
+public void testBug488642a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tabs_only_for_leading_indentations = true;
 	String source =
 		"public class Test {\n" +
@@ -13906,7 +13906,7 @@ public void testBug488642a() {
 /**
  * https://bugs.eclipse.org/488642 - [formatter] IOOBE with block comment inside anonymous class
  */
-public void testBug488642b() {
+public void testBug488642b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tabs_only_for_leading_indentations = true;
 	this.formatterPrefs.align_type_members_on_columns = true;
 	String source =
@@ -14513,7 +14513,7 @@ public void testBug205973g() throws JavaModelException {
 /**
  * https://bugs.eclipse.org/205973 - [formatter] Allow to keep simple methods on one line (for exemple simple getter or setter)
  */
-public void testBug205973h() throws JavaModelException {
+public void testBug205973h() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setComplianceLevel(CompilerOptions.VERSION_1_8);
 	this.formatterPrefs.keep_annotation_declaration_on_one_line = DefaultCodeFormatterConstants.ONE_LINE_PRESERVE;
 	this.formatterPrefs.keep_anonymous_type_declaration_on_one_line = DefaultCodeFormatterConstants.ONE_LINE_PRESERVE;
@@ -14536,7 +14536,7 @@ public void testBug205973h() throws JavaModelException {
 /**
  * https://bugs.eclipse.org/205973 - [formatter] Allow to keep simple methods on one line (for exemple simple getter or setter)
  */
-public void testBug205973i() throws JavaModelException {
+public void testBug205973i() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setComplianceLevel(CompilerOptions.VERSION_1_8);
 	this.formatterPrefs.page_width = 50;
 	this.formatterPrefs.use_tabs_only_for_leading_indentations = true;
@@ -14568,7 +14568,7 @@ public void testBug205973j() throws JavaModelException {
 /**
  * https://bugs.eclipse.org/541133 - [formatter] javadoc: no indent of @return description
  */
-public void testBug541133a() {
+public void testBug541133a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.comment_align_tags_descriptions_grouped = false;
 	this.formatterPrefs.comment_indent_parameter_description = false;
 	this.formatterPrefs.comment_indent_tag_description = true;
@@ -14596,7 +14596,7 @@ public void testBug541133a() {
 /**
  * https://bugs.eclipse.org/541133 - [formatter] javadoc: no indent of @return description
  */
-public void testBug541133b() {
+public void testBug541133b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.comment_indent_root_tags = true;
 	this.formatterPrefs.comment_indent_parameter_description = false;
 	this.formatterPrefs.comment_indent_tag_description = true;
@@ -14621,7 +14621,7 @@ public void testBug541133b() {
 /**
  * https://bugs.eclipse.org/541133 - [formatter] javadoc: no indent of @return description
  */
-public void testBug541133c() {
+public void testBug541133c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.comment_indent_tag_description = true;
 	String source =
 		"/**\n" +
@@ -14644,7 +14644,7 @@ public void testBug541133c() {
 /**
  * https://bugs.eclipse.org/541133 - [formatter] javadoc: no indent of @return description
  */
-public void testBug541133d() {
+public void testBug541133d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"/**\n" +
 		" * @return something <pre>\n" +
@@ -15127,7 +15127,7 @@ public void testBug522089b() throws JavaModelException {
 /**
  * https://bugs.eclipse.org/549774 - [formatter] Change semantics of Blank lines before member declarations: 'before' -> 'between'
  */
-public void testBug549774() throws JavaModelException {
+public void testBug549774() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.blank_lines_before_new_chunk = 1;
 	this.formatterPrefs.blank_lines_before_field = 2;
 	this.formatterPrefs.blank_lines_before_method = 3;
@@ -15407,7 +15407,7 @@ public void testBug549436k() throws JavaModelException {
 /**
  * https://bugs.eclipse.org/54627 - [formatter] Blank lines between Javadoc tags
  */
-public void testBug54627a() throws JavaModelException {
+public void testBug54627a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.comment_insert_empty_line_between_different_tags = true;
 	String input =
 		"public class Test {\n" +
@@ -15458,7 +15458,7 @@ public void testBug54627a() throws JavaModelException {
 /**
  * https://bugs.eclipse.org/54627 - [formatter] Blank lines between Javadoc tags
  */
-public void testBug54627b() throws JavaModelException {
+public void testBug54627b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.comment_insert_empty_line_between_different_tags = true;
 	String input =
 		"public class Test {\n" +
@@ -15654,7 +15654,7 @@ public void testBug553155p() throws JavaModelException {
  *
  * Check that assertions are not formatted without enabling the option.
  */
-public void testBug118641a() throws JavaModelException {
+public void testBug118641a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_assertion_message = Alignment.M_NO_ALIGNMENT;
 
 	String input =
@@ -15681,7 +15681,7 @@ public void testBug118641a() throws JavaModelException {
  *
  * Check that an assertion is formatted when it exceeds the page width.
  */
-public void testBug118641b() throws JavaModelException {
+public void testBug118641b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.wrap_before_assertion_message_operator = true;
 
 	String input =
@@ -15708,7 +15708,7 @@ public void testBug118641b() throws JavaModelException {
  *
  * Check that an assertion can be broken after the colon separator.
  */
-public void testBug118641c() throws JavaModelException {
+public void testBug118641c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.wrap_before_assertion_message_operator = false;
 
 	String input =
@@ -15734,7 +15734,7 @@ public void testBug118641c() throws JavaModelException {
  *
  * Check that assertion messages are formatted when the assertion expression exceeds the page width.
  */
-public void testBug118641d() throws JavaModelException {
+public void testBug118641d() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.page_width = 65;
 
 	String input =
@@ -15761,7 +15761,7 @@ public void testBug118641d() throws JavaModelException {
  *
  * Check that an assertion message is wrapped when forced to do so.
  */
-public void testBug118641e() throws JavaModelException {
+public void testBug118641e() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_assertion_message = Alignment.M_COMPACT_SPLIT | Alignment.M_FORCE;
 
 	String input =
@@ -15906,7 +15906,7 @@ public void testBug222083() {
 /**
  * Bug 567016 - [formatter] off/on tags: enable by default
  */
-public void testBug567016() {
+public void testBug567016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = false;
 	String source =
 		"public class X01 {\n" +
@@ -15939,7 +15939,7 @@ public void testBug567016() {
 /**
  * https://bugs.eclipse.org/573949 - [17][switch pattern][formatter] JEP 406 changes
  */
-public void testBug573949() {
+public void testBug573949() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setComplianceLevel(CompilerOptions.VERSION_21);
 	this.formatterOptions.put(JavaCore.COMPILER_PB_ENABLE_PREVIEW_FEATURES, JavaCore.ENABLED);
 	String source =
@@ -15981,7 +15981,7 @@ public void testBug573949() {
 		);
 }
 
-public void testBug573949_0() {
+public void testBug573949_0() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setComplianceLevel(CompilerOptions.VERSION_21);
 	this.formatterOptions.put(JavaCore.COMPILER_PB_ENABLE_PREVIEW_FEATURES, JavaCore.ENABLED);
 	String source =
@@ -16037,7 +16037,7 @@ public void testBug576373() {
 /**
  * https://bugs.eclipse.org/577117 - [formatter] Wrong indentation for method invocation on multi-line expression
  */
-public void testBug577117a() {
+public void testBug577117a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.page_width = 55;
 	this.formatterPrefs.align_selector_in_method_invocation_on_expression_first_line = false;
 	String source =
@@ -16061,7 +16061,7 @@ public void testBug577117a() {
 /**
  * https://bugs.eclipse.org/577117 - [formatter] Wrong indentation for method invocation on multi-line expression
  */
-public void testBug577117b() {
+public void testBug577117b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.page_width = 53;
 	String source =
 		"class Example {\n" +
@@ -16220,7 +16220,7 @@ public void testIssue264a() {
 /**
  * https://github.com/eclipse-jdt/eclipse.jdt.core/issues/264 - [19] Formatter support for JEP 405: Record Patterns
  */
-public void testIssue264b() {
+public void testIssue264b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setComplianceLevel(CompilerOptions.VERSION_21);
 	this.formatterOptions.put(JavaCore.COMPILER_PB_ENABLE_PREVIEW_FEATURES, JavaCore.ENABLED);
 	this.formatterPrefs.insert_space_before_comma_in_record_components = false;
@@ -16261,7 +16261,7 @@ public void testBug564052() {
 /**
  * https://github.com/eclipse-jdt/eclipse.jdt/issues/59 - Formatter support for guard expressions
  */
-public void testGH59() {
+public void testGH59() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setComplianceLevel(CompilerOptions.VERSION_21);
 
 	String source =
@@ -16301,7 +16301,7 @@ public void testGH59() {
 /**
  * https://github.com/eclipse-jdt/eclipse.jdt/pull/1817 - [formatter] Align arrows on column in switch statements/expressions
  */
-public void testGH1817a() {
+public void testGH1817a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setComplianceLevel(CompilerOptions.VERSION_14);
 	this.formatterPrefs.align_arrows_in_switch_on_columns = true;
 	String source =
@@ -16336,7 +16336,7 @@ public void testGH1817a() {
 /**
  * https://github.com/eclipse-jdt/eclipse.jdt/pull/1817 - [formatter] Align arrows on column in switch statements/expressions
  */
-public void testGH1817b() {
+public void testGH1817b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setComplianceLevel(CompilerOptions.VERSION_14);
 	this.formatterPrefs.align_arrows_in_switch_on_columns = true;
 	this.formatterPrefs.align_fields_grouping_blank_lines = 1;
@@ -16399,7 +16399,7 @@ public void testGH1473c() throws JavaModelException {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3070
 // [Formatter] leading space added to conditional statements following an unnamed variable
-public void testIssue3070() {
+public void testIssue3070() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setComplianceLevel(CompilerOptions.VERSION_23);
 	String source =
 		"""
@@ -16432,7 +16432,7 @@ public void testIssue3070() {
 		}
 		""");
 }
-public void testIssue3070_2() {
+public void testIssue3070_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setComplianceLevel(CompilerOptions.VERSION_23);
 	String source =
 		"""
@@ -16467,7 +16467,7 @@ public void testIssue3070_2() {
 }
 //https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2977
 //[23] Formatter Support for Implicit classes - investigate
-public void testIssue2977() {
+public void testIssue2977() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setComplianceLevel(CompilerOptions.VERSION_23);
 	this.formatterOptions.put(JavaCore.COMPILER_PB_ENABLE_PREVIEW_FEATURES, JavaCore.ENABLED);
 	String source =
@@ -16507,7 +16507,7 @@ public void testIssue2977() {
 				""";
 		formatSource(input, expected);
 	}
-	public void testRecordWithOpeningParanthesisInParamWithSuperInterfaces() throws JavaModelException {
+	public void testRecordWithOpeningParanthesisInParamWithSuperInterfaces() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_16);
 		this.formatterPrefs.insert_space_before_opening_brace_in_record_declaration = true;
 		String input = """
@@ -16570,7 +16570,7 @@ public void testIssue2977() {
 		formatSource(input, expected);
 	}
 
-	public void testCustomAnnotationEnumConstantSpacing() {
+	public void testCustomAnnotationEnumConstantSpacing() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.formatterPrefs.insert_space_after_opening_paren_in_enum_constant = true;
 		this.formatterPrefs.insert_space_before_closing_paren_in_enum_constant = true;
 

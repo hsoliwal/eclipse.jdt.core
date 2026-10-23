@@ -36,7 +36,7 @@ import org.eclipse.jdt.core.IJavaProject;
 public class APITests extends APTTestBase {
 
 	private static class LogListener implements ILogListener {
-		private final List<IStatus> _messages = new ArrayList<>();
+		private final List<IStatus> _messages = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		public void logging(IStatus status, String plugin) {
 			_messages.add(status);
@@ -76,7 +76,7 @@ public class APITests extends APTTestBase {
 		_logListener = null;
 	}
 
-	public void testAptUtil() throws Exception {
+	public void testAptUtil() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject jproj = env.getJavaProject( getProjectName() );
 
 		// Check getting a known annotation
@@ -86,7 +86,7 @@ public class APITests extends APTTestBase {
 
 		// Check getting an annotation with a partial wildcard ("org.eclipse.jdt.apt.tests.*")
 		factory =
-			AptUtil.getFactoryForAnnotation(HelloWorldAnnotation.class.getName() + "qwerty", jproj); //$NON-NLS-1$
+			AptUtil.getFactoryForAnnotation(HelloWorldAnnotation.class.getName() + "qwerty", jproj); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		assertEquals(factory.getClass(), HelloWorldWildcardAnnotationProcessorFactory.class);
 
@@ -116,7 +116,7 @@ public class APITests extends APTTestBase {
 
 	}
 
-	public void testMessagerAPI() throws Exception {
+	public void testMessagerAPI() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject project = env.getProject( getProjectName() );
 		IPath srcRoot = getSourcePath();
 		IPath code = env.addClass(srcRoot, MessagerCodeExample.CODE_PACKAGE, MessagerCodeExample.CODE_CLASS_NAME, MessagerCodeExample.CODE1);
@@ -175,8 +175,8 @@ public class APITests extends APTTestBase {
 	 */
 	private void checkMessagerAnnotationLogEntry(String targetMsg, int start, int end) {
 		int count = 0;
-		final String offsetMsg = "starting offset=" + start + "; ending offset=" + end;
-		for (IStatus status : _logListener.getList()) {
+		final String offsetMsg = "starting offset=" + start + "; ending offset=" + end; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		for (IStatus status : _logListener.getList()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String logMessage = status.getMessage();
 			if (logMessage.contains(targetMsg) && logMessage.contains(offsetMsg)) {
 				++count;

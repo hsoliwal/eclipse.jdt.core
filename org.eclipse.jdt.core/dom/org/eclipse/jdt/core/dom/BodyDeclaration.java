@@ -195,7 +195,7 @@ public abstract class BodyDeclaration extends ASTNode {
 	 * @return the bit-wise "or" of <code>Modifier</code> constants
 	 * @see Modifier
 	 */
-	public int getModifiers() {
+	public int getModifiers() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// more efficient than checking getAST().API_LEVEL
 		if (this.modifiers == null) {
 			// JLS2 behavior - bona fide property
@@ -205,7 +205,7 @@ public abstract class BodyDeclaration extends ASTNode {
 			// performance could be improved by caching computed flags
 			// but this would require tracking changes to this.modifiers
 			int computedmodifierFlags = Modifier.NONE;
-			for (Object x : modifiers()) {
+			for (Object x : modifiers()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (x instanceof Modifier) {
 					computedmodifierFlags |= ((Modifier) x).getKeyword().toFlagValue();
 				}

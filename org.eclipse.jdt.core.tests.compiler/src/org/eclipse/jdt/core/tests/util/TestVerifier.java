@@ -74,7 +74,7 @@ static class ClassPath {
 	}
 
 }
-private boolean checkBuffers(String outputString, String errorString,
+private boolean checkBuffers(String outputString, String errorString, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String sourceFileName, String expectedOutputString, String expectedErrorStringStart) {
 	boolean didMatchExpectation = true;
 	String platformIndependantString;
@@ -84,7 +84,7 @@ private boolean checkBuffers(String outputString, String errorString,
 		if (!Util.convertToIndependantLineDelimiter(expectedOutputString).equals(platformIndependantString)) {
 			System.out.println(Util.displayString(platformIndependantString, 2));
 			this.failureReason =
-				"Unexpected output running resulting class file for "
+				"Unexpected output running resulting class file for " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ sourceFileName
 					+ ":\n"
 					+ "--[START]--\n"
@@ -108,7 +108,7 @@ private boolean checkBuffers(String outputString, String errorString,
 			 */
 			System.out.println(Util.displayString(platformIndependantString, 2));
 			this.failureReason =
-				"Unexpected error running resulting class file for "
+				"Unexpected error running resulting class file for " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ sourceFileName
 					+ ":\n"
 					+ "--[START]--\n"
@@ -120,7 +120,7 @@ private boolean checkBuffers(String outputString, String errorString,
 		platformIndependantString = Util.convertToIndependantLineDelimiter(trimmedErrorString);
 		System.out.println(Util.displayString(platformIndependantString, 2));
 		this.failureReason =
-			"Unexpected error running resulting class file for "
+			"Unexpected error running resulting class file for " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ sourceFileName
 				+ ":\n"
 				+ "--[START]--\n"
@@ -138,37 +138,37 @@ private void compileVerifyTests(String verifierDir) {
 	String packageName = fullyQualifiedName.substring(0, lastDot);
 	String simpleName = fullyQualifiedName.substring(lastDot + 1);
 
-	String dirName = verifierDir.replace('\\', '/') + "/" + packageName.replace('.', '/');
+	String dirName = verifierDir.replace('\\', '/') + "/" + packageName.replace('.', '/'); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	File dir = new File(dirName.replace('/', File.separatorChar));
 	if (!dir.exists() && !dir.mkdirs()) {
-		System.out.println("Could not create " + dir);
+		System.out.println("Could not create " + dir); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		return;
 	}
-	String fileName = dir + File.separator + simpleName + ".java";
+	String fileName = dir + File.separator + simpleName + ".java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	Util.writeToFile(getVerifyTestsCode(), fileName);
-	BatchCompiler.compile("\"" + fileName + "\" -d \"" + verifierDir + "\" -warn:-resource -classpath \"" + Util.getJavaClassLibsAsString() + "\"", new PrintWriter(System.out), new PrintWriter(System.err), null/*progress*/);
+	BatchCompiler.compile("\"" + fileName + "\" -d \"" + verifierDir + "\" -warn:-resource -classpath \"" + Util.getJavaClassLibsAsString() + "\"", new PrintWriter(System.out), new PrintWriter(System.err), null/*progress*/); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 public void execute(String className, String[] classpaths) {
-	setOutputBuffer(new StringBuilder());
-	setErrorBuffer(new StringBuilder());
+	setOutputBuffer(new StringBuilder()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	setErrorBuffer(new StringBuilder()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
 	launchAndRun(className, classpaths, null, null);
 }
 public void execute(String className, String[] classpaths, String[] programArguments, String[] vmArguments) {
-	setOutputBuffer(new StringBuilder());
-	setErrorBuffer(new StringBuilder());
+	setOutputBuffer(new StringBuilder()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	setErrorBuffer(new StringBuilder()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
 	launchAndRun(className, classpaths, programArguments, vmArguments);
 }
 
 private static class VmCleaner implements Runnable{
-	private final Map<ClassPath, LocalVirtualMachine> vmByClassPath = new HashMap<>();
-	private final Map<ClassPath, Socket> socketByClassPath = new HashMap<>();
+	private final Map<ClassPath, LocalVirtualMachine> vmByClassPath = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	private final Map<ClassPath, Socket> socketByClassPath = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void run() {
 		// Close the socket first so that the OS resource has a chance to be freed.
-		for (Socket socket : this.socketByClassPath.values()) {
+		for (Socket socket : this.socketByClassPath.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				socket.close();
 			} catch (IOException e) {
@@ -178,10 +178,10 @@ private static class VmCleaner implements Runnable{
 		this.socketByClassPath.clear();
 		// Wait for the vm to shut down by itself for 2 seconds. If not succesfull,
 		// force the shut down.
-		for (LocalVirtualMachine vm : this.vmByClassPath.values()) {
+		for (LocalVirtualMachine vm : this.vmByClassPath.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				long n0 = System.nanoTime();
-				while (vm.isRunning() && (System.nanoTime() - n0 < 2_000_000_000L)) {// 2 sec
+				while (vm.isRunning() && (System.nanoTime() - n0 < 2_000_000_000L)) {// 2 sec //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					try {
 						Thread.sleep(1);
 					} catch (InterruptedException e) {
@@ -384,20 +384,20 @@ private static final Object verifyTestCodeLock = new Object();
  *
  * @return {@link VerifyTests} source code
  */
-String getVerifyTestsCode() {
+String getVerifyTestsCode() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	synchronized (verifyTestCodeLock) {
 		if (verifyTestCode == null) {
 			if (READ_VERIFY_TEST_FROM_FILE) {
 				String sourceFile = "src/org/eclipse/jdt/core/tests/util/VerifyTests.java";
 				if (!new File(sourceFile).exists()) {
-					sourceFile = PROJECT_BASE_DIR + "/org.eclipse.jdt.core.tests.compiler/" + sourceFile;
+					sourceFile = PROJECT_BASE_DIR + "/org.eclipse.jdt.core.tests.compiler/" + sourceFile; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				try {
 					verifyTestCode=Files.readString(Path.of(sourceFile));
 				}
 				catch (IOException e) {
 					System.out.println("WARNING: Cannot read & filter VerifyTests source code from file, using default value");
-					System.out.println("	- exception: " + e);
+					System.out.println("	- exception: " + e); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}
@@ -428,9 +428,9 @@ return Arrays.stream(classPath)
 	.toArray(String[]::new);
 }
 
-private void launchAndRun(String className, String[] classpaths, String[] programArguments, String[] vmArguments) {
+private void launchAndRun(String className, String[] classpaths, String[] programArguments, String[] vmArguments) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// we won't reuse the vm, shut the existing one if running
-	for (LocalVirtualMachine vm : this.managedVMs.vmByClassPath.values()) {
+	for (LocalVirtualMachine vm : this.managedVMs.vmByClassPath.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		try {
 			vm.shutDown();
 		} catch (TargetException e) {
@@ -471,13 +471,13 @@ private void launchAndRun(String className, String[] classpaths, String[] progra
 	}
 }
 
-private static void transferTo(InputStream stream, Supplier<StringBuilder> b) {
+private static void transferTo(InputStream stream, Supplier<StringBuilder> b) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		int c = stream.read();
-		while (c != -1) {
+		while (c != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			StringBuilder buffer = b.get();
 			synchronized (buffer) {
-				buffer.append((char) c);
+				buffer.append((char) c); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			c = stream.read();
 		}
@@ -491,7 +491,7 @@ private static void transferTo(InputStream stream, Supplier<StringBuilder> b) {
 	}
 }
 
-private void launchVerifyTestsIfNeeded(String[] classpaths, String[] vmArguments) {
+private void launchVerifyTestsIfNeeded(String[] classpaths, String[] vmArguments) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// determine if we can reuse the vm
 	LocalVirtualMachine vm = this.managedVMs.vmByClassPath.get(new ClassPath(classpaths));
 	if (vm != null && vm.isRunning() && this.classpathCache != null) {
@@ -514,7 +514,7 @@ private void launchVerifyTestsIfNeeded(String[] classpaths, String[] vmArguments
 	int length = classpaths.length;
 	String[] cp = new String[length + 1];
 	System.arraycopy(classpaths, 0, cp, 0, length);
-	String verifierDir = Util.getOutputDirectory() + File.separator + "verifier";
+	String verifierDir = Util.getOutputDirectory() + File.separator + "verifier"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	compileVerifyTests(verifierDir);
 	cp[length] = verifierDir;
 	launcher.setClassPath(getMinimalClassPath(cp));
@@ -541,7 +541,7 @@ private void launchVerifyTestsIfNeeded(String[] classpaths, String[] vmArguments
 		// connect to the vm
 		boolean isVMRunning = false;
 		Socket socket = null;
-		do {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				socket=server.accept();
 				this.managedVMs.socketByClassPath.put(new ClassPath(classpaths), socket);
@@ -567,7 +567,7 @@ private void launchVerifyTestsIfNeeded(String[] classpaths, String[] vmArguments
  * Loads and runs the given class.
  * Return whether no exception was thrown while running the class.
  */
-private boolean loadAndRun(String className, String[] classPath) {
+private boolean loadAndRun(String className, String[] classPath) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Socket socket = this.managedVMs.socketByClassPath.get(new ClassPath(classPath));
 	if (socket != null) {
 		try {
@@ -576,7 +576,7 @@ private boolean loadAndRun(String className, String[] classPath) {
 				if (classPath == null)
 					classPath = new String[0];
 				out.writeInt(classPath.length);
-				for (String classpath : classPath) {
+				for (String classpath : classPath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					out.writeUTF(classpath);
 				}
 			DataInputStream in = new DataInputStream(socket.getInputStream());
@@ -615,8 +615,8 @@ public boolean verifyClassFiles(String sourceFilePath, String className, String 
 }
 public boolean verifyClassFiles(String sourceFilePath, String className, String expectedOutputString,
 		String expectedErrorStringStart, String[] classpaths, String[] programArguments, String[] vmArguments) {
-	setOutputBuffer(new StringBuilder());
-	setErrorBuffer(new StringBuilder());
+	setOutputBuffer(new StringBuilder()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	setErrorBuffer(new StringBuilder()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	if (this.reuseVM && programArguments == null) {
 		launchVerifyTestsIfNeeded(classpaths, vmArguments);
 		loadAndRun(className, classpaths);
@@ -631,12 +631,12 @@ public boolean verifyClassFiles(String sourceFilePath, String className, String 
 /**
  * Wait until there is nothing more to read from the stdout or sterr.
  */
-private void waitForFullBuffers() {
+private void waitForFullBuffers() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String endString = VerifyTests.class.getName();
 	long n0 = System.nanoTime();
 	int errorEndStringStart;
 	int outputEndStringStart;
-	do {
+	do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		errorEndStringStart = getExecutionError().indexOf(endString);
 		outputEndStringStart = getExecutionOutput().indexOf(endString);
 		if (errorEndStringStart != -1 && outputEndStringStart != -1) {
@@ -648,7 +648,7 @@ private void waitForFullBuffers() {
 		}
 		if (System.nanoTime() - n0 > 5_000_000_000L) {// 5 sec
 			throw new RuntimeException(
-					"Timeout after " + (System.nanoTime() - n0) / 1_000_000L + "ms");
+					"Timeout after " + (System.nanoTime() - n0) / 1_000_000L + "ms"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	} while (true);
 	StringBuilder eb = getErrorBuffer();

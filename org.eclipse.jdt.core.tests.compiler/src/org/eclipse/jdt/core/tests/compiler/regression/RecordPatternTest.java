@@ -72,7 +72,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	protected INameEnvironment getNameEnvironment(final String[] testFiles, String[] classPaths, Map<String, String> options) {
 		this.classpaths = classPaths == null ? getDefaultClassPaths() : classPaths;
 		INameEnvironment[] classLibs = getClassLibs(false, options);
-		for (INameEnvironment nameEnvironment : classLibs) {
+		for (INameEnvironment nameEnvironment : classLibs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			((FileSystem) nameEnvironment).scanForModules(createParser());
 		}
 		return new InMemoryNameEnvironment9(testFiles, this.moduleMap, classLibs);
@@ -87,7 +87,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			return;
 		runConformTest(testFiles, expectedOutput, customOptions, new String[] {}, JAVAC_OPTIONS);
 	}
-	protected void runConformTest(
+	protected void runConformTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String[] testFiles,
 			String expectedOutputString,
 			String[] classLibraries,
@@ -132,7 +132,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	/*
 	 * Basic tests that accept a valid record pattern and make the pattern variable available
 	 */
-	public void test001() {
+	public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(false);
 		runConformTest(new String[] {
 				"X.java",
@@ -157,7 +157,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				options);
 	}
 	// Test that pattern variables are allowed for the nested patterns (not just the outermost record pattern)
-	public void test002() {
+	public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"@SuppressWarnings(\"preview\")"
@@ -184,7 +184,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				},
 				"1");
 	}
-	public void test003() {
+	public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"public class X {\n"
@@ -211,7 +211,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"r1 cannot be resolved to a variable\n" +
 				"----------\n");
 	}
-	public void test004() {
+	public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"public class X {\n"
@@ -238,7 +238,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"----------\n");
 	}
 	// Test that non record types are reported in a record pattern
-	public void test005() {
+	public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"public class X {\n"
@@ -262,7 +262,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"----------\n");
 	}
 	// Test that record patterns that don't have same no of patterns as record components are reported
-	public void test006() {
+	public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"public class X {\n"
@@ -285,7 +285,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"Record pattern should match the signature of the record declaration\n" +
 				"----------\n");
 	}
-	public void test007() {
+	public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"public class X {\n"
@@ -314,7 +314,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"----------\n");
 	}
 	// Test that pattern types that don't match record component's types are reported
-	public void test008() {
+	public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"public class X {\n"
@@ -344,7 +344,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	//			ColoredPoint(Point(int x1, int y1), Color c1)) r1 -> {
 	//		yield r1.lowerRight().p().y();
 	//	}
-	public void test009() {
+	public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"public class X {\n"
@@ -375,7 +375,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"----------\n");
 	}
 	// Test that nested pattern variables from record patterns are in scope in the case block
-	public void test10() {
+	public void test10() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"@SuppressWarnings(\"preview\")"
@@ -419,7 +419,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"Returns: 15");
 	}
 	// Test that nested pattern variables from record patterns are in not scope outside the case block
-	public void test11() {
+	public void test11() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"public class X {\n"
@@ -447,7 +447,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"----------\n");
 	}
 	// Test that nested pattern variables from record patterns are in not scope outside the case block
-	public void test12() {
+	public void test12() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 						"public class X {\n"
@@ -475,7 +475,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"----------\n");
 	}
 	// Test that when expressions are supported and pattern variables are available inside when expressions
-	public void test13() {
+	public void test13() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 						"public class X {\n"
@@ -509,7 +509,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"Returns: 1");
 	}
 	// Test that record patterns with 1 record components are accepted
-	public void test14() {
+	public void test14() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"@SuppressWarnings(\"preview\")"
@@ -530,7 +530,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"Returns: 3");
 	}
 	// Test that record patterns with 0 record components are accepted
-	public void test15() {
+	public void test15() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"@SuppressWarnings(\"preview\")"
@@ -558,7 +558,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	}
 	// Should not reach IF or throw CCE.
 	// Should reach ELSE
-	public void test16() {
+	public void test16() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"@SuppressWarnings(\"preview\")"
@@ -584,7 +584,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 						},
 				"ELSE");
 	}
-	public void test17() {
+	public void test17() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"@SuppressWarnings(\"preview\")"
@@ -611,7 +611,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"java.lang.String:abc,10");
 	}
 	// Same as 17(), but base type instead of wrapper
-	public void test18() {
+	public void test18() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"@SuppressWarnings(\"preview\")"
@@ -637,7 +637,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 						},
 				"java.lang.String:abc,10");
 	}
-	public void test19() {
+	public void test19() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 						"public class X {\n"
@@ -667,7 +667,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				+ "-1");
 	}
 	// Test that Object being pattern-checked works in switch-case
-	public void test20() {
+	public void test20() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 						"public class X {\n"
@@ -697,7 +697,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				+ "-1");
 	}
 	// // Test that Object being pattern-checked works in 'instanceof'
-	public void test21() {
+	public void test21() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"@SuppressWarnings(\"preview\")"
@@ -723,7 +723,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"15");
 	}
 	// Nested record pattern with a simple (constant) 'when' clause
-	public void test22() {
+	public void test22() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 					"public class X {\n"
@@ -764,7 +764,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				JavacTestOptions.SKIP); // Javac crashes. Let's skip for no
 	}
 	// Nested record pattern with a method invocation in a 'when' clause
-	public void test23 () {
+	public void test23 () { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 					"@SuppressWarnings(\"preview\")"
@@ -801,7 +801,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	}
 	// Nested record pattern with another switch expression + record pattern in a 'when' clause
 	// Failing now.
-	public void test24() {
+	public void test24() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 					"public class X {\n"
@@ -834,7 +834,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"Returns: 0\n" +
 				"Returns: 5");
 	}
-	public void test24a() {
+	public void test24a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 					"public class X {\n"
@@ -864,9 +864,9 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"IF");
 	}
 	//https://github.com/eclipse-jdt/eclipse.jdt.core/issues/157
-	public void test25() {
+	public void test25() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String currentWorkingDirectoryPath = System.getProperty("user.dir");
-		this.extraLibPath = currentWorkingDirectoryPath + File.separator + "libtest25.jar";
+		this.extraLibPath = currentWorkingDirectoryPath + File.separator + "libtest25.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try {
 		Util.createJar(
 			new String[] {
@@ -912,13 +912,13 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				new String[0],
 				JavacTestOptions.SKIP); // Too complicated to pass extra lib to Javac, let's skip
 		} catch (IOException e) {
-			System.err.println("RecordPatternTest.test25() could not write to current working directory " + currentWorkingDirectoryPath);
+			System.err.println("RecordPatternTest.test25() could not write to current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} finally {
 			new File(this.extraLibPath).delete();
 		}
 	}
 	// Test that pattern variables declared in instanceof can't be used in a switch/case
-	public void test26() {
+	public void test26() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 						"public class X {\n"
@@ -963,7 +963,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	}
 	// Test that pattern variables declared in switch/case can't be used in an instanceof expression part of the 'when' clause
 	// not relevant anymore since named record patterns are not there - 20
-	public void test27() {
+	public void test27() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 						"public class X {\n"
@@ -1004,7 +1004,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"----------\n");
 	}
 	// Test nested record patterns in 'instanceof' within a swith-case with similar record pattern
-	public void test28() {
+	public void test28() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"public class X {\n"
@@ -1030,7 +1030,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			"5");
 	}
 	// Test that a simple type pattern dominates a following record pattern of the same type
-	public void test29() {
+	public void test29() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 						"public class X {\n"
@@ -1053,7 +1053,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"----------\n");
 	}
 	// Test that an identical record pattern dominates another record pattern
-	public void test30() {
+	public void test30() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 						"public class X {\n"
@@ -1076,7 +1076,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"----------\n");
 	}
 	// Test that a type pattern with 'when' does not dominate a record pattern of the same type
-	public void test31() {
+	public void test31() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 						"public class X {\n"
@@ -1098,7 +1098,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			"1");
 	}
 	// Test that a type pattern with 'when' does not dominate a record pattern of the same type
-	public void test31a() {
+	public void test31a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 						"public class X {\n"
@@ -1120,7 +1120,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			"0");
 	}
 	// Test that a record pattern with 'when' does not dominate an identical record pattern
-	public void test32() {
+	public void test32() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 						"public class X {\n"
@@ -1142,7 +1142,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			"1");
 	}
 	// Test that a record pattern with 'when' does not dominate an identical record pattern
-	public void test32a() {
+	public void test32a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"public class X {\n"
@@ -1164,7 +1164,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			"0");
 	}
 	// Test that a parenthesized type pattern dominates a record pattern of the same type
-	public void test33() {
+	public void test33() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 						"public class X {\n"
@@ -1187,7 +1187,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"----------\n");
 	}
 	// Test that a parenthesized record pattern dominates an identical record pattern
-	public void test34() {
+	public void test34() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 						"public class X {\n"
@@ -1210,7 +1210,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"----------\n");
 	}
 	// Test that pattern dominance is reported on identical nested record pattern
-	public void test35() {
+	public void test35() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 						"public class X {\n"
@@ -1243,7 +1243,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"----------\n");
 	}
 	// Test that pattern dominance is reported on identical nested record pattern
-	public void test36() {
+	public void test36() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 						"public class X {\n"
@@ -1276,7 +1276,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"----------\n");
 	}
 	// Test that pattern dominance is reported on identical nested record pattern
-	public void test37() {
+	public void test37() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 						"public class X {\n"
@@ -1304,7 +1304,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"0");
 	}
 	// Test that null is not matched to any pattern
-	public void test38() {
+	public void test38() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 						"public class X {\n"
@@ -1329,7 +1329,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 		},
 		"0");
 	}
-	public void test39() {
+	public void test39() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 						"public class X {\n"
@@ -1354,7 +1354,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 		},
 		"0");
 	}
-	public void test40() {
+	public void test40() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 						"public class X {\n"
@@ -1383,7 +1383,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 		},
 		"NPE with java.lang.NullPointerException");
 	}
-	public void test41() {
+	public void test41() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 						"public class X {\n"
@@ -1412,7 +1412,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 		},
 		"Returns: 0");
 	}
-	public void test42() {
+	public void test42() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 						"public class X {\n"
@@ -1441,7 +1441,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 		},
 		"Returns: 20");
 	}
-	public void test43() {
+	public void test43() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 						"public class X {\n"
@@ -1475,7 +1475,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			"Record component with type int is not compatible with type long\n" +
 			"----------\n");
 	}
-	public void test44() {
+	public void test44() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 						"public class X {\n"
@@ -1509,7 +1509,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			"Record component with type long is not compatible with type int\n" +
 			"----------\n");
 	}
-	public void test45() {
+	public void test45() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 						"public class X {\n"
@@ -1531,7 +1531,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			"An enhanced switch statement should be exhaustive; a default label expected\n" +
 			"----------\n");
 	}
-	public void test46() {
+	public void test46() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"  @SuppressWarnings(\"preview\")\n"
@@ -1557,7 +1557,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			},
 				"Hello");
 	}
-	public void test47() {
+	public void test47() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"  @SuppressWarnings(\"preview\")\n"
@@ -1578,7 +1578,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"Incompatible conditional operand types Box<Object> and Box<String>\n" +
 				"----------\n");
 	}
-	public void test48() {
+	public void test48() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"  @SuppressWarnings(\"preview\")\n"
@@ -1604,7 +1604,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"I\'m a box of java.lang.String\n" +
 				"I\'m a box of java.lang.String");
 	}
-	public void testIssue690_1() {
+	public void testIssue690_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 					"public class X {\n"
@@ -1636,7 +1636,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"A pattern variable with the same name is already defined in the statement\n" +
 				"----------\n");
 	}
-	public void testIssue690_2() {
+	public void testIssue690_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 					"public class X {\n"
@@ -1660,7 +1660,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"----------\n");
 	}
 
-	public void testIssue691_1() {
+	public void testIssue691_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 					"public class X {\n"
@@ -1692,7 +1692,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"Type mismatch: cannot convert from Number to R\n" +
 				"----------\n");
 	}
-	public void testRemoveNamedRecordPatterns_001() {
+	public void testRemoveNamedRecordPatterns_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"public class X {\n" +
@@ -1719,7 +1719,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2004
 	// [Patterns] ECJ generates suspect code for switching over patterns
-	public void testIssue2004() {
+	public void testIssue2004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 				"X.java",
@@ -1741,7 +1741,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				},
 				"true");
 	}
-	public void testRecordPatternTypeInference_001() {
+	public void testRecordPatternTypeInference_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 			"import java.util.function.UnaryOperator;\n" +
@@ -1771,7 +1771,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1796
 	// [Patterns] Record Patterns can cause VerifyError
-	public void testGH1796() {
+	public void testGH1796() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 			"""
@@ -1794,7 +1794,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			},
 			"42");
 	}
-	public void testRecordPatternTypeInference_002() {
+	public void testRecordPatternTypeInference_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 			"import java.util.function.UnaryOperator;\n" +
@@ -1817,7 +1817,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			},
 			"true");
 	}
-	public void testRecordPatternTypeInference_003() {
+	public void testRecordPatternTypeInference_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"  @SuppressWarnings(\"preview\")\n"
@@ -1836,7 +1836,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			},
 				"I\'m a box of java.lang.String");
 	}
-	public void testRecordPatternTypeInference_004() {
+	public void testRecordPatternTypeInference_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 			"import java.util.ArrayList;\n" +
@@ -1859,7 +1859,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			},
 			"true");
 	}
-	public void testRecordPatternTypeInference_005() {
+	public void testRecordPatternTypeInference_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 			"interface I {int a();}\n" +
@@ -1880,7 +1880,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			},
 			"true");
 	}
-	public void testRecordPatternTypeInference_006() {
+	public void testRecordPatternTypeInference_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 			"public class X {\n" +
@@ -1901,7 +1901,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			},
 			"true");
 	}
-	public void testRecordPatternTypeInference_007() {
+	public void testRecordPatternTypeInference_007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 			"interface I {\n" +
@@ -1922,7 +1922,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			},
 			"true");
 	}
-	public void testRecordPatternTypeInference_008() {
+	public void testRecordPatternTypeInference_008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 			"interface I {int a();}\n" +
@@ -1941,7 +1941,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			},
 			"true");
 	}
-	public void testRecordPatternTypeInference_009() {
+	public void testRecordPatternTypeInference_009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"interface I {\n" +
@@ -1967,7 +1967,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"Record component with type capture#2-of ? extends I is not compatible with type String\n" +
 				"----------\n");
 	}
-	public void testRecordPatternTypeInference_010() {
+	public void testRecordPatternTypeInference_010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"interface I {\n" +
@@ -1988,7 +1988,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				},
 				"true");
 	}
-	public void testRecordPatternTypeInference_011() {
+	public void testRecordPatternTypeInference_011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"interface I {\n" +
@@ -2018,7 +2018,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"Incorrect number of arguments for type R<T>; it cannot be parameterized with arguments <>\n" +
 				"----------\n");
 	}
-	public void testIssue900_1() {
+	public void testIssue900_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"class X {\n"
@@ -2057,7 +2057,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	}
 	// The following code is accepted by ECJ, but it should really reject the code
 	// at Box(String s1, String s2)
-	public void _testIssue900_2() {
+	public void _testIssue900_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"class X {\n"
@@ -2075,7 +2075,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				},
 				"");
 	}
-	public void testIssue900_3() {
+	public void testIssue900_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String,String> options = getCompilerOptions(false);
 		String old1 = options.get(CompilerOptions.OPTION_ReportRawTypeReference);
 		String old2 = options.get(CompilerOptions.OPTION_ReportUncheckedTypeOperation);
@@ -2122,7 +2122,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			options.put(CompilerOptions.OPTION_ReportUncheckedTypeOperation, old2);
 		}
 	}
-	public void testRecordPatternMatchException_001() {
+	public void testRecordPatternMatchException_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"public class X  {\n"+
@@ -2152,7 +2152,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				},
 				"99");
 	}
-	public void testRecordPatternMatchException_001_1() {
+	public void testRecordPatternMatchException_001_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"public class X  {\n"+
@@ -2183,7 +2183,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				},
 				"99");
 	}
-	public void testRecordPatternMatchException_002() {
+	public void testRecordPatternMatchException_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"public class X {\n" +
@@ -2209,7 +2209,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				},
 				"0");
 	}
-	public void testRecordPatternMatchException_003() {
+	public void testRecordPatternMatchException_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"record R(int x) {}\n"+
@@ -2237,7 +2237,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				},
 				"100");
 	}
-	public void testRecordPatternMatchException_004() {
+	public void testRecordPatternMatchException_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"record R(int x) {}\n"+
@@ -2265,7 +2265,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				},
 				"100");
 	}
-	public void testRecordPatternMatchException_005() {
+	public void testRecordPatternMatchException_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				" public class X {\n" +
@@ -2296,7 +2296,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"hello    \n" +
 				"done");
 	}
-	public void testRecordPatternMatchException_006() {
+	public void testRecordPatternMatchException_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"public class X {\n" +
@@ -2329,7 +2329,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				},
 				"false100");
 	}
-	public void testRecordPatternMatchException_007() {
+	public void testRecordPatternMatchException_007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"public class X {\n" +
@@ -2358,7 +2358,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				},
 				"100");
 	}
-	public void testRecordPatternMatchException_008() {
+	public void testRecordPatternMatchException_008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"record R(Integer a) {\n" +
@@ -2392,7 +2392,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				},
 				"5");
 	}
-	public void testRecordPatternMatchException_009() {
+	public void testRecordPatternMatchException_009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"record R(Y s) {}\n"+
@@ -2421,7 +2421,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				},
 				"true");
 	}
-	public void testIssue1224_1() {
+	public void testIssue1224_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 			"interface I {}\n"
@@ -2443,7 +2443,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			"An enhanced switch statement should be exhaustive; a default label expected\n" +
 			"----------\n");
 	}
-	public void testIssue1224_2() {
+	public void testIssue1224_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 			"interface I {}\n"
@@ -2463,7 +2463,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			},
 			"");
 	}
-	public void testIssue1224_3() {
+	public void testIssue1224_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 			"interface I {}\n"
@@ -2489,7 +2489,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			"Record component with type long is not compatible with type int\n" +
 			"----------\n");
 	}
-	public void testIssue1224_4() {
+	public void testIssue1224_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 			"record Record<T>(Object o, T x){}\n"
@@ -2514,7 +2514,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			"Record component with type String is not compatible with type StringBuilder\n" +
 			"----------\n");
 	}
-	public void testIssue1224_5() {
+	public void testIssue1224_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 			"record Record<T>(Object o, T x){}\n"
@@ -2535,7 +2535,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			},
 			"PASS");
 	}
-	public void testIssue1224_6() {
+	public void testIssue1224_6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 			"record Record(String s){}\n"
@@ -2557,7 +2557,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			},
 				"PASS");
 	}
-	public void testIssue1224_7() {
+	public void testIssue1224_7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 			"interface I<T> {\n"
@@ -2588,7 +2588,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	}
 	// Fails with VerifyError since we allow the switch now but don't
 	// generate a label/action for implicit default.
-	public void testIssue1224_8() {
+	public void testIssue1224_8() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 			"record Record(int a) {}\n"
@@ -2614,7 +2614,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			},
 			"SUCCESS");
 	}
-	public void testRecPatExhaust001() {
+	public void testRecPatExhaust001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -2644,7 +2644,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			},
 			"0");
 	}
-	public void testRecPatExhaust002() {
+	public void testRecPatExhaust002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2678,7 +2678,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			"A switch expression should have a default case\n" +
 			"----------\n");
 	}
-	public void testRecPatExhaust003() {
+	public void testRecPatExhaust003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -2718,7 +2718,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			},
 			"0");
 	}
-	public void testRecPatExhaust004() {
+	public void testRecPatExhaust004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2762,7 +2762,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			"A switch expression should have a default case\n" +
 			"----------\n");
 	}
-	public void testRecPatExhaust005() {
+	public void testRecPatExhaust005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -2792,7 +2792,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			},
 			"0");
 	}
-	public void testRecPatExhaust006() {
+	public void testRecPatExhaust006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2825,7 +2825,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			"A switch expression should have a default case\n" +
 			"----------\n");
 	}
-	public void testRecPatExhaust007() {
+	public void testRecPatExhaust007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2858,7 +2858,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			"A switch expression should have a default case\n" +
 			"----------\n");
 	}
-	public void testRecPatExhaust008() {
+	public void testRecPatExhaust008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2892,7 +2892,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			"A switch expression should have a default case\n" +
 			"----------\n");
 	}
-	public void testRecPatExhaust009() {
+	public void testRecPatExhaust009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -2913,7 +2913,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			},
 			"0");
 	}
-	public void testRecPatExhaust010() {
+	public void testRecPatExhaust010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -2938,7 +2938,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			"42");
 	}
 	// implicit permitted - interface
-	public void testRecPatExhaust011() {
+	public void testRecPatExhaust011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2971,7 +2971,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 	// implicit permitted - class
-	public void testRecPatExhaust012() {
+	public void testRecPatExhaust012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3004,7 +3004,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 	// implicit permitted - class - the class C missing
-	public void testRecPatExhaust013() {
+	public void testRecPatExhaust013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3037,7 +3037,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			"A switch expression should have a default case\n" +
 			"----------\n");
 	}
-	public void testRecPatExhaust014() {
+	public void testRecPatExhaust014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3070,7 +3070,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			"A switch expression should have a default case\n" +
 			"----------\n");
 	}
-	public void testRecPatExhaust015() {
+	public void testRecPatExhaust015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -3100,7 +3100,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			},
 			"42");
 	}
-	public void testRecPatExhaust016() {
+	public void testRecPatExhaust016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -3124,7 +3124,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			},
 			"42");
 	}
-	public void testRecPatExhaust017() {
+	public void testRecPatExhaust017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -3153,7 +3153,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			},
 			"42");
 	}
-	public void testRecPatExhaust018() {
+	public void testRecPatExhaust018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3186,7 +3186,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			"A switch expression should have a default case\n" +
 			"----------\n");
 	}
-	public void testRecordPatternTypeInference_012() {
+	public void testRecordPatternTypeInference_012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -3209,7 +3209,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			},
 			"true");
 	}
-	public void testRecordPatternTypeInference_013() {
+	public void testRecordPatternTypeInference_013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -3234,7 +3234,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	}
 
 	// a subclass of X could implement I - positive test case
-	public void testRecordPatternTypeInference_014() {
+	public void testRecordPatternTypeInference_014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -3257,7 +3257,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			},
 			"true");
 	}
-	public void testRecordPatternTypeInference_015() {
+	public void testRecordPatternTypeInference_015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3291,7 +3291,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void testRecordPatternTypeInference_016() {
+	public void testRecordPatternTypeInference_016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3325,7 +3325,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void testIssue1328_1() {
+	public void testIssue1328_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -3373,7 +3373,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"A case label guard cannot have a constant expression with value as \'false\'\n" +
 				"----------\n");
 	}
-	public void testIssue1328_2() {
+	public void testIssue1328_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -3398,7 +3398,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1792
 	// [Patterns][records] Error in JDT Core during AST creation: info cannot be null
-	public void testGH1792() {
+	public void testGH1792() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 				"X.java",
@@ -3423,7 +3423,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"so\n" +
 				"good!");
 	}
-	public void testIssue1336_1() {
+	public void testIssue1336_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -3445,7 +3445,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 					"""
 			});
 	}
-	public void testIssue1336_2() {
+	public void testIssue1336_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -3471,7 +3471,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 					"""
 				});
 	}
-	public void testIssue1732_01() {
+	public void testIssue1732_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 				"X.java",
@@ -3500,7 +3500,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				+ "Record pattern should match the signature of the record declaration\n"
 				+ "----------\n");
 	}
-	public void testIssue1732_02() {
+	public void testIssue1732_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 				"X.java",
@@ -3529,7 +3529,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				+ "Record pattern should match the signature of the record declaration\n"
 				+ "----------\n");
 	}
-	public void testIssue1732_03() {
+	public void testIssue1732_03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 				"X.java",
@@ -3560,7 +3560,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1788
 	// Inference issue between the diamond syntax and pattern matching (switch on objects)
-	public void testGHI1788() {
+	public void testGHI1788() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 				"X.java",
@@ -3615,7 +3615,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1835
 	// AssertionError at org.eclipse.jdt.internal.compiler.ast.YieldStatement.addSecretYieldResultValue(YieldStatement.java:120)
-	public void testGH1835_minimal() {
+	public void testGH1835_minimal() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 				"X.java",
@@ -3650,7 +3650,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1835
 	// AssertionError at org.eclipse.jdt.internal.compiler.ast.YieldStatement.addSecretYieldResultValue(YieldStatement.java:120)
-	public void testGH1835() {
+	public void testGH1835() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 				"Reproducer.java",
@@ -3709,7 +3709,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1796
 	// [Patterns] Record Patterns can cause VerifyError
-	public void testGH1796_full() {
+	public void testGH1796_full() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 				"com/acme/Reproducer.java",
@@ -3808,7 +3808,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1796
 	// [Patterns] Record Patterns can cause VerifyError
-	public void testGH1796_reporter_reduced() {
+	public void testGH1796_reporter_reduced() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 				"com/acme/Reproducer.java",
@@ -3855,7 +3855,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1977
 	// [Patterns][records] ECJ generated code fails to raise MatchException properly
-	public void testGH1977_method() {
+	public void testGH1977_method() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 				"X.java",
@@ -3886,7 +3886,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1977
 	// [Patterns][records] ECJ generated code fails to raise MatchException properly
-	public void testGH1977_instance_initializer() {
+	public void testGH1977_instance_initializer() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 				"X.java",
@@ -3920,7 +3920,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1977
 	// [Patterns][records] ECJ generated code fails to raise MatchException properly
 	// javac reports ArithmeticException but that looks wrong
-	public void testGH1977_instance_field() {
+	public void testGH1977_instance_field() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 				"X.java",
@@ -3949,7 +3949,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1977
 	// [Patterns][records] ECJ generated code fails to raise MatchException properly
-	public void testGH1977_constructor() {
+	public void testGH1977_constructor() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 				"X.java",
@@ -3982,7 +3982,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1977
 	// [Patterns][records] ECJ generated code fails to raise MatchException properly
-	public void testGH1977_static_initializer() {
+	public void testGH1977_static_initializer() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 				"X.java",
@@ -4018,7 +4018,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1977
 	// [Patterns][records] ECJ generated code fails to raise MatchException properly
 	// javac reports ExceptionInInitializerError caused by java.lang.ArithmeticException but that looks wrong
-	public void testGH1977_static_field() {
+	public void testGH1977_static_field() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 				"X.java",
@@ -4049,7 +4049,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/300
 	// Revisit code generation for record patterns
-	public void testIssue300() {
+	public void testIssue300() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 				"X.java",
@@ -4086,7 +4086,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1804
 	// Revisit code generation for record patterns
-	public void testIssue1804() {
+	public void testIssue1804() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 				"X.java",
@@ -4181,7 +4181,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				}
 				""" }, "false\ntrue");
 	}
-	public void testIssue1804_4() {
+	public void testIssue1804_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] { "X.java", """
 				public class X {
 					record Paper(int color) {}
@@ -4207,7 +4207,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				}
 				""" }, "true");
 	}
-	public void testIssue1804_5() {
+	public void testIssue1804_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] { "X.java", """
 				public class X {
 					record Paper(int color) {}
@@ -4233,7 +4233,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				}
 				""" }, "false");
 	}
-	public void testIssue1804_6() {
+	public void testIssue1804_6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] { "X.java", """
 				public class X {
 					record Paper(int color) {}
@@ -4329,7 +4329,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1985
 	// [Patterns][records] ECJ fails to generate code to deconstruct record in pattern
-	public void testIssue1985() {
+	public void testIssue1985() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] { "X.java", """
 				public class X {
 
@@ -4352,7 +4352,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1985
 	// [Patterns][records] ECJ fails to generate code to deconstruct record in pattern
-	public void testIssue1985_2() {
+	public void testIssue1985_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] { "X.java", """
 				public class X {
 
@@ -4376,7 +4376,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2001
 	// [Patterns][records] ECJ fails to reject incompatible pattern types.
-	public void testIssue2001() {
+	public void testIssue2001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] { "X.java",
 				"""
 				public class X {
@@ -4417,7 +4417,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1999
 	// [Patterns][records] Instanceof with record deconstruction patterns should never be flagged as unnecessary
-	public void testIssue1999() {
+	public void testIssue1999() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions();
 		options.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 		runNegativeTest(
@@ -4549,7 +4549,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"false");
 	}
 
-	public void testIllegalFallThrough() {
+	public void testIllegalFallThrough() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] { "X.java", """
 				public class X {
 					record Point (int x, int y) {}
@@ -4572,7 +4572,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2118
 	// [Patterns] ECJ allows illegal modifiers with RecordPattern
-	public void testIllegalModifiers() {
+	public void testIllegalModifiers() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -4650,7 +4650,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2119
 	// [Patterns] ECJ allows record pattern to have dimensions
-	public void testIssue2119() {
+	public void testIssue2119() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -4672,7 +4672,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2119
 	// [Patterns] ECJ allows record pattern to have dimensions
-	public void testIssue2119_2() {
+	public void testIssue2119_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -4693,7 +4693,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"----------\n");
 	}
 
-	public void testIssue3066() {
+	public void testIssue3066() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -4718,7 +4718,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			""");
 	}
 
-	public void testIssue3066_notApplicable() {
+	public void testIssue3066_notApplicable() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -4745,7 +4745,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3173
 	// [21][Enhanced Switch] False error about allegedly non-exhaustive switch
-	public void testIssue3173() {
+	public void testIssue3173() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"RecordPatternDemo.java",
 				"""
@@ -4768,7 +4768,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3173
 	// [21][Enhanced Switch] False error about allegedly non-exhaustive switch
-	public void testIssue3173_2() {
+	public void testIssue3173_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"RecordPatternDemo.java",
 				"""
@@ -4789,7 +4789,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				},
 				"Contents");
 	}
-	public void testJEP440Example() {
+	public void testJEP440Example() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -4855,7 +4855,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testRecordCoverage() {
+	public void testRecordCoverage() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"""
@@ -4925,7 +4925,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4065
 	// [Null][Record] Invalid "dead code" warning for record pattern with null-guard on component
-	public void testIssue4065() {
+	public void testIssue4065() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"InvalidDeadCodeWarning.java",
 				"""
@@ -4975,7 +4975,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4163
 	// [LVTI/var] ECJ accepts illegal array dimensions on type pattern declarations with var type
-	public void testIssue4163() {
+	public void testIssue4163() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -5001,7 +5001,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testGH4002() {
+	public void testGH4002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"Example.java",
 				"""
@@ -5047,7 +5047,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 				"""
 		});
 	}
-	public void testRecordTypeInfer_4643_001() {
+	public void testRecordTypeInfer_4643_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] { "X.java", """
 			public class X {
 
@@ -5066,7 +5066,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			}
 			""" }, "3");
 	}
-	public void testRecordTypeInfer_4643_002() {
+	public void testRecordTypeInfer_4643_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -5090,7 +5090,7 @@ public class RecordPatternTest extends AbstractRegressionTest9 {
 			"Record component with type Integer is not compatible with type String\n" +
 			"----------\n");
 	}
-	public void testJDK8383563() {
+	public void testJDK8383563() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] { "PairBox.java",
 			"""

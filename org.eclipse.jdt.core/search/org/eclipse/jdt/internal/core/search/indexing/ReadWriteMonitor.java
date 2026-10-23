@@ -30,7 +30,7 @@ private int status = 0;
  * Blocking only when already writing.
  */
 public synchronized void enterRead() {
-	while (this.status < 0) {
+	while (this.status < 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		try {
 			wait();
 		} catch(InterruptedException e) {
@@ -44,7 +44,7 @@ public synchronized void enterRead() {
  * Blocking only when already writing or reading.
  */
 public synchronized void enterWrite() {
-	while (this.status != 0) {
+	while (this.status != 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		try {
 			wait();
 		} catch(InterruptedException e) {
@@ -99,17 +99,17 @@ public synchronized void exitWriteEnterRead() {
 }
 @Override
 public String toString() {
-	StringBuilder buffer = new StringBuilder();
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	if (this.status == 0) {
-		buffer.append("Monitor idle "); //$NON-NLS-1$
+		buffer.append("Monitor idle "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	} else if (this.status < 0) {
-		buffer.append("Monitor writing "); //$NON-NLS-1$
+		buffer.append("Monitor writing "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	} else if (this.status > 0) {
-		buffer.append("Monitor reading "); //$NON-NLS-1$
+		buffer.append("Monitor reading "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	buffer.append("(status = "); //$NON-NLS-1$
-	buffer.append(this.status);
-	buffer.append(")"); //$NON-NLS-1$
+	buffer.append("(status = "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(this.status); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(")"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return buffer.toString();
 }
 }

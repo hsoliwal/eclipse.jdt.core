@@ -30,7 +30,7 @@ import org.eclipse.jdt.internal.core.util.Util;
 /**
  * Track changes of external annotation files and trigger closing / reloading of affected ClassFiles.
  */
-public class ExternalAnnotationTracker implements IResourceChangeListener {
+public class ExternalAnnotationTracker implements IResourceChangeListener { //FLLDCIM: MARK — T07  IMPLEMENTS
 
 	/**
 	 * Nodes in a tree that represents external annotation attachments.
@@ -66,13 +66,13 @@ public class ExternalAnnotationTracker implements IResourceChangeListener {
 
 		Map<IPath, DirectoryNode> getChildren() {
 			if (this.children == null)
-				this.children = new HashMap<>();
+				this.children = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			return this.children;
 		}
 
 		void registerClassFile(IPath relativeAnnotationPath, ClassFile classFile) {
 			if (this.classFiles == null)
-				this.classFiles = new HashMap<>();
+				this.classFiles = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			this.classFiles.put(relativeAnnotationPath, classFile);
 			if (this.modelRoot == null)
 				this.modelRoot = classFile.getPackageFragmentRoot();
@@ -94,13 +94,13 @@ public class ExternalAnnotationTracker implements IResourceChangeListener {
 
 		@Override
 		public String toString() {
-			StringBuilder buf = new StringBuilder();
+			StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			if (this.classFiles != null)
-				buf.append("annotation base "); //$NON-NLS-1$
-			buf.append("directory\n"); //$NON-NLS-1$
+				buf.append("annotation base "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("directory\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (this.children != null)
-				buf.append("\twith ").append(this.children.size()).append(" children\n"); //$NON-NLS-1$ //$NON-NLS-2$
-			buf.append("\t#classFiles: ").append(numClassFiles()); //$NON-NLS-1$
+				buf.append("\twith ").append(this.children.size()).append(" children\n"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("\t#classFiles: ").append(numClassFiles()); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return buf.toString();
 		}
 		int numClassFiles() {
@@ -108,7 +108,7 @@ public class ExternalAnnotationTracker implements IResourceChangeListener {
 				return this.classFiles.size();
 			int count = 0;
 			if (this.children != null)
-				for (DirectoryNode child : this.children.values())
+				for (DirectoryNode child : this.children.values()) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					count += child.numClassFiles();
 			return count;
 		}
@@ -194,7 +194,7 @@ public class ExternalAnnotationTracker implements IResourceChangeListener {
 	public void resourceChanged(IResourceChangeEvent event) {
 		IResourceDelta delta = event.getDelta();
 		if (delta != null && delta.getFullPath().isRoot() && this.tree.children != null) {
-			for (IResourceDelta child : delta.getAffectedChildren()) {
+			for (IResourceDelta child : delta.getAffectedChildren()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				DirectoryNode directoryNode = this.tree.children.get(child.getFullPath());
 				if (directoryNode != null)
 					traverseForDirectories(directoryNode, child);
@@ -203,13 +203,13 @@ public class ExternalAnnotationTracker implements IResourceChangeListener {
 	}
 
 	// co-traversal of directory nodes & delta nodes:
-	private void traverseForDirectories(DirectoryNode directoryNode, IResourceDelta matchedDelta) {
+	private void traverseForDirectories(DirectoryNode directoryNode, IResourceDelta matchedDelta) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (directoryNode.classFiles != null) {
 			// annotation base reached, switch strategy:
 			traverseForClassFiles(directoryNode.classFiles, matchedDelta, matchedDelta.getFullPath().segmentCount());
 			// ignore further children, if we already have classFiles (i.e., nested annotation bases are tolerated but ignored).
 		} else if (directoryNode.children != null) {
-			for (IResourceDelta child : matchedDelta.getAffectedChildren()) {
+			for (IResourceDelta child : matchedDelta.getAffectedChildren()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				DirectoryNode childDir = directoryNode.children.get(child.getFullPath());
 				if (childDir != null) {
 					if (child.getKind() == IResourceDelta.REMOVED)
@@ -225,7 +225,7 @@ public class ExternalAnnotationTracker implements IResourceChangeListener {
 
 	// traversal of delta nodes to be matched against map of class files:
 	private void traverseForClassFiles(Map<IPath, ClassFile> classFiles, IResourceDelta matchedDelta, int baseDepth) {
-		for (IResourceDelta delta : matchedDelta.getAffectedChildren()) {
+		for (IResourceDelta delta : matchedDelta.getAffectedChildren()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IPath deltaRelativePath = delta.getFullPath().removeFirstSegments(baseDepth);
 			ClassFile classFile = classFiles.remove(deltaRelativePath);
 			if (classFile != null) {
@@ -233,7 +233,7 @@ public class ExternalAnnotationTracker implements IResourceChangeListener {
 					// the payload: unload the class file corresponding to a changed external annotation file:
 					classFile.closeAndRemoveFromJarTypeCache();
 				} catch (JavaModelException e) {
-					Util.log(e, "Failed to close ClassFile "+classFile.name); //$NON-NLS-1$
+					Util.log(e, "Failed to close ClassFile "+classFile.name); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			} else {
 				traverseForClassFiles(classFiles, delta, baseDepth);

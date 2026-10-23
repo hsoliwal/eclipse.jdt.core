@@ -59,7 +59,7 @@ private char[][][] samePkgSuperDeclaringTypeNames;
 
 protected MatchLocator matchLocator;
 //method declarations which parameters verification fail
-private Map<ASTNode, Boolean> methodDeclarationsWithInvalidParam = new HashMap<>();
+private Map<ASTNode, Boolean> methodDeclarationsWithInvalidParam = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 
 public MethodLocator(MethodPattern pattern) {
@@ -73,14 +73,14 @@ public MethodLocator(MethodPattern pattern) {
  */
 @Override
 protected void clear() {
-	this.methodDeclarationsWithInvalidParam = new HashMap<>();
+	this.methodDeclarationsWithInvalidParam = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 }
 @Override
 protected int fineGrain() {
 	return this.pattern.fineGrain;
 }
 
-private ReferenceBinding getMatchingSuper(ReferenceBinding binding) {
+private ReferenceBinding getMatchingSuper(ReferenceBinding binding) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (binding == null) return null;
 	ReferenceBinding superBinding = binding.superclass();
 	int level = resolveLevelForType(this.pattern.declaringSimpleName, this.pattern.declaringQualification, superBinding);
@@ -93,7 +93,7 @@ private ReferenceBinding getMatchingSuper(ReferenceBinding binding) {
 	// matches interfaces
 	ReferenceBinding[] interfaces = binding.superInterfaces();
 	if (interfaces == null) return null;
-	for (ReferenceBinding ref : interfaces) {
+	for (ReferenceBinding ref : interfaces) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		level = resolveLevelForType(this.pattern.declaringSimpleName, this.pattern.declaringQualification, ref);
 		if (level != IMPOSSIBLE_MATCH) return ref;
 		superBinding = getMatchingSuper(ref);
@@ -104,10 +104,10 @@ private ReferenceBinding getMatchingSuper(ReferenceBinding binding) {
 
 private MethodBinding getMethodBinding(ReferenceBinding type, char[] methodName, TypeBinding[] argumentTypes) {
 	MethodBinding[] methods = type.getMethods(methodName);
-	methodsLoop: for (MethodBinding method : methods) {
+	methodsLoop: for (MethodBinding method : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		TypeBinding[] parameters = method.parameters;
 		if (argumentTypes.length == parameters.length) {
-			for (int j = 0, l = parameters.length; j < l; j++) {
+			for (int j = 0, l = parameters.length; j < l; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (TypeBinding.notEquals(parameters[j].erasure(), argumentTypes[j].erasure())) {
 					continue methodsLoop;
 				}
@@ -118,7 +118,7 @@ private MethodBinding getMethodBinding(ReferenceBinding type, char[] methodName,
 	return null;
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void initializePolymorphicSearch(MatchLocator locator) {
 	long start = 0;
 	if (BasicSearchEngine.VERBOSE) {
@@ -140,7 +140,7 @@ public void initializePolymorphicSearch(MatchLocator locator) {
 		// inaccurate matches will be found
 	}
 	if (BasicSearchEngine.VERBOSE) {
-		trace("Time to initialize polymorphic search: "+(System.currentTimeMillis()-start)); //$NON-NLS-1$
+		trace("Time to initialize polymorphic search: "+(System.currentTimeMillis()-start)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }
 /*
@@ -149,7 +149,7 @@ public void initializePolymorphicSearch(MatchLocator locator) {
 private boolean isTypeInSuperDeclaringTypeNames(char[][] typeName) {
 	if (this.allSuperDeclaringTypeNames == null) return false;
 	int length = this.allSuperDeclaringTypeNames.length;
-	for (int i= 0; i<length; i++) {
+	for (int i= 0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (CharOperation.equals(this.allSuperDeclaringTypeNames[i], typeName)) {
 			return true;
 		}
@@ -181,7 +181,7 @@ protected ReferenceBinding checkMethodRef(MethodBinding method, ReferenceExpress
 
 	return null;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public int match(ASTNode node, MatchingNodeSet nodeSet) {
 	int declarationsLevel = IMPOSSIBLE_MATCH;
 	if (this.pattern.findReferences) {
@@ -214,7 +214,7 @@ public int match(LambdaExpression node, MatchingNodeSet nodeSet) {
 //public int match(ConstructorDeclaration node, MatchingNodeSet nodeSet) - SKIP IT
 //public int match(Expression node, MatchingNodeSet nodeSet) - SKIP IT
 //public int match(FieldDeclaration node, MatchingNodeSet nodeSet) - SKIP IT
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public int match(MethodDeclaration node, MatchingNodeSet nodeSet) {
 	if (!this.pattern.findDeclarations) return IMPOSSIBLE_MATCH;
 
@@ -228,7 +228,7 @@ public int match(MethodDeclaration node, MatchingNodeSet nodeSet) {
 		ASTNode[] args = node.arguments;
 		int argsLength = args == null ? 0 : args.length;
 		if (length != argsLength) return IMPOSSIBLE_MATCH;
-		for (int i = 0; i < argsLength; i++) {
+		for (int i = 0; i < argsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (args != null && !matchesTypeReference(this.pattern.parameterSimpleNames[i], ((Argument) args[i]).type)) {
 				// Do not return as impossible when source level is at least 1.5
 				if (this.mayBeGeneric) {
@@ -295,7 +295,7 @@ public int match(Annotation node, MatchingNodeSet nodeSet) {
 
 	int length = pairs.length;
 	MemberValuePair pair = null;
-	for (int i=0; i<length; i++) {
+	for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		pair = node.memberValuePairs()[i];
 		if (matchesName(this.pattern.selector, pair.name)) {
 			ASTNode possibleNode = (node instanceof SingleMemberAnnotation) ? (ASTNode) node : pair;
@@ -326,7 +326,7 @@ protected void matchLevelAndReportImportRef(ImportReference importRef, Binding b
 	}
 }
 
-protected int matchMethod(MethodBinding method, boolean skipImpossibleArg) {
+protected int matchMethod(MethodBinding method, boolean skipImpossibleArg) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!matchesName(this.pattern.selector, method.selector)) return IMPOSSIBLE_MATCH;
 
 	int level = ACCURATE_MATCH;
@@ -356,7 +356,7 @@ protected int matchMethod(MethodBinding method, boolean skipImpossibleArg) {
 		boolean checkedFocus = false;
 		boolean isBinary = this.pattern!= null && this.pattern.focus instanceof BinaryMethod;
 		// verify each parameter
-		for (int i = 0; i < parameterCount; i++) {
+		for (int i = 0; i < parameterCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeBinding argType = method.parameters[i];
 			int newLevel = IMPOSSIBLE_MATCH;
 			boolean foundLevel = false;
@@ -414,7 +414,7 @@ protected int matchMethod(MethodBinding method, boolean skipImpossibleArg) {
 	return level;
 }
 // This works for only methods of parameterized types.
-private boolean matchOverriddenMethod(ReferenceBinding type, MethodBinding method, MethodBinding matchMethod) {
+private boolean matchOverriddenMethod(ReferenceBinding type, MethodBinding method, MethodBinding matchMethod) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (type == null || this.pattern.selector == null) return false;
 
 	// matches superclass
@@ -423,7 +423,7 @@ private boolean matchOverriddenMethod(ReferenceBinding type, MethodBinding metho
 		if (superClass.isParameterizedType()) {
 			MethodBinding[] methods = superClass.getMethods(this.pattern.selector);
 			int length = methods.length;
-			for (int i = 0; i<length; i++) {
+			for (int i = 0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (methods[i].areParametersEqual(method)) {
 					if (matchMethod == null) {
 						if (methodParametersEqualsPattern(methods[i].original())) return true;
@@ -442,11 +442,11 @@ private boolean matchOverriddenMethod(ReferenceBinding type, MethodBinding metho
 	ReferenceBinding[] interfaces = type.superInterfaces();
 	if (interfaces == null) return false;
 	int iLength = interfaces.length;
-	for (int i = 0; i<iLength; i++) {
+	for (int i = 0; i<iLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (interfaces[i].isParameterizedType()) {
 			MethodBinding[] methods = interfaces[i].getMethods(this.pattern.selector);
 			int length = methods.length;
-			for (int j = 0; j<length; j++) {
+			for (int j = 0; j<length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (methods[j].areParametersEqual(method)) {
 					if (matchMethod == null) {
 						if (methodParametersEqualsPattern(methods[j].original())) return true;
@@ -469,7 +469,7 @@ protected void matchReportReference(ASTNode reference, IJavaElement element, Bin
 /**
  * @see org.eclipse.jdt.internal.core.search.matching.PatternLocator#matchReportReference(org.eclipse.jdt.internal.compiler.ast.ASTNode, org.eclipse.jdt.core.IJavaElement, Binding, int, org.eclipse.jdt.internal.core.search.matching.MatchLocator)
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void matchReportReference(ASTNode reference, IJavaElement element, IJavaElement localElement, IJavaElement[] otherElements, Binding elementBinding, int accuracy, MatchLocator locator) throws CoreException {
 	MethodBinding methodBinding = (reference instanceof MessageSend) ? ((MessageSend)reference).binding: ((elementBinding instanceof MethodBinding) ? (MethodBinding) elementBinding : null);
 	if (this.isDeclarationOfReferencedMethodsPattern) {
@@ -479,7 +479,7 @@ protected void matchReportReference(ASTNode reference, IJavaElement element, IJa
 
 		// element that references the method must be included in the enclosing element
 		DeclarationOfReferencedMethodsPattern declPattern = (DeclarationOfReferencedMethodsPattern) this.pattern;
-		while (element != null && !declPattern.enclosingElement.equals(element))
+		while (element != null && !declPattern.enclosingElement.equals(element)) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			element = element.getParent();
 		if (element != null) {
 			reportDeclaration(methodBinding, locator, declPattern.knownMethods);
@@ -519,7 +519,7 @@ protected void matchReportReference(ASTNode reference, IJavaElement element, IJa
 		}
 	}
 }
-void matchReportReference(MessageSend messageSend, MatchLocator locator, int accuracy, MethodBinding methodBinding) throws CoreException {
+void matchReportReference(MessageSend messageSend, MatchLocator locator, int accuracy, MethodBinding methodBinding) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Look if there's a need to special report for parameterized type
 	boolean isParameterized = false;
@@ -615,7 +615,7 @@ private boolean methodParametersEqualsPattern(MethodBinding method) {
 	int length = methodParameters.length;
 	if (length != this.pattern.parameterSimpleNames.length) return false;
 
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		char[] paramQualifiedName = qualifiedPattern(this.pattern.parameterSimpleNames[i], this.pattern.parameterQualifications[i]);
 		if (!CharOperation.match(paramQualifiedName, methodParameters[i].readableName(), this.isCaseSensitive)) {
 			return false;
@@ -623,7 +623,7 @@ private boolean methodParametersEqualsPattern(MethodBinding method) {
 	}
 	return true;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public SearchMatch newDeclarationMatch(ASTNode reference, IJavaElement element, Binding elementBinding, int accuracy, int length, MatchLocator locator) {
 	if (elementBinding != null) {
 		MethodBinding methodBinding = (MethodBinding) elementBinding;
@@ -662,13 +662,13 @@ public SearchMatch newDeclarationMatch(ASTNode reference, IJavaElement element, 
 protected int referenceType() {
 	return IJavaElement.METHOD;
 }
-protected void reportDeclaration(MethodBinding methodBinding, MatchLocator locator, SimpleSet knownMethods) throws CoreException {
+protected void reportDeclaration(MethodBinding methodBinding, MatchLocator locator, SimpleSet knownMethods) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ReferenceBinding declaringClass = methodBinding.declaringClass;
 	IType type = locator.lookupType(declaringClass);
 	if (type == null) {
 		if (declaringClass instanceof LocalTypeBinding) {
 			ReferenceBinding refBinding= declaringClass;
-			while (refBinding instanceof LocalTypeBinding localBinding) {
+			while (refBinding instanceof LocalTypeBinding localBinding) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				MethodBinding enclosingBinding= localBinding.enclosingMethod;
 				refBinding= enclosingBinding.declaringClass;
 			}
@@ -692,9 +692,9 @@ protected void reportDeclaration(MethodBinding methodBinding, MatchLocator locat
 		TypeBinding[] parameters = methodBinding.original().parameters;
 		int parameterLength = parameters.length;
 		char[][] parameterTypes = new char[parameterLength][];
-		for (int i = 0; i<parameterLength; i++) {
+		for (int i = 0; i<parameterLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[] typeName = parameters[i].qualifiedSourceName();
-			for (int j=0, dim=parameters[i].dimensions(); j<dim; j++) {
+			for (int j=0, dim=parameters[i].dimensions(); j<dim; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				typeName = CharOperation.concat(typeName, new char[] {'[', ']'});
 			}
 			parameterTypes[i] = typeName;
@@ -724,7 +724,7 @@ protected void reportDeclaration(MethodBinding methodBinding, MatchLocator locat
 			AbstractVariableDeclaration[] arguments = methodDecl.arguments(true);
 			int length = arguments == null ? 0 : arguments.length;
 			String[] parameterTypes = new String[length];
-			for (int i = 0; i  < length; i++) {
+			for (int i = 0; i  < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				char[][] typeName = arguments[i].type.getParameterizedTypeName();
 				parameterTypes[i] = Signature.createTypeSignature(CharOperation.concatWith(typeName, '.'), false);
 			}
@@ -738,7 +738,7 @@ protected void reportDeclaration(MethodBinding methodBinding, MatchLocator locat
 		}
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public int resolveLevel(ASTNode possibleMatchingNode) {
 	if (this.pattern.findReferences) {
 		if (possibleMatchingNode instanceof MessageSend) {
@@ -766,7 +766,7 @@ public int resolveLevel(ASTNode possibleMatchingNode) {
 	}
 	return IMPOSSIBLE_MATCH;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public int resolveLevel(Binding binding) {
 	if (binding == null) return INACCURATE_MATCH;
 	if (!(binding instanceof MethodBinding)) return IMPOSSIBLE_MATCH;
@@ -795,7 +795,7 @@ public int resolveLevel(Binding binding) {
 		: resolveLevelForType(this.pattern.declaringSimpleName, this.pattern.declaringQualification, method.declaringClass);
 	return (methodLevel & MATCH_LEVEL_MASK) > (declaringLevel & MATCH_LEVEL_MASK) ? declaringLevel : methodLevel; // return the weaker match
 }
-protected int resolveLevel(MessageSend messageSend) {
+protected int resolveLevel(MessageSend messageSend) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	MethodBinding method = messageSend.binding;
 	if (method == null) {
 		return INACCURATE_MATCH;
@@ -846,7 +846,7 @@ protected int resolveLevel(MessageSend messageSend) {
 	return (methodLevel & MATCH_LEVEL_MASK) > (declaringLevel & MATCH_LEVEL_MASK) ? declaringLevel : methodLevel; // return the weaker match
 }
 
-protected int resolveLevel(ReferenceExpression referenceExpression) {
+protected int resolveLevel(ReferenceExpression referenceExpression) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	MethodBinding method = referenceExpression.getMethodBinding();
 	if (method == null || !method.isValidBinding())
 		return INACCURATE_MATCH;
@@ -892,7 +892,7 @@ protected int resolveLevel(ReferenceExpression referenceExpression) {
  * Returns INACCURATE_MATCH if resolve fails
  * Returns IMPOSSIBLE_MATCH if it doesn't.
  */
-protected int resolveLevelAsSubtype(char[] simplePattern, char[] qualifiedPattern, ReferenceBinding type, char[] methodName, TypeBinding[] argumentTypes, char[] packageName, boolean isDefault) {
+protected int resolveLevelAsSubtype(char[] simplePattern, char[] qualifiedPattern, ReferenceBinding type, char[] methodName, TypeBinding[] argumentTypes, char[] packageName, boolean isDefault) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (type == null) return INACCURATE_MATCH;
 
 	int level = resolveLevelForType(simplePattern, qualifiedPattern, type);
@@ -932,7 +932,7 @@ protected int resolveLevelAsSubtype(char[] simplePattern, char[] qualifiedPatter
 	// matches interfaces
 	ReferenceBinding[] interfaces = type.superInterfaces();
 	if (interfaces == null) return INACCURATE_MATCH;
-	for (ReferenceBinding ref : interfaces) {
+	for (ReferenceBinding ref : interfaces) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		level = resolveLevelAsSubtype(simplePattern, qualifiedPattern, ref, methodName, null, packageName, isDefault);
 		if (level != IMPOSSIBLE_MATCH) {
 			if (!type.isAbstract() && !type.isInterface()) { // if concrete class, then method is overridden
@@ -948,18 +948,18 @@ protected int resolveLevelAsSubtype(char[] simplePattern, char[] qualifiedPatter
  * Return whether the given type binding or one of its possible super interfaces
  * matches a type in the declaring type names hierarchy.
  */
-private boolean resolveLevelAsSuperInvocation(ReferenceBinding type, TypeBinding[] argumentTypes, char[][][] superTypeNames, boolean methodAlreadyVerified) {
+private boolean resolveLevelAsSuperInvocation(ReferenceBinding type, TypeBinding[] argumentTypes, char[][][] superTypeNames, boolean methodAlreadyVerified) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[][] compoundName = type.compoundName;
-	for (char[][] superTypeName : superTypeNames) {
+	for (char[][] superTypeName : superTypeNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (CharOperation.equals(superTypeName, compoundName)) {
 			// need to verify if the type implements the pattern method
 			if (methodAlreadyVerified) return true; // already verified before enter into this method (see resolveLevel(MessageSend))
 			MethodBinding[] methods = type.getMethods(this.pattern.selector);
-			for (MethodBinding method : methods) {
+			for (MethodBinding method : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				TypeBinding[] parameters = method.parameters;
 				if (argumentTypes.length == parameters.length) {
 					boolean found = true;
-					for (int k=0,l=parameters.length; k<l; k++) {
+					for (int k=0,l=parameters.length; k<l; k++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (TypeBinding.notEquals(parameters[k].erasure(), argumentTypes[k].erasure())) {
 							found = false;
 							break;
@@ -981,7 +981,7 @@ private boolean resolveLevelAsSuperInvocation(ReferenceBinding type, TypeBinding
 	if (type.isInterface()) {
 		ReferenceBinding[] interfaces = type.superInterfaces();
 		if (interfaces == null) return false;
-		for (ReferenceBinding ref : interfaces) {
+		for (ReferenceBinding ref : interfaces) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (resolveLevelAsSuperInvocation(ref, argumentTypes, superTypeNames, false)) {
 				return true;
 			}
@@ -991,6 +991,6 @@ private boolean resolveLevelAsSuperInvocation(ReferenceBinding type, TypeBinding
 }
 @Override
 public String toString() {
-	return "Locator for " + this.pattern.toString(); //$NON-NLS-1$
+	return "Locator for " + this.pattern.toString(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 }

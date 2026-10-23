@@ -76,7 +76,7 @@ public class InternalNamingConventions {
 	private static char[] computeBaseTypeNames(char firstName, char[][] excludedNames){
 		char[] name = new char[]{firstName};
 
-		for(int i = 0 ; i < excludedNames.length ; i++){
+		for(int i = 0 ; i < excludedNames.length ; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(CharOperation.equals(name, excludedNames[i], false)) {
 				name[0]++;
 				if(name[0] > 'z')
@@ -90,7 +90,7 @@ public class InternalNamingConventions {
 		return name;
 	}
 
-	private static char[][] computeNonBaseTypeNames(char[] sourceName, boolean isConstantField, boolean onlyLongest){
+	private static char[][] computeNonBaseTypeNames(char[] sourceName, boolean isConstantField, boolean onlyLongest){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int length = sourceName.length;
 
 		if (length == 0) {
@@ -121,7 +121,7 @@ public class InternalNamingConventions {
 				ScannerHelper.isUpperCase(c) ? IS_UPPER_CASE :
 					c == '_' ? IS_UNDERSCORE : IS_OTHER;
 
-		for(int i = length - 1 ; i >= 0 ; i--){
+		for(int i = length - 1 ; i >= 0 ; i--){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			c = sourceName[i];
 
 			int charKind =
@@ -214,7 +214,7 @@ public class InternalNamingConventions {
 		char[][] excludedNames) {
 		int count = 2;
 		int m = 0;
-		while (m < excludedNames.length) {
+		while (m < excludedNames.length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(CharOperation.equals(suffixName, excludedNames[m], false)) {
 				suffixName = CharOperation.concat(
 					prefixName,
@@ -229,7 +229,7 @@ public class InternalNamingConventions {
 		return suffixName;
 	}
 
-	private static char[][] generateNonConstantName(char[][] nameParts, int namePartsPtr, boolean onlyLongest) {
+	private static char[][] generateNonConstantName(char[][] nameParts, int namePartsPtr, boolean onlyLongest) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[][] names;
 		if (onlyLongest) {
 			names = new char[1][];
@@ -247,7 +247,7 @@ public class InternalNamingConventions {
 
 		char[] nameSuffix = namePart;
 
-		for (int i = 1; i <= namePartsPtr; i++) {
+		for (int i = 1; i <= namePartsPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			namePart = nameParts[i];
 
 			name = CharOperation.concat(CharOperation.toLowerCase(namePart), nameSuffix);
@@ -266,7 +266,7 @@ public class InternalNamingConventions {
 		return names;
 	}
 
-	private static char[][] generateConstantName(char[][] nameParts, int namePartsPtr, boolean onlyLongest) {
+	private static char[][] generateConstantName(char[][] nameParts, int namePartsPtr, boolean onlyLongest) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[][] names;
 		if (onlyLongest) {
 			names = new char[1][];
@@ -284,7 +284,7 @@ public class InternalNamingConventions {
 			names[namePartsPtr] = name;
 		}
 
-		for (int i = 1; i <= namePartsPtr; i++) {
+		for (int i = 1; i <= namePartsPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			namePart = CharOperation.toUpperCase(nameParts[i]);
 			namePartLength = namePart.length;
 			if (namePart[namePartLength - 1] != '_') {
@@ -303,7 +303,7 @@ public class InternalNamingConventions {
 		return names;
 	}
 
-	public static char[] getBaseName(
+	public static char[] getBaseName( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			int variableKind,
 			IJavaProject javaProject,
 			char[] name,
@@ -345,7 +345,7 @@ public class InternalNamingConventions {
 		return getBaseName(name, prefixes, suffixes, variableKind == VK_STATIC_FINAL_FIELD, updateFirstCharacter);
 	}
 
-	private static char[] getBaseName(char[] name, char[][] prefixes, char[][] suffixes, boolean isConstant, boolean updateFirstCharacter) {
+	private static char[] getBaseName(char[] name, char[][] prefixes, char[][] suffixes, boolean isConstant, boolean updateFirstCharacter) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] nameWithoutPrefixAndSiffix = removeVariablePrefixAndSuffix(name, prefixes, suffixes, updateFirstCharacter);
 
 		char[] baseName;
@@ -355,7 +355,7 @@ public class InternalNamingConventions {
 			int baseNamePtr = -1;
 
 			boolean previousIsUnderscore = false;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				char c = nameWithoutPrefixAndSiffix[i];
 				if (c != '_') {
 					if (previousIsUnderscore) {
@@ -376,7 +376,7 @@ public class InternalNamingConventions {
 		return baseName;
 	}
 
-	public static char[] removeVariablePrefixAndSuffix(
+	public static char[] removeVariablePrefixAndSuffix( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			int variableKind,
 			IJavaProject javaProject,
 			char[] name) {
@@ -415,12 +415,12 @@ public class InternalNamingConventions {
 		return InternalNamingConventions.removeVariablePrefixAndSuffix(name, prefixes, suffixes, true);
 	}
 
-	private static char[] removeVariablePrefixAndSuffix(char[] name, char[][] prefixes, char[][] suffixes, boolean updateFirstCharacter) {
+	private static char[] removeVariablePrefixAndSuffix(char[] name, char[][] prefixes, char[][] suffixes, boolean updateFirstCharacter) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// remove longer prefix
 		char[] withoutPrefixName = name;
 		if (prefixes != null) {
 			int bestLength = 0;
-			for (char[] prefix : prefixes) {
+			for (char[] prefix : prefixes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (CharOperation.prefixEquals(prefix, name)) {
 					int currLen = prefix.length;
 					boolean lastCharIsLetter = ScannerHelper.isLetter(prefix[currLen - 1]);
@@ -438,7 +438,7 @@ public class InternalNamingConventions {
 		char[] withoutSuffixName = withoutPrefixName;
 		if(suffixes != null) {
 			int bestLength = 0;
-			for (char[] suffix : suffixes) {
+			for (char[] suffix : suffixes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(CharOperation.endsWith(withoutPrefixName, suffix)) {
 					int currLen = suffix.length;
 					if(bestLength < currLen && withoutPrefixName.length != currLen) {
@@ -453,13 +453,13 @@ public class InternalNamingConventions {
 		return withoutSuffixName;
 	}
 
-	private static char[] removePrefix(char[] name, char[][] prefixes) {
+	private static char[] removePrefix(char[] name, char[][] prefixes) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// remove longer prefix
 		char[] withoutPrefixName = name;
 		if (prefixes != null) {
 			int bestLength = 0;
 			int nameLength = name.length;
-			for (char[] prefix : prefixes) {
+			for (char[] prefix : prefixes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int prefixLength = prefix.length;
 				if(prefixLength <= nameLength) {
 					if(CharOperation.prefixEquals(prefix, name, false)) {
@@ -469,7 +469,7 @@ public class InternalNamingConventions {
 					}
 				} else {
 					int currLen = 0;
-					for (; currLen < nameLength; currLen++) {
+					for (; currLen < nameLength; currLen++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if(ScannerHelper.toLowerCase(prefix[currLen]) != ScannerHelper.toLowerCase(name[currLen])) {
 							if (currLen > bestLength) {
 								bestLength = currLen;
@@ -533,7 +533,7 @@ public class InternalNamingConventions {
 	public static final int BK_SIMPLE_NAME = 1;
 	public static final int BK_SIMPLE_TYPE_NAME = 2;
 
-	public static void suggestVariableNames(
+	public static void suggestVariableNames( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			int variableKind,
 			int baseNameKind,
 			char[] baseName,
@@ -647,7 +647,7 @@ public class InternalNamingConventions {
 		boolean acceptDefaultName = true;
 		SimpleSetOfCharArray foundNames = new SimpleSetOfCharArray();
 
-		for (int i = 0; i < tempNames.length; i++) {
+		for (int i = 0; i < tempNames.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[] tempName = tempNames[i];
 
 			// add English plural form is necessary
@@ -729,7 +729,7 @@ public class InternalNamingConventions {
 			if (!isConstantField) {
 				unprefixedName[0] = ScannerHelper.toUpperCase(unprefixedName[0]);
 
-				done : for (int j = 0; j <= internalPrefix.length; j++) {
+				done : for (int j = 0; j <= internalPrefix.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if(j == internalPrefix.length ||
 							CharOperation.prefixEquals(CharOperation.subarray(internalPrefix, j, -1), unprefixedName, j != 0 /*do not check case when there is no prefix*/)) {
 						matchingIndex = j;
@@ -737,7 +737,7 @@ public class InternalNamingConventions {
 					}
 				}
 			} else {
-				done : for (int j = 0; j <= internalPrefix.length; j++) {
+				done : for (int j = 0; j <= internalPrefix.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if(j == internalPrefix.length) {
 						matchingIndex = j;
 						break done;
@@ -763,7 +763,7 @@ public class InternalNamingConventions {
 					}
 				}
 
-				for (int k = 0; k < prefixes.length; k++) {
+				for (int k = 0; k < prefixes.length; k++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (!isConstantField) {
 						if(prefixes[k].length > 0
 							&& ScannerHelper.isLetterOrDigit(prefixes[k][prefixes[k].length - 1])) {
@@ -773,7 +773,7 @@ public class InternalNamingConventions {
 						}
 					}
 					char[] prefixName = CharOperation.concat(prefixes[k], tempName);
-					for (int l = 0; l < suffixes.length; l++) {
+					for (int l = 0; l < suffixes.length; l++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						char[] suffixName = CharOperation.concat(prefixName, suffixes[l]);
 						suffixName =
 							excludeNames(

@@ -45,7 +45,7 @@ public class BatchCompilerTest2 extends AbstractBatchCompilerTest {
 	public BatchCompilerTest2(String name) {
 		super(name);
 	}
-	public void test001() {
+	public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -63,13 +63,13 @@ public class BatchCompilerTest2 extends AbstractBatchCompilerTest {
 					"	}\n" +
 					"}"
 		        },
-		        "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		        "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		        + " -10 --enable-preview",
 		        "",
 		        "Preview of features is supported only at the latest source level\n",
 		        true);
 }
-public void test002() throws Exception {
+public void test002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -99,7 +99,7 @@ public void test002() throws Exception {
 							"1 problem (1 error)\n",
 							true);
 }
-public void test003() {
+public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -125,7 +125,7 @@ public void test003() {
 					"1 problem (1 error)\n",
 					true);
 }
-public void test004_previewUnused() throws Exception {
+public void test004_previewUnused() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"X.java",
@@ -148,9 +148,9 @@ public void test004_previewUnused() throws Exception {
 					"",
 					true);
 	String expectedOutput = ".0, super bit)";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
-public void test004_previewUsed() throws Exception {
+public void test004_previewUsed() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"X.java",
@@ -171,9 +171,9 @@ public void test004_previewUsed() throws Exception {
 					"",
 					true);
 	String expectedOutput = ".65535, super bit)";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
-public void test006() throws Exception {
+public void test006() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"X.java",
@@ -190,15 +190,15 @@ public void test006() throws Exception {
 					"	}\n" +
 					"}"
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ " -source 11",
 					"",
 					"",
 					true);
 	String expectedOutput = "// Compiled from X.java (version 11 : 55.0, super bit)";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
-public void testBug540123a() throws Exception {
+public void testBug540123a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"SecurePrefs.java",
@@ -222,16 +222,16 @@ public void testBug540123a() throws Exception {
 					"	}\n" +
 					"}"
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "SecurePrefsRoot.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "SecurePrefsRoot.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+" \"" + OUTPUT_DIR +  File.separator + "SecurePrefs.java\""
 					+ " -source 1.8 -target 1.8",
 					"",
 					"",
 					true);
 	String expectedOutput = "invokevirtual SecurePrefsRoot.node(java.lang.String) : SecurePrefs [14]";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "SecurePrefsRoot.class", "SecurePrefsRoot", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "SecurePrefsRoot.class", "SecurePrefsRoot", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
-public void testBug540123b() throws Exception {
+public void testBug540123b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"SecurePrefs.java",
@@ -255,16 +255,16 @@ public void testBug540123b() throws Exception {
 					"	}\n" +
 					"}"
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "SecurePrefsRoot.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "SecurePrefsRoot.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+" \"" + OUTPUT_DIR +  File.separator + "SecurePrefs.java\""
 					+ " -source 1.8",
 					"",
 					"",
 					true);
 	String expectedOutput = "invokevirtual SecurePrefsRoot.node(java.lang.String) : SecurePrefs [14]";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "SecurePrefsRoot.class", "SecurePrefsRoot", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "SecurePrefsRoot.class", "SecurePrefsRoot", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
-public void testBug540123c() throws Exception {
+public void testBug540123c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"SecurePrefs.java",
@@ -288,16 +288,16 @@ public void testBug540123c() throws Exception {
 					"	}\n" +
 					"}"
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "SecurePrefsRoot.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "SecurePrefsRoot.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+" \"" + OUTPUT_DIR +  File.separator + "SecurePrefs.java\""
 					+ " -target 1.8",
 					"",
 					"",
 					true);
 	String expectedOutput = "invokevirtual SecurePrefsRoot.node(java.lang.String) : SecurePrefs [14]";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "SecurePrefsRoot.class", "SecurePrefsRoot", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "SecurePrefsRoot.class", "SecurePrefsRoot", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
-public void testBug540123d() throws Exception {
+public void testBug540123d() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"SecurePrefs.java",
@@ -321,16 +321,16 @@ public void testBug540123d() throws Exception {
 					"	}\n" +
 					"}"
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "SecurePrefsRoot.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "SecurePrefsRoot.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+" \"" + OUTPUT_DIR +  File.separator + "SecurePrefs.java\""
 					+ " -1.8",
 					"",
 					"",
 					true);
 	String expectedOutput = "invokevirtual SecurePrefsRoot.node(java.lang.String) : SecurePrefs [14]";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "SecurePrefsRoot.class", "SecurePrefsRoot", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "SecurePrefsRoot.class", "SecurePrefsRoot", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
-public void testBug540123e() throws Exception {
+public void testBug540123e() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"SecurePrefs.java",
@@ -354,14 +354,14 @@ public void testBug540123e() throws Exception {
 					"	}\n" +
 					"}"
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "SecurePrefsRoot.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "SecurePrefsRoot.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+" \"" + OUTPUT_DIR +  File.separator + "SecurePrefs.java\""
 					+ " -1.8",
 					"",
 					"",
 					true);
 	String expectedOutput = "invokevirtual SecurePrefsRoot.node(java.lang.String) : SecurePrefs [14]";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "SecurePrefsRoot.class", "SecurePrefsRoot", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "SecurePrefsRoot.class", "SecurePrefsRoot", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 public void testBug562473() {
 	this.runConformTest(
@@ -379,9 +379,9 @@ public void testBug562473() {
 					"",
 					true);
 }
-public void testBug568802() {
+public void testBug568802() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String currentWorkingDirectoryPath = System.getProperty("user.dir");
-	String libPath = currentWorkingDirectoryPath + File.separator + "lib568802.jar";
+	String libPath = currentWorkingDirectoryPath + File.separator + "lib568802.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	try {
 	Util.createJar(
 		new String[] {
@@ -410,12 +410,12 @@ public void testBug568802() {
 					"",
 					true);
 	} catch (IOException e) {
-		System.err.println("BatchCompilerTest2#testBug568802 could not write to current working directory " + currentWorkingDirectoryPath);
+		System.err.println("BatchCompilerTest2#testBug568802 could not write to current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} finally {
 		new File(libPath).delete();
 	}
 }
-public void testIssue114() {
+public void testIssue114() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"Foo.java",
@@ -426,7 +426,7 @@ public void testIssue114() {
 				"        PNGImageReader r;\n" +
 				"}\n"
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "Foo.java\"" +
+			"\"" + OUTPUT_DIR +  File.separator + "Foo.java\"" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					" --release 9" +
 					" --add-exports java.desktop/com.sun.imageio.plugins.png=ALL-UNNAMED",
 			"",
@@ -435,7 +435,7 @@ public void testIssue114() {
 		);
 }
 
-public void testIssue147() throws Exception {
+public void testIssue147() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"X.java",
@@ -463,11 +463,11 @@ public void testIssue147() throws Exception {
 				"",
 				true);
 	String expectedOutput = "java.lang.invoke.MethodHandle.invoke(java.lang.Object)";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4955
 // native varargs Object... on user-defined class must NOT be treated as polymorphic
-public void testGH4955() throws Exception {
+public void testGH4955() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"X.java",
@@ -479,19 +479,19 @@ public void testGH4955() throws Exception {
 			"    }\n" +
 			"}\n"
 		},
-		"\"" + OUTPUT_DIR + File.separator + "X.java\"",
+		"\"" + OUTPUT_DIR + File.separator + "X.java\"", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"",
 		"",
 		true);
 	// Verify that calls to native varargs use Object[] descriptor, not direct argument types
 	String expectedOutput = "invokestatic X.debug(java.lang.Object[])";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
-public void testGH4744() throws Exception {
+public void testGH4744() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK21) {
 		return;
 	}
-	String libPath = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "gh4744.jar";
+	String libPath = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "gh4744.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		this.runConformTest(
 			new String[] {
 					"Trigger.java",

@@ -165,7 +165,7 @@ private boolean equals(char[][][] first, char[][][] second) {
 	if (first.length != second.length)
 		return false;
 
-	for (int i = first.length; --i >= 0;)
+	for (int i = first.length; --i >= 0;) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (!CharOperation.equals(first[i], second[i]))
 			return false;
 	return true;
@@ -173,7 +173,7 @@ private boolean equals(char[][][] first, char[][][] second) {
 /**
  * Finds elements which have been added or changed.
  */
-private void findAdditions(IJavaElement newElement, int depth) {
+private void findAdditions(IJavaElement newElement, int depth) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	JavaElementInfo oldInfo = getElementInfo(newElement);
 	if (oldInfo == null && depth < this.maxDepth) {
 		this.delta.added(newElement);
@@ -202,7 +202,7 @@ private void findAdditions(IJavaElement newElement, int depth) {
 		IJavaElement[] children = newInfo.getChildren();
 		if (children != null) {
 			int length = children.length;
-			for(int i = 0; i < length; i++) {
+			for(int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				findAdditions(children[i], depth + 1);
 			}
 		}
@@ -211,7 +211,7 @@ private void findAdditions(IJavaElement newElement, int depth) {
 /**
  * Looks for changed positioning of elements.
  */
-private void findChangesInPositioning(IJavaElement element, int depth) {
+private void findChangesInPositioning(IJavaElement element, int depth) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (depth >= this.maxDepth || this.added.contains(element) || this.removed.contains(element))
 		return;
 
@@ -230,20 +230,20 @@ private void findChangesInPositioning(IJavaElement element, int depth) {
 		IJavaElement[] children = info.getChildren();
 		if (children != null) {
 			int length = children.length;
-			for(int i = 0; i < length; i++) {
+			for(int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				findChangesInPositioning(children[i], depth + 1);
 			}
 		}
 	}
 }
-private void findAnnotationChanges(IAnnotation[] oldAnnotations, IAnnotation[] newAnnotations, IJavaElement parent) {
+private void findAnnotationChanges(IAnnotation[] oldAnnotations, IAnnotation[] newAnnotations, IJavaElement parent) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ArrayList annotationDeltas = null;
-	for (IAnnotation newAnnotation : newAnnotations) {
+	for (IAnnotation newAnnotation : newAnnotations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		Object oldInfo = this.annotationInfos.remove(newAnnotation);
 		if (oldInfo == null) {
 			JavaElementDelta annotationDelta = new JavaElementDelta(newAnnotation);
 			annotationDelta.added();
-			if (annotationDeltas == null) annotationDeltas = new ArrayList();
+			if (annotationDeltas == null) annotationDeltas = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			annotationDeltas.add(annotationDelta);
 			continue;
 		} else {
@@ -256,16 +256,16 @@ private void findAnnotationChanges(IAnnotation[] oldAnnotations, IAnnotation[] n
 			if (!Util.equalArraysOrNull(((AnnotationInfo) oldInfo).members, newInfo.members)) {
 				JavaElementDelta annotationDelta = new JavaElementDelta(newAnnotation);
 				annotationDelta.changed(IJavaElementDelta.F_CONTENT);
-				if (annotationDeltas == null) annotationDeltas = new ArrayList();
+				if (annotationDeltas == null) annotationDeltas = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				annotationDeltas.add(annotationDelta);
 			}
 		}
 	}
-	for (IAnnotation oldAnnotation : oldAnnotations) {
+	for (IAnnotation oldAnnotation : oldAnnotations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (this.annotationInfos.remove(oldAnnotation) != null) {
 			JavaElementDelta annotationDelta = new JavaElementDelta(oldAnnotation);
 			annotationDelta.removed();
-			if (annotationDeltas == null) annotationDeltas = new ArrayList();
+			if (annotationDeltas == null) annotationDeltas = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			annotationDeltas.add(annotationDelta);		}
 	}
 	if (annotationDeltas == null)
@@ -279,7 +279,7 @@ private void findAnnotationChanges(IAnnotation[] oldAnnotations, IAnnotation[] n
 /**
  * The elements are equivalent, but might have content changes.
  */
-private void findContentChange(JavaElementInfo oldInfo, JavaElementInfo newInfo, IJavaElement newElement) {
+private void findContentChange(JavaElementInfo oldInfo, JavaElementInfo newInfo, IJavaElement newElement) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (oldInfo instanceof MemberElementInfo && newInfo instanceof MemberElementInfo) {
 		if (((MemberElementInfo)oldInfo).getModifiers() != ((MemberElementInfo)newInfo).getModifiers()) {
 			this.delta.changed(newElement, IJavaElementDelta.F_MODIFIERS);
@@ -320,17 +320,17 @@ private void findContentChange(JavaElementInfo oldInfo, JavaElementInfo newInfo,
 		}
 	}
 }
-private void findCategoryChange(Map<IJavaElement, String[]> oldCategoriesMap, Map<IJavaElement, String[]> newCategoriesMap) {
+private void findCategoryChange(Map<IJavaElement, String[]> oldCategoriesMap, Map<IJavaElement, String[]> newCategoriesMap) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (oldCategoriesMap != null) {
 		// take the union of old and new categories elements (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=125675)
 		Set elements;
 		if (newCategoriesMap != null) {
-			elements = new HashSet(oldCategoriesMap.keySet());
+			elements = new HashSet(oldCategoriesMap.keySet()); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			elements.addAll(newCategoriesMap.keySet());
 		} else
 			elements = oldCategoriesMap.keySet();
 		Iterator iterator = elements.iterator();
-		while (iterator.hasNext()) {
+		while (iterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IJavaElement element = (IJavaElement) iterator.next();
 			String[] oldCategories = oldCategoriesMap.get(element);
 			String[] newCategories = newCategoriesMap == null ? null : (String[]) newCategoriesMap.get(element);
@@ -339,7 +339,7 @@ private void findCategoryChange(Map<IJavaElement, String[]> oldCategoriesMap, Ma
 			}
 		}
 	} else if (newCategoriesMap != null) {
-		for (IJavaElement element : newCategoriesMap.keySet()) {
+		for (IJavaElement element : newCategoriesMap.keySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.delta.changed(element, IJavaElementDelta.F_CATEGORIES); // all categories for this element were removed
 		}
 	}
@@ -349,7 +349,7 @@ private void findCategoryChange(Map<IJavaElement, String[]> oldCategoriesMap, Ma
  */
 private void findDeletions() {
 	Iterator iter = this.infos.keySet().iterator();
-	while(iter.hasNext()) {
+	while(iter.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IJavaElement element = (IJavaElement)iter.next();
 		this.delta.removed(element);
 		removed(element);
@@ -365,13 +365,13 @@ private ListItem getOldPosition(IJavaElement element) {
 	return (ListItem)this.oldPositions.get(element);
 }
 private void initialize() {
-	this.infos = new HashMap(20);
-	this.oldPositions = new HashMap(20);
-	this.newPositions = new HashMap(20);
+	this.infos = new HashMap(20); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	this.oldPositions = new HashMap(20); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	this.newPositions = new HashMap(20); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	this.oldPositions.put(this.javaElement, new ListItem(null, null));
 	this.newPositions.put(this.javaElement, new ListItem(null, null));
-	this.added = new HashSet(5);
-	this.removed = new HashSet(5);
+	this.added = new HashSet(5); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+	this.removed = new HashSet(5); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 }
 /**
  * Inserts position information for the elements into the new or old positions table
@@ -379,7 +379,7 @@ private void initialize() {
 private void insertPositions(IJavaElement[] elements, boolean isNew) {
 	int length = elements.length;
 	IJavaElement previous = null, current = null, next = (length > 0) ? elements[0] : null;
-	for(int i = 0; i < length; i++) {
+	for(int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		previous = current;
 		current = next;
 		next = (i + 1 < length) ? elements[i + 1] : null;
@@ -412,7 +412,7 @@ private boolean isPositionedCorrectly(IJavaElement element) {
  * Records this elements info, and attempts
  * to record the info for the children.
  */
-private void recordElementInfo(IJavaElement element, JavaModel model, int depth) {
+private void recordElementInfo(IJavaElement element, JavaModel model, int depth) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (depth >= this.maxDepth) {
 		return;
 	}
@@ -425,7 +425,7 @@ private void recordElementInfo(IJavaElement element, JavaModel model, int depth)
 		IJavaElement[] children = info.getChildren();
 		if (children != null) {
 			insertPositions(children, false);
-			for (IJavaElement child : children)
+			for (IJavaElement child : children) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				recordElementInfo(child, model, depth + 1);
 		}
 	}
@@ -434,9 +434,9 @@ private void recordElementInfo(IJavaElement element, JavaModel model, int depth)
 		annotations = ((AnnotatableInfo) info).annotations;
 	if (annotations != null) {
 		if (this.annotationInfos == null)
-			this.annotationInfos = new HashMap();
+			this.annotationInfos = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		JavaModelManager manager = JavaModelManager.getJavaModelManager();
-		for (IAnnotation annotation : annotations) {
+		for (IAnnotation annotation : annotations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.annotationInfos.put(annotation, manager.getInfo(annotation));
 		}
 	}
@@ -444,7 +444,7 @@ private void recordElementInfo(IJavaElement element, JavaModel model, int depth)
 /**
  * Fills the newPositions hashtable with the new position information
  */
-private void recordNewPositions(IJavaElement newElement, int depth) {
+private void recordNewPositions(IJavaElement newElement, int depth) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (depth < this.maxDepth && newElement instanceof IParent) {
 		JavaElementInfo info = null;
 		try {
@@ -456,7 +456,7 @@ private void recordNewPositions(IJavaElement newElement, int depth) {
 		IJavaElement[] children = info.getChildren();
 		if (children != null) {
 			insertPositions(children, true);
-			for (IJavaElement child : children) {
+			for (IJavaElement child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				recordNewPositions(child, depth + 1);
 			}
 		}
@@ -485,9 +485,9 @@ private void removeElementInfo(IJavaElement element) {
 }
 @Override
 public String toString() {
-	StringBuilder buffer = new StringBuilder();
-	buffer.append("Built delta:\n"); //$NON-NLS-1$
-	buffer.append(this.delta == null ? "<null>" : this.delta.toString()); //$NON-NLS-1$
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	buffer.append("Built delta:\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(this.delta == null ? "<null>" : this.delta.toString()); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return buffer.toString();
 }
 /**
@@ -498,7 +498,7 @@ private void trimDelta(JavaElementDelta elementDelta) {
 		elementDelta.clearAffectedChildren();
 	} else {
 		IJavaElementDelta[] children = elementDelta.getAffectedChildren();
-		for (IJavaElementDelta child : children) {
+		for (IJavaElementDelta child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			trimDelta((JavaElementDelta)child);
 		}
 	}

@@ -28,7 +28,7 @@ public final class ExtraFlags {
 	//internal flags
 	public final static int ParameterTypesStoredAsSignature = 0x0010;
 
-	public static int getExtraFlags(ClassFileReader reader) {
+	public static int getExtraFlags(ClassFileReader reader) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int extraFlags = 0;
 
 		if (reader.isNestedType()) {
@@ -42,7 +42,7 @@ public final class ExtraFlags {
 		IBinaryNestedType[] memberTypes = reader.getMemberTypes();
 		int memberTypeCounter = memberTypes == null ? 0 : memberTypes.length;
 		if (memberTypeCounter > 0) {
-			done : for (int i = 0; i < memberTypeCounter; i++) {
+			done : for (int i = 0; i < memberTypeCounter; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int modifiers = memberTypes[i].getModifiers();
 				// if the member type is static and not private
 				if ((modifiers & ClassFileConstants.AccStatic) != 0 && (modifiers & ClassFileConstants.AccPrivate) == 0) {
@@ -56,7 +56,7 @@ public final class ExtraFlags {
 		return extraFlags;
 	}
 
-	public static int getExtraFlags(IType type) throws JavaModelException {
+	public static int getExtraFlags(IType type) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int extraFlags = 0;
 
 		if (type.isMember()) {
@@ -70,7 +70,7 @@ public final class ExtraFlags {
 		IType[] memberTypes = type.getTypes();
 		int memberTypeCounter = memberTypes == null ? 0 : memberTypes.length;
 		if (memberTypeCounter > 0) {
-			done : for (int i = 0; i < memberTypeCounter; i++) {
+			done : for (int i = 0; i < memberTypeCounter; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int flags = memberTypes[i].getFlags();
 				// if the member type is static and not private
 				if ((flags & ClassFileConstants.AccStatic) != 0 && (flags & ClassFileConstants.AccPrivate) == 0 ) {
@@ -83,7 +83,7 @@ public final class ExtraFlags {
 		return extraFlags;
 	}
 
-	public static int getExtraFlags(TypeDeclaration typeDeclaration) {
+	public static int getExtraFlags(TypeDeclaration typeDeclaration) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int extraFlags = 0;
 
 		if (typeDeclaration.enclosingType != null) {
@@ -92,7 +92,7 @@ public final class ExtraFlags {
 		TypeDeclaration[] memberTypes = typeDeclaration.memberTypes;
 		int memberTypeCounter = memberTypes == null ? 0 : memberTypes.length;
 		if (memberTypeCounter > 0) {
-			done : for (int i = 0; i < memberTypeCounter; i++) {
+			done : for (int i = 0; i < memberTypeCounter; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int modifiers = memberTypes[i].modifiers;
 				// if the member type is static and not private
 				if ((modifiers & ClassFileConstants.AccStatic) != 0 && (modifiers & ClassFileConstants.AccPrivate) == 0) {

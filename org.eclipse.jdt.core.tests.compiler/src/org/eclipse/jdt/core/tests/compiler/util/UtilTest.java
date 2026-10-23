@@ -33,16 +33,16 @@ public class UtilTest extends TestCase {
 	}
 
 	private static void assertArchiveFormat(int expected, String name) {
-		assertEquals("Unexpected archive format for: " + name, expected, Util.archiveFormat(name));
+		assertEquals("Unexpected archive format for: " + name, expected, Util.archiveFormat(name)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	private static void assertPotentialZipArchive(boolean expected, String name) {
-		assertEquals("Unexpected zip archive classification for: " + name, expected,
+		assertEquals("Unexpected zip archive classification for: " + name, expected, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				Util.isPotentialZipArchive(name));
 	}
 
 	private static void assertNativeLibrary(boolean expected, String name) {
-		assertEquals("Unexpected native library classification for: " + name, expected,
+		assertEquals("Unexpected native library classification for: " + name, expected, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				Util.isNativeLibrary(name));
 	}
 
@@ -99,8 +99,8 @@ public class UtilTest extends TestCase {
 		assertNativeLibrary(false, "libso");
 		assertNativeLibrary(false, "foo");
 		assertNativeLibrary(false, "");
-		assertNativeLibrary(false, "usr" + File.separator + "lib" + File.separator + "so");
-		assertNativeLibrary(false, File.separator + "so");
+		assertNativeLibrary(false, "usr" + File.separator + "lib" + File.separator + "so"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertNativeLibrary(false, File.separator + "so"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	@Test
@@ -110,8 +110,8 @@ public class UtilTest extends TestCase {
 		assertNativeLibrary(true, "libfoo.dylib");
 		assertNativeLibrary(true, ".so");
 		assertNativeLibrary(true, "libfoo.DyLiB");
-		assertNativeLibrary(true, "usr" + File.separator + "lib" + File.separator + "libjvm.so");
-		assertNativeLibrary(true, "some.dir" + File.separator + "libjvm.dylib");
+		assertNativeLibrary(true, "usr" + File.separator + "lib" + File.separator + "libjvm.so"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertNativeLibrary(true, "some.dir" + File.separator + "libjvm.dylib"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		assertNativeLibrary(false, "foo.jar");
 		assertNativeLibrary(false, "Foo.class");
@@ -128,11 +128,11 @@ public class UtilTest extends TestCase {
 	 */
 	@Test
 	public void testNativeLibraryWithSeparatorAfterLastDot() {
-		assertNativeLibrary(false, "dir.so" + File.separator + "file");
+		assertNativeLibrary(false, "dir.so" + File.separator + "file"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertNativeLibrary(false, "dir.so/file");
 		assertNativeLibrary(false, "dir.dll/file");
 		assertNativeLibrary(false, "dir.dylib/file");
-		assertNativeLibrary(false, "dir.so" + File.separator);
+		assertNativeLibrary(false, "dir.so" + File.separator); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertNativeLibrary(false, "dir.so/");
 		assertNativeLibrary(false, "libfoo.so/");
 		assertNativeLibrary(false, "a.s/o");
@@ -161,12 +161,12 @@ public class UtilTest extends TestCase {
 
 	@Test
 	public void testNativeLibrariesWithPath() {
-		String nativeLibrary = "usr" + File.separator + "lib" + File.separator + "libjvm.so";
+		String nativeLibrary = "usr" + File.separator + "lib" + File.separator + "libjvm.so"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertNotAnArchive(nativeLibrary);
-		assertNotAnArchive("some.dir" + File.separator + "libjvm.dylib");
-		assertNotAnArchive("some.dir" + File.separator + "jvm.dll");
+		assertNotAnArchive("some.dir" + File.separator + "libjvm.dylib"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertNotAnArchive("some.dir" + File.separator + "jvm.dll"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		// a dot in a directory segment must not turn a jar into a native library
-		assertZipArchive("some.dir" + File.separator + "foo.jar");
+		assertZipArchive("some.dir" + File.separator + "foo.jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/**

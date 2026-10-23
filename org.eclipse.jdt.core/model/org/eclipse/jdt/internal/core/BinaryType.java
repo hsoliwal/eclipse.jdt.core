@@ -100,7 +100,7 @@ public void codeComplete(char[] snippet,int insertion,int position,char[][] loca
 	codeComplete(snippet, insertion, position, localVariableTypeNames, localVariableNames, localVariableModifiers, isStatic, requestor, owner, null);
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void codeComplete(
 		char[] snippet,
 		int insertion,
@@ -140,8 +140,8 @@ public void codeComplete(
 		engine.complete(this, snippet, position, localVariableTypeNames, localVariableNames, localVariableModifiers, isStatic);
 	}
 	if (NameLookup.VERBOSE) {
-		JavaModelManager.trace(Thread.currentThread() + " TIME SPENT in NameLoopkup#seekTypesInSourcePackage: " + environment.nameLookup.timeSpentInSeekTypesInSourcePackage + "ms");  //$NON-NLS-1$ //$NON-NLS-2$
-		JavaModelManager.trace(Thread.currentThread() + " TIME SPENT in NameLoopkup#seekTypesInBinaryPackage: " + environment.nameLookup.timeSpentInSeekTypesInBinaryPackage + "ms");  //$NON-NLS-1$ //$NON-NLS-2$
+		JavaModelManager.trace(Thread.currentThread() + " TIME SPENT in NameLoopkup#seekTypesInSourcePackage: " + environment.nameLookup.timeSpentInSeekTypesInSourcePackage + "ms");  //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		JavaModelManager.trace(Thread.currentThread() + " TIME SPENT in NameLoopkup#seekTypesInBinaryPackage: " + environment.nameLookup.timeSpentInSeekTypesInBinaryPackage + "ms");  //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }
 
@@ -196,7 +196,7 @@ public IJavaElement[] getChildren() throws JavaModelException {
 	ClassFileInfo cfi = getClassFileInfo();
 	return cfi.binaryChildren;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public IJavaElement[] getChildrenForCategory(String category) throws JavaModelException {
 	IJavaElement[] children = getChildren();
 	int length = children.length;
@@ -210,11 +210,11 @@ public IJavaElement[] getChildrenForCategory(String category) throws JavaModelEx
 		IJavaElement[] result = new IJavaElement[length];
 		int index = 0;
 		if (categories != null) {
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IJavaElement child = children[i];
 				String[] cats = (String[]) categories.get(child);
 				if (cats != null) {
-					for (String cat : cats) {
+					for (String cat : cats) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (cat.equals(category)) {
 							result[index++] = child;
 							break;
@@ -236,7 +236,7 @@ protected ClassFileInfo getClassFileInfo() throws JavaModelException {
 public IOrdinaryClassFile getClassFile() {
 	return (IOrdinaryClassFile) super.getClassFile();
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public IType getDeclaringType() {
 	IClassFile classFile = getClassFile();
 	if (classFile.isOpen()) {
@@ -254,7 +254,7 @@ public IType getDeclaringType() {
 				return null;
 			}
 
-			return getPackageFragment().getOrdinaryClassFile(new String(enclosingTypeName) + SUFFIX_STRING_class).getType();
+			return getPackageFragment().getOrdinaryClassFile(new String(enclosingTypeName) + SUFFIX_STRING_class).getType(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} catch (JavaModelException npe) {
 			return null;
 		}
@@ -264,7 +264,7 @@ public IType getDeclaringType() {
 		// so default to assuming $ is an enclosing type separator
 		String classFileName = classFile.getElementName();
 		int lastDollar = -1;
-		for (int i = 0, length = classFileName.length(); i < length; i++) {
+		for (int i = 0, length = classFileName.length(); i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char c = classFileName.charAt(i);
 			if (Character.isDigit(c) && lastDollar == i-1) {
 				// anonymous or local type
@@ -277,7 +277,7 @@ public IType getDeclaringType() {
 			return null;
 		} else {
 			String enclosingName = classFileName.substring(0, lastDollar);
-			String enclosingClassFileName = enclosingName + SUFFIX_STRING_class;
+			String enclosingClassFileName = enclosingName + SUFFIX_STRING_class; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			return
 				new BinaryType(
 					(JavaElement)getPackageFragment().getClassFile(enclosingClassFileName),
@@ -328,8 +328,8 @@ private IField[] getFieldsOrComponents(boolean component) throws JavaModelExcept
 	if (list.size() == 0) {
 		return NO_FIELDS;
 	}
-	ArrayList<IField> fields = new ArrayList<>();
-	for (Object object : list) {
+	ArrayList<IField> fields = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	for (Object object : list) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IField field = (IField) object;
 		if (field.isRecordComponent() == component)
 			fields.add(field);
@@ -382,7 +382,7 @@ public String getFullyQualifiedParameterizedName() throws JavaModelException {
 /*
  * @see JavaElement
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public IJavaElement getHandleFromMemento(String token, MementoTokenizer memento, WorkingCopyOwner workingCopyOwner) {
 	switch (token.charAt(0)) {
 		case JEM_COUNT:
@@ -400,8 +400,8 @@ public IJavaElement getHandleFromMemento(String token, MementoTokenizer memento,
 		case JEM_METHOD:
 			if (!memento.hasMoreTokens()) return this;
 			String selector = memento.nextToken();
-			ArrayList params = new ArrayList();
-			nextParam: while (memento.hasMoreTokens()) {
+			ArrayList params = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			nextParam: while (memento.hasMoreTokens()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				token = memento.nextToken();
 				switch (token.charAt(0)) {
 					case JEM_TYPE:
@@ -411,13 +411,13 @@ public IJavaElement getHandleFromMemento(String token, MementoTokenizer memento,
 					case JEM_METHOD:
 						if (!memento.hasMoreTokens()) return this;
 						String param = memento.nextToken();
-						StringBuilder buffer = new StringBuilder();
-						while (param.length() == 1 && Signature.C_ARRAY == param.charAt(0)) { // backward compatible with 3.0 mementos
-							buffer.append(Signature.C_ARRAY);
+						StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+						while (param.length() == 1 && Signature.C_ARRAY == param.charAt(0)) { // backward compatible with 3.0 mementos //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+							buffer.append(Signature.C_ARRAY); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							if (!memento.hasMoreTokens()) return this;
 							param = memento.nextToken();
 						}
-						params.add(buffer.toString() + param);
+						params.add(buffer.toString() + param); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						break;
 					default:
 						break nextParam;
@@ -506,7 +506,7 @@ public IMethod[] getMethods() throws JavaModelException {
 @Override
 public IPackageFragment getPackageFragment() {
 	IJavaElement parentElement = this.getParent();
-	while (parentElement != null) {
+	while (parentElement != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (parentElement.getElementType() == IJavaElement.PACKAGE_FRAGMENT) {
 			return (IPackageFragment)parentElement;
 		}
@@ -522,7 +522,7 @@ public IPackageFragment getPackageFragment() {
  * @see IType#getSuperclassTypeSignature()
  * @since 3.0
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public String getSuperclassTypeSignature() throws JavaModelException {
 	IBinaryType info = getElementInfo();
 	char[] genericSignature = info.getGenericSignature();
@@ -532,7 +532,7 @@ public String getSuperclassTypeSignature() throws JavaModelException {
 		int index = 0;
 		if (genericSignature[0] == '<') {
 			int count = 1;
-			while (count > 0 && ++index < signatureLength) {
+			while (count > 0 && ++index < signatureLength) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				switch (genericSignature[index]) {
 					case '<':
 						count++;
@@ -565,11 +565,11 @@ public String getSourceFileName(IBinaryType info) {
 			// default to using the outer most declaring type name
 			IType type = this;
 			IType enclosingType = getDeclaringType();
-			while (enclosingType != null) {
+			while (enclosingType != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				type = enclosingType;
 				enclosingType = type.getDeclaringType();
 			}
-			return type.getElementName() + Util.defaultJavaExtension();
+			return type.getElementName() + Util.defaultJavaExtension(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	return sourceFileName(info);
@@ -595,7 +595,7 @@ public String[] getSuperInterfaceNames() throws JavaModelException {
 	}
 	names= ClassFile.translatedNames(names);
 	String[] strings= new String[length];
-	for (int i= 0; i < length; i++) {
+	for (int i= 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		strings[i]= new String(names[i]);
 	}
 	return strings;
@@ -610,7 +610,7 @@ public String[] getPermittedSubtypeNames() throws JavaModelException {
 	}
 	names= ClassFile.translatedNames(names);
 	String[] strings= new String[length];
-	for (int i= 0; i < length; i++) {
+	for (int i= 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		strings[i]= new String(names[i]);
 	}
 	return strings;
@@ -620,18 +620,18 @@ public String[] getPermittedSubtypeNames() throws JavaModelException {
  * @see IType#getSuperInterfaceTypeSignatures()
  * @since 3.0
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public String[] getSuperInterfaceTypeSignatures() throws JavaModelException {
 	IBinaryType info = getElementInfo();
 	char[] genericSignature = info.getGenericSignature();
 	if (genericSignature != null) {
-		ArrayList interfaces = new ArrayList();
+		ArrayList interfaces = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		int signatureLength = genericSignature.length;
 		// skip type parameters
 		int index = 0;
 		if (genericSignature[0] == '<') {
 			int count = 1;
-			while (count > 0 && ++index < signatureLength) {
+			while (count > 0 && ++index < signatureLength) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				switch (genericSignature[index]) {
 					case '<':
 						count++;
@@ -645,7 +645,7 @@ public String[] getSuperInterfaceTypeSignatures() throws JavaModelException {
 		}
 		// skip superclass
 		index = org.eclipse.jdt.internal.compiler.util.Util.scanClassTypeSignature(genericSignature, index) + 1;
-		while (index  < signatureLength) {
+		while (index  < signatureLength) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int start = index;
 			index = org.eclipse.jdt.internal.compiler.util.Util.scanClassTypeSignature(genericSignature, start) + 1;
 			char[] interfaceSig = CharOperation.subarray(genericSignature, start, index);
@@ -663,7 +663,7 @@ public String[] getSuperInterfaceTypeSignatures() throws JavaModelException {
 		}
 		names= ClassFile.translatedNames(names);
 		String[] strings= new String[length];
-		for (int i= 0; i < length; i++) {
+		for (int i= 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			strings[i]= Signature.createTypeSignature(names[i], true);
 		}
 		return strings;
@@ -676,7 +676,7 @@ public ITypeParameter[] getTypeParameters() throws JavaModelException {
 	int length = typeParameterSignatures.length;
 	if (length == 0) return TypeParameter.NO_TYPE_PARAMETERS;
 	ITypeParameter[] typeParameters = new ITypeParameter[length];
-	for (int i = 0; i < typeParameterSignatures.length; i++) {
+	for (int i = 0; i < typeParameterSignatures.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String typeParameterName = Signature.getTypeVariable(typeParameterSignatures[i]);
 		typeParameters[i] = new TypeParameter(this, typeParameterName);
 	}
@@ -701,7 +701,7 @@ public String[] getTypeParameterSignatures() throws JavaModelException {
 
 @Override
 public IType getType(String typeName) {
-	IClassFile classFile= getPackageFragment().getClassFile(getTypeQualifiedName() + "$" + typeName + SUFFIX_STRING_class); //$NON-NLS-1$
+	IClassFile classFile= getPackageFragment().getClassFile(getTypeQualifiedName() + "$" + typeName + SUFFIX_STRING_class); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	return new BinaryType((JavaElement)classFile, typeName);
 }
 @Override
@@ -878,7 +878,7 @@ public ITypeHierarchy newTypeHierarchy(IJavaProject project, IProgressMonitor mo
 	return newTypeHierarchy(project, DefaultWorkingCopyOwner.PRIMARY, monitor);
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public ITypeHierarchy newTypeHierarchy(IJavaProject project, WorkingCopyOwner owner, IProgressMonitor monitor) throws JavaModelException {
 	if (project == null) {
 		throw new IllegalArgumentException(Messages.hierarchy_nullProject);
@@ -889,7 +889,7 @@ public ITypeHierarchy newTypeHierarchy(IJavaProject project, WorkingCopyOwner ow
 		int length = workingCopies.length;
 		projectWCs = new ICompilationUnit[length];
 		int index = 0;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ICompilationUnit wc = workingCopies[i];
 			if (project.equals(wc.getJavaProject())) {
 				projectWCs[index++] = wc;
@@ -969,7 +969,7 @@ public ResolvedBinaryType resolved(Binding binding) {
  * Returns the source file name as defined in the given info.
  * If not present in the info, infers it from this type.
  */
-public String sourceFileName(IBinaryType info) {
+public String sourceFileName(IBinaryType info) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[] sourceFileName = info.sourceFileName();
 	if (sourceFileName == null) {
 		/*
@@ -980,20 +980,20 @@ public String sourceFileName(IBinaryType info) {
 		if (info.isMember()) {
 			IType enclosingType = getDeclaringType();
 			if (enclosingType == null) return null; // play it safe
-			while (enclosingType.getDeclaringType() != null) {
+			while (enclosingType.getDeclaringType() != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				enclosingType = enclosingType.getDeclaringType();
 			}
-			return enclosingType.getElementName() + Util.defaultJavaExtension();
+			return enclosingType.getElementName() + Util.defaultJavaExtension(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else if (info.isLocal() || info.isAnonymous()){
 			String typeQualifiedName = getTypeQualifiedName();
 			int dollar = typeQualifiedName.indexOf('$');
 			if (dollar == -1) {
 				// malformed inner type: name doesn't contain a dollar
-				return getElementName() + Util.defaultJavaExtension();
+				return getElementName() + Util.defaultJavaExtension(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
-			return typeQualifiedName.substring(0, dollar) + Util.defaultJavaExtension();
+			return typeQualifiedName.substring(0, dollar) + Util.defaultJavaExtension(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
-			return getElementName() + Util.defaultJavaExtension();
+			return getElementName() + Util.defaultJavaExtension(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	} else {
 		int index = CharOperation.lastIndexOf('/', sourceFileName);
@@ -1003,30 +1003,30 @@ public String sourceFileName(IBinaryType info) {
 /*
  * for debugging only
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void toStringInfo(int tab, StringBuilder buffer, Object info, boolean showResolvedInfo) {
-	buffer.append(tabString(tab));
+	buffer.append(tabString(tab)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (info == null) {
 		toStringName(buffer);
-		buffer.append(" (not open)"); //$NON-NLS-1$
+		buffer.append(" (not open)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	} else if (info == NO_INFO) {
 		toStringName(buffer);
 	} else {
 		try {
 			if (isRecord()) {
-				buffer.append("record "); //$NON-NLS-1$
+				buffer.append("record "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else if (isAnnotation()) {
-				buffer.append("@interface "); //$NON-NLS-1$
+				buffer.append("@interface "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else if (isEnum()) {
-				buffer.append("enum "); //$NON-NLS-1$
+				buffer.append("enum "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else if (isInterface()) {
-				buffer.append("interface "); //$NON-NLS-1$
+				buffer.append("interface "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				buffer.append("class "); //$NON-NLS-1$
+				buffer.append("class "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			toStringName(buffer);
 		} catch (JavaModelException e) {
-			buffer.append("<JavaModelException in toString of " + getElementName()); //$NON-NLS-1$
+			buffer.append("<JavaModelException in toString of " + getElementName()); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 }
@@ -1035,7 +1035,7 @@ protected void toStringName(StringBuilder buffer) {
 	if (getElementName().length() > 0)
 		super.toStringName(buffer);
 	else
-		buffer.append("<anonymous>"); //$NON-NLS-1$
+		buffer.append("<anonymous>"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 }
 @Override
 public String getAttachedJavadoc(IProgressMonitor monitor) throws JavaModelException {
@@ -1043,7 +1043,7 @@ public String getAttachedJavadoc(IProgressMonitor monitor) throws JavaModelExcep
 	if (javadocContents == null) return null;
 	return javadocContents.getTypeDoc();
 }
-public IJavadocContents getJavadocContents(IProgressMonitor monitor) throws JavaModelException {
+public IJavadocContents getJavadocContents(IProgressMonitor monitor) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	PerProjectInfo projectInfo = JavaModelManager.getJavaModelManager().getPerProjectInfoCheckExistence(getJavaProject().getProject());
 	IJavadocContents cachedJavadoc = null;
 	synchronized (projectInfo.javadocCache) {
@@ -1057,17 +1057,17 @@ public IJavadocContents getJavadocContents(IProgressMonitor monitor) throws Java
 	if (baseLocation == null) {
 		return null;
 	}
-	StringBuilder pathBuffer = new StringBuilder(baseLocation.toExternalForm());
+	StringBuilder pathBuffer = new StringBuilder(baseLocation.toExternalForm()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
 	if (!(pathBuffer.charAt(pathBuffer.length() - 1) == '/')) {
-		pathBuffer.append('/');
+		pathBuffer.append('/'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	IPackageFragment pack= getPackageFragment();
 	String typeQualifiedName = null;
 	if (isMember()) {
 		IType currentType = this;
-		StringBuilder typeName = new StringBuilder();
-		while (currentType != null) {
+		StringBuilder typeName = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		while (currentType != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			typeName.insert(0, currentType.getElementName());
 			currentType = currentType.getDeclaringType();
 			if (currentType != null) {
@@ -1080,7 +1080,7 @@ public IJavadocContents getJavadocContents(IProgressMonitor monitor) throws Java
 	}
 
 	appendModulePath(pack, pathBuffer);
-	pathBuffer.append(pack.getElementName().replace('.', '/')).append('/').append(typeQualifiedName).append(ExternalJavadocSupport.HTML_EXTENSION);
+	pathBuffer.append(pack.getElementName().replace('.', '/')).append('/').append(typeQualifiedName).append(ExternalJavadocSupport.HTML_EXTENSION); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (monitor != null && monitor.isCanceled()) throw new OperationCanceledException();
 	final String contents = getURLContents(baseLocation, String.valueOf(pathBuffer));
 	IJavadocContents javadocContents = ExternalJavadocSupport.forHtml(this, contents);
@@ -1099,13 +1099,13 @@ private static void appendModulePath(IPackageFragment pack, StringBuilder buf) {
 	if (moduleDescription != null) {
 		String moduleName= moduleDescription.getElementName();
 		if (moduleName != null && moduleName.length() > 0) {
-			buf.append(moduleName);
-			buf.append('/');
+			buf.append(moduleName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append('/'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 }
 
-private static IModuleDescription getModuleDescription(IPackageFragment pack) {
+private static IModuleDescription getModuleDescription(IPackageFragment pack) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (pack == null) {
 		return null;
 	}

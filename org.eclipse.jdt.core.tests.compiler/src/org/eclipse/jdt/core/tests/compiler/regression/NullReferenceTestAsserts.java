@@ -150,7 +150,7 @@ protected void setUp() throws Exception {
 		System.arraycopy(defaultLibs, 0, this.assertLib, 0, len);
 		File bundleFile = FileLocator.getBundleFileLocation(Platform.getBundle("org.eclipse.equinox.common")).get();
 		if (bundleFile.isDirectory())
-			this.assertLib[len] = bundleFile.getPath()+"/bin";
+			this.assertLib[len] = bundleFile.getPath()+"/bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		else
 			this.assertLib[len] = bundleFile.getPath();
 	}
@@ -172,7 +172,7 @@ protected Map getCompilerOptions() {
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=127575
-public void testBug127575a() throws IOException {
+public void testBug127575a() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (RUN_JAVAC && this.complianceLevel < ClassFileConstants.JDK11)
 		return; // Assert has class file format JDK 11
 	this.runConformTest(
@@ -192,7 +192,7 @@ public void testBug127575a() throws IOException {
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=127575
-public void testBug127575b() {
+public void testBug127575b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (RUN_JAVAC && this.complianceLevel < ClassFileConstants.JDK11)
 		return; // Assert has class file format JDK 11
 	Runner runner = new Runner();
@@ -219,7 +219,7 @@ public void testBug127575b() {
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=127575
-public void testBug127575c() {
+public void testBug127575c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (RUN_JAVAC && this.complianceLevel < ClassFileConstants.JDK11)
 		return; // Assert has class file format JDK 11
 	Runner runner = new Runner();
@@ -246,7 +246,7 @@ public void testBug127575c() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127575
-public void testBug127575d() {
+public void testBug127575d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (RUN_JAVAC && this.complianceLevel < ClassFileConstants.JDK11)
 		return; // Assert has class file format JDK 11
 	Runner runner = new Runner();
@@ -284,7 +284,7 @@ public void testBug127575d() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127575
-public void testBug127575e() {
+public void testBug127575e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (RUN_JAVAC && this.complianceLevel < ClassFileConstants.JDK11)
 		return; // Assert has class file format JDK 11
 	Runner runner = new Runner();
@@ -310,7 +310,7 @@ public void testBug127575e() {
 	runner.runConformTest();
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127575
-public void testBug127575e_1() {
+public void testBug127575e_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (RUN_JAVAC && this.complianceLevel < ClassFileConstants.JDK11)
 		return; // Assert has class file format JDK 11
 	Runner runner = new Runner();
@@ -343,7 +343,7 @@ public void testBug127575e_1() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127575
-public void testBug127575e_2() {
+public void testBug127575e_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (RUN_JAVAC && this.complianceLevel < ClassFileConstants.JDK11)
 		return; // Assert has class file format JDK 11
 	Runner runner = new Runner();
@@ -369,7 +369,7 @@ public void testBug127575e_2() {
 	runner.runConformTest();
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127575
-public void testBug127575f() {
+public void testBug127575f() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (RUN_JAVAC && this.complianceLevel < ClassFileConstants.JDK11)
 		return; // Assert has class file format JDK 11
 	Runner runner = new Runner();
@@ -402,7 +402,7 @@ public void testBug127575f() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127575
 // do warn always false comparisons even inside org.eclipse.core.runtime.Assert.isLegal
-public void testBug127575g() {
+public void testBug127575g() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (RUN_JAVAC && this.complianceLevel < ClassFileConstants.JDK11)
 		return; // Assert has class file format JDK 11
 	Runner runner = new Runner();
@@ -442,7 +442,7 @@ public void testBug127575g() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127575
 // Test to verify that asserts are exempted from redundant null check warnings,
 // but this doesn't affect the downstream info.
-public void testBug127575h() {
+public void testBug127575h() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (RUN_JAVAC && this.complianceLevel < ClassFileConstants.JDK11)
 		return; // Assert has class file format JDK 11
 	Runner runner = new Runner();
@@ -516,7 +516,7 @@ public void testBug127575h() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127575
 // Test to verify that asserts are exempted from redundant null check warnings,
 // but this doesn't affect the downstream info.
-public void testBug127575i() {
+public void testBug127575i() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (RUN_JAVAC && this.complianceLevel < ClassFileConstants.JDK11)
 		return; // Assert has class file format JDK 11
 	Runner runner = new Runner();
@@ -557,7 +557,7 @@ public void testBug127575i() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127575
 // Test to verify that asserts are exempted from redundant null check warnings in a looping context,
 // but this doesn't affect the downstream info.
-public void testBug127575j() {
+public void testBug127575j() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (RUN_JAVAC && this.complianceLevel < ClassFileConstants.JDK11)
 		return; // Assert has class file format JDK 11
 	Runner runner = new Runner();
@@ -633,7 +633,7 @@ public void testBug127575j() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127575
 // Test to verify that asserts are exempted from redundant null check warnings in a finally context,
 // but this doesn't affect the downstream info.
-public void testBug127575k() {
+public void testBug127575k() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (RUN_JAVAC && this.complianceLevel < ClassFileConstants.JDK11)
 		return; // Assert has class file format JDK 11
 	Runner runner = new Runner();
@@ -712,7 +712,7 @@ public void testBug127575k() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127575
 // The condition of org.eclipse.core.runtime.Assert.isLegal is considered always true
 // and alters the following analysis suitably.
-public void testBug127575l() {
+public void testBug127575l() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (RUN_JAVAC && this.complianceLevel < ClassFileConstants.JDK11)
 		return; // Assert has class file format JDK 11
 	Runner runner = new Runner();
@@ -795,7 +795,7 @@ public void testBug127575l() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127575
 // NPE warnings should be given inside org.eclipse.core.runtime.Assert.isLegal too
-public void testBug127575m() {
+public void testBug127575m() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (RUN_JAVAC && this.complianceLevel < ClassFileConstants.JDK11)
 		return; // Assert has class file format JDK 11
 	Runner runner = new Runner();
@@ -835,7 +835,7 @@ public void testBug127575m() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127575
 // always false comparison in Assert.isLegal in loop should be warned against
-public void testBug127575n() {
+public void testBug127575n() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (RUN_JAVAC && this.complianceLevel < ClassFileConstants.JDK11)
 		return; // Assert has class file format JDK 11
 	Runner runner = new Runner();
@@ -874,7 +874,7 @@ public void testBug127575n() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127575
 // "redundant null check" in Assert.isLegal in loop should not be warned against
-public void testBug127575o() {
+public void testBug127575o() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (RUN_JAVAC && this.complianceLevel < ClassFileConstants.JDK11)
 		return; // Assert has class file format JDK 11
 	Runner runner = new Runner();
@@ -907,7 +907,7 @@ public void testBug127575o() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=373953
-public void testBug373953() throws IOException {
+public void testBug373953() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -954,7 +954,7 @@ public void testBug373953() throws IOException {
 
 // https://bugs.eclipse.org/382069 - [null] Make the null analysis consider JUnit's assertNotNull similarly to assertions
 // junit's assertNotNull
-public void testBug382069a() throws IOException {
+public void testBug382069a() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			JUNIT_ASSERT_NAME,
@@ -975,7 +975,7 @@ public void testBug382069a() throws IOException {
 
 // https://bugs.eclipse.org/382069 - [null] Make the null analysis consider JUnit's assertNotNull similarly to assertions
 // org.eclipse.core.runtime.Assert.isNotNull
-public void testBug382069b() {
+public void testBug382069b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (RUN_JAVAC && this.complianceLevel < ClassFileConstants.JDK11)
 		return; // Assert has class file format JDK 11
 	this.runConformTest(
@@ -1000,7 +1000,7 @@ public void testBug382069b() {
 
 // https://bugs.eclipse.org/382069 - [null] Make the null analysis consider JUnit's assertNotNull similarly to assertions
 // junit's assertNull and dead code analysis
-public void testBug382069c() throws IOException {
+public void testBug382069c() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -1044,7 +1044,7 @@ public void testBug382069c() throws IOException {
 }
 // https://bugs.eclipse.org/382069 - [null] Make the null analysis consider JUnit's assertNotNull similarly to assertions
 // various asserts from org.apache.commons.lang.Validate
-public void testBug382069d() throws IOException {
+public void testBug382069d() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -1076,7 +1076,7 @@ public void testBug382069d() throws IOException {
 }
 // https://bugs.eclipse.org/382069 - [null] Make the null analysis consider JUnit's assertNotNull similarly to assertions
 // various asserts from org.apache.commons.lang3Validate
-public void testBug382069e() throws IOException {
+public void testBug382069e() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -1108,7 +1108,7 @@ public void testBug382069e() throws IOException {
 }
 // https://bugs.eclipse.org/382069 - [null] Make the null analysis consider JUnit's assertNotNull similarly to assertions
 // various asserts from com.google.common.base.Preconditions
-public void testBug382069f() throws IOException {
+public void testBug382069f() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -1160,7 +1160,7 @@ public void testBug382069g() throws IOException {
 
 // https://bugs.eclipse.org/382069 - [null] Make the null analysis consider JUnit's assertNotNull similarly to assertions
 // junit's assertTrue / assertFalse
-public void testBug382069h() throws IOException {
+public void testBug382069h() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			JUNIT_ASSERT_NAME,
@@ -1180,7 +1180,7 @@ public void testBug382069h() throws IOException {
 }
 // Bug 401159 - [null] Respect org.junit.Assert for control flow
 // various asserts from org.junit.Assert
-public void testBug401159() throws IOException {
+public void testBug401159() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -1212,7 +1212,7 @@ public void testBug401159() throws IOException {
 
 // https://bugs.eclipse.org/472618 - [compiler][null] assertNotNull vs. Assert.assertNotNull
 // junit's assertNotNull
-public void testBug472618() throws IOException {
+public void testBug472618() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			JUNIT_ASSERT_NAME,
@@ -1240,7 +1240,7 @@ public void testBug472618() throws IOException {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=568542
 // junit 5's assertNotNull
-public void testBug568542a() throws IOException {
+public void testBug568542a() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			ORG_JUNIT_JUPITER_API_ASSERTIONS_NAME,
@@ -1261,7 +1261,7 @@ public void testBug568542a() throws IOException {
 		"");
 }
 // junit 5's assertNull
-public void testBug568542b() throws IOException {
+public void testBug568542b() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			ORG_JUNIT_JUPITER_API_ASSERTIONS_NAME,
@@ -1298,7 +1298,7 @@ public void testBug568542b() throws IOException {
 	);
 }
 // junit 5's assertTrue
-public void testBug568542c() throws IOException {
+public void testBug568542c() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			ORG_JUNIT_JUPITER_API_ASSERTIONS_NAME,
@@ -1319,7 +1319,7 @@ public void testBug568542c() throws IOException {
 		"");
 }
 // junit 5's assertFalse
-public void testBug568542d() throws IOException {
+public void testBug568542d() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			ORG_JUNIT_JUPITER_API_ASSERTIONS_NAME,

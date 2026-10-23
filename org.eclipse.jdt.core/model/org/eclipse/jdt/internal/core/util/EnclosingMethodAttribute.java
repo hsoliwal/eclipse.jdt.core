@@ -34,7 +34,7 @@ public class EnclosingMethodAttribute extends ClassFileAttribute implements IEnc
 	private char[] methodName;
 	private final int methodNameAndTypeIndex;
 
-	EnclosingMethodAttribute(byte[] classFileBytes, IConstantPool constantPool, int offset) throws ClassFormatException {
+	EnclosingMethodAttribute(byte[] classFileBytes, IConstantPool constantPool, int offset) throws ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		super(classFileBytes, constantPool, offset);
 		int index = u2At(classFileBytes, 6, offset);
 		this.enclosingClassIndex = index;

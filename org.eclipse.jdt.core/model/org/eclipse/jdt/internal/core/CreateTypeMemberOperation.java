@@ -39,7 +39,7 @@ import org.eclipse.jdt.internal.compiler.parser.ScannerHelper;
  * Implements functionality common to
  * operations that create type members.
  */
-@SuppressWarnings("rawtypes")
+@SuppressWarnings("rawtypes") //FLLDCIM: MARK — T09  IMPLEMENTS
 public abstract class CreateTypeMemberOperation extends CreateElementInCUOperation {
 	/**
 	 * The source code for the new member.
@@ -80,7 +80,7 @@ protected StructuralPropertyDescriptor getChildPropertyDescriptor(ASTNode parent
 			return TypeDeclaration.BODY_DECLARATIONS_PROPERTY;
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected ASTNode generateElementAST(ASTRewrite rewriter, ICompilationUnit cu) throws JavaModelException {
 	if (this.createdNode == null) {
 		this.source = removeIndentAndNewLines(this.source, cu);
@@ -114,18 +114,18 @@ protected ASTNode generateElementAST(ASTRewrite rewriter, ICompilationUnit cu) t
 			SimpleName oldName = rename(this.createdNode, newName);
 			int nameStart = oldName.getStartPosition();
 			int nameEnd = nameStart + oldName.getLength();
-			StringBuilder newSource = new StringBuilder();
+			StringBuilder newSource = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			if (this.source.equals(createdNodeSource)) {
-				newSource.append(createdNodeSource.substring(0, nameStart));
-				newSource.append(this.alteredName);
-				newSource.append(createdNodeSource.substring(nameEnd));
+				newSource.append(createdNodeSource.substring(0, nameStart)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				newSource.append(this.alteredName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				newSource.append(createdNodeSource.substring(nameEnd)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
 				// syntactically incorrect source
 				int createdNodeStart = this.createdNode.getStartPosition();
 				int createdNodeEnd = createdNodeStart + this.createdNode.getLength();
-				newSource.append(createdNodeSource.substring(createdNodeStart, nameStart));
-				newSource.append(this.alteredName);
-				newSource.append(createdNodeSource.substring(nameEnd, createdNodeEnd));
+				newSource.append(createdNodeSource.substring(createdNodeStart, nameStart)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				newSource.append(this.alteredName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				newSource.append(createdNodeSource.substring(nameEnd, createdNodeEnd)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 			}
 			this.source = newSource.toString();
@@ -135,7 +135,7 @@ protected ASTNode generateElementAST(ASTRewrite rewriter, ICompilationUnit cu) t
 	// return a string place holder (instead of the created node) so has to not lose comments and formatting
 	return rewriter.createStringPlaceholder(this.source, this.createdNode.getNodeType());
 }
-private String removeIndentAndNewLines(String code, ICompilationUnit cu) throws JavaModelException {
+private String removeIndentAndNewLines(String code, ICompilationUnit cu) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = cu.getJavaProject();
 	Map<String, String> options = project.getOptions(true/*inherit JavaCore options*/);
 	int tabWidth = IndentManipulation.getTabWidth(options);
@@ -143,11 +143,11 @@ private String removeIndentAndNewLines(String code, ICompilationUnit cu) throws 
 	int indent = IndentManipulation.measureIndentUnits(code, tabWidth, indentWidth);
 	int firstNonWhiteSpace = -1;
 	int length = code.length();
-	while (firstNonWhiteSpace < length-1)
+	while (firstNonWhiteSpace < length-1) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (!ScannerHelper.isWhitespace(code.charAt(++firstNonWhiteSpace)))
 			break;
 	int lastNonWhiteSpace = length;
-	while (lastNonWhiteSpace > 0)
+	while (lastNonWhiteSpace > 0) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (!ScannerHelper.isWhitespace(code.charAt(--lastNonWhiteSpace)))
 			break;
 	String lineDelimiter = cu.findRecommendedLineSeparator();
@@ -165,12 +165,12 @@ protected abstract SimpleName rename(ASTNode node, SimpleName newName);
  */
 protected String generateSyntaxIncorrectAST() {
 	//create some dummy source to generate an ast node
-	StringBuilder buff = new StringBuilder();
+	StringBuilder buff = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	IType type = getType();
 	String lineSeparator = org.eclipse.jdt.internal.core.util.Util.getLineSeparator(this.source, type == null ? null : type.getJavaProject());
-	buff.append(lineSeparator + " public class A {" + lineSeparator); //$NON-NLS-1$
-	buff.append(this.source);
-	buff.append(lineSeparator).append('}');
+	buff.append(lineSeparator + " public class A {" + lineSeparator); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buff.append(this.source); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buff.append(lineSeparator).append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	ASTParser parser = ASTParser.newParser(getLatestASTLevel());
 	parser.setSource(buff.toString().toCharArray());
 	CompilationUnit compilationUnit = (CompilationUnit) parser.createAST(null);
@@ -203,7 +203,7 @@ protected void setAlteredName(String newName) {
   *	<li>NAME_COLLISION - A name collision occurred in the destination
  * </ul>
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public IJavaModelStatus verify() {
 	IJavaModelStatus status = super.verify();
 	if (!status.isOK()) {

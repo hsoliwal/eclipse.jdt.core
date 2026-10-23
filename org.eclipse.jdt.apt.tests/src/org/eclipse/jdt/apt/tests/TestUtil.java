@@ -68,7 +68,7 @@ public class TestUtil
 	 * Returns the annotation jar, creating it if it hasn't already been created.
 	 * @return the java.io.File of the jar that was created.
 	 */
-	public static File createAndAddAnnotationJar( IJavaProject project )
+	public static File createAndAddAnnotationJar( IJavaProject project ) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		throws IOException, JavaModelException
 	{
 		if (ANNO_JAR == null) {
@@ -119,7 +119,7 @@ public class TestUtil
 	 * its annotation processors to be loaded.
 	 * @return the java.io.File of the jar that was created.
 	 */
-	public static File createAndAddExternalAnnotationJar(
+	public static File createAndAddExternalAnnotationJar( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			IJavaProject project  )
 		throws IOException, JavaModelException
 	{
@@ -135,7 +135,7 @@ public class TestUtil
 					EXTANNOTATIONS_PKG, getPluginExtClassesDir());
 			FileFilter manifestFilter = new PackageFileFilter(
 					"META-INF", getPluginExtSrcDir()); //$NON-NLS-1$
-			Map<File, FileFilter> files = new HashMap<>(2);
+			Map<File, FileFilter> files = new HashMap<>(2); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			files.put(new File( getPluginExtClassesDir() ), classFilter);
 			files.put(new File( getPluginExtSrcDir() ), manifestFilter);
 			zip( classesJarPath, files );
@@ -266,7 +266,7 @@ public class TestUtil
 	 * @param from - The file to move
 	 * @param toPath - The path to move it to
 	 */
-	public static void moveFile(File from , String toPath)
+	public static void moveFile(File from , String toPath) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		throws FileNotFoundException, IOException {
 
 		FileInputStream fis = null;
@@ -276,7 +276,7 @@ public class TestUtil
 			fis = new FileInputStream( from );
 			fos = new FileOutputStream(new File(toPath));
 			int b;
-			while ( ( b = fis.read() ) != -1)
+			while ( ( b = fis.read() ) != -1) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				fos.write( b );
 		}
 		finally
@@ -299,19 +299,19 @@ public class TestUtil
 		try (ZipOutputStream zip = new ZipOutputStream( new FileOutputStream( zipPath ) ))
 		{
 			// +1 for last slash
-			for (Map.Entry<File, FileFilter> e : input.entrySet()) {
+			for (Map.Entry<File, FileFilter> e : input.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				zip( zip, e.getKey(), e.getKey().getPath().length() + 1, e.getValue() );
 			}
 		}
 	}
 
-	private static void zip(ZipOutputStream zip, File dir, int rootPathLength,
+	private static void zip(ZipOutputStream zip, File dir, int rootPathLength, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		FileFilter filter) throws IOException
 	{
 		String[] list = dir.list();
 		if( list != null )
 		{
-			for( int i = 0, length = list.length; i < length; i++ )
+			for( int i = 0, length = list.length; i < length; i++ ) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			{
 				String name = list[i];
 				File file = new File( dir, name );
@@ -335,7 +335,7 @@ public class TestUtil
 		}
 	}
 
-	private static byte[] getBytesFromFile( File f )
+	private static byte[] getBytesFromFile( File f ) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		throws IOException
 	{
 		FileInputStream fis = null;
@@ -346,7 +346,7 @@ public class TestUtil
 			fis = new FileInputStream( f );
 			baos = new ByteArrayOutputStream();
 			int b;
-			while ( ( b = fis.read() ) != -1)
+			while ( ( b = fis.read() ) != -1) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				baos.write( b );
 			rtrn = baos.toByteArray();
 		}
@@ -362,16 +362,16 @@ public class TestUtil
 		  String result = e.getName();
 		  File destfile = new File(destDir, result);
 		  String canonicalDestFile = destfile.getCanonicalPath();
-		  if (!canonicalDestFile.startsWith(canonicalDestDirPath + File.separator)) {
-			  throw new ZipEntryStorageException("Entry is outside of the target dir: " + e.getName());
+		  if (!canonicalDestFile.startsWith(canonicalDestDirPath + File.separator)) { //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			  throw new ZipEntryStorageException("Entry is outside of the target dir: " + e.getName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		  }
 		  return destfile;
 	}
 
-	public static void unzip (File srcZip, File destDir) throws IOException {
-		ZipFile zf = new ZipFile(srcZip);
+	public static void unzip (File srcZip, File destDir) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		ZipFile zf = new ZipFile(srcZip); //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM NEW
 		String canonicalDestDirPath = destDir.getCanonicalPath();
-		for (Enumeration<? extends ZipEntry> entries = zf.entries(); entries.hasMoreElements();) {
+		for (Enumeration<? extends ZipEntry> entries = zf.entries(); entries.hasMoreElements();) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ZipEntry entry = entries.nextElement();
 			File dest = getZipEntryFile(destDir, entry, canonicalDestDirPath);
 			if (entry.isDirectory()) {
@@ -387,7 +387,7 @@ public class TestUtil
 	                to = new FileOutputStream(dest);
 	                byte[] buffer = new byte[4096];
 	                int bytesRead;
-	                while ((bytesRead = from.read(buffer)) != -1) {
+	                while ((bytesRead = from.read(buffer)) != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	                    to.write(buffer, 0, bytesRead);
 	                }
 	            }
@@ -400,10 +400,10 @@ public class TestUtil
 		zf.close(); // Will do
 	}
 
-	public static void unzip (ZipInputStream srcZip, File destDir) throws IOException {
+	public static void unzip (ZipInputStream srcZip, File destDir) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ZipEntry entry;
 		String canonicalDestDirPath = destDir.getCanonicalPath();
-		while ((entry = srcZip.getNextEntry()) != null) {
+		while ((entry = srcZip.getNextEntry()) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			File dest = getZipEntryFile(destDir, entry, canonicalDestDirPath);
 			if (entry.isDirectory()) {
 				FileSystemUtil.mkdirs(dest);
@@ -416,7 +416,7 @@ public class TestUtil
 	                to = new FileOutputStream(dest);
 	                byte[] buffer = new byte[4096];
 	                int bytesRead;
-	                while ((bytesRead = srcZip.read(buffer)) != -1) {
+	                while ((bytesRead = srcZip.read(buffer)) != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	                    to.write(buffer, 0, bytesRead);
 	                }
 	            }
@@ -437,7 +437,7 @@ public class TestUtil
 				srcAttachmentPath,
 				srcAttachmentPathRoot,
 				exported);
-		for(int i = 0; i < length; i++) {
+		for(int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			//check for duplicates (Causes JavaModelException) - return if path already exists
 			if(newPathEntry.equals(entries[i]))
 				return;
@@ -473,7 +473,7 @@ public class TestUtil
 			boolean ok = true;
 			int min = Math.min( f.segmentCount() - nsegments,
 					_packageParts.length );
-			for( int i = nsegments, j = 0; j < min; i++, j++ )
+			for( int i = nsegments, j = 0; j < min; i++, j++ ) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			{
 				if( !f.segment( i ).equals( _packageParts[j] ) )
 				{

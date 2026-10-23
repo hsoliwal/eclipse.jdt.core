@@ -29,7 +29,7 @@ public RootManipulationsTests(String name) {
 	super(name);
 }
 protected void assertJavaProject(String expected, IJavaProject project) throws CoreException {
-	StringBuilder buffer = new StringBuilder();
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	populate(buffer, project, 0);
 
 	String actual = buffer.toString();
@@ -75,14 +75,14 @@ protected void move(IPackageFragmentRoot root, IPath destination, IClasspathEntr
 		sibling,
 		null);
 }
-protected void populate(StringBuilder buffer, IJavaElement element, int indent) throws CoreException {
+protected void populate(StringBuilder buffer, IJavaElement element, int indent) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!(element instanceof IParent) || !(element instanceof IOpenable)) return;
 
 	if (buffer.length() != 0) {
-		buffer.append("\n");
+		buffer.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	for (int i = 0; i < indent; i++) buffer.append("\t");
-	buffer.append(((JavaElement)element).toDebugString());
+	for (int i = 0; i < indent; i++) buffer.append("\t"); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+	buffer.append(((JavaElement)element).toDebugString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 	IParent parent = (IParent)element;
 	IJavaElement[] children = null;
@@ -91,7 +91,7 @@ protected void populate(StringBuilder buffer, IJavaElement element, int indent) 
 	} catch (JavaModelException e) {
 	}
 	if (children != null) {
-		for (int i = 0, length = children.length; i < length; i++) {
+		for (int i = 0, length = children.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			populate(buffer, children[i], indent+1);
 		}
 	}
@@ -108,17 +108,17 @@ protected void populate(StringBuilder buffer, IJavaElement element, int indent) 
 	} catch (JavaModelException e) {
 	}
 	if (nonJavaResources != null) {
-		for (int i = 0, length = nonJavaResources.length; i < length; i++) {
+		for (int i = 0, length = nonJavaResources.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			populate(buffer, nonJavaResources[i], indent+1);
 		}
 	}
 }
 protected void populate(StringBuilder buffer, Object nonJavaResource, int indent) {
 	if (buffer.length() != 0) {
-		buffer.append("\n");
+		buffer.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	for (int i = 0; i < indent; i++) buffer.append("\t");
-	buffer.append(nonJavaResource);
+	for (int i = 0; i < indent; i++) buffer.append("\t"); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+	buffer.append(nonJavaResource); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	/*
 	if (nonJavaResource instanceof IContainer) {
 		IResource[] members = ((IContainer)nonJavaResource).members();
@@ -134,7 +134,7 @@ public static Test suite() {
  * Ensure that a simple copy of a source root to another project triggers the right delta
  * and that the model is up-to-date.
  */
-public void testCopySourceFolder1() throws CoreException {
+public void testCopySourceFolder1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createJavaProject("P1", new String[] {"src"}, "bin");
 		this.createJavaProject("P2", new String[] {}, "bin");
@@ -166,7 +166,7 @@ public void testCopySourceFolder1() throws CoreException {
  * Ensure that coping and renaming a source root to another project triggers the right delta
  * and that the model is up-to-date.
  */
-public void testCopySourceFolder2() throws CoreException {
+public void testCopySourceFolder2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createJavaProject("P1", new String[] {"src"}, "bin");
 		this.createJavaProject("P2", new String[] {}, "bin");
@@ -198,7 +198,7 @@ public void testCopySourceFolder2() throws CoreException {
  * Ensure that coping a source root to another project triggers the right delta
  * and doesn't copy a nested source folder.
  */
-public void testCopySourceFolder3() throws CoreException {
+public void testCopySourceFolder3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p1 = this.createJavaProject("P1", new String[] {}, "bin");
 		p1.setRawClasspath(createClasspath(new String[] {"/P1/src1", "src2/**", "/P1/src1/src2", ""}, false/*no inclusion*/, true/*exclusion*/), null);
@@ -240,7 +240,7 @@ public void testCopySourceFolder3() throws CoreException {
  * Ensure that copying a source root to another project using a sibling classpath entry triggers the right delta
  * and that the model is up-to-date.
  */
-public void testCopySourceFolder4() throws CoreException {
+public void testCopySourceFolder4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createJavaProject("P1", new String[] {"src"}, "bin");
 		IJavaProject p2 = this.createJavaProject("P2", new String[] {"src1", "src2"}, "bin");
@@ -312,7 +312,7 @@ public void testCopySourceFolder4() throws CoreException {
  * REPLACE mode triggers the right delta and that the model is up-to-date.
  * (regression test bug 30511 IPackageFragmentRoot:move ignores FORCE flag)
  */
-public void testCopySourceFolder5() throws CoreException {
+public void testCopySourceFolder5() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createJavaProject("P1", new String[] {"src"}, "bin");
 		IJavaProject p2 = this.createJavaProject("P2", new String[] {"src"}, "bin");
@@ -354,7 +354,7 @@ public void testCopySourceFolder5() throws CoreException {
  * REPLACE mode triggers the right delta and that the model is up-to-date.
  * (regression test bug 30857 IPackageFragmentRoot: copy removes source folders from classpath)
  */
-public void testCopySourceFolder6() throws CoreException {
+public void testCopySourceFolder6() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = this.createJavaProject("P", new String[] {"src"}, "bin");
 		this.createFolder("/P/src/p");
@@ -403,7 +403,7 @@ public void testCopySourceFolder6() throws CoreException {
  * non REPLACE mode throws the right JavaModelException.
  * (regression test bug 30511 IPackageFragmentRoot:move ignores FORCE flag)
  */
-public void testFailCopySourceFolder1() throws CoreException {
+public void testFailCopySourceFolder1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createJavaProject("P1", new String[] {"src"}, "bin");
 		this.createJavaProject("P2", new String[] {"src"}, "bin");
@@ -426,7 +426,7 @@ public void testFailCopySourceFolder1() throws CoreException {
  * non REPLACE mode throws the right JavaModelException.
  * (regression test bug 30511 IPackageFragmentRoot:move ignores FORCE flag)
  */
-public void testFailCopySourceFolder2() throws CoreException {
+public void testFailCopySourceFolder2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createJavaProject("P1", new String[] {"src"}, "bin");
 		this.createJavaProject("P2", new String[] {"src"}, "bin");
@@ -449,7 +449,7 @@ public void testFailCopySourceFolder2() throws CoreException {
  * Ensure that deleting a jar package fragment root triggers the right delta
  * and that the model is up-to-date.
  */
-public void testDeleteJarFile1() throws CoreException {
+public void testDeleteJarFile1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = this.createJavaProject("P", new String[] {"src"}, new String[] {"/P/myLib.jar"}, "bin");
 		this.createFile("/P/myLib.jar", "");
@@ -481,7 +481,7 @@ public void testDeleteJarFile1() throws CoreException {
  * and that the model is up-to-date.
  * (regression test for bug 30506 IPackageFragmentRoot:delete does not handle external jars)
  */
-public void testDeleteJarFile3() throws CoreException {
+public void testDeleteJarFile3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = this.createJavaProject("P", new String[] {"src"}, new String[] {getExternalJCLPathString()}, "bin");
 
@@ -490,7 +490,7 @@ public void testDeleteJarFile3() throws CoreException {
 		delete(root);
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n" +
+			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	" + getExternalJCLPathString() + "[*]: {REMOVED FROM CLASSPATH}\n" +
 			"	ResourceDelta(/P/.classpath)[*]"
 		);
@@ -511,7 +511,7 @@ public void testDeleteJarFile3() throws CoreException {
  * Ensure that deleting a jar file that is referenced by 2 projects triggers the right delta
  * and that the model is up-to-date.
  */
-public void testDeleteJarFile2() throws CoreException {
+public void testDeleteJarFile2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p1 = this.createJavaProject("P1", new String[] {"src"}, new String[] {"/P1/myLib.jar"}, "bin");
 		this.createFile("/P1/myLib.jar", "");
@@ -555,7 +555,7 @@ public void testDeleteJarFile2() throws CoreException {
  * Ensure that a simple delete of a source root triggers the right delta
  * and that the model is up-to-date.
  */
-public void testDeleteSourceFolder1() throws CoreException {
+public void testDeleteSourceFolder1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = this.createJavaProject("P", new String[] {"src"}, "bin");
 		this.createFolder("/P/src/p");
@@ -589,7 +589,7 @@ public void testDeleteSourceFolder1() throws CoreException {
  * Ensure that deleting a source root triggers the right delta
  * and doesn't delete a nested source folder.
  */
-public void testDeleteSourceFolder2() throws CoreException {
+public void testDeleteSourceFolder2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = this.createJavaProject("P", new String[] {}, "bin");
 		project.setRawClasspath(createClasspath(new String[] {"/P/src1", "src2/**", "/P/src1/src2", ""}, false/*no inclusion*/, true/*exclusion*/), null);
@@ -643,7 +643,7 @@ public void testDeleteSourceFolder2() throws CoreException {
  * Ensure that a simple move of a source root to another project triggers the right delta
  * and that the model is up-to-date.
  */
-public void testMoveSourceFolder1() throws CoreException {
+public void testMoveSourceFolder1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p1 = this.createJavaProject("P1", new String[] {"src"}, "bin");
 		IJavaProject p2 = this.createJavaProject("P2", new String[] {}, "bin");
@@ -692,7 +692,7 @@ public void testMoveSourceFolder1() throws CoreException {
  * Ensure that moving and renaming a source root to another project triggers the right delta
  * and that the model is up-to-date.
  */
-public void testMoveSourceFolder2() throws CoreException {
+public void testMoveSourceFolder2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p1 = this.createJavaProject("P1", new String[] {"src"}, "bin");
 		IJavaProject p2 = this.createJavaProject("P2", new String[] {}, "bin");
@@ -743,7 +743,7 @@ public void testMoveSourceFolder2() throws CoreException {
  * Ensure that moving a source root to another project triggers the right delta
  * and doesn't move a nested source folder.
  */
-public void testMoveSourceFolder3() throws CoreException {
+public void testMoveSourceFolder3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p1 = this.createJavaProject("P1", new String[] {}, "bin");
 		p1.setRawClasspath(createClasspath(new String[] {"/P1/src1", "src2/**", "/P1/src1/src2", ""}, false/*no inclusion*/, true/*exclusion*/), null);
@@ -809,7 +809,7 @@ public void testMoveSourceFolder3() throws CoreException {
  * Ensure that moving a source root to another project before the first root triggers the right delta
  * and that the model is up-to-date.
  */
-public void testMoveSourceFolder4() throws CoreException {
+public void testMoveSourceFolder4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p1 = this.createJavaProject("P1", new String[] {"src"}, "bin");
 		IJavaProject p2 = this.createJavaProject("P2", new String[] {"src1", "src2"}, "bin");
@@ -858,7 +858,7 @@ public void testMoveSourceFolder4() throws CoreException {
  * Ensure that moving a source root to another project in the middle of existing roots triggers the right delta
  * and that the model is up-to-date.
  */
-public void testMoveSourceFolder5() throws CoreException {
+public void testMoveSourceFolder5() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p1 = this.createJavaProject("P1", new String[] {"src"}, "bin");
 		IJavaProject p2 = this.createJavaProject("P2", new String[] {"src1", "src2"}, "bin");
@@ -906,7 +906,7 @@ public void testMoveSourceFolder5() throws CoreException {
  * Ensure that moving a source root to another project at the end of the classpath triggers the right delta
  * and that the model is up-to-date.
  */
-public void testMoveSourceFolder6() throws CoreException {
+public void testMoveSourceFolder6() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p1 = this.createJavaProject("P1", new String[] {"src"}, "bin");
 		IJavaProject p2 = this.createJavaProject("P2", new String[] {"src1", "src2"}, "bin");
@@ -952,7 +952,7 @@ public void testMoveSourceFolder6() throws CoreException {
  * Ensure that a simple rename of a source root triggers the right delta
  * and that the model is up-to-date.
  */
-public void testRenameSourceFolder1() throws CoreException {
+public void testRenameSourceFolder1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = this.createJavaProject("P", new String[] {"src1"}, "bin");
 		this.createFolder("/P/src1/p");
@@ -991,7 +991,7 @@ public void testRenameSourceFolder1() throws CoreException {
  * Ensure that renaming a nested source root doesn't throw a JavaModelException
  * (regression test for bug 129991 [refactoring] Rename sourcefolder fails with JME)
  */
-public void testRenameSourceFolder3() throws CoreException {
+public void testRenameSourceFolder3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P");
 		editFile(
@@ -1023,7 +1023,7 @@ public void testRenameSourceFolder3() throws CoreException {
  * Ensure that renaming a nested source root doesn't throw a JavaModelException
  * (regression test for bug 129991 [refactoring] Rename sourcefolder fails with JME)
  */
-public void testRenameSourceFolder4() throws CoreException {
+public void testRenameSourceFolder4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P");
 		editFile(
@@ -1054,7 +1054,7 @@ public void testRenameSourceFolder4() throws CoreException {
  * Ensure that renaming a source root keeps the same roots order,
  * and that it triggers the right delta and that the model is up-to-date.
  */
-public void testRenameSourceFolder2() throws CoreException {
+public void testRenameSourceFolder2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = this.createJavaProject("P", new String[] {"src1", "src2", "src3"}, "bin");
 
@@ -1138,7 +1138,7 @@ public void testRenameSourceFolder2() throws CoreException {
  * Ensure that a simple rename of a jar file triggers the right delta
  * and that the model is up-to-date.
  */
-public void testRenameJarFile1() throws CoreException {
+public void testRenameJarFile1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = this.createJavaProject("P", new String[] {"src"}, new String[] {"/P/myLib.jar"}, "bin");
 		this.createFile("/P/myLib.jar", "");
@@ -1171,7 +1171,7 @@ public void testRenameJarFile1() throws CoreException {
  * Ensure that renaming of a jar file that is referenced by 2 projects triggers the right delta
  * and that the model is up-to-date.
  */
-public void testRenameJarFile2() throws CoreException {
+public void testRenameJarFile2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p1 = this.createJavaProject("P1", new String[] {"src"}, new String[] {"/P1/myLib.jar"}, "bin");
 		this.createFile("/P1/myLib.jar", "");
@@ -1219,7 +1219,7 @@ public void testRenameJarFile2() throws CoreException {
  * Ensure that renaming of a jar file to an existing file in REPLACE mode
  * triggers the right delta and that the model is up-to-date.
  */
-public void testRenameJarFile3() throws CoreException {
+public void testRenameJarFile3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = this.createJavaProject("P", new String[] {"src"}, new String[] {"/P/myLib1.jar", "/P/myLib2.jar"}, "bin");
 		this.createFile("/P/myLib1.jar", "");

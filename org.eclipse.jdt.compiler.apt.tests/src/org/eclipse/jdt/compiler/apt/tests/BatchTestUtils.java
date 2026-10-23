@@ -74,14 +74,14 @@ public class BatchTestUtils {
 
 	public static final class DiagnosticReport<S> implements DiagnosticListener<S> {
 		public StringBuilder buffer;
-		private final List<Diagnostic<? extends S>> diagnostics = new ArrayList<>();
+		private final List<Diagnostic<? extends S>> diagnostics = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		DiagnosticReport() {
-			this.buffer = new StringBuilder();
+			this.buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		}
 		public void report(Diagnostic<? extends S> diagnostic) {
 			diagnostics.add(diagnostic);
-			buffer.append(diagnostic.getMessage(Locale.getDefault()));
-			buffer.append("\n");
+			buffer.append(diagnostic.getMessage(Locale.getDefault())); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		public List<Diagnostic<? extends S>> get(Diagnostic.Kind first, Diagnostic.Kind... rest) {
 			Set<Diagnostic.Kind> wanted = EnumSet.of(first, rest);
@@ -99,12 +99,12 @@ public class BatchTestUtils {
 	public static DiagnosticReport<JavaFileObject> compileOneClass(JavaCompiler compiler, List<String> options, File inputFile) {
 		return compileOneClass(compiler, options, inputFile, false);
 	}
-	public static DiagnosticReport<JavaFileObject> compileOneClass(JavaCompiler compiler, List<String> options, File inputFile, boolean useJLS8Processors) {
+	public static DiagnosticReport<JavaFileObject> compileOneClass(JavaCompiler compiler, List<String> options, File inputFile, boolean useJLS8Processors) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		DiagnosticReport<JavaFileObject> diagnostics = new DiagnosticReport<>();
 		StandardJavaFileManager manager = compiler.getStandardFileManager(diagnostics, Locale.getDefault(), Charset.defaultCharset());
 
 		// create new list containing inputfile
-		List<File> files = new ArrayList<>();
+		List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		files.add(inputFile);
 		Iterable<? extends JavaFileObject> units = manager.getJavaFileObjectsFromFiles(files);
 		StringWriter stringWriter = new StringWriter();
@@ -122,8 +122,8 @@ public class BatchTestUtils {
 
 		if (!result.booleanValue()) {
 			String errorOutput = stringWriter.getBuffer().toString();
-			System.err.println("Compilation failed: " + errorOutput);
-	 		junit.framework.TestCase.assertTrue("Compilation failed : " + errorOutput, false);
+			System.err.println("Compilation failed: " + errorOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	 		junit.framework.TestCase.assertTrue("Compilation failed : " + errorOutput, false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		try {
 			manager.close();
@@ -155,12 +155,12 @@ public class BatchTestUtils {
 			File moduleSrcFolder, DiagnosticListener<? super JavaFileObject> listener, boolean multiModule) throws IOException {
 		compileInModuleMode(compiler, options, processor, moduleSrcFolder, listener, multiModule, true);
 	}
-	public static void compileInModuleMode(JavaCompiler compiler, List<String> options, String processor,
+	public static void compileInModuleMode(JavaCompiler compiler, List<String> options, String processor, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			File moduleSrcFolder, DiagnosticListener<? super JavaFileObject> listener, boolean multiModule, boolean processBinariesAgain) throws IOException {
 		StandardJavaFileManager manager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
 		Iterable<? extends File> location = manager.getLocation(StandardLocation.CLASS_PATH);
 		// create new list containing inputfile
-		List<File> files = new ArrayList<>();
+		List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		findFilesUnder(moduleSrcFolder, files);
 		files.sort(new Comparator<File>() {
 			@Override
@@ -173,11 +173,11 @@ public class BatchTestUtils {
 		StringWriter stringWriter = new StringWriter();
 		PrintWriter printWriter = new PrintWriter(stringWriter);
 
-		List<String> copyOptions = new ArrayList<>();
+		List<String> copyOptions = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		copyOptions.addAll(options);
 		copyOptions.add("-processor");
 		copyOptions.add(processor);
-		copyOptions.add("-A" + processor);
+		copyOptions.add("-A" + processor); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		copyOptions.add("-d");
 		copyOptions.add(_tmpBinFolderName);
 		copyOptions.add("-s");
@@ -189,23 +189,23 @@ public class BatchTestUtils {
 
 		if (!result.booleanValue()) {
 			String errorOutput = stringWriter.getBuffer().toString();
-			System.err.println("Compilation failed: " + errorOutput);
-	 		junit.framework.TestCase.assertTrue("Compilation failed : " + errorOutput, false);
+			System.err.println("Compilation failed: " + errorOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	 		junit.framework.TestCase.assertTrue("Compilation failed : " + errorOutput, false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
 			junit.framework.TestCase.assertEquals("succeeded", System.getProperty(processor));
 		}
 		if (!processBinariesAgain) {
 			return;
 		}
-		List<String> classes = new ArrayList<>();
+		List<String> classes = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		try {
 			manager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
 			System.clearProperty(processor);
-			copyOptions = new ArrayList<>();
+			copyOptions = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			copyOptions.addAll(options);
 			copyOptions.add("-Abinary");
 			copyOptions.add("-cp");
-			copyOptions.add(_jls8ProcessorJarPath + File.pathSeparator + _tmpGenFolderName);
+			copyOptions.add(_jls8ProcessorJarPath + File.pathSeparator + _tmpGenFolderName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			copyOptions.add("--processor-module-path");
 			copyOptions.add(_jls8ProcessorJarPath);
 			copyOptions.add("--module-path");
@@ -217,8 +217,8 @@ public class BatchTestUtils {
 			result = task.call();
 			if (!result.booleanValue()) {
 				String errorOutput = stringWriter.getBuffer().toString();
-				System.err.println("Compilation failed: " + errorOutput);
-		 		junit.framework.TestCase.assertTrue("Compilation failed : " + errorOutput, false);
+				System.err.println("Compilation failed: " + errorOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		 		junit.framework.TestCase.assertTrue("Compilation failed : " + errorOutput, false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			} else {
 				junit.framework.TestCase.assertEquals("succeeded", System.getProperty(processor));
 			}
@@ -238,13 +238,13 @@ public class BatchTestUtils {
 		StringWriter stringWriter = new StringWriter();
 		compileTree(stringWriter, compiler, options, targetFolder, useJLS8Processors, listener);
 	}
-	public static void compileTree(StringWriter stringWriter, JavaCompiler compiler, List<String> options,
+	public static void compileTree(StringWriter stringWriter, JavaCompiler compiler, List<String> options, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			File targetFolder, boolean useJLS8Processors,
 			DiagnosticListener<? super JavaFileObject> listener) {
 		StandardJavaFileManager manager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
 
 		// create new list containing inputfile
-		List<File> files = new ArrayList<>();
+		List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		findFilesUnder(targetFolder, files);
 		Iterable<? extends JavaFileObject> units = manager.getJavaFileObjectsFromFiles(files);
 		PrintWriter printWriter = new PrintWriter(stringWriter);
@@ -260,8 +260,8 @@ public class BatchTestUtils {
 
 		if (!result.booleanValue()) {
 			String errorOutput = stringWriter.getBuffer().toString();
-			System.err.println("Compilation failed: " + errorOutput);
-	 		junit.framework.TestCase.assertTrue("Compilation failed : " + errorOutput, false);
+			System.err.println("Compilation failed: " + errorOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	 		junit.framework.TestCase.assertTrue("Compilation failed : " + errorOutput, false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		try {
 			manager.close();
@@ -276,17 +276,17 @@ public class BatchTestUtils {
 	 * First compiles the given files without processor, then processes them
 	 * with the just compiled binaries.
 	 */
-	public static void compileTreeAndProcessBinaries(JavaCompiler compiler, List<String> options, String processor,
+	public static void compileTreeAndProcessBinaries(JavaCompiler compiler, List<String> options, String processor, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			File targetFolder, DiagnosticListener<? super JavaFileObject> listener) {
 		StandardJavaFileManager manager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
 		Iterable<? extends File> location = manager.getLocation(StandardLocation.CLASS_PATH);
 		// create new list containing inputfile
-		List<File> files = new ArrayList<>();
+		List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		findFilesUnder(targetFolder, files);
 		Iterable<? extends JavaFileObject> units = manager.getJavaFileObjectsFromFiles(files);
 		StringWriter stringWriter = new StringWriter();
 		PrintWriter printWriter = new PrintWriter(stringWriter);
-		List<String> copyOptions = new ArrayList<>();
+		List<String> copyOptions = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		copyOptions.addAll(options);
 		copyOptions.add("-d");
 		copyOptions.add(_tmpBinFolderName);
@@ -299,21 +299,21 @@ public class BatchTestUtils {
 
 		if (!result.booleanValue()) {
 			String errorOutput = stringWriter.getBuffer().toString();
-			System.err.println("Compilation failed: " + errorOutput);
-	 		junit.framework.TestCase.assertTrue("Compilation failed : " + errorOutput, false);
+			System.err.println("Compilation failed: " + errorOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	 		junit.framework.TestCase.assertTrue("Compilation failed : " + errorOutput, false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		// Check the APT result for the source round already
 		if (!"succeeded".equals(System.getProperty(processor))) {
 			return;
 		}
-		List<String> classes = new ArrayList<>();
+		List<String> classes = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		try {
 			System.clearProperty(processor);
-			copyOptions = new ArrayList<>();
+			copyOptions = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			copyOptions.addAll(options);
 			copyOptions.add("-Abinary");
 			copyOptions.add("-cp");
-			copyOptions.add(_tmpBinFolderName + File.pathSeparator + _jls8ProcessorJarPath + File.pathSeparator + _tmpGenFolderName);
+			copyOptions.add(_tmpBinFolderName + File.pathSeparator + _jls8ProcessorJarPath + File.pathSeparator + _tmpGenFolderName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			copyOptions.add("-processorpath");
 			copyOptions.add(_jls8ProcessorJarPath);
 			classes.add("java.lang.Object"); // This is required to make sure BTB for Object is fully populated.
@@ -323,8 +323,8 @@ public class BatchTestUtils {
 			result = task.call();
 			if (!result.booleanValue()) {
 				String errorOutput = stringWriter.getBuffer().toString();
-				System.err.println("Compilation failed: " + errorOutput);
-		 		junit.framework.TestCase.assertTrue("Compilation failed : " + errorOutput, false);
+				System.err.println("Compilation failed: " + errorOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		 		junit.framework.TestCase.assertTrue("Compilation failed : " + errorOutput, false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} catch (IOException e) {
 			// print the stack just in case.
@@ -356,7 +356,7 @@ public class BatchTestUtils {
 			boolean addProcessorsToClasspath) {
 		return compileTreeWithErrors(compiler, options, targetFolder, diagnosticListener, false, addProcessorsToClasspath);
 	}
-	public static boolean compileTreeWithErrors(
+	public static boolean compileTreeWithErrors( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			JavaCompiler compiler,
 			List<String> options,
 			File targetFolder,
@@ -367,7 +367,7 @@ public class BatchTestUtils {
 		StandardJavaFileManager manager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
 
 		// create new list containing inputfile
-		List<File> files = new ArrayList<>();
+		List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		findFilesUnder(targetFolder, files);
 		Iterable<? extends JavaFileObject> units = manager.getJavaFileObjectsFromFiles(files);
 
@@ -403,7 +403,7 @@ public class BatchTestUtils {
 	 * @param files the set of Files under a root folder to return.
 	 */
 	public static void findFilesUnder(File rootFolder, List<File> files) {
-		for (File child : rootFolder.listFiles()) {
+		for (File child : rootFolder.listFiles()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if ("CVS".equals(child.getName())) {
 				continue;
 			}
@@ -418,18 +418,18 @@ public class BatchTestUtils {
 
 	protected static void findClassesUnderModules(Path modulePath, List<String> classes) throws IOException {
 		try (DirectoryStream<Path> stream = Files.newDirectoryStream(modulePath)) {
-	        for (Path entry : stream) {
+	        for (Path entry : stream) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	        	if (Files.isDirectory(entry)) {
 	        		findClassesUnder(entry, entry, classes, entry.getFileName().toString());
 	        	}
 	        }
 		}
 	}
-	protected static void findClassesUnder(Path root, Path folder, List<String> classes, String moduleName) throws IOException {
+	protected static void findClassesUnder(Path root, Path folder, List<String> classes, String moduleName) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (folder == null)
 			folder = root;
 		try (DirectoryStream<Path> stream = Files.newDirectoryStream(folder)) {
-	        for (Path entry : stream) {
+	        for (Path entry : stream) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	            if (Files.isDirectory(entry)) {
 	            	findClassesUnder(root, entry, classes, moduleName);
 	            } else {
@@ -439,7 +439,7 @@ public class BatchTestUtils {
 						className = className.substring(0, className.indexOf(".class"));
 						className = className.replace(File.separatorChar, '.');
 						if (moduleName != null) {
-							className = moduleName + "/" + className;
+							className = moduleName + "/" + className; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
 						classes.add(className);
 	            	}
@@ -473,31 +473,31 @@ public class BatchTestUtils {
 	/**
 	 * Load Eclipse compiler and create temporary directories on disk
 	 */
-	public static void init()
+	public static void init() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		_tmpFolder = System.getProperty("java.io.tmpdir");
 		if (_tmpFolder.endsWith(File.separator)) {
 			_tmpFolder += "eclipse-temp";
 		} else {
-			_tmpFolder += (File.separator + "eclipse-temp");
+			_tmpFolder += (File.separator + "eclipse-temp"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		_tmpBinFolderName = _tmpFolder + File.separator + "bin";
+		_tmpBinFolderName = _tmpFolder + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		_tmpBinDir = new File(_tmpBinFolderName);
 		BatchTestUtils.deleteTree(_tmpBinDir); // remove existing contents
 		_tmpBinDir.mkdirs();
-		assert _tmpBinDir.exists() : "couldn't mkdirs " + _tmpBinFolderName;
+		assert _tmpBinDir.exists() : "couldn't mkdirs " + _tmpBinFolderName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		_tmpGenFolderName = _tmpFolder + File.separator + "gen-src";
+		_tmpGenFolderName = _tmpFolder + File.separator + "gen-src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		_tmpGenDir = new File(_tmpGenFolderName);
 		BatchTestUtils.deleteTree(_tmpGenDir); // remove existing contents
 		_tmpGenDir.mkdirs();
-		assert _tmpGenDir.exists() : "couldn't mkdirs " + _tmpGenFolderName;
+		assert _tmpGenDir.exists() : "couldn't mkdirs " + _tmpGenFolderName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		_tmpSrcFolderName = _tmpFolder + File.separator + "src";
+		_tmpSrcFolderName = _tmpFolder + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		_tmpSrcDir = new File(_tmpSrcFolderName);
 		BatchTestUtils.deleteTree(_tmpSrcDir); // remove existing contents
 		_tmpSrcDir.mkdirs();
-		assert _tmpSrcDir.exists() : "couldn't mkdirs " + _tmpSrcFolderName;
+		assert _tmpSrcDir.exists() : "couldn't mkdirs " + _tmpSrcFolderName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		try {
 			_processorJarPath = setupProcessorJar(PROCESSOR_JAR_NAME, _tmpFolder);
@@ -507,7 +507,7 @@ public class BatchTestUtils {
 		}
 		junit.framework.TestCase.assertNotNull("No processor jar path set", _processorJarPath);
 		File processorJar = new File(_processorJarPath);
-		junit.framework.TestCase.assertTrue("Couldn't find processor jar at " + processorJar.getAbsolutePath(), processorJar.exists());
+		junit.framework.TestCase.assertTrue("Couldn't find processor jar at " + processorJar.getAbsolutePath(), processorJar.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		ServiceLoader<JavaCompiler> javaCompilerLoader = ServiceLoader.load(JavaCompiler.class, BatchTestUtils.class.getClassLoader());
 		Class<?> c = null;
@@ -519,7 +519,7 @@ public class BatchTestUtils {
 		if (c == null) {
 			junit.framework.TestCase.assertTrue("Eclipse compiler is not available", false);
 		}
-		for (JavaCompiler javaCompiler : javaCompilerLoader) {
+		for (JavaCompiler javaCompiler : javaCompilerLoader) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (c.isInstance(javaCompiler)) {
 				_eclipseCompiler = javaCompiler;
 			}
@@ -531,7 +531,7 @@ public class BatchTestUtils {
 		String path = useJLS8Processors ? _jls8ProcessorJarPath : _processorJarPath;
 		if (addToNormalClasspath) {
 			options.add("-cp");
-			options.add(_tmpSrcFolderName + File.pathSeparator + _tmpGenFolderName + File.pathSeparator + path);
+			options.add(_tmpSrcFolderName + File.pathSeparator + _tmpGenFolderName + File.pathSeparator + path); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		options.add("-processorpath");
 		options.add(path);
@@ -570,7 +570,7 @@ public class BatchTestUtils {
 		try (java.io.FileInputStream stream = new java.io.FileInputStream(file)) {
 			int bytesRead = 0;
 			int lastReadSize = 0;
-			while ((lastReadSize != -1) && (bytesRead != fileLength)) {
+			while ((lastReadSize != -1) && (bytesRead != fileLength)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				lastReadSize = stream.read(fileBytes, bytesRead, fileLength - bytesRead);
 				bytesRead += lastReadSize;
 			}
@@ -596,7 +596,7 @@ public class BatchTestUtils {
 	 * @param dest
 	 *            the full path to the destination location.
 	 */
-	public static void copyResource(File src, File dest) throws IOException {
+	public static void copyResource(File src, File dest) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (dest.exists() &&
 				src.lastModified() < dest.lastModified() &&
 				src.length() == dest.length())
@@ -621,7 +621,7 @@ public class BatchTestUtils {
 		File destFolder = dest.getParentFile();
 		if (!destFolder.exists()) {
 			if (!destFolder.mkdirs()) {
-				throw new IOException("Unable to create directory " + destFolder);
+				throw new IOException("Unable to create directory " + destFolder); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		// write bytes to dest
@@ -669,7 +669,7 @@ public class BatchTestUtils {
 		copyResources(resourceFolder, destFolder);
 	}
 
-	private static void copyResources(File resourceFolder, File destFolder) throws IOException {
+	private static void copyResources(File resourceFolder, File destFolder) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (resourceFolder == null) {
 			return;
 		}
@@ -679,7 +679,7 @@ public class BatchTestUtils {
 			return;
 		}
 		// if there are any children, (recursively) copy them
-		for (String child : children) {
+		for (String child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if ("CVS".equals(child)) {
 				continue;
 			}
@@ -717,7 +717,7 @@ public class BatchTestUtils {
 		File[] children = f.listFiles();
 		if (null != children) {
 			// if f has any children, (recursively) delete them
-			for (File child : children) {
+			for (File child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				deleteTree(child);
 			}
 		}
@@ -729,7 +729,7 @@ public class BatchTestUtils {
 	 * Check the contents of a file.
 	 * @return true if the contents of <code>genTextFile</code> exactly match <code>string</code>
 	 */
-	public static boolean fileContentsEqualText(File genTextFile, String input) {
+	public static boolean fileContentsEqualText(File genTextFile, String input) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long length = genTextFile.length();
 		if (length != input.length()) {
 			return false;
@@ -740,7 +740,7 @@ public class BatchTestUtils {
 		try {
 			r = new BufferedReader(new FileReader(genTextFile));
 			int ofs = 0;
-			while (length > 0) {
+			while (length > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int read = r.read(contents);
 				String match = input.substring(ofs, ofs + read);
 				if (!match.contentEquals(new String(contents, 0, read))) {

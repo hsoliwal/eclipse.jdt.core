@@ -99,7 +99,7 @@ public class ToolFactory {
 	 * @see ToolFactory#createDefaultCodeFormatter(Map)
 	 * @deprecated The extension point has been deprecated, use {@link #createCodeFormatter(Map)} instead.
 	 */
-	public static ICodeFormatter createCodeFormatter(){
+	public static ICodeFormatter createCodeFormatter(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 			Plugin jdtCorePlugin = JavaCore.getPlugin();
 			if (jdtCorePlugin == null) return null;
@@ -107,9 +107,9 @@ public class ToolFactory {
 			IExtensionPoint extension = Platform.getExtensionRegistry().getExtensionPoint(JavaCore.PLUGIN_ID, JavaModelManager.FORMATTER_EXTPOINT_ID);
 			if (extension != null) {
 				IExtension[] extensions =  extension.getExtensions();
-				for (IExtension ext : extensions) {
+				for (IExtension ext : extensions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IConfigurationElement [] configElements = ext.getConfigurationElements();
-					for (IConfigurationElement configElement : configElements) {
+					for (IConfigurationElement configElement : configElements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						try {
 							Object execExt = configElement.createExecutableExtension("class"); //$NON-NLS-1$
 							if (execExt instanceof ICodeFormatter){
@@ -172,9 +172,9 @@ public class ToolFactory {
 	 * @see JavaCore#getOptions()
 	 * @since 3.3
 	 */
-	public static CodeFormatter createCodeFormatter(Map options, int mode) {
+	public static CodeFormatter createCodeFormatter(Map options, int mode) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (options == null) options = JavaCore.getOptions();
-		Map currentOptions = new HashMap(options);
+		Map currentOptions = new HashMap(options); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		if (mode == M_FORMAT_NEW) {
 			// disable the option for not formatting comments starting on first column
 			currentOptions.put(DefaultCodeFormatterConstants.FORMATTER_COMMENT_FORMAT_LINE_COMMENT_STARTING_ON_FIRST_COLUMN, DefaultCodeFormatterConstants.TRUE);
@@ -188,9 +188,9 @@ public class ToolFactory {
 					JavaCore.JAVA_FORMATTER_EXTENSION_POINT_ID);
 			if (extension != null) {
 				IExtension[] extensions = extension.getExtensions();
-				for (IExtension ext : extensions) {
+				for (IExtension ext : extensions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IConfigurationElement[] configElements = ext.getConfigurationElements();
-					for (IConfigurationElement configElement : configElements) {
+					for (IConfigurationElement configElement : configElements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						String initializerID = configElement.getAttribute("id"); //$NON-NLS-1$
 						if (initializerID != null && initializerID.equals(formatterId)) {
 							try {
@@ -209,7 +209,7 @@ public class ToolFactory {
 				}
 			}
 			org.eclipse.jdt.internal.core.util.Util.log(IStatus.WARNING,
-					"Unable to instantiate formatter extension '" + formatterId + "', returning built-in formatter."); //$NON-NLS-1$ //$NON-NLS-2$
+					"Unable to instantiate formatter extension '" + formatterId + "', returning built-in formatter."); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return new DefaultCodeFormatter(currentOptions);
 	}
@@ -253,7 +253,7 @@ public class ToolFactory {
 	 *
 	 * @see IClassFileReader
 	 */
-	public static IClassFileReader createDefaultClassFileReader(IClassFile classfile, int decodingFlag){
+	public static IClassFileReader createDefaultClassFileReader(IClassFile classfile, int decodingFlag){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPackageFragmentRoot root = (IPackageFragmentRoot) classfile.getAncestor(IJavaElement.PACKAGE_FRAGMENT_ROOT);
 		if (root != null){
@@ -344,11 +344,11 @@ public class ToolFactory {
 	 * @return a default classfile reader
 	 * @see IClassFileReader
 	 */
-	public static IClassFileReader createDefaultClassFileReader(String zipFileName, String zipEntryName, int decodingFlag){
+	public static IClassFileReader createDefaultClassFileReader(String zipFileName, String zipEntryName, int decodingFlag){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (JavaModelManager.ZIP_ACCESS_VERBOSE) {
-			JavaModelManager.trace("(" + Thread.currentThread() + ") [ToolFactory.createDefaultClassFileReader()] Creating ZipFile on " + zipFileName); //$NON-NLS-1$	//$NON-NLS-2$
+			JavaModelManager.trace("(" + Thread.currentThread() + ") [ToolFactory.createDefaultClassFileReader()] Creating ZipFile on " + zipFileName); //$NON-NLS-1$	//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		try (ZipFile zipFile = new ZipFile(zipFileName)) {
+		try (ZipFile zipFile = new ZipFile(zipFileName)) { //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM NEW
 			ZipEntry zipEntry = zipFile.getEntry(zipEntryName);
 			if (zipEntry == null) {
 				return null;
@@ -412,7 +412,7 @@ public class ToolFactory {
 	 * @see org.eclipse.jdt.core.compiler.IScanner
 	 * @see #createScanner(boolean, boolean, boolean, String, String)
 	 */
-	public static IScanner createScanner(boolean tokenizeComments, boolean tokenizeWhiteSpace, boolean assertMode, boolean recordLineSeparator){
+	public static IScanner createScanner(boolean tokenizeComments, boolean tokenizeWhiteSpace, boolean assertMode, boolean recordLineSeparator){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// use default workspace compliance
 		long complianceLevelValue = CompilerOptions.versionToJdkLevel(JavaCore.getOption(JavaCore.COMPILER_COMPLIANCE));
 		if (complianceLevelValue == 0) complianceLevelValue = CompilerOptions.getFirstSupportedJdkLevel(); // fault-tolerance
@@ -464,7 +464,7 @@ public class ToolFactory {
 	 * @see #createScanner(boolean, boolean, boolean, String, String)
 	 * @since 3.0
 	 */
-	public static IScanner createScanner(boolean tokenizeComments, boolean tokenizeWhiteSpace, boolean recordLineSeparator, String sourceLevel) {
+	public static IScanner createScanner(boolean tokenizeComments, boolean tokenizeWhiteSpace, boolean recordLineSeparator, String sourceLevel) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// use default workspace compliance
 		long complianceLevelValue = CompilerOptions.versionToJdkLevel(JavaCore.getOption(JavaCore.COMPILER_COMPLIANCE));
 		if (complianceLevelValue == 0) complianceLevelValue = CompilerOptions.getFirstSupportedJdkLevel(); // fault-tolerance

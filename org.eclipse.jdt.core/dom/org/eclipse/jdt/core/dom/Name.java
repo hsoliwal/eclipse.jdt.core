@@ -103,7 +103,7 @@ public abstract class Name extends Expression implements IDocElement {
 			// avoid creating garbage for common case
 			return ((SimpleName) this).getIdentifier();
 		} else {
-			StringBuilder buffer = new StringBuilder(50);
+			StringBuilder buffer = new StringBuilder(50); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			appendName(buffer);
 			return new String(buffer);
 		}

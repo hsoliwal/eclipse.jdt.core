@@ -52,7 +52,7 @@ public class InstanceofExpression extends Expression {
 	private static final List PROPERTY_DESCRIPTORS;
 
 	static {
-		List properyList = new ArrayList(3);
+		List properyList = new ArrayList(3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(InstanceofExpression.class, properyList);
 		addProperty(LEFT_OPERAND_PROPERTY, properyList);
 		addProperty(RIGHT_OPERAND_PROPERTY, properyList);
@@ -102,7 +102,7 @@ public class InstanceofExpression extends Expression {
 		return propertyDescriptors(apiLevel);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final ASTNode internalGetSetChildProperty(ChildPropertyDescriptor property, boolean get, ASTNode child) {
 		if (property == LEFT_OPERAND_PROPERTY) {
 			if (get) {

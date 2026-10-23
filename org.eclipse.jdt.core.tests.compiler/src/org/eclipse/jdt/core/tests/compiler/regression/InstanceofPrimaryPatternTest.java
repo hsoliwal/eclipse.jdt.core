@@ -67,7 +67,7 @@ public class InstanceofPrimaryPatternTest extends AbstractRegressionTest {
 			},
 			"Hello World!");
 	}
-	public void test002() {
+	public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String expectedDiagnostics = this.complianceLevel < ClassFileConstants.JDK20 ?
 				"----------\n" +
 				"1. ERROR in X.java (at line 3)\n" +
@@ -102,7 +102,7 @@ public class InstanceofPrimaryPatternTest extends AbstractRegressionTest {
 			},
 			expectedDiagnostics);
 	}
-	public void test003() {
+	public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		String expectedDiagnostics = this.complianceLevel < ClassFileConstants.JDK20 ?
 				"----------\n" +
@@ -159,7 +159,7 @@ public class InstanceofPrimaryPatternTest extends AbstractRegressionTest {
 			},
 			expectedDiagnostics);
 	}
-	public void test007() {
+	public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -187,7 +187,7 @@ public class InstanceofPrimaryPatternTest extends AbstractRegressionTest {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void test009() {
+	public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -225,7 +225,7 @@ public class InstanceofPrimaryPatternTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1076
 	// ECJ accepts invalid Java code instanceof final Type
-	public void testGH1076() {
+	public void testGH1076() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -245,7 +245,7 @@ public class InstanceofPrimaryPatternTest extends AbstractRegressionTest {
 			"----------\n");
 	}
 
-	public void testGH1621() {
+	public void testGH1621() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"ConsumerEndpointSpec.java",
@@ -276,7 +276,7 @@ public class InstanceofPrimaryPatternTest extends AbstractRegressionTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=577415
 	// Bug in Eclipse Pattern Matching Instanceof Variable Scope
-	public void test577415() {
+	public void test577415() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -311,7 +311,7 @@ public class InstanceofPrimaryPatternTest extends AbstractRegressionTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=577415
 	// Bug in Eclipse Pattern Matching Instanceof Variable Scope
-	public void test577415_1() {
+	public void test577415_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -343,7 +343,7 @@ public class InstanceofPrimaryPatternTest extends AbstractRegressionTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=577415
 	// Bug in Eclipse Pattern Matching Instanceof Variable Scope
-	public void test577415_2() {
+	public void test577415_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -380,7 +380,7 @@ public class InstanceofPrimaryPatternTest extends AbstractRegressionTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=577415
 	// Bug in Eclipse Pattern Matching Instanceof Variable Scope
-	public void test577415_3() {
+	public void test577415_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -414,7 +414,7 @@ public class InstanceofPrimaryPatternTest extends AbstractRegressionTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=577415
 	// Bug in Eclipse Pattern Matching Instanceof Variable Scope
-	public void test577415_4() {
+	public void test577415_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -484,7 +484,7 @@ public class InstanceofPrimaryPatternTest extends AbstractRegressionTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=577415
 	// Bug in Eclipse Pattern Matching Instanceof Variable Scope
-	public void test577415_5() {
+	public void test577415_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -518,7 +518,7 @@ public class InstanceofPrimaryPatternTest extends AbstractRegressionTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=577415
 	// Bug in Eclipse Pattern Matching Instanceof Variable Scope
-	public void test577415_6() {
+	public void test577415_6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -556,7 +556,7 @@ public class InstanceofPrimaryPatternTest extends AbstractRegressionTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=577415
 	// Bug in Eclipse Pattern Matching Instanceof Variable Scope
-	public void test577415_7() {
+	public void test577415_7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -597,7 +597,7 @@ public class InstanceofPrimaryPatternTest extends AbstractRegressionTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=577415
 	// Bug in Eclipse Pattern Matching Instanceof Variable Scope
-	public void test577415_8() {
+	public void test577415_8() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -639,7 +639,7 @@ public class InstanceofPrimaryPatternTest extends AbstractRegressionTest {
 			+ "----------\n");
 	}
 
-	public void testGH3074() {
+	public void testGH3074() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"Example.java",
@@ -665,7 +665,7 @@ public class InstanceofPrimaryPatternTest extends AbstractRegressionTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3222
 	// [Patterns][Ternary] Pattern binding variable not recognized in poly conditional operator expression
-	public void testIssue3222() {
+	public void testIssue3222() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21)
 			return;
 		runConformTest(
@@ -694,7 +694,7 @@ public class InstanceofPrimaryPatternTest extends AbstractRegressionTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3222
 	// [Patterns][Ternary] Pattern binding variable not recognized in poly conditional operator expression
-	public void testIssue3222_2() {
+	public void testIssue3222_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21)
 			return;
 		runConformTest(
@@ -723,7 +723,7 @@ public class InstanceofPrimaryPatternTest extends AbstractRegressionTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3222
 	// [Patterns][Ternary] Pattern binding variable not recognized in poly conditional operator expression
-	public void testIssue3222_3() {
+	public void testIssue3222_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21)
 			return;
 		runConformTest(
@@ -756,7 +756,7 @@ public class InstanceofPrimaryPatternTest extends AbstractRegressionTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3897
 	// Compilation error on ECJ but not with JavaC
-	public void testIssue3897() {
+	public void testIssue3897() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -784,7 +784,7 @@ public class InstanceofPrimaryPatternTest extends AbstractRegressionTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3897
 	// Compilation error on ECJ but not with JavaC
-	public void testIssue3897_2() {
+	public void testIssue3897_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -841,7 +841,7 @@ public class InstanceofPrimaryPatternTest extends AbstractRegressionTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3897
 	// Compilation error on ECJ but not with JavaC
-	public void testIssue3897_3() {
+	public void testIssue3897_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -898,7 +898,7 @@ public class InstanceofPrimaryPatternTest extends AbstractRegressionTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3897
 	// Compilation error on ECJ but not with JavaC
-	public void testIssue3897_4() {
+	public void testIssue3897_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -948,7 +948,7 @@ public class InstanceofPrimaryPatternTest extends AbstractRegressionTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3897
 	// Compilation error on ECJ but not with JavaC
-	public void testIssue3897_5() {
+	public void testIssue3897_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",

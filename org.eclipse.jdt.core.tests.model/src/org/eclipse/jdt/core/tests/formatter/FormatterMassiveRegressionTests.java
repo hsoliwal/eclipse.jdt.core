@@ -220,7 +220,7 @@ public class FormatterMassiveRegressionTests extends FormatterRegressionTests {
 			if (idxQM >= 0 && idxS >= 0) {
 				kind = 4; // Pure pattern match
 			} else if (idxQM >= 0) {
-				while (idxQM < length && FILES_FILTER.charAt(idxQM) == '?') {
+				while (idxQM < length && FILES_FILTER.charAt(idxQM) == '?') { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					idxQM++;
 				}
 				if (idxQM == length) {
@@ -229,7 +229,7 @@ public class FormatterMassiveRegressionTests extends FormatterRegressionTests {
 					kind = 4; // Pure pattern match
 				}
 			} else if (idxS >= 0) {
-				while (idxS < length && FILES_FILTER.charAt(idxQM) == '*') {
+				while (idxS < length && FILES_FILTER.charAt(idxQM) == '*') { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					idxS++;
 				}
 				if (idxS == length) {
@@ -259,7 +259,7 @@ public class FormatterMassiveRegressionTests extends FormatterRegressionTests {
 
 	// Cleaning
 	private static boolean LIST = false;
-	private final static Map MAX_FILES = new HashMap();
+	private final static Map MAX_FILES = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	// Formatting behavior
 	final static int FORMAT_REPEAT  = Integer.parseInt(System.getProperty("repeat", "2"));
@@ -316,7 +316,7 @@ public class FormatterMassiveRegressionTests extends FormatterRegressionTests {
 	static class FormattingFailure {
 		String msg;
 		int kind;
-		List failures = new ArrayList();
+		List failures = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		public FormattingFailure(int kind) {
 			this.kind = kind;
         }
@@ -341,7 +341,7 @@ public class FormatterMassiveRegressionTests extends FormatterRegressionTests {
 				case  COMPARISON_FAILURE:
 					return "different output while comparing with previous version";
 				default:
-			        return "different output while "+this.msg;
+			        return "different output while "+this.msg; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
         }
 
@@ -397,14 +397,14 @@ public class FormatterMassiveRegressionTests extends FormatterRegressionTests {
 	*/
 
 public static Test suite() {
-	return suite(new File(System.getProperty("inputDir")), buildProfileString(), new HashMap());
+	return suite(new File(System.getProperty("inputDir")), buildProfileString(), new HashMap()); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 }
 
-protected static Test suite(File inputDir, String profile, Map directories) {
+protected static Test suite(File inputDir, String profile, Map directories) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
-	String name = "FormatterMassiveRegressionTests on "+inputDir.getName();
+	String name = "FormatterMassiveRegressionTests on "+inputDir.getName(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	if (profile != null && profile.length() > 0) {
-		name += " " + profile;
+		name += " " + profile; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	TestSuite suite = new Suite(name);
 	try {
@@ -419,7 +419,7 @@ protected static Test suite(File inputDir, String profile, Map directories) {
 
 		// Get files from input dir
 		FileFilter filter = new FileFilter() {
-			@Override
+			@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			public boolean accept(File pathname) {
 				String path = pathname.getPath();
 				if (pathname.isDirectory()) {
@@ -447,13 +447,13 @@ protected static Test suite(File inputDir, String profile, Map directories) {
             }
 		};
 		File[] allFiles = (File[]) directories.get(inputDir);
-		File listFile = new File(inputDir.getParentFile(), inputDir.getName()+".lst");
+		File listFile = new File(inputDir.getParentFile(), inputDir.getName()+".lst"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		BufferedWriter listFileWriter = null;
 		if (allFiles == null) {
 			System.out.print("Get all files from ");
 			if (LIST || !listFile.exists()) {
 				// Get the files list
-				System.out.print(inputDir+"...");
+				System.out.print(inputDir+"..."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				allFiles = ModelTestsUtil.getAllFiles(inputDir, filter);
 				// Delete the files list
 				if (listFile.exists()) {
@@ -464,17 +464,17 @@ protected static Test suite(File inputDir, String profile, Map directories) {
 				listFileWriter.write(Integer.toString(allFiles.length));
 				listFileWriter.newLine();
 			} else {
-				System.out.print("stored list in "+listFile.getPath()+"...");
+				System.out.print("stored list in "+listFile.getPath()+"..."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				try (BufferedReader listFileReader = new BufferedReader(new InputStreamReader(new FileInputStream(listFile.getAbsolutePath())))) {
 					// First line is the number of files
 					String line = listFileReader.readLine();
 					int maxFiles = Integer.parseInt(line);
 					// Following lines are the files path
 					allFiles = new File[maxFiles];
-					for (int i=0; i<maxFiles; i++) {
+					for (int i=0; i<maxFiles; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						allFiles[i] = new File(inputDir, listFileReader.readLine());
 						if (!allFiles[i].exists()) {
-							throw new IOException("Cannot find file "+allFiles[i]);
+							throw new IOException("Cannot find file "+allFiles[i]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
 					}
 				}
@@ -503,7 +503,7 @@ protected static Test suite(File inputDir, String profile, Map directories) {
 		// Add one test per found file
 		try {
 			final int inputDirPathLength = inputDir.getPath().length()+1;
-			for (int i=0; i<maxFiles[0]; i++) {
+			for (int i=0; i<maxFiles[0]; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (CLEAN) {
 					suite.addTest(new FormatterMassiveRegressionTests(inputDir, allFiles[i], i, profiles, false/*do not compare while cleaning*/));
 				} else {
@@ -526,7 +526,7 @@ protected static Test suite(File inputDir, String profile, Map directories) {
 	return suite;
 }
 
-private static String buildProfileString() {
+private static String buildProfileString() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	boolean hasProfile = NO_COMMENTS || PRESERVED_LINES != -1;
 	if (JOIN_LINES != null) {
 	 	if (JOIN_LINES.equals("never") ||
@@ -544,22 +544,22 @@ private static String buildProfileString() {
 	}
 	String builtProfile = null;
 	if (hasProfile) {
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		String separator = "";
 		if (JOIN_LINES != null) {
-			buffer.append("join_lines="+JOIN_LINES);
+			buffer.append("join_lines="+JOIN_LINES); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			separator = ",";
 		}
 		if (NO_COMMENTS) {
-			buffer.append(separator+"no_comments=true");
+			buffer.append(separator+"no_comments=true"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			separator = ",";
 		}
 		if (BRACES != null) {
-			buffer.append(separator+"braces="+BRACES);
+			buffer.append(separator+"braces="+BRACES); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			separator = ",";
 		}
 		if (PRESERVED_LINES != -1) {
-			buffer.append(separator+"preserved_lines="+PRESERVED_LINES);
+			buffer.append(separator+"preserved_lines="+PRESERVED_LINES); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			separator = ",";
 		}
 		builtProfile = buffer.toString();
@@ -569,15 +569,15 @@ private static String buildProfileString() {
 	return builtProfile;
 }
 
-private static int initProfiles(String profile) {
+private static int initProfiles(String profile) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (profile == null || profile.length() == 0) return 0;
 	StringTokenizer tokenizer = new StringTokenizer(profile, ",");
 	int profiles = 0;
-	while (tokenizer.hasMoreTokens()) {
+	while (tokenizer.hasMoreTokens()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String token = tokenizer.nextToken();
 		int idx = token.indexOf('=');
 		if (idx <= 0) {
-			System.err.println("'"+profile+"' is not a valid profile!!!");
+			System.err.println("'"+profile+"' is not a valid profile!!!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			return 0;
 		}
 		String profileName = token.substring(0, idx);
@@ -620,11 +620,11 @@ private static int initProfiles(String profile) {
 	return profiles;
 }
 
-private static void initDirectories(File inputDir, int profiles, boolean verify) {
+private static void initDirectories(File inputDir, int profiles, boolean verify) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Verify input directory
 	if (!inputDir.exists() && !inputDir.isDirectory()) {
-		System.err.println(inputDir+" does not exist or is not a directory!");
+		System.err.println(inputDir+" does not exist or is not a directory!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		System.exit(1);
 	}
 
@@ -633,7 +633,7 @@ private static void initDirectories(File inputDir, int profiles, boolean verify)
 	if (dir != null) {
 		StringTokenizer tokenizer = new StringTokenizer(dir, ",");
 		String outputDir = tokenizer.nextToken();
-		while (tokenizer.hasMoreTokens()) {
+		while (tokenizer.hasMoreTokens()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String token = tokenizer.nextToken();
 			if (token.equals("clean")) {
 				CLEAN = true;
@@ -653,7 +653,7 @@ private static void initDirectories(File inputDir, int profiles, boolean verify)
 			}
 			return;
 		} else if (!OUTPUT_DIR.exists()) {
-			System.err.println("            WARNING: The output directory "+OUTPUT_DIR+" does not exist...");
+			System.err.println("            WARNING: The output directory "+OUTPUT_DIR+" does not exist..."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			System.err.println("            => NO comparison could be done!");
 			CAN_COMPARE = false;
 		}
@@ -682,13 +682,13 @@ private static void initDirectories(File inputDir, int profiles, boolean verify)
 	}
 }
 
-private static void setLogDir(File inputDir, int profiles, boolean verify) throws CoreException {
+private static void setLogDir(File inputDir, int profiles, boolean verify) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Compute log dir
 	File rootLogDir = new File(System.getProperty("logDir"));
 	if (!rootLogDir.exists()) {
 		if (!rootLogDir.mkdirs()) {
-			System.err.println("Cannot create specified log directory: "+rootLogDir+"!!!");
+			System.err.println("Cannot create specified log directory: "+rootLogDir+"!!!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			return;
 		}
 	}
@@ -708,7 +708,7 @@ private static void setLogDir(File inputDir, int profiles, boolean verify) throw
 	}
 
 	// Compute log sub-directories depending on profiles
-	List subDirs = new ArrayList();
+	List subDirs = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	if (profiles > 0) {
 		subDirs.add("profiles");
 		setProfilesDir(profiles, subDirs);
@@ -722,15 +722,15 @@ private static void setLogDir(File inputDir, int profiles, boolean verify) throw
 	// Create log stream
 	File logDir = createDir(new File (rootLogDir, subRootDir), subDirs);
 	String filePrefix = inputDir.getName().replaceAll("\\.", "");
-	String logFileName = filePrefix+".txt";
+	String logFileName = filePrefix+".txt"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	LOG_FILE = new File(logDir, logFileName);
 	if (verify && LOG_FILE.exists()) {
 		File saveDir = new File(new File(rootLogDir, "save"), subRootDir);
 		saveDir.mkdirs();
 		int i=0;
-		while (true) {
+		while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String dirN = Integer.toString(i);
-			if (i<10) dirN = "0" + dirN;
+			if (i<10) dirN = "0" + dirN; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			saveDir = new File(saveDir, dirN);
 			logDir = createDir(saveDir, subDirs);
 			File renamedFile = new File(logDir, logFileName);
@@ -744,7 +744,7 @@ private static void setLogDir(File inputDir, int profiles, boolean verify) throw
 		LOG_STREAM.flush();
 	}
 	catch (FileNotFoundException fnfe) {
-		System.err.println("Can't create log file"+LOG_FILE); //$NON-NLS-1$
+		System.err.println("Can't create log file"+LOG_FILE); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 //	if (LOG_RESOURCE.exists()) {
 //		Util.delete(LOG_RESOURCE);
@@ -754,7 +754,7 @@ private static void setLogDir(File inputDir, int profiles, boolean verify) throw
 
 private static File createDir(File rootDir, List subDirs) {
 	File dir = rootDir;
-	for (int i=0, s=subDirs.size(); i<s; i++) {
+	for (int i=0, s=subDirs.size(); i<s; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		dir = new File (dir, (String) subDirs.get(i));
 	}
 	dir.mkdirs();
@@ -762,12 +762,12 @@ private static File createDir(File rootDir, List subDirs) {
 }
 
 private static File setProfilesDir(int profiles, File dir) {
-	List subDirs = new ArrayList();
+	List subDirs = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	setProfilesDir(profiles, subDirs);
 	return createDir(dir, subDirs);
 }
 
-private static void setProfilesDir(int profiles, List subDirs) {
+private static void setProfilesDir(int profiles, List subDirs) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String joinLines = null;
 	switch (profiles & PROFILE_JOIN_LINES_MASK) {
 		case PROFILE_NEVER_JOIN_LINES:
@@ -810,7 +810,7 @@ private static void setProfilesDir(int profiles, List subDirs) {
 	}
 }
 
-private static void appendProfiles(int profiles, StringBuilder buffer) {
+private static void appendProfiles(int profiles, StringBuilder buffer) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String joinLines = null;
 	boolean first = true;
 	switch (profiles & PROFILE_JOIN_LINES_MASK) {
@@ -825,13 +825,13 @@ private static void appendProfiles(int profiles, StringBuilder buffer) {
 			break;
 	}
 	if (joinLines != null) {
-		buffer.append("join_lines=");
-		buffer.append(joinLines);
+		buffer.append("join_lines="); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(joinLines); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		first = false;
 	}
 	if ((profiles & PROFILE_NO_COMMENTS) != 0) {
-		if (!first) buffer.append(',');
-		buffer.append("no_comments");
+		if (!first) buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("no_comments"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		first = false;
 	}
 	String braces = null;
@@ -847,24 +847,24 @@ private static void appendProfiles(int profiles, StringBuilder buffer) {
 			break;
 	}
 	if (braces != null) {
-		if (!first) buffer.append(',');
-		buffer.append("braces=");
-		buffer.append(braces);
+		if (!first) buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("braces="); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(braces); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		first = false;
 	}
 	if ((profiles & PROFILE_PRESERVED_LINES_MASK) != 0) {
 		int lines = (profiles & PROFILE_PRESERVED_LINES_MASK) >> 5;
-		if (!first) buffer.append(',');
-		buffer.append("preserved_lines=");
-		buffer.append(lines);
+		if (!first) buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("preserved_lines="); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(lines); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		first = false;
 	}
 	if (first) {
-		buffer.append("none!");
+		buffer.append("none!"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 }
 
-private static void setOutputDir(File inputDir, String dir, int profiles) {
+private static void setOutputDir(File inputDir, String dir, int profiles) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Find the root of the output directory
 	OUTPUT_DIR = new File(dir);
@@ -878,7 +878,7 @@ private static void setOutputDir(File inputDir, String dir, int profiles) {
 	// Add the temporary output if any
 	if (TEMP_OUTPUT != null) {
 		StringTokenizer tokenizer = new StringTokenizer(TEMP_OUTPUT, "/");
-		while (tokenizer.hasMoreTokens()) {
+		while (tokenizer.hasMoreTokens()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			OUTPUT_DIR = new File(OUTPUT_DIR, tokenizer.nextToken());
 		}
 	}
@@ -894,7 +894,7 @@ private static void setOutputDir(File inputDir, String dir, int profiles) {
 	if (MAINTENANCE) {
 		try {
 			int version = Integer.parseInt(ECLIPSE_VERSION.substring(1));
-			File maintenance = new File(OUTPUT_DIR, "v"+(version-1));
+			File maintenance = new File(OUTPUT_DIR, "v"+(version-1)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			if (maintenance.exists()) {
 				parent = maintenance;
 			}
@@ -908,7 +908,7 @@ private static void setOutputDir(File inputDir, String dir, int profiles) {
 
 private static void initFailures() {
 	FAILURES = new FormattingFailure[REFORMATTING_WHITESPACES_FAILURE+1];
-	for (int i=UNEXPECTED_FAILURE; i<=COMPARISON_FAILURE; i++) {
+	for (int i=UNEXPECTED_FAILURE; i<=COMPARISON_FAILURE; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		FAILURES[i] = new FormattingFailure(i);
 	}
 	FAILURES[REFORMATTING_FAILURE] = new FormattingFailure(REFORMATTING_FAILURE, "reformatting twice");
@@ -920,7 +920,7 @@ private static void initFailures() {
 /*
  * Read JDT/Core build notes file to see what version is currently running.
  */
-private static void initVersion() {
+private static void initVersion() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (JDT_CORE_VERSION == null) {
 		BufferedReader buildnotesReader;
 	    try {
@@ -934,7 +934,7 @@ private static void initVersion() {
 		String line;
 		JDT_CORE_HEAD = true;
 		try {
-			while ((line = buildnotesReader.readLine()) != null) {
+			while ((line = buildnotesReader.readLine()) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (line.startsWith("<a name=\"")) {
 					boolean first = JDT_CORE_VERSION == null;
 					JDT_CORE_VERSION = line.substring(line.indexOf('"')+1, line.lastIndexOf('"'));
@@ -944,7 +944,7 @@ private static void initVersion() {
 					tokenizer.nextToken(); // 'Eclipse'
 					tokenizer.nextToken(); // 'SDK'
 					String milestone = tokenizer.nextToken();
-					ECLIPSE_VERSION = "v"+milestone.charAt(0)+milestone.charAt(2);
+					ECLIPSE_VERSION = "v"+milestone.charAt(0)+milestone.charAt(2); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					ECLIPSE_MILESTONE = milestone.substring(3);
 					tokenizer.nextToken(); // '-'
 					JDT_CORE_HEAD = tokenizer.nextToken().equals("%date%");
@@ -954,7 +954,7 @@ private static void initVersion() {
 						StringTokenizer tokenizer = new StringTokenizer(line);
 						tokenizer.nextToken(); // 'Patch'
 						PATCH_VERSION = tokenizer.nextToken();
-						while (tokenizer.hasMoreTokens()) {
+						while (tokenizer.hasMoreTokens()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							PATCH_BUG = tokenizer.nextToken();
 						}
 						try {
@@ -964,12 +964,12 @@ private static void initVersion() {
 							// try to split
 							StringTokenizer bugTokenizer = new StringTokenizer(PATCH_BUG, "+");
 							try {
-								while (bugTokenizer.hasMoreTokens()) {
+								while (bugTokenizer.hasMoreTokens()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 									Integer.parseInt(bugTokenizer.nextToken());
 								}
 							}
 							catch (NumberFormatException nfe2) {
-								System.err.println("Invalid patch bug number noticed in JDT/Core buildnotes: "+PATCH_BUG);
+								System.err.println("Invalid patch bug number noticed in JDT/Core buildnotes: "+PATCH_BUG); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							}
 						}
 					}
@@ -1028,29 +1028,29 @@ public FormatterMassiveRegressionTests(File inputDir, File file, int index, int 
 /* (non-Javadoc)
  * @see junit.framework.TestCase#getName()
  */
-public String getName() {
-	StringBuilder name = new StringBuilder(super.getName());
+public String getName() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	StringBuilder name = new StringBuilder(super.getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	if (this.testIndex >= 0) {
 		int n = this.testIndex == 0 ? 0 : (int) (Math.log(this.testIndex)/Math.log(10));
 		int max = ((int[])MAX_FILES.get(this.inputDir))[1];
-		for (int i=n; i<max; i++) {
-			name.append('0');
+		for (int i=n; i<max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			name.append('0'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		name.append(this.testIndex);
+		name.append(this.testIndex); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	if (this.profiles > 0) {
-		name.append('_');
-		name.append(this.profiles);
+		name.append('_'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		name.append(this.profiles); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	name.append(" - ");
-	name.append(this.path);
+	name.append(" - "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	name.append(this.path); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return name.toString();
 }
 
 /* (non-Javadoc)
  * @see org.eclipse.jdt.core.tests.formatter.FormatterRegressionTests#setUpSuite()
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void setUp() throws Exception {
 	super.setUp();
 
@@ -1123,7 +1123,7 @@ public void setUp() throws Exception {
 /* (non-Javadoc)
  * @see org.eclipse.jdt.core.tests.formatter.FormatterRegressionTests#setUpSuite()
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void setUpSuite() throws Exception {
 
 	// Init directories
@@ -1131,7 +1131,7 @@ public void setUpSuite() throws Exception {
 
 	// Delete output dir before compute reference
 	if (CLEAN) {
-		System.out.print("Deleting all files from "+OUTPUT_DIR+"...");
+		System.out.print("Deleting all files from "+OUTPUT_DIR+"..."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Util.delete(OUTPUT_DIR);
 		System.out.println("done");
 	}
@@ -1146,9 +1146,9 @@ public void setUpSuite() throws Exception {
 		OUTPUT_DIR.mkdirs();
 		String version = JDT_CORE_VERSION;
 		if (TEMP_OUTPUT != null) {
-				version += " + " + TEMP_OUTPUT;
+				version += " + " + TEMP_OUTPUT; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			if (PATCH_BUG != null) {
-				version += " " + PATCH_VERSION + " of " + PATCH_BUG;
+				version += " " + PATCH_VERSION + " of " + PATCH_BUG; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		Util.writeToFile(version, versionFile.getAbsolutePath());
@@ -1161,48 +1161,48 @@ public void setUpSuite() throws Exception {
 	print();
 }
 
-private void print() {
+private void print() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
-	StringBuilder buffer = new StringBuilder();
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
 	// Log version info
-	buffer.append("Version   : ");
+	buffer.append("Version   : "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (PATCH_BUG != null) {
-		buffer.append("'Patch ");
-		buffer.append(PATCH_VERSION);
-		buffer.append(" for bug ");
-		buffer.append(PATCH_BUG);
-		buffer.append("' applied on ");
+		buffer.append("'Patch "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(PATCH_VERSION); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(" for bug "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(PATCH_BUG); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("' applied on "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	if (JDT_CORE_HEAD) {
-		buffer.append("HEAD on top of ");
+		buffer.append("HEAD on top of "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	buffer.append(JDT_CORE_VERSION);
-	buffer.append(LINE_SEPARATOR);
+	buffer.append(JDT_CORE_VERSION); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(LINE_SEPARATOR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 	// Profiles
-	buffer.append("Profiles  : ");
+	buffer.append("Profiles  : "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	appendProfiles(this.profiles, buffer);
-	buffer.append(LINE_SEPARATOR);
+	buffer.append(LINE_SEPARATOR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 	// Log date of test
 	long start = System.currentTimeMillis();
 	SimpleDateFormat format = new SimpleDateFormat();
 	Date now = new Date(start);
-	buffer.append("Test date : ");
-	buffer.append(format.format(now));
-	buffer.append(LINE_SEPARATOR);
+	buffer.append("Test date : "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(format.format(now)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(LINE_SEPARATOR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 	// Input dir
-	buffer.append("Input dir : ");
-	buffer.append(this.inputDir);
-	buffer.append(LINE_SEPARATOR);
+	buffer.append("Input dir : "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(this.inputDir); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(LINE_SEPARATOR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 	// Files
-	buffer.append("            ");
+	buffer.append("            "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	int[] maxFiles = (int[]) MAX_FILES.get(this.inputDir);
-	buffer.append(maxFiles[0]);
-	buffer.append(" java files to format...");
+	buffer.append(maxFiles[0]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(" java files to format..."); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 	// Flush to console to show startup
 	String firstBuffer = buffer.toString();
@@ -1210,48 +1210,48 @@ private void print() {
 
 	// Output dir
 	buffer.setLength(0);
-	buffer.append("Output dir: ");
-	buffer.append(OUTPUT_DIR);
-	buffer.append(LINE_SEPARATOR);
+	buffer.append("Output dir: "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(OUTPUT_DIR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(LINE_SEPARATOR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (CLEAN) {
-		buffer.append("            CLEANED");
-		buffer.append(LINE_SEPARATOR);
+		buffer.append("            CLEANED"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(LINE_SEPARATOR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	// Log dir
 	if (LOG_FILE != null) {
-		buffer.append("Log file  : ");
-		buffer.append(LOG_FILE);
-		buffer.append(LINE_SEPARATOR);
+		buffer.append("Log file  : "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(LOG_FILE); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(LINE_SEPARATOR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	// Write dir
 	if (WRITE_DIR != null) {
-		buffer.append("Write dir : ");
-		buffer.append(WRITE_DIR);
-		buffer.append(LINE_SEPARATOR);
+		buffer.append("Write dir : "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(WRITE_DIR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(LINE_SEPARATOR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	// Comparison
 	if (CAN_COMPARE) {
 		if (!CLEAN) {
-			buffer.append("Compare vs: ");
+			buffer.append("Compare vs: "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			File versionFile = new File(OUTPUT_DIR, "version.txt");
 			if (versionFile.exists()) {
 				String fileContent = Util.fileContent(versionFile.getAbsolutePath());
 				if (TEMP_OUTPUT != null) {
-					buffer.append(TEMP_OUTPUT);
-					buffer.append(" on top of ");
+					buffer.append(TEMP_OUTPUT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(" on top of "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				buffer.append(fileContent);
+				buffer.append(fileContent); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				buffer.append("???");
+				buffer.append("???"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 	} else {
-		buffer.append("Compare vs: none");
+		buffer.append("Compare vs: none"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	buffer.append(LINE_SEPARATOR);
+	buffer.append(LINE_SEPARATOR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 	// Write logs
 	System.out.println(buffer.toString());
@@ -1276,59 +1276,59 @@ public void tearDown() throws Exception {
 /* (non-Javadoc)
  * @see org.eclipse.jdt.core.tests.formatter.FormatterRegressionTests#tearDownSuite()
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void tearDownSuite() throws Exception {
 
 	// Display time measures
-	StringBuilder buffer1 = new StringBuilder();
+	StringBuilder buffer1 = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	if (CLEAN) {
 //		buffer1.append(" cannot be done as the directory was cleaned!");
 //		buffer1.append(LINE_SEPARATOR);
 		return;
 	} else {
-		buffer1.append("Time measures:");
-		buffer1.append(LINE_SEPARATOR);
-		for (int i=0; i<FORMAT_REPEAT; i++) {
-			buffer1.append("	- "+counterToString(i+1)).append(" format:").append(LINE_SEPARATOR);
-			buffer1.append("		+ elapsed = "+timeString(TIME_MEASURES.formatting[i])).append(LINE_SEPARATOR);
-			buffer1.append("		+ occurrences = "+TIME_MEASURES.occurences[i]).append(LINE_SEPARATOR);
-			buffer1.append("		+ null output = "+TIME_MEASURES.null_output[i]).append(LINE_SEPARATOR);
+		buffer1.append("Time measures:"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer1.append(LINE_SEPARATOR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (int i=0; i<FORMAT_REPEAT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer1.append("	- "+counterToString(i+1)).append(" format:").append(LINE_SEPARATOR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer1.append("		+ elapsed = "+timeString(TIME_MEASURES.formatting[i])).append(LINE_SEPARATOR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer1.append("		+ occurrences = "+TIME_MEASURES.occurences[i]).append(LINE_SEPARATOR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer1.append("		+ null output = "+TIME_MEASURES.null_output[i]).append(LINE_SEPARATOR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
-	buffer1.append(LINE_SEPARATOR);
+	buffer1.append(LINE_SEPARATOR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 	// Display stored failures
 	int max = FAILURES.length;
-	for (int i=0; i<max; i++) {
+	for (int i=0; i<max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		List failures = FAILURES[i].failures;
 		int size = failures.size();
 		if (size > 0) {
-			buffer1.append(size);
-			buffer1.append(" file");
+			buffer1.append(size); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer1.append(" file"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (size == 1) {
-				buffer1.append(" has ");
+				buffer1.append(" has "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				buffer1.append("s have ");
+				buffer1.append("s have "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buffer1.append(FAILURES[i]);
-			buffer1.append('!');
-			buffer1.append(LINE_SEPARATOR);
+			buffer1.append(FAILURES[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer1.append('!'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer1.append(LINE_SEPARATOR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
-	buffer1.append(LINE_SEPARATOR);
-	StringBuilder buffer2 = new StringBuilder(LINE_SEPARATOR);
-	for (int i=0; i<max; i++) {
+	buffer1.append(LINE_SEPARATOR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	StringBuilder buffer2 = new StringBuilder(LINE_SEPARATOR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	for (int i=0; i<max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		List failures = FAILURES[i].failures;
 		int size = failures.size();
 		if (size > 0) {
-			buffer2.append("List of file(s) with ");
-			buffer2.append(FAILURES[i]);
-			buffer2.append(':');
-			buffer2.append(LINE_SEPARATOR);
-			for (int j=0; j<size; j++) {
-				buffer2.append("	- ");
-				buffer2.append(failures.get(j));
-				buffer2.append(LINE_SEPARATOR);
+			buffer2.append("List of file(s) with "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer2.append(FAILURES[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer2.append(':'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer2.append(LINE_SEPARATOR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (int j=0; j<size; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer2.append("	- "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer2.append(failures.get(j)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer2.append(LINE_SEPARATOR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 	}
@@ -1390,7 +1390,7 @@ DefaultCodeFormatter codeFormatter() {
 	return codeFormatter;
 }
 
-void compareFormattedSource() throws IOException, Exception {
+void compareFormattedSource() throws IOException, Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source = new String(org.eclipse.jdt.internal.compiler.util.Util.getFileCharContent(this.file, null));
 	String actualResult = null;
 	try {
@@ -1435,29 +1435,29 @@ void compareFormattedSource() throws IOException, Exception {
 	}
 }
 
-private String counterToString(int count) {
+private String counterToString(int count) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int reminder = count%10;
-	StringBuilder buffer = new StringBuilder();
-	buffer.append(count);
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	buffer.append(count); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	switch (reminder) {
 		case 1:
-			buffer.append("st");
+			buffer.append("st"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case 2:
-			buffer.append("nd");
+			buffer.append("nd"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case 3:
-			buffer.append("rd");
+			buffer.append("rd"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		default:
-			buffer.append("th");
+			buffer.append("th"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 	}
 	return buffer.toString();
 }
 
-private Map getDefaultCompilerOptions() {
-	Map optionsMap = new HashMap(30);
+private Map getDefaultCompilerOptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map optionsMap = new HashMap(30); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	optionsMap.put(CompilerOptions.OPTION_LocalVariableAttribute, CompilerOptions.DO_NOT_GENERATE);
 	optionsMap.put(CompilerOptions.OPTION_LineNumberAttribute, CompilerOptions.DO_NOT_GENERATE);
 	optionsMap.put(CompilerOptions.OPTION_SourceFileAttribute, CompilerOptions.DO_NOT_GENERATE);
@@ -1564,7 +1564,7 @@ private boolean sourceHasCompilationErrors(String source) {
 	if (codeSnippetParsingUtil.recordedParsingInformation != null) {
 		CategorizedProblem[] problems = codeSnippetParsingUtil.recordedParsingInformation.problems;
 		int length = problems == null ? 0 : problems.length;
-		for (int i=0; i<length; i++) {
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (((DefaultProblem)problems[i]).isError()) {
 				return true;
 			}
@@ -1573,7 +1573,7 @@ private boolean sourceHasCompilationErrors(String source) {
 	return false;
 }
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 String runFormatter(CodeFormatter codeFormatter, String source, int kind, int indentationLevel, int offset, int length, String lineSeparator, boolean repeat) {
 	long timeStart = System.currentTimeMillis();
 	TextEdit edit = codeFormatter.format(kind, source, offset, length, indentationLevel, lineSeparator);
@@ -1596,7 +1596,7 @@ String runFormatter(CodeFormatter codeFormatter, String source, int kind, int in
 	int count = 0;
 	String result = initialResult;
 	String previousResult = result;
-	while (++count < FORMAT_REPEAT) {
+	while (++count < FORMAT_REPEAT) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		timeStart = System.currentTimeMillis();
 		edit = codeFormatter.format(kind, result, 0, result.length(), indentationLevel, lineSeparator);
 		if (FAILURES != null) { // Comparison has started
@@ -1641,7 +1641,7 @@ String runFormatter(CodeFormatter codeFormatter, String source, int kind, int in
 //		if (!isExpectedFailure()) {
 			String counterString = counterToString(count);
 			try {
-				assertSourceEquals(counterString+" formatting is different from first one!", previousResult, result);
+				assertSourceEquals(counterString+" formatting is different from first one!", previousResult, result); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			catch (ComparisonFailure cf) {
 				this.failureIndex = REFORMATTING_FAILURE;
@@ -1670,25 +1670,25 @@ String runFormatter(CodeFormatter codeFormatter, String source, int kind, int in
  * @param time The time to format as a long.
  * @return The formatted string.
  */
-public String timeString(long time) {
+public String timeString(long time) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	NumberFormat format = NumberFormat.getInstance();
 	format.setMaximumFractionDigits(3);
-	StringBuilder buffer = new StringBuilder();
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	if (time == 0) {
 		// print nothing
 	} else {
 		long h = time / ONE_HOUR;
-		if (h > 0) buffer.append(h).append("h "); //$NON-NLS-1$
+		if (h > 0) buffer.append(h).append("h "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		long remaining = time % ONE_HOUR;
 		long m = remaining / ONE_MINUTE;
-		if (h > 0 || m > 0) buffer.append(m).append("mn "); //$NON-NLS-1$
+		if (h > 0 || m > 0) buffer.append(m).append("mn "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		remaining = remaining % ONE_MINUTE;
 		if ((remaining % 1000) == 0) {
-			buffer.append(remaining/1000);
+			buffer.append(remaining/1000); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
-			buffer.append(format.format(remaining/1000.0));
+			buffer.append(format.format(remaining/1000.0)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		buffer.append("s"); //$NON-NLS-1$
+		buffer.append("s"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	return buffer.toString();
 }
@@ -1703,7 +1703,7 @@ public void testDeleteOutputDir() throws IOException, Exception {
 /*
  * Test to fill the output directory with reference.
  */
-public void testReference() throws IOException, Exception {
+public void testReference() throws IOException, Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Dump the version
 //	if (this.testIndex == 0) {
@@ -1735,7 +1735,7 @@ public void testReference() throws IOException, Exception {
 /*
  * Test to compare the formatter output with an existing file.
  */
-public void testCompare() throws IOException, Exception {
+public void testCompare() throws IOException, Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		compareFormattedSource();
 	}

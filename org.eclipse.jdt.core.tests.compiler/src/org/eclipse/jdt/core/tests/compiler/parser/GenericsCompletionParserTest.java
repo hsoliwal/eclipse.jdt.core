@@ -33,7 +33,7 @@ protected Map getCompilerOptions() {
 	options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 	return options;
 }
-public void test0001(){
+public void test0001(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X  <T extends Z<Y>. {\n" +
 		"}";
@@ -61,7 +61,7 @@ public void test0001(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0002(){
+public void test0002(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X  <T extends Z<Y>.W {\n" +
 		"}";
@@ -89,7 +89,7 @@ public void test0002(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0003(){
+public void test0003(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test<T extends test0001.X<Y>.Z> {\n" +
 		"}";
@@ -117,7 +117,7 @@ public void test0003(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0004(){
+public void test0004(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public Y<Z>.\n" +
@@ -147,7 +147,7 @@ public void test0004(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0005(){
+public void test0005(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public Y<Z>. foo\n" +
@@ -177,7 +177,7 @@ public void test0005(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0006(){
+public void test0006(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public Y<Z>. foo;\n" +
@@ -207,7 +207,7 @@ public void test0006(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0007(){
+public void test0007(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public Y<Z>. foo()\n" +
@@ -238,7 +238,7 @@ public void test0007(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0008(){
+public void test0008(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public Y<Z>. foo(){}\n" +
@@ -269,7 +269,7 @@ public void test0008(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0009(){
+public void test0009(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public Y<Z>.V<W>.\n" +
@@ -299,7 +299,7 @@ public void test0009(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0010(){
+public void test0010(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public Y<Z>.V<W>. foo\n" +
@@ -329,7 +329,7 @@ public void test0010(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0011(){
+public void test0011(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public Y<Z>.V<W>. foo;\n" +
@@ -359,7 +359,7 @@ public void test0011(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0012(){
+public void test0012(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public Y<Z>.V<W>. foo()\n" +
@@ -390,7 +390,7 @@ public void test0012(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0013(){
+public void test0013(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public Y<Z>.V<W>. foo(){}\n" +
@@ -421,7 +421,7 @@ public void test0013(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0014(){
+public void test0014(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X extends  Y<Z>. {\n" +
 		"  \n" +
@@ -454,7 +454,7 @@ public void test0014(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0015(){
+public void test0015(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X implements I1, Y<Z>. {\n" +
 		"  \n" +
@@ -487,7 +487,7 @@ public void test0015(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0016(){
+public void test0016(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo(Y<Z>.){\n" +
@@ -523,7 +523,7 @@ public void test0016(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0017(){
+public void test0017(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo(Y<Z>. bar){\n" +
@@ -556,7 +556,7 @@ public void test0017(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0018(){
+public void test0018(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  Y<Z>. foo(){\n" +
@@ -589,7 +589,7 @@ public void test0018(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0019(){
+public void test0019(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X  {\n" +
 		"  void foo() throws Y<Z>. {\n" +
@@ -622,7 +622,7 @@ public void test0019(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0020(){
+public void test0020(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  <T extends Y<Z>.> void foo(){\n" +
@@ -655,7 +655,7 @@ public void test0020(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0021(){
+public void test0021(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  <T extends Y<Z>.> void foo(\n" +
@@ -686,7 +686,7 @@ public void test0021(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0022(){
+public void test0022(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  <T extends Y<Z>.> int foo\n" +
@@ -716,7 +716,7 @@ public void test0022(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0023(){
+public void test0023(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  <T extends Y<Z>.> X\n" +
@@ -746,7 +746,7 @@ public void test0023(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0024(){
+public void test0024(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  <T extends Y<Z>.>\n" +
@@ -776,7 +776,7 @@ public void test0024(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0025(){
+public void test0025(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  <T extends Y<Z>. void foo(){\n" +
@@ -810,7 +810,7 @@ public void test0025(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0026(){
+public void test0026(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  <T extends Y<Z>. void foo(\n" +
@@ -842,7 +842,7 @@ public void test0026(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0027(){
+public void test0027(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  <T extends Y<Z>. int foo\n" +
@@ -873,7 +873,7 @@ public void test0027(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0028(){
+public void test0028(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  <T extends Y<Z>. X\n" +
@@ -903,7 +903,7 @@ public void test0028(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0029(){
+public void test0029(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  <T extends Y<Z>.\n" +
@@ -933,7 +933,7 @@ public void test0029(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0030_Diet(){
+public void test0030_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -966,7 +966,7 @@ public void test0030_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0030_Method(){
+public void test0030_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1000,7 +1000,7 @@ public void test0030_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0031_Diet(){
+public void test0031_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1033,7 +1033,7 @@ public void test0031_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0031_Method(){
+public void test0031_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1067,7 +1067,7 @@ public void test0031_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0032_Diet(){
+public void test0032_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1100,7 +1100,7 @@ public void test0032_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0032_Method(){
+public void test0032_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1134,7 +1134,7 @@ public void test0032_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0033_Diet(){
+public void test0033_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1167,7 +1167,7 @@ public void test0033_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0033_Method(){
+public void test0033_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1201,7 +1201,7 @@ public void test0033_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0034_Diet(){
+public void test0034_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1234,7 +1234,7 @@ public void test0034_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0034_Method(){
+public void test0034_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1268,7 +1268,7 @@ public void test0034_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0035_Diet(){
+public void test0035_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1301,7 +1301,7 @@ public void test0035_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0035_Method(){
+public void test0035_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1335,7 +1335,7 @@ public void test0035_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0036_Diet(){
+public void test0036_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1368,7 +1368,7 @@ public void test0036_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0036_Method(){
+public void test0036_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1402,7 +1402,7 @@ public void test0036_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0037_Diet(){
+public void test0037_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1435,7 +1435,7 @@ public void test0037_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0037_Method(){
+public void test0037_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1469,7 +1469,7 @@ public void test0037_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0038_Diet(){
+public void test0038_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1502,7 +1502,7 @@ public void test0038_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0038_Method(){
+public void test0038_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1536,7 +1536,7 @@ public void test0038_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0039_Diet(){
+public void test0039_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1569,7 +1569,7 @@ public void test0039_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0039_Method(){
+public void test0039_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1603,7 +1603,7 @@ public void test0039_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0040_Diet(){
+public void test0040_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1636,7 +1636,7 @@ public void test0040_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0040_Method(){
+public void test0040_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1670,7 +1670,7 @@ public void test0040_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0041_Diet(){
+public void test0041_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1703,7 +1703,7 @@ public void test0041_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0041_Method(){
+public void test0041_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1737,7 +1737,7 @@ public void test0041_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0042_Diet(){
+public void test0042_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1770,7 +1770,7 @@ public void test0042_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0042_Method(){
+public void test0042_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1804,7 +1804,7 @@ public void test0042_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0043_Diet(){
+public void test0043_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1837,7 +1837,7 @@ public void test0043_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0043_Method(){
+public void test0043_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1871,7 +1871,7 @@ public void test0043_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0044_Diet(){
+public void test0044_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1906,7 +1906,7 @@ public void test0044_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0044_Method(){
+public void test0044_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1953,7 +1953,7 @@ public void test0044_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0045_Diet(){
+public void test0045_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -1987,7 +1987,7 @@ public void test0045_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0045_Method(){
+public void test0045_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -2033,7 +2033,7 @@ public void test0045_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0046_Diet(){
+public void test0046_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -2066,7 +2066,7 @@ public void test0046_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0046_Method(){
+public void test0046_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -2100,7 +2100,7 @@ public void test0046_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0047_Diet(){
+public void test0047_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -2133,74 +2133,7 @@ public void test0047_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0047_Method(){
-	String str =
-		"public class X {\n" +
-		"  void foo() {\n" +
-		"    Object a = (Y<Z>.) e;\n" +
-		"  }\n" +
-		"}";
-
-
-	String completeBehind = "Y<Z>.";
-	int cursorLocation = str.indexOf("Y<Z>.") + completeBehind.length() - 1;
-	String expectedCompletionNodeToString = "<CompleteOnType:Y<Z>.>";
-	String expectedParentNodeToString = "Object a = <CompleteOnType:Y<Z>.>;";
-	String completionIdentifier = "";
-	String expectedReplacedSource = "Y<Z>.";
-	String expectedUnitDisplayString =
-			"public class X {\n" +
-			"  public X() {\n" +
-			"  }\n" +
-			"  void foo() {\n" +
-			"    Object a = <CompleteOnType:Y<Z>.>;\n" +
-			"  }\n" +
-			"}\n";
-
-	checkMethodParse(
-			str.toCharArray(),
-			cursorLocation,
-			expectedCompletionNodeToString,
-			expectedParentNodeToString,
-			expectedUnitDisplayString,
-			completionIdentifier,
-			expectedReplacedSource,
-			"full ast");
-}
-public void test0048_Diet(){
-	String str =
-		"public class X {\n" +
-		"  void foo() {\n" +
-		"    Object a = (Y<Z>.) e;\n" +
-		"  }\n" +
-		"}";
-
-
-	String completeBehind = "Y<Z>.";
-	int cursorLocation = str.indexOf("Y<Z>.") + completeBehind.length() - 1;
-	String expectedCompletionNodeToString = "<NONE>";
-	String expectedParentNodeToString = "<NONE>";
-	String completionIdentifier = "<NONE>";
-	String expectedReplacedSource = "<NONE>";
-	String expectedUnitDisplayString =
-		"public class X {\n" +
-		"  public X() {\n" +
-		"  }\n" +
-		"  void foo() {\n" +
-		"  }\n" +
-		"}\n";
-
-	checkDietParse(
-			str.toCharArray(),
-			cursorLocation,
-			expectedCompletionNodeToString,
-			expectedParentNodeToString,
-			expectedUnitDisplayString,
-			completionIdentifier,
-			expectedReplacedSource,
-	"diet ast");
-}
-public void test0048_Method(){
+public void test0047_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -2234,7 +2167,74 @@ public void test0048_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0049_Diet(){
+public void test0048_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String str =
+		"public class X {\n" +
+		"  void foo() {\n" +
+		"    Object a = (Y<Z>.) e;\n" +
+		"  }\n" +
+		"}";
+
+
+	String completeBehind = "Y<Z>.";
+	int cursorLocation = str.indexOf("Y<Z>.") + completeBehind.length() - 1;
+	String expectedCompletionNodeToString = "<NONE>";
+	String expectedParentNodeToString = "<NONE>";
+	String completionIdentifier = "<NONE>";
+	String expectedReplacedSource = "<NONE>";
+	String expectedUnitDisplayString =
+		"public class X {\n" +
+		"  public X() {\n" +
+		"  }\n" +
+		"  void foo() {\n" +
+		"  }\n" +
+		"}\n";
+
+	checkDietParse(
+			str.toCharArray(),
+			cursorLocation,
+			expectedCompletionNodeToString,
+			expectedParentNodeToString,
+			expectedUnitDisplayString,
+			completionIdentifier,
+			expectedReplacedSource,
+	"diet ast");
+}
+public void test0048_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String str =
+		"public class X {\n" +
+		"  void foo() {\n" +
+		"    Object a = (Y<Z>.) e;\n" +
+		"  }\n" +
+		"}";
+
+
+	String completeBehind = "Y<Z>.";
+	int cursorLocation = str.indexOf("Y<Z>.") + completeBehind.length() - 1;
+	String expectedCompletionNodeToString = "<CompleteOnType:Y<Z>.>";
+	String expectedParentNodeToString = "Object a = <CompleteOnType:Y<Z>.>;";
+	String completionIdentifier = "";
+	String expectedReplacedSource = "Y<Z>.";
+	String expectedUnitDisplayString =
+			"public class X {\n" +
+			"  public X() {\n" +
+			"  }\n" +
+			"  void foo() {\n" +
+			"    Object a = <CompleteOnType:Y<Z>.>;\n" +
+			"  }\n" +
+			"}\n";
+
+	checkMethodParse(
+			str.toCharArray(),
+			cursorLocation,
+			expectedCompletionNodeToString,
+			expectedParentNodeToString,
+			expectedUnitDisplayString,
+			completionIdentifier,
+			expectedReplacedSource,
+			"full ast");
+}
+public void test0049_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -2267,7 +2267,7 @@ public void test0049_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0049_Method(){
+public void test0049_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -2301,7 +2301,7 @@ public void test0049_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0050_Diet(){
+public void test0050_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -2334,7 +2334,7 @@ public void test0050_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0050_Method(){
+public void test0050_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -2367,7 +2367,7 @@ public void test0050_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0051_Diet(){
+public void test0051_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -2400,7 +2400,7 @@ public void test0051_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0051_Method(){
+public void test0051_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -2433,7 +2433,7 @@ public void test0051_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0052_Diet(){
+public void test0052_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -2466,7 +2466,7 @@ public void test0052_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0052_Method(){
+public void test0052_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -2499,7 +2499,7 @@ public void test0052_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0053_Diet(){
+public void test0053_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public X() {\n" +
@@ -2530,7 +2530,7 @@ public void test0053_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0053_Method(){
+public void test0053_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public X() {\n" +
@@ -2563,7 +2563,7 @@ public void test0053_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0054_Diet(){
+public void test0054_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public X() {\n" +
@@ -2594,7 +2594,7 @@ public void test0054_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0054_Method(){
+public void test0054_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public X() {\n" +
@@ -2627,7 +2627,7 @@ public void test0054_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0055_Diet(){
+public void test0055_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public X() {\n" +
@@ -2658,7 +2658,7 @@ public void test0055_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0055_Method(){
+public void test0055_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public X() {\n" +
@@ -2691,7 +2691,7 @@ public void test0055_Method(){
 			"full ast");
 }
 
-public void test0056_Diet(){
+public void test0056_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -2724,7 +2724,7 @@ public void test0056_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0056_Method(){
+public void test0056_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -2758,7 +2758,7 @@ public void test0056_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0057_Diet(){
+public void test0057_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -2791,7 +2791,7 @@ public void test0057_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0057_Method(){
+public void test0057_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -2825,7 +2825,7 @@ public void test0057_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0058_Diet(){
+public void test0058_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -2858,7 +2858,7 @@ public void test0058_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0058_Method(){
+public void test0058_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -2892,7 +2892,7 @@ public void test0058_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0059(){
+public void test0059(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X  <T extends Z<Y {\n" +
 		"}";
@@ -2921,7 +2921,7 @@ public void test0059(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0060(){
+public void test0060(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public Y<Z\n" +
@@ -2951,7 +2951,7 @@ public void test0060(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0061(){
+public void test0061(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public Y<Z>\n" +
@@ -2981,7 +2981,7 @@ public void test0061(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0062(){
+public void test0062(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public Y<Z> var\n" +
@@ -3011,7 +3011,7 @@ public void test0062(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0063(){
+public void test0063(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public Y<Z> var;\n" +
@@ -3041,7 +3041,7 @@ public void test0063(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0064(){
+public void test0064(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public Y<Z foo()\n" +
@@ -3073,7 +3073,7 @@ public void test0064(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0065(){
+public void test0065(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public Y<Z> foo()\n" +
@@ -3104,7 +3104,7 @@ public void test0065(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0066(){
+public void test0066(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public Y<Z foo(){}\n" +
@@ -3136,7 +3136,7 @@ public void test0066(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0067(){
+public void test0067(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public Y<Z> foo(){}\n" +
@@ -3167,7 +3167,7 @@ public void test0067(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0068(){
+public void test0068(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public Y<Z>.V<W\n" +
@@ -3197,7 +3197,7 @@ public void test0068(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0069(){
+public void test0069(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public Y<Z>.V<W>\n" +
@@ -3227,7 +3227,7 @@ public void test0069(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0070(){
+public void test0070(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public Y<Z>.V<W> var\n" +
@@ -3257,7 +3257,7 @@ public void test0070(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0071(){
+public void test0071(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public Y<Z>.V<W> var;\n" +
@@ -3287,7 +3287,7 @@ public void test0071(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0072(){
+public void test0072(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public Y<Z>.V<W foo()\n" +
@@ -3319,7 +3319,7 @@ public void test0072(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0073(){
+public void test0073(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public Y<Z>.V<W> foo()\n" +
@@ -3350,7 +3350,7 @@ public void test0073(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0074(){
+public void test0074(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public Y<Z>.V<W foo(){}\n" +
@@ -3382,7 +3382,7 @@ public void test0074(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0075(){
+public void test0075(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public Y<Z>.V<W> foo(){}\n" +
@@ -3413,7 +3413,7 @@ public void test0075(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0076(){
+public void test0076(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X extends  Y<Z {\n" +
 		"  \n" +
@@ -3443,7 +3443,7 @@ public void test0076(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0077(){
+public void test0077(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X extends  Y<Z> {\n" +
 		"  \n" +
@@ -3472,7 +3472,7 @@ public void test0077(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0078(){
+public void test0078(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X implements I1, Y<Z {\n" +
 		"  \n" +
@@ -3502,7 +3502,7 @@ public void test0078(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0079(){
+public void test0079(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X implements I1, Y<Z> {\n" +
 		"  \n" +
@@ -3531,7 +3531,7 @@ public void test0079(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0080(){
+public void test0080(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo(Y<Z){\n" +
@@ -3565,7 +3565,7 @@ public void test0080(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0081(){
+public void test0081(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo(Y<Z>){\n" +
@@ -3599,7 +3599,7 @@ public void test0081(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0082(){
+public void test0082(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo(Y<Z> var){\n" +
@@ -3632,7 +3632,7 @@ public void test0082(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0083(){
+public void test0083(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  Y<Z foo(){\n" +
@@ -3666,7 +3666,7 @@ public void test0083(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0084(){
+public void test0084(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  Y<Z> foo(){\n" +
@@ -3699,7 +3699,7 @@ public void test0084(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0085(){
+public void test0085(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X  {\n" +
 		"  void foo() throws Y<Z {\n" +
@@ -3733,7 +3733,7 @@ public void test0085(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0086(){
+public void test0086(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X  {\n" +
 		"  void foo() throws Y<Z> {\n" +
@@ -3766,7 +3766,7 @@ public void test0086(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0087(){
+public void test0087(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  <T extends Y<Z void foo(){\n" +
@@ -3800,7 +3800,7 @@ public void test0087(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0088(){
+public void test0088(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  <T extends Y<Z> void foo(){\n" +
@@ -3834,7 +3834,7 @@ public void test0088(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0089(){
+public void test0089(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  <T extends Y<Z>> void foo(){\n" +
@@ -3867,7 +3867,7 @@ public void test0089(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0090(){
+public void test0090(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  <T extends Y<Z int foo\n" +
@@ -3898,7 +3898,7 @@ public void test0090(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0091(){
+public void test0091(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  <T extends Y<Z> int foo\n" +
@@ -3929,7 +3929,7 @@ public void test0091(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0092(){
+public void test0092(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  <T extends Y<Z>> int foo\n" +
@@ -3959,7 +3959,7 @@ public void test0092(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0093(){
+public void test0093(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  <T extends Y<Z X\n" +
@@ -3989,7 +3989,7 @@ public void test0093(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0094(){
+public void test0094(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  <T extends Y<Z> X\n" +
@@ -4019,7 +4019,7 @@ public void test0094(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0095(){
+public void test0095(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  <T extends Y<Z>> X\n" +
@@ -4049,7 +4049,7 @@ public void test0095(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0096(){
+public void test0096(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  <T extends Y<Z\n" +
@@ -4079,7 +4079,7 @@ public void test0096(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0097(){
+public void test0097(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  <T extends Y<Z>\n" +
@@ -4109,7 +4109,7 @@ public void test0097(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0098(){
+public void test0098(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  <T extends Y<Z>>\n" +
@@ -4139,7 +4139,7 @@ public void test0098(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0099_Diet(){
+public void test0099_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -4172,7 +4172,7 @@ public void test0099_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0099_Method(){
+public void test0099_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -4206,7 +4206,7 @@ public void test0099_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0100_Diet(){
+public void test0100_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -4239,7 +4239,7 @@ public void test0100_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0100_Method(){
+public void test0100_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -4273,7 +4273,7 @@ public void test0100_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0101_Diet(){
+public void test0101_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -4306,7 +4306,7 @@ public void test0101_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0101_Method(){
+public void test0101_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -4340,7 +4340,7 @@ public void test0101_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0102_Diet(){
+public void test0102_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -4373,7 +4373,7 @@ public void test0102_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0102_Method(){
+public void test0102_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -4407,7 +4407,7 @@ public void test0102_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0103_Diet(){
+public void test0103_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -4440,7 +4440,7 @@ public void test0103_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0103_Method(){
+public void test0103_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -4474,7 +4474,7 @@ public void test0103_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0104_Diet(){
+public void test0104_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -4507,7 +4507,7 @@ public void test0104_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0104_Method(){
+public void test0104_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -4541,7 +4541,7 @@ public void test0104_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0105_Diet(){
+public void test0105_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -4574,7 +4574,7 @@ public void test0105_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0105_Method(){
+public void test0105_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -4608,7 +4608,7 @@ public void test0105_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0106_Diet(){
+public void test0106_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -4641,7 +4641,7 @@ public void test0106_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0106_Method(){
+public void test0106_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -4675,7 +4675,7 @@ public void test0106_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0107_Diet(){
+public void test0107_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -4708,7 +4708,7 @@ public void test0107_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0107_Method(){
+public void test0107_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -4742,7 +4742,7 @@ public void test0107_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0108_Diet(){
+public void test0108_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -4775,7 +4775,7 @@ public void test0108_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0108_Method(){
+public void test0108_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -4809,7 +4809,7 @@ public void test0108_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0109_Diet(){
+public void test0109_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -4842,7 +4842,7 @@ public void test0109_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0109_Method(){
+public void test0109_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -4876,7 +4876,7 @@ public void test0109_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0110_Diet(){
+public void test0110_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -4909,7 +4909,7 @@ public void test0110_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0110_Method(){
+public void test0110_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -4943,7 +4943,7 @@ public void test0110_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0111_Diet(){
+public void test0111_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -4976,7 +4976,7 @@ public void test0111_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0111_Method(){
+public void test0111_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5010,7 +5010,7 @@ public void test0111_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0112_Diet(){
+public void test0112_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5043,7 +5043,7 @@ public void test0112_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0112_Method(){
+public void test0112_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5077,7 +5077,7 @@ public void test0112_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0113_Diet(){
+public void test0113_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5110,7 +5110,7 @@ public void test0113_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0113_Method(){
+public void test0113_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5144,7 +5144,7 @@ public void test0113_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0114_Diet(){
+public void test0114_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5177,7 +5177,7 @@ public void test0114_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0114_Method(){
+public void test0114_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5211,7 +5211,7 @@ public void test0114_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0115_Diet(){
+public void test0115_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5244,7 +5244,7 @@ public void test0115_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0115_Method(){
+public void test0115_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5278,7 +5278,7 @@ public void test0115_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0116_Diet(){
+public void test0116_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5311,7 +5311,7 @@ public void test0116_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0116_Method(){
+public void test0116_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5345,7 +5345,7 @@ public void test0116_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0117_Diet(){
+public void test0117_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5378,7 +5378,7 @@ public void test0117_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0117_Method(){
+public void test0117_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5412,7 +5412,7 @@ public void test0117_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0118_Diet(){
+public void test0118_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5445,7 +5445,7 @@ public void test0118_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0118_Method(){
+public void test0118_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5479,7 +5479,7 @@ public void test0118_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0119_Diet(){
+public void test0119_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5512,7 +5512,7 @@ public void test0119_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0119_Method(){
+public void test0119_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5546,7 +5546,7 @@ public void test0119_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0120_Diet(){
+public void test0120_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5579,7 +5579,7 @@ public void test0120_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0120_Method(){
+public void test0120_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5613,7 +5613,7 @@ public void test0120_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0121_Diet(){
+public void test0121_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5648,7 +5648,7 @@ public void test0121_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0121_Method(){
+public void test0121_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5684,7 +5684,7 @@ public void test0121_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0122_Diet(){
+public void test0122_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5719,7 +5719,7 @@ public void test0122_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0122_Method(){
+public void test0122_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5755,7 +5755,7 @@ public void test0122_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0123_Diet(){
+public void test0123_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5789,7 +5789,7 @@ public void test0123_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0123_Method(){
+public void test0123_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5824,7 +5824,7 @@ public void test0123_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0124_Diet(){
+public void test0124_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5858,7 +5858,7 @@ public void test0124_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0124_Method(){
+public void test0124_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5893,7 +5893,7 @@ public void test0124_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0125_Diet(){
+public void test0125_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5926,7 +5926,7 @@ public void test0125_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0125_Method(){
+public void test0125_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5960,7 +5960,7 @@ public void test0125_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0126_Diet(){
+public void test0126_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -5993,7 +5993,7 @@ public void test0126_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0126_Method(){
+public void test0126_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -6027,7 +6027,7 @@ public void test0126_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0127_Diet(){
+public void test0127_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -6060,7 +6060,7 @@ public void test0127_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0127_Method(){
+public void test0127_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -6094,7 +6094,7 @@ public void test0127_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0128_Diet(){
+public void test0128_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -6127,7 +6127,7 @@ public void test0128_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0128_Method(){
+public void test0128_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -6161,7 +6161,7 @@ public void test0128_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0129_Diet(){
+public void test0129_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -6194,7 +6194,7 @@ public void test0129_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0129_Method(){
+public void test0129_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -6228,7 +6228,7 @@ public void test0129_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0130_Diet(){
+public void test0130_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -6261,7 +6261,7 @@ public void test0130_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0130_Method(){
+public void test0130_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -6295,7 +6295,7 @@ public void test0130_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0131_Diet(){
+public void test0131_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -6328,7 +6328,7 @@ public void test0131_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0131_Method(){
+public void test0131_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -6362,7 +6362,7 @@ public void test0131_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0132_Diet(){
+public void test0132_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -6395,7 +6395,7 @@ public void test0132_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0132_Method(){
+public void test0132_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -6429,7 +6429,7 @@ public void test0132_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0133_Diet(){
+public void test0133_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -6462,7 +6462,7 @@ public void test0133_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0133_Method(){
+public void test0133_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -6496,7 +6496,7 @@ public void test0133_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0134_Diet(){
+public void test0134_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -6529,7 +6529,7 @@ public void test0134_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0134_Method(){
+public void test0134_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -6563,7 +6563,7 @@ public void test0134_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0135_Diet(){
+public void test0135_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -6596,7 +6596,7 @@ public void test0135_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0135_Method(){
+public void test0135_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -6630,7 +6630,7 @@ public void test0135_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0136_Diet(){
+public void test0136_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -6663,7 +6663,7 @@ public void test0136_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0136_Method(){
+public void test0136_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -6697,7 +6697,7 @@ public void test0136_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0137_Diet(){
+public void test0137_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public X() {\n" +
@@ -6728,7 +6728,7 @@ public void test0137_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0137_Method(){
+public void test0137_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public X() {\n" +
@@ -6761,7 +6761,7 @@ public void test0137_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0138_Diet(){
+public void test0138_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public X() {\n" +
@@ -6792,7 +6792,7 @@ public void test0138_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0138_Method(){
+public void test0138_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public X() {\n" +
@@ -6825,7 +6825,7 @@ public void test0138_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0139_Diet(){
+public void test0139_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public X() {\n" +
@@ -6856,7 +6856,7 @@ public void test0139_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0139_Method(){
+public void test0139_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public X() {\n" +
@@ -6889,7 +6889,7 @@ public void test0139_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0140_Diet(){
+public void test0140_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public X() {\n" +
@@ -6920,7 +6920,7 @@ public void test0140_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0140_Method(){
+public void test0140_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public X() {\n" +
@@ -6953,7 +6953,7 @@ public void test0140_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0141_Diet(){
+public void test0141_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public X() {\n" +
@@ -6984,7 +6984,7 @@ public void test0141_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0141_Method(){
+public void test0141_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public X() {\n" +
@@ -7017,7 +7017,7 @@ public void test0141_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0142_Diet(){
+public void test0142_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public X() {\n" +
@@ -7048,7 +7048,7 @@ public void test0142_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0142_Method(){
+public void test0142_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public X() {\n" +
@@ -7081,7 +7081,7 @@ public void test0142_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0143_Diet(){
+public void test0143_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public X() {\n" +
@@ -7112,7 +7112,7 @@ public void test0143_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0143_Method(){
+public void test0143_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public X() {\n" +
@@ -7145,7 +7145,7 @@ public void test0143_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0144_Diet(){
+public void test0144_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public X() {\n" +
@@ -7176,7 +7176,7 @@ public void test0144_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0144_Method(){
+public void test0144_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public X() {\n" +
@@ -7208,7 +7208,7 @@ public void test0144_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0145_Diet(){
+public void test0145_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public X() {\n" +
@@ -7239,7 +7239,7 @@ public void test0145_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0145_Method(){
+public void test0145_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public X() {\n" +
@@ -7271,7 +7271,7 @@ public void test0145_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0146(){
+public void test0146(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  W<Y<Z\n" +
@@ -7301,7 +7301,7 @@ public void test0146(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0147(){
+public void test0147(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  W<Y<Z>\n" +
@@ -7331,7 +7331,7 @@ public void test0147(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0148(){
+public void test0148(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  W<Y<Z>>\n" +
@@ -7361,7 +7361,7 @@ public void test0148(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0149(){
+public void test0149(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  W<Y<Z>> var\n" +
@@ -7391,7 +7391,7 @@ public void test0149(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0150(){
+public void test0150(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  W<Y<Z>> var;\n" +
@@ -7421,7 +7421,7 @@ public void test0150(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0151(){
+public void test0151(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  W<A,B,C\n" +
@@ -7451,7 +7451,7 @@ public void test0151(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0152(){
+public void test0152(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  W<A,B,C>\n" +
@@ -7481,7 +7481,7 @@ public void test0152(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0153(){
+public void test0153(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  W<A,B,C> var\n" +
@@ -7511,7 +7511,7 @@ public void test0153(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0154(){
+public void test0154(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  W<A,B,C> var;\n" +
@@ -7541,7 +7541,7 @@ public void test0154(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0155(){
+public void test0155(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  Y<Z>.V<W> var;\n" +
@@ -7571,7 +7571,7 @@ public void test0155(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0156(){
+public void test0156(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  Y<Z>.V<W> var\n" +
@@ -7601,7 +7601,7 @@ public void test0156(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0157(){
+public void test0157(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  Y<Z>.V<W>\n" +
@@ -7631,7 +7631,7 @@ public void test0157(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0158(){
+public void test0158(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  Y<Z>.V<W\n" +
@@ -7661,7 +7661,7 @@ public void test0158(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0159_Diet(){
+public void test0159_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -7694,7 +7694,7 @@ public void test0159_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0159_Method(){
+public void test0159_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -7728,7 +7728,7 @@ public void test0159_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0160_Diet(){
+public void test0160_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -7761,7 +7761,7 @@ public void test0160_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0160_Method(){
+public void test0160_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -7795,7 +7795,7 @@ public void test0160_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0161(){
+public void test0161(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X  <T extends Z<Y>> {\n" +
 		"}";
@@ -7823,7 +7823,7 @@ public void test0161(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0162(){
+public void test0162(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X  <T extends X.Z<Y>> {\n" +
 		"}";
@@ -7851,7 +7851,7 @@ public void test0162(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0163(){
+public void test0163(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X  <T extends X<W>.Z<Y>> {\n" +
 		"}";
@@ -7879,7 +7879,7 @@ public void test0163(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0164(){
+public void test0164(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  <T extends X<W>.Z> foo() {}\n" +
@@ -7910,7 +7910,7 @@ public void test0164(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0165_Diet(){
+public void test0165_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -7943,7 +7943,7 @@ public void test0165_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0165_Method(){
+public void test0165_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -7977,7 +7977,7 @@ public void test0165_Method(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0166_Diet(){
+public void test0166_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -8010,7 +8010,7 @@ public void test0166_Diet(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0166_Method(){
+public void test0166_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -8047,7 +8047,7 @@ public void test0166_Method(){
 /*
 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=69598
 */
-public void test0167_Diet(){
+public void test0167_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo(){\n" +
@@ -8086,7 +8086,7 @@ public void test0167_Diet(){
 /*
 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=69598
 */
-public void test0167_Method(){
+public void test0167_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo(){\n" +
@@ -8130,7 +8130,7 @@ public void test0167_Method(){
 /*
 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=69598
 */
-public void test0168_Diet(){
+public void test0168_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo(){\n" +
@@ -8169,7 +8169,7 @@ public void test0168_Diet(){
 /*
 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=69598
 */
-public void test0168_Method(){
+public void test0168_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo(){\n" +
@@ -8210,7 +8210,7 @@ public void test0168_Method(){
 /*
 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=71705
 */
-public void test0169(){
+public void test0169(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n"+
 		"  Object o;\n"+
@@ -8249,7 +8249,7 @@ public void test0169(){
 /*
 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=71705
 */
-public void test0170(){
+public void test0170(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n"+
 		"  bar\n"+
@@ -8284,7 +8284,7 @@ public void test0170(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void _testXXX2(){
+public void _testXXX2(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X extends Y. {\n" +
 		"}";
@@ -8315,7 +8315,7 @@ public void _testXXX2(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=71702
  */
-public void test0171_Diet(){
+public void test0171_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X{\n" +
 		"  public void foo() {\n" +
@@ -8353,7 +8353,7 @@ public void test0171_Diet(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=71702
  */
-public void test0171_Method(){
+public void test0171_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X{\n" +
 		"  public void foo() {\n" +
@@ -8393,7 +8393,7 @@ public void test0171_Method(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=71702
  */
-public void test0172_Diet(){
+public void test0172_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X{\n" +
 		"  public void foo() {\n" +
@@ -8431,7 +8431,7 @@ public void test0172_Diet(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=71702
  */
-public void test0172_Method(){
+public void test0172_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X{\n" +
 		"  public void foo() {\n" +
@@ -8471,7 +8471,7 @@ public void test0172_Method(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=71702
  */
-public void test0173_Diet(){
+public void test0173_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X{\n" +
 		"  public void foo() {\n" +
@@ -8509,7 +8509,7 @@ public void test0173_Diet(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=71702
  */
-public void test0173_Method(){
+public void test0173_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X{\n" +
 		"  public void foo() {\n" +
@@ -8549,7 +8549,7 @@ public void test0173_Method(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=71702
  */
-public void test0174_Diet(){
+public void test0174_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X{\n" +
 		"  public void foo() {\n" +
@@ -8587,7 +8587,7 @@ public void test0174_Diet(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=71702
  */
-public void test0174_Method(){
+public void test0174_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X{\n" +
 		"  public void foo() {\n" +
@@ -8627,7 +8627,7 @@ public void test0174_Method(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=71702
  */
-public void test0175_Diet(){
+public void test0175_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X{\n" +
 		"  public void foo() {\n" +
@@ -8665,7 +8665,7 @@ public void test0175_Diet(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=71702
  */
-public void test0175_Method(){
+public void test0175_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X{\n" +
 		"  public void foo() {\n" +
@@ -8705,7 +8705,7 @@ public void test0175_Method(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=71702
  */
-public void test0176_Diet(){
+public void test0176_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X{\n" +
 		"  public void foo() {\n" +
@@ -8743,7 +8743,7 @@ public void test0176_Diet(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=71702
  */
-public void test0176_Method(){
+public void test0176_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X{\n" +
 		"  public void foo() {\n" +
@@ -8783,7 +8783,7 @@ public void test0176_Method(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=68594
  */
-public void test0177(){
+public void test0177(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X{\n" +
 		"  Stack<List<Object>> o = null;\n" +
@@ -8819,7 +8819,7 @@ public void test0177(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=72238
  */
-public void test0178(){
+public void test0178(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X <T>{\n" +
 		"  X<ZZZ<\n" +
@@ -8853,7 +8853,7 @@ public void test0178(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=72238
  */
-public void test0179(){
+public void test0179(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X <T>{\n" +
 		"  X<ZZZ.\n" +
@@ -8887,7 +8887,7 @@ public void test0179(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=72238
  */
-public void test0180(){
+public void test0180(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X <T>{\n" +
 		"  X<ZZZ\n" +
@@ -8921,7 +8921,7 @@ public void test0180(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=72238
  */
-public void test0181(){
+public void test0181(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X <T>{\n" +
 		"  X<ZZZ>\n" +
@@ -8955,7 +8955,7 @@ public void test0181(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=73573
  */
-public void test0182(){
+public void test0182(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X <T>{\n" +
 		"  X<\n" +
@@ -8988,7 +8988,7 @@ public void test0182(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=73573
  */
-public void test0183(){
+public void test0183(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X <T>{\n" +
 		"  X<Object\n" +
@@ -9021,7 +9021,7 @@ public void test0183(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=75649
  */
-public void test0184_Diet(){
+public void test0184_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X <T>{\n" +
 		"  void foo() {\n" +
@@ -9057,7 +9057,7 @@ public void test0184_Diet(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=75649
  */
-public void test0184_Method(){
+public void test0184_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X <T>{\n" +
 		"  void foo() {\n" +
@@ -9094,7 +9094,7 @@ public void test0184_Method(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=83236
  */
-public void test0185(){
+public void test0185(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"  Boolean\n" +
@@ -9134,7 +9134,7 @@ public void test0185(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=93119
  */
-public void test0186(){
+public void test0186(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"  List<? ext\n" +
@@ -9166,7 +9166,7 @@ public void test0186(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=93119
  */
-public void test0187_Diet(){
+public void test0187_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"  void foo() {\n" +
@@ -9201,7 +9201,7 @@ public void test0187_Diet(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=93119
  */
-public void test0187_Method(){
+public void test0187_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"  void foo() {\n" +
@@ -9237,7 +9237,7 @@ public void test0187_Method(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=80432
  */
-public void test0188_Diet(){
+public void test0188_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"  void foo() {\n" +
@@ -9274,7 +9274,7 @@ public void test0188_Diet(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=80432
  */
-public void test0188_Method(){
+public void test0188_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"  void foo() {\n" +
@@ -9314,7 +9314,7 @@ public void test0188_Method(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=82560
  */
-public void test0189_Diet(){
+public void test0189_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"  void bar() {\n" +
@@ -9349,7 +9349,7 @@ public void test0189_Diet(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=82560
  */
-public void test0189_Method(){
+public void test0189_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"  void bar() {\n" +
@@ -9385,7 +9385,7 @@ public void test0189_Method(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=82560
  */
-public void test0190_Diet(){
+public void test0190_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"  void bar() {\n" +
@@ -9420,7 +9420,7 @@ public void test0190_Diet(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=82560
  */
-public void test0190_Method(){
+public void test0190_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"  void bar() {\n" +
@@ -9456,7 +9456,7 @@ public void test0190_Method(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=82560
  */
-public void test0191_Diet(){
+public void test0191_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"  void bar() {\n" +
@@ -9491,7 +9491,7 @@ public void test0191_Diet(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=82560
  */
-public void test0191_Method(){
+public void test0191_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"  void bar() {\n" +
@@ -9527,7 +9527,7 @@ public void test0191_Method(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=82560
  */
-public void test0192_Diet(){
+public void test0192_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"  void bar() {\n" +
@@ -9562,7 +9562,7 @@ public void test0192_Diet(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=82560
  */
-public void test0192_Method(){
+public void test0192_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"  void bar() {\n" +
@@ -9598,7 +9598,7 @@ public void test0192_Method(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=94641
  */
-public void test0193_Diet(){
+public void test0193_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"  void bar() {\n" +
@@ -9633,7 +9633,7 @@ public void test0193_Diet(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=94641
  */
-public void test0193_Method(){
+public void test0193_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"  void bar() {\n" +
@@ -9669,7 +9669,7 @@ public void test0193_Method(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=94641
  */
-public void test0194_Diet(){
+public void test0194_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"  void bar() {\n" +
@@ -9704,7 +9704,7 @@ public void test0194_Diet(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=94641
  */
-public void test0194_Method(){
+public void test0194_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"  void bar() {\n" +
@@ -9740,7 +9740,7 @@ public void test0194_Method(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=94641
  */
-public void test0195_Diet(){
+public void test0195_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"  void bar() {\n" +
@@ -9775,7 +9775,7 @@ public void test0195_Diet(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=94641
  */
-public void test0195_Method(){
+public void test0195_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"  void bar() {\n" +
@@ -9811,7 +9811,7 @@ public void test0195_Method(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=94907
  */
-public void test0196(){
+public void test0196(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test<T> ext{\n" +
 		"  void bar() {\n" +
@@ -9847,7 +9847,7 @@ public void test0196(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=94907
  */
-public void test0197(){
+public void test0197(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test<T> imp{\n" +
 		"  void bar() {\n" +
@@ -9883,7 +9883,7 @@ public void test0197(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=94907
  */
-public void test0198(){
+public void test0198(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test<T> extends X ext {\n" +
 		"  void bar() {\n" +
@@ -9919,7 +9919,7 @@ public void test0198(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=94907
  */
-public void test0199(){
+public void test0199(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test<T> extends X imp {\n" +
 		"  void bar() {\n" +
@@ -9955,7 +9955,7 @@ public void test0199(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=94907
  */
-public void test0200(){
+public void test0200(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public interface Test<T> ext{\n" +
 		"  void bar() {\n" +
@@ -9991,7 +9991,7 @@ public void test0200(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=94907
  */
-public void test0201(){
+public void test0201(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public interface Test<T> imp{\n" +
 		"  void bar() {\n" +
@@ -10027,7 +10027,7 @@ public void test0201(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=100302
  */
-public void test0202_Diet(){
+public void test0202_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"  void bar() {\n" +
@@ -10064,7 +10064,7 @@ public void test0202_Diet(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=100302
  */
-public void test0202_Method(){
+public void test0202_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"  void bar() {\n" +
@@ -10105,7 +10105,7 @@ public void test0202_Method(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=100302
  */
-public void test0203_Diet(){
+public void test0203_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"  void bar() {\n" +
@@ -10142,7 +10142,7 @@ public void test0203_Diet(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=100302
  */
-public void test0203_Method(){
+public void test0203_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"  void bar() {\n" +
@@ -10183,7 +10183,7 @@ public void test0203_Method(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=103148
  */
-public void test0204_Diet(){
+public void test0204_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n"+
 		"	public enum MyEnum { A };\n"+
@@ -10227,7 +10227,7 @@ public void test0204_Diet(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=103148
  */
-public void test0204_Method(){
+public void test0204_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n"+
 		"	public enum MyEnum { A };\n"+
@@ -10270,7 +10270,7 @@ public void test0204_Method(){
 			"full ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=123514
-public void test0205(){
+public void test0205(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  <T> HashMap<K, V>\n" +
@@ -10303,7 +10303,7 @@ public void test0205(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=106450
  */
-public void test0206_Diet(){
+public void test0206_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n"+
 		"	void foo() {\n"+
@@ -10338,7 +10338,7 @@ public void test0206_Diet(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=106450
  */
-public void test0206_Method(){
+public void test0206_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n"+
 		"	void foo() {\n"+
@@ -10374,7 +10374,7 @@ public void test0206_Method(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=106450
  */
-public void test0207_Diet(){
+public void test0207_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n"+
 		"	void foo() {\n"+
@@ -10409,7 +10409,7 @@ public void test0207_Diet(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=106450
  */
-public void test0207_Method(){
+public void test0207_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n"+
 		"	void foo() {\n"+
@@ -10445,7 +10445,7 @@ public void test0207_Method(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=106450
  */
-public void test0208_Diet(){
+public void test0208_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n"+
 		"	void foo() {\n"+
@@ -10480,7 +10480,7 @@ public void test0208_Diet(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=106450
  */
-public void test0208_Method(){
+public void test0208_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n"+
 		"	void foo() {\n"+
@@ -10516,7 +10516,7 @@ public void test0208_Method(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=106450
  */
-public void test0209_Diet(){
+public void test0209_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n"+
 		"	void foo() {\n"+
@@ -10551,7 +10551,7 @@ public void test0209_Diet(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=106450
  */
-public void test0209_Method(){
+public void test0209_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n"+
 		"	void foo() {\n"+
@@ -10587,7 +10587,7 @@ public void test0209_Method(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=106450
  */
-public void test0210_Diet(){
+public void test0210_Diet(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n"+
 		"	void foo() {\n"+
@@ -10622,7 +10622,7 @@ public void test0210_Diet(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=106450
  */
-public void test0210_Method(){
+public void test0210_Method(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n"+
 		"	void foo() {\n"+
@@ -10656,7 +10656,7 @@ public void test0210_Method(){
 			"full ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=83685
-public void test0211(){
+public void test0211(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test{\n" +
 		"  Test.\n" +
@@ -10685,7 +10685,7 @@ public void test0211(){
 			expectedReplacedSource,
 	"diet ast");
 }
-public void test0212(){
+public void test0212(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"  List<? extends Obj>\n" +
@@ -10715,7 +10715,7 @@ public void test0212(){
 	"diet ast");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=157584
-public void test0213_Diet() {
+public void test0213_Diet() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {\n" +
@@ -10756,7 +10756,7 @@ public void test0213_Diet() {
 	"diet ast");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=157584
-public void test0213_Method() {
+public void test0213_Method() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {\n" +
@@ -10817,7 +10817,7 @@ public void test0213_Method() {
 			"full ast");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=197400
-public void test0214_Diet() {
+public void test0214_Diet() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {\n" +
@@ -10853,7 +10853,7 @@ public void test0214_Diet() {
 	"diet ast");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=197400
-public void test0214_Method() {
+public void test0214_Method() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {\n" +
@@ -10890,7 +10890,7 @@ public void test0214_Method() {
 			"full ast");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=210273
-public void test0215_Diet() {
+public void test0215_Diet() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {\n" +
@@ -10924,7 +10924,7 @@ public void test0215_Diet() {
 	"diet ast");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=210273
-public void test0215_Method() {
+public void test0215_Method() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {\n" +
@@ -10959,7 +10959,7 @@ public void test0215_Method() {
 			expectedReplacedSource,
 			"full ast");
 }
-public void test0216_Diet() {
+public void test0216_Diet() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {\n" +
@@ -11003,7 +11003,7 @@ public void test0216_Diet() {
 	"diet ast");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=207631
-public void test0217_Method() {
+public void test0217_Method() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {\n" +
@@ -11041,7 +11041,7 @@ public void test0217_Method() {
 			"full ast");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=227546
-public void test0218_Diet() {
+public void test0218_Diet() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public enum X {\n" +
@@ -11079,7 +11079,7 @@ public void test0218_Diet() {
 	"diet ast");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=274557
-public void test0219_Diet() {
+public void test0219_Diet() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {\n" +
@@ -11112,7 +11112,7 @@ public void test0219_Diet() {
 	"diet ast");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=274557
-public void test0220_Diet() {
+public void test0220_Diet() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {\n" +
@@ -11144,7 +11144,7 @@ public void test0220_Diet() {
 			expectedReplacedSource,
 	"diet ast");
 }
-public void testBug351426(){
+public void testBug351426(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X<T> {\n" +
 		"  void foo() {\n" +
@@ -11178,7 +11178,7 @@ public void testBug351426(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void testBug351426b(){
+public void testBug351426b(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X<T> {\n" +
 		"	static class X1<E>{}\n" +
@@ -11217,7 +11217,7 @@ public void testBug351426b(){
 			expectedReplacedSource,
 			"full ast");
 }
-public void testBug351426c(){
+public void testBug351426c(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X<T> {\n" +
 		"  public X<String> foo() {\n" +

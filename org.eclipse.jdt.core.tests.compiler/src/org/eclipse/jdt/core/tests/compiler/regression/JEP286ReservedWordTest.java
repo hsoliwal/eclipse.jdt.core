@@ -36,12 +36,12 @@ public JEP286ReservedWordTest(String testName){
 	super(testName);
 }
 
-public void test0001_class_var_warning() throws IOException {
+public void test0001_class_var_warning() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String classVar =
 		"	public class var { public int a; };\n";
 
 	String classX =
-			"public class X {\n" +
+			"public class X {\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			classVar +
 			"	+\n" +
 			"}\n";
@@ -59,7 +59,7 @@ public void test0001_class_var_warning() throws IOException {
 					"X.java",
 					classX
 				},
-				"----------\n" +
+				"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in X.java (at line 2)\n" +
 				classVar +
 				"	             ^^^\n" +
@@ -71,7 +71,7 @@ public void test0001_class_var_warning() throws IOException {
 					"X.java",
 					classX
 				},
-				"----------\n" +
+				"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. WARNING in X.java (at line 2)\n" +
 				classVar +
 				"	             ^^^\n" +
@@ -79,12 +79,12 @@ public void test0001_class_var_warning() throws IOException {
 				errorTail);
 	}
 }
-public void test0002_interface_var_warning() throws IOException {
+public void test0002_interface_var_warning() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String interfaceVar =
 		"	interface var { };\n";
 
 	String classX =
-			"public class X {\n" +
+			"public class X {\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			interfaceVar +
 			"	+\n" +
 			"}\n";
@@ -102,7 +102,7 @@ public void test0002_interface_var_warning() throws IOException {
 					"X.java",
 					classX
 				},
-				"----------\n" +
+				"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in X.java (at line 2)\n" +
 				interfaceVar +
 				"	          ^^^\n" +
@@ -114,7 +114,7 @@ public void test0002_interface_var_warning() throws IOException {
 					"X.java",
 					classX
 				},
-				"----------\n" +
+				"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. WARNING in X.java (at line 2)\n" +
 				interfaceVar +
 				"	          ^^^\n" +
@@ -122,7 +122,7 @@ public void test0002_interface_var_warning() throws IOException {
 				errorTail);
 	}
 }
-public void testBug530920() throws IOException {
+public void testBug530920() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String classX = "public class X<var extends Number> { }\n";
 	this.runNegativeTest(
 		new String[] {
@@ -143,7 +143,7 @@ public void testBug530920() throws IOException {
 			"'var' should not be used as an type name, since it is a reserved word from source level 10 on\n"
 		);
 }
-public void testBug530920a() throws IOException {
+public void testBug530920a() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",

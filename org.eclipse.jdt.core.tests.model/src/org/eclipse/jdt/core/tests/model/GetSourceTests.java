@@ -49,7 +49,7 @@ public class GetSourceTests extends ModifyingResourceTests {
 		return field;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void setUpSuite() throws Exception {
 		super.setUpSuite();
 		createJavaProject("P");
@@ -181,7 +181,7 @@ public class GetSourceTests extends ModifyingResourceTests {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=406836
-	public void testFieldConstants406836() throws CoreException {
+	public void testFieldConstants406836() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String cuSource =
 					"package p;\n" +
@@ -237,7 +237,7 @@ public class GetSourceTests extends ModifyingResourceTests {
 	 * Ensures that the Javadoc range for a method is correct.
 	 * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=232944 )
 	 */
-	public void testJavadocRange01() throws CoreException {
+	public void testJavadocRange01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String cuSource =
 				"package p;\n" +
@@ -399,7 +399,7 @@ public class GetSourceTests extends ModifyingResourceTests {
 	 * Ensures that the name range for an annotation on a local variable is correct.
 	 * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=209823)
 	 */
-	public void testNameRange03() throws CoreException { // was testAnnotationNameRange3
+	public void testNameRange03() throws CoreException { // was testAnnotationNameRange3 //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String cuSource =
 				"package p;\n" +
@@ -423,7 +423,7 @@ public class GetSourceTests extends ModifyingResourceTests {
 	 * Ensures the name range for an anonymous class is correct.
 	 * (regression test for bug 44450 Strange name range for anonymous classes)
 	 */
-	public void testNameRange04() throws CoreException { // was testNameRangeAnonymous
+	public void testNameRange04() throws CoreException { // was testNameRangeAnonymous //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String cuSource =
 				"package p;\n" +
@@ -490,7 +490,7 @@ public class GetSourceTests extends ModifyingResourceTests {
 	 * Ensures the name range for a method with syntax errors in its header is correct.
 	 * (regression test for bug 43139 Delete member in Outliner not working)
 	 */
-	public void testNameRange07() throws CoreException { // was testNameRangeMethodWithSyntaxError
+	public void testNameRange07() throws CoreException { // was testNameRangeMethodWithSyntaxError //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String cuSource =
 				"package p;\n" +
@@ -514,7 +514,7 @@ public class GetSourceTests extends ModifyingResourceTests {
 	 * Ensures the name range for an anonymous enum constant is correct
 	 * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=226313 )
 	 */
-	public void testNameRange08() throws CoreException {
+	public void testNameRange08() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createJavaProject("P15", new String[] {""}, new String[0], "", CompilerOptions.getFirstSupportedJavaVersion());
 			String cuSource =
@@ -536,7 +536,7 @@ public class GetSourceTests extends ModifyingResourceTests {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=150980
 	 */
-	public void testNameRange09() throws CoreException { // was testNameRangeAnonymous
+	public void testNameRange09() throws CoreException { // was testNameRangeAnonymous //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String cuSource =
 				"package p . q . r. s ;\n" +
@@ -606,7 +606,7 @@ public class GetSourceTests extends ModifyingResourceTests {
 	 * Ensures that the source range for an annotation on a local variable is correct.
 	 * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=209823)
 	 */
-	public void testSourceRange01() throws CoreException { // was testAnnotationSourceRange
+	public void testSourceRange01() throws CoreException { // was testAnnotationSourceRange //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String cuSource =
 				"package p;\n" +
@@ -630,7 +630,7 @@ public class GetSourceTests extends ModifyingResourceTests {
 	 * Ensures that the source range for an anonymous type is correct.
 	 * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=207775)
 	 */
-	public void testSourceRange02() throws CoreException { // was testAnonymousSourceRange
+	public void testSourceRange02() throws CoreException { // was testAnonymousSourceRange //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String cuSource =
 				"package p;\n" +

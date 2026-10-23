@@ -26,7 +26,7 @@ import java.io.PrintWriter;
 public class LoaderTestAnnotationProcessor implements AnnotationProcessor {
 
 	private static String getClassName() {
-		return getPackageName() + "." + getTypeName(); //$NON-NLS-1$
+		return getPackageName() + "." + getTypeName(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	private final AnnotationProcessorEnvironment _env;
@@ -86,7 +86,7 @@ public class LoaderTestAnnotationProcessor implements AnnotationProcessor {
 	}
 
 	protected final static String CODE			=
-		"package " + getPackageName() + ";\n" +
+		"package " + getPackageName() + ";\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"public class "	+ getTypeName()	+ "\n"	+
 		"{\n" +
 		"    public static void helloWorld() {\n" +

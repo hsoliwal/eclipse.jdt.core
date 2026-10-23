@@ -65,7 +65,7 @@ public IGlobalVariable[] allVariables() {
 	GlobalVariable[] vars = this.context.allVariables();
 	int length = vars.length;
 	GlobalVariableWrapper[] result = new GlobalVariableWrapper[length];
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		result[i] = new GlobalVariableWrapper(vars[i]);
 	}
 	return result;
@@ -179,7 +179,7 @@ public void deleteVariable(IGlobalVariable variable) {
 /**
  * @see IEvaluationContext#evaluateCodeSnippet(String, String[], String[], int[], IType, boolean, boolean, ICodeSnippetRequestor, IProgressMonitor)
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void evaluateCodeSnippet(
 	String codeSnippet,
 	String[] localVariableTypeNames,
@@ -195,13 +195,13 @@ public void evaluateCodeSnippet(
 
 	int length = localVariableTypeNames.length;
 	char[][] varTypeNames = new char[length][];
-	for (int i = 0; i < length; i++){
+	for (int i = 0; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		varTypeNames[i] = localVariableTypeNames[i].toCharArray();
 	}
 
 	length = localVariableNames.length;
 	char[][] varNames = new char[length][];
-	for (int i = 0; i < length; i++){
+	for (int i = 0; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		varNames[i] = localVariableNames[i].toCharArray();
 	}
 
@@ -217,7 +217,7 @@ public void evaluateCodeSnippet(
 			int importsLength = imports.length;
 			if (importsLength != 0) {
 				char[][] importsNames = new char[importsLength][];
-				for (int i = 0; i < importsLength; i++) {
+				for (int i = 0; i < importsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IImportDeclaration importDecl = imports[i];
 					if(Flags.isStatic(importDecl.getFlags())) {
 						importsNames[i] = CharOperation.concatAll(Keywords.STATIC, importDecl.getElementName().toCharArray(), ' ');
@@ -323,7 +323,7 @@ public String[] getImports() {
 	char[][] imports = this.context.getImports();
 	int length = imports.length;
 	String[] result = new String[length];
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		result[i] = new String(imports[i]);
 	}
 	return result;
@@ -387,7 +387,7 @@ public IGlobalVariable newVariable(String typeName, String name, String initiali
 public void setImports(String[] imports) {
 	int length = imports.length;
 	char[][] result = new char[length][];
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		result[i] = imports[i].toCharArray();
 	}
 	this.context.setImports(result);
@@ -420,7 +420,7 @@ public void validateImports(ICodeSnippetRequestor requestor) {
  * @see IEvaluationContext#codeComplete(String, int, ICodeCompletionRequestor)
  * @deprecated - use codeComplete(String, int, ICompletionRequestor) instead
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void codeComplete(String codeSnippet, int position, final org.eclipse.jdt.core.ICodeCompletionRequestor requestor) throws JavaModelException {
 
 	if (requestor == null){

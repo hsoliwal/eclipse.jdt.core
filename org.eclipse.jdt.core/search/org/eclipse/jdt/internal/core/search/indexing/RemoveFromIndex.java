@@ -25,7 +25,7 @@ class RemoveFromIndex extends IndexRequest {
 		super(containerPath, manager);
 		this.resourceName = resourceName;
 	}
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean execute(IProgressMonitor progressMonitor) {
 
 		if (this.isCancelled || progressMonitor != null && progressMonitor.isCanceled()) return true;
@@ -50,6 +50,6 @@ class RemoveFromIndex extends IndexRequest {
 	}
 	@Override
 	public String toString() {
-		return "removing " + this.resourceName + " from index " + this.containerPath; //$NON-NLS-1$ //$NON-NLS-2$
+		return "removing " + this.resourceName + " from index " + this.containerPath; //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }

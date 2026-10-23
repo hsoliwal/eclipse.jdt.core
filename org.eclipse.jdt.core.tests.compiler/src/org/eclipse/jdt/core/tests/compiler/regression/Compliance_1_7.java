@@ -37,7 +37,7 @@ static {
 //		TESTS_RANGE = new int[] { 85, -1 };
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=283225
-public void test1() {
+public void test1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p1/Z.java",
@@ -52,14 +52,14 @@ public void test1() {
 		},
 		""); // no special vm args
 
-		String computedReferences = findReferences(OUTPUT_DIR + "/p1/Z.class");
+		String computedReferences = findReferences(OUTPUT_DIR + "/p1/Z.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		boolean check = computedReferences.indexOf("annotationRef/SafeVarargs") >= 0;
 		if (!check){
 			System.out.println(computedReferences);
 		}
 		assertTrue("did not indexed the reference to SafeVarargs", check);
 }
-public void test2() {
+public void test2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p2/Z.java",
@@ -71,7 +71,7 @@ public void test2() {
 		},
 		""); // no special vm args
 
-		String computedReferences = findReferences(OUTPUT_DIR + "/p2/Z.class");
+		String computedReferences = findReferences(OUTPUT_DIR + "/p2/Z.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		boolean check = computedReferences.indexOf("annotationRef/Inherited") >= 0;
 		if (!check){
 			System.out.println(computedReferences);
@@ -80,7 +80,7 @@ public void test2() {
 }
 // Project with 1.7 compliance compiled against JRE 7, 8
 // regular case
-public void testBug390889_a() {
+public void testBug390889_a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -111,7 +111,7 @@ public void testBug390889_a() {
 }
 // Project with 1.7 compliance compiled against JRE 8
 // default method implements a regular abstract interface method
-public void testBug390889_b() {
+public void testBug390889_b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 			new String[] {
 				"I1.java",
@@ -143,7 +143,7 @@ public void testBug390889_b() {
 }
 // Project with 1.7 compliance compiled against JRE 7, 8
 // assert that different forms of method invocation do not produce different result (as javac does)
-public void testBug390889_c() {
+public void testBug390889_c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 			new String[] {
 				"I.java",

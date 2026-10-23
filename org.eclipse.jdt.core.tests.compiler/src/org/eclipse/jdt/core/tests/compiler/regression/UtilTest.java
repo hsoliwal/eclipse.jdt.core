@@ -49,23 +49,23 @@ void assertCamelCase(String pattern, String name, boolean match) {
  * Assert that a pattern and a name matches or not.
  * If result is invalid then store warning in buffer and display it.
  */
-void assertCamelCase(String pattern, String name, boolean prefixMatch, boolean match) {
+void assertCamelCase(String pattern, String name, boolean prefixMatch, boolean match) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	boolean camelCase = CharOperation.camelCaseMatch(pattern==null?null:pattern.toCharArray(), name==null?null:name.toCharArray(), prefixMatch);
 	if (match != camelCase) {
-		StringBuilder line = new StringBuilder("'");
-		line.append(name);
-		line.append("' SHOULD");
-		if (!match) line.append(" NOT");
-		line.append(" match pattern '");
-		line.append(pattern);
-		line.append("', but it DOES");
-		if (!camelCase) line.append(" NOT");
+		StringBuilder line = new StringBuilder("'"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		line.append(name); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		line.append("' SHOULD"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		if (!match) line.append(" NOT"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		line.append(" match pattern '"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		line.append(pattern); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		line.append("', but it DOES"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		if (!camelCase) line.append(" NOT"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (this.camelCaseErrors.length() == 0) {
-			System.out.println("Invalid results in test "+getName()+":");
+			System.out.println("Invalid results in test "+getName()+":"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		System.out.println("	- "+line);
-		this.camelCaseErrors.append('\n');
-		this.camelCaseErrors.append(line);
+		System.out.println("	- "+line); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		this.camelCaseErrors.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		this.camelCaseErrors.append(line); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 }
 /* (non-Javadoc)
@@ -74,7 +74,7 @@ void assertCamelCase(String pattern, String name, boolean prefixMatch, boolean m
 @Override
 protected void setUp() throws Exception {
 	super.setUp();
-	this.camelCaseErrors = new StringBuilder();
+	this.camelCaseErrors = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 }
 
 public boolean checkPathMatch(char[] pattern, char[] path, boolean isCaseSensitive) {
@@ -216,57 +216,57 @@ public void test26() {
 }
 public void test27() {
 	char [][] tokens = CharOperation.splitAndTrimOn(','," hello,world".toCharArray());
-	StringBuilder buffer = new StringBuilder();
-	for (int i = 0; i < tokens.length; i++){
-		buffer.append('[').append(tokens[i]).append(']');
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	for (int i = 0; i < tokens.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		buffer.append('[').append(tokens[i]).append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	assertEquals("SplitTrim failure", "[hello][world]", buffer.toString());
 }
 public void test28() {
 	char [][] tokens = CharOperation.splitAndTrimOn(','," hello , world".toCharArray());
-	StringBuilder buffer = new StringBuilder();
-	for (int i = 0; i < tokens.length; i++){
-		buffer.append('[').append(tokens[i]).append(']');
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	for (int i = 0; i < tokens.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		buffer.append('[').append(tokens[i]).append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	assertEquals("SplitTrim failure", "[hello][world]", buffer.toString());
 }
 public void test29() {
 	char [][] tokens = CharOperation.splitAndTrimOn(','," hello, world   ".toCharArray());
-	StringBuilder buffer = new StringBuilder();
-	for (int i = 0; i < tokens.length; i++){
-		buffer.append('[').append(tokens[i]).append(']');
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	for (int i = 0; i < tokens.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		buffer.append('[').append(tokens[i]).append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	assertEquals("SplitTrim failure", "[hello][world]", buffer.toString());
 }
 public void test30() {
 	char [][] tokens = CharOperation.splitAndTrimOn(','," hello, world   ,zork/, aaa bbb".toCharArray());
-	StringBuilder buffer = new StringBuilder();
-	for (int i = 0; i < tokens.length; i++){
-		buffer.append('[').append(tokens[i]).append(']');
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	for (int i = 0; i < tokens.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		buffer.append('[').append(tokens[i]).append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	assertEquals("SplitTrim failure", "[hello][world][zork/][aaa bbb]", buffer.toString());
 }
 public void test31() {
 	char [][] tokens = CharOperation.splitAndTrimOn(',',"  ,  ".toCharArray());
-	StringBuilder buffer = new StringBuilder();
-	for (int i = 0; i < tokens.length; i++){
-		buffer.append('[').append(tokens[i]).append(']');
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	for (int i = 0; i < tokens.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		buffer.append('[').append(tokens[i]).append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	assertEquals("SplitTrim failure", "[][]", buffer.toString());
 }
 public void test32() {
 	char [][] tokens = CharOperation.splitAndTrimOn(',',"   ".toCharArray());
-	StringBuilder buffer = new StringBuilder();
-	for (int i = 0; i < tokens.length; i++){
-		buffer.append('[').append(tokens[i]).append(']');
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	for (int i = 0; i < tokens.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		buffer.append('[').append(tokens[i]).append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	assertEquals("SplitTrim failure", "[]", buffer.toString());
 }
 public void test33() {
 	char [][] tokens = CharOperation.splitAndTrimOn(',',"  , hello  ".toCharArray());
-	StringBuilder buffer = new StringBuilder();
-	for (int i = 0; i < tokens.length; i++){
-		buffer.append('[').append(tokens[i]).append(']');
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	for (int i = 0; i < tokens.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		buffer.append('[').append(tokens[i]).append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	assertEquals("SplitTrim failure", "[][hello]", buffer.toString());
 }
@@ -530,7 +530,7 @@ public void test65() {
  * Bug 130390: CamelCase algorithm cleanup and improvement
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=130390"
  */
-public void test66() {
+public void test66() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     String[][] MATCHES = {
             {"TZ","TimeZone"},  //$NON-NLS-1$//$NON-NLS-2$
             {"TiZ","TimeZone"},  //$NON-NLS-1$//$NON-NLS-2$
@@ -553,7 +553,7 @@ public void test66() {
             {"aTZ","artTimeZone"},  //$NON-NLS-1$//$NON-NLS-2$
     };
 
-    for (int i = 0; i<MATCHES.length ; i++) {
+    for (int i = 0; i<MATCHES.length ; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
         String[] match = MATCHES[i];
         assertCamelCase(match[0], match[1], true/*should match*/);
     }
@@ -569,7 +569,7 @@ public void test66() {
             {"aT","atimeZone"},  //$NON-NLS-1$//$NON-NLS-2$
     };
 
-    for (int i = 0; i<MIS_MATCHES.length ; i++) {
+    for (int i = 0; i<MIS_MATCHES.length ; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
         String[] match = MIS_MATCHES[i];
         assertCamelCase(match[0], match[1], false/*should not match*/);
     }
@@ -582,7 +582,7 @@ public void test66() {
  * Bug 137087: Open Type - missing matches when using mixed case pattern
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=137087"
  */
-public void test67() {
+public void test67() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	assertCamelCase("runtimeEx", "RuntimeException", false/* should not match */);
 	assertCamelCase("Runtimeex", "RuntimeException", false/* should not match */);
 	assertCamelCase("runtimeexception", "RuntimeException", false/* should not match */);
@@ -625,7 +625,7 @@ public void test69() {
 }
 
 // bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=109695
-public void test70() throws CoreException {
+public void test70() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	assertCamelCase("IDE3", "IDocumentExtension", true /*same part count*/, false /* should not match */);
 	assertCamelCase("IDE3", "IDocumentExtension2", true /*same part count*/, false /* should not match */);
 	assertCamelCase("IDE3", "IDocumentExtension3", true /*same part count*/, true /* should match */);
@@ -754,11 +754,11 @@ public static Class testClass() {
 // A benign, slash-separated relative annotation file name (as produced from a real type name) is safe.
 public void testSafeRelativePath_benign() {
 	assertTrue("benign name should be safe",
-		Util.isSafeRelativePath("org/example/Foo" + ExternalAnnotationProvider.ANNOTATION_FILE_SUFFIX));
+		Util.isSafeRelativePath("org/example/Foo" + ExternalAnnotationProvider.ANNOTATION_FILE_SUFFIX)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	assertTrue("top-level name should be safe",
-		Util.isSafeRelativePath("Foo" + ExternalAnnotationProvider.ANNOTATION_FILE_SUFFIX));
+		Util.isSafeRelativePath("Foo" + ExternalAnnotationProvider.ANNOTATION_FILE_SUFFIX)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	assertTrue("inner type name should be safe",
-		Util.isSafeRelativePath("org/example/Foo$Inner" + ExternalAnnotationProvider.ANNOTATION_FILE_SUFFIX));
+		Util.isSafeRelativePath("org/example/Foo$Inner" + ExternalAnnotationProvider.ANNOTATION_FILE_SUFFIX)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // A relative name containing ".." segments must be rejected (path traversal).
@@ -768,7 +768,7 @@ public void testSafeRelativePath_traversalRejected() {
 	assertFalse("embedded traversal must be rejected",
 		Util.isSafeRelativePath("org/../../etc/passwd"));
 	assertFalse("traversal with suffix must be rejected",
-		Util.isSafeRelativePath("../secret" + ExternalAnnotationProvider.ANNOTATION_FILE_SUFFIX));
+		Util.isSafeRelativePath("../secret" + ExternalAnnotationProvider.ANNOTATION_FILE_SUFFIX)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // Absolute paths and empty/null must be rejected.
@@ -776,14 +776,14 @@ public void testSafeRelativePath_absoluteAndEmptyRejected() {
 	assertFalse("null must be rejected", Util.isSafeRelativePath(null));
 	assertFalse("empty must be rejected", Util.isSafeRelativePath("")); //$NON-NLS-1$
 	String absolute = new File(File.listRoots()[0], "etc/passwd").getAbsolutePath(); //$NON-NLS-1$
-	assertFalse("absolute path must be rejected: " + absolute, Util.isSafeRelativePath(absolute));
+	assertFalse("absolute path must be rejected: " + absolute, Util.isSafeRelativePath(absolute)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // getFileWithinBaseDir returns a file contained in the base for benign names.
 public void testGetFileWithinBaseDir_benign() throws Exception {
 	Path base = Files.createTempDirectory("eea-base"); //$NON-NLS-1$
 	try {
-		String relative = "org/example/Foo" + ExternalAnnotationProvider.ANNOTATION_FILE_SUFFIX;
+		String relative = "org/example/Foo" + ExternalAnnotationProvider.ANNOTATION_FILE_SUFFIX; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		File resolved = Util.getFileWithinBaseDir(base.toString(), relative);
 		assertNotNull("benign name should resolve", resolved);
 		assertTrue("resolved file must stay within base directory",
@@ -802,7 +802,7 @@ public void testGetFileWithinBaseDir_traversalReturnsNull() throws Exception {
 		assertNull("embedded traversal must not resolve to a file",
 			Util.getFileWithinBaseDir(base.toString(), "org/../../etc/passwd")); //$NON-NLS-1$
 		assertNull("null base must return null",
-			Util.getFileWithinBaseDir(null, "Foo" + ExternalAnnotationProvider.ANNOTATION_FILE_SUFFIX));
+			Util.getFileWithinBaseDir(null, "Foo" + ExternalAnnotationProvider.ANNOTATION_FILE_SUFFIX)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} finally {
 		Files.deleteIfExists(base);
 	}

@@ -32,12 +32,12 @@ public class CompletionElementNotifier extends SourceElementNotifier {
 		this.assistNode = assistNode;
 	}
 
-	protected char[][][] getArguments(Argument[] arguments) {
+	protected char[][][] getArguments(Argument[] arguments) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int argumentLength = arguments.length;
 		char[][] argumentTypes = new char[argumentLength][];
 		char[][] argumentNames = new char[argumentLength][];
 		int argumentCount = 0;
-		next : for (int i = 0; i < argumentLength; i++) {
+		next : for (int i = 0; i < argumentLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Argument argument = arguments[i];
 
 			if (argument instanceof CompletionOnArgumentName && argument.name.length == 0) continue next;
@@ -54,7 +54,7 @@ public class CompletionElementNotifier extends SourceElementNotifier {
 		return new char[][][] {argumentTypes, argumentNames};
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected char[][] getInterfaceNames(TypeDeclaration typeDeclaration) {
 		char[][] interfaceNames = null;
 		int superInterfacesLength = 0;
@@ -75,7 +75,7 @@ public class CompletionElementNotifier extends SourceElementNotifier {
 		}
 		if (superInterfaces != null) {
 			int superInterfaceCount = 0;
-			next: for (int i = 0; i < superInterfacesLength; i++) {
+			next: for (int i = 0; i < superInterfacesLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				TypeReference superInterface = superInterfaces[i];
 
 				if (superInterface instanceof CompletionOnKeyword) continue next;
@@ -102,7 +102,7 @@ public class CompletionElementNotifier extends SourceElementNotifier {
 		return superclass != null ? CharOperation.concatWith(superclass.getParameterizedTypeName(), '.') : null;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected char[][] getThrownExceptions(AbstractMethodDeclaration methodDeclaration) {
 		char[][] thrownExceptionTypes = null;
 		TypeReference[] thrownExceptions = methodDeclaration.thrownExceptions;
@@ -110,7 +110,7 @@ public class CompletionElementNotifier extends SourceElementNotifier {
 			int thrownExceptionLength = thrownExceptions.length;
 			int thrownExceptionCount = 0;
 			thrownExceptionTypes = new char[thrownExceptionLength][];
-			next : for (int i = 0; i < thrownExceptionLength; i++) {
+			next : for (int i = 0; i < thrownExceptionLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				TypeReference thrownException = thrownExceptions[i];
 
 				if (thrownException instanceof CompletionOnKeyword) continue next;
@@ -128,7 +128,7 @@ public class CompletionElementNotifier extends SourceElementNotifier {
 		return thrownExceptionTypes;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected char[][] getTypeParameterBounds(TypeParameter typeParameter) {
 		TypeReference firstBound = typeParameter.type;
 		TypeReference[] otherBounds = typeParameter.bounds;
@@ -141,7 +141,7 @@ public class CompletionElementNotifier extends SourceElementNotifier {
 				if (!CompletionUnitStructureRequestor.hasEmptyName(firstBound, this.assistNode)) {
 					boundNames[boundCount++] = CharOperation.concatWith(firstBound.getParameterizedTypeName(), '.');
 				}
-				for (int j = 0; j < otherBoundsLength; j++) {
+				for (int j = 0; j < otherBoundsLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					TypeReference otherBound = otherBounds[j];
 					if (!CompletionUnitStructureRequestor.hasEmptyName(otherBound, this.assistNode)) {
 						boundNames[boundCount++] =

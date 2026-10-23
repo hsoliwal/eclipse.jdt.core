@@ -166,7 +166,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 	 * @param extendedSourceRangeComputer the source range computer to use
 	 * @param recoveryScannerData internal data used by {@link RecoveryScanner}
 	 */
-	public ASTRewriteAnalyzer(
+	public ASTRewriteAnalyzer( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			char[] content,
 			LineInformation lineInfo,
 			String lineDelim,
@@ -183,7 +183,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		this.nodeInfos= nodeInfos;
 		this.tokenScanner= null;
 		this.currentEdit= rootEdit;
-		this.sourceCopyInfoToEdit= new IdentityHashMap();
+		this.sourceCopyInfoToEdit= new IdentityHashMap(); //FLLDCIM: MARK — M06 M3_IDENTITY_WEAK_LANES NEW
 		this.sourceCopyEndNodes= new Stack();
 
 		this.formatter= new ASTRewriteFormatter(nodeInfos, eventStore, options, lineDelim);
@@ -196,7 +196,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		this.recoveryScannerData = recoveryScannerData;
 	}
 
-	final TokenScanner getScanner() {
+	final TokenScanner getScanner() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.tokenScanner == null) {
 			CompilerOptions compilerOptions = new CompilerOptions(this.options);
 			Scanner scanner;
@@ -264,7 +264,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return range.getStartPosition() + range.getLength();
 	}
 
-	final TextEdit getCopySourceEdit(CopySourceInfo info) {
+	final TextEdit getCopySourceEdit(CopySourceInfo info) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TextEdit edit= (TextEdit) this.sourceCopyInfoToEdit.get(info);
 		if (edit == null) {
 			SourceRange range= getExtendedRange(info.getNode());
@@ -358,7 +358,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 			char[] cont= getContent();
 			int lineStart= getLineInformation().getLineOffset(line);
 		    int i= lineStart;
-			while (i < cont.length && IndentManipulation.isIndentChar(this.content[i])) {
+			while (i < cont.length && IndentManipulation.isIndentChar(this.content[i])) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			    i++;
 			}
 			return new String(cont, lineStart, i - lineStart);
@@ -370,7 +370,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		String indent= this.formatter.getIndentString(line);
 		int indentInSpaces= this.formatter.computeIndentInSpaces(indent);
 		if (indentInSpaces < minimumIndentInSpaces) {
-			indent= indent + " ".repeat(minimumIndentInSpaces - indentInSpaces); //$NON-NLS-1$
+			indent= indent + " ".repeat(minimumIndentInSpaces - indentInSpaces); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return indent;
 	}
@@ -379,7 +379,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return this.formatter.getIndentString(getIndentOfLine(pos));
 	}
 
-	final void doTextInsert(int offset, String insertString, TextEditGroup editGroup) {
+	final void doTextInsert(int offset, String insertString, TextEditGroup editGroup) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (insertString.length() > 0) {
 			// bug fix for 95839: problem with inserting at the end of a line comment
 			if (this.lineCommentEndOffsets.isEndOfLineComment(offset, this.content)) {
@@ -444,7 +444,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 
 	private int doVisitList(List list, int offset) {
 		int endPos= offset;
-		for (Object o : list) {
+		for (Object o : list) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ASTNode curr= ((ASTNode) o);
 			endPos= doVisit(curr);
 		}
@@ -465,14 +465,14 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 	}
 
 	private void voidVisitList(List list) {
-		for (Object o : list) {
+		for (Object o : list) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			doVisit(((ASTNode) o));
 		}
 	}
 
 	private final boolean doVisitUnchangedChildren(ASTNode parent) {
 		List properties= parent.structuralPropertiesForType();
-		for (Object property : properties) {
+		for (Object property : properties) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			voidVisit(parent, (StructuralPropertyDescriptor) property);
 		}
 		return false;
@@ -489,7 +489,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		}
 	}
 
-	private final TextEdit doTextCopy(TextEdit sourceEdit, int destOffset, int sourceIndentLevel, String destIndentString, TextEditGroup editGroup) {
+	private final TextEdit doTextCopy(TextEdit sourceEdit, int destOffset, int sourceIndentLevel, String destIndentString, TextEditGroup editGroup) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TextEdit targetEdit;
 		SourceModifier modifier= new SourceModifier(sourceIndentLevel, destIndentString, this.formatter.getTabWidth(), this.formatter.getIndentWidth());
 
@@ -516,7 +516,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 	}
 
 	private void changeNotSupported(ASTNode node) {
-		Assert.isTrue(false, "Change not supported in " + node.getClass().getName()); //$NON-NLS-1$
+		Assert.isTrue(false, "Change not supported in " + node.getClass().getName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 
@@ -551,7 +551,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		protected int getNodeIndent(int nodeIndex) {
 			ASTNode node= getOriginalNode(nodeIndex);
 			if (node == null) {
-				for (int i= nodeIndex - 1; i>= 0; i--) {
+				for (int i= nodeIndex - 1; i>= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					ASTNode curr= getOriginalNode(i);
 					if (curr != null) {
 						return getIndent(curr.getStartPosition());
@@ -565,7 +565,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		protected int getNodeIndentInSpaces(int nodeIndex) {
 			ASTNode node= getOriginalNode(nodeIndex);
 			if (node == null) {
-				for (int i= nodeIndex - 1; i>= 0; i--) {
+				for (int i= nodeIndex - 1; i>= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					ASTNode curr= getOriginalNode(i);
 					if (curr != null) {
 						return getIndentInSpaces(curr.getStartPosition());
@@ -577,7 +577,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		}
 
 		protected int getStartOfNextNode(int nextIndex, int defaultPos) {
-			for (int i= nextIndex; i < this.list.length; i++) {
+			for (int i= nextIndex; i < this.list.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				RewriteEvent elem= this.list[i];
 				if (elem.getChangeKind() != RewriteEvent.INSERTED) {
 					ASTNode node= (ASTNode) elem.getOriginalValue();
@@ -621,7 +621,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 			return false;
 		}
 
-		private int rewriteList(
+		private int rewriteList( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				ASTNode parent,
 				StructuralPropertyDescriptor property,
 				String keyword,
@@ -661,7 +661,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 			int lastNonInsert= -1;
 			int lastNonDelete= -1;
 
-			for (int i= 0; i < total; i++) {
+			for (int i= 0; i < total; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int currMark= this.list[i].getChangeKind();
 
 				if (currMark != RewriteEvent.INSERTED) {
@@ -694,7 +694,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 			final int NONE= 0, NEW= 1, EXISTING= 2;
 			int separatorState= NEW;
 
-			for (int i= 0; i < total; i++) {
+			for (int i= 0; i < total; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				RewriteEvent currEvent= this.list[i];
 				int currMark= currEvent.getChangeKind();
 				int nextIndex= i + 1;
@@ -752,7 +752,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 						int extendedOffset = getExtendedOffset(node);
 						// Try to find the end of the last comment which is not part of extended source
 						// range of the node.
-						while (TokenScanner.isComment(scanner.readNext(newOffset, false))) {
+						while (TokenScanner.isComment(scanner.readNext(newOffset, false))) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							int tempOffset = scanner.getNextEndOffset(newOffset, false);
 							// check whether the comment is part of extended source range of the node.
 							// If it is then we need to stop.
@@ -838,7 +838,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 							int extendedOffset = getExtendedOffset(node);
 							// Try to find the end of the last comment which is not part of extended source
 							// range of the node.
-							while (TokenScanner.isComment(scanner.readNext(newOffset, false))) {
+							while (TokenScanner.isComment(scanner.readNext(newOffset, false))) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								int tempOffset = scanner.getNextEndOffset(newOffset, false);
 								// check whether the comment is part of extended source range of the node.
 								// If it is then we need to stop.
@@ -925,7 +925,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return doVisit(parent, property, 0);
 	}
 
-	private int rewriteNode(ASTNode parent, StructuralPropertyDescriptor property, int offset, Prefix prefix) {
+	private int rewriteNode(ASTNode parent, StructuralPropertyDescriptor property, int offset, Prefix prefix) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		RewriteEvent event= getEvent(parent, property);
 		if (event != null) {
 			switch (event.getChangeKind()) {
@@ -975,7 +975,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		int pos= rewriteNode(node, property, node.getStartPosition(), ASTRewriteFormatter.NONE);
 		int changeKind= getChangeKind(node, property);
 		if (changeKind == RewriteEvent.INSERTED) {
-			String indent= getLineDelimiter() + getIndentAtOffset(pos);
+			String indent= getLineDelimiter() + getIndentAtOffset(pos); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			doTextInsert(pos, indent, getEditGroup(node, property));
 		} else if (changeKind == RewriteEvent.REMOVED) {
 			try {
@@ -992,7 +992,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 	/*
 	 * endpos can be -1 -> use the end pos of the body
 	 */
-	private int rewriteBodyNode(ASTNode parent, StructuralPropertyDescriptor property, int offset, int endPos, int indent, BlockContext context) {
+	private int rewriteBodyNode(ASTNode parent, StructuralPropertyDescriptor property, int offset, int endPos, int indent, BlockContext context) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		RewriteEvent event= getEvent(parent, property);
 		if (event != null) {
 			switch (event.getChangeKind()) {
@@ -1048,7 +1048,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 					String prefix= strings[0];
 					String insertedPrefix = prefix;
 					if (insertNewLine) {
-						insertedPrefix = getLineDelimiter() + this.formatter.createIndentString(indent) + insertedPrefix.trim() + ' ';
+						insertedPrefix = getLineDelimiter() + this.formatter.createIndentString(indent) + insertedPrefix.trim() + ' '; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 					doTextInsert(offset, insertedPrefix, editGroup);
 					int lineStart= getCurrentLineStart(prefix, prefix.length());
@@ -1069,7 +1069,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		}
 		return pos;
 	}
-	private int rewriteOptionalQualifier(ASTNode parent, StructuralPropertyDescriptor property, int startPos) {
+	private int rewriteOptionalQualifier(ASTNode parent, StructuralPropertyDescriptor property, int startPos) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		RewriteEvent event= getEvent(parent, property);
 		if (event != null) {
 			switch (event.getChangeKind()) {
@@ -1123,7 +1123,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return pos;
 	}
 
-	private int rewriteExpressionOptionalQualifier(SwitchCase parent, StructuralPropertyDescriptor property, int startPos) {
+	private int rewriteExpressionOptionalQualifier(SwitchCase parent, StructuralPropertyDescriptor property, int startPos) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		RewriteEvent event= getEvent(parent, property);
 		if (event != null) {
 			switch (event.getChangeKind()) {
@@ -1203,11 +1203,11 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 			int newLines= this.separatorLines == -1 ? getNewLines(nodeIndex) : this.separatorLines;
 
 			String lineDelim= getLineDelimiter();
-			StringBuilder buf= new StringBuilder(lineDelim);
-			for (int i= 0; i < newLines; i++) {
-				buf.append(lineDelim);
+			StringBuilder buf= new StringBuilder(lineDelim); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			for (int i= 0; i < newLines; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buf.append(lineDelim); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buf.append(createIndentString(getNodeIndent(nextNodeIndex), getNodeIndentInSpaces(nextNodeIndex)));
+			buf.append(createIndentString(getNodeIndent(nextNodeIndex), getNodeIndentInSpaces(nextNodeIndex))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return buf.toString();
 		}
 
@@ -1219,7 +1219,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 			return elem;
 		}
 
-		private int getNewLines(int nodeIndex) {
+		private int getNewLines(int nodeIndex) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			ASTNode curr= getNode(nodeIndex);
 			ASTNode next= getNode(nodeIndex + 1);
 
@@ -1228,7 +1228,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 
 			ASTNode last= null;
 			ASTNode secondLast= null;
-			for (RewriteEvent event : this.list) {
+			for (RewriteEvent event : this.list) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ASTNode elem= (ASTNode) event.getOriginalValue();
 				if (elem != null) {
 					if (last != null) {
@@ -1249,7 +1249,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 			return DEFAULT_SPACING;
 		}
 
-		private int countEmptyLines(ASTNode last) {
+		private int countEmptyLines(ASTNode last) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			LineInformation lineInformation= getLineInformation();
 			int lastLine= lineInformation.getLineOfOffset(getExtendedEnd(last));
 			if (lastLine >= 0) {
@@ -1260,7 +1260,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 				}
 				char[] cont= getContent();
 				int i= start;
-				while (i < cont.length && ScannerHelper.isWhitespace(cont[i])) {
+				while (i < cont.length && ScannerHelper.isWhitespace(cont[i])) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					i++;
 				}
 				if (i > start) {
@@ -1273,11 +1273,11 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 			return 0;
 		}
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		protected boolean mustRemoveSeparator(int originalOffset, int nodeIndex) {
 			// Do not remove separator if the previous non removed node is on the same line and the next node is on another line
 			int previousNonRemovedNodeIndex = nodeIndex - 1;
-			while (previousNonRemovedNodeIndex >= 0 && this.list[previousNonRemovedNodeIndex].getChangeKind() == RewriteEvent.REMOVED) {
+			while (previousNonRemovedNodeIndex >= 0 && this.list[previousNonRemovedNodeIndex].getChangeKind() == RewriteEvent.REMOVED) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				previousNonRemovedNodeIndex--;
 			}
 
@@ -1320,17 +1320,17 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 
 		RewriteEvent[] events= event.getChildren();
 		ParagraphListRewriter listRewriter= new ParagraphListRewriter(insertIndent, separator);
-		StringBuilder leadString= new StringBuilder();
+		StringBuilder leadString= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		if (isAllOfKind(events, RewriteEvent.INSERTED)) {
-			for (int i= 0; i < lead; i++) {
-				leadString.append(getLineDelimiter());
+			for (int i= 0; i < lead; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				leadString.append(getLineDelimiter()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			leadString.append(createIndentString(insertIndent));
+			leadString.append(createIndentString(insertIndent)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return listRewriter.rewriteList(parent, property, insertPos, leadString.toString());
 	}
 
-	private int rewriteOptionalTypeParameters(ASTNode parent, StructuralPropertyDescriptor property, int offset, String keyword, boolean adjustOnNext, boolean needsSpaceOnRemoveAll) {
+	private int rewriteOptionalTypeParameters(ASTNode parent, StructuralPropertyDescriptor property, int offset, String keyword, boolean adjustOnNext, boolean needsSpaceOnRemoveAll) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int pos= offset;
 		RewriteEvent event= getEvent(parent, property);
 		if (event != null && event.getChangeKind() != RewriteEvent.UNCHANGED) {
@@ -1356,7 +1356,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 					doTextReplace(pos, endPos - pos, replacement, getEditGroup(children[children.length - 1]));
 					return endPos;
 				} else if (isAllInserted) {
-					doTextInsert(pos, String.valueOf('>' + keyword), getEditGroup(children[children.length - 1]));
+					doTextInsert(pos, String.valueOf('>' + keyword), getEditGroup(children[children.length - 1])); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					return pos;
 				}
 			} catch (CoreException e) {
@@ -1376,7 +1376,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 	}
 
 	private boolean isAllOfKind(RewriteEvent[] children, int kind) {
-		for (RewriteEvent child : children) {
+		for (RewriteEvent child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (child.getChangeKind() != kind) {
 				return false;
 			}
@@ -1408,7 +1408,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return doVisit(parent, property, pos);
 	}
 
-	private void rewriteMethodBody(MethodDeclaration parent, int startPos) {
+	private void rewriteMethodBody(MethodDeclaration parent, int startPos) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		RewriteEvent event= getEvent(parent, MethodDeclaration.BODY_PROPERTY);
 		if (event != null) {
 			switch (event.getChangeKind()) {
@@ -1462,16 +1462,16 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return oldDim;
 	}
 
-	private void rewriteExtraDimensions(int oldDim, int newDim, int pos, TextEditGroup editGroup) {
+	private void rewriteExtraDimensions(int oldDim, int newDim, int pos, TextEditGroup editGroup) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		if (oldDim < newDim) {
-			for (int i= oldDim; i < newDim; i++) {
+			for (int i= oldDim; i < newDim; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				doTextInsert(pos, "[]", editGroup); //$NON-NLS-1$
 			}
 		} else if (newDim < oldDim) {
 			try {
 				getScanner().setOffset(pos);
-				for (int i= newDim; i < oldDim; i++) {
+				for (int i= newDim; i < oldDim; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					getScanner().readToToken(TerminalToken.TokenNameRBRACKET);
 				}
 				doTextRemove(pos, getScanner().getCurrentEndOffset() - pos, editGroup);
@@ -1541,19 +1541,19 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		doTextInsert(insertOffset, node, initialIndentLevel, removeLeadingIndent, 0, editGroup);
 	}
 
-	final void doTextInsert(int insertOffset, ASTNode node, int initialIndentLevel, boolean removeLeadingIndent,
+	final void doTextInsert(int insertOffset, ASTNode node, int initialIndentLevel, boolean removeLeadingIndent, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			int minimumIndentInSpaces, TextEditGroup editGroup) {
-		ArrayList markers= new ArrayList();
+		ArrayList markers= new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		String formatted= this.formatter.getFormattedResult(node, initialIndentLevel, minimumIndentInSpaces, markers);
 		if (initialIndentLevel * this.formatter.getIndentWidth() < minimumIndentInSpaces) {
 			String[] lines= formatted.split("\n"); //$NON-NLS-1$
-			for (int i= 0; i < markers.size(); i++) {
+			for (int i= 0; i < markers.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				NodeMarker curr= (NodeMarker) markers.get(i);
 				int offset= curr.offset;
 				int total= 0;
 				int lineCount= 0;
 				int totalPadding= 0;
-				while (total <= offset && lineCount < lines.length) {
+				while (total <= offset && lineCount < lines.length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					total += lines[lineCount].length() + 1;
 					String indentOfLine= this.formatter.getIndentStringWithSpaces(lines[lineCount]);
 					int indentOfLineInSpaces= this.formatter.computeIndentInSpaces(indentOfLine);
@@ -1566,7 +1566,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 				curr.setOffset(offset + totalPadding);
 				totalPadding= 0;
 				int markerEnd= offset + curr.length;
-				while (total <= markerEnd && lineCount < lines.length) {
+				while (total <= markerEnd && lineCount < lines.length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					total += lines[lineCount].length() + 1;
 					String indentOfLine= this.formatter.getIndentStringWithSpaces(lines[lineCount]);
 					int indentOfLineInSpaces= this.formatter.computeIndentInSpaces(indentOfLine);
@@ -1582,11 +1582,11 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		}
 		int currPos= 0;
 		if (removeLeadingIndent) {
-			while (currPos < formatted.length() && ScannerHelper.isWhitespace(formatted.charAt(currPos))) {
+			while (currPos < formatted.length() && ScannerHelper.isWhitespace(formatted.charAt(currPos))) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				currPos++;
 			}
 		}
-		for (int i= 0; i < markers.size(); i++) { // markers.size can change!
+		for (int i= 0; i < markers.size(); i++) { // markers.size can change! //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			NodeMarker curr= (NodeMarker) markers.get(i);
 
 			int offset= curr.offset;
@@ -1607,7 +1607,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 				if (curr.length != 0) {
 					int end= offset + curr.length;
 					int k= i + 1;
-					while (k < markers.size() && ((NodeMarker) markers.get(k)).offset < end) {
+					while (k < markers.size() && ((NodeMarker) markers.get(k)).offset < end) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						k++;
 					}
 					curr.offset= end;
@@ -1640,28 +1640,28 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 							minimumIndentInSpaces % this.formatter.getIndentWidth() != 0 && lines.length > 1) {
 						int modTabWidth= this.formatter.computeIndentInSpaces(destIndentString) % this.formatter.getIndentWidth();
 						String trimmedDestIndentString= destIndentString.substring(0, destIndentString.length() - modTabWidth);
-						StringBuilder b= new StringBuilder();
-						b.append(lines[0] + "\n"); //$NON-NLS-1$
-						for (int j= 1; j < lines.length - 1; ++j) {
+						StringBuilder b= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+						b.append(lines[0] + "\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						for (int j= 1; j < lines.length - 1; ++j) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							String line= lines[j];
 							if (!line.isEmpty()) {
 								String indentOfLine= this.formatter.getIndentStringWithSpaces(line);
 								if (this.formatter.computeIndentInSpaces(indentOfLine) < minimumIndentInSpaces) {
-									line= indentOfLine + destIndentString + line.substring(indentOfLine.length());
+									line= indentOfLine + destIndentString + line.substring(indentOfLine.length()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								} else {
-									line= indentOfLine + trimmedDestIndentString + line.substring(indentOfLine.length());
+									line= indentOfLine + trimmedDestIndentString + line.substring(indentOfLine.length()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								}
-								b.append(line + "\n"); //$NON-NLS-1$
+								b.append(line + "\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							}
 						}
 						String line= lines[lines.length - 1];
 						String indentOfLine= this.formatter.getIndentStringWithSpaces(line);
 						if (this.formatter.computeIndentInSpaces(indentOfLine) < minimumIndentInSpaces) {
-							line= indentOfLine + destIndentString + line.substring(indentOfLine.length());
+							line= indentOfLine + destIndentString + line.substring(indentOfLine.length()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						} else {
-							line= indentOfLine + trimmedDestIndentString + line.substring(indentOfLine.length());
+							line= indentOfLine + trimmedDestIndentString + line.substring(indentOfLine.length()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
-						b.append(line);
+						b.append(line); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						code= b.toString();
 					} else {
 						needIndent= true;
@@ -1679,21 +1679,21 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		}
 	}
 
-	private String reindent(int minimumIndentInSpaces, String[] lines, int initialIndentLevel) {
-		StringBuilder s= new StringBuilder();
-		for (int i= 0; i < lines.length - 1; ++i) {
+	private String reindent(int minimumIndentInSpaces, String[] lines, int initialIndentLevel) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder s= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i= 0; i < lines.length - 1; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String line= lines[i];
 			if (!line.isEmpty()) {
 				int indentOfLineInSpaces= this.formatter.computeIndentInSpaces(line);
 				if (indentOfLineInSpaces < minimumIndentInSpaces) {
 					String indentOfLine= this.formatter.getIndentStringWithSpaces(line);
 					int padding= minimumIndentInSpaces - indentOfLineInSpaces;
-					line= indentOfLine +
+					line= indentOfLine + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							" ".repeat(padding) + //$NON-NLS-1$
 							line.substring(indentOfLine.length());
 				}
 			}
-			s.append(line + "\n"); //$NON-NLS-1$
+			s.append(line + "\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		String line= lines[lines.length - 1];
 		if (!line.isEmpty()) {
@@ -1701,12 +1701,12 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 			if (indentOfLineInSpaces < minimumIndentInSpaces) {
 				String indentOfLine= this.formatter.getIndentStringWithSpaces(line);
 				int padding= minimumIndentInSpaces - indentOfLineInSpaces;
-				line= indentOfLine +
+				line= indentOfLine + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						" ".repeat(padding) + //$NON-NLS-1$
 						line.substring(indentOfLine.length());
 			}
 		}
-		s.append(line);
+		s.append(line); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return s.toString();
 	}
 
@@ -1719,7 +1719,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 	}
 
 	private int getCurrentLineStart(String str, int pos) {
-		for (int i= pos - 1; i>= 0; i--) {
+		for (int i= pos - 1; i>= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char ch= str.charAt(i);
 			if (IndentManipulation.isLineDelimiterChar(ch)) {
 				return i+1;
@@ -1728,7 +1728,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return 0;
 	}
 
-	private void rewriteModifiers(ASTNode parent, StructuralPropertyDescriptor property, int offset) {
+	private void rewriteModifiers(ASTNode parent, StructuralPropertyDescriptor property, int offset) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		RewriteEvent event= getEvent(parent, property);
 		if (event == null || event.getChangeKind() != RewriteEvent.REPLACED) {
 			return;
@@ -1743,7 +1743,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 			TerminalToken tok= scanner.readNext(offset, false);
 			int startPos= scanner.getCurrentStartOffset();
 			int nextStart= startPos;
-			loop: while (true) {
+			loop: while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (TokenScanner.isComment(tok)) {
 					tok= scanner.readNext(true); // next non-comment token
 				}
@@ -1777,13 +1777,13 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 				if (startPos != nextStart) {
 					int visibilityModifiers= addedModifiers & (Modifier.PUBLIC | Modifier.PRIVATE | Modifier.PROTECTED);
 					if (visibilityModifiers != 0) {
-						StringBuilder buf= new StringBuilder();
+						StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 						ASTRewriteFlattener.printModifiers(visibilityModifiers, buf);
 						doTextInsert(startPos, buf.toString(), editGroup);
 						addedModifiers &= ~visibilityModifiers;
 					}
 				}
-				StringBuilder buf= new StringBuilder();
+				StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 				ASTRewriteFlattener.printModifiers(addedModifiers, buf);
 				doTextInsert(nextStart, buf.toString(), editGroup);
 			}
@@ -1852,7 +1852,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 //		return endPos;
 //	}
 
-	private int rewriteModifiers2(ASTNode node, ChildListPropertyDescriptor property, int pos) {
+	private int rewriteModifiers2(ASTNode node, ChildListPropertyDescriptor property, int pos) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		RewriteEvent event= getEvent(node, property);
 		if (event == null || event.getChangeKind() == RewriteEvent.UNCHANGED) {
 			return doVisit(node, property, pos);
@@ -1906,7 +1906,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 				String separator;
 				if (lastChild.getNewValue() instanceof Annotation) {
 					separator= formatterPrefix.getPrefix(getIndent(pos));
-					for (int i= 0; i < this.formatter.computeIndentInSpaces(getIndentOfLine(pos)) % this.formatter.getTabWidth(); ++i) {
+					for (int i= 0; i < this.formatter.computeIndentInSpaces(getIndentOfLine(pos)) % this.formatter.getTabWidth(); ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						separator += " "; //$NON-NLS-1$
 					}
 				} else {
@@ -1961,7 +1961,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		doCopySourcePostVisit(node, this.sourceCopyEndNodes);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void preVisit(ASTNode node) {
 		// copies, then range marker
 
@@ -1984,7 +1984,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 
 	final void doCopySourcePreVisit(CopySourceInfo[] infos, Stack nodeEndStack) {
 		if (infos != null) {
-			for (CopySourceInfo curr : infos) {
+			for (CopySourceInfo curr : infos) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				TextEdit edit= getCopySourceEdit(curr);
 				addEdit(edit);
 				this.currentEdit= edit;
@@ -1994,13 +1994,13 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 	}
 
 	final void doCopySourcePostVisit(ASTNode node, Stack nodeEndStack) {
-		while (!nodeEndStack.isEmpty() && nodeEndStack.peek() == node) {
+		while (!nodeEndStack.isEmpty() && nodeEndStack.peek() == node) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			nodeEndStack.pop();
 			this.currentEdit= this.currentEdit.getParent();
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(CompilationUnit node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -2039,7 +2039,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(TypeDeclaration node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -2176,7 +2176,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	private void rewriteReturnType(MethodDeclaration node, boolean isConstructor, boolean isConstructorChange) {
+	private void rewriteReturnType(MethodDeclaration node, boolean isConstructor, boolean isConstructorChange) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ChildPropertyDescriptor property= (node.getAST().apiLevel() == JLS2_INTERNAL) ? INTERNAL_METHOD_RETURN_TYPE_PROPERTY : MethodDeclaration.RETURN_TYPE2_PROPERTY;
 
 		// weakness in the AST: return type can exist, even if missing in source
@@ -2204,7 +2204,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		}
 	}
 
-	private int rewriteMethodReceiver(MethodDeclaration method, int offset) throws CoreException {
+	private int rewriteMethodReceiver(MethodDeclaration method, int offset) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		offset= getScanner().getTokenEndOffset(TerminalToken.TokenNameLPAREN, offset);
 		if (method.getAST().apiLevel() < JLS8_INTERNAL) {
 			return offset;
@@ -2300,7 +2300,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		List l = (List) node.getParent().getStructuralProperty(node.getLocationInParent());
 		int size = l.size();
 		int i = 0;
-		for (; i < size; i++) {
+		for (; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ASTNode currNode = (ASTNode) l.get(i);
 			if (node == currNode) break;
 			prev = currNode;
@@ -2324,7 +2324,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return offset;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(Dimension node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -2364,7 +2364,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(MethodDeclaration node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -2403,7 +2403,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 
 				if ((extraDims > 0) && (hasExceptionChanges || bodyChangeKind == RewriteEvent.INSERTED || bodyChangeKind == RewriteEvent.REMOVED)) {
 					int dim= ((Integer) getOriginalValue(node, INTERNAL_METHOD_EXTRA_DIMENSIONS_PROPERTY)).intValue();
-					while (dim > 0) {
+					while (dim > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						pos= getScanner().getTokenEndOffset(TerminalToken.TokenNameRBRACKET, pos);
 						dim--;
 					}
@@ -2421,7 +2421,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(ModuleDeclaration node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -2458,7 +2458,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(Block node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -2491,7 +2491,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(RecordDeclaration node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -2621,7 +2621,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(ArrayCreation node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -2661,7 +2661,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 			Type elementType= arrayType.getElementType();
 			int offset= elementType.getStartPosition() + elementType.getLength();
 			editGroup = null;
-			while(currentLevel != null || astLevelGTE8) {
+			while(currentLevel != null || astLevelGTE8) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (i < dimSize) {
 					if (astLevelGTE8)
 						rewriteAnnotationsOnDimension(arrayType, replacingType, i, offset, typeReplaced, editGroup);
@@ -2741,16 +2741,16 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 				int size = annotations.size();
 				if (size > 0) {
 					doTextInsert(pos, " ", editGroup); //$NON-NLS-1$
-					for (int j = 0; j < size; j++) {
+					for (int j = 0; j < size; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						Annotation annotation = (Annotation) annotations.get(j);
-						doTextInsert(pos, annotation.toString() + " ", editGroup); //$NON-NLS-1$
+						doTextInsert(pos, annotation.toString() + " ", editGroup); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 				}
 			}
 		}
 	}
 
-	private void rewriteAnnotationsOnDimension(ArrayType oldArrayType, ArrayType replacingType, int index, int pos, boolean typeReplaced, TextEditGroup editGroup) throws CoreException {
+	private void rewriteAnnotationsOnDimension(ArrayType oldArrayType, ArrayType replacingType, int index, int pos, boolean typeReplaced, TextEditGroup editGroup) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (typeReplaced) {
 			List dimensions = oldArrayType.dimensions();
 			Dimension oldDim = index < dimensions.size() ? (Dimension) dimensions.get(index) : null;
@@ -2778,13 +2778,13 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 	 * This method is used to retrieve the position of the right bracket.
 	 * @return int the dimension found, -1 if none
 	 */
-	protected int retrieveRightBracketEndPosition(int offset, int count, boolean isLeftRead) throws CoreException {
+	protected int retrieveRightBracketEndPosition(int offset, int count, boolean isLeftRead) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TokenScanner scanner= getScanner();
 		TerminalToken token;
 		int balance= 0;
 		if (isLeftRead) balance++;
 		scanner.setOffset(offset);
-		while ((token= scanner.readNext(true)) != TerminalToken.TokenNameEOF) {
+		while ((token= scanner.readNext(true)) != TerminalToken.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch(token) {
 				case TokenNameLBRACKET :
 					balance++;
@@ -2809,7 +2809,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 			return (Type) getOriginalValue(parent, ArrayType.ELEMENT_TYPE_PROPERTY);
 		}
 		Type t = (Type) getOriginalValue(parent, INTERNAL_ARRAY_COMPONENT_TYPE_PROPERTY);
-		while (t.isArrayType()) {
+		while (t.isArrayType()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			t = (Type) getOriginalValue(t, INTERNAL_ARRAY_COMPONENT_TYPE_PROPERTY);
 		}
 		return t;
@@ -2821,7 +2821,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		}
 		Type t = (Type) getOriginalValue(parent, INTERNAL_ARRAY_COMPONENT_TYPE_PROPERTY);
 		int dimensions = 1; // always include this array type
-		while (t.isArrayType()) {
+		while (t.isArrayType()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			dimensions++;
 			t = (Type) getOriginalValue(t, INTERNAL_ARRAY_COMPONENT_TYPE_PROPERTY);
 		}
@@ -2961,7 +2961,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(ClassInstanceCreation node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -3075,7 +3075,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(DoStatement node) { // do statement while expression
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -3162,7 +3162,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(ForStatement node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -3222,7 +3222,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(IfStatement node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -3272,7 +3272,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(ImportDeclaration node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -3314,7 +3314,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(InfixExpression node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -3359,7 +3359,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		}
 
 		RewriteEvent event= getEvent(node, InfixExpression.EXTENDED_OPERANDS_PROPERTY);
-		String prefixString= ' ' + operation + ' ';
+		String prefixString= ' ' + operation + ' '; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		if (needsNewOperation) {
 			int startPos= pos;
@@ -3367,7 +3367,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 
 			if (event != null && event.getChangeKind() != RewriteEvent.UNCHANGED) {
 				RewriteEvent[] extendedOperands= event.getChildren();
-				for (RewriteEvent curr : extendedOperands) {
+				for (RewriteEvent curr : extendedOperands) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					ASTNode elem= (ASTNode) curr.getOriginalValue();
 					if (elem != null) {
 						if (curr.getChangeKind() != RewriteEvent.REPLACED) {
@@ -3378,7 +3378,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 				}
 			} else {
 				List extendedOperands= (List) getOriginalValue(node, InfixExpression.EXTENDED_OPERANDS_PROPERTY);
-				for (Object extendedOperand : extendedOperands) {
+				for (Object extendedOperand : extendedOperands) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					ASTNode elem= (ASTNode) extendedOperand;
 					replaceOperation(startPos, operation, editGroup);
 					startPos= elem.getStartPosition() + elem.getLength();
@@ -3448,12 +3448,12 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		}
 	}
 
-	private void ensureSpaceBeforeReplace(ASTNode node) {
+	private void ensureSpaceBeforeReplace(ASTNode node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.beforeRequiredSpaceIndex  == -1) return;
 
 		List events = this.eventStore.getChangedPropertieEvents(node);
 
-		for (Object e : events) {
+		for (Object e : events) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			RewriteEvent event = (RewriteEvent) e;
 			if (event.getChangeKind() == RewriteEvent.REPLACED && event.getOriginalValue() instanceof ASTNode) {
 				if (this.beforeRequiredSpaceIndex  == getExtendedOffset((ASTNode) event.getOriginalValue())) {
@@ -3484,7 +3484,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 			return doVisitUnchangedChildren(node);
 		}
 		int startPos= node.getStartPosition() + 3;
-		String separator= getLineDelimiter() + getIndentAtOffset(node.getStartPosition())  +
+		String separator= getLineDelimiter() + getIndentAtOffset(node.getStartPosition())  + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				((node.getAST().apiLevel() >= AST.JLS23 && node.isMarkdown()) ? "/// " : " * "); //$NON-NLS-1$ //$NON-NLS-2$
 
 		rewriteNodeList(node, Javadoc.TAGS_PROPERTY, startPos, separator, separator);
@@ -3513,7 +3513,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(LambdaExpression node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -3585,7 +3585,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(MethodInvocation node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -3750,7 +3750,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(SingleVariableDeclaration node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -3838,7 +3838,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(SuperConstructorInvocation node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -3875,7 +3875,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(SuperMethodInvocation node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -3910,7 +3910,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(SwitchCase node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -3960,12 +3960,12 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		    String spaceDelim = JavaCore.INSERT.equals(ASTRewriteAnalyzer.this.options.get(DefaultCodeFormatterConstants.FORMATTER_INSERT_SPACE_AFTER_ARROW_IN_SWITCH_CASE))? " ":""; //$NON-NLS-1$ //$NON-NLS-2$
 		    String lineDelim = isSwitchLabelRule ? spaceDelim : getLineDelimiter();
 
-			StringBuilder buf= new StringBuilder(lineDelim);
-			buf.append(createIndentString(getNodeIndent(nextNodeIndex)));
+			StringBuilder buf= new StringBuilder(lineDelim); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buf.append(createIndentString(getNodeIndent(nextNodeIndex))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return buf.toString();
 		}
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		protected int getNodeIndent(int nodeIndex) {
 			int indent= getInitialIndent();
 			if (this.indentSwitchStatementsCompareToCases) {
@@ -3989,7 +3989,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 			return indent;
 		}
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		protected int getNodeIndentInSpaces(int nodeIndex) {
 			int indent= getInitialIndentInSpaces();
 			if (this.indentSwitchStatementsCompareToCases) {
@@ -4033,7 +4033,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 				DefaultCodeFormatterConstants.TRUE.equals(ASTRewriteAnalyzer.this.options.get(DefaultCodeFormatterConstants.FORMATTER_INDENT_SWITCHSTATEMENTS_COMPARE_TO_CASES));
 		}
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		protected int getNodeIndent(int nodeIndex) {
 			int indent= getInitialIndent();
 
@@ -4055,7 +4055,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 			return indent;
 		}
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		protected int getNodeIndentInSpaces(int nodeIndex) {
 			int indent= getInitialIndentInSpaces();
 
@@ -4071,7 +4071,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 				}
 
 				if (node.getNodeType() != ASTNode.SWITCH_CASE) {
-					for (int i= 0; i < this.list.length; ++i) {
+					for (int i= 0; i < this.list.length; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						RewriteEvent nodeEvent = this.list[i];
 						int nodeChangeKind= nodeEvent.getChangeKind();
 						if (nodeChangeKind == RewriteEvent.UNCHANGED || nodeChangeKind == RewriteEvent.REPLACED) {
@@ -4092,7 +4092,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 			int total = this.list.length;
 
 			int nextNodeIndex = nodeIndex + 1;
-			while (nextNodeIndex < total && this.list[nextNodeIndex].getChangeKind() == RewriteEvent.REMOVED) {
+			while (nextNodeIndex < total && this.list[nextNodeIndex].getChangeKind() == RewriteEvent.REMOVED) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				nextNodeIndex++;
 			}
 			if (nextNodeIndex == total) {
@@ -4101,13 +4101,13 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 			return getSeparatorString(nodeIndex, nextNodeIndex);
 		}
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		protected void updateIndent(int prevMark, int originalOffset, int nodeIndex, TextEditGroup editGroup) {
 			if (prevMark != RewriteEvent.UNCHANGED && prevMark != RewriteEvent.REPLACED) return;
 
 			// Do not change indent if the previous non removed node is on the same line
 			int previousNonRemovedNodeIndex = nodeIndex - 1;
-			while (previousNonRemovedNodeIndex >= 0 && this.list[previousNonRemovedNodeIndex].getChangeKind() == RewriteEvent.REMOVED) {
+			while (previousNonRemovedNodeIndex >= 0 && this.list[previousNonRemovedNodeIndex].getChangeKind() == RewriteEvent.REMOVED) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				previousNonRemovedNodeIndex--;
 			}
 
@@ -4129,7 +4129,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 			}
 
 			int total = this.list.length;
-			while (nodeIndex < total && this.list[nodeIndex].getChangeKind() == RewriteEvent.REMOVED) {
+			while (nodeIndex < total && this.list[nodeIndex].getChangeKind() == RewriteEvent.REMOVED) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				nodeIndex++;
 			}
 
@@ -4149,7 +4149,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(SwitchExpression node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -4167,9 +4167,9 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 				}
 
 				ParagraphListRewriter listRewriter= new SwitchListLabeledRuleRewriter(insertIndent);
-				StringBuilder leadString= new StringBuilder();
-				leadString.append(getLineDelimiter());
-				leadString.append(createIndentString(insertIndent));
+				StringBuilder leadString= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				leadString.append(getLineDelimiter()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				leadString.append(createIndentString(insertIndent)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				listRewriter.rewriteList(node, property, pos, leadString.toString());
 			} catch (CoreException e) {
 				handleException(e);
@@ -4180,7 +4180,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(SwitchStatement node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -4202,9 +4202,9 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 				} else {
 					listRewriter= new SwitchListRewriter(insertIndent);
 				}
-				StringBuilder leadString= new StringBuilder();
-				leadString.append(getLineDelimiter());
-				leadString.append(createIndentString(insertIndent));
+				StringBuilder leadString= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				leadString.append(getLineDelimiter()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				leadString.append(createIndentString(insertIndent)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				listRewriter.rewriteList(node, property, pos, leadString.toString());
 			} catch (CoreException e) {
 				handleException(e);
@@ -4254,7 +4254,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(TryStatement node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -4266,8 +4266,8 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 			if (isChanged(node, desc)) {
 				int indent= getIndent(node.getStartPosition());
 				String prefix= this.formatter.TRY_RESOURCES.getPrefix(indent);
-				String newParen = this.formatter.TRY_RESOURCES_PAREN.getPrefix(indent) + "("; //$NON-NLS-1$
-				pos= rewriteResourcesNodeList(node, desc, getPosAfterTry(pos), newParen, ")", ";" + prefix); //$NON-NLS-1$ //$NON-NLS-2$
+				String newParen = this.formatter.TRY_RESOURCES_PAREN.getPrefix(indent) + "("; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				pos= rewriteResourcesNodeList(node, desc, getPosAfterTry(pos), newParen, ")", ";" + prefix); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 			} else {
 				pos= doVisit(node, desc, pos);
@@ -4345,7 +4345,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(VariableDeclarationFragment node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -4393,7 +4393,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(WhileStatement node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -4425,7 +4425,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(MethodRef node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -4448,7 +4448,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(MethodRefParameter node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -4472,7 +4472,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(TagElement node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -4511,7 +4511,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 			char[] cont= getContent();
 		    int len= cont.length;
 			int i= tagNode.getStartPosition();
-			while (i < len && !IndentManipulation.isIndentChar(cont[i])) {
+			while (i < len && !IndentManipulation.isIndentChar(cont[i])) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			    i++;
 			}
 			return i;
@@ -4557,7 +4557,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(AnnotationTypeMemberDeclaration node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -4579,7 +4579,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(EnhancedForStatement node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -4602,7 +4602,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(EnumConstantDeclaration node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -4654,7 +4654,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(EnumDeclaration node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -4780,7 +4780,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(NormalAnnotation node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -4816,7 +4816,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(ParameterizedType node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);
@@ -4917,7 +4917,7 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(WildcardType node) {
 		if (!hasChildrenChanges(node)) {
 			return doVisitUnchangedChildren(node);

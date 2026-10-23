@@ -95,7 +95,7 @@ public class JavadocContents implements IJavadocContents {
 		return null;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public String getPackageDoc() throws JavaModelException {
 		if (this.content == null) return null;
 		int index = CharOperation.indexOf(PACKAGE_DESCRIPTION_START2, this.content, false, 0);
@@ -132,14 +132,14 @@ public class JavadocContents implements IJavadocContents {
 		return new String(this.content, index, end - index);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public String getFieldDoc(IField child) throws JavaModelException {
 		if (this.content == null) return null;
 
 		Range range = null;
 		synchronized (this) {
 			if (this.fieldDocRanges == null) {
-				this.fieldDocRanges = new HashMap<>();
+				this.fieldDocRanges = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			} else {
 				range = this.fieldDocRanges.get(child);
 			}
@@ -157,14 +157,14 @@ public class JavadocContents implements IJavadocContents {
 		return null;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public String getMethodDoc(IMethod child) throws JavaModelException {
 		if (this.content == null || !(child instanceof BinaryMethod binaryMethod)) return null;
 
 		Range range = null;
 		synchronized (this) {
 			if (this.methodDocRanges == null) {
-				this.methodDocRanges = new HashMap<>();
+				this.methodDocRanges = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			} else {
 				range = this.methodDocRanges.get(binaryMethod);
 			}
@@ -187,11 +187,11 @@ public class JavadocContents implements IJavadocContents {
 	/*
 	 * Compute the ranges of the parts of the javadoc that describe each method of the type
 	 */
-	protected Range computeChildRange(char[] anchor, int indexOfSectionBottom) throws JavaModelException {
+	protected Range computeChildRange(char[] anchor, int indexOfSectionBottom) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// checks each known anchor locations
 		if (this.tempAnchorIndexesCount > 0) {
-			for (int i = 0; i < this.tempAnchorIndexesCount; i++) {
+			for (int i = 0; i < this.tempAnchorIndexesCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int anchorEndStart = this.tempAnchorIndexes[i];
 
 				if (anchorEndStart != -1 && CharOperation.prefixEquals(anchor, this.content, false, anchorEndStart)) {
@@ -208,7 +208,7 @@ public class JavadocContents implements IJavadocContents {
 
 		// check each next unknown anchor locations
 		index = getAnchorIndex(fromIndex);
-		while (index[0] != -1 && (index[0] < indexOfSectionBottom || indexOfSectionBottom == -1)) {
+		while (index[0] != -1 && (index[0] < indexOfSectionBottom || indexOfSectionBottom == -1)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			fromIndex = index[0] + 1;
 
 			int anchorEndStart = index[0] + index[1];
@@ -245,7 +245,7 @@ public class JavadocContents implements IJavadocContents {
 		}
 	}
 
-	protected Range computeChildRange(int anchorEndStart, char[] anchor, int indexOfBottom) {
+	protected Range computeChildRange(int anchorEndStart, char[] anchor, int indexOfBottom) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Range range = null;
 
 		// try to find the bottom of the section
@@ -271,7 +271,7 @@ public class JavadocContents implements IJavadocContents {
 		return range;
 	}
 
-	protected void computeChildrenSections() {
+	protected void computeChildrenSections() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// try to find the next separator part
 		int lastIndex = CharOperation.indexOf(SEPARATOR_START, this.content, false, this.childrenStart);
 		lastIndex = lastIndex == -1 ? this.childrenStart : lastIndex;
@@ -310,13 +310,13 @@ public class JavadocContents implements IJavadocContents {
 	/*
 	 * Compute the ranges of the parts of the javadoc that describe each child of the type (fields, methods)
 	 */
-	protected Range computeFieldRange(IField field) throws JavaModelException {
+	protected Range computeFieldRange(IField field) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!this.hasComputedChildrenSections) {
 			computeChildrenSections();
 		}
 
-		StringBuilder buffer = new StringBuilder(field.getElementName());
-		buffer.append(ANCHOR_PREFIX_END);
+		StringBuilder buffer = new StringBuilder(field.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append(ANCHOR_PREFIX_END); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		char[] anchor = String.valueOf(buffer).toCharArray();
 
 		Range range = null;
@@ -362,7 +362,7 @@ public class JavadocContents implements IJavadocContents {
 	/*
 	 * Compute the ranges of the parts of the javadoc that describe each method of the type
 	 */
-	protected Range computeMethodRange(BinaryMethod method) throws JavaModelException {
+	protected Range computeMethodRange(BinaryMethod method) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!this.hasComputedChildrenSections) {
 			computeChildrenSections();
 		}
@@ -415,11 +415,11 @@ public class JavadocContents implements IJavadocContents {
 		return range;
 	}
 
-	private static char[] getJavadoc8Anchor(char[] anchor) {
+	private static char[] getJavadoc8Anchor(char[] anchor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// fix for bug 432284: [1.8] Javadoc-8-style anchors not found by IMethod#getAttachedJavadoc(..)
 		char[] anchor8 = new char[anchor.length];
 		int i8 = 0;
-		for (char ch : anchor) {
+		for (char ch : anchor) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch (ch) {
 				case '(':
 				case ')':
@@ -443,7 +443,7 @@ public class JavadocContents implements IJavadocContents {
 		return anchor8;
 	}
 
-	protected String computeMethodAnchorPrefixEnd(BinaryMethod method) throws JavaModelException {
+	protected String computeMethodAnchorPrefixEnd(BinaryMethod method) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String methodName = getMethodName(method);
 		IBinaryMethod info = (IBinaryMethod) method.getElementInfo();
 
@@ -466,10 +466,10 @@ public class JavadocContents implements IJavadocContents {
 					// no argument, but a synthetic argument
 					index = anchor.indexOf(')', index);
 				}
-				anchor = anchor.substring(0, indexOfOpeningParen) + anchor.substring(index);
+				anchor = anchor.substring(0, indexOfOpeningParen) + anchor.substring(index); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
-		return anchor + ANCHOR_PREFIX_END;
+		return anchor + ANCHOR_PREFIX_END; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	protected String createSignatureAnchor(BinaryMethod method, String methodName, IBinaryMethod info) throws JavaModelException {
@@ -485,12 +485,12 @@ public class JavadocContents implements IJavadocContents {
 		return anchor;
 	}
 
-	protected String getMethodName(BinaryMethod method) throws JavaModelException {
+	protected String getMethodName(BinaryMethod method) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String typeQualifiedName = null;
 		if (this.type.isMember()) {
 			IType currentType = this.type;
-			StringBuilder buffer = new StringBuilder();
-			while (currentType != null) {
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			while (currentType != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				buffer.insert(0, currentType.getElementName());
 				currentType = currentType.getDeclaringType();
 				if (currentType != null) {
@@ -512,7 +512,7 @@ public class JavadocContents implements IJavadocContents {
 	/*
 	 * Compute the range of the part of the javadoc that describe the type
 	 */
-	protected void computeTypeRange() throws JavaModelException {
+	protected void computeTypeRange() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final int indexOfStartOfClassData = CharOperation.indexOf(START_OF_CLASS_DATA, this.content, false);
 		if (indexOfStartOfClassData == -1) {
 			this.typeDocRange = UNKNOWN_FORMAT;

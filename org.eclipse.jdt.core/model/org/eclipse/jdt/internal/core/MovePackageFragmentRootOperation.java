@@ -30,19 +30,19 @@ import org.eclipse.jdt.core.JavaConventions;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 
-public class MovePackageFragmentRootOperation extends CopyPackageFragmentRootOperation {
+public class MovePackageFragmentRootOperation extends CopyPackageFragmentRootOperation { //FLLDCIM: MARK — T09  IMPLEMENTS
 	/*
 	 * Renames the classpath entries equal to the given path in the given project.
 	 * If an entry with the destination path already existed, remove it.
 	 */
-	protected void renameEntryInClasspath(IPath rootPath, IJavaProject project) throws JavaModelException {
+	protected void renameEntryInClasspath(IPath rootPath, IJavaProject project) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IClasspathEntry[] classpath = project.getRawClasspath();
 		IClasspathEntry[] newClasspath = null;
 		int cpLength = classpath.length;
 		int newCPIndex = -1;
 
-		for (int i = 0; i < cpLength; i++) {
+		for (int i = 0; i < cpLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IClasspathEntry entry = classpath[i];
 			IPath entryPath = entry.getPath();
 			if (rootPath.equals(entryPath)) {
@@ -97,10 +97,10 @@ public class MovePackageFragmentRootOperation extends CopyPackageFragmentRootOpe
 		}
 	}
 
-	private IPath[] renamePatterns(IPath rootPath, IPath[] patterns) {
+	private IPath[] renamePatterns(IPath rootPath, IPath[] patterns) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath[] newPatterns = null;
 		int newPatternsIndex = -1;
-		for (int i = 0, length = patterns.length; i < length; i++) {
+		for (int i = 0, length = patterns.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IPath pattern = patterns[i];
 			if (pattern.equals(rootPath)) {
 				if (newPatterns == null) {
@@ -131,7 +131,7 @@ public class MovePackageFragmentRootOperation extends CopyPackageFragmentRootOpe
 			updateModelFlags,
 			sibling);
 	}
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void executeOperation() throws JavaModelException {
 
 		IPackageFragmentRoot root = (IPackageFragmentRoot) getElementToProcess();
@@ -169,7 +169,7 @@ public class MovePackageFragmentRootOperation extends CopyPackageFragmentRootOpe
 			}  // else reference has been updated when updating originating project classpath
 		}
 	}
-	protected void moveResource(
+	protected void moveResource( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragmentRoot root,
 		IClasspathEntry rootEntry,
 		final IWorkspaceRoot workspaceRoot)
@@ -192,8 +192,8 @@ public class MovePackageFragmentRootOperation extends CopyPackageFragmentRootOpe
 			final int sourceSegmentCount = rootEntry.getPath().segmentCount();
 			final IFolder destFolder = workspaceRoot.getFolder(this.destination);
 			final IPath[] nestedFolders = getNestedFolders(root);
-			IResourceProxyVisitor visitor = new IResourceProxyVisitor() {
-				@Override
+			IResourceProxyVisitor visitor = new IResourceProxyVisitor() { //FLLDCIM: MARK — T07  ANONYMOUS
+				@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				public boolean visit(IResourceProxy proxy) throws CoreException {
 					if (proxy.getType() == IResource.FOLDER) {
 						IPath path = proxy.requestFullPath();
@@ -249,7 +249,7 @@ public class MovePackageFragmentRootOperation extends CopyPackageFragmentRootOpe
 	protected void updateReferringProjectClasspaths(IPath rootPath, IJavaProject projectOfRoot) throws JavaModelException {
 		IJavaModel model = getJavaModel();
 		IJavaProject[] projects = model.getJavaProjects();
-		for (IJavaProject project : projects) {
+		for (IJavaProject project : projects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (project.equals(projectOfRoot)) continue;
 			renameEntryInClasspath(rootPath, project);
 		}
@@ -257,14 +257,14 @@ public class MovePackageFragmentRootOperation extends CopyPackageFragmentRootOpe
 	/*
 	 * Removes the classpath entry equal to the given path from the given project's classpath.
 	 */
-	protected void removeEntryFromClasspath(IPath rootPath, IJavaProject project) throws JavaModelException {
+	protected void removeEntryFromClasspath(IPath rootPath, IJavaProject project) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IClasspathEntry[] classpath = project.getRawClasspath();
 		IClasspathEntry[] newClasspath = null;
 		int cpLength = classpath.length;
 		int newCPIndex = -1;
 
-		for (int i = 0; i < cpLength; i++) {
+		for (int i = 0; i < cpLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IClasspathEntry entry = classpath[i];
 			if (rootPath.equals(entry.getPath())) {
 				if (newClasspath == null) {

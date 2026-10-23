@@ -41,7 +41,7 @@ class NameEnvironmentWithProgress extends FileSystem implements INameEnvironment
 	private void checkCanceled() {
 		if (this.monitor != null && this.monitor.isCanceled()) {
 			if (NameLookup.VERBOSE) {
-				trace(Thread.currentThread() + " CANCELLING LOOKUP "); //$NON-NLS-1$
+				trace(Thread.currentThread() + " CANCELLING LOOKUP "); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			throw new AbortCompilation(true/*silent*/, new OperationCanceledException());
 		}
@@ -50,7 +50,7 @@ class NameEnvironmentWithProgress extends FileSystem implements INameEnvironment
 	public NameEnvironmentAnswer findType(char[] typeName, char[][] packageName, char[] moduleName) {
 		return findType(typeName, packageName, true, moduleName);
 	}
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public NameEnvironmentAnswer findType(char[] typeName, char[][] packageName, boolean searchWithSecondaryTypes, char[] moduleName) {
 		checkCanceled();
 		NameEnvironmentAnswer answer = super.findType(typeName, packageName, moduleName);
@@ -58,8 +58,8 @@ class NameEnvironmentWithProgress extends FileSystem implements INameEnvironment
 			NameEnvironmentAnswer suggestedAnswer = null;
 			String qualifiedPackageName = new String(CharOperation.concatWith(packageName, '/'));
 			String qualifiedTypeName = new String(CharOperation.concatWith(packageName, typeName, '/'));
-			String qualifiedBinaryFileName = qualifiedTypeName + SUFFIX_STRING_class;
-			for (Classpath classpath : this.classpaths) {
+			String qualifiedBinaryFileName = qualifiedTypeName + SUFFIX_STRING_class; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			for (Classpath classpath : this.classpaths) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (!(classpath instanceof ClasspathDirectory)) continue;
 				ClasspathDirectory classpathDirectory = (ClasspathDirectory) classpath;
 				LookupStrategy strategy = LookupStrategy.get(moduleName);

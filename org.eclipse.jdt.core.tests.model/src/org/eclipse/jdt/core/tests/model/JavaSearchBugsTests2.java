@@ -68,7 +68,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 	}
 
 	class TestCollector extends JavaSearchResultCollector {
-		public List matches = new ArrayList();
+		public List matches = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		@Override
 		public void acceptSearchMatch(SearchMatch searchMatch) throws CoreException {
@@ -98,7 +98,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 	/**
 	 * Test that missing types in the class shouldn't impact the search of a type in an inner class
 	 */
-	public void testBug362633() throws CoreException, IOException {
+	public void testBug362633() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject p = createJavaProject("P", new String[] {}, new String[] { "/P/lib325418.jar", "JCL18_LIB" }, "", CompilerOptions.getFirstSupportedJavaVersion());
 			org.eclipse.jdt.core.tests.util.Util.createJar(new String[] {
@@ -143,7 +143,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 	 * test Search for references to an overridden method with bound variables should yield.
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=123836"
 	 */
-	public void testBug123836a() throws CoreException {
+	public void testBug123836a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -167,7 +167,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 	}
 	// Search for a non-overridden method with same name as which could have been overridden should
 	// not have results
-	public void testBug123836b() throws CoreException {
+	public void testBug123836b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -193,7 +193,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 		}
 	}
 	// another variant of the testcase
-	public void testBug123836c() throws CoreException {
+	public void testBug123836c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -223,7 +223,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject(project);
 		}
 	}
-	public void testBug123836c_missingImport() throws CoreException {
+	public void testBug123836c_missingImport() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// original version with missing import, will now give POTENTIAL_MATCH
 		IJavaProject project = null;
 		try
@@ -254,7 +254,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 		}
 	}
 	// Test inner class
-	public void testBug123836d() throws CoreException {
+	public void testBug123836d() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -286,7 +286,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 		}
 	}
 	// Test local class
-	public void testBug123836e() throws CoreException {
+	public void testBug123836e() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -317,7 +317,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 		}
 	}
 	// test inner class
-	public void testBug123836f() throws CoreException {
+	public void testBug123836f() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -348,7 +348,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 		}
 	}
 	// test in initializer block
-	public void testBug123836g() throws CoreException {
+	public void testBug123836g() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -379,7 +379,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 		}
 	}
 	// test in static initializer
-	public void testBug123836h() throws CoreException {
+	public void testBug123836h() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -410,7 +410,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 		}
 	}
 	// test in static initializer
-	public void testBug123836i() throws CoreException {
+	public void testBug123836i() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -438,7 +438,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject(project);
 		}
 	}
-	public void testBug123836j() throws CoreException {
+	public void testBug123836j() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -475,7 +475,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 		}
 	}
 	// test search of name
-	public void _testBug123836g1() throws CoreException {
+	public void _testBug123836g1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -502,7 +502,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 		}
 	}
 	// test search of name (negative)
-	public void _testBug123836h1() throws CoreException {
+	public void _testBug123836h1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -547,7 +547,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 	 *     {@code superInterfaces() == null}.</li>
 	 * </ul>
 	 */
-	public void testCaptureBindingReentrantInitializeBoundsNPE_importCycle() throws CoreException {
+	public void testCaptureBindingReentrantInitializeBoundsNPE_importCycle() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try {
 			project = createJavaProject("P", new String[] { "src" }, new String[] { "JCL18_LIB" }, "bin",
@@ -616,7 +616,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 	 * test Search for references for enclosing type's subclass should return a match.
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=297825"
 	 */
-	public void testBug297825a() throws CoreException {
+	public void testBug297825a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject p = createJavaProject("P", new String[] { "src" },
 					new String[] {"JCL18_LIB"}, "bin");
@@ -658,7 +658,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 	 * test Verify there is no AIOOB when searching for references for a type.
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=297825"
 	 */
-	public void testBug297825b() throws CoreException {
+	public void testBug297825b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject p = createJavaProject("P", new String[] { "src" },
 					new String[] {"JCL18_LIB"}, "bin");
@@ -696,7 +696,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 	 * test Search for references for the top level type Foo should report no match. "new _Foo.Bar.Foo()" refers to a different type.
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=297825"
 	 */
-	public void testBug297825c() throws CoreException {
+	public void testBug297825c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject p = createJavaProject("P", new String[] { "src" },
 					new String[] {"JCL18_LIB"}, "bin");
@@ -740,7 +740,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 	 * test Search for references for enclosing type's subclass should return a match. The inner type is parameterized.
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=297825"
 	 */
-	public void testBug297825d() throws CoreException {
+	public void testBug297825d() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject p = createJavaProject("P", new String[] { "src" },
 					new String[] {"JCL18_LIB"}, "bin");
@@ -783,7 +783,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 	 *
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=342393"
 	 */
-	public void testBug342393() throws CoreException {
+	public void testBug342393() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("P", new String[] {""}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 			String content = "package b342393;\n" + "class Generic {\n"
@@ -809,7 +809,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 	 * test Search for DBCS type should report the match
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=376673"
 	 */
-	public void testBug376673a() throws CoreException {
+	public void testBug376673a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			if ("macosx".equals(System.getProperty("osgi.os"))) {
 				System.out.println("testBug376673* may fail on macosx");
@@ -831,7 +831,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 		}
 	}
 	// Search for DBCS method should report the match
-	public void testBug376673b() throws CoreException {
+	public void testBug376673b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			if ("macosx".equals(System.getProperty("osgi.os"))) {
 				return;
@@ -854,7 +854,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 		}
 	}
 	// Search for DBCS constructor should report the match
-	public void testBug376673c() throws CoreException {
+	public void testBug376673c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			if ("macosx".equals(System.getProperty("osgi.os"))) {
 				return;
@@ -877,7 +877,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 		}
 	}
 	// Search for DBCS field should report the match
-	public void testBug376673d() throws CoreException {
+	public void testBug376673d() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			if ("macosx".equals(System.getProperty("osgi.os"))) {
 				return;
@@ -900,7 +900,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 		}
 	}
 	// Search for DBCS package name from a jar also should report the match
-	public void testBug376673e() throws CoreException, IOException {
+	public void testBug376673e() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		if ("macosx".equals(System.getProperty("osgi.os"))) {
 			return;
@@ -930,18 +930,18 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 		try {
 			if (this.resultCollector.count == 0) {
 				System.out.println("Test " + getName() + " about to fail, listing extra debug info");
-				System.out.println("LANG env variable: " + System.getenv("LANG"));
+				System.out.println("LANG env variable: " + System.getenv("LANG")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				System.out.println("Listing markers of test project");
 				IMarker[] markers = p.getProject().findMarkers(null, true, IResource.DEPTH_INFINITE);
-				for (IMarker marker : markers) {
-					System.out.println(marker.getAttribute(IMarker.SEVERITY) + ":" + marker.getAttribute(IMarker.MESSAGE));
+				for (IMarker marker : markers) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					System.out.println(marker.getAttribute(IMarker.SEVERITY) + ":" + marker.getAttribute(IMarker.MESSAGE)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				System.out.println("Resolved classpath entries for test project:");
-				for (IClasspathEntry e : p.getResolvedClasspath(false)) {
+				for (IClasspathEntry e : p.getResolvedClasspath(false)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					System.out.println(e);
 				}
 				System.out.println("All classpath entries for test project:");
-				for (IClasspathEntry e : p.getResolvedClasspath(true)) {
+				for (IClasspathEntry e : p.getResolvedClasspath(true)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					System.out.println(e);
 				}
 				printJavaElements(p, System.out);
@@ -963,7 +963,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 	 * test Search for a non-overridden method because of package visibility should not be found
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=357547"
 	 */
-	public void testBug357547a() throws CoreException {
+	public void testBug357547a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -998,7 +998,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 	}
 
 	// search for the method name should also not return matches if not-overridden because of package-visible
-	public void testBug357547b() throws CoreException {
+	public void testBug357547b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -1034,7 +1034,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 	}
 
 	// search for the method name should return the match if same package
-	public void testBug357547c() throws CoreException {
+	public void testBug357547c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -1066,7 +1066,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject(project);
 		}
 	}
-	public void testBug357547d() throws CoreException {
+	public void testBug357547d() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -1106,7 +1106,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 	}
 	// search for the method name should also not return matches if not-overridden because of package-visible
 	// even if they are in jars
-	public void testBug357547e() throws CoreException, IOException {
+	public void testBug357547e() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -1154,7 +1154,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 	}
 	// search for the method name should also not return matches if not-overridden because of package-visible
 	// even if they are in jars
-	public void testBug357547f() throws CoreException, IOException {
+	public void testBug357547f() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -1201,7 +1201,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 		}
 	}
 	// search for declarations also should take care of default
-	public void testBug357547g() throws CoreException {
+	public void testBug357547g() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -1246,7 +1246,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject(project);
 		}
 	}
-	public void testBug378390() throws CoreException {
+	public void testBug378390() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -1290,7 +1290,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 	 * test TODO
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=375971"
 	 */
-	public void testBug375971a() throws CoreException {
+	public void testBug375971a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createJavaProject("P");
 			createFile("/P/InterfaceI.java",
@@ -1319,7 +1319,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject("P");
 		}
 	}
-	public void testBug375971b() throws CoreException {
+	public void testBug375971b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createJavaProject("P");
 			createFile("/P/InterfaceI.java",
@@ -1348,7 +1348,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject("P");
 		}
 	}
-	public void testBug375971c() throws CoreException {
+	public void testBug375971c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createJavaProject("P");
 			createFile("/P/InterfaceI.java",
@@ -1377,7 +1377,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject("P");
 		}
 	}
-	public void testBug375971d() throws CoreException {
+	public void testBug375971d() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createJavaProject("P");
 			createFile("/P/InterfaceI.java",
@@ -1406,7 +1406,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject("P");
 		}
 	}
-	public void testBug375971e() throws CoreException {
+	public void testBug375971e() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createJavaProject("P");
 			createFile("/P/InterfaceI.java",
@@ -1442,7 +1442,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject("P");
 		}
 	}
-	public void testBug375971f() throws CoreException {
+	public void testBug375971f() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createJavaProject("P");
 			createFile("/P/InterfaceI.java",
@@ -1471,7 +1471,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject("P");
 		}
 	}
-	public void testBug375971g() throws CoreException {
+	public void testBug375971g() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createJavaProject("P");
 			createFile("/P/InterfaceI.java",
@@ -1500,7 +1500,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject("P");
 		}
 	}
-	public void testBug375971h() throws CoreException {
+	public void testBug375971h() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createJavaProject("P");
 			createFile("/P/InterfaceI.java",
@@ -1529,7 +1529,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject("P");
 		}
 	}
-	public void testBug375971i() throws CoreException {
+	public void testBug375971i() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createJavaProject("P");
 			createFile("/P/InterfaceI.java",
@@ -1559,7 +1559,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 		}
 	}
 	// search for constructor declarations in javadoc
-	public void testBug381567a() throws CoreException {
+	public void testBug381567a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject p = createJavaProject("P", new String[] { "src" },
 					new String[] {"JCL18_LIB"}, "bin");
@@ -1590,7 +1590,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 		}
 	}
 	// search for all constructor occurrences (declarations and references) in javadoc
-	public void testBug381567b() throws CoreException {
+	public void testBug381567b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject p = createJavaProject("P", new String[] { "src" },
 					new String[] {"JCL18_LIB"}, "bin");
@@ -1625,7 +1625,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=382778, Call hierarchy missing valid callers probably because java search marks exact matches as potential
-	public void testBug382778() throws CoreException {
+	public void testBug382778() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject p = createJavaProject("P", new String[] { "src" },
 					new String[] {"JCL18_LIB"}, "bin");
@@ -1731,7 +1731,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject("P");
 		}
 	}
-	public void testBug383315b() throws CoreException {
+	public void testBug383315b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject p = createJavaProject("P");
 			createFolder("/P/pkg");
@@ -1771,7 +1771,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject("P");
 		}
 	}
-	public void testBug395348() throws CoreException {
+	public void testBug395348() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("P", new String[] {""}, new String[] {"JCL18_LIB"}, "", CompilerOptions.getFirstSupportedJavaVersion());
 			createFile("/P/X.java",
@@ -1800,7 +1800,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 		}
 	}
 
-	public void testBug401272() throws CoreException, IOException {
+	public void testBug401272() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		boolean indexState = isIndexDisabledForTest();
 		// the strategy of this test was outlined in https://bugs.eclipse.org/bugs/show_bug.cgi?id=401272#c16
 		try {
@@ -1838,9 +1838,9 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			// 400 matches, which populate MatchLocator.unitScope
 			// all 400 matches are processed in one go of MatchLocator.locateMatches(JavaProject, PossibleMatch[], int, int)
 			// next round will call nameEnvironment.cleanup() but reuse MatchLocator.unitScope ==> BOOM
-			for (int i = 0; i < 400; i++) {
-				createFile("/P/src/pkg/Bug"+i+".java",
-						"package pkg;\n"+
+			for (int i = 0; i < 400; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				createFile("/P/src/pkg/Bug"+i+".java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+						"package pkg;\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"public class Bug"+i+" {\n"+
 						"	String[] test(p2.B<String> b) {\n" +
 						"		return b.test(\"S\");\n" +
@@ -1864,7 +1864,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 	 * bug423409: [search] Search shows references to fields as potential matches
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=423409"
 	 */
-	public void testBug423409() throws CoreException, JavaModelException {
+	public void testBug423409() throws CoreException, JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createJavaProject("P", new String[] { "src" },
 					new String[] {"JCL18_LIB"}, "bin");
@@ -1909,7 +1909,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject("P");
 		}
 	}
-	public void testBug381392() throws CoreException {
+	public void testBug381392() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject egit = null;
 		IJavaProject jgit = null;
 		try	{
@@ -1964,7 +1964,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			if (egit != null) deleteProject(egit);
 		}
 	}
-	public void testBug469965_0001() throws Exception {
+	public void testBug469965_0001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 
 			IJavaProject project = createJavaProject("P", new String[] {"src"}, new String[] { "/P/lib469965.jar", "JCL18_LIB" }, "bin", "1.8");
@@ -2013,7 +2013,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject("P");
 		}
 	}
-	public void testBug469965_0002() throws CoreException {
+	public void testBug469965_0002() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 
 			IJavaProject project = createJavaProject("P", new String[] {"src"}, new String[] { "/P/lib469965.jar", "JCL18_LIB" }, "bin", "1.8");
@@ -2073,7 +2073,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 		}
 	}
 
-	public void testBug473921() throws Exception {
+	public void testBug473921() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject p = this.createJavaProject(
 				"P",
@@ -2106,7 +2106,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 
 			IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaElement[] { p });
 			class Collector extends TypeNameMatchRequestor {
-				List<TypeNameMatch> matches = new ArrayList<>();
+				List<TypeNameMatch> matches = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				@Override
 				public void acceptTypeNameMatch(TypeNameMatch match) {
 					this.matches.add(match);
@@ -2141,7 +2141,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject("P");
 		}
 	}
-	public void testBug478042_0001() throws Exception {
+	public void testBug478042_0001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -2174,7 +2174,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject(project);
 		}
 	}
-	public void testBug478042_0002() throws Exception {
+	public void testBug478042_0002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -2207,7 +2207,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject(project);
 		}
 	}
-	public void testBug478042_0003() throws Exception {
+	public void testBug478042_0003() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try {
 			project = createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
@@ -2226,7 +2226,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 				"  public Integer fooInt() {return null;}\n" +
 				"    }");
 			class Collector extends MethodNameMatchRequestor {
-				List<MethodNameMatch> matches = new ArrayList<>();
+				List<MethodNameMatch> matches = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				@Override
 				public void acceptMethodNameMatch(MethodNameMatch match) {
 					this.matches.add(match);
@@ -2245,7 +2245,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject("P");
 		}
 	}
-	public void testBug478042_0004() throws Exception {
+	public void testBug478042_0004() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -2280,7 +2280,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject(project);
 		}
 	}
-	public void testBug478042_005() throws Exception {
+	public void testBug478042_005() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject p = createJavaProject("P", new String[] {}, new String[] { "/P/lib478042.jar", "JCL18_LIB" }, "", CompilerOptions.getFirstSupportedJavaVersion());
 			createJar(new String[] {
@@ -2317,7 +2317,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject("P");
 		}
 	}
-	public void testBug478042_006() throws Exception {
+	public void testBug478042_006() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject p = createJavaProject("P", new String[] {}, new String[] { "/P/lib478042.jar", "JCL18_LIB" }, "", CompilerOptions.getFirstSupportedJavaVersion());
 			createJar(new String[] {
@@ -2350,7 +2350,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject("P");
 		}
 	}
-	public void testBug478042_007() throws Exception {
+	public void testBug478042_007() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject p = createJavaProject("P", new String[] {}, new String[] { "/P/lib478042.jar", "JCL18_LIB" }, "", CompilerOptions.getFirstSupportedJavaVersion());
 			createJar(new String[] {
@@ -2385,7 +2385,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject("P");
 		}
 	}
-	public void testBug478042_008() throws Exception {
+	public void testBug478042_008() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -2418,7 +2418,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject(project);
 		}
 	}
-	public void testBug483303_001() throws Exception {
+	public void testBug483303_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try {
 			project = createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
@@ -2437,7 +2437,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 				"  public Integer fooInt() {return null;}\n" +
 				"    }");
 			class Collector extends MethodNameMatchRequestor {
-				List<MethodNameMatch> matches = new ArrayList<>();
+				List<MethodNameMatch> matches = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				@Override
 				public void acceptMethodNameMatch(MethodNameMatch match) {
 					this.matches.add(match);
@@ -2458,7 +2458,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject("P");
 		}
 	}
-	public void testBug483650_0001() throws Exception {
+	public void testBug483650_0001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -2496,7 +2496,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject(project);
 		}
 	}
-	public void testBug483650_0002() throws Exception {
+	public void testBug483650_0002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -2534,7 +2534,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject(project);
 		}
 	}
-	public void testBug483650_0003() throws Exception {
+	public void testBug483650_0003() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try {
 			project = createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
@@ -2553,7 +2553,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 				"  public Integer fooInt() {return null;}\n" +
 				"    }");
 			class Collector extends MethodNameMatchRequestor {
-				List<MethodNameMatch> matches = new ArrayList<>();
+				List<MethodNameMatch> matches = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				@Override
 				public void acceptMethodNameMatch(MethodNameMatch match) {
 					this.matches.add(match);
@@ -2570,7 +2570,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject("P");
 		}
 	}
-	public void testBug483650_0004() throws Exception {
+	public void testBug483650_0004() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -2610,7 +2610,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject(project);
 		}
 	}
-	public void testBug483650_005() throws Exception {
+	public void testBug483650_005() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject p = createJavaProject("P", new String[] {}, new String[] { "/P/lib478042.jar", "JCL18_LIB" }, "", CompilerOptions.getFirstSupportedJavaVersion());
 			createJar(new String[] {
@@ -2652,7 +2652,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject("P");
 		}
 	}
-	public void testBug483650_006() throws Exception {
+	public void testBug483650_006() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject p = createJavaProject("P", new String[] {}, new String[] { "/P/lib478042.jar", "JCL18_LIB" }, "", CompilerOptions.getFirstSupportedJavaVersion());
 			createJar(new String[] {
@@ -2690,7 +2690,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject("P");
 		}
 	}
-	public void testBug483650_007() throws Exception {
+	public void testBug483650_007() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject p = createJavaProject("P", new String[] {}, new String[] { "/P/lib478042.jar", "JCL18_LIB" }, "", CompilerOptions.getFirstSupportedJavaVersion());
 			createJar(new String[] {
@@ -2730,7 +2730,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject("P");
 		}
 	}
-	public void testBug483650_008() throws Exception {
+	public void testBug483650_008() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -2763,7 +2763,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject(project);
 		}
 	}
-	public void testBug483650_009() throws Exception {
+	public void testBug483650_009() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try {
 			project = createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
@@ -2782,7 +2782,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 				"  public Integer fooInt() {return null;}\n" +
 				"    }");
 			class Collector extends MethodNameMatchRequestor {
-				List<MethodNameMatch> matches = new ArrayList<>();
+				List<MethodNameMatch> matches = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				@Override
 				public void acceptMethodNameMatch(MethodNameMatch match) {
 					this.matches.add(match);
@@ -2801,7 +2801,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject("P");
 		}
 	}
-	public void testBug489404() throws CoreException, IOException {
+	public void testBug489404() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject p = createJavaProject("P", new String[] { "src" }, new String[] { "/P/p1p2.jar", "JCL18_LIB" }, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 			org.eclipse.jdt.core.tests.util.Util.createJar(new String[] {
@@ -2861,7 +2861,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject("P");
 		}
 	}
-	public void testBug491656_001() throws CoreException, IOException {
+	public void testBug491656_001() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject p = createJavaProject("P", new String[] { "src" }, new String[] { "JCL18_LIB", "/P/lib491656_001.jar" }, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 			String libsource = "package p2;\n" +
@@ -2931,12 +2931,12 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 	 * Test that a diamond in a type name doesn't result in an AIOOBE during a search.
 	 * See: https://github.com/eclipse-jdt/eclipse.jdt.core/issues/825
 	 */
-	public void testOutOfBoundsIndexExceptionDuringSearchGh825() throws Exception {
+	public void testOutOfBoundsIndexExceptionDuringSearchGh825() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String projectName = "testGh825";
 		try {
 			IJavaProject project = createJavaProject(projectName, new String[] {"src"}, new String[] {"JCL11_LIB"}, "bin", "11");
-			String srcFolder = "/" + projectName + "/src/";
-			String packageFolder = srcFolder + "test";
+			String srcFolder = "/" + projectName + "/src/"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			String packageFolder = srcFolder + "test"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			createFolder(packageFolder);
 			String snippet = String.join(System.lineSeparator(), new String[] {
 					"package test;",
@@ -2950,19 +2950,19 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 					"    static void shouldFail() {}",
 					"}",
 			});
-			createFile(packageFolder + "/Test.java", snippet);
+			createFile(packageFolder + "/Test.java", snippet); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 			String module = "module tester {}";
-			createFile(srcFolder + "/module-info.java", module);
+			createFile(srcFolder + "/module-info.java", module); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-			String testFolder = "/" + projectName + "/test";
+			String testFolder = "/" + projectName + "/test"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			createFolder(testFolder);
 			IClasspathAttribute[] testAttrs = { JavaCore.newClasspathAttribute(IClasspathAttribute.TEST, Boolean.toString(true)) };
 			addClasspathEntry(project, JavaCore.newSourceEntry(
 					new Path(testFolder),
 					null,
 					null,
-					new Path("/" + projectName + "/bin-test"),
+					new Path("/" + projectName + "/bin-test"), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					testAttrs));
 
 			addLibrary(project,
@@ -2985,7 +2985,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			deleteProject(projectName);
 		}
 	}
-	public void testCallHierarchyAnonymousInnerTypeGh856() throws CoreException, IOException {
+	public void testCallHierarchyAnonymousInnerTypeGh856() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject p = createJavaProject("P", new String[] { "src" }, new String[] { "JCL11_LIB" }, "bin", "11");
 			createFolder("/P/src/test");
@@ -3020,7 +3020,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 			IType type = p.findType("test.X");
 			IMethod testMethod = type.getMethod("testMethod", new String[0]);
 			IJavaElement[] children = testMethod.getChildren();
-			assertEquals("Expected to find 1 anonymous type in method, instead found children " + Arrays.toString(children),
+			assertEquals("Expected to find 1 anonymous type in method, instead found children " + Arrays.toString(children), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					1, children.length);
 			IType anonymousType = (IType) children[0];
 			IMethod method = anonymousType.getMethod("doit", new String[0]);
@@ -3039,12 +3039,12 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 	 * doesn't result in no search matches.
 	 * See: https://github.com/eclipse-jdt/eclipse.jdt.core/issues/401
 	 */
-	public void testInnerConstructorWithOuterTypeArgumentGh401() throws Exception {
+	public void testInnerConstructorWithOuterTypeArgumentGh401() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String projectName = "testGh401";
 		try {
 			IJavaProject project = createJavaProject(projectName, new String[] {"src"}, new String[] {"JCL11_LIB"}, "bin", "11");
-			String srcFolder = "/" + projectName + "/src/";
-			String packageFolder = srcFolder + "test1";
+			String srcFolder = "/" + projectName + "/src/"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			String packageFolder = srcFolder + "test1"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			createFolder(packageFolder);
 			String snippet1 =
 					"""
@@ -3064,7 +3064,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 						}
 					}
 					""";
-			createFile(packageFolder + "/Outer1.java", snippet1);
+			createFile(packageFolder + "/Outer1.java", snippet1); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 			addLibrary(project,
 					"libGh401.jar",
@@ -3105,7 +3105,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 
 			};
 
-			for (int i = 0; i < typesAndExpcetedMatches.length; i += 2) {
+			for (int i = 0; i < typesAndExpcetedMatches.length; i += 2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String type =          typesAndExpcetedMatches[i + 0];
 				String expectedMatch = typesAndExpcetedMatches[i + 1];
 				IType staticInnerType = project.findType(type);
@@ -3126,11 +3126,11 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 	 * No call hierarchy is found for the overridden method, when searching from within the nested class.
 	 * See: https://github.com/eclipse-jdt/eclipse.jdt.core/issues/821
 	 */
-	public void testCallHierarchyWithNestedInterfacesGh821() throws Exception {
+	public void testCallHierarchyWithNestedInterfacesGh821() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String projectName = "TestCallHierarchyWithNestedInterfacesGh821";
 		try {
 			IJavaProject project = createJavaProject(projectName, new String[] { "src" }, new String[] { "JCL18_LIB" }, "bin", CompilerOptions.getFirstSupportedJavaVersion());
-			String packageFolder = "/" + projectName + "/src/test";
+			String packageFolder = "/" + projectName + "/src/test"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			createFolder(packageFolder);
 			String snippet1 =
 					"""
@@ -3145,7 +3145,7 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 						}
 					}
 					""";
-			createFile(packageFolder + "/TestNestedPrivateClass.java", snippet1);
+			createFile(packageFolder + "/TestNestedPrivateClass.java", snippet1); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String snippet2 =
 					"""
 					package test;
@@ -3157,11 +3157,11 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 						}
 					}
 					""";
-			createFile(packageFolder + "/TestReferencingClass.java", snippet2);
+			createFile(packageFolder + "/TestReferencingClass.java", snippet2); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			buildAndExpectNoProblems(project);
 			IType type = project.findType("test.TestNestedPrivateClass.NC");
 			IMethod[] methods = type.getMethods();
-			assertEquals("Expected one method in: " + Arrays.asList(methods), 1, methods.length);
+			assertEquals("Expected one method in: " + Arrays.asList(methods), 1, methods.length); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			search(methods[0], REFERENCES, EXACT_RULE, SearchEngine.createWorkspaceScope(), this.resultCollector);
 			assertSearchResults(
 					"src/test/TestReferencingClass.java void test.TestReferencingClass.bar() [foo(nestedMember)] EXACT_MATCH");
@@ -3171,9 +3171,9 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 	}
 
 	private static void printJavaElements(IJavaProject javaProject, PrintStream output) throws Exception {
-		output.println("Printing Java elements of Java project: " + javaProject);
+		output.println("Printing Java elements of Java project: " + javaProject); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		List<IJavaElement> queue = new LinkedList<>();
-		while (!queue.isEmpty()) {
+		while (!queue.isEmpty()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IJavaElement element = queue.remove(queue.size() - 1);
 			output.println(element);
 			output.print(element);
@@ -3184,15 +3184,15 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 		}
 	}
 
-	private static void printZipContents(File jarFile, PrintStream output) throws Exception {
+	private static void printZipContents(File jarFile, PrintStream output) throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (jarFile.exists()) {
-			output.println("Listing contents of jar file: " + jarFile);
-			try (ZipFile zipFile = new ZipFile(jarFile)) {
+			output.println("Listing contents of jar file: " + jarFile); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			try (ZipFile zipFile = new ZipFile(jarFile)) { //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM NEW
 				Enumeration<? extends ZipEntry> entries = zipFile.entries();
-				while (entries.hasMoreElements()) {
+				while (entries.hasMoreElements()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					ZipEntry zipEntry = entries.nextElement();
 					String zipEntryName = zipEntry.getName();
-					output.println("Listing contents of zip entry: " + zipEntryName);
+					output.println("Listing contents of zip entry: " + zipEntryName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					InputStream zipEntryInputStream = zipFile.getInputStream(zipEntry);
 					if (zipEntryName.endsWith(".class")) {
 						byte[] classFileBytes = toByteArray(zipEntryInputStream);
@@ -3202,14 +3202,14 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 					} else {
 						@SuppressWarnings("resource") // the zip file resource-try will close the stream
 						Scanner scanner = new Scanner(zipEntryInputStream);
-						while (scanner.hasNextLine()) {
+						while (scanner.hasNextLine()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							output.println(scanner.nextLine());
 						}
 					}
 				}
 			}
 		} else {
-			output.println("File does not exist: " + jarFile);
+			output.println("File does not exist: " + jarFile); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -3218,34 +3218,34 @@ public class JavaSearchBugsTests2 extends AbstractJavaSearchTests {
 		byte[] data = new byte[8192];
 
 		int nRead;
-		while ((nRead = inputStream.read(data, 0, data.length)) != -1) {
+		while ((nRead = inputStream.read(data, 0, data.length)) != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			buffer.write(data, 0, nRead);
 		}
 
 		return buffer.toByteArray();
 	}
 
-	private void assertUTF8Encoding() {
+	private void assertUTF8Encoding() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String fileEncodingVMProperty = System.getProperty("file.encoding");
 		Charset defaultCharset = Charset.defaultCharset();
 		String langEnvVariable = System.getenv("LANG");
-		StringBuilder errorMessage = new StringBuilder();
-		errorMessage.append(System.lineSeparator());
-		errorMessage.append("Unexpected encoding during test, encoding parameters are:");
-		errorMessage.append(System.lineSeparator());
-		errorMessage.append("-Dfile.encoding=" + fileEncodingVMProperty);
-		errorMessage.append(System.lineSeparator());
-		errorMessage.append("Charset.defaultCharset()=" + defaultCharset);
-		errorMessage.append(System.lineSeparator());
-		errorMessage.append("LANG=" + langEnvVariable);
+		StringBuilder errorMessage = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		errorMessage.append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		errorMessage.append("Unexpected encoding during test, encoding parameters are:"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		errorMessage.append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		errorMessage.append("-Dfile.encoding=" + fileEncodingVMProperty); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		errorMessage.append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		errorMessage.append("Charset.defaultCharset()=" + defaultCharset); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		errorMessage.append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		errorMessage.append("LANG=" + langEnvVariable); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
-		assertEquals("unexpected default charset " + errorMessage, StandardCharsets.UTF_8, defaultCharset);
+		assertEquals("unexpected default charset " + errorMessage, StandardCharsets.UTF_8, defaultCharset); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (Constants.OS_LINUX.equals(System.getProperty("osgi.os"))) {
-			assertNotNull("expected LANG environment variable to be set" + errorMessage, langEnvVariable);
+			assertNotNull("expected LANG environment variable to be set" + errorMessage, langEnvVariable); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String utf8LANGRegexp = ".*\\.(UTF-8|UTF8|utf-8|utf8)";
 			Pattern utf8LANGPattern = Pattern.compile(utf8LANGRegexp);
-			Matcher LANGMatcher = utf8LANGPattern.matcher(langEnvVariable);
-			assertTrue("expected encoding set with LANG environment variable to match regexp: " + utf8LANGRegexp + ", LANG=" + langEnvVariable + errorMessage,
+			Matcher LANGMatcher = utf8LANGPattern.matcher(langEnvVariable); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+			assertTrue("expected encoding set with LANG environment variable to match regexp: " + utf8LANGRegexp + ", LANG=" + langEnvVariable + errorMessage, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					LANGMatcher.matches());
 		}
 	}

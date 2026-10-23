@@ -39,20 +39,20 @@ public class LambdaFactory {
 		}
 	}
 
-	public static LambdaMethod createLambdaMethod(JavaElement parent, org.eclipse.jdt.internal.compiler.ast.LambdaExpression lambdaExpression) {
+	public static LambdaMethod createLambdaMethod(JavaElement parent, org.eclipse.jdt.internal.compiler.ast.LambdaExpression lambdaExpression) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int length;
 		String [] parameterTypes = new String[length = lambdaExpression.descriptor.parameters.length];
-		for (int i = 0; i < length; i++)
+		for (int i = 0; i < length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			parameterTypes[i] = getTypeSignature(lambdaExpression.descriptor.parameters[i]);
 		String [] parameterNames = new String[length];
-		for (int i = 0; i < length; i++)
+		for (int i = 0; i < length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			parameterNames[i] = DeduplicationUtil.toString(lambdaExpression.arguments[i].name);
 		String returnType = getTypeSignature(lambdaExpression.descriptor.returnType);
 		String selector = DeduplicationUtil.toString(lambdaExpression.descriptor.selector);
 		String key = DeduplicationUtil.toString(lambdaExpression.descriptor.computeUniqueKey());
 		LambdaMethod lambdaMethod = createLambdaMethod(parent, selector, key, lambdaExpression.sourceStart, lambdaExpression.sourceEnd, lambdaExpression.arrowPosition, parameterTypes, parameterNames, returnType);
 		ILocalVariable [] parameters = new ILocalVariable[length = lambdaExpression.arguments.length];
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Argument argument = lambdaExpression.arguments[i];
 			String signature = DeduplicationUtil.toString(lambdaExpression.descriptor.parameters[i].signature());
 			parameters[i] = new LocalVariable(
@@ -71,7 +71,7 @@ public class LambdaFactory {
 		return lambdaMethod;
 	}
 
-	public static LambdaMethod createLambdaMethod(JavaElement parent, String selector, String key, int sourceStart, int sourceEnd, int arrowPosition, String [] parameterTypes, String [] parameterNames, String returnType) {
+	public static LambdaMethod createLambdaMethod(JavaElement parent, String selector, String key, int sourceStart, int sourceEnd, int arrowPosition, String [] parameterTypes, String [] parameterNames, String returnType) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		SourceMethodInfo info = null;
 		boolean isBinary = (parent instanceof BinaryLambdaExpression);
 		info = new SourceMethodInfo();
@@ -82,7 +82,7 @@ public class LambdaFactory {
 		info.setNameSourceEnd(arrowPosition);
 		int length;
 		char[][] argumentNames = new char[length = parameterNames.length][];
-		for (int i = 0; i < length; i++)
+		for (int i = 0; i < length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			argumentNames[i] = DeduplicationUtil.intern(parameterNames[i].toCharArray());
 		info.setArgumentNames(argumentNames);
 		info.setReturnType(DeduplicationUtil.intern(Signature.toCharArray(returnType.toCharArray())));

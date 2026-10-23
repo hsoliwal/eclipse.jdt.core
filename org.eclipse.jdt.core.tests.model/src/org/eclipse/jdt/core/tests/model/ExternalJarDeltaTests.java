@@ -64,11 +64,11 @@ public void testEmptyScope() throws Exception {
  * Test if a modification is detected without doing a refresh.
  * Currently no modification are detected.
  */
-public void testExternalJar0() throws CoreException, IOException {
+public void testExternalJar0() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File f = null;
 	try {
 		IJavaProject project = this.createJavaProject("P", new String[] {""}, "");
-		String pPath = getExternalPath() + "p.jar";
+		String pPath = getExternalPath() + "p.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		setClasspath(project, new IClasspathEntry[]{JavaCore.newLibraryEntry(new Path(pPath), null, null)});
 
 		f = new File(pPath);
@@ -95,12 +95,12 @@ public void testExternalJar0() throws CoreException, IOException {
 /**
  * Refresh the JavaModel after a modification of an external jar.
  */
-public void testExternalJarChanged1() throws CoreException, IOException {
+public void testExternalJarChanged1() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File f = null;
 	try {
 		IJavaProject project = this.createJavaProject("P", new String[] {""}, "");
 
-		String pPath = getExternalPath() + "p.jar";
+		String pPath = getExternalPath() + "p.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		setClasspath(project, new IClasspathEntry[]{JavaCore.newLibraryEntry(new Path(pPath), null, null)});
 
 		f = new File(pPath);
@@ -114,7 +114,7 @@ public void testExternalJarChanged1() throws CoreException, IOException {
 
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN}\n"+
+			"P[*]: {CHILDREN}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	"+f.toPath().normalize().toAbsolutePath().toString()+"[*]: {CONTENT | ARCHIVE CONTENT CHANGED}"
 		);
 	} finally {
@@ -128,12 +128,12 @@ public void testExternalJarChanged1() throws CoreException, IOException {
 /**
  * Refresh a JavaProject after a modification of an external jar.
  */
-public void testExternalJarChanged2() throws CoreException, IOException {
+public void testExternalJarChanged2() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File f = null;
 	try {
 		IJavaProject project = this.createJavaProject("P", new String[] {""}, "");
 
-		String pPath = getExternalPath() + "p.jar";
+		String pPath = getExternalPath() + "p.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		setClasspath(project, new IClasspathEntry[]{JavaCore.newLibraryEntry(new Path(pPath), null, null)});
 
 		f = new File(pPath);
@@ -147,7 +147,7 @@ public void testExternalJarChanged2() throws CoreException, IOException {
 
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN}\n"+
+			"P[*]: {CHILDREN}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	"+f.toPath().normalize().toAbsolutePath().toString()+"[*]: {CONTENT | ARCHIVE CONTENT CHANGED}"
 		);
 	} finally {
@@ -161,12 +161,12 @@ public void testExternalJarChanged2() throws CoreException, IOException {
 /**
  * Refresh an external jar after a modification of this jar.
  */
-public void testExternalJarChanged3() throws CoreException, IOException {
+public void testExternalJarChanged3() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File f = null;
 	try {
 		IJavaProject project = this.createJavaProject("P", new String[] {""}, "");
 
-		String pPath = getExternalPath() + "p.jar";
+		String pPath = getExternalPath() + "p.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		setClasspath(project, new IClasspathEntry[]{JavaCore.newLibraryEntry(new Path(pPath), null, null)});
 
 		f = new File(pPath);
@@ -181,7 +181,7 @@ public void testExternalJarChanged3() throws CoreException, IOException {
 
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN}\n"+
+			"P[*]: {CHILDREN}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	"+f.toPath().normalize().toAbsolutePath().toString()+"[*]: {CONTENT | ARCHIVE CONTENT CHANGED}"
 		);
 	} finally {
@@ -196,12 +196,12 @@ public void testExternalJarChanged3() throws CoreException, IOException {
  * Refresh the JavaModel after a modification of an external jar after shutdown.
  * (regression test for bug 39856 External jar's timestamps should be persisted accross sessions)
  */
-public void testExternalJarChanged4() throws CoreException, IOException {
+public void testExternalJarChanged4() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File f = null;
 	try {
 		IJavaProject project = this.createJavaProject("P", new String[] {""}, "");
 
-		String pPath = getExternalPath() + "p.jar";
+		String pPath = getExternalPath() + "p.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		setClasspath(project, new IClasspathEntry[]{JavaCore.newLibraryEntry(new Path(pPath), null, null)});
 
 		f = new File(pPath);
@@ -222,7 +222,7 @@ public void testExternalJarChanged4() throws CoreException, IOException {
 
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN}\n"+
+			"P[*]: {CHILDREN}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	"+f.toPath().normalize().toAbsolutePath().toString()+"[*]: {CONTENT | ARCHIVE CONTENT CHANGED}"
 		);
 	} finally {
@@ -237,13 +237,13 @@ public void testExternalJarChanged4() throws CoreException, IOException {
  * Ensure that the external jars are refreshed by a call to JavaCore#initializeAfterLoad()
  * (regression test for bug 93668 Search indexes not rebuild)
  */
-public void testExternalJarChanged5() throws CoreException, IOException {
+public void testExternalJarChanged5() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	System.out.println("testExternalJarChanged5");
 	File f = null;
 	try {
 		IJavaProject project = this.createJavaProject("P", new String[] {""}, "");
 
-		String pPath = getExternalPath() + "p.jar";
+		String pPath = getExternalPath() + "p.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		setClasspath(project, new IClasspathEntry[]{JavaCore.newLibraryEntry(new Path(pPath), null, null)});
 
 		f = new File(pPath);
@@ -264,7 +264,7 @@ public void testExternalJarChanged5() throws CoreException, IOException {
 
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN}\n"+
+			"P[*]: {CHILDREN}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	"+f.toPath().normalize().toAbsolutePath().toString()+"[*]: {CONTENT | ARCHIVE CONTENT CHANGED}"
 		);
 	} finally {
@@ -279,12 +279,12 @@ public void testExternalJarChanged5() throws CoreException, IOException {
  * Ensures that the correct delta is reported after a setRawClasspath and after a modification of an external jar.
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=212769 )
  */
-public void testExternalJarChanged6() throws CoreException, IOException {
+public void testExternalJarChanged6() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File f = null;
 	try {
 		IJavaProject project = this.createJavaProject("P", new String[] {""}, "");
 
-		String pPath = getExternalPath() + "p.jar";
+		String pPath = getExternalPath() + "p.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		setClasspath(project, new IClasspathEntry[]{JavaCore.newLibraryEntry(new Path(pPath), null, null)});
 
 		f = new File(pPath);
@@ -298,7 +298,7 @@ public void testExternalJarChanged6() throws CoreException, IOException {
 
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n" +
+			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	<project root>[*]: {ADDED TO CLASSPATH}\n" +
 			"	"+f.toPath().normalize().toAbsolutePath().toString()+"[*]: {CONTENT | ARCHIVE CONTENT CHANGED}\n" +
 			"	ResourceDelta(/P/.classpath)[*]"
@@ -314,12 +314,12 @@ public void testExternalJarChanged6() throws CoreException, IOException {
 /**
  * Refresh the JavaModel after an addition of an external jar.
  */
-public void testExternalJarAdded1() throws CoreException, IOException {
+public void testExternalJarAdded1() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File f = null;
 	try {
 		IJavaProject project = this.createJavaProject("P", new String[] {""}, "");
 
-		String pPath = getExternalPath() + "pAdded1.jar";
+		String pPath = getExternalPath() + "pAdded1.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		setClasspath(project, new IClasspathEntry[]{JavaCore.newLibraryEntry(new Path(pPath), null, null)});
 
 		getJavaModel().refreshExternalArchives(null,null);
@@ -332,7 +332,7 @@ public void testExternalJarAdded1() throws CoreException, IOException {
 
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN}\n"+
+			"P[*]: {CHILDREN}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	"+f.toPath().normalize().toAbsolutePath().toString()+"[+]: {}"
 		);
 	} finally {
@@ -346,12 +346,12 @@ public void testExternalJarAdded1() throws CoreException, IOException {
 /**
  * Refresh a JavaProject after an addition of an external jar.
  */
-public void testExternalJarAdded2() throws CoreException, IOException {
+public void testExternalJarAdded2() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File f = null;
 	try {
 		IJavaProject project = this.createJavaProject("P", new String[] {""}, "");
 
-		String pPath = getExternalPath() + "pAdded2.jar";
+		String pPath = getExternalPath() + "pAdded2.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		setClasspath(project, new IClasspathEntry[]{JavaCore.newLibraryEntry(new Path(pPath), null, null)});
 
 		getJavaModel().refreshExternalArchives(null,null);
@@ -364,7 +364,7 @@ public void testExternalJarAdded2() throws CoreException, IOException {
 
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN}\n"+
+			"P[*]: {CHILDREN}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	"+f.toPath().normalize().toAbsolutePath().toString()+"[+]: {}"
 		);
 	} finally {
@@ -378,12 +378,12 @@ public void testExternalJarAdded2() throws CoreException, IOException {
 /**
  * Refresh an external jar after an addition of this jar.
  */
-public void testExternalJarAdded3() throws CoreException, IOException {
+public void testExternalJarAdded3() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File f = null;
 	try {
 		IJavaProject project = this.createJavaProject("P", new String[] {""}, "");
 
-		String pPath = getExternalPath() + "pAdded3.jar";
+		String pPath = getExternalPath() + "pAdded3.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		setClasspath(project, new IClasspathEntry[]{JavaCore.newLibraryEntry(new Path(pPath), null, null)});
 
 		getJavaModel().refreshExternalArchives(null,null);
@@ -397,7 +397,7 @@ public void testExternalJarAdded3() throws CoreException, IOException {
 
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN}\n"+
+			"P[*]: {CHILDREN}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	"+f.toPath().normalize().toAbsolutePath().toString()+"[+]: {}"
 		);
 	} finally {
@@ -411,12 +411,12 @@ public void testExternalJarAdded3() throws CoreException, IOException {
 /**
  * Refresh the JavaModel after a removal of an external jar.
  */
-public void testExternalJarRemoved1() throws CoreException, IOException {
+public void testExternalJarRemoved1() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File f = null;
 	try {
 		IJavaProject project = this.createJavaProject("P", new String[] {""}, "");
 
-		String pPath = getExternalPath() + "p.jar";
+		String pPath = getExternalPath() + "p.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		setClasspath(project, new IClasspathEntry[]{JavaCore.newLibraryEntry(new Path(pPath), null, null)});
 
 		f = new File(pPath);
@@ -430,7 +430,7 @@ public void testExternalJarRemoved1() throws CoreException, IOException {
 
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN}\n"+
+			"P[*]: {CHILDREN}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	"+f.toPath().normalize().toAbsolutePath().toString()+"[-]: {}"
 		);
 	} finally {
@@ -444,12 +444,12 @@ public void testExternalJarRemoved1() throws CoreException, IOException {
 /**
  * Refresh a JavaProject after a removal of an external jar.
  */
-public void testExternalJarRemoved2() throws CoreException, IOException {
+public void testExternalJarRemoved2() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File f = null;
 	try {
 		IJavaProject project = this.createJavaProject("P", new String[] {""}, "");
 
-		String pPath = getExternalPath() + "p.jar";
+		String pPath = getExternalPath() + "p.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		setClasspath(project, new IClasspathEntry[]{JavaCore.newLibraryEntry(new Path(pPath), null, null)});
 
 		f = new File(pPath);
@@ -463,7 +463,7 @@ public void testExternalJarRemoved2() throws CoreException, IOException {
 
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN}\n"+
+			"P[*]: {CHILDREN}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	"+f.toPath().normalize().toAbsolutePath().toString()+"[-]: {}"
 		);
 	} finally {
@@ -477,12 +477,12 @@ public void testExternalJarRemoved2() throws CoreException, IOException {
 /**
  * Refresh an external jar after a removal of this jar.
  */
-public void testExternalJarRemoved3() throws CoreException, IOException {
+public void testExternalJarRemoved3() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File f = null;
 	try {
 		IJavaProject project = this.createJavaProject("P", new String[] {""}, "");
 
-		String pPath = getExternalPath() + "p.jar";
+		String pPath = getExternalPath() + "p.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		setClasspath(project, new IClasspathEntry[]{JavaCore.newLibraryEntry(new Path(pPath), null, null)});
 
 		f = new File(pPath);
@@ -497,7 +497,7 @@ public void testExternalJarRemoved3() throws CoreException, IOException {
 
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN}\n"+
+			"P[*]: {CHILDREN}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	"+f.toPath().normalize().toAbsolutePath().toString()+"[-]: {}"
 		);
 	} finally {
@@ -514,7 +514,7 @@ public void testExternalJarRemoved3() throws CoreException, IOException {
  * - touch the extenal jar
  * - refresh the JavaModel
  */
-public void testExternalJarInternalExternalJar() throws CoreException, IOException {
+public void testExternalJarInternalExternalJar() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File f = null;
 	try {
 		IJavaProject project = this.createJavaProject("P", new String[] {""}, "");
@@ -539,7 +539,7 @@ public void testExternalJarInternalExternalJar() throws CoreException, IOExcepti
 		String externalFooPathString = f.toPath().normalize().toAbsolutePath().toString();
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n"+
+			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	foo.jar[*]: {REMOVED FROM CLASSPATH}\n"+
 			"	"+externalFooPathString+"[+]: {}\n"+
 			"	ResourceDelta(/P/.classpath)[*]\n"+

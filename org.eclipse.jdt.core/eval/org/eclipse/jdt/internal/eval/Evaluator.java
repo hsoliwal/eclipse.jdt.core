@@ -63,11 +63,11 @@ protected abstract void addEvaluationResultForCompilationProblem(Map<char[], Eva
  * If the compilation result has more than one problem, then the problems are broken down so that
  * each evaluation result has the same evaluation id.
  */
-protected EvaluationResult[] evaluationResultsForCompilationProblems(CompilationResult result, char[] cuSource) {
+protected EvaluationResult[] evaluationResultsForCompilationProblems(CompilationResult result, char[] cuSource) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Break down the problems and group them by ids in evaluation results
 	CategorizedProblem[] problems = result.getAllProblems();
-	HashMap<char[], EvaluationResult> resultsByIDs = new HashMap<>(5);
-	for (CategorizedProblem problem : problems) {
+	HashMap<char[], EvaluationResult> resultsByIDs = new HashMap<>(5); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	for (CategorizedProblem problem : problems) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		addEvaluationResultForCompilationProblem(resultsByIDs, problem, cuSource);
 	}
 
@@ -75,7 +75,7 @@ protected EvaluationResult[] evaluationResultsForCompilationProblems(Compilation
 	int size = resultsByIDs.size();
 	EvaluationResult[] evalResults = new EvaluationResult[size];
 	Iterator<EvaluationResult> results = resultsByIDs.values().iterator();
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		evalResults[i] = results.next();
 	}
 
@@ -85,20 +85,20 @@ protected EvaluationResult[] evaluationResultsForCompilationProblems(Compilation
  * Compiles and returns the class definitions for the current compilation unit.
  * Returns null if there are any errors.
  */
-ClassFile[] getClasses() {
+ClassFile[] getClasses() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final char[] source = getSource();
-	final ArrayList<ClassFile> classDefinitions = new ArrayList<>();
+	final ArrayList<ClassFile> classDefinitions = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 	// The requestor collects the class definitions and problems
 	class CompilerRequestor implements ICompilerRequestor {
 		boolean hasErrors = false;
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public void acceptResult(CompilationResult result) {
 			if (result.hasProblems()) {
 				EvaluationResult[] evalResults = evaluationResultsForCompilationProblems(result, source);
-				for (EvaluationResult evalResult : evalResults) {
+				for (EvaluationResult evalResult : evalResults) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					CategorizedProblem[] problems = evalResult.getProblems();
-					for (CategorizedProblem problem : problems) {
+					for (CategorizedProblem problem : problems) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						Evaluator.this.requestor.acceptProblem(problem, evalResult.getEvaluationID(), evalResult.getEvaluationType());
 					}
 				}
@@ -107,7 +107,7 @@ ClassFile[] getClasses() {
 				this.hasErrors = true;
 			} else {
 				ClassFile[] classFiles = result.getClassFiles();
-				for (ClassFile classFile : classFiles) {
+				for (ClassFile classFile : classFiles) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					/*
 
 					char[] filename = classFile.fileName();

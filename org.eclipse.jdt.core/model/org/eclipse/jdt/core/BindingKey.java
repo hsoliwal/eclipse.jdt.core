@@ -56,10 +56,10 @@ public final class BindingKey {
 	 */
 	public static String createArrayTypeBindingKey(String typeKey, int arrayDimension) {
 		// Note this implementation is heavily dependent on ArrayTypeBinding#computeUniqueKey()
-		StringBuilder buffer = new StringBuilder();
-		while (arrayDimension-- > 0)
-			buffer.append('[');
-		buffer.append(typeKey);
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		while (arrayDimension-- > 0) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append('['); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(typeKey); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return buffer.toString();
 	}
 
@@ -86,10 +86,10 @@ public final class BindingKey {
 	 */
 	public static String createParameterizedTypeBindingKey(String genericTypeKey, String[] argumentTypeKeys) {
 		// Note this implementation is heavily dependent on ParameterizedTypeBinding#computeUniqueKey() and its subclasses
-		StringBuilder buffer = new StringBuilder();
-		buffer.append(Signature.getTypeErasure(genericTypeKey));
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append(Signature.getTypeErasure(genericTypeKey)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		buffer.insert(buffer.length()-1, '<');
-		for (String argumentTypeKey : argumentTypeKeys) {
+		for (String argumentTypeKey : argumentTypeKeys) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			buffer.insert(buffer.length()-1, argumentTypeKey);
 		}
 		buffer.insert(buffer.length()-1, '>');
@@ -139,12 +139,12 @@ public final class BindingKey {
 	 */
 	public static String createTypeVariableBindingKey(String typeVariableName, String declaringKey) {
 		// Note this implementation is heavily dependent on TypeVariableBinding#computeUniqueKey()
-		StringBuilder buffer = new StringBuilder();
-		buffer.append(declaringKey);
-		buffer.append(':');
-		buffer.append('T');
-		buffer.append(typeVariableName);
-		buffer.append(';');
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append(declaringKey); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(':'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append('T'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(typeVariableName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return buffer.toString();
 	}
 
@@ -177,9 +177,9 @@ public final class BindingKey {
 			case Signature.C_STAR:
 				return "*"; //$NON-NLS-1$
 			case Signature.C_SUPER:
-				return '-' + typeKey;
+				return '-' + typeKey; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			case Signature.C_EXTENDS:
-				return '+' + typeKey;
+				return '+' + typeKey; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return null;
 	}
@@ -208,7 +208,7 @@ public final class BindingKey {
 	 * @since 3.5
 	 */
 
-	public static String createWildcardTypeBindingKey(String genericTypeKey, char boundKind, String boundTypeKey, int rank) {
+	public static String createWildcardTypeBindingKey(String genericTypeKey, char boundKind, String boundTypeKey, int rank) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Note this implementation is heavily dependent on WildcardBinding#computeUniqueKey()
 		String wildCardKey;
 		switch (boundKind) {
@@ -216,15 +216,15 @@ public final class BindingKey {
 				wildCardKey = new String(TypeConstants.WILDCARD_STAR);
 				break;
 			case Signature.C_SUPER:
-				wildCardKey = new String(TypeConstants.WILDCARD_MINUS) + boundTypeKey;
+				wildCardKey = new String(TypeConstants.WILDCARD_MINUS) + boundTypeKey; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				break;
 			case Signature.C_EXTENDS:
-				wildCardKey = new String(TypeConstants.WILDCARD_PLUS) + boundTypeKey;
+				wildCardKey = new String(TypeConstants.WILDCARD_PLUS) + boundTypeKey; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				break;
 			default:
 				return null;
 		}
-		return genericTypeKey + '{' + rank + '}' + wildCardKey;
+		return genericTypeKey + '{' + rank + '}' + wildCardKey; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/**
@@ -238,7 +238,7 @@ public final class BindingKey {
 	 * @return the type binding key or <code>null</code>
 	 * @since 3.7.1
 	 */
-	public BindingKey getDeclaringType() {
+	public BindingKey getDeclaringType() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int end = this.key.lastIndexOf(Signature.C_DOT);
 		if (end == -1) {
 			end = this.key.lastIndexOf(Signature.C_DOLLAR); // for inner types

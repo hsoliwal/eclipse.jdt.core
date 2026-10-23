@@ -76,7 +76,7 @@ public class Bug530366Test extends BuilderTests {
 	 * Changing the name of the class in MyClass2.java inside a Java editor, from MyClass1 back to MyClass2,
 	 * results in a missing .class file for MyClass1$InnerClass.
 	 */
-	public void testBug530366() throws Exception {
+	public void testBug530366() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		defineNestingClass("MyClass1");
 		fullBuild();
 		expectingNoProblems();
@@ -119,7 +119,7 @@ public class Bug530366Test extends BuilderTests {
 		String classContents = String.join("\n"
 				, "package somepackage;"
 				, ""
-				, "public class " + className + " {"
+				, "public class " + className + " {" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				, ""
 				, "    public static class InnerClass {}"
 				, "}"

@@ -42,7 +42,7 @@ public class ImplicitTypeDeclaration extends AbstractTypeDeclaration {
 	private static final List<Object> PROPERTY_DESCRIPTORS_3_0;
 
 	static {
-		List<Object> propertyList = new ArrayList<>(8);
+		List<Object> propertyList = new ArrayList<>(8); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(ImplicitTypeDeclaration.class, propertyList);
 		addProperty(NAME_PROPERTY, propertyList);
 		addProperty(BODY_DECLARATIONS_PROPERTY, propertyList);
@@ -50,7 +50,7 @@ public class ImplicitTypeDeclaration extends AbstractTypeDeclaration {
 		addProperty(MODIFIERS_PROPERTY, propertyList);
 		PROPERTY_DESCRIPTORS_2_0 = reapPropertyList(propertyList);
 
-		propertyList = new ArrayList<>(8);
+		propertyList = new ArrayList<>(8); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(ImplicitTypeDeclaration.class, propertyList);
 		addProperty(NAME_PROPERTY, propertyList);
 		addProperty(BODY_DECLARATIONS_PROPERTY, propertyList);
@@ -127,7 +127,7 @@ public class ImplicitTypeDeclaration extends AbstractTypeDeclaration {
 		return BODY_DECLARATIONS_PROPERTY;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final ASTNode internalGetSetChildProperty(ChildPropertyDescriptor property, boolean get, ASTNode child) {
 		if (property == JAVADOC_PROPERTY) {
 			if (get) {

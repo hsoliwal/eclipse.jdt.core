@@ -43,7 +43,7 @@ public class Annotation extends SourceRefElement implements IAnnotation {
 
 	public Annotation(JavaElement parent, String name, String memberValuePairName, int occurrenceCount) {
 		super(parent, occurrenceCount);
-		this.name = name.intern();
+		this.name = name.intern(); //FLLDCIM: MARK — M13 TOKEN_INTERNER CALL
 		this.memberValuePairName = memberValuePairName;
 	}
 	@Override
@@ -93,7 +93,7 @@ public class Annotation extends SourceRefElement implements IAnnotation {
 		IBinaryElementValuePair[] binaryAnnotations = ((IBinaryAnnotation) info).getElementValuePairs();
 		int length = binaryAnnotations.length;
 		IMemberValuePair[] result = new IMemberValuePair[length];
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IBinaryElementValuePair binaryAnnotation = binaryAnnotations[i];
 			MemberValuePair memberValuePair = new MemberValuePair(new String(binaryAnnotation.getName()));
 			memberValuePair.value = Util.getAnnotationMemberValue(this, memberValuePair, binaryAnnotation.getValue());
@@ -145,7 +145,7 @@ public class Annotation extends SourceRefElement implements IAnnotation {
 
 	@Override
 	protected void toStringName(StringBuilder buffer) {
-		buffer.append('@');
-		buffer.append(getElementName());
+		buffer.append('@'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 }

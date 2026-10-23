@@ -32,7 +32,7 @@ public class SelectionParserTest10 extends AbstractSelectionTest {
 		super(testName);
 	}
 
-	public void test001() throws JavaModelException {
+	public void test001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String string =   "public class X {\n"
 						+ "  public static void main(String[] args) {\n"
 						+ "    var s_s = args[0];\n"
@@ -60,7 +60,7 @@ public class SelectionParserTest10 extends AbstractSelectionTest {
 				completionIdentifier, expectedReplacedSource, testName);
 	}
 
-	public void test002() throws JavaModelException {
+	public void test002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String string =   "public class X {\n"
 						+ "  public static void main(String[] args) {\n"
 						+ "    var s_s = args[0];\n"

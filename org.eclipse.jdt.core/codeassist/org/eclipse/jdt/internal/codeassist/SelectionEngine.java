@@ -115,7 +115,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 			this.importReferences = importReferences;
 		}
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public void acceptType(int modifiers, char[] packageName, char[] simpleTypeName, char[][] enclosingTypeNames, String path, AccessRestriction access) {
 			if (enclosingTypeNames != null && enclosingTypeNames.length > 0) return;
 
@@ -123,7 +123,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 
 			char[] fullyQualifiedTypeName = CharOperation.concat(packageName, simpleTypeName, '.');
 
-			for (int i = 0; i < this.importsNodeCacheCount; i++) {
+			for (int i = 0; i < this.importsNodeCacheCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				char[][] importName = this.importsNodeCache[i];
 				if (CharOperation.equals(importName[0], simpleTypeName)) {
 
@@ -134,7 +134,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 				}
 			}
 
-			for (int i = 0; i < this.onDemandImportsNodeCacheCount; i++) {
+			for (int i = 0; i < this.onDemandImportsNodeCacheCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				char[][] importName = this.onDemandImportsNodeCache[i].tokens;
 				char[] importFlatName = CharOperation.concatWith(importName, '.');
 
@@ -152,7 +152,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 
 		public void acceptNotImported() {
 			int size = this.notImportedFound.size();
-			for (int i = 0; i < size; i++) {
+			for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				AcceptedType acceptedType = (AcceptedType)this.notImportedFound.elementAt(i);
 
 				if (this.onDemandFound.get(acceptedType.simpleTypeName) == null) {
@@ -167,10 +167,10 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 			}
 		}
 
-		public void initializeImportNodeCaches() {
+		public void initializeImportNodeCaches() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			int length = this.importReferences == null ? 0 : this.importReferences.length;
 
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ImportReference importReference = this.importReferences[i];
 				if((importReference.bits & ASTNode.OnDemand) != 0) {
 					if(this.onDemandImportsNodeCache == null) {
@@ -241,7 +241,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 	 *  @param settings java.util.Map
 	 *		set of options used to configure the code assist engine.
 	 */
-	public SelectionEngine(
+	public SelectionEngine( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		SearchableEnvironment nameEnvironment,
 		ISelectionRequestor requestor,
 		Map settings,
@@ -314,7 +314,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 		this.lookupEnvironment.unitBeingCompleted = unit;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void acceptType(char[] packageName, char[] simpleTypeName, char[][] enclosingTypeNames, int modifiers, AccessRestriction accessRestriction) {
 		char[] typeName = enclosingTypeNames == null ?
 				simpleTypeName :
@@ -430,10 +430,10 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 		// implementation of interface method
 	}
 
-	private void acceptQualifiedTypes() {
+	private void acceptQualifiedTypes() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if(this.acceptedClasses != null){
 			this.acceptedAnswer = true;
-			for (int i = 0; i < this.acceptedClassesCount; i++) {
+			for (int i = 0; i < this.acceptedClassesCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.noProposal = false;
 				this.requestor.acceptType(
 					this.acceptedClasses[i][0],
@@ -450,7 +450,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 		}
 		if(this.acceptedInterfaces != null){
 			this.acceptedAnswer = true;
-			for (int i = 0; i < this.acceptedInterfacesCount; i++) {
+			for (int i = 0; i < this.acceptedInterfacesCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.noProposal = false;
 				this.requestor.acceptType(
 					this.acceptedInterfaces[i][0],
@@ -467,7 +467,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 		}
 		if(this.acceptedAnnotations != null){
 			this.acceptedAnswer = true;
-			for (int i = 0; i < this.acceptedAnnotationsCount; i++) {
+			for (int i = 0; i < this.acceptedAnnotationsCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.noProposal = false;
 				this.requestor.acceptType(
 					this.acceptedAnnotations[i][0],
@@ -484,7 +484,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 		}
 		if(this.acceptedEnums != null){
 			this.acceptedAnswer = true;
-			for (int i = 0; i < this.acceptedEnumsCount; i++) {
+			for (int i = 0; i < this.acceptedEnumsCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.noProposal = false;
 				this.requestor.acceptType(
 					this.acceptedEnums[i][0],
@@ -500,7 +500,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 			this.acceptedEnumsCount = 0;
 		}
 	}
-	private boolean checkSelection(
+	private boolean checkSelection( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			char[] source,
 			int selectionStart,
 			int selectionEnd,
@@ -532,12 +532,12 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 			int nextCharacterPosition = selectionStart;
 			char currentCharacter = ' ';
 			try {
-				lineLoop: while(currentPosition > 0){
+				lineLoop: while(currentPosition > 0){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 					if(source[currentPosition] == '\\' && source[currentPosition+1] == 'u') {
 						int pos = currentPosition + 2;
 						int c1 = 0, c2 = 0, c3 = 0, c4 = 0;
-						while (source[pos] == 'u') {
+						while (source[pos] == 'u') { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							pos++;
 						}
 
@@ -595,7 +595,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 
 			// compute start and end of the last token
 			scanner.resetTo(nextCharacterPosition, end, isModuleInfo);
-			isolateLastName: do {
+			isolateLastName: do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					token = scanner.getNextToken();
 				} catch (InvalidInputException e) {
@@ -610,7 +610,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 							if (scanner.currentPosition == scanner.eofPosition) {
 								int temp = scanner.eofPosition;
 								scanner.eofPosition = scanner.source.length;
-							 	while(scanner.getNextCharAsJavaIdentifierPart()){/*empty*/}
+							 	while(scanner.getNextCharAsJavaIdentifierPart()){/*empty*/} //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							 	scanner.eofPosition = temp;
 							}
 							lastIdentifierStart = scanner.startPosition;
@@ -649,7 +649,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 			scanner.resetTo(selectionStart, selectionEnd, isModuleInfo);
 
 			boolean expectingIdentifier = true;
-			do {
+			do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					token = scanner.getNextToken();
 				} catch (InvalidInputException e) {
@@ -717,11 +717,11 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 		}
 		return false;
 	}
-	private boolean checkTypeArgument(Scanner scanner) {
+	private boolean checkTypeArgument(Scanner scanner) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int depth = 1;
 		TerminalToken token;
-		StringBuilder buffer = new StringBuilder();
-		do {
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				token = scanner.getNextToken();
 			} catch (InvalidInputException e) {
@@ -730,25 +730,25 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 			switch(token) {
 				case TokenNameLESS :
 					depth++;
-					buffer.append(scanner.getCurrentTokenSource());
+					buffer.append(scanner.getCurrentTokenSource()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case TokenNameGREATER :
 					depth--;
-					buffer.append(scanner.getCurrentTokenSource());
+					buffer.append(scanner.getCurrentTokenSource()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case TokenNameRIGHT_SHIFT :
 					depth-=2;
-					buffer.append(scanner.getCurrentTokenSource());
+					buffer.append(scanner.getCurrentTokenSource()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case TokenNameUNSIGNED_RIGHT_SHIFT :
 					depth-=3;
-					buffer.append(scanner.getCurrentTokenSource());
+					buffer.append(scanner.getCurrentTokenSource()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case TokenNameextends :
 				case TokenNamesuper :
-					buffer.append(' ');
-					buffer.append(scanner.getCurrentTokenSource());
-					buffer.append(' ');
+					buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(scanner.getCurrentTokenSource()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case TokenNameCOMMA :
 					if(depth == 1) {
@@ -757,14 +757,14 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 						buffer.getChars(0, length, typeRef, 0);
 						try {
 							Signature.createTypeSignature(typeRef, true);
-							buffer = new StringBuilder();
+							buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 						} catch(IllegalArgumentException e) {
 							return false;
 						}
 					}
 					break;
 				default :
-					buffer.append(scanner.getCurrentTokenSource());
+					buffer.append(scanner.getCurrentTokenSource()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 
 			}
@@ -791,7 +791,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 	/*
 	 * find all types outside the project scope
 	 */
-	private void findAllTypes(char[] prefix) {
+	private void findAllTypes(char[] prefix) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IProgressMonitor progressMonitor = new IProgressMonitor() {
 				boolean isCanceled = false;
@@ -901,7 +901,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 	 *  @param selectionSourceEnd int
 	 *      a range in the source where the selection is.
 	 */
-	public void select(
+	public void select( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit,
 		int selectionSourceStart,
 		int selectionSourceEnd) {
@@ -949,7 +949,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 				}
 				ImportReference[] imports = parsedUnit.imports;
 				if (imports != null) {
-					for (ImportReference importReference : imports) {
+					for (ImportReference importReference : imports) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (importReference instanceof SelectionOnImportReference) {
 							char[][] tokens = ((SelectionOnImportReference) importReference).tokens;
 							this.noProposal = false;
@@ -1079,7 +1079,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 
 	private void acceptPackageVisibilityStatements(PackageVisibilityStatement[] pvs, Scope scope) {
 		if (pvs != null) {
-			for (PackageVisibilityStatement pv : pvs) {
+			for (PackageVisibilityStatement pv : pvs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (pv.pkgRef instanceof SelectionOnPackageVisibilityReference) {
 					this.noProposal = false;
 					this.requestor.acceptPackage(CharOperation.concatWith(((SelectionOnPackageVisibilityReference) pv.pkgRef).tokens, '.'));
@@ -1090,7 +1090,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 	private void selectMemberTypeFromImport(CompilationUnitDeclaration parsedUnit, char[] lastToken, ReferenceBinding ref, boolean staticOnly) {
 		int fieldLength = lastToken.length;
 		ReferenceBinding[] memberTypes = ref.memberTypes();
-		next : for (ReferenceBinding memberType : memberTypes) {
+		next : for (ReferenceBinding memberType : memberTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (fieldLength > memberType.sourceName.length)
 				continue next;
 
@@ -1104,10 +1104,10 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 		}
 	}
 
-	private void selectStaticFieldFromStaticImport(CompilationUnitDeclaration parsedUnit, char[] lastToken, ReferenceBinding ref) {
+	private void selectStaticFieldFromStaticImport(CompilationUnitDeclaration parsedUnit, char[] lastToken, ReferenceBinding ref) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int fieldLength = lastToken.length;
 		FieldBinding[] fields = ref.availableFields();
-		next : for (FieldBinding field : fields) {
+		next : for (FieldBinding field : fields) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (fieldLength > field.name.length)
 				continue next;
 
@@ -1124,10 +1124,10 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 		}
 	}
 
-	private void selectStaticMethodFromStaticImport(CompilationUnitDeclaration parsedUnit, char[] lastToken, ReferenceBinding ref) {
+	private void selectStaticMethodFromStaticImport(CompilationUnitDeclaration parsedUnit, char[] lastToken, ReferenceBinding ref) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int methodLength = lastToken.length;
 		MethodBinding[] methods = ref.availableMethods();
-		next : for (MethodBinding method : methods) {
+		next : for (MethodBinding method : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (method.isSynthetic()) continue next;
 
 			if (method.isDefaultAbstract())	continue next;
@@ -1149,7 +1149,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 	private void selectFrom(Binding binding, CompilationUnitDeclaration parsedUnit, boolean isDeclaration) {
 		selectFrom(binding, parsedUnit, null, isDeclaration);
 	}
-	private void selectFrom(Binding binding, CompilationUnitDeclaration parsedUnit, ICompilationUnit unit, boolean isDeclaration) {
+	private void selectFrom(Binding binding, CompilationUnitDeclaration parsedUnit, ICompilationUnit unit, boolean isDeclaration) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if(binding instanceof TypeVariableBinding) {
 			TypeVariableBinding typeVariableBinding = (TypeVariableBinding) binding;
 			Binding enclosingElement = typeVariableBinding.declaringElement;
@@ -1205,7 +1205,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 			} else if (binding instanceof IntersectionTypeBinding18) {
 				IntersectionTypeBinding18 intersection = (IntersectionTypeBinding18) binding;
 				ReferenceBinding[] intersectingTypes = intersection.intersectingTypes;
-				for (ReferenceBinding referenceBinding : intersectingTypes) {
+				for (ReferenceBinding referenceBinding : intersectingTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					selectFrom(referenceBinding, parsedUnit, isDeclaration);
 				}
 			} else {
@@ -1254,7 +1254,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 				char[][] parameterPackageNames = new char[length][];
 				char[][] parameterTypeNames = new char[length][];
 				String[] parameterSignatures = new String[length];
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					parameterPackageNames[i] = parameterTypes[i].qualifiedPackageName();
 					parameterTypeNames[i] = parameterTypes[i].qualifiedSourceName();
 					parameterSignatures[i] = new String(getSignature(parameterTypes[i])).replace('/', '.');
@@ -1264,7 +1264,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 				length = typeVariables == null ? 0 : typeVariables.length;
 				char[][] typeParameterNames = new char[length][];
 				char[][][] typeParameterBoundNames = new char[length][][];
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					TypeVariableBinding typeVariable = typeVariables[i];
 					typeParameterNames[i] = typeVariable.sourceName;
 					if (typeVariable.firstBound == null) {
@@ -1273,13 +1273,13 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 						int boundCount = 1 + (typeVariable.superInterfaces == null ? 0 : typeVariable.superInterfaces.length);
 						typeParameterBoundNames[i] = new char[boundCount][];
 						typeParameterBoundNames[i][0] = typeVariable.superclass.sourceName;
-						for (int j = 1; j < boundCount; j++) {
+						for (int j = 1; j < boundCount; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							typeParameterBoundNames[i][j] = typeVariables[i].superInterfaces[j - 1].sourceName;
 						}
 					} else {
 						int boundCount = typeVariable.superInterfaces == null ? 0 : typeVariable.superInterfaces.length;
 						typeParameterBoundNames[i] = new char[boundCount][];
-						for (int j = 0; j < boundCount; j++) {
+						for (int j = 0; j < boundCount; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							typeParameterBoundNames[i][j] = typeVariables[i].superInterfaces[j].sourceName;
 						}
 					}
@@ -1320,7 +1320,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 					// if the binding is a problem field binding, we want to make sure
 					// we can retrieve the closestMatch if the problem reason is NotVisible
 					FieldBinding currentFieldBinding = fieldBinding;
-					while (currentFieldBinding instanceof ProblemFieldBinding) {
+					while (currentFieldBinding instanceof ProblemFieldBinding) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ProblemFieldBinding problemFieldBinding = (ProblemFieldBinding) currentFieldBinding;
 						if (problemFieldBinding.problemId() == ProblemReasons.NotVisible) {
 							currentFieldBinding = problemFieldBinding.closestMatch;
@@ -1380,7 +1380,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 	/*
 	 * Checks if a local declaration got selected in this method/initializer/field.
 	 */
-	private void selectLocalDeclaration(ASTNode node) {
+	private void selectLocalDeclaration(ASTNode node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// the selected identifier is not identical to the parser one (equals but not identical),
 		// for traversing the parse tree, the parser assist identifier is necessary for identitiy checks
 		final char[] assistIdentifier = getParser().assistIdentifier();
@@ -1520,7 +1520,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 	 *  @param context org.eclipse.jdt.core.IType
 	 *      the context in which code assist is invoked.
 	 */
-	public void selectType(char[] typeName, IType context) throws JavaModelException {
+	public void selectType(char[] typeName, IType context) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			this.acceptedAnswer = false;
 
@@ -1538,7 +1538,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 			 	IType[] topLevelTypes = cu.getTypes();
 			 	int length = topLevelTypes.length;
 			 	SourceTypeElementInfo[] topLevelInfos = new SourceTypeElementInfo[length];
-			 	for (int i = 0; i < length; i++) {
+			 	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					topLevelInfos[i] = (SourceTypeElementInfo) ((SourceType)topLevelTypes[i]).getElementInfo();
 				}
 				CompilationResult result = new CompilationResult((org.eclipse.jdt.internal.compiler.env.ICompilationUnit) cu, 1, 1, this.compilerOptions.maxProblemsPerUnit);
@@ -1557,7 +1557,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 						System.out.println(parsedUnit.toString());
 					}
 					// find the type declaration that corresponds to the original source type
-					while (context.isLambda() && context.getParent() != null) {
+					while (context.isLambda() && context.getParent() != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						// It is easier to find the first enclosing proper type than the corresponding
 						// lambda expression ast to add the selection node to.
 						context = (IType) context.getParent().getAncestor(IJavaElement.TYPE);
@@ -1665,7 +1665,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 		char[] packageName = currentPackage == null ? CharOperation.NO_CHAR : CharOperation.concatWith(currentPackage.tokens, '.');
 		// iterate over the types
 		TypeDeclaration[] types = compilationUnit.types;
-		for (int i = 0, length = types == null ? 0 : types.length; i < length; i++){
+		for (int i = 0, length = types == null ? 0 : types.length; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(selectDeclaration(types[i], assistIdentifier, packageName))
 				return true;
 		}
@@ -1673,13 +1673,13 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 	}
 
 	// Check if a declaration got selected in this type
-	private boolean selectDeclaration(TypeDeclaration typeDeclaration, char[] assistIdentifier, char[] packageName){
+	private boolean selectDeclaration(TypeDeclaration typeDeclaration, char[] assistIdentifier, char[] packageName){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		if (typeDeclaration.name == assistIdentifier){
 			char[] qualifiedSourceName = null;
 
 			TypeDeclaration enclosingType = typeDeclaration;
-			while(enclosingType != null) {
+			while(enclosingType != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				qualifiedSourceName = CharOperation.concat(enclosingType.name, qualifiedSourceName, '.');
 				enclosingType = enclosingType.enclosingType;
 			}
@@ -1698,17 +1698,17 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 			return true;
 		}
 		TypeDeclaration[] memberTypes = typeDeclaration.memberTypes;
-		for (int i = 0, length = memberTypes == null ? 0 : memberTypes.length; i < length; i++){
+		for (int i = 0, length = memberTypes == null ? 0 : memberTypes.length; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(selectDeclaration(memberTypes[i], assistIdentifier, packageName))
 				return true;
 		}
 		AbstractVariableDeclaration[] variables = typeDeclaration.protoFieldDeclarations();
-		for (int i = 0, length = variables.length; i < length; i++){
+		for (int i = 0, length = variables.length; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (variables[i].name == assistIdentifier){
 				char[] qualifiedSourceName = null;
 
 				TypeDeclaration enclosingType = typeDeclaration;
-				while(enclosingType != null) {
+				while(enclosingType != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					qualifiedSourceName = CharOperation.concat(enclosingType.name, qualifiedSourceName, '.');
 					enclosingType = enclosingType.enclosingType;
 				}
@@ -1727,14 +1727,14 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 			}
 		}
 		AbstractMethodDeclaration[] methods = typeDeclaration.methods;
-		for (int i = 0, length = methods == null ? 0 : methods.length; i < length; i++){
+		for (int i = 0, length = methods == null ? 0 : methods.length; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			AbstractMethodDeclaration method = methods[i];
 
 			if (method.selector == assistIdentifier){
 				char[] qualifiedSourceName = null;
 
 				TypeDeclaration enclosingType = typeDeclaration;
-				while(enclosingType != null) {
+				while(enclosingType != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					qualifiedSourceName = CharOperation.concat(enclosingType.name, qualifiedSourceName, '.');
 					enclosingType = enclosingType.enclosingType;
 				}
@@ -1760,14 +1760,14 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 			}
 
 			TypeParameter[] methodTypeParameters = method.typeParameters();
-			for (int j = 0, length2 = methodTypeParameters == null ? 0 : methodTypeParameters.length; j < length2; j++){
+			for (int j = 0, length2 = methodTypeParameters == null ? 0 : methodTypeParameters.length; j < length2; j++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				TypeParameter methodTypeParameter = methodTypeParameters[j];
 
 				if(methodTypeParameter.name == assistIdentifier) {
 					char[] qualifiedSourceName = null;
 
 					TypeDeclaration enclosingType = typeDeclaration;
-					while(enclosingType != null) {
+					while(enclosingType != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						qualifiedSourceName = CharOperation.concat(enclosingType.name, qualifiedSourceName, '.');
 						enclosingType = enclosingType.enclosingType;
 					}
@@ -1790,13 +1790,13 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 		}
 
 		TypeParameter[] typeParameters = typeDeclaration.typeParameters;
-		for (int i = 0, length = typeParameters == null ? 0 : typeParameters.length; i < length; i++){
+		for (int i = 0, length = typeParameters == null ? 0 : typeParameters.length; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeParameter typeParameter = typeParameters[i];
 			if(typeParameter.name == assistIdentifier) {
 				char[] qualifiedSourceName = null;
 
 				TypeDeclaration enclosingType = typeDeclaration;
-				while(enclosingType != null) {
+				while(enclosingType != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					qualifiedSourceName = CharOperation.concat(enclosingType.name, qualifiedSourceName, '.');
 					enclosingType = enclosingType.enclosingType;
 				}
@@ -1843,7 +1843,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 		MethodBinding[] overriddenMethods= overriddenType.availableMethods();
 		LookupEnvironment lookupEnv = this.lookupEnvironment;
 		if (lookupEnv != null && overriddenMethods != null) {
-			for (MethodBinding overriddenMethod : overriddenMethods) {
+			for (MethodBinding overriddenMethod : overriddenMethods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (lookupEnv.methodVerifier().isMethodSubsignature(overriding, overriddenMethod)) {
 					return overriddenMethod;
 				}
@@ -1852,18 +1852,18 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 		return null;
 	}
 
-	private Object findMethodWithAttachedDocInHierarchy(final MethodBinding method) throws JavaModelException {
+	private Object findMethodWithAttachedDocInHierarchy(final MethodBinding method) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ReferenceBinding type= method.declaringClass;
 		final SelectionRequestor requestor1 = (SelectionRequestor) this.requestor;
 		return new InheritDocVisitor() {
-			@Override
+			@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			public Object visit(ReferenceBinding currType) throws JavaModelException {
 				MethodBinding overridden =  findOverriddenMethodInType(currType, method);
 				if (overridden == null)
 					return InheritDocVisitor.CONTINUE;
 				TypeBinding args[] = overridden.parameters;
 				String names[] = new String[args.length];
-				for (int i = 0; i < args.length; i++) {
+				for (int i = 0; i < args.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					names[i] = Signature.createTypeSignature(args[i].sourceName(), false);
 				}
 				IMember member = (IMember) requestor1.findMethodFromBinding(overridden, names, overridden.declaringClass);
@@ -1943,8 +1943,8 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 		 *         the calls returned a result
 		 * @throws JavaModelException unexpected problem
 		 */
-		public Object visitInheritDoc(ReferenceBinding currentType) throws JavaModelException {
-			ArrayList visited= new ArrayList();
+		public Object visitInheritDoc(ReferenceBinding currentType) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+			ArrayList visited= new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			visited.add(currentType);
 			Object result= visitInheritDocInterfaces(visited, currentType);
 			if (result != InheritDocVisitor.CONTINUE)
@@ -1952,7 +1952,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 
 			ReferenceBinding superClass= currentType.superclass();
 
-			while (superClass != null && ! visited.contains(superClass)) {
+			while (superClass != null && ! visited.contains(superClass)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				result= visit(superClass);
 				if (result == InheritDocVisitor.STOP_BRANCH) {
 					return null;
@@ -1979,10 +1979,10 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 		 * @return the result, or {@link #CONTINUE} if no result has been found
 		 * @throws JavaModelException unexpected problem
 		 */
-		private Object visitInheritDocInterfaces(ArrayList visited, ReferenceBinding currentType) throws JavaModelException {
-			ArrayList toVisitChildren= new ArrayList();
+		private Object visitInheritDocInterfaces(ArrayList visited, ReferenceBinding currentType) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+			ArrayList toVisitChildren= new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			ReferenceBinding[] superInterfaces= currentType.superInterfaces();
-			for (ReferenceBinding superInterface : superInterfaces) {
+			for (ReferenceBinding superInterface : superInterfaces) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (visited.contains(superInterface))
 					continue;
 				visited.add(superInterface);
@@ -1995,7 +1995,7 @@ public final class SelectionEngine extends Engine implements ISearchRequestor {
 					return result;
 				}
 			}
-			for (Object toVisitChild : toVisitChildren) {
+			for (Object toVisitChild : toVisitChildren) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ReferenceBinding child= (ReferenceBinding) toVisitChild;
 				Object result= visitInheritDocInterfaces(visited, child);
 				if (result != InheritDocVisitor.CONTINUE)

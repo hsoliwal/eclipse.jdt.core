@@ -40,7 +40,7 @@ public class JavaConventionTests extends AbstractJavaModelTests {
 	/*
 	 * Verify status type and messages.
 	 */
-	protected void verifyStatus(IStatus status, String[] expectedMessages) {
+	protected void verifyStatus(IStatus status, String[] expectedMessages) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int length = expectedMessages.length;
 		IStatus[] allStatus = status.getChildren();
 		switch (length) {
@@ -57,8 +57,8 @@ public class JavaConventionTests extends AbstractJavaModelTests {
 				assertEquals("Unexpected number of errors!", length, allStatus.length);
 				break;
 		}
-		List failuresMessages = new ArrayList();
-		for (int i=0; i<length; i++) {
+		List failuresMessages = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			assertFalse("Status should be KO!", allStatus[i].isOK());
 			if (!allStatus[i].getMessage().equals(expectedMessages[i])) {
 				failuresMessages.add(allStatus[i].getMessage());
@@ -68,8 +68,8 @@ public class JavaConventionTests extends AbstractJavaModelTests {
 		if (count > 0) {
 			System.out.println("Test "+getName()+" fails. Add this declaration to fix it:");
 			System.out.println("		String[] expectedMessages = {");
-			for (int i=0; i<count; i++) {
-				System.out.print("			\""+failuresMessages.get(i)+"\"");
+			for (int i=0; i<count; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				System.out.print("			\""+failuresMessages.get(i)+"\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				if (i==(count-1))
 					System.out.println("");
 				else
@@ -77,7 +77,7 @@ public class JavaConventionTests extends AbstractJavaModelTests {
 			}
 			System.out.println("		};");
 		}
-		assertTrue("There "+(count>1?"are ":"is ")+count+" unexpected status!", count==0);
+		assertTrue("There "+(count>1?"are ":"is ")+count+" unexpected status!", count==0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	// Kind of validations
@@ -110,7 +110,7 @@ public class JavaConventionTests extends AbstractJavaModelTests {
 	/*
 	 * Return the status for a string regarding a given kind of validation.
 	 */
-	int validate(String string, int kind, String sourceLevel, String complianceLevel) {
+	int validate(String string, int kind, String sourceLevel, String complianceLevel) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch (kind) {
 			case COMPILATION_UNIT_NAME:
 				return JavaConventions.validateCompilationUnitName(string, sourceLevel, complianceLevel).getSeverity();
@@ -144,8 +144,8 @@ public class JavaConventionTests extends AbstractJavaModelTests {
 	 */
 	public void testInvalidIdentifier() {
 		String[] invalidIds = new String[] {"non-sealed", "non-sealed ", " s\\u0069ze", " s\\u0069ze ", "", "1java", "Foo Bar", "#@$!", "Foo-Bar", "if", "InvalidEscapeSequence\\g", "true", "false", "null", null, " untrimmmed "};
-		for (int i = 0; i < invalidIds.length; i++) {
-			assertEquals("identifier not recognized as invalid: " + invalidIds[i], IStatus.ERROR, validate(invalidIds[i], IDENTIFIER));
+		for (int i = 0; i < invalidIds.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			assertEquals("identifier not recognized as invalid: " + invalidIds[i], IStatus.ERROR, validate(invalidIds[i], IDENTIFIER)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	/**
@@ -170,14 +170,14 @@ public class JavaConventionTests extends AbstractJavaModelTests {
 	 * Test for package fragment root overlap
 	 * @deprecated isOverlappingRoots is deprecated
 	 */
-	public void testPackageFragmentRootOverlap() throws Exception {
+	public void testPackageFragmentRootOverlap() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = this.createJavaProject("P1", new String[] {"src"}, new String[] {"/P1/jclMin.jar"}, "bin");
 
 			// ensure the external JCL is copied
 			setupExternalJCL("jclMin");
 
-			copy(new java.io.File(getExternalJCLPathString("")), new java.io.File(getWorkspaceRoot().getLocation().toOSString() + java.io.File.separator + "P1" + java.io.File.separator + "jclMin.jar"));
+			copy(new java.io.File(getExternalJCLPathString("")), new java.io.File(getWorkspaceRoot().getLocation().toOSString() + java.io.File.separator + "P1" + java.io.File.separator + "jclMin.jar")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			project.getProject().refreshLocal(IResource.DEPTH_INFINITE, null);
 
 			IPackageFragmentRoot p1Zip= getPackageFragmentRoot("P1", "jclMin.jar");
@@ -204,22 +204,22 @@ public class JavaConventionTests extends AbstractJavaModelTests {
 	/**
 	 * @see JavaConventions
 	 */
-	public void testValidCompilationUnitName() {
+	public void testValidCompilationUnitName() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] invalidNames = new String[] {"java/lang/Object.java", "Object.class", ".java", "Object.javaaa", "A.B.java"};
-		for (int i = 0; i < invalidNames.length; i++) {
-			assertEquals("compilation unit name not recognized as invalid: " + invalidNames[i], IStatus.ERROR, validate(invalidNames[i], COMPILATION_UNIT_NAME));
+		for (int i = 0; i < invalidNames.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			assertEquals("compilation unit name not recognized as invalid: " + invalidNames[i], IStatus.ERROR, validate(invalidNames[i], COMPILATION_UNIT_NAME)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		invalidNames = new String[] {"module-package.class"};
-		for (int i = 0; i < invalidNames.length; i++) {
-			assertEquals("compilation unit name not recognized as valid: " + invalidNames[i], IStatus.ERROR, validate(invalidNames[i], CLASS_FILE_NAME));
+		for (int i = 0; i < invalidNames.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			assertEquals("compilation unit name not recognized as valid: " + invalidNames[i], IStatus.ERROR, validate(invalidNames[i], CLASS_FILE_NAME)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		String[] validNames = new String[] {"Object.java", "OBJECT.java", "object.java", "package-info.java", "module-info.java"};
-		for (int i = 0; i < validNames.length; i++) {
-			assertEquals("compilation unit name not recognized as valid: " + validNames[i], IStatus.OK, validate(validNames[i], COMPILATION_UNIT_NAME));
+		for (int i = 0; i < validNames.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			assertEquals("compilation unit name not recognized as valid: " + validNames[i], IStatus.OK, validate(validNames[i], COMPILATION_UNIT_NAME)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		validNames = new String[] {"module-info.class"};
-		for (int i = 0; i < validNames.length; i++) {
-			assertEquals("compilation unit name not recognized as valid: " + validNames[i], IStatus.OK, validate(validNames[i], CLASS_FILE_NAME));
+		for (int i = 0; i < validNames.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			assertEquals("compilation unit name not recognized as valid: " + validNames[i], IStatus.OK, validate(validNames[i], CLASS_FILE_NAME)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	/**
@@ -233,8 +233,8 @@ public class JavaConventionTests extends AbstractJavaModelTests {
 	 */
 	public void testValidIdentifier() {
 		String[] validIds = new String[] {"non", "s\\u0069ze", "Object", "An_Extremly_Long_Class_Name_With_Words_Separated_By_Undescores"};
-		for (int i = 0; i < validIds.length; i++) {
-			assertEquals("identifier not recognized as valid: " + validIds[i], IStatus.OK, validate(validIds[i], IDENTIFIER));
+		for (int i = 0; i < validIds.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			assertEquals("identifier not recognized as valid: " + validIds[i], IStatus.OK, validate(validIds[i], IDENTIFIER)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	/**
@@ -252,7 +252,7 @@ public class JavaConventionTests extends AbstractJavaModelTests {
 	/**
 	 * @see JavaConventions
 	 */
-	public void testValidPackageName() {
+	public void testValidPackageName() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		String pkgName= "org.eclipse.jdt.core.t\\u0065sts.MyPackage";
 		assertEquals("unicode package name not handled", IStatus.OK, validate(pkgName, PACKAGE_NAME));
@@ -273,7 +273,7 @@ public class JavaConventionTests extends AbstractJavaModelTests {
 	/**
 	 * @see JavaConventions
 	 */
-	public void testValidTypeName() {
+	public void testValidTypeName() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// regression tests for 1G5HVPB: ITPJCORE:WINNT - validateJavaTypeName accepts type names ending with \
 		assertEquals("type name should not contain slashes (1)", IStatus.ERROR, validate("Object\\", JAVA_TYPE_NAME));
 		assertEquals("type name should not contain slashes (2)", IStatus.ERROR, validate("Object/", JAVA_TYPE_NAME));
@@ -325,25 +325,25 @@ public class JavaConventionTests extends AbstractJavaModelTests {
 	 */
 	public void testAssertIdentifier() {
 		int length = VERSIONS.length;
-		for (int i=0; i<length; i++) { // source level
-			for (int j=0; j<length; j++) { // compliance level
-				assertEquals("'assert' should be rejected with source level "+VERSIONS[i], IStatus.ERROR, validate("assert", IDENTIFIER,VERSIONS[i], VERSIONS[j]));
+		for (int i=0; i<length; i++) { // source level //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (int j=0; j<length; j++) { // compliance level //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				assertEquals("'assert' should be rejected with source level "+VERSIONS[i], IStatus.ERROR, validate("assert", IDENTIFIER,VERSIONS[i], VERSIONS[j])); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
 	public void testEnumIdentifier() {
 		int length = VERSIONS.length;
-		for (int i=0; i<length; i++) { // source level
-			for (int j=0; j<length; j++) { // compliance level
-				assertEquals("'enum' should be rejected with source level "+VERSIONS[i], IStatus.ERROR, validate("enum", IDENTIFIER,VERSIONS[i], VERSIONS[j]));
+		for (int i=0; i<length; i++) { // source level //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (int j=0; j<length; j++) { // compliance level //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				assertEquals("'enum' should be rejected with source level "+VERSIONS[i], IStatus.ERROR, validate("enum", IDENTIFIER,VERSIONS[i], VERSIONS[j])); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
 
-	public void testModuleName() {
+	public void testModuleName() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int length = VERSIONS.length;
-		for (int i = 0; i < length; i++) { // source level
-			for (int j = 0; j < length; j++) { // compliance level
+		for (int i = 0; i < length; i++) { // source level //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (int j = 0; j < length; j++) { // compliance level //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (i >= 8 && j >= 8) { // source and compliance level > VERSION_9
 					validateModuleName(null, VERSIONS[i], VERSIONS[j], IStatus.ERROR, "A module name must not be null");
 					validateModuleName("mod.one", VERSIONS[i], VERSIONS[j], IStatus.OK, "OK");

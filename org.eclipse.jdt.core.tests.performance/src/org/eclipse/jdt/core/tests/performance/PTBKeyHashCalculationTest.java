@@ -35,7 +35,7 @@ public class PTBKeyHashCalculationTest extends TestCase {
 		return new TestSuite(PTBKeyHashCalculationTest.class);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void setUp() throws Exception {
 		super.setUp();
 
@@ -80,32 +80,32 @@ public class PTBKeyHashCalculationTest extends TestCase {
 		);
 
 		// issues are only observable with a higher amount of classes
-		for (int i = 0; i < 1000; i++) {
-			final StringBuilder sb = new StringBuilder();
-			sb.append("package example;\n")
+		for (int i = 0; i < 1000; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			final StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			sb.append("package example;\n") //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				.append("import test.BaseClass;\n")
 				.append("public class TestClass").append(i).append(" extends MainClass {\n");
 
-			for (int j = 0; j < 10; j++) {
-				sb.append("\tpublic final class Inner").append(j).append(" extends BaseClass<Inner").append(j).append(", String> {\n");
+			for (int j = 0; j < 10; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				sb.append("\tpublic final class Inner").append(j).append(" extends BaseClass<Inner").append(j).append(", String> {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
-				for (int x = 0; x < 2; x++) {
-					sb.append("\t\tpublic final class Inner").append(j).append("_").append(x).append(" extends BaseClass<Inner").append(j).append("_").append(x).append(", String> {\n");
-					for (int y = 0; y < 30; y++) {
-						sb.append("\t\t\tpublic final Object field_").append(j).append("_").append(x).append("_").append(y).append(" = createField(this);\n");
+				for (int x = 0; x < 2; x++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					sb.append("\t\tpublic final class Inner").append(j).append("_").append(x).append(" extends BaseClass<Inner").append(j).append("_").append(x).append(", String> {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					for (int y = 0; y < 30; y++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+						sb.append("\t\t\tpublic final Object field_").append(j).append("_").append(x).append("_").append(y).append(" = createField(this);\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
-					sb.append("\t\t}\n");
+					sb.append("\t\t}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 
-				for (int y = 0; y < 30; y++) {
-					sb.append("\t\tpublic final Object field_").append(j).append("_").append(y).append(" = createField(this);\n");
+				for (int y = 0; y < 30; y++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					sb.append("\t\tpublic final Object field_").append(j).append("_").append(y).append(" = createField(this);\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 
-				sb.append("\t}\n");
+				sb.append("\t}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			sb.append("}");
+			sb.append("}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
-			this.env.addClass(root, "test", "TestClass" + i, sb.toString());
+			this.env.addClass(root, "test", "TestClass" + i, sb.toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -120,7 +120,7 @@ public class PTBKeyHashCalculationTest extends TestCase {
 	public void testHashCalculation() throws Exception {
 		// should finish in under 2 minutes with the fix of #551
 		tagAsSummary("PTBKey hash calculation", Dimension.CPU_TIME);
-		for (int idx = 0; idx < 2; idx++) {
+		for (int idx = 0; idx < 2; idx++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			startMeasuring();
 			this.env.fullBuild();
 			stopMeasuring();

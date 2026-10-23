@@ -90,14 +90,14 @@ public AbstractDOMBuilder() {
  *
  * @see org.eclipse.jdt.internal.compiler.IDocumentElementRequestor#acceptLineSeparatorPositions(int[])
  */
-public void acceptLineSeparatorPositions(int[] positions) {
+public void acceptLineSeparatorPositions(int[] positions) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (positions != null) {
 		int length = positions.length;
 		if (length > 0) {
 			this.fLineStartPositions = new int[length + 1];
 			this.fLineStartPositions[0] = 0;
 			int documentLength = this.fDocument.length;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int iPlusOne = i + 1;
 				int positionPlusOne = positions[i] + 1;
 				if (positionPlusOne < documentLength) {
@@ -192,7 +192,7 @@ protected void exitType(int bodyEnd, int declarationEnd) {
 public int getLineStart(int position) {
 	int lineSeparatorCount = this.fLineStartPositions.length;
 	// reverse traversal intentional.
-	for(int i = lineSeparatorCount - 1; i >= 0; i--) {
+	for(int i = lineSeparatorCount - 1; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (this.fLineStartPositions[i] <= position)
 			return this.fLineStartPositions[i];
 	}

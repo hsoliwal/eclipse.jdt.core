@@ -87,7 +87,7 @@ public static boolean SHOW_STATS;
 /**
  * Bug 549457: In case auto-building on a JDT core settings change (e.g. compiler compliance) is not desired,
  * specify VM property: {@code -Dorg.eclipse.disableAutoBuildOnSettingsChange=true}
- */
+ */ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 private static final boolean DISABLE_AUTO_BUILDING_ON_SETTINGS_CHANGE = Boolean.getBoolean("org.eclipse.disableAutoBuildOnSettingsChange"); //$NON-NLS-1$
 private static final IPath JDT_CORE_SETTINGS_PATH = Path.fromPortableString(JavaProject.DEFAULT_PREFERENCES_DIRNAME + IPath.SEPARATOR + JavaProject.JAVA_CORE_PREFS_FILE);
 
@@ -96,19 +96,19 @@ private static final IPath JDT_CORE_SETTINGS_PATH = Path.fromPortableString(Java
  * This list is used to reset the JavaModel.existingExternalFiles cache when a build cycle begins
  * so that deleted external jars are discovered.
  */
-static LinkedHashSet<String> builtProjects;
+static LinkedHashSet<String> builtProjects; //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 public static IMarker[] getProblemsFor(IResource resource) {
 	try {
 		if (resource != null && resource.exists()) {
 			IMarker[] markers = resource.findMarkers(IJavaModelMarker.JAVA_MODEL_PROBLEM_MARKER, false, IResource.DEPTH_INFINITE);
-			Set<String> markerTypes = JavaModelManager.getJavaModelManager().compilationParticipants.managedMarkerTypes();
-			if (markerTypes.isEmpty()) return markers;
+			Set<String> markerTypes = JavaModelManager.getJavaModelManager().compilationParticipants.managedMarkerTypes(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			if (markerTypes.isEmpty()) return markers; //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ArrayList<IMarker> markerList = new ArrayList<>(5);
 			for (IMarker marker : markers) {
-				markerList.add(marker);
+				markerList.add(marker); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			}
-			for (String markerType: markerTypes) {
+			for (String markerType: markerTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				markers = resource.findMarkers(markerType, false, IResource.DEPTH_INFINITE);
 				for (IMarker marker : markers) {
 					markerList.add(marker);
@@ -156,7 +156,7 @@ public static void removeProblemsFor(IResource resource) {
 			resource.deleteMarkers(IJavaModelMarker.JAVA_MODEL_PROBLEM_MARKER, false, IResource.DEPTH_INFINITE);
 
 			// delete managed markers
-			Set<String> markerTypes = JavaModelManager.getJavaModelManager().compilationParticipants.managedMarkerTypes();
+			Set<String> markerTypes = JavaModelManager.getJavaModelManager().compilationParticipants.managedMarkerTypes(); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (markerTypes.size() == 0) return;
 			for (String markerType: markerTypes) {
 				resource.deleteMarkers(markerType, false, IResource.DEPTH_INFINITE);
@@ -183,7 +183,7 @@ public static void removeProblemsAndTasksFor(IResource resource) {
 			resource.deleteMarkers(IJavaModelMarker.TASK_MARKER, false, IResource.DEPTH_INFINITE);
 
 			// delete managed markers
-			Set<String> markerTypes = JavaModelManager.getJavaModelManager().compilationParticipants.managedMarkerTypes();
+			Set<String> markerTypes = JavaModelManager.getJavaModelManager().compilationParticipants.managedMarkerTypes(); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (markerTypes.size() == 0) return;
 			for (String markerType: markerTypes) {
 				resource.deleteMarkers(markerType, false, IResource.DEPTH_INFINITE);
@@ -200,13 +200,13 @@ public static State readState(IProject project, DataInputStream in) throws IOExc
 
 public static void writeState(Object state, DataOutputStream out) throws IOException {
 	((State) state).write(out);
-}
+} //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 @Override
 protected IProject[] build(int kind, Map<String, String> ignoredArgs, IProgressMonitor monitor) throws CoreException {
 	this.currentProject = getProject();
 	if (this.currentProject == null || !this.currentProject.isAccessible()) return new IProject[0];
-
+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	if (DEBUG) {
 		trace("\nJavaBuilder: Starting build of " + this.currentProject.getName() //$NON-NLS-1$
 			+ " @ " + new Date(System.currentTimeMillis())); //$NON-NLS-1$
@@ -273,10 +273,10 @@ protected IProject[] build(int kind, Map<String, String> ignoredArgs, IProgressM
 				}
 			}
 			ok = true;
-		}
+		} //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} catch (CoreException e) {
 		Util.log(e, "JavaBuilder handling CoreException while building: " + this.currentProject.getName()); //$NON-NLS-1$
-		createInconsistentBuildMarker(e);
+		createInconsistentBuildMarker(e); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} catch (ImageBuilderInternalException e) {
 		Util.log(e.getThrowable(), "JavaBuilder handling ImageBuilderInternalException while building: " + this.currentProject.getName()); //$NON-NLS-1$
 		createInconsistentBuildMarker(e.coreException);
@@ -285,13 +285,13 @@ protected IProject[] build(int kind, Map<String, String> ignoredArgs, IProgressM
 		if (DEBUG) {
 			trace(Messages.bind(Messages.build_missingSourceFile, e.missingSourceFile));
 		}
-		removeProblemsAndTasksFor(this.currentProject); // make this the only problem for this project
+		removeProblemsAndTasksFor(this.currentProject); // make this the only problem for this project //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 		Map<String, Object> attributes = new HashMap<>();
 		attributes.put(IMarker.MESSAGE, Messages.bind(Messages.build_missingSourceFile, e.missingSourceFile));
 		attributes.put(IMarker.SEVERITY, Integer.valueOf(IMarker.SEVERITY_ERROR));
 		attributes.put(IMarker.SOURCE_ID, JavaBuilder.SOURCE_ID);
-		this.currentProject.createMarker(IJavaModelMarker.JAVA_MODEL_PROBLEM_MARKER, attributes);
+		this.currentProject.createMarker(IJavaModelMarker.JAVA_MODEL_PROBLEM_MARKER, attributes); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	} finally {
 		for (int i = 0, l = this.participants == null ? 0 : this.participants.length; i < l; i++)
 			this.participants[i].buildFinished(this.javaProject);
@@ -301,17 +301,17 @@ protected IProject[] build(int kind, Map<String, String> ignoredArgs, IProgressM
 		this.notifier.done();
 		cleanup();
 	}
-	IProject[] requiredProjects = getRequiredProjects(true);
+	IProject[] requiredProjects = getRequiredProjects(true); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	if (DEBUG) {
 		trace("JavaBuilder: Finished build of " + this.currentProject.getName() //$NON-NLS-1$
 			+ " @ " + new Date(System.currentTimeMillis()) + "\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 	return requiredProjects;
-}
+} //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 private void buildAll() {
 	this.notifier.checkCancel();
-	this.notifier.subTask(Messages.bind(Messages.build_preparingBuild, this.currentProject.getName()));
+	this.notifier.subTask(Messages.bind(Messages.build_preparingBuild, this.currentProject.getName())); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	if (DEBUG && this.lastState != null) {
 		trace("JavaBuilder: Clearing last state : " + this.lastState); //$NON-NLS-1$
 	}
@@ -330,7 +330,7 @@ private void buildAll() {
 
 private void buildDeltas(Map<IProject, IResourceDelta> deltas) {
 	this.notifier.checkCancel();
-	this.notifier.subTask(Messages.bind(Messages.build_preparingBuild, this.currentProject.getName()));
+	this.notifier.subTask(Messages.bind(Messages.build_preparingBuild, this.currentProject.getName())); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	if (DEBUG && this.lastState != null) {
 		trace("JavaBuilder: Clearing last state : " + this.lastState); //$NON-NLS-1$
 	}
@@ -344,13 +344,13 @@ private void buildDeltas(Map<IProject, IResourceDelta> deltas) {
 		}
 		buildAll();
 	}
-}
+} //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 @Override
 protected void clean(IProgressMonitor monitor) throws CoreException {
 	this.currentProject = getProject();
 	if (this.currentProject == null || !this.currentProject.isAccessible()) return;
-
+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	if (DEBUG) {
 		trace("\nJavaBuilder: Cleaning " + this.currentProject.getName() //$NON-NLS-1$
 			+ " @ " + new Date(System.currentTimeMillis())); //$NON-NLS-1$
@@ -360,26 +360,26 @@ protected void clean(IProgressMonitor monitor) throws CoreException {
 	try {
 		this.notifier.checkCancel();
 
-		initializeBuilder(CLEAN_BUILD, true);
+		initializeBuilder(CLEAN_BUILD, true); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (DEBUG) {
 			trace("JavaBuilder: Clearing last state as part of clean : " + this.lastState); //$NON-NLS-1$
 		}
 		clearLastState();
 		removeProblemsAndTasksFor(this.currentProject);
 		new BatchImageBuilder(this, false, CompilationGroup.MAIN).cleanOutputFolders(false);
-		new BatchImageBuilder(this, false, CompilationGroup.TEST).cleanOutputFolders(false);
+		new BatchImageBuilder(this, false, CompilationGroup.TEST).cleanOutputFolders(false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} catch (CoreException e) {
 		Util.log(e, "JavaBuilder handling CoreException while cleaning: " + this.currentProject.getName()); //$NON-NLS-1$
 		createInconsistentBuildMarker(e);
 	} finally {
 		this.notifier.done();
 		cleanup();
-	}
+	} //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	if (DEBUG) {
 		trace("JavaBuilder: Finished cleaning " + this.currentProject.getName() //$NON-NLS-1$
 			+ " @ " + new Date(System.currentTimeMillis())); //$NON-NLS-1$
 	}
-}
+} //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 void createInconsistentBuildMarker(CoreException coreException) throws CoreException {
 	String message = null;
@@ -390,7 +390,7 @@ void createInconsistentBuildMarker(CoreException coreException) throws CoreExcep
  		    message = children[0].getMessage();
  	}
  	if (message == null)
- 		message = coreException.getMessage();
+ 		message = coreException.getMessage(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	Map<String, Object> attributes = new HashMap<>();
 	attributes.put(IMarker.MESSAGE, Messages.bind(Messages.build_inconsistentProject, message));
@@ -398,7 +398,7 @@ void createInconsistentBuildMarker(CoreException coreException) throws CoreExcep
 	attributes.put(IJavaModelMarker.CATEGORY_ID, Integer.valueOf(CategorizedProblem.CAT_BUILDPATH));
 	attributes.put(IMarker.SOURCE_ID, JavaBuilder.SOURCE_ID);
 	this.currentProject.createMarker(IJavaModelMarker.JAVA_MODEL_PROBLEM_MARKER, attributes);
-}
+} //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 private void cleanup() {
 	this.participants = null;
@@ -423,10 +423,10 @@ private void cleanup() {
 
 private void clearLastState() {
 	JavaModelManager.getJavaModelManager().setLastBuiltState(this.currentProject, null);
-}
+} //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 boolean filterExtraResource(IResource resource) {
-	if (this.extraResourceFileFilters != null) {
+	if (this.extraResourceFileFilters != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		char[] name = resource.getName().toCharArray();
 		for (char[] extraResourceFileFilter : this.extraResourceFileFilters)
 			if (CharOperation.match(extraResourceFileFilter, name, true))
@@ -435,35 +435,35 @@ boolean filterExtraResource(IResource resource) {
 	if (this.extraResourceFolderFilters != null) {
 		IPath path = resource.getProjectRelativePath();
 		String pathName = path.toString();
-		int count = path.segmentCount();
+		int count = path.segmentCount(); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (resource.getType() == IResource.FILE) count--;
-		for (String extraResourceFolderFilter : this.extraResourceFolderFilters)
+		for (String extraResourceFolderFilter : this.extraResourceFolderFilters) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (pathName.indexOf(extraResourceFolderFilter) != -1)
 				for (int j = 0; j < count; j++)
 					if (extraResourceFolderFilter.equals(path.segment(j)))
 						return true;
 	}
 	return false;
-}
+} //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 private Map<IProject, IResourceDelta> findDeltas() {
-	this.notifier.subTask(Messages.bind(Messages.build_readingDelta, this.currentProject.getName()));
+	this.notifier.subTask(Messages.bind(Messages.build_readingDelta, this.currentProject.getName())); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	IResourceDelta delta = getDelta(this.currentProject);
 	Map<IProject, IResourceDelta> deltas = new HashMap<>();
 	if (delta != null) {
-		if (delta.getKind() != IResourceDelta.NO_CHANGE) {
+		if (delta.getKind() != IResourceDelta.NO_CHANGE) { //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			if (DEBUG) {
 				trace("JavaBuilder: Found source delta for: " + this.currentProject.getName()); //$NON-NLS-1$
 			}
 			deltas.put(this.currentProject, delta);
 		}
-	} else {
+	} else { //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (DEBUG) {
 			trace("JavaBuilder: Missing delta for: " + this.currentProject.getName()); //$NON-NLS-1$
 		}
 		this.notifier.subTask(""); //$NON-NLS-1$
 		return null;
-	}
+	} //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 	nextProject: for (Entry<IProject, ClasspathLocation[]> entry : this.binaryLocationsPerProject.entrySet()) {
 		IProject p = entry.getKey();
@@ -472,7 +472,7 @@ private Map<IProject, IResourceDelta> findDeltas() {
 			if (!this.lastState.wasStructurallyChanged(p, s)) { // see if we can skip its delta
 				if (s.wasNoopBuild())
 					continue nextProject; // project has no source folders and can be skipped
-				ClasspathLocation[] classFoldersAndJars = entry.getValue();
+				ClasspathLocation[] classFoldersAndJars = entry.getValue(); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				boolean canSkip = true;
 				for (int j = 0, m = classFoldersAndJars.length; j < m; j++) {
 					if (classFoldersAndJars[j].isOutputFolder())
@@ -486,13 +486,13 @@ private Map<IProject, IResourceDelta> findDeltas() {
 			this.notifier.subTask(Messages.bind(Messages.build_readingDelta, p.getName()));
 			delta = getDelta(p);
 			if (delta != null) {
-				if (delta.getKind() != IResourceDelta.NO_CHANGE) {
+				if (delta.getKind() != IResourceDelta.NO_CHANGE) { //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					if (DEBUG) {
 						trace("JavaBuilder: Found binary delta for: " + p.getName()); //$NON-NLS-1$
 					}
 					deltas.put(p, delta);
 				}
-			} else {
+			} else { //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				if (DEBUG) {
 					trace("JavaBuilder: Missing delta for: " + p.getName()); //$NON-NLS-1$
 				}
@@ -513,14 +513,14 @@ public State getLastState(IProject project) {
 * is implicitly included and need not be specified. Builders must re-specify the list
 * of interesting projects every time they are run as this is not carried forward
 * beyond the next build. Missing projects should be specified but will be ignored until
-* they are added to the workspace.
+* they are added to the workspace. //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 */
 private IProject[] getRequiredProjects(boolean includeBinaryPrerequisites) {
 	if (this.javaProject == null || this.workspaceRoot == null) return new IProject[0];
 
 	LinkedHashSet<IProject> projects = new LinkedHashSet<>();
 	ExternalFoldersManager externalFoldersManager = JavaModelManager.getExternalManager();
-	try {
+	try { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IClasspathEntry[] entries = this.javaProject.getExpandedClasspath();
 		for (IClasspathEntry entry : entries) {
 			IPath path = entry.getPath();
@@ -538,7 +538,7 @@ private IProject[] getRequiredProjects(boolean includeBinaryPrerequisites) {
 
 						// Try to check first if the full binary entry path exactly matches an external folder,
 						// before assuming its first segment matches some project name in the workspace
-						resource = externalFoldersManager.getFolder(path);
+						resource = externalFoldersManager.getFolder(path); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						if (DEBUG && resource != null && !path.lastSegment().contains("jrt-fs.jar")) { //$NON-NLS-1$
 							trace("JavaBuilder: found resource containing binary classpath entry: \nExternal: " + this.currentProject.getName() + " -> " + path); //$NON-NLS-1$ //$NON-NLS-2$
 						}
@@ -554,11 +554,11 @@ private IProject[] getRequiredProjects(boolean includeBinaryPrerequisites) {
 						}
 
 						if (resource != null) {
-							p = resource.getProject();
+							p = resource.getProject(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							if (DEBUG && !path.lastSegment().contains("jrt-fs.jar")) { //$NON-NLS-1$
 								trace("JavaBuilder: found workspace project containing binary classpath entry: \nExternal: " + this.currentProject.getName() + " -> " + path); //$NON-NLS-1$ //$NON-NLS-2$
 							}
-						} else {
+						} else { //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							if (DEBUG && !path.lastSegment().contains("jrt-fs.jar")) { //$NON-NLS-1$
 								trace("JavaBuilder: Could not find resource containing binary classpath entry: \n" + this.currentProject.getName() + " -> " + path); //$NON-NLS-1$ //$NON-NLS-2$
 							}
@@ -576,7 +576,7 @@ private IProject[] getRequiredProjects(boolean includeBinaryPrerequisites) {
 	return result;
 }
 
-boolean hasBuildpathErrors() throws CoreException {
+boolean hasBuildpathErrors() throws CoreException { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	IMarker[] markers = this.currentProject.findMarkers(IJavaModelMarker.JAVA_MODEL_PROBLEM_MARKER, false, IResource.DEPTH_ZERO);
 	for (IMarker marker : markers)
 		if (marker.getAttribute(IJavaModelMarker.CATEGORY_ID, -1) == CategorizedProblem.CAT_BUILDPATH)
@@ -594,13 +594,13 @@ private boolean hasJdtCoreSettingsChange(Map<IProject, IResourceDelta> deltas) {
 
 protected boolean hasClasspathChanged() {
 	return hasClasspathChanged(CompilationGroup.MAIN) || hasClasspathChanged(CompilationGroup.TEST);
-}
+} //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 private boolean hasClasspathChanged(CompilationGroup compilationGroup) {
 	ClasspathMultiDirectory[] newSourceLocations = (compilationGroup == CompilationGroup.MAIN ? this.nameEnvironment : this.testNameEnvironment).sourceLocations;
 	ClasspathMultiDirectory[] oldSourceLocations = compilationGroup == CompilationGroup.MAIN ? this.lastState.sourceLocations : this.lastState.testSourceLocations;
 	int newLength = newSourceLocations.length;
-	int oldLength = oldSourceLocations.length;
+	int oldLength = oldSourceLocations.length; //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	int n, o;
 	for (n = o = 0; n < newLength && o < oldLength; n++, o++) {
 		if (newSourceLocations[n].equals(oldSourceLocations[o])) continue; // checks source & output folders
@@ -613,12 +613,12 @@ private boolean hasClasspathChanged(CompilationGroup compilationGroup) {
 				continue;
 			}
 		} catch (CoreException ignore) { // skip it
-		}
+		} //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (DEBUG) {
 			trace("JavaBuilder: New location: " + newSourceLocations[n] + "\n!= old location: " + oldSourceLocations[o]); //$NON-NLS-1$ //$NON-NLS-2$
 			printLocations(newSourceLocations, oldSourceLocations);
 		}
-		return true;
+		return true; //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	}
 	while (n < newLength) {
 		try {
@@ -632,7 +632,7 @@ private boolean hasClasspathChanged(CompilationGroup compilationGroup) {
 			trace("JavaBuilder: Added non-empty source folder"); //$NON-NLS-1$
 			printLocations(newSourceLocations, oldSourceLocations);
 		}
-		return true;
+		return true; //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	}
 	while (o < oldLength) {
 		if (this.lastState.isSourceFolderEmpty(oldSourceLocations[o].sourceFolder)) {
@@ -648,10 +648,10 @@ private boolean hasClasspathChanged(CompilationGroup compilationGroup) {
 
 	ClasspathLocation[] newBinaryLocations = (compilationGroup == CompilationGroup.MAIN ? this.nameEnvironment : this.testNameEnvironment).binaryLocations;
 	ClasspathLocation[] oldBinaryLocations = compilationGroup == CompilationGroup.MAIN ? this.lastState.binaryLocations : this.lastState.testBinaryLocations;
-	newLength = newBinaryLocations.length;
+	newLength = newBinaryLocations.length; //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	oldLength = oldBinaryLocations.length;
 	for (n = o = 0; n < newLength && o < oldLength; n++, o++) {
-		if (newBinaryLocations[n].equals(oldBinaryLocations[o])) continue;
+		if (newBinaryLocations[n].equals(oldBinaryLocations[o])) continue; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (DEBUG) {
 			trace("JavaBuilder: New test location: " + newBinaryLocations[n] + "\n!= old test location: " + oldBinaryLocations[o]); //$NON-NLS-1$ //$NON-NLS-2$
 			printLocations(newBinaryLocations, oldBinaryLocations);
@@ -668,19 +668,19 @@ private boolean hasClasspathChanged(CompilationGroup compilationGroup) {
 	return false;
 }
 
-private boolean hasJavaBuilder(IProject project) throws CoreException {
+private boolean hasJavaBuilder(IProject project) throws CoreException { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	ICommand[] buildCommands = project.getDescription().getBuildSpec();
 	for (ICommand buildCommand : buildCommands)
 		if (buildCommand.getBuilderName().equals(JavaCore.BUILDER_ID))
 			return true;
 	return false;
-}
+} //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 private boolean hasStructuralDelta() {
 	// handle case when currentProject has only .class file folders and/or jar files... no source/output folders
 	IResourceDelta delta = getDelta(this.currentProject);
 	if (delta != null && delta.getKind() != IResourceDelta.NO_CHANGE) {
-		ClasspathLocation[] classFoldersAndJars = this.binaryLocationsPerProject.get(this.currentProject);
+		ClasspathLocation[] classFoldersAndJars = this.binaryLocationsPerProject.get(this.currentProject); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (classFoldersAndJars != null) {
 			for (ClasspathLocation classFolderOrJar : classFoldersAndJars) {
 				if (classFolderOrJar != null) {
@@ -695,7 +695,7 @@ private boolean hasStructuralDelta() {
 		}
 	}
 	return false;
-}
+} //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 private int initializeBuilder(int kind, boolean forBuild) throws CoreException {
 	// some calls just need the nameEnvironment initialized so skip the rest
@@ -704,7 +704,7 @@ private int initializeBuilder(int kind, boolean forBuild) throws CoreException {
 
 	if (forBuild) {
 		// cache the known participants for this project
-		this.participants = JavaModelManager.getJavaModelManager().compilationParticipants.getCompilationParticipants(this.javaProject);
+		this.participants = JavaModelManager.getJavaModelManager().compilationParticipants.getCompilationParticipants(this.javaProject); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (this.participants != null)
 			for (CompilationParticipant participant : this.participants)
 				if (participant.aboutToBuild(this.javaProject) == CompilationParticipant.NEEDS_FULL_BUILD)
@@ -721,7 +721,7 @@ private int initializeBuilder(int kind, boolean forBuild) throws CoreException {
 			// check if we need to switch to full build due to missing output folder(s)
 			kind = checkOutputFolders(this.javaProject, kind);
 		}
-	}
+	} //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
 
 	this.binaryLocationsPerProject = new LinkedHashMap<>(3);
 	this.nameEnvironment = new NameEnvironment(this.workspaceRoot, this.javaProject, this.binaryLocationsPerProject, this.notifier, CompilationGroup.MAIN, JavaProject.NO_RELEASE);
@@ -735,13 +735,13 @@ private int initializeBuilder(int kind, boolean forBuild) throws CoreException {
 		if (filters == null) {
 			this.extraResourceFileFilters = null;
 			this.extraResourceFolderFilters = null;
-		} else {
+		} else { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int fileCount = 0, folderCount = 0;
 			for (char[] f : filters) {
 				if (f.length == 0) continue;
 				if (f[f.length - 1] == '/') folderCount++; else fileCount++;
 			}
-			this.extraResourceFileFilters = new char[fileCount][];
+			this.extraResourceFileFilters = new char[fileCount][]; //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.extraResourceFolderFilters = new String[folderCount];
 			for (char[] f : filters) {
 				if (f.length == 0) continue;
@@ -757,7 +757,7 @@ private int initializeBuilder(int kind, boolean forBuild) throws CoreException {
 
 private Map<Integer, INameEnvironment> releaseSpecificEnvironments;
 
-INameEnvironment getNameEnvironment(int release) throws CoreException {
+INameEnvironment getNameEnvironment(int release) throws CoreException { //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	if (this.releaseSpecificEnvironments == null) {
 		this.releaseSpecificEnvironments = new HashMap<>();
 	}
@@ -770,7 +770,7 @@ INameEnvironment getNameEnvironment(int release) throws CoreException {
 	return environment;
 }
 
-private boolean isClasspathBroken(JavaProject jProj, boolean tryRepair) throws CoreException {
+private boolean isClasspathBroken(JavaProject jProj, boolean tryRepair) throws CoreException { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	IMarker[] markers = jProj.getProject().findMarkers(IJavaModelMarker.BUILDPATH_PROBLEM_MARKER, false, IResource.DEPTH_ZERO);
 	for (IMarker marker : markers) {
 		if (marker.getAttribute(IMarker.SEVERITY, -1) == IMarker.SEVERITY_ERROR) {
@@ -785,7 +785,7 @@ private boolean isClasspathBroken(JavaProject jProj, boolean tryRepair) throws C
 		}
 	}
 	return false;
-}
+} //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 private boolean isWorthBuilding() throws CoreException {
 	boolean abortBuilds =
@@ -803,7 +803,7 @@ private boolean isWorthBuilding() throws CoreException {
 			trace("JavaBuilder: Aborted build because project has classpath errors (incomplete or involved in cycle)"); //$NON-NLS-1$
 		}
 
-		removeProblemsAndTasksFor(this.currentProject); // remove all compilation problems
+		removeProblemsAndTasksFor(this.currentProject); // remove all compilation problems //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 		Map<String, Object> attributes = new HashMap<>();
 		attributes.put(IMarker.MESSAGE, Messages.build_abortDueToClasspathProblems);
@@ -819,32 +819,32 @@ private boolean isWorthBuilding() throws CoreException {
 		return true;
 
 	// make sure all prereq projects have valid build states... only when aborting builds since projects in cycles do not have build states
-	// except for projects involved in a 'warning' cycle (see below)
+	// except for projects involved in a 'warning' cycle (see below) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	IProject[] requiredProjects = getRequiredProjects(false);
 	for (IProject p : requiredProjects) {
 		if (getLastState(p) == null)  {
 			// The prereq project has no build state: if this prereq project has a 'warning' cycle marker then allow build (see bug id 23357)
 			JavaProject prereq = (JavaProject) JavaCore.create(p);
-			if (prereq.hasCycleMarker() && JavaCore.WARNING.equals(this.javaProject.getOption(JavaCore.CORE_CIRCULAR_CLASSPATH, true))) {
+			if (prereq.hasCycleMarker() && JavaCore.WARNING.equals(this.javaProject.getOption(JavaCore.CORE_CIRCULAR_CLASSPATH, true))) { //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				if (DEBUG) {
 					trace("JavaBuilder: Continued to build even though prereq project " + p.getName() //$NON-NLS-1$
 						+ " was not built since its part of a cycle"); //$NON-NLS-1$
 				}
 				continue;
 			}
-			if (!hasJavaBuilder(p)) {
+			if (!hasJavaBuilder(p)) { //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				if (DEBUG) {
 					trace("JavaBuilder: Continued to build even though prereq project " + p.getName() //$NON-NLS-1$
 						+ " is not built by JavaBuilder"); //$NON-NLS-1$
 				}
 				continue;
-			}
+			} //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			if (DEBUG) {
 				trace("JavaBuilder: Aborted build because prereq project " + p.getName() //$NON-NLS-1$
 					+ " was not built"); //$NON-NLS-1$
 			}
 
-			removeProblemsAndTasksFor(this.currentProject); // make this the only problem for this project
+			removeProblemsAndTasksFor(this.currentProject); // make this the only problem for this project //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 			Map<String, Object> attributes = new HashMap<>();
 			attributes.put(IMarker.MESSAGE,
@@ -866,11 +866,11 @@ private boolean isWorthBuilding() throws CoreException {
  * needs to propagate structural changes to the projects depending on it,
  * either in the cycle or outside of it, which were already built.
  */
-void mustPropagateStructuralChanges() {
-	Set<IProject> dependents = collectDependents();
+void mustPropagateStructuralChanges() { //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+	Set<IProject> dependents = collectDependents(); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	Set<IProject> toRebuild = new HashSet<>();
 	for (IProject project : dependents) {
-		if (!project.equals(this.currentProject) && hasBeenBuilt(project)) {
+		if (!project.equals(this.currentProject) && hasBeenBuilt(project)) { //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			if (DEBUG) {
 				trace("JavaBuilder: Requesting another build iteration since dependent project " + project.getName() //$NON-NLS-1$
 					+ " has not yet seen some structural changes"); //$NON-NLS-1$
@@ -887,20 +887,20 @@ void mustPropagateStructuralChanges() {
  * Computes all Java projects which directly or indirectly depend on the current project.
  * Uses the same input as cycle detection (see JavaProject#validateCycles()), i.e. the
  * project entries of the resolved classpath, and not IProject#getReferencingProjects(),
- * which would also include references recorded in .project / build configurations.
+ * which would also include references recorded in .project / build configurations. //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
  */
 private Set<IProject> collectDependents() {
-	IWorkspaceRoot root = this.currentProject.getWorkspace().getRoot();
-	// required project -> projects directly requiring it
+	IWorkspaceRoot root = this.currentProject.getWorkspace().getRoot(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	// required project -> projects directly requiring it //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	Map<IProject, List<IProject>> directDependents = new HashMap<>();
 	for (IProject project : root.getProjects()) {
 		if (!JavaProject.hasJavaNature(project)) {
 			continue;
 		}
-		JavaProject jProject = (JavaProject) JavaCore.create(project);
+		JavaProject jProject = (JavaProject) JavaCore.create(project); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		try {
 			for (IClasspathEntry entry : jProject.getResolvedClasspath()) {
-				if (entry.getEntryKind() == IClasspathEntry.CPE_PROJECT) {
+				if (entry.getEntryKind() == IClasspathEntry.CPE_PROJECT) { //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 					IProject required = root.getProject(entry.getPath().lastSegment());
 					directDependents.computeIfAbsent(required, unused -> new ArrayList<>()).add(project);
 				}
@@ -909,11 +909,11 @@ private Set<IProject> collectDependents() {
 			// ignore projects with unresolvable classpath, like cycle detection does
 		}
 	}
-
+ //FLLDCIM: MARK — M08 M3_DEQUE_LANES NEW
 	Set<IProject> dependents = new LinkedHashSet<>();
-	Deque<IProject> pending = new ArrayDeque<>();
+	Deque<IProject> pending = new ArrayDeque<>(); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	pending.add(this.currentProject);
-	while (!pending.isEmpty()) {
+	while (!pending.isEmpty()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IProject required = pending.poll();
 		for (IProject dependent : directDependents.getOrDefault(required, Collections.emptyList())) {
 			if (dependents.add(dependent)) {
@@ -924,25 +924,25 @@ private Set<IProject> collectDependents() {
 	return dependents;
 }
 
-private void printLocations(ClasspathLocation[] newLocations, ClasspathLocation[] oldLocations) {
-	trace("JavaBuilder: New locations:"); //$NON-NLS-1$
+private void printLocations(ClasspathLocation[] newLocations, ClasspathLocation[] oldLocations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+	trace("JavaBuilder: New locations:"); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	for (ClasspathLocation newLocation : newLocations) {
 		trace("    " + newLocation.debugPathString()); //$NON-NLS-1$
-	}
-	trace("JavaBuilder: Old locations:"); //$NON-NLS-1$
+	} //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+	trace("JavaBuilder: Old locations:"); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	for (ClasspathLocation oldLocation : oldLocations) {
 		trace("    " + oldLocation.debugPathString()); //$NON-NLS-1$
 	}
 }
 
-private void recordNewState(State state) {
+private void recordNewState(State state) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	Set<IProject> keyTable = this.binaryLocationsPerProject.keySet();
 	for (Object proj : keyTable) {
 		IProject prereqProject = (IProject) proj;
 		if (prereqProject != null && prereqProject != this.currentProject)
 			state.recordStructuralDependency(prereqProject, getLastState(prereqProject));
 	}
-
+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	if (DEBUG) {
 		trace("JavaBuilder: Recording new state : " + state); //$NON-NLS-1$
 	}
@@ -956,7 +956,7 @@ private void recordNewState(State state) {
  * @param project
  *                    The Java project to check
  * @return If any output folder is missing, {@link IncrementalProjectBuilder#FULL_BUILD} is returned and original
- *         <code>buildKind</code> argument otherwise.
+ *         <code>buildKind</code> argument otherwise. //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
  */
 protected int checkOutputFolders(IJavaProject project, int buildKind) {
 	if (!JavaCore.ENABLED
@@ -964,7 +964,7 @@ protected int checkOutputFolders(IJavaProject project, int buildKind) {
 		return buildKind;
 	}
 	try {
-		boolean checkDefault = true;
+		boolean checkDefault = true; //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IWorkspaceRoot root = project.getProject().getWorkspace().getRoot();
 		for (IClasspathEntry entry : project.getRawClasspath()) {
 			if (entry.getEntryKind() != IClasspathEntry.CPE_SOURCE) {
@@ -1009,7 +1009,7 @@ private static boolean existsOnDisk(IContainer defaultOutputLocation) {
  */
 @Override
 public String toString() {
-	return this.currentProject == null
+	return this.currentProject == null //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		? "JavaBuilder for unknown project" //$NON-NLS-1$
 		: "JavaBuilder for " + this.currentProject.getName(); //$NON-NLS-1$
 }

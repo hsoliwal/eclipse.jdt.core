@@ -79,7 +79,7 @@ public class PerformanceTests extends TestBase
 	/**
 	 * Create files that contain annotations that will be processed with a Java 6 processor.
 	 */
-	private void createInterestingFilesWithJ6(int numFiles, IJavaProject jproj)
+	private void createInterestingFilesWithJ6(int numFiles, IJavaProject jproj) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String srcTemplate =
 			"package p;\n" +
@@ -115,21 +115,21 @@ public class PerformanceTests extends TestBase
 		createFiles(numFiles, nameTemplate, srcTemplate, jproj);
 	}
 
-	private void createFiles(int numFiles, String nameTemplate, String srcTemplate, IJavaProject jproj)
+	private void createFiles(int numFiles, String nameTemplate, String srcTemplate, IJavaProject jproj) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		IProject project = jproj.getProject();
 		IFolder srcFolder = project.getFolder( "src" );
 		IPath srcRoot = srcFolder.getFullPath();
 
-		for (int i = 1; i <= numFiles; ++i) {
-			String name = String.format(nameTemplate, i);
-			String contents = String.format(srcTemplate, i, i);
+		for (int i = 1; i <= numFiles; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			String name = String.format(nameTemplate, i); //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
+			String contents = String.format(srcTemplate, i, i); //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
 			env.addClass( srcRoot, "p", name, contents ); //$NON-NLS-1$ //$NON-NLS-2$
 
 			// pause to let indexer catch up
 			if (i % PAUSE_EVERY == 0) {
 				if (VERBOSE)
-					System.out.println("Created " + i + " files; pausing for indexer");
+					System.out.println("Created " + i + " files; pausing for indexer"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				try {
 					Thread.sleep(PAUSE_TIME);
 				} catch (InterruptedException e) {
@@ -145,7 +145,7 @@ public class PerformanceTests extends TestBase
 	/**
 	 * Performance with files that contain annotations that won't be processed.
 	 */
-	public void testBoringFiles() throws Exception
+	public void testBoringFiles() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		final int FILES_TO_GENERATE = 2000; // total number of files to create
 		// set up project with unique name
@@ -165,7 +165,7 @@ public class PerformanceTests extends TestBase
 			fullBuild( project.getFullPath() );
 			if (VERBOSE) {
 				System.out
-						.println("APT disabled: full build took " + ((System.nanoTime() - startNanos) / 1_000_000L) + " ms");
+						.println("APT disabled: full build took " + ((System.nanoTime() - startNanos) / 1_000_000L) + " ms"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			run.exec(CMD_PERF_SNAPSHOT_AS_ARRAY).waitFor();
 			run.exec(CMD_STOP_CPU_PROFILING_AS_ARRAY).waitFor();
@@ -181,7 +181,7 @@ public class PerformanceTests extends TestBase
 			System.out.println("APT enabled: starting full build");
 		fullBuild( project.getFullPath() );
 		if (VERBOSE) {
-			System.out.println("full build took " + ((System.nanoTime() - startNanos) / 1_000_000L) + " ms");
+			System.out.println("full build took " + ((System.nanoTime() - startNanos) / 1_000_000L) + " ms"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			System.out.println("Taking heap snapshot");
 		}
 		run.exec(CMD_HEAP_SNAPSHOT_AS_ARRAY).waitFor();
@@ -197,7 +197,7 @@ public class PerformanceTests extends TestBase
 		run.exec(CMD_START_CPU_PROFILING_AS_ARRAY).waitFor();
 		fullBuild( project.getFullPath() );
 		if (VERBOSE) {
-			System.out.println("full build took " + ((System.nanoTime() - startNanos) / 1_000_000L) + " ms");
+			System.out.println("full build took " + ((System.nanoTime() - startNanos) / 1_000_000L) + " ms"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		run.exec(CMD_PERF_SNAPSHOT_AS_ARRAY).waitFor();
 		run.exec(CMD_STOP_CPU_PROFILING_AS_ARRAY).waitFor();
@@ -213,7 +213,7 @@ public class PerformanceTests extends TestBase
 		run.exec(CMD_START_CPU_PROFILING_AS_ARRAY).waitFor();
 		fullBuild( project.getFullPath() );
 		if (VERBOSE) {
-			System.out.println("full build took " + ((System.nanoTime() - startNanos) / 1_000_000L) + " ms");
+			System.out.println("full build took " + ((System.nanoTime() - startNanos) / 1_000_000L) + " ms"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		run.exec(CMD_PERF_SNAPSHOT_AS_ARRAY).waitFor();
 		run.exec(CMD_STOP_CPU_PROFILING_AS_ARRAY).waitFor();
@@ -230,7 +230,7 @@ public class PerformanceTests extends TestBase
 	 * Performance with files that contain annotations that will be processed
 	 * with a Java 6 processor, but no file generation.
 	 */
-	public void _testInterestingFilesWithJ6() throws Exception
+	public void _testInterestingFilesWithJ6() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		final int FILES_TO_GENERATE = 2000; // total number of files to create
 		// set up project with unique name
@@ -248,7 +248,7 @@ public class PerformanceTests extends TestBase
 			fullBuild( project.getFullPath() );
 			if (VERBOSE)
 				System.out.println(
-						"APT disabled: full build took " + ((System.nanoTime() - startNanos) / 1_000_000L) + " ms");
+						"APT disabled: full build took " + ((System.nanoTime() - startNanos) / 1_000_000L) + " ms"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			run.exec(CMD_PERF_SNAPSHOT_AS_ARRAY).waitFor();
 			run.exec(CMD_STOP_CPU_PROFILING_AS_ARRAY).waitFor();
 			expectingNoProblems();
@@ -264,7 +264,7 @@ public class PerformanceTests extends TestBase
 		run.exec(CMD_START_CPU_PROFILING_AS_ARRAY).waitFor();
 		fullBuild( project.getFullPath() );
 		if (VERBOSE)
-			System.out.println("full build took " + ((System.nanoTime() - startNanos) / 1_000_000L) + " ms");
+			System.out.println("full build took " + ((System.nanoTime() - startNanos) / 1_000_000L) + " ms"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		run.exec(CMD_PERF_SNAPSHOT_AS_ARRAY).waitFor();
 		run.exec(CMD_STOP_CPU_PROFILING_AS_ARRAY).waitFor();
 		expectingNoProblems();
@@ -282,7 +282,7 @@ public class PerformanceTests extends TestBase
 	 * Test with files that have meaningful processing (generation of additional types).
 	 * Currently disabled.
 	 */
-	public void _testGeneratingLotsOfFiles() throws Exception
+	public void _testGeneratingLotsOfFiles() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		final int FILES_TO_GENERATE = 4000; // total number of files to create
 		// set up project with unique name
@@ -297,20 +297,20 @@ public class PerformanceTests extends TestBase
 		long startNanos = System.nanoTime();
 		fullBuild(project.getFullPath());
 		if (VERBOSE)
-			System.out.println("Done with build after " + ((System.nanoTime() - startNanos) / 1_000_000L) + " ms");
+			System.out.println("Done with build after " + ((System.nanoTime() - startNanos) / 1_000_000L) + " ms"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		expectingNoProblems();
 
 		IPath projPath = jproj.getProject().getLocation();
-		for (int i = 1; i <= FILES_TO_GENERATE; ++i) {
+		for (int i = 1; i <= FILES_TO_GENERATE; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// check that file was generated
-			String genFileName = String.format(".apt_generated/g/Generated%05d.java", i);
+			String genFileName = String.format(".apt_generated/g/Generated%05d.java", i); //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
 			File genFile = new File(projPath.append(genFileName).toOSString());
-			assertTrue("Expected generated source file " + genFileName + " was not found", genFile != null && genFile.exists());
+			assertTrue("Expected generated source file " + genFileName + " was not found", genFile != null && genFile.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			// check that generated file was compiled
-			String genClassName = String.format("bin/g/Generated%05d.class", i);
+			String genClassName = String.format("bin/g/Generated%05d.class", i); //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
 			File genClass = new File(projPath.append(genClassName).toOSString());
-			assertTrue("Compiled file " + genClassName + " was not found", genClass != null && genClass.exists());
+			assertTrue("Compiled file " + genClassName + " was not found", genClass != null && genClass.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		if (VERBOSE)

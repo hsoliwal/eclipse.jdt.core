@@ -67,23 +67,23 @@ public class NullAnnotationModelTests extends ReconcilerTests {
 		super.setUp();
 		Bundle[] bundles = org.eclipse.jdt.core.tests.Activator.getPackageAdmin().getBundles("org.eclipse.jdt.annotation", "[2.0.0,3.0.0)");
 		File bundleFile = FileLocator.getBundleFileLocation(bundles[0]).get();
-		this.ANNOTATION_LIB = bundleFile.isDirectory() ? bundleFile.getPath()+"/bin" : bundleFile.getPath();
+		this.ANNOTATION_LIB = bundleFile.isDirectory() ? bundleFile.getPath()+"/bin" : bundleFile.getPath(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		this.ANNOTATION_LIB_V1 = AbstractNullAnnotationTest.getAnnotationV1LibPath();
 	}
 
 	protected String testJarPath(String jarName) throws IOException {
-		URL libEntry = Platform.getBundle("org.eclipse.jdt.core.tests.model").getEntry("/workspace/NullAnnotations/lib/"+jarName);
+		URL libEntry = Platform.getBundle("org.eclipse.jdt.core.tests.model").getEntry("/workspace/NullAnnotations/lib/"+jarName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		return FileLocator.toFileURL(libEntry).getPath();
 	}
 
 	private void patchModule(IJavaProject project, String module, String source) throws JavaModelException {
 		IClasspathEntry[] rawClasspath = project.getRawClasspath();
-		for (int i = 0; i < rawClasspath.length; i++) {
+		for (int i = 0; i < rawClasspath.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IClasspathEntry entry = rawClasspath[i];
 			if (entry.getPath().toString().startsWith("JCL")) {
 				IClasspathEntry newEntry = JavaCore.newVariableEntry(entry.getPath(), entry.getSourceAttachmentPath(), entry.getSourceAttachmentRootPath(), null, new IClasspathAttribute[] {
-							JavaCore.newClasspathAttribute(IClasspathAttribute.PATCH_MODULE, module+"="+source)
+							JavaCore.newClasspathAttribute(IClasspathAttribute.PATCH_MODULE, module+"="+source) //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						},
 						false);
 				rawClasspath[i] = newEntry;
@@ -94,7 +94,7 @@ public class NullAnnotationModelTests extends ReconcilerTests {
 		fail("No JCL library found to patch");
 	}
 
-	public void testConvertedSourceType1() throws CoreException, InterruptedException {
+	public void testConvertedSourceType1() throws CoreException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	try {
 			// Resources creation
 			IJavaProject p = createJavaProject("P", new String[] {""}, new String[] {"JCL18_LIB", this.ANNOTATION_LIB}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
@@ -153,7 +153,7 @@ public class NullAnnotationModelTests extends ReconcilerTests {
     	}
     }
 
-	public void testBinaryType1() throws CoreException, InterruptedException, IOException {
+	public void testBinaryType1() throws CoreException, InterruptedException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	try {
 			// Resources creation
 			IJavaProject p = createJavaProject("P", new String[] {""},
@@ -203,7 +203,7 @@ public class NullAnnotationModelTests extends ReconcilerTests {
     }
 
 	// DISABLED: no longer a problem since bug 365531 - [compiler][null] investigate alternative strategy for internally encoding nullness defaults
-	public void _testMissingAnnotation1() throws CoreException {
+	public void _testMissingAnnotation1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	try {
 			// Resources creation
 			IJavaProject p = createJavaProject("P", new String[] {""}, new String[] {"JCL18_LIB", this.ANNOTATION_LIB}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
@@ -240,7 +240,7 @@ public class NullAnnotationModelTests extends ReconcilerTests {
 	}
 
 	// DISABLED: no longer a problem since bug 365531 - [compiler][null] investigate alternative strategy for internally encoding nullness defaults
-	public void _testMissingAnnotation2() throws CoreException {
+	public void _testMissingAnnotation2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable<String, String> javaOptions = JavaCore.getOptions();
     	try {
 			// Resources creation
@@ -285,7 +285,7 @@ public class NullAnnotationModelTests extends ReconcilerTests {
 	// currently not actually challenging the NPE, because we no longer report
 	// "Cannot use the unqualified name \'invalid\' as an annotation name for null specification"
 	// DISABLED: no longer a problem since bug 365531 - [compiler][null] investigate alternative strategy for internally encoding nullness defaults
-	public void _testMissingAnnotation3() throws CoreException {
+	public void _testMissingAnnotation3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	try {
 			// Resources creation
 			IJavaProject p = createJavaProject("P", new String[] {""}, new String[] {"JCL18_LIB", this.ANNOTATION_LIB}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
@@ -325,7 +325,7 @@ public class NullAnnotationModelTests extends ReconcilerTests {
 			this.problemRequestor.reset();
 			this.problemRequestor.beginReporting();
 			IProblem[] problems = ast.getProblems();
-			for (int i=0; i<problems.length; i++)
+			for (int i=0; i<problems.length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.problemRequestor.acceptProblem(problems[i]);
 			assertProblems("Unexpected problems (2)",
 					"----------\n" +
@@ -340,7 +340,7 @@ public class NullAnnotationModelTests extends ReconcilerTests {
 	}
 
 	// initialization of null annotations is triggered from package-info.java: illegal simple name
-	public void testMissingAnnotation4() throws CoreException, InterruptedException {
+	public void testMissingAnnotation4() throws CoreException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	try {
 			// Resources creation
 			IJavaProject p = createJavaProject("P", new String[] {""}, new String[] {"JCL18_LIB", this.ANNOTATION_LIB}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
@@ -402,7 +402,7 @@ public class NullAnnotationModelTests extends ReconcilerTests {
 	// - default is defined in package-info.java:
 	// must detect missing non-null annotation and report against the project
 	// DISABLED: no longer a problem since bug 365531 - [compiler][null] investigate alternative strategy for internally encoding nullness defaults
-	public void _testMissingAnnotation5() throws CoreException, InterruptedException {
+	public void _testMissingAnnotation5() throws CoreException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	try {
 			// Resources creation
 			IJavaProject p = createJavaProject("P", new String[] {""}, new String[] {"JCL18_LIB", this.ANNOTATION_LIB}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
@@ -459,7 +459,7 @@ public class NullAnnotationModelTests extends ReconcilerTests {
 			this.problemRequestor.reset();
 			this.problemRequestor.beginReporting();
 			IProblem[] problems = ast.getProblems();
-			for (int i=0; i<problems.length; i++)
+			for (int i=0; i<problems.length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.problemRequestor.acceptProblem(problems[i]);
 			assertProblems("Unexpected problems (2)", expectedError);
     	} finally {
@@ -468,7 +468,7 @@ public class NullAnnotationModelTests extends ReconcilerTests {
 	}
 
 	// A synthetic annotation from a default should not be converted to DOM AST
-	public void testAnnotationAST1() throws CoreException, InterruptedException {
+	public void testAnnotationAST1() throws CoreException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	try {
 			// Resources creation
 			IJavaProject p = createJavaProject("P", new String[] {""}, new String[] {"JCL18_LIB", this.ANNOTATION_LIB}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
@@ -528,7 +528,7 @@ public class NullAnnotationModelTests extends ReconcilerTests {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=372012
 	// no problem should be created for a compilation unit in a package missing package-info when the warning is enabled
-	public void testBug372012() throws JavaModelException, IOException, CoreException, InterruptedException {
+	public void testBug372012() throws JavaModelException, IOException, CoreException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			// Resources creation
 			IJavaProject p = createJavaProject("P", new String[] {""}, new String[] {"JCL18_LIB", this.ANNOTATION_LIB}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
@@ -552,7 +552,7 @@ public class NullAnnotationModelTests extends ReconcilerTests {
 	}
 
 	// see https://bugs.eclipse.org/418233
-	public void testNonNullDefaultInInner()  throws CoreException, IOException, InterruptedException  {
+	public void testNonNullDefaultInInner()  throws CoreException, IOException, InterruptedException  { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project15 = null;
 		try {
 			project15 = createJavaProject("TestAnnot", new String[] {"src"}, new String[] {"JCL18_LIB", this.ANNOTATION_LIB}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
@@ -607,7 +607,7 @@ public class NullAnnotationModelTests extends ReconcilerTests {
 	/*
 	 * Bug 405843 - [1.8] Support type annotations in Java Model(https://bugs.eclipse.org/bugs/show_bug.cgi?id=405843)
 	 */
-	public void testBug405843() throws CoreException, IOException, InterruptedException {
+	public void testBug405843() throws CoreException, IOException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try {
 			project = createJavaProject("Bug405843", new String[] {"src"}, new String[] {"JCL18_LIB", this.ANNOTATION_LIB}, "bin", "1.8");
@@ -645,7 +645,7 @@ public class NullAnnotationModelTests extends ReconcilerTests {
 				deleteProject(project);
 		}
 	}
-	public void testBug405843a() throws CoreException, IOException, InterruptedException {
+	public void testBug405843a() throws CoreException, IOException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try {
 			project = createJavaProject("Bug405843", new String[] {"src"}, new String[] {"JCL18_LIB", this.ANNOTATION_LIB}, "bin", "1.8");
@@ -683,7 +683,7 @@ public class NullAnnotationModelTests extends ReconcilerTests {
 	}
 
 	// was: NPE in ProblemReporter.illegalReturnRedefinition() from ImplicitNullAnnotationVerifier.checkNullSpecInheritance()
-	public void testBug458361a() throws CoreException {
+	public void testBug458361a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try {
 			project = createJavaProject("Bug458361", new String[] {"src"}, new String[] {"JCL18_LIB", this.ANNOTATION_LIB}, "bin", "1.8");
@@ -710,7 +710,7 @@ public class NullAnnotationModelTests extends ReconcilerTests {
 				deleteProject(project);
 		}
 	}
-	public void testBug458361b() throws CoreException {
+	public void testBug458361b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try {
 			project = createJavaProject("Bug458361", new String[] {"src"}, new String[] {"JCL18_LIB", this.ANNOTATION_LIB_V1}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
@@ -743,7 +743,7 @@ public class NullAnnotationModelTests extends ReconcilerTests {
 		}
 	}
 
-	public void testBug487781() throws CoreException, IOException, InterruptedException {
+	public void testBug487781() throws CoreException, IOException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try {
 			project = createJavaProject("Bug487781", new String[] {"src"}, new String[] {"JCL18_LIB", this.ANNOTATION_LIB}, "bin", "1.8");
@@ -787,7 +787,7 @@ public class NullAnnotationModelTests extends ReconcilerTests {
 		}
 	}
 
-	public void testBug495635() throws CoreException, IOException, InterruptedException {
+	public void testBug495635() throws CoreException, IOException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try {
 			project = createJavaProject("Bug495635", new String[] {"src"}, new String[] {"JCL18_LIB", this.ANNOTATION_LIB}, "bin", "1.8");
@@ -834,7 +834,7 @@ public class NullAnnotationModelTests extends ReconcilerTests {
 		}
 	}
 
-	public void testBug460491WithOldBinary() throws CoreException, InterruptedException, IOException {
+	public void testBug460491WithOldBinary() throws CoreException, InterruptedException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
     	try {
 			project = createJavaProject("Bug460491", new String[] {"src"}, new String[] {"JCL18_LIB", this.ANNOTATION_LIB, testJarPath("bug460491-compiled-with-4.6.jar")}, "bin", "1.8");
@@ -897,7 +897,7 @@ public class NullAnnotationModelTests extends ReconcilerTests {
 		}
 }
 
-	public void testBug460491WithOldBinary_b() throws CoreException, InterruptedException, IOException {
+	public void testBug460491WithOldBinary_b() throws CoreException, InterruptedException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
     	try {
 			project = createJavaProject("Bug460491", new String[] {"src"}, new String[] {"JCL18_LIB", this.ANNOTATION_LIB, testJarPath("bug460491b-compiled-with-4.6.jar")}, "bin", "1.8");
@@ -967,23 +967,23 @@ public class NullAnnotationModelTests extends ReconcilerTests {
 		}
 	}
 
-	public void testTargetTypeUse() throws CoreException {
+	public void testTargetTypeUse() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
     	try {
 			project = createJavaProject("TargetTypeUse", new String[] {"src"}, new String[] {"JCL18_LIB", this.ANNOTATION_LIB}, "bin", "1.8");
 			IType nonNull = project.findType(NonNull.class.getName());
 			IAnnotation annot = nonNull.getAnnotation(Target.class.getName());
-			for (IMemberValuePair memberValuePair : annot.getMemberValuePairs()) {
+			for (IMemberValuePair memberValuePair : annot.getMemberValuePairs()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Object value = memberValuePair.getValue();
 				if(value instanceof Object[]) {
 					Object[] arr = (Object[]) value;
-					for (Object object : arr) {
-						if (object.equals(ElementType.class.getName()+'.'+ElementType.TYPE_USE)) {
+					for (Object object : arr) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+						if (object.equals(ElementType.class.getName()+'.'+ElementType.TYPE_USE)) { //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							return;
 						}
 					}
 				} else {
-					if (value.equals(ElementType.class.getName()+'.'+ElementType.TYPE_USE))
+					if (value.equals(ElementType.class.getName()+'.'+ElementType.TYPE_USE)) //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						return;
 				}
 			}
@@ -994,7 +994,7 @@ public class NullAnnotationModelTests extends ReconcilerTests {
 		}
 	}
 
-	public void testBug549764() throws CoreException, IOException {
+	public void testBug549764() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
     	try {
 			project = createJavaProject("Bug549764", new String[] {"src"}, new String[] {"JCL18_LIB", this.ANNOTATION_LIB}, "bin", "1.8");
@@ -1052,10 +1052,10 @@ public class NullAnnotationModelTests extends ReconcilerTests {
 	}
 
 	// was: NPE in SourceTypeBinding.getAnnotationTagBits
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testBug551426() throws CoreException, Exception {
 		ASTParser astParser = ASTParser.newParser(AST.JLS8);
-		Map<String, String> options = new HashMap<>();
+		Map<String, String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		astParser.setResolveBindings(true);
 		astParser.setEnvironment(new String[] {}, new String[] {}, new String[] {}, true);
 		options.put(JavaCore.COMPILER_SOURCE, "1.8");
@@ -1075,7 +1075,7 @@ public class NullAnnotationModelTests extends ReconcilerTests {
 		IAnnotationBinding[] annotations = typeBinding.getAnnotations();
 		assertEquals(0, annotations.length);
 	}
-	public void testBug479389() throws CoreException, IOException {
+	public void testBug479389() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try {
 			project = createJavaProject("Bug479389", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8");
@@ -1117,7 +1117,7 @@ public class NullAnnotationModelTests extends ReconcilerTests {
 			deleteProject(project);
 		}
 	}
-	public void testBug565246() throws CoreException {
+	public void testBug565246() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = createJavaProject("Bug565246", new String[] {"src"}, new String[] {"JCL_17_LIB", this.ANNOTATION_LIB_V1}, "bin", "17");
 		try {
 			patchModule(project, "java.base", "Bug565246/src");
@@ -1160,7 +1160,7 @@ public class NullAnnotationModelTests extends ReconcilerTests {
 		}
 	}
 
-	public void testGH875() throws CoreException, InterruptedException {
+	public void testGH875() throws CoreException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// first fixed by commit da0a6d8d5088b92dbc3602cdccff8d667b6d5e8b
 		IJavaProject project = createJavaProject("GH875", new String[] {"src"}, new String[] {"JCL18_LIB", this.ANNOTATION_LIB_V1}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		try {

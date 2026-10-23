@@ -64,7 +64,7 @@ public class CompletionNodeDetector extends ASTVisitor {
 	private ASTNode blockedNode;
 	private boolean containsPotentialPolyExpression = false;
 
-	public CompletionNodeDetector(ASTNode searchedNode, ASTNode visitedAst){
+	public CompletionNodeDetector(ASTNode searchedNode, ASTNode visitedAst){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.searchedNode = searchedNode;
 		this.result = false;
 
@@ -539,9 +539,9 @@ public class CompletionNodeDetector extends ASTVisitor {
 	}
 
 	private boolean isOnCompletingOnCaseLabel(SwitchStatement statement) {
-		for (Statement stmt : statement.statements) {
+		for (Statement stmt : statement.statements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (stmt instanceof CaseStatement cs) {
-				for (Expression expr : cs.constantExpressions) {
+				for (Expression expr : cs.constantExpressions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (this.searchedNode == expr
 							|| (expr instanceof RecordPattern rp && rp.type == this.searchedNode)) {
 						return true;
@@ -552,7 +552,7 @@ public class CompletionNodeDetector extends ASTVisitor {
 		return false;
 	}
 
-	protected void checkUpdateOuter(ASTNode astNode) {
+	protected void checkUpdateOuter(ASTNode astNode) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.containsPotentialPolyExpression && astNode instanceof Expression) {
 			// resolving a contained poly expression can only benefit from any additional expression context
 			this.outerExpression = (Expression) astNode;

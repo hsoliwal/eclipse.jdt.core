@@ -40,7 +40,7 @@ public abstract class JavadocTest extends AbstractRegressionTest {
   protected static String javadocCommandLineHeader;
 
 	static {
-		ALL_CLASSES = new ArrayList();
+		ALL_CLASSES = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		ALL_CLASSES.add(JavadocBugsTest.class);
 		ALL_CLASSES.add(JavadocTestForMethod.class);
 		ALL_CLASSES.add(JavadocTestMixed.class);
@@ -57,7 +57,7 @@ public abstract class JavadocTest extends AbstractRegressionTest {
 		suite.addTest(innerSuite);
 	}
 
-	public static Test suite() {
+	public static Test suite() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TestSuite testSuite = new TestSuite(JavadocTest.class.getName());
 
 		// Reset forgotten subsets of tests
@@ -67,7 +67,7 @@ public abstract class JavadocTest extends AbstractRegressionTest {
 		TestCase.TESTS_RANGE = null;
 		TestCase.RUN_ONLY_ID = null;
 
-		for (int i = 0, size=ALL_CLASSES.size(); i < size; i++) {
+		for (int i = 0, size=ALL_CLASSES.size(); i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Class testClass = (Class) ALL_CLASSES.get(i);
 			Test suite = buildAllCompliancesTestSuite(testClass);
 			testSuite.addTest(suite);
@@ -376,7 +376,7 @@ public abstract class JavadocTest extends AbstractRegressionTest {
 			completedFiles = new String[testFiles.length + referencedClasses.length];
 			System.arraycopy(referencedClasses, 0, completedFiles, 0, referencedClasses.length);
 			System.arraycopy(testFiles, 0, completedFiles, referencedClasses.length, testFiles.length);
-			expected = expectedDiagnosticsFromReferencedClasses + expected;
+			expected = expectedDiagnosticsFromReferencedClasses + expected; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		runNegativeTest(completedFiles, expected, javacTestOptions);
 	}
@@ -422,7 +422,7 @@ public abstract class JavadocTest extends AbstractRegressionTest {
 			generateOutput);
 	}
 	*/
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void writeFiles(String[] testFiles) {
 		String classDirName = getClass().getName().substring(getClass().getName().lastIndexOf('.')+1); //.substring(11);
 		String testName = getName();
@@ -434,11 +434,11 @@ public abstract class JavadocTest extends AbstractRegressionTest {
     // File dir = new File("d:/usr/OTI/tests/javadoc/");
 		// non portable
 		createOutputTestDirectory(classDirName);
-		createOutputTestDirectory(Character.toUpperCase(testName.charAt(0)) +
+		createOutputTestDirectory(Character.toUpperCase(testName.charAt(0)) + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				testName.substring(1));
-		System.out.println("Write test file to " +
+		System.out.println("Write test file to " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				this.outputTestDirectory.getPath() + "...");
-		for (int i=0, length=testFiles.length; i<length; i++) {
+		for (int i=0, length=testFiles.length; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String contents = testFiles[i+1];
 			String fileName = testFiles[i++];
 			String dirFileName = this.outputTestDirectory.getPath();
@@ -449,17 +449,17 @@ public abstract class JavadocTest extends AbstractRegressionTest {
 				if (index > 0) {
 					String subdirs = fileName.substring(0, index);
 					String packName = subdirs.replace('/', '.');
-					contents = "package "+packName+";"+contents.substring(contents.indexOf(';')+1);
+					contents = "package "+packName+";"+contents.substring(contents.indexOf(';')+1); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					File dir = new File(dirFileName, subdirs);
 					if (!dir.exists()) dir.mkdirs();
 					if (shouldRunJavac()) {
-						Util.writeToFile(contents, dirFileName+"/"+fileName);
+						Util.writeToFile(contents, dirFileName+"/"+fileName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						// PREMATURE this results into a duplicate file.
 					}
 					fileName = fileName.substring(index+1);
 				}
 			}
-			Util.writeToFile(contents, dirFileName+"/"+fileName);
+			Util.writeToFile(contents, dirFileName+"/"+fileName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			// REVIEW don't know why this is created at the default package level
 		}
 	}
@@ -468,7 +468,7 @@ public abstract class JavadocTest extends AbstractRegressionTest {
 	 * Run Sun compilation using javadoc.
 	 * See implementation in parent for details.
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void runJavac(
 			String[] testFiles,
 			final String expectedProblemLog,
@@ -490,26 +490,26 @@ public abstract class JavadocTest extends AbstractRegressionTest {
 			writeFiles(testFiles);
 
 			// Prepare command line
-			StringBuilder cmdLine = new StringBuilder(javadocCommandLineHeader);
+			StringBuilder cmdLine = new StringBuilder(javadocCommandLineHeader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			// compute extra classpath
 			String[] classpath = Util.concatWithClassLibs(JAVAC_OUTPUT_DIR_NAME, false);
-			StringBuilder cp = new StringBuilder(" -classpath ");
+			StringBuilder cp = new StringBuilder(" -classpath "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			int length = classpath.length;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (i > 0)
-				  cp.append(File.pathSeparatorChar);
+				  cp.append(File.pathSeparatorChar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (classpath[i].indexOf(" ") != -1) {
-					cp.append("\"" + classpath[i] + "\"");
+					cp.append("\"" + classpath[i] + "\""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else {
-					cp.append(classpath[i]);
+					cp.append(classpath[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
-			cmdLine.append(cp);
+			cmdLine.append(cp); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			// add source files
-			for (int i = 0; i < testFiles.length; i += 2) {
+			for (int i = 0; i < testFiles.length; i += 2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				// *.java is not enough (p1/X.java, p2/Y.java)
-				cmdLine.append(' ');
-				cmdLine.append(testFiles[i]);
+				cmdLine.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				cmdLine.append(testFiles[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 
 			// Launch process
@@ -536,7 +536,7 @@ public abstract class JavadocTest extends AbstractRegressionTest {
 				javacTestName = testName;
 				javacTestErrorFlag = false;
 				javacFullLog.println("-----------------------------------------------------------------");
-				javacFullLog.println(CURRENT_CLASS_NAME + " " + testName);
+				javacFullLog.println(CURRENT_CLASS_NAME + " " + testName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			if (exitValue != 0) {
 				javacTestErrorFlag = true;
@@ -556,7 +556,7 @@ public abstract class JavadocTest extends AbstractRegressionTest {
 				if (exitValue != 0) {
 					// Javac found errors
 					System.out.println("----------------------------------------");
-					System.out.println(testName + " - Javadoc has found error(s) but Eclipse expects conform result:\n");
+					System.out.println(testName + " - Javadoc has found error(s) but Eclipse expects conform result:\n"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					javacFullLog.println("JAVAC_MISMATCH: Javadoc has found error(s) but Eclipse expects conform result");
 					System.out.println(errorLogger.buffer.toString());
 					printFiles(testFiles);
@@ -566,7 +566,7 @@ public abstract class JavadocTest extends AbstractRegressionTest {
 					// Javac found no error - may have found warnings
 					if (errorLogger.buffer.length() > 0) {
 						System.out.println("----------------------------------------");
-						System.out.println(testName + " - Javadoc has found warning(s) but Eclipse expects conform result:\n");
+						System.out.println(testName + " - Javadoc has found warning(s) but Eclipse expects conform result:\n"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						javacFullLog.println("JAVAC_MISMATCH: Javadoc has found warning(s) but Eclipse expects conform result");
 						System.out.println(errorLogger.buffer.toString());
 						printFiles(testFiles);
@@ -578,7 +578,7 @@ public abstract class JavadocTest extends AbstractRegressionTest {
 				// Eclipse found errors or warnings
 				if (errorLogger.buffer.length() == 0) {
 					System.out.println("----------------------------------------");
-					System.out.println(testName + " - Eclipse has found error(s)/warning(s) but Javadoc did not find any:");
+					System.out.println(testName + " - Eclipse has found error(s)/warning(s) but Javadoc did not find any:"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					javacFullLog.println("JAVAC_MISMATCH: Eclipse has found error(s)/warning(s) but Javadoc did not find any");
 					dualPrintln("eclipse:");
 					dualPrintln(expectedProblemLog);
@@ -586,7 +586,7 @@ public abstract class JavadocTest extends AbstractRegressionTest {
 					DIFF_COUNTERS[1]++;
 				} else if (expectedProblemLog.indexOf("ERROR") > 0 && exitValue == 0){
 					System.out.println("----------------------------------------");
-					System.out.println(testName + " - Eclipse has found error(s) but Javadoc only found warning(s):");
+					System.out.println(testName + " - Eclipse has found error(s) but Javadoc only found warning(s):"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					javacFullLog.println("JAVAC_MISMATCH: Eclipse has found error(s) but Javadoc only found warning(s)");
 					dualPrintln("eclipse:");
 					dualPrintln(expectedProblemLog);
@@ -606,12 +606,12 @@ public abstract class JavadocTest extends AbstractRegressionTest {
 		}
 		catch (InterruptedException e1) {
 			if (compileProcess != null) compileProcess.destroy();
-			System.out.println(testName+": Sun javadoc compilation was aborted!");
+			System.out.println(testName+": Sun javadoc compilation was aborted!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			javacFullLog.println("JAVAC_WARNING: Sun javadoc compilation was aborted!");
 			e1.printStackTrace(javacFullLog);
 		}
 		catch (Throwable e) {
-			System.out.println(testName+": could not launch Sun javadoc compilation!");
+			System.out.println(testName+": could not launch Sun javadoc compilation!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			e.printStackTrace();
 			javacFullLog.println("JAVAC_ERROR: could not launch OpenJDK javac compilation!");
 			e.printStackTrace(javacFullLog);
@@ -623,7 +623,7 @@ public abstract class JavadocTest extends AbstractRegressionTest {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void	printJavacResultsSummary() {
 		if (shouldRunJavac()) {
 			Integer count = (Integer)TESTS_COUNTERS.get(CURRENT_CLASS_NAME);
@@ -636,9 +636,9 @@ public abstract class JavadocTest extends AbstractRegressionTest {
 						dualPrintln("Results summary:");
 					}
 					if (DIFF_COUNTERS[0]!=0)
-						dualPrintln("	- "+DIFF_COUNTERS[0]+" test(s) where Javadoc found errors/warnings but Eclipse did not");
+						dualPrintln("	- "+DIFF_COUNTERS[0]+" test(s) where Javadoc found errors/warnings but Eclipse did not"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					if (DIFF_COUNTERS[1]!=0)
-						dualPrintln("	- "+DIFF_COUNTERS[1]+" test(s) where Eclipse found errors/warnings but Javadoc did not");
+						dualPrintln("	- "+DIFF_COUNTERS[1]+" test(s) where Eclipse found errors/warnings but Javadoc did not"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					System.out.println("\n");
 				}
 			}

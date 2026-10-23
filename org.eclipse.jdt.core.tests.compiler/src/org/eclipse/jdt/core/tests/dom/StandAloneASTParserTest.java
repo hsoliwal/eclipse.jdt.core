@@ -69,7 +69,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 		}
 		return file;
 	}
-	public void testBug529654_001() {
+	public void testBug529654_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"module m {\n" +
 				"}";
@@ -92,7 +92,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 		ModuleDeclaration module = unit.getModule();
 		assertTrue("Incorrect Module Name", module.getName().getFullyQualifiedName().equals("m"));
 	}
-	public void test1() {
+	public void test1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"package p;\n" +
 				"public class X {\n" +
@@ -134,7 +134,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 		assertNull("Got a java element", variableBinding2.getJavaElement());
 	}
 
-	public void test2() {
+	public void test2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ASTParser parser = ASTParser.newParser(AST_JLS_LATEST);
 		parser.setEnvironment(null, null, null, true);
 		parser.setResolveBindings(true);
@@ -162,7 +162,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 		assertNull("No java element", typeBinding.getJavaElement());
 	}
 
-	public void test3() throws IOException {
+	public void test3() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File rootDir = new File(System.getProperty("java.io.tmpdir"));
 		ASTParser parser = ASTParser.newParser(AST_JLS_LATEST);
 		parser.setEnvironment(null, null, null, true);
@@ -273,7 +273,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void test6() throws IOException {
+	public void test6() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File rootDir = new File(System.getProperty("java.io.tmpdir"));
 		ASTParser parser = ASTParser.newParser(AST_JLS_LATEST);
 		parser.setEnvironment(null, null, null, true);
@@ -339,7 +339,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 					if (key.equals(bindingKey)) {
 						bindings[0] = binding;
 						IBinding[] temp = createBindings(new String[] {"Ljava/lang/Object;"});
-						for (int i = 0; i < temp.length; ++i) {
+						for (int i = 0; i < temp.length; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							bindings[i + 1] = temp[i];
 						}
 					}
@@ -377,7 +377,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 	/**
 	 * @deprecated
 	 */
-	public void testBug415066_001() throws IOException {
+	public void testBug415066_001() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File rootDir = new File(System.getProperty("java.io.tmpdir"));
 		ASTParser parser = ASTParser.newParser(AST.JLS4);
 		parser.setEnvironment(null, null, null, true);
@@ -438,7 +438,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 					if (key.equals(bindingKey)) {
 						bindings[0] = binding;
 						IBinding[] temp = createBindings(new String[] {"Lp/C;"});
-						for (int i = 0; i < temp.length; ++i) {
+						for (int i = 0; i < temp.length; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							bindings[i + 1] = temp[i];
 						}
 					}
@@ -465,7 +465,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 	 * Negative test case
 	 * @deprecated
 	 */
-	public void testBug415066_002() throws IOException {
+	public void testBug415066_002() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File rootDir = new File(System.getProperty("java.io.tmpdir"));
 		ASTParser parser = ASTParser.newParser(AST.JLS4);
 		parser.setEnvironment(null, null, null, true);
@@ -527,7 +527,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 					if (key.equals(bindingKey)) {
 						bindings[0] = binding;
 						IBinding[] temp = createBindings(new String[] {"Lq/C;"});
-						for (int i = 0; i < temp.length; ++i) {
+						for (int i = 0; i < temp.length; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							bindings[i + 1] = temp[i];
 						}
 					}
@@ -551,7 +551,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void test7() throws IOException {
+	public void test7() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File rootDir = new File(System.getProperty("java.io.tmpdir"));
 
 		String contents =
@@ -611,7 +611,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void testBug461250() {
+	public void testBug461250() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"class QH<T> implements QR.Q {\n" +
 				"  QR.Q q;\n" +
@@ -631,7 +631,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 		assertTrue("should have parsed a CUD", ast instanceof CompilationUnit);
 	}
 
-	@Deprecated
+	@Deprecated //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testBug465048() {
 		String source =
 				"class A {\n" +
@@ -675,7 +675,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 	    parser.setCompilerOptions(options);
 	    assertNotNull(parser.createAST(null));
 	}
-	@Deprecated
+	@Deprecated //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testBug493336_001() {
 	    String input = "public class X implements á¼³ {\n" +
 	    			   "  public static final class if {\n"+
@@ -697,7 +697,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 	    parser.setCompilerOptions(options1);
 	    assertNotNull(parser.createAST(null));
 	}
-	@Deprecated
+	@Deprecated //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testBug526996_001() {
 		File rootDir = new File(System.getProperty("java.io.tmpdir"));
 		String contents =
@@ -782,7 +782,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 			fileY.delete();
 		}
 	}
-	public void testBug526996_002() {
+	public void testBug526996_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File rootDir = new File(System.getProperty("java.io.tmpdir"));
 		String contents =
 						"public class zzei {\n"+
@@ -1579,7 +1579,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 			fileY.delete();
 		}
 	}
-	public void testBug530299_001() {
+	public void testBug530299_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X {\n" +
 				"	public static void main(String[] args) {\n" +
@@ -1611,7 +1611,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 		assertNotNull(type);
 		assertTrue("not a var", type.isVar());
 	}
-	public void testBug482254() throws IOException {
+	public void testBug482254() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File rootDir = new File(System.getProperty("java.io.tmpdir"));
 
 		String contents =
@@ -1687,7 +1687,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 	/*
 	 * To test isVar returning false for ast level 10 and compliance 9
 	 */
-	public void testBug533210_0001() throws JavaModelException {
+	public void testBug533210_0001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X {\n" +
 				"	public static void main(String[] args) {\n" +
@@ -1724,7 +1724,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 			assertFalse("A var", simpleName.isVar());
 	}
 	// no longer a preview feature, test is not relevant
-	@Deprecated
+	@Deprecated //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void _testBug545383_01() throws JavaModelException {
 		String contents =
 				"class X {\n"+
@@ -1756,7 +1756,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 		assertTrue(problems.length > 0);
 		assertTrue(problems[0].toString().contains("preview"));
 	}
-	public void testBug547900_01() throws JavaModelException {
+	public void testBug547900_01() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"class X {\n"+
 				"	public static int foo(int i) {\n"+
@@ -1790,7 +1790,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 		YieldStatement yieldStatement = (YieldStatement) ((Block)se.statements().get(1)).statements().get(0);
 		assertNotNull("Expression null", yieldStatement.getExpression());
 	}
-	public void testBug558517() throws IOException {
+	public void testBug558517() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File f1 = null, f2 = null, packDir = null;
 		try {
 			File rootDir = new File(System.getProperty("java.io.tmpdir"));
@@ -1818,14 +1818,14 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 					"}\n");
 			ASTParser parser = ASTParser.newParser(AST_JLS_LATEST);
 			parser.setResolveBindings(true);
-			Map<String, String> options = new HashMap<>();
+			Map<String, String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			JavaCore.setComplianceOptions(JavaCore.VERSION_1_8, options);
 			parser.setCompilerOptions(options );
 			parser.setEnvironment(null,
-					new String[] { rootDir + "/P/src" },
+					new String[] { rootDir + "/P/src" }, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					null,
 					true);
-			parser.createASTs(new String[] { packDir + "/" + fileName1, packDir + "/" + fileName2 },
+			parser.createASTs(new String[] { packDir + "/" + fileName1, packDir + "/" + fileName2 }, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					null,
 					new String[] { "Lx/C9947f;" },
 					new FileASTRequestor() {
@@ -1839,7 +1839,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void testGitHub316() throws JavaModelException {
+	public void testGitHub316() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X {\n" +
 						"void m() {"
@@ -1859,7 +1859,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 			assertEquals("Problems in compilation", 1,cu.getProblems().length);
 			assertEquals("The left-hand side of an assignment must be a variable",cu.getProblems()[0].getMessage());
 	}
-	public void testGitHub1122() throws JavaModelException {
+	public void testGitHub1122() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X {\n" +
 						"void m() {"
@@ -1883,7 +1883,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 			// XXX BatchCompiler instead reports 'Syntax error, insert "AssignmentOperator Expression" to complete Expression':
 			assertEquals("The left-hand side of an assignment must be a variable",cu.getProblems()[1].getMessage());
 	}
-	public void testBug568629() throws JavaModelException {
+	public void testBug568629() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X {\n" +
 						"void m() {"
@@ -1915,7 +1915,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 			assertEquals("Syntax error, insert \"AssignmentOperator Expression\" to complete Expression",cu.getProblems()[6].getMessage());
 	}
 
-	public void testBugGithub2402() throws JavaModelException {
+	public void testBugGithub2402() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         String contents = """
         			package test;
 					public class TestClass {
@@ -1951,7 +1951,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=570472
 	// Incorrect line number in Text Block having '\"' before endline
-	public void testBug570472() throws JavaModelException {
+	public void testBug570472() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         String contents = """
 				public class TestTextBlocks {
 
@@ -1982,7 +1982,7 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2462
 	// Incorrect line numbers when parsing text blocks
-	public void testIssue2462() throws JavaModelException {
+	public void testIssue2462() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         String contents = """
 				public class TestWrongLineNumber {
 				    public static void main(String[] args) {
@@ -2010,12 +2010,12 @@ public class StandAloneASTParserTest extends AbstractRegressionTest {
         assertTrue("Should be a compilation unit", result != null);
 
         List<TypeDeclaration> listOfTypes = result.types();
-        for (TypeDeclaration td : listOfTypes) {
+        for (TypeDeclaration td : listOfTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
             MethodDeclaration[] methods = td.getMethods();
-            for (MethodDeclaration m : methods) {
+            for (MethodDeclaration m : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
                 Block body = m.getBody();
                 List statments = body.statements();
-                for (var currentStatement : statments) {
+                for (var currentStatement : statments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
                     if (currentStatement instanceof ExpressionStatement) {
                         ExpressionStatement es = (ExpressionStatement) currentStatement;
                         int lineNumber = result.getLineNumber(es.getStartPosition());

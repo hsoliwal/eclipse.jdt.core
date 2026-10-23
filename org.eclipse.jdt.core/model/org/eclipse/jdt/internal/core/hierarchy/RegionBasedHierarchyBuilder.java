@@ -40,7 +40,7 @@ public class RegionBasedHierarchyBuilder extends HierarchyBuilder {
 		super(hierarchy);
 	}
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void build(boolean computeSubtypes) {
 
 	JavaModelManager manager = JavaModelManager.getJavaModelManager();
@@ -64,14 +64,14 @@ public void build(boolean computeSubtypes) {
 /**
  * Configure this type hierarchy that is based on a region.
  */
-private void createTypeHierarchyBasedOnRegion(HashMap allOpenablesInRegion, IProgressMonitor monitor) {
+private void createTypeHierarchyBasedOnRegion(HashMap allOpenablesInRegion, IProgressMonitor monitor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	try {
 		int size = allOpenablesInRegion.size();
 		if (monitor != null) monitor.beginTask("", size * 2/* 1 for build binding, 1 for connect hierarchy*/); //$NON-NLS-1$
-		this.infoToHandle = new HashMap(size);
+		this.infoToHandle = new HashMap(size); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		Iterator javaProjects = allOpenablesInRegion.entrySet().iterator();
-		while (javaProjects.hasNext()) {
+		while (javaProjects.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Map.Entry entry = (Map.Entry) javaProjects.next();
 			JavaProject project = (JavaProject) entry.getKey();
 			ArrayList allOpenables = (ArrayList) entry.getValue();
@@ -100,20 +100,20 @@ private void createTypeHierarchyBasedOnRegion(HashMap allOpenablesInRegion, IPro
 	 * Returns all of the openables defined in the region of this type hierarchy.
 	 * Returns a map from IJavaProject to ArrayList of Openable
 	 */
-	private HashMap determineOpenablesInRegion(IProgressMonitor monitor) {
+	private HashMap determineOpenablesInRegion(IProgressMonitor monitor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		try {
-			HashMap allOpenables = new HashMap();
+			HashMap allOpenables = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			IJavaElement[] roots =
 				((RegionBasedTypeHierarchy) this.hierarchy).region.getElements();
 			int length = roots.length;
 			if (monitor != null) monitor.beginTask("", length); //$NON-NLS-1$
-			for (int i = 0; i <length; i++) {
+			for (int i = 0; i <length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IJavaElement root = roots[i];
 				IJavaProject javaProject = root.getJavaProject();
 				ArrayList openables = (ArrayList) allOpenables.get(javaProject);
 				if (openables == null) {
-					openables = new ArrayList();
+					openables = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 					allOpenables.put(javaProject, openables);
 				}
 				switch (root.getElementType()) {
@@ -162,7 +162,7 @@ private void createTypeHierarchyBasedOnRegion(HashMap allOpenablesInRegion, IPro
 			if (devPathRoots == null) {
 				return;
 			}
-			for (IPackageFragmentRoot root : devPathRoots) {
+			for (IPackageFragmentRoot root : devPathRoots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				injectAllOpenablesForPackageFragmentRoot(root, openables);
 			}
 		} catch (JavaModelException e) {
@@ -174,7 +174,7 @@ private void createTypeHierarchyBasedOnRegion(HashMap allOpenablesInRegion, IPro
 	 * Adds all of the openables defined within this package fragment to the
 	 * list.
 	 */
-	private void injectAllOpenablesForPackageFragment(
+	private void injectAllOpenablesForPackageFragment( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment packFrag,
 		ArrayList openables) {
 
@@ -185,12 +185,12 @@ private void createTypeHierarchyBasedOnRegion(HashMap allOpenablesInRegion, IPro
 				boolean isSourcePackageFragment = (kind == IPackageFragmentRoot.K_SOURCE);
 				if (isSourcePackageFragment) {
 					ICompilationUnit[] cus = packFrag.getCompilationUnits();
-					for (ICompilationUnit cu : cus) {
+					for (ICompilationUnit cu : cus) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						openables.add(cu);
 					}
 				} else {
 					IOrdinaryClassFile[] classFiles = packFrag.getOrdinaryClassFiles();
-					for (IOrdinaryClassFile classFile : classFiles) {
+					for (IOrdinaryClassFile classFile : classFiles) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						openables.add(classFile);
 					}
 				}
@@ -209,7 +209,7 @@ private void createTypeHierarchyBasedOnRegion(HashMap allOpenablesInRegion, IPro
 		ArrayList openables) {
 		try {
 			IJavaElement[] packFrags = root.getChildren();
-			for (IJavaElement pf : packFrags) {
+			for (IJavaElement pf : packFrags) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPackageFragment packFrag = (IPackageFragment) pf;
 				injectAllOpenablesForPackageFragment(packFrag, openables);
 			}

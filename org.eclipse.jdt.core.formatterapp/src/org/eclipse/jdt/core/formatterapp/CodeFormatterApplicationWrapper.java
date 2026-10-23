@@ -98,7 +98,7 @@ public class CodeFormatterApplicationWrapper implements IApplication {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public Object start(IApplicationContext context) throws Exception {
 		String[] arguments = (String[]) context.getArguments().get(IApplicationContext.APPLICATION_ARGS);
 		List<String> args = Arrays.asList(arguments);

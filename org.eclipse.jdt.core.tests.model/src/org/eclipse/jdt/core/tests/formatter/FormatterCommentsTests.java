@@ -85,7 +85,7 @@ void compareFormattedSource(ICompilationUnit compilationUnit) throws JavaModelEx
 	String source = compilationUnit.getSource();
 	String expectedResult = expectedFormattedSource(source);
 	String actualResult = runFormatter(codeFormatter, source, CodeFormatter.K_COMPILATION_UNIT | CodeFormatter.F_INCLUDE_COMMENTS, 0, 0, source.length(), null, true);
-	assumeSourceEquals(compilationUnit.getPath()+" is not formatted the same way than before!",
+	assumeSourceEquals(compilationUnit.getPath()+" is not formatted the same way than before!", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		org.eclipse.jdt.core.tests.util.Util.convertToIndependantLineDelimiter(expectedResult),
 		org.eclipse.jdt.core.tests.util.Util.convertToIndependantLineDelimiter(actualResult));
 }
@@ -112,7 +112,7 @@ protected void assumeSourceEquals(String message, String expected, String actual
 	}
 }
 
-private String expectedFormattedSource(String source) {
+private String expectedFormattedSource(String source) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	DefaultCodeFormatter codeFormatter = codeFormatter();
 	Scanner scanner = new Scanner(true, true, false/*nls*/, CompilerOptions.getFirstSupportedJdkLevel()/*sourceLevel*/, null/*taskTags*/, null/*taskPriorities*/, true/*taskCaseSensitive*/,
 			codeFormatter.previewEnabled);
@@ -123,7 +123,7 @@ private String expectedFormattedSource(String source) {
 	int[][] commentsPositions = compilationUnitDeclaration.comments;
 	int length = commentsPositions == null ? 0 : commentsPositions.length;
 	String[] formattedComments = new String[length];
-	for (int i=0; i<length; i++) {
+	for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int[] positions = commentsPositions[i];
 		int commentStart = positions[0] > 0 ? positions [0] : -positions[0];
 		int commentEnd = positions[1] > 0 ? positions [1] : -positions[1];
@@ -131,7 +131,7 @@ private String expectedFormattedSource(String source) {
 		formattedComments[i] = runFormatter(codeFormatter, source.substring(commentStart, commentEnd), CodeFormatter.K_JAVA_DOC, indentationLevel, 0, commentEnd - commentStart, Util.LINE_SEPARATOR, true);
 	}
 	SimpleDocument document = new SimpleDocument(source);
-	for (int i=length-1; i>=0; i--) {
+	for (int i=length-1; i>=0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int[] positions = commentsPositions[i];
 		int commentStart = positions[0] > 0 ? positions [0] : -positions[0];
 		int commentEnd = positions[1] > 0 ? positions [1] : -positions[1];
@@ -142,7 +142,7 @@ private String expectedFormattedSource(String source) {
 	return oldResult;
 }
 
-private int getIndentationLevel(Scanner scanner, int position) {
+private int getIndentationLevel(Scanner scanner, int position) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int indentationLevel = 0;
 	int numberOfIndentations = 0;
 	int indentationSize;
@@ -154,7 +154,7 @@ private int getIndentationLevel(Scanner scanner, int position) {
 	int lineNumber = scanner.getLineNumber(position);
 	int lineStart = scanner.getLineStart(lineNumber);
 	scanner.resetTo(lineStart, position-1);
-	while (!scanner.atEnd()) {
+	while (!scanner.atEnd()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int ch = scanner.getNextChar();
 		switch (ch) {
 			case '\n':
@@ -180,8 +180,8 @@ private int getIndentationLevel(Scanner scanner, int position) {
 	return numberOfIndentations;
 }
 
-private Map getDefaultCompilerOptions() {
-	Map optionsMap = new HashMap(30);
+private Map getDefaultCompilerOptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map optionsMap = new HashMap(30); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	optionsMap.put(CompilerOptions.OPTION_LocalVariableAttribute, CompilerOptions.DO_NOT_GENERATE);
 	optionsMap.put(CompilerOptions.OPTION_LineNumberAttribute, CompilerOptions.DO_NOT_GENERATE);
 	optionsMap.put(CompilerOptions.OPTION_SourceFileAttribute, CompilerOptions.DO_NOT_GENERATE);
@@ -247,9 +247,9 @@ void formatUnit(String packageName, String unitName) throws JavaModelException{
 	formatUnit(packageName, unitName, CodeFormatter.K_COMPILATION_UNIT | CodeFormatter.F_INCLUDE_COMMENTS, 0, false, 0, -1, null);
 }
 
-void formatUnit(String packageName, String unitName, int kind, int indentationLevel, boolean checkNull, int offset, int length, String lineSeparator) throws JavaModelException{
+void formatUnit(String packageName, String unitName, int kind, int indentationLevel, boolean checkNull, int offset, int length, String lineSeparator) throws JavaModelException{ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
-	this.workingCopies[0] = getCompilationUnit(JAVA_PROJECT.getElementName() , "", "test."+packageName, unitName); //$NON-NLS-1$ //$NON-NLS-2$
+	this.workingCopies[0] = getCompilationUnit(JAVA_PROJECT.getElementName() , "", "test."+packageName, unitName); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	File expectedFile = getExpectedOutput(this.workingCopies[0]);
 	String expectedOutput;
 	try {
@@ -261,7 +261,7 @@ void formatUnit(String packageName, String unitName, int kind, int indentationLe
 		formatSource(this.workingCopies[0].getSource(), expectedOutput, kind, indentationLevel, offset, length,
 				lineSeparator, true);
 	} catch (ComparisonFailure e) {
-		e.addSuppressed(new RuntimeException("Happend when formating: \n\"" + this.workingCopies[0].getPath()
+		e.addSuppressed(new RuntimeException("Happend when formating: \n\"" + this.workingCopies[0].getPath() //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "\"\nExpected output:\n\"" + expectedFile + "\""));
 		throw e;
 	}
@@ -275,11 +275,11 @@ void formatUnit(String packageName, String unitName, int kind, int indentationLe
 protected List getProjectCompilationUnits(IJavaProject javaProject) throws JavaModelException {
 	IPackageFragmentRoot[] fragmentRoots = javaProject.getPackageFragmentRoots();
 	int length = fragmentRoots.length;
-	List allUnits = new ArrayList();
-	for (int i=0; i<length; i++) {
+	List allUnits = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (fragmentRoots[i] instanceof JarPackageFragmentRoot) continue;
 		IJavaElement[] packages= fragmentRoots[i].getChildren();
-		for (int k= 0; k < packages.length; k++) {
+		for (int k= 0; k < packages.length; k++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IPackageFragment pack = (IPackageFragment) packages[k];
 			ICompilationUnit[] units = pack.getCompilationUnits();
 			allUnits.addAll(Arrays.asList(units));
@@ -288,7 +288,7 @@ protected List getProjectCompilationUnits(IJavaProject javaProject) throws JavaM
 	return allUnits;
 }
 
-private File getExpectedOutput(ICompilationUnit unit) throws JavaModelException {
+private File getExpectedOutput(ICompilationUnit unit) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath outputPath = JAVA_PROJECT.getProject().getLocation().removeLastSegments(1)
 		.append(unit.getParent().getPath())
 		.append(getOutputFolder())
@@ -780,7 +780,7 @@ public void testLineComments02() throws JavaModelException {
 		false /* do not repeat */
 	);
 }
-public void testLineComments02b() throws JavaModelException {
+public void testLineComments02b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	String source =
 		"public interface X02b {\r\n" +
@@ -813,7 +813,7 @@ public void testLineComments06() throws JavaModelException {
 	setFormatLineCommentOnFirstColumn();
 	formatUnit("comments.line", "X06.java");
 }
-public void testLineComments07() throws JavaModelException {
+public void testLineComments07() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	String source =
 		"package test.comments.line;\r\n" +
@@ -864,7 +864,7 @@ public void testLineComments09() throws JavaModelException {
 public void testLineComments10() throws JavaModelException {
 	formatUnit("comments.line", "X10.java");
 }
-public void testLineComments11() throws JavaModelException {
+public void testLineComments11() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	this.formatterPrefs.comment_line_length = 40;
 	String source =
@@ -945,7 +945,7 @@ public void testBlockComments11() throws JavaModelException {
 public void testBlockComments12() throws JavaModelException {
 	formatUnit("comments.block", "X12.java");
 }
-public void testBlockComments13() throws JavaModelException {
+public void testBlockComments13() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setPageWidth80();
 	String source =
 		"package test.comments.block;\r\n" +
@@ -1247,7 +1247,7 @@ public void testWkspGanymede04() throws JavaModelException {
 public void testWkspJUnit01() throws JavaModelException {
 	formatUnit("wksp.junit", "X01.java");
 }
-public void testSnippet01() {
+public void testSnippet01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setComplianceLevel(CompilerOptions.VERSION_18);
 	this.formatterPrefs.comment_line_length = 40;
 	String source =
@@ -1280,7 +1280,7 @@ public void testSnippet01() {
 		"}"
 	);
 }
-public void testSnippet02() {
+public void testSnippet02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setComplianceLevel(CompilerOptions.VERSION_18);
 	this.formatterPrefs.insert_space_before_assignment_operator = false;
 	String source =
@@ -1299,7 +1299,7 @@ public void testSnippet02() {
 		"}"
 	);
 }
-public void testSnippet03() {
+public void testSnippet03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setComplianceLevel(CompilerOptions.VERSION_18);
 	this.formatterPrefs.insert_space_after_assignment_operator = false;
 	String source =
@@ -1323,7 +1323,7 @@ public void testSnippet03() {
 		"}"
 	);
 }
-public void testSnippet04() {
+public void testSnippet04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setComplianceLevel(CompilerOptions.VERSION_18);
 	String source =
 		"/**\n" +
@@ -1347,7 +1347,7 @@ public void testSnippet04() {
 		"}"
 	);
 }
-public void testSnippet05() {
+public void testSnippet05() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setComplianceLevel(CompilerOptions.VERSION_18);
 	this.formatterPrefs.insert_space_before_assignment_operator = false;
 	String source =
@@ -1376,7 +1376,7 @@ public void testSnippet05() {
 		"}"
 	);
 }
-public void testSnippet06() {
+public void testSnippet06() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setComplianceLevel(CompilerOptions.VERSION_18);
 	this.formatterPrefs.insert_space_after_assignment_operator = false;
 	String source =
@@ -1401,7 +1401,7 @@ public void testSnippet06() {
 	);
 }
 
-public void testAtInSnippet01() {
+public void testAtInSnippet01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setComplianceLevel(CompilerOptions.VERSION_18);
 	String source = """
 			/**
@@ -1431,7 +1431,7 @@ public void testAtInSnippet01() {
 			""";
 	formatSource(source, expected);
 }
-public void testAtInSnippet02() {
+public void testAtInSnippet02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setComplianceLevel(CompilerOptions.VERSION_18);
 	String source = """
 			/**
@@ -1507,7 +1507,7 @@ public void testJoinLineComment03() {
 		}
 		""");
 }
-public void testJoinLineComment04() {
+public void testJoinLineComment04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_line_comments = true;
 	String source =
 		"""

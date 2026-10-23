@@ -642,7 +642,7 @@ public final class AST {
 	private static final List<Integer> UNSUPPORTED_VERSIONS = List.of(JLS2, JLS3, JLS4);
 	private static final List<Integer> SUPPORTED_VERSIONS;
 	static {
-		List<Integer> temp = new ArrayList<>();
+		List<Integer> temp = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		temp.addAll(ALL_VERSIONS);
 		temp.removeAll(UNSUPPORTED_VERSIONS);
 		SUPPORTED_VERSIONS = Collections.unmodifiableList(temp);
@@ -707,7 +707,7 @@ public final class AST {
 	 * @since 3.4
 	 * @noreference This method is not intended to be referenced by clients.
 	 */
-	public static CompilationUnit convertCompilationUnit(
+	public static CompilationUnit convertCompilationUnit( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int level,
 		org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration compilationUnitDeclaration,
 		Map options,
@@ -1207,7 +1207,7 @@ public final class AST {
  	 * @param level the API level; one of the <code>JLS*</code> level constants
      * @since 3.0
 	 */
-	private AST(int level, boolean previewEnabled) {
+	private AST(int level, boolean previewEnabled) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.previewEnabled = previewEnabled;
 		if (ALL_VERSIONS.contains(level) && !SUPPORTED_VERSIONS.contains(level)) {
 			level = SUPPORTED_VERSIONS.get(0);
@@ -1257,7 +1257,7 @@ public final class AST {
 				break;
 			default:
 				if (!ALL_VERSIONS.contains(level)) {
-					throw new IllegalArgumentException("Unsupported JLS level : " + level); //$NON-NLS-1$
+					throw new IllegalArgumentException("Unsupported JLS level : " + level); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				this.apiLevel = level;
 				// initialize a scanner
@@ -1320,8 +1320,8 @@ public final class AST {
 			this.previewEnabled /* isPreviewEnabled*/);
 	}
 
-	private static Map<String, Long> getLevelMapTable() {
-        Map<String, Long> t = new HashMap<>();
+	private static Map<String, Long> getLevelMapTable() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+        Map<String, Long> t = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
         t.put(null, CompilerOptions.getFirstSupportedJdkLevel());
         t.put(JavaCore.VERSION_1_2, CompilerOptions.getFirstSupportedJdkLevel());
         t.put(JavaCore.VERSION_1_3, CompilerOptions.getFirstSupportedJdkLevel());
@@ -1351,8 +1351,8 @@ public final class AST {
         t.put(JavaCore.VERSION_27, ClassFileConstants.JDK27);
         return Collections.unmodifiableMap(t);
 	}
-	private static Map<String, Integer> getApiLevelMapTable() {
-        Map<String, Integer> t = new HashMap<>();
+	private static Map<String, Integer> getApiLevelMapTable() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+        Map<String, Integer> t = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
         t.put(null, JLS8_INTERNAL);
         t.put(JavaCore.VERSION_1_2, JLS8_INTERNAL);
         t.put(JavaCore.VERSION_1_3, JLS8_INTERNAL);
@@ -1404,7 +1404,7 @@ public final class AST {
 	 * or is not supported for this AST's API level
 	 * @since 3.0
 	 */
-	public ASTNode createInstance(Class nodeClass) {
+	public ASTNode createInstance(Class nodeClass) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (nodeClass == null) {
 			throw new IllegalArgumentException();
 		}
@@ -1529,7 +1529,7 @@ public final class AST {
 		final SimpleName simpleName = new SimpleName(this);
 		simpleName.internalSetIdentifier(identifiers[0]);
 		Name result = simpleName;
-		for (int i = 1; i < count; i++) {
+		for (int i = 1; i < count; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			SimpleName name = new SimpleName(this);
 			name.internalSetIdentifier(identifiers[i]);
 			result = newQualifiedName(result, name);
@@ -1763,7 +1763,7 @@ public final class AST {
 	 * <li>for levels from JLS8 and later, if the element type is an array type </li>
 	 * </ul>
 	 */
-	public ArrayType newArrayType(Type elementType, int dimensions) {
+	public ArrayType newArrayType(Type elementType, int dimensions) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (elementType == null) {
 			throw new IllegalArgumentException();
 		}
@@ -1774,7 +1774,7 @@ public final class AST {
 			}
 			result = new ArrayType(this);
 			setArrayComponentType(result, elementType);
-			for (int i = 2; i <= dimensions; i++) {
+			for (int i = 2; i <= dimensions; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				result = newArrayType(result);
 			}
 			return result;
@@ -1785,7 +1785,7 @@ public final class AST {
 		}
 		result = new ArrayType(this, 0);
 		result.setElementType(elementType);
-		for (int i = 0; i < dimensions; ++i) {
+		for (int i = 0; i < dimensions; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			result.dimensions().add(new Dimension(this));
 		}
 		return result;
@@ -2513,11 +2513,11 @@ public final class AST {
 	 * a JLS2 AST
 	 * @since 3.1
 	 */
-	public List newModifiers(int flags) {
+	public List newModifiers(int flags) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.apiLevel == AST.JLS2) {
 			unsupportedIn2();
 		}
-		List result = new ArrayList(3); // 3 modifiers is more than average
+		List result = new ArrayList(3); // 3 modifiers is more than average //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		if (Modifier.isPublic(flags)) {
 			result.add(newModifier(Modifier.ModifierKeyword.PUBLIC_KEYWORD));
 		}
@@ -2603,13 +2603,13 @@ public final class AST {
 	 * </ul>
 	 * @since 3.1
 	 */
-	public Name newName(String qualifiedName) {
+	public Name newName(String qualifiedName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		StringTokenizer t = new StringTokenizer(qualifiedName, ".", true); //$NON-NLS-1$
 		Name result = null;
 		// balance is # of name tokens - # of period tokens seen so far
 		// initially 0; finally 1; should never drop < 0 or > 1
 		int balance = 0;
-		while(t.hasMoreTokens()) {
+		while(t.hasMoreTokens()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String s = t.nextToken();
 			if (s.indexOf('.') >= 0) {
 				// this is a delimiter
@@ -2661,7 +2661,7 @@ public final class AST {
 			throw new IllegalArgumentException();
 		}
 		Name result = newSimpleName(identifiers[0]);
-		for (int i = 1; i < count; i++) {
+		for (int i = 1; i < count; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			SimpleName name = newSimpleName(identifiers[i]);
 			result = newQualifiedName(result, name);
 		}
@@ -3552,7 +3552,7 @@ public final class AST {
 	 * @param property the child or child list property descriptor
 	 * @since 3.0
 	 */
-	void postAddChildEvent(ASTNode node, ASTNode child, StructuralPropertyDescriptor property) {
+	void postAddChildEvent(ASTNode node, ASTNode child, StructuralPropertyDescriptor property) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// IMPORTANT: this method is called by readers during lazy init
 		synchronized (this.internalASTLock) {
 			// guard against concurrent access by a reader doing lazy init
@@ -3580,7 +3580,7 @@ public final class AST {
 	 * @param clone the clone of <code>node</code>
 	 * @since 3.0
 	 */
-	void postCloneNodeEvent(ASTNode node, ASTNode clone) {
+	void postCloneNodeEvent(ASTNode node, ASTNode clone) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		synchronized (this.internalASTLock) {
 			// guard against concurrent access by a reader doing lazy init
 			if (this.disableEvents.get() > 0) {
@@ -3608,7 +3608,7 @@ public final class AST {
 	 * @param property the child or child list property descriptor
 	 * @since 3.0
 	 */
-	void postRemoveChildEvent(ASTNode node, ASTNode child, StructuralPropertyDescriptor property) {
+	void postRemoveChildEvent(ASTNode node, ASTNode child, StructuralPropertyDescriptor property) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// IMPORTANT: this method is called by readers during lazy init
 		synchronized (this.internalASTLock) {
 			// guard against concurrent access by a reader doing lazy init
@@ -3638,7 +3638,7 @@ public final class AST {
 	 * @param property the child or child list property descriptor
 	 * @since 3.0
 	 */
-	void postReplaceChildEvent(ASTNode node, ASTNode child, ASTNode newChild, StructuralPropertyDescriptor property) {
+	void postReplaceChildEvent(ASTNode node, ASTNode child, ASTNode newChild, StructuralPropertyDescriptor property) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// IMPORTANT: this method is called by readers during lazy init
 		synchronized (this.internalASTLock) {
 			// guard against concurrent access by a reader doing lazy init
@@ -3667,7 +3667,7 @@ public final class AST {
 	 * @param property the property descriptor
 	 * @since 3.0
 	 */
-	void postValueChangeEvent(ASTNode node, SimplePropertyDescriptor property) {
+	void postValueChangeEvent(ASTNode node, SimplePropertyDescriptor property) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// IMPORTANT: this method is called by readers during lazy init
 		synchronized (this.internalASTLock) {
 			// guard against concurrent access by a reader doing lazy init
@@ -3696,7 +3696,7 @@ public final class AST {
 	 * @param property the child or child list property descriptor
 	 * @since 3.0
 	 */
-	void preAddChildEvent(ASTNode node, ASTNode child, StructuralPropertyDescriptor property) {
+	void preAddChildEvent(ASTNode node, ASTNode child, StructuralPropertyDescriptor property) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// IMPORTANT: this method is called by readers during lazy init
 		synchronized (this.internalASTLock) {
 			// guard against concurrent access by a reader doing lazy init
@@ -3723,7 +3723,7 @@ public final class AST {
 	 * @param node the node to be cloned
 	 * @since 3.0
 	 */
-	void preCloneNodeEvent(ASTNode node) {
+	void preCloneNodeEvent(ASTNode node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		synchronized (this.internalASTLock) {
 			// guard against concurrent access by a reader doing lazy init
 			if (this.disableEvents.get() > 0) {
@@ -3751,7 +3751,7 @@ public final class AST {
 	 * @param property the child or child list property descriptor
 	 * @since 3.0
 	 */
-	void preRemoveChildEvent(ASTNode node, ASTNode child, StructuralPropertyDescriptor property) {
+	void preRemoveChildEvent(ASTNode node, ASTNode child, StructuralPropertyDescriptor property) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// IMPORTANT: this method is called by readers during lazy init
 		synchronized (this.internalASTLock) {
 			// guard against concurrent access by a reader doing lazy init
@@ -3781,7 +3781,7 @@ public final class AST {
 	 * @param property the child or child list property descriptor
 	 * @since 3.0
 	 */
-	void preReplaceChildEvent(ASTNode node, ASTNode child, ASTNode newChild, StructuralPropertyDescriptor property) {
+	void preReplaceChildEvent(ASTNode node, ASTNode child, ASTNode newChild, StructuralPropertyDescriptor property) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// IMPORTANT: this method is called by readers during lazy init
 		synchronized (this.internalASTLock) {
 			// guard against concurrent access by a reader doing lazy init
@@ -3810,7 +3810,7 @@ public final class AST {
 	 * @param property the property descriptor
 	 * @since 3.0
 	 */
-	void preValueChangeEvent(ASTNode node, SimplePropertyDescriptor property) {
+	void preValueChangeEvent(ASTNode node, SimplePropertyDescriptor property) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// IMPORTANT: this method is called by readers during lazy init
 		synchronized (this.internalASTLock) {
 			// guard against concurrent access by a reader doing lazy init

@@ -76,19 +76,19 @@ public class JavaSearchNameEnvironment implements IModuleAwareNameEnvironment, S
 	 */
 	Map<String, org.eclipse.jdt.core.ICompilationUnit> workingCopies;
 
-public JavaSearchNameEnvironment(IJavaProject javaProject, org.eclipse.jdt.core.ICompilationUnit[] copies) {
+public JavaSearchNameEnvironment(IJavaProject javaProject, org.eclipse.jdt.core.ICompilationUnit[] copies) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (isComplianceJava9OrHigher(javaProject)) {
-		this.moduleLocations = new HashMap<>();
-		this.moduleToClassPathLocations = new HashMap<>();
+		this.moduleLocations = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		this.moduleToClassPathLocations = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	}
-	this.modules = new HashMap<>();
-	this.packageNameToClassPathLocations = new HashMap<>();
+	this.modules = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	this.packageNameToClassPathLocations = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	long start = 0;
 	if (NameLookup.VERBOSE) {
 		trace(" BUILDING JavaSearchNameEnvironment");  //$NON-NLS-1$
-		trace(" -> project: " + javaProject);  //$NON-NLS-1$
-		trace(" -> working copy size: " + (copies == null ? 0 : copies.length));  //$NON-NLS-1$
+		trace(" -> project: " + javaProject);  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		trace(" -> working copy size: " + (copies == null ? 0 : copies.length));  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		start = System.currentTimeMillis();
 	}
 
@@ -112,7 +112,7 @@ public JavaSearchNameEnvironment(IJavaProject javaProject, org.eclipse.jdt.core.
 				trace(" -> ignoring working copies; no ClasspathSourceDirectory on project classpath ");  //$NON-NLS-1$
 		    }
 		} else {
-			for (String qualifiedMainTypeName : this.workingCopies.keySet()) {
+			for (String qualifiedMainTypeName : this.workingCopies.keySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int typeNameStart = qualifiedMainTypeName.lastIndexOf('/');
 				if(typeNameStart > 0) {
 					String pkgName = qualifiedMainTypeName.substring(0, typeNameStart);
@@ -126,25 +126,25 @@ public JavaSearchNameEnvironment(IJavaProject javaProject, org.eclipse.jdt.core.
 
 
     if (NameLookup.VERBOSE) {
-		trace(" -> pkg roots size: " + (this.locationSet == null ? 0 : this.locationSet.size()));  //$NON-NLS-1$
-		trace(" -> pkgs size: " + this.packageNameToClassPathLocations.size());  //$NON-NLS-1$
-        trace(" -> spent: " + (System.currentTimeMillis() - start) + "ms");  //$NON-NLS-1$ //$NON-NLS-2$
+		trace(" -> pkg roots size: " + (this.locationSet == null ? 0 : this.locationSet.size()));  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		trace(" -> pkgs size: " + this.packageNameToClassPathLocations.size());  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+        trace(" -> spent: " + (System.currentTimeMillis() - start) + "ms");  //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     }
 }
 
-public static Map<String, org.eclipse.jdt.core.ICompilationUnit> getWorkingCopyMap(
+public static Map<String, org.eclipse.jdt.core.ICompilationUnit> getWorkingCopyMap( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		org.eclipse.jdt.core.ICompilationUnit[] copies) {
 	int length = copies == null ? 0 : copies.length;
-	HashMap<String, org.eclipse.jdt.core.ICompilationUnit> result = new HashMap<>(length);
+	HashMap<String, org.eclipse.jdt.core.ICompilationUnit> result = new HashMap<>(length); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	try {
 		if (copies != null) {
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				org.eclipse.jdt.core.ICompilationUnit workingCopy = copies[i];
 				IPackageDeclaration[] pkgs = workingCopy.getPackageDeclarations();
 				String pkg = pkgs.length > 0 ? pkgs[0].getElementName() : ""; //$NON-NLS-1$
 				String cuName = workingCopy.getElementName();
 				String mainTypeName = Util.getNameWithoutJavaLikeExtension(cuName);
-				String qualifiedMainTypeName = pkg.length() == 0 ? mainTypeName : pkg.replace('.', '/') + '/' + mainTypeName;
+				String qualifiedMainTypeName = pkg.length() == 0 ? mainTypeName : pkg.replace('.', '/') + '/' + mainTypeName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result.put(qualifiedMainTypeName, workingCopy);
 				// TODO : JAVA 9 - module-info.java has the same name across modules - Any issues here?
 			}
@@ -169,7 +169,7 @@ void addProjectClassPath(JavaProject javaProject, boolean onlyExported) {
 	long start = 0;
 	if (NameLookup.VERBOSE) {
 		trace(" EXTENDING JavaSearchNameEnvironment");  //$NON-NLS-1$
-		trace(" -> project: " + javaProject);  //$NON-NLS-1$
+		trace(" -> project: " + javaProject);  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		start = System.currentTimeMillis();
 	}
 
@@ -177,9 +177,9 @@ void addProjectClassPath(JavaProject javaProject, boolean onlyExported) {
 	if (locations != null) this.locationSet.addAll(locations);
 
     if (NameLookup.VERBOSE) {
-		trace(" -> pkg roots size: " + (this.locationSet == null ? 0 : this.locationSet.size()));  //$NON-NLS-1$
-		trace(" -> pkgs size: " + this.packageNameToClassPathLocations.size());  //$NON-NLS-1$
-        trace(" -> spent: " + (System.currentTimeMillis() - start) + "ms");  //$NON-NLS-1$ //$NON-NLS-2$
+		trace(" -> pkg roots size: " + (this.locationSet == null ? 0 : this.locationSet.size()));  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		trace(" -> pkgs size: " + this.packageNameToClassPathLocations.size());  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+        trace(" -> spent: " + (System.currentTimeMillis() - start) + "ms");  //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     }
 }
 
@@ -187,7 +187,7 @@ private LinkedHashSet<ClasspathLocation> computeClasspathLocations(JavaProject j
 	return computeClasspathLocations(javaProject, false);
 }
 
-private LinkedHashSet<ClasspathLocation> computeClasspathLocations(JavaProject javaProject, boolean onlyExported) {
+private LinkedHashSet<ClasspathLocation> computeClasspathLocations(JavaProject javaProject, boolean onlyExported) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IPackageFragmentRoot[] roots = null;
 	try {
@@ -207,7 +207,7 @@ private LinkedHashSet<ClasspathLocation> computeClasspathLocations(JavaProject j
 	LinkedHashSet<ClasspathLocation> locations = new LinkedHashSet<>();
 	int length = roots.length;
 	JavaModelManager manager = JavaModelManager.getJavaModelManager();
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		PackageFragmentRoot root = (PackageFragmentRoot) roots[i];
 		if (onlyExported && !isSourceOrExported(root)) {
 			continue;
@@ -225,8 +225,8 @@ private LinkedHashSet<ClasspathLocation> computeClasspathLocations(JavaProject j
 	return locations;
 }
 
-private void indexPackageNames(ClasspathLocation cp, IPackageFragmentRoot root) throws JavaModelException {
-	for (IJavaElement c : root.getChildren()) {
+private void indexPackageNames(ClasspathLocation cp, IPackageFragmentRoot root) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	for (IJavaElement c : root.getChildren()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String qualifiedPackageName = c.getElementName().replace('.', '/');
 		addPackageNameToIndex(cp, qualifiedPackageName);
 	}
@@ -238,7 +238,7 @@ private void indexPackageNames(ClasspathLocation cp, IPackageFragmentRoot root) 
 	 */
 	char[][] packages = cp.listPackages();
 	if(packages != null) {
-		for (char[] packageName : packages) {
+		for (char[] packageName : packages) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String qualifiedPackageName = CharOperation.charToString(packageName).replace('.', '/');
 			addPackageNameToIndex(cp, qualifiedPackageName);
 		}
@@ -261,7 +261,7 @@ private void computeModules() {
 		try {
 			JavaModelManager.getModulePathManager().seekModule(CharOperation.ALL_PREFIX, true, requestor);
 			IModuleDescription[] mods = requestor.getModules();
-			for (IModuleDescription mod : mods) {
+			for (IModuleDescription mod : mods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.modules.putIfAbsent(mod.getElementName(), mod);
 			}
 		} catch (JavaModelException e) {
@@ -270,7 +270,7 @@ private void computeModules() {
 	}
 }
 
-private ClasspathLocation mapToClassPathLocation(JavaModelManager manager, PackageFragmentRoot root, IModuleDescription defaultModule) {
+private ClasspathLocation mapToClassPathLocation(JavaModelManager manager, PackageFragmentRoot root, IModuleDescription defaultModule) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ClasspathLocation cp = null;
 	IPath path = root.getPath();
 	try {
@@ -341,7 +341,7 @@ private void addClassPathToModule(String moduleName, ClasspathLocation cp) {
 	}
 }
 
-private NameEnvironmentAnswer findClass(String qualifiedTypeName, char[] typeName, LookupStrategy strategy, /*@Nullable*/String moduleName) {
+private NameEnvironmentAnswer findClass(String qualifiedTypeName, char[] typeName, LookupStrategy strategy, /*@Nullable*/String moduleName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String
 		binaryFileName = null, qBinaryFileName = null,
 		sourceFileName = null, qSourceFileName = null;
@@ -357,7 +357,7 @@ private NameEnvironmentAnswer findClass(String qualifiedTypeName, char[] typeNam
 	}
 
 	NameEnvironmentAnswer suggestedAnswer = null;
-	for (ClasspathLocation location : getLocationsFor(moduleName, qPackageName)) {
+	for (ClasspathLocation location : getLocationsFor(moduleName, qPackageName)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (!strategy.matches(location, ClasspathLocation::hasModule))
 			continue;
 		NameEnvironmentAnswer answer;
@@ -383,7 +383,7 @@ private NameEnvironmentAnswer findClass(String qualifiedTypeName, char[] typeNam
 			}
 		} else {
 			if (binaryFileName == null) {
-				qBinaryFileName = qualifiedTypeName + SUFFIX_STRING_class;
+				qBinaryFileName = qualifiedTypeName + SUFFIX_STRING_class; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				binaryFileName = qBinaryFileName;
 				if (typeNameStart > 0) {
 					binaryFileName = qBinaryFileName.substring(typeNameStart);
@@ -402,9 +402,9 @@ private NameEnvironmentAnswer findClass(String qualifiedTypeName, char[] typeNam
 			if (!answer.ignoreIfBetter()) {
 				if (answer.isBetter(suggestedAnswer)) {
 					if(NameLookup.VERBOSE) {
-						trace(" Result for JavaSearchNameEnvironment#findClass( " + qualifiedTypeName + ", " + CharOperation.charToString(typeName) + ", " + strategy + ", " + moduleName + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
-						trace(" -> answer: " + answer); //$NON-NLS-1$
-						trace(" -> location: " + location); //$NON-NLS-1$
+						trace(" Result for JavaSearchNameEnvironment#findClass( " + qualifiedTypeName + ", " + CharOperation.charToString(typeName) + ", " + strategy + ", " + moduleName + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+						trace(" -> answer: " + answer); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+						trace(" -> location: " + location); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 					return answer;
 				}
@@ -412,9 +412,9 @@ private NameEnvironmentAnswer findClass(String qualifiedTypeName, char[] typeNam
 				// remember suggestion and keep looking
 				suggestedAnswer = answer;
 				if(NameLookup.VERBOSE) {
-					trace(" Potential answer for JavaSearchNameEnvironment#findClass( " + qualifiedTypeName + ", " + CharOperation.charToString(typeName) + ", " + strategy + ", " + moduleName + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
-					trace(" -> answer: " + answer); //$NON-NLS-1$
-					trace(" -> location: " + location); //$NON-NLS-1$
+					trace(" Potential answer for JavaSearchNameEnvironment#findClass( " + qualifiedTypeName + ", " + CharOperation.charToString(typeName) + ", " + strategy + ", " + moduleName + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+					trace(" -> answer: " + answer); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+					trace(" -> location: " + location); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}
@@ -423,12 +423,12 @@ private NameEnvironmentAnswer findClass(String qualifiedTypeName, char[] typeNam
 		// no better answer was found
 		return suggestedAnswer;
 	if(NameLookup.VERBOSE) {
-		trace(" NO result for JavaSearchNameEnvironment#findClass( " + qualifiedTypeName + ", " + CharOperation.charToString(typeName) + ", " + strategy + ", " + moduleName + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+		trace(" NO result for JavaSearchNameEnvironment#findClass( " + qualifiedTypeName + ", " + CharOperation.charToString(typeName) + ", " + strategy + ", " + moduleName + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	return null;
 }
 
-protected /* visible for testing only */ Iterable<ClasspathLocation> getLocationsFor(/*@Nullable*/String moduleName, String qualifiedPackageName) {
+protected /* visible for testing only */ Iterable<ClasspathLocation> getLocationsFor(/*@Nullable*/String moduleName, String qualifiedPackageName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (moduleName != null) {
 		LinkedHashSet<ClasspathLocation> l = this.moduleToClassPathLocations.get(moduleName);
 		if (l != null)
@@ -439,18 +439,18 @@ protected /* visible for testing only */ Iterable<ClasspathLocation> getLocation
 		LinkedHashSet<ClasspathLocation> cpls = this.packageNameToClassPathLocations.get(qualifiedPackageName);
 		if(cpls == null) {
 			if(NameLookup.VERBOSE) {
-				trace(" No result for JavaSearchNameEnvironment#getLocationsFor( " + moduleName + ", " + qualifiedPackageName + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				trace(" No result for JavaSearchNameEnvironment#getLocationsFor( " + moduleName + ", " + qualifiedPackageName + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			return Collections.emptySet();
 		}
 		if(NameLookup.VERBOSE) {
-			trace(" Result for JavaSearchNameEnvironment#getLocationsFor( " + moduleName + ", " + qualifiedPackageName + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-			trace(" -> " + cpls.stream().map(Object::toString).collect(joining(" | "))); //$NON-NLS-1$ //$NON-NLS-2$
+			trace(" Result for JavaSearchNameEnvironment#getLocationsFor( " + moduleName + ", " + qualifiedPackageName + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			trace(" -> " + cpls.stream().map(Object::toString).collect(joining(" | "))); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return cpls;
 	}
 	if(NameLookup.VERBOSE) {
-		trace(" Potentially expensive search in JavaSearchNameEnvironment#getLocationsFor( " + moduleName + ", " + qualifiedPackageName + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		trace(" Potentially expensive search in JavaSearchNameEnvironment#getLocationsFor( " + moduleName + ", " + qualifiedPackageName + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	return this.locationSet;
 }
@@ -477,7 +477,7 @@ public NameEnvironmentAnswer findType(char[][] compoundName, char[] moduleName) 
 	return null;
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public char[][] getModulesDeclaringPackage(char[][] packageName, char[] moduleName) {
 	String qualifiedPackageName = String.valueOf(CharOperation.concatWith(packageName, '/'));
 	LookupStrategy strategy = LookupStrategy.get(moduleName);
@@ -486,7 +486,7 @@ public char[][] getModulesDeclaringPackage(char[][] packageName, char[] moduleNa
 			String moduleNameString = String.valueOf(moduleName);
 			LinkedHashSet<ClasspathLocation> cpl = this.moduleToClassPathLocations.get(moduleNameString);
 			if (cpl != null) {
-				for (ClasspathLocation cp : cpl) {
+				for (ClasspathLocation cp : cpl) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (cp.isPackage(qualifiedPackageName, moduleNameString))
 						return new char[][] { moduleName };
 				}
@@ -495,7 +495,7 @@ public char[][] getModulesDeclaringPackage(char[][] packageName, char[] moduleNa
 		return null;
 	}
 	char[][] moduleNames = CharOperation.NO_CHAR_CHAR;
-	for (ClasspathLocation location : getLocationsFor(null /* ignore module */, qualifiedPackageName)) {
+	for (ClasspathLocation location : getLocationsFor(null /* ignore module */, qualifiedPackageName)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (strategy.matches(location, ClasspathLocation::hasModule) ) {
 			if (location.isPackage(qualifiedPackageName, null)) {
 				char[][] mNames = location.getModulesDeclaringPackage(qualifiedPackageName, null);
@@ -505,8 +505,8 @@ public char[][] getModulesDeclaringPackage(char[][] packageName, char[] moduleNa
 		}
 	}
 	if(NameLookup.VERBOSE) {
-		trace(" Result for JavaSearchNameEnvironment#getModulesDeclaringPackage( " + qualifiedPackageName + ", " + CharOperation.charToString(moduleName) + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		trace(" -> " + CharOperation.toString(moduleNames)); //$NON-NLS-1$
+		trace(" Result for JavaSearchNameEnvironment#getModulesDeclaringPackage( " + qualifiedPackageName + ", " + CharOperation.charToString(moduleName) + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		trace(" -> " + CharOperation.toString(moduleNames)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	return moduleNames == CharOperation.NO_CHAR_CHAR ? null : moduleNames;
 }
@@ -527,7 +527,7 @@ public char[][] listPackages(char[] moduleName) { LookupStrategy strategy = Look
 	}
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public boolean hasCompilationUnit(char[][] qualifiedPackageName, char[] moduleName, boolean checkCUs) {
 	String qualifiedPackageNameString = String.valueOf(CharOperation.concatWith(qualifiedPackageName, '/'));
 	LookupStrategy strategy = LookupStrategy.get(moduleName);
@@ -539,12 +539,12 @@ public boolean hasCompilationUnit(char[][] qualifiedPackageName, char[] moduleNa
 				return location.hasCompilationUnit(qualifiedPackageNameString, moduleNameString);
 		}
 	} else {
-		for (ClasspathLocation location : getLocationsFor(null /* ignore module */, qualifiedPackageNameString)) {
+		for (ClasspathLocation location : getLocationsFor(null /* ignore module */, qualifiedPackageNameString)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (strategy.matches(location, ClasspathLocation::hasModule) )
 				if (location.hasCompilationUnit(qualifiedPackageNameString, moduleNameString)) {
 					if(NameLookup.VERBOSE) {
-						trace(" Result for JavaSearchNameEnvironment#hasCompilationUnit( " + qualifiedPackageNameString + ", " + moduleNameString + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						trace(" -> " + location); //$NON-NLS-1$
+						trace(" Result for JavaSearchNameEnvironment#hasCompilationUnit( " + qualifiedPackageNameString + ", " + moduleNameString + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+						trace(" -> " + location); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 					return true;
 				}
@@ -579,7 +579,7 @@ public char[][] getAllAutomaticModules() {
 public static INameEnvironment createWithReferencedProjects(IJavaProject javaProject, List<IJavaProject> referencedProjects, org.eclipse.jdt.core.ICompilationUnit[] copies) {
 	JavaSearchNameEnvironment result = new JavaSearchNameEnvironment(javaProject, copies);
 
-	for (IJavaProject referencedProject : referencedProjects) {
+	for (IJavaProject referencedProject : referencedProjects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		result.addProjectClassPath((JavaProject)referencedProject, true);
 	}
 	return result;
@@ -597,7 +597,7 @@ private static boolean isComplianceJava9OrHigher(IJavaProject javaProject) {
  * @param defaultModule project module or {@code null}
  * @return may return {@code null}
  */
-private static IModuleDescription computeModuleFor(PackageFragmentRoot root, IModuleDescription defaultModule) {
+private static IModuleDescription computeModuleFor(PackageFragmentRoot root, IModuleDescription defaultModule) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	/*
 	 * The JRE 9+ container is on the module path without the 'module' classpath attribute being set.
 	 * We detected the JRE container by checking the container for system modules.

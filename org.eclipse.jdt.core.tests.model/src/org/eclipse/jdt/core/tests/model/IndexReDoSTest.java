@@ -100,17 +100,17 @@ public class IndexReDoSTest extends TestCase {
 	 *
 	 * @see <a href="https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS">OWASP ReDoS</a>
 	 */
-	public void testReDoSWithCatastrophicBacktracking() {
+	public void testReDoSWithCatastrophicBacktracking() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Pathological regex pattern: nested quantifiers cause exponential backtracking
 		char[] pattern = "(a+)+$".toCharArray();
 
 		// Input: 40 'a' characters followed by '!' (a non-matching tail).
 		// Without protection the engine would try 2^40 combinations before failing.
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < 40; i++) {
-			sb.append('a');
+		StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0; i < 40; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			sb.append('a'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		sb.append('!');
+		sb.append('!'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		char[] word = sb.toString().toCharArray();
 
 		// Run the match in a separate thread with a timeout
@@ -126,14 +126,14 @@ public class IndexReDoSTest extends TestCase {
 				assertFalse("Pathological pattern must report a non-match", result.booleanValue());
 			} catch (TimeoutException e) {
 				future.cancel(true);
-				fail("ReDoS vulnerability detected: Index.isMatch with pathological regex " +
+				fail("ReDoS vulnerability detected: Index.isMatch with pathological regex " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"'(a+)+$' did not complete within " + TIMEOUT_SECONDS + " seconds. " +
 					"A caller can cause Denial of Service by supplying a pathological regex pattern " +
 					"via SearchPattern.R_REGEXP_MATCH. The regex engine's backtracking causes " +
 					"exponential time complexity (O(2^n)) on non-matching inputs.");
 			} catch (ExecutionException e) {
 				// Unexpected exception during matching
-				fail("Unexpected exception during regex match: " + e.getCause().getMessage());
+				fail("Unexpected exception during regex match: " + e.getCause().getMessage()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
 				fail("Test interrupted");
@@ -149,16 +149,16 @@ public class IndexReDoSTest extends TestCase {
 	 * the input has many 'a' characters but doesn't fully match. The guard
 	 * must abort within the time budget and return {@code false}.
 	 */
-	public void testReDoSWithNestedWildcard() {
+	public void testReDoSWithNestedWildcard() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Pathological regex: repeated greedy wildcard
 		char[] pattern = "(.*a){20}".toCharArray();
 
 		// Input that partially matches: enough 'a' characters to be ambiguous
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < 20; i++) {
-			sb.append("aXa");
+		StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0; i < 20; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			sb.append("aXa"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		sb.append('!');
+		sb.append('!'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		char[] word = sb.toString().toCharArray();
 
 		ExecutorService executor = Executors.newSingleThreadExecutor();
@@ -172,10 +172,10 @@ public class IndexReDoSTest extends TestCase {
 				assertFalse("Pathological pattern must report a non-match", result.booleanValue());
 			} catch (TimeoutException e) {
 				future.cancel(true);
-				fail("ReDoS vulnerability detected: Index.isMatch with pathological regex " +
+				fail("ReDoS vulnerability detected: Index.isMatch with pathological regex " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"'(.*a){20}' did not complete within " + TIMEOUT_SECONDS + " seconds.");
 			} catch (ExecutionException e) {
-				fail("Unexpected exception during regex match: " + e.getCause().getMessage());
+				fail("Unexpected exception during regex match: " + e.getCause().getMessage()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
 				fail("Test interrupted");
@@ -199,7 +199,7 @@ public class IndexReDoSTest extends TestCase {
 			boolean result = Index.isMatch(pattern, word, SearchPattern.R_REGEXP_MATCH);
 			assertFalse("Invalid regex must be treated as a non-match", result);
 		} catch (java.util.regex.PatternSyntaxException e) {
-			fail("Invalid regex should be handled gracefully, but PatternSyntaxException propagated: "
+			fail("Invalid regex should be handled gracefully, but PatternSyntaxException propagated: " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ e.getMessage());
 		}
 	}
@@ -314,7 +314,7 @@ public class IndexReDoSTest extends TestCase {
 	 * time budget rather than hanging, proving the disk-query path is also ReDoS-protected.
 	 * </p>
 	 */
-	public void testReDoSViaDiskIndexQueryPath() throws Exception {
+	public void testReDoSViaDiskIndexQueryPath() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File indexFile = File.createTempFile("redos", ".index"); //$NON-NLS-1$ //$NON-NLS-2$
 		indexFile.delete(); // let the Index create a fresh file
 		indexFile.deleteOnExit();
@@ -322,11 +322,11 @@ public class IndexReDoSTest extends TestCase {
 		char[] category = "typeDecl".toCharArray(); //$NON-NLS-1$
 
 		// Word stored in the index: 40 'a' characters followed by '!' (non-matching tail).
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < 40; i++) {
-			sb.append('a');
+		StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0; i < 40; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			sb.append('a'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		sb.append('!');
+		sb.append('!'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		char[] word = sb.toString().toCharArray();
 		char[] pattern = "(a+)+$".toCharArray(); //$NON-NLS-1$
 
@@ -350,11 +350,11 @@ public class IndexReDoSTest extends TestCase {
 				// Completing at all (without timing out) proves the disk-query path is guarded.
 			} catch (TimeoutException e) {
 				future.cancel(true);
-				fail("ReDoS vulnerability detected on the DiskIndex query path: a search with " +
+				fail("ReDoS vulnerability detected on the DiskIndex query path: a search with " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"pathological regex '(a+)+$' did not complete within " + TIMEOUT_SECONDS +
 					" seconds. DiskIndex.addQueryResults must also route through the ReDoS guard.");
 			} catch (ExecutionException e) {
-				fail("Unexpected exception during disk-index query: " + e.getCause().getMessage());
+				fail("Unexpected exception during disk-index query: " + e.getCause().getMessage()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
 				fail("Test interrupted");

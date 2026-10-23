@@ -51,7 +51,7 @@ public class GeneratedFileMap extends ManyToMany<IFile, IFile> {
 
 	private final IProject _proj;
 
-	private final Map<IFile, Set<Flags>> _flags = new HashMap<>();
+	private final Map<IFile, Set<Flags>> _flags = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	private final boolean _isTestCode;
 
@@ -92,7 +92,7 @@ public class GeneratedFileMap extends ManyToMany<IFile, IFile> {
 		Set<IFile> values = getValues(key);
 		boolean removed = super.removeKey(key);
 		if (removed) {
-			for (IFile value : values) {
+			for (IFile value : values) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (!containsValue(value)) {
 					_flags.remove(value);
 				}
@@ -215,7 +215,7 @@ public class GeneratedFileMap extends ManyToMany<IFile, IFile> {
 	 *
 	 * This method is not synchronized because it is called only from this object's constructor.
 	 */
-	private void readState() {
+	private void readState() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File file = getStateFile(_proj, _isTestCode);
 		if (file == null || !file.exists()) {
 			// We'll just start with no dependencies
@@ -226,18 +226,18 @@ public class GeneratedFileMap extends ManyToMany<IFile, IFile> {
 			in= new DataInputStream(new BufferedInputStream(new FileInputStream(file)));
 			int version = in.readInt();
 			if (version != SERIALIZATION_VERSION) {
-				throw new IOException("Dependency map file version does not match. Expected "  //$NON-NLS-1$
+				throw new IOException("Dependency map file version does not match. Expected "  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						+ SERIALIZATION_VERSION + ", but found " + version); //$NON-NLS-1$
 			}
 			int sizeOfMap = in.readInt();
 
 			// For each entry, we'll have a parent and a set of children,
 			// which we can drop into the parent -> child map.
-			for (int parentIndex=0; parentIndex<sizeOfMap; parentIndex++) {
+			for (int parentIndex=0; parentIndex<sizeOfMap; parentIndex++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String parentPath = in.readUTF();
 				IFile parent = convertPathToIFile(parentPath);
 				int numChildren = in.readInt();
-				for (int childIndex = 0; childIndex<numChildren; childIndex++) {
+				for (int childIndex = 0; childIndex<numChildren; childIndex++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String childPath = in.readUTF();
 					IFile child = convertPathToIFile(childPath);
 					// add the child to the parent->child map
@@ -247,16 +247,16 @@ public class GeneratedFileMap extends ManyToMany<IFile, IFile> {
 
 			// Now the _flags map:
 			int sizeOfFlags = in.readInt();
-			for (int i = 0; i < sizeOfFlags; ++i) {
+			for (int i = 0; i < sizeOfFlags; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String childPath = in.readUTF();
 				IFile child = convertPathToIFile(childPath);
 				if (!containsValue(child)) {
-					throw new IOException("Error in generated file attributes: did not expect file " + childPath); //$NON-NLS-1$
+					throw new IOException("Error in generated file attributes: did not expect file " + childPath); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 
 				int attributeCount = in.readInt();
 				EnumSet<Flags> flags = EnumSet.noneOf(Flags.class);
-				for (int j = 0; j < attributeCount; ++j) {
+				for (int j = 0; j < attributeCount; ++j) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String attr = in.readUTF();
 					Flags f = Flags.valueOf(attr);
 					flags.add(f);
@@ -289,7 +289,7 @@ public class GeneratedFileMap extends ManyToMany<IFile, IFile> {
 	/**
 	 * Write our dependencies to disk.  If not dirty, nothing is written.
 	 */
-	public synchronized void writeState() {
+	public synchronized void writeState() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isDirty()) {
 			return;
 		}
@@ -311,7 +311,7 @@ public class GeneratedFileMap extends ManyToMany<IFile, IFile> {
 			out.writeInt(parents.size());
 
 			// for each parent...
-			for (IFile parent : parents) {
+			for (IFile parent : parents) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 				// ...parent name
 				out.writeUTF(convertIFileToPath(parent));
@@ -322,7 +322,7 @@ public class GeneratedFileMap extends ManyToMany<IFile, IFile> {
 				out.writeInt(children.size());
 
 				// for each child...
-				for (IFile child : children) {
+				for (IFile child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					// ...child name.
 					out.writeUTF(convertIFileToPath(child));
 				}
@@ -332,14 +332,14 @@ public class GeneratedFileMap extends ManyToMany<IFile, IFile> {
 			out.writeInt(_flags.size());
 
 			// for each generated file that has attributes...
-			for (Entry<IFile, Set<Flags>> entry : _flags.entrySet()) {
+			for (Entry<IFile, Set<Flags>> entry : _flags.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				// ...generated file name
 				out.writeUTF(convertIFileToPath(entry.getKey()));
 
 				Set<Flags> flags = entry.getValue();
 				// ...number of attributes
 				out.writeInt(flags.size());
-				for (Flags f : flags) {
+				for (Flags f : flags) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					// ...attribute name
 					out.writeUTF(f.name());
 				}

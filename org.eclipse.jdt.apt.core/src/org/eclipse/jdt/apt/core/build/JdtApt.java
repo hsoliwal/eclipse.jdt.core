@@ -44,22 +44,22 @@ public class JdtApt extends Java {
 
     public void setWorkspace(File file) {
         if(!file.exists()) {
-            throw new BuildException(Messages.JdtApt_noWorkspace + file);
+            throw new BuildException(Messages.JdtApt_noWorkspace + file); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         }
         workspace = file;
     }
 
     public void setEclipseHome(File file) {
         if(!file.exists()) {
-            throw new BuildException(Messages.JdtApt_noEclipse + file);
+            throw new BuildException(Messages.JdtApt_noEclipse + file); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         }
         startupJar = new File(file, "startup.jar"); //$NON-NLS-1$
         if(!startupJar.exists()) {
-            throw new BuildException(Messages.JdtApt_noStartupJar + file);
+            throw new BuildException(Messages.JdtApt_noStartupJar + file); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         }
     }
 
-    @Override
+    @Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void execute() throws BuildException {
 	    if(workspace == null) {
 	        throw new BuildException("Must set a workspace"); //$NON-NLS-1$

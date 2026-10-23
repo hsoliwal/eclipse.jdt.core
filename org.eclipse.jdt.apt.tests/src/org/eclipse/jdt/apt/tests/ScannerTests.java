@@ -33,7 +33,7 @@ public class ScannerTests extends APTTestBase {
 		return new TestSuite( ScannerTests.class );
 	}
 
-	public void testHasAnnotation() throws Exception
+	public void testHasAnnotation() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		IProject project = env.getProject( getProjectName() );
 		IPath srcRoot = getSourcePath();
@@ -48,7 +48,7 @@ public class ScannerTests extends APTTestBase {
 
 		env.addClass(srcRoot, "test", "Has", code);
 
-		IFile file = project.getFile(P + "src" + P + "test" + P + "Has.java");
+		IFile file = project.getFile(P + "src" + P + "test" + P + "Has.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		assertTrue("Expected annotation instance", ScannerUtil.hasAnnotationInstance(file));
 		assertTrue("Expected annotation instance", ScannerUtil.hasAnnotationInstance(code.toCharArray()));
@@ -67,13 +67,13 @@ public class ScannerTests extends APTTestBase {
 
 		env.addClass(srcRoot, "test", "No", code);
 
-		IFile file = project.getFile(P + "src" + P + "test" + P + "No.java");
+		IFile file = project.getFile(P + "src" + P + "test" + P + "No.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		assertFalse("Expected no annotation instance", ScannerUtil.hasAnnotationInstance(file));
 		assertFalse("Expected no annotation instance", ScannerUtil.hasAnnotationInstance(code.toCharArray()));
 	}
 
-	public void testHasAnnotationInComment() throws Exception
+	public void testHasAnnotationInComment() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		IProject project = env.getProject( getProjectName() );
 		IPath srcRoot = getSourcePath();
@@ -91,7 +91,7 @@ public class ScannerTests extends APTTestBase {
 
 		env.addClass(srcRoot, "test", "Comments", code);
 
-		IFile file = project.getFile(P + "src" + P + "test" + P + "Comments.java");
+		IFile file = project.getFile(P + "src" + P + "test" + P + "Comments.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		assertFalse("Expected no annotation instance", ScannerUtil.hasAnnotationInstance(file));
 		assertFalse("Expected no annotation instance", ScannerUtil.hasAnnotationInstance(code.toCharArray()));
@@ -115,7 +115,7 @@ public class ScannerTests extends APTTestBase {
 
 		env.addClass(srcRoot, "test", "AnnoDecl", code);
 
-		IFile file = project.getFile(P + "src" + P + "test" + P + "AnnoDecl.java");
+		IFile file = project.getFile(P + "src" + P + "test" + P + "AnnoDecl.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		assertFalse("Expected no annotation instance", ScannerUtil.hasAnnotationInstance(file));
 		assertFalse("Expected no annotation instance", ScannerUtil.hasAnnotationInstance(code.toCharArray()));

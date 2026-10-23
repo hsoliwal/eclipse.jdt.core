@@ -53,7 +53,7 @@ public class DoStatement extends Statement {
 	private static final List PROPERTY_DESCRIPTORS;
 
 	static {
-		List properyList = new ArrayList(3);
+		List properyList = new ArrayList(3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(DoStatement.class, properyList);
 		addProperty(BODY_PROPERTY, properyList);
 		addProperty(EXPRESSION_PROPERTY, properyList);
@@ -105,7 +105,7 @@ public class DoStatement extends Statement {
 		return propertyDescriptors(apiLevel);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final ASTNode internalGetSetChildProperty(ChildPropertyDescriptor property, boolean get, ASTNode child) {
 		if (property == BODY_PROPERTY) {
 			if (get) {

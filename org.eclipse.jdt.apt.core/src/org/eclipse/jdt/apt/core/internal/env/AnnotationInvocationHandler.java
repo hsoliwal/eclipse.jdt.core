@@ -45,7 +45,7 @@ public class AnnotationInvocationHandler implements InvocationHandler
         _clazz = clazz;
     }
 
-    @Override
+    @Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable
     {
         final String methodName = method.getName();
@@ -63,11 +63,11 @@ public class AnnotationInvocationHandler implements InvocationHandler
             return Boolean.valueOf(_instance.equals(args[0]));
         }
         if( args != null && args.length != 0 )
-            throw new NoSuchMethodException("method " + method.getName() + formatArgs(args) + " does not exists"); //$NON-NLS-1$ //$NON-NLS-2$
+            throw new NoSuchMethodException("method " + method.getName() + formatArgs(args) + " does not exists"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         final String c_methodName = method.getName();
         final IMethodBinding methodBinding = _instance.getMethodBinding(c_methodName);
         if( methodBinding == null )
-            throw new NoSuchMethodException("method " + method.getName() + "() does not exists"); //$NON-NLS-1$ //$NON-NLS-2$
+            throw new NoSuchMethodException("method " + method.getName() + "() does not exists"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
         final ITypeBinding retType = methodBinding.getReturnType();
         if( retType == null ) return null;
@@ -95,8 +95,8 @@ public class AnnotationInvocationHandler implements InvocationHandler
                 if( classTypes == null || classTypes.length == 0 )
                     mirrorTypes = Collections.emptyList();
                 else{
-                    mirrorTypes = new ArrayList<>(classTypes.length);
-                    for( ITypeBinding type : classTypes ){
+                    mirrorTypes = new ArrayList<>(classTypes.length); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+                    for( ITypeBinding type : classTypes ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
                         TypeMirror mirror = Factory.createTypeMirror(type, _instance.getEnvironment() );
                         if( mirror == null )
                             mirrorTypes.add(Factory.createErrorClassType(type));
@@ -121,7 +121,7 @@ public class AnnotationInvocationHandler implements InvocationHandler
     	return performNecessaryTypeConversion(expectedType, actualValue);
     }
 
-	private Object _getReflectionValue(final Object domValue, final Class<?> expectedType)
+	private Object _getReflectionValue(final Object domValue, final Class<?> expectedType) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		if( expectedType == null || domValue == null )
 			return null;
@@ -153,7 +153,7 @@ public class AnnotationInvocationHandler implements InvocationHandler
 	        final int length = elements.length;
 	        final Object array = Array.newInstance(componentType, length);
 
-	        for( int i=0; i<length; i++ ){
+	        for( int i=0; i<length; i++ ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	            final Object returnObj =
 	            	getReflectionValueWithTypeConversion( elements[i], componentType );
 	            // fill in the array.
@@ -192,7 +192,7 @@ public class AnnotationInvocationHandler implements InvocationHandler
 	                    Array.setShort( array, i, s.shortValue() );
 	                }
 	                else {
-	                    throw new IllegalStateException("unrecognized primitive type: "  + componentType ); //$NON-NLS-1$
+	                    throw new IllegalStateException("unrecognized primitive type: "  + componentType ); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	                }
 	            }
 	            else{
@@ -226,7 +226,7 @@ public class AnnotationInvocationHandler implements InvocationHandler
 	    	return domValue;
 	}
 
-	private Object performNecessaryTypeConversion(Class<?> expectedType, Object actualValue){
+	private Object performNecessaryTypeConversion(Class<?> expectedType, Object actualValue){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if( actualValue == null )
 			return Factory.getMatchingDummyValue(expectedType);
 		else if( expectedType.isPrimitive() )
@@ -245,7 +245,7 @@ public class AnnotationInvocationHandler implements InvocationHandler
 		else return null;
 	}
 
-	private Object arrayify(final Class<?> expectedType, Object actualValue){
+	private Object arrayify(final Class<?> expectedType, Object actualValue){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		assert expectedType.isArray() : "expected type must be an array"; //$NON-NLS-1$
 		assert ( !(actualValue instanceof Object[]) ) :
 			"actual value cannot be of type Object[]"; //$NON-NLS-1$
@@ -286,7 +286,7 @@ public class AnnotationInvocationHandler implements InvocationHandler
                 Array.setShort( array, 0, s.shortValue() );
             }
             else {
-                throw new IllegalStateException("unrecognized primitive type: "  + componentType ); //$NON-NLS-1$
+                throw new IllegalStateException("unrecognized primitive type: "  + componentType ); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             }
         }
         else{
@@ -298,15 +298,15 @@ public class AnnotationInvocationHandler implements InvocationHandler
     private String formatArgs(final Object[] args)
     {
         // estimate that each class name (plus the separators) is 10 characters long plus 2 for "()".
-        final StringBuilder builder = new StringBuilder(args.length * 8 + 2 );
-        builder.append('(');
-        for( int i=0; i<args.length; i++ )
+        final StringBuilder builder = new StringBuilder(args.length * 8 + 2 ); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        builder.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        for( int i=0; i<args.length; i++ ) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
         {
-            if( i > 0 ) builder.append(", "); //$NON-NLS-1$
-            builder.append(args[i].getClass().getName());
+            if( i > 0 ) builder.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+            builder.append(args[i].getClass().getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
         }
 
-        builder.append(')');
+        builder.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
         return builder.toString();
     }

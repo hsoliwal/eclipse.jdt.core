@@ -81,7 +81,7 @@ public class AnnotationTypeDeclaration extends AbstractTypeDeclaration {
 	private static final List PROPERTY_DESCRIPTORS;
 
 	static {
-		List properyList = new ArrayList(5);
+		List properyList = new ArrayList(5); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(AnnotationTypeDeclaration.class, properyList);
 		addProperty(JAVADOC_PROPERTY, properyList);
 		addProperty(MODIFIERS2_PROPERTY, properyList);
@@ -127,7 +127,7 @@ public class AnnotationTypeDeclaration extends AbstractTypeDeclaration {
 		return propertyDescriptors(apiLevel);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final ASTNode internalGetSetChildProperty(ChildPropertyDescriptor property, boolean get, ASTNode child) {
 		if (property == JAVADOC_PROPERTY) {
 			if (get) {

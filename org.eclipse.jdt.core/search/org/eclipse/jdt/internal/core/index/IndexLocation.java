@@ -33,7 +33,7 @@ import org.eclipse.jdt.internal.core.util.Util;
  */
 public abstract class IndexLocation {
 
-	public static IndexLocation createIndexLocation(URL url) {
+	public static IndexLocation createIndexLocation(URL url) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		URL localUrl;
 		try {
 			localUrl = FileLocator.resolve(url);

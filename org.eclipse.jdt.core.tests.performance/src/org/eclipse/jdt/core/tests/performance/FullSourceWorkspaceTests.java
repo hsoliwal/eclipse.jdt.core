@@ -94,9 +94,9 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 		Hashtable options = INITIAL_OPTIONS;
 		String compliance = compliance();
 		if (compliance == null) {
-			System.out.println("Used default compliance: "+options.get(JavaCore.COMPILER_COMPLIANCE));
+			System.out.println("Used default compliance: "+options.get(JavaCore.COMPILER_COMPLIANCE)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
-			System.out.println("Used compliance: "+compliance);
+			System.out.println("Used compliance: "+compliance); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			options.put(CompilerOptions.OPTION_Compliance, compliance);
 			options.put(CompilerOptions.OPTION_Source, compliance);
 			options.put(CompilerOptions.OPTION_TargetPlatform, compliance);
@@ -133,11 +133,11 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 			IWorkspace workspace = ResourcesPlugin.getWorkspace();
 			IWorkspaceRoot workspaceRoot = workspace.getRoot();
 			File pluginDir = workspaceRoot.getProject(JavaCore.PLUGIN_ID).getLocation().toFile();
-			outputDir = pluginDir.toPath().normalize().toAbsolutePath().toString() + File.separator + "bin";
+			outputDir = pluginDir.toPath().normalize().toAbsolutePath().toString() + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
-			outputDir = Util.toNativePath(container) + File.separator + "bin";
+			outputDir = Util.toNativePath(container) + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		COMPILER_OUTPUT_DIR = "\""+outputDir+"\"";
+		COMPILER_OUTPUT_DIR = "\""+outputDir+"\""; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 
@@ -164,15 +164,15 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 		try {
 			count = Integer.parseInt(measures);
 			if (count < 0 || count > 20) {
-				System.out.println("INFO: Measures parameter ("+count+") is ignored as it is an invalid value! (should be between 0 and 20)");
+				System.out.println("INFO: Measures parameter ("+count+") is ignored as it is an invalid value! (should be between 0 and 20)"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				count = 10;
 			} else if (count != 10) {
-				System.out.println("WARNING: Measures count has been changed while running this test = "+count+" instead of 10 normally!");
+				System.out.println("WARNING: Measures count has been changed while running this test = "+count+" instead of 10 normally!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		catch (NumberFormatException nfe) {
 			// use default value
-			System.out.println("INFO: Specified 'measures' VM argument (="+measures+") is ignored as it is not an integer (0-20)!");
+			System.out.println("INFO: Specified 'measures' VM argument (="+measures+") is ignored as it is not an integer (0-20)!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		MEASURES_COUNT = count;
 	}
@@ -180,7 +180,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 	// Scenario information
 	String scenarioReadableName, scenarioShortName;
 	StringBuilder scenarioComment;
-	static Map SCENARII_COMMENT = new HashMap();
+	static Map SCENARII_COMMENT = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	// Time measuring
 	int nbMeasures;
@@ -215,7 +215,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 		String version = new Main(null/*outWriter*/, null/*errWriter*/, false/*systemExit*/, null/*options*/, null/*progress*/).bind("compiler.version");
 		version = version.substring(0, version.indexOf(','));
 		if (version.startsWith("0.")) {
-			version = "v_"+version.substring(2);
+			version = "v_"+version.substring(2); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		LOG_VERSION = version;
 	}
@@ -233,7 +233,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 
 	// Filter to get only the 3.0 plugins
 	class FullSourceProjectsFilter implements FileFilter {
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public boolean accept(File project) {
 			if (project.isDirectory()) {
 				StringTokenizer tokenizer = new StringTokenizer(project.getName(), ".");
@@ -271,7 +271,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 	 * it won't be created and times won't be logged.
 	 * This was intentional to avoid unexpected log files creation (especially during nightly/integration builds).
 	 */
-	protected static void initLogDir() {
+	protected static void initLogDir() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String logDir = System.getProperty("logDir");
 		File dir = null;
 		if (logDir != null) {
@@ -279,14 +279,14 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 			dir = new File(logDir);
 			if (dir.exists()) {
 				if (!dir.isDirectory()) {
-					System.err.println(logDir+" is not a valid directory, log files will NOT be written!");
+					System.err.println(logDir+" is not a valid directory, log files will NOT be written!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					dir = INVALID_DIR;
 				}
 			} else {
 				// Create parent dir if necessary
 				int n=0;
 				boolean created = false;
-				while (!created && n<3) {
+				while (!created && n<3) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					created = dir.mkdir();
 					if (!created) {
 						dir = dir.getParentFile();
@@ -294,7 +294,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 					n++;
 				}
 				if (!created) {
-					System.err.println("Cannot create "+logDir+", log files will NOT be written!");
+					System.err.println("Cannot create "+logDir+", log files will NOT be written!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					dir = INVALID_DIR;
 				}
 			}
@@ -303,16 +303,16 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 			String[] subdirs = (PATCH_ID == null)
 				? new String[] {LOG_VERSION, RUN_ID }
 				: new String[] {LOG_VERSION, PATCH_ID, RUN_ID };
-			for (int i=0; i<subdirs.length; i++) {
+			for (int i=0; i<subdirs.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				dir = new File(dir, subdirs[i]);
 				if (dir.exists()) {
 					if (!dir.isDirectory()) {
-						System.err.println(dir.getPath()+" is not a valid directory, log files will NOT be written!");
+						System.err.println(dir.getPath()+" is not a valid directory, log files will NOT be written!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						dir= INVALID_DIR;
 						break;
 					}
 				} else if (!dir.mkdirs()) {
-					System.err.println("Cannot create "+dir.getPath()+", log files will NOT be written!");
+					System.err.println("Cannot create "+dir.getPath()+", log files will NOT be written!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					dir = INVALID_DIR;
 					break;
 				}
@@ -334,15 +334,15 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 	 * @param testClass TestCase test class
 	 * @return test suite
 	 */
-	static Test buildSuite(Class testClass) {
+	static Test buildSuite(Class testClass) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Create tests
 		String className = testClass.getName();
 		TestSuite suite = new TestSuite(className);
 		List tests = buildTestsList(testClass);
 		int size = tests.size();
-		TESTS_NAME_LIST = new ArrayList(size);
-		for (int i=0; i<size; i++) {
+		TESTS_NAME_LIST = new ArrayList(size); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (int i=0; i<size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			FullSourceWorkspaceTests test = (FullSourceWorkspaceTests)tests.get(i);
 			suite.addTest(test);
 			TESTS_NAME_LIST.add(test.getName());
@@ -371,13 +371,13 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 	 * This method does nothing if log files directory has not been initialized
 	 * (which should be the case most of times and especially while running nightly/integration build performance tests).
 	 */
-	static void createPrintStream(Class testClass, PrintStream[] logStreams, int count, String prefix) {
+	static void createPrintStream(Class testClass, PrintStream[] logStreams, int count, String prefix) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (LOG_DIR != null) {
-			for (int i=0, ln=DIM_NAMES.length; i<ln; i++) {
+			for (int i=0, ln=DIM_NAMES.length; i<ln; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String suiteTypeName = suiteTypeShortName(testClass);
-				File logFile = new File(LOG_DIR, suiteTypeName+'_'+DIM_NAMES[i]+".log");
+				File logFile = new File(LOG_DIR, suiteTypeName+'_'+DIM_NAMES[i]+".log"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				if (TOUCH) {
-					System.out.println("Log file "+logFile.getPath()+" would be opened.");
+					System.out.println("Log file "+logFile.getPath()+" would be opened."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					return;
 				}
 				try {
@@ -389,23 +389,23 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 					if (logStreams[i] != null) {
 						if (!fileExist) {
 							logStreams[i].print("Date  \tTime  \t");
-							for (int j=0; j<count; j++) {
+							for (int j=0; j<count; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								String testName = ((String) TESTS_NAME_LIST.get(j)).substring(4+(prefix==null?0:prefix.length())); // 4="test".length()
-								logStreams[i].print(testName+'\t');
+								logStreams[i].print(testName+'\t'); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							}
 							logStreams[i].println("Comment");
 
 						}
 						// Log date and time
 						Date date = new Date(System.currentTimeMillis());
-						logStreams[i].print(DateFormat.getDateInstance(3).format(date)+'\t');
-						logStreams[i].print(DateFormat.getTimeInstance(3).format(date)+'\t');
-						System.out.println("Log file "+logFile.getPath()+" opened.");
+						logStreams[i].print(DateFormat.getDateInstance(3).format(date)+'\t'); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+						logStreams[i].print(DateFormat.getTimeInstance(3).format(date)+'\t'); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+						System.out.println("Log file "+logFile.getPath()+" opened."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					} else {
-						System.err.println("Cannot open "+logFile.getPath()+"!!!");
+						System.err.println("Cannot open "+logFile.getPath()+"!!!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 				} catch (FileNotFoundException e) {
-					System.err.println("Cannot find file "+logFile.getPath()+"!!!");
+					System.err.println("Cannot find file "+logFile.getPath()+"!!!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}
@@ -418,7 +418,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 		String tmpRoot = System.getProperty("java.io.tmpdir");
 		File tempFile = new File(tmpRoot, nameInProject);
 		if (!tempFile.isFile() || tempFile.length() != size) {
-			String githubUrl = GITHUB_TESTS_BINARIES + nameInProject;
+			String githubUrl = GITHUB_TESTS_BINARIES + nameInProject; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			try(BufferedInputStream bin = new BufferedInputStream(URI.create(githubUrl).toURL().openStream())){
 				Files.copy(bin, tempFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
 			}
@@ -442,7 +442,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 	/**
 	 * Log test performance result and close stream if it was last one.
 	 */
-	protected void logPerfResult(PrintStream[] logStreams, int count) {
+	protected void logPerfResult(PrintStream[] logStreams, int count) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (TOUCH) return;
 
 		// Perfs comment buffers
@@ -455,14 +455,14 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 			DataPoint[] dataPoints = (DataPoint[]) JdtCorePerformanceMeter.STATISTICS.get(this.scenarioReadableName);
 			if (dataPoints != null) {
 				Statistics statistics = new Statistics(dataPoints);
-				for (int idx=0; idx<length; idx++) {
+				for (int idx=0; idx<length; idx++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					storeDimension(logStreams, comments, statistics, idx);
 				}
 			} else {
 				try {
 					haveStats = false;
 					Thread.sleep(1000);
-					System.err.println(this.scenarioShortName+": we should have stored statistics!");
+					System.err.println(this.scenarioShortName+": we should have stored statistics!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 					// do nothing
@@ -476,28 +476,28 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 			scenarioComments = new StringBuilder[length];
 			SCENARII_COMMENT.put(getClass(), scenarioComments);
 		}
-		for (int i=0; i<length; i++) {
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (this.scenarioComment != null || comments[i] != null) {
 				if (scenarioComments[i] == null) {
-					scenarioComments[i] = new StringBuilder();
+					scenarioComments[i] = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 				} else {
-					scenarioComments[i].append(' ');
+					scenarioComments[i].append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				if (this.scenarioComment == null) {
-					scenarioComments[i].append("["+TEST_POSITION+"]");
+					scenarioComments[i].append("["+TEST_POSITION+"]"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else {
-					scenarioComments[i].append(this.scenarioComment);
+					scenarioComments[i].append(this.scenarioComment); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				if (comments[i] != null) {
-					if (this.scenarioComment != null) scenarioComments[i].append(',');
-					scenarioComments[i].append(comments[i]);
+					if (this.scenarioComment != null) scenarioComments[i].append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					scenarioComments[i].append(comments[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
 		}
 
 		// Close log
 		if (count == 0) {
-			for (int i=0, ln=logStreams.length; i<ln; i++) {
+			for (int i=0, ln=logStreams.length; i<ln; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (logStreams[i] != null) {
 					if (haveStats) {
 						if (scenarioComments[i] != null) {
@@ -513,28 +513,28 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 	}
 
 	private void storeDimension(PrintStream[] logStreams, String[] comments, Statistics statistics, int index) {
-	    System.out.println("	- "+statistics.toString(index));
+	    System.out.println("	- "+statistics.toString(index)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	    double stddev = statistics.getStddev(index);
 	    double average = statistics.getAverage(index);
 	    long count = statistics.getCount(index);
 	    double error = stddev / Math.sqrt(count);
 	    if ((error/average) > ERROR_THRESHOLD) {
 	    	//if (logStreams[0] != null) logStreams[0].print("'"); // disable over threshold result for xls table
-	    	System.out.println("	WARNING: "+DIM_NAMES[index]+" error is over "+ERROR_STRING+"%: "+this.d2Format.format(stddev)+"/sqrt("+count+")="+ this.percentFormat.format(error/average));
-	    	comments[index] = "err=" + this.percentFormat.format(error/average);
+	    	System.out.println("	WARNING: "+DIM_NAMES[index]+" error is over "+ERROR_STRING+"%: "+this.d2Format.format(stddev)+"/sqrt("+count+")="+ this.percentFormat.format(error/average)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	    	comments[index] = "err=" + this.percentFormat.format(error/average); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	    }
 	    if (logStreams[index] != null) {
-	    	logStreams[index].print(""+statistics.getSum(index)+"\t");
+	    	logStreams[index].print(""+statistics.getSum(index)+"\t"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	    }
     }
 
 	/**
 	 * Perform gc several times to be sure that it won't take time while executing current test.
 	 */
-	protected void runGc() {
+	protected void runGc() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int iterations = 0;
 		long delta=0, free=0;
-		for (int i=0; i<MAX_GC; i++) {
+		for (int i=0; i<MAX_GC; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			free = Runtime.getRuntime().freeMemory();
 			System.gc();
 			delta = Runtime.getRuntime().freeMemory() - free;
@@ -547,7 +547,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 		}
 		if (iterations == MAX_GC && delta > DELTA_GC) {
 			// perhaps gc was not well executed
-			System.out.println("WARNING: "+this.scenarioShortName+" still get "+delta+" unfreeable memory (free="+free+",total="+Runtime.getRuntime().totalMemory()+") after "+MAX_GC+" gc...");
+			System.out.println("WARNING: "+this.scenarioShortName+" still get "+delta+" unfreeable memory (free="+free+",total="+Runtime.getRuntime().totalMemory()+") after "+MAX_GC+" gc..."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -565,7 +565,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 	 *	</ul>
 	 * @see org.eclipse.test.performance.PerformanceTestCase#setUp()
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		super.setUp();
 
 		// Store scenario readable name
@@ -585,21 +585,21 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 		}
 
 		// Verify that all used projects were found in wksp
-		assertNotNull("We should have found "+JavaCore.PLUGIN_ID+" project in workspace!!!", JDT_CORE_PROJECT);
+		assertNotNull("We should have found "+JavaCore.PLUGIN_ID+" project in workspace!!!", JDT_CORE_PROJECT); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		// Increment test position
 		TEST_POSITION++;
 
 		// Abort if only touch
 		if (TOUCH) {
-			String testPrintName = "'"+this.scenarioShortName+"' test";
-			System.out.println("Touch "+testPrintName+" to verify that it will run correctly.");
-			throw new Error(testPrintName+" execution has been aborted!");
+			String testPrintName = "'"+this.scenarioShortName+"' test"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			System.out.println("Touch "+testPrintName+" to verify that it will run correctly."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			throw new Error(testPrintName+" execution has been aborted!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		// Print test name
 		System.out.println("================================================================================");
-		System.out.println("Running "+this.scenarioReadableName+"...");
+		System.out.println("Running "+this.scenarioReadableName+"..."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		// Time measuring
 		this.testDurationNanos = 0;
@@ -612,7 +612,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 	/*
 	 * Set up full source workpsace from zip file.
 	 */
-	private void setUpFullSourceWorkspace() throws IOException, CoreException {
+	private void setUpFullSourceWorkspace() throws IOException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Get wksp info
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
@@ -634,10 +634,10 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 		if (dirLength < 62) {
 			File file = fetchFromBinariesProject("full-source-R3_0.zip", 34_494_852);
 			String fullSourceZipPath = file.getAbsolutePath();
-			System.out.println("Unzipping "+fullSourceZipPath);
-			System.out.print("	in "+targetWorkspacePath+"...");
+			System.out.println("Unzipping "+fullSourceZipPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			System.out.print("	in "+targetWorkspacePath+"..."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			Util.unzip(fullSourceZipPath, targetWorkspacePath);
-			System.out.println(" done in " + (System.nanoTime() - startNano) / 1_000_000L + "ms.");
+			System.out.println(" done in " + (System.nanoTime() - startNano) / 1_000_000L + "ms."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			directories = wkspDir.listFiles(filter);
 			dirLength = directories.length;
 		}
@@ -645,7 +645,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 		// Init environment with existing porjects
 		System.out.print("Create and open projects in environment...");
 		startNano = System.nanoTime();
-		for (int i = 0; i < dirLength; i++) {
+		for (int i = 0; i < dirLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String dirName = directories[i].getName();
 			IProject project = workspaceRoot.getProject(dirName);
 			if (project.exists()) {
@@ -654,7 +654,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 				ENV.addProject(dirName);
 			}
 		}
-		System.out.println("(" + (System.nanoTime() - startNano) / 1_000_000L + "ms)");
+		System.out.println("(" + (System.nanoTime() - startNano) / 1_000_000L + "ms)"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		// Create lib entries for the JDKs
 		String jreLibPath = JavaCore.getClasspathVariable("JRE_LIB").toOSString();
@@ -664,19 +664,19 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 		int jdkLibsLength = jdkLibs.length;
 		IClasspathEntry[] jdkEntries = new IClasspathEntry[jdkLibsLength];
 		int jdkEntriesCount = 0;
-		for (int i=0; i<jdkLibsLength; i++) {
+		for (int i=0; i<jdkLibsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!jdkLibs[i].equals(jreLibPath)) { // do not include JRE_LIB in additional JDK entries
 				jdkEntries[jdkEntriesCount++] = JavaCore.newLibraryEntry(new Path(jdkLibs[i]), null, null);
 			}
 		}
-		System.out.println(jdkLibsLength + " found (" + (System.nanoTime() - startNano) / 1_000_000L + "ms)");
+		System.out.println(jdkLibsLength + " found (" + (System.nanoTime() - startNano) / 1_000_000L + "ms)"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		// Set classpaths (workaround bug 73253 Project references not set on project open)
 		System.out.print("Set projects classpaths...");
 		startNano = System.nanoTime();
 		ALL_PROJECTS = JavaCore.create(workspaceRoot).getJavaProjects();
 		int projectsLength = ALL_PROJECTS.length;
-		for (int i = 0; i < projectsLength; i++) {
+		for (int i = 0; i < projectsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String projectName = ALL_PROJECTS[i].getElementName();
 			if (BIG_PROJECT_NAME.equals(projectName)) continue; // will be set later
 			if (JavaCore.PLUGIN_ID.equals(projectName)) {
@@ -706,7 +706,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 //			System.arraycopy(bigProjectEntries, 0, bigProjectEntries = new IClasspathEntry[bpeLength+1], 0, bpeLength);
 //			bigProjectEntries[bpeLength] = JavaCore.newProjectEntry(JDT_CORE_PROJECT.getPath());
 		}
-		System.out.println("(" + (System.nanoTime() - startNano) / 1_000_000L + "ms)");
+		System.out.println("(" + (System.nanoTime() - startNano) / 1_000_000L + "ms)"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		// Initialize Parser wokring copy
 		IJavaElement element = JDT_CORE_PROJECT.findType("org.eclipse.jdt.internal.compiler.parser.Parser");
@@ -766,14 +766,14 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 		this.nbMeasures++;
 		long durationNanos = System.nanoTime() - this.startNanos;
 		if (PRINT) {
-			System.out.println("		- n° " + this.nbMeasures + ": " + durationNanos / 1_000_000L + "ms");
+			System.out.println("		- n° " + this.nbMeasures + ": " + durationNanos / 1_000_000L + "ms"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		this.testDurationNanos += durationNanos;
 	}
 	public void commitMeasurements() {
 		if (PRINT) {
-			System.out.println("	Test duration = " + this.testDurationNanos / 1_000_000L + "ms");
-			System.out.println("	Time average = " + ((this.testDurationNanos / this.nbMeasures) / 1_000_000L));
+			System.out.println("	Test duration = " + this.testDurationNanos / 1_000_000L + "ms"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			System.out.println("	Time average = " + ((this.testDurationNanos / this.nbMeasures) / 1_000_000L)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		super.commitMeasurements();
 	}
@@ -820,11 +820,11 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 	/*
 	 * Clear given options
 	 */
-	Map clearOptions(Map options) {
+	Map clearOptions(Map options) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// turn all errors and warnings into ignore. The customizable set of compiler
 		// options only contains additional Eclipse options. The standard JDK compiler
 		// options can't be changed anyway.
-		for (Iterator iter= options.keySet().iterator(); iter.hasNext();) {
+		for (Iterator iter= options.keySet().iterator(); iter.hasNext();) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String key= (String)iter.next();
 			String value= (String)options.get(key);
 			if ("error".equals(value) || "warning".equals(value)) {  //$NON-NLS-1$//$NON-NLS-2$
@@ -842,23 +842,23 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 	/**
 	 * @see org.eclipse.jdt.core.tests.model.AbstractJavaModelTests#createJavaProject(String, String[], String[], String[][], String[][], String[], String[][], String[][], boolean[], String, String[], String[][], String[][], String)
 	 */
-	protected IJavaProject createJavaProject(final String projectName, final String[] sourceFolders, final String projectOutput, final String compliance) throws CoreException {
+	protected IJavaProject createJavaProject(final String projectName, final String[] sourceFolders, final String projectOutput, final String compliance) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final IJavaProject[] result = new IJavaProject[1];
-		IWorkspaceRunnable create = new IWorkspaceRunnable() {
-			public void run(IProgressMonitor monitor) throws CoreException {
+		IWorkspaceRunnable create = new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
+			public void run(IProgressMonitor monitor) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 				// create classpath entries
 				IProject project = ENV.getProject(projectName);
 				IPath projectPath = project.getFullPath();
 				int sourceLength = sourceFolders == null ? 0 : sourceFolders.length;
 				IClasspathEntry[] entries = new IClasspathEntry[sourceLength+1];
-				for (int i= 0; i < sourceLength; i++) {
+				for (int i= 0; i < sourceLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IPath sourcePath = new Path(sourceFolders[i]);
 					int segmentCount = sourcePath.segmentCount();
 					if (segmentCount > 0) {
 						// create folder and its parents
 						IContainer container = project;
-						for (int j = 0; j < segmentCount; j++) {
+						for (int j = 0; j < segmentCount; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							IFolder folder = container.getFolder(new Path(sourcePath.segment(j)));
 							if (!folder.exists()) {
 								folder.create(true, true, null);
@@ -903,7 +903,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 
 	private void collectAllFiles(File root, ArrayList collector, FileFilter fileFilter) {
 		File[] files = root.listFiles(fileFilter);
-		for (int i = 0; i < files.length; i++) {
+		for (int i = 0; i < files.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final File currentFile = files[i];
 			if (currentFile.isDirectory()) {
 				collectAllFiles(currentFile, collector, fileFilter);
@@ -914,7 +914,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 	}
 
 	protected File[] getAllFiles(File root, FileFilter fileFilter) {
-		ArrayList files = new ArrayList();
+		ArrayList files = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		if (root.isDirectory()) {
 			collectAllFiles(root, files, fileFilter);
 			File[] result = new File[files.size()];
@@ -974,7 +974,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 	 * If absolute, the rootPath refers to either an external jar, or a resource
 	 * internal to the workspace
 	 */
-	public IPackageFragmentRoot getPackageFragmentRoot(
+	public IPackageFragmentRoot getPackageFragmentRoot( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project,
 		String rootPath)
 		throws JavaModelException {
@@ -1000,7 +1000,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 			if (roots == null || roots.length == 0) {
 				return null;
 			}
-			for (int i = 0; i < roots.length; i++) {
+			for (int i = 0; i < roots.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPackageFragmentRoot root = roots[i];
 				if (!root.isExternal()
 					&& root.getUnderlyingResource().getProjectRelativePath().equals(path)) {
@@ -1016,7 +1016,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 	 * @return IJavaProject
 	 */
 	protected IJavaProject getProject(String projectName) {
-		for (int i=0, length = ALL_PROJECTS.length; i<length; i++) {
+		for (int i=0, length = ALL_PROJECTS.length; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (ALL_PROJECTS[i].getElementName().equals(projectName))
 				return ALL_PROJECTS[i];
 		}
@@ -1031,11 +1031,11 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 	protected List getProjectCompilationUnits(IJavaProject javaProject) throws JavaModelException {
 		IPackageFragmentRoot[] fragmentRoots = javaProject.getPackageFragmentRoots();
 		int length = fragmentRoots.length;
-		List allUnits = new ArrayList();
-		for (int i=0; i<length; i++) {
+		List allUnits = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (fragmentRoots[i] instanceof JarPackageFragmentRoot) continue;
 			IJavaElement[] packages= fragmentRoots[i].getChildren();
-			for (int k= 0; k < packages.length; k++) {
+			for (int k= 0; k < packages.length; k++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPackageFragment pack = (IPackageFragment) packages[k];
 				ICompilationUnit[] units = pack.getCompilationUnits();
 				allUnits.addAll(Arrays.asList(units));
@@ -1049,7 +1049,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 		if (roots == null || roots.length == 0) {
 			return null;
 		}
-		for (int i = 0; i < roots.length; i++) {
+		for (int i = 0; i < roots.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IPackageFragmentRoot root = roots[i];
 			if (root.isExternal() && root.getElementName().equals(jarSimpleName)) {
 				return root;
@@ -1087,12 +1087,12 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 	 * @param splitSize Size of the arrays
 	 * @return List of ICompilationUnit[]
 	 */
-	protected List splitListInSmallArrays(List units, int splitSize) throws JavaModelException {
+	protected List splitListInSmallArrays(List units, int splitSize) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int size = units.size();
 		if (size == 0) return Collections.EMPTY_LIST;
 		int length = size / splitSize;
 		int remind = size%splitSize;
-		List splitted = new ArrayList(remind==0?length:length+1);
+		List splitted = new ArrayList(remind==0?length:length+1); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		if (length == 0) {
 			ICompilationUnit[] sublist = new ICompilationUnit[size];
 			units.toArray(sublist);
@@ -1100,7 +1100,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 			return splitted;
 		}
 		int ptr = 0;
-		for (int i= 0; i<length; i++){
+		for (int i= 0; i<length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ICompilationUnit[] sublist = new ICompilationUnit[splitSize];
 			units.subList(ptr, ptr+splitSize).toArray(sublist);
 			splitted.add(sublist);
@@ -1110,7 +1110,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 			if (remind< 10) {
 				ICompilationUnit[] lastList = (ICompilationUnit[]) splitted.remove(length-1);
 				System.arraycopy(lastList, 0, lastList = new ICompilationUnit[splitSize+remind], 0, splitSize);
-				for (int i=ptr, j=splitSize; i<size; i++, j++) {
+				for (int i=ptr, j=splitSize; i<size; i++, j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					lastList[j] = (ICompilationUnit) units.get(i);
 				}
 				splitted.add(lastList);
@@ -1130,7 +1130,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 	 *  0: default options
 	 *  1: all options
 	 */
-	protected Hashtable warningOptions(int kind) {
+	protected Hashtable warningOptions(int kind) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Values
 		Hashtable optionsMap = JavaCore.getDefaultOptions();
@@ -1217,12 +1217,12 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 	}
 
 	protected String getExternalResourcePath(String relativePath) {
-		return getExternalPath() + relativePath;
+		return getExternalPath() + relativePath; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public void waitForManualRefresh() {
 		boolean wasInterrupted = false;
-		do {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				Job.getJobManager().join(ResourcesPlugin.FAMILY_MANUAL_REFRESH, null);
 				JavaModelManager.getIndexManager().waitForIndex(isIndexDisabledForTest(), null);
@@ -1240,7 +1240,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 	 */
 	public void waitForAutoBuild() {
 		boolean wasInterrupted = false;
-		do {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				Job.getJobManager().join(ResourcesPlugin.FAMILY_AUTO_BUILD, null);
 				JavaModelManager.getIndexManager().waitForIndex(isIndexDisabledForTest(), null);
@@ -1253,7 +1253,7 @@ public abstract class FullSourceWorkspaceTests extends TestCase {
 		} while (wasInterrupted);
 	}
 
-	public void waitUntilIndexesReady() throws JavaModelException {
+	public void waitUntilIndexesReady() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// dummy query for waiting until the indexes are ready
 		SearchEngine engine = new SearchEngine();
 		IJavaSearchScope scope = SearchEngine.createWorkspaceScope();

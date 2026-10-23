@@ -96,12 +96,12 @@ public IJavaElement getJavaElement(IJavaElement parent) throws IllegalArgumentEx
 /**
  * @see IDOMCompilationUnit#getName()
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public String getName() {
 	IDOMType topLevelType= null;
 	IDOMType firstType= null;
 	IDOMNode child= this.fFirstChild;
-	while (child != null) {
+	while (child != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (child.getNodeType() == IDOMNode.TYPE) {
 			IDOMType type= (IDOMType)child;
 			if (firstType == null) {
@@ -118,7 +118,7 @@ public String getName() {
 		topLevelType= firstType;
 	}
 	if (topLevelType != null) {
-		return topLevelType.getName() + Util.defaultJavaExtension();
+		return topLevelType.getName() + Util.defaultJavaExtension(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} else {
 		return null;
 	}
@@ -200,6 +200,6 @@ protected void shareContents(DOMNode node) {
  */
 @Override
 public String toString() {
-	return "COMPILATION_UNIT: " + getName(); //$NON-NLS-1$
+	return "COMPILATION_UNIT: " + getName(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 }

@@ -37,7 +37,7 @@ public class NestedHelloWorldAnnotationProcessor extends
 
 	// Code is annotated with HelloWorldAnnotation, so it will cause another round of processing
 	public String getCode() {
-		return "package " + PACKAGENAME + ";" + "\n" +
+		return "package " + PACKAGENAME + ";" + "\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"@" + HelloWorldAnnotation.class.getName() + "\n" +
 		"public class " + TYPENAME + "\n" +
 		"{  }";
@@ -46,17 +46,17 @@ public class NestedHelloWorldAnnotationProcessor extends
 	private final static String PACKAGENAME = "nested.hello.world.generatedclass.pkg"; //$NON-NLS-1$
 	private final static String TYPENAME = "NestedHelloWorldAnnotationGeneratedClass"; //$NON-NLS-1$
 
-	@SuppressWarnings("unused")
+	@SuppressWarnings("unused") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void process()
 	{
 		Filer f = _env.getFiler();
 		AnnotationTypeDeclaration annoDecl = (AnnotationTypeDeclaration) _env.getTypeDeclaration(NestedHelloWorldAnnotation.class.getName());
 		Collection<Declaration> annotatedDecls = _env.getDeclarationsAnnotatedWith(annoDecl);
 		try {
-			for (Declaration annotatedDecl : annotatedDecls) {
+			for (Declaration annotatedDecl : annotatedDecls) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String typeName = TYPENAME;
 				PrintWriter writer = f.createSourceFile(
-						PACKAGENAME + "." + typeName);
+						PACKAGENAME + "." + typeName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				writer.print(getCode());
 				writer.close();
 			}

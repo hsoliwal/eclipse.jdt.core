@@ -75,7 +75,7 @@ public abstract class IdeProcessingEnvImpl extends BaseProcessingEnvImpl {
 		return Locale.getDefault();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public Map<String, String> getOptions() {
 		if (null == _processorOptions) {
 			// Java 5 processor options include items on the command line such as -s,
@@ -103,10 +103,10 @@ public abstract class IdeProcessingEnvImpl extends BaseProcessingEnvImpl {
 	private Function<Entry<String, String>, String> replacePlaceholdersUsing(Map<String, String> commandLineOptions) {
 		return option -> {
 			String variable, replacement, optionValue = option.getValue() == null ? "" : option.getValue();
-			Matcher placeholder = Pattern.compile("%([^%]+)%").matcher(optionValue);
+			Matcher placeholder = Pattern.compile("%([^%]+)%").matcher(optionValue); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			if (placeholder.find() && (variable = placeholder.group(1)) != null
 					&& (replacement = commandLineOptions.get(variable)) != null) {
-				optionValue = optionValue.replace("%" + variable + "%", replacement);
+				optionValue = optionValue.replace("%" + variable + "%", replacement); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			return optionValue;
 		};

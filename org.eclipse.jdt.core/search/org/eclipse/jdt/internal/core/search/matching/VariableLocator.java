@@ -31,7 +31,7 @@ public VariableLocator(VariablePattern pattern) {
 
 	this.pattern = pattern;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public int match(Expression node, MatchingNodeSet nodeSet) { // interested in Assignment
 	if (this.pattern.writeAccess) {
 		if (this.pattern.readAccess) return IMPOSSIBLE_MATCH; // already checked the lhs in match(Reference...) before we reached here
@@ -65,7 +65,7 @@ public int match(Reference node, MatchingNodeSet nodeSet) { // interested in Nam
 		? matchReference(node, nodeSet, false)
 		: IMPOSSIBLE_MATCH;
 }
-protected int matchReference(Reference node, MatchingNodeSet nodeSet, boolean writeOnlyAccess) {
+protected int matchReference(Reference node, MatchingNodeSet nodeSet, boolean writeOnlyAccess) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if(node instanceof FieldReference) {
 		//for the local variable in the constructor of record matching component's name
 		if (matchesName(this.pattern.name, ((FieldReference) node).token))
@@ -85,7 +85,7 @@ protected int matchReference(Reference node, MatchingNodeSet nodeSet, boolean wr
 				if (matchesName(this.pattern.name, tokens[tokens.length-1]))
 					return nodeSet.addMatch(node, POSSIBLE_MATCH);
 			} else {
-				for (char[] token : tokens)
+				for (char[] token : tokens) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (matchesName(this.pattern.name, token))
 						return nodeSet.addMatch(node, POSSIBLE_MATCH);
 			}
@@ -95,6 +95,6 @@ protected int matchReference(Reference node, MatchingNodeSet nodeSet, boolean wr
 }
 @Override
 public String toString() {
-	return "Locator for " + this.pattern.toString(); //$NON-NLS-1$
+	return "Locator for " + this.pattern.toString(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 }

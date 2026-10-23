@@ -54,10 +54,10 @@ public class CompletionTests2 extends AbstractJavaModelCompletionTests {
 				this.areExported = areExported;
 				this.forbiddenReferences = forbiddenReferences;
 			}
-			public IClasspathEntry[] getClasspathEntries() {
+			public IClasspathEntry[] getClasspathEntries() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				int length = this.libPaths.length;
 				IClasspathEntry[] entries = new IClasspathEntry[length];
-				for (int j = 0; j < length; j++) {
+				for (int j = 0; j < length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				    IPath path = new Path(new String(this.libPaths[j]));
 				    boolean isExported = this.areExported[j];
 
@@ -67,7 +67,7 @@ public class CompletionTests2 extends AbstractJavaModelCompletionTests {
 					    int count = tokenizer.countTokens();
 					    accessRules = new IAccessRule[count];
 					    String token = null;
-					    for (int i = 0; i < count; i++) {
+					    for (int i = 0; i < count; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					    	token = tokenizer.nextToken();
 							accessRules[i] = JavaCore.newAccessRule(new Path(token), IAccessRule.K_NON_ACCESSIBLE);
 						}
@@ -100,11 +100,11 @@ public class CompletionTests2 extends AbstractJavaModelCompletionTests {
 			this(projectName, libPaths, areExported, null);
 		}
 		public CompletionContainerInitializer(String projectName, String[] libPaths, boolean[] areExported, String[] forbiddenRefrences) {
-			this.containerValues = new HashMap();
+			this.containerValues = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 			int libPathsLength = libPaths.length;
 			char[][] charLibPaths = new char[libPathsLength][];
-			for (int i = 0; i < libPathsLength; i++) {
+			for (int i = 0; i < libPathsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				charLibPaths[i] = libPaths[i].toCharArray();
 			}
 			this.containerValues.put(
@@ -193,7 +193,7 @@ static NullProgressMonitor createSelfCancellingMonitor() {
 /**
  * Test for bug 29832
  */
-public void testBug29832() throws Exception {
+public void testBug29832() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create variable
 //		JavaCore.setClasspathVariables(
@@ -236,7 +236,7 @@ public void testBug29832() throws Exception {
 		cu.codeComplete(cursorLocation, requestor);
 
 		assertEquals(
-			"element:ZZZ    completion:pz.ZZZ    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_NON_RESTRICTED),
+			"element:ZZZ    completion:pz.ZZZ    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_NON_RESTRICTED), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 
 
@@ -283,7 +283,7 @@ public void testBug29832() throws Exception {
 			"}");
 
 		final IProject project = getWorkspaceRoot().getProject("P1");
-		IWorkspaceRunnable populate = new IWorkspaceRunnable() {
+		IWorkspaceRunnable populate = new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 			public void run(IProgressMonitor monitor) throws CoreException {
 				project.create(null);
 				project.open(null);
@@ -299,7 +299,7 @@ public void testBug29832() throws Exception {
 		cu.codeComplete(cursorLocation, requestor);
 
 		assertEquals(
-			"element:ZZZ    completion:pz.ZZZ    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_NON_RESTRICTED),
+			"element:ZZZ    completion:pz.ZZZ    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_NON_RESTRICTED), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 	} finally {
 		this.deleteProject("P1");
@@ -309,7 +309,7 @@ public void testBug29832() throws Exception {
 /**
  * Test for bug 33560
  */
-public void testBug33560() throws Exception {
+public void testBug33560() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create variable
 //		JavaCore.setClasspathVariables(
@@ -361,7 +361,7 @@ public void testBug33560() throws Exception {
 		cu.codeComplete(cursorLocation, requestor);
 
 		assertEquals(
-			"element:ZZZ    completion:pz.ZZZ    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_NON_RESTRICTED),
+			"element:ZZZ    completion:pz.ZZZ    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_NON_RESTRICTED), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 
 
@@ -408,7 +408,7 @@ public void testBug33560() throws Exception {
 			"}");
 
 		final IProject project = getWorkspaceRoot().getProject("P1");
-		IWorkspaceRunnable populate = new IWorkspaceRunnable() {
+		IWorkspaceRunnable populate = new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 			public void run(IProgressMonitor monitor) throws CoreException {
 				project.create(null);
 				project.open(null);
@@ -424,7 +424,7 @@ public void testBug33560() throws Exception {
 		cu.codeComplete(cursorLocation, requestor);
 
 		assertEquals(
-			"element:ZZZ    completion:pz.ZZZ    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_NON_RESTRICTED),
+			"element:ZZZ    completion:pz.ZZZ    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_NON_RESTRICTED), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 	} finally {
 		this.deleteProject("P1");
@@ -432,7 +432,7 @@ public void testBug33560() throws Exception {
 		this.deleteProject("P3");
 	}
 }
-public void testBug6930_01() throws Exception {
+public void testBug6930_01() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	try {
 		IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin");
@@ -481,7 +481,7 @@ public void testBug6930_01() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors01[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors01;, ()V, AllConstructors01, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
+			"AllConstructors01[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors01;, ()V, AllConstructors01, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   AllConstructors01[TYPE_REF]{p6930.AllConstructors01, p6930, Lp6930.AllConstructors01;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"AllConstructors01[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors01;, (I)V, AllConstructors01, (o), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"   AllConstructors01[TYPE_REF]{p6930.AllConstructors01, p6930, Lp6930.AllConstructors01;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
@@ -501,7 +501,7 @@ private String getSetCodeAssistProperty(IJavaProject project, String property, S
 	project.setOption(property, value);
 	return old;
 }
-public void testBug6930_02() throws Exception {
+public void testBug6930_02() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/lib6930.jar"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -545,7 +545,7 @@ public void testBug6930_02() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors02[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors02;, ()V, AllConstructors02, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
+			"AllConstructors02[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors02;, ()V, AllConstructors02, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   AllConstructors02[TYPE_REF]{p6930.AllConstructors02, p6930, Lp6930.AllConstructors02;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"AllConstructors02[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors02;, (I)V, AllConstructors02, (o), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"   AllConstructors02[TYPE_REF]{p6930.AllConstructors02, p6930, Lp6930.AllConstructors02;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
@@ -560,7 +560,7 @@ public void testBug6930_02() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_03() throws Exception {
+public void testBug6930_03() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -606,7 +606,7 @@ public void testBug6930_03() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors03[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors03;, ()V, AllConstructors03, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
+			"AllConstructors03[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors03;, ()V, AllConstructors03, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   AllConstructors03[TYPE_REF]{p6930.AllConstructors03, p6930, Lp6930.AllConstructors03;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"AllConstructors03[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors03;, (I)V, AllConstructors03, (o), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"   AllConstructors03[TYPE_REF]{p6930.AllConstructors03, p6930, Lp6930.AllConstructors03;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
@@ -621,7 +621,7 @@ public void testBug6930_03() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_04() throws Exception {
+public void testBug6930_04() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -670,7 +670,7 @@ public void testBug6930_04() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors04a[CONSTRUCTOR_INVOCATION]{(), Ltest.AllConstructors04a;, ()V, AllConstructors04a, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
+			"AllConstructors04a[CONSTRUCTOR_INVOCATION]{(), Ltest.AllConstructors04a;, ()V, AllConstructors04a, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   AllConstructors04a[TYPE_REF]{AllConstructors04a, test, Ltest.AllConstructors04a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"AllConstructors04c[CONSTRUCTOR_INVOCATION]{(), Ltest.Test$AllConstructors04c;, ()V, AllConstructors04c, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"   Test.AllConstructors04c[TYPE_REF]{AllConstructors04c, test, Ltest.Test$AllConstructors04c;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
@@ -683,7 +683,7 @@ public void testBug6930_04() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_05() throws Exception {
+public void testBug6930_05() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -728,7 +728,7 @@ public void testBug6930_05() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors05a[TYPE_REF]{AllConstructors05a, test, Ltest.AllConstructors05a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n" +
+			"AllConstructors05a[TYPE_REF]{AllConstructors05a, test, Ltest.AllConstructors05a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"AllConstructors05g[TYPE_REF]{AllConstructors05g, test, Ltest.AllConstructors05g;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n" +
 			"Test.AllConstructors05c[TYPE_REF]{AllConstructors05c, test, Ltest.Test$AllConstructors05c;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n" +
 			"AllConstructors05a[CONSTRUCTOR_INVOCATION]{(), Ltest.AllConstructors05a;, ()V, AllConstructors05a, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
@@ -742,7 +742,7 @@ public void testBug6930_05() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_06() throws Exception {
+public void testBug6930_06() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/lib6930.jar"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -795,7 +795,7 @@ public void testBug6930_06() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors06a[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors06a;, ()V, AllConstructors06a, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
+			"AllConstructors06a[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors06a;, ()V, AllConstructors06a, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   AllConstructors06a[TYPE_REF]{AllConstructors06a, p6930, Lp6930.AllConstructors06a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"AllConstructors06b[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors06b;, ()V, AllConstructors06b, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"   AllConstructors06b[TYPE_REF]{AllConstructors06b, p6930, Lp6930.AllConstructors06b;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
@@ -807,7 +807,7 @@ public void testBug6930_06() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_07() throws Exception {
+public void testBug6930_07() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/lib6930.jar"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -859,7 +859,7 @@ public void testBug6930_07() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors07a[TYPE_REF]{p6930.AllConstructors07a, p6930, Lp6930.AllConstructors07a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED)+"}\n" +
+			"AllConstructors07a[TYPE_REF]{p6930.AllConstructors07a, p6930, Lp6930.AllConstructors07a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"AllConstructors07d[TYPE_REF]{p6930.AllConstructors07d, p6930, Lp6930.AllConstructors07d;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED)+"}\n" +
 			"AllConstructors07a[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors07a;, ()V, AllConstructors07a, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"   AllConstructors07a[TYPE_REF]{p6930.AllConstructors07a, p6930, Lp6930.AllConstructors07a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
@@ -870,7 +870,7 @@ public void testBug6930_07() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_08() throws Exception {
+public void testBug6930_08() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/lib6930.jar"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -922,7 +922,7 @@ public void testBug6930_08() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors08d[TYPE_REF]{p6930.AllConstructors08d, p6930, Lp6930.AllConstructors08d;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED)+"}\n" +
+			"AllConstructors08d[TYPE_REF]{p6930.AllConstructors08d, p6930, Lp6930.AllConstructors08d;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"AllConstructors08a[TYPE_REF]{AllConstructors08a, p6930, Lp6930.AllConstructors08a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n" +
 			"AllConstructors08d[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors08d;, ()V, AllConstructors08d, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"   AllConstructors08d[TYPE_REF]{p6930.AllConstructors08d, p6930, Lp6930.AllConstructors08d;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
@@ -934,7 +934,7 @@ public void testBug6930_08() throws Exception {
 	}
 }
 
-public void testBug6930_09() throws Exception {
+public void testBug6930_09() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/lib6930.jar"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -989,7 +989,7 @@ public void testBug6930_09() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors09a[TYPE_REF]{p6930.AllConstructors09a, p6930, Lp6930.AllConstructors09a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED)+"}\n" +
+			"AllConstructors09a[TYPE_REF]{p6930.AllConstructors09a, p6930, Lp6930.AllConstructors09a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"AllConstructors09d[TYPE_REF]{p6930.AllConstructors09d, p6930, Lp6930.AllConstructors09d;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED)+"}\n" +
 			"AllConstructors09a[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors09a;, ()V, AllConstructors09a, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"   AllConstructors09a[TYPE_REF]{p6930.AllConstructors09a, p6930, Lp6930.AllConstructors09a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
@@ -1003,7 +1003,7 @@ public void testBug6930_09() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_10() throws Exception {
+public void testBug6930_10() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/lib6930.jar"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -1066,7 +1066,7 @@ public void testBug6930_10() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors10a[TYPE_REF]{p6930.AllConstructors10a, p6930, Lp6930.AllConstructors10a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED)+"}\n" +
+			"AllConstructors10a[TYPE_REF]{p6930.AllConstructors10a, p6930, Lp6930.AllConstructors10a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"AllConstructors10d[TYPE_REF]{p6930.AllConstructors10d, p6930, Lp6930.AllConstructors10d;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED)+"}\n" +
 			"AllConstructors10a[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors10a;, ()V, AllConstructors10a, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"   AllConstructors10a[TYPE_REF]{p6930.AllConstructors10a, p6930, Lp6930.AllConstructors10a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
@@ -1083,7 +1083,7 @@ public void testBug6930_10() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_11() throws Exception {
+public void testBug6930_11() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/lib6930.jar"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -1121,7 +1121,7 @@ public void testBug6930_11() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"Test[CONSTRUCTOR_INVOCATION]{(), Ltest.Test;, ()V, Test, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
+			"Test[CONSTRUCTOR_INVOCATION]{(), Ltest.Test;, ()V, Test, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   Test[TYPE_REF]{Test, test, Ltest.Test;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"AllConstructors11a[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors11a;, ()V, AllConstructors11a, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"   AllConstructors11a[TYPE_REF]{p6930.AllConstructors11a, p6930, Lp6930.AllConstructors11a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}",
@@ -1130,7 +1130,7 @@ public void testBug6930_11() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_12() throws Exception {
+public void testBug6930_12() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/lib6930.jar"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -1169,7 +1169,7 @@ public void testBug6930_12() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"Test[CONSTRUCTOR_INVOCATION]{(), Ltest.Test;, ()V, Test, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
+			"Test[CONSTRUCTOR_INVOCATION]{(), Ltest.Test;, ()V, Test, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   Test[TYPE_REF]{Test, test, Ltest.Test;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"AllConstructors12a[TYPE_REF]{p6930.AllConstructors12a, p6930, Lp6930.AllConstructors12a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED)+"}\n" +
 			"AllConstructors12a[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors12a;, ()V, AllConstructors12a, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
@@ -1179,7 +1179,7 @@ public void testBug6930_12() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_13() throws Exception {
+public void testBug6930_13() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/lib6930.jar"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -1217,14 +1217,14 @@ public void testBug6930_13() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors13a[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors13a;, ()V, AllConstructors13a, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
+			"AllConstructors13a[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors13a;, ()V, AllConstructors13a, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   AllConstructors13a[TYPE_REF]{p6930.AllConstructors13a, p6930, Lp6930.AllConstructors13a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}",
 			requestor.getResults());
 	} finally {
 		deleteProject("P");
 	}
 }
-public void testBug6930_14() throws Exception {
+public void testBug6930_14() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/lib6930.jar"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -1263,7 +1263,7 @@ public void testBug6930_14() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors14a[TYPE_REF]{p6930.AllConstructors14a, p6930, Lp6930.AllConstructors14a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED)+"}\n" +
+			"AllConstructors14a[TYPE_REF]{p6930.AllConstructors14a, p6930, Lp6930.AllConstructors14a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"AllConstructors14a[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors14a;, ()V, AllConstructors14a, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"   AllConstructors14a[TYPE_REF]{p6930.AllConstructors14a, p6930, Lp6930.AllConstructors14a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}",
 			requestor.getResults());
@@ -1271,7 +1271,7 @@ public void testBug6930_14() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_15() throws Exception {
+public void testBug6930_15() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/lib6930.jar"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -1325,7 +1325,7 @@ public void testBug6930_15() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors15a[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors15a;, ()V, AllConstructors15a, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
+			"AllConstructors15a[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors15a;, ()V, AllConstructors15a, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   AllConstructors15a[TYPE_REF]{p6930.AllConstructors15a, p6930, Lp6930.AllConstructors15a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"AllConstructors15b[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors15b;, ()V, AllConstructors15b, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"   AllConstructors15b[TYPE_REF]{p6930.AllConstructors15b, p6930, Lp6930.AllConstructors15b;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
@@ -1336,7 +1336,7 @@ public void testBug6930_15() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_16() throws Exception {
+public void testBug6930_16() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/lib6930.jar"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -1393,7 +1393,7 @@ public void testBug6930_16() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors16a[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors16a;, ()V, AllConstructors16a, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
+			"AllConstructors16a[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors16a;, ()V, AllConstructors16a, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   AllConstructors16a[TYPE_REF]{p6930.AllConstructors16a, p6930, Lp6930.AllConstructors16a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"AllConstructors16b[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors16b;, ()V, AllConstructors16b, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"   AllConstructors16b[TYPE_REF]{p6930.AllConstructors16b, p6930, Lp6930.AllConstructors16b;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
@@ -1404,7 +1404,7 @@ public void testBug6930_16() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_17() throws Exception {
+public void testBug6930_17() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/lib6930.jar"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -1462,7 +1462,7 @@ public void testBug6930_17() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors17a[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors17a;, (Ljava.util.Collection<Ljava.lang.Object;>;)V, AllConstructors17a, (o), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
+			"AllConstructors17a[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors17a;, (Ljava.util.Collection<Ljava.lang.Object;>;)V, AllConstructors17a, (o), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   AllConstructors17a[TYPE_REF]{p6930.AllConstructors17a, p6930, Lp6930.AllConstructors17a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"AllConstructors17b[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors17b;, (Ljava.util.Collection<Ljava.lang.Object;>;)V, AllConstructors17b, (o), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"   AllConstructors17b[TYPE_REF]{p6930.AllConstructors17b, p6930, Lp6930.AllConstructors17b;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
@@ -1473,7 +1473,7 @@ public void testBug6930_17() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_18() throws Exception {
+public void testBug6930_18() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/lib6930.jar"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -1523,7 +1523,7 @@ public void testBug6930_18() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors18a[ANONYMOUS_CLASS_CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors18a;, ()V, AllConstructors18a, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
+			"AllConstructors18a[ANONYMOUS_CLASS_CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors18a;, ()V, AllConstructors18a, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   AllConstructors18a[TYPE_REF]{p6930.AllConstructors18a, p6930, Lp6930.AllConstructors18a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"AllConstructors18b[ANONYMOUS_CLASS_CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors18b;, ()V, AllConstructors18b, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"   AllConstructors18b[TYPE_REF]{p6930.AllConstructors18b, p6930, Lp6930.AllConstructors18b;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
@@ -1534,7 +1534,7 @@ public void testBug6930_18() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_19() throws Exception {
+public void testBug6930_19() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/lib6930.jar"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -1587,7 +1587,7 @@ public void testBug6930_19() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors19a[ANONYMOUS_CLASS_CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors19a;, ()V, AllConstructors19a, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n" +
+			"AllConstructors19a[ANONYMOUS_CLASS_CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors19a;, ()V, AllConstructors19a, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   AllConstructors19a[TYPE_REF]{AllConstructors19a, p6930, Lp6930.AllConstructors19a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n" +
 			"AllConstructors19b[ANONYMOUS_CLASS_CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors19b;, ()V, AllConstructors19b, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n" +
 			"   AllConstructors19b[TYPE_REF]{AllConstructors19b, p6930, Lp6930.AllConstructors19b;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n" +
@@ -1598,7 +1598,7 @@ public void testBug6930_19() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_20() throws Exception {
+public void testBug6930_20() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/lib6930.jar"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -1660,7 +1660,7 @@ public void testBug6930_20() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_21() throws Exception {
+public void testBug6930_21() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/lib6930.jar"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -1726,7 +1726,7 @@ public void testBug6930_21() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_22() throws Exception {
+public void testBug6930_22() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/lib6930.jar"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -1783,7 +1783,7 @@ public void testBug6930_22() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors22a[TYPE_REF]{p6930.AllConstructors22a, p6930, Lp6930.AllConstructors22a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED)+"}\n" +
+			"AllConstructors22a[TYPE_REF]{p6930.AllConstructors22a, p6930, Lp6930.AllConstructors22a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"AllConstructors22b[TYPE_REF]{p6930.AllConstructors22b, p6930, Lp6930.AllConstructors22b;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED)+"}\n" +
 			"AllConstructors22c[TYPE_REF]{p6930.AllConstructors22c, p6930, Lp6930.AllConstructors22c;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED)+"}",
 			requestor.getResults());
@@ -1791,7 +1791,7 @@ public void testBug6930_22() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_23() throws Exception {
+public void testBug6930_23() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/lib6930.jar"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -1851,7 +1851,7 @@ public void testBug6930_23() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors23a[TYPE_REF]{AllConstructors23a, p6930, Lp6930.AllConstructors23a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n" +
+			"AllConstructors23a[TYPE_REF]{AllConstructors23a, p6930, Lp6930.AllConstructors23a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"AllConstructors23b[TYPE_REF]{AllConstructors23b, p6930, Lp6930.AllConstructors23b;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n" +
 			"AllConstructors23c[TYPE_REF]{AllConstructors23c, p6930, Lp6930.AllConstructors23c;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}",
 			requestor.getResults());
@@ -1859,7 +1859,7 @@ public void testBug6930_23() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_24() throws Exception {
+public void testBug6930_24() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/lib6930.jar"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -1916,7 +1916,7 @@ public void testBug6930_24() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors24a[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors24a;, ()V, AllConstructors24a, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
+			"AllConstructors24a[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors24a;, ()V, AllConstructors24a, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   AllConstructors24a[TYPE_REF]{p6930.AllConstructors24a, p6930, Lp6930.AllConstructors24a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"AllConstructors24b[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors24b;, ()V, AllConstructors24b, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"   AllConstructors24b[TYPE_REF]{p6930.AllConstructors24b, p6930, Lp6930.AllConstructors24b;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
@@ -1927,7 +1927,7 @@ public void testBug6930_24() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_25() throws Exception {
+public void testBug6930_25() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/lib6930.jar"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -1987,7 +1987,7 @@ public void testBug6930_25() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors25a[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors25a;, ()V, AllConstructors25a, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
+			"AllConstructors25a[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors25a;, ()V, AllConstructors25a, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   AllConstructors25a[TYPE_REF]{AllConstructors25a, p6930, Lp6930.AllConstructors25a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"AllConstructors25b[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors25b;, ()V, AllConstructors25b, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"   AllConstructors25b[TYPE_REF]{AllConstructors25b, p6930, Lp6930.AllConstructors25b;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
@@ -1998,7 +1998,7 @@ public void testBug6930_25() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_26() throws Exception {
+public void testBug6930_26() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -2037,14 +2037,14 @@ public void testBug6930_26() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors26b[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors26a$AllConstructors26b;, (I)V, AllConstructors26b, (i), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
+			"AllConstructors26b[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors26a$AllConstructors26b;, (I)V, AllConstructors26b, (i), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   AllConstructors26a.AllConstructors26b[TYPE_REF]{AllConstructors26b, p6930, Lp6930.AllConstructors26a$AllConstructors26b;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}",
 			requestor.getResults());
 	} finally {
 		deleteProject("P");
 	}
 }
-public void testBug6930_27() throws Exception {
+public void testBug6930_27() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -2083,14 +2083,14 @@ public void testBug6930_27() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors27b[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors27a$AllConstructors27b;, (I)V, AllConstructors27b, (i), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
+			"AllConstructors27b[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors27a$AllConstructors27b;, (I)V, AllConstructors27b, (i), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   AllConstructors27a.AllConstructors27b[TYPE_REF]{AllConstructors27b, p6930, Lp6930.AllConstructors27a$AllConstructors27b;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}",
 			requestor.getResults());
 	} finally {
 		deleteProject("P");
 	}
 }
-public void testBug6930_28() throws Exception {
+public void testBug6930_28() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -2135,7 +2135,7 @@ public void testBug6930_28() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors28a[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors28a;, (I)V, AllConstructors28a, (i), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
+			"AllConstructors28a[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors28a;, (I)V, AllConstructors28a, (i), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   AllConstructors28a[TYPE_REF]{AllConstructors28a, p6930, Lp6930.AllConstructors28a;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"AllConstructors28b[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors28b;, (I)V, AllConstructors28b, (i), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"   AllConstructors28b[TYPE_REF]{AllConstructors28b, p6930, Lp6930.AllConstructors28b;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}",
@@ -2144,7 +2144,7 @@ public void testBug6930_28() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_29() throws Exception {
+public void testBug6930_29() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/lib6930.jar"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -2184,7 +2184,7 @@ public void testBug6930_29() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors29[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors29;, ()V, AllConstructors29, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
+			"AllConstructors29[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors29;, ()V, AllConstructors29, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   AllConstructors29[TYPE_REF]{p6930.AllConstructors29, p6930, Lp6930.AllConstructors29;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"AllConstructors29[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors29;, (Ljava.lang.Object;)V, AllConstructors29, (o), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"   AllConstructors29[TYPE_REF]{p6930.AllConstructors29, p6930, Lp6930.AllConstructors29;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
@@ -2195,7 +2195,7 @@ public void testBug6930_29() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_30() throws Exception {
+public void testBug6930_30() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -2227,7 +2227,7 @@ public void testBug6930_30() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors30[TYPE_REF]{AllConstructors30, test, Ltest.AllConstructors30;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n" +
+			"AllConstructors30[TYPE_REF]{AllConstructors30, test, Ltest.AllConstructors30;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"AllConstructors30[CONSTRUCTOR_INVOCATION]{(), Ltest.AllConstructors30;, ()V, AllConstructors30, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"   AllConstructors30[TYPE_REF]{AllConstructors30, test, Ltest.AllConstructors30;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"AllConstructors30b[CONSTRUCTOR_INVOCATION]{(), Ltest.AllConstructors30b;, ()V, AllConstructors30b, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
@@ -2237,7 +2237,7 @@ public void testBug6930_30() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_31() throws Exception {
+public void testBug6930_31() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -2270,7 +2270,7 @@ public void testBug6930_31() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors31[TYPE_REF]{AllConstructors31, test, Ltest.AllConstructors31;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n" +
+			"AllConstructors31[TYPE_REF]{AllConstructors31, test, Ltest.AllConstructors31;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"AllConstructors31[CONSTRUCTOR_INVOCATION]{(), Ltest.AllConstructors31;, ()V, AllConstructors31, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"   AllConstructors31[TYPE_REF]{AllConstructors31, test, Ltest.AllConstructors31;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"AllConstructors31b[CONSTRUCTOR_INVOCATION]{(), Ltest.AllConstructors31b;, ()V, AllConstructors31b, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
@@ -2280,7 +2280,7 @@ public void testBug6930_31() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_32() throws Exception {
+public void testBug6930_32() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -2314,7 +2314,7 @@ public void testBug6930_32() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-	    	"Test.AllConstructors32[TYPE_REF]{AllConstructors32, test, Ltest.Test$AllConstructors32;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED)+"}\n" +
+	    	"Test.AllConstructors32[TYPE_REF]{AllConstructors32, test, Ltest.Test$AllConstructors32;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"AllConstructors32[CONSTRUCTOR_INVOCATION]{(), Ltest.Test$AllConstructors32;, ()V, AllConstructors32, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"   Test.AllConstructors32[TYPE_REF]{AllConstructors32, test, Ltest.Test$AllConstructors32;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"AllConstructors32b[CONSTRUCTOR_INVOCATION]{(), Ltest.Test$AllConstructors32b;, ()V, AllConstructors32b, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
@@ -2324,7 +2324,7 @@ public void testBug6930_32() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_33() throws Exception {
+public void testBug6930_33() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -2378,7 +2378,7 @@ public void testBug6930_33() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors33[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors33;, (Lp6930_1.ParamType;Lp6930_2.ParamType;)V, AllConstructors33, (p21, p22), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
+			"AllConstructors33[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors33;, (Lp6930_1.ParamType;Lp6930_2.ParamType;)V, AllConstructors33, (p21, p22), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   AllConstructors33[TYPE_REF]{p6930.AllConstructors33, p6930, Lp6930.AllConstructors33;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"AllConstructors33[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors33;, (Lp6930_2.ParamType;Lp6930_2.ParamType;)V, AllConstructors33, (p11, p12), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"   AllConstructors33[TYPE_REF]{p6930.AllConstructors33, p6930, Lp6930.AllConstructors33;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}",
@@ -2387,11 +2387,11 @@ public void testBug6930_33() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug6930_34() throws Exception {
+public void testBug6930_34() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
-		Map compileOptions = new HashMap();
+		Map compileOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		compileOptions.put(CompilerOptions.OPTION_LocalVariableAttribute, CompilerOptions.DO_NOT_GENERATE);
 
 		String[] pathsAndContents =
@@ -2434,19 +2434,19 @@ public void testBug6930_34() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors34[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors34;, (Ljava.lang.Object;)V, AllConstructors34, (arg0), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
+			"AllConstructors34[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors34;, (Ljava.lang.Object;)V, AllConstructors34, (arg0), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   AllConstructors34[TYPE_REF]{p6930.AllConstructors34, p6930, Lp6930.AllConstructors34;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}",
 			requestor.getResults());
 	} finally {
 		deleteProject("P");
 	}
 }
-public void testBug6930_35() throws Exception {
+public void testBug6930_35() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
 
-		Map compileOptions = new HashMap();
+		Map compileOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		compileOptions.put(CompilerOptions.OPTION_LocalVariableAttribute, CompilerOptions.DO_NOT_GENERATE);
 
 		String[] pathsAndContents =
@@ -2493,14 +2493,14 @@ public void testBug6930_35() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors35[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors35;, (Ljava.lang.Object;)V, AllConstructors35, (o), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
+			"AllConstructors35[CONSTRUCTOR_INVOCATION]{(), Lp6930.AllConstructors35;, (Ljava.lang.Object;)V, AllConstructors35, (o), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   AllConstructors35[TYPE_REF]{p6930.AllConstructors35, p6930, Lp6930.AllConstructors35;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}",
 			requestor.getResults());
 	} finally {
 		deleteProject("P");
 	}
 }
-public void testBug79288() throws Exception {
+public void testBug79288() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create variable
 //		JavaCore.setClasspathVariables(
@@ -2565,7 +2565,7 @@ public void testBug79288() throws Exception {
 		cu.codeComplete(cursorLocation, requestor);
 
 		assertResults(
-			"XX2[TYPE_REF]{b.XX2, b, Lb.XX2;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+			"XX2[TYPE_REF]{b.XX2, b, Lb.XX2;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 	} finally {
 		this.deleteProject("P1");
@@ -2573,7 +2573,7 @@ public void testBug79288() throws Exception {
 		this.deleteProject("P3");
 	}
 }
-public void testBug91772() throws Exception {
+public void testBug91772() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create variable
 //		JavaCore.setClasspathVariables(
@@ -2643,7 +2643,7 @@ public void testBug91772() throws Exception {
 		cu.codeComplete(cursorLocation, requestor);
 
 		assertResults(
-			"XX1[TYPE_REF]{a.XX1, a, La.XX1;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+			"XX1[TYPE_REF]{a.XX1, a, La.XX1;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"XX2[TYPE_REF]{b.XX2, b, Lb.XX2;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 	} finally {
@@ -2654,7 +2654,7 @@ public void testBug91772() throws Exception {
 		Util.cleanupClassPathVariablesAndContainers();
 	}
 }
-public void testBug93891() throws Exception {
+public void testBug93891() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create variable
 //		JavaCore.setClasspathVariables(
@@ -2723,7 +2723,7 @@ public void testBug93891() throws Exception {
 		cu.codeComplete(cursorLocation, requestor);
 
 		assertResults(
-			"XX2[TYPE_REF]{b.XX2, b, Lb.XX2;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+			"XX2[TYPE_REF]{b.XX2, b, Lb.XX2;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 	} finally {
 		this.deleteProject("P1");
@@ -2731,7 +2731,7 @@ public void testBug93891() throws Exception {
 		Util.cleanupClassPathVariablesAndContainers();
 	}
 }
-public void testAccessRestriction1() throws Exception {
+public void testAccessRestriction1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create variable
 //		JavaCore.setClasspathVariables(
@@ -2796,7 +2796,7 @@ public void testAccessRestriction1() throws Exception {
 		cu.codeComplete(cursorLocation, requestor);
 
 		assertResults(
-			"XX1[TYPE_REF]{a.XX1, a, La.XX1;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+			"XX1[TYPE_REF]{a.XX1, a, La.XX1;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
  			"XX2[TYPE_REF]{b.XX2, b, Lb.XX2;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 	} finally {
@@ -2805,7 +2805,7 @@ public void testAccessRestriction1() throws Exception {
 	}
 }
 
-public void testAccessRestriction2() throws Exception {
+public void testAccessRestriction2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create variable
 //		JavaCore.setClasspathVariables(
@@ -2879,7 +2879,7 @@ public void testAccessRestriction2() throws Exception {
 		cu.codeComplete(cursorLocation, requestor);
 
 		assertResults(
-			"XX1[TYPE_REF]{a.XX1, a, La.XX1;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+			"XX1[TYPE_REF]{a.XX1, a, La.XX1;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
  			"XX2[TYPE_REF]{b.XX2, b, Lb.XX2;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 	} finally {
@@ -2887,7 +2887,7 @@ public void testAccessRestriction2() throws Exception {
 		this.deleteProject("P2");
 	}
 }
-public void testAccessRestriction3() throws Exception {
+public void testAccessRestriction3() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create variable
 //		JavaCore.setClasspathVariables(
@@ -2959,7 +2959,7 @@ public void testAccessRestriction3() throws Exception {
 		cu.codeComplete(cursorLocation, requestor);
 
 		assertResults(
-			"XX1[TYPE_REF]{a.XX1, a, La.XX1;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE) + "}\n" +
+			"XX1[TYPE_REF]{a.XX1, a, La.XX1;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
  			"XX2[TYPE_REF]{b.XX2, b, Lb.XX2;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 	} finally {
@@ -2967,7 +2967,7 @@ public void testAccessRestriction3() throws Exception {
 		this.deleteProject("P2");
 	}
 }
-public void testAccessRestriction4() throws Exception {
+public void testAccessRestriction4() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create variable
 //		JavaCore.setClasspathVariables(
@@ -3041,7 +3041,7 @@ public void testAccessRestriction4() throws Exception {
 		cu.codeComplete(cursorLocation, requestor);
 
 		assertResults(
-			"XX1[TYPE_REF]{a.XX1, a, La.XX1;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+			"XX1[TYPE_REF]{a.XX1, a, La.XX1;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
  			"XX2[TYPE_REF]{b.XX2, b, Lb.XX2;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 	} finally {
@@ -3049,7 +3049,7 @@ public void testAccessRestriction4() throws Exception {
 		this.deleteProject("P2");
 	}
 }
-public void testAccessRestriction5() throws Exception {
+public void testAccessRestriction5() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create variable
 //		JavaCore.setClasspathVariables(
@@ -3121,14 +3121,14 @@ public void testAccessRestriction5() throws Exception {
 		cu.codeComplete(cursorLocation, requestor);
 
 		assertResults(
-			"XX2[TYPE_REF]{b.XX2, b, Lb.XX2;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+			"XX2[TYPE_REF]{b.XX2, b, Lb.XX2;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 	} finally {
 		this.deleteProject("P1");
 		this.deleteProject("P2");
 	}
 }
-public void testAccessRestriction6() throws Exception {
+public void testAccessRestriction6() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create variable
 //		JavaCore.setClasspathVariables(
@@ -3227,7 +3227,7 @@ public void testAccessRestriction6() throws Exception {
 		cu.codeComplete(cursorLocation, requestor);
 
 		assertResults(
-			"XX3[TYPE_REF]{c.XX3, c, Lc.XX3;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+			"XX3[TYPE_REF]{c.XX3, c, Lc.XX3;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 	} finally {
 		this.deleteProject("P1");
@@ -3236,7 +3236,7 @@ public void testAccessRestriction6() throws Exception {
 
 	}
 }
-public void testAccessRestriction7() throws Exception {
+public void testAccessRestriction7() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create variable
 //		JavaCore.setClasspathVariables(
@@ -3328,7 +3328,7 @@ public void testAccessRestriction7() throws Exception {
 		cu.codeComplete(cursorLocation, requestor);
 
 		assertResults(
-			"XX2[TYPE_REF]{b.XX2, b, Lb.XX2;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+			"XX2[TYPE_REF]{b.XX2, b, Lb.XX2;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 	} finally {
 		this.deleteProject("P1");
@@ -3337,7 +3337,7 @@ public void testAccessRestriction7() throws Exception {
 
 	}
 }
-public void testAccessRestriction8() throws Exception {
+public void testAccessRestriction8() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create variable
 //		JavaCore.setClasspathVariables(
@@ -3429,7 +3429,7 @@ public void testAccessRestriction8() throws Exception {
 		cu.codeComplete(cursorLocation, requestor);
 
 		assertResults(
-			"XX1[TYPE_REF]{a.XX1, a, La.XX1;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+			"XX1[TYPE_REF]{a.XX1, a, La.XX1;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"XX2[TYPE_REF]{b.XX2, b, Lb.XX2;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 	} finally {
@@ -3439,7 +3439,7 @@ public void testAccessRestriction8() throws Exception {
 
 	}
 }
-public void testAccessRestriction9() throws Exception {
+public void testAccessRestriction9() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create variable
 //		JavaCore.setClasspathVariables(
@@ -3579,7 +3579,7 @@ public void testAccessRestriction9() throws Exception {
 		cu.codeComplete(cursorLocation, requestor);
 
 		assertResults(
-			"XX12[TYPE_REF]{p12.XX12, p12, Lp12.XX12;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+			"XX12[TYPE_REF]{p12.XX12, p12, Lp12.XX12;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"XX21[TYPE_REF]{p21.XX21, p21, Lp21.XX21;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
 			"XX22[TYPE_REF]{p22.XX22, p22, Lp22.XX22;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
 			"XX32[TYPE_REF]{p32.XX32, p32, Lp32.XX32;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
@@ -3592,7 +3592,7 @@ public void testAccessRestriction9() throws Exception {
 
 	}
 }
-public void testAccessRestriction10() throws Exception {
+public void testAccessRestriction10() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create variable
 //		JavaCore.setClasspathVariables(
@@ -3732,7 +3732,7 @@ public void testAccessRestriction10() throws Exception {
 		cu.codeComplete(cursorLocation, requestor);
 
 		assertResults(
-			"XX11[TYPE_REF]{p11.XX11, p11, Lp11.XX11;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE) + "}\n" +
+			"XX11[TYPE_REF]{p11.XX11, p11, Lp11.XX11;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"XX31[TYPE_REF]{p31.XX31, p31, Lp31.XX31;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE) + "}\n" +
 			"XX12[TYPE_REF]{p12.XX12, p12, Lp12.XX12;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
 			"XX21[TYPE_REF]{p21.XX21, p21, Lp21.XX21;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
@@ -3747,7 +3747,7 @@ public void testAccessRestriction10() throws Exception {
 
 	}
 }
-public void testAccessRestriction11() throws Exception {
+public void testAccessRestriction11() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create variable
 //		JavaCore.setClasspathVariables(
@@ -3887,7 +3887,7 @@ public void testAccessRestriction11() throws Exception {
 		cu.codeComplete(cursorLocation, requestor);
 
 		assertResults(
-			"XX11[TYPE_REF]{x.y.z.p11.XX11, x.y.z.p11, Lx.y.z.p11.XX11;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+			"XX11[TYPE_REF]{x.y.z.p11.XX11, x.y.z.p11, Lx.y.z.p11.XX11;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"XX21[TYPE_REF]{x.y.z.p21.XX21, x.y.z.p21, Lx.y.z.p21.XX21;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
 			"XX22[TYPE_REF]{x.y.z.p22.XX22, x.y.z.p22, Lx.y.z.p22.XX22;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
 			"XX32[TYPE_REF]{x.y.z.p32.XX32, x.y.z.p32, Lx.y.z.p32.XX32;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
@@ -3899,7 +3899,7 @@ public void testAccessRestriction11() throws Exception {
 		this.deleteProject("PX");
 	}
 }
-public void testAccessRestriction12() throws Exception {
+public void testAccessRestriction12() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create variable
 //		JavaCore.setClasspathVariables(
@@ -4039,7 +4039,7 @@ public void testAccessRestriction12() throws Exception {
 		cu.codeComplete(cursorLocation, requestor);
 
 		assertResults(
-			"XX12[TYPE_REF]{p12.XX12, p12, Lp12.XX12;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE) + "}\n" +
+			"XX12[TYPE_REF]{p12.XX12, p12, Lp12.XX12;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"XX31[TYPE_REF]{p31.XX31, p31, Lp31.XX31;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE) + "}\n" +
 			"XX11[TYPE_REF]{p11.XX11, p11, Lp11.XX11;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
 			"XX21[TYPE_REF]{p21.XX21, p21, Lp21.XX21;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
@@ -4053,7 +4053,7 @@ public void testAccessRestriction12() throws Exception {
 		this.deleteProject("PX");
 	}
 }
-public void testAccessRestriction13() throws Exception {
+public void testAccessRestriction13() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		// create variable
@@ -4126,14 +4126,14 @@ public void testAccessRestriction13() throws Exception {
 		cu.codeComplete(cursorLocation, requestor);
 
 		assertResults(
-			"XX2[TYPE_REF]{b.XX2, b, Lb.XX2;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+			"XX2[TYPE_REF]{b.XX2, b, Lb.XX2;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 	} finally {
 		this.deleteProject("P1");
 		this.deleteProject("P2");
 	}
 }
-public void testAccessRestriction14() throws Exception {
+public void testAccessRestriction14() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		// create variable
@@ -4207,7 +4207,7 @@ public void testAccessRestriction14() throws Exception {
 		cu.codeComplete(cursorLocation, requestor);
 
 		assertResults(
-			"XX2[TYPE_REF]{b.XX2, b, Lb.XX2;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+			"XX2[TYPE_REF]{b.XX2, b, Lb.XX2;, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 	} finally {
 		this.deleteProject("P1");
@@ -4289,7 +4289,7 @@ public void testAccessRestriction14() throws Exception {
 //		JavaCore.setOptions(oldOptions);
 //	}
 //}
-public void testBug96950() throws Exception {
+public void testBug96950() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create variable
 //		JavaCore.setClasspathVariables(
@@ -4342,7 +4342,7 @@ public void testBug96950() throws Exception {
 		cu.codeComplete(cursorLocation, requestor);
 
 		assertResults(
-			"Tara[POTENTIAL_METHOD_DECLARATION]{Tara, LBreakRules;, ()V, Tara, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}",
+			"Tara[POTENTIAL_METHOD_DECLARATION]{Tara, LBreakRules;, ()V, Tara, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 	} finally {
 		this.deleteProject("P1");
@@ -4350,7 +4350,7 @@ public void testBug96950() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=276890
-public void testBug276890_01() throws Exception {
+public void testBug276890_01() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -4392,7 +4392,7 @@ public void testBug276890_01() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"Stuff[CONSTRUCTOR_INVOCATION]{(), Lp276890.Stuff;, ()V, Stuff, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
+			"Stuff[CONSTRUCTOR_INVOCATION]{(), Lp276890.Stuff;, ()V, Stuff, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   Stuff[TYPE_REF]{p276890.Stuff, p276890, Lp276890.Stuff;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"Stuff[CONSTRUCTOR_INVOCATION]{(), Lp276890.Stuff;, (Ljava.lang.Object;Ljava.lang.Object;)V, Stuff, (o, o2), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"   Stuff[TYPE_REF]{p276890.Stuff, p276890, Lp276890.Stuff;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
@@ -4406,7 +4406,7 @@ public void testBug276890_01() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=276890
-public void testBug276890_02() throws Exception {
+public void testBug276890_02() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -4447,7 +4447,7 @@ public void testBug276890_02() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"Stuff[CONSTRUCTOR_INVOCATION]{(), Lp276890.Stuff;, ()V, Stuff, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
+			"Stuff[CONSTRUCTOR_INVOCATION]{(), Lp276890.Stuff;, ()V, Stuff, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   Stuff[TYPE_REF]{p276890.Stuff, p276890, Lp276890.Stuff;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"Stuff[CONSTRUCTOR_INVOCATION]{(), Lp276890.Stuff;, (Ljava.lang.Object;Ljava.lang.Object;)V, Stuff, (o, o2), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"   Stuff[TYPE_REF]{p276890.Stuff, p276890, Lp276890.Stuff;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
@@ -4461,7 +4461,7 @@ public void testBug276890_02() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=276890
-public void testBug276890_03() throws Exception {
+public void testBug276890_03() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/lib276890.jar"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -4507,7 +4507,7 @@ public void testBug276890_03() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"Stuff[CONSTRUCTOR_INVOCATION]{(), Lp276890.Stuff;, ()V, Stuff, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
+			"Stuff[CONSTRUCTOR_INVOCATION]{(), Lp276890.Stuff;, ()V, Stuff, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   Stuff[TYPE_REF]{p276890.Stuff, p276890, Lp276890.Stuff;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"Stuff[CONSTRUCTOR_INVOCATION]{(), Lp276890.Stuff;, (Ljava.lang.Object;Ljava.lang.Object;)V, Stuff, (o, o2), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
 			"   Stuff[TYPE_REF]{p276890.Stuff, p276890, Lp276890.Stuff;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
@@ -4525,7 +4525,7 @@ public void testBug276890_03() throws Exception {
  * test Ensures that changing an internal jar and refreshing takes the change into account
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=162621"
  */
-public void testChangeInternalJar() throws CoreException, IOException {
+public void testChangeInternalJar() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String jarName = "b162621.jar";
 	String sourceZipName = "b162621_src.zip";
 	try {
@@ -4568,13 +4568,13 @@ public void testChangeInternalJar() throws CoreException, IOException {
 		int cursorLocation = source.lastIndexOf(completeBehind) + completeBehind.length();
 		unit.codeComplete(cursorLocation, requestor);
 		assertResults(
-			"doit2A[METHOD_REF]{doit2A, Lpack.Util;, (II)V, doit2A, "+(R_DEFAULT + R_RESOLVED + R_CASE + R_INTERESTING + R_NON_RESTRICTED + R_NON_STATIC) + "}\n" +
+			"doit2A[METHOD_REF]{doit2A, Lpack.Util;, (II)V, doit2A, "+(R_DEFAULT + R_RESOLVED + R_CASE + R_INTERESTING + R_NON_RESTRICTED + R_NON_STATIC) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"doit2B[METHOD_REF]{doit2B, Lpack.Util;, (I)V, doit2B, "+(R_DEFAULT + R_RESOLVED + R_CASE + R_INTERESTING + R_NON_RESTRICTED + R_NON_STATIC) + "}",
 			requestor.getResults());
 
 		// change class file to add a third doXXX method and refresh
 		String projectLocation = this.currentProject.getProject().getLocation().toOSString();
-		String jarPath = projectLocation + File.separator + jarName;
+		String jarPath = projectLocation + File.separator + jarName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createJar(new String[] {
 			"pack/Util.java",
 			"package pack;\n" +
@@ -4597,7 +4597,7 @@ public void testChangeInternalJar() throws CoreException, IOException {
 		requestor = new CompletionTestsRequestor2();
 		unit.codeComplete(cursorLocation, requestor);
 		assertResults(
-			"doit2A[METHOD_REF]{doit2A, Lpack.Util;, (II)V, doit2A, "+(R_DEFAULT + R_RESOLVED + R_CASE + R_INTERESTING + R_NON_RESTRICTED + R_NON_STATIC) + "}\n" +
+			"doit2A[METHOD_REF]{doit2A, Lpack.Util;, (II)V, doit2A, "+(R_DEFAULT + R_RESOLVED + R_CASE + R_INTERESTING + R_NON_RESTRICTED + R_NON_STATIC) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"doit2B[METHOD_REF]{doit2B, Lpack.Util;, (I)V, doit2B, "+(R_DEFAULT + R_RESOLVED + R_CASE + R_INTERESTING + R_NON_RESTRICTED + R_NON_STATIC) + "}\n" +
 			"doit2C[METHOD_REF]{doit2C, Lpack.Util;, (I)V, doit2C, "+(R_DEFAULT + R_RESOLVED + R_CASE + R_INTERESTING + R_NON_RESTRICTED + R_NON_STATIC) + "}",
 			requestor.getResults());
@@ -4605,9 +4605,9 @@ public void testChangeInternalJar() throws CoreException, IOException {
 		removeLibrary(this.currentProject, jarName, sourceZipName);
 	}
 }
-public void testBug237469a() throws Exception {
-	String externalJar1 = Util.getOutputDirectory() + File.separator + "bug237469a.jar"; //$NON-NLS-1$
-	String externalJar2 = Util.getOutputDirectory() + File.separator + "bug237469b.jar"; //$NON-NLS-1$
+public void testBug237469a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String externalJar1 = Util.getOutputDirectory() + File.separator + "bug237469a.jar"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	String externalJar2 = Util.getOutputDirectory() + File.separator + "bug237469b.jar"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	try {
 		// create variable
@@ -4625,7 +4625,7 @@ public void testBug237469a() throws Exception {
 					"public class IProject {\n" + //$NON-NLS-1$
 					"}" //$NON-NLS-1$
 				},
-				new HashMap(),
+				new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				externalJar1);
 
 		// create external jar 2
@@ -4639,7 +4639,7 @@ public void testBug237469a() throws Exception {
 					"}" //$NON-NLS-1$
 				},
 				null,
-				new HashMap(),
+				new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				new String[]{externalJar1},
 				externalJar2);
 
@@ -4692,7 +4692,7 @@ public void testBug237469a() throws Exception {
 		cu.codeComplete(cursorLocation, requestor);
 
 		assertResults(
-			"initializer[FIELD_REF]{initializer, Ltest.X;, Ljava.lang.Object;, initializer, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
+			"initializer[FIELD_REF]{initializer, Ltest.X;, Ljava.lang.Object;, initializer, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 	} finally {
 		this.deleteProject("PS1");
@@ -4701,9 +4701,9 @@ public void testBug237469a() throws Exception {
 		this.deleteResource(new File(externalJar2));
 	}
 }
-public void testBug237469b() throws Exception {
-	String externalJar1 = Util.getOutputDirectory() + File.separator + "bug237469a.jar"; //$NON-NLS-1$
-	String externalJar2 = Util.getOutputDirectory() + File.separator + "bug237469b.jar"; //$NON-NLS-1$
+public void testBug237469b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String externalJar1 = Util.getOutputDirectory() + File.separator + "bug237469a.jar"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	String externalJar2 = Util.getOutputDirectory() + File.separator + "bug237469b.jar"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	try {
 		// create variable
@@ -4721,7 +4721,7 @@ public void testBug237469b() throws Exception {
 					"public class IProject {\n" + //$NON-NLS-1$
 					"}" //$NON-NLS-1$
 				},
-				new HashMap(),
+				new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				externalJar1);
 
 		// create external jar 2
@@ -4735,7 +4735,7 @@ public void testBug237469b() throws Exception {
 					"}" //$NON-NLS-1$
 				},
 				null,
-				new HashMap(),
+				new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				new String[]{externalJar1},
 				externalJar2);
 
@@ -4796,7 +4796,7 @@ public void testBug237469b() throws Exception {
 		cu.codeComplete(cursorLocation, requestor);
 
 		assertResults(
-				"completion offset="+(cursorLocation)+"\n" +
+				"completion offset="+(cursorLocation)+"\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"completion range=["+(tokenStart)+", "+(tokenEnd)+"]\n" +
 				"completion token=\"equals\"\n" +
 				"completion token kind=TOKEN_KIND_NAME\n" +
@@ -4815,7 +4815,7 @@ public void testBug237469b() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=270113
-public void testBug270113_01() throws Exception {
+public void testBug270113_01() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/lib270113.jar"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -4853,7 +4853,7 @@ public void testBug270113_01() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"AllConstructors01[ANONYMOUS_CLASS_CONSTRUCTOR_INVOCATION]{(), Lp270113.AllConstructors01;, (I)V, AllConstructors01, (i), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
+			"AllConstructors01[ANONYMOUS_CLASS_CONSTRUCTOR_INVOCATION]{(), Lp270113.AllConstructors01;, (I)V, AllConstructors01, (i), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   AllConstructors01[TYPE_REF]{p270113.AllConstructors01, p270113, Lp270113.AllConstructors01;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}",
 			requestor.getResults());
 	} finally {
@@ -4861,7 +4861,7 @@ public void testBug270113_01() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=281598
-public void testBug281598() throws Exception {
+public void testBug281598() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	try {
 		// Create project and jar
@@ -4897,7 +4897,7 @@ public void testBug281598() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug281598b() throws Exception {
+public void testBug281598b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Create project and jar
 		IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/empty.jar"}, "bin");
@@ -4927,14 +4927,14 @@ public void testBug281598b() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"String[CONSTRUCTOR_INVOCATION]{(), Ljava.lang.String;, ()V, String, null, "+(R_DEFAULT+R_RESOLVED+R_INTERESTING+R_CASE+R_EXACT_NAME+R_UNQUALIFIED+R_NON_RESTRICTED)+"}\n" +
+			"String[CONSTRUCTOR_INVOCATION]{(), Ljava.lang.String;, ()V, String, null, "+(R_DEFAULT+R_RESOLVED+R_INTERESTING+R_CASE+R_EXACT_NAME+R_UNQUALIFIED+R_NON_RESTRICTED)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   String[TYPE_REF]{java.lang.String, java.lang, Ljava.lang.String;, null, null, "+(R_DEFAULT+R_RESOLVED+R_INTERESTING+R_CASE+R_EXACT_NAME+R_UNQUALIFIED+R_NON_RESTRICTED)+"}",
 			requestor.getResults());
 	} finally {
 		deleteProject("P");
 	}
 }
-public void testBug281598c() throws Exception {
+public void testBug281598c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	boolean indexState = isIndexDisabledForTest();
 	try {
 		// Create project
@@ -4967,7 +4967,7 @@ public void testBug281598c() throws Exception {
 	    type.getTypeRoot().codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"String[TYPE_REF]{String, java.lang, Ljava.lang.String;, null, null, "+(R_DEFAULT+R_RESOLVED+R_INTERESTING+R_CASE+R_UNQUALIFIED+R_NON_RESTRICTED+R_JAVA_LIBRARY)+"}",
+			"String[TYPE_REF]{String, java.lang, Ljava.lang.String;, null, null, "+(R_DEFAULT+R_RESOLVED+R_INTERESTING+R_CASE+R_UNQUALIFIED+R_NON_RESTRICTED+R_JAVA_LIBRARY)+"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 	} finally {
 		enableIndexer();
@@ -4977,7 +4977,7 @@ public void testBug281598c() throws Exception {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=151500
-public void testBug151500a() throws Exception {
+public void testBug151500a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/lib151500.jar"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		createJar(
@@ -5028,7 +5028,7 @@ public void testBug151500a() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"someMethod[METHOD_REF]{someMethod(), Lfoo.Foo$Bar;, (Ljava.lang.String;)V, someMethod, (paramName), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_NON_STATIC)+ "}",
+			"someMethod[METHOD_REF]{someMethod(), Lfoo.Foo$Bar;, (Ljava.lang.String;)V, someMethod, (paramName), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_NON_STATIC)+ "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 	} finally {
 		deleteProject("P");
@@ -5036,7 +5036,7 @@ public void testBug151500a() throws Exception {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=151500
-public void testBug151500b() throws Exception {
+public void testBug151500b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/lib151500.jar"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		createJar(
@@ -5086,7 +5086,7 @@ public void testBug151500b() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-	    		"Bar[CONSTRUCTOR_INVOCATION]{(), Lfoo.Foo$Bar;, (II)V, Bar, (a, b), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED + R_CONSTRUCTOR) + "}\n" +
+	    		"Bar[CONSTRUCTOR_INVOCATION]{(), Lfoo.Foo$Bar;, (II)V, Bar, (a, b), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED + R_CONSTRUCTOR) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	    		"   Foo.Bar[TYPE_REF]{Bar, foo, Lfoo.Foo$Bar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED + R_CONSTRUCTOR) + "}",
 			requestor.getResults());
 	} finally {
@@ -5095,7 +5095,7 @@ public void testBug151500b() throws Exception {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=151500
-public void testBug151500c() throws Exception {
+public void testBug151500c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB", "/P/lib151500.jar"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		createJar(
@@ -5145,7 +5145,7 @@ public void testBug151500c() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-	    		"Bar[CONSTRUCTOR_INVOCATION]{(), Lfoo.Foo$Bar;, (II)V, Bar, (a, b), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR) + "}\n" +
+	    		"Bar[CONSTRUCTOR_INVOCATION]{(), Lfoo.Foo$Bar;, (II)V, Bar, (a, b), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	    		"   Foo.Bar[TYPE_REF]{Bar, foo, Lfoo.Foo$Bar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR) + "}",
 			requestor.getResults());
 	} finally {
@@ -5154,7 +5154,7 @@ public void testBug151500c() throws Exception {
 }
 // types in enum package of org.apache.commons.lang.jar should not be proposed for
 // 1.5 projects. see https://bugs.eclipse.org/bugs/show_bug.cgi?id=317264
-public void testBug317264a() throws CoreException {
+public void testBug317264a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = null;
 	try
 	{
@@ -5179,7 +5179,7 @@ public void testBug317264a() throws CoreException {
 		int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 		cu.codeComplete(cursorLocation, requestor);
 		assertResults(
-				"Enum[TYPE_REF]{Enum, java.lang, Ljava.lang.Enum;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 12) + "}",
+				"Enum[TYPE_REF]{Enum, java.lang, Ljava.lang.Enum;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 12) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				requestor.getResults());
 
 	} finally {
@@ -5188,7 +5188,7 @@ public void testBug317264a() throws CoreException {
 }
 
 // enum package of org.apache.commons.lang.jar should not be proposed for 1.5 projects
-public void testBug317264c() throws CoreException {
+public void testBug317264c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = null;
 	try
 	{
@@ -5219,7 +5219,7 @@ public void testBug317264c() throws CoreException {
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=292087
-public void testBug340945() throws JavaModelException {
+public void testBug340945() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Try.java",
@@ -5278,7 +5278,7 @@ public void testBug340945() throws JavaModelException {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=292087
-public void testBug340945a() throws JavaModelException {
+public void testBug340945a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Try.java",
@@ -5326,7 +5326,7 @@ public void testBug340945a() throws JavaModelException {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=292087
-public void testBug340945b() throws JavaModelException {
+public void testBug340945b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Try.java",
@@ -5378,7 +5378,7 @@ public void testBug340945b() throws JavaModelException {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=292087
-public void testBug340945c() throws JavaModelException {
+public void testBug340945c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Try.java",
@@ -5432,7 +5432,7 @@ public void testBug340945c() throws JavaModelException {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=292087
-public void testBug340945d() throws JavaModelException {
+public void testBug340945d() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Try.java",
@@ -5475,7 +5475,7 @@ public void testBug340945d() throws JavaModelException {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=326610
 // Test if annotations can be added on package declaration in package-info
-public void testBug326610() throws Exception {
+public void testBug326610() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create P1
 		IFile f = getFile("/Completion/org.eclipse.jdt.annotation_1.0.0.v20120312-1601.jar");
@@ -5507,7 +5507,7 @@ public void testBug326610() throws Exception {
 		cu.codeComplete(cursorLocation, requestor);
 
 		assertEquals(
-			"element:NonNullByDefault    completion:org.eclipse.jdt.annotation.NonNullByDefault    relevance:"+ (R_DEFAULT + R_INTERESTING + R_CASE + R_QUALIFIED + R_EXACT_NAME + R_NON_RESTRICTED + R_ANNOTATION),
+			"element:NonNullByDefault    completion:org.eclipse.jdt.annotation.NonNullByDefault    relevance:"+ (R_DEFAULT + R_INTERESTING + R_CASE + R_QUALIFIED + R_EXACT_NAME + R_NON_RESTRICTED + R_ANNOTATION), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 
 
@@ -5518,7 +5518,7 @@ public void testBug326610() throws Exception {
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=373409
 // Test (1) a type does not get priority over a constructor and
 // (2) that a type coming from an on-demand import does not have the R_UNQUALIFIED relevance set
-public void testBug373409() throws Exception {
+public void testBug373409() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Create project and jar
 		IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin");
@@ -5584,7 +5584,7 @@ public void testBug373409() throws Exception {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-	    	"ThreadLocal[TYPE_REF]{java.llang.ThreadLocal, java.llang, Ljava.llang.ThreadLocal;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_JAVA_LIBRARY) + "}\n" +
+	    	"ThreadLocal[TYPE_REF]{java.llang.ThreadLocal, java.llang, Ljava.llang.ThreadLocal;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_JAVA_LIBRARY) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Thread[CONSTRUCTOR_INVOCATION]{(), Ljava.llang.Thread;, ()V, Thread, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR) + "}\n" +
 			"   Thread[TYPE_REF]{java.llang.Thread, java.llang, Ljava.llang.Thread;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR) + "}\n" +
 			"Thread[CONSTRUCTOR_INVOCATION]{(), Ljava.llang.Thread;, (Ljava.lang.String;)V, Thread, (s), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_CONSTRUCTOR) + "}\n" +
@@ -5603,7 +5603,7 @@ public void testBug373409() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=397070
-public void testBug397070() throws JavaModelException {
+public void testBug397070() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Completion.java",
@@ -5660,7 +5660,7 @@ public void testBug397070() throws JavaModelException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=392581
-public void testBug392581() throws CoreException {
+public void testBug392581() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Create project and jar
 		IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin");
@@ -5695,7 +5695,7 @@ public void testBug392581() throws CoreException {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-	    	"clone[METHOD_REF]{clone(), Ljava.lang.Object;, ()Ljava.lang.Object;, clone, null, "+ (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}\n"
+	    	"clone[METHOD_REF]{clone(), Ljava.lang.Object;, ()Ljava.lang.Object;, clone, null, "+ (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	    	+ "equals[METHOD_REF]{equals(), Ljava.lang.Object;, (Ljava.lang.Object;)Z, equals, (obj), "+ (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}\n"
 	    	+ "finalize[METHOD_REF]{finalize(), Ljava.lang.Object;, ()V, finalize, null, "+ (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}\n"
 	    	+ "getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, getClass, null, "+ (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}\n"
@@ -5718,7 +5718,7 @@ public void testBug392581() throws CoreException {
  * Jar contains a class with "enum" package and is located inside the project.
  * The test verifies that class from the "enum" package is not proposed.
  */
-public void testBug410207a() throws Exception {
+public void testBug410207a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB", "/P/lib.jar"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		Util.createJar(new String[] {
@@ -5758,7 +5758,7 @@ public void testBug410207a() throws Exception {
 		CompletionTestsRequestor2 requestor = new CompletionTestsRequestor2(true, false, false, true, true);
 		cu.codeComplete(cursorLocation, requestor);
 		assertResults(
-				"Main[TYPE_REF]{Main, p, Lp.Main;, null, null, " + (R_DEFAULT + 22) + "}",
+				"Main[TYPE_REF]{Main, p, Lp.Main;, null, null, " + (R_DEFAULT + 22) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				requestor.getResults());
 	} finally {
 		deleteProject("P");
@@ -5771,10 +5771,10 @@ public void testBug410207a() throws Exception {
  * The test verifies that class from the "enum" package is not proposed. It verifies also that
  * compiler compliance of the jar is not used as source compliance.
  */
-public void testBug410207b() throws Exception {
+public void testBug410207b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB", "/P/lib.jar"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
-		Map options = new HashMap();
+		Map options = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		options.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
 		Util.createJar(new String[] {
 				"a/enum/b/NonCompliant.java",
@@ -5816,7 +5816,7 @@ public void testBug410207b() throws Exception {
 		CompletionTestsRequestor2 requestor = new CompletionTestsRequestor2(true, false, false, true, true);
 		cu.codeComplete(cursorLocation, requestor);
 		assertResults(
-				"Main[TYPE_REF]{Main, p, Lp.Main;, null, null, " + (R_DEFAULT + 22) + "}",
+				"Main[TYPE_REF]{Main, p, Lp.Main;, null, null, " + (R_DEFAULT + 22) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				requestor.getResults());
 	} finally {
 		deleteProject("P");
@@ -5829,7 +5829,7 @@ public void testBug410207b() throws Exception {
  * Lib contains a class with "enum" package and is required by P (dependency on the bin folder).
  * The test verifies that class from the "enum" package is not proposed for P.
  */
-public void testBug410207c() throws Exception {
+public void testBug410207c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("Lib", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		createFolder("/Lib/src/a/enum/b");
@@ -5872,7 +5872,7 @@ public void testBug410207c() throws Exception {
 		CompletionTestsRequestor2 requestor = new CompletionTestsRequestor2(true, false, false, true, true);
 		cu.codeComplete(cursorLocation, requestor);
 		assertResults(
-				"Main[TYPE_REF]{Main, p, Lp.Main;, null, null, " + (R_DEFAULT + 22) + "}",
+				"Main[TYPE_REF]{Main, p, Lp.Main;, null, null, " + (R_DEFAULT + 22) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				requestor.getResults());
 	} finally {
 		deleteProjects(new String[] { "Lib", "P" });
@@ -5885,7 +5885,7 @@ public void testBug410207c() throws Exception {
  * Lib contains a class with "enum" package and is required by P (dependency on the whole project).
  * The test verifies that class from the "enum" package is not proposed for P.
  */
-public void testBug410207d() throws Exception {
+public void testBug410207d() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("Lib", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		createFolder("/Lib/src/a/enum/b");
@@ -5928,7 +5928,7 @@ public void testBug410207d() throws Exception {
 		CompletionTestsRequestor2 requestor = new CompletionTestsRequestor2(true, false, false, true, true);
 		cu.codeComplete(cursorLocation, requestor);
 		assertResults(
-				"Main[TYPE_REF]{Main, p, Lp.Main;, null, null, " + (R_DEFAULT + 22) + "}",
+				"Main[TYPE_REF]{Main, p, Lp.Main;, null, null, " + (R_DEFAULT + 22) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				requestor.getResults());
 	} finally {
 		deleteProjects(new String[] { "Lib", "P" });
@@ -5936,7 +5936,7 @@ public void testBug410207d() throws Exception {
 }
 // Bug 418011 - [1.8][code assist] NPE in code assist
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=418011
-public void testBug418011() throws CoreException {
+public void testBug418011() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Create project and jar
 		IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin");
@@ -5971,7 +5971,7 @@ public void testBug418011() throws CoreException {
 }
 // Content Assist / Quick Fix import suggestion for nested annotations with argument list
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376977
-public void testBug376977() throws CoreException {
+public void testBug376977() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin");
 	getSetCodeAssistProperty(p, JavaCore.CODEASSIST_VISIBILITY_CHECK, JavaCore.ENABLED);
 	try {
@@ -6013,14 +6013,14 @@ public void testBug376977() throws CoreException {
 	    this.workingCopies[2].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 	    assertResults(
-			"Nested[TYPE_REF]{Nested, myannotations, Lmyannotations.Nested;, null, null, " + (R_DEFAULT + 42) + "}",
+			"Nested[TYPE_REF]{Nested, myannotations, Lmyannotations.Nested;, null, null, " + (R_DEFAULT + 42) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 	} finally {
 		deleteProject("P");
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=442868
-public void test442868() throws JavaModelException {
+public void test442868() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -6043,12 +6043,12 @@ public void test442868() throws JavaModelException {
 	String completeBehind = "Obj";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("Object[TYPE_REF]{Object, java.lang, Ljava.lang.Object;, null, null, null, null, [218, 224], " +
+	assertResults("Object[TYPE_REF]{Object, java.lang, Ljava.lang.Object;, null, null, null, null, [218, 224], " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			(RelevanceConstants.R_DEFAULT + RelevanceConstants.R_RESOLVED + RelevanceConstants.R_INTERESTING + RelevanceConstants.R_NON_RESTRICTED
 			+ RelevanceConstants.R_CASE + RelevanceConstants.R_UNQUALIFIED + RelevanceConstants.R_JAVA_LIBRARY) + "}", requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=479656
-public void test479656() throws Exception {
+public void test479656() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IFile f = getFile("/Completion/bug479656.jar");
 		IJavaProject p = this.createJavaProject(
@@ -6085,13 +6085,13 @@ public void test479656() throws Exception {
 		CompletionTestsRequestor2 requestor = new CompletionTestsRequestor2(true, false, false, true, true);
 		cu.codeComplete(cursorLocation, requestor);
 		assertResults(
-				"toString[METHOD_REF]{toString(), Ljava.lang.Object;, ()Ljava.lang.String;, toString, null, " + (R_DEFAULT + 30) + "}",
+				"toString[METHOD_REF]{toString(), Ljava.lang.Object;, ()Ljava.lang.String;, toString, null, " + (R_DEFAULT + 30) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				requestor.getResults());
 	} finally {
 		deleteProject("P");
 	}
 }
-public void testBug575562_AccessRestrictionCheck_ENABLED() throws Exception {
+public void testBug575562_AccessRestrictionCheck_ENABLED() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		setUpJavaProject("AccessRestrictions", CompilerOptions.getFirstSupportedJavaVersion(), false);
@@ -6141,7 +6141,7 @@ public void testBug575562_AccessRestrictionCheck_ENABLED() throws Exception {
 		this.deleteProject("P1");
 	}
 }
-public void testBug575562_AccessRestrictionCheck_DISABLED() throws Exception {
+public void testBug575562_AccessRestrictionCheck_DISABLED() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		setUpJavaProject("AccessRestrictions", CompilerOptions.getFirstSupportedJavaVersion(), false);
 		IJavaProject project = createJavaProject(

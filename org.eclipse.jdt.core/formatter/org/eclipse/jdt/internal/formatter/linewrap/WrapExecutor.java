@@ -111,8 +111,8 @@ public class WrapExecutor {
 		int extraLines;
 		int lineWidthExtent;
 		boolean isNextLineWrapped;
-		final List<Integer> extraLinesPerComment = new ArrayList<>();
-		final List<Integer> topPriorityGroupStarts = new ArrayList<>();
+		final List<Integer> extraLinesPerComment = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		final List<Integer> topPriorityGroupStarts = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		private int currentTopPriorityGroupEnd;
 		private boolean isNLSTagInLine;
 
@@ -123,7 +123,7 @@ public class WrapExecutor {
 		/**
 		 * @return index of the last token in line
 		 */
-		public int analyzeLine(int startIndex, int indent) {
+		public int analyzeLine(int startIndex, int indent) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			Token startToken = this.tm2.get(startIndex);
 			assert startToken.getLineBreaksBefore() > 0;
 			this.counter = this.tm2.toIndent(indent, startToken.isWrappable());
@@ -142,7 +142,7 @@ public class WrapExecutor {
 			return lastIndex + (this.isNextLineWrapped ? 1 : 0);
 		}
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		protected boolean token(Token token, int index) {
 			setIndent(token, this.lineIndent);
 
@@ -215,7 +215,7 @@ public class WrapExecutor {
 			if (this.activeTopPriorityWrap >= 0)
 				return false;
 
-			for (int i = index - 1; i > wrapPolicy.wrapParentIndex; i--) {
+			for (int i = index - 1; i > wrapPolicy.wrapParentIndex; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Token token = this.tm2.get(i);
 				if (token.isWrappable() && token.getWrapPolicy().wrapParentIndex == wrapPolicy.wrapParentIndex
 					&& (token.getLineBreaksBefore() > 0 || this.tm2.get(i - 1).getLineBreaksAfter() > 0)) {
@@ -229,7 +229,7 @@ public class WrapExecutor {
 	private class WrapsApplier extends TokenTraverser {
 
 		private final TokenManager tm2 = WrapExecutor.this.tm;
-		private final ArrayDeque<Token> stack = new ArrayDeque<>();
+		private final ArrayDeque<Token> stack = new ArrayDeque<>(); //FLLDCIM: MARK — M08 M3_DEQUE_LANES NEW
 		private int initialIndent;
 		private int currentIndent;
 		private int fixedIndentDelta;
@@ -255,7 +255,7 @@ public class WrapExecutor {
 			return true;
 		}
 
-		private void checkOnColumnAlign(Token token, int index) {
+		private void checkOnColumnAlign(Token token, int index) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			// if some further tokens in a group are wrapped on column,
 			// the first one should be aligned on column even if it's not wrapped
 			WrapPolicy wrapPolicy = token.getWrapPolicy();
@@ -278,21 +278,21 @@ public class WrapExecutor {
 
 			// check all future wraps
 			WrapInfo furtherWrap = this.nextWrap;
-			while (furtherWrap != null) {
+			while (furtherWrap != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (aligner.test(this.tm2.get(furtherWrap.wrapTokenIndex)))
 					return;
 				furtherWrap = WrapExecutor.this.wrapSearchResults.get(furtherWrap).nextWrap;
 			}
 			// check all tokens that are already wrapped
-			for (int i = index; i <= wrapPolicy.groupEndIndex; i++) {
+			for (int i = index; i <= wrapPolicy.groupEndIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Token t = this.tm2.get(i);
 				if (t.getLineBreaksBefore() > 0 && aligner.test(t))
 					return;
 			}
 		}
 
-		private void newLine(Token token, int index) {
-			while (!this.stack.isEmpty() && index > this.stack.peek().getWrapPolicy().groupEndIndex)
+		private void newLine(Token token, int index) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+			while (!this.stack.isEmpty() && index > this.stack.peek().getWrapPolicy().groupEndIndex) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.stack.pop();
 			if (token.getWrapPolicy() != null) {
 				setIndent(token, getWrapIndent(token));
@@ -330,13 +330,13 @@ public class WrapExecutor {
 	}
 
 	private class NLSTagHandler extends TokenTraverser {
-		private final ArrayList<Token> nlsTags = new ArrayList<>();
+		private final ArrayList<Token> nlsTags = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		public NLSTagHandler() {
 			// nothing to do
 		}
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		protected boolean token(final Token token, final int index) {
 			if (token.hasNLSTag())
 				this.nlsTags.add(token.getNLSTag());
@@ -351,7 +351,7 @@ public class WrapExecutor {
 					lineComment.breakAfter();
 					lineComment.spaceBefore();
 					lineComment.setAlign(WrapExecutor.this.tm.getNLSAlign(index));
-					lineComment.setInternalStructure(new ArrayList<>());
+					lineComment.setInternalStructure(new ArrayList<>()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 					WrapExecutor.this.tm.insert(index + 1, lineComment);
 					fixWrapPolicyParents(index, 1);
 					structureChanged();
@@ -362,13 +362,13 @@ public class WrapExecutor {
 				if (structure == null) {
 					if (this.nlsTags.isEmpty())
 						return true;
-					structure = new ArrayList<>();
+					structure = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 					structure.add(lineComment);
 					lineComment.setInternalStructure(structure);
 				}
 
 				boolean isPrefixMissing = false;
-				for (int i = 0; i < structure.size(); i++) {
+				for (int i = 0; i < structure.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Token fragment = structure.get(i);
 					// remove NLS tags that are not associated with this line
 					// (these have been added on wrapped lines earlier)
@@ -383,7 +383,7 @@ public class WrapExecutor {
 					} else if (isPrefixMissing) {
 						// remove trailing whitespace
 						int pos = fragment.originalStart;
-						while (pos <= fragment.originalEnd
+						while (pos <= fragment.originalEnd //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								&& ScannerHelper.isWhitespace(WrapExecutor.this.tm.charAt(pos)))
 							pos++;
 						if (pos > fragment.originalEnd) {
@@ -423,9 +423,9 @@ public class WrapExecutor {
 			return true;
 		}
 
-		private void fixWrapPolicyParents(int changeIndex, int delta) {
+		private void fixWrapPolicyParents(int changeIndex, int delta) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			TokenTraverser traverser = new TokenTraverser() {
-				HashMap<WrapPolicy, WrapPolicy> policyCache = new HashMap<>();
+				HashMap<WrapPolicy, WrapPolicy> policyCache = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 				@Override
 				protected boolean token(Token token, int index) {
@@ -450,8 +450,8 @@ public class WrapExecutor {
 
 	private final static int[] EMPTY_ARRAY = {};
 
-	final HashMap<WrapInfo, WrapResult> wrapSearchResults = new HashMap<>();
-	private final ArrayDeque<WrapInfo> wrapSearchStack = new ArrayDeque<>();
+	final HashMap<WrapInfo, WrapResult> wrapSearchResults = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	private final ArrayDeque<WrapInfo> wrapSearchStack = new ArrayDeque<>(); //FLLDCIM: MARK — M08 M3_DEQUE_LANES NEW
 
 	private final LineAnalyzer lineAnalyzer;
 
@@ -473,7 +473,7 @@ public class WrapExecutor {
 		this.tm.traverse(0, new NLSTagHandler());
 	}
 
-	WrapResult findWrapsCached(final int startTokenIndex, final int indent) {
+	WrapResult findWrapsCached(final int startTokenIndex, final int indent) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.wrapInfoTemp.wrapTokenIndex = startTokenIndex;
 		this.wrapInfoTemp.indent = indent;
 		WrapResult wrapResult = this.wrapSearchResults.get(this.wrapInfoTemp);
@@ -482,7 +482,7 @@ public class WrapExecutor {
 		WrapResult wr = wrapResult;
 		boolean cacheMissAllowed = true;
 		int lookupLimit = 50;
-		while (wr != null && wr.nextWrap != null && lookupLimit --> 0) {
+		while (wr != null && wr.nextWrap != null && lookupLimit --> 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			WrapInfo wi = wr.nextWrap;
 			Token token = this.tm.get(wi.wrapTokenIndex);
 			if (token.getWrapPolicy().wrapParentIndex < startTokenIndex && getWrapIndent(token) != wi.indent) {
@@ -500,9 +500,9 @@ public class WrapExecutor {
 		if (this.wrapSearchStack.size() > 1 && cacheMissAllowed)
 			return null; // cache miss, need to find wraps later in main stack processing
 
-		ArrayList<WrapInfo> reverseStackTemp = new ArrayList<>();
+		ArrayList<WrapInfo> reverseStackTemp = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		// run main stack processing
-		while (true) {
+		while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final WrapInfo item = this.wrapSearchStack.peek();
 			Token token = this.tm.get(item.wrapTokenIndex);
 			token.setWrapped(true);
@@ -518,9 +518,9 @@ public class WrapExecutor {
 					break;
 			} else {
 				// reverse order of new items
-				while (this.wrapSearchStack.peek() != item)
+				while (this.wrapSearchStack.peek() != item) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					reverseStackTemp.add(this.wrapSearchStack.pop());
-				for (WrapInfo item2 : reverseStackTemp)
+				for (WrapInfo item2 : reverseStackTemp) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					this.wrapSearchStack.push(item2);
 				reverseStackTemp.clear();
 			}
@@ -533,7 +533,7 @@ public class WrapExecutor {
 	 * The main algorithm that looks for optimal places to wrap.
 	 * Calls itself recursively to get results for wrapped sub-lines.
 	 */
-	private WrapResult findWraps(int wrapTokenIndex, int indent) {
+	private WrapResult findWraps(int wrapTokenIndex, int indent) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final int lastIndex = this.lineAnalyzer.analyzeLine(wrapTokenIndex, indent);
 		final boolean nextLineWrapped = this.lineAnalyzer.isNextLineWrapped;
 		int lineOverflow = Math.max(0, this.lineAnalyzer.lineWidthExtent - this.options.page_width);
@@ -572,7 +572,7 @@ public class WrapExecutor {
 		// optimization: turns out there's no point checking multiple wraps with the same policy
 		LinkedHashSet<WrapPolicy> policiesTried = new LinkedHashSet<>();
 
-		for (int i = lastIndex; firstPotentialWrap >= 0 && i >= firstPotentialWrap; i--) {
+		for (int i = lastIndex; firstPotentialWrap >= 0 && i >= firstPotentialWrap; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			token = this.tm.get(i);
 			if (commentIndex > 0
 					&& (token.tokenType == TokenNameCOMMENT_BLOCK || token.tokenType == TokenNameCOMMENT_JAVADOC)) {
@@ -634,7 +634,7 @@ public class WrapExecutor {
 				bestNextWrap == -1 ? null : new WrapInfo(bestNextWrap, bestIndent));
 	}
 
-	private double getWrapPenalty(int lineStartIndex, int lineIndent, int wrapIndex, int wrapIndent,
+	private double getWrapPenalty(int lineStartIndex, int lineIndent, int wrapIndex, int wrapIndent, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			WrapResult wrapResult) {
 		WrapPolicy wrapPolicy = null;
 		Token wrapToken = null;
@@ -664,7 +664,7 @@ public class WrapExecutor {
 		Token lineStartToken = this.tm.get(lineStartIndex);
 		WrapPolicy lineStartWrapPolicy = lineStartToken.getWrapPolicy();
 		if (wrapToken != null && wrapToken.isWrappable() && lineStartToken.isWrappable()) {
-			for (int i = lineStartIndex + 1; i < wrapIndex; i++) {
+			for (int i = lineStartIndex + 1; i < wrapIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				WrapPolicy intermediatePolicy = this.tm.get(i).getWrapPolicy();
 				if (intermediatePolicy != null
 						&& intermediatePolicy.structureDepth < lineStartWrapPolicy.structureDepth
@@ -683,7 +683,7 @@ public class WrapExecutor {
 		boolean checkDepth = wrapToken != null && wrapToken.isWrappable()
 				&& (lineStartWrapPolicy == null || wrapPolicy.structureDepth >= lineStartWrapPolicy.structureDepth);
 		double penaltyDiff = 0;
-		while (checkDepth && nextWrap != null) {
+		while (checkDepth && nextWrap != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			WrapPolicy nextPolicy = this.tm.get(nextWrap.wrapTokenIndex).getWrapPolicy();
 			if (nextPolicy.wrapParentIndex == wrapPolicy.wrapParentIndex
 					|| (penaltyDiff != 0 && !wrapPolicy.isFirstInGroup)) {
@@ -720,7 +720,7 @@ public class WrapExecutor {
 			return EMPTY_ARRAY;
 		int[] result = new int[list.size()];
 		int i = 0;
-		for (int item : list) {
+		for (int item : list) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			result[i++] = item;
 		}
 		return result;
@@ -733,7 +733,7 @@ public class WrapExecutor {
 				|| (pos2 >= r.getOffset() && pos2 < r.getOffset() + r.getLength()));
 	}
 
-	int getWrapIndent(Token token) {
+	int getWrapIndent(Token token) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		WrapPolicy policy = token.getWrapPolicy();
 		if (policy == null)
 			return token.getIndent();
@@ -753,7 +753,7 @@ public class WrapExecutor {
 		return this.tm.toIndent(wrapIndent, true);
 	}
 
-	void setIndent(Token token, int indent) {
+	void setIndent(Token token, int indent) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		token.setIndent(indent);
 
 		List<Token> structure = token.getInternalStructure();

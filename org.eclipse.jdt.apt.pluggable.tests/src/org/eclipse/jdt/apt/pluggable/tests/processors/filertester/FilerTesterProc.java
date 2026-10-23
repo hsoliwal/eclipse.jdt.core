@@ -80,20 +80,20 @@ public class FilerTesterProc extends AbstractProcessor {
 	 * @return a string representing a large Java class.
 	 */
 	public static String largeJavaClass() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("package g;\n");
-		sb.append("public class Test {\n");
-		sb.append("    public static final String bigString = \n");
-		for (int i = 0; i < 500; ++i) {
-			sb.append("        \"the quick brown dog jumped over the lazy fox, in a peculiar reversal\\n\" +\n");
+		StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		sb.append("package g;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		sb.append("public class Test {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		sb.append("    public static final String bigString = \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (int i = 0; i < 500; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			sb.append("        \"the quick brown dog jumped over the lazy fox, in a peculiar reversal\\n\" +\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		sb.append("    \"\";\n");
-		sb.append("\n");
-		sb.append("    /** This file is at least this big */\n");
-		sb.append("    public static final int SIZE = ");
-		sb.append(sb.length());
-		sb.append(";\n");
-		sb.append("}\n");
+		sb.append("    \"\";\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		sb.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		sb.append("    /** This file is at least this big */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		sb.append("    public static final int SIZE = "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		sb.append(sb.length()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		sb.append(";\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		sb.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return sb.toString();
 	}
 
@@ -128,10 +128,10 @@ public class FilerTesterProc extends AbstractProcessor {
 	 * Perform a round of processing: for a given annotation instance, determine what test method it
 	 * specifies, and invoke that method, passing in the annotated element.
 	 */
-	private void round(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
+	private void round(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TypeElement filerTesterAnno = annotations.iterator().next();
 		Set<? extends Element> annotatedEls = roundEnv.getElementsAnnotatedWith(filerTesterAnno);
-		for (Element annotatedEl : annotatedEls) {
+		for (Element annotatedEl : annotatedEls) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			FilerTestTrigger filerTesterMirror = annotatedEl.getAnnotation(FilerTestTrigger.class);
 			String testMethodName = filerTesterMirror.test();
 			String arg0 = filerTesterMirror.arg0();
@@ -148,7 +148,7 @@ public class FilerTesterProc extends AbstractProcessor {
 					// IllegalStateException probably means test method called ProcessorTestStatus.fail()
 					String msg = (t instanceof IllegalStateException) ?
 							t.getMessage() :
-							t.getClass().getSimpleName() + " invoking test method " +
+							t.getClass().getSimpleName() + " invoking test method " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							testMethodName + " - see console for details";
 					ProcessorTestStatus.fail(msg);
 				}
@@ -185,7 +185,7 @@ public class FilerTesterProc extends AbstractProcessor {
 		// JSR269 spec does not make strict requirements about what getName() returns,
 		// but we can at least expect it to include the relative name.
 		if (!name.contains(relName)) {
-			ProcessorTestStatus.fail("File object getName() returned " + name +
+			ProcessorTestStatus.fail("File object getName() returned " + name + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					", expected it to contain " + relName);
 		}
 	}
@@ -194,9 +194,9 @@ public class FilerTesterProc extends AbstractProcessor {
 	 * Attempt to create new resources with null parentage.
 	 * See <a href="http://bugs.eclipse.org/285838">Bug 285838</a>.
 	 */
-	public void testNullParents(Element e, String pkg, String relName) throws Exception {
+	public void testNullParents(Element e, String pkg, String relName) throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		FileObject fo = _filer.createResource(StandardLocation.SOURCE_OUTPUT,
-				pkg, relName + ".txt", (Element[])null);
+				pkg, relName + ".txt", (Element[])null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		PrintWriter pw = null;
 		try {
 			pw = new PrintWriter(fo.openWriter());
@@ -206,11 +206,11 @@ public class FilerTesterProc extends AbstractProcessor {
 				pw.close();
 		}
 
-		JavaFileObject jfo = _filer.createSourceFile(pkg + "/" + relName, (Element[])null);
+		JavaFileObject jfo = _filer.createSourceFile(pkg + "/" + relName, (Element[])null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		pw = null;
 		try {
 			pw = new PrintWriter(jfo.openWriter());
-			pw.println("package " + pkg + ";\npublic class " + relName + "{ }");
+			pw.println("package " + pkg + ";\npublic class " + relName + "{ }"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} finally {
 			if (pw != null)
 				pw.close();
@@ -233,32 +233,32 @@ public class FilerTesterProc extends AbstractProcessor {
 	}
 
 	public void testBug534979(Element e, String pkg, String relName) throws Exception {
-		JavaFileObject jfo = _filer.createSourceFile(pkg + "." + relName);
+		JavaFileObject jfo = _filer.createSourceFile(pkg + "." + relName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try (PrintWriter pw = new PrintWriter(jfo.openWriter())) {
-			pw.println("package " + pkg + ";\npublic class " + relName + "{ }");
+			pw.println("package " + pkg + ";\npublic class " + relName + "{ }"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	public void testBug542090a(Element e, String pkg, String relName) throws Exception {
 		if (++roundNo > 1)
 			return;
-		JavaFileObject jfo = _filer.createSourceFile(pkg + "." + relName);
+		JavaFileObject jfo = _filer.createSourceFile(pkg + "." + relName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try (PrintWriter pw = new PrintWriter(jfo.openWriter())) {
-			pw.println("package " + pkg + ";\npublic class " + relName + "{ }");
+			pw.println("package " + pkg + ";\npublic class " + relName + "{ }"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	public void testBug542090b(Element e, String pkg, String relName) throws Exception {
-		JavaFileObject jfo = _filer.createSourceFile(pkg + "." + relName);
+		JavaFileObject jfo = _filer.createSourceFile(pkg + "." + relName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try (PrintWriter pw = new PrintWriter(jfo.openWriter())) {
-			pw.println("package " + pkg + ";\npublic class " + relName + "{ }");
+			pw.println("package " + pkg + ";\npublic class " + relName + "{ }"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	public void testBug534979InModule(Element e, String pkg, String relName) throws Exception {
-		JavaFileObject jfo = _filer.createSourceFile(pkg+"."+relName, e.getEnclosingElement());
+		JavaFileObject jfo = _filer.createSourceFile(pkg+"."+relName, e.getEnclosingElement()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try (PrintWriter pw = new PrintWriter(jfo.openWriter())) {
-			pw.println("package " + pkg + ";\npublic class " + relName + "{ }");
+			pw.println("package " + pkg + ";\npublic class " + relName + "{ }"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
-	public void testCreateClass1(Element e, String pkg, String relName) throws Exception {
+	public void testCreateClass1(Element e, String pkg, String relName) throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Filer filer = processingEnv.getFiler();
 		try {
 			if (++roundNo == 1)
@@ -284,7 +284,7 @@ public class FilerTesterProc extends AbstractProcessor {
 		} finally {
 		}
 	}
-	public void testCreateClass2(Element e, String pkg, String relName) throws Exception {
+	public void testCreateClass2(Element e, String pkg, String relName) throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Filer filer = processingEnv.getFiler();
 		try {
 			if (++roundNo == 1)
@@ -311,13 +311,13 @@ public class FilerTesterProc extends AbstractProcessor {
 		}
 	}
 
-	private void checkGenUri(FileObject fo, String name, String content, String category) throws Exception {
+	private void checkGenUri(FileObject fo, String name, String content, String category) throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try (PrintWriter pw = new PrintWriter(fo.openWriter())) {
 			pw.print(content);
 		}
 		URI uri = fo.toUri();
 		if (!uri.toString().contains(name)) {
-			ProcessorTestStatus.fail("toUri() on " + category + " returned " + uri.toString() +
+			ProcessorTestStatus.fail("toUri() on " + category + " returned " + uri.toString() + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					", expected it to contain " + name);
 		}
 		char buf[] = new char[256];
@@ -332,7 +332,7 @@ public class FilerTesterProc extends AbstractProcessor {
 		}
 		buf = Arrays.copyOf(buf, len);
 		if (!Arrays.equals(buf, content.toCharArray())) {
-			ProcessorTestStatus.fail("toUri() on " + category + " returned " + uri.toString() +
+			ProcessorTestStatus.fail("toUri() on " + category + " returned " + uri.toString() + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					", but reading that URI produced \"" + new String(buf) + "\" instead of expected \"" + content + "\"");
 		}
 	}
@@ -345,8 +345,8 @@ public class FilerTesterProc extends AbstractProcessor {
 		CharSequence actualCharContent = resource.getCharContent(true);
 		String expectedContents = largeJavaClass();
 		if (!expectedContents.equals(actualCharContent.toString())) {
-			System.out.println("Expected getCharContent to return:\n" + expectedContents);
-			System.out.println("Actual getCharContent returned:\n" + actualCharContent);
+			System.out.println("Expected getCharContent to return:\n" + expectedContents); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			System.out.println("Actual getCharContent returned:\n" + actualCharContent); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			ProcessorTestStatus.fail("getCharContent() did not return expected contents");
 		}
 	}
@@ -355,16 +355,16 @@ public class FilerTesterProc extends AbstractProcessor {
 	 * Check that the resource can be opened, examined, and its contents match
 	 * {@link #checkResourceContents01(FileObject)}getResource01FileContents
 	 */
-	private void checkResourceContents01(FileObject resource, String expectedName, String expectedContents) throws Exception {
+	private void checkResourceContents01(FileObject resource, String expectedName, String expectedContents) throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		long modTime = resource.getLastModified();
 		if (modTime <= 0) {
-			ProcessorTestStatus.fail("resource had unexpected mod time: " + modTime);
+			ProcessorTestStatus.fail("resource had unexpected mod time: " + modTime); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		String actualName = resource.getName();
 		if (!expectedName.equals(actualName)) {
-			System.out.println("Resource had unexpected name.  Expected " + expectedName +
+			System.out.println("Resource had unexpected name.  Expected " + expectedName + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					", actual was " + actualName);
 			ProcessorTestStatus.fail("Resource had unexpected name");
 		}
@@ -377,8 +377,8 @@ public class FilerTesterProc extends AbstractProcessor {
 		int length = stream.read(actualBytes);
 		String actualStringContents = new String(actualBytes, 0, length);
 		if (!expectedContents.equals(actualStringContents)) {
-			System.out.println("Expected stream contents:\n" + expectedContents);
-			System.out.println("Actual contents were:\n" + actualStringContents);
+			System.out.println("Expected stream contents:\n" + expectedContents); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			System.out.println("Actual contents were:\n" + actualStringContents); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			ProcessorTestStatus.fail("stream did not contain expected contents");
 		}
 		stream.close();
@@ -388,16 +388,16 @@ public class FilerTesterProc extends AbstractProcessor {
 		length = reader.read(actualChars, 0, actualChars.length);
 		actualStringContents = new String(actualChars, 0, length);
 		if (!expectedContents.equals(actualStringContents)) {
-			System.out.println("Expected reader contents:\n" + expectedContents);
-			System.out.println("Actual contents were:\n" + actualStringContents);
+			System.out.println("Expected reader contents:\n" + expectedContents); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			System.out.println("Actual contents were:\n" + actualStringContents); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			ProcessorTestStatus.fail("reader did not contain expected contents");
 		}
 		reader.close();
 
 		CharSequence actualCharContent = resource.getCharContent(true);
 		if (!expectedContents.equals(actualCharContent.toString())) {
-			System.out.println("Expected getCharContent to return:\n" + expectedContents);
-			System.out.println("Actual getCharContent returned:\n" + actualCharContent);
+			System.out.println("Expected getCharContent to return:\n" + expectedContents); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			System.out.println("Actual getCharContent returned:\n" + actualCharContent); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			ProcessorTestStatus.fail("getCharContent() did not return expected contents");
 		}
 	}

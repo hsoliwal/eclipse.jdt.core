@@ -35,7 +35,7 @@ class RecoveredVariableBinding implements IVariableBinding {
 	@Override
 	public ITypeBinding getDeclaringClass() {
 		ASTNode parent = this.variableDeclaration.getParent();
-		while (parent != null && parent.getNodeType() != ASTNode.TYPE_DECLARATION) {
+		while (parent != null && parent.getNodeType() != ASTNode.TYPE_DECLARATION) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			parent = parent.getParent();
 		}
 		if (parent != null) {
@@ -47,7 +47,7 @@ class RecoveredVariableBinding implements IVariableBinding {
 	@Override
 	public IMethodBinding getDeclaringMethod() {
 		ASTNode parent = this.variableDeclaration.getParent();
-		while (parent != null && parent.getNodeType() != ASTNode.METHOD_DECLARATION) {
+		while (parent != null && parent.getNodeType() != ASTNode.METHOD_DECLARATION) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			parent = parent.getParent();
 		}
 		if (parent != null) {
@@ -103,10 +103,10 @@ class RecoveredVariableBinding implements IVariableBinding {
 
 	@Override
 	public String getKey() {
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("Recovered#"); //$NON-NLS-1$
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("Recovered#"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (this.variableDeclaration != null) {
-			buffer
+			buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				.append("variableDeclaration") //$NON-NLS-1$
 				.append(this.variableDeclaration.getClass())
 				.append(this.variableDeclaration.getName().getIdentifier())

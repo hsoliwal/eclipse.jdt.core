@@ -38,7 +38,7 @@ public class JavaSearchExtensionTest extends AbstractJavaSearchTests {
 	protected void tearDown() throws Exception {
 		super.tearDown();
 	}
-	public void testDelegateFound() throws JavaModelException {
+	public void testDelegateFound() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String oldSystemProperty  = System.getProperty(DELEGATE_SYSPROP);
 
 		try {

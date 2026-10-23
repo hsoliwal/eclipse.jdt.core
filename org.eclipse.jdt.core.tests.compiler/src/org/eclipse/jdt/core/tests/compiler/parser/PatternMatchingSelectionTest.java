@@ -29,7 +29,7 @@ public class PatternMatchingSelectionTest extends AbstractSelectionTest {
 	public PatternMatchingSelectionTest(String testName) {
 		super(testName);
 	}
-	public void test001() throws JavaModelException {
+	public void test001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String string =  "public class X {\n"
 				+ "    protected Object x_ = \"FIELD X\";\n"
 				+ "    @SuppressWarnings(\"preview\")\n"
@@ -42,7 +42,7 @@ public class PatternMatchingSelectionTest extends AbstractSelectionTest {
 
 		String selection = "x_";
 		String selectKey = "<SelectOnName:";
-		String expectedSelection = selectKey + selection + ">";
+		String expectedSelection = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		String selectionIdentifier = "x_";
 		String expectedUnitDisplayString =
@@ -64,7 +64,7 @@ public class PatternMatchingSelectionTest extends AbstractSelectionTest {
 		checkMethodParse(string.toCharArray(), selectionStart, selectionEnd, expectedSelection, expectedUnitDisplayString,
 				selectionIdentifier, expectedReplacedSource, testName);
 	}
-	public void test002() throws JavaModelException {
+	public void test002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String string =  "public class X {\n"
 				+ "    protected Object x_ = \"FIELD X\";\n"
 				+ "    @SuppressWarnings(\"preview\")\n"
@@ -77,7 +77,7 @@ public class PatternMatchingSelectionTest extends AbstractSelectionTest {
 
 		String selection = "y_";
 		String selectKey = "<SelectOnName:";
-		String expectedSelection = selectKey + selection + ">";
+		String expectedSelection = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		String selectionIdentifier = "y_";
 		String expectedUnitDisplayString =
@@ -103,7 +103,7 @@ public class PatternMatchingSelectionTest extends AbstractSelectionTest {
 		checkMethodParse(string.toCharArray(), selectionStart, selectionEnd, expectedSelection, expectedUnitDisplayString,
 				selectionIdentifier, expectedReplacedSource, testName);
 	}
-	public void test003() throws JavaModelException {
+	public void test003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String string =  "public class X {\n"
 				+ "    protected Object x_ = \"FIELD X\";\n"
 				+ "    @SuppressWarnings(\"preview\")\n"
@@ -114,7 +114,7 @@ public class PatternMatchingSelectionTest extends AbstractSelectionTest {
 
 		String selection = "y_";
 		String selectKey = "<SelectOnName:";
-		String expectedSelection = selectKey + selection + ">";
+		String expectedSelection = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		String selectionIdentifier = "y_";
 		String expectedUnitDisplayString =
@@ -135,7 +135,7 @@ public class PatternMatchingSelectionTest extends AbstractSelectionTest {
 		checkMethodParse(string.toCharArray(), selectionStart, selectionEnd, expectedSelection, expectedUnitDisplayString,
 				selectionIdentifier, expectedReplacedSource, testName);
 	}
-	public void test004() throws JavaModelException {
+	public void test004() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String string =  "public class X {\n"
 				+ "    @SuppressWarnings(\"preview\")\n"
 				+ "	   public void f(Object obj, boolean b) {\n"
@@ -145,7 +145,7 @@ public class PatternMatchingSelectionTest extends AbstractSelectionTest {
 
 		String selection = "y_";
 		String selectKey = "<SelectionOnLocalName:String ";
-		String expectedSelection = selectKey + selection + ">;";
+		String expectedSelection = selectKey + selection + ">;"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		String selectionIdentifier = "y_";
 		String expectedUnitDisplayString =
@@ -167,7 +167,7 @@ public class PatternMatchingSelectionTest extends AbstractSelectionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/769
 	// Open Declaration(F3) broken in pattern instanceof #769
-	public void testGH769() throws JavaModelException {
+	public void testGH769() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"import java.util.Random;\n" +
 				"public class TestBug {\n" +
@@ -188,7 +188,7 @@ public class PatternMatchingSelectionTest extends AbstractSelectionTest {
 
 		String selection = "String";
 		String selectKey = "<SelectOnType:";
-		String expectedCompletionNodeToString = selectKey + selection + ">";
+		String expectedCompletionNodeToString = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		String completionIdentifier = "String";
 		String expectedUnitDisplayString =
@@ -231,7 +231,7 @@ public class PatternMatchingSelectionTest extends AbstractSelectionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1568
 	// Current text selection cannot be opened in an editor #1568
-	public void testGH1568() {
+	public void testGH1568() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK17)
 			return;
 		String string =  "@SuppressWarnings(\"preview\")\n"
@@ -250,7 +250,7 @@ public class PatternMatchingSelectionTest extends AbstractSelectionTest {
 
 		String selection = "x_";
 		String selectKey = "<SelectOnName:";
-		String expectedSelection = selectKey + selection + ">";
+		String expectedSelection = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		String selectionIdentifier = "x_";
 		String expectedUnitDisplayString =

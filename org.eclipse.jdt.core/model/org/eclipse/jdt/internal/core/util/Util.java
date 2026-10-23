@@ -159,7 +159,7 @@ public class Util {
 	private static final char[] INIT = "<init>".toCharArray(); //$NON-NLS-1$
 
 	private static final String TASK_PRIORITIES_PROBLEM = "TASK_PRIORITIES_PB"; //$NON-NLS-1$
-	private static List fgRepeatedMessages= new ArrayList(5);
+	private static List fgRepeatedMessages= new ArrayList(5); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 	private Util() {
 		// cannot be instantiated
@@ -220,12 +220,12 @@ public class Util {
 	 * Returns the index of the character immediately after the signature if valid,
 	 * or -1 if not valid.
 	 */
-	private static int checkTypeSignature(String sig, int start, int end, boolean allowVoid) {
+	private static int checkTypeSignature(String sig, int start, int end, boolean allowVoid) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (start >= end) return -1;
 		int i = start;
 		char c = sig.charAt(i++);
 		int nestingDepth = 0;
-		while (c == '[') {
+		while (c == '[') { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			++nestingDepth;
 			if (i >= end) return -1;
 			c = sig.charAt(i++);
@@ -270,7 +270,7 @@ public class Util {
 	 * Returns {@code >0} if a byte in a is greater than the corresponding byte in b, or if a is longer, or if b is null.
 	 * Returns {@code 0} if they are equal or both null.
 	 */
-	public static int compare(byte[] a, byte[] b) {
+	public static int compare(byte[] a, byte[] b) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (a == b)
 			return 0;
 		if (a == null)
@@ -278,7 +278,7 @@ public class Util {
 		if (b == null)
 			return 1;
 		int len = Math.min(a.length, b.length);
-		for (int i = 0; i < len; ++i) {
+		for (int i = 0; i < len; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int diff = a[i] - b[i];
 			if (diff != 0)
 				return diff;
@@ -305,7 +305,7 @@ public class Util {
 		int len2= str2.length;
 		int n= Math.min(len1, len2);
 		int i= 0;
-		while (n-- != 0) {
+		while (n-- != 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char c1= str1[i];
 			char c2= str2[i++];
 			if (c1 != c2) {
@@ -317,17 +317,17 @@ public class Util {
 	/**
 	 * Concatenate a String[] compound name to a continuous char[].
 	 */
-	public static char[] concatCompoundNameToCharArray(String[] compoundName) {
+	public static char[] concatCompoundNameToCharArray(String[] compoundName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (compoundName == null) return null;
 		int length = compoundName.length;
 		if (length == 0) return new char[0];
 		int size = 0;
-		for (int i=0; i<length; i++) {
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			size += compoundName[i].length();
 		}
 		char[] compoundChars = new char[size+length-1];
 		int pos = 0;
-		for (int i=0; i<length; i++) {
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String name = compoundName[i];
 			if (i > 0) compoundChars[pos++] = '.';
 			int nameLength = name.length();
@@ -337,15 +337,15 @@ public class Util {
 		return compoundChars;
 	}
 	public static String concatenateName(String name1, String name2, char separator) {
-		StringBuilder buf= new StringBuilder();
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		if (name1 != null && name1.length() > 0) {
-			buf.append(name1);
+			buf.append(name1); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (name2 != null && name2.length() > 0) {
 			if (buf.length() > 0) {
-				buf.append(separator);
+				buf.append(separator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buf.append(name2);
+			buf.append(name2); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return buf.toString();
 	}
@@ -373,11 +373,11 @@ public class Util {
 	 * @return the concatenation of the given array parts using the given separator between each part
 	 */
 	public static final String concatWith(String[] array, char separator) {
-		StringBuilder buffer = new StringBuilder();
-		for (int i = 0, length = array.length; i < length; i++) {
-			buffer.append(array[i]);
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0, length = array.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(array[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (i < length - 1)
-				buffer.append(separator);
+				buffer.append(separator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return buffer.toString();
 	}
@@ -423,12 +423,12 @@ public class Util {
 
 		if (array == null || array.length == 0) return name;
 		if (name == null || name.length() == 0) return concatWith(array, separator);
-		StringBuilder buffer = new StringBuilder();
-		for (String s : array) {
-			buffer.append(s);
-			buffer.append(separator);
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (String s : array) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(s); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(separator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		buffer.append(name);
+		buffer.append(name); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return buffer.toString();
 
 	}
@@ -491,7 +491,7 @@ public class Util {
 	 * Returns true iff str.toLowerCase().endsWith(end.toLowerCase())
 	 * implementation is not creating extra strings.
 	 */
-	public final static boolean endsWithIgnoreCase(String str, String end) {
+	public final static boolean endsWithIgnoreCase(String str, String end) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		int strLength = str == null ? 0 : str.length();
 		int endLength = end == null ? 0 : end.length();
@@ -502,7 +502,7 @@ public class Util {
 
 		// return false if any character of the end are
 		// not the same in lower case.
-		for(int i = 1 ; i <= endLength; i++){
+		for(int i = 1 ; i <= endLength; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(ScannerHelper.toLowerCase(end.charAt(endLength - i)) != ScannerHelper.toLowerCase(str.charAt(strLength - i)))
 				return false;
 		}
@@ -518,7 +518,7 @@ public class Util {
 	public static boolean equalArrays(Object[] a, Object[] b, int len) {
 		if (a == b)	return true;
 		if (a.length < len || b.length < len) return false;
-		for (int i = 0; i < len; ++i) {
+		for (int i = 0; i < len; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (a[i] == null) {
 				if (b[i] != null) return false;
 			} else {
@@ -544,7 +544,7 @@ public class Util {
 		int len = a.length;
 		if (len != b.length)
 			return false;
-		for (int i = 0; i < len; ++i) {
+		for (int i = 0; i < len; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (a[i] != b[i])
 				return false;
 		}
@@ -567,7 +567,7 @@ public class Util {
 		if (len != b.length) return false;
 		// walk array from end to beginning as this optimizes package name cases
 		// where the first part is always the same (e.g. org.eclipse.jdt)
-		for (int i = len-1; i >= 0; i--) {
+		for (int i = len-1; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (a[i] == null) {
 				if (b[i] != null) return false;
 			} else {
@@ -596,7 +596,7 @@ public class Util {
 			a = sortCopy(a);
 			b = sortCopy(b);
 		}
-		for (int i = 0; i < len; ++i) {
+		for (int i = 0; i < len; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!a[i].equals(b[i])) return false;
 		}
 		return true;
@@ -621,7 +621,7 @@ public class Util {
 			a = sortCopy(a);
 			b = sortCopy(b);
 		}
-		for (int i = 0; i < len; ++i) {
+		for (int i = 0; i < len; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!a[i].equals(b[i])) return false;
 		}
 		return true;
@@ -649,21 +649,21 @@ public class Util {
 	 * of the file name.
 	 * Returns false if it is not a java like file name.
 	 */
-	public static boolean equalsIgnoreJavaLikeExtension(String fileName, String string) {
+	public static boolean equalsIgnoreJavaLikeExtension(String fileName, String string) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int fileNameLength = fileName.length();
 		int stringLength = string.length();
 		if (fileNameLength < stringLength) return false;
-		for (int i = 0; i < stringLength; i ++) {
+		for (int i = 0; i < stringLength; i ++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (fileName.charAt(i) != string.charAt(i)) {
 				return false;
 			}
 		}
 		char[][] javaLikeExtensions = getJavaLikeExtensions();
-		suffixes: for (char[] suffix : javaLikeExtensions) {
+		suffixes: for (char[] suffix : javaLikeExtensions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int extensionStart = stringLength+1;
 			if (extensionStart + suffix.length != fileNameLength) continue;
 			if (fileName.charAt(stringLength) != '.') continue;
-			for (int j = extensionStart; j < fileNameLength; j++) {
+			for (int j = extensionStart; j < fileNameLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (fileName.charAt(j) != suffix[j-extensionStart])
 					continue suffixes;
 			}
@@ -685,7 +685,7 @@ public class Util {
 	/**
 	 * Extracts the parameter types from a method signature.
 	 */
-	public static String[] extractParameterTypes(char[] sig) {
+	public static String[] extractParameterTypes(char[] sig) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int count = getParameterCount(sig);
 		String[] result = new String[count];
 		if (count == 0)
@@ -694,7 +694,7 @@ public class Util {
 		count = 0;
 		int len = sig.length;
 		int start = i;
-		for (;;) {
+		for (;;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (i == len)
 				break;
 			char c = sig[i];
@@ -728,7 +728,7 @@ public class Util {
 	private static IFile findFirstClassFile(IFolder folder) {
 		try {
 			IResource[] members = folder.members();
-			for (IResource member : members) {
+			for (IResource member : members) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (member.getType() == IResource.FOLDER) {
 					return findFirstClassFile((IFolder)member);
 				} else if (isClassFileName(member.getName())) {
@@ -752,7 +752,7 @@ public class Util {
 		int length = text.length;
 		if (length > 0) {
 			char nextChar = text[0];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				char currentChar = nextChar;
 				nextChar = i < length-1 ? text[i+1] : ' ';
 				switch (currentChar) {
@@ -767,7 +767,7 @@ public class Util {
 
 	public static IClassFileAttribute getAttribute(IClassFileReader classFileReader, char[] attributeName) {
 		IClassFileAttribute[] attributes = classFileReader.getAttributes();
-		for (IClassFileAttribute attribute : attributes) {
+		for (IClassFileAttribute attribute : attributes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (CharOperation.equals(attribute.getAttributeName(), attributeName)) {
 				return attribute;
 			}
@@ -777,7 +777,7 @@ public class Util {
 
 	public static IClassFileAttribute getAttribute(ICodeAttribute codeAttribute, char[] attributeName) {
 		IClassFileAttribute[] attributes = codeAttribute.getAttributes();
-		for (IClassFileAttribute attribute : attributes) {
+		for (IClassFileAttribute attribute : attributes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (CharOperation.equals(attribute.getAttributeName(), attributeName)) {
 				return attribute;
 			}
@@ -787,7 +787,7 @@ public class Util {
 
 	public static IClassFileAttribute getAttribute(IFieldInfo fieldInfo, char[] attributeName) {
 		IClassFileAttribute[] attributes = fieldInfo.getAttributes();
-		for (IClassFileAttribute attribute : attributes) {
+		for (IClassFileAttribute attribute : attributes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (CharOperation.equals(attribute.getAttributeName(), attributeName)) {
 				return attribute;
 			}
@@ -796,7 +796,7 @@ public class Util {
 	}
 	public static IClassFileAttribute getAttribute(IComponentInfo componentInfo, char[] attributeName) {
 		IClassFileAttribute[] attributes = componentInfo.getAttributes();
-		for (IClassFileAttribute attribute : attributes) {
+		for (IClassFileAttribute attribute : attributes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (CharOperation.equals(attribute.getAttributeName(), attributeName)) {
 				return attribute;
 			}
@@ -806,7 +806,7 @@ public class Util {
 
 	public static IClassFileAttribute getAttribute(IMethodInfo methodInfo, char[] attributeName) {
 		IClassFileAttribute[] attributes = methodInfo.getAttributes();
-		for (IClassFileAttribute attribute : attributes) {
+		for (IClassFileAttribute attribute : attributes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (CharOperation.equals(attribute.getAttributeName(), attributeName)) {
 				return attribute;
 			}
@@ -829,7 +829,7 @@ public class Util {
 		return pkg.getClassFile(new String(fileName, start = pkgEnd + 1, fileName.length - start));
 	}
 
-	private static ICompilationUnit getCompilationUnit(char[] fileName, WorkingCopyOwner workingCopyOwner) {
+	private static ICompilationUnit getCompilationUnit(char[] fileName, WorkingCopyOwner workingCopyOwner) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] slashSeparatedFileName = CharOperation.replaceOnCopy(fileName, File.separatorChar, '/');
 		int pkgEnd = CharOperation.lastIndexOf('/', slashSeparatedFileName); // pkgEnd is exclusive
 		if (pkgEnd == -1)
@@ -876,15 +876,15 @@ public class Util {
 		return JAVA_DERIVED_EXTENSIONS;
 	}
 
-	private static char[][] getJavaRelatedExtensions(String contentTypeId){
+	private static char[][] getJavaRelatedExtensions(String contentTypeId){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IContentType javaContentType = Platform.getContentTypeManager().getContentType(contentTypeId);
-		HashSet fileExtensions = new HashSet();
+		HashSet fileExtensions = new HashSet(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		IContentType[] contentTypes = Platform.getContentTypeManager().getAllContentTypes();
-		for (IContentType contentType : contentTypes) {
+		for (IContentType contentType : contentTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (contentType.isKindOf(javaContentType)) { // note that javaContentType.isKindOf(javaContentType) == true
 				String[] fileExtension = contentType.getFileSpecs(IContentType.FILE_EXTENSION_SPEC);
 				if (fileExtension != null) {
-					for (String extension : fileExtension) {
+					for (String extension : fileExtension) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (!SuffixConstants.EXTENSION_java.equals(extension)) {
 							fileExtensions.add(extension);
 						}
@@ -905,7 +905,7 @@ public class Util {
 			index = 0;
 		}
 		Iterator iterator = fileExtensions.iterator();
-		while (iterator.hasNext()) {
+		while (iterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String fileExtension = (String) iterator.next();
 			extensions[index++] = fileExtension.toCharArray();
 		}
@@ -921,7 +921,7 @@ public class Util {
 	 * </ul>
 	 * Returns the jdk level
 	 */
-	public static long getJdkLevel(Object targetLibrary) {
+	public static long getJdkLevel(Object targetLibrary) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			ClassFileReader reader = null;
 			if (targetLibrary instanceof IFolder) {
@@ -946,7 +946,7 @@ public class Util {
 							return ClassFileConstants.JDK9;
 						} else {
 							jar = JavaModelManager.getJavaModelManager().getZipFile(path);
-							for (Enumeration<? extends ZipEntry> e= jar.entries(); e.hasMoreElements();) {
+							for (Enumeration<? extends ZipEntry> e= jar.entries(); e.hasMoreElements();) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								ZipEntry member= e.nextElement();
 								String entryName= member.getName();
 								// Ignore class files in META-INF/versions as they are provided for higher JLS and not
@@ -998,7 +998,7 @@ public class Util {
 	 * If the project is null, returns the line separator for the workspace.
 	 * If still null, return the system line separator.
 	 */
-	public static String getLineSeparator(String text, IJavaProject project) {
+	public static String getLineSeparator(String text, IJavaProject project) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String lineSeparator = null;
 
 		// line delimiter in given text
@@ -1049,7 +1049,7 @@ public class Util {
 		return lineSeparator;
 	}
 
-	public static IPackageFragment getPackageFragment(char[] fileName, int pkgEnd, int jarSeparator) {
+	public static IPackageFragment getPackageFragment(char[] fileName, int pkgEnd, int jarSeparator) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (jarSeparator != -1) {
 			String jarMemento = new String(fileName, 0, jarSeparator);
 			PackageFragmentRoot root = (PackageFragmentRoot) JavaCore.create(jarMemento);
@@ -1081,12 +1081,12 @@ public class Util {
 	/**
 	 * Returns the number of parameter types in a method signature.
 	 */
-	public static int getParameterCount(char[] sig) {
+	public static int getParameterCount(char[] sig) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int i = CharOperation.indexOf('(', sig) + 1;
 		Assert.isTrue(i != 0);
 		int count = 0;
 		int len = sig.length;
-		for (;;) {
+		for (;;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (i == len)
 				break;
 			char c = sig[i];
@@ -1110,19 +1110,19 @@ public class Util {
 	/**
 	 * Put all the arguments in one String.
 	 */
-	public static String getProblemArgumentsForMarker(String[] arguments){
-		StringBuilder args = new StringBuilder(10);
+	public static String getProblemArgumentsForMarker(String[] arguments){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder args = new StringBuilder(10); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
-		args.append(arguments.length);
-		args.append(':');
+		args.append(arguments.length); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		args.append(':'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 
-		for (int j = 0; j < arguments.length; j++) {
+		for (int j = 0; j < arguments.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(j != 0)
-				args.append(ARGUMENTS_DELIMITER);
+				args.append(ARGUMENTS_DELIMITER); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 			if(arguments[j].length() == 0) {
-				args.append(EMPTY_ARGUMENT);
+				args.append(EMPTY_ARGUMENT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
 				encodeArgument(arguments[j], args);
 			}
@@ -1140,14 +1140,14 @@ public class Util {
 	 * @param buffer the buffer in which the encoded argument is stored
 	 */
 	private static void encodeArgument(String argument, StringBuilder buffer) {
-		for (int i = 0, max = argument.length(); i < max; i++) {
+		for (int i = 0, max = argument.length(); i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char charAt = argument.charAt(i);
 			switch(charAt) {
 				case ARGUMENTS_DELIMITER :
-					buffer.append(ARGUMENTS_DELIMITER).append(ARGUMENTS_DELIMITER);
+					buffer.append(ARGUMENTS_DELIMITER).append(ARGUMENTS_DELIMITER); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				default:
-					buffer.append(charAt);
+					buffer.append(charAt); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 	}
@@ -1155,7 +1155,7 @@ public class Util {
 	/**
 	 * Separate all the arguments of a String made by getProblemArgumentsForMarker
 	 */
-	public static String[] getProblemArgumentsFromMarker(String argumentsString){
+	public static String[] getProblemArgumentsFromMarker(String argumentsString){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (argumentsString == null) {
 			return null;
 		}
@@ -1175,7 +1175,7 @@ public class Util {
 		return decodeArgumentString(numberOfArg, argumentsString);
 	}
 
-	private static String[] decodeArgumentString(int length, String argumentsString) {
+	private static String[] decodeArgumentString(int length, String argumentsString) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// decode the argumentString knowing that '#' is doubled if part of the argument value
 		if (length == 0) {
 			if (argumentsString.length() != 0) {
@@ -1185,8 +1185,8 @@ public class Util {
 		}
 		String[] result = new String[length];
 		int count = 0;
-		StringBuilder buffer = new StringBuilder();
-		for (int i = 0, max = argumentsString.length(); i < max; i++) {
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0, max = argumentsString.length(); i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char current = argumentsString.charAt(i);
 			switch(current) {
 				case ARGUMENTS_DELIMITER :
@@ -1198,7 +1198,7 @@ public class Util {
 					}
 					char next = argumentsString.charAt(i + 1);
 					if (next == ARGUMENTS_DELIMITER) {
-						buffer.append(ARGUMENTS_DELIMITER);
+						buffer.append(ARGUMENTS_DELIMITER); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						i++; // proceed with the next character
 					} else {
 						// this means the current argument is over
@@ -1215,7 +1215,7 @@ public class Util {
 					}
 					break;
 				default :
-					buffer.append(current);
+					buffer.append(current); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		// process last argument
@@ -1277,7 +1277,7 @@ public class Util {
 				.map(Util::getSignature)
 				.toArray(String[]::new));
 		}
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		getFullyQualifiedName(type, buffer);
 		return Signature.createTypeSignature(buffer.toString(), false/*not resolved in source*/);
 	}
@@ -1285,7 +1285,7 @@ public class Util {
 	/*
 	 * Returns the source attachment property for this package fragment root's path
 	 */
-	public static String getSourceAttachmentProperty(IPath path) throws JavaModelException {
+	public static String getSourceAttachmentProperty(IPath path) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map rootPathToAttachments = JavaModelManager.getJavaModelManager().rootPathToAttachments;
 		String property = (String) rootPathToAttachments.get(path);
 		if (property == null) {
@@ -1307,7 +1307,7 @@ public class Util {
 	}
 
 	private static QualifiedName getSourceAttachmentPropertyName(IPath path) {
-		return new QualifiedName(JavaCore.PLUGIN_ID, "sourceattachment: " + path.toOSString()); //$NON-NLS-1$
+		return new QualifiedName(JavaCore.PLUGIN_ID, "sourceattachment: " + path.toOSString()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public static void setSourceAttachmentProperty(IPath path, String property) {
@@ -1340,59 +1340,59 @@ public class Util {
 	/*
 	 * Appends to the given buffer the fully qualified name (as it appears in the source) of the given type
 	 */
-	public static void getFullyQualifiedName(Type type, StringBuilder buffer) {
+	public static void getFullyQualifiedName(Type type, StringBuilder buffer) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch (type.getNodeType()) {
 			case ASTNode.ARRAY_TYPE:
 				ArrayType arrayType = (ArrayType) type;
 				getFullyQualifiedName(arrayType.getElementType(), buffer);
-				for (int i = 0, length = arrayType.getDimensions(); i < length; i++) {
-					buffer.append('[');
-					buffer.append(']');
+				for (int i = 0, length = arrayType.getDimensions(); i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					buffer.append('['); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				break;
 			case ASTNode.PARAMETERIZED_TYPE:
 				ParameterizedType parameterizedType = (ParameterizedType) type;
 				getFullyQualifiedName(parameterizedType.getType(), buffer);
-				buffer.append('<');
+				buffer.append('<'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				Iterator iterator = parameterizedType.typeArguments().iterator();
 				boolean isFirst = true;
-				while (iterator.hasNext()) {
+				while (iterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (!isFirst)
-						buffer.append(',');
+						buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					else
 						isFirst = false;
 					Type typeArgument = (Type) iterator.next();
 					getFullyQualifiedName(typeArgument, buffer);
 				}
-				buffer.append('>');
+				buffer.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case ASTNode.PRIMITIVE_TYPE:
-				buffer.append(((PrimitiveType) type).getPrimitiveTypeCode().toString());
+				buffer.append(((PrimitiveType) type).getPrimitiveTypeCode().toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case ASTNode.QUALIFIED_TYPE:
 				QualifiedType qualifiedType = (QualifiedType)type;
 				getFullyQualifiedName(qualifiedType.getQualifier(), buffer);
-				buffer.append("."); //$NON-NLS-1$
-				buffer.append(qualifiedType.getName().getFullyQualifiedName());
+				buffer.append("."); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(qualifiedType.getName().getFullyQualifiedName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case ASTNode.SIMPLE_TYPE:
-				buffer.append(((SimpleType) type).getName().getFullyQualifiedName());
+				buffer.append(((SimpleType) type).getName().getFullyQualifiedName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case ASTNode.WILDCARD_TYPE:
-				buffer.append('?');
+				buffer.append('?'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				WildcardType wildcardType = (WildcardType) type;
 				Type bound = wildcardType.getBound();
 				if (bound == null) return;
 				if (wildcardType.isUpperBound()) {
-					buffer.append(" extends "); //$NON-NLS-1$
+					buffer.append(" extends "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else {
-					buffer.append(" super "); //$NON-NLS-1$
+					buffer.append(" super "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				getFullyQualifiedName(bound, buffer);
 				break;
 			case ASTNode.NAME_QUALIFIED_TYPE:
 				NameQualifiedType nameQualifiedType = (NameQualifiedType)type;
-				buffer.append(nameQualifiedType.getQualifier().toString() + '.' + nameQualifiedType.getName().toString());
+				buffer.append(nameQualifiedType.getQualifier().toString() + '.' + nameQualifiedType.getName().toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 		}
 	}
@@ -1402,7 +1402,7 @@ public class Util {
 	 */
 	public static String[] getTrimmedSimpleNames(String name) {
 		String[] result = Signature.getSimpleNames(name);
-		for (int i = 0, length = result.length; i < length; i++) {
+		for (int i = 0, length = result.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			result[i] = result[i].trim();
 		}
 		return result;
@@ -1435,12 +1435,12 @@ public class Util {
 	/**
 	 * Returns the IInitializer that contains the given local variable in the given type
 	 */
-	public static JavaElement getUnresolvedJavaElement(int localSourceStart, int localSourceEnd, JavaElement type) {
+	public static JavaElement getUnresolvedJavaElement(int localSourceStart, int localSourceEnd, JavaElement type) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			if (!(type instanceof IType))
 				return null;
 			IInitializer[] initializers = ((IType) type).getInitializers();
-			for (IInitializer initializer : initializers) {
+			for (IInitializer initializer : initializers) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ISourceRange sourceRange = initializer.getSourceRange();
 				if (sourceRange != null) {
 					int initializerStart = sourceRange.getOffset();
@@ -1459,7 +1459,7 @@ public class Util {
 	/**
 	 * Return the java element corresponding to the given compiler binding.
 	 */
-	public static JavaElement getUnresolvedJavaElement(MethodBinding methodBinding, WorkingCopyOwner workingCopyOwner, BindingsToNodesMap bindingsToNodes) {
+	public static JavaElement getUnresolvedJavaElement(MethodBinding methodBinding, WorkingCopyOwner workingCopyOwner, BindingsToNodesMap bindingsToNodes) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		JavaElement unresolvedJavaElement = getUnresolvedJavaElement(methodBinding.declaringClass, workingCopyOwner, bindingsToNodes);
 		if (unresolvedJavaElement == null || unresolvedJavaElement.getElementType() != IJavaElement.TYPE) {
 			return null;
@@ -1480,7 +1480,7 @@ public class Util {
 				String[] parameterSignatures;
 				if (arguments != null) {
 					parameterSignatures = new String[arguments.length];
-					for (int i = 0; i < arguments.length; i++) {
+					for (int i = 0; i < arguments.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						Argument argument = arguments[i];
 						TypeReference typeReference = argument.type;
 						int arrayDim = typeReference.dimensions();
@@ -1514,7 +1514,7 @@ public class Util {
 			String[] parameterSignatures = new String[declaringIndex + length];
 			if (isInnerBinaryTypeConstructor)
 				parameterSignatures[0] = new String(enclosingType.genericTypeSignature()).replace('/', '.');
-			for (int i = 0;  i < length; i++) {
+			for (int i = 0;  i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				char[] signature = parameters[i].genericTypeSignature();
 				if (isBinary) {
 					signature = CharOperation.replaceOnCopy(signature, '/', '.');
@@ -1545,7 +1545,7 @@ public class Util {
 	/**
 	 * Return the java element corresponding to the given compiler binding.
 	 */
-	public static JavaElement getUnresolvedJavaElement(TypeBinding typeBinding, WorkingCopyOwner workingCopyOwner, BindingsToNodesMap bindingsToNodes) {
+	public static JavaElement getUnresolvedJavaElement(TypeBinding typeBinding, WorkingCopyOwner workingCopyOwner, BindingsToNodesMap bindingsToNodes) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (typeBinding == null)
 			return null;
 		switch (typeBinding.kind()) {
@@ -1585,7 +1585,7 @@ public class Util {
 				}
 				pkgEnd = CharOperation.lastIndexOf('/', constantPoolName);
 				char[] classFileName = CharOperation.subarray(constantPoolName, pkgEnd+1, constantPoolName.length);
-				ClassFile classFile = (ClassFile) pkg.getClassFile(new String(classFileName) + SuffixConstants.SUFFIX_STRING_class);
+				ClassFile classFile = (ClassFile) pkg.getClassFile(new String(classFileName) + SuffixConstants.SUFFIX_STRING_class); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return (JavaElement) classFile.getType();
 			}
 			ICompilationUnit cu = getCompilationUnit(fileName, workingCopyOwner);
@@ -1640,7 +1640,7 @@ public class Util {
 	public static int indexOfEnclosingPath(IPath checkedPath, IPath[] paths, int pathCount) {
 
 	    int bestMatch = -1, bestLength = -1;
-		for (int i = 0; i < pathCount; i++){
+		for (int i = 0; i < pathCount; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (paths[i].equals(checkedPath)) continue;
 			if (paths[i].isPrefixOf(checkedPath)) {
 			    int currentLength = paths[i].segmentCount();
@@ -1673,13 +1673,13 @@ public class Util {
 
 	private static int indexOfJavaRelatedExtension(String fileName, char[][] javaRelatedExtensions) {
 		int fileNameLength = fileName.length();
-		extensions: for (char[] extension : javaRelatedExtensions) {
+		extensions: for (char[] extension : javaRelatedExtensions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int extensionLength = extension.length;
 			int extensionStart = fileNameLength - extensionLength;
 			int dotIndex = extensionStart - 1;
 			if (dotIndex < 0) continue;
 			if (fileName.charAt(dotIndex) != '.') continue;
-			for (int j = 0; j < extensionLength; j++) {
+			for (int j = 0; j < extensionLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (fileName.charAt(extensionStart + j) != extension[j])
 					continue extensions;
 			}
@@ -1693,7 +1693,7 @@ public class Util {
 	 */
 	public static int indexOfMatchingPath(IPath checkedPath, IPath[] paths, int pathCount) {
 
-		for (int i = 0; i < pathCount; i++){
+		for (int i = 0; i < pathCount; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (paths[i].equals(checkedPath)) return i;
 		}
 		return -1;
@@ -1704,7 +1704,7 @@ public class Util {
 	 */
 	public static int indexOfNestedPath(IPath checkedPath, IPath[] paths, int pathCount) {
 
-		for (int i = 0; i < pathCount; i++){
+		for (int i = 0; i < pathCount; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (checkedPath.equals(paths[i])) continue;
 			if (checkedPath.isPrefixOf(paths[i])) return i;
 		}
@@ -1744,7 +1744,7 @@ public class Util {
 	 * Returns whether the given java element is exluded from its root's classpath.
 	 * It doesn't check whether the root itself is on the classpath or not
 	 */
-	public static final boolean isExcluded(IJavaElement element) {
+	public static final boolean isExcluded(IJavaElement element) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int elementType = element.getElementType();
 		switch (elementType) {
 			case IJavaElement.JAVA_MODEL:
@@ -1859,7 +1859,7 @@ public class Util {
 		char c = sig.charAt(i++);
 		if (c != '(') return false;
 		if (i >= len) return false;
-		while (sig.charAt(i) != ')') {
+		while (sig.charAt(i) != ')') { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// Void is not allowed as a parameter type.
 			i = checkTypeSignature(sig, i, len, false);
 			if (i == -1) return false;
@@ -1889,7 +1889,7 @@ public class Util {
 			// (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=103466)
 			return binaryTypeName;
 		int nameStart = lastDollar+1;
-		while (nameStart < end && Character.isDigit(binaryTypeName.charAt(nameStart)))
+		while (nameStart < end && Character.isDigit(binaryTypeName.charAt(nameStart))) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			nameStart++;
 		return binaryTypeName.substring(nameStart, end);
 	}
@@ -1981,14 +1981,14 @@ public class Util {
 	 * Normalizes the cariage returns in the given text.
 	 * They are all changed  to use the given buffer's line separator.
 	 */
-	public static char[] normalizeCRs(char[] text, char[] buffer) {
+	public static char[] normalizeCRs(char[] text, char[] buffer) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		CharArrayBuffer result = new CharArrayBuffer();
 		int lineStart = 0;
 		int length = text.length;
 		if (length == 0) return text;
 		String lineSeparator = getLineSeparator(text, buffer);
 		char nextChar = text[0];
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char currentChar = nextChar;
 			nextChar = i < length-1 ? text[i+1] : ' ';
 			switch (currentChar) {
@@ -2053,15 +2053,15 @@ public class Util {
 	 * @param complianceLevel the compliance level
 	 */
 	public static String packageName(IPath pkgPath, String sourceLevel, String complianceLevel) {
-		StringBuilder pkgName = new StringBuilder(IPackageFragment.DEFAULT_PACKAGE_NAME);
-		for (int j = 0, max = pkgPath.segmentCount(); j < max; j++) {
+		StringBuilder pkgName = new StringBuilder(IPackageFragment.DEFAULT_PACKAGE_NAME); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int j = 0, max = pkgPath.segmentCount(); j < max; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String segment = pkgPath.segment(j);
 			if (!isValidFolderNameForPackage(segment, sourceLevel, complianceLevel)) {
 				return null;
 			}
-			pkgName.append(segment);
+			pkgName.append(segment); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (j < pkgPath.segmentCount() - 1) {
-				pkgName.append("." ); //$NON-NLS-1$
+				pkgName.append("." ); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		return pkgName.toString();
@@ -2073,7 +2073,7 @@ public class Util {
 	public static int prefixLength(char[] s1, char[] s2) {
 		int len= 0;
 		int max= Math.min(s1.length, s2.length);
-		for (int i= 0; i < max && s1[i] == s2[i]; ++i)
+		for (int i= 0; i < max && s1[i] == s2[i]; ++i) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			++len;
 		return len;
 	}
@@ -2083,19 +2083,19 @@ public class Util {
 	public static int prefixLength(String s1, String s2) {
 		int len= 0;
 		int max= Math.min(s1.length(), s2.length());
-		for (int i= 0; i < max && s1.charAt(i) == s2.charAt(i); ++i)
+		for (int i= 0; i < max && s1.charAt(i) == s2.charAt(i); ++i) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			++len;
 		return len;
 	}
-	private static void quickSort(char[][] list, int left, int right) {
+	private static void quickSort(char[][] list, int left, int right) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int original_left= left;
 		int original_right= right;
 		char[] mid= list[left + (right - left) / 2];
-		do {
-			while (compare(list[left], mid) < 0) {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			while (compare(list[left], mid) < 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				left++;
 			}
-			while (compare(mid, list[right]) < 0) {
+			while (compare(mid, list[right]) < 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				right--;
 			}
 			if (left <= right) {
@@ -2117,15 +2117,15 @@ public class Util {
 	/**
 	 * Sort the comparable objects in the given collection.
 	 */
-	private static void quickSort(Comparable[] sortedCollection, int left, int right) {
+	private static void quickSort(Comparable[] sortedCollection, int left, int right) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int original_left = left;
 		int original_right = right;
 		Comparable mid = sortedCollection[ left + (right - left) / 2];
-		do {
-			while (sortedCollection[left].compareTo(mid) < 0) {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			while (sortedCollection[left].compareTo(mid) < 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				left++;
 			}
-			while (mid.compareTo(sortedCollection[right]) < 0) {
+			while (mid.compareTo(sortedCollection[right]) < 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				right--;
 			}
 			if (left <= right) {
@@ -2143,15 +2143,15 @@ public class Util {
 			quickSort(sortedCollection, left, original_right);
 		}
 	}
-	private static void quickSort(int[] list, int left, int right) {
+	private static void quickSort(int[] list, int left, int right) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int original_left= left;
 		int original_right= right;
 		int mid= list[left + (right - left) / 2];
-		do {
-			while (list[left] < mid) {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			while (list[left] < mid) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				left++;
 			}
-			while (mid < list[right]) {
+			while (mid < list[right]) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				right--;
 			}
 			if (left <= right) {
@@ -2173,15 +2173,15 @@ public class Util {
 	/**
 	 * Sort the objects in the given collection using the given comparer.
 	 */
-	private static void quickSort(Object[] sortedCollection, int left, int right, Comparer comparer) {
+	private static void quickSort(Object[] sortedCollection, int left, int right, Comparer comparer) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int original_left = left;
 		int original_right = right;
 		Object mid = sortedCollection[ left + (right - left) / 2];
-		do {
-			while (comparer.compare(sortedCollection[left], mid) < 0) {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			while (comparer.compare(sortedCollection[left], mid) < 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				left++;
 			}
-			while (comparer.compare(mid, sortedCollection[right]) < 0) {
+			while (comparer.compare(mid, sortedCollection[right]) < 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				right--;
 			}
 			if (left <= right) {
@@ -2203,15 +2203,15 @@ public class Util {
 	/**
 	 * Sort the strings in the given collection.
 	 */
-	private static void quickSort(String[] sortedCollection, int left, int right) {
+	private static void quickSort(String[] sortedCollection, int left, int right) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int original_left = left;
 		int original_right = right;
 		String mid = sortedCollection[ left + (right - left) / 2];
-		do {
-			while (sortedCollection[left].compareTo(mid) < 0) {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			while (sortedCollection[left].compareTo(mid) < 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				left++;
 			}
-			while (mid.compareTo(sortedCollection[right]) < 0) {
+			while (mid.compareTo(sortedCollection[right]) < 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				right--;
 			}
 			if (left <= right) {
@@ -2234,7 +2234,7 @@ public class Util {
 	 * Returns the toString() of the given full path minus the first given number of segments.
 	 * The returned string is always a relative path (it has no leading slash)
 	 */
-	public static String relativePath(IPath fullPath, int skipSegmentCount) {
+	public static String relativePath(IPath fullPath, int skipSegmentCount) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		boolean hasTrailingSeparator = fullPath.hasTrailingSeparator();
 		String[] segments = fullPath.segments();
 
@@ -2242,7 +2242,7 @@ public class Util {
 		int length = 0;
 		int max = segments.length;
 		if (max > skipSegmentCount) {
-			for (int i1 = skipSegmentCount; i1 < max; i1++) {
+			for (int i1 = skipSegmentCount; i1 < max; i1++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				length += segments[i1].length();
 			}
 			//add the separator lengths
@@ -2256,7 +2256,7 @@ public class Util {
 		int len = segments.length - 1;
 		if (len >= skipSegmentCount) {
 			//append all but the last segment, with separators
-			for (int i = skipSegmentCount; i < len; i++) {
+			for (int i = skipSegmentCount; i < len; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int size = segments[i].length();
 				segments[i].getChars(0, size, result, offset);
 				offset += size;
@@ -2323,7 +2323,7 @@ public class Util {
 	 * @return a new array which is the split of the given string using the given divider
 	 * @throws ArrayIndexOutOfBoundsException if start is lower than 0 or end is greater than the array length
 	 */
-	public static final String[] splitOn(
+	public static final String[] splitOn( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char divider,
 		String string,
 		int start,
@@ -2333,12 +2333,12 @@ public class Util {
 			return CharOperation.NO_STRINGS;
 
 		int wordCount = 1;
-		for (int i = start; i < end; i++)
+		for (int i = start; i < end; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (string.charAt(i) == divider)
 				wordCount++;
 		String[] split = new String[wordCount];
 		int last = start, currentWord = 0;
-		for (int i = start; i < end; i++) {
+		for (int i = start; i < end; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (string.charAt(i) == divider) {
 				split[currentWord++] = string.substring(last, i);
 				last = i + 1;
@@ -2464,7 +2464,7 @@ public class Util {
 		int prefixLength = prefix.length;
 		int nameLength = compoundName.length;
 		if (prefixLength > nameLength) return false;
-		for (int i = 0; i < prefixLength - 1; i++) {
+		for (int i = 0; i < prefixLength - 1; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!compoundName[i].equalsIgnoreCase(prefix[i]))
 				return false;
 		}
@@ -2478,7 +2478,7 @@ public class Util {
 		int len = a.length;
 		if (len == 0) return CharOperation.NO_CHAR_CHAR;
 		char[][] result = new char[len][];
-		for (int i = 0; i < len; ++i) {
+		for (int i = 0; i < len; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			result[i] = a[i].toCharArray();
 		}
 		return result;
@@ -2487,18 +2487,18 @@ public class Util {
 	/**
 	 * Converts a String to char[][], where segments are separate by '.'.
 	 */
-	public static char[][] toCompoundChars(String s) {
+	public static char[][] toCompoundChars(String s) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int len = s.length();
 		if (len == 0) {
 			return CharOperation.NO_CHAR_CHAR;
 		}
 		int segCount = 1;
-		for (int off = s.indexOf('.'); off != -1; off = s.indexOf('.', off + 1)) {
+		for (int off = s.indexOf('.'); off != -1; off = s.indexOf('.', off + 1)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			++segCount;
 		}
 		char[][] segs = new char[segCount][];
 		int start = 0;
-		for (int i = 0; i < segCount; ++i) {
+		for (int i = 0; i < segCount; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int dot = s.indexOf('.', start);
 			int end = (dot == -1 ? s.length() : dot);
 			segs[i] = new char[end - start];
@@ -2525,10 +2525,10 @@ public class Util {
 	 * Converts a char[][] to String, where segments are separated by '.'.
 	 */
 	public static String toString(char[][] c) {
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0, max = c.length; i < max; ++i) {
-			if (i != 0) sb.append('.');
-			sb.append(c[i]);
+		StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0, max = c.length; i < max; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			if (i != 0) sb.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			sb.append(c[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return sb.toString();
 	}
@@ -2538,12 +2538,12 @@ public class Util {
 	 */
 	public static String toString(char[][] c, char[] d) {
 		if (c == null) return new String(d);
-		StringBuilder sb = new StringBuilder();
-		for (char[] n : c) {
-			sb.append(n);
-			sb.append('.');
+		StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (char[] n : c) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			sb.append(n); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			sb.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		sb.append(d);
+		sb.append(d); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return sb.toString();
 	}
 
@@ -2553,7 +2553,7 @@ public class Util {
 	public static String[] toStrings(char[][] a) {
 		int len = a.length;
 		String[] result = new String[len];
-		for (int i = 0; i < len; ++i) {
+		for (int i = 0; i < len; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			result[i] = new String(a[i]);
 		}
 		return result;
@@ -2562,7 +2562,7 @@ public class Util {
 		int length = signature.length;
 		if (length <= 1)
 			return signature;
-		StringBuilder buffer = new StringBuilder(length);
+		StringBuilder buffer = new StringBuilder(length); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		toUnresolvedTypeSignature(signature, 0, length, buffer);
 		int bufferLength = buffer.length();
 		char[] result = new char[bufferLength];
@@ -2570,33 +2570,33 @@ public class Util {
 		return result;
 	}
 
-	private static int toUnresolvedTypeSignature(char[] signature, int start, int length, StringBuilder buffer) {
+	private static int toUnresolvedTypeSignature(char[] signature, int start, int length, StringBuilder buffer) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (signature[start] == Signature.C_RESOLVED)
-			buffer.append(Signature.C_UNRESOLVED);
+			buffer.append(Signature.C_UNRESOLVED); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		else
-			buffer.append(signature[start]);
-		for (int i = start+1; i < length; i++) {
+			buffer.append(signature[start]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (int i = start+1; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char c = signature[i];
 			switch (c) {
 			case '/':
 			case Signature.C_DOLLAR:
-				buffer.append(Signature.C_DOT);
+				buffer.append(Signature.C_DOT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case Signature.C_GENERIC_START:
-				buffer.append(Signature.C_GENERIC_START);
+				buffer.append(Signature.C_GENERIC_START); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				i = toUnresolvedTypeSignature(signature, i+1, length, buffer);
 				break;
 			case Signature.C_GENERIC_END:
-				buffer.append(Signature.C_GENERIC_END);
+				buffer.append(Signature.C_GENERIC_END); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				return i;
 			default:
-				buffer.append(c);
+				buffer.append(c); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			}
 		}
 		return length;
 	}
-	private static void appendArrayTypeSignature(char[] string, int start, StringBuilder buffer, boolean compact) {
+	private static void appendArrayTypeSignature(char[] string, int start, StringBuilder buffer, boolean compact) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int length = string.length;
 		// need a minimum 2 char
 		if (start >= length - 1) {
@@ -2609,7 +2609,7 @@ public class Util {
 
 		int index = start;
 		c = string[++index];
-		while(c == Signature.C_ARRAY) {
+		while(c == Signature.C_ARRAY) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// need a minimum 2 char
 			if (index >= length - 1) {
 				throw newIllegalArgumentException(string, start);
@@ -2619,18 +2619,18 @@ public class Util {
 
 		appendTypeSignature(string, index, buffer, compact);
 
-		for(int i = 0, dims = index - start; i < dims; i++) {
-			buffer.append('[').append(']');
+		for(int i = 0, dims = index - start; i < dims; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append('[').append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
-	private static void appendClassTypeSignature(char[] string, int start, StringBuilder buffer, boolean compact) {
+	private static void appendClassTypeSignature(char[] string, int start, StringBuilder buffer, boolean compact) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char c = string[start];
 		if (c != Signature.C_RESOLVED) {
 			return;
 		}
 		int p = start + 1;
 		int checkpoint = buffer.length();
-		while (true) {
+		while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			c = string[p];
 			switch(c) {
 				case Signature.C_SEMICOLON :
@@ -2642,7 +2642,7 @@ public class Util {
 					if (compact) {
 						buffer.setLength(checkpoint);
 					} else {
-						buffer.append('.');
+						buffer.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 					break;
 				 case Signature.C_DOLLAR :
@@ -2652,15 +2652,15 @@ public class Util {
 					 * signature. This is true in most cases, but someone can define a
 					 * non-inner type name containing a '$'.
 					 */
-					buffer.append('.');
+					buffer.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				 	break;
 				 default :
-					buffer.append(c);
+					buffer.append(c); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			p++;
 		}
 	}
-	static void appendTypeSignature(char[] string, int start, StringBuilder buffer, boolean compact) {
+	static void appendTypeSignature(char[] string, int start, StringBuilder buffer, boolean compact) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char c = string[start];
 		switch (c) {
 			case Signature.C_ARRAY :
@@ -2671,45 +2671,45 @@ public class Util {
 				break;
 			case Signature.C_TYPE_VARIABLE :
 				int e = org.eclipse.jdt.internal.compiler.util.Util.scanTypeVariableSignature(string, start);
-				buffer.append(string, start + 1, e - start - 1);
+				buffer.append(string, start + 1, e - start - 1); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case Signature.C_BOOLEAN :
-				buffer.append(BOOLEAN);
+				buffer.append(BOOLEAN); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case Signature.C_BYTE :
-				buffer.append(BYTE);
+				buffer.append(BYTE); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case Signature.C_CHAR :
-				buffer.append(CHAR);
+				buffer.append(CHAR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case Signature.C_DOUBLE :
-				buffer.append(DOUBLE);
+				buffer.append(DOUBLE); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case Signature.C_FLOAT :
-				buffer.append(FLOAT);
+				buffer.append(FLOAT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case Signature.C_INT :
-				buffer.append(INT);
+				buffer.append(INT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case Signature.C_LONG :
-				buffer.append(LONG);
+				buffer.append(LONG); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case Signature.C_SHORT :
-				buffer.append(SHORT);
+				buffer.append(SHORT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case Signature.C_VOID :
-				buffer.append(VOID);
+				buffer.append(VOID); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 		}
 	}
-	public static String toString(char[] declaringClass, char[] methodName, char[] methodSignature, boolean includeReturnType, boolean compact) {
+	public static String toString(char[] declaringClass, char[] methodName, char[] methodSignature, boolean includeReturnType, boolean compact) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final boolean isConstructor = CharOperation.equals(methodName, INIT);
 		int firstParen = CharOperation.indexOf(Signature.C_PARAM_START, methodSignature);
 		if (firstParen == -1) {
 			return ""; //$NON-NLS-1$
 		}
 
-		StringBuilder buffer = new StringBuilder(methodSignature.length + 10);
+		StringBuilder buffer = new StringBuilder(methodSignature.length + 10); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
 		// decode declaring class name
 		// it can be either an array signature or a type signature
@@ -2724,34 +2724,34 @@ public class Util {
 			}
 			int lastIndexOfSlash = CharOperation.lastIndexOf('.', declaringClassSignature);
 			if (compact && lastIndexOfSlash != -1) {
-				buffer.append(declaringClassSignature, lastIndexOfSlash + 1, declaringClassSignature.length - lastIndexOfSlash - 1);
+				buffer.append(declaringClassSignature, lastIndexOfSlash + 1, declaringClassSignature.length - lastIndexOfSlash - 1); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				buffer.append(declaringClassSignature);
+				buffer.append(declaringClassSignature); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			if (!isConstructor) {
-				buffer.append('.');
+				buffer.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 
 		// selector
 		if (!isConstructor && methodName != null) {
-			buffer.append(methodName);
+			buffer.append(methodName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		// parameters
-		buffer.append('(');
+		buffer.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		char[][] pts = Signature.getParameterTypes(methodSignature);
-		for (int i = 0, max = pts.length; i < max; i++) {
+		for (int i = 0, max = pts.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			appendTypeSignature(pts[i], 0 , buffer, compact);
 			if (i != pts.length - 1) {
-				buffer.append(',');
-				buffer.append(' ');
+				buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		buffer.append(')');
+		buffer.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		if (!isConstructor) {
-			buffer.append(" : "); //$NON-NLS-1$
+			buffer.append(" : "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			// return type
 			if (includeReturnType) {
 				char[] rts = Signature.getReturnType(methodSignature);
@@ -2769,7 +2769,7 @@ public class Util {
 		if (args != null) {
 			int length = args.length;
 			String[] signatures = new String[length];
-			for (int i = 0; i < args.length; i++) {
+			for (int i = 0; i < args.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				AbstractVariableDeclaration arg = args[i];
 				signatures[i] = typeSignature(arg.type);
 			}
@@ -2782,7 +2782,7 @@ public class Util {
 	 * Returns the unresolved type signature of the given type reference,
 	 * e.g. "QString;", "[int", "[[Qjava.util.Vector;"
 	 */
-	public static String typeSignature(TypeReference type) {
+	public static String typeSignature(TypeReference type) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String signature = null;
 		if ((type.bits & org.eclipse.jdt.internal.compiler.ast.ASTNode.IsUnionType) != 0) {
 			// special treatment for union type reference
@@ -2806,7 +2806,7 @@ public class Util {
 	private static String[] typeSignatures(TypeReference[] types) {
 		int length = types.length;
 		String[] typeSignatures = new String[length];
-		for(int i = 0; i < length; i++) {
+		for(int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[][] compoundName = types[i].getParameterizedTypeName();
 			char[] typeName = CharOperation.concatWith(compoundName, '.');
 			typeSignatures[i] = Signature.createTypeSignature(typeName, false/*don't resolve*/);
@@ -2864,12 +2864,12 @@ public class Util {
 	private final static boolean isJavaRelatedFileName(char[] fileName, char[][] javaRelatedExtensions) {
 		if (fileName == null) return false;
 		int fileNameLength = fileName.length;
-		extensions: for (char[] extension : javaRelatedExtensions) {
+		extensions: for (char[] extension : javaRelatedExtensions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int extensionLength = extension.length;
 			int extensionStart = fileNameLength - extensionLength;
 			if (extensionStart-1 < 0) continue;
 			if (fileName[extensionStart-1] != '.') continue;
-			for (int j = 0; j < extensionLength; j++) {
+			for (int j = 0; j < extensionLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (fileName[extensionStart + j] != extension[j])
 					continue extensions;
 			}
@@ -2912,7 +2912,7 @@ public class Util {
 		if (typeSignatures == null) return null;
 		int length = typeSignatures.length;
 		char[][][] typeArguments = new char[length][][];
-		for (int i=0; i<length; i++){
+		for (int i=0; i<length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			typeArguments[i] = Signature.getTypeArguments(typeSignatures[i]);
 		}
 		return typeArguments;
@@ -2922,7 +2922,7 @@ public class Util {
 		return new Annotation(parent, new String(typeName), memberValuePairName);
 	}
 
-	public static Object getAnnotationMemberValue(JavaElement parent, MemberValuePair memberValuePair, Object binaryValue) {
+	public static Object getAnnotationMemberValue(JavaElement parent, MemberValuePair memberValuePair, Object binaryValue) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (binaryValue instanceof Constant) {
 			return getAnnotationMemberValue(memberValuePair, (Constant) binaryValue);
 		} else if (binaryValue instanceof IBinaryAnnotation) {
@@ -2943,7 +2943,7 @@ public class Util {
 			Object[] binaryValues = (Object[]) binaryValue;
 			int length = binaryValues.length;
 			Object[] values = new Object[length];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int previousValueKind = memberValuePair.valueKind;
 				Object value = getAnnotationMemberValue(parent, memberValuePair, binaryValues[i]);
 				if (previousValueKind != -1 && memberValuePair.valueKind != previousValueKind) {
@@ -2951,7 +2951,7 @@ public class Util {
 					memberValuePair.valueKind = IMemberValuePair.K_UNKNOWN;
 				}
 				if (value instanceof Annotation annotation) {
-					for (int j = 0; j < i; j++) {
+					for (int j = 0; j < i; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (annotation.equals(values[j])) {
 							annotation.incOccurrenceCount();
 						}
@@ -2971,7 +2971,7 @@ public class Util {
 	/*
 	 * Creates a member value from the given constant, and sets the valueKind on the given memberValuePair
 	 */
-	public static Object getAnnotationMemberValue(MemberValuePair memberValuePair, Constant constant) {
+	public static Object getAnnotationMemberValue(MemberValuePair memberValuePair, Constant constant) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (constant == null) {
 			memberValuePair.valueKind = IMemberValuePair.K_UNKNOWN;
 			return null;
@@ -3014,7 +3014,7 @@ public class Util {
 	 * Creates a member value from the given constant in case of negative numerals,
 	 * and sets the valueKind on the given memberValuePair
 	 */
-	public static Object getNegativeAnnotationMemberValue(MemberValuePair memberValuePair, Constant constant) {
+	public static Object getNegativeAnnotationMemberValue(MemberValuePair memberValuePair, Constant constant) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (constant == null) {
 			memberValuePair.valueKind = IMemberValuePair.K_UNKNOWN;
 			return null;
@@ -3055,7 +3055,7 @@ public class Util {
 	 * @param typeSignature ParameterizedSourceType type signature
 	 * @return char[][] Array of signatures for each level of given unique key
 	 */
-	public final static char[][] splitTypeLevelsSignature(String typeSignature) {
+	public final static char[][] splitTypeLevelsSignature(String typeSignature) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// In case of IJavaElement signature, replace '$' by '.'
 		char[] source = Signature.removeCapture(typeSignature.toCharArray());
 		CharOperation.replace(source, '$', '.');
@@ -3067,7 +3067,7 @@ public class Util {
 		int paramOpening = 0;
 
 		// Scan each signature character
-		for (int idx=0, ln = source.length; idx < ln; idx++) {
+		for (int idx=0, ln = source.length; idx < ln; idx++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch (source[idx]) {
 				case '>':
 					paramOpening--;
@@ -3100,7 +3100,7 @@ public class Util {
 		// Resize signatures array
 		char[][] typeSignatures = new char[signaturesCount+1][];
 		typeSignatures[0] = source;
-		for (int i=1, j=signaturesCount-1; i<=signaturesCount; i++, j--){
+		for (int i=1, j=signaturesCount-1; i<=signaturesCount; i++, j--){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			typeSignatures[i] = signatures[j];
 		}
 		return typeSignatures;
@@ -3116,40 +3116,40 @@ public class Util {
 			return null;
 		}
 	}
-	public static char[] toAnchor(int startingIndex, char[] methodSignature, char[] methodName, boolean isVargArgs) {
+	public static char[] toAnchor(int startingIndex, char[] methodSignature, char[] methodName, boolean isVargArgs) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int firstParen = CharOperation.indexOf(Signature.C_PARAM_START, methodSignature);
 		if (firstParen == -1) {
 			throw new IllegalArgumentException(String.valueOf(methodSignature));
 		}
 
-		StringBuilder buffer = new StringBuilder(methodSignature.length + 10);
+		StringBuilder buffer = new StringBuilder(methodSignature.length + 10); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
 		// selector
 		if (methodName != null) {
-			buffer.append(methodName);
+			buffer.append(methodName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		// parameters
-		buffer.append('(');
+		buffer.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		char[][] pts = Signature.getParameterTypes(methodSignature);
-		for (int i = startingIndex, max = pts.length; i < max; i++) {
+		for (int i = startingIndex, max = pts.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (i == max - 1) {
 				appendTypeSignatureForAnchor(pts[i], 0 , buffer, isVargArgs);
 			} else {
 				appendTypeSignatureForAnchor(pts[i], 0 , buffer, false);
 			}
 			if (i != pts.length - 1) {
-				buffer.append(',');
-				buffer.append(' ');
+				buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		buffer.append(')');
+		buffer.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		char[] result = new char[buffer.length()];
 		buffer.getChars(0, buffer.length(), result, 0);
 		return result;
 	}
 
-	private static int appendTypeSignatureForAnchor(char[] string, int start, StringBuilder buffer, boolean isVarArgs) {
+	private static int appendTypeSignatureForAnchor(char[] string, int start, StringBuilder buffer, boolean isVarArgs) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// need a minimum 1 char
 		if (start >= string.length) {
 			throw newIllegalArgumentException(string, start);
@@ -3186,34 +3186,34 @@ public class Util {
 					return appendClassTypeSignatureForAnchor(string, start, buffer);
 				case Signature.C_TYPE_VARIABLE :
 					int e = org.eclipse.jdt.internal.compiler.util.Util.scanTypeVariableSignature(string, start);
-					buffer.append(string, start + 1, e - start - 1);
+					buffer.append(string, start + 1, e - start - 1); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					return e;
 				case Signature.C_BOOLEAN :
-					buffer.append(BOOLEAN);
+					buffer.append(BOOLEAN); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					return start;
 				case Signature.C_BYTE :
-					buffer.append(BYTE);
+					buffer.append(BYTE); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					return start;
 				case Signature.C_CHAR :
-					buffer.append(CHAR);
+					buffer.append(CHAR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					return start;
 				case Signature.C_DOUBLE :
-					buffer.append(DOUBLE);
+					buffer.append(DOUBLE); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					return start;
 				case Signature.C_FLOAT :
-					buffer.append(FLOAT);
+					buffer.append(FLOAT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					return start;
 				case Signature.C_INT :
-					buffer.append(INT);
+					buffer.append(INT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					return start;
 				case Signature.C_LONG :
-					buffer.append(LONG);
+					buffer.append(LONG); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					return start;
 				case Signature.C_SHORT :
-					buffer.append(SHORT);
+					buffer.append(SHORT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					return start;
 				case Signature.C_VOID :
-					buffer.append(VOID);
+					buffer.append(VOID); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					return start;
 				case Signature.C_CAPTURE :
 					return appendCaptureTypeSignatureForAnchor(string, start, buffer);
@@ -3255,7 +3255,7 @@ public class Util {
 		}
 		return appendTypeArgumentSignatureForAnchor(string, start + 1, buffer);
 	}
-	private static int appendArrayTypeSignatureForAnchor(char[] string, int start, StringBuilder buffer, boolean isVarArgs) {
+	private static int appendArrayTypeSignatureForAnchor(char[] string, int start, StringBuilder buffer, boolean isVarArgs) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int length = string.length;
 		// need a minimum 2 char
 		if (start >= length - 1) {
@@ -3268,7 +3268,7 @@ public class Util {
 
 		int index = start;
 		c = string[++index];
-		while(c == Signature.C_ARRAY) {
+		while(c == Signature.C_ARRAY) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// need a minimum 2 char
 			if (index >= length - 1) {
 				throw newIllegalArgumentException(string, start);
@@ -3278,18 +3278,18 @@ public class Util {
 
 		int e = appendTypeSignatureForAnchor(string, index, buffer, false);
 
-		for(int i = 1, dims = index - start; i < dims; i++) {
-			buffer.append('[').append(']');
+		for(int i = 1, dims = index - start; i < dims; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append('[').append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		if (isVarArgs) {
-			buffer.append('.').append('.').append('.');
+			buffer.append('.').append('.').append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
-			buffer.append('[').append(']');
+			buffer.append('[').append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return e;
 	}
-	private static int appendClassTypeSignatureForAnchor(char[] string, int start, StringBuilder buffer) {
+	private static int appendClassTypeSignatureForAnchor(char[] string, int start, StringBuilder buffer) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// need a minimum 3 chars "Lx;"
 		if (start >= string.length - 2) {
 			throw newIllegalArgumentException(string, start);
@@ -3300,7 +3300,7 @@ public class Util {
 			throw newUnexpectedCharacterException(string, start, c);
 		}
 		int p = start + 1;
-		while (true) {
+		while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (p >= string.length) {
 				throw newIllegalArgumentException(string, start);
 			}
@@ -3315,10 +3315,10 @@ public class Util {
 					p = e;
 					break;
 				case Signature.C_DOT :
-					buffer.append('.');
+					buffer.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				 case '/' :
-					buffer.append('/');
+					buffer.append('/'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				 case Signature.C_DOLLAR :
 					// once we hit "$" there are no more package prefixes
@@ -3328,31 +3328,31 @@ public class Util {
 					 * signature. This is true in most cases, but someone can define a
 					 * non-inner type name containing a '$'.
 					 */
-					buffer.append('.');
+					buffer.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				 	break;
 				 default :
-					buffer.append(c);
+					buffer.append(c); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			p++;
 		}
 	}
 
 	private static IllegalArgumentException newIllegalArgumentException(char[] string, int index) {
-		return new IllegalArgumentException("\"" + String.valueOf(string) + "\" at " + index); //$NON-NLS-1$ //$NON-NLS-2$
+		return new IllegalArgumentException("\"" + String.valueOf(string) + "\" at " + index); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	private static IllegalArgumentException newUnexpectedCharacterException(char[] string, int start, char unexpected) {
-		return new IllegalArgumentException("Unexpected '" + unexpected + "' in \"" + String.valueOf(string) + "\" starting at " + start); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return new IllegalArgumentException("Unexpected '" + unexpected + "' in \"" + String.valueOf(string) + "\" starting at " + start); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
-	private static int scanGenericEnd(char[] string, int start) {
+	private static int scanGenericEnd(char[] string, int start) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (string[start] == Signature.C_GENERIC_END) {
 			return start;
 		}
 		int length = string.length;
 		int balance = 1;
 		start++;
-		while (start <= length) {
+		while (start <= length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch(string[start]) {
 				case Signature.C_GENERIC_END :
 					balance--;
@@ -3372,7 +3372,7 @@ public class Util {
 	/*
 	 * This method adjusts the task tags and task priorities so that they have the same size
 	 */
-	public static void fixTaskTags(Map defaultOptionsMap) {
+	public static void fixTaskTags(Map defaultOptionsMap) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Object taskTagsValue = defaultOptionsMap.get(JavaCore.COMPILER_TASK_TAGS);
 		char[][] taskTags = null;
 		if (taskTagsValue instanceof String) {
@@ -3416,7 +3416,7 @@ public class Util {
 	 * @param isConstructor whether we're looking for a constructor
 	 * @return an IMethod if found, otherwise null
 	 */
-	public static IMethod findMethod(IType type, char[] selector, String[] paramTypeSignatures, boolean isConstructor) throws JavaModelException {
+	public static IMethod findMethod(IType type, char[] selector, String[] paramTypeSignatures, boolean isConstructor) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IMethod method = null;
 		int startingIndex = 0;
 		String[] args;
@@ -3433,7 +3433,7 @@ public class Util {
 			args = new String[paramTypeSignatures.length];
 		}
 		int length = args.length;
-		for(int i = startingIndex;	i< length ; i++){
+		for(int i = startingIndex;	i< length ; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			args[i] = paramTypeSignatures[i-startingIndex];
 		}
 		method = type.getMethod(new String(selector), args);
@@ -3455,7 +3455,7 @@ public class Util {
 			return null; // illegal path on OS
 		}
 		if (zipSlip) {
-			throw new ZipException("Zip Slip Vulnerability: Bad zip entry: " + entryName + " in " + zipfileName); //$NON-NLS-1$ //$NON-NLS-2$
+			throw new ZipException("Zip Slip Vulnerability: Bad zip entry: " + entryName + " in " + zipfileName); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return entryName; // did not escape
 	}

@@ -183,7 +183,7 @@ public class IndexManager extends JobManager implements IIndexConstants {
 	 *            for cancellation
 	 * @return {@code Status#CANCEL_STATUS} if the waiting was cancelled, {@code Status#OK_STATUS} otherwise
 	 */
-	public IStatus waitForIndex(final boolean enableIndexer, IProgressMonitor monitor) {
+	public IStatus waitForIndex(final boolean enableIndexer, IProgressMonitor monitor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// => need to know whether the indexing is finished or not
 		boolean indexing = awaitingJobsCount() > 0;
 		if (!indexing) {
@@ -193,7 +193,7 @@ public class IndexManager extends JobManager implements IIndexConstants {
 		int enableCount = 0;
 		// Wait for the end of indexing or a cancel
 		try {
-			while (enableIndexer && !isEnabled()) {
+			while (enableIndexer && !isEnabled()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				enableCount ++;
 				enable();
 			}
@@ -228,7 +228,7 @@ public class IndexManager extends JobManager implements IIndexConstants {
 		} catch (OperationCanceledException oce) {
 			return Status.CANCEL_STATUS;
 		} finally {
-			while (enableCount > 0) {
+			while (enableCount > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				enableCount --;
 				disable();
 			}
@@ -292,7 +292,7 @@ public void addDerivedSource(IFile resource, IPath containerPath) {
 /**
  * Removes unused indexes from disk.
  */
-public synchronized void cleanUpIndexes() {
+public synchronized void cleanUpIndexes() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	SimpleSet knownPaths = new SimpleSet();
 	if(!DISABLE_META_INDEX) {
 		knownPaths.add(computeIndexLocation(new Path(INDEX_META_CONTAINER)));
@@ -300,7 +300,7 @@ public synchronized void cleanUpIndexes() {
 	IJavaSearchScope scope = BasicSearchEngine.createWorkspaceScope();
 	PatternSearchJob job = new PatternSearchJob(null, SearchEngine.getDefaultSearchParticipant(), scope, null);
 	Index[] selectedIndexes = job.getIndexes(null);
-	for (Index selectedIndex : selectedIndexes) {
+	for (Index selectedIndex : selectedIndexes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IndexLocation IndexLocation = selectedIndex.getIndexLocation();
 		knownPaths.add(IndexLocation);
 	}
@@ -309,7 +309,7 @@ public synchronized void cleanUpIndexes() {
 		Object[] keys = this.indexStates.keyTable;
 		IndexLocation[] locations = new IndexLocation[this.indexStates.elementSize];
 		int count = 0;
-		for (Object o : keys) {
+		for (Object o : keys) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IndexLocation key = (IndexLocation) o;
 			if (key != null && !knownPaths.includes(key))
 				locations[count++] = key;
@@ -322,7 +322,7 @@ public synchronized void cleanUpIndexes() {
 /**
  * Compute the pre-built index location for a specified URL
  */
-public synchronized IndexLocation computeIndexLocation(IPath containerPath, final URL newIndexURL) {
+public synchronized IndexLocation computeIndexLocation(IPath containerPath, final URL newIndexURL) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IndexLocation indexLocation = (IndexLocation) this.indexLocations.get(containerPath);
 	if (indexLocation == null) {
 		if(newIndexURL != null) {
@@ -361,9 +361,9 @@ public synchronized IndexLocation computeIndexLocation(IPath containerPath) {
 		String pathString = containerPath.toOSString();
 		CRC32 checksumCalculator = new CRC32();
 		checksumCalculator.update(pathString.getBytes());
-		String fileName = Long.toString(checksumCalculator.getValue()) + ".index"; //$NON-NLS-1$
+		String fileName = Long.toString(checksumCalculator.getValue()) + ".index"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (VERBOSE)
-			trace("-> index name for " + pathString + " is " + fileName); //$NON-NLS-1$ //$NON-NLS-2$
+			trace("-> index name for " + pathString + " is " + fileName); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		// to share the indexLocation between the indexLocations and indexStates tables, get the key from the indexStates table
 		indexLocation = (IndexLocation) getIndexStates().getKey(new FileIndexLocation(new File(getSavedIndexesDirectory(), fileName)));
 		this.indexLocations.put(containerPath, indexLocation);
@@ -388,14 +388,14 @@ private void deleteIndexFiles(SimpleSet pathsToKeep, IProgressMonitor monitor) {
 	if (indexesFiles == null) return;
 
 	SubMonitor subMonitor = SubMonitor.convert(monitor, indexesFiles.length);
-	for (File indexesFile : indexesFiles) {
+	for (File indexesFile : indexesFiles) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		subMonitor.split(1);
 		String fileName = indexesFile.getAbsolutePath();
 		if (pathsToKeep != null && pathsToKeep.includes(new FileIndexLocation(indexesFile))) continue;
 		String suffix = ".index"; //$NON-NLS-1$
 		if (fileName.regionMatches(true, fileName.length() - suffix.length(), suffix, 0, suffix.length())) {
 			if (VERBOSE || DEBUG)
-				trace("Deleting index file " + indexesFile); //$NON-NLS-1$
+				trace("Deleting index file " + indexesFile); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			indexesFile.delete();
 		}
 	}
@@ -413,7 +413,7 @@ public synchronized void ensureIndexExists(IndexLocation indexLocation, IPath co
 		getIndex(containerPath, indexLocation, true, true);
 	}
 }
-public SourceElementParser getSourceElementParser(IJavaProject project, ISourceElementRequestor requestor) {
+public SourceElementParser getSourceElementParser(IJavaProject project, ISourceElementRequestor requestor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// disable task tags to speed up parsing
 	Map<String, String> options = project.getOptions(true);
 	options.put(JavaCore.COMPILER_TASK_TAGS, ""); //$NON-NLS-1$
@@ -462,7 +462,7 @@ public synchronized Index getIndex(IPath containerPath, boolean reuseExistingFil
  *
  * Warning: Does not check whether index is consistent (not being used)
  */
-public synchronized Index getIndex(IPath containerPath, IndexLocation indexLocation, boolean reuseExistingFile, boolean createIfMissing) {
+public synchronized Index getIndex(IPath containerPath, IndexLocation indexLocation, boolean reuseExistingFile, boolean createIfMissing) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Index index = getIndex(indexLocation);
 	if (index == null) {
 		Object state = getIndexStates().get(indexLocation);
@@ -486,7 +486,7 @@ public synchronized Index getIndex(IPath containerPath, IndexLocation indexLocat
 					// failed to read the existing file or its no longer compatible
 					if (currentIndexState != REBUILDING_STATE && currentIndexState != REUSE_STATE) { // rebuild index if existing file is corrupt, unless the index is already being rebuilt
 						if (VERBOSE)
-							trace("-> cannot reuse existing index: "+indexLocation+" path: "+containerPathString); //$NON-NLS-1$ //$NON-NLS-2$
+							trace("-> cannot reuse existing index: "+indexLocation+" path: "+containerPathString); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						rebuildIndex(indexLocation, containerPath);
 						return null;
 					}
@@ -500,7 +500,7 @@ public synchronized Index getIndex(IPath containerPath, IndexLocation indexLocat
 			if (currentIndexState == REUSE_STATE) {
 				// supposed to be in reuse state but error in the index file, so reindex.
 				if (VERBOSE)
-					trace("-> cannot reuse given index: "+indexLocation+" path: "+containerPathString); //$NON-NLS-1$ //$NON-NLS-2$
+					trace("-> cannot reuse given index: "+indexLocation+" path: "+containerPathString); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				if(!IS_MANAGING_PRODUCT_INDEXES_PROPERTY) {
 					this.indexLocations.put(containerPath, null);
 					indexLocation = computeIndexLocation(containerPath);
@@ -516,13 +516,13 @@ public synchronized Index getIndex(IPath containerPath, IndexLocation indexLocat
 		if (createIfMissing) {
 			try {
 				if (VERBOSE)
-					trace("-> create empty index: "+indexLocation+" path: "+containerPathString); //$NON-NLS-1$ //$NON-NLS-2$
+					trace("-> create empty index: "+indexLocation+" path: "+containerPathString); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				index = new Index(indexLocation, containerPathString, false /*do not reuse index file*/);
 				this.indexes.put(indexLocation, index);
 				return index;
 			} catch (IOException e) {
 				if (VERBOSE)
-					trace("-> unable to create empty index: "+indexLocation+" path: "+containerPathString); //$NON-NLS-1$ //$NON-NLS-2$
+					trace("-> unable to create empty index: "+indexLocation+" path: "+containerPathString); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				// The file could not be created. Possible reason: the project has been deleted.
 				return null;
 			}
@@ -538,7 +538,7 @@ public synchronized Index getIndex(IPath containerPath, IndexLocation indexLocat
  * @param locations The list of of the index files path
  * @return The corresponding indexes list.
  */
-public synchronized Index[] getIndexes(IndexLocation[] locations, IProgressMonitor progressMonitor) {
+public synchronized Index[] getIndexes(IndexLocation[] locations, IProgressMonitor progressMonitor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// acquire the in-memory indexes on the fly
 	int length = locations.length;
 	Index[] locatedIndexes = new Index[length];
@@ -546,7 +546,7 @@ public synchronized Index[] getIndexes(IndexLocation[] locations, IProgressMonit
 	if (this.javaLikeNamesChanged) {
 		this.javaLikeNamesChanged = hasJavaLikeNamesChanged();
 	}
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (progressMonitor != null && progressMonitor.isCanceled()) {
 			throw new OperationCanceledException();
 		}
@@ -565,7 +565,7 @@ public synchronized Index[] getIndexes(IndexLocation[] locations, IProgressMonit
 					File indexFile = index.getIndexFile();
 					if (indexFile.exists()) {
 						if (DEBUG)
-							trace("Change in javaLikeNames - removing index file for " + containerPath ); //$NON-NLS-1$
+							trace("Change in javaLikeNames - removing index file for " + containerPath ); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						indexFile.delete();
 					}
 					this.indexes.put(indexLocation, null);
@@ -605,19 +605,19 @@ public synchronized Index getIndexForUpdate(IPath containerPath, boolean reuseEx
 
 	return null; // abort the job since the index has been removed from the REBUILDING_STATE
 }
-private SimpleLookupTable getIndexStates() {
+private SimpleLookupTable getIndexStates() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.indexStates != null) return this.indexStates;
 
 	this.indexStates = new SimpleLookupTable();
 	File indexesDirectoryPath = getSavedIndexesDirectory();
 	char[][] savedNames = this.nameRegistry.read(null);
 	if (savedNames != null) {
-		for (int i = 1, l = savedNames.length; i < l; i++) { // first name is saved signature, see readIndexState()
+		for (int i = 1, l = savedNames.length; i < l; i++) { // first name is saved signature, see readIndexState() //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[] savedName = savedNames[i];
 			if (savedName.length > 0) {
 				IndexLocation indexLocation = new FileIndexLocation(new File(indexesDirectoryPath, String.valueOf(savedName))); // shares indexesDirectoryPath's segments
 				if (VERBOSE)
-					trace("Reading saved index file " + indexLocation); //$NON-NLS-1$
+					trace("Reading saved index file " + indexLocation); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				this.indexStates.put(indexLocation, SAVED_STATE);
 			}
 		}
@@ -656,7 +656,7 @@ private File getSavedIndexesDirectory() {
  * is only one javaLikeName (.java), then this returns false so that no-reindexing
  * happens.
  */
-private boolean hasJavaLikeNamesChanged() {
+private boolean hasJavaLikeNamesChanged() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[][] currentNames = Util.getJavaLikeExtensions();
 	int current = currentNames.length;
 	char[][] prevNames = readJavaLikeNamesFile();
@@ -680,7 +680,7 @@ private boolean hasJavaLikeNamesChanged() {
 
 	// The JavaLikeNames would have been sorted before getting stored in the file,
 	// hence just do a direct compare.
-	for (int i = 0; i < current; i++) {
+	for (int i = 0; i < current; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (!CharOperation.equals(currentNames[i],prevNames[i])) {
 			if (VERBOSE)
 				trace("Java like names have changed"); //$NON-NLS-1$
@@ -697,7 +697,7 @@ public void indexDocument(SearchDocument searchDocument, SearchParticipant searc
 		searchDocument.setIndex(null);
 	}
 }
-public void indexResolvedDocument(SearchDocument searchDocument, SearchParticipant searchParticipant, Index index, IPath indexLocation) {
+public void indexResolvedDocument(SearchDocument searchDocument, SearchParticipant searchParticipant, Index index, IPath indexLocation) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		searchParticipant.resolveDocument(searchDocument);
 		ReadWriteMonitor monitor = index.monitor;
@@ -723,7 +723,7 @@ public void indexResolvedDocument(SearchDocument searchDocument, SearchParticipa
  * Trigger addition of the entire content of a project
  * Note: the actual operation is performed in background
  */
-public void indexAll(IProject project) {
+public void indexAll(IProject project) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// New index is disabled, see bug 544898
 	// this.indexer.makeDirty(project);
 	if (JavaCore.getPlugin() == null) return;
@@ -741,7 +741,7 @@ public void indexAll(IProject project) {
 			// NOTE: force to resolve CP variables before calling indexer - 19303, so that initializers
 			// will be run in the current thread.
 			IClasspathEntry[] entries = javaProject.getResolvedClasspath();
-			for (IClasspathEntry entry : entries) {
+			for (IClasspathEntry entry : entries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (entry.getEntryKind() == IClasspathEntry.CPE_LIBRARY)
 					indexLibrary(entry.getPath(), project, ((ClasspathEntry)entry).getLibraryIndexLocation());
 			}
@@ -769,7 +769,7 @@ private IndexRequest getRequest(Object target, IPath jPath, IndexLocation indexF
  * Trigger addition of a library to an index
  * Note: the actual operation is performed in background
  */
-public void indexLibrary(IPath path, IProject requestingProject, URL indexURL, final boolean updateIndex) {
+public void indexLibrary(IPath path, IProject requestingProject, URL indexURL, final boolean updateIndex) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// New index is disabled, see bug 544898
 	// this.indexer.makeWorkspacePathDirty(path);
 	// requestingProject is no longer used to cancel jobs but leave it here just in case
@@ -937,14 +937,14 @@ private char[][] readJavaLikeNamesFile() {
 private void rebuildIndex(IndexLocation indexLocation, IPath containerPath) {
 	rebuildIndex(indexLocation, containerPath, false);
 }
-private void rebuildIndex(IndexLocation indexLocation, IPath containerPath, final boolean updateIndex) {
+private void rebuildIndex(IndexLocation indexLocation, IPath containerPath, final boolean updateIndex) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// New index is disabled, see bug 544898
 	// this.indexer.makeWorkspacePathDirty(containerPath);
 	Object target = JavaModel.getTarget(containerPath, true);
 	if (target == null) return;
 
 	if (VERBOSE)
-		trace("-> request to rebuild index: "+indexLocation+" path: "+containerPath); //$NON-NLS-1$ //$NON-NLS-2$
+		trace("-> request to rebuild index: "+indexLocation+" path: "+containerPath); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	updateIndexState(indexLocation, REBUILDING_STATE);
 	IndexRequest request = null;
@@ -969,7 +969,7 @@ private void rebuildIndex(IndexLocation indexLocation, IPath containerPath, fina
  * Returns the new empty index or null if it didn't exist before.
  * Warning: Does not check whether index is consistent (not being used)
  */
-public synchronized Index recreateIndex(IPath containerPath) {
+public synchronized Index recreateIndex(IPath containerPath) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// only called to over write an existing cached index...
 	String containerPathString = containerPath.getDevice() == null ? containerPath.toString() : containerPath.toOSString();
 	try {
@@ -978,7 +978,7 @@ public synchronized Index recreateIndex(IPath containerPath) {
 		ReadWriteMonitor monitor = index == null ? null : index.monitor;
 
 		if (VERBOSE)
-			trace("-> recreating index: "+indexLocation+" for path: "+containerPathString); //$NON-NLS-1$ //$NON-NLS-2$
+			trace("-> recreating index: "+indexLocation+" for path: "+containerPathString); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		index = new Index(indexLocation, containerPathString, false /*do not reuse index file*/);
 		this.indexes.put(indexLocation, index);
 		index.monitor = monitor;
@@ -986,7 +986,7 @@ public synchronized Index recreateIndex(IPath containerPath) {
 	} catch (IOException e) {
 		// The file could not be created. Possible reason: the project has been deleted.
 		if (VERBOSE) {
-			trace("-> failed to recreate index for path: "+containerPathString, e); //$NON-NLS-1$
+			trace("-> failed to recreate index for path: "+containerPathString, e); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return null;
 	}
@@ -1004,12 +1004,12 @@ public void remove(String containerRelativePath, IPath indexedContainer){
  * Removes the index for a given path.
  * This is a no-op if the index did not exist.
  */
-public void removeIndex(IPath containerPath) {
+public void removeIndex(IPath containerPath) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File indexFile = null;
 	Index index = null;
 	synchronized (this) {
 		if (VERBOSE || DEBUG)
-			trace("removing index " + containerPath); //$NON-NLS-1$
+			trace("removing index " + containerPath); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		// New index is disabled, see bug 544898
 		// this.indexer.makeWorkspacePathDirty(containerPath);
 		IndexLocation indexLocation = computeIndexLocation(containerPath);
@@ -1025,7 +1025,7 @@ public void removeIndex(IPath containerPath) {
 			this.indexLocations.put(containerPath, null);
 		} else if (indexFile != null && indexFile.exists()) {
 			if (DEBUG)
-				trace("removing index file " + indexFile); //$NON-NLS-1$
+				trace("removing index file " + indexFile); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			indexFile.delete();
 		}
 		this.indexes.removeKey(indexLocation);
@@ -1049,7 +1049,7 @@ void removeFromMetaIndex(Index index, File indexFile, IPath containerPath) {
 		updateMetaIndex(indexFile.getName(), Collections.emptyList());
 	} else {
 		if (VERBOSE) {
-			trace(String.format("Unable to update meta index for container path %s because index file is null", //$NON-NLS-1$
+			trace(String.format("Unable to update meta index for container path %s because index file is null", //$NON-NLS-1$ //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
 					containerPath));
 		}
 	}
@@ -1057,12 +1057,12 @@ void removeFromMetaIndex(Index index, File indexFile, IPath containerPath) {
 /**
  * Removes all indexes whose paths start with (or are equal to) the given path.
  */
-public void removeIndexPath(IPath path) {
-	List<String> affectedIndexes = new ArrayList<>();
+public void removeIndexPath(IPath path) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	List<String> affectedIndexes = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 	synchronized (this) {
 		if (VERBOSE || DEBUG)
-			trace("removing index path " + path); //$NON-NLS-1$
+			trace("removing index path " + path); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		// New index is disabled, see bug 544898
 		// this.indexer.makeWorkspacePathDirty(path);
 		Object[] keyTable = this.indexes.keyTable;
@@ -1070,7 +1070,7 @@ public void removeIndexPath(IPath path) {
 		IndexLocation[] locations = null;
 		int max = this.indexes.elementSize;
 		int count = 0;
-		for (int i = 0, l = keyTable.length; i < l; i++) {
+		for (int i = 0, l = keyTable.length; i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IndexLocation indexLocation = (IndexLocation) keyTable[i];
 			if (indexLocation == null)
 				continue;
@@ -1088,7 +1088,7 @@ public void removeIndexPath(IPath path) {
 					indexLocation.close();
 				} else {
 					if (DEBUG)
-						trace("removing index file " + indexLocation); //$NON-NLS-1$
+						trace("removing index file " + indexLocation); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					indexLocation.delete();
 				}
 			} else {
@@ -1096,12 +1096,12 @@ public void removeIndexPath(IPath path) {
 			}
 		}
 		if (locations != null) {
-			for (int i = 0; i < count; i++)
+			for (int i = 0; i < count; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.indexes.removeKey(locations[i]);
 			removeIndexesState(locations);
 			if (this.participantsContainers != null) {
 				boolean update = false;
-				for (int i = 0; i < count; i++) {
+				for (int i = 0; i < count; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (this.participantsContainers.get(locations[i]) != null) {
 						update = true;
 						this.participantsContainers.removeKey(locations[i]);
@@ -1117,26 +1117,26 @@ public void removeIndexPath(IPath path) {
 /**
  * Removes all indexes whose paths start with (or are equal to) the given path.
  */
-public void removeIndexFamily(IPath path) {
+public void removeIndexFamily(IPath path) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// New index is disabled, see bug 544898
 	// this.indexer.makeWorkspacePathDirty(path);
 	// only finds cached index files... shutdown removes all non-cached index files
 	List<IPath> toRemove = null;
 	synchronized (this) {
 		Object[] containerPaths = this.indexLocations.keyTable;
-		for (Object o : containerPaths) {
+		for (Object o : containerPaths) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IPath containerPath = (IPath) o;
 			if (containerPath == null)
 				continue;
 			if (path.isPrefixOf(containerPath)) {
 				if (toRemove == null)
-					toRemove = new ArrayList<>();
+					toRemove = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				toRemove.add(containerPath);
 			}
 		}
 	}
 	if (toRemove != null)
-		for (IPath p : toRemove)
+		for (IPath p : toRemove) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			removeIndex(p);
 }
 /**
@@ -1172,14 +1172,14 @@ public void reset() {
  * Resets the index for a given path.
  * Returns true if the index was reset, false otherwise.
  */
-public synchronized boolean resetIndex(IPath containerPath) {
+public synchronized boolean resetIndex(IPath containerPath) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// only called to over write an existing cached index...
 	String containerPathString = containerPath.getDevice() == null ? containerPath.toString() : containerPath.toOSString();
 	try {
 		IndexLocation indexLocation = computeIndexLocation(containerPath);
 		Index index = getIndex(indexLocation);
 		if (VERBOSE) {
-			trace("-> reseting index: "+indexLocation+" for path: "+containerPathString); //$NON-NLS-1$ //$NON-NLS-2$
+			trace("-> reseting index: "+indexLocation+" for path: "+containerPathString); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		if (index == null) {
 			// the index does not exist, try to recreate it
@@ -1190,7 +1190,7 @@ public synchronized boolean resetIndex(IPath containerPath) {
 	} catch (IOException e) {
 		// The file could not be created. Possible reason: the project has been deleted.
 		if (VERBOSE) {
-			trace("-> failed to reset index for path: "+containerPathString, e); //$NON-NLS-1$
+			trace("-> failed to reset index for path: "+containerPathString, e); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return false;
 	}
@@ -1205,7 +1205,7 @@ public synchronized boolean resetIndex(IPath containerPath) {
 public void savePreBuiltIndex(Index index) throws IOException {
 	if (index.hasChanged()) {
 		if (VERBOSE)
-			trace("-> saving pre-build index " + index.getIndexLocation()); //$NON-NLS-1$
+			trace("-> saving pre-build index " + index.getIndexLocation()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		index.save();
 		updateMetaIndex(index);
 	}
@@ -1213,19 +1213,19 @@ public void savePreBuiltIndex(Index index) throws IOException {
 		updateIndexState(index.getIndexLocation(), REUSE_STATE);
 	}
 }
-public void saveIndex(Index index) throws IOException {
+public void saveIndex(Index index) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ReadWriteMonitor monitor = index.monitor;
 	if (monitor == null) return; // index got deleted since acquired
 
 	// must have permission to write from the write monitor
 	if (index.hasChanged()) {
 		if (VERBOSE)
-			trace("-> saving index " + index.getIndexLocation()); //$NON-NLS-1$
+			trace("-> saving index " + index.getIndexLocation()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (index.save()) {
 			updateMetaIndex(index);
 		} else {
 			if (VERBOSE)
-				trace("-> saving index cancelled " + index.getIndexLocation()); //$NON-NLS-1$
+				trace("-> saving index cancelled " + index.getIndexLocation()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			return;
 		}
 	}
@@ -1241,12 +1241,12 @@ public void saveIndex(Index index) throws IOException {
 /**
  * Commit all index memory changes to disk
  */
-public void saveIndexes() {
+public void saveIndexes() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// only save cached indexes... the rest were not modified
-	List<Index> toSave = new ArrayList<>();
+	List<Index> toSave = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	synchronized(this) {
 		Object[] valueTable = this.indexes.valueTable;
-		for (Object i : valueTable) {
+		for (Object i : valueTable) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Index index = (Index) i;
 			if (index != null)
 				toSave.add(index);
@@ -1254,7 +1254,7 @@ public void saveIndexes() {
 	}
 
 	boolean allSaved = true;
-	for (Index index : toSave) {
+	for (Index index : toSave) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		ReadWriteMonitor monitor = index.monitor;
 		if (monitor == null) continue; // index got deleted since acquired
 		try {
@@ -1269,7 +1269,7 @@ public void saveIndexes() {
 						if(e instanceof FileNotFoundException && index.monitor == null) {
 							// index got deleted since acquired
 						} else {
-							Util.log(e, "Failed to save JDT index: " + index.toString()); //$NON-NLS-1$
+							Util.log(e, "Failed to save JDT index: " + index.toString()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							allSaved = false;
 						}
 					} finally {
@@ -1294,7 +1294,7 @@ public void saveIndexes() {
 	this.needToSave = !allSaved;
 }
 
-private boolean saveMetaIndex() {
+private boolean saveMetaIndex() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	MetaIndex mindex = this.metaIndex;
 	if(mindex == null) {
 		return true;
@@ -1336,14 +1336,14 @@ private boolean saveMetaIndex() {
 	return saved;
 }
 
-public void scheduleDocumentIndexing(final SearchDocument searchDocument, IPath container, final IndexLocation indexLocation, final SearchParticipant searchParticipant) {
+public void scheduleDocumentIndexing(final SearchDocument searchDocument, IPath container, final IndexLocation indexLocation, final SearchParticipant searchParticipant) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// New index is disabled, see bug 544898
 //	IPath targetLocation = JavaIndex.getLocationForPath(new Path(searchDocument.getPath()));
 //	if (targetLocation != null) {
 //		 this.indexer.makeDirty(targetLocation);
 //	}
 	request(new IndexRequest(container, this) {
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public boolean execute(IProgressMonitor progressMonitor) {
 			if (this.isCancelled || progressMonitor != null && progressMonitor.isCanceled()) return true;
 
@@ -1367,7 +1367,7 @@ public void scheduleDocumentIndexing(final SearchDocument searchDocument, IPath 
 		}
 		@Override
 		public String toString() {
-			return "indexing " + searchDocument.getPath(); //$NON-NLS-1$
+			return "indexing " + searchDocument.getPath(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		@Override
 		public boolean waitNeeded() {
@@ -1378,20 +1378,20 @@ public void scheduleDocumentIndexing(final SearchDocument searchDocument, IPath 
 
 @Override
 public synchronized String toString() {
-	StringBuilder buffer = new StringBuilder(10);
-	buffer.append(super.toString());
-	buffer.append("In-memory indexes:\n"); //$NON-NLS-1$
+	StringBuilder buffer = new StringBuilder(10); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	buffer.append(super.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append("In-memory indexes:\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	int count = 0;
 	Object[] valueTable = this.indexes.valueTable;
-	for (Object i : valueTable) {
+	for (Object i : valueTable) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		Index index = (Index) i;
 		if (index != null)
-			buffer.append(++count).append(" - ").append(index.toString()).append('\n'); //$NON-NLS-1$
+			buffer.append(++count).append(" - ").append(index.toString()).append('\n'); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	return buffer.toString();
 }
 
-private void readIndexMap() {
+private void readIndexMap() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		char[] indexMaps = org.eclipse.jdt.internal.compiler.util.Util.getFileCharContent(this.indexNamesMapFile, null);
 		char[][] names = CharOperation.splitOn('\n', indexMaps);
@@ -1399,14 +1399,14 @@ private void readIndexMap() {
 			// First line is DiskIndex signature (see writeIndexMapFile())
 			String savedSignature = DiskIndex.SIGNATURE;
 			if (savedSignature.equals(new String(names[0]))) {
-				for (int i = 1, l = names.length-1 ; i < l ; i+=2) {
+				for (int i = 1, l = names.length-1 ; i < l ; i+=2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IndexLocation indexPath = null;
 					String name = new String(names[i]);
 					try {
 						URI uri = URIUtil.fromString(name);
 						indexPath = IndexLocation.createIndexLocation(uri.toURL());
 					} catch (URISyntaxException e) {
-						Util.log(e, "Failed to create index name '" + name + "' for " + this.indexNamesMapFile); //$NON-NLS-1$ //$NON-NLS-2$
+						Util.log(e, "Failed to create index name '" + name + "' for " + this.indexNamesMapFile); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						// Ignore the null path and continue
 					}
 					if (indexPath == null) continue;
@@ -1421,7 +1421,7 @@ private void readIndexMap() {
 	}
 	return;
 }
-private void readParticipantsIndexNamesFile() {
+private void readParticipantsIndexNamesFile() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	SimpleLookupTable containers = new SimpleLookupTable(3);
 	try {
 		char[] participantIndexNames = org.eclipse.jdt.internal.compiler.util.Util.getFileCharContent(this.participantIndexNamesFile, null);
@@ -1430,7 +1430,7 @@ private void readParticipantsIndexNamesFile() {
 			if (names.length >= 3) {
 				// First line is DiskIndex signature  (see writeParticipantsIndexNamesFile())
 				if (DiskIndex.SIGNATURE.equals(new String(names[0]))) {
-					for (int i = 1, l = names.length-1 ; i < l ; i+=2) {
+					for (int i = 1, l = names.length-1 ; i < l ; i+=2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						IndexLocation indexLocation = new FileIndexLocation(new File(new String(names[i])), true);
 						containers.put(indexLocation, new Path(new String(names[i+1])));
 					}
@@ -1444,16 +1444,16 @@ private void readParticipantsIndexNamesFile() {
 	this.participantsContainers = containers;
 	return;
 }
-private synchronized void removeIndexesState(IndexLocation[] locations) {
+private synchronized void removeIndexesState(IndexLocation[] locations) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	getIndexStates(); // ensure the states are initialized
 	int length = locations.length;
 	boolean changed = false;
-	for (int i=0; i<length; i++) {
+	for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (locations[i] == null) continue;
 		if ((this.indexStates.removeKey(locations[i]) != null)) {
 			changed = true;
 			if (VERBOSE) {
-				trace("-> index state updated to: ? for: "+locations[i]); //$NON-NLS-1$
+				trace("-> index state updated to: ? for: "+locations[i]); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
@@ -1462,7 +1462,7 @@ private synchronized void removeIndexesState(IndexLocation[] locations) {
 	writeSavedIndexNamesFile();
 	writeIndexMapFile();
 }
-private synchronized void updateIndexState(IndexLocation indexLocation, Integer indexState) {
+private synchronized void updateIndexState(IndexLocation indexLocation, Integer indexState) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (indexLocation == null)
 		throw new IllegalArgumentException();
 
@@ -1479,7 +1479,7 @@ private synchronized void updateIndexState(IndexLocation indexLocation, Integer 
 
 	if (VERBOSE) {
 		if (indexState == null) {
-			trace("-> index state removed for: "+indexLocation); //$NON-NLS-1$
+			trace("-> index state removed for: "+indexLocation); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
 			String state = "?"; //$NON-NLS-1$
 			if (indexState == SAVED_STATE) state = "SAVED"; //$NON-NLS-1$
@@ -1487,7 +1487,7 @@ private synchronized void updateIndexState(IndexLocation indexLocation, Integer 
 			else if (indexState == UNKNOWN_STATE) state = "UNKNOWN"; //$NON-NLS-1$
 			else if (indexState == REBUILDING_STATE) state = "REBUILDING"; //$NON-NLS-1$
 			else if (indexState == REUSE_STATE) state = "REUSE"; //$NON-NLS-1$
-			trace("-> index state updated to: " + state + " for: "+indexLocation); //$NON-NLS-1$ //$NON-NLS-2$
+			trace("-> index state updated to: " + state + " for: "+indexLocation); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -1502,7 +1502,7 @@ public synchronized void updateParticipant(IPath indexPath, IPath containerPath)
 		this.participantUpdated  = true;
 	}
 }
-private void writeJavaLikeNamesFile() {
+private void writeJavaLikeNamesFile() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String pathName = getJavaPluginWorkingLocation().toOSString();
 	try {
 		char[][] currentNames = Util.getJavaLikeExtensions();
@@ -1515,7 +1515,7 @@ private void writeJavaLikeNamesFile() {
 		}
 		File javaLikeNamesFile = new File(pathName, "javaLikeNames.txt"); //$NON-NLS-1$
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(javaLikeNamesFile))) {
-			for (int i = 0; i < length-1; i++) {
+			for (int i = 0; i < length-1; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				writer.write(currentNames[i]);
 				writer.write('\n');
 			}
@@ -1528,13 +1528,13 @@ private void writeJavaLikeNamesFile() {
 			trace("Failed to write javaLikeNames file"); //$NON-NLS-1$
 	}
 }
-private void writeIndexMapFile() {
+private void writeIndexMapFile() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try (BufferedWriter writer = new BufferedWriter(new FileWriter(this.indexNamesMapFile))) {
 		writer.write(DiskIndex.SIGNATURE);
 		writer.write('\n');
 		Object[] keys = this.indexStates.keyTable;
 		Object[] states = this.indexStates.valueTable;
-		for (int i = 0, l = states.length; i < l; i++) {
+		for (int i = 0, l = states.length; i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IndexLocation location = (IndexLocation)keys[i];
 			if (location != null && states[i] == REUSE_STATE) {
 				IPath container = (IPath)this.indexLocations.keyForValue(location);
@@ -1552,13 +1552,13 @@ private void writeIndexMapFile() {
 		}
 	}
 }
-private void writeParticipantsIndexNamesFile() {
+private void writeParticipantsIndexNamesFile() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try (BufferedWriter writer = new BufferedWriter(new FileWriter(this.participantIndexNamesFile))) {
 		writer.write(DiskIndex.SIGNATURE);
 		writer.write('\n');
 		Object[] indexFiles = this.participantsContainers.keyTable;
 		Object[] containers = this.participantsContainers.valueTable;
-		for (int i = 0, l = indexFiles.length; i < l; i++) {
+		for (int i = 0, l = indexFiles.length; i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IndexLocation indexFile = (IndexLocation)indexFiles[i];
 			if (indexFile != null) {
 				writer.write(indexFile.getIndexFile().getPath());
@@ -1572,11 +1572,11 @@ private void writeParticipantsIndexNamesFile() {
 			trace("Failed to write participant index file names"); //$NON-NLS-1$
 	}
 }
-private void writeSavedIndexNamesFile() {
+private void writeSavedIndexNamesFile() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Object[] keys = this.indexStates.keyTable;
 	Object[] states = this.indexStates.valueTable;
 	int numToSave = 0;
-	for (int i = 0, l = states.length; i < l; i++) {
+	for (int i = 0, l = states.length; i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IndexLocation key = (IndexLocation) keys[i];
 		if (key != null && states[i] == SAVED_STATE) {
 			numToSave++;
@@ -1584,7 +1584,7 @@ private void writeSavedIndexNamesFile() {
 	}
 	char[][] arrays = new char[numToSave][];
 	int idx = 0;
-	for (int i = 0, l = states.length; i < l; i++) {
+	for (int i = 0, l = states.length; i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IndexLocation key = (IndexLocation) keys[i];
 		if (key != null && states[i] == SAVED_STATE) {
 			arrays[idx++] = key.fileName().toCharArray();
@@ -1600,13 +1600,13 @@ private static long getNotifyIdleWait() {
 		try {
 			idleWait = Long.parseLong(idleWaitPropertyValue);
 		} catch (NumberFormatException e) {
-			Util.log(e, "Failed to parse value of property \"" + INDEX_MANAGER_NOTIFY_IDLE_WAIT_PROPERTY + "\": " + idleWaitPropertyValue); //$NON-NLS-1$ //$NON-NLS-2$
+			Util.log(e, "Failed to parse value of property \"" + INDEX_MANAGER_NOTIFY_IDLE_WAIT_PROPERTY + "\": " + idleWaitPropertyValue); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	return idleWait;
 }
 
-public Optional<Set<String>> findMatchingIndexNames(QualifierQuery query) {
+public Optional<Set<String>> findMatchingIndexNames(QualifierQuery query) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if(DISABLE_META_INDEX) {
 		return Optional.empty();
 	}
@@ -1625,10 +1625,10 @@ public Optional<Set<String>> findMatchingIndexNames(QualifierQuery query) {
 		mindex.startQuery();
 
 		try {
-			List<char[]> qualifiedCategories = new ArrayList<>(2);
-			List<char[]> simpleCategories = new ArrayList<>(2);
+			List<char[]> qualifiedCategories = new ArrayList<>(2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			List<char[]> simpleCategories = new ArrayList<>(2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
-			for (QueryCategory cat : query.getCategories()) {
+			for (QueryCategory cat : query.getCategories()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(cat == QueryCategory.REF) {
 					qualifiedCategories.add(META_INDEX_QUALIFIED_TYPE_QUALIFIER_REF);
 					simpleCategories.add(META_INDEX_SIMPLE_TYPE_QUALIFIER_REF);
@@ -1638,7 +1638,7 @@ public Optional<Set<String>> findMatchingIndexNames(QualifierQuery query) {
 				}
 			}
 
-			List<EntryResult> results = new ArrayList<>();
+			List<EntryResult> results = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			if(query.getQualifiedKey().length > 0) {
 				results.addAll(runQuery(mindex, qualifiedCategories.toArray(new char[0][]), query.getQualifiedKey()));
 			}
@@ -1649,7 +1649,7 @@ public Optional<Set<String>> findMatchingIndexNames(QualifierQuery query) {
 				indexesNotInMeta = mindex.getIndexesNotInMeta(this.indexes);
 			}
 			if (VERBOSE) {
-				trace("-> not in meta-index: " + indexesNotInMeta.size() + ", in: "+results.size() + " for query " + query); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				trace("-> not in meta-index: " + indexesNotInMeta.size() + ", in: "+results.size() + " for query " + query); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			final Index i = mindex.getIndex();
 			return Optional.of(Stream.concat(indexesNotInMeta.stream(), results.stream().flatMap(r -> {
@@ -1669,7 +1669,7 @@ public Optional<Set<String>> findMatchingIndexNames(QualifierQuery query) {
 	} finally {
 		if (VERBOSE) {
 			long wallClockTime = System.currentTimeMillis() - startTime;
-			trace("-> execution time: " + wallClockTime + "ms - IndexManager#findMatchingIndexNames");//$NON-NLS-1$//$NON-NLS-2$
+			trace("-> execution time: " + wallClockTime + "ms - IndexManager#findMatchingIndexNames");//$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 }
@@ -1682,7 +1682,7 @@ private List<EntryResult> runQuery(MetaIndex index, char[][] categories, char[] 
 	return Collections.emptyList();
 }
 
-private MetaIndex loadMetaIndexIfNeeded() throws IOException {
+private MetaIndex loadMetaIndexIfNeeded() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	MetaIndex mindex = this.metaIndex;
 	if(mindex != null) {
 		return mindex;
@@ -1694,21 +1694,21 @@ private MetaIndex loadMetaIndexIfNeeded() throws IOException {
 			Integer currentIndexState = state == null ? UNKNOWN_STATE : (Integer) state;
 			if(UNKNOWN_STATE.equals(currentIndexState)) {
 				if (VERBOSE) {
-					trace("-> create empty meta-index: "+indexLocation+" path: "+INDEX_META_CONTAINER); //$NON-NLS-1$ //$NON-NLS-2$
+					trace("-> create empty meta-index: "+indexLocation+" path: "+INDEX_META_CONTAINER); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				this.metaIndex = new MetaIndex(new Index(indexLocation, INDEX_META_CONTAINER, false));
 				updateIndexState(indexLocation, REUSE_STATE);
 			} else if(indexLocation.exists()) {
 				if (VERBOSE) {
-					trace("-> load existing meta-index: "+indexLocation+" path: "+INDEX_META_CONTAINER); //$NON-NLS-1$ //$NON-NLS-2$
+					trace("-> load existing meta-index: "+indexLocation+" path: "+INDEX_META_CONTAINER); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				try {
 					this.metaIndex = new MetaIndex(new Index(indexLocation, INDEX_META_CONTAINER, true));
 				} catch (IOException e) {
 					Util.log(e, "Failed to read saved meta index, re-creating"); //$NON-NLS-1$
 					if (VERBOSE) {
-						trace("-> failed to read saved meta-index: "+indexLocation+" path: "+INDEX_META_CONTAINER); //$NON-NLS-1$ //$NON-NLS-2$
-						trace("-> re-create meta-index: "+indexLocation+" path: "+INDEX_META_CONTAINER); //$NON-NLS-1$ //$NON-NLS-2$
+						trace("-> failed to read saved meta-index: "+indexLocation+" path: "+INDEX_META_CONTAINER); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+						trace("-> re-create meta-index: "+indexLocation+" path: "+INDEX_META_CONTAINER); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 					indexLocation.delete();
 					this.metaIndex = new MetaIndex(new Index(indexLocation, INDEX_META_CONTAINER, false));
@@ -1730,7 +1730,7 @@ void updateMetaIndex(Index index) {
 	scheduleForMetaIndexUpdate(index);
 }
 
-void updateMetaIndex(String indexFileName, List<IndexQualifier> qualifications) {
+void updateMetaIndex(String indexFileName, List<IndexQualifier> qualifications) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if(DISABLE_META_INDEX) {
 		return;
 	}
@@ -1749,21 +1749,21 @@ void updateMetaIndex(String indexFileName, List<IndexQualifier> qualifications) 
 		}
 		if (VERBOSE) {
 			int qsize = qualifications.size();
-			trace("-> updating meta-index with " + qsize + " elements for " + indexFileName); //$NON-NLS-1$ //$NON-NLS-2$
+			trace("-> updating meta-index with " + qsize + " elements for " + indexFileName); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		monitor.enterWrite();
 		// clean existing entries for current document
 		mindex.remove(indexFileName);
 
-		for (IndexQualifier qualifier : qualifications) {
+		for (IndexQualifier qualifier : qualifications) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			mindex.addIndexEntry(qualifier.getCategory(), qualifier.getKey(), indexFileName);
 		}
 		if (VERBOSE) {
-			trace("-> meta-index updated for " + indexFileName); //$NON-NLS-1$
+			trace("-> meta-index updated for " + indexFileName); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	} catch (IOException e) {
 		if (JobManager.VERBOSE) {
-			trace("-> failed to update meta index for index " + indexFileName + " because of the following exception:", e); //$NON-NLS-1$ //$NON-NLS-2$
+			trace("-> failed to update meta index for index " + indexFileName + " because of the following exception:", e); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	} finally {
 		if(monitor != null) {
@@ -1788,7 +1788,7 @@ public Optional<MetaIndex> getMetaIndex() {
 void scheduleForMetaIndexUpdate(Index index) {
 	synchronized(this.metaIndexUpdates){
 		if (!this.metaIndexUpdates.add(index) && VERBOSE) {
-			trace("-> already waiting for meta-index update for " + index); //$NON-NLS-1$
+			trace("-> already waiting for meta-index update for " + index); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	requestIfNotWaiting(new MetaIndexUpdateRequest());
@@ -1812,9 +1812,9 @@ class MetaIndexUpdateRequest implements IJob {
 		// no op
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean execute(IProgressMonitor progress) {
-		while((progress == null || !progress.isCanceled()) && !this.isCancelled) {
+		while((progress == null || !progress.isCanceled()) && !this.isCancelled) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Index index = null;
 			int metaIndexUpdatesSize;
 			synchronized(IndexManager.this.metaIndexUpdates){
@@ -1837,7 +1837,7 @@ class MetaIndexUpdateRequest implements IJob {
 				continue;
 			}
 			if (VERBOSE) {
-				trace("-> meta-index update from queue with size " + metaIndexUpdatesSize); //$NON-NLS-1$
+				trace("-> meta-index update from queue with size " + metaIndexUpdatesSize); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			try {
 				updateMetaIndex(indexFile.getName(), index.getMetaIndexQualifications());
@@ -1847,7 +1847,7 @@ class MetaIndexUpdateRequest implements IJob {
 					Util.log(e, "Failed to update meta index"); //$NON-NLS-1$
 				} else {
 					if (JobManager.VERBOSE) {
-						trace("-> failed to update meta index for index " + indexFile.getName() //$NON-NLS-1$
+						trace("-> failed to update meta index for index " + indexFile.getName() //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								+ " because of the following exception:", e); //$NON-NLS-1$
 					}
 				}

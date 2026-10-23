@@ -53,7 +53,7 @@ public class RecordPattern extends Pattern {
 	private static final List PROPERTY_DESCRIPTORS;
 
 	static {
-		List properyList = new ArrayList(5);
+		List properyList = new ArrayList(5); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(RecordPattern.class, properyList);
 		addProperty(PATTERN_TYPE_PROPERTY, properyList);
 		addProperty(PATTERNS_PROPERTY, properyList);

@@ -114,7 +114,7 @@ public final class SourceIndexerEnvironment implements ITypeRequestor {
 
 		@Override
 		public String toString() {
-			return "Snapshot of " + this.project.getElementName() + " at change " + this.changeCount; //$NON-NLS-1$ //$NON-NLS-2$
+			return "Snapshot of " + this.project.getElementName() + " at change " + this.changeCount; //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -127,9 +127,9 @@ public final class SourceIndexerEnvironment implements ITypeRequestor {
 	private JavaSearchNameEnvironment nameEnvironment;
 	private LookupEnvironment lookupEnvironment;
 	/** The units that were parsed, without their method bodies, to resolve other units, by file name. */
-	private final Map<String, CompilationUnitDeclaration> acceptedUnits = new HashMap<>();
+	private final Map<String, CompilationUnitDeclaration> acceptedUnits = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	/** The file names of the units that were resolved */
-	private final Set<String> resolvedUnits = new HashSet<>();
+	private final Set<String> resolvedUnits = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 	/** Whether the types that the lookup environment knows may differ from the ones a new one would find */
 	private boolean typesMayDiffer;
 	/**
@@ -211,7 +211,7 @@ public final class SourceIndexerEnvironment implements ITypeRequestor {
 	 * Parses and resolves the given unit, of which only the methods with functional expressions keep their
 	 * statements. The unit is partly resolved only if its resolution fails.
 	 */
-	CompilationUnitDeclaration resolve(ICompilationUnit unit) {
+	CompilationUnitDeclaration resolve(ICompilationUnit unit) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.acceptedUnits.size() + this.resolvedUnits.size() >= MAX_UNITS) {
 			forgetTypes();
 		}
@@ -246,7 +246,7 @@ public final class SourceIndexerEnvironment implements ITypeRequestor {
 	 * @return the unit, or <code>null</code> if it cannot be resolved with the types that the lookup environment
 	 *         knows as it would be with an empty one, which always resolves it
 	 */
-	private CompilationUnitDeclaration resolveWithKnownTypes(ICompilationUnit unit) {
+	private CompilationUnitDeclaration resolveWithKnownTypes(ICompilationUnit unit) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		boolean isNew = this.acceptedUnits.isEmpty() && this.resolvedUnits.isEmpty();
 		String fileName = new String(unit.getFileName());
 		if (!this.resolvedUnits.add(fileName)) {
@@ -324,12 +324,12 @@ public final class SourceIndexerEnvironment implements ITypeRequestor {
 	 * @param isDocument whether the unit is a document, which is read from its resource: the name environment then
 	 *                   has to answer the resource too, and not a working copy
 	 */
-	private boolean isAnswerOfNameEnvironment(CompilationUnitDeclaration unit, boolean isDocument) {
+	private boolean isAnswerOfNameEnvironment(CompilationUnitDeclaration unit, boolean isDocument) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (unit.types != null) {
 			ICompilationUnit compilationUnit = unit.compilationResult.compilationUnit;
 			char[][] packageName = unit.currentPackage == null ? CharOperation.NO_CHAR_CHAR : unit.currentPackage.tokens;
 			char[] module = compilationUnit.getModuleName() == null ? ModuleBinding.ANY : compilationUnit.getModuleName();
-			for (TypeDeclaration type : unit.types) {
+			for (TypeDeclaration type : unit.types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				NameEnvironmentAnswer answer = this.nameEnvironment.findType(type.name, packageName, module);
 				ICompilationUnit answered = answer == null ? null : answer.getCompilationUnit();
 				if (answered == null || !CharOperation.equals(answered.getFileName(), unit.getFileName())) {
@@ -345,7 +345,7 @@ public final class SourceIndexerEnvironment implements ITypeRequestor {
 
 	private static boolean hasAllTypeBindings(CompilationUnitDeclaration unit) {
 		if (unit.types != null) {
-			for (TypeDeclaration type : unit.types) {
+			for (TypeDeclaration type : unit.types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (type.binding == null) {
 					return false;
 				}
@@ -360,13 +360,13 @@ public final class SourceIndexerEnvironment implements ITypeRequestor {
 	private static void reduceParseTree(CompilationUnitDeclaration unit) {
 		// remove statements from methods that have no functional interface types.
 		TypeDeclaration[] types = unit.types;
-		for (int i = 0, l = types == null ? 0 : types.length; i < l; i++)
+		for (int i = 0, l = types == null ? 0 : types.length; i < l; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			purgeMethodStatements(types[i]);
 	}
 
-	private static void purgeMethodStatements(TypeDeclaration type) {
+	private static void purgeMethodStatements(TypeDeclaration type) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		AbstractMethodDeclaration[] methods = type.methods;
-		for (int j = 0, length = methods == null ? 0 : methods.length; j < length; j++) {
+		for (int j = 0, length = methods == null ? 0 : methods.length; j < length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			AbstractMethodDeclaration method = methods[j];
 			/*
 			 * In case the method defines a local type, skip purging the method body.
@@ -383,7 +383,7 @@ public final class SourceIndexerEnvironment implements ITypeRequestor {
 
 		TypeDeclaration[] memberTypes = type.memberTypes;
 		if (memberTypes != null)
-			for (TypeDeclaration memberType : memberTypes)
+			for (TypeDeclaration memberType : memberTypes) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				purgeMethodStatements(memberType);
 	}
 
@@ -409,7 +409,7 @@ public final class SourceIndexerEnvironment implements ITypeRequestor {
 	@Override
 	public void accept(ISourceType[] sourceTypes, PackageBinding packageBinding, AccessRestriction accessRestriction) {
 		ISourceType sourceType = sourceTypes[0];
-		while (sourceType.getEnclosingType() != null)
+		while (sourceType.getEnclosingType() != null) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			sourceType = sourceType.getEnclosingType();
 		SourceTypeElementInfo elementInfo = (SourceTypeElementInfo) sourceType;
 		IType type = elementInfo.getHandle();

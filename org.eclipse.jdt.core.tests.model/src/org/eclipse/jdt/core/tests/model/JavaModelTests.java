@@ -75,7 +75,7 @@ public JavaModelTests(String name) {
 	super(name);
 }
 protected int indexOf(String projectName, IJavaProject[] projects) {
-	for (int i = 0, length = projects.length; i < length; i++) {
+	for (int i = 0, length = projects.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (projects[i].getElementName().equals(projectName)) {
 			return i;
 		}
@@ -87,7 +87,7 @@ protected int indexOf(String projectName, IJavaProject[] projects) {
  * when a file is added to a non-java project.
  * (regression test for bug 18698 Seeing non-java projects in package view)
  */
-public void testAddFileToNonJavaProject() throws CoreException {
+public void testAddFileToNonJavaProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaModel model = getJavaModel();
 	IJavaProject[] projects = model.getJavaProjects();
 	assertTrue(
@@ -124,7 +124,7 @@ public void testCreateNonJavaProject() throws CoreException {
  * Ensure that a resource belonging to the Java model is known to be contained in the Java model.
  * Case of non-accessible resources
  */
-public void testContains1() throws CoreException {
+public void testContains1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = this.createJavaProject("P", new String[] {""}, "");
 
@@ -175,7 +175,7 @@ public void testContains2() throws CoreException {
  * Ensure that a resource belonging to the Java model is known to be contained in the Java model.
  * Case of prj=src=bin
  */
-public void testContains3() throws CoreException {
+public void testContains3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createJavaProject("P", new String[] {""}, "");
 
@@ -202,7 +202,7 @@ public void testContains3() throws CoreException {
  * Ensure that a resource belonging to the Java model is known to be contained in the Java model.
  * Case of empty classpath.
  */
-public void testContains4() throws CoreException {
+public void testContains4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createJavaProject("P", new String[] {}, "bin");
 
@@ -242,7 +242,7 @@ public void testContains4() throws CoreException {
  * Ensure that a resource belonging to the Java model is known to be contained in the Java model.
  * Case of src != bin
  */
-public void testContains5() throws CoreException {
+public void testContains5() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createJavaProject("P", new String[] {"src"}, "bin");
 
@@ -283,7 +283,7 @@ public void testContains5() throws CoreException {
  * Ensure that a resource belonging to the Java model is known to be contained in the Java model.
  * Case of prj==src and separate bin
  */
-public void testContains6() throws CoreException {
+public void testContains6() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createJavaProject("P", new String[] {""}, "bin");
 
@@ -326,7 +326,7 @@ public void testContains6() throws CoreException {
  * returns a non-null value
  * (regression test for bug 97487 [call hierarchy] Call Hierarchy Fails in mounted classes with attached src files)
  */
-public void testCreatePkgHandleInDifferentProject() throws CoreException {
+public void testCreatePkgHandleInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1", new String[] {}, "bin");
 		IFolder folder = createFolder("/P1/lib/x/y");
@@ -459,7 +459,7 @@ public void testGetJavaProject() {
  * Ensure that a java project that is added appears in the list of known java project,
  * and that it is removed from this list when deleted.
  */
-public void testGetJavaProjects1() throws CoreException {
+public void testGetJavaProjects1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaModel model = getJavaModel();
 	IJavaProject[] projects = model.getJavaProjects();
 	assertTrue(
@@ -486,7 +486,7 @@ public void testGetJavaProjects1() throws CoreException {
 /*
  * Ensure that a non-java project that is added does not appears in the list of known java project.
  */
-public void testGetJavaProjects2() throws CoreException {
+public void testGetJavaProjects2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaModel model = getJavaModel();
 	IJavaProject[] projects = model.getJavaProjects();
 	assertTrue(
@@ -507,7 +507,7 @@ public void testGetJavaProjects2() throws CoreException {
 /*
  * Test retrieving non-Java projects.
  */
-public void testGetNonJavaResources() throws Exception {
+public void testGetNonJavaResources() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaModel model = getJavaModel();
 
@@ -602,7 +602,7 @@ public void testInitializeAfterLoad() throws CoreException {
  * Ensures that JavaCore#initializeAfterLoad() can be canceled
  * (regression test for bug 179529 Stop Eclipse takes a lot of time in case of big workspace)
  */
-public void testInitializeAfterLoad2() throws CoreException {
+public void testInitializeAfterLoad2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject(
 				"P1",
@@ -659,7 +659,7 @@ public void testInitializeAfterLoad2() throws CoreException {
  */
 public void testPreProcessingResourceChangedListener01() throws CoreException {
 	final int[] eventType = new int[] {0};
-	IResourceChangeListener listener = new IResourceChangeListener(){
+	IResourceChangeListener listener = new IResourceChangeListener(){ //FLLDCIM: MARK — T07  ANONYMOUS
 		public void resourceChanged(IResourceChangeEvent event) {
 			eventType[0] |= event.getType();
 		}
@@ -679,7 +679,7 @@ public void testPreProcessingResourceChangedListener01() throws CoreException {
  */
 public void testPreProcessingResourceChangedListener02() throws CoreException {
 	final int[] eventType = new int[] {0};
-	IResourceChangeListener listener = new IResourceChangeListener(){
+	IResourceChangeListener listener = new IResourceChangeListener(){ //FLLDCIM: MARK — T07  ANONYMOUS
 		public void resourceChanged(IResourceChangeEvent event) {
 			eventType[0] |= event.getType();
 		}
@@ -700,7 +700,7 @@ public void testPreProcessingResourceChangedListener02() throws CoreException {
  */
 public void testPreProcessingResourceChangedListener03() throws CoreException {
 	final int[] eventType = new int[] {0};
-	IResourceChangeListener listener = new IResourceChangeListener(){
+	IResourceChangeListener listener = new IResourceChangeListener(){ //FLLDCIM: MARK — T07  ANONYMOUS
 		public void resourceChanged(IResourceChangeEvent event) {
 			eventType[0] |= event.getType();
 		}
@@ -721,7 +721,7 @@ public void testPreProcessingResourceChangedListener03() throws CoreException {
  */
 public void testPreProcessingResourceChangedListener04() throws CoreException {
 	final int[] eventType = new int[] {0};
-	IResourceChangeListener listener = new IResourceChangeListener(){
+	IResourceChangeListener listener = new IResourceChangeListener(){ //FLLDCIM: MARK — T07  ANONYMOUS
 		public void resourceChanged(IResourceChangeEvent event) {
 			eventType[0] |= event.getType();
 		}

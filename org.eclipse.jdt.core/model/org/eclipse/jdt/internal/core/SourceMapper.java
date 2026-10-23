@@ -84,23 +84,23 @@ public class SourceMapper
 			this.name = name;
 		}
 
-		private static String toString(IJavaElement method) {
-			StringBuilder buffer = new StringBuilder();
-			buffer
+		private static String toString(IJavaElement method) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				.append(method.getParent().getHandleIdentifier())
 				.append('#')
 				.append(method.getElementName())
 				.append('(');
 			if (method.getElementType() == IJavaElement.METHOD) {
 				String[] parameterTypes = ((IMethod) method).getParameterTypes();
-				for (int i = 0, max = parameterTypes.length; i < max; i++) {
+				for (int i = 0, max = parameterTypes.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (i > 0) {
-						buffer.append(',');
+						buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
-					buffer.append(Signature.getSignatureSimpleName(parameterTypes[i]));
+					buffer.append(Signature.getSignatureSimpleName(parameterTypes[i])); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
-			buffer.append(')');
+			buffer.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return buffer.toString();
 		}
 
@@ -130,8 +130,8 @@ public class SourceMapper
 		}
 		@Override
 		public String toString() {
-			StringBuilder buffer = new StringBuilder();
-			buffer.append('(').append(this.parent).append('.').append(this.name).append(')');
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buffer.append('(').append(this.parent).append('.').append(this.name).append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return String.valueOf(buffer);
 		}
 	}
@@ -279,7 +279,7 @@ public class SourceMapper
 	 * Creates a <code>SourceMapper</code> that locates source in the zip file
 	 * at the given location in the specified package fragment root.
 	 */
-	public SourceMapper(IPath sourcePath, String rootPath, Map<String, String> options, String encoding) {
+	public SourceMapper(IPath sourcePath, String rootPath, Map<String, String> options, String encoding) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.areRootPathsComputed = false;
 		this.options = options;
 		this.encoding = encoding;
@@ -290,21 +290,21 @@ public class SourceMapper
 		}
 		if (rootPath != null) {
 			this.rootPath = rootPath;
-			this.rootPaths = new ArrayList<>();
+			this.rootPaths = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			this.rootPaths.add(rootPath);
 		}
 		this.sourcePath = sourcePath;
-		this.sourceRanges = new HashMap<>();
-		this.parametersRanges = new HashMap<>();
-		this.parameterNames = new HashMap<>();
-		this.importsTable = new HashMap<>();
-		this.importsCounterTable = new HashMap<>();
+		this.sourceRanges = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		this.parametersRanges = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		this.parameterNames = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		this.importsTable = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		this.importsCounterTable = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	}
 
 	/**
 	 * @see ISourceElementRequestor
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void acceptImport(
 			int declarationStart,
 			int declarationEnd,
@@ -371,7 +371,7 @@ public class SourceMapper
 	private void addCategories(IJavaElement element, char[][] elementCategories) {
 		if (elementCategories == null) return;
 		if (this.categories == null)
-			this.categories = new HashMap<>();
+			this.categories = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		this.categories.put(element, CharOperation.toStrings(elementCategories));
 	}
 
@@ -393,14 +393,14 @@ public class SourceMapper
 	 * @see SourceMapper#getUnqualifiedMethodHandle
 	 * @see Signature
 	 */
-	public String[] convertTypeNamesToSigs(char[][] typeNames) {
+	public String[] convertTypeNamesToSigs(char[][] typeNames) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (typeNames == null)
 			return CharOperation.NO_STRINGS;
 		int n = typeNames.length;
 		if (n == 0)
 			return CharOperation.NO_STRINGS;
 		String[] typeSigs = new String[n];
-		for (int i = 0; i < n; ++i) {
+		for (int i = 0; i < n; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[] typeSig = Signature.createCharArrayTypeSignature(typeNames[i], false);
 
 			// transforms signatures that contains a qualification into unqualified signatures
@@ -409,11 +409,11 @@ public class SourceMapper
 			int start = 0;
 			int dot = -1;
 			int length = typeSig.length;
-			for (int j = 0; j < length; j++) {
+			for (int j = 0; j < length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				switch (typeSig[j]) {
 					case Signature.C_UNRESOLVED:
 						if (simpleTypeSig != null)
-							simpleTypeSig.append(typeSig, start, j-start);
+							simpleTypeSig.append(typeSig, start, j-start); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						start = j;
 						break;
 					case Signature.C_DOT:
@@ -424,8 +424,8 @@ public class SourceMapper
 						if (matchingEnd > 0 && matchingEnd+1 < length && typeSig[matchingEnd+1] == Signature.C_DOT) {
 							// found Head<Param>.Tail -> discard everything except Tail
 							if (simpleTypeSig == null)
-								simpleTypeSig = new StringBuilder().append(typeSig, 0, start);
-							simpleTypeSig.append(Signature.C_UNRESOLVED);
+								simpleTypeSig = new StringBuilder().append(typeSig, 0, start); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+							simpleTypeSig.append(Signature.C_UNRESOLVED); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							start = j = matchingEnd+2;
 							break;
 						}
@@ -433,9 +433,9 @@ public class SourceMapper
 					case Signature.C_NAME_END:
 						if (dot > start) {
 							if (simpleTypeSig == null)
-								simpleTypeSig = new StringBuilder().append(typeSig, 0, start);
-							simpleTypeSig.append(Signature.C_UNRESOLVED);
-							simpleTypeSig.append(typeSig, dot+1, j-dot-1);
+								simpleTypeSig = new StringBuilder().append(typeSig, 0, start); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+							simpleTypeSig.append(Signature.C_UNRESOLVED); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+							simpleTypeSig.append(typeSig, dot+1, j-dot-1); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							start = j;
 						}
 						break;
@@ -444,7 +444,7 @@ public class SourceMapper
 			if (simpleTypeSig == null) {
 				typeSigs[i] = new String(typeSig);
 			} else {
-				simpleTypeSig.append(typeSig, start, length-start);
+				simpleTypeSig.append(typeSig, start, length-start); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				typeSigs[i] = simpleTypeSig.toString();
 			}
 		}
@@ -454,7 +454,7 @@ public class SourceMapper
 	private int findMatchingGenericEnd(char[] sig, int start) {
 		int nesting = 0;
 		int length = sig.length;
-		for (int i=start; i < length; i++) {
+		for (int i=start; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch (sig[i]) {
 				case Signature.C_GENERIC_START:
 					nesting++;
@@ -493,7 +493,7 @@ public class SourceMapper
 			return FileVisitResult.CONTINUE;
 		}
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public FileVisitResult visitFile(java.nio.file.Path file, java.nio.file.Path mod, BasicFileAttributes attrs) throws IOException {
 			String entryName = file.toString();
 			if (Util.isClassFileName(entryName)) {
@@ -525,19 +525,19 @@ public class SourceMapper
 			return FileVisitResult.CONTINUE;
 		}
 	}
-	private synchronized void computeAllRootPaths(IJavaElement typeOrModule) {
+	private synchronized void computeAllRootPaths(IJavaElement typeOrModule) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.areRootPathsComputed) {
 			return;
 		}
 		IPackageFragmentRoot root = (IPackageFragmentRoot) typeOrModule.getAncestor(IJavaElement.PACKAGE_FRAGMENT_ROOT);
 		IPath pkgFragmentRootPath = root.getPath();
-		final HashSet<IPath> tempRoots = new HashSet<>();
+		final HashSet<IPath> tempRoots = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		long time = 0;
 		if (VERBOSE) {
-			trace("compute all root paths for " + root.getElementName()); //$NON-NLS-1$
+			trace("compute all root paths for " + root.getElementName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			time = System.currentTimeMillis();
 		}
-		final HashSet<String> firstLevelPackageNames = new HashSet<>();
+		final HashSet<String> firstLevelPackageNames = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		boolean containsADefaultPackage = false;
 		boolean containsJavaDerivedSource= false;
 		boolean containsJavaSource = !pkgFragmentRootPath.equals(this.sourcePath); // used to optimize zip file reading only if source path and root path are equals, otherwise assume that attachment contains Java source
@@ -564,7 +564,7 @@ public class SourceMapper
 			ZipFile zip = null;
 			try {
 				zip = manager.getZipFile(pkgFragmentRootPath);
-				for (Enumeration<? extends ZipEntry> entries = zip.entries(); entries.hasMoreElements(); ) {
+				for (Enumeration<? extends ZipEntry> entries = zip.entries(); entries.hasMoreElements(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					ZipEntry entry = entries.nextElement();
 					String entryName = entry.getName();
 					if (!entry.isDirectory()) {
@@ -603,7 +603,7 @@ public class SourceMapper
 				if (resource instanceof IContainer) {
 					try {
 						IResource[] members = ((IContainer) resource).members();
-						for (IResource member : members) {
+						for (IResource member : members) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							String resourceName = member.getName();
 							if (member.getType() == IResource.FOLDER) {
 								if (sourceLevel == null) {
@@ -642,7 +642,7 @@ public class SourceMapper
 				ZipFile zip = null;
 				try {
 					zip = manager.getZipFile(this.sourcePath);
-					for (Enumeration<? extends ZipEntry> entries = zip.entries(); entries.hasMoreElements(); ) {
+					for (Enumeration<? extends ZipEntry> entries = zip.entries(); entries.hasMoreElements(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ZipEntry entry = entries.nextElement();
 						String entryName;
 						if (!entry.isDirectory()
@@ -651,7 +651,7 @@ public class SourceMapper
 							IPath path = new Path(entryName);
 							int segmentCount = path.segmentCount();
 							if (segmentCount > 1) {
-								for (int i = 0, max = path.segmentCount() - 1; i < max; i++) {
+								for (int i = 0, max = path.segmentCount() - 1; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 									if (firstLevelPackageNames.contains(path.segment(i))) {
 										tempRoots.add(path.uptoSegment(i));
 										// don't break here as this path could contain other first level package names (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=74014)
@@ -674,45 +674,45 @@ public class SourceMapper
 		}
 		int size = tempRoots.size();
 		if (this.rootPaths != null) {
-			for (String path : this.rootPaths) {
+			for (String path : this.rootPaths) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				tempRoots.add(new Path(path));
 			}
 			this.rootPaths.clear();
 		} else {
-			this.rootPaths = new ArrayList<>(size);
+			this.rootPaths = new ArrayList<>(size); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		}
 		size = tempRoots.size();
 		if (size > 0) {
-			ArrayList<IPath> sortedRoots = new ArrayList<>(tempRoots);
+			ArrayList<IPath> sortedRoots = new ArrayList<>(tempRoots); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			if (size > 1) {
-				Collections.sort(sortedRoots, new Comparator<>() {
+				Collections.sort(sortedRoots, new Comparator<>() { //FLLDCIM: MARK — M16 SORT_LANE CALL
 					@Override
 					public int compare(IPath path1, IPath path2) {
 						return path1.segmentCount() - path2.segmentCount();
 					}
 				});
 			}
-			for (Object sortedRoot : sortedRoots) {
+			for (Object sortedRoot : sortedRoots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPath path = (IPath) sortedRoot;
 				this.rootPaths.add(path.toString());
 			}
 		}
 		this.areRootPathsComputed = true;
 		if (VERBOSE) {
-			trace("Spent " + (System.currentTimeMillis() - time) + "ms"); //$NON-NLS-1$ //$NON-NLS-2$
-			trace("Found " + size + " root paths");	//$NON-NLS-1$ //$NON-NLS-2$
+			trace("Spent " + (System.currentTimeMillis() - time) + "ms"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			trace("Found " + size + " root paths");	//$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			int i = 0;
-			for (String path : this.rootPaths) {
-				trace("root[" + i + "]=" + (path));//$NON-NLS-1$ //$NON-NLS-2$
+			for (String path : this.rootPaths) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				trace("root[" + i + "]=" + (path));//$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				i++;
 			}
 		}
 	}
 
-	private void computeRootPath(IContainer container, HashSet<String> firstLevelPackageNames, boolean hasDefaultPackage, Set<IPath> set, int sourcePathSegmentCount) {
+	private void computeRootPath(IContainer container, HashSet<String> firstLevelPackageNames, boolean hasDefaultPackage, Set<IPath> set, int sourcePathSegmentCount) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IResource[] resources = container.members();
-			for (int i = 0, max = resources.length; i < max; i++) {
+			for (int i = 0, max = resources.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IResource resource = resources[i];
 				if (resource.getType() == IResource.FOLDER) {
 					if (firstLevelPackageNames.contains(resource.getName())) {
@@ -729,7 +729,7 @@ public class SourceMapper
 				if (i == max - 1 && hasDefaultPackage) {
 					// check if one member is a .java file
 					boolean hasJavaSourceFile = false;
-					for (int j = 0; j < max; j++) {
+					for (int j = 0; j < max; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (org.eclipse.jdt.internal.core.util.Util.isJavaLikeFileName(resources[i].getName())) {
 							hasJavaSourceFile = true;
 							break;
@@ -767,7 +767,7 @@ public class SourceMapper
 	/**
 	 * @see ISourceElementRequestor
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void enterType(TypeInfo typeInfo) {
 		pushElementKind(IJavaElement.TYPE);
 		this.typeDepth++;
@@ -848,7 +848,7 @@ public class SourceMapper
 
 		// type parameters
 		if (typeInfo.typeParameters != null) {
-			for (TypeParameterInfo typeParameterInfo : typeInfo.typeParameters) {
+			for (TypeParameterInfo typeParameterInfo : typeInfo.typeParameters) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ITypeParameter typeParameter = currentType.getTypeParameter(new String(typeParameterInfo.name));
 				setSourceRange(
 					typeParameter,
@@ -951,7 +951,7 @@ public class SourceMapper
 		pushElementKind(IJavaElement.METHOD);
 		enterAbstractMethod(methodInfo);
 	}
-	private void enterAbstractMethod(MethodInfo methodInfo) {
+	private void enterAbstractMethod(MethodInfo methodInfo) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.typeDepth >= 0) {
 			this.memberName[this.typeDepth] = DeduplicationUtil.toString(methodInfo.name);
 			this.memberNameRange[this.typeDepth] =
@@ -994,7 +994,7 @@ public class SourceMapper
 
 			// type parameters
 			if (methodInfo.typeParameters != null) {
-				for (TypeParameterInfo typeParameterInfo : methodInfo.typeParameters) {
+				for (TypeParameterInfo typeParameterInfo : methodInfo.typeParameters) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					ITypeParameter typeParameter = method.getTypeParameter(new String(typeParameterInfo.name));
 					setSourceRange(
 						typeParameter,
@@ -1008,7 +1008,7 @@ public class SourceMapper
 			}
 			// parameters infos
 			if (methodInfo.parameterInfos != null) {
-				for (ParameterInfo parameterInfo : methodInfo.parameterInfos) {
+				for (ParameterInfo parameterInfo : methodInfo.parameterInfos) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					LocalVariableElementKey key = new LocalVariableElementKey(method, DeduplicationUtil.toString(parameterInfo.name));
 					SourceRange[] allRanges = new SourceRange[] {
 						new SourceRange(
@@ -1023,7 +1023,7 @@ public class SourceMapper
 						allRanges);
 					if (parameterInfo.modifiers != 0) {
 						if (this.finalParameters == null) {
-							this.finalParameters = new HashSet<>();
+							this.finalParameters = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 						}
 						this.finalParameters.add(key);
 					}
@@ -1107,7 +1107,7 @@ public class SourceMapper
 		exitAbstractMethod(declarationEnd);
 		popElementKind();
 	}
-	private void exitAbstractMethod(int declarationEnd) {
+	private void exitAbstractMethod(int declarationEnd) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.typeDepth >= 0) {
 			IType currentType = this.types[this.typeDepth];
 			SourceRange sourceRange =
@@ -1175,7 +1175,7 @@ public class SourceMapper
 		return internalFindSource((NamedMember) module, TypeConstants.MODULE_INFO_FILE_NAME_STRING);
 	}
 
-	private char[] internalFindSource(NamedMember typeOrModule, String name) {
+	private char[] internalFindSource(NamedMember typeOrModule, String name) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long time = 0;
 		if (VERBOSE) {
 			time = System.currentTimeMillis();
@@ -1199,7 +1199,7 @@ public class SourceMapper
 				if (!(typeOrModule.getAncestor(IJavaElement.PACKAGE_FRAGMENT_ROOT) instanceof JrtPackageFragmentRoot)) {
 					computeAllRootPaths(typeOrModule);
 					if (this.rootPaths != null) {
-						loop: for (String currentRootPath : this.rootPaths) {
+						loop: for (String currentRootPath : this.rootPaths) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (!currentRootPath.equals(this.rootPath)) {
 								source = getSourceForRootPath(currentRootPath, name);
 								if (source != null) {
@@ -1216,7 +1216,7 @@ public class SourceMapper
 			javaModelManager.flushZipFiles(this); // clean up cached zip files.
 		}
 		if (VERBOSE) {
-			System.out.println("spent " + (System.currentTimeMillis() - time) + "ms for " + typeOrModule.getElementName()); //$NON-NLS-1$ //$NON-NLS-2$
+			System.out.println("spent " + (System.currentTimeMillis() - time) + "ms for " + typeOrModule.getElementName()); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return source;
 	}
@@ -1225,9 +1225,9 @@ public class SourceMapper
 		String newFullName;
 		if (!currentRootPath.equals(IPackageFragmentRoot.DEFAULT_PACKAGEROOT_PATH)) {
 			if (currentRootPath.endsWith("/")) { //$NON-NLS-1$
-				newFullName = currentRootPath + name;
+				newFullName = currentRootPath + name; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			} else {
-				newFullName = currentRootPath + '/' + name;
+				newFullName = currentRootPath + '/' + name; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} else {
 			newFullName = name;
@@ -1235,7 +1235,7 @@ public class SourceMapper
 		return this.findSource(newFullName);
 	}
 
-	public char[] findSource(String fullName) {
+	public char[] findSource(String fullName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] source = null;
 		Object target = JavaModel.getTarget(this.sourcePath, true);
 		String charSet = null;
@@ -1302,7 +1302,7 @@ public class SourceMapper
 	 * Returns the SourceRange for the name of the given element, or
 	 * {-1, -1} if no source range is known for the name of the element.
 	 */
-	public SourceRange getNameRange(IJavaElement element) {
+	public SourceRange getNameRange(IJavaElement element) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch(element.getElementType()) {
 			case IJavaElement.METHOD :
 				if (((IMember) element).isBinary()) {
@@ -1371,7 +1371,7 @@ public class SourceMapper
 	 * Returns the <code>SourceRange</code> for the given element, or
 	 * {-1, -1} if no source range is known for the element.
 	 */
-	public SourceRange getSourceRange(IJavaElement element) {
+	public SourceRange getSourceRange(IJavaElement element) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch(element.getElementType()) {
 			case IJavaElement.METHOD :
 				if (((IMember) element).isBinary()) {
@@ -1422,7 +1422,7 @@ public class SourceMapper
 	}
 	private int getLocalTypeCount(String nameKey) {
 		if (this.localTypeCounter == null) {
-			this.localTypeCounter = new HashMap<>();
+			this.localTypeCounter = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		}
 		Integer count = this.localTypeCounter.get(nameKey);
 		count = count == null ? 1 : count+1;
@@ -1438,21 +1438,21 @@ public class SourceMapper
 	 *
 	 * @see org.eclipse.jdt.internal.compiler.lookup.CompilationUnitScope#computeConstantPoolName(org.eclipse.jdt.internal.compiler.lookup.LocalTypeBinding)
 	 */
-	protected IType getType(TypeInfo typeInfo) {
+	protected IType getType(TypeInfo typeInfo) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!(this.binaryTypeOrModule instanceof IType))
 			return null;
 		IType type = this.typeDepth == 0 ? null : this.types[this.typeDepth - 1];
-		StringBuilder builder= new StringBuilder();
+		StringBuilder builder= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		if (type != null) {
 			 // Gets us the .class file name with extension
-			builder.append(type.getParent().getElementName());
+			builder.append(type.getParent().getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			int dotClass = builder.lastIndexOf("."); //$NON-NLS-1$
 			 // get rid of the extension
 			builder.delete(dotClass, builder.length());
 			if ((typeInfo.node.bits & ASTNode.IsAnonymousType) != 0) {
-				builder.append('$').append(this.anonymousCounter);
+				builder.append('$').append(this.anonymousCounter); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				builder.append('$').append(typeInfo.name);
+				builder.append('$').append(typeInfo.name); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				// Rewrite to include counter if found to be a local type
 				if (this.elementKindPtr > 1 &&
 						this.elementKindStack[this.elementKindPtr - 2] == IJavaElement.METHOD) {
@@ -1461,7 +1461,7 @@ public class SourceMapper
 				}
 			}
 		} else {
-			builder.append(typeInfo.name);
+			builder.append(typeInfo.name); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		String classFileName = builder.toString();
 		if (classFileName.equals(this.binaryTypeOrModule.getElementName())) {
@@ -1476,12 +1476,12 @@ public class SourceMapper
 	 * Creates a handle that has parameter types that are not
 	 * fully qualified so that the correct source is found.
 	 */
-	protected IJavaElement[] getUnqualifiedMethodHandle(IMethod method, boolean noDollar) {
+	protected IJavaElement[] getUnqualifiedMethodHandle(IMethod method, boolean noDollar) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		boolean hasDollar = false;
 		String[] qualifiedParameterTypes = method.getParameterTypes();
 		String[] unqualifiedParameterTypes = new String[qualifiedParameterTypes.length];
-		for (int i = 0; i < qualifiedParameterTypes.length; i++) {
-			StringBuilder unqualifiedTypeSig = new StringBuilder();
+		for (int i = 0; i < qualifiedParameterTypes.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			StringBuilder unqualifiedTypeSig = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			getUnqualifiedTypeSignature(qualifiedParameterTypes[i], 0/*start*/, qualifiedParameterTypes[i].length(), unqualifiedTypeSig, noDollar);
 			unqualifiedParameterTypes[i] = unqualifiedTypeSig.toString();
 			hasDollar |= unqualifiedParameterTypes[i].lastIndexOf('$') != -1;
@@ -1497,17 +1497,17 @@ public class SourceMapper
 		return result;
 	}
 
-	private int getUnqualifiedTypeSignature(String qualifiedTypeSig, int start, int length, StringBuilder unqualifiedTypeSig, boolean noDollar) {
+	private int getUnqualifiedTypeSignature(String qualifiedTypeSig, int start, int length, StringBuilder unqualifiedTypeSig, boolean noDollar) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char firstChar = qualifiedTypeSig.charAt(start);
 		int end = start + 1;
 		boolean sigStart = false;
-		firstPass: for (int i = start; i < length; i++) {
+		firstPass: for (int i = start; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char current = qualifiedTypeSig.charAt(i);
 			switch (current) {
 				case Signature.C_ARRAY :
 				case Signature.C_SUPER:
 				case Signature.C_EXTENDS:
-					unqualifiedTypeSig.append(current);
+					unqualifiedTypeSig.append(current); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					start = i + 1;
 					end = start + 1;
 					firstChar = qualifiedTypeSig.charAt(start);
@@ -1525,7 +1525,7 @@ public class SourceMapper
 					end = i;
 					break firstPass;
 				case Signature.C_STAR :
-					unqualifiedTypeSig.append(current);
+					unqualifiedTypeSig.append(current); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					start = i + 1;
 					end = start + 1;
 					firstChar = qualifiedTypeSig.charAt(start);
@@ -1544,7 +1544,7 @@ public class SourceMapper
 				case Signature.C_LONG :
 				case Signature.C_SHORT :
 					if (!sigStart) {
-						unqualifiedTypeSig.append(current);
+						unqualifiedTypeSig.append(current); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						return i+1;
 					}
 			}
@@ -1553,35 +1553,35 @@ public class SourceMapper
 			case Signature.C_RESOLVED :
 			case Signature.C_UNRESOLVED :
 			case Signature.C_TYPE_VARIABLE :
-				unqualifiedTypeSig.append(Signature.C_UNRESOLVED);
+				unqualifiedTypeSig.append(Signature.C_UNRESOLVED); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (noDollar) {
 					int lastDollar = qualifiedTypeSig.lastIndexOf('$', end);
 					if (lastDollar > start)
 						start = lastDollar + 1;
 				}
-				for (int i = start; i < length; i++) {
+				for (int i = start; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					char current = qualifiedTypeSig.charAt(i);
 					switch (current) {
 						case Signature.C_GENERIC_START:
-							unqualifiedTypeSig.append(current);
+							unqualifiedTypeSig.append(current); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							i++;
-							do {
+							do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								i = getUnqualifiedTypeSignature(qualifiedTypeSig, i, length, unqualifiedTypeSig, noDollar);
 							} while (qualifiedTypeSig.charAt(i) != Signature.C_GENERIC_END);
-							unqualifiedTypeSig.append(Signature.C_GENERIC_END);
+							unqualifiedTypeSig.append(Signature.C_GENERIC_END); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							break;
 						case Signature.C_NAME_END:
-							unqualifiedTypeSig.append(current);
+							unqualifiedTypeSig.append(current); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							return i + 1;
 						default:
-							unqualifiedTypeSig.append(current);
+							unqualifiedTypeSig.append(current); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							break;
 					}
 				}
 				return length;
 			default :
 				// primitive type or wildcard
-				unqualifiedTypeSig.append(qualifiedTypeSig.substring(start, end));
+				unqualifiedTypeSig.append(qualifiedTypeSig.substring(start, end)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				return end;
 		}
 	}
@@ -1598,7 +1598,7 @@ public class SourceMapper
 	 * If a non-null java element is passed, finds the name range for the
 	 * given java element without storing it.
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public synchronized ISourceRange mapSource(
 		NamedMember typeOrModule,
 		char[] contents,
@@ -1735,7 +1735,7 @@ public class SourceMapper
 		return imports;
 	}
 
-	private boolean hasToRetrieveSourceRangesForLocalClass(char[] eltName) {
+	private boolean hasToRetrieveSourceRangesForLocalClass(char[] eltName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		/*
 		 * A$1$B$2 : true
 		 * A$B$B$2 : true
@@ -1748,7 +1748,7 @@ public class SourceMapper
 		if (eltName == null) return false;
 		int length = eltName.length;
 		int dollarIndex = CharOperation.indexOf('$', eltName, 0);
-		while (dollarIndex != -1) {
+		while (dollarIndex != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int nameStart = dollarIndex+1;
 			if (nameStart == length) return false;
 			if (Character.isDigit(eltName[nameStart]))

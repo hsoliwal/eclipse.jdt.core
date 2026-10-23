@@ -41,8 +41,8 @@ public class ClasspathJMod extends ClasspathJar {
 	@Override
 	IModule initializeModule() {
 		IModule mod = null;
-		try (ZipFile file = new ZipFile(this.zipFilename)) {
-			String fileName = CLASSES_FOLDER + IModule.MODULE_INFO_CLASS;
+		try (ZipFile file = new ZipFile(this.zipFilename)) { //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM NEW
+			String fileName = CLASSES_FOLDER + IModule.MODULE_INFO_CLASS; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			ClassFileReader classfile = ClassFileReader.read(file, fileName);
 			if (classfile != null) {
 				mod = classfile.getModuleDeclaration();
@@ -53,7 +53,7 @@ public class ClasspathJMod extends ClasspathJar {
 		return mod;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public NameEnvironmentAnswer findClass(String binaryFileName, String qualifiedPackageName, String moduleName, String qualifiedBinaryFileName,
 											boolean asBinaryOnly, Predicate<String> moduleNameFilter) {
 		if (!isPackage(qualifiedPackageName, moduleName)) return null; // most common case
@@ -61,7 +61,7 @@ public class ClasspathJMod extends ClasspathJar {
 			return null;
 
 		try {
-			qualifiedBinaryFileName = CLASSES_FOLDER + qualifiedBinaryFileName;
+			qualifiedBinaryFileName = CLASSES_FOLDER + qualifiedBinaryFileName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IBinaryType reader = ClassFileReader.read(this.zipFile, qualifiedBinaryFileName);
 			if (reader != null) {
 				char[] modName = this.module == null ? null : this.module.name();
@@ -81,9 +81,9 @@ public class ClasspathJMod extends ClasspathJar {
 	}
 	@Override
 	protected Set<String> readPackageNames() {
-		final Set<String> packageSet = new HashSet<>();
+		final Set<String> packageSet = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		packageSet.add(""); //$NON-NLS-1$
-		for (Enumeration<? extends ZipEntry> e = this.zipFile.entries(); e.hasMoreElements(); ) {
+		for (Enumeration<? extends ZipEntry> e = this.zipFile.entries(); e.hasMoreElements(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ZipEntry entry = e.nextElement();
 			char[] entryName = entry.getName().toCharArray();
 			int index = CharOperation.indexOf('/', entryName);

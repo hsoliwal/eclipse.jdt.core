@@ -165,7 +165,7 @@ public class RecordElementsTests extends TestCase {
 			String testMethod, String testClass, String resourceArea, boolean preview) throws IOException {
 		internalTestWithPreview(compiler, processor, compliance, testMethod, testClass, resourceArea, preview, false);
 	}
-	protected void internalTestWithPreview(JavaCompiler compiler, String processor, String compliance,
+	protected void internalTestWithPreview(JavaCompiler compiler, String processor, String compliance, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String testMethod, String testClass, String resourceArea, boolean preview, boolean processBinaries) throws IOException {
 		if (!isRunning16()) {
 			return;
@@ -173,18 +173,18 @@ public class RecordElementsTests extends TestCase {
 		System.clearProperty(processor);
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "mod_locations", resourceArea);
 		if (testClass == null || testClass.equals("")) {
-			BatchTestUtils.copyResources("mod_locations/" + resourceArea, targetFolder);
+			BatchTestUtils.copyResources("mod_locations/" + resourceArea, targetFolder); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
-			BatchTestUtils.copyResource("mod_locations/" + resourceArea + "/" + testClass, targetFolder);
+			BatchTestUtils.copyResource("mod_locations/" + resourceArea + "/" + testClass, targetFolder); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
-		List<String> options = new ArrayList<>();
-		options.add("-A" + processor);
-		options.add("-A" + testMethod);
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		options.add("-A" + processor); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		options.add("-A" + testMethod); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		options.add("-processor");
 		options.add(processor);
 		if (compiler instanceof EclipseCompiler) {
-			options.add("-" + compliance);
+			options.add("-" + compliance); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
 			options.add("-source");
 			options.add(compliance);

@@ -81,7 +81,7 @@ public class JarPackageFragmentRoot extends PackageFragmentRoot {
 	 * Constructs a package fragment root which is the root of the Java package directory hierarchy
 	 * based on a JAR file.
 	 */
-	public JarPackageFragmentRoot(IResource resource, IPath externalJarPath, JavaProject project, IClasspathAttribute[] attributes) {
+	public JarPackageFragmentRoot(IResource resource, IPath externalJarPath, JavaProject project, IClasspathAttribute[] attributes) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		super(resource, project);
 		this.jarPath = externalJarPath;
 		if (attributes == null) {
@@ -110,14 +110,14 @@ public class JarPackageFragmentRoot extends PackageFragmentRoot {
 	 * These are all of the directory zip entries, and any directories implied
 	 * by the path of class files contained in the jar of this package fragment root.
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected boolean computeChildren(OpenableElementInfo info, IResource underlyingResource) throws JavaModelException {
-		Map<List<String>, PackageContent> rawPackageInfo= new HashMap<>();
-		Map<String, String> overridden = new HashMap<>();
+		Map<List<String>, PackageContent> rawPackageInfo= new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		Map<String, String> overridden = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		IJavaElement[] children = NO_ELEMENTS;
 		try {
 			// always create the default package
-			rawPackageInfo.put(new ArrayList<>(), new PackageContent());
+			rawPackageInfo.put(new ArrayList<>(), new PackageContent()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 			Object file = JavaModel.getTarget(this, true);
 			long classLevel = Util.getJdkLevel(file);
@@ -130,7 +130,7 @@ public class JarPackageFragmentRoot extends PackageFragmentRoot {
 				String versionsPrefix = Util.METAINF_VERSIONS;
 				this.multiVersion = Util.isMultiRelease(getManifest());
 				int length = versionsPrefix.length();
-				for (Enumeration<? extends ZipEntry> e= jar.entries(); e.hasMoreElements();) {
+				for (Enumeration<? extends ZipEntry> e= jar.entries(); e.hasMoreElements();) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					ZipEntry member= e.nextElement();
 					String name = Util.getEntryName(jar.getName(), member);
 					if (name == null)  {
@@ -157,14 +157,14 @@ public class JarPackageFragmentRoot extends PackageFragmentRoot {
 			children = createChildren(rawPackageInfo.keySet());
 		} catch (ZipException zipex) {
 			// malcious ZIP archive, leave the children empty
-			Util.log(zipex, "Invalid ZIP archive: " + toStringWithAncestors()); //$NON-NLS-1$
+			Util.log(zipex, "Invalid ZIP archive: " + toStringWithAncestors()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			children = NO_ELEMENTS;
 			rawPackageInfo= Map.of();
 			overridden = Map.of();
 		} catch (CoreException e) {
 			if (e.getCause() instanceof ZipException zipex) {
 				// not a ZIP archive, leave the children empty
-				Util.log(zipex, "Invalid ZIP archive: " + toStringWithAncestors()); //$NON-NLS-1$
+				Util.log(zipex, "Invalid ZIP archive: " + toStringWithAncestors()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				children = NO_ELEMENTS;
 				rawPackageInfo= Map.of();
 				overridden = Map.of();
@@ -183,13 +183,13 @@ public class JarPackageFragmentRoot extends PackageFragmentRoot {
 	protected IJavaElement[] createChildren(Collection<List<String>> packagenames) {
 		// XXX sorting the children is unnecessary by contract - see org.eclipse.jdt.core.IParent#getChildren()
 		// but some tests like JavaProjectTests rely on a fixed child order
-		ArrayList<String[]> keys = new ArrayList<>(packagenames.stream().map(s->s.toArray(String[]::new)).toList() );
-		Collections.sort(keys, Arrays::compare);
+		ArrayList<String[]> keys = new ArrayList<>(packagenames.stream().map(s->s.toArray(String[]::new)).toList() ); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		Collections.sort(keys, Arrays::compare); //FLLDCIM: MARK — M16 SORT_LANE CALL
 
 		IJavaElement[] children = new IJavaElement[packagenames.size()];
 		// loop through all of referenced packages, creating package fragments if necessary
 		int index = 0;
-		for (String[] pkgName : keys) {
+		for (String[] pkgName : keys) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			children[index++] = getPackageFragment(pkgName);
 		}
 		return children;
@@ -264,7 +264,7 @@ public class JarPackageFragmentRoot extends PackageFragmentRoot {
 		if (length == 0)
 			return defaultPkgResources;
 		Object[] nonJavaResources = new Object[length];
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JarEntryResource nonJavaResource = (JarEntryResource) defaultPkgResources[i];
 			nonJavaResources[i] = nonJavaResource.clone(this);
 		}
@@ -286,7 +286,7 @@ public class JarPackageFragmentRoot extends PackageFragmentRoot {
 			try {
 				elementInfo = (JarPackageFragmentRootInfo) getElementInfo();
 				String version = elementInfo.overriddenClasses.get(classname);
-				return version == null ? classname : Util.METAINF_VERSIONS + version + '/' + classname;
+				return version == null ? classname : Util.METAINF_VERSIONS + version + '/' + classname; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			} catch (JavaModelException e) {
 				// move on
 			}
@@ -336,7 +336,7 @@ public class JarPackageFragmentRoot extends PackageFragmentRoot {
 
 	/** make sure all parent packages exit in rawPackageInfo and adds the given file to the given package
 	 * static implementation to make sure the result can be shared across instances */
-	static void initRawPackageInfo(Map<List<String>, PackageContent> rawPackageInfo, String classNameSubFolder,
+	static void initRawPackageInfo(Map<List<String>, PackageContent> rawPackageInfo, String classNameSubFolder, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String entryName, boolean isDirectory, String compliance) {
 		String className = entryToClassName(classNameSubFolder, entryName);
 		int lastSeparator;
@@ -349,15 +349,15 @@ public class JarPackageFragmentRoot extends PackageFragmentRoot {
 		} else {
 			lastSeparator = className.lastIndexOf('/');
 		}
-		ArrayList<String> pkgName = new ArrayList<>(Arrays.asList(Util.splitOn('/', className, 0, lastSeparator)));
+		ArrayList<String> pkgName = new ArrayList<>(Arrays.asList(Util.splitOn('/', className, 0, lastSeparator))); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		PackageContent existing = null;
 		int length = pkgName.size();
 		int existingLength;
-		for (existingLength = length; existing == null; existingLength--) {
+		for (existingLength = length; existing == null; existingLength--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			existing = rawPackageInfo.get(pkgName.subList(0, existingLength));
 		}
 		existingLength++;
-		for (int i = existingLength; i < length; i++) {
+		for (int i = existingLength; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// sourceLevel must be null because we know nothing about it based on a jar file
 			if (Util.isValidFolderNameForPackage(pkgName.get(i), null, compliance)) {
 				List<String> path = pkgName.subList(0, i + 1);
@@ -473,9 +473,9 @@ public class JarPackageFragmentRoot extends PackageFragmentRoot {
 
 	/** creates a unmodifiable copy that is thread-safe and has it's Strings deduplicated **/
 	static Map<List<String>, PackageContent> unmodifiableCopy(Map<List<String>, PackageContent> rawPackageInfo) {
-		Map<List<String>, PackageContent> deduplicatedPackageInfo = new HashMap<>();
+		Map<List<String>, PackageContent> deduplicatedPackageInfo = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
-		for (Entry<List<String>, PackageContent> e : rawPackageInfo.entrySet()) {
+		for (Entry<List<String>, PackageContent> e : rawPackageInfo.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			List<String> key = e.getKey();
 			PackageContent p = e.getValue();
 			PackageContent packageContent = new PackageContent(DeduplicationUtil.intern(p.javaClasses()), DeduplicationUtil.intern(p.resources()));

@@ -46,7 +46,7 @@ public CodeSnippetSingleNameReference(char[] source, long pos, EvaluationContext
 /**
  * Check and/or redirect the field access to the delegate receiver if any
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public TypeBinding checkFieldAccess(BlockScope scope) {
 
 	if (this.delegateThis == null) {
@@ -73,7 +73,7 @@ public TypeBinding checkFieldAccess(BlockScope scope) {
 	return fieldBinding.type;
 
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void generateAssignment(BlockScope currentScope, CodeStream codeStream, Assignment assignment, boolean valueRequired) {
 	// optimizing assignment like: i = i + 1 or i = 1 + i
 	if (assignment.expression.isCompactableOperation()) {
@@ -184,7 +184,7 @@ public void generateAssignment(BlockScope currentScope, CodeStream codeStream, A
 			}
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void generateCode(BlockScope currentScope, CodeStream codeStream, boolean valueRequired) {
 	int pc = codeStream.position;
 	if (this.constant != Constant.NotAConstant) {
@@ -266,7 +266,7 @@ public void generateCode(BlockScope currentScope, CodeStream codeStream, boolean
  * The APIs with an extra argument is used whenever there are two references to the same variable which
  * are optimized in one access: e.g "a = a + 1" optimized into "a++".
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void generateCompoundAssignment(BlockScope currentScope, CodeStream codeStream, MethodBinding writeAccessor, Expression expression, int operator, int assignmentImplicitConversion, boolean valueRequired) {
 	switch (this.bits & RestrictiveFlagMASK) {
 		case Binding.FIELD : // assigning to a field
@@ -449,7 +449,7 @@ public void generateCompoundAssignment(BlockScope currentScope, CodeStream codeS
 			codeStream.store(localBinding, false);
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void generatePostIncrement(BlockScope currentScope, CodeStream codeStream, CompoundAssignment postIncrement, boolean valueRequired) {
 	switch (this.bits & RestrictiveFlagMASK) {
 		case Binding.FIELD : // assigning to a field
@@ -528,7 +528,7 @@ public void generateReceiver(CodeStream codeStream) {
  */
 public TypeBinding getReceiverType(BlockScope currentScope) {
 	Scope scope = currentScope.parent;
-	while (true) {
+	while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch (scope.kind) {
 				case Scope.CLASS_SCOPE :
 					return ((ClassScope) scope).referenceContext.binding;
@@ -537,7 +537,7 @@ public TypeBinding getReceiverType(BlockScope currentScope) {
 			}
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void manageSyntheticAccessIfNecessary(BlockScope currentScope, FlowInfo flowInfo, boolean isReadAccess) {
 
 	if (this.delegateThis == null) {
@@ -562,7 +562,7 @@ public void manageSyntheticAccessIfNecessary(BlockScope currentScope, FlowInfo f
 /**
  * Normal field binding did not work, try to bind to a field of the delegate receiver.
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public TypeBinding reportError(BlockScope scope) {
 
 	this.constant = Constant.NotAConstant;

@@ -66,7 +66,7 @@ public class BuildEnv extends AbstractCompilationEnv
 	 * Set of strings that indicate new type dependencies introduced on the file
 	 * each string is a fully-qualified type name.
 	 */
-	private final Set<String> _typeDependencies = new HashSet<>();
+	private final Set<String> _typeDependencies = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 
 	/**
 	 * Indicates whether we are in batch mode or not. This gets flipped only
@@ -108,11 +108,11 @@ public class BuildEnv extends AbstractCompilationEnv
 		_filer = new BuildFilerImpl(this);
 		_filesWithAnnotation = filesWithAnnotations;
 		_additionFiles = additionalFiles;
-		_problems = new ArrayList<>();
-		_markerInfos = new ArrayList<>();
+		_problems = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		_markerInfos = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		if (AptPlugin.DEBUG_COMPILATION_ENV) AptPlugin.trace(
-				"constructed " + this + " for " + _filesWithAnnotation.length + " files"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				"constructed " + this + " for " + _filesWithAnnotation.length + " files"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
     @Override
@@ -193,7 +193,7 @@ public class BuildEnv extends AbstractCompilationEnv
      * @param msg the message on the marker
      * @param line the line number of where the marker should be
      */
-    @Override
+    @Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	void addMessage(IFile resource,
        		        int start,
     				int end,
@@ -211,30 +211,30 @@ public class BuildEnv extends AbstractCompilationEnv
 
     	// Eclipse doesn't support INFO-level IProblems, so we send them to the log instead.
     	if ( severity == Severity.INFO) {
-    		StringBuilder sb = new StringBuilder();
-    		sb.append("Informational message reported by annotation processor:\n"); //$NON-NLS-1$
-    		sb.append(msg);
-    		sb.append("\n"); //$NON-NLS-1$
+    		StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+    		sb.append("Informational message reported by annotation processor:\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+    		sb.append(msg); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+    		sb.append("\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
     		if (resource != null) {
-    			sb.append("Resource="); //$NON-NLS-1$
-    			sb.append(resource.getName());
-    			sb.append("; "); //$NON-NLS-1$
+    			sb.append("Resource="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+    			sb.append(resource.getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+    			sb.append("; "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
     		}
-    		sb.append("starting offset="); //$NON-NLS-1$
-    		sb.append(start);
-    		sb.append("; ending offset="); //$NON-NLS-1$
-    		sb.append(end);
-    		sb.append("; line="); //$NON-NLS-1$
-    		sb.append(line);
+    		sb.append("starting offset="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+    		sb.append(start); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+    		sb.append("; ending offset="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+    		sb.append(end); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+    		sb.append("; line="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+    		sb.append(line); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
     		if (arguments != null) {
-    			sb.append("; arguments:"); //$NON-NLS-1$
-    			for (String s : arguments) {
-    				sb.append("\n"); //$NON-NLS-1$
-    				sb.append(s);
+    			sb.append("; arguments:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+    			for (String s : arguments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+    				sb.append("\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+    				sb.append(s); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
     			}
     		}
     		else {
-    			sb.append("\n"); //$NON-NLS-1$
+    			sb.append("\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
     		}
     		IStatus status = AptPlugin.createInfoStatus(null, sb.toString());
     		AptPlugin.log(status);
@@ -294,24 +294,24 @@ public class BuildEnv extends AbstractCompilationEnv
 	 *        if contains. May be null.
 	 * @return the map containing all annotation types found within this environment.
 	 */
-    public Map<String, AnnotationTypeDeclaration> getAllAnnotationTypes(
+    public Map<String, AnnotationTypeDeclaration> getAllAnnotationTypes( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     		final Map<BuildContext, Set<AnnotationTypeDeclaration>> file2Annotations) {
 
     	checkValid();
     	if( _filesWithAnnotation == null )
     		return getAnnotationTypes();
 
-		final List<Annotation> instances = new ArrayList<>();
+		final List<Annotation> instances = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		final Map<String, AnnotationTypeDeclaration> decls =
-			new HashMap<>();
+			new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		final AnnotationVisitor visitor = new AnnotationVisitor(instances);
-		for( int astIndex=0, len=_astRoots.length; astIndex<len; astIndex++ ){
+		for( int astIndex=0, len=_astRoots.length; astIndex<len; astIndex++ ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if( _astRoots == null || _astRoots[astIndex] == null  )
 				System.err.println();
 			_astRoots[astIndex].accept(visitor);
-			final Set<AnnotationTypeDeclaration> perFileAnnos = new HashSet<>();
+			final Set<AnnotationTypeDeclaration> perFileAnnos = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 
-			for (int instanceIndex=0, size = instances.size(); instanceIndex < size; instanceIndex++) {
+			for (int instanceIndex=0, size = instances.size(); instanceIndex < size; instanceIndex++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				final Annotation instance = instances.get(instanceIndex);
 				final ITypeBinding annoType = instance.resolveTypeBinding();
 				if (annoType == null)
@@ -362,7 +362,7 @@ public class BuildEnv extends AbstractCompilationEnv
 	void createASTs(BuildContext[] cpResults){
 		final int len = cpResults.length;
 		final ICompilationUnit[] units = new ICompilationUnit[len];
-		for( int i=0; i<len; i++ ){
+		for( int i=0; i<len; i++ ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// may return null if creation failed. this may occur if
 			// the file does not exists.
 			units[i] = JavaCore.createCompilationUnitFrom(cpResults[i].getFile());
@@ -370,7 +370,7 @@ public class BuildEnv extends AbstractCompilationEnv
 		createASTs(_javaProject, units, _requestor = new CallbackRequestor(units));
 	}
 
-	public void beginFileProcessing(BuildContext result){
+	public void beginFileProcessing(BuildContext result){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if( result == null )
 			throw new IllegalStateException("missing compilation result"); //$NON-NLS-1$
 		_batchMode = false;
@@ -383,7 +383,7 @@ public class BuildEnv extends AbstractCompilationEnv
 
 		// need to match up the file with the ast.
 		if( _filesWithAnnotation != null ){
-			for( int i=0, len=_filesWithAnnotation.length; i<len; i++ ){
+			for( int i=0, len=_filesWithAnnotation.length; i<len; i++ ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if( file.equals(_filesWithAnnotation[i].getFile()) ){
 					_file = file;
 					_astRoot = _astRoots[i];
@@ -393,7 +393,7 @@ public class BuildEnv extends AbstractCompilationEnv
 
 		if( _file == null || _astRoot == null)
 			throw new IllegalStateException(
-					"file " +  //$NON-NLS-1$
+					"file " +  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					file.getName() +
 					" is not in the list to be processed."); //$NON-NLS-1$
 	}
@@ -444,8 +444,8 @@ public class BuildEnv extends AbstractCompilationEnv
     {
 		if( !_batchMode )
 			return super.searchLocallyForTypeDeclarations();
-		final List<AbstractTypeDeclaration> typeDecls = new ArrayList<>();
-		for( int i=0, len=_astRoots.length; i<len; i++ )
+		final List<AbstractTypeDeclaration> typeDecls = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for( int i=0, len=_astRoots.length; i<len; i++ ) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
         	typeDecls.addAll( _astRoots[i].types() );
 
 		getTypeDeclarationsFromAdditionFiles(typeDecls);
@@ -453,12 +453,12 @@ public class BuildEnv extends AbstractCompilationEnv
 		return typeDecls;
     }
 
-	private void getTypeDeclarationsFromAdditionFiles(List<AbstractTypeDeclaration> typeDecls){
+	private void getTypeDeclarationsFromAdditionFiles(List<AbstractTypeDeclaration> typeDecls){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if( _additionFiles == null || _additionFiles.length == 0 ) return;
 
 		final int len = _additionFiles.length;
 		final ICompilationUnit[] units = new ICompilationUnit[len];
-		for( int i=0; i<len; i++ ){
+		for( int i=0; i<len; i++ ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// may return null if creation failed. this may occur if
 			// the file does not exists.
 			units[i] = JavaCore.createCompilationUnitFrom(_additionFiles[i].getFile());
@@ -467,7 +467,7 @@ public class BuildEnv extends AbstractCompilationEnv
 		createASTs(_javaProject, units, r);
 
 		CompilationUnit[] asts = r.asts;
-		for( CompilationUnit ast : asts ){
+		for( CompilationUnit ast : asts ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if( ast != null ){
 				typeDecls.addAll( ast.types() );
 			}
@@ -479,9 +479,9 @@ public class BuildEnv extends AbstractCompilationEnv
     {
 		if( !_batchMode )
 			return super.getASTNodesWithAnnotations();
-    	final Map<ASTNode, List<Annotation>> astNode2Anno = new HashMap<>();
+    	final Map<ASTNode, List<Annotation>> astNode2Anno = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
         final AnnotatedNodeVisitor visitor = new AnnotatedNodeVisitor(astNode2Anno);
-        for( int i=0, len=_astRoots.length; i<len; i++ )
+        for( int i=0, len=_astRoots.length; i<len; i++ ) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
         	_astRoots[i].accept( visitor );
         return astNode2Anno;
     }
@@ -492,7 +492,7 @@ public class BuildEnv extends AbstractCompilationEnv
 		if( !_batchMode )
 			return super.getFileForNode(node);
 		final CompilationUnit curAST = (CompilationUnit)node.getRoot();
-		for( int i=0, len=_astRoots.length; i<len; i++ ){
+		for( int i=0, len=_astRoots.length; i<len; i++ ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if( _astRoots[i] == curAST )
 				return _filesWithAnnotation[i].getFile();
 		}
@@ -511,7 +511,7 @@ public class BuildEnv extends AbstractCompilationEnv
 		if( !_batchMode )
 			return super.searchLocallyForBinding(binding);
 
-		for( int i=0, len=_astRoots.length; i<len; i++ ){
+		for( int i=0, len=_astRoots.length; i<len; i++ ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ASTNode node = _astRoots[i].findDeclaringNode(binding);
 			if( node != null)
 				return _astRoots[i];
@@ -531,7 +531,7 @@ public class BuildEnv extends AbstractCompilationEnv
 		if( !_batchMode )
 			return super.searchLocallyForIFile(binding);
 
-		for( int i=0, len=_astRoots.length; i<len; i++ ){
+		for( int i=0, len=_astRoots.length; i<len; i++ ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ASTNode node = _astRoots[i].findDeclaringNode(binding);
 			if( node != null)
 				return _filesWithAnnotation[i].getFile();
@@ -552,7 +552,7 @@ public class BuildEnv extends AbstractCompilationEnv
     	else if( file.equals(_file) )
     		return _astRoot;
     	else if( _astRoots != null ){
-    		for( int i=0, len=_filesWithAnnotation.length; i<len; i++ ){
+    		for( int i=0, len=_filesWithAnnotation.length; i<len; i++ ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
         		if( file.equals(_filesWithAnnotation[i].getFile()) )
         			return _astRoots[i];
         	}
@@ -577,18 +577,18 @@ public class BuildEnv extends AbstractCompilationEnv
 		}
 	}
 
-	void postMarkers()
+	void postMarkers() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     {
 		if( _markerInfos == null || _markerInfos.size() == 0 )
 			return;
 		// Posting all the markers to the workspace. Doing this in a batch process
 		// to minimize the amount of notification.
 		try{
-	        final IWorkspaceRunnable runnable = new IWorkspaceRunnable(){
+	        final IWorkspaceRunnable runnable = new IWorkspaceRunnable(){ //FLLDCIM: MARK — T09  ANONYMOUS
 	            @Override
 				public void run(IProgressMonitor monitor)
 	            {
-	                for( MarkerInfo markerInfo : _markerInfos ){
+	                for( MarkerInfo markerInfo : _markerInfos ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						try{
 		                    final IMarker marker = _javaProject.getProject().createMarker(AptPlugin.APT_BATCH_PROCESSOR_PROBLEM_MARKER);
 		                    markerInfo.copyIntoMarker(marker);

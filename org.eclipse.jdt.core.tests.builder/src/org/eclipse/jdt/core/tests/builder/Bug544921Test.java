@@ -27,7 +27,7 @@ public class Bug544921Test extends BuilderTests {
 		return buildTestSuite(Bug544921Test.class);
 	}
 
-	public void testCompilerRegression() throws JavaModelException, Exception {
+	public void testCompilerRegression() throws JavaModelException, Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Bug544921Test", "1.8"); //$NON-NLS-1$
 
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -111,7 +111,7 @@ public class Bug544921Test extends BuilderTests {
 		}
 	}
 
-	private void scaffoldProject(IPath projectPath, int maxPeripheral, int maxRegister, int maxFields) throws JavaModelException {
+	private void scaffoldProject(IPath projectPath, int maxPeripheral, int maxRegister, int maxFields) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
 		env.addClass(projectPath, "reg", "Field", //$NON-NLS-1$ //$NON-NLS-2$
@@ -326,7 +326,7 @@ public class Bug544921Test extends BuilderTests {
 		env.addClass(projectPath, "reg.generate", "DeviceXY", genSource(maxPeripheral, maxRegister, maxFields));
 	}
 
-	public static String genSource(int maxPeripheral, int maxRegister, int maxFields) {
+	public static String genSource(int maxPeripheral, int maxRegister, int maxFields) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		/*
 		 *
 		 * The example that took 25 minutes was generated with: int maxPeripheral = 10;
@@ -342,71 +342,71 @@ public class Bug544921Test extends BuilderTests {
 		 * = 500; int maxFields = 64;
 		 */
 
-		StringBuilder source = new StringBuilder();
+		StringBuilder source = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
-		source.append("package reg.generate;").append(System.lineSeparator());
-		source.append("public class DeviceXY {").append(System.lineSeparator());
-		source.append("private static DeviceXY instance;").append(System.lineSeparator());
-		source.append("private DeviceXY() {}").append(System.lineSeparator());
-		source.append("public static DeviceXY getInstance() {").append(System.lineSeparator());
-		source.append("  if (instance == null) { instance = new DeviceXY(); }").append(System.lineSeparator());
-		source.append("  return instance;").append(System.lineSeparator());
-		source.append("}").append(System.lineSeparator());
+		source.append("package reg.generate;").append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		source.append("public class DeviceXY {").append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		source.append("private static DeviceXY instance;").append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		source.append("private DeviceXY() {}").append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		source.append("public static DeviceXY getInstance() {").append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		source.append("  if (instance == null) { instance = new DeviceXY(); }").append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		source.append("  return instance;").append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		source.append("}").append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
-		for (int peripheral = 0; peripheral < maxPeripheral; peripheral++) {
-			String peripheralName = "peri_" + peripheral;
-			String peripheralClassName = String.valueOf(Character.toUpperCase(peripheralName.charAt(0)))
+		for (int peripheral = 0; peripheral < maxPeripheral; peripheral++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			String peripheralName = "peri_" + peripheral; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			String peripheralClassName = String.valueOf(Character.toUpperCase(peripheralName.charAt(0))) //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ peripheralName.substring(1);
 
-			source.append("public ").append(peripheralClassName).append(" ").append(peripheralName)
+			source.append("public ").append(peripheralClassName).append(" ").append(peripheralName) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					.append(" = new ").append(peripheralClassName).append("();").append(System.lineSeparator());
-			source.append("public static final class ").append(peripheralClassName)
+			source.append("public static final class ").append(peripheralClassName) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					.append(" extends reg.Peripheral {").append(System.lineSeparator());
 			// constructor start
-			source.append("public ").append(peripheralClassName).append("() {").append(System.lineSeparator());
-			source.append("  super(\"").append(peripheralName).append("\",")
+			source.append("public ").append(peripheralClassName).append("() {").append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			source.append("  super(\"").append(peripheralName).append("\",") //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					.append("\"1.0\",\"desc\", \"groupName\", 0, 32);").append(System.lineSeparator());
-			source.append("}").append(System.lineSeparator());
+			source.append("}").append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			// constructor end
 
-			for (int register = 0; register < maxRegister; register++) {
-				String registerName = "reg_" + register;
-				String registerClassName = String.valueOf(Character.toUpperCase(registerName.charAt(0)))
+			for (int register = 0; register < maxRegister; register++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				String registerName = "reg_" + register; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				String registerClassName = String.valueOf(Character.toUpperCase(registerName.charAt(0))) //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						+ registerName.substring(1);
 
-				source.append("public ").append(registerClassName).append(" ").append(registerName)
+				source.append("public ").append(registerClassName).append(" ").append(registerName) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						.append(" = new ").append(registerClassName).append("();").append(System.lineSeparator());
 
-				source.append("/**").append(System.lineSeparator());
-				source.append("* Register ").append(registerName).append(System.lineSeparator());
-				source.append("*/").append(System.lineSeparator());
-				source.append("public static final class ").append(registerClassName)
+				source.append("/**").append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				source.append("* Register ").append(registerName).append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				source.append("*/").append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				source.append("public static final class ").append(registerClassName) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						.append(" extends reg.Register {").append(System.lineSeparator());
 				// constructor start
-				source.append("public ").append(registerClassName).append("() {")
+				source.append("public ").append(registerClassName).append("() {") //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						.append(System.lineSeparator());
-				source.append("  super(\"").append(registerName).append("\",")
+				source.append("  super(\"").append(registerName).append("\",") //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						.append("\"desc\", 0, 32, AccessType.readWrite, 0xf, 0x0);").append(System.lineSeparator());
-				source.append("}").append(System.lineSeparator());
+				source.append("}").append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				// constructor end
 
-				source.append("//fields").append(System.lineSeparator());
+				source.append("//fields").append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
-				for (int field = 0; field < maxFields; field++) {
-					String fieldName = "field_" + field;
-					source.append("public ").append("reg.Field").append(" ").append(fieldName)
+				for (int field = 0; field < maxFields; field++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					String fieldName = "field_" + field; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+					source.append("public ").append("reg.Field").append(" ").append(fieldName) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							.append(" = new ").append("reg.Field").append("(\"").append(fieldName).append("\",")
 							.append("\"desc\", 0, AccessType.readWrite);").append(System.lineSeparator());
 
 				}
 
-				source.append("}").append(System.lineSeparator());
+				source.append("}").append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			source.append("}").append(System.lineSeparator());
+			source.append("}").append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 
-		source.append("}").append(System.lineSeparator());
+		source.append("}").append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		return source.toString();
 

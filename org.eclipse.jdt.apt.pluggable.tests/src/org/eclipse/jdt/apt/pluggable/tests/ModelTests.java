@@ -48,7 +48,7 @@ public class ModelTests extends TestBase
 	/**
 	 * Call ModelTesterProc.testFieldType(), which checks the type of a field
 	 */
-	public void testFieldType() throws Throwable {
+	public void testFieldType() throws Throwable { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ProcessorTestStatus.reset();
 		IJavaProject jproj = createJavaProject(_projectName);
 		disableJava5Factories(jproj);
@@ -71,7 +71,7 @@ public class ModelTests extends TestBase
 	/**
 	 * Call ModelTesterProc.testMethodType(), which checks the type of a method
 	 */
-	public void testMethodType() throws Throwable {
+	public void testMethodType() throws Throwable { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ProcessorTestStatus.reset();
 		IJavaProject jproj = createJavaProject(_projectName);
 		disableJava5Factories(jproj);
@@ -95,7 +95,7 @@ public class ModelTests extends TestBase
 	 *
 	 * see https://bugs.eclipse.org/bugs/show_bug.cgi?id=83548
 	 */
-	public void testInfoProblems() throws Throwable {
+	public void testInfoProblems() throws Throwable { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ProcessorTestStatus.reset();
 		IJavaProject jproj = createJavaProject(_projectName);
 		disableJava5Factories(jproj);
@@ -120,7 +120,7 @@ public class ModelTests extends TestBase
 
 		fullBuild();
 		expectingProblemsFor(className,
-				"Problem : The value of the local variable k is not used [ resource : </"+ _projectName + "/src/p/X.java> range : <68,69> category : <120> severity : <0>]\n" +
+				"Problem : The value of the local variable k is not used [ resource : </"+ _projectName + "/src/p/X.java> range : <68,69> category : <120> severity : <0>]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"Problem : The value of the parameter p is not used [ resource : </"+ _projectName + "/src/p/X.java> range : <57,58> category : <120> severity : <1>]\n" +
 				"Problem : Unqualified access to the field X.i  [ resource : </"+ _projectName + "/src/p/X.java> range : <84,85> category : <80> severity : <0>]");
 		env.removeClass(projPath.append("src").append(ModelTesterProc.TEST_METHOD_TYPE_PKG), ModelTesterProc.TEST_METHOD_TYPE_CLASS);
@@ -129,7 +129,7 @@ public class ModelTests extends TestBase
 	/**
 	 * Call ModelTester8Proc.testMethodParameters(), which checks the type of a method
 	 */
-	public void testMethodParameters() throws Throwable {
+	public void testMethodParameters() throws Throwable { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!canRunJava8()) {
 			return;
 		}
@@ -177,10 +177,10 @@ public class ModelTests extends TestBase
 	}
 
 	private void keepBinaryOnly(IJavaProject jproj, String packageName, String className) throws CoreException {
-		IFile realSourceFile = jproj.getProject().getFolder("src").getFolder(packageName).getFile(className + ".java");
-		IFile compiledClassFile = jproj.getProject().getFolder("bin").getFolder(packageName).getFile(className + ".class");
-		assertTrue("No compiled class for " + packageName + "." + className + ": ",compiledClassFile.exists());
-		IFile prebuiltClassFile = jproj.getProject().getFolder("prebuilt").getFolder(packageName).getFile(className + ".class");
+		IFile realSourceFile = jproj.getProject().getFolder("src").getFolder(packageName).getFile(className + ".java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		IFile compiledClassFile = jproj.getProject().getFolder("bin").getFolder(packageName).getFile(className + ".class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertTrue("No compiled class for " + packageName + "." + className + ": ",compiledClassFile.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		IFile prebuiltClassFile = jproj.getProject().getFolder("prebuilt").getFolder(packageName).getFile(className + ".class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertFalse("Compiled class already in src: ",prebuiltClassFile.exists());
 		compiledClassFile.copy(prebuiltClassFile.getFullPath(), true, new NullProgressMonitor());
 		assertTrue("Compiled class not copied to src",prebuiltClassFile.exists());

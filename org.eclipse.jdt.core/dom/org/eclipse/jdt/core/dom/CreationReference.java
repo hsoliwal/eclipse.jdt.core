@@ -52,7 +52,7 @@ public class CreationReference extends MethodReference {
 	private static final List PROPERTY_DESCRIPTORS_8_0;
 
 	static {
-		List propertyList = new ArrayList(3);
+		List propertyList = new ArrayList(3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(CreationReference.class, propertyList);
 		addProperty(TYPE_PROPERTY, propertyList);
 		addProperty(TYPE_ARGUMENTS_PROPERTY, propertyList);

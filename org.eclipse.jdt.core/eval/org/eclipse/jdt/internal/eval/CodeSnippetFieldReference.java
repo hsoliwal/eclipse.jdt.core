@@ -45,7 +45,7 @@ public CodeSnippetFieldReference(char[] source, long pos, EvaluationContext eval
 	super(source, pos);
 	this.evaluationContext = evaluationContext;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void generateAssignment(BlockScope currentScope, CodeStream codeStream, Assignment assignment, boolean valueRequired) {
 	FieldBinding codegenBinding = this.binding.original();
 	if (codegenBinding.canBeSeenBy(this.actualReceiverType, this, currentScope)) {
@@ -83,7 +83,7 @@ public void generateAssignment(BlockScope currentScope, CodeStream codeStream, A
  * @param codeStream org.eclipse.jdt.internal.compiler.codegen.CodeStream
  * @param valueRequired boolean
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void generateCode(BlockScope currentScope, CodeStream codeStream, boolean valueRequired) {
 	int pc = codeStream.position;
 	if (this.constant != Constant.NotAConstant) {
@@ -133,7 +133,7 @@ public void generateCode(BlockScope currentScope, CodeStream codeStream, boolean
 	codeStream.recordPositionsFrom(pc, this.sourceStart);
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void generateCompoundAssignment(BlockScope currentScope, CodeStream codeStream, Expression expression, int operator, int assignmentImplicitConversion, boolean valueRequired) {
 	boolean isStatic;
 	FieldBinding codegenBinding = this.binding.original();
@@ -218,7 +218,7 @@ public void generateCompoundAssignment(BlockScope currentScope, CodeStream codeS
 		codeStream.generateEmulatedWriteAccessForField(codegenBinding);
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void generatePostIncrement(BlockScope currentScope, CodeStream codeStream, CompoundAssignment postIncrement, boolean valueRequired) {
 	boolean isStatic;
 	FieldBinding codegenBinding = this.binding.original();
@@ -290,7 +290,7 @@ public void manageSyntheticAccessIfNecessary(BlockScope currentScope, FlowInfo f
 
 	if ((flowInfo.tagBits & FlowInfo.UNREACHABLE_OR_DEAD) != 0) return;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public TypeBinding resolveType(BlockScope scope) {
 	// Answer the signature type of the field.
 	// constants are propaged when the field is final

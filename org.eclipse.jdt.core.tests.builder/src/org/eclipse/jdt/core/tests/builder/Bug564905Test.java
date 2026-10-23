@@ -63,7 +63,7 @@ public class Bug564905Test extends BuilderTests {
 		env.addExternalJars(this.projectPath, Util.getJavaClassLibs());
 
 		env.removePackageFragmentRoot(this.projectPath, "");
-		String outputFolderPath = "tmp/" + OUTPUT_FOLDER_NAME;
+		String outputFolderPath = "tmp/" + OUTPUT_FOLDER_NAME; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		this.src = env.addPackageFragmentRoot(this.projectPath, "src", null, outputFolderPath);
 		this.outputFolder = env.getWorkspace().getRoot().getFolder(this.projectPath.append(outputFolderPath));
 
@@ -164,7 +164,7 @@ public class Bug564905Test extends BuilderTests {
 	private void assertOutputFolderEmpty() throws CoreException {
 		assertTrue("output folder must exist", this.outputFolder.exists());
 		IResource[] outputFolderContent = this.outputFolder.members();
-		assertEquals("output folder must be empty, instead had contents: " + toString(outputFolderContent), 0, outputFolderContent.length);
+		assertEquals("output folder must be empty, instead had contents: " + toString(outputFolderContent), 0, outputFolderContent.length); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	private void assertOutputFolderNotEmpty() throws CoreException {
@@ -173,10 +173,10 @@ public class Bug564905Test extends BuilderTests {
 	}
 
 	private static String toString(IResource[] resources) {
-		StringBuilder result = new StringBuilder();
-		for (IResource resource : resources) {
-			result.append(resource.getName());
-			result.append(System.lineSeparator());
+		StringBuilder result = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (IResource resource : resources) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			result.append(resource.getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			result.append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return result.toString();
 	}

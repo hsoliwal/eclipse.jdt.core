@@ -96,7 +96,7 @@ public interface ISourceElementRequestor {
 		public Annotation[] annotations;
 		public int extraFlags;
 		public TypeDeclaration node;
-		public Map<IJavaElement, char[][]> childrenCategories = new HashMap<>();
+		public Map<IJavaElement, char[][]> childrenCategories = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	}
 
 	public static class TypeParameterInfo {

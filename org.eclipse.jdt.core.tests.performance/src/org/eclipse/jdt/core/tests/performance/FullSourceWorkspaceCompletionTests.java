@@ -63,7 +63,7 @@ public class FullSourceWorkspaceCompletionTests extends FullSourceWorkspaceTests
 	/* (non-Javadoc)
 	 * @see junit.framework.TestCase#tearDown()
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void tearDown() throws Exception {
 
 		// End of execution => one test less
@@ -79,10 +79,10 @@ public class FullSourceWorkspaceCompletionTests extends FullSourceWorkspaceTests
 			System.out.println("-------------------------------------");
 			System.out.println("Completion performance test statistics:");
 			NumberFormat intFormat = NumberFormat.getIntegerInstance();
-			System.out.println("  - "+intFormat.format(COMPLETIONS_COUNT)+" completions have been performed");
+			System.out.println("  - "+intFormat.format(COMPLETIONS_COUNT)+" completions have been performed"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			System.out.println("  - following proposals have been done:");
-			for (int i=0; i<TESTS_LENGTH; i++) {
-				System.out.println("  	+ test "+i+": "+intFormat.format(PROPOSAL_COUNTS[i])+" proposals");
+			for (int i=0; i<TESTS_LENGTH; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				System.out.println("  	+ test "+i+": "+intFormat.format(PROPOSAL_COUNTS[i])+" proposals"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			System.out.println("-------------------------------------\n");
 		}
@@ -114,7 +114,7 @@ public class FullSourceWorkspaceCompletionTests extends FullSourceWorkspaceTests
 				warmupCount,
 				iterationCount);
 	}
-	private void complete(
+	private void complete( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String projectName,
 			String packageName,
 			String unitName,
@@ -128,7 +128,7 @@ public class FullSourceWorkspaceCompletionTests extends FullSourceWorkspaceTests
 
 		TestCompletionRequestor requestor = new TestCompletionRequestor();
 		if(ignoredKinds != null) {
-			for (int i = 0; i < ignoredKinds.length; i++) {
+			for (int i = 0; i < ignoredKinds.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				requestor.setIgnored(ignoredKinds[i], true);
 			}
 		}
@@ -139,12 +139,12 @@ public class FullSourceWorkspaceCompletionTests extends FullSourceWorkspaceTests
 		String str = unit.getSource();
 		int completionIndex = str.indexOf(completeAt) + completeBehind.length();
 
-		if (DEBUG) System.out.print("Perform code assist inside " + unitName + "...");
+		if (DEBUG) System.out.print("Perform code assist inside " + unitName + "..."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		// Warm up
 		if(warmupCount > 0) {
 			unit.codeComplete(completionIndex, requestor);
-			for (int i = 1; i < warmupCount; i++) {
+			for (int i = 1; i < warmupCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				unit.codeComplete(completionIndex, requestor);
 			}
 		}
@@ -153,9 +153,9 @@ public class FullSourceWorkspaceCompletionTests extends FullSourceWorkspaceTests
 		runGc();
 
 		// Measures
-		for (int i=0; i<MEASURES_COUNT; i++) {
+		for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			startMeasuring();
-			for (int j = 0; j < iterationCount; j++) {
+			for (int j = 0; j < iterationCount; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				unit.codeComplete(completionIndex, requestor);
 				COMPLETIONS_COUNT++;
 			}

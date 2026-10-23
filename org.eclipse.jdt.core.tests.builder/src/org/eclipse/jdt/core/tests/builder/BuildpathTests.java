@@ -60,19 +60,19 @@ private String getJdkLevelProblem(String expectedRuntime, String path, int sever
 	Object target = JavaModel.getTarget(new Path(path).makeAbsolute(), true);
 	long libraryJDK = org.eclipse.jdt.internal.core.util.Util.getJdkLevel(target);
 	String jclRuntime = CompilerOptions.versionFromJdkLevel(libraryJDK);
-	StringBuilder jdkLevelProblem = new StringBuilder("Problem : Incompatible .class files version in required binaries. Project 'Project' is targeting a ");
-	jdkLevelProblem.append(expectedRuntime);
-	jdkLevelProblem.append(" runtime, but is compiled against '");
-	jdkLevelProblem.append(path);
-	jdkLevelProblem.append("' which requires a ");
-	jdkLevelProblem.append(jclRuntime);
-	jdkLevelProblem.append(" runtime [ resource : </Project> range : <-1,-1> category : <10> severity : <");
-	jdkLevelProblem.append(severity);
-	jdkLevelProblem.append(">]");
+	StringBuilder jdkLevelProblem = new StringBuilder("Problem : Incompatible .class files version in required binaries. Project 'Project' is targeting a "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	jdkLevelProblem.append(expectedRuntime); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	jdkLevelProblem.append(" runtime, but is compiled against '"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	jdkLevelProblem.append(path); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	jdkLevelProblem.append("' which requires a "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	jdkLevelProblem.append(jclRuntime); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	jdkLevelProblem.append(" runtime [ resource : </Project> range : <-1,-1> category : <10> severity : <"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	jdkLevelProblem.append(severity); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	jdkLevelProblem.append(">]"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return jdkLevelProblem.toString();
 }
 
-public void testClasspathFileChange() throws JavaModelException {
+public void testClasspathFileChange() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// create project with src folder, and alternate unused src2 folder
 	IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 	env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
@@ -97,16 +97,16 @@ public void testClasspathFileChange() throws JavaModelException {
 	//----------------------------
 	//           Step 2
 	//----------------------------
-	StringBuilder buffer = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"); //$NON-NLS-1$
-	buffer.append("<classpath>\n"); //$NON-NLS-1$
-	buffer.append("    <classpathentry kind=\"src\" path=\"src\"/>\n"); //$NON-NLS-1$
-	buffer.append("    <classpathentry kind=\"src\" path=\"src2\"/>\n"); // add src2 on classpath through resource change //$NON-NLS-1$
+	StringBuilder buffer = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	buffer.append("<classpath>\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append("    <classpathentry kind=\"src\" path=\"src\"/>\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append("    <classpathentry kind=\"src\" path=\"src2\"/>\n"); // add src2 on classpath through resource change //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	String[] classlibs = Util.getJavaClassLibs();
-	for (int i = 0; i < classlibs.length; i++) {
-		buffer.append("    <classpathentry kind=\"lib\" path=\"").append(classlibs[i]).append("\"/>\n"); //$NON-NLS-1$ //$NON-NLS-2$
+	for (int i = 0; i < classlibs.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		buffer.append("    <classpathentry kind=\"lib\" path=\"").append(classlibs[i]).append("\"/>\n"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	buffer.append("    <classpathentry kind=\"output\" path=\"bin\"/>\n"); //$NON-NLS-1$
-	buffer.append("</classpath>"); //$NON-NLS-1$
+	buffer.append("    <classpathentry kind=\"output\" path=\"bin\"/>\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append("</classpath>"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	boolean wasAutoBuilding = env.isAutoBuilding();
 	try {
 		// turn autobuild on
@@ -121,7 +121,7 @@ public void testClasspathFileChange() throws JavaModelException {
 	}
 }
 
-public void testClosedProject() throws JavaModelException, IOException {
+public void testClosedProject() throws JavaModelException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath project1Path = env.addProject("CP1"); //$NON-NLS-1$
 	env.addExternalJars(project1Path, Util.getJavaClassLibs());
 	IPath jarPath = addEmptyInternalJar(project1Path, "temp.jar");
@@ -185,7 +185,7 @@ public void testClosedProject() throws JavaModelException, IOException {
 	env.removeProject(project1Path);
 }
 
-public void testCorruptBuilder() throws JavaModelException {
+public void testCorruptBuilder() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath project1Path = env.addProject("P1"); //$NON-NLS-1$
 	env.addExternalJars(project1Path, Util.getJavaClassLibs());
 
@@ -227,7 +227,7 @@ public void testCorruptBuilder() throws JavaModelException {
 	env.removeProject(project1Path);
 }
 
-public void testCorruptBuilder2() throws JavaModelException {
+public void testCorruptBuilder2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath project1Path = env.addProject("P2"); //$NON-NLS-1$
 	env.addExternalJars(project1Path, Util.getJavaClassLibs());
 	env.removePackageFragmentRoot(project1Path, ""); //$NON-NLS-1$
@@ -278,8 +278,8 @@ public void testCorruptBuilder2() throws JavaModelException {
 /*
  * Ensures that changing a type in an external folder and refreshing triggers a rebuild
  */
-public void testChangeExternalFolder() throws CoreException {
-	String externalLib = Util.getOutputDirectory() + File.separator + "externalLib";
+public void testChangeExternalFolder() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String externalLib = Util.getOutputDirectory() + File.separator + "externalLib"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	IPath projectPath = env.addProject("Project");
 	try {
 		new File(externalLib).mkdirs();
@@ -292,7 +292,7 @@ public void testChangeExternalFolder() throws CoreException {
 				"  }\n" +
 				"}"
 			},
-			new HashMap<>(),
+			new HashMap<>(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			externalLib
 		);
 
@@ -315,7 +315,7 @@ public void testChangeExternalFolder() throws CoreException {
 		env.waitForAutoBuild();
 		expectingNoProblems();
 
-		String externalClassFile = externalLib + File.separator + "p" + File.separator + "X.class";
+		String externalClassFile = externalLib + File.separator + "p" + File.separator + "X.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		long lastModified = new java.io.File(externalClassFile).lastModified();
 		try {
 			Thread.sleep(1000);
@@ -328,7 +328,7 @@ public void testChangeExternalFolder() throws CoreException {
 				"public class X {\n" +
 				"}"
 			},
-			new HashMap<>(),
+			new HashMap<>(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			externalLib
 		);
 		new java.io.File(externalClassFile).setLastModified(lastModified + 1000); // to be sure its different
@@ -351,8 +351,8 @@ public void testChangeExternalFolder() throws CoreException {
 /*
  * Ensures that changing a type in an external ZIP archive and refreshing triggers a rebuild
  */
-public void testChangeZIPArchive1() throws Exception {
-	String externalLib = Util.getOutputDirectory() + File.separator + "externalLib.abc";
+public void testChangeZIPArchive1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String externalLib = Util.getOutputDirectory() + File.separator + "externalLib.abc"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	IPath projectPath = env.addProject("Project");
 	try {
 		org.eclipse.jdt.core.tests.util.Util.createJar(
@@ -412,10 +412,10 @@ public void testChangeZIPArchive1() throws Exception {
 /*
  * Ensures that changing a type in an internal ZIP archive and refreshing triggers a rebuild
  */
-public void testChangeZIPArchive2() throws Exception {
+public void testChangeZIPArchive2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath projectPath = env.addProject("Project");
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
-	String internalLib = env.getProject("Project").getLocation().toOSString() + File.separator + "internalLib.abc";
+	String internalLib = env.getProject("Project").getLocation().toOSString() + File.separator + "internalLib.abc"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	org.eclipse.jdt.core.tests.util.Util.createJar(
 		new String[] {
 			"p/X.java",
@@ -474,7 +474,7 @@ public void testChangeZIPArchive2() throws Exception {
  * Ensures that changing an external jar and refreshing the projects triggers a rebuild
  * (regression test for bug 50207 Compile errors fixed by 'refresh' do not reset problem list or package explorer error states)
  */
-public void testExternalJarChange() throws JavaModelException, IOException {
+public void testExternalJarChange() throws JavaModelException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// setup
 	IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -487,7 +487,7 @@ public void testExternalJarChange() throws JavaModelException, IOException {
 		"  }\n" + //$NON-NLS-1$
 		"}" //$NON-NLS-1$
 	);
-	String externalJar = Util.getOutputDirectory() + File.separator + "test.jar"; //$NON-NLS-1$
+	String externalJar = Util.getOutputDirectory() + File.separator + "test.jar"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	Util.createJar(
 		new String[] {
 			"q/Y.java", //$NON-NLS-1$
@@ -495,7 +495,7 @@ public void testExternalJarChange() throws JavaModelException, IOException {
 			"public class Y {\n" + //$NON-NLS-1$
 			"}" //$NON-NLS-1$
 		},
-		new HashMap<>(),
+		new HashMap<>(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		externalJar
 	);
 	env.addExternalJar(projectPath, externalJar);
@@ -517,7 +517,7 @@ public void testExternalJarChange() throws JavaModelException, IOException {
 			"  }\n" + //$NON-NLS-1$
 			"}" //$NON-NLS-1$
 		},
-		new HashMap<>(),
+		new HashMap<>(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		externalJar
 	);
 
@@ -529,7 +529,7 @@ public void testExternalJarChange() throws JavaModelException, IOException {
 	env.removeProject(projectPath);
 }
 
-public void testMissingBuilder() throws Exception {
+public void testMissingBuilder() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath project1Path = env.addProject("P1"); //$NON-NLS-1$
 	env.addExternalJars(project1Path, Util.getJavaClassLibs());
 
@@ -569,7 +569,7 @@ public void testMissingBuilder() throws Exception {
 	env.removeProject(project2Path);
 }
 
-public void testMissingFieldType() throws JavaModelException {
+public void testMissingFieldType() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath projectPath = env.addProject("Project1"); //$NON-NLS-1$
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
 	IPath root = env.getPackageFragmentRootPath(projectPath, ""); //$NON-NLS-1$
@@ -611,7 +611,7 @@ public void testMissingFieldType() throws JavaModelException {
 	env.removeProject(projectPath);
 }
 
-public void testMissingLibrary1() throws JavaModelException {
+public void testMissingLibrary1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 	env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
 	IPath root = env.addPackageFragmentRoot(projectPath, "src"); //$NON-NLS-1$
@@ -643,7 +643,7 @@ public void testMissingLibrary1() throws JavaModelException {
 	env.removeProject(projectPath);
 }
 
-public void testMissingLibrary2() throws JavaModelException {
+public void testMissingLibrary2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 	env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
 	IPath root = env.addPackageFragmentRoot(projectPath, "src"); //$NON-NLS-1$
@@ -696,7 +696,7 @@ public void testMissingLibrary2() throws JavaModelException {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=172345
-public void testMissingLibrary3() throws JavaModelException {
+public void testMissingLibrary3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.abortOnFailure = false; // this test is failing on some releng boxes => do not abort on failures
 	IPath projectPath = env.addProject("Project");
 	IJavaProject project = env.getJavaProject(projectPath);
@@ -730,7 +730,7 @@ public void testMissingLibrary3() throws JavaModelException {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=172345
-public void testMissingLibrary4() throws JavaModelException {
+public void testMissingLibrary4() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.abortOnFailure = false; // this test is failing on some releng boxes => do not abort on failures
 	IPath projectPath = env.addProject("Project");
 	IJavaProject project = env.getJavaProject(projectPath);
@@ -757,7 +757,7 @@ public void testMissingLibrary4() throws JavaModelException {
 	env.removeProject(projectPath);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=172345
-public void testIncompatibleJdkLevelOnProject() throws JavaModelException {
+public void testIncompatibleJdkLevelOnProject() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Create project
 	IPath projectPath = env.addProject("Project");
@@ -780,8 +780,8 @@ public void testIncompatibleJdkLevelOnProject() throws JavaModelException {
 	env.waitForAutoBuild();
 	long projectRuntimeJDKLevel = CompilerOptions.versionToJdkLevel(projectRuntime);
 	int max = classlibs.length;
-	List expectedProblems = new ArrayList();
-	for (int i = 0; i < max; i++) {
+	List expectedProblems = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	for (int i = 0; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String path = project.getPackageFragmentRoot(classlibs[i]).getPath().makeRelative().toString();
 		Object target = JavaModel.getTarget(new Path(path).makeAbsolute(), true);
 		long libraryJDK = org.eclipse.jdt.internal.core.util.Util.getJdkLevel(target);
@@ -797,8 +797,8 @@ public void testIncompatibleJdkLevelOnProject() throws JavaModelException {
 	incrementalBuild();
 	env.waitForAutoBuild();
 
-	expectedProblems = new ArrayList();
-	for (int i = 0; i < max; i++) {
+	expectedProblems = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	for (int i = 0; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String path = project.getPackageFragmentRoot(classlibs[i]).getPath().makeRelative().toString();
 		Object target = JavaModel.getTarget(new Path(path).makeAbsolute(), true);
 		long libraryJDK = org.eclipse.jdt.internal.core.util.Util.getJdkLevel(target);
@@ -813,7 +813,7 @@ public void testIncompatibleJdkLevelOnProject() throws JavaModelException {
 	env.removeProject(projectPath);
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4826
-public void testIncompatibleJdkLevelOnMrJar() throws Exception {
+public void testIncompatibleJdkLevelOnMrJar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Create project
 	IPath projectPath = env.addProject("testIncompatibleJdkLevelOnMrJar");
@@ -825,7 +825,7 @@ public void testIncompatibleJdkLevelOnMrJar() throws Exception {
 	
 	// The multi-release jar contains Java 8 classes in base directory and multiple
 	// higher versions of base class in META-INF/versions/ directories
-	String mrJar = getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "multi-release-example.jar";
+	String mrJar = getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "multi-release-example.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	env.addExternalJars(projectPath, new String[] {mrJar});
 
 	// Build it expecting no problem
@@ -846,7 +846,7 @@ public void testIncompatibleJdkLevelOnMrJar() throws Exception {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=172345
-public void testIncompatibleJdkLevelOnWksp() throws JavaModelException {
+public void testIncompatibleJdkLevelOnWksp() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Save preference
 	JavaModelManager manager = JavaModelManager.getJavaModelManager();
@@ -875,9 +875,9 @@ public void testIncompatibleJdkLevelOnWksp() throws JavaModelException {
 		env.waitForManualRefresh();
 		incrementalBuild();
 		env.waitForAutoBuild();
-		List expectedProblems = new ArrayList();
+		List expectedProblems = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		int max = classlibs.length;
-		for (int i = 0; i < max; i++) {
+		for (int i = 0; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String path = project.getPackageFragmentRoot(classlibs[i]).getPath().makeRelative().toString();
 			Object target = JavaModel.getTarget(new Path(path).makeAbsolute(), true);
 			long libraryJDK = org.eclipse.jdt.internal.core.util.Util.getJdkLevel(target);
@@ -892,8 +892,8 @@ public void testIncompatibleJdkLevelOnWksp() throws JavaModelException {
 		env.waitForManualRefresh();
 		incrementalBuild();
 		env.waitForAutoBuild();
-		expectedProblems = new ArrayList();
-		for (int i = 0; i < max; i++) {
+		expectedProblems = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (int i = 0; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String path = project.getPackageFragmentRoot(classlibs[i]).getPath().makeRelative().toString();
 			Object target = JavaModel.getTarget(new Path(path).makeAbsolute(), true);
 			long libraryJDK = org.eclipse.jdt.internal.core.util.Util.getJdkLevel(target);
@@ -916,7 +916,7 @@ public void testIncompatibleJdkLevelOnWksp() throws JavaModelException {
 	}
 }
 
-public void testMissingProject() throws JavaModelException {
+public void testMissingProject() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath project1Path = env.addProject("MP1"); //$NON-NLS-1$
 	env.addExternalJars(project1Path, Util.getJavaClassLibs());
 
@@ -975,7 +975,7 @@ public void testMissingProject() throws JavaModelException {
 	env.removeProject(project2Path);
 }
 
-public void testMissingOptionalProject() throws JavaModelException {
+public void testMissingOptionalProject() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath project1Path = env.addProject("MP1"); //$NON-NLS-1$
 	env.addExternalJars(project1Path, Util.getJavaClassLibs());
 
@@ -1023,7 +1023,7 @@ public void testMissingOptionalProject() throws JavaModelException {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=160132
-public void test0100() throws JavaModelException {
+public void test0100() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath projectPath = env.addProject("P", CompilerOptions.getFirstSupportedJavaVersion());
 	IPath defaultPackagePath = env.addPackage(projectPath, "");
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -1051,7 +1051,7 @@ public void test0100() throws JavaModelException {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=143025
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4745
-public void testMissingOutputFolder() throws JavaModelException {
+public void testMissingOutputFolder() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath projectPath = env.addProject("P"); //$NON-NLS-1$
 	IJavaProject p = env.getJavaProject(projectPath);
 	env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$

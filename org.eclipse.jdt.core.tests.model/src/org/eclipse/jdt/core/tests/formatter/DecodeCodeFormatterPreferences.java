@@ -37,12 +37,12 @@ public class DecodeCodeFormatterPreferences extends DefaultHandler {
 	private Map entries;
 	private final String profileName;
 
-	public static Map decodeCodeFormatterOptions(String fileName) {
+	public static Map decodeCodeFormatterOptions(String fileName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			LineNumberReader reader = new LineNumberReader(new FileReader(fileName));
-			Map options = new HashMap();
+			Map options = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			String line;
-			while ((line = reader.readLine()) != null) {
+			while ((line = reader.readLine()) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (line.startsWith("#")) {
 					continue;
 				}
@@ -57,7 +57,7 @@ public class DecodeCodeFormatterPreferences extends DefaultHandler {
 		return null;
 	}
 
-	public static Map decodeCodeFormatterOptions(String fileName, String profileName) {
+	public static Map decodeCodeFormatterOptions(String fileName, String profileName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			@SuppressWarnings("restriction")
 			SAXParser saxParser = org.eclipse.core.internal.runtime.XmlProcessorFactory.createSAXParserWithErrorOnDOCTYPE();
@@ -76,11 +76,11 @@ public class DecodeCodeFormatterPreferences extends DefaultHandler {
 		return null;
 	}
 
-	public static Map decodeCodeFormatterOptions(String zipFileName, String zipEntryName, String profileName) {
+	public static Map decodeCodeFormatterOptions(String zipFileName, String zipEntryName, String profileName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ZipFile zipFile = null;
 		BufferedInputStream inputStream = null;
 		try {
-			zipFile = new ZipFile(zipFileName);
+			zipFile = new ZipFile(zipFileName); //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM NEW
 			ZipEntry zipEntry = zipFile.getEntry(zipEntryName);
 			if (zipEntry == null) {
 				return null;
@@ -127,10 +127,10 @@ public class DecodeCodeFormatterPreferences extends DefaultHandler {
 
 		int attributesLength = attributes.getLength();
 		if ("profile".equals(qName)) {
-			for (int i = 0; i < attributesLength; i++) {
+			for (int i = 0; i < attributesLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if ("name".equals(attributes.getQName(i)) && this.profileName.equals(attributes.getValue(i))) {
 					this.record = true;
-					this.entries = new HashMap();
+					this.entries = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 					break;
 				}
 			}

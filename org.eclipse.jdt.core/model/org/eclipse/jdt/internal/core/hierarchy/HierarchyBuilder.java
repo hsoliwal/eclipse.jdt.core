@@ -72,7 +72,7 @@ public abstract class HierarchyBuilder {
 	 */
 	protected String focusQualifiedName;
 
-	public HierarchyBuilder(TypeHierarchy hierarchy) throws JavaModelException {
+	public HierarchyBuilder(TypeHierarchy hierarchy) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		this.hierarchy = hierarchy;
 		JavaProject project = (JavaProject) hierarchy.javaProject();
@@ -104,7 +104,7 @@ public abstract class HierarchyBuilder {
 					this,
 					new DefaultProblemFactory());
 		}
-		this.infoToHandle = new HashMap<>(5);
+		this.infoToHandle = new HashMap<>(5); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		this.focusQualifiedName = focusType == null ? null : focusType.getFullyQualifiedName();
 	}
 
@@ -113,7 +113,7 @@ public abstract class HierarchyBuilder {
 	/**
 	 * Configure this type hierarchy by computing the supertypes only.
 	 */
-	protected void buildSupertypes() {
+	protected void buildSupertypes() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IType focusType = getType();
 		if (focusType == null)
 			return;
@@ -141,7 +141,7 @@ public abstract class HierarchyBuilder {
 	 * The superclass and superinterfaces are the identical binary or source types as
 	 * supplied by the name environment.
 	 */
-	public void connect(
+	public void connect( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IGenericType type,
 		IType typeHandle,
 		IType superclassHandle,
@@ -154,9 +154,9 @@ public abstract class HierarchyBuilder {
 			return;
 		if (TypeHierarchy.DEBUG) {
 			trace(
-				"Connecting: " + ((JavaElement) typeHandle).toStringWithAncestors()); //$NON-NLS-1$
+				"Connecting: " + ((JavaElement) typeHandle).toStringWithAncestors()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			trace(
-				"  to superclass: " //$NON-NLS-1$
+				"  to superclass: " //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ (superclassHandle == null
 						? "<None>" //$NON-NLS-1$
 						: ((JavaElement) superclassHandle).toStringWithAncestors()));
@@ -165,9 +165,9 @@ public abstract class HierarchyBuilder {
 				trace(" <None>"); //$NON-NLS-1$
 			} else {
 				trace(""); //$NON-NLS-1$
-				for (IType superinterfaceHandle : superinterfaceHandles) {
+				for (IType superinterfaceHandle : superinterfaceHandles) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (superinterfaceHandle == null) continue;
-					trace("    " + ((JavaElement) superinterfaceHandle).toStringWithAncestors()); //$NON-NLS-1$
+					trace("    " + ((JavaElement) superinterfaceHandle).toStringWithAncestors()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}
@@ -200,7 +200,7 @@ public abstract class HierarchyBuilder {
 	/**
 	 * Returns a handle for the given generic type or null if not found.
 	 */
-	protected IType getHandle(IGenericType genericType, ReferenceBinding binding) {
+	protected IType getHandle(IGenericType genericType, ReferenceBinding binding) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (genericType == null)
 			return null;
 		if (genericType instanceof HierarchyType) {
@@ -237,7 +237,7 @@ public abstract class HierarchyBuilder {
 	/**
 	 * Looks up and returns a handle for the given binary info.
 	 */
-	protected IType lookupBinaryHandle(IBinaryType typeInfo) {
+	protected IType lookupBinaryHandle(IBinaryType typeInfo) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int flag;
 		String qualifiedName;
 		switch (TypeDeclaration.kind(typeInfo.getModifiers())) {

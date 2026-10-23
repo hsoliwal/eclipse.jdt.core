@@ -84,7 +84,7 @@ public class TagProperty extends ASTNode implements IDocElement{
 
 
 	static {
-		List propertyList = new ArrayList(4);
+		List propertyList = new ArrayList(4); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(TagProperty.class, propertyList);
 		addProperty(NAME_PROPERTY, propertyList);
 		addProperty(STRING_VALUE_PROPERTY, propertyList);
@@ -116,7 +116,7 @@ public class TagProperty extends ASTNode implements IDocElement{
 	}
 
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final Object internalGetSetObjectProperty(SimplePropertyDescriptor property, boolean get, Object newValue) {
 		if (property == NAME_PROPERTY) {
 			if (get) {

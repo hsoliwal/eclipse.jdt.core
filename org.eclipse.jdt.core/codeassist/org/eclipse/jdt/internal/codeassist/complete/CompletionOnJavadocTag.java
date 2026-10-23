@@ -43,22 +43,22 @@ public class CompletionOnJavadocTag extends JavadocSingleNameReference implement
 		return this.completionFlags;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public StringBuilder printExpression(int indent, StringBuilder output) {
-		output.append("<CompleteOnJavadocTag:"); //$NON-NLS-1$
-		output.append('@');
+		output.append("<CompleteOnJavadocTag:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append('@'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (this.token != null) super.printExpression(indent, output);
 		// Print block tags
 		char[][] blockTags = this.possibleTags[BLOCK_IDX];
 		if (blockTags != null) {
 			int length=blockTags.length;
 			if (length > 0) {
-				output.append("\npossible block tags:"); //$NON-NLS-1$
-				for (int i=0; i<length; i++) {
-					output.append("\n	- "); //$NON-NLS-1$
-					output.append(blockTags[i]);
+				output.append("\npossible block tags:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					output.append("\n	- "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					output.append(blockTags[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				output.append('\n');
+				output.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		// Print inline tags
@@ -66,12 +66,12 @@ public class CompletionOnJavadocTag extends JavadocSingleNameReference implement
 		if (inlineTags != null) {
 			int length=inlineTags.length;
 			if (length > 0) {
-				output.append("\npossible inline tags:"); //$NON-NLS-1$
-				for (int i=0; i<length; i++) {
-					output.append("\n	- "); //$NON-NLS-1$
-					output.append(inlineTags[i]);
+				output.append("\npossible inline tags:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					output.append("\n	- "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					output.append(inlineTags[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				output.append('\n');
+				output.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		// Print snippet tags
@@ -79,18 +79,18 @@ public class CompletionOnJavadocTag extends JavadocSingleNameReference implement
 		if (snipTags != null) {
 			int length=snipTags.length;
 			if (length > 0) {
-				output.append("\npossible snippet tags:"); //$NON-NLS-1$
-				for (int i=0; i<length; i++) {
-					output.append("\n	- "); //$NON-NLS-1$
-					output.append(snipTags[i]);
+				output.append("\npossible snippet tags:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					output.append("\n	- "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					output.append(snipTags[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				output.append('\n');
+				output.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		return output.append('>');
+		return output.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
-	public void filterPossibleTags(Scope scope) {
+	public void filterPossibleTags(Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.possibleTags == null || this.possibleTags.length == 0 || (this.completionFlags & ALL_POSSIBLE_TAGS) != 0) {
 			return;
 		}
@@ -131,14 +131,14 @@ public class CompletionOnJavadocTag extends JavadocSingleNameReference implement
 				return;
 		}
 		int kinds = this.possibleTags.length;
-		for (int k=0; k<kinds; k++) {
+		for (int k=0; k<kinds; k++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int length = this.possibleTags[k].length;
 			int specLenth = specifiedTags.length;
 			char[][] filteredTags = new char[length][];
 			int size = 0;
-			for (int i=0; i<length; i++) {
+			for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				char[] possibleTag = this.possibleTags[k][i];
-				for (int j=0; j<specLenth; j++) {
+				for (int j=0; j<specLenth; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (possibleTag[0] == specifiedTags[j][0] && CharOperation.equals(possibleTag, specifiedTags[j])) {
 						if (possibleTag == TAG_PARAM) {
 							switch (scope.kind) {

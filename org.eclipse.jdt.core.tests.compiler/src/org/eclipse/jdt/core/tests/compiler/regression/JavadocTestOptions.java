@@ -128,7 +128,7 @@ public class JavadocTestOptions extends JavadocTest {
 		"X_dep.java",
 		DEP_CLASS,
 		"Y.java",
-		"public class Y {\n" +
+		"public class Y {\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			INVALID_CLASS_JAVADOC_REF +
 			"	public class X_pub {}\n" +
 			INVALID_CLASS_JAVADOC_REF +
@@ -146,7 +146,7 @@ public class JavadocTestOptions extends JavadocTest {
 		"X_dep.java",
 		DEP_CLASS,
 		"Y.java",
-		"public class Y {\n" +
+		"public class Y {\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			INVALID_CLASS_JAVADOC_REF +
 			"	public int x_pub;\n" +
 			INVALID_CLASS_JAVADOC_REF +
@@ -164,7 +164,7 @@ public class JavadocTestOptions extends JavadocTest {
 		"X_dep.java",
 		DEP_CLASS,
 		"Y.java",
-		"public class Y {\n" +
+		"public class Y {\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			INVALID_METHOD_JAVADOC_REF +
 			"	public void foo_pub(String str) throws IllegalArgumentException {}\n" +
 			INVALID_METHOD_JAVADOC_REF +
@@ -182,7 +182,7 @@ public class JavadocTestOptions extends JavadocTest {
 		"X_dep.java",
 		DEP_CLASS,
 		"Y.java",
-		"public class Y {\n" +
+		"public class Y {\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			INVALID_METHOD_JAVADOC_REF +
 			"	public Y(int str) {}\n" +
 			INVALID_METHOD_JAVADOC_REF +
@@ -897,9 +897,9 @@ public class JavadocTestOptions extends JavadocTest {
 	private String resultForInvalidTagsClassOrField(int visibility) {
 		String[] errors = errorsForInvalidTagsClassOrField(visibility);
 		int length = errors.length;
-		StringBuilder buffer = new StringBuilder("----------\n");
-		for (int i=0; i<length; i++) {
-			buffer.append(errors[i]);
+		StringBuilder buffer = new StringBuilder("----------\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(errors[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return buffer.toString();
 	}
@@ -907,14 +907,14 @@ public class JavadocTestOptions extends JavadocTest {
 	private String resultForInvalidTagsMethodOrConstructor(int visibility) {
 		String[] errors = errorsForInvalidTagsMethodOrConstructor(visibility);
 		int length = errors.length;
-		StringBuilder buffer = new StringBuilder("----------\n");
-		for (int i=0; i<length; i++) {
-			buffer.append(errors[i]);
+		StringBuilder buffer = new StringBuilder("----------\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(errors[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return buffer.toString();
 	}
 
-	private String[] errorsForInvalidTagsClassOrField(int visibility) {
+	private String[] errorsForInvalidTagsClassOrField(int visibility) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int length = CLASSES_ERRORS.length;
 		int size = visibility+1;
 		if (this.reportInvalidJavadocTagsDeprecatedRef == null && this.reportInvalidJavadocTagsNotVisibleRef == null) {
@@ -924,18 +924,18 @@ public class JavadocTestOptions extends JavadocTest {
 			return errors;
 		}
 		String[] errors = new String[size];
-		for (int i=0, count=1; i<size; i++) {
-			StringBuilder buffer = new StringBuilder();
+		for (int i=0, count=1; i<size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			StringTokenizer tokenizer = new StringTokenizer(CLASSES_ERRORS[i], "\n");
-			while (tokenizer.hasMoreTokens()) {
-				StringBuilder error = new StringBuilder();
+			while (tokenizer.hasMoreTokens()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				StringBuilder error = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 				boolean add = true;
-				for (int j=0; j<5; j++) {
+				for (int j=0; j<5; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String token = tokenizer.nextToken();
 					switch (j) {
 						case 0:
-							error.append(count);
-							error.append(token.substring(token.indexOf('.')));
+							error.append(count); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+							error.append(token.substring(token.indexOf('.'))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							break;
 						case 3:
 							// may not want to add the error message in certain circumstances
@@ -947,13 +947,13 @@ public class JavadocTestOptions extends JavadocTest {
 							}
 							// $FALL-THROUGH$ - fall through next case to append the token to the error message
 						default:
-							error.append(token);
+							error.append(token); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
-					error.append('\n');
+					error.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				if (add) {
 					count++;
-					buffer.append(error);
+					buffer.append(error); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
 			errors[i] = buffer.toString();
@@ -961,7 +961,7 @@ public class JavadocTestOptions extends JavadocTest {
 		return errors;
 	}
 
-	private String[] errorsForInvalidTagsMethodOrConstructor(int visibility) {
+	private String[] errorsForInvalidTagsMethodOrConstructor(int visibility) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int length = METHODS_ERRORS.length;
 		int size = visibility+1;
 		if (this.reportInvalidJavadocTagsDeprecatedRef == null && this.reportInvalidJavadocTagsNotVisibleRef == null) {
@@ -971,18 +971,18 @@ public class JavadocTestOptions extends JavadocTest {
 			return errors;
 		}
 		String[] errors = new String[size];
-		for (int i=0, count=1; i<size; i++) {
-			StringBuilder buffer = new StringBuilder();
+		for (int i=0, count=1; i<size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			StringTokenizer tokenizer = new StringTokenizer(METHODS_ERRORS[i], "\n");
-			while (tokenizer.hasMoreTokens()) {
-				StringBuilder error = new StringBuilder();
+			while (tokenizer.hasMoreTokens()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				StringBuilder error = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 				boolean add = true;
-				for (int j=0; j<5; j++) {
+				for (int j=0; j<5; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String token = tokenizer.nextToken();
 					switch (j) {
 						case 0:
-							error.append(count);
-							error.append(token.substring(token.indexOf('.')));
+							error.append(count); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+							error.append(token.substring(token.indexOf('.'))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							break;
 						case 3:
 							// may not want to add the error message in certain circumstances
@@ -994,13 +994,13 @@ public class JavadocTestOptions extends JavadocTest {
 							}
 							// $FALL-THROUGH$ - fall through next case to append the token to the error message
 						default:
-							error.append(token);
+							error.append(token); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
-					error.append('\n');
+					error.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				if (add) {
 					count++;
-					buffer.append(error);
+					buffer.append(error); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
 			errors[i] = buffer.toString();
@@ -1013,17 +1013,17 @@ public class JavadocTestOptions extends JavadocTest {
 			? errorsForInvalidTagsMethodOrConstructor(visibility)
 			: errorsForInvalidTagsClassOrField(visibility);
 		int length = errors.length;
-		StringBuilder expectedProblemLog = new StringBuilder(isMethod?"M":"C");
-		expectedProblemLog.append(errors.length);
-		expectedProblemLog.append("----------\n");
-		for (int i=0; i<length; i++) {
-			expectedProblemLog.append(errors[i]);
+		StringBuilder expectedProblemLog = new StringBuilder(isMethod?"M":"C"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expectedProblemLog.append(errors.length); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expectedProblemLog.append("----------\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			expectedProblemLog.append(errors[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		runNegativeTest(testFiles, expectedProblemLog.toString(),
 				JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
     }
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     protected void checkCompilerLog(String[] testFiles, Requestor requestor,
     		String[] alternatePlatformIndependantExpectedLogs, Throwable exception) {
     	String platformIndependantExpectedLog = alternatePlatformIndependantExpectedLogs[0];
@@ -1057,19 +1057,19 @@ public class JavadocTestOptions extends JavadocTest {
 			String[] errors = computedProblemLog.split("----------\n");
 			int length = errors.length;
 			int max = length / level;
-			for (int i=0, idx=1; i<level; i++) {
-				StringBuilder buffer = new StringBuilder();
-				for (int j=0; j<max; j++) {
+			for (int i=0, idx=1; i<level; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				for (int j=0; j<max; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (j > 0) {
-						buffer.append("----------\n");
+						buffer.append("----------\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
-					buffer.append(errors[idx++]);
+					buffer.append(errors[idx++]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				buffer.append("----------\n");
+				buffer.append("----------\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				System.out.print(Util.displayString(buffer.toString(), INDENT, true));
 				System.out.println(',');
 			}
-		    for (int k = 0; k < INDENT-1; k++) System.out.print('\t');
+		    for (int k = 0; k < INDENT-1; k++) System.out.print('\t'); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			System.out.println("};");
 	    }
 		if (exception == null) {
@@ -1193,27 +1193,27 @@ public class JavadocTestOptions extends JavadocTest {
 			"----------\n"
 	};
 
-	private String resultForMissingTags(int visibility) {
-		StringBuilder result = new StringBuilder("----------\n");
-		for (int i=0; i<=visibility; i++) {
-			result.append(X_MISSING_TAGS_ERRORS[i]);
+	private String resultForMissingTags(int visibility) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder result = new StringBuilder("----------\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i=0; i<=visibility; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			result.append(X_MISSING_TAGS_ERRORS[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (CompilerOptions.ENABLED.equals(this.reportMissingJavadocTagsOverriding)) {
-			result.append("----------\n");
-			result.append(Y_MISSING_TAGS_ERRORS[JavadocTestOptions.PUBLIC_VISIBILITY]);
+			result.append("----------\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			result.append(Y_MISSING_TAGS_ERRORS[JavadocTestOptions.PUBLIC_VISIBILITY]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (visibility >= JavadocTestOptions.PROTECTED_VISIBILITY) {
-				result.append(Y_MISSING_TAGS_ERRORS[JavadocTestOptions.PROTECTED_VISIBILITY]);
+				result.append(Y_MISSING_TAGS_ERRORS[JavadocTestOptions.PROTECTED_VISIBILITY]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (visibility >= JavadocTestOptions.DEFAULT_VISIBILITY) {
-					result.append(Y_MISSING_TAGS_ERRORS[JavadocTestOptions.DEFAULT_VISIBILITY]);
+					result.append(Y_MISSING_TAGS_ERRORS[JavadocTestOptions.DEFAULT_VISIBILITY]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					if (visibility == JavadocTestOptions.PRIVATE_VISIBILITY) {
-						result.append(Y_MISSING_TAGS_ERRORS[JavadocTestOptions.PRIVATE_VISIBILITY]);
+						result.append(Y_MISSING_TAGS_ERRORS[JavadocTestOptions.PRIVATE_VISIBILITY]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
 			}
 		}
 		// Private level is always reported as it never overrides...
 		else if (visibility == JavadocTestOptions.PRIVATE_VISIBILITY) {
-			result.append(Y_MISSING_TAGS_ERRORS[JavadocTestOptions.PRIVATE_VISIBILITY+1]);
+			result.append(Y_MISSING_TAGS_ERRORS[JavadocTestOptions.PRIVATE_VISIBILITY+1]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return result.toString();
 	}
@@ -1329,27 +1329,27 @@ public class JavadocTestOptions extends JavadocTest {
 			"----------\n"
 	};
 
-	private String resultForMissingComments(int visibility) {
-		StringBuilder result = new StringBuilder("----------\n");
-		for (int i=0; i<=visibility; i++) {
-			result.append(X_MISSING_COMMENTS_ERRORS[i]);
+	private String resultForMissingComments(int visibility) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder result = new StringBuilder("----------\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i=0; i<=visibility; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			result.append(X_MISSING_COMMENTS_ERRORS[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (CompilerOptions.ENABLED.equals(this.reportMissingJavadocCommentsOverriding)) {
-			result.append("----------\n");
-			result.append(Y_MISSING_COMMENTS_ERRORS[JavadocTestOptions.PUBLIC_VISIBILITY]);
+			result.append("----------\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			result.append(Y_MISSING_COMMENTS_ERRORS[JavadocTestOptions.PUBLIC_VISIBILITY]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (visibility >= JavadocTestOptions.PROTECTED_VISIBILITY) {
-				result.append(Y_MISSING_COMMENTS_ERRORS[JavadocTestOptions.PROTECTED_VISIBILITY]);
+				result.append(Y_MISSING_COMMENTS_ERRORS[JavadocTestOptions.PROTECTED_VISIBILITY]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (visibility >= JavadocTestOptions.DEFAULT_VISIBILITY) {
-					result.append(Y_MISSING_COMMENTS_ERRORS[JavadocTestOptions.DEFAULT_VISIBILITY]);
+					result.append(Y_MISSING_COMMENTS_ERRORS[JavadocTestOptions.DEFAULT_VISIBILITY]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					if (visibility == JavadocTestOptions.PRIVATE_VISIBILITY) {
-						result.append(Y_MISSING_COMMENTS_ERRORS[JavadocTestOptions.PRIVATE_VISIBILITY]);
+						result.append(Y_MISSING_COMMENTS_ERRORS[JavadocTestOptions.PRIVATE_VISIBILITY]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
 			}
 		}
 		// Private level is always reported for as it never overrides...
 		else if (visibility == JavadocTestOptions.PRIVATE_VISIBILITY) {
-			result.append(Y_MISSING_COMMENTS_ERRORS[JavadocTestOptions.PRIVATE_VISIBILITY+1]);
+			result.append(Y_MISSING_COMMENTS_ERRORS[JavadocTestOptions.PRIVATE_VISIBILITY+1]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return result.toString();
 	}
@@ -1377,7 +1377,7 @@ public class JavadocTestOptions extends JavadocTest {
 	}
 	*/
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected Map getCompilerOptions() {
 		Map options = super.getCompilerOptions();
 		// Set javadoc options if non null

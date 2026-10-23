@@ -347,31 +347,31 @@ public class SearchMatch {
 		this.raw = raw;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public String toString() {
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("Search match"); //$NON-NLS-1$
-		buffer.append("\n  accuracy="); //$NON-NLS-1$
-		buffer.append(this.accuracy == A_ACCURATE ? "ACCURATE" : "INACCURATE"); //$NON-NLS-1$ //$NON-NLS-2$
-		buffer.append("\n  rule="); //$NON-NLS-1$
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("Search match"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("\n  accuracy="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(this.accuracy == A_ACCURATE ? "ACCURATE" : "INACCURATE"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("\n  rule="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if ((this.rule & SearchPattern.R_FULL_MATCH) != 0) {
-			buffer.append("EXACT"); //$NON-NLS-1$
+			buffer.append("EXACT"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else if ((this.rule & SearchPattern.R_EQUIVALENT_MATCH) != 0) {
-			buffer.append("EQUIVALENT"); //$NON-NLS-1$
+			buffer.append("EQUIVALENT"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else if ((this.rule & SearchPattern.R_ERASURE_MATCH) != 0) {
-			buffer.append("ERASURE"); //$NON-NLS-1$
+			buffer.append("ERASURE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		buffer.append("\n  raw="); //$NON-NLS-1$
-		buffer.append(this.raw);
-		buffer.append("\n  offset="); //$NON-NLS-1$
-		buffer.append(this.offset);
-		buffer.append("\n  length="); //$NON-NLS-1$
-		buffer.append(this.length);
+		buffer.append("\n  raw="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(this.raw); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("\n  offset="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(this.offset); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("\n  length="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(this.length); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (this.element != null) {
-			buffer.append("\n  element="); //$NON-NLS-1$
-			buffer.append(((JavaElement)getElement()).toStringWithAncestors());
+			buffer.append("\n  element="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(((JavaElement)getElement()).toStringWithAncestors()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		buffer.append("\n"); //$NON-NLS-1$
+		buffer.append("\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return buffer.toString();
 	}
 }

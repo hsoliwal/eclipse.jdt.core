@@ -74,7 +74,7 @@ public abstract class AbstractLeakTest extends BuilderTests {
 		internalTestUsedLibraryLeaks(IncrementalProjectBuilder.FULL_BUILD);
 	}
 
-	private void internalTestUsedLibraryLeaks(int kind) throws Exception {
+	private void internalTestUsedLibraryLeaks(int kind) throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if(LINUX && !lsofCheckDone) {
 			selfTestLsof();
 		}
@@ -103,7 +103,7 @@ public abstract class AbstractLeakTest extends BuilderTests {
 			assertNotLeaked(internalJar);
 			break;
 		default:
-			fail("Unexpected build kind: " + kind);
+			fail("Unexpected build kind: " + kind); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -121,7 +121,7 @@ public abstract class AbstractLeakTest extends BuilderTests {
 			"}"
 		);
 		IFile file = env.getWorkspace().getRoot().getFile(path);
-		assertTrue("File should exists: " + path, file.exists());
+		assertTrue("File should exists: " + path, file.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	private void changeJavaFile(IPath projectPath) throws Exception {
@@ -132,13 +132,13 @@ public abstract class AbstractLeakTest extends BuilderTests {
 			"}"
 		);
 		IFile file = env.getWorkspace().getRoot().getFile(path);
-		assertTrue("FIle should exists: " + path, file.exists());
+		assertTrue("FIle should exists: " + path, file.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	private void assertNotLeaked(IPath path) throws Exception {
 		expectingNoProblems();
 		IFile file = env.getWorkspace().getRoot().getFile(path);
-		assertTrue("FIle should exists: " + path, file.exists());
+		assertTrue("FIle should exists: " + path, file.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if(WINDOWS) {
 			tryRemoveFile(file);
 		} else if (LINUX) {
@@ -146,7 +146,7 @@ public abstract class AbstractLeakTest extends BuilderTests {
 		}
 	}
 
-	private void tryRemoveFile(IFile file) {
+	private void tryRemoveFile(IFile file) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Note: this is a lame attempt to check for leaked file descriptor
 		// This works on Windows only, because windows does not allow to delete
 		// files opened for reading.
@@ -161,9 +161,9 @@ public abstract class AbstractLeakTest extends BuilderTests {
 				file.getLocation().toFile().delete();
 				// ignore
 			}
-			throw new IllegalStateException("File leaked during build: " + file, e);
+			throw new IllegalStateException("File leaked during build: " + file, e); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		assertFalse("File should be deleted: " + file, file.exists());
+		assertFalse("File should be deleted: " + file, file.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	private void checkOpenDescriptors(IFile file) throws Exception {
@@ -174,7 +174,7 @@ public abstract class AbstractLeakTest extends BuilderTests {
 			Thread.sleep(5000);
 			processes = getProcessesOpenedFile(Paths.get(file.getLocation().toOSString()));
 			if(!processes.isEmpty()) {
-				throw new IllegalStateException("File leaked during build: " + file);
+				throw new IllegalStateException("File leaked during build: " + file); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
@@ -202,7 +202,7 @@ public abstract class AbstractLeakTest extends BuilderTests {
 		}
 	}
 
-	private static List<String> getProcessesOpenedFile(Path path) throws Exception {
+	private static List<String> getProcessesOpenedFile(Path path) throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int pid = getPid();
 		// assertTrue("JVM PID must be > 0 : " + pid, pid > 0);
 		// -F n : to print only name column (note: all lines start with "n")
@@ -212,9 +212,9 @@ public abstract class AbstractLeakTest extends BuilderTests {
 		// List<String> lines = readLsofLines("lsof -F n -a -p " + pid + " -b", true);
 
 		// Code above seem to hang...
-		List<String> lines = readLsofLines("lsof " + path, true);
-		for (String line : lines) {
-			if(line.contains("" + pid)) {
+		List<String> lines = readLsofLines("lsof " + path, true); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		for (String line : lines) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			if(line.contains("" + pid)) { //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return lines;
 			}
 		}
@@ -229,15 +229,15 @@ public abstract class AbstractLeakTest extends BuilderTests {
         return pid;
 	}
 
-	private static List<String> readLsofLines(String cmd, boolean skipFirst) throws Exception {
-		List<String> lines = new ArrayList<>();
+	private static List<String> readLsofLines(String cmd, boolean skipFirst) throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		List<String> lines = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		Process process = Runtime.getRuntime().exec(cmd.split("\\s"));
 		try (BufferedReader rdr = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
 			if (skipFirst) {
 				rdr.readLine();
 			}
 			String line;
-			while((line = rdr.readLine())!= null) {
+			while((line = rdr.readLine())!= null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				// remove "n" prefix from lsof output
 				if(line.startsWith("n")) {
 					line = line.substring(1);

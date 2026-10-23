@@ -44,7 +44,7 @@ public static Test suite() {
 }
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5193
-public void testGH5193() {
+public void testGH5193() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK10)
 		return; // uses 'var'
 	runNegativeTest(
@@ -81,7 +81,7 @@ public void testGH5193ProblemBindingCannotInferDiamondConstructor() {
 }
 
 // vanilla test case
-public void testBug488663_001() {
+public void testBug488663_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -113,7 +113,7 @@ public void testBug488663_001() {
 }
 
 // negative test case for diamond operator instantiation of denotable anonymous type but with parameterized method
-public void testBug488663_002() {
+public void testBug488663_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -174,7 +174,7 @@ public void testBug488663_003() {
 }
 
 // inner classes with diamond operator and anonymous classes
-public void testBug488663_004() {
+public void testBug488663_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -194,7 +194,7 @@ public void testBug488663_004() {
 }
 
 // compiler error for non-denotable anonymous type with diamond operator - negative test
-public void testBug488663_005() {
+public void testBug488663_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -218,7 +218,7 @@ public void testBug488663_005() {
 }
 
 //compiler error for non-denotable anonymous type with diamond operator - negative test
-public void testBug488663_006() {
+public void testBug488663_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -242,7 +242,7 @@ public void testBug488663_006() {
 
 }
 // instantiate an interface using the anonymous diamond
-public void testBug488663_007() {
+public void testBug488663_007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -271,7 +271,7 @@ public void testBug488663_007() {
 		"Success");
 }
 // anonymous diamond instantiating interface as argument to an invocation
-public void testBug488663_008() {
+public void testBug488663_008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -302,7 +302,7 @@ public void testBug488663_008() {
 		"Success");
 }
 // anonymous diamond instantiating an abstract class as argument to an invocation
-public void testBug488663_009() {
+public void testBug488663_009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -334,7 +334,7 @@ public void testBug488663_009() {
 		"Success");
 }
 // anonymous diamond with polytype argument
-public void testBug488663_010() {
+public void testBug488663_010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -360,7 +360,7 @@ public void testBug488663_010() {
 		"Done");
 }
 // anonymous diamond with polytype argument
-public void testBug488663_011() {
+public void testBug488663_011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -389,7 +389,7 @@ public void testBug488663_011() {
 		"Done");
 }
 // Nested anonymous diamonds - TODO - confirm that this is indeed correct as per spec
-public void testBug488663_012() {
+public void testBug488663_012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -426,7 +426,7 @@ public void testBug488663_012() {
 	runner.runConformTest();
 }
 // Redundant type argument specification - TODO - confirm that this is correct
-public void testBug488663_013() {
+public void testBug488663_013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportRedundantSpecificationOfTypeArguments, CompilerOptions.ERROR);
@@ -466,7 +466,7 @@ public void testBug488663_013() {
 	runner.runNegativeTest();
 }
 // All non-private methods of an anonymous class instantiated with '<>' must be treated as being annotated with @override
-public void testBug488663_014() {
+public void testBug488663_014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -507,7 +507,7 @@ public void testBug488663_014() {
 		"----------\n");
 }
 // Inaccessible type inferred for anonymous diamond is an error
-public void testBug488663_015() {
+public void testBug488663_015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"Test.java",
@@ -548,7 +548,7 @@ public void testBug488663_015() {
 		"----------\n");
 }
 // Inaccessible type inferred for anonymous diamond is an error - interface case
-public void testBug488663_016() {
+public void testBug488663_016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"Test.java",
@@ -584,7 +584,7 @@ public void testBug488663_016() {
 		"----------\n");
 }
 // All non-private methods of an anonymous class instantiated with '<>' must be treated as being annotated with @override
-public void testBug517926() {
+public void testBug517926() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -622,7 +622,7 @@ public void testBug517926() {
 		"The method name() of type new I<X>(){} must override or implement a supertype method\n" +
 		"----------\n");
 }
-public void testBug521815a() {
+public void testBug521815a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 			new String[] {
 					"a/b/X.java",
@@ -648,7 +648,7 @@ public void testBug521815a() {
 			"The type Inner is ambiguous\n" +
 			"----------\n");
 }
-public void testBug521815b() {
+public void testBug521815b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel <= ClassFileConstants.JDK1_8) {
 		return;
 	}
@@ -680,7 +680,7 @@ public void testBug521815b() {
 	runner.javacTestOptions = Excuse.EclipseHasSomeMoreWarnings;
 	runner.runWarningTest();
 }
-public void testBug533644() {
+public void testBug533644() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"q/JobDetail.java",
@@ -730,7 +730,7 @@ public void testBug533644() {
 //As All non-private methods of an anonymous class instantiated with '<>' must be treated as being annotated with @override,
 //"Remove redundant type arguments" diagnostic should be reported ONLY if all the non-private methods defined in the anonymous class
 //are also present in the parent class.
-public void testBug551913_001() {
+public void testBug551913_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportRedundantSpecificationOfTypeArguments, CompilerOptions.ERROR);
 	this.runConformTest(
@@ -755,7 +755,7 @@ public void testBug551913_001() {
 // As All non-private methods of an anonymous class instantiated with '<>' must be treated as being annotated with @override,
 // "Remove redundant type arguments" diagnostic should be reported ONLY if all the non-private methods defined in the anonymous class
 // are also present in the parent class.
-public void testBug551913_002() {
+public void testBug551913_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportRedundantSpecificationOfTypeArguments, CompilerOptions.ERROR);
@@ -785,7 +785,7 @@ public void testBug551913_002() {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1506
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=551913
-public void testBug551913_003() {
+public void testBug551913_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportRedundantSpecificationOfTypeArguments, CompilerOptions.ERROR);
@@ -815,7 +815,7 @@ public void testBug551913_003() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1506
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=551913
-public void testBug551913_004() {
+public void testBug551913_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportRedundantSpecificationOfTypeArguments, CompilerOptions.ERROR);
 	this.runNegativeTest(
@@ -837,7 +837,7 @@ public void testBug551913_004() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1506
 // Recommendation from compiler to drop type arguments leads to compile error
-public void testGH1506() {
+public void testGH1506() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportRedundantSpecificationOfTypeArguments, CompilerOptions.ERROR);
 	this.runNegativeTest(
@@ -870,7 +870,7 @@ public void testGH1506() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1506
 // Recommendation from compiler to drop type arguments leads to compile error
-public void testGH1506_2() {
+public void testGH1506_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportRedundantSpecificationOfTypeArguments, CompilerOptions.ERROR);
@@ -911,7 +911,7 @@ public void testGH1506_2() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1506
 // Recommendation from compiler to drop type arguments leads to compile error
-public void testGH1506_3() {
+public void testGH1506_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportRedundantSpecificationOfTypeArguments, CompilerOptions.ERROR);
 	this.runNegativeTest(
@@ -941,7 +941,7 @@ public void testGH1506_3() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1506
 // Recommendation from compiler to drop type arguments leads to compile error
-public void testGH1506_4() {
+public void testGH1506_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportRedundantSpecificationOfTypeArguments, CompilerOptions.ERROR);
 	this.runNegativeTest(
@@ -971,7 +971,7 @@ public void testGH1506_4() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1560
 // ECJ recommends diamond when using it would result in non-denotable types.
-public void testGH1560() {
+public void testGH1560() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportRedundantSpecificationOfTypeArguments, CompilerOptions.ERROR);
 	this.runNegativeTest(
@@ -1023,7 +1023,7 @@ public void testGH1560() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1560
 // ECJ recommends diamond when using it would result in non-denotable types.
-public void testGH1560_2() {
+public void testGH1560_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportRedundantSpecificationOfTypeArguments, CompilerOptions.ERROR);
 	this.runNegativeTest(
@@ -1073,7 +1073,7 @@ public void testGH1560_2() {
 		+ "----------\n",
 		null, true, options);
 }
-public void testGH2817() {
+public void testGH2817() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"Test.java",
@@ -1093,7 +1093,7 @@ public void testGH2817() {
 		};
 	runner.runConformTest();
 }
-public void testGH3501() {
+public void testGH3501() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"X.java",
@@ -1117,7 +1117,7 @@ public void testGH3501() {
 			""";
 	runner.runNegativeTest();
 }
-public void testGH3457() {
+public void testGH3457() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 		"Test.java",
 		"""
@@ -1137,7 +1137,7 @@ public void testGH3457() {
 		"""
 	});
 }
-public void testGH3457b() {
+public void testGH3457b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 		"QueryUtil.java",
 		"""
@@ -1160,7 +1160,7 @@ public void testGH3457b() {
 		"""
 	});
 }
-public void testGH3457c() {
+public void testGH3457c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 		"QueryUtil.java",
 		"""
@@ -1184,7 +1184,7 @@ public void testGH3457c() {
 		"""
 	});
 }
-public void testGH3948() {
+public void testGH3948() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"Foo.java",
@@ -1220,7 +1220,7 @@ public void testGH3948() {
 	runner.javacTestOptions = JavacHasABug.JavacBug8387487;
 	runner.runConformTest();
 }
-public void testGH4022a() {
+public void testGH4022a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 			"Bug.java",
 			"""
@@ -1250,7 +1250,7 @@ public void testGH4022a() {
 			"""
 		});
 }
-public void testGH4022b() {
+public void testGH4022b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 			"OtherExample.java",
 			"""
@@ -1277,7 +1277,7 @@ public void testGH4022b() {
 			"""
 		});
 }
-public void testGH4033() {
+public void testGH4033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 			"Snippet.java",
 			"""
@@ -1302,7 +1302,7 @@ public void testGH4033() {
 			"""
 		});
 }
-public void testGH4039() {
+public void testGH4039() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 		"CollectionsSortReproducer.java",
@@ -1329,7 +1329,7 @@ public void testGH4039() {
 	runner.runConformTest();
 }
 
-public void testGH4003() {
+public void testGH4003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK10)
 		return; // uses 'var'
 	runConformTest(new String[] {
@@ -1407,7 +1407,7 @@ public void testGH4098() {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3907
 // Compilation error on full build but not on incremental build due to @deprecated
-public void testIssue3907() {
+public void testIssue3907() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 		"LoadExtension.java",
 		"""
@@ -1443,7 +1443,7 @@ public void testIssue3907() {
 		"""
 	});
 }
-public void testIssue3907_since() {
+public void testIssue3907_since() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 		"LoadExtension.java",
@@ -1490,7 +1490,7 @@ public void testIssue3907_since() {
 			""";
 	runner.runWarningTest();
 }
-public void testGH4308() {
+public void testGH4308() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 			"ClassA.java",
 			"""
@@ -1562,7 +1562,7 @@ public void testGH4392() {
 			}
 			"""});
 }
-public void testGH4402() {
+public void testGH4402() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 			"Main.java",
 			"""
@@ -1629,7 +1629,7 @@ public void testGH4402() {
 		},
 		"");
 }
-public void testGH4346() {
+public void testGH4346() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK16)
 		return; // uses records
 	runConformTest(new String[] {
@@ -1670,7 +1670,7 @@ public void testGH4498() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4503
 // [Mockito] Compilation error "Unhandled exception type Throwable"
-public void testIssue4503_differs_from_javac() {
+public void testIssue4503_differs_from_javac() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 			"X.java",
 			"""
@@ -1700,7 +1700,7 @@ public void testIssue4503_differs_from_javac() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4503
 // [Mockito] Compilation error "Unhandled exception type Throwable"
-public void testIssue4503_matches_with_javac() {
+public void testIssue4503_matches_with_javac() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(new String[] {
 			"X.java",
 			"""
@@ -1734,7 +1734,7 @@ public void testIssue4503_matches_with_javac() {
 			"Unhandled exception type Throwable\n" +
 			"----------\n");
 }
-public void testGH4715() {
+public void testGH4715() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 		"TestMain.java",
 		"""
@@ -1767,7 +1767,7 @@ public void testGH4715() {
 		"""
 	});
 }
-public void testGH4533() {
+public void testGH4533() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 		"X.java",
 		"""
@@ -1800,7 +1800,7 @@ public void testGH4533() {
 		"""
 	});
 }
-public void testGH4281() {
+public void testGH4281() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 		"InferenceTest.java",
 		"""
@@ -1821,7 +1821,7 @@ public void testGH4281() {
 		"""
 	});
 }
-public void testGH1501() {
+public void testGH1501() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(new String[] {
 			"Test.java",
 			"""
@@ -1884,7 +1884,7 @@ public void testGH1501() {
 		----------
 		""");
 }
-public void testGH4463() {
+public void testGH4463() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 		"A.java",
 		"""
@@ -1903,7 +1903,7 @@ public void testGH4463() {
 		"""
 	});
 }
-public void testGH4463b() {
+public void testGH4463b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 		"A.java",
 		"""
@@ -1924,7 +1924,7 @@ public void testGH4463b() {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4550
 // Static interface methods excluded from type variable membership
-public void testIssue4550() {
+public void testIssue4550() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"Tester.java",
@@ -1962,7 +1962,7 @@ public void testIssue4550() {
 	runner.runNegativeTest();
 }
 
-public void testGH4635() {
+public void testGH4635() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 		"Test.java",
 		"""
@@ -2000,7 +2000,7 @@ public void testGH4635() {
 
 	});
 }
-public void testGH4604() {
+public void testGH4604() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 			"X.java",
 			"""
@@ -2020,7 +2020,7 @@ public void testGH4604() {
 			"""
 		});
 }
-public void testGH4699_1() {
+public void testGH4699_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK10) return; // uses 'var'
 	runConformTest(new String[] {
 			"EclipseBug.java",
@@ -2042,7 +2042,7 @@ public void testGH4699_1() {
 			"""
 		});
 }
-public void testGH4699_full() {
+public void testGH4699_full() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK10) return; // uses 'var'
 	runConformTest(new String[] {
 			"EclipseBug.java",
@@ -2076,7 +2076,7 @@ public void testGH4699_full() {
 		});
 }
 
-public void testGH4810() {
+public void testGH4810() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 			"Repro.java",
 			"""
@@ -2109,7 +2109,7 @@ public void testGH4810() {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4864
 // Cannot infer type arguments with ecj 3.44.0 but not with 3.43.0
-public void testIssue4864() {
+public void testIssue4864() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 			"X.java",
 			"""
@@ -2147,7 +2147,7 @@ public void testIssue4864() {
 	});
 }
 
-public void testGH5052() {
+public void testGH5052() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 			"Freeze.java",
 			"""
@@ -2177,7 +2177,7 @@ public void testGH5052() {
 		},
 		"map.consume");
 }
-public void testGH5028() {
+public void testGH5028() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK10) return; // uses 'var'
 	runConformTest(new String[] {
 			"InferredGenerics.java",
@@ -2214,7 +2214,7 @@ public void testGH5028() {
 			"""});
 }
 
-public void testListRewrite() {
+public void testListRewrite() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// previously this triggered an unchecked warning
 	runNegativeTest(new String[] {
 			"X.java",
@@ -2241,7 +2241,7 @@ public void testListRewrite() {
 		----------
 		""");
 }
-public void testGH4774() throws Exception {
+public void testGH4774() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK16) return; // uses records
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
@@ -2268,7 +2268,7 @@ public void testGH4774() throws Exception {
 		};
 	runner.runConformTest();
 }
-public void testGH4774b() throws Exception {
+public void testGH4774b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"Test.java",
@@ -2293,7 +2293,7 @@ public void testGH4774b() throws Exception {
 		};
 	runner.runConformTest();
 }
-public void testGH4731() {
+public void testGH4731() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"TestWildcard.java",
@@ -2327,7 +2327,7 @@ public void testGH4731() {
 	runner.javacTestOptions = JavacHasABug.JavacBug8016207;
 	runner.runNegativeTest();
 }
-public void testGH4937() {
+public void testGH4937() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 		"A.java",
 		"""
@@ -2347,7 +2347,7 @@ public void testGH4937() {
 	});
 }
 
-public void testGH3351() {
+public void testGH3351() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// error message is bogus (see https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5078)
 	// but rejecting is in line with javac
 	runNegativeTest(new String[] {
@@ -2383,7 +2383,7 @@ public void testGH3351() {
 		----------
 		""");
 }
-public void testGH3367() {
+public void testGH3367() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"Test.java",
@@ -2404,7 +2404,7 @@ public void testGH3367() {
 	runner.runConformTest();
 }
 
-public void testGH4984() throws Exception {
+public void testGH4984() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 		"MyCall.java",
 		"""
@@ -2433,7 +2433,7 @@ public void testGH4984() throws Exception {
 		""" });
 }
 
-public void testGH4893() throws Exception  {
+public void testGH4893() throws Exception  { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 		"Bug.java",
 		"""
@@ -2471,7 +2471,7 @@ public void testGH4893() throws Exception  {
 		"""
 	});
 }
-public void testJDK8375572() {
+public void testJDK8375572() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK16)
 		return;
 	Runner runner = new Runner();
@@ -2510,7 +2510,7 @@ public void testJDK8375572() {
 	runner.javacTestOptions = JavacHasABug.JavacBug8375572;
 	runner.runConformTest();
 }
-public void testGH5219() {
+public void testGH5219() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {"Test.java",
 			"""
 			import java.util.Collection;
@@ -2532,7 +2532,7 @@ public void testGH5219() {
 			"");
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5214
-public void testIssue5214() {
+public void testIssue5214() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(new String[] {"X.java",
 			"""
 			import java.util.List;
@@ -2581,7 +2581,7 @@ public void testIssue5214() {
 			+ "The method isRelevant(X.Child<X.A>) from the type X is never used locally\n"
 			+ "----------\n");
 }
-public void testIssue5426() {
+public void testIssue5426() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 		"HasFooBarLists.java",
 		"""

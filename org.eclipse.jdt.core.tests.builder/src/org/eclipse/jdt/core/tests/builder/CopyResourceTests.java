@@ -33,7 +33,7 @@ public class CopyResourceTests extends BuilderTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=117302
-	public void testFilteredResources() throws JavaModelException {
+	public void testFilteredResources() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("P"); //$NON-NLS-1$
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
 		IPath src = env.addPackageFragmentRoot(
@@ -88,7 +88,7 @@ public class CopyResourceTests extends BuilderTests {
 		}
 	}
 
-	public void testSimpleProject() throws JavaModelException {
+	public void testSimpleProject() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("P1"); //$NON-NLS-1$
 		IPath src = env.getPackageFragmentRootPath(projectPath, ""); //$NON-NLS-1$
 		env.setOutputFolder(projectPath, ""); //$NON-NLS-1$
@@ -110,7 +110,7 @@ public class CopyResourceTests extends BuilderTests {
 		expectingPresenceOf(p.append("p.txt")); //$NON-NLS-1$
 	}
 
-	public void testProjectWithBin() throws JavaModelException {
+	public void testProjectWithBin() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("P2"); //$NON-NLS-1$
 		IPath src = env.getPackageFragmentRootPath(projectPath, ""); //$NON-NLS-1$
 		env.setOutputFolder(projectPath, "bin"); //$NON-NLS-1$
@@ -141,7 +141,7 @@ public class CopyResourceTests extends BuilderTests {
 		});
 	}
 
-	public void testProjectWithSrcBin() throws JavaModelException {
+	public void testProjectWithSrcBin() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("P3"); //$NON-NLS-1$
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
 		IPath src = env.addPackageFragmentRoot(projectPath, "src"); //$NON-NLS-1$
@@ -172,7 +172,7 @@ public class CopyResourceTests extends BuilderTests {
 		});
 	}
 
-	public void testProjectWith2SrcBin() throws JavaModelException {
+	public void testProjectWith2SrcBin() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("P4"); //$NON-NLS-1$
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
 		IPath src1 = env.addPackageFragmentRoot(projectPath, "src1"); //$NON-NLS-1$
@@ -208,7 +208,7 @@ public class CopyResourceTests extends BuilderTests {
 		});
 	}
 
-	public void testProjectWith2SrcAsBin() throws JavaModelException {
+	public void testProjectWith2SrcAsBin() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("P5"); //$NON-NLS-1$
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
 		IPath src1 = env.addPackageFragmentRoot(projectPath, "src1", null, "src1"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -231,7 +231,7 @@ public class CopyResourceTests extends BuilderTests {
 		});
 	}
 
-	public void testProjectWith2Src2Bin() throws JavaModelException {
+	public void testProjectWith2Src2Bin() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("P6"); //$NON-NLS-1$
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
 		IPath src1 = env.addPackageFragmentRoot(projectPath, "src1", null, "bin1"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -254,7 +254,7 @@ public class CopyResourceTests extends BuilderTests {
 		});
 	}
 
-	public void test2ProjectWith1Bin() throws JavaModelException {
+	public void test2ProjectWith1Bin() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("P7"); //$NON-NLS-1$
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
 		env.addPackageFragmentRoot(projectPath, "src"); //$NON-NLS-1$
@@ -274,7 +274,7 @@ public class CopyResourceTests extends BuilderTests {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=154693
-	public void testBug154693() throws JavaModelException {
+	public void testBug154693() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("P9"); //$NON-NLS-1$
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
 		IPath src = env.addPackageFragmentRoot(projectPath, "src"); //$NON-NLS-1$
@@ -298,7 +298,7 @@ public class CopyResourceTests extends BuilderTests {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=194420
-	public void testBug194420() throws JavaModelException {
+	public void testBug194420() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("P"); //$NON-NLS-1$
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
 		IPath src = env.addPackageFragmentRoot(projectPath, "src"); //$NON-NLS-1$

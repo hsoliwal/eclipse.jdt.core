@@ -61,7 +61,7 @@ static Parser defaultParser = new Parser(
 			new ProblemReporter(DefaultErrorHandlingPolicies.proceedWithAllProblems(),
 			new CompilerOptions(),
 			new DefaultProblemFactory()), false);
-public void runConformTest(String fileName, String fileContents,
+public void runConformTest(String fileName, String fileContents, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Parser parser, ASTCollector visitor, String expected) {
 	CompilationUnit source =
 		new CompilationUnit(fileContents.toCharArray(),	fileName, null);
@@ -84,7 +84,7 @@ public void runConformTest(String fileName, String fileContents,
 }
 
 // AST implementation - visiting binary expressions
-public void test0001_regular_binary_expression() {
+public void test0001_regular_binary_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		"X.java",
 		"public class X {\n" +
@@ -138,7 +138,7 @@ public void test0001_regular_binary_expression() {
 // AST implementation - visiting binary expressions
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=102728
 // Adding combined binary expressions
-public void test0002_combined_binary_expression() {
+public void test0002_combined_binary_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CombinedBinaryExpression.defaultArityMaxStartingValue = 3;
 	// one CBE each fourth BE
 	runConformTest(
@@ -160,7 +160,7 @@ public void test0002_combined_binary_expression() {
 				if (binaryExpression instanceof CombinedBinaryExpression &&
 						((CombinedBinaryExpression) binaryExpression).
 							referencesTable != null) {
-					this.collector.append("[ev CBE " +
+					this.collector.append("[ev CBE " + //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						cut(binaryExpression.toString()) + "]\n");
 				} else {
 					super.endVisit(binaryExpression, scope);
@@ -208,7 +208,7 @@ public void test0002_combined_binary_expression() {
 // AST implementation - visiting binary expressions
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=102728
 // Adding combined binary expressions
-public void test0003_combined_binary_expression() {
+public void test0003_combined_binary_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Parser parser = new Parser(
 			new ProblemReporter(DefaultErrorHandlingPolicies.proceedWithAllProblems(),
 			new CompilerOptions(),
@@ -235,7 +235,7 @@ public void test0003_combined_binary_expression() {
 				if (binaryExpression instanceof CombinedBinaryExpression &&
 						((CombinedBinaryExpression) binaryExpression).
 							referencesTable != null) {
-					this.collector.append("[ev CBE " +
+					this.collector.append("[ev CBE " + //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						cut(binaryExpression.toString()) + "]\n");
 				} else {
 					super.endVisit(binaryExpression, scope);
@@ -284,7 +284,7 @@ public void test0003_combined_binary_expression() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=102728
 // Adding combined binary expressions - effect of a literal at the start with
 // string literal optimization
-public void test0004_combined_binary_expression() {
+public void test0004_combined_binary_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Parser parser = new Parser(
 			new ProblemReporter(DefaultErrorHandlingPolicies.proceedWithAllProblems(),
 			new CompilerOptions(),
@@ -315,7 +315,7 @@ public void test0004_combined_binary_expression() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=102728
 // Adding combined binary expressions - effect of a literal at the start without
 // string literals optimization
-public void test0005_combined_binary_expression() {
+public void test0005_combined_binary_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		"X.java",
 		"public class X {\n" +
@@ -349,7 +349,7 @@ public void test0005_combined_binary_expression() {
 // AST implementation - visiting binary expressions
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=102728
 // Adding combined binary expressions - cutting the traversal half-way down
-public void test0006_combined_binary_expression() {
+public void test0006_combined_binary_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CombinedBinaryExpression.defaultArityMaxStartingValue = 1;
 	runConformTest(
 		"X.java",
@@ -403,7 +403,7 @@ public void test0006_combined_binary_expression() {
 // AST implementation - visiting binary expressions
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=102728
 // Adding combined binary expressions - cutting the traversal right away
-public void test0007_combined_binary_expression() {
+public void test0007_combined_binary_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CombinedBinaryExpression.defaultArityMaxStartingValue = 4;
 	runConformTest(
 		"X.java",
@@ -442,7 +442,7 @@ public void test0007_combined_binary_expression() {
 // AST implementation - visiting binary expressions
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=102728
 // Adding combined binary expressions - case of one-deep expression
-public void test0008_combined_binary_expression() {
+public void test0008_combined_binary_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		"X.java",
 		"public class X {\n" +
@@ -458,7 +458,7 @@ public void test0008_combined_binary_expression() {
 			@Override
 			public void endVisit(BinaryExpression binaryExpression, BlockScope scope) {
 				if (binaryExpression instanceof CombinedBinaryExpression) {
-					this.collector.append("[ev CBE " +
+					this.collector.append("[ev CBE " + //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						cut(binaryExpression.toString()) + "]\n");
 				} else {
 					super.endVisit(binaryExpression, scope);
@@ -493,7 +493,7 @@ public void test0008_combined_binary_expression() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=102728
 // check if the generated code is OK when leveraging CombinedBinaryExpression
-public void test0009_combined_binary_expression() {
+public void test0009_combined_binary_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	assertEquals(20, CombinedBinaryExpression.ARITY_MAX_MIN);
 	this.runConformTest(
 		new String[] {
@@ -523,7 +523,7 @@ public void test0009_combined_binary_expression() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=102728
 // check if the generated code is OK when leveraging CombinedBinaryExpression
 // variant involving constant binary expressions deep in the tree
-public void test0010_combined_binary_expression() {
+public void test0010_combined_binary_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	assertEquals(20, CombinedBinaryExpression.ARITY_MAX_MIN);
 	this.runConformTest(
 		new String[] {
@@ -555,7 +555,7 @@ public void test0010_combined_binary_expression() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=102728
 // check if the generated code is OK when leveraging CombinedBinaryExpression
 // variant involving a constant combined binary expression
-public void test0011_combined_binary_expression() {
+public void test0011_combined_binary_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	assertEquals(20, CombinedBinaryExpression.ARITY_MAX_MIN);
 	this.runConformTest(
 		new String[] {
@@ -586,7 +586,7 @@ public void test0011_combined_binary_expression() {
 // AST implementation - visiting binary expressions
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=102728
 // Adding combined binary expressions - checking recursive print
-public void test0012_combined_binary_expression() {
+public void test0012_combined_binary_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CombinedBinaryExpression.defaultArityMaxStartingValue = 2;
 	runConformTest(
 		"X.java",
@@ -605,7 +605,7 @@ public void test0012_combined_binary_expression() {
 			public boolean visit(BinaryExpression binaryExpression,
 					BlockScope scope) {
 				super.visit(binaryExpression, scope);
-				this.collector.append(binaryExpression);
+				this.collector.append(binaryExpression); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				return true;
 			}
 		},
@@ -619,7 +619,7 @@ public void test0012_combined_binary_expression() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=102728
 // check if the generated code is OK when leveraging CombinedBinaryExpression
 // variant involving a left-deep right expression at the topmost level
-public void test0013_combined_binary_expression() {
+public void test0013_combined_binary_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	assertEquals(20, CombinedBinaryExpression.ARITY_MAX_MIN);
 	this.runConformTest(
 		new String[] {
@@ -651,7 +651,7 @@ public void test0013_combined_binary_expression() {
 // check if the generated code is OK when leveraging CombinedBinaryExpression
 // variant involving a left-deep right expression at the topmost level, with
 // a constant high in tree
-public void test0014_combined_binary_expression() {
+public void test0014_combined_binary_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	assertEquals(20, CombinedBinaryExpression.ARITY_MAX_MIN);
 	this.runConformTest(
 		new String[] {
@@ -683,7 +683,7 @@ public void test0014_combined_binary_expression() {
 // check if the generated code is OK when leveraging CombinedBinaryExpression
 // variant involving a left-deep right expression at the topmost level, with
 // a constant low in tree
-public void test0015_combined_binary_expression() {
+public void test0015_combined_binary_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	assertEquals(20, CombinedBinaryExpression.ARITY_MAX_MIN);
 	this.runConformTest(
 		new String[] {
@@ -714,7 +714,7 @@ public void test0015_combined_binary_expression() {
 // AST implementation - binary expressions
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=102728
 // Adding combined binary expressions - alternate operands
-public void test0016_combined_binary_expression() {
+public void test0016_combined_binary_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CombinedBinaryExpression.defaultArityMaxStartingValue = 2;
 	this.runConformTest(
 		"X.java",
@@ -728,7 +728,7 @@ public void test0016_combined_binary_expression() {
 			public boolean visit(BinaryExpression binaryExpression,
 					BlockScope scope) {
 				super.visit(binaryExpression, scope);
-				this.collector.append(binaryExpression);
+				this.collector.append(binaryExpression); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				return true;
 			}
 		},
@@ -738,7 +738,7 @@ public void test0016_combined_binary_expression() {
 		CombinedBinaryExpression.ARITY_MAX_MIN;
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=157170
-public void test0017() {
+public void test0017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompilerOptions options = new CompilerOptions();
 	this.runConformTest(
 		"X.java",
@@ -767,7 +767,7 @@ public void test0017() {
 		"normal annotation end visit\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=157170
-public void test0018() {
+public void test0018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompilerOptions options = new CompilerOptions();
 	options.docCommentSupport = true;
 	this.runConformTest(
@@ -808,7 +808,7 @@ public void test0018() {
 		"java doc single type reference end visit\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=157170
-public void test0019() {
+public void test0019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompilerOptions options = new CompilerOptions();
 	options.docCommentSupport = true;
 	this.runConformTest(
@@ -862,7 +862,7 @@ public void test0019() {
 
 // Helper classes: define visitors leveraged by some tests
 class ASTCollector extends ASTVisitor {
-	StringBuilder collector = new StringBuilder();
+	StringBuilder collector = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 public String result() {
 	return this.collector.toString();
 }
@@ -875,165 +875,165 @@ static final int LIMIT = 30;
 String cut(String source) {
 	int length;
 	if ((length = source.length()) > LIMIT) {
-		StringBuilder result = new StringBuilder(length);
-		result.append(source.substring(0, LIMIT - 10));
-		result.append("...");
-		result.append(source.substring(length - 7, length));
+		StringBuilder result = new StringBuilder(length); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		result.append(source.substring(0, LIMIT - 10)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		result.append("..."); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		result.append(source.substring(length - 7, length)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return result.toString();
 	} else {
 		return source;
 	}
 }
 public void endVisit(BinaryExpression binaryExpression, BlockScope scope) {
-	this.collector.append("[ev BE " + cut(binaryExpression.toString()) + "]\n");
+	this.collector.append("[ev BE " + cut(binaryExpression.toString()) + "]\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	super.endVisit(binaryExpression, scope);
 }
 
 public void endVisit(CharLiteral charLiteral, BlockScope scope) {
-	this.collector.append("[ev CL " + cut(charLiteral.toString()) + "]\n");
+	this.collector.append("[ev CL " + cut(charLiteral.toString()) + "]\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	super.endVisit(charLiteral, scope);
 }
 
 public void endVisit(ExtendedStringLiteral literal, BlockScope scope) {
-	this.collector.append("[ev ESL " + cut(literal.toString()) + "]\n");
+	this.collector.append("[ev ESL " + cut(literal.toString()) + "]\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	super.endVisit(literal, scope);
 }
 
 public void endVisit(SingleNameReference singleNameReference,
 		BlockScope scope) {
-	this.collector.append("[ev SNR " + cut(singleNameReference.toString()) +
+	this.collector.append("[ev SNR " + cut(singleNameReference.toString()) + //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		"]\n");
 	super.endVisit(singleNameReference, scope);
 }
 
 public void endVisit(StringLiteral stringLiteral, BlockScope scope) {
-	this.collector.append("[ev SL " + cut(stringLiteral.toString()) + "]\n");
+	this.collector.append("[ev SL " + cut(stringLiteral.toString()) + "]\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	super.endVisit(stringLiteral, scope);
 }
 
 public void endVisit(StringLiteralConcatenation literal, BlockScope scope) {
-	this.collector.append("[ev SLC " + cut(literal.toString()) + "]\n");
+	this.collector.append("[ev SLC " + cut(literal.toString()) + "]\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	super.endVisit(literal, scope);
 }
 
 public boolean visit(BinaryExpression binaryExpression, BlockScope scope) {
-	this.collector.append("[v BE " + cut(binaryExpression.toString()) + "]\n");
+	this.collector.append("[v BE " + cut(binaryExpression.toString()) + "]\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return super.visit(binaryExpression, scope);
 }
 
 public boolean visit(CharLiteral charLiteral, BlockScope scope) {
-	this.collector.append("[v CL " + cut(charLiteral.toString()) + "]\n");
+	this.collector.append("[v CL " + cut(charLiteral.toString()) + "]\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return super.visit(charLiteral, scope);
 }
 
 public boolean visit(ExtendedStringLiteral literal, BlockScope scope) {
-	this.collector.append("[v ESL " + cut(literal.toString()) + "]\n");
+	this.collector.append("[v ESL " + cut(literal.toString()) + "]\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return super.visit(literal, scope);
 }
 
 public boolean visit(SingleNameReference singleNameReference,
 		BlockScope scope) {
-	this.collector.append("[v SNR " + cut(singleNameReference.toString()) +
+	this.collector.append("[v SNR " + cut(singleNameReference.toString()) + //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		"]\n");
 	return super.visit(singleNameReference, scope);
 }
 
 public boolean visit(StringLiteral stringLiteral, BlockScope scope) {
-	this.collector.append("[v SL " + cut(stringLiteral.toString()) + "]\n");
+	this.collector.append("[v SL " + cut(stringLiteral.toString()) + "]\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return super.visit(stringLiteral, scope);
 }
 
 public boolean visit(StringLiteralConcatenation literal, BlockScope scope) {
-	this.collector.append("[v SLC " + cut(literal.toString()) + "]\n");
+	this.collector.append("[v SLC " + cut(literal.toString()) + "]\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return super.visit(literal, scope);
 }
 }
 class AnnotationCollector extends ASTCollector {
 public boolean visit(MarkerAnnotation annotation, BlockScope scope) {
-	this.collector.append("marker annotation start visit\n");
+	this.collector.append("marker annotation start visit\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return true;
 }
 public void endVisit(MarkerAnnotation annotation, BlockScope scope) {
-	this.collector.append("marker annotation end visit\n");
+	this.collector.append("marker annotation end visit\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 }
 public boolean visit(NormalAnnotation annotation, BlockScope scope) {
-	this.collector.append("normal annotation start visit\n");
+	this.collector.append("normal annotation start visit\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return true;
 }
 public void endVisit(NormalAnnotation annotation, BlockScope scope) {
-	this.collector.append("normal annotation end visit\n");
+	this.collector.append("normal annotation end visit\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 }
 public boolean visit(SingleMemberAnnotation annotation, BlockScope scope) {
-	this.collector.append("single member annotation start visit\n");
-	this.collector.append(annotation.memberValue.toString());
-	this.collector.append("\n");
+	this.collector.append("single member annotation start visit\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	this.collector.append(annotation.memberValue.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	this.collector.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return true;
 }
 public void endVisit(SingleMemberAnnotation annotation, BlockScope scope) {
-	this.collector.append("single member annotation end visit\n");
+	this.collector.append("single member annotation end visit\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 }
 public void endVisit(JavadocSingleTypeReference typeRef, BlockScope scope) {
-	this.collector.append("java doc single type reference end visit\n");
+	this.collector.append("java doc single type reference end visit\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 }
 public void endVisit(JavadocSingleTypeReference typeRef, ClassScope scope) {
-	this.collector.append("java doc single type reference end visit\n");
+	this.collector.append("java doc single type reference end visit\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 }
 public boolean visit(JavadocSingleTypeReference typeRef, BlockScope scope) {
-	this.collector.append("java doc single type reference start visit\n");
+	this.collector.append("java doc single type reference start visit\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return true;
 }
 public boolean visit(JavadocSingleTypeReference typeRef, ClassScope scope) {
-	this.collector.append("java doc single type reference start visit\n");
+	this.collector.append("java doc single type reference start visit\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return true;
 }
 public boolean visit(MemberValuePair pair, BlockScope scope) {
-	this.collector.append("member value pair start visit\n");
-	this.collector.append(pair.name);
-	this.collector.append(", ");
-	this.collector.append(pair.value.toString());
-	this.collector.append("\n");
+	this.collector.append("member value pair start visit\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	this.collector.append(pair.name); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	this.collector.append(", "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	this.collector.append(pair.value.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	this.collector.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return true;
 }
 public void endVisit(MemberValuePair pair, BlockScope scope) {
-	this.collector.append("member value pair end visit\n");
+	this.collector.append("member value pair end visit\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 }
 /* (non-Javadoc)
  * @see org.eclipse.jdt.internal.compiler.ASTVisitor#endVisit(org.eclipse.jdt.internal.compiler.ast.Argument, org.eclipse.jdt.internal.compiler.lookup.BlockScope)
  */
 public void endVisit(Argument argument, BlockScope scope) {
-	this.collector.append("exit argument\n");
+	this.collector.append("exit argument\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 }
 /* (non-Javadoc)
  * @see org.eclipse.jdt.internal.compiler.ASTVisitor#endVisit(org.eclipse.jdt.internal.compiler.ast.Argument, org.eclipse.jdt.internal.compiler.lookup.ClassScope)
  */
 public void endVisit(Argument argument, ClassScope scope) {
-	this.collector.append("exit argument\n");
+	this.collector.append("exit argument\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 }
 /* (non-Javadoc)
  * @see org.eclipse.jdt.internal.compiler.ASTVisitor#endVisit(org.eclipse.jdt.internal.compiler.ast.LocalDeclaration, org.eclipse.jdt.internal.compiler.lookup.BlockScope)
  */
 public void endVisit(LocalDeclaration localDeclaration, BlockScope scope) {
-	this.collector.append("exit local declaration\n");
+	this.collector.append("exit local declaration\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 }
 /* (non-Javadoc)
  * @see org.eclipse.jdt.internal.compiler.ASTVisitor#visit(org.eclipse.jdt.internal.compiler.ast.Argument, org.eclipse.jdt.internal.compiler.lookup.BlockScope)
  */
 public boolean visit(Argument argument, BlockScope scope) {
-	this.collector.append("start argument\n");
+	this.collector.append("start argument\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return true;
 }
 /* (non-Javadoc)
  * @see org.eclipse.jdt.internal.compiler.ASTVisitor#visit(org.eclipse.jdt.internal.compiler.ast.Argument, org.eclipse.jdt.internal.compiler.lookup.ClassScope)
  */
 public boolean visit(Argument argument, ClassScope scope) {
-	this.collector.append("start argument\n");
+	this.collector.append("start argument\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return true;
 }
 /* (non-Javadoc)
  * @see org.eclipse.jdt.internal.compiler.ASTVisitor#visit(org.eclipse.jdt.internal.compiler.ast.LocalDeclaration, org.eclipse.jdt.internal.compiler.lookup.BlockScope)
  */
 public boolean visit(LocalDeclaration localDeclaration, BlockScope scope) {
-	this.collector.append("start local declaration\n");
+	this.collector.append("start local declaration\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return true;
 }
 }

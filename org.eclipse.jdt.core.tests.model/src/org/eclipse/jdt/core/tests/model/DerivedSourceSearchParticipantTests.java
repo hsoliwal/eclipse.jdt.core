@@ -96,7 +96,7 @@ public class DerivedSourceSearchParticipantTests extends ModifyingResourceTests 
 		assertTrue("Should have at least one contributed participant",
 				contributed.length >= 1);
 		boolean found = false;
-		for (SearchParticipant p : contributed) {
+		for (SearchParticipant p : contributed) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (p instanceof TestDerivedSourceSearchParticipant) {
 				found = true;
 				break;
@@ -110,14 +110,14 @@ public class DerivedSourceSearchParticipantTests extends ModifyingResourceTests 
 	 * Verifies that {@link SearchEngine#getSearchParticipants()} returns both
 	 * the default participant and contributed participants.
 	 */
-	public void testGetSearchParticipants() {
+	public void testGetSearchParticipants() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		SearchParticipant[] participants = SearchEngine.getSearchParticipants();
 		assertTrue("Should have at least 2 participants (default + contributed)",
 				participants.length >= 2);
 		boolean hasDefault = false;
 		boolean hasContributed = false;
 		SearchParticipant defaultP = SearchEngine.getDefaultSearchParticipant();
-		for (SearchParticipant p : participants) {
+		for (SearchParticipant p : participants) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (p.getClass() == defaultP.getClass()) {
 				hasDefault = true;
 			}

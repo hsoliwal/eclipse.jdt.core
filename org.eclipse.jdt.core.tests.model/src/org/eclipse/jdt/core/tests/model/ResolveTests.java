@@ -82,7 +82,7 @@ public void testAbstractMethod() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=165900
-public void testAmbiguousMethod1() throws JavaModelException {
+public void testAmbiguousMethod1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Resolve/src/test/Test.java",
@@ -309,7 +309,7 @@ public void testConstructor2() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=204417
  */
-public void testConstructor3() throws JavaModelException {
+public void testConstructor3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Resolve/src/test/p/Type.java",
@@ -332,7 +332,7 @@ public void testConstructor3() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=204417
  */
-public void testConstructor4() throws JavaModelException {
+public void testConstructor4() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Resolve/src/test/p/Type.java",
@@ -357,7 +357,7 @@ public void testConstructor4() throws JavaModelException {
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=194743
  * ResolveConstructorCall2.class has no attached source
  */
-public void testConstructor5() throws JavaModelException {
+public void testConstructor5() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Resolve/src/Test.java",
@@ -379,7 +379,7 @@ public void testConstructor5() throws JavaModelException {
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=194743
  * ResolveConstructorCall3.class has attached source and a default constructor
  */
-public void testConstructor6() throws JavaModelException {
+public void testConstructor6() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Resolve/src/Test.java",
@@ -461,7 +461,7 @@ public void testEmptySelection() throws JavaModelException {
 	IJavaElement[] elements = codeSelect(cu, "ject", "");
 	assertElementsEqual(
 		"Unexpected elements",
-		"Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]",
+		"Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 }
@@ -473,7 +473,7 @@ public void testEmptySelection2() throws JavaModelException {
 	IJavaElement[] elements = codeSelect(cu, "Obj", "");
 	assertElementsEqual(
 		"Unexpected elements",
-		"Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]",
+		"Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 }
@@ -572,7 +572,7 @@ public void testInClassFileWithSource() throws JavaModelException {
 	IJavaElement[] elements = codeSelect(cf, "Object", "Object");
 	assertElementsEqual(
 		"Unexpected elements",
-		"Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]",
+		"Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 }
@@ -699,7 +699,7 @@ public void testLocalClass7() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=126227
  */
-public void testLocalClass8() throws JavaModelException {
+public void testLocalClass8() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// select the default constructor of a local class
 	IJavaElement[] elements = select(
 			"/Resolve/src/test/Test.java",
@@ -722,7 +722,7 @@ public void testLocalClass8() throws JavaModelException {
  * Resolve the local class in a class file and ensure it is a binary type.
  * (regression test for bug 131459 Java model returns stale resolved source type for binary type
  */
-public void testLocalClass9() throws CoreException, IOException {
+public void testLocalClass9() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P");
 		addLibrary(
@@ -1103,7 +1103,7 @@ public void testMethodWithIncorrectParameter() throws JavaModelException {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=126160
-public void testMethodWithIncorrectParameter2() throws JavaModelException {
+public void testMethodWithIncorrectParameter2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaElement[] elements = select(
 			"/Resolve/src/test/Test.java",
 			"package test;\n" +
@@ -1167,7 +1167,7 @@ public void testNegativeResolveUnicode() throws JavaModelException {
 	IJavaElement[] elements = codeSelect(cu, "lang.\\u0053tring", "lang.\\u0053tring");
 	assertElementsEqual(
 		"Unexpected elements",
-		"String [in String.class [in java.lang [in "+ getExternalJCLPathString() + "]]]",
+		"String [in String.class [in java.lang [in "+ getExternalJCLPathString() + "]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 }
@@ -1179,7 +1179,7 @@ public void testPackage() throws JavaModelException {
 	IJavaElement[] elements = codeSelect(cu, "lang", "lang");
 	assertElementsEqual(
 		"Unexpected elements",
-		"java.lang [in " + getExternalJCLPathString() + "]",
+		"java.lang [in " + getExternalJCLPathString() + "]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 }
@@ -1191,7 +1191,7 @@ public void testPartiallyQualifiedType() throws JavaModelException {
 	IJavaElement[] elements = codeSelect(cu, "lang.Object", "lang.Object");
 	assertElementsEqual(
 		"Unexpected elements",
-		"Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]",
+		"Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 }
@@ -1203,7 +1203,7 @@ public void testQualifiedType() throws JavaModelException {
 	IJavaElement[] elements = codeSelect(cu, "java.lang.Object", "java.lang.Object");
 	assertElementsEqual(
 		"Unexpected elements",
-		"Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]",
+		"Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 }
@@ -1251,12 +1251,12 @@ public void testUnicode() throws JavaModelException {
 	IJavaElement[] elements = codeSelect(cu, "java.lang.\\u0053tring", "java.lang.\\u0053tring");
 	assertElementsEqual(
 		"Unexpected elements",
-		"String [in String.class [in java.lang [in "+ getExternalJCLPathString() + "]]]",
+		"String [in String.class [in java.lang [in "+ getExternalJCLPathString() + "]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=180683
-public void testUnicode2() throws JavaModelException {
+public void testUnicode2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Resolve/src/test/B.java",
@@ -1279,7 +1279,7 @@ public void testUnicode2() throws JavaModelException {
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=180683
-public void testUnicode3() throws JavaModelException {
+public void testUnicode3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Resolve/src/test/B.java",
@@ -1302,7 +1302,7 @@ public void testUnicode3() throws JavaModelException {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=47177
  */
-public void testLocalNameForClassFile() throws JavaModelException {
+public void testLocalNameForClassFile() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IClassFile cu = getClassFile("Resolve", "test47177.jar", "", "ResolveLocalName.class");
 
 	//Resolve a local declaration name
@@ -1374,7 +1374,7 @@ public void testMethodDeclarationInInterface() throws JavaModelException {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=142303
-public void testMethodInAnonymous1() throws JavaModelException {
+public void testMethodInAnonymous1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Resolve/src/Test2.java",
@@ -1422,7 +1422,7 @@ public void testEndOfFile() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=144858
-public void testDuplicateLocals1() throws JavaModelException {
+public void testDuplicateLocals1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Resolve/src/test/Test.java",
@@ -1461,7 +1461,7 @@ public void testDuplicateLocals1() throws JavaModelException {
 	assertFalse(((ILocalVariable)elements[0]).isParameter());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=144858
-public void testDuplicateLocals2() throws JavaModelException {
+public void testDuplicateLocals2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Resolve/src/test/Test.java",
@@ -1503,7 +1503,7 @@ public void testDuplicateLocals2() throws JavaModelException {
 			((ILocalVariable)elements[0]).getTypeSignature());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=144858
-public void testDuplicateLocals3() throws JavaModelException {
+public void testDuplicateLocals3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Resolve/src/test/Test.java",
@@ -1542,7 +1542,7 @@ public void testDuplicateLocals3() throws JavaModelException {
 			((ILocalVariable)elements[0]).getTypeSignature());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=144858
-public void testDuplicateLocals4() throws JavaModelException {
+public void testDuplicateLocals4() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Resolve/src/test/Test.java",
@@ -1583,7 +1583,7 @@ public void testDuplicateLocals4() throws JavaModelException {
 			((ILocalVariable)elements[0]).getTypeSignature());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=144858
-public void testDuplicateLocals5() throws JavaModelException {
+public void testDuplicateLocals5() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Resolve/src/test/Test.java",
@@ -1624,7 +1624,7 @@ public void testDuplicateLocals5() throws JavaModelException {
 			((ILocalVariable)elements[0]).getTypeSignature());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=165662
-public void testDuplicateLocalsType1() throws JavaModelException {
+public void testDuplicateLocalsType1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Resolve/src/test/Test.java",
@@ -1669,7 +1669,7 @@ public void testDuplicateLocalsType1() throws JavaModelException {
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=165662
-public void testDuplicateLocalsType2() throws JavaModelException {
+public void testDuplicateLocalsType2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Resolve/src/test/Test.java",
@@ -2032,7 +2032,7 @@ public void testDuplicateTypeDeclaration6() throws JavaModelException {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=119434
-public void testDuplicateTypeDeclaration7() throws CoreException, IOException {
+public void testDuplicateTypeDeclaration7() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String jarName = "bug119434.jar";
 	String srcName = "bug119434_src.zip";
 	try {
@@ -2074,7 +2074,7 @@ public void testDuplicateTypeDeclaration7() throws CoreException, IOException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=120766
-public void testDuplicateTypeDeclaration8() throws JavaModelException {
+public void testDuplicateTypeDeclaration8() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Resolve/src/test/Test.java",
@@ -2220,7 +2220,7 @@ public void testQualifiedName5() throws JavaModelException {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=84001
-public void testTypeInsideConstructor() throws JavaModelException {
+public void testTypeInsideConstructor() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit imported = null;
 	try {
 		imported = getWorkingCopy(
@@ -2251,7 +2251,7 @@ public void testTypeInsideConstructor() throws JavaModelException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=79309
-public void testMemberTypeInImport() throws JavaModelException {
+public void testMemberTypeInImport() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit imported = null;
 	try {
 		imported = getWorkingCopy(
@@ -2280,7 +2280,7 @@ public void testMemberTypeInImport() throws JavaModelException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=99901
-public void testSingleNameInImport() throws JavaModelException {
+public void testSingleNameInImport() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit aType = null;
 	try {
 		aType = getWorkingCopy(
@@ -2325,7 +2325,7 @@ public void testSecondaryTypes() throws JavaModelException {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=192497
-public void testSelectOnCursor1() throws JavaModelException {
+public void testSelectOnCursor1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit cu = getWorkingCopy(
 			"/Resolve/src/AType.java",
 			"public class AType {\n" +
@@ -2347,7 +2347,7 @@ public void testSelectOnCursor1() throws JavaModelException {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=207572
-public void testSelectOnCursor2() throws JavaModelException {
+public void testSelectOnCursor2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit cu = getWorkingCopy(
 			"/Resolve/src/AType.java",
 			"public class X {\n" +
@@ -2375,7 +2375,7 @@ public void testSelectOnCursor2() throws JavaModelException {
  * Ensures that the first type is found when defined in 2 different roots by working copies.
  * (regression test for 194399 IJavaProject.findType(String, String, WorkingCopyOwner) doesn't return the same element with different VMs.)
  */
-public void testWorkingCopyOrder1() throws JavaModelException {
+public void testWorkingCopyOrder1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Resolve/src/test/p/Type.java",
@@ -2401,7 +2401,7 @@ public void testWorkingCopyOrder1() throws JavaModelException {
  * Ensures that a working copy is put in the right order on the classpath (thus it is found before a type on another classpath entry)
  * (regression test for bug 194432 IJavaProject.findType(String, String, WorkingCopyOwner) return the wrong duplicate element)
  */
-public void testWorkingCopyOrder2() throws Exception {
+public void testWorkingCopyOrder2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String jarName = "bug194432.jar";
 	String srcName = "bug194432_src.zip";
 	try {
@@ -2430,7 +2430,7 @@ public void testWorkingCopyOrder2() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=221215
-public void testInvalidField1() throws JavaModelException {
+public void testInvalidField1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit cu = getWorkingCopy(
 		"/Resolve/src/test/Test.java",
 		"package test;"+
@@ -2453,7 +2453,7 @@ public void testInvalidField1() throws JavaModelException {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=221215 - variation
-public void testInvalidField2() throws JavaModelException {
+public void testInvalidField2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit cu = getWorkingCopy(
 		"/Resolve/src/test/Test.java",
 		"package test;"+
@@ -2476,7 +2476,7 @@ public void testInvalidField2() throws JavaModelException {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=221215 - variation
-public void testInvalidField3() throws JavaModelException {
+public void testInvalidField3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit cu = getWorkingCopy(
 		"/Resolve/src/test/Test.java",
 		"package test;"+
@@ -2499,7 +2499,7 @@ public void testInvalidField3() throws JavaModelException {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=221215 - variation
-public void testInvalidField4() throws JavaModelException {
+public void testInvalidField4() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit cu = getWorkingCopy(
 		"/Resolve/src/test/Test.java",
 		"package test;"+
@@ -2522,7 +2522,7 @@ public void testInvalidField4() throws JavaModelException {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=221215 - variation
-public void testInvalidMethod1() throws JavaModelException {
+public void testInvalidMethod1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit cu = getWorkingCopy(
 		"/Resolve/src/test/Test.java",
 		"package test;"+
@@ -2545,7 +2545,7 @@ public void testInvalidMethod1() throws JavaModelException {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=221215 - variation
-public void testInvalidMethod2() throws JavaModelException {
+public void testInvalidMethod2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit cu = getWorkingCopy(
 		"/Resolve/src/test/Test.java",
 		"package test;"+
@@ -2570,7 +2570,7 @@ public void testInvalidMethod2() throws JavaModelException {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=235658
 // To verify that "open declaration" works for a protected interface, which is
 // an inner type of an extending class's superclass.
-public void testInterfaceX() throws JavaModelException {
+public void testInterfaceX() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Resolve/src/test/Bug.java",
@@ -2598,7 +2598,7 @@ public void testInterfaceX() throws JavaModelException {
 			elements
 	);
 }
-public void test306078() throws JavaModelException {
+public void test306078() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Resolve/src/A.java",
@@ -2620,7 +2620,7 @@ public void test306078() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=299384
-public void testCodeSelectInHybrid1415Projects() throws CoreException, IOException {
+public void testCodeSelectInHybrid1415Projects() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String jarName = "bug299384.jar";
 	String srcName = "bug299384_src.zip";
 	try {
@@ -2659,7 +2659,7 @@ public void testCodeSelectInHybrid1415Projects() throws CoreException, IOExcepti
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=342054
-public void testMethodParameter() throws JavaModelException {
+public void testMethodParameter() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Resolve/src/test/Test.java",
@@ -2682,7 +2682,7 @@ public void testMethodParameter() throws JavaModelException {
 	assertTrue("Not a parameter", ((ILocalVariable)elements[0]).isParameter());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=244544
-public void testConstantInLocal() throws JavaModelException {
+public void testConstantInLocal() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Resolve/src/Test2.java",

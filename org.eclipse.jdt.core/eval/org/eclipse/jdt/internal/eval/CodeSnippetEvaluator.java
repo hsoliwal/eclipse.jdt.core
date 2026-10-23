@@ -59,7 +59,7 @@ CodeSnippetEvaluator(char[] codeSnippet, EvaluationContext context, INameEnviron
 /**
  * @see org.eclipse.jdt.internal.eval.Evaluator
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void addEvaluationResultForCompilationProblem(Map<char[], EvaluationResult> resultsByIDs, CategorizedProblem problem, char[] cuSource) {
 	CodeSnippetToCuMapper sourceMapper = getMapper();
 	int pbLineNumber = problem.getSourceLineNumber();
@@ -116,7 +116,7 @@ protected char[] getClassName() {
 /**
  * @see Evaluator
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 Compiler getCompiler(ICompilerRequestor compilerRequestor) {
 	Compiler compiler = null;
 	if (!DEVELOPMENT_MODE) {
@@ -146,7 +146,7 @@ Compiler getCompiler(ICompilerRequestor compilerRequestor) {
 		VariablesInfo installedVars = this.context.installedVars;
 		if (installedVars != null) {
 			ClassFile[] globalClassFiles = installedVars.classFiles;
-			for (ClassFile globalClassFile : globalClassFiles) {
+			for (ClassFile globalClassFile : globalClassFiles) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ClassFileReader binaryType = null;
 				try {
 					binaryType = new ClassFileReader(globalClassFile.getBytes(), null);
@@ -176,7 +176,7 @@ Compiler getCompiler(ICompilerRequestor compilerRequestor) {
 	}
 	return compiler;
 }
-private CodeSnippetToCuMapper getMapper() {
+private CodeSnippetToCuMapper getMapper() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.mapper == null) {
 		char[] varClassName = null;
 		VariablesInfo installedVars = this.context.installedVars;

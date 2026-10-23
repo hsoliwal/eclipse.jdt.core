@@ -154,79 +154,79 @@ public abstract class ASTRewritingModifyingTest extends AbstractJavaModelTests {
 		}
 	}
 
-	public static String displayActual(String inputString, int indent) {
+	public static String displayActual(String inputString, int indent) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int length = inputString.length();
-		StringBuilder buffer = new StringBuilder(length);
+		StringBuilder buffer = new StringBuilder(length); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		java.util.StringTokenizer tokenizer = new java.util.StringTokenizer(inputString, "\n\r", true);
-		for (int i = 0; i < indent; i++) buffer.append("\t");
-		buffer.append("buf.append(\"");
-		while (tokenizer.hasMoreTokens()){
+		for (int i = 0; i < indent; i++) buffer.append("\t"); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		buffer.append("buf.append(\""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		while (tokenizer.hasMoreTokens()){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 			String token = tokenizer.nextToken();
 			if (token.equals("\r")) {
-				buffer.append("\\r");
+				buffer.append("\\r"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (tokenizer.hasMoreTokens()) {
 					token = tokenizer.nextToken();
 					if (token.equals("\n")) {
-						buffer.append("\\n");
+						buffer.append("\\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						if (tokenizer.hasMoreTokens()) {
-							buffer.append("\");\n");
-							for (int i = 0; i < indent; i++) buffer.append("\t");
-							buffer.append("buf.append(\"");
+							buffer.append("\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+							for (int i = 0; i < indent; i++) buffer.append("\t"); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+							buffer.append("buf.append(\""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
 						continue;
 					}
-					buffer.append("\");\n");
-					for (int i = 0; i < indent; i++) buffer.append("\t");
-					buffer.append("buf.append(\"");
+					buffer.append("\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					for (int i = 0; i < indent; i++) buffer.append("\t"); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					buffer.append("buf.append(\""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else {
 					continue;
 				}
 			} else if (token.equals("\n")) {
-				buffer.append("\\n");
+				buffer.append("\\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (tokenizer.hasMoreTokens()) {
-					buffer.append("\");\n");
-					for (int i = 0; i < indent; i++) buffer.append("\t");
-					buffer.append("buf.append(\"");
+					buffer.append("\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					for (int i = 0; i < indent; i++) buffer.append("\t"); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					buffer.append("buf.append(\""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				continue;
 			}
 
-			StringBuilder tokenBuffer = new StringBuilder();
-			for (int i = 0; i < token.length(); i++){
+			StringBuilder tokenBuffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			for (int i = 0; i < token.length(); i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				char c = token.charAt(i);
 				switch (c) {
 					case '\r' :
-						tokenBuffer.append("\\r");
+						tokenBuffer.append("\\r"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						break;
 					case '\n' :
-						tokenBuffer.append("\\n");
+						tokenBuffer.append("\\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						break;
 					case '\b' :
-						tokenBuffer.append("\\b");
+						tokenBuffer.append("\\b"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						break;
 					case '\t' :
-						tokenBuffer.append("\t");
+						tokenBuffer.append("\t"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						break;
 					case '\f' :
-						tokenBuffer.append("\\f");
+						tokenBuffer.append("\\f"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						break;
 					case '\"' :
-						tokenBuffer.append("\\\"");
+						tokenBuffer.append("\\\""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						break;
 					case '\'' :
-						tokenBuffer.append("\\'");
+						tokenBuffer.append("\\'"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						break;
 					case '\\' :
-						tokenBuffer.append("\\\\");
+						tokenBuffer.append("\\\\"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						break;
 					default :
-						tokenBuffer.append(c);
+						tokenBuffer.append(c); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
-			buffer.append(tokenBuffer.toString());
+			buffer.append(tokenBuffer.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		buffer.append("\");");
+		buffer.append("\");"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return buffer.toString();
 	}
 

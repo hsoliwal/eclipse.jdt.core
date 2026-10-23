@@ -75,12 +75,12 @@ public class JavaSearchNameEnvironmentTest extends ModifyingResourceTests {
 		LinkedHashSet<ClasspathLocation> locationSet = nameEnvironment.getLocationSet();
 		LinkedHashSet<ClasspathLocation> allIndexedLocations = nameEnvironment.getAllIndexedLocations();
 
-		for (ClasspathLocation cp : locationSet) {
-			assertTrue("index must contain: " + cp, allIndexedLocations.contains(cp));
+		for (ClasspathLocation cp : locationSet) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			assertTrue("index must contain: " + cp, allIndexedLocations.contains(cp)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
-	public void testWorkingCopies() throws CoreException {
+	public void testWorkingCopies() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		this.workingCopies = new ICompilationUnit[3];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchMultipleProjects2/src/b88300/SubClass.java",
@@ -126,7 +126,7 @@ public class JavaSearchNameEnvironmentTest extends ModifyingResourceTests {
 	private JavaSearchNameEnvironmentUnderTest newJavaSearchEnvironment(IJavaProject first, IJavaProject... remaining) {
 		JavaSearchNameEnvironmentUnderTest env = new JavaSearchNameEnvironmentUnderTest(first, this.workingCopies);
 		if(remaining != null) {
-			for (int i = 0; i < remaining.length; i++) {
+			for (int i = 0; i < remaining.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				env.addProjectClassPath((JavaProject) remaining[i]);
 			}
 		}

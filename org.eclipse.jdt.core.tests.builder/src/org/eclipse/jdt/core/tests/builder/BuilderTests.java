@@ -74,19 +74,19 @@ public class BuilderTests extends TestCase {
 
 	/** Execute the given class. Expecting output and error must be specified.
 	 */
-	protected void executeClass(
+	protected void executeClass( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath,
 		String className,
 		String expectingOutput,
 		String expectedError) {
 		TestVerifier verifier = new TestVerifier(false);
-		ArrayList<String> classpath = new ArrayList<>(5);
+		ArrayList<String> classpath = new ArrayList<>(5); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		IPath workspacePath = env.getWorkspaceRootPath();
 
 		classpath.add(workspacePath.append(env.getOutputLocation(projectPath)).toOSString());
 		IClasspathEntry[] cp = env.getClasspath(projectPath);
-		for (int i = 0; i < cp.length; i++) {
+		for (int i = 0; i < cp.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IPath c = cp[i].getPath();
 			String ext = c.getFileExtension();
 			if (ext != null && (ext.equals("zip") || ext.equals("jar"))) { //$NON-NLS-1$ //$NON-NLS-2$
@@ -117,24 +117,24 @@ public class BuilderTests extends TestCase {
 			System.out.println("ERRORS\n"); //$NON-NLS-1$
 			System.out.println(Util.displayString(actualError));
 		}
-		assertTrue("unexpected error : " + actualError + " expected : " + expectedError, actualError.indexOf(expectedError) != -1); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue("unexpected error : " + actualError + " expected : " + expectedError, actualError.indexOf(expectedError) != -1); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		String actualOutput = verifier.getExecutionOutput();
 		if (actualOutput.indexOf(expectingOutput) == -1) {
 			System.out.println("OUTPUT\n"); //$NON-NLS-1$
 			System.out.println(Util.displayString(actualOutput));
 		}
-		assertTrue("unexpected output :" + actualOutput + " expected: " + expectingOutput, actualOutput.indexOf(expectingOutput) != -1); //$NON-NLS-1$
+		assertTrue("unexpected output :" + actualOutput + " expected: " + expectingOutput, actualOutput.indexOf(expectingOutput) != -1); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	}
 
 	protected void expectingParticipantProblems(IPath path, String expected) {
 		Problem[] problems = env.getProblemsFor(path, "org.eclipse.jdt.core.tests.compile.problem");
-		StringBuilder buf = new StringBuilder();
-		for (int i = 0, length = problems.length; i < length; i++) {
+		StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0, length = problems.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Problem problem = problems[i];
-			buf.append(problem.getMessage());
-			if (i < length - 1) buf.append('\n');
+			buf.append(problem.getMessage()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			if (i < length - 1) buf.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		assertEquals("Unexpected problems", expected, buf.toString());
 	}
@@ -150,8 +150,8 @@ public class BuilderTests extends TestCase {
 	protected void expectingPresenceOf(IPath[] paths) {
 		IPath wRoot = env.getWorkspaceRootPath();
 
-		for (int i = 0; i < paths.length; i++)
-			assertTrue(paths[i] + " is not present", wRoot.append(paths[i]).toFile().exists()); //$NON-NLS-1$
+		for (int i = 0; i < paths.length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			assertTrue(paths[i] + " is not present", wRoot.append(paths[i]).toFile().exists()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/** Verifies that given element is not present.
@@ -165,8 +165,8 @@ public class BuilderTests extends TestCase {
 	protected void expectingNoPresenceOf(IPath[] paths) {
 		IPath wRoot = env.getWorkspaceRootPath();
 
-		for (int i = 0; i < paths.length; i++)
-			assertTrue(paths[i] + " is present", !wRoot.append(paths[i]).toFile().exists()); //$NON-NLS-1$
+		for (int i = 0; i < paths.length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			assertTrue(paths[i] + " is present", !wRoot.append(paths[i]).toFile().exists()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/** Verifies that given classes have been compiled.
@@ -182,19 +182,19 @@ public class BuilderTests extends TestCase {
 	 * Verifies that the given classes and no others have been compiled,
 	 * but permits the classes to have been compiled more than once.
 	 */
-	protected void expectingUniqueCompiledClasses(String[] expected) {
+	protected void expectingUniqueCompiledClasses(String[] expected) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] actual = this.debugRequestor.getCompiledClasses();
 		org.eclipse.jdt.internal.core.util.Util.sort(actual);
 		// Eliminate duplicate entries
 		int dups = 0;
-		for (int i = 0; i < actual.length - 1; ++i) {
+		for (int i = 0; i < actual.length - 1; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (actual[i + 1].equals(actual[i])) {
 				++dups;
 				actual[i] = null;
 			}
 		}
 		String[] uniqueActual = new String[actual.length - dups];
-		for (int i = 0, j = 0; i < actual.length; ++i) {
+		for (int i = 0, j = 0; i < actual.length; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (actual[i] != null) {
 				uniqueActual[j++] = actual[i];
 			}
@@ -209,29 +209,29 @@ public class BuilderTests extends TestCase {
 		expectingCompiling(this.debugRequestor.getCompiledFiles(), expected, "unexpected compiling order"); //$NON-NLS-1$
 	}
 
-	private void expectingCompiling(String[] actual, String[] expected, String message) {
+	private void expectingCompiling(String[] actual, String[] expected, String message) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (DEBUG)
-			for (int i = 0; i < actual.length; i++)
+			for (int i = 0; i < actual.length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				System.out.println(actual[i]);
 
-		StringBuilder actualBuffer = new StringBuilder("{ "); //$NON-NLS-1$
-		for (int i = 0; i < actual.length; i++) {
+		StringBuilder actualBuffer = new StringBuilder("{ "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0; i < actual.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (i > 0)
-				actualBuffer.append(", "); //$NON-NLS-1$
-			actualBuffer.append("\"");
-			actualBuffer.append(actual[i]);
-			actualBuffer.append("\"");
+				actualBuffer.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			actualBuffer.append("\""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			actualBuffer.append(actual[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			actualBuffer.append("\""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		actualBuffer.append(" }");
-		StringBuilder expectedBuffer = new StringBuilder("{ "); //$NON-NLS-1$
-		for (int i = 0; i < expected.length; i++) {
+		actualBuffer.append(" }"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		StringBuilder expectedBuffer = new StringBuilder("{ "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0; i < expected.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (i > 0)
-				expectedBuffer.append(", "); //$NON-NLS-1$
-			expectedBuffer.append("\"");
-			expectedBuffer.append(expected[i]);
-			expectedBuffer.append("\"");
+				expectedBuffer.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			expectedBuffer.append("\""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			expectedBuffer.append(expected[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			expectedBuffer.append("\""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		expectedBuffer.append(" }");
+		expectedBuffer.append(" }"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEquals(message, expectedBuffer.toString(), actualBuffer.toString());
 	}
 
@@ -250,11 +250,11 @@ public class BuilderTests extends TestCase {
 	/** Verifies that the given elements have no problems.
 	 */
 	protected void expectingNoProblemsFor(IPath[] roots) {
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		Problem[] allProblems = allSortedProblems(roots);
 		if (allProblems != null) {
-			for (int i=0, length=allProblems.length; i<length; i++) {
-				buffer.append(allProblems[i]+"\n");
+			for (int i=0, length=allProblems.length; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append(allProblems[i]+"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		String actual = buffer.toString();
@@ -271,33 +271,33 @@ public class BuilderTests extends TestCase {
 	/** Verifies that the given elements have problems and
 	 * only the given elements.
 	 */
-	protected void expectingOnlyProblemsFor(IPath[] expected) {
+	protected void expectingOnlyProblemsFor(IPath[] expected) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (DEBUG)
 			printProblems();
 
 		Problem[] rootProblems = env.getProblems();
 		Hashtable actual = new Hashtable(rootProblems.length * 2 + 1);
-		for (int i = 0; i < rootProblems.length; i++) {
+		for (int i = 0; i < rootProblems.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IPath culprit = rootProblems[i].getResourcePath();
 			actual.put(culprit, culprit);
 		}
 
-		for (int i = 0; i < expected.length; i++)
+		for (int i = 0; i < expected.length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!actual.containsKey(expected[i]))
-				assertTrue("missing expected problem with " + expected[i].toString(), false); //$NON-NLS-1$
+				assertTrue("missing expected problem with " + expected[i].toString(), false); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		if (actual.size() > expected.length) {
-			for (Enumeration e = actual.elements(); e.hasMoreElements();) {
+			for (Enumeration e = actual.elements(); e.hasMoreElements();) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPath path = (IPath) e.nextElement();
 				boolean found = false;
-				for (int i = 0; i < expected.length; ++i) {
+				for (int i = 0; i < expected.length; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (path.equals(expected[i])) {
 						found = true;
 						break;
 					}
 				}
 				if (!found)
-					assertTrue("unexpected problem(s) with " + path.toString(), false); //$NON-NLS-1$
+					assertTrue("unexpected problem(s) with " + path.toString(), false); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
@@ -312,16 +312,16 @@ public class BuilderTests extends TestCase {
 	/** Verifies that the given element has specifics problems and
 	 * only the given problems.
 	 */
-	protected void expectingOnlySpecificProblemsFor(IPath root, Problem[] expectedProblems) {
+	protected void expectingOnlySpecificProblemsFor(IPath root, Problem[] expectedProblems) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (DEBUG)
 			printProblemsFor(root);
 
 		Problem[] rootProblems = env.getProblemsFor(root);
 
-		for (int i = 0; i < expectedProblems.length; i++) {
+		for (int i = 0; i < expectedProblems.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Problem expectedProblem = expectedProblems[i];
 			boolean found = false;
-			for (int j = 0; j < rootProblems.length; j++) {
+			for (int j = 0; j < rootProblems.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(expectedProblem.equals(rootProblems[j])) {
 					found = true;
 					rootProblems[j] = null;
@@ -331,12 +331,12 @@ public class BuilderTests extends TestCase {
 			if (!found) {
 				printProblemsFor(root);
 			}
-			assertTrue("problem not found: " + expectedProblem.toString(), found); //$NON-NLS-1$
+			assertTrue("problem not found: " + expectedProblem.toString(), found); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		for (int i = 0; i < rootProblems.length; i++) {
+		for (int i = 0; i < rootProblems.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(rootProblems[i] != null) {
 				printProblemsFor(root);
-				assertTrue("unexpected problem: " + rootProblems[i].toString(), false); //$NON-NLS-1$
+				assertTrue("unexpected problem: " + rootProblems[i].toString(), false); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
@@ -377,14 +377,14 @@ public class BuilderTests extends TestCase {
 
 	/** Verifies that the given element has specific problems.
 	 */
-	protected void expectingSpecificProblemsFor(IPath root, Problem[] problems) {
+	protected void expectingSpecificProblemsFor(IPath root, Problem[] problems) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (DEBUG)
 			printProblemsFor(root);
 
 		Problem[] rootProblems = env.getProblemsFor(root);
-		next : for (int i = 0; i < problems.length; i++) {
+		next : for (int i = 0; i < problems.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Problem problem = problems[i];
-			for (int j = 0; j < rootProblems.length; j++) {
+			for (int j = 0; j < rootProblems.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Problem rootProblem = rootProblems[j];
 				if (rootProblem != null) {
 					if (problem.equals(rootProblem)) {
@@ -405,9 +405,9 @@ public class BuilderTests extends TestCase {
 			*/
 			System.out.println("--------------------------------------------------------------------------------");
 			System.out.println("Missing problem while running test "+getName()+":");
-			System.out.println("	- expected : " + problem);
-			System.out.println("	- current: " + arrayToString(rootProblems));
-			assumeTrue("missing expected problem: " + problem, false);
+			System.out.println("	- expected : " + problem); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			System.out.println("	- current: " + arrayToString(rootProblems)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assumeTrue("missing expected problem: " + problem, false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -452,7 +452,7 @@ public class BuilderTests extends TestCase {
 	}
 
 	protected void printProblemsFor(IPath... roots) {
-		for (IPath path : roots) {
+		for (IPath path : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			/* get the leaf problems for this type */
 			Problem[] problems = env.getProblemsFor(path);
 			System.out.println(arrayToString(problems));
@@ -461,12 +461,12 @@ public class BuilderTests extends TestCase {
 	}
 
 	protected String arrayToString(Object[] array) {
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		int length = array == null ? 0 : array.length;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (array[i] != null) {
-				if (i > 0) buffer.append('\n');
-				buffer.append(array[i].toString());
+				if (i > 0) buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(array[i].toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		return buffer.toString();
@@ -501,9 +501,9 @@ public class BuilderTests extends TestCase {
 	 * @param roots The path to get the problems
 	 * @return All sorted problems of all given path
 	 */
-	Problem[] allSortedProblems(IPath[] roots) {
+	Problem[] allSortedProblems(IPath[] roots) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Problem[] allProblems = null;
-		for (int i = 0, max=roots.length; i<max; i++) {
+		for (int i = 0, max=roots.length; i<max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Problem[] problems = env.getProblemsFor(roots[i]);
 			int length = problems.length;
 			if (problems.length != 0) {
@@ -522,7 +522,7 @@ public class BuilderTests extends TestCase {
 		return allProblems;
 	}
 
-	private static Class[] getAllTestClasses() {
+	private static Class[] getAllTestClasses() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Class<?>[] classes = new Class[] {
 			AbstractMethodTests.class,
 			BasicBuildTests.class,
@@ -559,7 +559,7 @@ public class BuilderTests extends TestCase {
 			Bug544921Test.class,
 			MultiReleaseTests.class
 		};
-		List<Class<?>> list = new ArrayList<>(Arrays.asList(classes));
+		List<Class<?>> list = new ArrayList<>(Arrays.asList(classes)); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		if (matchesCompliance(F_9)) {
 			list.add(LeakTestsAfter9.class);
 			list.add(Bug549646Test.class);
@@ -578,7 +578,7 @@ public class BuilderTests extends TestCase {
 	public static Test buildTestSuite(Class evaluationTestClass, long ordering) {
 		TestSuite suite = new TestSuite(evaluationTestClass.getName());
 		List tests = buildTestsList(evaluationTestClass, 0, ordering);
-		for (int index=0, size=tests.size(); index<size; index++) {
+		for (int index=0, size=tests.size(); index<size; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			suite.addTest((Test)tests.get(index));
 		}
 		return suite;
@@ -588,7 +588,7 @@ public class BuilderTests extends TestCase {
 		return buildTestSuite(evaluationTestClas, BYTECODE_DECLARATION_ORDER);
 	}
 
-	public static Test suite() {
+	public static Test suite() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TestSuite suite = new TestSuite(BuilderTests.class.getName());
 
 		// Hack to load all classes before computing their suite of test cases
@@ -603,7 +603,7 @@ public class BuilderTests extends TestCase {
 		TestCase.RUN_ONLY_ID = null;
 
 		/* tests */
-		for (int i = 0, length = classes.length; i < length; i++) {
+		for (int i = 0, length = classes.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Class clazz = classes[i];
 			Method suiteMethod;
 			try {
@@ -653,10 +653,10 @@ public class BuilderTests extends TestCase {
 	}
 
 	protected static void expectCompileProblem(IPath project, String expectedProblemMessage) {
-		List<String> actualProblemMessages = new ArrayList<>();
+		List<String> actualProblemMessages = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		Problem[] problems = env.getProblemsFor(project, "org.eclipse.jdt.core.tests.compile.problem");
 		if (problems != null) {
-			for (Problem problem : problems) {
+			for (Problem problem : problems) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				actualProblemMessages.add(problem.getMessage());
 			}
 		}
@@ -667,10 +667,10 @@ public class BuilderTests extends TestCase {
 	}
 
 	protected static void expectNoCompileProblems(IPath project) {
-		List<String> actualProblemMessages = new ArrayList<>();
+		List<String> actualProblemMessages = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		Problem[] problems = env.getProblemsFor(project, "org.eclipse.jdt.core.tests.compile.problem");
 		if (problems != null) {
-			for (Problem problem : problems) {
+			for (Problem problem : problems) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				actualProblemMessages.add(problem.getMessage());
 			}
 		}

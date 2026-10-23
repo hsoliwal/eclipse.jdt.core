@@ -46,8 +46,8 @@ public class DOMToModelPopulator extends ASTVisitor {
 	private final Map<IJavaElement, IElementInfo> toPopulate;
 	private final Stack<JavaElement> elements = new Stack<>();
 	private final Stack<JavaElementInfo> infos = new Stack<>();
-	private final Set<String> currentTypeParameters = new HashSet<>();
-	private final Map<SourceType, Integer> nestedTypesCount = new HashMap<>();
+	private final Set<String> currentTypeParameters = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+	private final Map<SourceType, Integer> nestedTypesCount = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	private final CompilationUnitElementInfo unitInfo;
 	private ImportContainer importContainer;
 	private ImportContainerInfo importContainerInfo;
@@ -62,10 +62,10 @@ public class DOMToModelPopulator extends ASTVisitor {
 		this.unitInfo = unitInfo;
 	}
 
-	@SuppressWarnings("unused")
+	@SuppressWarnings("unused") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	private void addAsChild(JavaElementInfo parentInfo, IJavaElement childElement) {
 		if (childElement instanceof SourceRefElement element) {
-			while (Stream.of(parentInfo.getChildren())
+			while (Stream.of(parentInfo.getChildren()) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					.filter(other -> other.getElementType() == element.getElementType())
 					.filter(other -> Objects.equals(other.getHandleIdentifier(), element.getHandleIdentifier()))
 					.findAny().isPresent()) {
@@ -174,7 +174,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 		this.infos.pop();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(ImportDeclaration node) {
 		if (this.importContainer == null) {
 			this.importContainer = this.root.getImportContainer();
@@ -195,8 +195,8 @@ public class DOMToModelPopulator extends ASTVisitor {
 			char[] contents = this.root.getContents();
 			List<Comment> comments = domUnit(node).getCommentList();
 			boolean changed = false;
-			do {
-				while (contents[nameSourceEnd] == ';' || Character.isWhitespace(contents[nameSourceEnd])) {
+			do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				while (contents[nameSourceEnd] == ';' || Character.isWhitespace(contents[nameSourceEnd])) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					nameSourceEnd--;
 					changed = true;
 				}
@@ -242,7 +242,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 		this.infos.pop();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	@SuppressWarnings("deprecation")
 	public boolean visit(TypeDeclaration node) {
 		if (TypeConstants.MODULE_INFO_FILE_NAME_STRING.equals(this.root.getElementName())) {
@@ -264,7 +264,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 		char[][] categories = getCategories(node);
 		newInfo.addCategories(newElement, categories);
 		JavaElementInfo toPopulateCategories = this.infos.peek();
-		while (toPopulateCategories != null) {
+		while (toPopulateCategories != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (toPopulateCategories instanceof SourceTypeElementInfo parentTypeInfo) {
 				parentTypeInfo.addCategories(newElement, categories);
 				toPopulateCategories = (JavaElementInfo)parentTypeInfo.getEnclosingType();
@@ -310,7 +310,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(AnnotationTypeDeclaration node) {
 		SourceType newElement = new SourceType(this.elements.peek(), node.getName().toString());
 		this.elements.push(newElement);
@@ -320,7 +320,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 		char[][] categories = getCategories(node);
 		newInfo.addCategories(newElement, categories);
 		JavaElementInfo toPopulateCategories = this.infos.peek();
-		while (toPopulateCategories != null) {
+		while (toPopulateCategories != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (toPopulateCategories instanceof SourceTypeElementInfo parentTypeInfo) {
 				parentTypeInfo.addCategories(newElement, categories);
 				toPopulateCategories = (JavaElementInfo)parentTypeInfo.getEnclosingType();
@@ -344,7 +344,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 		this.infos.pop();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(EnumDeclaration node) {
 		SourceType newElement = new SourceType(this.elements.peek(), node.getName().toString());
 		this.elements.push(newElement);
@@ -354,7 +354,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 		char[][] categories = getCategories(node);
 		newInfo.addCategories(newElement, categories);
 		JavaElementInfo toPopulateCategories = this.infos.peek();
-		while (toPopulateCategories != null) {
+		while (toPopulateCategories != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (toPopulateCategories instanceof SourceTypeElementInfo parentTypeInfo) {
 				parentTypeInfo.addCategories(newElement, categories);
 				toPopulateCategories = (JavaElementInfo)parentTypeInfo.getEnclosingType();
@@ -402,7 +402,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 		this.infos.pop();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(RecordDeclaration node) {
 		SourceType newElement = new SourceType(this.elements.peek(), node.getName().toString());
 		this.elements.push(newElement);
@@ -414,7 +414,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 		newInfo.setSuperclassName(Record.class.getName().toCharArray());
 		newInfo.setSuperInterfaceNames(((List<Type>)node.superInterfaceTypes()).stream().map(Type::toString).map(String::toCharArray).toArray(char[][]::new));
 		JavaElementInfo toPopulateCategories = this.infos.peek();
-		while (toPopulateCategories != null) {
+		while (toPopulateCategories != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (toPopulateCategories instanceof SourceTypeElementInfo parentTypeInfo) {
 				parentTypeInfo.addCategories(newElement, categories);
 				toPopulateCategories = (JavaElementInfo)parentTypeInfo.getEnclosingType();
@@ -437,7 +437,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 		this.infos.pop();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(SingleVariableDeclaration node) {
 		if (node.getParent() instanceof RecordDeclaration) {
 			SourceField newElement = new SourceField(this.elements.peek(), node.getName().toString()) {
@@ -479,7 +479,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	@SuppressWarnings("deprecation")
 	public boolean visit(MethodDeclaration method) {
 		if (method.getAST().apiLevel() > 2) {
@@ -546,7 +546,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(AnnotationTypeMemberDeclaration method) {
 		SourceMethod newElement = new SourceMethod(this.elements.peek(),
 			method.getName().getIdentifier(),
@@ -600,7 +600,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 		this.infos.pop();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(NormalAnnotation node) {
 		JavaElement parent = this.elements.peek();
 		Annotation newElement = new Annotation(parent, node.getTypeName().toString());
@@ -633,7 +633,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 		this.infos.pop();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(MarkerAnnotation node) {
 		JavaElement parent = this.elements.peek();
 		Annotation newElement = new Annotation(parent, node.getTypeName().toString());
@@ -660,7 +660,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 		this.infos.pop();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(SingleMemberAnnotation node) {
 		JavaElement parent = this.elements.peek();
 		Annotation newElement = new Annotation(parent, node.getTypeName().toString());
@@ -688,7 +688,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 		this.infos.pop();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(AnonymousClassDeclaration decl) {
 		SourceType newElement = new SourceType(this.elements.peek(), ""); //$NON-NLS-1$
 		this.elements.push(newElement);
@@ -700,7 +700,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 			}
 		};
 		JavaElementInfo toPopulateCategories = this.infos.peek();
-		while (toPopulateCategories != null) {
+		while (toPopulateCategories != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (toPopulateCategories instanceof SourceTypeElementInfo parentTypeInfo) {
 				toPopulateCategories = (JavaElementInfo)parentTypeInfo.getEnclosingType();
 			} else {
@@ -757,7 +757,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 		}
 	}
 
-	public Entry<Object, Integer> memberValue(Expression dom) {
+	public Entry<Object, Integer> memberValue(Expression dom) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (dom == null ||
 			dom instanceof NullLiteral ||
 			(dom instanceof SimpleName name && (
@@ -842,13 +842,13 @@ public class DOMToModelPopulator extends ASTVisitor {
 				return new SimpleEntry<>(null, IMemberValuePair.K_UNKNOWN);
 			}
 			Entry<Object, Integer> entry = memberValue(prefixExpression.getOperand());
-			return new SimpleEntry<>(prefixExpression.getOperator().toString() + entry.getKey(), entry.getValue());
+			return new SimpleEntry<>(prefixExpression.getOperator().toString() + entry.getKey(), entry.getValue()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return new SimpleEntry<>(null, IMemberValuePair.K_UNKNOWN);
 	}
 
 	private record ValueRadix(String val, Integer radix) {}
-	private ValueRadix numberToStringRadix(String s) {
+	private ValueRadix numberToStringRadix(String s) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// 1. Remove underscores
 		s = s.replace("_", ""); //$NON-NLS-1$ //$NON-NLS-2$
 
@@ -873,7 +873,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 		return new ValueRadix(s, radix);
 	}
 
-	private int toAnnotationValuePairType(String token) {
+	private int toAnnotationValuePairType(String token) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// inspired by NumberLiteral.setToken
 		Scanner scanner = new Scanner();
 		scanner.setSource(token.toCharArray());
@@ -890,9 +890,9 @@ public class DOMToModelPopulator extends ASTVisitor {
 						case TokenNameIntegerLiteral -> IMemberValuePair.K_INT;
 						case TokenNameFloatingPointLiteral -> IMemberValuePair.K_FLOAT;
 						case TokenNameLongLiteral -> IMemberValuePair.K_LONG;
-						default -> throw new IllegalArgumentException("Invalid number literal : >" + token + "<"); //$NON-NLS-1$//$NON-NLS-2$
+						default -> throw new IllegalArgumentException("Invalid number literal : >" + token + "<"); //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					};
-				default -> throw new IllegalArgumentException("Invalid number literal : >" + token + "<"); //$NON-NLS-1$//$NON-NLS-2$
+				default -> throw new IllegalArgumentException("Invalid number literal : >" + token + "<"); //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			};
 		} catch (InvalidInputException ex) {
 			ILog.get().error(ex.getMessage(), ex);
@@ -900,7 +900,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 		}
 	}
 
-	private Annotation toModelAnnotation(org.eclipse.jdt.core.dom.Annotation domAnnotation, JavaElement parent) {
+	private Annotation toModelAnnotation(org.eclipse.jdt.core.dom.Annotation domAnnotation, JavaElement parent) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IMemberValuePair[] members;
 		if (domAnnotation instanceof NormalAnnotation normalAnnotation) {
 			members = ((List<MemberValuePair>)normalAnnotation.values()).stream().map(domMemberValuePair -> {
@@ -926,7 +926,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 		return toLocalVariable(parameter, parent, parameter.getParent() instanceof MethodDeclaration);
 	}
 
-	public static LocalVariable toLocalVariable(VariableDeclarationFragment fragment, JavaElement parent) {
+	public static LocalVariable toLocalVariable(VariableDeclarationFragment fragment, JavaElement parent) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (fragment.getParent() instanceof VariableDeclarationStatement variableDeclaration) {
 			return new LocalVariable(parent,
 				fragment.getName().getIdentifier(),
@@ -966,14 +966,14 @@ public class DOMToModelPopulator extends ASTVisitor {
 				isParameter);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	@SuppressWarnings("deprecation")
 	public boolean visit(FieldDeclaration field) {
 		JavaElementInfo parentInfo = this.infos.peek();
 		JavaElement parentElement = this.elements.peek();
 		boolean isDeprecated = isNodeDeprecated(field);
 		char[][] categories = getCategories(field);
-		for (VariableDeclarationFragment fragment : (Collection<VariableDeclarationFragment>) field.fragments()) {
+		for (VariableDeclarationFragment fragment : (Collection<VariableDeclarationFragment>) field.fragments()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			SourceField newElement = new SourceField(parentElement, fragment.getName().toString());
 			this.elements.push(newElement);
 			addAsChild(parentInfo, newElement);
@@ -1009,7 +1009,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 	@Override
 	public void endVisit(FieldDeclaration decl) {
 		int numFragments = decl.fragments().size();
-		for (int i = 0; i < numFragments; i++) {
+		for (int i = 0; i < numFragments; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.elements.pop();
 			this.infos.pop();
 		}
@@ -1043,7 +1043,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 		this.infos.pop();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(ModuleDeclaration node) {
 		SourceModule newElement = new SourceModule(this.elements.peek(), node.getName().toString());
 		this.elements.push(newElement);
@@ -1190,14 +1190,14 @@ public class DOMToModelPopulator extends ASTVisitor {
 		}
 		return hasDeprecatedAnnotation(node.modifiers());
 	}
-	private boolean hasAlternativeDeprecated() {
+	private boolean hasAlternativeDeprecated() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.alternativeDeprecated != null) {
 			return this.alternativeDeprecated;
 		}
 		if (this.importContainer != null) {
 			try {
 				IJavaElement[] importElements = this.importContainer.getChildren();
-				for (IJavaElement child : importElements) {
+				for (IJavaElement child : importElements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IImportDeclaration importDeclaration = (IImportDeclaration) child;
 					// It's possible that the user has imported
 					// an annotation called "Deprecated" using a wildcard import
@@ -1217,7 +1217,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 		this.alternativeDeprecated = false;
 		return this.alternativeDeprecated;
 	}
-	private char[][] getCategories(ASTNode node) {
+	private char[][] getCategories(ASTNode node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Javadoc javadoc = javadoc(node);
 		if (javadoc != null) {
 			char[][] categories = ((List<AbstractTagElement>)javadoc.tags()).stream() //
@@ -1261,13 +1261,13 @@ public class DOMToModelPopulator extends ASTVisitor {
 	}
 
 	private static org.eclipse.jdt.core.dom.CompilationUnit domUnit(ASTNode node) {
-		while (node != null && !(node instanceof org.eclipse.jdt.core.dom.CompilationUnit)) {
+		while (node != null && !(node instanceof org.eclipse.jdt.core.dom.CompilationUnit)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			node = node.getParent();
 		}
 		return (org.eclipse.jdt.core.dom.CompilationUnit)node;
 	}
 
-	private static int toModelFlags(int domModifiers, boolean isDeprecated) {
+	private static int toModelFlags(int domModifiers, boolean isDeprecated) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int res = 0;
 		if (Modifier.isAbstract(domModifiers)) res |= Flags.AccAbstract;
 		if (Modifier.isDefault(domModifiers)) res |= Flags.AccDefaultMethod;
@@ -1287,7 +1287,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 		return res;
 	}
 
-	private Javadoc javadoc(ASTNode node) {
+	private Javadoc javadoc(ASTNode node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (node instanceof BodyDeclaration body && body.getJavadoc() != null) {
 			return body.getJavadoc();
 		}
@@ -1306,7 +1306,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 		org.eclipse.jdt.core.dom.CompilationUnit unit = domUnit(node);
 		int commentIndex = unit.firstLeadingCommentIndex(node);
 		if (commentIndex >= 0) {
-			for (int i = commentIndex; i < unit.getCommentList().size(); i++) {
+			for (int i = commentIndex; i < unit.getCommentList().size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Comment comment = (Comment)unit.getCommentList().get(i);
 				if (comment.getStartPosition() > node.getStartPosition()) {
 					return null;
@@ -1320,7 +1320,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 		return null;
 	}
 
-	private static String typeName(Type type) {
+	private static String typeName(Type type) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (type == null) {
 			return ""; //$NON-NLS-1$
 		}
@@ -1331,20 +1331,20 @@ public class DOMToModelPopulator extends ASTVisitor {
 			return simple.getName().toString();
 		}
 		if (type instanceof NameQualifiedType nameQualified) {
-			return nameQualified.getQualifier().toString() + '.' + nameQualified.getName().getIdentifier();
+			return nameQualified.getQualifier().toString() + '.' + nameQualified.getName().getIdentifier(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		if (type instanceof QualifiedType qtype) {
-			return typeName(qtype.getQualifier()) + '.' + qtype.getName().getIdentifier();
+			return typeName(qtype.getQualifier()) + '.' + qtype.getName().getIdentifier(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		if (type instanceof WildcardType) {
 			return type.toString();
 		}
 		if (type instanceof ArrayType arrayType) {
-			return typeName(arrayType.getElementType()) +
+			return typeName(arrayType.getElementType()) + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					Collections.nCopies(arrayType.getDimensions(), "[]").stream().collect(Collectors.joining()); //$NON-NLS-1$
 		}
 		if (type instanceof ParameterizedType parameterizedType) {
-			return typeName(parameterizedType.getType()) + '<' +
+			return typeName(parameterizedType.getType()) + '<' + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					((List<Type>)parameterizedType.typeArguments()).stream().map(DOMToModelPopulator::typeName).collect(Collectors.joining(",")) //$NON-NLS-1$
 					+ '>';
 		}

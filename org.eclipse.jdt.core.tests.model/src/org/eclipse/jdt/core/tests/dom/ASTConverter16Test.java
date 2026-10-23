@@ -60,7 +60,7 @@ public class ASTConverter16Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=203342
 	 */
-	public void test0001() throws JavaModelException {
+	public void test0001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X {\n" +
 			"	public static final double VAR = 0x0.0000000000001P-1022;\n" +

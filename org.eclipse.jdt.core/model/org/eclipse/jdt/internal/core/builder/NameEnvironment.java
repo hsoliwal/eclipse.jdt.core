@@ -118,7 +118,7 @@ public NameEnvironment(IJavaProject javaProject, CompilationGroup compilationGro
 *   /Test[CPE_PROJECT][K_SOURCE] -> D:/eclipse.test/Test
 *  ALWAYS want to append the output folder & ONLY search for .class files
 */
-private void computeClasspathLocations(
+private void computeClasspathLocations( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IWorkspaceRoot root,
 	JavaProject javaProject,
 	Map<IProject, ClasspathLocation[]> binaryLocationsPerProject, int releaseTarget) throws CoreException {
@@ -134,9 +134,9 @@ private void computeClasspathLocations(
 	}
 
 	IClasspathEntry[] classpathEntries = javaProject.getExpandedClasspath(this.compilationGroup == CompilationGroup.MAIN);
-	ArrayList<ClasspathLocation> sLocations = new ArrayList<>(classpathEntries.length);
-	ArrayList<ClasspathLocation> bLocations = new ArrayList<>(classpathEntries.length);
-	ArrayList<ClasspathLocation> sLocationsForTest = new ArrayList<>(classpathEntries.length);
+	ArrayList<ClasspathLocation> sLocations = new ArrayList<>(classpathEntries.length); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	ArrayList<ClasspathLocation> bLocations = new ArrayList<>(classpathEntries.length); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	ArrayList<ClasspathLocation> sLocationsForTest = new ArrayList<>(classpathEntries.length); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	Map<String, IModulePathEntry> moduleEntries = null;
 	String compliance;
 	boolean isReleaseEnabled;
@@ -149,7 +149,7 @@ private void computeClasspathLocations(
 		isReleaseEnabled = JavaCore.ENABLED.equals(javaProject.getOption(JavaCore.COMPILER_RELEASE, true));
 	}
 	if (CompilerOptions.versionToJdkLevel(compliance) >= ClassFileConstants.JDK9) {
-		moduleEntries = new LinkedHashMap<>(classpathEntries.length);
+		moduleEntries = new LinkedHashMap<>(classpathEntries.length); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
 		this.moduleUpdater = new ModuleUpdater(javaProject);
 		if (this.compilationGroup == CompilationGroup.TEST) {
 			this.moduleUpdater.addReadUnnamedForNonEmptyClasspath(javaProject, classpathEntries);
@@ -161,7 +161,7 @@ private void computeClasspathLocations(
 	IModule patchedModule = null;
 	boolean mustSortOutput = false;
 
-	nextEntry : for (int i = 0, l = classpathEntries.length; i < l; i++) {
+	nextEntry : for (int i = 0, l = classpathEntries.length; i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (i == 1) {
 			if (patchedModuleName != null) {
 				// TODO(SHMOD) assert that patchModule has been assigned
@@ -213,7 +213,7 @@ private void computeClasspathLocations(
 						finalOutputFolder = outputFolder;
 					} else {
 						mustSortOutput = true;
-						finalOutputFolder = outputFolder.getFolder(new Path(String.format(Util.METAINF_VERSIONS + "%s", release))); //$NON-NLS-1$
+						finalOutputFolder = outputFolder.getFolder(new Path(String.format(Util.METAINF_VERSIONS + "%s", release))); //$NON-NLS-1$ //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
 					}
 					int sourceFolderRelease = org.eclipse.jdt.internal.core.util.Util.parseIntOrElse(release, JavaProject.NO_RELEASE);
 					ClasspathLocation sourceLocation = ClasspathLocation.forSourceFolder(
@@ -239,9 +239,9 @@ private void computeClasspathLocations(
 
 				JavaProject prereqJavaProject = (JavaProject) JavaCore.create(prereqProject);
 				IClasspathEntry[] prereqClasspathEntries = prereqJavaProject.getRawClasspath();
-				ArrayList<IContainer> seen = new ArrayList<>();
-				List<ClasspathLocation> projectLocations = new ArrayList<>();
-				nextPrereqEntry: for (int j = 0, m = prereqClasspathEntries.length; j < m; j++) {
+				ArrayList<IContainer> seen = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+				List<ClasspathLocation> projectLocations = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+				nextPrereqEntry: for (int j = 0, m = prereqClasspathEntries.length; j < m; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IClasspathEntry prereqEntry = prereqClasspathEntries[j];
 					if (prereqEntry.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
 						if ((this.compilationGroup == CompilationGroup.MAIN || entry.isWithoutTestCode()) && prereqEntry.isTest())
@@ -254,7 +254,7 @@ private void computeClasspathLocations(
 						if (srcExtAnnotPath == null) {
 							// search in other sources contributing to the same binary location (that other loc will be skipped below, due to seen.contains()):
 							IPath outputLoc = prereqEntry.getOutputLocation();
-							for (int k = j+1; k < m; k++) {
+							for (int k = j+1; k < m; k++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								IClasspathEntry other = prereqClasspathEntries[k];
 								if (other.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
 									IPath otherOutput = other.getOutputLocation();
@@ -309,7 +309,7 @@ private void computeClasspathLocations(
 							projectLocations.toArray(new ClasspathLocation[projectLocations.size()]));
 					String moduleName = String.valueOf(info.name());
 					IUpdatableModule.UpdatesByKind updates = this.moduleUpdater.getUpdates(moduleName);
-					for (ClasspathLocation loc : projectLocations) {
+					for (ClasspathLocation loc : projectLocations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						loc.limitModuleNames = limitModules;
 						loc.updates = updates;
 						loc.patchModuleName = patchedModuleName;
@@ -387,15 +387,15 @@ private void computeClasspathLocations(
 
 	if (JavaCore.ENABLED.equals(javaProject.getOption(JavaCore.CORE_JAVA_BUILD_EXTERNAL_ANNOTATIONS_FROM_ALL_LOCATIONS, true))) {
 		// make all locations known to each other:
-		List<ClasspathLocation> allLocationsForEEA = new ArrayList<>();
-		for (ClasspathLocation loc : bLocations)
+		List<ClasspathLocation> allLocationsForEEA = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (ClasspathLocation loc : bLocations) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			loc.connectAllLocationsForEEA(allLocationsForEEA, true);
-		for (ClasspathLocation loc : sLocations)
+		for (ClasspathLocation loc : sLocations) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			loc.connectAllLocationsForEEA(allLocationsForEEA, true);
 	}
 
 	// now split the classpath locations... place the output folders ahead of the other .class file folders & jars
-	ArrayList<ClasspathDirectory> outputFolders = new ArrayList<>(1);
+	ArrayList<ClasspathDirectory> outputFolders = new ArrayList<>(1); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	this.sourceLocations = new ClasspathMultiDirectory[sLocations.size()];
 	if (!sLocations.isEmpty()) {
 		sLocations.toArray(this.sourceLocations);
@@ -408,7 +408,7 @@ private void computeClasspathLocations(
 				if(sLocationsForTest.size() == 0) {
 					sourceLocations2 = this.sourceLocations;
 				} else {
-					ArrayList<ClasspathLocation> sourceLocationsForModulePathEntry=new ArrayList<>(sLocations.size()+sLocationsForTest.size());
+					ArrayList<ClasspathLocation> sourceLocationsForModulePathEntry=new ArrayList<>(sLocations.size()+sLocationsForTest.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 					sourceLocationsForModulePathEntry.addAll(sLocations);
 					sourceLocationsForModulePathEntry.addAll(sLocationsForTest);
 					sourceLocations2= sourceLocationsForModulePathEntry
@@ -423,7 +423,7 @@ private void computeClasspathLocations(
 			}
 		}
 		// collect the output folders, skipping, or merging duplicates
-		next : for (int i = 0, l = this.sourceLocations.length; i < l; i++) {
+		next : for (int i = 0, l = this.sourceLocations.length; i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ClasspathMultiDirectory md = this.sourceLocations[i];
 			if (md.release > releaseTarget) {
 				// do not include output folders that belong to a higher release!
@@ -431,7 +431,7 @@ private void computeClasspathLocations(
 			}
 			IPath outputPath = md.binaryFolder.getFullPath();
 			String eeaPath = md.externalAnnotationPath;
-			for (int j = 0; j < i; j++) { // compare against previously walked source folders
+			for (int j = 0; j < i; j++) { // compare against previously walked source folders //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ClasspathMultiDirectory previousMd = this.sourceLocations[j];
 				if (outputPath.equals(previousMd.binaryFolder.getFullPath())) {
 					if ((eeaPath == null) != (previousMd.externalAnnotationPath == null) // one has eeaPath other doesn't ?
@@ -454,7 +454,7 @@ private void computeClasspathLocations(
 			outputFolders.add(md);
 
 			// also tag each source folder whose output folder is an independent folder & is not also a source folder
-			for (ClasspathMultiDirectory sourceLocation : this.sourceLocations)
+			for (ClasspathMultiDirectory sourceLocation : this.sourceLocations) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (outputPath.equals(sourceLocation.sourceFolder.getFullPath()))
 					continue next;
 			md.hasIndependentOutputFolder = true;
@@ -474,9 +474,9 @@ private void computeClasspathLocations(
 	// combine the output folders with the binary folders & jars... place the output folders before other .class file folders & jars
 	this.binaryLocations = new ClasspathLocation[outputFolders.size() + bLocations.size()];
 	int index = 0;
-	for (Object outputFolder : outputFolders)
+	for (Object outputFolder : outputFolders) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		this.binaryLocations[index++] = (ClasspathLocation) outputFolder;
-	for (ClasspathLocation bLocation : bLocations)
+	for (ClasspathLocation bLocation : bLocations) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		this.binaryLocations[index++] = bLocation;
 
 	if (moduleEntries != null && !moduleEntries.isEmpty())
@@ -484,7 +484,7 @@ private void computeClasspathLocations(
 }
 
 /** Returns the patched module if that is served by the current (binary) location. */
-IModule collectModuleEntries(ClasspathLocation bLocation, IPath path, boolean isOnModulePath, Set<String> limitModules,
+IModule collectModuleEntries(ClasspathLocation bLocation, IPath path, boolean isOnModulePath, Set<String> limitModules, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 								String patchedModuleName, IModule patchedModule, Map<String, IModulePathEntry> moduleEntries) {
 	if (bLocation instanceof IMultiModuleEntry) {
 		IMultiModuleEntry binaryModulePathEntry = (IMultiModuleEntry) bLocation;
@@ -494,7 +494,7 @@ IModule collectModuleEntries(ClasspathLocation bLocation, IPath path, boolean is
 		IUpdatableModule.UpdatesByKind finalUpdates = new IUpdatableModule.UpdatesByKind();
 		List<Consumer<IUpdatableModule>> packageUpdates = null;
 		List<Consumer<IUpdatableModule>> moduleUpdates = null;
-		for (String moduleName : binaryModulePathEntry.getModuleNames(limitModules)) {
+		for (String moduleName : binaryModulePathEntry.getModuleNames(limitModules)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			moduleEntries.put(moduleName, binaryModulePathEntry);
 			updates = this.moduleUpdater.getUpdates(moduleName);
 			if (updates != null) {
@@ -546,9 +546,9 @@ protected boolean isOnModulePath(ClasspathEntry entry) {
 public void cleanup() {
 	this.initialTypeNames = null;
 	this.additionalUnits = null;
-	for (ClasspathMultiDirectory sourceLocation : this.sourceLocations)
+	for (ClasspathMultiDirectory sourceLocation : this.sourceLocations) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		sourceLocation.cleanup();
-	for (ClasspathLocation binaryLocation : this.binaryLocations)
+	for (ClasspathLocation binaryLocation : this.binaryLocations) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		binaryLocation.cleanup();
 	// assume modulePathEntries are cleaned-up via the corresponding source/binaryLocations
 }
@@ -565,11 +565,11 @@ private void createParentFolder(IContainer parent) throws CoreException {
 	}
 }
 
-private NameEnvironmentAnswer findClass(String qualifiedTypeName, char[] typeName, LookupStrategy strategy, String moduleName) {
+private NameEnvironmentAnswer findClass(String qualifiedTypeName, char[] typeName, LookupStrategy strategy, String moduleName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.notifier != null)
 		this.notifier.checkCancelWithinCompiler();
 
-	String moduleQualifiedName = moduleName != null ? moduleName+':'+qualifiedTypeName : qualifiedTypeName;
+	String moduleQualifiedName = moduleName != null ? moduleName+':'+qualifiedTypeName : qualifiedTypeName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	if (this.initialTypeNames != null && this.initialTypeNames.includes(moduleQualifiedName)) {
 		if (this.isIncrementalBuild)
 			// catch the case that a type inside a source file has been renamed but other class files are looking for it
@@ -597,7 +597,7 @@ private NameEnvironmentAnswer findClass(String qualifiedTypeName, char[] typeNam
 		}
 	}
 
-	String qBinaryFileName = qualifiedTypeName + SUFFIX_STRING_class;
+	String qBinaryFileName = qualifiedTypeName + SUFFIX_STRING_class; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String qPackageName =  (qualifiedTypeName.length() == typeName.length) ? Util.EMPTY_STRING :
 		qBinaryFileName.substring(0, qBinaryFileName.length() - typeName.length - 7);
 
@@ -619,7 +619,7 @@ private NameEnvironmentAnswer findClass(String qualifiedTypeName, char[] typeNam
 	String binaryFileName = new String(CharOperation.concat(typeName, SUFFIX_class));
 	Predicate<String> moduleNameFilter = this.modulePathEntries != null ? this.modulePathEntries::containsKey : null;
 	NameEnvironmentAnswer suggestedAnswer = null;
-	for (ClasspathLocation classpathLocation : relevantLocations) {
+	for (ClasspathLocation classpathLocation : relevantLocations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (!strategy.matches(classpathLocation, ClasspathLocation::hasModule)) {
 			continue;
 		}
@@ -662,7 +662,7 @@ public NameEnvironmentAnswer findType(char[] typeName, char[][] packageName, cha
 			LookupStrategy.getStringName(moduleName));
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public char[][] getModulesDeclaringPackage(char[][] packageName, char[] moduleName) {
 	String pkgName = new String(CharOperation.concatWith(packageName, '/'));
 	String modName = new String(moduleName);
@@ -672,14 +672,14 @@ public char[][] getModulesDeclaringPackage(char[][] packageName, char[] moduleNa
 		case Any:
 		case Unnamed:
 			char[][] names = CharOperation.NO_CHAR_CHAR;
-			for (ClasspathLocation location : this.binaryLocations) {
+			for (ClasspathLocation location : this.binaryLocations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (strategy.matches(location, ClasspathLocation::hasModule)) {
 					char[][] declaringModules = location.getModulesDeclaringPackage(pkgName, null);
 					if (declaringModules != null)
 						names = CharOperation.arrayConcat(names, declaringModules);
 				}
 			}
-			for (ClasspathLocation location : this.sourceLocations) {
+			for (ClasspathLocation location : this.sourceLocations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (strategy.matches(location, ClasspathLocation::hasModule)) {
 					char[][] declaringModules = location.getModulesDeclaringPackage(pkgName, null);
 					if (declaringModules != null)
@@ -695,8 +695,8 @@ public char[][] getModulesDeclaringPackage(char[][] packageName, char[] moduleNa
 		default:
 			if (this.modulePathEntries != null) {
 				names = CharOperation.NO_CHAR_CHAR;
-				Collection<IModulePathEntry> entries = new HashSet<>(this.modulePathEntries.values());
-				for (IModulePathEntry modulePathEntry : entries) {
+				Collection<IModulePathEntry> entries = new HashSet<>(this.modulePathEntries.values()); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+				for (IModulePathEntry modulePathEntry : entries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					char[][] declaringModules = modulePathEntry.getModulesDeclaringPackage(pkgName, modName);
 					if (declaringModules != null)
 						names = CharOperation.arrayConcat(names, declaringModules);
@@ -707,7 +707,7 @@ public char[][] getModulesDeclaringPackage(char[][] packageName, char[] moduleNa
 	return null;
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public boolean hasCompilationUnit(char[][] qualifiedPackageName, char[] moduleName, boolean checkCUs) {
 	String pkgName = String.valueOf(CharOperation.concatWith(qualifiedPackageName, '/'));
 	LookupStrategy strategy = LookupStrategy.get(moduleName);
@@ -716,12 +716,12 @@ public boolean hasCompilationUnit(char[][] qualifiedPackageName, char[] moduleNa
 		// include unnamed (search all locations):
 		case Any:
 		case Unnamed:
-			for (ClasspathLocation location : this.binaryLocations) {
+			for (ClasspathLocation location : this.binaryLocations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (strategy.matches(location, ClasspathLocation::hasModule))
 					if (location.hasCompilationUnit(pkgName, null))
 						return true;
 			}
-			for (ClasspathLocation location : this.sourceLocations) {
+			for (ClasspathLocation location : this.sourceLocations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (strategy.matches(location, ClasspathLocation::hasModule))
 					if (location.hasCompilationUnit(pkgName, null))
 						return true;
@@ -736,16 +736,16 @@ public boolean hasCompilationUnit(char[][] qualifiedPackageName, char[] moduleNa
 			return false;
 		case AnyNamed:
 			if (this.modulePathEntries != null) {
-				for (IModulePathEntry modulePathEntry : this.modulePathEntries.values())
+				for (IModulePathEntry modulePathEntry : this.modulePathEntries.values()) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (modulePathEntry.hasCompilationUnit(pkgName, modName))
 						return true;
 			}
 			return false;
 		default:
-			throw new IllegalArgumentException("Unexpected LookupStrategy "+strategy); //$NON-NLS-1$
+			throw new IllegalArgumentException("Unexpected LookupStrategy "+strategy); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }
-public boolean isPackage(String qualifiedPackageName, char[] moduleName) {
+public boolean isPackage(String qualifiedPackageName, char[] moduleName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String stringModuleName = null;
 
 	LookupStrategy strategy = LookupStrategy.get(moduleName);
@@ -754,12 +754,12 @@ public boolean isPackage(String qualifiedPackageName, char[] moduleName) {
 		case Any:
 		case Unnamed:
 			// NOTE: the output folders are added at the beginning of the binaryLocations
-			for (ClasspathLocation binaryLocation : this.binaryLocations) {
+			for (ClasspathLocation binaryLocation : this.binaryLocations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (strategy.matches(binaryLocation, ClasspathLocation::hasModule))
 					if (binaryLocation.isPackage(qualifiedPackageName, null))
 						return true;
 			}
-			for (ClasspathMultiDirectory sourceLocation : this.sourceLocations) {
+			for (ClasspathMultiDirectory sourceLocation : this.sourceLocations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (strategy.matches(sourceLocation, ClasspathLocation::hasModule))
 					if (sourceLocation.isPackage(qualifiedPackageName, null))
 						return true;
@@ -775,9 +775,9 @@ public boolean isPackage(String qualifiedPackageName, char[] moduleName) {
 				return false;
 			entries = Collections.singletonList(entry);
 	}
-	for (IModulePathEntry modulePathEntry : entries) {
+	for (IModulePathEntry modulePathEntry : entries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (modulePathEntry instanceof ModulePathEntry) {
-			for (ClasspathLocation classpathLocation : ((ModulePathEntry) modulePathEntry).getClasspathLocations()) {
+			for (ClasspathLocation classpathLocation : ((ModulePathEntry) modulePathEntry).getClasspathLocations()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (classpathLocation.isPackage(qualifiedPackageName, stringModuleName))
 					return true;
 			}
@@ -800,29 +800,29 @@ public char[][] listPackages(char[] moduleName) {
 			throw new UnsupportedOperationException("can list packages only of a named module"); //$NON-NLS-1$
 	}
 }
-void setNames(String[] typeNames, SourceFile[] additionalFiles) {
+void setNames(String[] typeNames, SourceFile[] additionalFiles) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// convert the initial typeNames to a set
 	if (typeNames == null) {
 		this.initialTypeNames = null;
 	} else {
 		this.initialTypeNames = new SimpleSet(typeNames.length);
-		for (String typeName : typeNames)
+		for (String typeName : typeNames) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.initialTypeNames.add(typeName);
 	}
 	// map the additional source files by qualified type name
 	if (additionalFiles == null) {
 		this.additionalUnits = null;
 	} else {
-		this.additionalUnits = new HashMap<>(additionalFiles.length);
-		for (SourceFile additionalUnit : additionalFiles) {
+		this.additionalUnits = new HashMap<>(additionalFiles.length); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		for (SourceFile additionalUnit : additionalFiles) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (additionalUnit != null)
 				this.additionalUnits.put(additionalUnit.initialTypeName, additionalUnit);
 		}
 	}
 
-	for (ClasspathMultiDirectory sourceLocation : this.sourceLocations)
+	for (ClasspathMultiDirectory sourceLocation : this.sourceLocations) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		sourceLocation.reset();
-	for (ClasspathLocation binaryLocation : this.binaryLocations)
+	for (ClasspathLocation binaryLocation : this.binaryLocations) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		binaryLocation.reset();
 }
 

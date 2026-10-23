@@ -48,7 +48,7 @@ protected void tearDown() throws Exception {
 	super.tearDown();
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected INameEnvironment getNameEnvironment(final String[] testFiles, String[] classPaths, Map<String, String> options) {
 	// constructs a name environment that is able to hide a type of name 'this.invisibleType':
 	this.classpaths = classPaths == null ? getDefaultClassPaths() : classPaths;
@@ -74,7 +74,7 @@ protected INameEnvironment getNameEnvironment(final String[] testFiles, String[]
 	};
 }
 
-public void test001() {
+public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 		"p/B.java",
 		"package p;\n" +
@@ -102,7 +102,7 @@ public void test001() {
 	"----------\n"
 	);
 }
-public void test002() {
+public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 		"p/C.java",
 		"package p;\n" +
@@ -126,7 +126,7 @@ public void test002() {
 		"----------\n"
 	);
 }
-public void test003() {
+public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 		"p/Top.java",
 		"package p;\n" +
@@ -192,7 +192,7 @@ public void test003() {
 /**
  * Regression test for PR #1G9ES9B
  */
-public void test004() {
+public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 		"p/Warning.java",
 		"package p;\n" +
@@ -217,7 +217,7 @@ public void test004() {
 		"The method UTC(int, int, int, int, int, int) from the type Date is deprecated\n" +
 		"----------\n");
 }
-public void test005() {
+public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -254,7 +254,7 @@ public void test005() {
 		null);  // custom options
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=40839
-public void test006() {
+public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -295,7 +295,7 @@ public void test006() {
 			JavacTestOptions.DEFAULT /* javac test options */);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=88124
-public void test007() {
+public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -330,7 +330,7 @@ public void test007() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=88124 - variation
-public void test008() {
+public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -366,8 +366,8 @@ public void test008() {
 }
 // variation of test008 on behalf of Bug 526335 - [9][hovering] Deprecation warning should show the new 'since' deprecation value
 // verify that we don't attempt to access java.lang.Deprecated in a 1.4 based compilation.
-public void test008a() throws IOException {
-	String jarPath = LIB_DIR+File.separator+"p008a"+File.separator+"x.jar";
+public void test008a() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String jarPath = LIB_DIR+File.separator+"p008a"+File.separator+"x.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	Util.createJar(new String[] {
 			"X.java",
 			"package p008a;\n" +
@@ -402,7 +402,7 @@ public void test008a() throws IOException {
 	runner.runWarningTest();
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=88124 - variation
-public void test009() {
+public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -431,7 +431,7 @@ public void test009() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=88187
-public void test010() {
+public void test010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_DocCommentSupport, CompilerOptions.ENABLED);
 	this.runNegativeTest(
@@ -475,7 +475,7 @@ public void test010() {
 		customOptions);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=123522
-public void test011() {
+public void test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"p1/X.java", // =================
@@ -501,7 +501,7 @@ public void test011() {
 
 // @deprecated upon locals do not influence the deprecation diagnostic
 // JLS3 9.6
-public void test012() {
+public void test012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportDeprecation,
 		CompilerOptions.ERROR);
@@ -544,7 +544,7 @@ public void test012() {
 // @deprecated upon locals do not influence the deprecation diagnostic
 // JLS3 9.6
 // @Deprecated variant
-public void test013() {
+public void test013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportDeprecation,
 		CompilerOptions.ERROR);
@@ -585,7 +585,7 @@ public void test013() {
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=159243
-public void test014() {
+public void test014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"p/X.java",
@@ -609,7 +609,7 @@ public void test014() {
 			"  }\n" +
 			"}\n",
 		},
-		(this.complianceLevel >= ClassFileConstants.JDK9 ? "" :
+		(this.complianceLevel >= ClassFileConstants.JDK9 ? "" : //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"----------\n" +
 		"1. WARNING in Y.java (at line 1)\n" +
 		"	import p.X;\n" +
@@ -645,8 +645,8 @@ public void test014() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=159709
 // the order of the CUs must not modify the behavior, see also test016
-public void test015() {
-	Map customOptions = new HashMap();
+public void test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.ERROR);
 	customOptions.put(CompilerOptions.OPTION_ReportNullReference, CompilerOptions.IGNORE);
 	runNegativeTest(
@@ -687,8 +687,8 @@ public void test015() {
 
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=159709
-public void test016() {
-	Map customOptions = new HashMap();
+public void test016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.ERROR);
 	customOptions.put(CompilerOptions.OPTION_ReportNullReference, CompilerOptions.IGNORE);
 	runNegativeTest(
@@ -730,8 +730,8 @@ public void test016() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=159709
 // variant: self-contained case, hence no report
-public void test017() {
-	Map customOptions = new HashMap();
+public void test017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.ERROR);
 	customOptions.put(CompilerOptions.OPTION_ReportDeprecationInDeprecatedCode, CompilerOptions.ERROR);
 	this.runConformTest(
@@ -762,8 +762,8 @@ public void test017() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=159709
 // variant: using a binary class
 // **
-public void test018() {
-	Map customOptions = new HashMap();
+public void test018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.ERROR);
 	customOptions.put(CompilerOptions.OPTION_ReportDeprecationInDeprecatedCode, CompilerOptions.ERROR);
 	customOptions.put(CompilerOptions.OPTION_ReportNullReference, CompilerOptions.IGNORE);
@@ -814,8 +814,8 @@ public void test018() {
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=191909 (1.4 variant)
-public void test019() {
-	Map customOptions = new HashMap();
+public void test019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.ERROR);
 	runNegativeTest(
 		// test directory preparation
@@ -855,8 +855,8 @@ public void test019() {
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=300031
-public void test020() {
-	Map customOptions = new HashMap();
+public void test020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.ERROR);
 	runNegativeTest(
 		// test directory preparation
@@ -929,7 +929,7 @@ public void test020() {
 		// javac options
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
-public void testJEP211_1() {
+public void testJEP211_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"p1/C1.java",

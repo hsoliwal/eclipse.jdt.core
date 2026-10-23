@@ -68,7 +68,7 @@ public class ASTConverter10Test extends ConverterTestSetup {
 		}
 	}
 
-	public void testBug527558_001() throws JavaModelException {
+	public void testBug527558_001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X {\n" +
 				"	public static void main(String[] args) {\n" +
@@ -89,7 +89,7 @@ public class ASTConverter10Test extends ConverterTestSetup {
 			IBinding binding = type.resolveBinding();
 			assertTrue("null binding", binding != null);
 	}
-	public void testBug527558_002() throws JavaModelException {
+	public void testBug527558_002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X {\n" +
 				"	public static void main(String[] args) {\n" +
@@ -111,7 +111,7 @@ public class ASTConverter10Test extends ConverterTestSetup {
 			IBinding binding = type.resolveBinding();
 			assertTrue("null binding", binding != null);
 	}
-	public void testBug532421_001() throws JavaModelException {
+	public void testBug532421_001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X {\n" +
 				"	public static void main(String[] args) {\n" +
@@ -131,7 +131,7 @@ public class ASTConverter10Test extends ConverterTestSetup {
 			assertTrue("null binding", binding != null);
 			assertTrue("binding incorrect", binding.getName().equals("String[]"));
 	}
-	public void testBug532421_002() throws JavaModelException {
+	public void testBug532421_002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X {\n" +
 				"	public static void main(String[] args) {\n" +
@@ -152,7 +152,7 @@ public class ASTConverter10Test extends ConverterTestSetup {
 			assertTrue("null binding", binding != null);
 			assertTrue("binding incorrect", binding.getName().equals("Y<String>"));
 	}
-	public void testBug532535_001() throws JavaModelException {
+	public void testBug532535_001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X {\n" +
 				"	public static void main(String[] args) {\n" +
@@ -180,7 +180,7 @@ public class ASTConverter10Test extends ConverterTestSetup {
 			ITypeBinding typeBinding = (ITypeBinding) binding;
 			assertTrue("wrong type binding", typeBinding.getName().equals("Y"));
 	}
-	public void testBug532535_002() throws JavaModelException {
+	public void testBug532535_002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X {\n" +
 				"	public static void main(String[] args) {\n" +
@@ -209,7 +209,7 @@ public class ASTConverter10Test extends ConverterTestSetup {
 			ITypeBinding typeBinding = (ITypeBinding) binding;
 			assertTrue("wrong type binding", typeBinding.getName().equals("int"));
 	}
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testBug525580_comment38() throws CoreException, IOException {
 		// not really using Java 10, but apiLevel JLS10 as per bug report
 		String jarPath = null;
@@ -220,9 +220,9 @@ public class ASTConverter10Test extends ConverterTestSetup {
 			options.put(JavaCore.COMPILER_CODEGEN_TARGET_PLATFORM, JavaCore.VERSION_1_8);
 
 			String srcFolderInWS = "/Converter10/src";
-			createFolder(srcFolderInWS + "/cardManager/");
+			createFolder(srcFolderInWS + "/cardManager/"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-			String srcFilePathInWS = srcFolderInWS + "/cardManager/CardManagerFragment.java";
+			String srcFilePathInWS = srcFolderInWS + "/cardManager/CardManagerFragment.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			createFile(srcFilePathInWS,
 					"package cardManager;\n" +
 					"\n" +
@@ -234,7 +234,7 @@ public class ASTConverter10Test extends ConverterTestSetup {
 					"    }\n" +
 					"}\n");
 
-			jarPath = getWorkspacePath() + "Converter10/P.jar";
+			jarPath = getWorkspacePath() + "Converter10/P.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			createJar(new String[] {
 				"view/View.java",
 				"package view;\n" +
@@ -250,7 +250,7 @@ public class ASTConverter10Test extends ConverterTestSetup {
 			parser.setStatementsRecovery(true);
 			parser.setBindingsRecovery(true);
 		    parser.setCompilerOptions(options);
-			parser.setEnvironment(new String[] {jarPath}, new String[] {getWorkspacePath() + srcFolderInWS}, null, true);
+			parser.setEnvironment(new String[] {jarPath}, new String[] {getWorkspacePath() + srcFolderInWS}, null, true); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			parser.setKind(ASTParser.K_COMPILATION_UNIT);
 
 			class MyFileASTRequestor extends FileASTRequestor {
@@ -258,7 +258,7 @@ public class ASTConverter10Test extends ConverterTestSetup {
 				@SuppressWarnings("synthetic-access")
 				@Override
 				public void acceptAST(String sourceFilePath, CompilationUnit cu) {
-					if (sourceFilePath.equals(getWorkspacePath() + srcFilePathInWS))
+					if (sourceFilePath.equals(getWorkspacePath() + srcFilePathInWS)) //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						this.accepted = true;
 					assertEquals(1, cu.getProblems().length);
 					IProblem problem = cu.getProblems()[0];
@@ -266,7 +266,7 @@ public class ASTConverter10Test extends ConverterTestSetup {
 				}
 			}
 			MyFileASTRequestor requestor = new MyFileASTRequestor();
-			parser.createASTs(new String[] {getWorkspacePath() + srcFilePathInWS}, null, new String[0], requestor, null);
+			parser.createASTs(new String[] {getWorkspacePath() + srcFilePathInWS}, null, new String[0], requestor, null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertTrue("file should have been accepted", requestor.accepted);
 		} finally {
 			if (jarPath != null)
@@ -274,7 +274,7 @@ public class ASTConverter10Test extends ConverterTestSetup {
 		}
 	}
 
-	public void testAnonymousTypeVarBindingToLocalVariable() throws Exception {
+	public void testAnonymousTypeVarBindingToLocalVariable() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String filePath = "/Converter10/src/X.java";
 		try {
 			String contents = """

@@ -41,7 +41,7 @@ public class AnnotationComponentValue extends ClassFileStruct implements IAnnota
 	private final int tag;
 	private int valuesNumber;
 
-	public AnnotationComponentValue(
+	public AnnotationComponentValue( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			byte[] classFileBytes,
 			IConstantPool constantPool,
 			int offset) throws ClassFormatException {
@@ -125,7 +125,7 @@ public class AnnotationComponentValue extends ClassFileStruct implements IAnnota
 				this.readOffset += 2;
 				if (numberOfValues != 0) {
 					this.annotationComponentValues = new IAnnotationComponentValue[numberOfValues];
-					for (int i = 0; i < numberOfValues; i++) {
+					for (int i = 0; i < numberOfValues; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						AnnotationComponentValue value = new AnnotationComponentValue(classFileBytes, constantPool, offset + this.readOffset);
 						this.annotationComponentValues[i] = value;
 						this.readOffset += value.sizeInBytes();

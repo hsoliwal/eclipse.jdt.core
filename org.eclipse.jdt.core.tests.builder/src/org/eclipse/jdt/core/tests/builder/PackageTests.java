@@ -37,7 +37,7 @@ public class PackageTests extends BuilderTests {
 	/**
 	 * Bugs 6564
 	 */
-	public void testNoPackageProblem() throws JavaModelException {
+	public void testNoPackageProblem() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		//----------------------------
 		//           Step 1
 		//----------------------------
@@ -89,7 +89,7 @@ public class PackageTests extends BuilderTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=251690
 	 */
-	public void testPackageProblem() throws JavaModelException {
+	public void testPackageProblem() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
@@ -112,7 +112,7 @@ public class PackageTests extends BuilderTests {
 			new Problem("", "The declared package \"\" does not match the expected package \"p.A\"", bPath, 0, 1, CategorizedProblem.CAT_INTERNAL, IMarker.SEVERITY_ERROR)); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
-	public void testNoFolderProblem() throws JavaModelException {
+	public void testNoFolderProblem() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
@@ -134,7 +134,7 @@ public class PackageTests extends BuilderTests {
 		expectingNoProblems();
 	}
 
-	public void testNoFolderProblem2() throws JavaModelException {
+	public void testNoFolderProblem2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
@@ -171,7 +171,7 @@ public class PackageTests extends BuilderTests {
 		expectingNoProblems();
 	}
 
-	public void testNestedPackageProblem() throws JavaModelException {
+	public void testNestedPackageProblem() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
@@ -196,7 +196,7 @@ public class PackageTests extends BuilderTests {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=117092
 // simplistic linked subfolder used as package, external case (not in workspace)
-public void test001() throws CoreException {
+public void test001() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath projectPath = env.addProject("P");
 	try {
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -209,7 +209,7 @@ public void test001() throws CoreException {
 			"}\n"
 			);
 		File tmpDir = env.getTmpDirectory();
-		File externalPackageDir = new File(tmpDir.getAbsolutePath() + File.separator + "q");
+		File externalPackageDir = new File(tmpDir.getAbsolutePath() + File.separator + "q"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		externalPackageDir.mkdir();
 		IFolder folder = env.getWorkspace().getRoot().getFolder(src.append("p/q"));
 		folder.createLink(externalPackageDir.toURI(), 0, null);
@@ -223,7 +223,7 @@ public void test001() throws CoreException {
 				"public class Z extends p.q.Y {\n" +
 				"}\n"
 				);
-		assertTrue(new File(externalPackageDir.getAbsolutePath() +
+		assertTrue(new File(externalPackageDir.getAbsolutePath() + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				File.separator + "r" + File.separator + "Z.java").exists());
 		fullBuild();
 		expectingPresenceOf(bin.append("p/q/r/Z.class"));
@@ -241,7 +241,7 @@ public void test001() throws CoreException {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=117092
 // simplistic linked subfolder used as package, internal case (in workspace)
-public void test002() throws CoreException {
+public void test002() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath projectPath = env.addProject("P");
 	IPath externalProjectPath = env.addProject("EP");
 	try {
@@ -270,7 +270,7 @@ public void test002() throws CoreException {
 				"public class Z extends p.q.Y {\n" +
 				"}\n"
 				);
-		assertTrue(new File(externalFolder.getLocation() +
+		assertTrue(new File(externalFolder.getLocation() + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				File.separator + "r" + File.separator + "Z.java").exists());
 		env.incrementalBuild(projectPath);
 		expectingPresenceOf(bin.append("p/q/r/Z.class"));

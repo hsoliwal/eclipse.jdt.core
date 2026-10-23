@@ -30,7 +30,7 @@ class ASTNodesCollectorVisitor extends ASTVisitor {
 	ASTNodesCollectorVisitor() {
         // visit Javadoc.tags()
 		super(true);
-		this.detachedAstNodes = new HashSet();
+		this.detachedAstNodes = new HashSet(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 	}
 
 	private void add(ASTNode node) {
@@ -64,7 +64,7 @@ class ASTNodesCollectorVisitor extends ASTVisitor {
 	}
 
 	private void detachedListElement(List list) {
-		for (int i = 0; i < list.size(); i++) {
+		for (int i = 0; i < list.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			list.remove(0);
 		}
 	}

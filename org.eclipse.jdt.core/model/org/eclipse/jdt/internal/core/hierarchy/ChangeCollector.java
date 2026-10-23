@@ -38,7 +38,7 @@ public class ChangeCollector {
 	/*
 	 * A table from ITypes to TypeDeltas
 	 */
-	HashMap changes = new HashMap();
+	HashMap changes = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	TypeHierarchy hierarchy;
 
@@ -49,9 +49,9 @@ public class ChangeCollector {
 	/*
 	 * Adds the children of the given delta to the list of changes.
 	 */
-	private void addAffectedChildren(IJavaElementDelta delta) throws JavaModelException {
+	private void addAffectedChildren(IJavaElementDelta delta) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaElementDelta[] children = delta.getAffectedChildren();
-		for (IJavaElementDelta child : children) {
+		for (IJavaElementDelta child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IJavaElement childElement = child.getElement();
 			switch (childElement.getElementType()) {
 				case IJavaElement.IMPORT_CONTAINER:
@@ -75,21 +75,21 @@ public class ChangeCollector {
 	/*
 	 * Adds the given delta on a compilation unit to the list of changes.
 	 */
-	public void addChange(ICompilationUnit cu, IJavaElementDelta newDelta) throws JavaModelException {
+	public void addChange(ICompilationUnit cu, IJavaElementDelta newDelta) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int newKind = newDelta.getKind();
 		switch (newKind) {
 			case IJavaElementDelta.ADDED:
-				ArrayList allTypes = new ArrayList();
+				ArrayList allTypes = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				getAllTypesFromElement(cu, allTypes);
-				for (Object t : allTypes) {
+				for (Object t : allTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IType type = (IType)t;
 					addTypeAddition(type, (SimpleDelta)this.changes.get(type));
 				}
 				break;
 			case IJavaElementDelta.REMOVED:
-				allTypes = new ArrayList();
+				allTypes = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				getAllTypesFromHierarchy((JavaElement)cu, allTypes);
-				for (Object t : allTypes) {
+				for (Object t : allTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IType type = (IType)t;
 					addTypeRemoval(type, (SimpleDelta)this.changes.get(type));
 				}
@@ -100,7 +100,7 @@ public class ChangeCollector {
 		}
 	}
 
-	private void addChange(IImportContainer importContainer, IJavaElementDelta newDelta) throws JavaModelException {
+	private void addChange(IImportContainer importContainer, IJavaElementDelta newDelta) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int newKind = newDelta.getKind();
 		if (newKind == IJavaElementDelta.CHANGED) {
 			addAffectedChildren(newDelta);
@@ -137,7 +137,7 @@ public class ChangeCollector {
 		}
 	}
 
-	private void addChange(IImportDeclaration importDecl, IJavaElementDelta newDelta) {
+	private void addChange(IImportDeclaration importDecl, IJavaElementDelta newDelta) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		SimpleDelta existingDelta = (SimpleDelta)this.changes.get(importDecl);
 		int newKind = newDelta.getKind();
 		if (existingDelta != null) {
@@ -173,21 +173,21 @@ public class ChangeCollector {
 	/*
 	 * Adds a change for the given member (a method, a field or an initializer) and the types it defines.
 	 */
-	private void addChange(IMember member, IJavaElementDelta newDelta) throws JavaModelException {
+	private void addChange(IMember member, IJavaElementDelta newDelta) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int newKind = newDelta.getKind();
 		switch (newKind) {
 			case IJavaElementDelta.ADDED:
-				ArrayList allTypes = new ArrayList();
+				ArrayList allTypes = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				getAllTypesFromElement(member, allTypes);
-				for (Object type : allTypes) {
+				for (Object type : allTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IType innerType = (IType)type;
 					addTypeAddition(innerType, (SimpleDelta)this.changes.get(innerType));
 				}
 				break;
 			case IJavaElementDelta.REMOVED:
-				allTypes = new ArrayList();
+				allTypes = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				getAllTypesFromHierarchy((JavaElement)member, allTypes);
-				for (Object t : allTypes) {
+				for (Object t : allTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IType type = (IType)t;
 					addTypeRemoval(type, (SimpleDelta)this.changes.get(type));
 				}
@@ -201,24 +201,24 @@ public class ChangeCollector {
 	/*
 	 * Adds a change for the given type and the types it defines.
 	 */
-	private void addChange(IType type, IJavaElementDelta newDelta) throws JavaModelException {
+	private void addChange(IType type, IJavaElementDelta newDelta) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		 int newKind = newDelta.getKind();
 		SimpleDelta existingDelta = (SimpleDelta)this.changes.get(type);
 		switch (newKind) {
 			case IJavaElementDelta.ADDED:
 				addTypeAddition(type, existingDelta);
-				ArrayList allTypes = new ArrayList();
+				ArrayList allTypes = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				getAllTypesFromElement(type, allTypes);
-				for (Object t : allTypes) {
+				for (Object t : allTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IType innerType = (IType)t;
 					addTypeAddition(innerType, (SimpleDelta)this.changes.get(innerType));
 				}
 				break;
 			case IJavaElementDelta.REMOVED:
 				addTypeRemoval(type, existingDelta);
-				allTypes = new ArrayList();
+				allTypes = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				getAllTypesFromHierarchy((JavaElement)type, allTypes);
-				for (Object t : allTypes) {
+				for (Object t : allTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IType innerType = (IType)t;
 					addTypeRemoval(innerType, (SimpleDelta)this.changes.get(innerType));
 				}
@@ -230,7 +230,7 @@ public class ChangeCollector {
 		}
 	}
 
-	private void addTypeAddition(IType type, SimpleDelta existingDelta) throws JavaModelException {
+	private void addTypeAddition(IType type, SimpleDelta existingDelta) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (existingDelta != null) {
 			switch (existingDelta.getKind()) {
 				case IJavaElementDelta.REMOVED:
@@ -264,7 +264,7 @@ public class ChangeCollector {
 		}
 	}
 
-	private void addTypeChange(IType type, int newFlags, SimpleDelta existingDelta) throws JavaModelException {
+	private void addTypeChange(IType type, int newFlags, SimpleDelta existingDelta) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (existingDelta != null) {
 			switch (existingDelta.getKind()) {
 				case IJavaElementDelta.CHANGED:
@@ -311,7 +311,7 @@ public class ChangeCollector {
 		}
 	}
 
-	private void addTypeRemoval(IType type, SimpleDelta existingDelta) {
+	private void addTypeRemoval(IType type, SimpleDelta existingDelta) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (existingDelta != null) {
 			switch (existingDelta.getKind()) {
 				case IJavaElementDelta.ADDED:
@@ -337,18 +337,18 @@ public class ChangeCollector {
 	/*
 	 * Returns all types defined in the given element excluding the given element.
 	 */
-	private void getAllTypesFromElement(IJavaElement element, ArrayList allTypes) throws JavaModelException {
+	private void getAllTypesFromElement(IJavaElement element, ArrayList allTypes) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch (element.getElementType()) {
 			case IJavaElement.COMPILATION_UNIT:
 				IType[] types = ((ICompilationUnit)element).getTypes();
-				for (IType type : types) {
+				for (IType type : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					allTypes.add(type);
 					getAllTypesFromElement(type, allTypes);
 				}
 				break;
 			case IJavaElement.TYPE:
 				types = ((IType)element).getTypes();
-				for (IType type : types) {
+				for (IType type : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					allTypes.add(type);
 					getAllTypesFromElement(type, allTypes);
 				}
@@ -357,7 +357,7 @@ public class ChangeCollector {
 			case IJavaElement.FIELD:
 			case IJavaElement.METHOD:
 				IJavaElement[] children = ((IMember)element).getChildren();
-				for (IJavaElement child : children) {
+				for (IJavaElement child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IType type = (IType)child;
 					allTypes.add(type);
 					getAllTypesFromElement(type, allTypes);
@@ -369,7 +369,7 @@ public class ChangeCollector {
 	/*
 	 * Returns all types in the existing hierarchy that have the given element as a parent.
 	 */
-	private void getAllTypesFromHierarchy(JavaElement element, ArrayList allTypes) {
+	private void getAllTypesFromHierarchy(JavaElement element, ArrayList allTypes) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch (element.getElementType()) {
 			case IJavaElement.COMPILATION_UNIT:
 				IOpenable o = (IOpenable) element;
@@ -384,7 +384,7 @@ public class ChangeCollector {
 			case IJavaElement.METHOD:
 				types = this.hierarchy.files.get(((IMember)element).getCompilationUnit());
 				if (types != null) {
-					for (int i = 0, length = types.size(); i < length; i++) {
+					for (int i = 0, length = types.size(); i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						IType type = (IType)types.get(i);
 						if (element.isAncestorOf(type)) {
 							allTypes.add(type);
@@ -395,7 +395,7 @@ public class ChangeCollector {
 		}
 	}
 
-	private boolean hasSuperTypeChange(IType type) throws JavaModelException {
+	private boolean hasSuperTypeChange(IType type) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// check super class
 		IType superclass = this.hierarchy.getSuperclass(type);
 		String existingSuperclassName = superclass == null ? null : superclass.getElementName();
@@ -410,7 +410,7 @@ public class ChangeCollector {
 		if (existingSuperInterfaces.length != newSuperInterfaces.length) {
 			return true;
 		}
-		for (String superInterfaceName : newSuperInterfaces) {
+		for (String superInterfaceName : newSuperInterfaces) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!superInterfaceName.equals(superInterfaceName)) {
 				return true;
 			}
@@ -434,14 +434,14 @@ public class ChangeCollector {
 
 	@Override
 	public String toString() {
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		Iterator iterator = this.changes.entrySet().iterator();
-		while (iterator.hasNext()) {
+		while (iterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Map.Entry entry = (Map.Entry)iterator.next();
-			buffer.append(((JavaElement)entry.getKey()).toDebugString());
-			buffer.append(entry.getValue());
+			buffer.append(((JavaElement)entry.getKey()).toDebugString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(entry.getValue()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (iterator.hasNext()) {
-				buffer.append('\n');
+				buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		return buffer.toString();

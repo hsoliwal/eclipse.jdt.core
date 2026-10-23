@@ -87,7 +87,7 @@ public final class FactoryPathUtil {
 	 * Loads a map of factory containers from the factory path for a given
 	 * project. If no factorypath file was found, returns null.
 	 */
-	public static Map<FactoryContainer, FactoryPath.Attributes> readFactoryPathFile(IJavaProject jproj)
+	public static Map<FactoryContainer, FactoryPath.Attributes> readFactoryPathFile(IJavaProject jproj) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		throws CoreException
 	{
 		String data = null;
@@ -120,7 +120,7 @@ public final class FactoryPathUtil {
 	 * for a given project. If null is passed in, the factorypath file
 	 * is deleted.
 	 */
-	public static void saveFactoryPathFile(IJavaProject jproj, Map<FactoryContainer, FactoryPath.Attributes> containers)
+	public static void saveFactoryPathFile(IJavaProject jproj, Map<FactoryContainer, FactoryPath.Attributes> containers) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		throws CoreException
 	{
 		IFile projFile;
@@ -162,21 +162,21 @@ public final class FactoryPathUtil {
 	/**
 	 * Returns an XML string encoding all of the factories.
 	 */
-	public static String encodeFactoryPath(Map<FactoryContainer, FactoryPath.Attributes> factories) {
-		StringBuilder sb = new StringBuilder();
-		sb.append("<").append(FACTORYPATH_TAG).append(">\n"); //$NON-NLS-1$ //$NON-NLS-2$
-		for (Map.Entry<FactoryContainer, FactoryPath.Attributes> entry : factories.entrySet()) {
+	public static String encodeFactoryPath(Map<FactoryContainer, FactoryPath.Attributes> factories) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		sb.append("<").append(FACTORYPATH_TAG).append(">\n"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (Map.Entry<FactoryContainer, FactoryPath.Attributes> entry : factories.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			FactoryContainer container = entry.getKey();
 			FactoryPath.Attributes attr = entry.getValue();
-			sb.append(INDENT);
-			sb.append("<"); //$NON-NLS-1$
-			sb.append(FACTORYPATH_ENTRY_TAG).append(" "); //$NON-NLS-1$
-			sb.append(KIND).append("=\"").append(container.getType()).append("\" "); //$NON-NLS-1$ //$NON-NLS-2$
-			sb.append(ID).append("=\"").append(container.getId()).append("\" "); //$NON-NLS-1$ //$NON-NLS-2$
-			sb.append(ENABLED).append("=\"").append(attr.isEnabled()).append("\" "); //$NON-NLS-1$ //$NON-NLS-2$
-			sb.append(RUN_IN_BATCH_MODE).append("=\"").append(attr.runInBatchMode()).append("\"/>\n"); //$NON-NLS-1$ //$NON-NLS-2$
+			sb.append(INDENT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			sb.append("<"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			sb.append(FACTORYPATH_ENTRY_TAG).append(" "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			sb.append(KIND).append("=\"").append(container.getType()).append("\" "); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			sb.append(ID).append("=\"").append(container.getId()).append("\" "); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			sb.append(ENABLED).append("=\"").append(attr.isEnabled()).append("\" "); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			sb.append(RUN_IN_BATCH_MODE).append("=\"").append(attr.runInBatchMode()).append("\"/>\n"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		sb.append("</").append(FACTORYPATH_TAG).append(">\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		sb.append("</").append(FACTORYPATH_TAG).append(">\n"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		return sb.toString();
 	}
@@ -209,10 +209,10 @@ public final class FactoryPathUtil {
 		return new VarJarFactoryContainer(jar);
 	}
 
-	public static Map<FactoryContainer, FactoryPath.Attributes> decodeFactoryPath(final String xmlFactoryPath)
+	public static Map<FactoryContainer, FactoryPath.Attributes> decodeFactoryPath(final String xmlFactoryPath) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	throws CoreException
 	{
-		Map<FactoryContainer, FactoryPath.Attributes> result = new LinkedHashMap<>();
+		Map<FactoryContainer, FactoryPath.Attributes> result = new LinkedHashMap<>(); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
 		StringReader reader = new StringReader(xmlFactoryPath);
 		Element fpElement = null;
 
@@ -237,11 +237,11 @@ public final class FactoryPathUtil {
 		}
 
 		if (!fpElement.getNodeName().equalsIgnoreCase(FACTORYPATH_TAG)) {
-			IOException e = new IOException("Incorrect file format. File must begin with " + FACTORYPATH_TAG); //$NON-NLS-1$
+			IOException e = new IOException("Incorrect file format. File must begin with " + FACTORYPATH_TAG); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			throw new CoreException(new Status(IStatus.ERROR, AptPlugin.PLUGIN_ID, -1, Messages.FactoryPathUtil_status_ioException, e));
 		}
 		NodeList nodes = fpElement.getElementsByTagName(FACTORYPATH_ENTRY_TAG);
-		for (int i=0; i < nodes.getLength(); i++) {
+		for (int i=0; i < nodes.getLength(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Node node = nodes.item(i);
 			if (node.getNodeType() == Node.ELEMENT_NODE) {
 				Element element = (Element)node;
@@ -274,7 +274,7 @@ public final class FactoryPathUtil {
 					break;
 
 				default :
-					throw new IllegalStateException("Unrecognized kind: " + kind + ". Original string: " + kindString); //$NON-NLS-1$ //$NON-NLS-2$
+					throw new IllegalStateException("Unrecognized kind: " + kind + ". Original string: " + kindString); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 
 				if (null != container) {
@@ -334,7 +334,7 @@ public final class FactoryPathUtil {
 	 * @return an ordered map, where the key is the container and the value
 	 * indicates whether the container is enabled.
 	 */
-	private static synchronized Map<FactoryContainer, FactoryPath.Attributes> calculatePath(IJavaProject jproj) {
+	private static synchronized Map<FactoryContainer, FactoryPath.Attributes> calculatePath(IJavaProject jproj) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<FactoryContainer, FactoryPath.Attributes> map = null;
 		boolean foundPerProjFile = false;
 		if (jproj != null) {
@@ -343,7 +343,7 @@ public final class FactoryPathUtil {
 				foundPerProjFile = (map != null);
 			}
 			catch (CoreException ce) {
-				AptPlugin.log(ce, "Could not get factory containers for project: " + jproj); //$NON-NLS-1$
+				AptPlugin.log(ce, "Could not get factory containers for project: " + jproj); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		// Workspace if no project data was found
@@ -352,12 +352,12 @@ public final class FactoryPathUtil {
 				map = FactoryPathUtil.readFactoryPathFile(null);
 			}
 			catch (CoreException ce) {
-				AptPlugin.log(ce, "Could not get factory containers for project: " + jproj); //$NON-NLS-1$
+				AptPlugin.log(ce, "Could not get factory containers for project: " + jproj); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		// if no project and no workspace data was found, we'll get the defaults
 		if (map == null) {
-			map = new LinkedHashMap<>();
+			map = new LinkedHashMap<>(); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
 		}
 		boolean disableNewPlugins = (jproj != null) && foundPerProjFile;
 		updatePluginContainers(map, disableNewPlugins);
@@ -378,14 +378,14 @@ public final class FactoryPathUtil {
 	 * disabled.  If false, they will be enabled or disabled according to
 	 * their setting in the extension declaration.
 	 */
-	private static void updatePluginContainers(
+	private static void updatePluginContainers( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			Map<FactoryContainer, FactoryPath.Attributes> path, boolean disableNewPlugins) {
 
 		// Get the alphabetically-ordered list of all plugins we found at startup.
 		Map<FactoryContainer, FactoryPath.Attributes> pluginContainers = FactoryPluginManager.getAllPluginFactoryContainers();
 
 		// Remove from the path any plugins which we did not find at startup
-		for (Iterator<FactoryContainer> i = path.keySet().iterator(); i.hasNext(); ) {
+		for (Iterator<FactoryContainer> i = path.keySet().iterator(); i.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			FactoryContainer fc = i.next();
 			if (fc.getType() == FactoryContainer.FactoryType.PLUGIN && !pluginContainers.containsKey(fc)) {
 				i.remove();
@@ -394,7 +394,7 @@ public final class FactoryPathUtil {
 
 		// Add to the end any plugins which are not in the path (i.e., which
 		// have been discovered since the config was last saved)
-		for (Map.Entry<FactoryContainer, FactoryPath.Attributes> entry : pluginContainers.entrySet()) {
+		for (Map.Entry<FactoryContainer, FactoryPath.Attributes> entry : pluginContainers.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!path.containsKey(entry.getKey())) {
 				FactoryPath.Attributes newAttr;
 				FactoryPath.Attributes oldAttr = entry.getValue();

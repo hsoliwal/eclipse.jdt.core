@@ -99,14 +99,14 @@ public final class IndentManipulation {
 	 * <li>the given <code>tabWidth</code> is lower than zero</li>
 	 * </ul>
 	 */
-	public static int measureIndentInSpaces(CharSequence line, int tabWidth) {
+	public static int measureIndentInSpaces(CharSequence line, int tabWidth) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (tabWidth < 0 || line == null) {
 			throw new IllegalArgumentException();
 		}
 
 		int length= 0;
 		int max= line.length();
-		for (int i= 0; i < max; i++) {
+		for (int i= 0; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char ch= line.charAt(i);
 			if (ch == '\t') {
 				length = calculateSpaceEquivalents(tabWidth, length);
@@ -135,7 +135,7 @@ public final class IndentManipulation {
 	 * <li>the given <code>line</code> is null</li>
 	 * </ul>
 	 */
-	public static String extractIndentString(String line, int tabWidth, int indentWidth) {
+	public static String extractIndentString(String line, int tabWidth, int indentWidth) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (tabWidth < 0 || indentWidth < 0 || line == null) {
 			throw new IllegalArgumentException();
 		}
@@ -145,7 +145,7 @@ public final class IndentManipulation {
 
 		int spaceEquivs = 0;
 		int characters = 0;
-		for (int i = 0; i < size; i++) {
+		for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char c = line.charAt(i);
 			if (c == '\t') {
 				spaceEquivs = calculateSpaceEquivalents(tabWidth, spaceEquivs);
@@ -192,7 +192,7 @@ public final class IndentManipulation {
 	 * <li>the given <code>line</code> is null</li>
 	 * </ul>
 	 */
-	public static String trimIndent(String line, int indentUnitsToRemove, int tabWidth, int indentWidth) {
+	public static String trimIndent(String line, int indentUnitsToRemove, int tabWidth, int indentWidth) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (tabWidth < 0 || indentWidth < 0 || line == null) {
 			throw new IllegalArgumentException();
 		}
@@ -206,7 +206,7 @@ public final class IndentManipulation {
 		int spaceEquivalents= 0;
 		int size= line.length();
 		String prefix= null;
-		for (int i= 0; i < size; i++) {
+		for (int i= 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char c= line.charAt(i);
 			if (c == '\t') {
 				spaceEquivalents = calculateSpaceEquivalents(tabWidth, spaceEquivalents);
@@ -240,7 +240,7 @@ public final class IndentManipulation {
 
 		if (prefix == null)
 			return trimmed;
-		return prefix + trimmed;
+		return prefix + trimmed; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/**
@@ -266,7 +266,7 @@ public final class IndentManipulation {
 	 * <li>the given <code>lineDelim</code> is null</li>
 	 * </ul>
 	 */
-	public static String changeIndent(String code, int indentUnitsToRemove, int tabWidth, int indentWidth, String newIndentString, String lineDelim) {
+	public static String changeIndent(String code, int indentUnitsToRemove, int tabWidth, int indentWidth, String newIndentString, String lineDelim) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (tabWidth < 0 || indentWidth < 0 || code == null || indentUnitsToRemove < 0 || newIndentString == null || lineDelim == null) {
 			throw new IllegalArgumentException();
 		}
@@ -279,23 +279,23 @@ public final class IndentManipulation {
 				return code;
 			}
 
-			StringBuilder buf= new StringBuilder();
+			StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
-			for (int i= 0; i < nLines; i++) {
+			for (int i= 0; i < nLines; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IRegion region= tracker.getLineInformation(i);
 				int start= region.getOffset();
 				int end= start + region.getLength();
 				String line= code.substring(start, end);
 
 				if (i == 0) {  // no indent for first line (contained in the formatted string)
-					buf.append(line);
+					buf.append(line); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else { // no new line after last line
-					buf.append(lineDelim);
-					buf.append(newIndentString);
+					buf.append(lineDelim); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buf.append(newIndentString); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					if(indentWidth != 0) {
-						buf.append(trimIndent(line, indentUnitsToRemove, tabWidth, indentWidth));
+						buf.append(trimIndent(line, indentUnitsToRemove, tabWidth, indentWidth)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					} else {
-						buf.append(line);
+						buf.append(line); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
 			}
@@ -328,19 +328,19 @@ public final class IndentManipulation {
 	 * <li>the given <code>newIndentString</code> is null</li>
 	 * </ul>
 	 */
-	public static ReplaceEdit[] getChangeIndentEdits(String source, int indentUnitsToRemove, int tabWidth, int indentWidth, String newIndentString) {
+	public static ReplaceEdit[] getChangeIndentEdits(String source, int indentUnitsToRemove, int tabWidth, int indentWidth, String newIndentString) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (tabWidth < 0 || indentWidth < 0 || source == null || indentUnitsToRemove < 0 || newIndentString == null) {
 			throw new IllegalArgumentException();
 		}
 
-		ArrayList<ReplaceEdit> result= new ArrayList<>();
+		ArrayList<ReplaceEdit> result= new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		try {
 			ILineTracker tracker= new DefaultLineTracker();
 			tracker.set(source);
 			int nLines= tracker.getNumberOfLines();
 			if (nLines == 1)
 				return result.toArray(ReplaceEdit[]::new);
-			for (int i= 1; i < nLines; i++) {
+			for (int i= 1; i < nLines; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IRegion region= tracker.getLineInformation(i);
 				int offset= region.getOffset();
 				String line= source.substring(offset, offset + region.getLength());
@@ -363,14 +363,14 @@ public final class IndentManipulation {
 	 * Returns <code>-1</code> if the line isn't prefixed with an indent of
 	 * the given number of indents.
 	 */
-	private static int indexOfIndent(CharSequence line, int numberOfIndentUnits, int tabWidth, int indentWidth) {
+	private static int indexOfIndent(CharSequence line, int numberOfIndentUnits, int tabWidth, int indentWidth) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		int spaceEquivalents= numberOfIndentUnits * indentWidth;
 
 		int size= line.length();
 		int result= -1;
 		int blanks= 0;
-		for (int i= 0; i < size && blanks < spaceEquivalents; i++) {
+		for (int i= 0; i < size && blanks < spaceEquivalents; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char c= line.charAt(i);
 			if (c == '\t') {
 				blanks = calculateSpaceEquivalents(tabWidth, blanks);

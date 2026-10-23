@@ -70,27 +70,27 @@ public class RegionPerformanceTests extends TestCase {
 		JavaCore.setOptions(JavaCore.getDefaultOptions());
 	}
 
-	public void testRegion() throws Exception {
+	public void testRegion() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject jproj = createJavaProject("RegionTest");
 		IProject proj = jproj.getProject();
 		IPath projPath = proj.getFullPath();
 		IPath root = projPath.append("src");
 
-		for (int idx = 0; idx < 1000; idx++) {
-			this.env.addClass(root, "test", "Foo" + idx, "package test;\n\n" + "public class Foo" + idx + " {\n" + "}");
+		for (int idx = 0; idx < 1000; idx++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			this.env.addClass(root, "test", "Foo" + idx, "package test;\n\n" + "public class Foo" + idx + " {\n" + "}"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		this.env.fullBuild();
 
-		for (int idx = 0; idx < 10; idx++) {
+		for (int idx = 0; idx < 10; idx++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			startMeasuring();
 			Region region = new Region();
 			IPackageFragment[] fragments = jproj.getPackageFragments();
 
-			for (IPackageFragment next : fragments) {
+			for (IPackageFragment next : fragments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IJavaElement[] children = next.getChildren();
 
-				for (IJavaElement nextChild : children) {
+				for (IJavaElement nextChild : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					region.add(nextChild);
 				}
 			}

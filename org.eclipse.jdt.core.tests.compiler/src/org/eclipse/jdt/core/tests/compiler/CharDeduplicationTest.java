@@ -42,8 +42,8 @@ public class CharDeduplicationTest extends TestCase {
 		return suite;
 	}
 
-	public void testDeduplication() {
-		for (int i = 0; i < 3; i++) {
+	public void testDeduplication() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		for (int i = 0; i < 3; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			assertDeduplication("a");
 			// ..
 			assertDeduplication("z");
@@ -62,37 +62,37 @@ public class CharDeduplicationTest extends TestCase {
 			assertDeduplication("$"); // legal
 			assertDeduplication("_"); // note that "_" may become more common after JEP 302 as keyword for unused
 										// lambda parameter!
-			assertDeduplication("" + (char) 0);
+			assertDeduplication("" + (char) 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			// ..
-			assertDeduplication("" + (char) 127);
-			assertDeduplication("" + (char) 128); // non-Ascii
+			assertDeduplication("" + (char) 127); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertDeduplication("" + (char) 128); // non-Ascii //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
 	public void testDeduplicationMid() {
 		String text = "abcdefghijklmn";
-		for (int start = 0; start < text.length(); start++) {
-			for (int end = start; end < text.length(); end++) {
+		for (int start = 0; start < text.length(); start++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (int end = start; end < text.length(); end++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				assertDedup(text, true, start, end);
 			}
 		}
 	}
 
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testDeduplicationTableSize() {
 		CharDeduplication deduplication = CharDeduplication.getThreadLocalInstance();
 		deduplication.reset();// to test the overflow we need to start empty
-		for (int overload = 0; overload < 3; overload++) {
-			HashMap<Integer, char[]> expecteds = new HashMap<>();
-			for (int i = 0; i < CharDeduplication.SEARCH_SIZE + overload; i++) {
+		for (int overload = 0; overload < 3; overload++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			HashMap<Integer, char[]> expecteds = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+			for (int i = 0; i < CharDeduplication.SEARCH_SIZE + overload; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int numberWithFixedLength = 10000 + i;
-				String string = "" + numberWithFixedLength;
+				String string = "" + numberWithFixedLength; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				char[] a = string.toCharArray();
 				char[] expected = deduplication.sharedCopyOfRange(a, 0, a.length);
 				expecteds.put(i, expected);
 			}
-			for (int t = 0; t < 2; t++) {
-				for (int i = 0; i < expecteds.size(); i++) {
+			for (int t = 0; t < 2; t++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				for (int i = 0; i < expecteds.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					char[] expected = expecteds.get(i);
 					char[] other = String.valueOf(expected).toCharArray();
 					if (overload == 0 || i > 0) {
@@ -113,27 +113,27 @@ public class CharDeduplicationTest extends TestCase {
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		CharDeduplicationTest test=new CharDeduplicationTest("");
-		System.out.println("min= ~"+ LongStream.range(0, 20).map(t->test.runPerformanceTest()).min().getAsLong()/1_000_000_000d);
+		System.out.println("min= ~"+ LongStream.range(0, 20).map(t->test.runPerformanceTest()).min().getAsLong()/1_000_000_000d); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		//.21 s
 	}
 
-	public long runPerformanceTest() {
+	public long runPerformanceTest() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		CharDeduplication deduplication = CharDeduplication.getThreadLocalInstance();
 		int MAX_LENGTH = 6;
 		int RUNS = 1000;
 		int TOKENS = 1080;
 		Random rnd = new Random(0);
 
-		StringBuilder content = new StringBuilder();
-		for (int i = 0; i < TOKENS + MAX_LENGTH; i++) {
-			content.append(((char) (65 + (Math.round(15.0/rnd.nextDouble()) & 15))));
+		StringBuilder content = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0; i < TOKENS + MAX_LENGTH; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			content.append(((char) (65 + (Math.round(15.0/rnd.nextDouble()) & 15)))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		char[] contents = content.toString().toCharArray();
-		ArrayList<char[]> results = new ArrayList<>(RUNS * TOKENS);
+		ArrayList<char[]> results = new ArrayList<>(RUNS * TOKENS); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		long nanoTime = System.nanoTime();
-		for (int l = 1; l < MAX_LENGTH; l++) {
-			for (int j = 0; j < RUNS; j++) {
-					for (int i = 0; i < TOKENS; i++) {
+		for (int l = 1; l < MAX_LENGTH; l++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (int j = 0; j < RUNS; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					for (int i = 0; i < TOKENS; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						char[] result = deduplication.sharedCopyOfRange(contents, i, i + l);
 						results.add(result);
 					}
@@ -142,11 +142,11 @@ public class CharDeduplicationTest extends TestCase {
 		long nanoTime2 = System.nanoTime();
 		long durationNanos = nanoTime2 - nanoTime;
 		System.out.println(durationNanos);
-		IdentityHashMap<char[], char[]> identityHashMap = new IdentityHashMap<>();
-		for (char[] r : results) {
+		IdentityHashMap<char[], char[]> identityHashMap = new IdentityHashMap<>(); //FLLDCIM: MARK — M06 M3_IDENTITY_WEAK_LANES NEW
+		for (char[] r : results) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			identityHashMap.put(r, r);
 		}
-		System.out.println("deduplicated " + (results.size() - identityHashMap.size()) * 100f / results.size() + "%"); // 99.9%
+		System.out.println("deduplicated " + (results.size() - identityHashMap.size()) * 100f / results.size() + "%"); // 99.9% //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		return durationNanos;
 	}
 
@@ -165,7 +165,7 @@ public class CharDeduplicationTest extends TestCase {
 		})).collect(Collectors.toList());
 		ExecutorService executor = Executors.newFixedThreadPool(nThreads);
 		tasks.forEach(executor::submit);
-		for (FutureTask<Object> task : tasks) {
+		for (FutureTask<Object> task : tasks) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				task.get();
 			} catch (Exception e) {
@@ -197,11 +197,11 @@ public class CharDeduplicationTest extends TestCase {
 		assertNotSame(expected, other);
 		CharDeduplication deduplication = CharDeduplication.getThreadLocalInstance();
 		char[] actual = deduplication.sharedCopyOfRange(other, startPosition, end);
-		String state = "expected=" + String.valueOf(expected) + ", actual=" + String.valueOf(actual);
+		String state = "expected=" + String.valueOf(expected) + ", actual=" + String.valueOf(actual); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (same) {
 			assertSame(state, expected, actual);
 		} else {
-			assertNotSame("Expected different instances. But thats not a requirement but an implementation detail test:"
+			assertNotSame("Expected different instances. But thats not a requirement but an implementation detail test:" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ state, expected, actual);
 		}
 		return actual;

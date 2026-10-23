@@ -29,7 +29,7 @@ public class RequiresInfo extends ClassFileStruct implements IRequiresInfo {
 	private final int versionIndex;
 	private char[] versionName;
 
-	public RequiresInfo(byte[] classFileBytes, IConstantPool constantPool, int offset) throws ClassFormatException{
+	public RequiresInfo(byte[] classFileBytes, IConstantPool constantPool, int offset) throws ClassFormatException{ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int readOffset = 0;
 		this.index = u2At(classFileBytes, readOffset, offset);
 		readOffset += 2;

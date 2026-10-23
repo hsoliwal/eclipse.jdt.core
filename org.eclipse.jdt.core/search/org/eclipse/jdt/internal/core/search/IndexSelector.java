@@ -71,7 +71,7 @@ public IndexSelector(
  * a JarPackageFragmentRot) either because the focus is part of the project or the jar, or because it is
  * accessible throught the project's classpath
  */
-public static int canSeeFocus(SearchPattern pattern, IPath projectOrJarPath) {
+public static int canSeeFocus(SearchPattern pattern, IPath projectOrJarPath) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaModel model = JavaModelManager.getJavaModelManager().getJavaModel();
 		IJavaProject project = getJavaProject(projectOrJarPath, model);
@@ -85,7 +85,7 @@ public static int canSeeFocus(SearchPattern pattern, IPath projectOrJarPath) {
 		// it can see the focus only if it is on the classpath of a project that can see the focus
 		int result = PROJECT_CAN_NOT_SEE_FOCUS;
 		IJavaProject[] allProjects = model.getJavaProjects();
-		for (IJavaProject p : allProjects) {
+		for (IJavaProject p : allProjects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JavaProject otherProject = (JavaProject) p;
 			IClasspathEntry entry = otherProject.getClasspathEntryFor(projectOrJarPath);
 			if (entry != null && entry.getEntryKind() == IClasspathEntry.CPE_LIBRARY) {
@@ -104,7 +104,7 @@ public static int canSeeFocus(SearchPattern pattern, IPath projectOrJarPath) {
 private static int canSeeFocus(IJavaElement[] focuses, JavaProject javaProject, char[][][] focusQualifiedNames) {
 	int result = PROJECT_CAN_NOT_SEE_FOCUS;
 	int length = focuses.length;
-	for (int i=0; i<length; i++) {
+	for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int canSeeFocus = canSeeFocus(focuses[i], javaProject, focusQualifiedNames);
 		if (canSeeFocus == PROJECT_CAN_SEE_FOCUS)
 			return PROJECT_CAN_SEE_FOCUS;
@@ -113,7 +113,7 @@ private static int canSeeFocus(IJavaElement[] focuses, JavaProject javaProject, 
 	}
 	return result;
 }
-private static int canSeeFocus(IJavaElement focus, JavaProject javaProject, char[][][] focusQualifiedNames) {
+private static int canSeeFocus(IJavaElement focus, JavaProject javaProject, char[][][] focusQualifiedNames) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		if (focus == null) return PROJECT_CAN_NOT_SEE_FOCUS;
 		if (focus.equals(javaProject)) return PROJECT_CAN_SEE_FOCUS;
@@ -122,7 +122,7 @@ private static int canSeeFocus(IJavaElement focus, JavaProject javaProject, char
 			// focus is part of a jar
 			IPath focusPath = focus.getPath();
 			IClasspathEntry[] entries = javaProject.getExpandedClasspath();
-			for (IClasspathEntry entry : entries) {
+			for (IClasspathEntry entry : entries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (entry.getEntryKind() == IClasspathEntry.CPE_LIBRARY && entry.getPath().equals(focusPath))
 					return PROJECT_CAN_SEE_FOCUS;
 			}
@@ -131,13 +131,13 @@ private static int canSeeFocus(IJavaElement focus, JavaProject javaProject, char
 		// look for dependent projects
 		IPath focusPath = ((JavaProject) focus).getProject().getFullPath();
 		IClasspathEntry[] entries = javaProject.getExpandedClasspath();
-		for (IClasspathEntry entry : entries) {
+		for (IClasspathEntry entry : entries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (entry.getEntryKind() == IClasspathEntry.CPE_PROJECT && entry.getPath().equals(focusPath)) {
 				if (focusQualifiedNames != null) { // builder state is usable, hence use it to try to reduce project which can see the focus...
 					State projectState = (State) JavaModelManager.getJavaModelManager().getLastBuiltState(javaProject.getProject(), null);
 					if (projectState != null) {
 						Collection<ReferenceCollection> values = projectState.getReferences().values();
-						for (ReferenceCollection references : values) {
+						for (ReferenceCollection references : values) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (references == null) continue;
 							if (references.includes(focusQualifiedNames, null, null)) {
 								return PROJECT_CAN_SEE_FOCUS;
@@ -158,7 +158,7 @@ private static int canSeeFocus(IJavaElement focus, JavaProject javaProject, char
 /*
  * Create the list of focused jars or projects.
  */
-private static IJavaElement[] getFocusedElementsAndTypes(SearchPattern pattern, IJavaElement focusElement, ObjectVector superTypes) throws JavaModelException {
+private static IJavaElement[] getFocusedElementsAndTypes(SearchPattern pattern, IJavaElement focusElement, ObjectVector superTypes) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (pattern instanceof MethodPattern) {
 		// For method pattern, it needs to walk along the focus type super hierarchy
 		// and add jars/projects of all the encountered types.
@@ -171,10 +171,10 @@ private static IJavaElement[] getFocusedElementsAndTypes(SearchPattern pattern, 
 		int length = allTypes.length;
 		SimpleSet focusSet = new SimpleSet(length+1);
 		if (focusElement != null) focusSet.add(focusElement);
-		for (int i=0; i<length; i++) {
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IMethod[] methods = allTypes[i].getMethods();
 			int mLength = methods.length;
-			for (int m=0; m<mLength; m++) {
+			for (int m=0; m<mLength; m++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (parameterCount == methods[m].getNumberOfParameters() && methods[m].getElementName().equals(selector)) {
 					IPackageFragmentRoot root = (IPackageFragmentRoot) allTypes[i].getAncestor(IJavaElement.PACKAGE_FRAGMENT_ROOT);
 					IJavaElement element = root.isArchive() ? root : root.getParent();
@@ -188,7 +188,7 @@ private static IJavaElement[] getFocusedElementsAndTypes(SearchPattern pattern, 
 		IJavaElement[] focuses = new IJavaElement[focusSet.elementSize];
 		Object[] values = focusSet.values;
 		int count = 0;
-		for (int i = values.length; --i >= 0;) {
+		for (int i = values.length; --i >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (values[i] != null) {
 				focuses[count++] = (IJavaElement) values[i];
 			}
@@ -202,14 +202,14 @@ private static IJavaElement[] getFocusedElementsAndTypes(SearchPattern pattern, 
 /*
  *  Compute the list of paths which are keying index files.
  */
-private void initializeIndexLocations() {
+private void initializeIndexLocations() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath[] projectsAndJars = this.searchScope.enclosingProjectsAndJars();
 	IndexManager manager = JavaModelManager.getIndexManager();
 	// use a linked set to preserve the order during search: see bug 348507
 	LinkedHashSet<IndexLocation> locations = new LinkedHashSet<>();
 	IJavaElement focus = this.pattern instanceof ModulePattern ? null : MatchLocator.projectOrJarFocus(this.pattern);
 	if (focus == null) {
-		for (IPath projectsAndJar : projectsAndJars) {
+		for (IPath projectsAndJar : projectsAndJars) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IPath path = projectsAndJar;
 			Object target = JavaModel.getTarget(path, false/*don't check existence*/);
 			if (target instanceof IFolder) // case of an external folder
@@ -234,7 +234,7 @@ private void initializeIndexLocations() {
 				focusQualifiedNames = getQualifiedNames(superTypes);
 			}
 			IJavaModel model = JavaModelManager.getJavaModelManager().getJavaModel();
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPath path = projectsAndJars[i];
 				JavaProject project = (JavaProject) getJavaProject(path, model);
 				if (project != null) {
@@ -250,9 +250,9 @@ private void initializeIndexLocations() {
 					externalLibsToCheck.add(path);
 				}
 			}
-			for (int i = 0; i < projectIndex && externalLibsToCheck.elementSize > 0; i++) {
+			for (int i = 0; i < projectIndex && externalLibsToCheck.elementSize > 0; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IClasspathEntry[] entries = projectsCanSeeFocus[i].getResolvedClasspath();
-				for (int j = entries.length; --j >= 0;) {
+				for (int j = entries.length; --j >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IClasspathEntry entry = entries[j];
 					if (entry.getEntryKind() == IClasspathEntry.CPE_LIBRARY) {
 						IPath path = entry.getPath();
@@ -268,11 +268,11 @@ private void initializeIndexLocations() {
 			// jar files can be included in the search scope without including one of the projects that references them, so scan all projects that have not been visited
 			if (externalLibsToCheck.elementSize > 0) {
 				IJavaProject[] allProjects = model.getJavaProjects();
-				for (int i = 0, l = allProjects.length; i < l && externalLibsToCheck.elementSize > 0; i++) {
+				for (int i = 0, l = allProjects.length; i < l && externalLibsToCheck.elementSize > 0; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					JavaProject project = (JavaProject) allProjects[i];
 					if (!visitedProjects.includes(project)) {
 						IClasspathEntry[] entries = project.getResolvedClasspath();
-						for (int j = entries.length; --j >= 0;) {
+						for (int j = entries.length; --j >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							IClasspathEntry entry = entries[j];
 							if (entry.getEntryKind() == IClasspathEntry.CPE_LIBRARY) {
 								IPath path = entry.getPath();
@@ -296,7 +296,7 @@ private void initializeIndexLocations() {
 	this.indexLocations = locations.toArray(new IndexLocation[locations.size()]);
 }
 
-public IndexLocation[] getIndexLocations() {
+public IndexLocation[] getIndexLocations() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.indexLocations == null) {
 		initializeIndexLocations();
 	}
@@ -311,7 +311,7 @@ public IndexLocation[] getIndexLocations() {
 					.toArray(IndexLocation[]::new);
 			if (filtered.length == 0) {
 				if (JobManager.VERBOSE) {
-					trace(String.format(
+					trace(String.format( //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
 							"-> current index selection and qualifying indexes has no intersection, " + //$NON-NLS-1$
 									"to keep search backward compatible using selected index locations - %s", //$NON-NLS-1$
 							this.toString()));
@@ -321,7 +321,7 @@ public IndexLocation[] getIndexLocations() {
 		}
 	}
 	if (JobManager.VERBOSE) {
-		trace(String.format("-> selected %s indexes out of total indexes %s after qualify filtering - %s",  //$NON-NLS-1$
+		trace(String.format("-> selected %s indexes out of total indexes %s after qualify filtering - %s",  //$NON-NLS-1$ //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
 				filtered.length, this.indexLocations.length, this.toString()));
 	}
 	return filtered;
@@ -343,12 +343,12 @@ private static IJavaProject getJavaProject(IPath path, IJavaModel model) {
 	return null;
 }
 
-private char[][][] getQualifiedNames(ObjectVector types) {
+private char[][][] getQualifiedNames(ObjectVector types) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final int size = types.size;
 	char[][][] focusQualifiedNames = null;
 	IJavaElement javaElement = this.pattern.focus;
 	int index = 0;
-	while (javaElement != null && !(javaElement instanceof ITypeRoot)) {
+	while (javaElement != null && !(javaElement instanceof ITypeRoot)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		javaElement = javaElement.getParent();
 	}
 	if (javaElement != null) {
@@ -361,7 +361,7 @@ private char[][][] getQualifiedNames(ObjectVector types) {
 	if (focusQualifiedNames == null) {
 		focusQualifiedNames = new char[size][][];
 	}
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		focusQualifiedNames[index++] = CharOperation.splitOn('.', ((IType)(types.elementAt(i))).getFullyQualifiedName().toCharArray());
 	}
 	return focusQualifiedNames.length == 0 ? null : ReferenceCollection.internQualifiedNames(focusQualifiedNames, true);

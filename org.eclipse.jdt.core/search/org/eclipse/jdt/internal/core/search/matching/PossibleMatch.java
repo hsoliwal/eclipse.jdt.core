@@ -78,7 +78,7 @@ public boolean equals(Object obj) {
 	// Even .class files for secondary types and their nested types
 	return CharOperation.equals(this.compoundName, ((PossibleMatch) obj).compoundName);
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public char[] getContents() {
 	char[] contents = (this.source == NO_SOURCE_FILE) ? null : this.source;
 	if (this.source == null) {
@@ -101,7 +101,7 @@ public char[] getContents() {
 				}
 			}
 		} else if (this.autoModuleName != null) { // fab a module
-			contents = ("module " + this.autoModuleName + "{}").toCharArray();  //$NON-NLS-1$//$NON-NLS-2$
+			contents = ("module " + this.autoModuleName + "{}").toCharArray();  //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			this.sourceFileName = "module-info.java"; //$NON-NLS-1$
 			this.compoundName = new char[][] { "module-info".toCharArray()}; //$NON-NLS-1$
 		} else {
@@ -136,7 +136,7 @@ public char[][] getPackageName() {
  * Returns the fully qualified name of the main type of the compilation unit
  * or the main type of the .java file that defined the class file.
  */
-private char[] getQualifiedName() {
+private char[] getQualifiedName() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.openable instanceof CompilationUnit) {
 		// get file name
 		String fileName = this.openable.getElementName(); // working copy on a .class file may not have a resource, so use the element name
@@ -169,7 +169,7 @@ PossibleMatch getSimilarMatch() {
  * Returns the source file name of the class file.
  * Returns NO_SOURCE_FILE_NAME if not found.
  */
-private String getSourceFileName() {
+private String getSourceFileName() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.sourceFileName != null) return this.sourceFileName;
 
 	this.sourceFileName = NO_SOURCE_FILE_NAME;
@@ -196,7 +196,7 @@ public int hashCode() {
 	if (this.compoundName == null) return super.hashCode();
 
 	int hashCode = 0;
-	for (char[] name : this.compoundName)
+	for (char[] name : this.compoundName) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		hashCode += CharOperation.hashCode(name);
 	return hashCode;
 }

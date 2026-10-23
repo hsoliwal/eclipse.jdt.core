@@ -42,7 +42,7 @@ public class ConcurrentBatchCompilerTest extends BatchCompilerTest {
 	@Override
 	protected boolean invokeCompiler(PrintWriter out, PrintWriter err, Object extraArguments, TestCompilationProgress compilationProgress) {
 		boolean success = true;
-		for (int j=0; j<COUNT; j++) {
+		for (int j=0; j<COUNT; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			success &= super.invokeCompiler(out, err, extraArguments, compilationProgress);
 		}
 		return success;
@@ -54,20 +54,20 @@ public class ConcurrentBatchCompilerTest extends BatchCompilerTest {
 		Thread current = Thread.currentThread();
 		String baseName = super.testName();
 		if (current == this.runner1)
-			return baseName+"-Thread1";
+			return baseName+"-Thread1"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (current == this.runner2)
-			return baseName+"-Thread2";
+			return baseName+"-Thread2"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		return baseName;
 	}
 
-	public void testBug372319() throws Throwable {
+	public void testBug372319() throws Throwable { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			FakedTrackingVariable.TEST_372319 = true;
 
 			// expected error output for runner2 times COUNT:
-			final StringBuilder errorOutput = new StringBuilder();
-			for (int j=0; j<COUNT; j++)
-				errorOutput.append("----------\n" +
+			final StringBuilder errorOutput = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			for (int j=0; j<COUNT; j++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				errorOutput.append("----------\n" + //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						"1. ERROR in ---OUTPUT_DIR_PLACEHOLDER---/test01/X.java (at line 12)\n" +
 						"	FileReader reader = getReader(\"somefile\");\n" +
 						"	           ^^^^^^\n" +
@@ -80,7 +80,7 @@ public class ConcurrentBatchCompilerTest extends BatchCompilerTest {
 
 			final String firstSupportedVersion = CompilerOptions.getFirstSupportedJavaVersion();
 			this.runner1 = new Thread(new Runnable() {
-					@Override
+					@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 					public void run() {
 						try {
 							runConformTest(new String[] {
@@ -144,7 +144,7 @@ public class ConcurrentBatchCompilerTest extends BatchCompilerTest {
 								"}\n" +
 								""
 							},
-					        "\"" + OUTPUT_DIR +  File.separator + "org/eclipse/jdt/internal/launching/CompositeId.java\""
+					        "\"" + OUTPUT_DIR +  File.separator + "org/eclipse/jdt/internal/launching/CompositeId.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				            + " -" + firstSupportedVersion + " -g -preserveAllLocals"
 				            + " -proceedOnError -d \"" + OUTPUT_DIR + "\"",
 							"",
@@ -156,7 +156,7 @@ public class ConcurrentBatchCompilerTest extends BatchCompilerTest {
 					}
 			});
 			this.runner2 = new Thread(new Runnable() {
-				@Override
+				@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				public void run() {
 					try {
 						// from ResourceLeakTests.test056e():
@@ -186,7 +186,7 @@ public class ConcurrentBatchCompilerTest extends BatchCompilerTest {
 								"    }\n" +
 								"}\n"
 							},
-					        "\"" + OUTPUT_DIR +  File.separator + "test01/X.java\""
+					        "\"" + OUTPUT_DIR +  File.separator + "test01/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				            + " -" + firstSupportedVersion + " -g -preserveAllLocals -err:+resource"
 				            + " -proceedOnError -d \"" + OUTPUT_DIR + "\"",
 				            "",

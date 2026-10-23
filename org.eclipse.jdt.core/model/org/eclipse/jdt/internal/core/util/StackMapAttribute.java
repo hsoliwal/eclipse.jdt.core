@@ -36,7 +36,7 @@ public class StackMapAttribute
 	/**
 	 * Constructor for LineNumberAttribute.
 	 */
-	public StackMapAttribute(
+	public StackMapAttribute( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			byte[] classFileBytes,
 			IConstantPool constantPool,
 			int offset)
@@ -48,7 +48,7 @@ public class StackMapAttribute
 		if (length != 0) {
 			int readOffset = 8;
 			this.frames = new IStackMapFrame[length];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				DefaultStackMapFrame frame = new DefaultStackMapFrame(classFileBytes, constantPool, offset + readOffset);
 				this.frames[i] = frame;
 				readOffset += frame.sizeInBytes();

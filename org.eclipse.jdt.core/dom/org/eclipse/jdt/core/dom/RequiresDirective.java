@@ -49,7 +49,7 @@ public class RequiresDirective extends ModuleDirective {
 	private static final List PROPERTY_DESCRIPTORS_9_0;
 
 	static {
-		List propertyList = new ArrayList(3);
+		List propertyList = new ArrayList(3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(RequiresDirective.class, propertyList);
 		addProperty(MODIFIERS_PROPERTY, propertyList);
 		addProperty(NAME_PROPERTY, propertyList);
@@ -185,7 +185,7 @@ public class RequiresDirective extends ModuleDirective {
 		// do not cache - performance could be improved by caching computed flags
 		// but this would require tracking changes to this.modifiers
 		int computedModifierFlags = ModuleModifier.NONE;
-		for (Object x : modifiers()) {
+		for (Object x : modifiers()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (x instanceof ModuleModifier) {
 				computedModifierFlags |= ((ModuleModifier) x).getKeyword().toFlagValue();
 			}

@@ -131,7 +131,7 @@ public void testCopyBinaryType() throws JavaModelException {
  * Ensures that a constructor can be copied to a different type.  The constructor
  * should be automatically renamed to that of the destination type.
  */
-public void testCopyConstructor() throws CoreException {
+public void testCopyConstructor() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -155,7 +155,7 @@ public void testCopyConstructor() throws CoreException {
  * Ensures that a constructor can be copied to a different type across projects.
  * The constructor should be automatically renamed to that of the destination type.
  */
-public void testCopyConstructorInDifferentProject() throws CoreException {
+public void testCopyConstructorInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -178,7 +178,7 @@ public void testCopyConstructorInDifferentProject() throws CoreException {
 /**
  * Ensures that a field can be copied to a different type.
  */
-public void testCopyField() throws CoreException {
+public void testCopyField() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -200,7 +200,7 @@ public void testCopyField() throws CoreException {
 /**
  * Ensures that a field can be copied to a different type replacing an existing field.
  */
-public void testCopyFieldForce() throws CoreException {
+public void testCopyFieldForce() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -224,7 +224,7 @@ public void testCopyFieldForce() throws CoreException {
  * Ensures that a field can be copied to a different type across projects
  * replacing an existing field.
  */
-public void testCopyFieldForceInDifferentProject() throws CoreException {
+public void testCopyFieldForceInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -248,7 +248,7 @@ public void testCopyFieldForceInDifferentProject() throws CoreException {
 /**
  * Ensures that a field can be copied to a different type in a different project.
  */
-public void testCopyFieldInDifferentProject() throws CoreException {
+public void testCopyFieldInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -270,7 +270,7 @@ public void testCopyFieldInDifferentProject() throws CoreException {
  * Ensures that a field can be copied to a different type,
  * and renamed.
  */
-public void testCopyFieldRename() throws CoreException {
+public void testCopyFieldRename() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -293,7 +293,7 @@ public void testCopyFieldRename() throws CoreException {
  * Ensures that a field can be copied to a different type,
  * and renamed, overwriting an existing field.
  */
-public void testCopyFieldRenameForce() throws CoreException {
+public void testCopyFieldRenameForce() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -317,7 +317,7 @@ public void testCopyFieldRenameForce() throws CoreException {
  * Ensures that a field can be copied to a different type across two different
  * projects, and renamed, overwriting an existing field.
  */
-public void testCopyFieldRenameForceInDifferentProject() throws CoreException {
+public void testCopyFieldRenameForceInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -342,7 +342,7 @@ public void testCopyFieldRenameForceInDifferentProject() throws CoreException {
  * Ensures that a field can be copied to a different type across two different
  * projects, and renamed.
  */
-public void testCopyFieldRenameInDifferentProject() throws CoreException {
+public void testCopyFieldRenameInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -378,7 +378,7 @@ public void testCopyFieldSameParent() throws CoreException {
 /**
  * Ensures that a multi status exception is generated when copying fields.
  */
-public void testCopyFieldsMultiStatus() throws CoreException {
+public void testCopyFieldsMultiStatus() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -398,7 +398,7 @@ public void testCopyFieldsMultiStatus() throws CoreException {
 
 	IField[] fieldsSource = typeSource.getFields();
 	IJavaElement[] dests = new IJavaElement[fieldsSource.length];
-	for (int i = 0; i < dests.length; i++) {
+	for (int i = 0; i < dests.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		dests[i] = typeDest;
 	}
 	dests[1] = fieldsSource[0]; //invalid destination
@@ -436,7 +436,7 @@ public void testCopyFieldsMultiStatus() throws CoreException {
 /**
  * Ensures that a multi status exception is generated when copying fields.
  */
-public void testCopyFieldsMultiStatusInDifferentProject() throws CoreException {
+public void testCopyFieldsMultiStatusInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	DeltaListener listener = new DeltaListener();
 	try {
 		this.createFile(
@@ -452,7 +452,7 @@ public void testCopyFieldsMultiStatusInDifferentProject() throws CoreException {
 
 		IField[] fieldsSource = typeSource.getFields();
 		IJavaElement[] dests = new IJavaElement[fieldsSource.length];
-		for (int i = 0; i < dests.length; i++) {
+		for (int i = 0; i < dests.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			dests[i] = typeDest;
 		}
 		dests[1] = fieldsSource[0]; //invalid destination
@@ -490,7 +490,7 @@ public void testCopyFieldsMultiStatusInDifferentProject() throws CoreException {
  * Ensures that a field cannot be copied to a different type replacing an existing field if
  * no force.
  */
-public void testCopyFieldWithCollision() throws CoreException {
+public void testCopyFieldWithCollision() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -514,7 +514,7 @@ public void testCopyFieldWithCollision() throws CoreException {
  * Ensures that a field cannot be copied to a different type across different projects
  * replacing an existing field if no force.
  */
-public void testCopyFieldWithCollisionInDifferentProject() throws CoreException {
+public void testCopyFieldWithCollisionInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -555,7 +555,7 @@ public void testCopyFieldWithInvalidDestination() throws CoreException {
 /**
  * Ensures that a field cannot be copied to an invalid destination.
  */
-public void testCopyFieldWithInvalidDestinationInDifferentProject() throws CoreException {
+public void testCopyFieldWithInvalidDestinationInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -578,7 +578,7 @@ public void testCopyFieldWithInvalidDestinationInDifferentProject() throws CoreE
  * Ensures that a field cannot be copied to a different type with an invalid sibling
  * used for positioning.
  */
-public void testCopyFieldWithInvalidPositioning() throws CoreException {
+public void testCopyFieldWithInvalidPositioning() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -607,7 +607,7 @@ public void testCopyFieldWithInvalidPositioning() throws CoreException {
  * Ensures that a field cannot be copied to a different type with an invalid sibling
  * used for positioning.
  */
-public void testCopyFieldWithInvalidPositioningInDifferentProject() throws CoreException {
+public void testCopyFieldWithInvalidPositioningInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -636,7 +636,7 @@ public void testCopyFieldWithInvalidPositioningInDifferentProject() throws CoreE
 /**
  * Ensures that a field can be copied to a different type with positioning.
  */
-public void testCopyFieldWithPositioning() throws CoreException {
+public void testCopyFieldWithPositioning() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -660,7 +660,7 @@ public void testCopyFieldWithPositioning() throws CoreException {
  * Ensures that a field can be copied to a different type across different projects
  * with positioning.
  */
-public void testCopyFieldWithPositioningInDifferentProject() throws CoreException {
+public void testCopyFieldWithPositioningInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -684,7 +684,7 @@ public void testCopyFieldWithPositioningInDifferentProject() throws CoreExceptio
 /*
  * Ensures that an import can be copied to a different cu.
  */
-public void testCopyImport() throws CoreException {
+public void testCopyImport() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"import java.util.*;\n" +
@@ -705,7 +705,7 @@ public void testCopyImport() throws CoreException {
 /*
  * Ensures that a static import can be copied to a different cu.
  */
-public void testCopyImportStatic() throws CoreException {
+public void testCopyImportStatic() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"import static java.lang.Math;\n" +
@@ -731,7 +731,7 @@ public void testCopyImportStatic() throws CoreException {
 /**
  * Ensures that a initializer can be copied to a different type.
  */
-public void testCopyInitializer() throws CoreException {
+public void testCopyInitializer() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -757,7 +757,7 @@ public void testCopyInitializer() throws CoreException {
  * Ensures that a initializer can be copied to a different type across two different
  * projects.
  */
-public void testCopyInitializerInDifferentProject() throws CoreException {
+public void testCopyInitializerInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -781,7 +781,7 @@ public void testCopyInitializerInDifferentProject() throws CoreException {
 /**
  * Ensures that a initializer cannot be copied and renamed.
  */
-public void testCopyInitializerRename() throws CoreException {
+public void testCopyInitializerRename() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -806,7 +806,7 @@ public void testCopyInitializerRename() throws CoreException {
 /**
  * Ensures that a initializer cannot be copied and renamed.
  */
-public void testCopyInitializerRenameInDifferentProject() throws CoreException {
+public void testCopyInitializerRenameInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -831,7 +831,7 @@ public void testCopyInitializerRenameInDifferentProject() throws CoreException {
  * Ensures that a initializer can be copied to a different type across two different
  * projects with positioning.
  */
-public void testCopyInitializerWithPositioningInDifferentProject() throws CoreException {
+public void testCopyInitializerWithPositioningInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -860,7 +860,7 @@ public void testCopyInitializerWithPositioningInDifferentProject() throws CoreEx
 /**
  * Ensures that an inner type can be copied with positioning.
  */
-public void testCopyInnerTypeWithPositioningInDifferentProject() throws CoreException {
+public void testCopyInnerTypeWithPositioningInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -885,7 +885,7 @@ public void testCopyInnerTypeWithPositioningInDifferentProject() throws CoreExce
 /**
  * Ensures that a local type can be copied.
  */
-public void testCopyLocalType() throws CoreException {
+public void testCopyLocalType() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -948,7 +948,7 @@ public void testCopyMainTypeInDifferentProject() throws CoreException {
 /**
  * Ensures that a method can be copied to a different type.
  */
-public void testCopyMethod() throws CoreException{
+public void testCopyMethod() throws CoreException{ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -972,7 +972,7 @@ public void testCopyMethod() throws CoreException{
  * Ensures that a method can be copied to a different type, forcing
  * an overwrite when there is a name collision
  */
-public void testCopyMethodForce() throws CoreException {
+public void testCopyMethodForce() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -998,7 +998,7 @@ public void testCopyMethodForce() throws CoreException {
  * Ensures that a method can be copied to a different type across different projects,
  * forcing an overwrite when there is a name collision
  */
-public void testCopyMethodForceInDifferentProject() throws CoreException {
+public void testCopyMethodForceInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1024,7 +1024,7 @@ public void testCopyMethodForceInDifferentProject() throws CoreException {
 /**
  * Ensures that a method can be copied to a different type across different projects.
  */
-public void testCopyMethodInDifferentProject() throws CoreException {
+public void testCopyMethodInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1047,7 +1047,7 @@ public void testCopyMethodInDifferentProject() throws CoreException {
  * Ensures that a method can be copied to a different type, renamed
  * simaltaneously.
  */
-public void testCopyMethodRename() throws CoreException {
+public void testCopyMethodRename() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -1071,7 +1071,7 @@ public void testCopyMethodRename() throws CoreException {
  * Ensures that a method can be copied to a different type, renamed
  * simaltaneously, overwriting an existing method.
  */
-public void testCopyMethodRenameForce() throws CoreException {
+public void testCopyMethodRenameForce() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -1097,7 +1097,7 @@ public void testCopyMethodRenameForce() throws CoreException {
  * Ensures that a method can be copied to a different type across different projects,
  * renamed simaltaneously, overwriting an existing method.
  */
-public void testCopyMethodRenameForceInDifferentProject() throws CoreException {
+public void testCopyMethodRenameForceInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1124,7 +1124,7 @@ public void testCopyMethodRenameForceInDifferentProject() throws CoreException {
  * Ensures that a method can be copied to a different type across different projects,
  * renamed simaltaneously.
  */
-public void testCopyMethodRenameInDifferentProject() throws CoreException {
+public void testCopyMethodRenameInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1164,7 +1164,7 @@ public void testCopyMethodSameParent() throws CoreException {
  * Ensures that a method cannot be copied to a different type, when not forcing
  * an overwrite when there is a name collision
  */
-public void testCopyMethodWithCollision() throws CoreException {
+public void testCopyMethodWithCollision() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -1190,7 +1190,7 @@ public void testCopyMethodWithCollision() throws CoreException {
  * Ensures that a method cannot be copied to a different type across different projects,
  * when not forcing an overwrite when there is a name collision
  */
-public void testCopyMethodWithCollisionInDifferentProject() throws CoreException {
+public void testCopyMethodWithCollisionInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1232,7 +1232,7 @@ public void testCopyMethodWithInvalidDestination() throws CoreException {
 /**
  * Ensures that a method cannot be copied to an invalid destination.
  */
-public void testCopyMethodWithInvalidDestinationInDifferentProject() throws CoreException {
+public void testCopyMethodWithInvalidDestinationInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1259,7 +1259,7 @@ public void testCopyMethodWithInvalidDestinationInDifferentProject() throws Core
 /**
  * Ensures that a method can be copied to a different type  with positioning.
  */
-public void testCopyMethodWithPositioningInDifferentProject() throws CoreException {
+public void testCopyMethodWithPositioningInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1287,7 +1287,7 @@ public void testCopyMethodWithPositioningInDifferentProject() throws CoreExcepti
 /**
  * Ensures that attempting to rename with an incorrect number of renamings fails
  */
-public void testCopyMoveWithInvalidRenamings() throws CoreException {
+public void testCopyMoveWithInvalidRenamings() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -1308,7 +1308,7 @@ public void testCopyMoveWithInvalidRenamings() throws CoreException {
 /**
  * Ensures that a method with syntax errors can be copied to a different type.
  */
-public void testCopySyntaxErrorMethod() throws CoreException {
+public void testCopySyntaxErrorMethod() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -1332,7 +1332,7 @@ public void testCopySyntaxErrorMethod() throws CoreException {
  * Ensures that a method with syntax errors can be copied to a different type across different
  * projects.
  */
-public void testCopySyntaxErrorMethodInDifferentProject() throws CoreException {
+public void testCopySyntaxErrorMethodInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1354,7 +1354,7 @@ public void testCopySyntaxErrorMethodInDifferentProject() throws CoreException {
 /**
  * Ensures that a type can be copied.
  */
-public void testCopyType() throws CoreException {
+public void testCopyType() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -1376,7 +1376,7 @@ public void testCopyType() throws CoreException {
 /**
  * Ensures that a type can be copied.
  */
-public void testCopyTypeInDifferentProject() throws CoreException {
+public void testCopyTypeInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1398,7 +1398,7 @@ public void testCopyTypeInDifferentProject() throws CoreException {
 /**
  * Ensures that a type can be copied with positioning.
  */
-public void testCopyTypeWithPositioningInDifferentProject() throws CoreException {
+public void testCopyTypeWithPositioningInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1420,7 +1420,7 @@ public void testCopyTypeWithPositioningInDifferentProject() throws CoreException
  * Ensures that a constructor can be moved to a different type.  The constructor
  * should be automatically renamed to that of the destination type.
  */
-public void testMoveConstructor() throws CoreException {
+public void testMoveConstructor() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -1449,7 +1449,7 @@ public void testMoveConstructor() throws CoreException {
  * Ensures that a constructor can be moved to a different type across different projects.
  * The constructor should be automatically renamed to that of the destination type.
  */
-public void testMoveConstructorInDifferentProject() throws CoreException {
+public void testMoveConstructorInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1476,7 +1476,7 @@ public void testMoveConstructorInDifferentProject() throws CoreException {
 /**
  * Ensures that a field can be moved to a different type.
  */
-public void testMoveField() throws CoreException {
+public void testMoveField() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -1498,7 +1498,7 @@ public void testMoveField() throws CoreException {
 /**
  * Ensures that a field can be moved to a different type replacing an existing field.
  */
-public void testMoveFieldForce() throws CoreException {
+public void testMoveFieldForce() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -1522,7 +1522,7 @@ public void testMoveFieldForce() throws CoreException {
  * Ensures that a field can be moved to a different type across differnt projects
  * replacing an existing field.
  */
-public void testMoveFieldForceInDifferentProject() throws CoreException {
+public void testMoveFieldForceInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1546,7 +1546,7 @@ public void testMoveFieldForceInDifferentProject() throws CoreException {
 /**
  * Ensures that a field can be moved to a different type across differnt projects.
  */
-public void testMoveFieldInDifferentProject() throws CoreException {
+public void testMoveFieldInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1574,7 +1574,7 @@ public void testMoveFieldInDifferentProject() throws CoreException {
  * Ensures that a field can be moved to a different type,
  * and renamed.
  */
-public void testMoveFieldRename() throws CoreException {
+public void testMoveFieldRename() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -1597,7 +1597,7 @@ public void testMoveFieldRename() throws CoreException {
  * Ensures that a field can be moved to a different type,
  * and renamed, overwriting an existing field.
  */
-public void testMoveFieldRenameForce() throws CoreException {
+public void testMoveFieldRenameForce() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -1621,7 +1621,7 @@ public void testMoveFieldRenameForce() throws CoreException {
  * Ensures that a field can be moved to a different type across differnt projects,
  * and renamed, overwriting an existing field.
  */
-public void testMoveFieldRenameForceInDifferentProject() throws CoreException {
+public void testMoveFieldRenameForceInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1646,7 +1646,7 @@ public void testMoveFieldRenameForceInDifferentProject() throws CoreException {
  * Ensures that a field can be moved to a different type across different projects,
  * and renamed.
  */
-public void testMoveFieldRenameInDifferentProject() throws CoreException {
+public void testMoveFieldRenameInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1668,7 +1668,7 @@ public void testMoveFieldRenameInDifferentProject() throws CoreException {
  * Ensures that a field can be copied to a different type across different projects
  * with positioning.
  */
-public void testMoveFieldRenameForceWithPositioningInDifferentProject() throws CoreException {
+public void testMoveFieldRenameForceWithPositioningInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1709,7 +1709,7 @@ public void testMoveFieldSameParent() throws CoreException {
  * Ensures that a field cannot be moved to a different type replacing an existing field if
  * not forced.
  */
-public void testMoveFieldWithCollision() throws CoreException {
+public void testMoveFieldWithCollision() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -1733,7 +1733,7 @@ public void testMoveFieldWithCollision() throws CoreException {
  * Ensures that a field cannot be moved to a different type across differnt projects
  * replacing an existing field if not forced.
  */
-public void testMoveFieldWithCollisionInDifferentProject() throws CoreException {
+public void testMoveFieldWithCollisionInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1774,7 +1774,7 @@ public void testMoveFieldWithInvalidDestination() throws CoreException {
 /**
  * Ensures that a field cannot be moved to an invalid destination.
  */
-public void testMoveFieldWithInvalidDestinationInDifferentProject() throws CoreException {
+public void testMoveFieldWithInvalidDestinationInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1797,7 +1797,7 @@ public void testMoveFieldWithInvalidDestinationInDifferentProject() throws CoreE
  * Ensures that a field can be copied to a different type across different projects
  * with positioning.
  */
-public void testMoveFieldWithPositioningInDifferentProject() throws CoreException {
+public void testMoveFieldWithPositioningInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1823,7 +1823,7 @@ public void testMoveFieldWithPositioningInDifferentProject() throws CoreExceptio
 /**
  * Ensures that a initializer can be moved to a different type.
  */
-public void testMoveInitializer() throws CoreException {
+public void testMoveInitializer() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -1849,7 +1849,7 @@ public void testMoveInitializer() throws CoreException {
  * Ensures that a initializer can be copied to a different type that is in a different
  * project.
  */
-public void testMoveInitializerInDifferentProject() throws CoreException {
+public void testMoveInitializerInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1873,7 +1873,7 @@ public void testMoveInitializerInDifferentProject() throws CoreException {
 /**
  * Ensures that a initializer cannot be moved and renamed.
  */
-public void testMoveInitializerRename() throws CoreException {
+public void testMoveInitializerRename() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -1898,7 +1898,7 @@ public void testMoveInitializerRename() throws CoreException {
 /**
  * Ensures that a initializer cannot be moved and renamed.
  */
-public void testMoveInitializerRenameInDifferentProject() throws CoreException {
+public void testMoveInitializerRenameInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1923,7 +1923,7 @@ public void testMoveInitializerRenameInDifferentProject() throws CoreException {
  * Ensures that a initializer can be moved to a different type in a different project
  * with positioning.
  */
-public void testMoveInitializerWithPositioningInDifferentProject() throws CoreException {
+public void testMoveInitializerWithPositioningInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1953,7 +1953,7 @@ public void testMoveInitializerWithPositioningInDifferentProject() throws CoreEx
  * Ensures that an inner type can be moved and renamed to a type that is in different project
  * with positioning.
  */
-public void testMoveInnerTypeRenameWithPositioningInDifferentProject() throws CoreException {
+public void testMoveInnerTypeRenameWithPositioningInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1979,7 +1979,7 @@ public void testMoveInnerTypeRenameWithPositioningInDifferentProject() throws Co
  * Ensures that an inner type can be moved to a type that is in different project
  * with positioning.
  */
-public void testMoveInnerTypeWithPositioningInDifferentProject() throws CoreException {
+public void testMoveInnerTypeWithPositioningInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -2004,7 +2004,7 @@ public void testMoveInnerTypeWithPositioningInDifferentProject() throws CoreExce
 /**
  * Ensures that main types can be moved and renamed (within the same parent).
  */
-public void testMoveMainTypes() throws CoreException {
+public void testMoveMainTypes() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -2028,7 +2028,7 @@ public void testMoveMainTypes() throws CoreException {
 /**
  * Ensures that a method can be moved to a different type.
  */
-public void testMoveMethod() throws CoreException {
+public void testMoveMethod() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -2052,7 +2052,7 @@ public void testMoveMethod() throws CoreException {
  * Ensures that a method can be moved to a different type, forcing
  * an overwrite when there is a name collision
  */
-public void testMoveMethodForce() throws CoreException {
+public void testMoveMethodForce() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -2078,7 +2078,7 @@ public void testMoveMethodForce() throws CoreException {
  * Ensures that a method can be moved to a different type across different projects,
  * forcing an overwrite when there is a name collision
  */
-public void testMoveMethodForceInDifferentProject() throws CoreException {
+public void testMoveMethodForceInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -2104,7 +2104,7 @@ public void testMoveMethodForceInDifferentProject() throws CoreException {
 /**
  * Ensures that a method can be moved to a different type in a different project.
  */
-public void testMoveMethodInDifferentProject() throws CoreException {
+public void testMoveMethodInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -2127,7 +2127,7 @@ public void testMoveMethodInDifferentProject() throws CoreException {
  * Ensures that a method can be moved to a different type, renamed
  * simaltaneously.
  */
-public void testMoveMethodRename() throws CoreException {
+public void testMoveMethodRename() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -2151,7 +2151,7 @@ public void testMoveMethodRename() throws CoreException {
  * Ensures that a method can be moved to a different type, renamed
  * simaltaneously, overwriting an existing method.
  */
-public void testMoveMethodRenameForce() throws CoreException {
+public void testMoveMethodRenameForce() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -2177,7 +2177,7 @@ public void testMoveMethodRenameForce() throws CoreException {
  * Ensures that a method can be moved to a different type across different projects,
  * renamed simaltaneously, overwriting an existing method.
  */
-public void testMoveMethodRenameForceInDifferentProject() throws CoreException {
+public void testMoveMethodRenameForceInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -2204,7 +2204,7 @@ public void testMoveMethodRenameForceInDifferentProject() throws CoreException {
  * Ensures that a method can be moved to a different type across different projects,
  * renamed simaltaneously.
  */
-public void testMoveMethodRenameInDifferentProject() throws CoreException {
+public void testMoveMethodRenameInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -2227,7 +2227,7 @@ public void testMoveMethodRenameInDifferentProject() throws CoreException {
  * Ensures that a method can be moved and renamed to a different type across two different projects
  * with positioning.
  */
-public void testMoveMethodRenameWithPositioningInDifferentProject() throws CoreException {
+public void testMoveMethodRenameWithPositioningInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -2269,7 +2269,7 @@ public void testMoveMethodSameParent() throws CoreException {
 /**
  * Ensures that a method moves can be cancelled.
  */
-public void testMoveMethodsWithCancel() throws CoreException {
+public void testMoveMethodsWithCancel() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -2303,7 +2303,7 @@ public void testMoveMethodsWithCancel() throws CoreException {
 /**
  * Ensures that a method moves across differnt projects can be cancelled.
  */
-public void testMoveMethodsWithCancelInDifferentProject() throws CoreException {
+public void testMoveMethodsWithCancelInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -2339,7 +2339,7 @@ public void testMoveMethodsWithCancelInDifferentProject() throws CoreException {
  * Ensures that a method cannot be moved to a different type, when not forcing
  * an overwrite when there is a name collision
  */
-public void testMoveMethodWithCollision() throws CoreException {
+public void testMoveMethodWithCollision() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -2365,7 +2365,7 @@ public void testMoveMethodWithCollision() throws CoreException {
  * Ensures that a method cannot be moved to a different type, when not forcing
  * an overwrite when there is a name collision
  */
-public void testMoveMethodWithCollisionInDifferentProject() throws CoreException {
+public void testMoveMethodWithCollisionInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -2407,7 +2407,7 @@ public void testMoveMethodWithInvalidDestination() throws CoreException {
 /**
  * Ensures that a method cannot be moved to an invalid destination.
  */
-public void testMoveMethodWithInvalidDestinationInDifferentProject() throws CoreException {
+public void testMoveMethodWithInvalidDestinationInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -2435,7 +2435,7 @@ public void testMoveMethodWithInvalidDestinationInDifferentProject() throws Core
  * Ensures that a method can be moved to a different type that is in a different project
  * with positioning.
  */
-public void testMoveMethodWithPositioningInDifferentProject() throws CoreException {
+public void testMoveMethodWithPositioningInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -2463,7 +2463,7 @@ public void testMoveMethodWithPositioningInDifferentProject() throws CoreExcepti
 /**
  * Ensures that a method with syntax errors can be moved to a different type.
  */
-public void testMoveSyntaxErrorMethod() throws CoreException {
+public void testMoveSyntaxErrorMethod() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/X.java",
 		"public class X {\n" +
@@ -2487,7 +2487,7 @@ public void testMoveSyntaxErrorMethod() throws CoreException {
  * Ensures that a method with syntax errors can be moved to a different type
  * that is in a different project.
  */
-public void testMoveSyntaxErrorMethodInDifferentProject() throws CoreException {
+public void testMoveSyntaxErrorMethodInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -2509,7 +2509,7 @@ public void testMoveSyntaxErrorMethodInDifferentProject() throws CoreException {
 /**
  * Ensures that a type can be moved and renamed across projects to a specified position.
  */
-public void testMoveTypeRenameWithPositioningInDifferentProject() throws CoreException {
+public void testMoveTypeRenameWithPositioningInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -2530,7 +2530,7 @@ public void testMoveTypeRenameWithPositioningInDifferentProject() throws CoreExc
 /**
  * Ensures that a type that is in a different project can be moved to a specified position.
  */
-public void testMoveTypeWithPositioningInDifferentProject() throws CoreException {
+public void testMoveTypeWithPositioningInDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",

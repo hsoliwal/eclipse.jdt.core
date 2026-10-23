@@ -39,7 +39,7 @@ public class EmptyStatement extends Statement {
 	private static final List PROPERTY_DESCRIPTORS;
 
 	static {
-		List properyList = new ArrayList(1);
+		List properyList = new ArrayList(1); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(EmptyStatement.class, properyList);
 		PROPERTY_DESCRIPTORS = reapPropertyList(properyList);
 	}

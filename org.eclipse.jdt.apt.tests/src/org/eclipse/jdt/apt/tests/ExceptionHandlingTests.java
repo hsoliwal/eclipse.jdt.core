@@ -188,7 +188,7 @@ public class ExceptionHandlingTests extends APTTestBase {
 	 * @return complete test code
 	 */
 	private static String getCodeForTest(String annoValue) {
-		return "package test;" + "\n" +
+		return "package test;" + "\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"import org.eclipse.jdt.apt.tests.annotations.exceptionhandling.ExceptionHandlingAnnotation;" + "\n" +
 			"@ExceptionHandlingAnnotation(" +
 			annoValue +

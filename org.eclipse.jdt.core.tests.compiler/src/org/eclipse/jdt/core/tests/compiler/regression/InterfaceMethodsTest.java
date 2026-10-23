@@ -79,10 +79,10 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 
 
 	// default methods with various modifiers, negative cases
-	public void testModifiers1a() {
+	public void testModifiers1a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String infMod = this.complianceLevel >= ClassFileConstants.JDK9 ? " private," : "";
 		String op = this.complianceLevel < ClassFileConstants.JDK17 ?
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in I.java (at line 5)\n" +
 		"	public default synchronized void foo2() { System.exit(0); }\n" +
 		"	                                 ^^^^^^\n" +
@@ -145,7 +145,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	}
 
 	// default methods with various modifiers, simple syntax error blows the parser
-	public void testModifiers1b() {
+	public void testModifiers1b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 		new String[] {
 			"I.java",
@@ -159,7 +159,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"    public strictfp  default @Annot void foo5() {}\n" +
 			"    public default <T> T foo6(T t) { return t; }\n" +
 			"}\n"},
-			"----------\n" +
+			"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"1. ERROR in I.java (at line 6)\n" +
 			"	stritfp default void foo3() {}\n" +
 			"	^^^^^^^\n" +
@@ -190,10 +190,10 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	}
 
 	// regular interface with illegal modifiers
-	public void testModifiers2() {
+	public void testModifiers2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String infMod = this.complianceLevel >= ClassFileConstants.JDK9 ? " private," : "";
 		String op = this.complianceLevel < ClassFileConstants.JDK17 ?
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in I.java (at line 5)\n" +
 		"	public synchronized void foo2();\n" +
 		"	                         ^^^^^^\n" +
@@ -286,7 +286,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	}
 
 	// default & regular methods with modifiers that are illegal even for default methods
-	public void testModifiers3() {
+	public void testModifiers3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String infMod = this.complianceLevel >= ClassFileConstants.JDK9 ? " private," : "";
 		runNegativeTest(
 		new String[] {
@@ -299,7 +299,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"    static default void foo5() {}\n" +
 			"    default static void foo6() {}\n" +
 			"}\n"},
-			"----------\n" +
+			"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"1. ERROR in I.java (at line 2)\n" +
 			"	native void foo1();\n" +
 			"	            ^^^^^^\n" +
@@ -333,7 +333,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	}
 
 	// if an interface methods is explicitly "abstract" it cannot have a (default) body
-	public void testModifiers4() {
+	public void testModifiers4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 		new String[] {
 			"I.java",
@@ -370,7 +370,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 
 	// class implements interface with default method.
 	// - no need to implement this interface method as it is not abstract
-	public void testModifiers5() {
+	public void testModifiers5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"C.java",
@@ -392,7 +392,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 
 	// class implements interface with default method.
 	// - no need to implement this interface method as it is not abstract, but other abstract method exists
-	public void testModifiers6() {
+	public void testModifiers6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"I.java",
@@ -412,7 +412,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	}
 
 	// a default method has a semicolon body / an undocumented empty body
-	public void testModifiers7() {
+	public void testModifiers7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = getCompilerOptions();
 		options.put(JavaCore.COMPILER_PB_UNDOCUMENTED_EMPTY_BLOCK, JavaCore.ERROR);
 		runNegativeTest(
@@ -502,7 +502,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	// Bug 382347 - [1.8][compiler] Compiler accepts incorrect default method inheritance
 	// an inherited default methods clashes with another inherited method
 	// simple case
-	public void testInheritedDefaultOverrides01() {
+	public void testInheritedDefaultOverrides01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"I1.java",
@@ -529,7 +529,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	// Bug 382347 - [1.8][compiler] Compiler accepts incorrect default method inheritance
 	// an inherited default methods clashes with another inherited method
 	// indirect inheritance
-	public void testInheritedDefaultOverrides02() {
+	public void testInheritedDefaultOverrides02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"I1.java",
@@ -561,7 +561,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	// JLS 9.4.1
 	// Bug 382347 - [1.8][compiler] Compiler accepts incorrect default method inheritance
 	// Parameterized case is already reported as a clash
-	public void testInheritedDefaultOverrides03() {
+	public void testInheritedDefaultOverrides03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"I1.java",
@@ -593,7 +593,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	// JLS 9.4.1
 	// Bug 382347 - [1.8][compiler] Compiler accepts incorrect default method inheritance
 	// Parameterized case is already reported as a clash - inverse case of previous
-	public void testInheritedDefaultOverrides04() {
+	public void testInheritedDefaultOverrides04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"I1.java",
@@ -622,7 +622,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=390761
-	public void testDefaultNonclash() {
+	public void testDefaultNonclash() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -653,7 +653,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=390761
-	public void testDefaultNonclash2() {
+	public void testDefaultNonclash2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -684,7 +684,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 
-	public void testDefaultNonclash3() {
+	public void testDefaultNonclash3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -717,7 +717,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=390761
-	public void testDefaultNonclash4() {
+	public void testDefaultNonclash4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -747,7 +747,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=420080
-	public void testDefaultNonclash5() {
+	public void testDefaultNonclash5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -818,7 +818,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 
 	// JLS 8.1.1.1 abstract Classes
 	// Default method conflicts with independent interface method
-	public void testAbstract02() {
+	public void testAbstract02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"I1.java",
@@ -846,7 +846,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	// JLS 8.1.1.1 abstract Classes
 	// Default method conflicts independent interface method
 	// same as above except for order of implements list
-	public void testAbstract02a() {
+	public void testAbstract02a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"I1.java",
@@ -874,7 +874,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	// JLS 8.1.1.1 abstract Classes
 	// Default method does not override independent abstract method
 	// class is abstract
-	public void testAbstract02b() {
+	public void testAbstract02b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"I1.java",
@@ -898,7 +898,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	}
 
 	// same as above but only interfaces
-	public void testAbstract02c() {
+	public void testAbstract02c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"I1.java",
@@ -964,7 +964,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 
 	// JLS 8.1.1.1 abstract Classes
 	// default method is not inherited because a more specific abstract method is.
-	public void testAbstract04() {
+	public void testAbstract04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"I1.java",
@@ -991,7 +991,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	// JLS 8.1.1.1 abstract Classes
 	// default method is not inherited because a more specific abstract method is.
 	// same as above except for order of implements list
-	public void testAbstract04a() {
+	public void testAbstract04a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"I1.java",
@@ -1016,7 +1016,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	}
 
 	// abstract class method trumps otherwise conflicting default methods: the conflict scenario
-	public void testAbstract05() {
+	public void testAbstract05() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"I1.java",
@@ -1040,7 +1040,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	}
 
 	// abstract class method trumps otherwise conflicting default methods: conflict resolved
-	public void testAbstract06() {
+	public void testAbstract06() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"I1.java",
@@ -1079,7 +1079,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 
 	// abstract class method trumps otherwise conflicting default methods: conflict resolved
 	// variant: second method is not a default method
-	public void testAbstract06a() {
+	public void testAbstract06a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"I1.java",
@@ -1117,7 +1117,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	}
 
 	// abstract class method trumps otherwise conflicting default methods: conflict not resolved due to insufficient visibility
-	public void testAbstract6b() {
+	public void testAbstract6b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"I1.java",
@@ -1146,7 +1146,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	}
 
 	// abstract class method trumps otherwise conflicting default method: only one default method
-	public void testAbstract07() {
+	public void testAbstract07() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"I1.java",
@@ -1176,7 +1176,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 
 	// class inherits two override equivalent methods,
 	// must be declared abstract, although one of the methods is a default method.
-	public void testAbstract08() {
+	public void testAbstract08() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"I1.java",
@@ -1217,7 +1217,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	}
 
 	// basic situation similar to AmbiguousMethodTest.test009()
-	public void testSuperCall1() throws Exception {
+	public void testSuperCall1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"OrderedSet.java",
@@ -1240,7 +1240,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 				"    0  aload_0 [this]\n" +
 				"    1  invokespecial java.util.List.spliterator() : java.util.Spliterator [17]\n" +
 				"    4  areturn\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "OrderedSet.class", "OrderedSet", expectedOutput);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "OrderedSet.class", "OrderedSet", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	// some illegal cases
@@ -1248,7 +1248,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	// - call to super of outer
 	// - target method is not a default method
 	// - attempt to use this syntax for a super-ctor call
-	public void testSuperCall2() {
+	public void testSuperCall2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"T.java",
@@ -1306,7 +1306,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	}
 
 	// with execution
-	public void testSuperCall3() {
+	public void testSuperCall3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1338,7 +1338,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 
 	// 15.12.1
 	// https://bugs.eclipse.org/404649 - [1.8][compiler] detect illegal reference to indirect or redundant super
-	public void testSuperCall4() {
+	public void testSuperCall4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1374,7 +1374,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 
 	// 15.12.1
 	// https://bugs.eclipse.org/404649 - [1.8][compiler] detect illegal reference to indirect or redundant super
-	public void testSuperCall5() {
+	public void testSuperCall5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1407,7 +1407,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 
 	// 15.12.3
 	// https://bugs.eclipse.org/404649 - [1.8][compiler] detect illegal reference to indirect or redundant super
-	public void testSuperCall6() {
+	public void testSuperCall6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"SuperOverride.java",
@@ -1443,7 +1443,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	}
 
 	// Bug 401235 - [1.8][compiler] 'this' reference must be allowed in default methods and local classes
-	public void testThisReference1() {
+	public void testThisReference1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1479,7 +1479,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=399780
 	// Test for different legal and illegal keywords for static and default methods in interfaces
-	public void testStaticMethod01() {
+	public void testStaticMethod01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"I.java",
@@ -1515,7 +1515,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=399780
 	// Test invocation of static methods with different contexts - negative tests
-	public void testStaticMethod02() {
+	public void testStaticMethod02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"I.java",
@@ -1558,7 +1558,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=399780
 	// Test invocation of static methods with different contexts - positive tests
-	public void testStaticMethod03() throws Exception {
+	public void testStaticMethod03() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"C.java",
@@ -1609,11 +1609,11 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 				"      Local variable table:\n" +
 				"        [pc: 0, pc: 19] local: args index: 0 type: java.lang.String[]\n" +
 				"        [pc: 8, pc: 19] local: c index: 1 type: C\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "C.class", "C", expectedOutput);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "C.class", "C", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=399780
 	// Test invocation of static methods with different contexts - negative tests
-	public void testStaticMethod04() {
+	public void testStaticMethod04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -1703,7 +1703,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 				"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=399780
-	public void testStaticMethod05() {
+	public void testStaticMethod05() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -1737,7 +1737,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=399780
 	// Test that extending interfaces inherit visible fields and inner types.
-	public void testStaticMethod06() {
+	public void testStaticMethod06() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"C.java",
@@ -1766,7 +1766,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=399780
 	// Test that type parameter from enclosing type is not allowed to be referred to in static interface methods
-	public void testStaticMethod07() {
+	public void testStaticMethod07() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"C.java",
@@ -1805,7 +1805,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 				"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=399780
-	public void testStaticMethod09() {
+	public void testStaticMethod09() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"C.java",
@@ -1824,7 +1824,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 				"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=399780
-	public void testStaticMethod10() {
+	public void testStaticMethod10() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"C.java",
@@ -1844,7 +1844,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 				"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=399780
-	public void testStaticMethod11() {
+	public void testStaticMethod11() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"C.java",
@@ -1863,7 +1863,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 				"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=399780
-	public void testStaticMethod12() {
+	public void testStaticMethod12() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"C.java",
@@ -1889,7 +1889,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 				"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=399780
-	public void testStaticMethod13() {
+	public void testStaticMethod13() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"C.java",
@@ -1913,7 +1913,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 				"----------\n");
 	}
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=406619, [1.8][compiler] Incorrect suggestion that method can be made static.
-	public void test406619() {
+	public void test406619() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map compilerOptions = getCompilerOptions();
 		compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
 		compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBePotentiallyStatic, CompilerOptions.ERROR);
@@ -1935,7 +1935,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 
 	// class implements interface with default method.
 	// - witness for NoSuchMethodError in synthetic method (SuperMethodAccess) - turned out to be a JVM bug
-	public void testSuperAccess01() {
+	public void testSuperAccess01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"C.java",
@@ -1957,7 +1957,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 
 	// class implements interface with default method.
 	// - intermediate public interface
-	public void testSuperAccess02() {
+	public void testSuperAccess02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"p1/C.java",
@@ -1981,7 +1981,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/421796 - Bug 421796 - [1.8][compiler] java.lang.AbstractMethodError executing default method code.
-	public void testSuperAccess03() {
+	public void testSuperAccess03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -2008,7 +2008,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	}
 
 	// Variant of test MethodVerifyTest.test144() from https://bugs.eclipse.org/bugs/show_bug.cgi?id=194034
-	public void testBridge01() {
+	public void testBridge01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"PurebredCatShopImpl.java",
@@ -2040,7 +2040,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	}
 	// yet another variant, checking that exactly one bridge method is created, so that
 	// the most specific method is dynamically invoked via all declared types.
-	public void testBridge02() {
+	public void testBridge02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"PurebredCatShopImpl.java",
@@ -2076,7 +2076,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	// modeled after org.eclipse.jdt.core.tests.compiler.regression.AmbiguousMethodTest.test081()
 	// see https://bugs.eclipse.org/391376 - [1.8] check interaction of default methods with bridge methods and generics
     // see https://bugs.eclipse.org/404648 - [1.8][compiler] investigate differences between compilers re AmbiguousMethodTest
-	public void _testBridge03() {
+	public void _testBridge03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"C.java",
@@ -2155,7 +2155,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
     // modeled after org.eclipse.jdt.core.tests.compiler.regression.AmbiguousMethodTest.test081()
     // see https://bugs.eclipse.org/391376 - [1.8] check interaction of default methods with bridge methods and generics
     // see https://bugs.eclipse.org/404648 - [1.8][compiler] investigate differences between compilers re AmbiguousMethodTest
-    public void _testBridge04() {
+    public void _testBridge04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(
             new String[] {
                 "C.java",
@@ -2231,7 +2231,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
     }
 
     // test for different error messages in modifiers.
-	public void test400977() {
+	public void test400977() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String infMod = this.complianceLevel >= ClassFileConstants.JDK9 ? " private," : "";
 		String extra = this.complianceLevel >= ClassFileConstants.JDK17 ?
 				"----------\n" +
@@ -2247,7 +2247,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"    default abstract void foo();\n" +
 			"    public abstract default strictfp final void bar();" +
 			"}\n"},
-			"----------\n" +
+			"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"1. ERROR in I.java (at line 2)\n" +
 			"	default abstract void foo();\n" +
 			"	                      ^^^^^\n" +
@@ -2271,7 +2271,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"----------\n");
 	}
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=420084,  [1.8] static interface method cannot be resolved without receiver when imported statically
-	public void testBug420084() {
+	public void testBug420084() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"p/J.java",
@@ -2290,7 +2290,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"");
 	}
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=421543, [1.8][compiler] Compiler fails to recognize default method being turned into abstract by subtytpe
-	public void testBug421543() {
+	public void testBug421543() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2316,7 +2316,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"----------\n");
 	}
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=421543, [1.8][compiler] Compiler fails to recognize default method being turned into abstract by subtytpe
-	public void testBug421543a() {
+	public void testBug421543a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2359,7 +2359,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"");
 	}
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=421797, [1.8][compiler] ClassFormatError with default methods & I.super.foo() syntax
-	public void testBug421797() {
+	public void testBug421797() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -2386,7 +2386,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=422731, [1.8] Ambiguous method not reported on overridden default method
-	public void test422731() throws Exception {
+	public void test422731() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -2420,7 +2420,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=425719, [1.8][compiler] Bogus ambiguous call error from compiler
-	public void test425719() throws Exception {
+	public void test425719() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 					"X.java",
@@ -2443,7 +2443,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"class method");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=425718, [1.8] default method changes access privilege of protected overridden method from Object
-	public void test425718() throws Exception {
+	public void test425718() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -2470,7 +2470,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=426318, [1.8][compiler] Bogus name clash error in the presence of default methods and varargs
-	public void test426318() throws Exception {
+	public void test426318() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -2498,7 +2498,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=424914, [1.8][compiler] No error shown for method reference with super enclosed in an interface
-	public void test424914() throws Exception {
+	public void test424914() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -2535,7 +2535,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=424914, [1.8][compiler] No error shown for method reference with super enclosed in an interface
-	public void test424914a() throws Exception {
+	public void test424914a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 					"X.java",
@@ -2561,7 +2561,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"B.foo");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=427478, [1.8][compiler] Wrong "Duplicate default methods" error on AbstractDoubleSpliterator
-	public void test427478() throws Exception { // extracted smaller test case.
+	public void test427478() throws Exception { // extracted smaller test case. //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 					"X.java",
@@ -2587,7 +2587,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=427478, [1.8][compiler] Wrong "Duplicate default methods" error on AbstractDoubleSpliterator
-	public void test427478a() throws Exception { // full test case.
+	public void test427478a() throws Exception { // full test case. //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 					"Spliterator.java",
@@ -2628,7 +2628,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=423467, [1.8][compiler] wrong error for functional interface with @Override default method
-	public void test423467() throws Exception { // full test case.
+	public void test423467() throws Exception { // full test case. //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 					"X.java",
@@ -2657,7 +2657,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=438471, Java 1.8 functional interface rejected if it extends an interface which overrides another interface's method
-	public void test438471() throws Exception {
+	public void test438471() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"Bar.java",
@@ -2679,7 +2679,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=436350, [1.8][compiler] Missing bridge method in interface results in AbstractMethodError
-	public void test436350() throws Exception {
+	public void test436350() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2706,7 +2706,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 				"    2  invokeinterface DoubleInterface.reduce(java.lang.Integer) : java.lang.Double [24] [nargs: 2]\n" +
 				"    7  areturn\n";
 
-		File f = new File(OUTPUT_DIR + File.separator + "DoubleInterface.class");
+		File f = new File(OUTPUT_DIR + File.separator + "DoubleInterface.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 		String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -2719,7 +2719,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=436350, [1.8][compiler] Missing bridge method in interface results in AbstractMethodError
-	public void test436350a() throws Exception {
+	public void test436350a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2792,7 +2792,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"Lambda expression value: 6.0");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=437522, [1.8][compiler] Missing compile error in Java 8 mode for Interface.super.field access
-	public void testBug437522() throws Exception {
+	public void testBug437522() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2897,7 +2897,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=437522, [1.8][compiler] Missing compile error in Java 8 mode for Interface.super.field access
 	// Example JLS: 15.11.2-1.
-	public void testBug437522a() throws Exception {
+	public void testBug437522a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			true,
 			new String[] {
@@ -2946,7 +2946,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"", JavacTestOptions.DEFAULT);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=453552, Invalid '@FunctionalInterface error when two interfaces extend the same functional interface.
-	public void test453552() throws Exception {
+	public void test453552() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"FunctionalInterface1.java",
@@ -2969,7 +2969,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			});
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=453552, Invalid '@FunctionalInterface error when two interfaces extend the same functional interface.
-	public void test453552_comment2() throws Exception {
+	public void test453552_comment2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"FI1.java",
@@ -2991,7 +2991,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			});
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=477891, [1.8] regression caused by the fix for bug 438812: order dependencies in analysis of default method inheritance
-	public void test477891_comment0() throws Exception {
+	public void test477891_comment0() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"D.java",
@@ -3021,7 +3021,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=477891, [1.8] regression caused by the fix for bug 438812: order dependencies in analysis of default method inheritance
-	public void test477891_comment0_a() throws Exception {
+	public void test477891_comment0_a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"D.java",
@@ -3051,7 +3051,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=477891, [1.8] regression caused by the fix for bug 438812: order dependencies in analysis of default method inheritance
-	public void test477891_comment3_a() throws Exception {
+	public void test477891_comment3_a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"Z.java",
@@ -3078,7 +3078,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=477891, [1.8] regression caused by the fix for bug 438812: order dependencies in analysis of default method inheritance
-	public void test477891_comment3_b() throws Exception {
+	public void test477891_comment3_b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"Z.java",
@@ -3105,7 +3105,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=477891, [1.8] regression caused by the fix for bug 438812: order dependencies in analysis of default method inheritance
-		public void test477891_comment3_c() throws Exception {
+		public void test477891_comment3_c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.runNegativeTest(
 				new String[] {
 					"Z.java",
@@ -3131,7 +3131,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 				"----------\n");
 		}
 		// https://bugs.eclipse.org/bugs/show_bug.cgi?id=477891, [1.8] regression caused by the fix for bug 438812: order dependencies in analysis of default method inheritance
-		public void test477891_comment3_d() throws Exception {
+		public void test477891_comment3_d() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.runNegativeTest(
 				new String[] {
 					"Z.java",
@@ -3156,7 +3156,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 				"The default method spliterator() inherited from Y<E> conflicts with another method inherited from X<E>\n" +
 				"----------\n");
 		}
-	public void test458547_comment0_a() throws Exception {
+	public void test458547_comment0_a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"JavaTest.java",
@@ -3184,7 +3184,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"The default method foo() inherited from JavaTest.D conflicts with another method inherited from JavaTest.C\n" +
 			"----------\n");
 	}
-	public void test458547_comment0_b() throws Exception {
+	public void test458547_comment0_b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"JavaTest.java",
@@ -3213,7 +3213,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 
-	public void testBug539743() {
+	public void testBug539743() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 		new String[] {
 			"Test.java",
@@ -3242,7 +3242,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 		"");
 	}
 
-	public void testJDK8337980() {
+	public void testJDK8337980() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 			"C.java",
@@ -3274,7 +3274,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 		runner.runNegativeTest();
 	}
 	// disabled because https://github.com/eclipse-jdt/eclipse.jdt.core/pull/4727 had to be reverted
-	public void _testGH1600() {
+	public void _testGH1600() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {"TestField.java",
 			"""
 			public class TestField extends CustomField {
@@ -3301,7 +3301,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			}
 			"""});
 	}
-	public void testGH1600_2() {
+	public void testGH1600_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {"Test.java",
 			"""
 			interface I0 {
@@ -3337,7 +3337,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 			"no13");
 	}
 	// Additional test case from https://github.com/eclipse-jdt/eclipse.jdt.core/pull/4727#issuecomment-3771030157
-	public void testGH1600_3() {
+	public void testGH1600_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {"Test.java",
 			"""
 			interface SuperIntf {
@@ -3375,7 +3375,7 @@ public class InterfaceMethodsTest extends AbstractComparableTest {
 	}
 
 	// Additional test case from https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4763
-	public void testGH1600_4_from_issue4763() {
+	public void testGH1600_4_from_issue4763() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {"eclipsebugpoc/MainClass.java",
 			"""
 			package eclipsebugpoc;

@@ -63,7 +63,7 @@ private void addSuper(ICompilationUnit unit, String typeName, String newSuper) t
 	String source = type.getSource();
 	int superIndex = -1;
 	String newSource =
-		source.substring(0, (superIndex = source.indexOf(typeName) + typeName.length())) +
+		source.substring(0, (superIndex = source.indexOf(typeName) + typeName.length())) + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		" extends " +
 		newSuper +
 		source.substring(superIndex);
@@ -77,7 +77,7 @@ protected void changeSuper(ICompilationUnit unit, String existingSuper, String n
 	String source = type.getSource();
 	int superIndex = -1;
 	String newSource =
-		source.substring(0, (superIndex = source.indexOf(" " + existingSuper))) +
+		source.substring(0, (superIndex = source.indexOf(" " + existingSuper))) + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		" " +
 		newSuper +
 		source.substring(superIndex + existingSuper.length() + 1 /*space*/);
@@ -91,7 +91,7 @@ protected void changeVisibility(ICompilationUnit unit, String existingModifier, 
 	String source = type.getSource();
 	int modifierIndex = -1;
 	String newSource =
-		source.substring(0, (modifierIndex = source.indexOf(existingModifier))) +
+		source.substring(0, (modifierIndex = source.indexOf(existingModifier))) + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		" " +
 		newModifier +
 		source.substring(modifierIndex + existingModifier.length());
@@ -131,7 +131,7 @@ protected void tearDown() throws Exception {
  * When adding an anonymous type in a hierarchy on a region, we should be notified of change.
  * (regression test for bug 51867 An anonymous type is missing in type hierarchy when editor is modified)
  */
-public void testAddAnonymousInRegion() throws CoreException {
+public void testAddAnonymousInRegion() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ITypeHierarchy h = null;
 	ICompilationUnit copy = null;
 	try {
@@ -168,7 +168,7 @@ public void testAddAnonymousInRegion() throws CoreException {
  * only if one of the types of the CU is part of the
  * type hierarchy.
  */
-public void testAddCompilationUnit1() throws CoreException {
+public void testAddCompilationUnit1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject javaProject = getJavaProject("TypeHierarchyNotification");
 	ICompilationUnit cu = getCompilationUnit("TypeHierarchyNotification", "src", "p", "X.java");
 	IType type= cu.getType("X");
@@ -202,7 +202,7 @@ public void testAddCompilationUnit1() throws CoreException {
  * only if one of the types of the CU is part of the
  * type hierarchy.
  */
-public void testAddCompilationUnit2() throws CoreException {
+public void testAddCompilationUnit2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject javaProject = getJavaProject("TypeHierarchyNotification");
 	ICompilationUnit cu = getCompilationUnit("TypeHierarchyNotification", "src", "p", "X.java");
 	IType type= cu.getType("X");
@@ -237,7 +237,7 @@ public void testAddCompilationUnit2() throws CoreException {
  * only if one of the types of the CU is part of the
  * type hierarchy.
  */
-public void testAddCompilationUnit3() throws CoreException {
+public void testAddCompilationUnit3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject javaProject = getJavaProject("TypeHierarchyNotification");
 	ICompilationUnit cu = getCompilationUnit("TypeHierarchyNotification", "src", "p", "X.java");
 	IType type= cu.getType("X");
@@ -274,7 +274,7 @@ public void testAddCompilationUnit3() throws CoreException {
  * only if one of the types of the CU is part of the
  * type hierarchy. Tests parameterized supertype, see https://bugs.eclipse.org/401726
  */
-public void testAddCompilationUnit4() throws CoreException {
+public void testAddCompilationUnit4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject javaProject = getJavaProject("TypeHierarchyNotification");
 	IType collection= javaProject.findType("java.util.Collection");
 	ITypeHierarchy h = collection.newTypeHierarchy(javaProject, null);
@@ -306,7 +306,7 @@ public void testAddCompilationUnit4() throws CoreException {
  * When a CU is added, if the type hierarchy doesn't have a focus, it should change
  * only if one of the types of the CU is part of the region.
  */
-public void testAddCompilationUnitInRegion() throws CoreException, IOException {
+public void testAddCompilationUnitInRegion() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject javaProject = getJavaProject("TypeHierarchyNotification");
 	IRegion region = JavaCore.newRegion();
 	region.add(javaProject);
@@ -392,7 +392,7 @@ public void testAddCompilationUnitInRegion() throws CoreException, IOException {
  * When a CU is added if the CU does not intersects package fragments in the type hierarchy,
  * the typehierarchy has not changed.
  */
-public void testAddExternalCompilationUnit() throws CoreException {
+public void testAddExternalCompilationUnit() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject javaProject = getJavaProject("TypeHierarchyNotification");
 	ICompilationUnit cu = getCompilationUnit("TypeHierarchyNotification", "src", "p", "X.java");
 	IType type= cu.getType("X");
@@ -424,7 +424,7 @@ public void testAddExternalCompilationUnit() throws CoreException {
 /**
  * When a package is added in an external project, the type hierarchy should not change
  */
-public void testAddExternalPackage() throws CoreException {
+public void testAddExternalPackage() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject javaProject = getJavaProject("TypeHierarchyNotification");
 	ICompilationUnit cu = getCompilationUnit("TypeHierarchyNotification", "src", "p", "X.java");
 	IType type= cu.getType("X");
@@ -473,7 +473,7 @@ public void testAddExternalProject() throws CoreException {
 /**
  * Test adding the same listener twice.
  */
-public void testAddListenerTwice() throws CoreException {
+public void testAddListenerTwice() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = getJavaProject("TypeHierarchyNotification");
 	ICompilationUnit cu = getCompilationUnit("TypeHierarchyNotification", "src", "p", "X.java");
 	ICompilationUnit superCU = getCompilationUnit("TypeHierarchyNotification", "src", "b", "B.java");
@@ -515,7 +515,7 @@ public void testAddPackage() throws CoreException {
 /**
  * When a package fragment root is added, the type hierarchy should change
  */
-public void testAddPackageFragmentRoot() throws CoreException {
+public void testAddPackageFragmentRoot() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = getJavaProject("TypeHierarchyNotification");
 	ICompilationUnit cu = getCompilationUnit("TypeHierarchyNotification", "src", "p", "X.java");
 	IType type= cu.getType("X");
@@ -548,7 +548,7 @@ public void testAddPackageFragmentRoot() throws CoreException {
  * When a project is added that is on the class path of the type hierarchy project,
  * the type hierarchy should change.
  */
-public void testAddProject() throws CoreException {
+public void testAddProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project= getJavaProject("TypeHierarchyNotification");
 	ICompilationUnit cu = getCompilationUnit("TypeHierarchyNotification", "src", "p", "X.java");
 	IType type = cu.getType("X");
@@ -569,7 +569,7 @@ public void testAddProject() throws CoreException {
 		// now create the actual resource for the root and populate it
 		reset();
 		final IProject newProject = project.getJavaModel().getWorkspace().getRoot().getProject("NewProject");
-		IWorkspaceRunnable create = new IWorkspaceRunnable() {
+		IWorkspaceRunnable create = new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 			public void run(IProgressMonitor monitor) throws CoreException {
 				newProject.create(null, null);
 				newProject.open(null);
@@ -589,7 +589,7 @@ public void testAddProject() throws CoreException {
  * When a class file is added or removed if the class file intersects package fragments in the type hierarchy,
  * the type hierarchy has possibly changed (possibly introduce a supertype)
  */
-public void testAddRemoveClassFile() throws CoreException {
+public void testAddRemoveClassFile() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Create type hierarchy on 'java.lang.LinkageError' in 'Minimal.zip'
 	IJavaProject project = getJavaProject("TypeHierarchyNotification");
 	ICompilationUnit unit = getCompilationUnit("TypeHierarchyNotification", "src", "p", "MyError.java");
@@ -634,7 +634,7 @@ public void testAddRemoveClassFile() throws CoreException {
  * Ensures that changing the modifiers of the focus type in a working copy reports a hierarchy change on save.
  * (regression test for bug
  */
-public void testChangeFocusModifier() throws CoreException {
+public void testChangeFocusModifier() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ITypeHierarchy h = null;
 	ICompilationUnit workingCopy = null;
 	try {
@@ -691,7 +691,7 @@ public void testCloseProject() throws Exception {
  * Ensures that editing a working copy's buffer and committing (without a reconcile) triggers a type hierarchy notification
  * (regression test for bug 204805 ICompilationUnit.commitWorkingCopy doesn't send typeHierarchyChanged)
  */
-public void testEditBuffer() throws CoreException {
+public void testEditBuffer() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ITypeHierarchy h = null;
 	ICompilationUnit workingCopy = null;
 	try {
@@ -727,7 +727,7 @@ public void testEditBuffer() throws CoreException {
 /**
  * When editing the extends clause of a source type in a hierarchy, we should be notified of change.
  */
-public void testEditExtendsSourceType() throws CoreException {
+public void testEditExtendsSourceType() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject javaProject = getJavaProject("TypeHierarchyNotification");
 	ICompilationUnit cu = getCompilationUnit("TypeHierarchyNotification", "src", "p", "X.java");
 	IType type= cu.getType("X");
@@ -748,7 +748,7 @@ public void testEditExtendsSourceType() throws CoreException {
 		h.removeTypeHierarchyChangedListener(this);
 	}
 }
-public void testAddDependentProject() throws CoreException {
+public void testAddDependentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ITypeHierarchy h = null;
 	try {
 		createJavaProject("P1");
@@ -793,7 +793,7 @@ public void testAddExtendsSourceType1() throws CoreException {
  * When adding an extends clause of a source type in a hierarchy on a region, we should be notified of change.
  * (regression test for bug 45113 No hierarchy refresh when on region)
  */
-public void testAddExtendsSourceType2() throws CoreException {
+public void testAddExtendsSourceType2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ITypeHierarchy h = null;
 	ICompilationUnit copy = null;
 	try {
@@ -811,7 +811,7 @@ public void testAddExtendsSourceType2() throws CoreException {
 		String source = copy.getBuffer().getContents();
 		int superIndex = -1;
 		String newSource =
-			source.substring(0, (superIndex = source.indexOf(typeName) + typeName.length())) +
+			source.substring(0, (superIndex = source.indexOf(typeName) + typeName.length())) + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			" extends " +
 			newSuper +
 			source.substring(superIndex);
@@ -834,7 +834,7 @@ public void testAddExtendsSourceType2() throws CoreException {
  * we should be notified of change after a reconcile.
  * (regression test for bug 111396 TypeHierarchy doesn't notify listeners on addition of fully qualified subtypes)
  */
-public void testAddExtendsSourceType3() throws CoreException {
+public void testAddExtendsSourceType3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject javaProject = getJavaProject("TypeHierarchyNotification");
 	ICompilationUnit copy = getCompilationUnit("TypeHierarchyNotification", "src", "p2", "B.java");
 	ITypeHierarchy h = null;
@@ -849,7 +849,7 @@ public void testAddExtendsSourceType3() throws CoreException {
 		String source = copy.getBuffer().getContents();
 		int superIndex = -1;
 		String newSource =
-			source.substring(0, (superIndex = source.indexOf(typeName) + typeName.length())) +
+			source.substring(0, (superIndex = source.indexOf(typeName) + typeName.length())) + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			" extends " +
 			newSuper +
 			source.substring(superIndex);
@@ -887,7 +887,7 @@ public void testEditExternalSourceType() throws CoreException {
  * When editing the field of a source type in a hierarchy,
  * we should NOT be notified of a change.
  */
-public void testEditFieldSourceType() throws CoreException {
+public void testEditFieldSourceType() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject javaProject = getJavaProject("TypeHierarchyNotification");
 	ICompilationUnit cu = getCompilationUnit("TypeHierarchyNotification", "src", "p", "X.java");
 	IType type= cu.getType("X");
@@ -912,7 +912,7 @@ public void testEditFieldSourceType() throws CoreException {
  * When editing the imports of a source type in a hierarchy,
  * we should be notified of a change.
  */
-public void testEditImportSourceType() throws CoreException {
+public void testEditImportSourceType() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject javaProject = getJavaProject("TypeHierarchyNotification");
 	ICompilationUnit cu = getCompilationUnit("TypeHierarchyNotification", "src", "p", "X.java");
 	IType type = cu.getType("X");
@@ -951,7 +951,7 @@ public void testEditImportSourceType() throws CoreException {
  * When editing > 1 source type in a hierarchy using a MultiOperation,
  * we should be notified of ONE change.
  */
-public void testEditSourceTypes() throws CoreException {
+public void testEditSourceTypes() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// TBD: Find a way to do 2 changes in 2 different CUs at once
 
 	IJavaProject project= getJavaProject("TypeHierarchyNotification");
@@ -965,7 +965,7 @@ public void testEditSourceTypes() throws CoreException {
 		// change the visibility of the super class and the 'extends' of the type we're looking at
 		// in a batch operation
 		JavaCore.run(
-			new IWorkspaceRunnable() {
+			new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) {
 					try {
 						changeVisibility(superCU, "public", "private");
@@ -987,7 +987,7 @@ public void testEditSourceTypes() throws CoreException {
  * When editing a super source type in a hierarchy, we should be notified of change only if
  * the change affects the visibility of the type.
  */
-public void testEditSuperType() throws CoreException {
+public void testEditSuperType() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project= getJavaProject("TypeHierarchyNotification");
 	ICompilationUnit cu = getCompilationUnit("TypeHierarchyNotification", "src", "p", "X.java");
 	ICompilationUnit superCU = getCompilationUnit("TypeHierarchyNotification", "src", "b", "B.java");
@@ -1070,7 +1070,7 @@ public void testRemoveExternalPackage() throws CoreException {
  * When a package fragment root is removed from the classpath, but does not impact the
  * package fragments, the type hierarchy should not change.
  */
-public void testRemoveExternalPackageFragmentRoot() throws CoreException {
+public void testRemoveExternalPackageFragmentRoot() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project= getJavaProject("TypeHierarchyNotification");
 	ICompilationUnit cu = getCompilationUnit("TypeHierarchyNotification", "src", "p", "X.java");
 	IType type = cu.getType("X");
@@ -1108,7 +1108,7 @@ public void testRemoveExternalPackageFragmentRoot() throws CoreException {
  * When a project is deleted that contains package fragments that impact the
  * type hierarchy, the type hierarchy should change
  */
-public void testRemoveExternalProject() throws CoreException {
+public void testRemoveExternalProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createJavaProject("External", new String[] {""}, new String[] {"JCL18_LIB"}, new String[]{"/TypeHierarchyNotification"}, "");
 		this.createFolder("/External/p");
@@ -1131,7 +1131,7 @@ public void testRemoveExternalProject() throws CoreException {
 /**
  * Test removing a listener while the type hierarchy is notifying listeners.
  */
-public void testRemoveListener() throws CoreException {
+public void testRemoveListener() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project= getJavaProject("TypeHierarchyNotification");
 	final ICompilationUnit cu = getCompilationUnit("TypeHierarchyNotification", "src", "p", "X.java");
 	final ICompilationUnit superCU = getCompilationUnit("TypeHierarchyNotification", "src", "b", "B.java");
@@ -1151,7 +1151,7 @@ public void testRemoveListener() throws CoreException {
 		// change the visibility of the super class and the 'extends' of the type we're looking at
 		// in a batch operation
 		getWorkspace().run(
-			new IWorkspaceRunnable() {
+			new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) {
 					try {
 						changeVisibility(superCU, "public", "private");
@@ -1208,7 +1208,7 @@ public void testRemovePackageFragmentRoots() throws CoreException {
  * When a project is deleted that contains package fragments that impact the
  * type hierarchy, the type hierarchy should change (and be made invalid)
  */
-public void testRemoveProject() throws CoreException, IOException {
+public void testRemoveProject() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ITypeHierarchy h = null;
 	try {
 		setUpJavaProject("TypeHierarchyDependent");
@@ -1298,7 +1298,7 @@ public void testRenameExternalCompilationUnit() throws CoreException {
  * a type hierarchy notification for the concerned hierarchy.
  * See https://bugs.eclipse.org/bugs/show_bug.cgi?id=275805
  */
-public void testGetWorkingCopy() throws CoreException {
+public void testGetWorkingCopy() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ITypeHierarchy h = null;
 	ICompilationUnit superCopy = null;
 	ICompilationUnit aWorkingCopy = null;
@@ -1345,7 +1345,7 @@ public void testGetWorkingCopy() throws CoreException {
  * type hierarchy listener are ignored.
  * See https://bugs.eclipse.org/bugs/show_bug.cgi?id=275805
  */
-public void testOwner() throws CoreException {
+public void testOwner() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ITypeHierarchy h = null;
 	ICompilationUnit aWorkingCopy = null;
 	ICompilationUnit anotherWorkingCopy = null;
@@ -1410,7 +1410,7 @@ public void testBug316654() throws CoreException {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=316654"
  */
-public void testBug316654_a() throws CoreException {
+public void testBug316654_a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = getJavaProject("TypeHierarchyNotification");
 	ICompilationUnit cu = getCompilationUnit("TypeHierarchyNotification", "src", "p", "X.java");
 	IType type= cu.getType("X");
@@ -1434,7 +1434,7 @@ public void testBug316654_a() throws CoreException {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=316654"
  */
-public void testBug316654_b() throws CoreException {
+public void testBug316654_b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = getJavaProject("TypeHierarchyNotification");
 	refreshExternalArchives(project);
 	String externalJCLPathString = getExternalJCLPathString(CompilerOptions.getFirstSupportedJavaVersion());
@@ -1462,7 +1462,7 @@ public void testBug316654_b() throws CoreException {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=316654"
  */
-public void testBug316654_c() throws CoreException {
+public void testBug316654_c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = getJavaProject("TypeHierarchyNotification");
 	IPath jarPath = project.getPath().append("test316654.jar");
 	IFile jarFile = getFile(jarPath.toOSString());

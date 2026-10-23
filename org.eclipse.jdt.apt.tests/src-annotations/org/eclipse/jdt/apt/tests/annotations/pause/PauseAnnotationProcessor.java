@@ -42,16 +42,16 @@ public class PauseAnnotationProcessor extends BaseProcessor {
 	public void process() {
 		String phase = _env.getOptions().get("phase");
         Collection<Declaration> annotatedDecls = _env.getDeclarationsAnnotatedWith(_annotationDecl);
-        for (Declaration decl : annotatedDecls) {
+        for (Declaration decl : annotatedDecls) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
         	Pause a = decl.getAnnotation(Pause.class);
         	int pauseMs = a.value();
-        	System.out.println(phase + " pausing for " + pauseMs + " to process " + decl.getSimpleName() + "...");
+        	System.out.println(phase + " pausing for " + pauseMs + " to process " + decl.getSimpleName() + "..."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	// busy sleep
         	long timeoutNanos = System.nanoTime() + pauseMs * 1_000_000L;
-        	while (System.nanoTime() < timeoutNanos) {
+        	while (System.nanoTime() < timeoutNanos) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
         		Thread.onSpinWait();
         	}
-        	System.out.println(phase + " finished pausing");
+        	System.out.println(phase + " finished pausing"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         }
 	}
 

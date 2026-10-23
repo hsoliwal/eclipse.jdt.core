@@ -43,7 +43,7 @@ public class Apt6Plugin extends Plugin implements DebugOptionsListener {
 
 	// Tracing options
 	public static boolean DEBUG = false;
-	public final static String APT_DEBUG_OPTION = Apt6Plugin.PLUGIN_ID + "/debug"; //$NON-NLS-1$
+	public final static String APT_DEBUG_OPTION = Apt6Plugin.PLUGIN_ID + "/debug"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	private static Apt6Plugin thePlugin = null; // singleton object
 
@@ -126,25 +126,25 @@ public class Apt6Plugin extends Plugin implements DebugOptionsListener {
 		return new Status(IStatus.INFO, PLUGIN_ID, STATUS_EXCEPTION, message, e);
 	}
 
-	public static void trace(final String msg) {
+	public static void trace(final String msg) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (DEBUG) {
-			StringBuilder sb = new StringBuilder();
-			sb.append('[');
+			StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			sb.append('['); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			// SimpleDateFormat is not thread-safe, according to javadoc
 			synchronized (TRACE_DATE_FORMAT) {
-				sb.append(TRACE_DATE_FORMAT.format(new Date()));
+				sb.append(TRACE_DATE_FORMAT.format(new Date())); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			sb.append('-');
+			sb.append('-'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			// Some threads have qualified type names; too long.
 			String threadName = Thread.currentThread().getName();
 			int dot = threadName.lastIndexOf('.');
 			if (dot < 0) {
-				sb.append(threadName);
+				sb.append(threadName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				sb.append(threadName.substring(dot + 1));
+				sb.append(threadName.substring(dot + 1)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			sb.append(']');
-			sb.append(msg);
+			sb.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			sb.append(msg); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			System.out.println(sb);
 		}
 	}

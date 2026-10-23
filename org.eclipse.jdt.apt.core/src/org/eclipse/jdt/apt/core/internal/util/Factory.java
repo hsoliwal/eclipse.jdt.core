@@ -55,7 +55,7 @@ public class Factory
 	public static final Integer DUMMY_INTEGER = 0;
 	public static final Long DUMMY_LONG = 0l;
 	public static final Short DUMMY_SHORT = 0;
-    public static TypeDeclarationImpl createReferenceType(ITypeBinding binding, BaseProcessorEnv env)
+    public static TypeDeclarationImpl createReferenceType(ITypeBinding binding, BaseProcessorEnv env) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     {
         if(binding == null || binding.isNullType()) return null;
         // "Recovered" bindings are bindings to unresolved types.  The type itself may be considered
@@ -75,12 +75,12 @@ public class Factory
         else if( binding.isClass() )
             mirror = new ClassDeclarationImpl(binding, env);
         else
-            throw new IllegalStateException("cannot create type declaration from " + binding); //$NON-NLS-1$
+            throw new IllegalStateException("cannot create type declaration from " + binding); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
         return mirror;
     }
 
-    public static EclipseDeclarationImpl createDeclaration(IBinding binding, BaseProcessorEnv env)
+    public static EclipseDeclarationImpl createDeclaration(IBinding binding, BaseProcessorEnv env) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     {
         if(binding == null) return null;
 
@@ -90,7 +90,7 @@ public class Factory
     		final ITypeBinding typeBinding = (ITypeBinding)binding;
         	if( typeBinding.isAnonymous() || typeBinding.isArray() ||
     			typeBinding.isWildcardType() || typeBinding.isPrimitive() )
-                throw new IllegalStateException("failed to create declaration from " + binding); //$NON-NLS-1$
+                throw new IllegalStateException("failed to create declaration from " + binding); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         	if( typeBinding.isTypeVariable() )
 	        	return new TypeParameterDeclarationImpl(typeBinding, env);
         	else
@@ -116,11 +116,11 @@ public class Factory
         	// apt also doesn't return a value
         	return null;
         default:
-            throw new IllegalStateException("failed to create declaration from " + binding); //$NON-NLS-1$
+            throw new IllegalStateException("failed to create declaration from " + binding); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         }
     }
 
-    public static EclipseDeclarationImpl createDeclaration(
+    public static EclipseDeclarationImpl createDeclaration( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     		ASTNode node,
     		IFile file,
     		BaseProcessorEnv env)
@@ -144,12 +144,12 @@ public class Factory
     		 return new ASTBasedMethodDeclarationImpl((AnnotationTypeMemberDeclaration)node, file, env);
     	 default :
     		 throw new UnsupportedOperationException(
-    				 "cannot create mirror type from " +   //$NON-NLS-1$
+    				 "cannot create mirror type from " +   //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     				 node.getClass().getName() );
     	 }
     }
 
-    public static EclipseMirrorType createTypeMirror(ITypeBinding binding, BaseProcessorEnv env)
+    public static EclipseMirrorType createTypeMirror(ITypeBinding binding, BaseProcessorEnv env) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     {
         if( binding == null ) return null;
 
@@ -173,7 +173,7 @@ public class Factory
 			else if( "void".equals(binding.getName()) ) //$NON-NLS-1$
 				return env.getVoidType();
 			else
-				throw new IllegalStateException("unrecognized primitive type: " + binding); //$NON-NLS-1$
+				throw new IllegalStateException("unrecognized primitive type: " + binding); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         }
         else if( binding.isArray() )
             return new ArrayTypeImpl(binding, env);
@@ -305,7 +305,7 @@ public class Factory
      * @param needBoxing <code>true</code> indicate an array should be returned.
      * @return the converted annotation value or null if the conversion failed
      */
-    private static Object convertDOMValueToMirrorValue(Object domValue,
+    private static Object convertDOMValueToMirrorValue(Object domValue, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 													   String name,
 													   EclipseMirrorObject parent,
 													   EclipseDeclarationImpl decl,
@@ -334,13 +334,13 @@ public class Factory
 		{
 			final Object[] elements = (Object[])domValue;
 			final int len = elements.length;
-            final List<AnnotationValue> annoValues = new ArrayList<>(len);
+            final List<AnnotationValue> annoValues = new ArrayList<>(len); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
             final TypeMirror leaf;
             if( expectedType instanceof ArrayType )
             	leaf = ((ArrayType)expectedType).getComponentType();
             else
             	leaf = expectedType; // doing our best here.
-			for( int i=0; i<len; i++ ){
+			for( int i=0; i<len; i++ ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
                 if( elements[i] == null ) continue;
                 // can't have multi-dimensional array.
                 // there should be already a java compile time error
@@ -351,7 +351,7 @@ public class Factory
 				if( o == null )
 					return null;
 				assert( !( o instanceof IAnnotationBinding ) ) :
-					"Unexpected return value from convertDomValueToMirrorValue! o.getClass().getName() = " //$NON-NLS-1$
+					"Unexpected return value from convertDomValueToMirrorValue! o.getClass().getName() = " //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ o.getClass().getName();
 
 				final AnnotationValue annoValue = createAnnotationValueFromDOMValue(o, name, i, parent, env);
@@ -370,12 +370,12 @@ public class Factory
 		}
         else
 			// should never reach this point
-			throw new IllegalStateException("cannot build annotation value object from " + domValue); //$NON-NLS-1$
+			throw new IllegalStateException("cannot build annotation value object from " + domValue); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
         return performNecessaryTypeConversion(expectedType, returnValue, name, parent, env);
     }
 
-    public static Object getMatchingDummyValue(final Class<?> expectedType){
+    public static Object getMatchingDummyValue(final Class<?> expectedType){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	if( expectedType.isPrimitive() ){
     		if(expectedType == boolean.class)
     			return Boolean.FALSE;
@@ -439,12 +439,12 @@ public class Factory
      * @param value the current value from the annotation instance.
      * @param expectedType the expected type of the value.
      */
-    public static Object performNecessaryPrimitiveTypeConversion(
+    public static Object performNecessaryPrimitiveTypeConversion( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     		final Class<?> expectedType,
     		final Object value,
     		final boolean avoidReflectException)
     {
-    	assert expectedType.isPrimitive() : "expectedType is not a primitive type: " + expectedType.getName(); //$NON-NLS-1$
+    	assert expectedType.isPrimitive() : "expectedType is not a primitive type: " + expectedType.getName(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     	if( value == null)
     		return avoidReflectException ? getMatchingDummyValue(expectedType) : null;
     	// apply widening conversion based on JLS 5.1.2 and 5.1.3
@@ -476,7 +476,7 @@ public class Factory
 			case 's':
 				return Short.valueOf(b); // widening.
 			default:
-				throw new IllegalStateException("unknown type " + expectedTypeChar); //$NON-NLS-1$
+				throw new IllegalStateException("unknown type " + expectedTypeChar); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		// widening short -> int, long, float, or double
@@ -504,7 +504,7 @@ public class Factory
 			case 's':
 				return value; // exact match
 			default:
-				throw new IllegalStateException("unknown type " + expectedTypeChar); //$NON-NLS-1$
+				throw new IllegalStateException("unknown type " + expectedTypeChar); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		// widening char -> int, long, float, or double
@@ -532,7 +532,7 @@ public class Factory
 			case 's':
 				return Short.valueOf((short)c); // narrowing.
 			default:
-				throw new IllegalStateException("unknown type " + expectedTypeChar); //$NON-NLS-1$
+				throw new IllegalStateException("unknown type " + expectedTypeChar); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 
@@ -561,7 +561,7 @@ public class Factory
 			case 's':
 				return Short.valueOf((short)i); // narrowing.
 			default:
-				throw new IllegalStateException("unknown type " + expectedTypeChar); //$NON-NLS-1$
+				throw new IllegalStateException("unknown type " + expectedTypeChar); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		// widening long -> float or double
@@ -584,7 +584,7 @@ public class Factory
 				return value; // exact match.
 
 			default:
-				throw new IllegalStateException("unknown type " + expectedTypeChar); //$NON-NLS-1$
+				throw new IllegalStateException("unknown type " + expectedTypeChar); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 
@@ -606,7 +606,7 @@ public class Factory
 			case 'f':
 				return value; // exact match.
 			default:
-				throw new IllegalStateException("unknown type " + expectedTypeChar); //$NON-NLS-1$
+				throw new IllegalStateException("unknown type " + expectedTypeChar); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		else if( value instanceof Double ){
@@ -637,7 +637,7 @@ public class Factory
 		case LONG: return long.class;
 		case SHORT: return short.class;
 		default:
-			throw new IllegalStateException("unknow primitive type " + primitiveType ); //$NON-NLS-1$
+			throw new IllegalStateException("unknow primitive type " + primitiveType ); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
     }
 
@@ -649,7 +649,7 @@ public class Factory
      * @param parent the of the annotation of the member value
      * @return the value matching the expected type or itself if no conversion can be applied.
      */
-    private static Object performNecessaryTypeConversion(final TypeMirror expectedType,
+    private static Object performNecessaryTypeConversion(final TypeMirror expectedType, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	    											     final Object value,
 	    											     final String name,
 	    											     final EclipseMirrorObject parent,

@@ -101,14 +101,14 @@ public class TryStatement extends Statement {
 	private static final List PROPERTY_DESCRIPTORS_9_0;
 
 	static {
-		List propertyList = new ArrayList(4);
+		List propertyList = new ArrayList(4); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(TryStatement.class, propertyList);
 		addProperty(BODY_PROPERTY, propertyList);
 		addProperty(CATCH_CLAUSES_PROPERTY, propertyList);
 		addProperty(FINALLY_PROPERTY, propertyList);
 		PROPERTY_DESCRIPTORS = reapPropertyList(propertyList);
 
-		propertyList = new ArrayList(5);
+		propertyList = new ArrayList(5); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(TryStatement.class, propertyList);
 		addProperty(RESOURCES_PROPERTY, propertyList);
 		addProperty(BODY_PROPERTY, propertyList);
@@ -116,7 +116,7 @@ public class TryStatement extends Statement {
 		addProperty(FINALLY_PROPERTY, propertyList);
 		PROPERTY_DESCRIPTORS_4_0 = reapPropertyList(propertyList);
 
-		propertyList = new ArrayList(5);
+		propertyList = new ArrayList(5); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(TryStatement.class, propertyList);
 		addProperty(RESOURCES2_PROPERTY, propertyList);
 		addProperty(BODY_PROPERTY, propertyList);
@@ -201,7 +201,7 @@ public class TryStatement extends Statement {
 		return propertyDescriptors(apiLevel);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final ASTNode internalGetSetChildProperty(ChildPropertyDescriptor property, boolean get, ASTNode child) {
 		if (property == BODY_PROPERTY) {
 			if (get) {

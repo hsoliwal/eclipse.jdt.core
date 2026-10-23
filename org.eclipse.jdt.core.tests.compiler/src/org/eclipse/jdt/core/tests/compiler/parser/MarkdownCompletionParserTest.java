@@ -39,10 +39,10 @@ public class MarkdownCompletionParserTest extends AbstractCompletionTest impleme
 	public static int INLINE_ALL_TAGS_LENGTH = 0;
 	public static int BLOCK_ALL_TAGS_LENGTH = 0;
 	static {
-		for (int i=0; i<INLINE_TAGS_LENGTH; i++) {
+		for (int i=0; i<INLINE_TAGS_LENGTH; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			INLINE_ALL_TAGS_LENGTH += INLINE_TAGS[i].length;
 		}
-		for (int i=0; i<BLOCK_TAGS_LENGTH; i++) {
+		for (int i=0; i<BLOCK_TAGS_LENGTH; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			BLOCK_ALL_TAGS_LENGTH += BLOCK_TAGS[i].length;
 		}
 	}
@@ -74,7 +74,7 @@ protected void setUp() throws Exception {
 	this.sourceLevel = null;
 }
 
-protected void assertCompletionNodeResult(String source, String expected) {
+protected void assertCompletionNodeResult(String source, String expected) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ASTNode completionNode = this.javadoc.getCompletionNode();
 	assertNotNull("Javadoc should have a completion node!!!", completionNode);
 	String actual = this.javadoc.getCompletionNode().toString();
@@ -124,41 +124,41 @@ protected void verifyCompletionInJavadoc(String source, String after) {
 	this.javadoc = (CompletionJavadoc) parser.assistNodeParent;
 }
 
-protected void verifyCompletionOnJavadocTag(char[] tag, char[][] expectedTags, boolean inline) {
+protected void verifyCompletionOnJavadocTag(char[] tag, char[][] expectedTags, boolean inline) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	assertTrue("Invalid javadoc completion node!", this.javadoc.getCompletionNode() instanceof CompletionOnJavadocTag);
 	CompletionOnJavadocTag completionTag = (CompletionOnJavadocTag) this.javadoc.getCompletionNode();
-	StringBuilder expected = new StringBuilder("<CompleteOnJavadocTag:");
-	if (inline) expected.append('{');
-	expected.append('@');
-	if (tag != null) expected.append(tag);
-	if (inline) expected.append('}');
+	StringBuilder expected = new StringBuilder("<CompleteOnJavadocTag:"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	if (inline) expected.append('{'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	expected.append('@'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	if (tag != null) expected.append(tag); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	if (inline) expected.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (expectedTags != null) {
-		expected.append("\npossible tags:");
+		expected.append("\npossible tags:"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		int length = expectedTags.length;
-		for (int i=0; i<length; i++) {
-			expected.append("\n	- ");
-			expected.append(expectedTags[i]);
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			expected.append("\n	- "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			expected.append(expectedTags[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		expected.append('\n');
+		expected.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	expected.append(">");
+	expected.append(">"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (expectedTags == null) {
 		assertEquals("Invalid completion tag", expected.toString(), completionTag.toString());
 	} else {
 		String completionTagString = completionTag.toString();
 		StringTokenizer completionTagTokenizer = new StringTokenizer(completionTagString, "\n");
-		StringBuilder completionTagBuffer = new StringBuilder(completionTagString.length());
+		StringBuilder completionTagBuffer = new StringBuilder(completionTagString.length()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		boolean possibleLine = false, newLine = false;
-		while (completionTagTokenizer.hasMoreTokens()) {
+		while (completionTagTokenizer.hasMoreTokens()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String line = completionTagTokenizer.nextToken();
 			if (line.startsWith("possible")) {
 				if (!possibleLine) {
 					possibleLine = true;
-					completionTagBuffer.append("\npossible tags:");
+					completionTagBuffer.append("\npossible tags:"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			} else {
-				if (newLine) completionTagBuffer.append('\n');
-				completionTagBuffer.append(line);
+				if (newLine) completionTagBuffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				completionTagBuffer.append(line); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			newLine = true;
 		}
@@ -166,7 +166,7 @@ protected void verifyCompletionOnJavadocTag(char[] tag, char[][] expectedTags, b
 	}
 }
 
-protected void verifyAllTagsCompletion() {
+protected void verifyAllTagsCompletion() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[][] allTagsFinal =null;
 	char[][] allTags = {
 		// Block tags
@@ -266,7 +266,7 @@ public void test005() {
 	verifyCompletionOnJavadocTag("link".toCharArray(), allTags, false);
 }
 
-public void test006() {
+public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source = "package javadoc;\n" +
 		"///\n" +
 		"/// Completion on empty tag name @ but inside text\n" +
@@ -407,7 +407,7 @@ public void test015() {
  * test Bug 113469: CompletionOnJavadocTag token is not correct
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=113649"
  */
-public void test020() {
+public void test020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source = "package javadoc;\n" +
 		"///\n" +
 		"///@see\n" +
@@ -494,7 +494,7 @@ public void test024() {
  * test Bug 114091: [assist][javadoc] eternal loop
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=114091"
  */
-public void test025() {
+public void test025() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source = "package javadoc;\n" +
 		"///\n" +
 		"///{@</code>\n" +
@@ -551,7 +551,7 @@ public void test027() {
 	int end = source.indexOf('>');
 	assertEquals("Invalid tag end position", end, completionTag.tagSourceEnd);
 }
-public void test028() {
+public void test028() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source = "package javadoc;\n" +
 		"///\n" +
 		"/// {@|\n" +
@@ -644,7 +644,7 @@ public void test032() {
 	assertEquals("Invalid tag end position", end, completionTag.tagSourceEnd);
 }
 
-public void test033() {
+public void test033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source = "package javadoc;\n" +
 		"///\n" +
 		"/// {@s+\n" +
@@ -663,7 +663,7 @@ public void test033() {
 	int end = source.indexOf('+');
 	assertEquals("Invalid tag end position", end, completionTag.tagSourceEnd);
 }
-public void test034() {
+public void test034() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if(this.complianceLevel < ClassFileConstants.JDK23)
 		return;
 	String source = "package javadoc;\n" +
@@ -682,7 +682,7 @@ public void test034() {
 	verifyCompletionOnJavadocTag("highligh".toCharArray(), allTags, false);
 
 }
-public void test035() {
+public void test035() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if(this.complianceLevel < ClassFileConstants.JDK23)
 		return;
 	String source = "package javadoc;\n" +
@@ -701,7 +701,7 @@ public void test035() {
 	verifyCompletionOnJavadocTag("rep".toCharArray(), allTags, false);
 
 }
-public void test036() {
+public void test036() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if(this.complianceLevel < ClassFileConstants.JDK23)
 		return;
 	String source = "package javadoc;\n" +
@@ -720,7 +720,7 @@ public void test036() {
 	verifyCompletionOnJavadocTag("dep".toCharArray(), allTags, false);
 
 }
-public void test037() {
+public void test037() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if(this.complianceLevel < ClassFileConstants.JDK23)
 		return;
 	String source = "package javadoc;\n" +

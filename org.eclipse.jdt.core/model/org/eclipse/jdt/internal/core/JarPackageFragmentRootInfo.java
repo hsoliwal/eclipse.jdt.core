@@ -25,7 +25,7 @@ class JarPackageFragmentRootInfo extends PackageFragmentRootInfo {
 	/** contains .class file names, and non-Java resource names of a package */
 	static record PackageContent(List<String> javaClasses, List<String> resources) {
 		PackageContent() {
-			this(new ArrayList<>(), new ArrayList<>());
+			this(new ArrayList<>(), new ArrayList<>()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		}
 	}
 

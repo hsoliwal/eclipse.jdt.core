@@ -25,12 +25,12 @@ import org.eclipse.jdt.core.JavaModelException;
  * Discards a working copy (decrement its use count and remove its working copy info if the use count is 0)
  * and signal its removal through a delta.
  */
-public class DiscardWorkingCopyOperation extends JavaModelOperation {
+public class DiscardWorkingCopyOperation extends JavaModelOperation { //FLLDCIM: MARK — T09  IMPLEMENTS
 
 	public DiscardWorkingCopyOperation(IJavaElement workingCopy) {
 		super(new IJavaElement[] {workingCopy});
 	}
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void executeOperation() throws JavaModelException {
 		CompilationUnit workingCopy = getWorkingCopy();
 

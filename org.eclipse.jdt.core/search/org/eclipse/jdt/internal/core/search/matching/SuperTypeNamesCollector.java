@@ -136,10 +136,10 @@ public SuperTypeNamesCollector(
 private boolean addIfSamePackage(char[][] compoundName, char[][] path) {
 	if (compoundName.length != path.length) return false;
 	int resultLength = this.samePackageSuperTypeName.length;
-	for (int i = 0; i < resultLength; i++)
+	for (int i = 0; i < resultLength; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (CharOperation.equals(this.samePackageSuperTypeName[i], compoundName)) return false; // already known
 
-	for (int i = 0, length = compoundName.length - 1; i < length; i ++) {
+	for (int i = 0, length = compoundName.length - 1; i < length; i ++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (!CharOperation.equals(compoundName[i], path[i])) return false;
 	}
 	if (resultLength == this.samePackageIndex)
@@ -150,7 +150,7 @@ private boolean addIfSamePackage(char[][] compoundName, char[][] path) {
 
 protected void addToResult(char[][] compoundName) {
 	int resultLength = this.result.length;
-	for (int i = 0; i < resultLength; i++)
+	for (int i = 0; i < resultLength; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (CharOperation.equals(this.result[i], compoundName)) return; // already known
 
 	if (resultLength == this.resultIndex)
@@ -161,7 +161,7 @@ protected void addToResult(char[][] compoundName) {
 /*
  * Parse the given compilation unit and build its type bindings.
  */
-protected CompilationUnitDeclaration buildBindings(ICompilationUnit compilationUnit, boolean isTopLevelOrMember) throws JavaModelException {
+protected CompilationUnitDeclaration buildBindings(ICompilationUnit compilationUnit, boolean isTopLevelOrMember) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// source unit
 	org.eclipse.jdt.internal.compiler.env.ICompilationUnit sourceUnit = (org.eclipse.jdt.internal.compiler.env.ICompilationUnit) compilationUnit;
 
@@ -181,7 +181,7 @@ protected CompilationUnitDeclaration buildBindings(ICompilationUnit compilationU
 	}
 	return unit;
 }
-public char[][][] collect() throws JavaModelException {
+public char[][][] collect() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.type != null) {
 		// Collect the paths of the cus that are in the hierarchy of the given type
 		this.result = new char[1][][];
@@ -227,7 +227,7 @@ public char[][][] collect() throws JavaModelException {
 	this.result = new char[1][][];
 	this.samePackageSuperTypeName = new char[1][][];
 	this.resultIndex = 0;
-	for (String path : paths) {
+	for (String path : paths) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		try {
 			Openable openable = this.locator.handleFactory.createOpenable(path, this.locator.scope);
 			if (openable == null) continue; // outside classpath
@@ -259,7 +259,7 @@ public char[][][] collect() throws JavaModelException {
 /**
  * Collects the names of all the supertypes of the given type.
  */
-protected void collectSuperTypeNames(ReferenceBinding binding, char[][] path) {
+protected void collectSuperTypeNames(ReferenceBinding binding, char[][] path) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ReferenceBinding superclass = binding.superclass();
 	if (path != null && superclass != null) {
 		boolean samePackage = addIfSamePackage(superclass.compoundName, path);
@@ -272,13 +272,13 @@ protected void collectSuperTypeNames(ReferenceBinding binding, char[][] path) {
 
 	ReferenceBinding[] interfaces = binding.superInterfaces();
 	if (interfaces != null) {
-		for (ReferenceBinding interfaceBinding : interfaces) {
+		for (ReferenceBinding interfaceBinding : interfaces) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			addToResult(interfaceBinding.compoundName);
 			collectSuperTypeNames(interfaceBinding, path);
 		}
 	}
 }
-protected String[] getPathsOfDeclaringType() {
+protected String[] getPathsOfDeclaringType() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.typeQualification == null && this.typeSimpleName == null) return null;
 
 	final PathCollector pathCollector = new PathCollector();
@@ -313,7 +313,7 @@ protected String[] getPathsOfDeclaringType() {
 public char[][][] getSamePackageSuperTypeNames() {
 	return this.samePackageSuperTypeName;
 }
-protected boolean matches(char[][] compoundName) {
+protected boolean matches(char[][] compoundName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int length = compoundName.length;
 	if (length == 0) return false;
 	char[] simpleName = compoundName[length-1];

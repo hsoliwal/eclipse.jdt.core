@@ -111,8 +111,8 @@ public class NameLookup implements SuffixConstants {
 		}
 		@Override
 		public String toString() {
-			StringBuilder builder = new StringBuilder(this.type.toString());
-			builder.append("from ") //$NON-NLS-1$
+			StringBuilder builder = new StringBuilder(this.type.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			builder.append("from ") //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(this.module);
 			return builder.toString();
 		}
@@ -122,7 +122,7 @@ public class NameLookup implements SuffixConstants {
 		public List<IPackageFragment> pkgFragments;
 
 		public Selector(String moduleName) {
-			this.pkgFragments = new ArrayList<>();
+			this.pkgFragments = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		}
 
 		@Override
@@ -245,7 +245,7 @@ public class NameLookup implements SuffixConstants {
 
 	private final JavaProject rootProject;
 
-	public NameLookup(
+	public NameLookup( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			JavaProject rootProject, IPackageFragmentRoot[] packageFragmentRoots,
 			HashtableOfArrayToObject packageFragments,
 			ICompilationUnit[] workingCopies,
@@ -254,12 +254,12 @@ public class NameLookup implements SuffixConstants {
 		long start = -1;
 		if (VERBOSE) {
 			trace(" BUILDING NameLoopkup");  //$NON-NLS-1$
-			trace(" -> pkg roots size: " + (packageFragmentRoots == null ? 0 : packageFragmentRoots.length));  //$NON-NLS-1$
-			trace(" -> pkgs size: " + (packageFragments == null ? 0 : packageFragments.size()));  //$NON-NLS-1$
-			trace(" -> working copy size: " + (workingCopies == null ? 0 : workingCopies.length));  //$NON-NLS-1$
+			trace(" -> pkg roots size: " + (packageFragmentRoots == null ? 0 : packageFragmentRoots.length));  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			trace(" -> pkgs size: " + (packageFragments == null ? 0 : packageFragments.size()));  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			trace(" -> working copy size: " + (workingCopies == null ? 0 : workingCopies.length));  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			start = System.currentTimeMillis();
 		}
-		this.rootToModule = new HashMap<>();
+		this.rootToModule = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		this.packageFragmentRoots = packageFragmentRoots;
 		if (workingCopies == null) {
 			this.packageFragments = packageFragments;
@@ -270,12 +270,12 @@ public class NameLookup implements SuffixConstants {
 			} catch (CloneNotSupportedException e1) {
 				// ignore (implementation of HashtableOfArrayToObject supports cloning)
 			}
-			this.typesInWorkingCopies = new HashMap();
+			this.typesInWorkingCopies = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			HashtableOfObjectToInt rootPositions = new HashtableOfObjectToInt();
-			for (int i = 0, length = packageFragmentRoots.length; i < length; i++) {
+			for (int i = 0, length = packageFragmentRoots.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				rootPositions.put(packageFragmentRoots[i], i);
 			}
-			for (ICompilationUnit workingCopy : workingCopies) {
+			for (ICompilationUnit workingCopy : workingCopies) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				PackageFragment pkg = (PackageFragment) workingCopy.getParent();
 				IPackageFragmentRoot root = (IPackageFragmentRoot) pkg.getParent();
 				int rootPosition = rootPositions.get(root);
@@ -283,7 +283,7 @@ public class NameLookup implements SuffixConstants {
 					continue; // working copy is not visible from this project (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=169970)
 				HashMap typeMap = (HashMap) this.typesInWorkingCopies.get(pkg);
 				if (typeMap == null) {
-					typeMap = new HashMap();
+					typeMap = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 					this.typesInWorkingCopies.put(pkg, typeMap);
 				}
 				try {
@@ -293,7 +293,7 @@ public class NameLookup implements SuffixConstants {
 						String typeName = Util.getNameWithoutJavaLikeExtension(workingCopy.getElementName());
 						typeMap.put(typeName, NO_TYPES);
 					} else {
-						for (int j = 0; j < typeLength; j++) {
+						for (int j = 0; j < typeLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							IType type = types[j];
 							String typeName = type.getElementName();
 							Object existing = typeMap.get(typeName);
@@ -337,7 +337,7 @@ public class NameLookup implements SuffixConstants {
 						IPackageFragmentRoot[] roots = (IPackageFragmentRoot[]) existing;
 						int rootLength = roots.length;
 						int insertionIndex = 0;
-						for (int j = 0; j < rootLength; j++) {
+						for (int j = 0; j < rootLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							int existingPosition = rootPositions.get(roots[j]);
 							if (rootPosition > existingPosition) {
 								// root is after this index
@@ -365,7 +365,7 @@ public class NameLookup implements SuffixConstants {
 
 		this.rootToResolvedEntries = rootToResolvedEntries;
         if (VERBOSE) {
-        	trace(" -> spent: " + (System.currentTimeMillis() - start) + "ms");  //$NON-NLS-1$ //$NON-NLS-2$
+        	trace(" -> spent: " + (System.currentTimeMillis() - start) + "ms");  //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         }
 	}
 
@@ -380,7 +380,7 @@ public class NameLookup implements SuffixConstants {
 	 *  </ul>
 	 * Otherwise, false is returned.
 	 */
-	protected boolean acceptType(IType type, int acceptFlags, boolean isSourceType) {
+	protected boolean acceptType(IType type, int acceptFlags, boolean isSourceType) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (acceptFlags == 0 || acceptFlags == ACCEPT_ALL)
 			return true; // no flags or all flags, always accepted
 		try {
@@ -413,9 +413,9 @@ public class NameLookup implements SuffixConstants {
 	 * <p>The <code>partialMatch</code> argument indicates partial matches
 	 * should be considered.
 	 */
-	private void findAllTypes(String prefix, boolean partialMatch, int acceptFlags, IJavaElementRequestor requestor) {
+	private void findAllTypes(String prefix, boolean partialMatch, int acceptFlags, IJavaElementRequestor requestor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int count= this.packageFragmentRoots.length;
-		for (int i= 0; i < count; i++) {
+		for (int i= 0; i < count; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (requestor.isCanceled())
 				return;
 			IPackageFragmentRoot root= this.packageFragmentRoots[i];
@@ -426,7 +426,7 @@ public class NameLookup implements SuffixConstants {
 				continue; // the root is not present, continue;
 			}
 			if (packages != null) {
-				for (IJavaElement package1 : packages) {
+				for (IJavaElement package1 : packages) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (requestor.isCanceled())
 						return;
 					seekTypes(prefix, (IPackageFragment) package1, partialMatch, acceptFlags, requestor);
@@ -444,7 +444,7 @@ public class NameLookup implements SuffixConstants {
 	 * <p>
 	 * The name must be fully qualified (eg "java.lang.Object", "java.util.Hashtable$Entry")
 	 */
-	public ICompilationUnit findCompilationUnit(String qualifiedTypeName) {
+	public ICompilationUnit findCompilationUnit(String qualifiedTypeName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] pkgName = CharOperation.NO_STRINGS;
 		String cuName = qualifiedTypeName;
 
@@ -466,7 +466,7 @@ public class NameLookup implements SuffixConstants {
 				return findCompilationUnit(pkgName, cuName, (PackageFragmentRoot) value);
 			} else {
 				IPackageFragmentRoot[] roots = (IPackageFragmentRoot[]) value;
-				for (IPackageFragmentRoot r : roots) {
+				for (IPackageFragmentRoot r : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					PackageFragmentRoot root= (PackageFragmentRoot) r;
 					ICompilationUnit cu = findCompilationUnit(pkgName, cuName, root);
 					if (cu != null)
@@ -482,7 +482,7 @@ public class NameLookup implements SuffixConstants {
 			IPackageFragment pkg = root.getPackageFragment(pkgName);
 			try {
 				ICompilationUnit[] cus = pkg.getCompilationUnits();
-				for (ICompilationUnit cu : cus) {
+				for (ICompilationUnit cu : cus) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (Util.equalsIgnoreJavaLikeExtension(cu.getElementName(), cuName))
 						return cu;
 				}
@@ -503,7 +503,7 @@ public class NameLookup implements SuffixConstants {
 	 * 	- internal to the workbench: "/Project/src"
 	 *  - external to the workbench: "c:/jdk/classes.zip/java/lang"
 	 */
-	public IPackageFragment findPackageFragment(IPath path) {
+	public IPackageFragment findPackageFragment(IPath path) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!path.isAbsolute()) {
 			throw new IllegalArgumentException(Messages.path_mustBeAbsolute);
 		}
@@ -514,7 +514,7 @@ public class NameLookup implements SuffixConstants {
 		IResource possibleFragment = ResourcesPlugin.getWorkspace().getRoot().findMember(path);
 		if (possibleFragment == null) {
 			//external jar
-			for (IPackageFragmentRoot root : this.packageFragmentRoots) {
+			for (IPackageFragmentRoot root : this.packageFragmentRoots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (!root.isExternal()) {
 					continue;
 				}
@@ -531,7 +531,7 @@ public class NameLookup implements SuffixConstants {
 						continue; // the package fragment root is not present;
 					}
 					int elementCount = list.length;
-					for (int j = 0; j < elementCount; j++) {
+					for (int j = 0; j < elementCount; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						IPackageFragment packageFragment = (IPackageFragment) list[j];
 						if (nameMatches(name, packageFragment, false)) {
 							return packageFragment;
@@ -563,7 +563,7 @@ public class NameLookup implements SuffixConstants {
 								return  ((PackageFragmentRoot) root).getPackageFragment(CharOperation.NO_STRINGS);
 							else {
 								IPackageFragmentRoot[] roots = (IPackageFragmentRoot[]) defaultPkgRoot;
-								for (IPackageFragmentRoot r : roots) {
+								for (IPackageFragmentRoot r : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 									if (r.equals(root)) {
 										return  ((PackageFragmentRoot) root).getPackageFragment(CharOperation.NO_STRINGS);
 									}
@@ -611,7 +611,7 @@ public class NameLookup implements SuffixConstants {
 	 * @param patternMatch <code>true</code> when the given name might be a pattern,
 	 *		<code>false</code> otherwise.
 	 */
-	public IPackageFragment[] findPackageFragments(String name, boolean partialMatch, boolean patternMatch) {
+	public IPackageFragment[] findPackageFragments(String name, boolean partialMatch, boolean patternMatch) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		boolean isStarPattern = name.equals("*"); //$NON-NLS-1$
 		boolean hasPatternChars = isStarPattern || (patternMatch && (name.indexOf('*') >= 0 || name.indexOf('?') >= 0));
 		if (partialMatch || hasPatternChars) {
@@ -620,7 +620,7 @@ public class NameLookup implements SuffixConstants {
 			ArrayList pkgs = null;
 			char[] lowercaseName = hasPatternChars && !isStarPattern ? name.toLowerCase().toCharArray() : null;
 			Object[][] keys = this.packageFragments.keyTable;
-			for (int i = 0, length = keys.length; i < length; i++) {
+			for (int i = 0, length = keys.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String[] pkgName = (String[]) keys[i];
 				if (pkgName != null) {
 					boolean match = isStarPattern || (hasPatternChars
@@ -634,21 +634,21 @@ public class NameLookup implements SuffixConstants {
 								oneFragment = new IPackageFragment[] {pkg};
 							} else {
 								if (pkgs == null) {
-									pkgs = new ArrayList();
+									pkgs = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 									pkgs.add(oneFragment[0]);
 								}
 								pkgs.add(pkg);
 							}
 						} else {
 							IPackageFragmentRoot[] roots = (IPackageFragmentRoot[]) value;
-							for (IPackageFragmentRoot r : roots) {
+							for (IPackageFragmentRoot r : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								PackageFragmentRoot root = (PackageFragmentRoot) r;
 								IPackageFragment pkg = root.getPackageFragment(pkgName);
 								if (oneFragment == null) {
 									oneFragment = new IPackageFragment[] {pkg};
 								} else {
 									if (pkgs == null) {
-										pkgs = new ArrayList();
+										pkgs = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 										pkgs.add(oneFragment[0]);
 									}
 									pkgs.add(pkg);
@@ -676,7 +676,7 @@ public class NameLookup implements SuffixConstants {
 			} else {
 				IPackageFragmentRoot[] roots = (IPackageFragmentRoot[]) value;
 				IPackageFragment[] result = new IPackageFragment[roots.length];
-				for (int i= 0; i < roots.length; i++) {
+				for (int i= 0; i < roots.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					result[i] = ((PackageFragmentRoot) roots[i]).getPackageFragment(pkgName);
 				}
 				return result;
@@ -707,7 +707,7 @@ public class NameLookup implements SuffixConstants {
 	/*
 	 * Find secondary type for a project.
 	 */
-	private IType findSecondaryType(String packageName, String typeName, IJavaProject project, boolean waitForIndexes, IProgressMonitor monitor) {
+	private IType findSecondaryType(String packageName, String typeName, IJavaProject project, boolean waitForIndexes, IProgressMonitor monitor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		JavaModelManager manager = JavaModelManager.getJavaModelManager();
 		try {
 			IJavaProject javaProject = project;
@@ -719,10 +719,10 @@ public class NameLookup implements SuffixConstants {
 					if (type != null) {
 						if (JavaModelManager.VERBOSE) {
 							trace("NameLookup FIND SECONDARY TYPES:"); //$NON-NLS-1$
-							trace(" -> pkg name: " + packageName);  //$NON-NLS-1$
-							trace(" -> type name: " + typeName);  //$NON-NLS-1$
-							trace(" -> project: "+project.getElementName()); //$NON-NLS-1$
-							trace(" -> type: " + type.getElementName());  //$NON-NLS-1$
+							trace(" -> pkg name: " + packageName);  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+							trace(" -> type name: " + typeName);  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+							trace(" -> project: "+project.getElementName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+							trace(" -> type: " + type.getElementName());  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
 						return type;
 					}
@@ -795,7 +795,7 @@ public class NameLookup implements SuffixConstants {
 	/**
 	 * Find type. Considering secondary types and waiting for indexes depends on given corresponding parameters.
 	 */
-	public Answer findType(
+	public Answer findType( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String typeName,
 			String packageName,
 			boolean partialMatch,
@@ -810,7 +810,7 @@ public class NameLookup implements SuffixConstants {
 			packageName= IPackageFragment.DEFAULT_PACKAGE_NAME;
 		} else if (typeName.length() > 0 && ScannerHelper.isLowerCase(typeName.charAt(0))) {
 			// see if this is a known package and not a type
-			if (findPackageFragments(packageName + "." + typeName, false) != null) return null; //$NON-NLS-1$
+			if (findPackageFragments(packageName + "." + typeName, false) != null) return null; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		// Look for concerned package fragments
@@ -842,7 +842,7 @@ public class NameLookup implements SuffixConstants {
 		HashSet projects = null;
 		IJavaProject javaProject = null;
 		Answer suggestedAnswer = null;
-		for (int i= 0; i < length; i++) {
+		for (int i= 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			type = findType(typeName, packages[i], partialMatch, acceptFlags, waitForIndexes, considerSecondaryTypes);
 			if (type != null) {
 				AccessRestriction accessRestriction = null;
@@ -867,7 +867,7 @@ public class NameLookup implements SuffixConstants {
 					javaProject = packages[i].getJavaProject();
 				} else if (projects == null)  {
 					if (!javaProject.equals(packages[i].getJavaProject())) {
-						projects = new HashSet(3);
+						projects = new HashSet(3); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 						projects.add(javaProject);
 						projects.add(packages[i].getJavaProject());
 					}
@@ -886,7 +886,7 @@ public class NameLookup implements SuffixConstants {
 				type = findSecondaryType(packageName, typeName, javaProject, waitForIndexes, monitor);
 			} else {
 				Iterator allProjects = projects.iterator();
-				while (type == null && allProjects.hasNext()) {
+				while (type == null && allProjects.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					type = findSecondaryType(packageName, typeName, (IJavaProject) allProjects.next(), waitForIndexes, monitor);
 				}
 			}
@@ -901,7 +901,7 @@ public class NameLookup implements SuffixConstants {
 					return null;
 				}
 				boolean typeFound = false;
-				for (int i = 0, typesLength = types == null ? 0 : types.length; i < typesLength; i++) {
+				for (int i = 0, typesLength = types == null ? 0 : types.length; i < typesLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (types[i].getElementName().equals(typeName)) {
 						typeFound = true;
 						break;
@@ -935,7 +935,7 @@ public class NameLookup implements SuffixConstants {
 	}
 
 	/** Internal utility, which is able to answer explicit and automatic modules. */
-	static IModuleDescription getModuleDescription(JavaProject project, IPackageFragmentRoot root, Map<IPackageFragmentRoot,IModuleDescription> cache, Function<IPackageFragmentRoot,IClasspathEntry> rootToEntry, int release) {
+	static IModuleDescription getModuleDescription(JavaProject project, IPackageFragmentRoot root, Map<IPackageFragmentRoot,IModuleDescription> cache, Function<IPackageFragmentRoot,IClasspathEntry> rootToEntry, int release) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IModuleDescription module = cache.get(root);
 		if (module != null)
 			return module != NO_MODULE ? module : null;
@@ -1101,7 +1101,7 @@ public class NameLookup implements SuffixConstants {
 		return findType(className, packageName, partialMatch, acceptFlags, considerSecondaryTypes, waitForIndexes, checkRestrictions, monitor);
 	}
 
-	public Answer findModule(char[] moduleName, int release) {
+	public Answer findModule(char[] moduleName, int release) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		JavaElementRequestor requestor = new JavaElementRequestor();
 		seekModule(moduleName, false, requestor, release);
 		IModuleDescription[] modules = requestor.getModules();
@@ -1121,7 +1121,7 @@ public class NameLookup implements SuffixConstants {
 	}
 
 	private IType getMemberType(IType type, String name, int dot) {
-		while (dot != -1) {
+		while (dot != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int start = dot+1;
 			dot = name.indexOf('.', start);
 			String typeName = DeduplicationUtil.intern(name.substring(start, dot == -1 ? name.length() : dot));
@@ -1134,7 +1134,7 @@ public class NameLookup implements SuffixConstants {
 		return this.packageFragments.get(pkgName) != null;
 	}
 
-	public boolean isPackage(String[] pkgName, IPackageFragmentRoot[] moduleContext) {
+	public boolean isPackage(String[] pkgName, IPackageFragmentRoot[] moduleContext) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (moduleContext == null) // includes the case where looking for module UNNAMED or ANY
 			return isPackage(pkgName);
 
@@ -1143,7 +1143,7 @@ public class NameLookup implements SuffixConstants {
 			start = System.currentTimeMillis();
 		try {
 			String[] trimmedPkgName = null;
-			for (IPackageFragmentRoot moduleRoot : moduleContext) {
+			for (IPackageFragmentRoot moduleRoot : moduleContext) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (moduleRoot instanceof PackageFragmentRoot) {
 					// Performance improvement: Avoid String.join(".") with
 					// subsequent Signature.getSimpleNames(). We already have
@@ -1166,14 +1166,14 @@ public class NameLookup implements SuffixConstants {
 
 	private static String[] trim(String[] strings) {
 		String[] trimmed = new String[strings.length];
-		for (int i = 0; i < strings.length; i++) {
+		for (int i = 0; i < strings.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			trimmed[i] = strings[i].trim();
 		}
 		return trimmed;
 	}
 
 	private boolean moduleMatches(IPackageFragmentRoot root, IPackageFragmentRoot[] moduleContext) {
-		for (IPackageFragmentRoot moduleRoot : moduleContext)
+		for (IPackageFragmentRoot moduleRoot : moduleContext) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (moduleRoot.equals(root))
 				return true;
 		return false;
@@ -1225,7 +1225,7 @@ public class NameLookup implements SuffixConstants {
 	 * @param partialMatch partial name matches qualify when <code>true</code>;
 	 *	only exact name matches qualify when <code>false</code>
 	 */
-	public void seekPackageFragments(String name, boolean partialMatch, IJavaElementRequestor requestor, IPackageFragmentRoot[] moduleContext) {
+	public void seekPackageFragments(String name, boolean partialMatch, IJavaElementRequestor requestor, IPackageFragmentRoot[] moduleContext) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (moduleContext == null) {
 			seekPackageFragments(name, partialMatch, requestor);
 			return;
@@ -1238,7 +1238,7 @@ public class NameLookup implements SuffixConstants {
 		if (VERBOSE)
 			start = System.currentTimeMillis();
 		try {
-			for (IPackageFragmentRoot moduleRoot : moduleContext) {
+			for (IPackageFragmentRoot moduleRoot : moduleContext) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPackageFragment fragment = moduleRoot.getPackageFragment(name);
 				if (fragment.exists())
 					requestor.acceptPackageFragment(fragment);
@@ -1264,12 +1264,12 @@ public class NameLookup implements SuffixConstants {
 		Selector selector = new Selector(moduleName);
 		seekPackageFragments(pkgName, true /*partialMatch*/, selector, moduleContext);
 		if (selector.pkgFragments.size() == 0) return;
-		for (IPackageFragment pkg : selector.pkgFragments) {
+		for (IPackageFragment pkg : selector.pkgFragments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			seekTypes(name, pkg, partialMatch, acceptFlags, requestor);
 		}
 	}
 
-	private void seekModuleAwarePartialPackageFragments(String name, IJavaElementRequestor requestor, IPackageFragmentRoot[] moduleContext) {
+	private void seekModuleAwarePartialPackageFragments(String name, IJavaElementRequestor requestor, IPackageFragmentRoot[] moduleContext) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long start = -1;
 		if (VERBOSE)
 			start = System.currentTimeMillis();
@@ -1288,7 +1288,7 @@ public class NameLookup implements SuffixConstants {
 		}
 	}
 
-	private void checkModulePackages(IJavaElementRequestor requestor, IPackageFragmentRoot[] moduleContext, int pkgIndex) {
+	private void checkModulePackages(IJavaElementRequestor requestor, IPackageFragmentRoot[] moduleContext, int pkgIndex) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Object value = this.packageFragments.valueTable[pkgIndex];
 		// reuse existing String[]
 		String[] pkgName = (String[]) this.packageFragments.keyTable[pkgIndex];
@@ -1299,7 +1299,7 @@ public class NameLookup implements SuffixConstants {
 		} else {
 			IPackageFragmentRoot[] roots = (IPackageFragmentRoot[]) value;
 			if (roots != null) {
-				for (IPackageFragmentRoot r : roots) {
+				for (IPackageFragmentRoot r : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (requestor.isCanceled())
 						return;
 					PackageFragmentRoot root = (PackageFragmentRoot) r;
@@ -1324,7 +1324,7 @@ public class NameLookup implements SuffixConstants {
 	 * @param partialMatch partial name matches qualify when <code>true</code>;
 	 *	only exact name matches qualify when <code>false</code>
 	 */
-	public void seekPackageFragments(String name, boolean partialMatch, IJavaElementRequestor requestor) {
+	public void seekPackageFragments(String name, boolean partialMatch, IJavaElementRequestor requestor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long start = -1;
 		if (VERBOSE)
 			start = System.currentTimeMillis();
@@ -1332,7 +1332,7 @@ public class NameLookup implements SuffixConstants {
 			if (partialMatch) {
 				String[] splittedName = Util.splitOn('.', name, 0, name.length());
 				Object[][] keys = this.packageFragments.keyTable;
-				for (int i = 0, length = keys.length; i < length; i++) {
+				for (int i = 0, length = keys.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (requestor.isCanceled())
 						return;
 					String[] pkgName = (String[]) keys[i];
@@ -1343,7 +1343,7 @@ public class NameLookup implements SuffixConstants {
 							requestor.acceptPackageFragment(root.getPackageFragment(pkgName));
 						} else {
 							IPackageFragmentRoot[] roots = (IPackageFragmentRoot[]) value;
-							for (IPackageFragmentRoot r : roots) {
+							for (IPackageFragmentRoot r : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								if (requestor.isCanceled())
 									return;
 								PackageFragmentRoot root = (PackageFragmentRoot) r;
@@ -1364,7 +1364,7 @@ public class NameLookup implements SuffixConstants {
 					} else {
 						IPackageFragmentRoot[] roots = (IPackageFragmentRoot[]) value;
 						if (roots != null) {
-							for (IPackageFragmentRoot r : roots) {
+							for (IPackageFragmentRoot r : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								if (requestor.isCanceled())
 									return;
 								PackageFragmentRoot root = (PackageFragmentRoot) r;
@@ -1387,7 +1387,7 @@ public class NameLookup implements SuffixConstants {
 	public void seekModuleReferences(String name, IJavaElementRequestor requestor, IJavaProject javaProject) {
 		seekModule(name.toCharArray(), true /* prefix */, requestor, JavaProject.NO_RELEASE);
 	}
-	@SuppressWarnings("unused")
+	@SuppressWarnings("unused") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void seekModule(char[] name, boolean prefixMatch, IJavaElementRequestor requestor, int release) {
 		long start = -1;
 		if (VERBOSE)
@@ -1401,7 +1401,7 @@ public class NameLookup implements SuffixConstants {
 					: CharOperation::equals;
 
 			int count= this.packageFragmentRoots.length;
-			for (int i= 0; i < count; i++) {
+			for (int i= 0; i < count; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (requestor.isCanceled())
 					return;
 				IPackageFragmentRoot root= this.packageFragmentRoots[i];
@@ -1442,7 +1442,7 @@ public class NameLookup implements SuffixConstants {
 	 * @see #ACCEPT_ANNOTATIONS
 	 * @see #ACCEPT_RECORDS
 	 */
-	public void seekTypes(String name, IPackageFragment pkg, boolean partialMatch, int acceptFlags, IJavaElementRequestor requestor, boolean considerSecondaryTypes) {
+	public void seekTypes(String name, IPackageFragment pkg, boolean partialMatch, int acceptFlags, IJavaElementRequestor requestor, boolean considerSecondaryTypes) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 /*		if (VERBOSE) {
 			Util.verbose(" SEEKING TYPES");  //$NON-NLS-1$
 			Util.verbose(" -> name: " + name);  //$NON-NLS-1$
@@ -1499,7 +1499,7 @@ public class NameLookup implements SuffixConstants {
 	/**
 	 * Performs type search in a binary package.
 	 */
-	protected void seekTypesInBinaryPackage(String name, IPackageFragment pkg, boolean partialMatch, int acceptFlags, IJavaElementRequestor requestor) {
+	protected void seekTypesInBinaryPackage(String name, IPackageFragment pkg, boolean partialMatch, int acceptFlags, IJavaElementRequestor requestor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		name= DeduplicationUtil.intern(name);
 		long start = -1;
 		if (VERBOSE)
@@ -1532,7 +1532,7 @@ public class NameLookup implements SuffixConstants {
 					// See http://dev.eclipse.org/bugs/show_bug.cgi?id=14642
 				}
 				int matchLength = name.length();
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (requestor.isCanceled())
 						return;
 					IJavaElement classFile= classFiles[i];
@@ -1559,7 +1559,7 @@ public class NameLookup implements SuffixConstants {
 	/**
 	 * Performs type search in a source package.
 	 */
-	protected void seekTypesInSourcePackage(
+	protected void seekTypesInSourcePackage( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String name,
 			IPackageFragment pkg,
 			int firstDot,
@@ -1576,7 +1576,7 @@ public class NameLookup implements SuffixConstants {
 			if (!partialMatch) {
 				try {
 					IJavaElement[] compilationUnits = pkg.getChildren();
-					for (IJavaElement cu : compilationUnits) {
+					for (IJavaElement cu : compilationUnits) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (requestor.isCanceled())
 							return;
 						String cuName = cu.getElementName();
@@ -1602,14 +1602,14 @@ public class NameLookup implements SuffixConstants {
 				try {
 					String cuPrefix = firstDot == -1 ? name : name.substring(0, firstDot);
 					IJavaElement[] compilationUnits = pkg.getChildren();
-					for (IJavaElement cu : compilationUnits) {
+					for (IJavaElement cu : compilationUnits) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (requestor.isCanceled())
 							return;
 						if (!cu.getElementName().toLowerCase().startsWith(cuPrefix))
 							continue;
 						try {
 							IType[] types = ((ICompilationUnit) cu).getTypes();
-							for (IType type : types)
+							for (IType type : types) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								seekTypesInTopLevelType(name, firstDot, type, requestor, acceptFlags);
 						} catch (JavaModelException e) {
 							// cu doesn't exist -> ignore
@@ -1625,7 +1625,7 @@ public class NameLookup implements SuffixConstants {
 		}
 	}
 
-	private boolean isPrimaryType(String name, IType type, boolean partialMatch) {
+	private boolean isPrimaryType(String name, IType type, boolean partialMatch) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		/*
 		 * Please have a look at: NameLookup#NameLookup
 		 * The HashTable this.typesInWorkingCopies contains values which are HashTables themselves.
@@ -1655,7 +1655,7 @@ public class NameLookup implements SuffixConstants {
 	 * the requestor at regular intervals to see if the requestor
 	 * has canceled.
 	 */
-	protected boolean seekTypesInType(String prefix, int firstDot, IType type, IJavaElementRequestor requestor, int acceptFlags) {
+	protected boolean seekTypesInType(String prefix, int firstDot, IType type, IJavaElementRequestor requestor, int acceptFlags) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long start = -1;
 		if (VERBOSE)
 			start = System.currentTimeMillis();
@@ -1675,7 +1675,7 @@ public class NameLookup implements SuffixConstants {
 				memberPrefix= prefix.substring(0, firstDot);
 				isMemberTypePrefix = true;
 			}
-			for (int i= 0; i < length; i++) {
+			for (int i= 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (requestor.isCanceled())
 					return false;
 				IType memberType= types[i];
@@ -1715,7 +1715,7 @@ public class NameLookup implements SuffixConstants {
 	 * Seeks the type with the given name in the map of types with precedence (coming from working copies)
 	 * Return whether a type has been found.
 	 */
-	protected boolean seekTypesInWorkingCopies(
+	protected boolean seekTypesInWorkingCopies( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String name,
 			IPackageFragment pkg,
 			int firstDot,
@@ -1746,7 +1746,7 @@ public class NameLookup implements SuffixConstants {
 						return true;
 					}
 					IType[] topLevelTypes = (IType[]) object;
-					for (IType topLevelType : topLevelTypes) {
+					for (IType topLevelType : topLevelTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (requestor.isCanceled())
 							return false;
 						IType type = getMemberType(topLevelType, name, firstDot);
@@ -1761,7 +1761,7 @@ public class NameLookup implements SuffixConstants {
 			HashMap typeMap = (HashMap) (this.typesInWorkingCopies == null ? null : this.typesInWorkingCopies.get(pkg));
 			if (typeMap != null) {
 				Iterator iterator = typeMap.values().iterator();
-				while (iterator.hasNext()) {
+				while (iterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (requestor.isCanceled())
 						return false;
 					Object object = iterator.next();
@@ -1771,7 +1771,7 @@ public class NameLookup implements SuffixConstants {
 						seekTypesInTopLevelType(name, firstDot, (IType) object, requestor, acceptFlags);
 					} else if (object instanceof IType[]) {
 						IType[] topLevelTypes = (IType[]) object;
-						for (IType topLevelType : topLevelTypes)
+						for (IType topLevelType : topLevelTypes) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							seekTypesInTopLevelType(name, firstDot, topLevelType, requestor, acceptFlags);
 					}
 				}
@@ -1780,7 +1780,7 @@ public class NameLookup implements SuffixConstants {
 		return false;
 	}
 
-	public boolean hasCompilationUnit(char[][] pkgName, IPackageFragmentRoot[] moduleContext) {
+	public boolean hasCompilationUnit(char[][] pkgName, IPackageFragmentRoot[] moduleContext) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String packageName = CharOperation.toString(pkgName);
 		if (packageName == null || packageName.length() == 0) {
 			packageName= IPackageFragment.DEFAULT_PACKAGE_NAME;
@@ -1790,7 +1790,7 @@ public class NameLookup implements SuffixConstants {
 		JavaElementRequestor elementRequestor = new JavaElementRequestor();
 		seekPackageFragments(packageName, false, elementRequestor, moduleContext);
 		IPackageFragment[] packages= elementRequestor.getPackageFragments();
-		for (IPackageFragment fragment : packages) {
+		for (IPackageFragment fragment : packages) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				if (fragment.containsJavaResources())
 					return true;
@@ -1806,14 +1806,14 @@ public class NameLookup implements SuffixConstants {
 			return;
 
 		trace(" TIME SPENT NameLoopkup");  //$NON-NLS-1$
-		trace(" -> seekTypesInSourcePackage..................." + this.timeSpentInSeekTypesInSourcePackage + "ms");  //$NON-NLS-1$ //$NON-NLS-2$
-		trace(" -> seekTypesInBinaryPackage..................." + this.timeSpentInSeekTypesInBinaryPackage + "ms");  //$NON-NLS-1$ //$NON-NLS-2$
-		trace(" -> seekTypesInType............................" + this.timeSpentInSeekTypesInType + "ms");  //$NON-NLS-1$ //$NON-NLS-2$
-		trace(" -> seekModule................................." + this.timeSpentInSeekModule + "ms");  //$NON-NLS-1$ //$NON-NLS-2$
-		trace(" -> seekModuleAwarePartialPackageFragments....." + this.timeSpentInSeekModuleAwarePartialPackageFragments + "ms");  //$NON-NLS-1$ //$NON-NLS-2$
-		trace(" -> seekPackageFragments......................." + this.timeSpentInSeekPackageFragments + "ms");  //$NON-NLS-1$ //$NON-NLS-2$
-		trace(" -> seekPackageFragmentsWithModuleContext......" + this.timeSpentInSeekPackageFragmentsWithModuleContext + "ms");  //$NON-NLS-1$ //$NON-NLS-2$
-		trace(" -> isPackage(pkg,moduleCtx)..................." + this.timeSpentInIsPackageWithModuleContext + "ms");  //$NON-NLS-1$ //$NON-NLS-2$
+		trace(" -> seekTypesInSourcePackage..................." + this.timeSpentInSeekTypesInSourcePackage + "ms");  //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		trace(" -> seekTypesInBinaryPackage..................." + this.timeSpentInSeekTypesInBinaryPackage + "ms");  //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		trace(" -> seekTypesInType............................" + this.timeSpentInSeekTypesInType + "ms");  //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		trace(" -> seekModule................................." + this.timeSpentInSeekModule + "ms");  //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		trace(" -> seekModuleAwarePartialPackageFragments....." + this.timeSpentInSeekModuleAwarePartialPackageFragments + "ms");  //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		trace(" -> seekPackageFragments......................." + this.timeSpentInSeekPackageFragments + "ms");  //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		trace(" -> seekPackageFragmentsWithModuleContext......" + this.timeSpentInSeekPackageFragmentsWithModuleContext + "ms");  //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		trace(" -> isPackage(pkg,moduleCtx)..................." + this.timeSpentInIsPackageWithModuleContext + "ms");  //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	private static final record PackageFragmentWithRelease(IPackageFragment fragment, int release) {

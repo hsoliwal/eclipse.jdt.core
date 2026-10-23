@@ -41,7 +41,7 @@ public class BootstrapMethodsAttribute extends ClassFileAttribute implements IBo
 			int readOffset = 8;
 			this.entries = new IBootstrapMethodsEntry[length];
 			BootstrapMethodsEntry entry;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.entries[i] = entry = new BootstrapMethodsEntry(classFileBytes, constantPool, offset + readOffset);
 				readOffset += 4 + 2 * entry.getBootstrapArguments().length;
 			}

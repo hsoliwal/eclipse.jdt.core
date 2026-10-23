@@ -103,7 +103,7 @@ public void test004() {
 /**
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=37387
  */
-public void test005() throws Exception {
+public void test005() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -117,7 +117,7 @@ public void test005() throws Exception {
 		"SUCCESS");
 
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String actualOutput =
 		disassembler.disassemble(
 			classFileBytes,
@@ -164,7 +164,7 @@ public void test006() {
 /**
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=85203
  */
-public void test007() {
+public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -204,7 +204,7 @@ public void test008() {
 }
 // check deep resolution of faulty initializer (no array expected type)
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=120263
-public void test009() {
+public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -244,7 +244,7 @@ public void test010() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=148807 - variation
-public void test011() throws Exception {
+public void test011() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -291,7 +291,7 @@ public void test011() throws Exception {
 			"        [pc: 5, pc: 12] local: all index: 1 type: java.lang.Object[][]\n" +
 			"        [pc: 16, pc: 24] local: e index: 1 type: java.lang.ArrayStoreException\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -304,7 +304,7 @@ public void test011() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=148807 - variation
-public void test012() throws Exception {
+public void test012() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -341,7 +341,7 @@ public void test012() throws Exception {
 	"        [pc: 0, pc: 15] local: this index: 0 type: X\n" +
 	"        [pc: 13, pc: 15] local: all index: 1 type: java.lang.Object[][]\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -355,7 +355,7 @@ public void test012() throws Exception {
 }
 //check resolution of faulty initializer
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=179477
-public void test013() {
+public void test013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -424,7 +424,7 @@ public void test015() throws Exception {
 }
 //https:bugs.eclipse.org/bugs/show_bug.cgi?id=247307 - variation
 //Check constant pool declaring class of array#clone()
-public void test016() throws Exception {
+public void test016() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -436,7 +436,7 @@ public void test016() throws Exception {
 			},
 			"");
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String actualOutput =
 		disassembler.disassemble(
 			classFileBytes,
@@ -466,7 +466,7 @@ public void test016() throws Exception {
 }
 
 //Check constant pool declaring class of array#clone()
-public void test017() throws Exception {
+public void test017() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map optionsMap = getCompilerOptions();
 	this.runConformTest(
 			new String[] {
@@ -484,7 +484,7 @@ public void test017() throws Exception {
 			optionsMap,
 			null);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String actualOutput =
 		disassembler.disassemble(
 			classFileBytes,
@@ -513,7 +513,7 @@ public void test017() throws Exception {
 }
 
 // https://bugs.eclipse.org/331872 -  [compiler] NPE in Scope.createArrayType when attempting qualified access from type parameter
-public void test018() throws Exception {
+public void test018() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -554,7 +554,7 @@ public void test019() throws Exception {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4789
 // Internal compiler error caused by AssertionError: array store with invalid types
-public void testIssue4789() throws Exception {
+public void testIssue4789() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14)
 		return;
 	this.runConformTest(

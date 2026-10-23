@@ -40,7 +40,7 @@ VariablesEvaluator(EvaluationContext context, INameEnvironment environment, Map<
 /**
  * @see org.eclipse.jdt.internal.eval.Evaluator
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void addEvaluationResultForCompilationProblem(Map<char[], EvaluationResult> resultsByIDs, CategorizedProblem problem, char[] cuSource) {
 	// set evaluation id and type to an internal problem by default
 	char[] evaluationID = cuSource;
@@ -107,7 +107,7 @@ protected void addEvaluationResultForCompilationProblem(Map<char[], EvaluationRe
 	currentLine = -1; // not needed any longer
 
 	// check variable initializers
-	for (int i = 0; i < varCount; i++) {
+	for (int i = 0; i < varCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		GlobalVariable var = this.context.variables[i];
 		char[] initializer = var.getInitializer();
 		int initializerLength = initializer == null ? 0 : initializer.length;
@@ -148,7 +148,7 @@ protected char[] getClassName() {
 /**
  * Creates and returns a compiler for this evaluator.
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 Compiler getCompiler(ICompilerRequestor compilerRequestor) {
 	Compiler compiler = super.getCompiler(compilerRequestor);
 
@@ -162,7 +162,7 @@ Compiler getCompiler(ICompilerRequestor compilerRequestor) {
 	VariablesInfo installedVars = this.context.installedVars;
 	if (installedVars != null) {
 		ClassFile[] classFiles = installedVars.classFiles;
-		for (ClassFile classFile : classFiles) {
+		for (ClassFile classFile : classFiles) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IBinaryType binary = null;
 			try {
 				binary = new ClassFileReader(classFile.getBytes(), null);
@@ -187,58 +187,58 @@ protected char[] getPackageName() {
 /**
  * @see org.eclipse.jdt.internal.eval.Evaluator
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected char[] getSource() {
-	StringBuilder buffer = new StringBuilder();
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	int lineNumberOffset = 1;
 
 	// package declaration
 	char[] packageName = getPackageName();
 	if (packageName.length != 0) {
-		buffer.append("package "); //$NON-NLS-1$
-		buffer.append(packageName);
-		buffer.append(';').append(this.context.lineSeparator);
+		buffer.append("package "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(packageName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(';').append(this.context.lineSeparator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		lineNumberOffset++;
 	}
 
 	// import declarations
 	char[][] imports = this.context.imports;
-	for (char[] import1 : imports) {
-		buffer.append("import "); //$NON-NLS-1$
-		buffer.append(import1);
-		buffer.append(';').append(this.context.lineSeparator);
+	for (char[] import1 : imports) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		buffer.append("import "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(import1); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(';').append(this.context.lineSeparator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		lineNumberOffset++;
 	}
 
 	// class declaration
-	buffer.append("public class "); //$NON-NLS-1$
-	buffer.append(getClassName());
-	buffer.append(" extends "); //$NON-NLS-1$
-	buffer.append(PACKAGE_NAME);
-	buffer.append("."); //$NON-NLS-1$
-	buffer.append(ROOT_CLASS_NAME);
-	buffer.append(" {").append(this.context.lineSeparator); //$NON-NLS-1$
+	buffer.append("public class "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(getClassName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(" extends "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(PACKAGE_NAME); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append("."); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(ROOT_CLASS_NAME); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(" {").append(this.context.lineSeparator); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	lineNumberOffset++;
 
 	// field declarations
 	GlobalVariable[] vars = this.context.variables;
 	VariablesInfo installedVars = this.context.installedVars;
-	for (int i = 0; i < this.context.variableCount; i++){
+	for (int i = 0; i < this.context.variableCount; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		GlobalVariable var = vars[i];
-		buffer.append("\tpublic static "); //$NON-NLS-1$
+		buffer.append("\tpublic static "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		var.declarationStart = buffer.length();
-		buffer.append(var.typeName);
-		buffer.append(" "); //$NON-NLS-1$
+		buffer.append(var.typeName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(" "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		char[] varName = var.name;
-		buffer.append(varName);
-		buffer.append(';').append(this.context.lineSeparator);
+		buffer.append(varName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(';').append(this.context.lineSeparator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		lineNumberOffset++;
 	}
 
 	// field initializations
-	buffer.append("\tstatic {").append(this.context.lineSeparator); //$NON-NLS-1$
+	buffer.append("\tstatic {").append(this.context.lineSeparator); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	lineNumberOffset++;
-	for (int i = 0; i < this.context.variableCount; i++){
+	for (int i = 0; i < this.context.variableCount; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		GlobalVariable var = vars[i];
 		char[] varName = var.name;
 		GlobalVariable installedVar = installedVars == null ? null : installedVars.varNamed(varName);
@@ -246,43 +246,43 @@ protected char[] getSource() {
 			// Initialize with initializer if there was no previous value
 			char[] initializer = var.initializer;
 			if (initializer != null) {
-				buffer.append("\t\ttry {").append(this.context.lineSeparator); //$NON-NLS-1$
+				buffer.append("\t\ttry {").append(this.context.lineSeparator); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				lineNumberOffset++;
 				var.initializerLineStart = lineNumberOffset;
-				buffer.append("\t\t\t"); //$NON-NLS-1$
+				buffer.append("\t\t\t"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				var.initializerStart = buffer.length();
-				buffer.append(varName);
-				buffer.append("= "); //$NON-NLS-1$
+				buffer.append(varName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append("= "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				var.initExpressionStart = buffer.length();
-				buffer.append(initializer);
+				buffer.append(initializer); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				lineNumberOffset += numberOfCRs(initializer);
-				buffer.append(';').append(this.context.lineSeparator);
-				buffer.append("\t\t} catch (Throwable e) {").append(this.context.lineSeparator); //$NON-NLS-1$
-				buffer.append("\t\t\te.printStackTrace();").append(this.context.lineSeparator); //$NON-NLS-1$
-				buffer.append("\t\t}").append(this.context.lineSeparator); //$NON-NLS-1$
+				buffer.append(';').append(this.context.lineSeparator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append("\t\t} catch (Throwable e) {").append(this.context.lineSeparator); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append("\t\t\te.printStackTrace();").append(this.context.lineSeparator); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append("\t\t}").append(this.context.lineSeparator); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				lineNumberOffset += 4; // 4 CRs
 			}
 		} else {
 			// Initialize with previous value if name and type are the same
-			buffer.append("\t\t"); //$NON-NLS-1$
-			buffer.append(varName);
-			buffer.append("= "); //$NON-NLS-1$
+			buffer.append("\t\t"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(varName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("= "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			char[] installedPackageName = installedVars.packageName;
 			if (installedPackageName != null && installedPackageName.length != 0) {
-				buffer.append(installedPackageName);
-				buffer.append("."); //$NON-NLS-1$
+				buffer.append(installedPackageName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append("."); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buffer.append(installedVars.className);
-			buffer.append("."); //$NON-NLS-1$
-			buffer.append(varName);
-			buffer.append(';').append(this.context.lineSeparator);
+			buffer.append(installedVars.className); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("."); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(varName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(';').append(this.context.lineSeparator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			lineNumberOffset++;
 		}
 	}
-	buffer.append("\t}").append(this.context.lineSeparator); //$NON-NLS-1$
+	buffer.append("\t}").append(this.context.lineSeparator); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 	// end of class declaration
-	buffer.append('}').append(this.context.lineSeparator);
+	buffer.append('}').append(this.context.lineSeparator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 	// return result
 	int length = buffer.length();
@@ -293,10 +293,10 @@ protected char[] getSource() {
 /**
  * Returns the number of cariage returns included in the given source.
  */
-private int numberOfCRs(char[] source) {
+private int numberOfCRs(char[] source) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int numberOfCRs = 0;
 	boolean lastWasCR = false;
-	for (char currentChar : source) {
+	for (char currentChar : source) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		switch(currentChar){
 			case '\r' :
 				lastWasCR = true;

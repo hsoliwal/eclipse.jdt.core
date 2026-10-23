@@ -135,23 +135,23 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		Object owner;
 
 		ZipCache(Object owner) {
-			this.map = new HashMap<>();
+			this.map = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			this.owner = owner;
 		}
 
 		public void flush() {
 			Thread currentThread = Thread.currentThread();
-			for (ZipFile zf : this.map.values()) {
+			for (ZipFile zf : this.map.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String zipFileName = null;
 				try (ZipFile zipFile = zf) {
 					zipFileName= zipFile.getName();
 					if (JavaModelManager.ZIP_ACCESS_VERBOSE) {
-						trace("(" + currentThread + ") [ZipCache[" + this.owner //$NON-NLS-1$//$NON-NLS-2$
+						trace("(" + currentThread + ") [ZipCache[" + this.owner //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								+ "].flush()] Closing ZipFile on " + zipFile.getName()); //$NON-NLS-1$
 					}
 				} catch (IOException e) {
 					// problem occured closing zip file: cannot do much more
-					JavaCore.getPlugin().getLog().log(new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, "Error closing " + zipFileName, e)); //$NON-NLS-1$
+					JavaCore.getPlugin().getLog().log(new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, "Error closing " + zipFileName, e)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}
@@ -165,7 +165,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 				if (old != null) {
 					if (JavaModelManager.ZIP_ACCESS_VERBOSE) {
 						Thread currentThread = Thread.currentThread();
-						trace("(" + currentThread + ") [ZipCache[" + this.owner //$NON-NLS-1$//$NON-NLS-2$
+						trace("(" + currentThread + ") [ZipCache[" + this.owner //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								+ "].setCache()] leaked ZipFile on " + old.getName() + " for path: " + path); //$NON-NLS-1$ //$NON-NLS-2$
 					}
 				}
@@ -184,18 +184,18 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	/**
 	 * Classpath variables pool
 	 */
-	public HashMap<String, IPath> variables = new HashMap<>(5);
-	public HashSet<String> variablesWithInitializer = new HashSet<>(5);
-	public HashMap<String, String> deprecatedVariables = new HashMap<>(5);
-	public HashSet<String> readOnlyVariables = new HashSet<>(5);
-	public HashMap<String, IPath> previousSessionVariables = new HashMap<>(5);
+	public HashMap<String, IPath> variables = new HashMap<>(5); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	public HashSet<String> variablesWithInitializer = new HashSet<>(5); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+	public HashMap<String, String> deprecatedVariables = new HashMap<>(5); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	public HashSet<String> readOnlyVariables = new HashSet<>(5); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+	public HashMap<String, IPath> previousSessionVariables = new HashMap<>(5); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	private final ThreadLocal<Set<String>> variableInitializationInProgress = new ThreadLocal<>();
 
 	/**
 	 * Classpath containers pool
 	 */
-	public HashMap<IJavaProject, Map<IPath, IClasspathContainer>> containers = new HashMap<>(5);
-	public HashMap<IJavaProject, Map<IPath, IClasspathContainer>> previousSessionContainers = new HashMap<>(5);
+	public HashMap<IJavaProject, Map<IPath, IClasspathContainer>> containers = new HashMap<>(5); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	public HashMap<IJavaProject, Map<IPath, IClasspathContainer>> previousSessionContainers = new HashMap<>(5); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	private final ThreadLocal<Map<IJavaProject, Set<IPath>>> containerInitializationInProgress = new ThreadLocal<>();
 	ThreadLocal<Map<IJavaProject, Map<IPath, IClasspathContainer>>> containersBeingInitialized = new ThreadLocal<>();
 
@@ -229,9 +229,9 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 */
 	public Map<IPath, String> rootPathToAttachments = new Hashtable<>();
 
-	public final static String CP_VARIABLE_PREFERENCES_PREFIX = JavaCore.PLUGIN_ID+".classpathVariable."; //$NON-NLS-1$
-	public final static String CP_CONTAINER_PREFERENCES_PREFIX = JavaCore.PLUGIN_ID+".classpathContainer."; //$NON-NLS-1$
-	public final static String CP_USERLIBRARY_PREFERENCES_PREFIX = JavaCore.PLUGIN_ID+".userLibrary."; //$NON-NLS-1$
+	public final static String CP_VARIABLE_PREFERENCES_PREFIX = JavaCore.PLUGIN_ID+".classpathVariable."; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	public final static String CP_CONTAINER_PREFERENCES_PREFIX = JavaCore.PLUGIN_ID+".classpathContainer."; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	public final static String CP_USERLIBRARY_PREFERENCES_PREFIX = JavaCore.PLUGIN_ID+".userLibrary."; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	public final static String CP_ENTRY_IGNORE = "##<cp entry ignore>##"; //$NON-NLS-1$
 	public final static IPath CP_ENTRY_IGNORE_PATH = new Path(CP_ENTRY_IGNORE);
 	public final static String TRUE = "true"; //$NON-NLS-1$
@@ -291,44 +291,44 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		public String toString() { return getDescription(); }
 	};
 
-	private static final String DEBUG = JavaCore.PLUGIN_ID + "/debug"; //$NON-NLS-1$
-	private static final String BUFFER_MANAGER_DEBUG = JavaCore.PLUGIN_ID + "/debug/buffermanager" ; //$NON-NLS-1$
-	private static final String INDEX_MANAGER_DEBUG = JavaCore.PLUGIN_ID + "/debug/indexmanager" ; //$NON-NLS-1$
-	private static final String INDEX_MANAGER_ADVANCED_DEBUG = JavaCore.PLUGIN_ID + "/debug/indexmanager/advanced" ; //$NON-NLS-1$
-	private static final String COMPILER_DEBUG = JavaCore.PLUGIN_ID + "/debug/compiler" ; //$NON-NLS-1$
-	private static final String JAVAMODEL_CLASSPATH = JavaCore.PLUGIN_ID + "/debug/javamodel/classpath" ; //$NON-NLS-1$
-	private static final String JAVAMODEL_DEBUG = JavaCore.PLUGIN_ID + "/debug/javamodel" ; //$NON-NLS-1$
-	private static final String JAVAMODEL_STDOUT = JavaCore.PLUGIN_ID + "/debug/traceToStdOut" ; //$NON-NLS-1$
-	private static final String JAVAMODEL_INVALID_ARCHIVES = JavaCore.PLUGIN_ID + "/debug/javamodel/invalid_archives" ; //$NON-NLS-1$
-	private static final String JAVAMODELCACHE_DEBUG = JavaCore.PLUGIN_ID + "/debug/javamodel/cache" ; //$NON-NLS-1$
-	private static final String JAVAMODELCACHE_INSERTIONS_DEBUG = JavaCore.PLUGIN_ID + "/debug/javamodel/insertions" ; //$NON-NLS-1$
-	private static final String CP_RESOLVE_DEBUG = JavaCore.PLUGIN_ID + "/debug/cpresolution" ; //$NON-NLS-1$
-	private static final String CP_RESOLVE_ADVANCED_DEBUG = JavaCore.PLUGIN_ID + "/debug/cpresolution/advanced" ; //$NON-NLS-1$
-	private static final String CP_RESOLVE_FAILURE_DEBUG = JavaCore.PLUGIN_ID + "/debug/cpresolution/failure" ; //$NON-NLS-1$
-	private static final String ZIP_ACCESS_DEBUG = JavaCore.PLUGIN_ID + "/debug/zipaccess" ; //$NON-NLS-1$
-	private static final String ZIP_ACCESS_WARNING_DEBUG_ = JavaCore.PLUGIN_ID + "/debug/zipaccessWarning" ; //$NON-NLS-1$
-	private static final String DELTA_DEBUG =JavaCore.PLUGIN_ID + "/debug/javadelta" ; //$NON-NLS-1$
-	private static final String DELTA_DEBUG_VERBOSE =JavaCore.PLUGIN_ID + "/debug/javadelta/verbose" ; //$NON-NLS-1$
-	private static final String DOM_AST_DEBUG = JavaCore.PLUGIN_ID + "/debug/dom/ast" ; //$NON-NLS-1$
-	private static final String DOM_AST_DEBUG_THROW = JavaCore.PLUGIN_ID + "/debug/dom/ast/throw" ; //$NON-NLS-1$
-	private static final String DOM_REWRITE_DEBUG = JavaCore.PLUGIN_ID + "/debug/dom/rewrite" ; //$NON-NLS-1$
-	private static final String HIERARCHY_DEBUG = JavaCore.PLUGIN_ID + "/debug/hierarchy" ; //$NON-NLS-1$
-	private static final String POST_ACTION_DEBUG = JavaCore.PLUGIN_ID + "/debug/postaction" ; //$NON-NLS-1$
-	private static final String BUILDER_DEBUG = JavaCore.PLUGIN_ID + "/debug/builder" ; //$NON-NLS-1$
-	private static final String BUILDER_STATS_DEBUG = JavaCore.PLUGIN_ID + "/debug/builder/stats" ; //$NON-NLS-1$
-	private static final String COMPLETION_DEBUG = JavaCore.PLUGIN_ID + "/debug/completion" ; //$NON-NLS-1$
-	private static final String RESOLUTION_DEBUG = JavaCore.PLUGIN_ID + "/debug/resolution" ; //$NON-NLS-1$
-	private static final String SELECTION_DEBUG = JavaCore.PLUGIN_ID + "/debug/selection" ; //$NON-NLS-1$
-	private static final String SEARCH_DEBUG = JavaCore.PLUGIN_ID + "/debug/search" ; //$NON-NLS-1$
-	private static final String SOURCE_MAPPER_DEBUG_VERBOSE = JavaCore.PLUGIN_ID + "/debug/sourcemapper" ; //$NON-NLS-1$
-	private static final String FORMATTER_DEBUG = JavaCore.PLUGIN_ID + "/debug/formatter" ; //$NON-NLS-1$
+	private static final String DEBUG = JavaCore.PLUGIN_ID + "/debug"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String BUFFER_MANAGER_DEBUG = JavaCore.PLUGIN_ID + "/debug/buffermanager" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String INDEX_MANAGER_DEBUG = JavaCore.PLUGIN_ID + "/debug/indexmanager" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String INDEX_MANAGER_ADVANCED_DEBUG = JavaCore.PLUGIN_ID + "/debug/indexmanager/advanced" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String COMPILER_DEBUG = JavaCore.PLUGIN_ID + "/debug/compiler" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String JAVAMODEL_CLASSPATH = JavaCore.PLUGIN_ID + "/debug/javamodel/classpath" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String JAVAMODEL_DEBUG = JavaCore.PLUGIN_ID + "/debug/javamodel" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String JAVAMODEL_STDOUT = JavaCore.PLUGIN_ID + "/debug/traceToStdOut" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String JAVAMODEL_INVALID_ARCHIVES = JavaCore.PLUGIN_ID + "/debug/javamodel/invalid_archives" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String JAVAMODELCACHE_DEBUG = JavaCore.PLUGIN_ID + "/debug/javamodel/cache" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String JAVAMODELCACHE_INSERTIONS_DEBUG = JavaCore.PLUGIN_ID + "/debug/javamodel/insertions" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String CP_RESOLVE_DEBUG = JavaCore.PLUGIN_ID + "/debug/cpresolution" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String CP_RESOLVE_ADVANCED_DEBUG = JavaCore.PLUGIN_ID + "/debug/cpresolution/advanced" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String CP_RESOLVE_FAILURE_DEBUG = JavaCore.PLUGIN_ID + "/debug/cpresolution/failure" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String ZIP_ACCESS_DEBUG = JavaCore.PLUGIN_ID + "/debug/zipaccess" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String ZIP_ACCESS_WARNING_DEBUG_ = JavaCore.PLUGIN_ID + "/debug/zipaccessWarning" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String DELTA_DEBUG =JavaCore.PLUGIN_ID + "/debug/javadelta" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String DELTA_DEBUG_VERBOSE =JavaCore.PLUGIN_ID + "/debug/javadelta/verbose" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String DOM_AST_DEBUG = JavaCore.PLUGIN_ID + "/debug/dom/ast" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String DOM_AST_DEBUG_THROW = JavaCore.PLUGIN_ID + "/debug/dom/ast/throw" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String DOM_REWRITE_DEBUG = JavaCore.PLUGIN_ID + "/debug/dom/rewrite" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String HIERARCHY_DEBUG = JavaCore.PLUGIN_ID + "/debug/hierarchy" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String POST_ACTION_DEBUG = JavaCore.PLUGIN_ID + "/debug/postaction" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String BUILDER_DEBUG = JavaCore.PLUGIN_ID + "/debug/builder" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String BUILDER_STATS_DEBUG = JavaCore.PLUGIN_ID + "/debug/builder/stats" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String COMPLETION_DEBUG = JavaCore.PLUGIN_ID + "/debug/completion" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String RESOLUTION_DEBUG = JavaCore.PLUGIN_ID + "/debug/resolution" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String SELECTION_DEBUG = JavaCore.PLUGIN_ID + "/debug/selection" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String SEARCH_DEBUG = JavaCore.PLUGIN_ID + "/debug/search" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String SOURCE_MAPPER_DEBUG_VERBOSE = JavaCore.PLUGIN_ID + "/debug/sourcemapper" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private static final String FORMATTER_DEBUG = JavaCore.PLUGIN_ID + "/debug/formatter" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-	public static final String COMPLETION_PERF = JavaCore.PLUGIN_ID + "/perf/completion" ; //$NON-NLS-1$
-	public static final String SELECTION_PERF = JavaCore.PLUGIN_ID + "/perf/selection" ; //$NON-NLS-1$
-	public static final String DELTA_LISTENER_PERF = JavaCore.PLUGIN_ID + "/perf/javadeltalistener" ; //$NON-NLS-1$
-	public static final String VARIABLE_INITIALIZER_PERF = JavaCore.PLUGIN_ID + "/perf/variableinitializer" ; //$NON-NLS-1$
-	public static final String CONTAINER_INITIALIZER_PERF = JavaCore.PLUGIN_ID + "/perf/containerinitializer" ; //$NON-NLS-1$
-	public static final String RECONCILE_PERF = JavaCore.PLUGIN_ID + "/perf/reconcile" ; //$NON-NLS-1$
+	public static final String COMPLETION_PERF = JavaCore.PLUGIN_ID + "/perf/completion" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	public static final String SELECTION_PERF = JavaCore.PLUGIN_ID + "/perf/selection" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	public static final String DELTA_LISTENER_PERF = JavaCore.PLUGIN_ID + "/perf/javadeltalistener" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	public static final String VARIABLE_INITIALIZER_PERF = JavaCore.PLUGIN_ID + "/perf/variableinitializer" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	public static final String CONTAINER_INITIALIZER_PERF = JavaCore.PLUGIN_ID + "/perf/containerinitializer" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	public static final String RECONCILE_PERF = JavaCore.PLUGIN_ID + "/perf/reconcile" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	public static final String DISABLE_RESTRICTED_FILE_INDEXING_PREFERENCE = "disableRestrictedFileIndexing" ; //$NON-NLS-1$
 
@@ -343,8 +343,8 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	private final static int UNKNOWN_OPTION = 0;
 	private final static int DEPRECATED_OPTION = 1;
 	private final static int VALID_OPTION = 2;
-	HashSet<String> optionNames = new HashSet<>(20);
-	Map<String, String[]> deprecatedOptions = new HashMap<>();
+	HashSet<String> optionNames = new HashSet<>(20); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+	Map<String, String[]> deprecatedOptions = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	volatile Hashtable<String, String> optionsCache;
 
 	// Only cache publication and invalidation hold this lock. In particular,
@@ -364,7 +364,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	private static DebugTrace DEBUG_TRACE;
 
 	private final Set<IProject> touchQueue = ConcurrentHashMap.newKeySet();
-	private static final class TouchJob extends WorkspaceJob {
+	private static final class TouchJob extends WorkspaceJob { //FLLDCIM: MARK — T09  IMPLEMENTS
 		// This INSTANCE is intentionally lazy initialized such that for example JavaCore.getOptions() can run without running Platform
 		// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1720
 		private static final WorkspaceJob INSTANCE = new TouchJob();
@@ -373,7 +373,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			super(Messages.synchronizing_projects_job);
 		}
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
 			JavaModelManager javaModelManager = JavaModelManager.getJavaModelManager();
 			SubMonitor subMonitor = SubMonitor.convert(monitor, javaModelManager.touchQueue.size());
@@ -381,14 +381,14 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 				// remaining work may change in background - update it:
 				subMonitor.setWorkRemaining(javaModelManager.touchQueue.size());
 				if (JavaBuilder.DEBUG) {
-					trace("Touching project " + iProject.getName()); //$NON-NLS-1$
+					trace("Touching project " + iProject.getName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				if (iProject.isAccessible()) {
 					try {
 						iProject.touch(subMonitor.split(1));
 					} catch (CoreException e) {
 						if (e.getStatus().getCode() != IResourceStatus.RESOURCE_NOT_FOUND) {
-							Util.log(e, "Could not touch project " + iProject.getName()); //$NON-NLS-1$
+							Util.log(e, "Could not touch project " + iProject.getName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
 					}
 				}
@@ -415,7 +415,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		private Object[][] registeredParticipants = null;
 		private HashSet<String> managedMarkerTypes;
 
-		public CompilationParticipant[] getCompilationParticipants(IJavaProject project) {
+		public CompilationParticipant[] getCompilationParticipants(IJavaProject project) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			final Object[][] participantsPerSource = getRegisteredParticipants();
 			if (participantsPerSource == NO_PARTICIPANTS)
 				return null;
@@ -425,7 +425,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			int length = participants.length;
 			CompilationParticipant[] result = new CompilationParticipant[length];
 			int index = 0;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (participants[i] instanceof IConfigurationElement) {
 					final IConfigurationElement configElement = (IConfigurationElement) participants[i];
 					final int participantIndex = i;
@@ -437,7 +437,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 						@Override
 						public void run() throws Exception {
 							Object executableExtension = configElement.createExecutableExtension("class"); //$NON-NLS-1$
-							for (int j = sourceLevelIndex; j < MAX_SOURCE_LEVEL; j++)
+							for (int j = sourceLevelIndex; j < MAX_SOURCE_LEVEL; j++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								participantsPerSource[j][participantIndex] = executableExtension;
 						}
 					});
@@ -461,23 +461,23 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			return this.managedMarkerTypes;
 		}
 
-		private synchronized Object[][] getRegisteredParticipants() {
+		private synchronized Object[][] getRegisteredParticipants() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			if (this.registeredParticipants != null) {
 				return this.registeredParticipants;
 			}
-			this.managedMarkerTypes = new HashSet<>();
+			this.managedMarkerTypes = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			IExtensionPoint extension = Platform.getExtensionRegistry().getExtensionPoint(JavaCore.PLUGIN_ID, COMPILATION_PARTICIPANT_EXTPOINT_ID);
 			if (extension == null)
 				return this.registeredParticipants = NO_PARTICIPANTS;
-			final ArrayList<IConfigurationElement> modifyingEnv = new ArrayList<>();
-			final ArrayList<IConfigurationElement> creatingProblems = new ArrayList<>();
-			final ArrayList<IConfigurationElement> others = new ArrayList<>();
+			final ArrayList<IConfigurationElement> modifyingEnv = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			final ArrayList<IConfigurationElement> creatingProblems = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			final ArrayList<IConfigurationElement> others = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			IExtension[] extensions = extension.getExtensions();
 			// for all extensions of this point...
-			for (IExtension ext : extensions) {
+			for (IExtension ext : extensions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IConfigurationElement[] configElements = ext.getConfigurationElements();
 				// for all config elements named "compilationParticipant"
-				for (final IConfigurationElement configElement : configElements) {
+				for (final IConfigurationElement configElement : configElements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String elementName =configElement.getName();
 					if (!("compilationParticipant".equals(elementName))) { //$NON-NLS-1$
 						continue;
@@ -491,7 +491,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 						others.add(configElement);
 					// add managed marker types
 					IConfigurationElement[] managedMarkers = configElement.getChildren("managedMarker"); //$NON-NLS-1$
-					for (IConfigurationElement element : managedMarkers) {
+					for (IConfigurationElement element : managedMarkers) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						String markerType = element.getAttribute("markerType"); //$NON-NLS-1$
 						if (markerType != null)
 							this.managedMarkerTypes.add(markerType);
@@ -512,13 +512,13 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			// create result table
 			Object[][] result = new Object[MAX_SOURCE_LEVEL][];
 			int length = configElements.length;
-			for (int i = 0; i < MAX_SOURCE_LEVEL; i++) {
+			for (int i = 0; i < MAX_SOURCE_LEVEL; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				result[i] = new Object[length];
 			}
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String sourceLevel = configElements[i].getAttribute("requiredSourceLevel"); //$NON-NLS-1$
 				int sourceLevelIndex = indexForSourceLevel(sourceLevel);
-				for (int j = sourceLevelIndex; j < MAX_SOURCE_LEVEL; j++) {
+				for (int j = sourceLevelIndex; j < MAX_SOURCE_LEVEL; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					result[j][i] = configElements[i];
 				}
 			}
@@ -545,7 +545,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			return 0;
 		}
 
-		private int sortParticipants(ArrayList<IConfigurationElement> group, IConfigurationElement[] configElements, int index) {
+		private int sortParticipants(ArrayList<IConfigurationElement> group, IConfigurationElement[] configElements, int index) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			int size = group.size();
 			if (size == 0) return index;
 			Object[] elements = group.toArray();
@@ -556,14 +556,14 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 					String id = ((IConfigurationElement) a).getAttribute("id"); //$NON-NLS-1$
 					if (id == null) return -1;
 					IConfigurationElement[] requiredElements = ((IConfigurationElement) b).getChildren("requires"); //$NON-NLS-1$
-					for (IConfigurationElement required : requiredElements) {
+					for (IConfigurationElement required : requiredElements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (id.equals(required.getAttribute("id"))) //$NON-NLS-1$
 							return -1;
 					}
 					return 1;
 				}
 			});
-			for (int i = 0; i < size; i++)
+			for (int i = 0; i < size; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				configElements[index+i] = (IConfigurationElement) elements[i];
 			return index + size;
 		}
@@ -580,7 +580,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 * Returns whether the given full path (for a package) conflicts with the output location
 	 * of the given project.
 	 */
-	public static boolean conflictsWithOutputLocation(IPath folderPath, JavaProject project) {
+	public static boolean conflictsWithOutputLocation(IPath folderPath, JavaProject project) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IPath outputLocation = project.getOutputLocation();
 			if (outputLocation == null) {
@@ -592,7 +592,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 				// or if the project's output is not used (in other words, if all source folders have their custom output)
 				IClasspathEntry[] classpath = project.getResolvedClasspath();
 				boolean isOutputUsed = false;
-				for (IClasspathEntry entry : classpath) {
+				for (IClasspathEntry entry : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (entry.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
 						if (entry.getPath().equals(outputLocation)) {
 							return false;
@@ -657,20 +657,20 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	private void containerAddInitializationInProgress(IJavaProject project, IPath containerPath) {
 		Map<IJavaProject, Set<IPath>> initializations = this.containerInitializationInProgress.get();
 		if (initializations == null)
-			this.containerInitializationInProgress.set(initializations = new HashMap<>());
+			this.containerInitializationInProgress.set(initializations = new HashMap<>()); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		Set<IPath> projectInitializations = initializations.get(project);
 		if (projectInitializations == null)
-			initializations.put(project, projectInitializations = new HashSet<>());
+			initializations.put(project, projectInitializations = new HashSet<>()); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		projectInitializations.add(containerPath);
 	}
 
 	public void containerBeingInitializedPut(IJavaProject project, IPath containerPath, IClasspathContainer container) {
 		Map<IJavaProject, Map<IPath, IClasspathContainer>> perProjectContainers = this.containersBeingInitialized.get();
 		if (perProjectContainers == null)
-			this.containersBeingInitialized.set(perProjectContainers = new HashMap<>());
+			this.containersBeingInitialized.set(perProjectContainers = new HashMap<>()); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		Map<IPath, IClasspathContainer> perPathContainers = perProjectContainers.get(project);
 		if (perPathContainers == null)
-			perProjectContainers.put(project, perPathContainers = new HashMap<>());
+			perProjectContainers.put(project, perPathContainers = new HashMap<>()); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		perPathContainers.put(containerPath, container);
 	}
 
@@ -699,7 +699,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		return container;
 	}
 
-	public synchronized void containerPut(IJavaProject project, IPath containerPath, IClasspathContainer container){
+	public synchronized void containerPut(IJavaProject project, IPath containerPath, IClasspathContainer container){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// set/unset the initialization in progress
 		if (container == CONTAINER_INITIALIZATION_IN_PROGRESS) {
@@ -712,7 +712,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 
 			Map<IPath, IClasspathContainer> projectContainers = this.containers.get(project);
  			if (projectContainers == null){
-				projectContainers = new HashMap<>(1);
+				projectContainers = new HashMap<>(1); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				this.containers.put(project, projectContainers);
 			}
 
@@ -741,7 +741,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		this.containers.remove(project);
 	}
 
-	public boolean containerPutIfInitializingWithSameEntries(IPath containerPath, IJavaProject[] projects, IClasspathContainer[] respectiveContainers) {
+	public boolean containerPutIfInitializingWithSameEntries(IPath containerPath, IJavaProject[] projects, IClasspathContainer[] respectiveContainers) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int projectLength = projects.length;
 		if (projectLength != 1)
 			return false;
@@ -774,7 +774,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 				verbose_missbehaving_container(containerPath, projects, respectiveContainers, container, newEntries, oldEntries);
 			return false;
 		}
-		for (int i = 0, length = newEntries.length; i < length; i++) {
+		for (int i = 0, length = newEntries.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (newEntries[i] == null) {
 				if (CP_RESOLVE_VERBOSE || CP_RESOLVE_VERBOSE_FAILURE)
 					verbose_missbehaving_container(project, containerPath, newEntries);
@@ -790,7 +790,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		return true;
 	}
 
-	private void verbose_missbehaving_container(
+	private void verbose_missbehaving_container( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			IPath containerPath,
 			IJavaProject[] projects,
 			IClasspathContainer[] respectiveContainers,
@@ -798,7 +798,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			final IClasspathEntry[] newEntries,
 			final IClasspathEntry[] oldEntries) {
 		trace(
-			"CPContainer SET  - missbehaving container\n" + //$NON-NLS-1$
+			"CPContainer SET  - missbehaving container\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	container path: " + containerPath + '\n' + //$NON-NLS-1$
 			"	projects: {" +//$NON-NLS-1$
 			org.eclipse.jdt.internal.compiler.util.Util.toString(
@@ -811,26 +811,26 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			org.eclipse.jdt.internal.compiler.util.Util.toString(
 				respectiveContainers,
 				new org.eclipse.jdt.internal.compiler.util.Util.Displayable(){
-					@Override
+					@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 					public String displayString(Object o) {
-						StringBuilder buffer = new StringBuilder("		"); //$NON-NLS-1$
+						StringBuilder buffer = new StringBuilder("		"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 						if (o == null) {
-							buffer.append("<null>"); //$NON-NLS-1$
+							buffer.append("<null>"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							return buffer.toString();
 						}
-						buffer.append(container.getDescription());
-						buffer.append(" {\n"); //$NON-NLS-1$
+						buffer.append(container.getDescription()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						buffer.append(" {\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						if (oldEntries == null) {
-							buffer.append(" 			"); //$NON-NLS-1$
-							buffer.append("<null>\n"); //$NON-NLS-1$
+							buffer.append(" 			"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+							buffer.append("<null>\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						} else {
-							for (IClasspathEntry oldEntry : oldEntries) {
-								buffer.append(" 			"); //$NON-NLS-1$
-								buffer.append(oldEntry);
-								buffer.append('\n');
+							for (IClasspathEntry oldEntry : oldEntries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+								buffer.append(" 			"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+								buffer.append(oldEntry); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+								buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							}
 						}
-						buffer.append(" 		}"); //$NON-NLS-1$
+						buffer.append(" 		}"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						return buffer.toString();
 					}
 				}) +
@@ -840,28 +840,28 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 				new org.eclipse.jdt.internal.compiler.util.Util.Displayable(){
 					@Override
 					public String displayString(Object o) {
-						StringBuilder buffer = new StringBuilder("		"); //$NON-NLS-1$
+						StringBuilder buffer = new StringBuilder("		"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 						if (o == null) {
-							buffer.append("<null>"); //$NON-NLS-1$
+							buffer.append("<null>"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							return buffer.toString();
 						}
-						buffer.append(container.getDescription());
-						buffer.append(" {\n"); //$NON-NLS-1$
-						for (IClasspathEntry newEntry : newEntries) {
-							buffer.append(" 			"); //$NON-NLS-1$
-							buffer.append(newEntry);
-							buffer.append('\n');
+						buffer.append(container.getDescription()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						buffer.append(" {\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						for (IClasspathEntry newEntry : newEntries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+							buffer.append(" 			"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+							buffer.append(newEntry); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+							buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
-						buffer.append(" 		}"); //$NON-NLS-1$
+						buffer.append(" 		}"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						return buffer.toString();
 					}
 				}) +
 			"\n	}"); //$NON-NLS-1$
 	}
 
-	void verbose_missbehaving_container(IJavaProject project, IPath containerPath, IClasspathEntry[] classpathEntries) {
+	void verbose_missbehaving_container(IJavaProject project, IPath containerPath, IClasspathEntry[] classpathEntries) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		trace(
-			"CPContainer GET - missbehaving container (returning null classpath entry)\n" + //$NON-NLS-1$
+			"CPContainer GET - missbehaving container (returning null classpath entry)\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	project: " + project.getElementName() + '\n' + //$NON-NLS-1$
 			"	container path: " + containerPath + '\n' + //$NON-NLS-1$
 			"	classpath entries: {\n" + //$NON-NLS-1$
@@ -870,12 +870,12 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 				new org.eclipse.jdt.internal.compiler.util.Util.Displayable(){
 					@Override
 					public String displayString(Object o) {
-						StringBuilder buffer = new StringBuilder("		"); //$NON-NLS-1$
+						StringBuilder buffer = new StringBuilder("		"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 						if (o == null) {
-							buffer.append("<null>"); //$NON-NLS-1$
+							buffer.append("<null>"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							return buffer.toString();
 						}
-						buffer.append(o);
+						buffer.append(o); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						return buffer.toString();
 					}
 				}) +
@@ -885,7 +885,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 
 	void verbose_missbehaving_container_null_entries(IJavaProject project, IPath containerPath) {
 		trace(
-			"CPContainer GET - missbehaving container (returning null as classpath entries)\n" + //$NON-NLS-1$
+			"CPContainer GET - missbehaving container (returning null as classpath entries)\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	project: " + project.getElementName() + '\n' + //$NON-NLS-1$
 			"	container path: " + containerPath + '\n' + //$NON-NLS-1$
 			"	classpath entries: <null>" //$NON-NLS-1$
@@ -907,10 +907,10 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	}
 
 	private synchronized void containersReset(String[] containerIDs) {
-		for (String containerID : containerIDs) {
-			for (Map<IPath, IClasspathContainer> projectContainers : this.containers.values()) {
+		for (String containerID : containerIDs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (Map<IPath, IClasspathContainer> projectContainers : this.containers.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (projectContainers != null){
-					for (IPath containerPath : projectContainers.keySet()) {
+					for (IPath containerPath : projectContainers.keySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (containerID.equals(containerPath.segment(0))) { // registered container
 							projectContainers.put(containerPath, null); // reset container value, but leave entry in Map
 						}
@@ -938,7 +938,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 * Creating a Java element has the side effect of creating and opening all of the
 	 * element's parents if they are not yet open.
 	 */
-	public static IJavaElement create(IResource resource, IJavaProject project) {
+	public static IJavaElement create(IResource resource, IJavaProject project) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (resource == null) {
 			return null;
 		}
@@ -972,7 +972,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 * Creating a Java element has the side effect of creating and opening all of the
 	 * element's parents if they are not yet open.
 	 */
-	public static IJavaElement create(IFile file, IJavaProject project) {
+	public static IJavaElement create(IFile file, IJavaProject project) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (file == null) {
 			return null;
 		}
@@ -1003,7 +1003,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 * Creating a Java element has the side effect of creating and opening all of the
 	 * element's parents if they are not yet open.
 	 */
-	public static IJavaElement create(IFolder folder, IJavaProject project) {
+	public static IJavaElement create(IFolder folder, IJavaProject project) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (folder == null) {
 			return null;
 		}
@@ -1028,7 +1028,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 				} catch (JavaModelException e) {
 					return null;
 				}
-				for (IJavaProject p : projects) {
+				for (IJavaProject p : projects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (!p.equals(lastProject)) {
 						element = determineIfOnClasspath(folder, p);
 						if (element != null) {
@@ -1049,7 +1049,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 * its project being the given project. Returns <code>null</code> if unable
 	 * to recognize the class file.
 	 */
-	public static IClassFile createClassFileFrom(IFile file, IJavaProject project ) {
+	public static IClassFile createClassFileFrom(IFile file, IJavaProject project ) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (file == null) {
 			return null;
 		}
@@ -1074,7 +1074,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 * file, its project being the given project. Returns <code>null</code> if unable
 	 * to recognize the compilation unit.
 	 */
-	public static ICompilationUnit createCompilationUnitFrom(IFile file, IJavaProject project) {
+	public static ICompilationUnit createCompilationUnitFrom(IFile file, IJavaProject project) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		if (file == null) return null;
 
@@ -1088,7 +1088,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			pkg = root.getPackageFragment(CharOperation.NO_STRINGS);
 
 			if (VERBOSE){
-				trace("WARNING : creating unit element outside classpath ("+ Thread.currentThread()+"): " + file.getFullPath()); //$NON-NLS-1$//$NON-NLS-2$
+				trace("WARNING : creating unit element outside classpath ("+ Thread.currentThread()+"): " + file.getFullPath()); //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		return pkg.getCompilationUnit(file.getName());
@@ -1101,7 +1101,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 * Returns <code>null</code> if unable to create a JAR package fragment root.
 	 * (for example, if the JAR file represents a non-Java resource)
 	 */
-	public static IPackageFragmentRoot createJarPackageFragmentRootFrom(IFile file, IJavaProject project) {
+	public static IPackageFragmentRoot createJarPackageFragmentRootFrom(IFile file, IJavaProject project) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (file == null) {
 			return null;
 		}
@@ -1127,7 +1127,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 * the package fragment the given resource is located in, or <code>null</code>
 	 * if the given resource is not on the classpath of the given project.
 	 */
-	public static IJavaElement determineIfOnClasspath(IResource resource, IJavaProject project) {
+	public static IJavaElement determineIfOnClasspath(IResource resource, IJavaProject project) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath resourcePath = resource.getFullPath();
 		boolean isExternal = ExternalFoldersManager.isInternalPathForExternalFolder(resourcePath);
 		if (isExternal)
@@ -1143,7 +1143,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 
 			int length	= entries.length;
 			if (length > 0) {
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IClasspathEntry entry = entries[i];
 					if (entry.getEntryKind() == IClasspathEntry.CPE_PROJECT) continue;
 					IPath rootPath = entry.getPath();
@@ -1210,7 +1210,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	/**
 	 * Set of elements which are out of sync with their buffers.
 	 */
-	protected HashSet<Openable> elementsOutOfSynchWithBuffers = new HashSet<>(11);
+	protected HashSet<Openable> elementsOutOfSynchWithBuffers = new HashSet<>(11); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 
 	/**
 	 * Holds the state used for delta processing.
@@ -1223,13 +1223,13 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 * Table from IProject to PerProjectInfo.
 	 * NOTE: this object itself is used as a lock to synchronize creation/removal of per project infos
 	 */
-	protected Map<IProject, PerProjectInfo> perProjectInfos = new HashMap<>(5);
+	protected Map<IProject, PerProjectInfo> perProjectInfos = new HashMap<>(5); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	/**
 	 * Table from WorkingCopyOwner to a table of ICompilationUnit (working copy handle) to PerWorkingCopyInfo.
 	 * NOTE: this object itself is used as a lock to synchronize creation/removal of per working copy infos
 	 */
-	protected HashMap<WorkingCopyOwner, Map<CompilationUnit, PerWorkingCopyInfo>> perWorkingCopyInfos = new HashMap<>(5);
+	protected HashMap<WorkingCopyOwner, Map<CompilationUnit, PerWorkingCopyInfo>> perWorkingCopyInfos = new HashMap<>(5); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	/**
 	 * A weak set of the known search scopes.
@@ -1278,14 +1278,14 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 				secondaryTypes = new Hashtable<>(3);
 			}
 			if (indexingSecondaryCache == null) {
-				indexingSecondaryCache = Collections.synchronizedMap(new HashMap<>(3));
+				indexingSecondaryCache = Collections.synchronizedMap(new HashMap<>(3)); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			}
 			this.cache = new SecondaryTypesCache(secondaryTypes, indexingSecondaryCache);
 			return this.cache;
 		}
 
 		private synchronized SecondaryTypesCache startIndexing() {
-			this.cache = new SecondaryTypesCache(this.cache.secondaryTypes(), Collections.synchronizedMap(new HashMap<>(3)));
+			this.cache = new SecondaryTypesCache(this.cache.secondaryTypes(), Collections.synchronizedMap(new HashMap<>(3))); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			return this.cache;
 		}
 
@@ -1359,7 +1359,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			IndexManager indexManager = manager.indexManager;
 			Hashtable<IPath, Long> externalTimeStamps = manager.deltaState.getExternalLibTimeStamps();
 			Map<IPath, List<RootInfo>> rootInfos = JavaModelManager.getDeltaState().otherRoots;
-			for (IClasspathEntry entry : classpath) {
+			for (IClasspathEntry entry : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (entry.getEntryKind() == IClasspathEntry.CPE_LIBRARY) {
 					IPath path = entry.getPath();
 					if (rootInfos.get(path) == null) {
@@ -1374,7 +1374,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			IClasspathEntry[] classpath = this.resolvedClasspath;
 			if (classpath == null) return;
 			Map<IPath, Long> externalTimeStamps = JavaModelManager.getJavaModelManager().deltaState.getExternalLibTimeStamps();
-			for (IClasspathEntry entry : classpath) {
+			for (IClasspathEntry entry : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (entry.getEntryKind() == IClasspathEntry.CPE_LIBRARY) {
 					IPath path = entry.getPath();
 					if (externalTimeStamps.get(path) == null) {
@@ -1396,14 +1396,14 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			return setResolvedClasspath(null, null, null, null, this.rawTimeStamp, true/*add classpath change*/);
 		}
 
-		private ClasspathChange setClasspath(IClasspathEntry[] newRawClasspath, IClasspathEntry[] referencedEntries, IPath newOutputLocation, IJavaModelStatus newRawClasspathStatus, IClasspathEntry[] newResolvedClasspath, Map<IPath, IClasspathEntry> newRootPathToRawEntries, Map<IPath, IClasspathEntry> newRootPathToResolvedEntries, IJavaModelStatus newUnresolvedEntryStatus, boolean addClasspathChange) {
+		private ClasspathChange setClasspath(IClasspathEntry[] newRawClasspath, IClasspathEntry[] referencedEntries, IPath newOutputLocation, IJavaModelStatus newRawClasspathStatus, IClasspathEntry[] newResolvedClasspath, Map<IPath, IClasspathEntry> newRootPathToRawEntries, Map<IPath, IClasspathEntry> newRootPathToResolvedEntries, IJavaModelStatus newUnresolvedEntryStatus, boolean addClasspathChange) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			if (DEBUG_CLASSPATH) {
-				trace("Setting resolved classpath for " + this.project.getFullPath()); //$NON-NLS-1$
+				trace("Setting resolved classpath for " + this.project.getFullPath()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				if (newResolvedClasspath == null) {
 					trace("New classpath = null"); //$NON-NLS-1$
 				} else {
-					for (IClasspathEntry next : newResolvedClasspath) {
-						trace("    " + next); //$NON-NLS-1$
+					for (IClasspathEntry next : newResolvedClasspath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+						trace("    " + next); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 				}
 			}
@@ -1455,7 +1455,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		}
 
 		public synchronized void setJrtPackageRoots(IPath jrtPath, ObjectVector roots) {
-			if (this.jrtRoots == null) this.jrtRoots = new HashMap<>();
+			if (this.jrtRoots == null) this.jrtRoots = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			this.jrtRoots.put(jrtPath, roots);
 		}
 
@@ -1464,7 +1464,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		 * The first element is an array of raw classpath entries and the second element is an array of referenced entries that may have been stored
 		 * by the client earlier. See {@link IJavaProject#getReferencedClasspathEntries()} for more details.
 		 */
-		public synchronized IClasspathEntry[][] readAndCacheClasspath(JavaProject javaProject) {
+		public synchronized IClasspathEntry[][] readAndCacheClasspath(JavaProject javaProject) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			// read file entries and update status
 			IClasspathEntry[][] classpath;
 			IJavaModelStatus status;
@@ -1516,42 +1516,42 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			return classpath;
 		}
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public String toString() {
-			StringBuilder buffer = new StringBuilder();
-			buffer.append("Info for "); //$NON-NLS-1$
-			buffer.append(this.project.getFullPath());
-			buffer.append("\nRaw classpath:\n"); //$NON-NLS-1$
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buffer.append("Info for "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(this.project.getFullPath()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("\nRaw classpath:\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (this.rawClasspath == null) {
-				buffer.append("  <null>\n"); //$NON-NLS-1$
+				buffer.append("  <null>\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				for (IClasspathEntry cpe : this.rawClasspath) {
-					buffer.append("  "); //$NON-NLS-1$
-					buffer.append(cpe);
-					buffer.append('\n');
+				for (IClasspathEntry cpe : this.rawClasspath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					buffer.append("  "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(cpe); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
-			buffer.append("Resolved classpath:\n"); //$NON-NLS-1$
+			buffer.append("Resolved classpath:\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			IClasspathEntry[] resolvedCP = this.resolvedClasspath;
 			if (resolvedCP == null) {
-				buffer.append("  <null>\n"); //$NON-NLS-1$
+				buffer.append("  <null>\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				for (IClasspathEntry cpe : resolvedCP) {
-					buffer.append("  "); //$NON-NLS-1$
-					buffer.append(cpe);
-					buffer.append('\n');
+				for (IClasspathEntry cpe : resolvedCP) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					buffer.append("  "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(cpe); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
-			buffer.append("Resolved classpath status: "); //$NON-NLS-1$
+			buffer.append("Resolved classpath status: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (this.unresolvedEntryStatus == NEED_RESOLUTION)
-				buffer.append("NEED RESOLUTION"); //$NON-NLS-1$
+				buffer.append("NEED RESOLUTION"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			else
-				buffer.append(this.unresolvedEntryStatus == null ? "<null>\n" : this.unresolvedEntryStatus.toString()); //$NON-NLS-1$
-			buffer.append("Output location:\n  "); //$NON-NLS-1$
+				buffer.append(this.unresolvedEntryStatus == null ? "<null>\n" : this.unresolvedEntryStatus.toString()); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("Output location:\n  "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (this.outputLocation == null) {
-				buffer.append("<null>"); //$NON-NLS-1$
+				buffer.append("<null>"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				buffer.append(this.outputLocation);
+				buffer.append(this.outputLocation); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			return buffer.toString();
 		}
@@ -1625,17 +1625,17 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		}
 		@Override
 		public String toString() {
-			StringBuilder buffer = new StringBuilder();
-			buffer.append("Info for "); //$NON-NLS-1$
-			buffer.append(this.workingCopy.toStringWithAncestors());
-			buffer.append("\nUse count = "); //$NON-NLS-1$
-			buffer.append(this.useCount);
-			buffer.append("\nProblem requestor:\n  "); //$NON-NLS-1$
-			buffer.append(this.problemRequestor);
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buffer.append("Info for "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(this.workingCopy.toStringWithAncestors()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("\nUse count = "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(this.useCount); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("\nProblem requestor:\n  "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(this.problemRequestor); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (this.problemRequestor == null) {
 				IProblemRequestor requestor = getProblemRequestor();
-				buffer.append("\nOwner problem requestor:\n  "); //$NON-NLS-1$
-				buffer.append(requestor);
+				buffer.append("\nOwner problem requestor:\n  "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(requestor); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			return buffer.toString();
 		}
@@ -1690,7 +1690,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 * A map of IPaths for jars with known validity (such as being in a valid/known format or not), to an eviction timestamp.
 	 * Synchronize on invalidArchives before accessing.
 	 */
-	private final Map<IPath, InvalidArchiveInfo> invalidArchives = new HashMap<>();
+	private final Map<IPath, InvalidArchiveInfo> invalidArchives = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	/*
 	 * Paths that are known to exists or not exists on the FileSystem (unrelated to the eclipse workspace).
@@ -1711,7 +1711,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		/**
          * @see org.eclipse.core.runtime.preferences.IEclipsePreferences.IPreferenceChangeListener#preferenceChange(org.eclipse.core.runtime.preferences.IEclipsePreferences.PreferenceChangeEvent)
          */
-        @Override
+        @Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public void preferenceChange(IEclipsePreferences.PreferenceChangeEvent event) {
         	String propertyName = event.getKey();
         	if (propertyName.startsWith(JavaCore.PLUGIN_ID)) {
@@ -1739,7 +1739,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	        				SetVariablesOperation operation = new SetVariablesOperation(new String[] {varName}, new IPath[] {newPath}, false/*don't update preferences*/);
 	        				operation.runOperation(null/*no progress available*/);
 	        			} catch (JavaModelException e) {
-	        				Util.log(e, "Could not set classpath variable " + varName + " to " + newPath); //$NON-NLS-1$ //$NON-NLS-2$
+	        				Util.log(e, "Could not set classpath variable " + varName + " to " + newPath); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        			}
 	        		}
 	        	} else if (propertyName.startsWith(CP_CONTAINER_PREFERENCES_PREFIX)) {
@@ -1763,7 +1763,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 					try {
 						jProjects = model.getJavaProjects();
 						IProject[] projects = new IProject[jProjects.length];
-						for (int i = 0, pl = jProjects.length; i < pl; i++) {
+						for (int i = 0, pl = jProjects.length; i < pl; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							JavaProject javaProject = (JavaProject) jProjects[i];
 							projects[i] = javaProject.getProject();
 							manager.deltaState.addClasspathValidation(javaProject);
@@ -1783,7 +1783,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
         	// Reset all project caches (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=233568 )
         	try {
         		IJavaProject[] projects = JavaModelManager.getJavaModelManager().getJavaModel().getJavaProjects();
-	        	for (IJavaProject project : projects) {
+	        	for (IJavaProject project : projects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					((JavaProject) project).resetCaches();
 				}
         	} catch (JavaModelException e) {
@@ -1832,7 +1832,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	/**
 	 * Constructs a new JavaModelManager
 	 */
-	private JavaModelManager() {
+	private JavaModelManager() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// singleton: prevent others from creating a new instance
 		/*
 		 * It is required to initialize all fields that depends on a headless environment
@@ -1844,7 +1844,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			this.nonChainingJars = loadClasspathListCache(NON_CHAINING_JARS_CACHE);
 			Set<IPath> external = loadClasspathListCache(EXTERNAL_FILES_CACHE);
 			this.externalFiles= new ConcurrentHashMap<>();
-			for (IPath p: external) {
+			for (IPath p: external) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.externalFiles.put(p, Boolean.TRUE);
 			}
 			this.assumedExternalFiles = loadClasspathListCache(ASSUMED_EXTERNAL_FILES_CACHE);
@@ -1868,7 +1868,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 
 	public void addInvalidArchive(IPath path, ArchiveValidity reason) {
 		if (DEBUG_INVALID_ARCHIVES) {
-			trace("JAR cache: adding " + reason + " " + path);  //$NON-NLS-1$//$NON-NLS-2$
+			trace("JAR cache: adding " + reason + " " + path);  //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		synchronized (this.invalidArchives) {
 			this.invalidArchives.put(path, new InvalidArchiveInfo(System.currentTimeMillis() + INVALID_ARCHIVE_TTL_MILLISECONDS, reason));
@@ -1902,33 +1902,33 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		this.zipFiles.set(new ZipCache(owner));
 	}
 
-	public void closeZipFile(ZipFile zipFile) {
+	public void closeZipFile(ZipFile zipFile) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (zipFile == null) return;
 		if (this.zipFiles.get() != null) {
 			if (JavaModelManager.ZIP_ACCESS_VERBOSE) {
-				trace("(" + Thread.currentThread() + ") [JavaModelManager.closeZipFile(ZipFile)] NOT closed ZipFile (cache exist!) on " +zipFile.getName()); //$NON-NLS-1$	//$NON-NLS-2$
+				trace("(" + Thread.currentThread() + ") [JavaModelManager.closeZipFile(ZipFile)] NOT closed ZipFile (cache exist!) on " +zipFile.getName()); //$NON-NLS-1$	//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			return; // zip file will be closed by call to flushZipFiles
 		}
 		try {
 			if (JavaModelManager.ZIP_ACCESS_VERBOSE) {
-				trace("(" + Thread.currentThread() + ") [JavaModelManager.closeZipFile(ZipFile)] Closing ZipFile on " +zipFile.getName()); //$NON-NLS-1$	//$NON-NLS-2$
+				trace("(" + Thread.currentThread() + ") [JavaModelManager.closeZipFile(ZipFile)] Closing ZipFile on " +zipFile.getName()); //$NON-NLS-1$	//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			zipFile.close();
 		} catch (IOException e) {
 			// problem occured closing zip file: cannot do much more
-			JavaCore.getPlugin().getLog().log(new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, "Error closing " + zipFile.getName(), e)); //$NON-NLS-1$
+			JavaCore.getPlugin().getLog().log(new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, "Error closing " + zipFile.getName(), e)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
-	public static void registerDebugOptionsListener(BundleContext context) {
+	public static void registerDebugOptionsListener(BundleContext context) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// register debug options listener
 		Hashtable<String, String> properties = new Hashtable<>(2);
 		properties.put(DebugOptions.LISTENER_SYMBOLICNAME, JavaCore.PLUGIN_ID);
 		DEBUG_REGISTRATION = context.registerService(DebugOptionsListener.class, new DebugOptionsListener() {
 
 
-			@Override
+			@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			public void optionsChanged(DebugOptions options) {
 				DEBUG_TRACE = options.newDebugTrace(JavaCore.PLUGIN_ID, JavaModelManager.class);
 				boolean debug = options.getBooleanOption(DEBUG, false);
@@ -1988,20 +1988,20 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 * be configured before it can be used.  Returns null if a manager cannot be
 	 * created, i.e. if the current VM does not support Java 6 annotation processing.
 	 */
-	public AbstractAnnotationProcessorManager createAnnotationProcessorManager() {
+	public AbstractAnnotationProcessorManager createAnnotationProcessorManager() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		synchronized(this) {
 			if (this.annotationProcessorManagerFactory == null) {
 				IExtensionPoint extension = Platform.getExtensionRegistry().getExtensionPoint(JavaCore.PLUGIN_ID, ANNOTATION_PROCESSOR_MANAGER_EXTPOINT_ID);
 				if (extension == null)
 					return null;
 				IExtension[] extensions = extension.getExtensions();
-				for(int i = 0; i < extensions.length; i++) {
+				for(int i = 0; i < extensions.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (i > 0) {
-						Util.log(null, "An annotation processor manager is already registered: ignoring " + extensions[i].getUniqueIdentifier()); //$NON-NLS-1$
+						Util.log(null, "An annotation processor manager is already registered: ignoring " + extensions[i].getUniqueIdentifier()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						break;
 					}
 					IConfigurationElement[] configElements = extensions[i].getConfigurationElements();
-					for (final IConfigurationElement configElement : configElements) {
+					for (final IConfigurationElement configElement : configElements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if ("annotationProcessorManager".equals(configElement.getName())) { //$NON-NLS-1$
 							this.annotationProcessorManagerFactory = configElement;
 							break;
@@ -2043,7 +2043,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 * NOTE: it must NOT be synchronized as it may interact with the element info cache (if useCount is decremented to 0), see bug 50667.
 	 * Returns the new use count (or -1 if it didn't exist).
 	 */
-	public int discardPerWorkingCopyInfo(CompilationUnit workingCopy) throws JavaModelException {
+	public int discardPerWorkingCopyInfo(CompilationUnit workingCopy) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// create the delta builder (this remembers the current content of the working copy)
 		// outside the perWorkingCopyInfos lock (see bug 50667)
@@ -2096,11 +2096,11 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	/**
 	 * Flushes ZipFiles cache if there are no more clients.
 	 */
-	public void flushZipFiles(Object owner) {
+	public void flushZipFiles(Object owner) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ZipCache zipCache = this.zipFiles.get();
 		if (zipCache == null) {
 			if (JavaModelManager.ZIP_ACCESS_VERBOSE) {
-				trace("(" + Thread.currentThread() + ") [JavaModelManager.flushZipFiles(String)] NOT found cache for " + owner); //$NON-NLS-1$	//$NON-NLS-2$
+				trace("(" + Thread.currentThread() + ") [JavaModelManager.flushZipFiles(String)] NOT found cache for " + owner); //$NON-NLS-1$	//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			return;
 		}
@@ -2111,7 +2111,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			zipCache.flush();
 		} else {
 			if (JavaModelManager.ZIP_ACCESS_VERBOSE) {
-				trace("(" + Thread.currentThread() //$NON-NLS-1$
+				trace("(" + Thread.currentThread() //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						+ ") [JavaModelManager.flushZipFiles(String)] NOT closed cache, wrong owner, expected: " //$NON-NLS-1$
 						+ zipCache.owner + ", got: " + owner); //$NON-NLS-1$
 			}
@@ -2151,7 +2151,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		this.batchContainerInitializations = BATCH_INITIALIZATION_FINISHED;
 	}
 
-	public IClasspathContainer getClasspathContainer(final IPath containerPath, final IJavaProject project) throws JavaModelException {
+	public IClasspathContainer getClasspathContainer(final IPath containerPath, final IJavaProject project) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IClasspathContainer container = containerGet(project, containerPath);
 
@@ -2174,7 +2174,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		return container;
 	}
 
-	public IClasspathEntry[] getReferencedClasspathEntries(IClasspathEntry libraryEntry, IJavaProject project) {
+	public IClasspathEntry[] getReferencedClasspathEntries(IClasspathEntry libraryEntry, IJavaProject project) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IClasspathEntry[] referencedEntries = ((ClasspathEntry)libraryEntry).resolvedChainedLibraries();
 
@@ -2186,7 +2186,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			return referencedEntries;
 
 		LinkedHashSet<IPath> pathToReferencedEntries = new LinkedHashSet<>(referencedEntries.length);
-		for (int index = 0; index < referencedEntries.length; index++) {
+		for (int index = 0; index < referencedEntries.length; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 			if (pathToReferencedEntries.contains(referencedEntries[index].getPath()))
 				continue;
@@ -2261,12 +2261,12 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	public HashSet<IJavaProject> getExternalWorkingCopyProjects() {
 		synchronized (this.perWorkingCopyInfos) {
 			HashSet<IJavaProject> result = null;
-			for (Map<CompilationUnit, PerWorkingCopyInfo> ownerCopies : this.perWorkingCopyInfos.values()) {
-				for (ICompilationUnit workingCopy : ownerCopies.keySet()) {
+			for (Map<CompilationUnit, PerWorkingCopyInfo> ownerCopies : this.perWorkingCopyInfos.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				for (ICompilationUnit workingCopy : ownerCopies.keySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IJavaProject project = workingCopy.getJavaProject();
 					if (project.getElementName().equals(ExternalJavaProject.EXTERNAL_PROJECT_NAME)) {
 						if (result == null)
-							result = new HashSet<>();
+							result = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 						result.add(project);
 					}
 				}
@@ -2283,7 +2283,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	}
 
 	// If modified, also modify the method getDefaultOptionsNoInitialization()
-	public Hashtable<String, String> getDefaultOptions(){
+	public Hashtable<String, String> getDefaultOptions(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		Hashtable<String, String> defaultOptions = new Hashtable<>(10);
 
@@ -2291,7 +2291,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		// If modified, also modify the method getDefaultOptionsNoInitialization()
 		IEclipsePreferences defaultPreferences = getDefaultPreferences();
 
-		for (String propertyName : this.optionNames) {
+		for (String propertyName : this.optionNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		    String value = defaultPreferences.get(propertyName, null);
 		    if (value != null) defaultOptions.put(propertyName, value);
 		}
@@ -2330,10 +2330,10 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 *
 	 * For use by image builder and evaluation support only
 	 */
-	public Object getLastBuiltState(IProject project, IProgressMonitor monitor) {
+	public Object getLastBuiltState(IProject project, IProgressMonitor monitor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!JavaProject.hasJavaNature(project)) {
 			if (JavaBuilder.DEBUG) {
-				trace(project + " is not a Java project"); //$NON-NLS-1$
+				trace(project + " is not a Java project"); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			return null; // should never be requested on non-Java projects
 		}
@@ -2345,13 +2345,13 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 					monitor.subTask(Messages.bind(Messages.build_readStateProgress, project.getName()));
 				info.savedState = readState(project);
 			} catch (CoreException e) {
-				Util.log(e, "Exception while reading last build state for: " + project); //$NON-NLS-1$
+				Util.log(e, "Exception while reading last build state for: " + project); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		return info.savedState;
 	}
 
-	public String getOption(String optionName) {
+	public String getOption(String optionName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		if (JavaCore.CORE_ENCODING.equals(optionName)){
 			return JavaCore.getEncoding();
@@ -2383,7 +2383,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 * @param projectPreferences The eclipse preferences from which to get the value
 	 * @return The value of the option. May be <code>null</code>
 	 */
-	public String getOption(String optionName, boolean inheritJavaCoreOptions, IEclipsePreferences projectPreferences) {
+	public String getOption(String optionName, boolean inheritJavaCoreOptions, IEclipsePreferences projectPreferences) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Return the option value depending on its level
 		switch (getOptionLevel(optionName)) {
 			case VALID_OPTION:
@@ -2468,7 +2468,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		}
 	}
 
-	public Hashtable<String, String> getOptions() {
+	public Hashtable<String, String> getOptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Capture before reading either the cache or the preferences.
 		long generation = this.optionsCacheGeneration;
 
@@ -2489,20 +2489,20 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		Hashtable<String, String> options = new Hashtable<>(10);
 		IPreferencesService service = Platform.getPreferencesService();
 
-		for (String propertyName : this.optionNames) {
+		for (String propertyName : this.optionNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String propertyValue = service.get(propertyName, null, this.preferencesLookup);
 			if (propertyValue != null) {
 				options.put(propertyName, propertyValue);
 			}
 		}
 
-		for (Entry<String, String[]> entry : this.deprecatedOptions.entrySet()) {
+		for (Entry<String, String[]> entry : this.deprecatedOptions.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String propertyName = entry.getKey();
 			String propertyValue = service.get(propertyName, null, this.preferencesLookup);
 			if (propertyValue != null) {
 				options.put(propertyName, propertyValue);
 				String[] compatibleOptions = entry.getValue();
-				for (String compatibleOption : compatibleOptions) {
+				for (String compatibleOption : compatibleOptions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (!options.containsKey(compatibleOption))
 						options.put(compatibleOption, propertyValue);
 				}
@@ -2526,7 +2526,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	}
 
 	// Do not modify without modifying getDefaultOptions()
-	private Hashtable<String, String> getDefaultOptionsNoInitialization() {
+	private Hashtable<String, String> getDefaultOptionsNoInitialization() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> defaultOptionsMap = new CompilerOptions().getMap(); // compiler defaults
 
 		// Override some compiler defaults
@@ -2593,7 +2593,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			if (info == null && create) {
 				info= new PerProjectInfo(project);
 				if (VERBOSE) {
-					trace("Created info for: " + project); //$NON-NLS-1$
+					trace("Created info for: " + project); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				this.perProjectInfos.put(project, info);
 			}
@@ -2623,12 +2623,12 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 * If recordUsage, increment the per-working copy info's use count.
 	 * Returns null if it doesn't exist and not create.
 	 */
-	public PerWorkingCopyInfo getPerWorkingCopyInfo(CompilationUnit workingCopy,boolean create, boolean recordUsage, IProblemRequestor problemRequestor) {
+	public PerWorkingCopyInfo getPerWorkingCopyInfo(CompilationUnit workingCopy,boolean create, boolean recordUsage, IProblemRequestor problemRequestor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		synchronized(this.perWorkingCopyInfos) { // use the perWorkingCopyInfo collection as its own lock
 			WorkingCopyOwner owner = workingCopy.owner;
 			Map<CompilationUnit, PerWorkingCopyInfo> workingCopyToInfos = this.perWorkingCopyInfos.get(owner);
 			if (workingCopyToInfos == null && create) {
-				workingCopyToInfos = new HashMap<>();
+				workingCopyToInfos = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				this.perWorkingCopyInfos.put(owner, workingCopyToInfos);
 			}
 
@@ -2660,23 +2660,23 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		    return null; // break cycle if none found
 	}
 
-	private void verbose_reentering_project_container_access(	IPath containerPath, IJavaProject project, IClasspathContainer previousContainer) {
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("CPContainer INIT - reentering access to project container during its initialization, will see previous value\n"); //$NON-NLS-1$
-		buffer.append("	project: " + project.getElementName() + '\n'); //$NON-NLS-1$
-		buffer.append("	container path: " + containerPath + '\n'); //$NON-NLS-1$
-		buffer.append("	previous value: "); //$NON-NLS-1$
-		buffer.append(previousContainer.getDescription());
-		buffer.append(" {\n"); //$NON-NLS-1$
+	private void verbose_reentering_project_container_access(	IPath containerPath, IJavaProject project, IClasspathContainer previousContainer) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("CPContainer INIT - reentering access to project container during its initialization, will see previous value\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("	project: " + project.getElementName() + '\n'); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("	container path: " + containerPath + '\n'); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("	previous value: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(previousContainer.getDescription()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(" {\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		IClasspathEntry[] entries = previousContainer.getClasspathEntries();
 		if (entries != null){
-			for (IClasspathEntry entry : entries) {
-				buffer.append(" 		"); //$NON-NLS-1$
-				buffer.append(entry);
-				buffer.append('\n');
+			for (IClasspathEntry entry : entries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append(" 		"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(entry); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		buffer.append(" 	}"); //$NON-NLS-1$
+		buffer.append(" 	}"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		trace(buffer.toString(), new Exception("<Fake exception>")); //$NON-NLS-1$
 	}
 
@@ -2695,7 +2695,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 
 	private void verbose_reentering_variable_access(String variableName, IPath previousPath) {
 		trace(
-			"CPVariable INIT - reentering access to variable during its initialization, will see previous value\n" + //$NON-NLS-1$
+			"CPVariable INIT - reentering access to variable during its initialization, will see previous value\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	variable: "+ variableName + '\n' + //$NON-NLS-1$
 			"	previous value: " + previousPath, new Exception("<Fake exception>")); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -2707,7 +2707,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	public HashMap<IJavaElement, IElementInfo> getTemporaryCache() {
 		HashMap<IJavaElement, IElementInfo> result = this.temporaryCache.get();
 		if (result == null) {
-			result = new HashMap<>();
+			result = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			this.temporaryCache.set(result);
 		}
 		return result;
@@ -2720,18 +2720,18 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	/**
  	 * Returns the name of the variables for which an CP variable initializer is registered through an extension point
  	 */
-	public static String[] getRegisteredVariableNames(){
+	public static String[] getRegisteredVariableNames(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		Plugin jdtCorePlugin = JavaCore.getPlugin();
 		if (jdtCorePlugin == null) return null;
 
-		ArrayList<String> variableList = new ArrayList<>(5);
+		ArrayList<String> variableList = new ArrayList<>(5); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		IExtensionPoint extension = Platform.getExtensionRegistry().getExtensionPoint(JavaCore.PLUGIN_ID, JavaModelManager.CPVARIABLE_INITIALIZER_EXTPOINT_ID);
 		if (extension != null) {
 			IExtension[] extensions =  extension.getExtensions();
-			for (IExtension ext : extensions) {
+			for (IExtension ext : extensions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IConfigurationElement [] configElements = ext.getConfigurationElements();
-				for (IConfigurationElement configElement : configElements) {
+				for (IConfigurationElement configElement : configElements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String varAttribute = configElement.getAttribute("variable"); //$NON-NLS-1$
 					if (varAttribute != null) variableList.add(varAttribute);
 				}
@@ -2745,18 +2745,18 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	/**
  	 * Returns the name of the container IDs for which an CP container initializer is registered through an extension point
  	 */
-	public static String[] getRegisteredContainerIDs(){
+	public static String[] getRegisteredContainerIDs(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		Plugin jdtCorePlugin = JavaCore.getPlugin();
 		if (jdtCorePlugin == null) return null;
 
-		ArrayList<String> containerIDList = new ArrayList<>(5);
+		ArrayList<String> containerIDList = new ArrayList<>(5); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		IExtensionPoint extension = Platform.getExtensionRegistry().getExtensionPoint(JavaCore.PLUGIN_ID, JavaModelManager.CPCONTAINER_INITIALIZER_EXTPOINT_ID);
 		if (extension != null) {
 			IExtension[] extensions =  extension.getExtensions();
-			for (IExtension ext : extensions) {
+			for (IExtension ext : extensions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IConfigurationElement [] configElements = ext.getConfigurationElements();
-				for (IConfigurationElement configElement : configElements) {
+				for (IConfigurationElement configElement : configElements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String idAttribute = configElement.getAttribute("id"); //$NON-NLS-1$
 					if (idAttribute != null) containerIDList.add(idAttribute);
 				}
@@ -2767,7 +2767,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		return containerIDs;
 	}
 
-	public IClasspathEntry resolveVariableEntry(IClasspathEntry entry, boolean usePreviousSession) {
+	public IClasspathEntry resolveVariableEntry(IClasspathEntry entry, boolean usePreviousSession) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		if (entry.getEntryKind() != IClasspathEntry.CPE_VARIABLE)
 			return entry;
@@ -2842,7 +2842,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		return null;
 	}
 
-	public IPath getResolvedVariablePath(IPath variablePath, boolean usePreviousSession) {
+	public IPath getResolvedVariablePath(IPath variablePath, boolean usePreviousSession) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		if (variablePath == null)
 			return null;
@@ -2896,7 +2896,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 * Adds the working copies of the primary owner if specified.
 	 * Returns null if it has none.
 	 */
-	public ICompilationUnit[] getWorkingCopies(WorkingCopyOwner owner, boolean addPrimary) {
+	public ICompilationUnit[] getWorkingCopies(WorkingCopyOwner owner, boolean addPrimary) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		synchronized(this.perWorkingCopyInfos) {
 			ICompilationUnit[] primaryWCs = addPrimary && owner != DefaultWorkingCopyOwner.PRIMARY
 				? getWorkingCopies(DefaultWorkingCopyOwner.PRIMARY, false)
@@ -2908,7 +2908,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			ICompilationUnit[] result = new ICompilationUnit[primaryLength + size];
 			int index = 0;
 			if (primaryWCs != null) {
-				for (int i = 0; i < primaryLength; i++) {
+				for (int i = 0; i < primaryLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					ICompilationUnit primaryWorkingCopy = primaryWCs[i];
 					ICompilationUnit workingCopy = new CompilationUnit((PackageFragment) primaryWorkingCopy.getParent(), primaryWorkingCopy.getElementName(), owner);
 					if (!workingCopyToInfos.containsKey(workingCopy))
@@ -2917,7 +2917,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 				if (index != primaryLength)
 					System.arraycopy(result, 0, result = new ICompilationUnit[index+size], 0, index);
 			}
-			for (PerWorkingCopyInfo info : workingCopyToInfos.values()) {
+			for (PerWorkingCopyInfo info : workingCopyToInfos.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				result[index++] = info.getWorkingCopy();
 			}
 			return result;
@@ -2983,18 +2983,18 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	/** for tracing only **/
 	private final ThreadLocal<Instant> lastWarning = new ThreadLocal<>();
 
-	@SuppressWarnings("unused")
+	@SuppressWarnings("unused") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	private void traceZipAccessWarning(IPath path) {
 		Instant now = Instant.now();
 		Deque<Instant> lastAcesses = this.lastAccessByPath.get().compute(path,
-				(p, l) -> (l == null) ? new ArrayDeque<>() : l);
+				(p, l) -> (l == null) ? new ArrayDeque<>() : l); //FLLDCIM: MARK — M08 M3_DEQUE_LANES NEW
 		Instant recentAccess = lastAcesses.peekFirst();
 		Instant lastAccess = lastAcesses.peekLast();
 		lastAcesses.offerLast(now);
 		if (lastAccess != null) {
 			long elapsedMs = lastAccess.until(now, java.time.temporal.ChronoUnit.MILLIS);
 			if (elapsedMs <= 100000) {
-				trace(path + " opened again in this thread after " + elapsedMs + "ms"); //$NON-NLS-1$ //$NON-NLS-2$
+				trace(path + " opened again in this thread after " + elapsedMs + "ms"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		// only warn if there have recently multiple accesses, because it's common but not that bad to have 2 of them
@@ -3006,13 +3006,13 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 					: lastInstant.until(now, java.time.temporal.ChronoUnit.MILLIS);
 			if (elapsedMs < 100 && elapsedWarningMs > 1000) {
 				this.lastWarning.set(now);
-				trace("Zipfile was opened multiple times wihtin " + elapsedMs + "ms in same thread " //$NON-NLS-1$ //$NON-NLS-2$
+				trace("Zipfile was opened multiple times wihtin " + elapsedMs + "ms in same thread " //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						+ Thread.currentThread() + ", consider caching: " + path, new Exception()); //$NON-NLS-1$
 			}
 		}
 	}
 
-	public ZipFile getZipFile(IPath path, boolean checkInvalidArchiveCache) throws CoreException {
+	public ZipFile getZipFile(IPath path, boolean checkInvalidArchiveCache) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkInvalidArchiveCache) {
 			isArchiveStateKnownToBeValid(path);
 		}
@@ -3027,12 +3027,12 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 				traceZipAccessWarning(path);
 			}
 			if (ZIP_ACCESS_VERBOSE) {
-				trace("(" + Thread.currentThread() + ") [JavaModelManager.getZipFile(IPath)] Creating ZipFile on " + localFile ); //$NON-NLS-1$ //$NON-NLS-2$
+				trace("(" + Thread.currentThread() + ") [JavaModelManager.getZipFile(IPath)] Creating ZipFile on " + localFile ); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			if (throwIoExceptionsInGetZipFile) {
 				throw new IOException();
 			}
-			zipFile = new ZipFile(localFile);
+			zipFile = new ZipFile(localFile); //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM NEW
 			if (zipCache != null) {
 				zipCache.setCache(path, zipFile);
 			}
@@ -3050,7 +3050,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		}
 	}
 
-	public static File getLocalFile(IPath path) throws CoreException {
+	public static File getLocalFile(IPath path) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File localFile = null;
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 		IResource file = root.findMember(path);
@@ -3089,24 +3089,24 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 * Initialize all container at the same time as the given container.
 	 * Return the container for the given path and project.
 	 */
-	private IClasspathContainer initializeAllContainers(IJavaProject javaProjectToInit, IPath containerToInit) throws JavaModelException {
+	private IClasspathContainer initializeAllContainers(IJavaProject javaProjectToInit, IPath containerToInit) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (CP_RESOLVE_VERBOSE_ADVANCED)
 			verbose_batching_containers_initialization(javaProjectToInit, containerToInit);
 
 		// collect all container paths
-		final HashMap<IJavaProject, Set<IPath>> allContainerPaths = new HashMap<>();
+		final HashMap<IJavaProject, Set<IPath>> allContainerPaths = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		IProject[] projects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
-		for (IProject project : projects) {
+		for (IProject project : projects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!JavaProject.hasJavaNature(project)) continue;
 			IJavaProject javaProject = new JavaProject(project, getJavaModel());
 			Set<IPath> paths = allContainerPaths.get(javaProject);
 			IClasspathEntry[] rawClasspath = javaProject.getRawClasspath();
-			for (IClasspathEntry entry : rawClasspath) {
+			for (IClasspathEntry entry : rawClasspath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPath path = entry.getPath();
 				if (entry.getEntryKind() == IClasspathEntry.CPE_CONTAINER
 						&& containerGet(javaProject, path) == null) {
 					if (paths == null) {
-						paths = new HashSet<>();
+						paths = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 						allContainerPaths.put(javaProject, paths);
 					}
 					paths.add(path);
@@ -3128,7 +3128,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		if (javaProjectToInit != null) {
 			Set<IPath> containerPaths = allContainerPaths.get(javaProjectToInit);
 			if (containerPaths == null) {
-				containerPaths = new HashSet<>();
+				containerPaths = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 				allContainerPaths.put(javaProjectToInit, containerPaths);
 			}
 			containerPaths.add(containerToInit);
@@ -3141,8 +3141,8 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			// if possible run inside an IWokspaceRunnable with AVOID_UPATE to avoid unwanted builds
 			// (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=118507)
 			IWorkspaceRunnable runnable =
-				new IWorkspaceRunnable() {
-					@Override
+				new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
+					@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 					public void run(IProgressMonitor monitor) throws CoreException {
 						try {
 							// Collect all containers
@@ -3150,15 +3150,15 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 							int length = entrySet.size();
 							if (monitor != null)
 								monitor.beginTask("", length); //$NON-NLS-1$
-							Set<Entry<IJavaProject, Set<IPath>>> entries = new HashSet<>(entrySet);  // clone as the following will have a side effect
-							for (Entry<IJavaProject, Set<IPath>> entry : entries) {
+							Set<Entry<IJavaProject, Set<IPath>>> entries = new HashSet<>(entrySet);  // clone as the following will have a side effect //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+							for (Entry<IJavaProject, Set<IPath>> entry : entries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								IJavaProject javaProject = entry.getKey();
 								Set<IPath> pathSet = entry.getValue();
 								if (pathSet == null) continue;
 								int length2 = pathSet.size();
 								IPath[] paths = new IPath[length2];
 								pathSet.toArray(paths); // clone as the following will have a side effect
-								for (int j = 0; j < length2; j++) {
+								for (int j = 0; j < length2; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 									IPath path = paths[j];
 									synchronized(JavaModelManager.this.batchContainerInitializationsLock) {
 										if (containerIsSet(javaProject, path)) {
@@ -3188,7 +3188,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 							Map<IJavaProject, Map<IPath, IClasspathContainer>> perProjectContainers = JavaModelManager.this.containersBeingInitialized.get();
 							// Note that during the operation below new containers could be added to the map,
 							// so we should loop until containersBeingInitialized will be empty
-							while (perProjectContainers != null && !perProjectContainers.isEmpty()) {
+							while (perProjectContainers != null && !perProjectContainers.isEmpty()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								initKnownContainers(perProjectContainers, monitor);
 							}
 							JavaModelManager.this.containersBeingInitialized.remove();
@@ -3198,13 +3198,13 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 						}
 					}
 
-					private void initKnownContainers(Map<IJavaProject, Map<IPath, IClasspathContainer>> perProjectContainers, IProgressMonitor monitor)
+					private void initKnownContainers(Map<IJavaProject, Map<IPath, IClasspathContainer>> perProjectContainers, IProgressMonitor monitor) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 							throws JavaModelException {
-						List<SetContainerOperation> operations = new ArrayList<>();
-						for (Entry<IJavaProject, Map<IPath, IClasspathContainer>> entry : perProjectContainers.entrySet()) {
+						List<SetContainerOperation> operations = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+						for (Entry<IJavaProject, Map<IPath, IClasspathContainer>> entry : perProjectContainers.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							IJavaProject project = entry.getKey();
 							Map<IPath, IClasspathContainer> perPathContainers = entry.getValue();
-							for (Entry<IPath, IClasspathContainer> containerEntry : perPathContainers.entrySet()) {
+							for (Entry<IPath, IClasspathContainer> containerEntry : perPathContainers.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								IPath containerPath = containerEntry.getKey();
 								IClasspathContainer container = containerEntry.getValue();
 								SetContainerOperation operation = new SetContainerOperation(containerPath, new IJavaProject[] {project}, new IClasspathContainer[] {container});
@@ -3214,7 +3214,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 						// operation.runOperation() below could put something into the map again
 						// so we clear the map to make sure we only see new content there
 						perProjectContainers.clear();
-						for (SetContainerOperation operation : operations) {
+						for (SetContainerOperation operation : operations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							operation.runOperation(monitor);
 						}
 					}
@@ -3247,12 +3247,12 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 
 	private void verbose_batching_containers_initialization(IJavaProject javaProjectToInit, IPath containerToInit) {
 		trace(
-			"CPContainer INIT - batching containers initialization\n" + //$NON-NLS-1$
+			"CPContainer INIT - batching containers initialization\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	project to init: " + (javaProjectToInit == null ? "null" : javaProjectToInit.getElementName()) + '\n' + //$NON-NLS-1$ //$NON-NLS-2$
 			"	container path to init: " + containerToInit); //$NON-NLS-1$
 	}
 
-	IClasspathContainer initializeContainer(IJavaProject project, IPath containerPath) throws JavaModelException {
+	IClasspathContainer initializeContainer(IJavaProject project, IPath containerPath) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IProgressMonitor monitor = this.batchContainerInitializationsProgress;
 		if (monitor != null && monitor.isCanceled())
@@ -3268,7 +3268,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			PerformanceStats stats = null;
 			if(JavaModelManager.PERF_CONTAINER_INITIALIZER) {
 				stats = PerformanceStats.getStats(JavaModelManager.CONTAINER_INITIALIZER_PERF, this);
-				stats.startRun(containerPath + " of " + project.getPath()); //$NON-NLS-1$
+				stats.startRun(containerPath + " of " + project.getPath()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			containerPut(project, containerPath, CONTAINER_INITIALIZATION_IN_PROGRESS); // avoid initialization cycles
 			boolean ok = false;
@@ -3339,27 +3339,27 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 
 	private void verbose_no_container_initializer_found(IJavaProject project, IPath containerPath) {
 		trace(
-			"CPContainer INIT - no initializer found\n" + //$NON-NLS-1$
+			"CPContainer INIT - no initializer found\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	project: " + project.getElementName() + '\n' + //$NON-NLS-1$
 			"	container path: " + containerPath); //$NON-NLS-1$
 	}
 
-	private void verbose_container_value_after_initialization(IJavaProject project, IPath containerPath, IClasspathContainer container) {
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("CPContainer INIT - after resolution\n"); //$NON-NLS-1$
-		buffer.append("	project: " + project.getElementName() + '\n'); //$NON-NLS-1$
-		buffer.append("	container path: " + containerPath + '\n'); //$NON-NLS-1$
+	private void verbose_container_value_after_initialization(IJavaProject project, IPath containerPath, IClasspathContainer container) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("CPContainer INIT - after resolution\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("	project: " + project.getElementName() + '\n'); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("	container path: " + containerPath + '\n'); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (container != null){
-			buffer.append("	container: "+container.getDescription()+" {\n"); //$NON-NLS-2$//$NON-NLS-1$
+			buffer.append("	container: "+container.getDescription()+" {\n"); //$NON-NLS-2$//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			IClasspathEntry[] entries = container.getClasspathEntries();
 			if (entries != null){
-				for (IClasspathEntry entry : entries) {
-					buffer.append("		" + entry + '\n'); //$NON-NLS-1$
+				for (IClasspathEntry entry : entries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					buffer.append("		" + entry + '\n'); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
-			buffer.append("	}");//$NON-NLS-1$
+			buffer.append("	}");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
-			buffer.append("	container: {unbound}");//$NON-NLS-1$
+			buffer.append("	container: {unbound}");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		trace(buffer.toString());
 	}
@@ -3367,14 +3367,14 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	private void verbose_container_initialization_failed(IJavaProject project, IPath containerPath, IClasspathContainer container, ClasspathContainerInitializer initializer) {
 		if (container == CONTAINER_INITIALIZATION_IN_PROGRESS) {
 			trace(
-				"CPContainer INIT - FAILED (initializer did not initialize container)\n" + //$NON-NLS-1$
+				"CPContainer INIT - FAILED (initializer did not initialize container)\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"	project: " + project.getElementName() + '\n' + //$NON-NLS-1$
 				"	container path: " + containerPath + '\n' + //$NON-NLS-1$
 				"	initializer: " + initializer); //$NON-NLS-1$
 
 		} else {
 			trace(
-				"CPContainer INIT - FAILED (see exception above)\n" + //$NON-NLS-1$
+				"CPContainer INIT - FAILED (see exception above)\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"	project: " + project.getElementName() + '\n' + //$NON-NLS-1$
 				"	container path: " + containerPath + '\n' + //$NON-NLS-1$
 				"	initializer: " + initializer); //$NON-NLS-1$
@@ -3383,7 +3383,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 
 	private void verbose_container_null_failure_container(IJavaProject project, IPath containerPath,  ClasspathContainerInitializer initializer) {
 		trace(
-			"CPContainer INIT - FAILED (and failure container is null)\n" + //$NON-NLS-1$
+			"CPContainer INIT - FAILED (and failure container is null)\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	project: " + project.getElementName() + '\n' + //$NON-NLS-1$
 			"	container path: " + containerPath + '\n' + //$NON-NLS-1$
 			"	initializer: " + initializer); //$NON-NLS-1$
@@ -3391,7 +3391,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 
 	private void verbose_container_using_failure_container(IJavaProject project, IPath containerPath,  ClasspathContainerInitializer initializer) {
 		trace(
-			"CPContainer INIT - FAILED (using failure container)\n" + //$NON-NLS-1$
+			"CPContainer INIT - FAILED (using failure container)\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	project: " + project.getElementName() + '\n' + //$NON-NLS-1$
 			"	container path: " + containerPath + '\n' + //$NON-NLS-1$
 			"	initializer: " + initializer); //$NON-NLS-1$
@@ -3399,7 +3399,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 
 	private void verbose_triggering_container_initialization(IJavaProject project, IPath containerPath,  ClasspathContainerInitializer initializer) {
 		trace(
-			"CPContainer INIT - triggering initialization\n" + //$NON-NLS-1$
+			"CPContainer INIT - triggering initialization\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	project: " + project.getElementName() + '\n' + //$NON-NLS-1$
 			"	container path: " + containerPath + '\n' + //$NON-NLS-1$
 			"	initializer: " + initializer); //$NON-NLS-1$
@@ -3414,7 +3414,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	/**
 	 * Initialize preferences lookups for JavaCore plug-in.
 	 */
-	public void initializePreferences() {
+	public void initializePreferences() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Create lookups
 		this.preferencesLookup[PREF_INSTANCE] = InstanceScope.INSTANCE.getNode(JavaCore.PLUGIN_ID);
@@ -3462,7 +3462,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	}
 
 	void touchProjectsAsync(final IProject[] projectsToTouch) throws JavaModelException {
-		for (IProject iProject : projectsToTouch) {
+		for (IProject iProject : projectsToTouch) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.touchQueue.add(iProject);
 		}
 		TouchJob.INSTANCE.schedule();
@@ -3471,7 +3471,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	private Set<IJavaProject> getClasspathBeingResolved() {
 	    Set<IJavaProject> result = this.classpathsBeingResolved.get();
 	    if (result == null) {
-	        result = new HashSet<>();
+	        result = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 	        this.classpathsBeingResolved.set(result);
 	    }
 	    return result;
@@ -3493,14 +3493,14 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		return this.nonChainingJars != null && this.nonChainingJars.contains(path);
 	}
 
-	public ArchiveValidity getArchiveValidity(IPath path) {
+	public ArchiveValidity getArchiveValidity(IPath path) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		InvalidArchiveInfo invalidArchiveInfo;
 		synchronized (this.invalidArchives) {
 			invalidArchiveInfo = this.invalidArchives.get(path);
 		}
 		if (invalidArchiveInfo == null) {
 			if (DEBUG_INVALID_ARCHIVES) {
-				trace("JAR cache: UNKNOWN validity for " + path);  //$NON-NLS-1$
+				trace("JAR cache: UNKNOWN validity for " + path);  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			return null;
 		}
@@ -3521,28 +3521,28 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			return ArchiveValidity.INVALID;
 		}
 		if (DEBUG_INVALID_ARCHIVES) {
-			trace("JAR cache: " + invalidArchiveInfo.reason + " " + path);  //$NON-NLS-1$ //$NON-NLS-2$
+			trace("JAR cache: " + invalidArchiveInfo.reason + " " + path);  //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return invalidArchiveInfo.reason;
 	}
 
-	public void removeFromInvalidArchiveCache(IPath path) {
+	public void removeFromInvalidArchiveCache(IPath path) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		synchronized(this.invalidArchives) {
 			InvalidArchiveInfo entry = this.invalidArchives.get(path);
 			if (entry != null && entry.reason == ArchiveValidity.VALID) {
 				if (DEBUG_INVALID_ARCHIVES) {
-					trace("JAR cache: keep VALID " + path);  //$NON-NLS-1$
+					trace("JAR cache: keep VALID " + path);  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				return; // do not remove the VALID information
 			}
 			// If it transitioned to being valid then force an update to project caches.
 			if (this.invalidArchives.remove(path) != null) {
 				if (DEBUG_INVALID_ARCHIVES) {
-					trace("JAR cache: removed INVALID " + path);  //$NON-NLS-1$
+					trace("JAR cache: removed INVALID " + path);  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				try {
 					// Bug 455042: Force an update of the JavaProjectElementInfo project caches.
-					for (IJavaProject project : getJavaModel().getJavaProjects()) {
+					for (IJavaProject project : getJavaModel().getJavaProjects()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (project.findPackageFragmentRoot(path) != null) {
 							((JavaProject) project).resetCaches();
 						}
@@ -3617,17 +3617,17 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	}
 
 	private Set<IPath> loadClasspathListCache(String cacheName) {
-		Set<IPath> pathCache = new HashSet<>();
+		Set<IPath> pathCache = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		File cacheFile = getClasspathListFile(cacheName);
 		try (DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(cacheFile)))) {
 			int size = in.readInt();
-			while (size-- > 0) {
+			while (size-- > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String path = in.readUTF();
 				pathCache.add(Path.fromPortableString(path));
 			}
 		} catch (IOException e) {
 			if (cacheFile.exists()) {
-				Util.log(e, "Unable to read JavaModelManager " + cacheName + " file"); //$NON-NLS-1$ //$NON-NLS-2$
+				Util.log(e, "Unable to read JavaModelManager " + cacheName + " file"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		return Collections.synchronizedSet(pathCache);
@@ -3637,17 +3637,17 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		return JavaCore.getPlugin().getStateLocation().append(fileName).toFile();
 	}
 
-	private Set<IPath> getNonChainingJarsCache() throws CoreException {
+	private Set<IPath> getNonChainingJarsCache() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Even if there is one entry in the cache, just return it. It may not be
 		// the complete cache, but avoid going through all the projects to populate the cache.
 		if (this.nonChainingJars != null && this.nonChainingJars.size() > 0) {
 			return this.nonChainingJars;
 		}
-		Set<IPath> result = new HashSet<>();
+		Set<IPath> result = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		IJavaProject[] projects = getJavaModel().getJavaProjects();
-		for (IJavaProject javaProject : projects) {
+		for (IJavaProject javaProject : projects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IClasspathEntry[] classpath = ((JavaProject) javaProject).getResolvedClasspath();
-			for (IClasspathEntry entry : classpath) {
+			for (IClasspathEntry entry : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPath path;
 				if (entry.getEntryKind() == IClasspathEntry.CPE_LIBRARY
 					&& !result.contains(path = entry.getPath())
@@ -3671,7 +3671,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			return null;
 	}
 
-	public void loadVariablesAndContainers() throws CoreException {
+	public void loadVariablesAndContainers() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// backward compatibility, consider persistent property
 		QualifiedName qName = new QualifiedName(JavaCore.PLUGIN_ID, "variables"); //$NON-NLS-1$
 		String xmlString = ResourcesPlugin.getWorkspace().getRoot().getPersistentProperty(qName);
@@ -3693,7 +3693,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 
 				NodeList list= cpElement.getChildNodes();
 				int length= list.getLength();
-				for (int i= 0; i < length; ++i) {
+				for (int i= 0; i < length; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Node node= list.item(i);
 					short type= node.getNodeType();
 					if (type == Node.ELEMENT_NODE) {
@@ -3728,7 +3728,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 				case 1 : // backward compatibility, load old format
 					// variables
 					int size = in.readInt();
-					while (size-- > 0) {
+					while (size-- > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						String varName = in.readUTF();
 						String pathString = in.readUTF();
 						if (CP_ENTRY_IGNORE.equals(pathString))
@@ -3741,11 +3741,11 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 					// containers
 					IJavaModel model = getJavaModel();
 					int projectSize = in.readInt();
-					while (projectSize-- > 0) {
+					while (projectSize-- > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						String projectName = in.readUTF();
 						IJavaProject project = model.getJavaProject(projectName);
 						int containerSize = in.readInt();
-						while (containerSize-- > 0) {
+						while (containerSize-- > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							IPath containerPath = Path.fromPortableString(in.readUTF());
 							int length = in.readInt();
 							byte[] containerString = new byte[length];
@@ -3765,19 +3765,19 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 
 		// override persisted values for variables which have a registered initializer
 		String[] registeredVariables = getRegisteredVariableNames();
-		for (String varName : registeredVariables) {
+		for (String varName : registeredVariables) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.variables.put(varName, null); // reset variable, but leave its entry in the Map, so it will be part of variable names.
 		}
 		// override persisted values for containers which have a registered initializer
 		containersReset(getRegisteredContainerIDs());
 	}
 
-	private void loadVariablesAndContainers(IEclipsePreferences preferences) {
+	private void loadVariablesAndContainers(IEclipsePreferences preferences) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			// only get variable from preferences not set to their default
 			String[] propertyNames = preferences.keys();
 			int variablePrefixLength = CP_VARIABLE_PREFERENCES_PREFIX.length();
-			for (String propertyName : propertyNames) {
+			for (String propertyName : propertyNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (propertyName.startsWith(CP_VARIABLE_PREFERENCES_PREFIX)){
 					String varName = propertyName.substring(variablePrefixLength);
 					String propertyValue = preferences.get(propertyName, null);
@@ -3835,7 +3835,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 
 		@Override
 		public String getDescription() {
-			return "Persisted container [" + this.containerPath //$NON-NLS-1$
+			return "Persisted container [" + this.containerPath //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ " for project [" + this.project.getElementName() //$NON-NLS-1$
 					+ "]]"; //$NON-NLS-1$
 		}
@@ -3874,7 +3874,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			super();
 			this.allClasspathEntries = null;
 			this.allClasspathEntryCount = 0;
-			this.allPaths = new HashMap<>();
+			this.allPaths = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			this.allStrings = null;
 			this.allStringsCount = 0;
 			this.in = in;
@@ -3899,7 +3899,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 
 			IAccessRule[] rules = new IAccessRule[count];
 
-			for (int i = 0; i < count; ++i)
+			for (int i = 0; i < count; ++i) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				rules[i] = loadAccessRule();
 
 			return rules;
@@ -3920,7 +3920,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 
 			IClasspathAttribute[] attributes = new IClasspathAttribute[count];
 
-			for (int i = 0; i < count; ++i)
+			for (int i = 0; i < count; ++i) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				attributes[i] = loadAttribute();
 
 			return attributes;
@@ -3934,13 +3934,13 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			int count = loadInt();
 			IClasspathEntry[] entries = new IClasspathEntry[count];
 
-			for (int i = 0; i < count; ++i)
+			for (int i = 0; i < count; ++i) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				entries[i] = loadClasspathEntry();
 
 			return entries;
 		}
 
-		private IClasspathEntry loadClasspathEntry() throws IOException {
+		private IClasspathEntry loadClasspathEntry() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			int id = loadInt();
 
 			if (id < 0 || id > this.allClasspathEntryCount)
@@ -3985,10 +3985,10 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			return entry;
 		}
 
-		private void loadContainers(IJavaProject project) throws IOException {
+		private void loadContainers(IJavaProject project) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			boolean projectIsAccessible = project.getProject().isAccessible();
 			int count = loadInt();
-			for (int i = 0; i < count; ++i) {
+			for (int i = 0; i < count; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPath path = loadPath();
 				IClasspathEntry[] entries = loadClasspathEntries();
 
@@ -4004,7 +4004,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 				Map<IPath, IClasspathContainer> oldContainers = JavaModelManager.this.previousSessionContainers.get(project);
 
 				if (oldContainers == null) {
-					oldContainers = new HashMap<>();
+					oldContainers = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 					JavaModelManager.this.previousSessionContainers.put(project, oldContainers);
 				}
 
@@ -4035,7 +4035,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			int count = loadInt();
 			IPath[] pathArray = new IPath[count];
 
-			for (int i = 0; i < count; ++i)
+			for (int i = 0; i < count; ++i) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				pathArray[i] = loadPath();
 
 			return pathArray;
@@ -4044,14 +4044,14 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		private void loadProjects(IJavaModel model) throws IOException {
 			int count = loadInt();
 
-			for (int i = 0; i < count; ++i) {
+			for (int i = 0; i < count; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String projectName = loadString();
 
 				loadContainers(model.getJavaProject(projectName));
 			}
 		}
 
-		private String loadString() throws IOException {
+		private String loadString() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			int id = loadInt();
 
 			if (id < 0 || id > this.allStringsCount)
@@ -4080,9 +4080,9 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 
 		private void loadVariables() throws IOException {
 			int size = loadInt();
-			Map<String, IPath> loadedVars = new HashMap<>(size);
+			Map<String, IPath> loadedVars = new HashMap<>(size); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
-			for (int i = 0; i < size; ++i) {
+			for (int i = 0; i < size; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String varName = loadString();
 				IPath varPath = loadPath();
 
@@ -4124,7 +4124,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 * If forceAdd is false it just returns the existing info and if true, this element and it's children are closed and then
 	 * this particular info is added to the cache.
 	 */
-	protected synchronized IElementInfo putInfos(IJavaElement openedElement, IElementInfo newInfo, boolean forceAdd, Map<IJavaElement, IElementInfo> newElements) {
+	protected synchronized IElementInfo putInfos(IJavaElement openedElement, IElementInfo newInfo, boolean forceAdd, Map<IJavaElement, IElementInfo> newElements) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// remove existing children as the are replaced with the new children contained in newElements
 		IElementInfo existingInfo = this.cache.peekAtInfo(openedElement);
 		if (existingInfo != null && !forceAdd) {
@@ -4150,7 +4150,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		// Subsequent resolution against package in the jar would fail as a result.
 		// https://bugs.eclipse.org/bugs/show_bug.cgi?id=102422
 		// (theodora)
-		for(Iterator<Entry<IJavaElement, IElementInfo>> it = newElements.entrySet().iterator(); it.hasNext(); ) {
+		for(Iterator<Entry<IJavaElement, IElementInfo>> it = newElements.entrySet().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Entry<IJavaElement, IElementInfo> entry = it.next();
 			IJavaElement element = entry.getKey();
 			if (element instanceof JarPackageFragmentRoot) {
@@ -4160,22 +4160,22 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			}
 		}
 
-		for (Entry<IJavaElement, IElementInfo> entry : newElements.entrySet()) {
+		for (Entry<IJavaElement, IElementInfo> entry : newElements.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.cache.putInfo(entry.getKey(), entry.getValue());
 		}
 		return newInfo;
 	}
 
-	private void closeChildren(Object info) {
+	private void closeChildren(Object info) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (info instanceof JavaElementInfo) {
-			for (IJavaElement child: ((JavaElementInfo)info).getChildren()) {
+			for (IJavaElement child: ((JavaElementInfo)info).getChildren()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					((JavaElement)child).close();
 				} catch (JavaModelException e) {
 					// ignore
 				}
 			}
-			for (IJavaElement child: ((JavaElementInfo)info).getExtendedChildren()) {
+			for (IJavaElement child: ((JavaElementInfo)info).getExtendedChildren()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					((JavaElement)child).close();
 				} catch (JavaModelException e) {
@@ -4201,12 +4201,12 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		Object result = readStateTimed(project);
 		if (JavaBuilder.DEBUG) {
 			long stopTime = System.currentTimeMillis();
-			trace("readState took " + (stopTime - startTime) + "ms:" + project.getName()); //$NON-NLS-1$ //$NON-NLS-2$
+			trace("readState took " + (stopTime - startTime) + "ms:" + project.getName()); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return result;
 	}
 
-	private Object readStateTimed(IProject project) throws CoreException {
+	private Object readStateTimed(IProject project) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File file = getSerializationFile(project);
 		if (file != null && file.exists()) {
 			try (DataInputStream in = new DataInputStream(createInputStream(file))) {
@@ -4219,19 +4219,19 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 				if (in.readBoolean())
 					return JavaBuilder.readState(project, in);
 				if (JavaBuilder.DEBUG) {
-					trace("Saved state thinks last build failed for " + project.getName()); //$NON-NLS-1$
+					trace("Saved state thinks last build failed for " + project.getName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			} catch (Exception e) {
 				if (JavaBuilder.DEBUG) {
 					trace("", e); //$NON-NLS-1$
 				}
-				throw new CoreException(new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, Platform.PLUGIN_ERROR, "Error reading last build state for project "+ project.getName(), e)); //$NON-NLS-1$
+				throw new CoreException(new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, Platform.PLUGIN_ERROR, "Error reading last build state for project "+ project.getName(), e)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} else if (JavaBuilder.DEBUG) {
 			if (file == null) {
-				trace("Project does not exist: " + project); //$NON-NLS-1$
+				trace("Project does not exist: " + project); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			} else {
-				trace("Build state file " + file.getPath() + " does not exist"); //$NON-NLS-1$ //$NON-NLS-2$
+				trace("Build state file " + file.getPath() + " does not exist"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		return null;
@@ -4249,7 +4249,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		}
 	}
 
-	private static void recreatePersistedContainer(final IJavaProject project, final IPath containerPath, String containerString, boolean addToContainerValues) {
+	private static void recreatePersistedContainer(final IJavaProject project, final IPath containerPath, String containerString, boolean addToContainerValues) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!project.getProject().isAccessible()) return; // avoid leaking deleted project's persisted container
 		if (containerString == null) {
 			getJavaModelManager().containerPut(project, containerPath, null);
@@ -4258,7 +4258,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			try {
 				entries = ((JavaProject) project).decodeClasspath(containerString, null/*not interested in unknown elements*/)[0];
 			} catch (IOException e) {
-				Util.log(e, "Could not recreate persisted container: \n" + containerString); //$NON-NLS-1$
+				Util.log(e, "Could not recreate persisted container: \n" + containerString); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				entries = JavaProject.INVALID_CLASSPATH;
 			}
 			if (entries != JavaProject.INVALID_CLASSPATH) {
@@ -4270,7 +4270,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 					}
 					@Override
 					public String getDescription() {
-						return "Persisted container ["+containerPath+" for project ["+ project.getElementName()+"]"; //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
+						return "Persisted container ["+containerPath+" for project ["+ project.getElementName()+"]"; //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 					@Override
 					public int getKind() {
@@ -4291,7 +4291,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 				}
 				Map<IPath, IClasspathContainer> projectContainers = getJavaModelManager().previousSessionContainers.get(project);
 				if (projectContainers == null){
-					projectContainers = new HashMap<>(1);
+					projectContainers = new HashMap<>(1); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 					getJavaModelManager().previousSessionContainers.put(project, projectContainers);
 				}
 				projectContainers.put(containerPath, container);
@@ -4313,14 +4313,14 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 * from the cache.
 	 * Returns the info for the given element, or null if it was closed.
 	 */
-	public synchronized Object removeInfoAndChildren(JavaElement element) throws JavaModelException {
+	public synchronized Object removeInfoAndChildren(JavaElement element) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Object info = this.cache.peekAtInfo(element);
 		if (info != null) {
 			boolean wasVerbose = false;
 			try {
 				if (JavaModelCache.VERBOSE) {
 					String elementType = JavaModelCache.getCacheType(element);
-					trace(Thread.currentThread() + " CLOSING "+ elementType + " " + element.toStringWithAncestors());  //$NON-NLS-1$//$NON-NLS-2$
+					trace(Thread.currentThread() + " CLOSING "+ elementType + " " + element.toStringWithAncestors());  //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					wasVerbose = true;
 					JavaModelCache.VERBOSE = false;
 				}
@@ -4351,7 +4351,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			if (info != null) {
 				this.perProjectInfos.remove(project);
 				if (VERBOSE) {
-					trace("Removed info for: " + project); //$NON-NLS-1$
+					trace("Removed info for: " + project); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				if (removeExtJarInfo) {
 					info.forgetExternalTimestampsAndIndexes();
@@ -4377,19 +4377,19 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	/*
 	 * Reset project preferences stored in info cache.
 	 */
-	public void resetProjectPreferences(JavaProject javaProject) {
+	public void resetProjectPreferences(JavaProject javaProject) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		synchronized(this.perProjectInfos) { // use the perProjectInfo collection as its own lock
 			IProject project = javaProject.getProject();
 			PerProjectInfo info= this.perProjectInfos.get(project);
 			if (info != null) {
 				if (VERBOSE) {
-					StringBuilder buffer = new StringBuilder();
-					buffer.append('(');
-					buffer.append(Thread.currentThread());
-					buffer.append(')');
-					buffer.append(" JavaModelManager.resetProjectPreferences("); //$NON-NLS-1$
-					buffer.append(project.getName());
-					buffer.append(')');
+					StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+					buffer.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(Thread.currentThread()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(" JavaModelManager.resetProjectPreferences("); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(project.getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					trace(buffer.toString());
 				}
 				info.preferences = null;
@@ -4445,7 +4445,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			saveBuiltState(info);
 			if (JavaBuilder.DEBUG) {
 				long stopTime = System.currentTimeMillis();
-				trace("saveState took " + (stopTime - startTime) + "ms:" + info.project.getName()); //$NON-NLS-1$ //$NON-NLS-2$
+				trace("saveState took " + (stopTime - startTime) + "ms:" + info.project.getName()); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
@@ -4453,7 +4453,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	/**
 	 * Saves the built state for the project.
 	 */
-	private void saveBuiltState(PerProjectInfo info) throws CoreException {
+	private void saveBuiltState(PerProjectInfo info) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (JavaBuilder.DEBUG) {
 			trace(Messages.bind(Messages.build_saveStateProgress, info.project.getName()));
 		}
@@ -4487,7 +4487,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		}
 	}
 
-	private InputStream createInputStream(File file) throws IOException {
+	private InputStream createInputStream(File file) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		InputStream in = new FileInputStream(file);
 		// Ownership of 'in' is transferred to the returned stream on success; on any abnormal
 		// exit (incl. a non-ZipException IOException such as EOFException from a truncated file)
@@ -4539,7 +4539,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			Set<IPath> pathCache = getClasspathListCache(cacheName);
 			synchronized (pathCache) {
 				out.writeInt(pathCache.size());
-				for (IPath path : pathCache) {
+				for (IPath path : pathCache) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					out.writeUTF(path.toPortableString());
 				}
 			}
@@ -4578,13 +4578,13 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			// remove variables that should not be saved
 			HashMap<String, IPath> varsToSave = null;
 			IEclipsePreferences defaultPreferences = getDefaultPreferences();
-			for (Entry<String, IPath> entry : JavaModelManager.this.variables.entrySet()) {
+			for (Entry<String, IPath> entry : JavaModelManager.this.variables.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String varName = entry.getKey();
-				if (defaultPreferences.get(CP_VARIABLE_PREFERENCES_PREFIX + varName, null) != null // don't save classpath variables from the default preferences as there is no delta if they are removed
+				if (defaultPreferences.get(CP_VARIABLE_PREFERENCES_PREFIX + varName, null) != null // don't save classpath variables from the default preferences as there is no delta if they are removed //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						|| CP_ENTRY_IGNORE_PATH.equals(entry.getValue())) {
 
 					if (varsToSave == null)
-						varsToSave = new HashMap<>(JavaModelManager.this.variables);
+						varsToSave = new HashMap<>(JavaModelManager.this.variables); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 					varsToSave.remove(varName);
 				}
 			}
@@ -4600,7 +4600,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			int count = rules == null ? 0 : rules.length;
 
 			saveInt(count);
-			for (int i = 0; i < count; ++i)
+			for (int i = 0; i < count; ++i) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				saveAccessRule((ClasspathAccessRule) rules[i]);
 		}
 
@@ -4610,11 +4610,11 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			saveString(attribute.getValue());
 		}
 
-		private void saveAttributes(IClasspathAttribute[] attributes)
+		private void saveAttributes(IClasspathAttribute[] attributes) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				throws IOException {
 			int count = 0;
 			if (attributes != null) {
-				for (IClasspathAttribute attr : attributes) {
+				for (IClasspathAttribute attr : attributes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (attr != null) {
 						count ++;
 					}
@@ -4623,19 +4623,19 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 
 			saveInt(count);
 
-			for (IClasspathAttribute attribute : attributes) {
+			for (IClasspathAttribute attribute : attributes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (attribute != null) {
 					saveAttribute(attribute);
 				}
 			}
 		}
 
-		private void saveClasspathEntries(IClasspathEntry[] entries)
+		private void saveClasspathEntries(IClasspathEntry[] entries) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				throws IOException {
 
 			int count = 0;
 			if (entries != null) {
-				for (IClasspathEntry entry : entries) {
+				for (IClasspathEntry entry : entries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (entry != null) {
 						count ++;
 					}
@@ -4644,7 +4644,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 
 			saveInt(count);
 
-			for (IClasspathEntry entry : entries) {
+			for (IClasspathEntry entry : entries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (entry != null) {
 					saveClasspathEntry(entry);
 				}
@@ -4669,11 +4669,11 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			}
 		}
 
-		private void saveContainers(IJavaProject project, Map<IPath, IClasspathContainer> containerMap)
+		private void saveContainers(IJavaProject project, Map<IPath, IClasspathContainer> containerMap) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				throws IOException {
 			saveInt(containerMap.size());
 
-			for (Entry<IPath, IClasspathContainer> entry : containerMap.entrySet()) {
+			for (Entry<IPath, IClasspathContainer> entry : containerMap.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPath path = entry.getKey();
 				IClasspathContainer container = entry.getValue();
 				IClasspathEntry[] cpEntries = null;
@@ -4728,17 +4728,17 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			int count = paths == null ? 0 : paths.length;
 
 			saveInt(count);
-			for (int i = 0; i < count; ++i)
+			for (int i = 0; i < count; ++i) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				savePath(paths[i]);
 		}
 
-		private void saveProjects(IJavaProject[] projects) throws IOException,
+		private void saveProjects(IJavaProject[] projects) throws IOException, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				JavaModelException {
 			int count = projects.length;
 
 			saveInt(count);
 
-			for (int i = 0; i < count; ++i) {
+			for (int i = 0; i < count; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IJavaProject project = projects[i];
 
 				saveString(project.getElementName());
@@ -4750,7 +4750,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 				} else {
 					// clone while iterating
 					// (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=59638)
-					containerMap = new HashMap<>(containerMap);
+					containerMap = new HashMap<>(containerMap); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				}
 
 				saveContainers(project, containerMap);
@@ -4765,7 +4765,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		private void saveVariables(Map<String, IPath> map) throws IOException {
 			saveInt(map.size());
 
-			for (Entry<String, IPath> entry : map.entrySet()) {
+			for (Entry<String, IPath> entry : map.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String varName = entry.getKey();
 				IPath varPath = entry.getValue();
 
@@ -4817,11 +4817,11 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		savingTimed(context);
 		if (JavaBuilder.DEBUG) {
 			long stopTime = System.currentTimeMillis();
-			trace("saving took " + (stopTime - startTime) + "ms:" + this.perProjectInfos.values().size()); //$NON-NLS-1$ //$NON-NLS-2$
+			trace("saving took " + (stopTime - startTime) + "ms:" + this.perProjectInfos.values().size()); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
-	private void savingTimed(ISaveContext context) throws CoreException {
+	private void savingTimed(ISaveContext context) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	    long start = -1;
 		if (VERBOSE)
@@ -4870,7 +4870,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 
 		ArrayList<PerProjectInfo> infos;
 		synchronized (this.perProjectInfos) {
-			infos = new ArrayList<>(this.perProjectInfos.values());
+			infos = new ArrayList<>(this.perProjectInfos.values()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		}
 		int parallelism = Math.max(1, SAVE_THREAD_COUNT == null ? ForkJoinPool.getCommonPoolParallelism() : SAVE_THREAD_COUNT.intValue());
 		// Never use a shared ForkJoinPool.commonPool() as it may be busy with other tasks, which might deadlock.
@@ -4914,17 +4914,17 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 *
 	 * @see #secondaryTypes(IJavaProject, boolean, IProgressMonitor)
 	 */
-	public void secondaryTypeAdding(String path, char[] typeName, char[] packageName) {
+	public void secondaryTypeAdding(String path, char[] typeName, char[] packageName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (VERBOSE) {
-			StringBuilder buffer = new StringBuilder("JavaModelManager.addSecondaryType("); //$NON-NLS-1$
-			buffer.append(path);
-			buffer.append(',');
-			buffer.append('[');
-			buffer.append(new String(packageName));
-			buffer.append('.');
-			buffer.append(new String(typeName));
-			buffer.append(']');
-			buffer.append(')');
+			StringBuilder buffer = new StringBuilder("JavaModelManager.addSecondaryType("); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buffer.append(path); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append('['); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(new String(packageName)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(new String(typeName)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			trace(buffer.toString());
 		}
 		IWorkspaceRoot wRoot = ResourcesPlugin.getWorkspace().getRoot();
@@ -4940,7 +4940,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 					// Store the secondary type in temporary cache (these are just handles => no problem to create it now...)
 					Map<String, Map<String, IType>> allTypes = indexedSecondaryTypes.get(resource);
 					if (allTypes == null) {
-						allTypes = new HashMap<>(3);
+						allTypes = new HashMap<>(3); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 						indexedSecondaryTypes.put((IFile) resource, allTypes);
 					}
 					ICompilationUnit unit = JavaModelManager.createCompilationUnitFrom((IFile)resource, null);
@@ -4953,7 +4953,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 						String packageString = type.getPackageFragment().getElementName();
 						Map<String, IType> packageTypes = allTypes.get(packageString);
 						if (packageTypes == null) {
-							packageTypes = new HashMap<>(3);
+							packageTypes = new HashMap<>(3); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 							allTypes.put(packageString, packageTypes);
 						}
 						packageTypes.put(typeString, type);
@@ -4972,18 +4972,18 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 
 	private void dumpIndexingSecondaryTypes(Map<IFile, Map<String, Map<String, IType>>> indexedSecondaryTypes) {
 		synchronized(indexedSecondaryTypes) {
-			for (Entry<IFile, Map<String, Map<String, IType>>> entry : indexedSecondaryTypes.entrySet()) {
+			for (Entry<IFile, Map<String, Map<String, IType>>> entry : indexedSecondaryTypes.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IFile file = entry.getKey();
-				trace("		+ "+file.getFullPath()+':'+ entry.getValue()); //$NON-NLS-1$
+				trace("		+ "+file.getFullPath()+':'+ entry.getValue()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
 
 	private static void dumpSecondaryTypes(Map<String, Map<String, IType>> secondaryTypes) {
 		synchronized (secondaryTypes) {
-			for (Entry<String, Map<String, IType>> entry : secondaryTypes.entrySet()) {
+			for (Entry<String, Map<String, IType>> entry : secondaryTypes.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String packName = entry.getKey();
-				trace("		+ " + packName + ':' + entry.getValue()); //$NON-NLS-1$
+				trace("		+ " + packName + ':' + entry.getValue()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
@@ -5009,10 +5009,10 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 * @param project Project we want get secondary types from
 	 * @return HashMap Table of secondary type names->path for given project
 	 */
-	public Map<String, Map<String, IType>> secondaryTypes(IJavaProject project, boolean waitForIndexes, IProgressMonitor monitor) throws JavaModelException {
+	public Map<String, Map<String, IType>> secondaryTypes(IJavaProject project, boolean waitForIndexes, IProgressMonitor monitor) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (VERBOSE) {
-			StringBuilder buffer = new StringBuilder("JavaModelManager.secondaryTypes("); //$NON-NLS-1$
-			buffer.append(project.getElementName()).append(',').append(waitForIndexes).append(')');
+			StringBuilder buffer = new StringBuilder("JavaModelManager.secondaryTypes("); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buffer.append(project.getElementName()).append(',').append(waitForIndexes).append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			trace(buffer.toString());
 		}
 
@@ -5081,7 +5081,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 * Note that merge result is directly stored in given {@link PerProjectInfo#secondaryTypes}
 	 * cache and that this method is synchronized on that cache object.
 	 */
-	private static Map<String, Map<String, IType>> secondaryTypesMerging(PerProjectInfo projectInfo) {
+	private static Map<String, Map<String, IType>> secondaryTypesMerging(PerProjectInfo projectInfo) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		synchronized (projectInfo.secondaryTypes) {
 		// Return current cache if there's no indexing cache (double check, this should not happen)
 		SecondaryTypesCache cache = projectInfo.secondaryTypes.cache();
@@ -5097,10 +5097,10 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		Map<IFile, Map<String, Map<String, IType>>> indexedSecondaryTypes = cache.indexingSecondaryCache();
 		Map<IFile, Map<String, Map<String, IType>>> indexedSecondaryTypesCopy;
 		synchronized (indexedSecondaryTypes) {
-			indexedSecondaryTypesCopy = new HashMap<>(indexedSecondaryTypes);
+			indexedSecondaryTypesCopy = new HashMap<>(indexedSecondaryTypes); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		}
 
-		for (Entry<IFile, Map<String, Map<String, IType>>> entry : indexedSecondaryTypesCopy.entrySet()) {
+		for (Entry<IFile, Map<String, Map<String, IType>>> entry : indexedSecondaryTypesCopy.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IFile file = entry.getKey();
 
 			// Remove all secondary types of indexed file from cache
@@ -5108,14 +5108,14 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 
 			// Add all indexing file secondary types in given secondary types cache
 			Map<String, Map<String, IType>> fileSecondaryTypes = entry.getValue();
-			for (Entry<String, Map<String, IType>> e : fileSecondaryTypes.entrySet()) {
+			for (Entry<String, Map<String, IType>> e : fileSecondaryTypes.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String packageName = e.getKey();
 				Map<String, IType> cachedTypes = secondaryTypes.get(packageName);
 				if (cachedTypes == null) {
 					secondaryTypes.put(packageName, e.getValue());
 				} else {
 					Map<String, IType> types = e.getValue();
-					for (Entry<String, IType> entry3 : types.entrySet()) {
+					for (Entry<String, IType> entry3 : types.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						String typeName = entry3.getKey();
 						cachedTypes.put(typeName, entry3.getValue());
 					}
@@ -5135,13 +5135,13 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 * Perform search request to get all secondary types of a given project.
 	 * If not waiting for indexes and indexing is running, will return types found in current built indexes...
 	 */
-	private static Map<String, Map<String, IType>> secondaryTypesSearching(IJavaProject project, boolean waitForIndexes, IProgressMonitor monitor, final PerProjectInfo projectInfo) throws JavaModelException {
+	private static Map<String, Map<String, IType>> secondaryTypesSearching(IJavaProject project, boolean waitForIndexes, IProgressMonitor monitor, final PerProjectInfo projectInfo) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (VERBOSE || BasicSearchEngine.VERBOSE) {
-			StringBuilder buffer = new StringBuilder("JavaModelManager.secondaryTypesSearch("); //$NON-NLS-1$
-			buffer.append(project.getElementName());
-			buffer.append(',');
-			buffer.append(waitForIndexes);
-			buffer.append(')');
+			StringBuilder buffer = new StringBuilder("JavaModelManager.secondaryTypesSearch("); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buffer.append(project.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(waitForIndexes); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			trace(buffer.toString());
 		}
 
@@ -5151,7 +5151,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			public void acceptType(int modifiers, char[] packageName, char[] simpleTypeName, char[][] enclosingTypeNames, String path, AccessRestriction access) {
 				String key = packageName==null ? "" : DeduplicationUtil.toString(packageName); //$NON-NLS-1$
 				Map<String, String> types = secondaryTypesSearch.get(key);
-				if (types == null) types = new HashMap<>(3);
+				if (types == null) types = new HashMap<>(3); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				types.put(DeduplicationUtil.toString(simpleTypeName), path);
 				secondaryTypesSearch.put(key, types);
 			}
@@ -5161,7 +5161,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		IPackageFragmentRoot[] allRoots = project.getAllPackageFragmentRoots();
 		int length = allRoots.length, size = 0;
 		IPackageFragmentRoot[] allSourceFolders = new IPackageFragmentRoot[length];
-		for (int i=0; i<length; i++) {
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (allRoots[i].getKind() == IPackageFragmentRoot.K_SOURCE) {
 				allSourceFolders[size++] = allRoots[i];
 			}
@@ -5175,11 +5175,11 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 
 		// Build types from paths
 		final Hashtable<String, Map<String, IType>> secondaryTypes = new Hashtable<>(secondaryTypesSearch.size());
-		for (Entry<String, Map<String, String>> packageEntry : secondaryTypesSearch.entrySet()) {
+		for (Entry<String, Map<String, String>> packageEntry : secondaryTypesSearch.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String packageName = packageEntry.getKey();
 			Map<String, String> types = packageEntry.getValue();
-			Map<String, IType> tempTypes = new HashMap<>(types.size());
-			for (Entry<String, String> entry : types.entrySet()) {
+			Map<String, IType> tempTypes = new HashMap<>(types.size()); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+			for (Entry<String, String> entry : types.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String typeName = entry.getKey();
 				String path = entry.getValue();
 				if (org.eclipse.jdt.internal.core.util.Util.isJavaLikeFileName(path)) {
@@ -5215,11 +5215,11 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 *
 	 * @param file File to remove
 	 */
-	public void secondaryTypesRemoving(IFile file, boolean cleanIndexCache) {
+	public void secondaryTypesRemoving(IFile file, boolean cleanIndexCache) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (VERBOSE) {
-			StringBuilder buffer = new StringBuilder("JavaModelManager.removeFromSecondaryTypesCache("); //$NON-NLS-1$
-			buffer.append(file.getName());
-			buffer.append(')');
+			StringBuilder buffer = new StringBuilder("JavaModelManager.removeFromSecondaryTypesCache("); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buffer.append(file.getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			trace(buffer.toString());
 		}
 		if (file != null) {
@@ -5234,7 +5234,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 					return;
 				}
 				if (VERBOSE) {
-					trace("-> remove file from cache of project: "+file.getProject().getName()); //$NON-NLS-1$
+					trace("-> remove file from cache of project: "+file.getProject().getName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 
 				// Clean current cache
@@ -5261,23 +5261,23 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 * Remove from a given cache map all secondary types belonging to a given file.
 	 * Note that there can have several secondary types per file...
 	 */
-	private static void secondaryTypesRemoving(Map<String, Map<String, IType>> secondaryTypesMap, IFile file) {
+	private static void secondaryTypesRemoving(Map<String, Map<String, IType>> secondaryTypesMap, IFile file) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (VERBOSE) {
-			StringBuilder buffer = new StringBuilder("JavaModelManager.removeSecondaryTypesFromMap("); //$NON-NLS-1$
-			buffer.append(',').append(file.getFullPath()).append(')');
+			StringBuilder buffer = new StringBuilder("JavaModelManager.removeSecondaryTypesFromMap("); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buffer.append(',').append(file.getFullPath()).append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			trace(buffer.toString());
 			dumpSecondaryTypes(secondaryTypesMap);
 		}
 		Set<Entry<String, Map<String, IType>>> packageEntries = secondaryTypesMap.entrySet();
 		int packagesSize = packageEntries.size(), removedPackagesCount = 0;
 		String[] removedPackages = null;
-		for (Entry<String, Map<String, IType>> entry : packageEntries) {
+		for (Entry<String, Map<String, IType>> entry : packageEntries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String packName = entry.getKey();
 			Map<String, IType> types = entry.getValue();
 			Set<Entry<String, IType>> nameEntries = types.entrySet();
 			int namesSize = nameEntries.size(), removedNamesCount = 0;
 			String[] removedNames = null;
-			for (Entry<String, IType> e : nameEntries) {
+			for (Entry<String, IType> e : nameEntries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String typeName = e.getKey();
 				JavaElement type = (JavaElement) e.getValue();
 				if (file.equals(type.resource())) {
@@ -5287,7 +5287,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 				}
 			}
 			if (removedNames != null) {
-				for (int i=0; i<removedNamesCount; i++) {
+				for (int i=0; i<removedNamesCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					types.remove(removedNames[i]);
 				}
 			}
@@ -5298,7 +5298,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			}
 		}
 		if (removedPackages != null) {
-			for (int i=0; i<removedPackagesCount; i++) {
+			for (int i=0; i<removedPackagesCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				secondaryTypesMap.remove(removedPackages[i]);
 			}
 		}
@@ -5312,7 +5312,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 * Record the order in which to build the java projects (batch build). This order is based
 	 * on the projects classpath settings.
 	 */
-	protected void setBuildOrder(String[] javaBuildOrder) throws JavaModelException {
+	protected void setBuildOrder(String[] javaBuildOrder) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// optional behaviour
 		// possible value of index 0 is Compute
@@ -5330,13 +5330,13 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		} else {
 			// remove projects which are already mentionned in java builder order
 			int javaCount = javaBuildOrder.length;
-			HashMap<String, String> newSet = new HashMap<>(javaCount); // create a set for fast check
-			for (int i = 0; i < javaCount; i++){
+			HashMap<String, String> newSet = new HashMap<>(javaCount); // create a set for fast check //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+			for (int i = 0; i < javaCount; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				newSet.put(javaBuildOrder[i], javaBuildOrder[i]);
 			}
 			int removed = 0;
 			int oldCount = wksBuildOrder.length;
-			for (int i = 0; i < oldCount; i++){
+			for (int i = 0; i < oldCount; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (newSet.containsKey(wksBuildOrder[i])){
 					wksBuildOrder[i] = null;
 					removed++;
@@ -5348,7 +5348,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 
 			// copy previous items in their respective order
 			int index = javaCount;
-			for (int i = 0; i < oldCount; i++){
+			for (int i = 0; i < oldCount; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (wksBuildOrder[i] != null){
 					newOrder[index++] = wksBuildOrder[i];
 				}
@@ -5395,7 +5395,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 * @return <code>true</code> if the preferences have been changed,
 	 * 	<code>false</code> otherwise.
 	 */
-	public boolean storePreference(String optionName, String optionValue, IEclipsePreferences eclipsePreferences, Map<String, String> otherOptions) {
+	public boolean storePreference(String optionName, String optionValue, IEclipsePreferences eclipsePreferences, Map<String, String> otherOptions) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int optionLevel = this.getOptionLevel(optionName);
 		if (optionLevel == UNKNOWN_OPTION) return false; // unrecognized option
 
@@ -5412,7 +5412,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 				// Try to migrate deprecated option
 				eclipsePreferences.remove(optionName); // get rid off old preference
 				String[] compatibleOptions = this.deprecatedOptions.get(optionName);
-				for (String compatibleOption : compatibleOptions) {
+				for (String compatibleOption : compatibleOptions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (otherOptions != null && otherOptions.containsKey(compatibleOption))
 						continue; // don't overwrite explicit value of otherOptions at compatibleOptions[co]
 					if (optionValue == null) {
@@ -5428,7 +5428,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		return true;
 	}
 
-	public void setOptions(Hashtable<String, String> newOptions) {
+	public void setOptions(Hashtable<String, String> newOptions) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable<String, String> cachedValue = newOptions == null ? null : new Hashtable<>(newOptions);
 		IEclipsePreferences defaultPreferences = getDefaultPreferences();
 		IEclipsePreferences instancePreferences = getInstancePreferences();
@@ -5441,7 +5441,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			}
 		} else {
 			Enumeration<String> keys = newOptions.keys();
-			while (keys.hasMoreElements()){
+			while (keys.hasMoreElements()){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String key = keys.nextElement();
 				int optionLevel = getOptionLevel(key);
 				if (optionLevel == UNKNOWN_OPTION) continue; // unrecognized option
@@ -5481,7 +5481,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		}
 	}
 
-	public void startup() throws CoreException {
+	public void startup() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			// initialize Java model cache
 			this.cache = new JavaModelCache();
@@ -5554,13 +5554,13 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			// process deltas since last activated in indexer thread so that indexes are up-to-date.
 			// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=38658
 			Job processSavedState = new Job(Messages.savedState_jobName) {
-				@Override
+				@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				protected IStatus run(IProgressMonitor monitor) {
 					try {
 						// add save participant and process delta atomically
 						// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=59937
 						workspace.run(
-							new IWorkspaceRunnable() {
+							new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 								@Override
 								public void run(IProgressMonitor progress) throws CoreException {
 									ISavedState savedState = workspace.addSaveParticipant(JavaCore.PLUGIN_ID, JavaModelManager.this);
@@ -5600,7 +5600,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		if (this.indexManager != null) this.indexManager.reset();
 	}
 
-	public void shutdown () {
+	public void shutdown () { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IEclipsePreferences preferences = InstanceScope.INSTANCE.getNode(JavaCore.PLUGIN_ID);
 		try {
 			preferences.flush();
@@ -5670,7 +5670,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	private Set<String> variableInitializationInProgress() {
 		Set<String> initializations = this.variableInitializationInProgress.get();
 		if (initializations == null) {
-			initializations = new HashSet<>();
+			initializations = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			this.variableInitializationInProgress.set(initializations);
 		}
 		return initializations;
@@ -5680,7 +5680,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		return this.variables.keySet().toArray(String[]::new);
 	}
 
-	public synchronized void variablePut(String variableName, IPath variablePath){
+	public synchronized void variablePut(String variableName, IPath variablePath){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// set/unset the initialization in progress
 		Set<String> initializations = variableInitializationInProgress();
@@ -5709,7 +5709,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	}
 
 	public void variablePreferencesPut(String variableName, IPath variablePath) {
-		String variableKey = CP_VARIABLE_PREFERENCES_PREFIX+variableName;
+		String variableKey = CP_VARIABLE_PREFERENCES_PREFIX+variableName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (variablePath == null) {
 			getInstancePreferences().remove(variableKey);
 		} else {
@@ -5750,7 +5750,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		} catch (JavaModelException e) {
 			return;
 		}
-		for (IJavaProject project : projects) {
+		for (IJavaProject project : projects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final PerProjectInfo projectInfo = getPerProjectInfo(project.getProject(), false /* don't create info */);
 			if (projectInfo != null) {
 				projectInfo.secondaryTypes.clearAllCaches();

@@ -73,7 +73,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	public void test002() throws Exception {
+	public void test002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Java9Elements", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 			project.open(null);
@@ -93,7 +93,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	public void test003() throws Exception {
+	public void test003() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Java9Elements", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 			project.open(null);
@@ -131,7 +131,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	public void test004() throws Exception {
+	public void test004() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Java9Elements", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 			project.open(null);
@@ -150,7 +150,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	public void test005() throws Exception {
+	public void test005() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Java9Elements", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 			project.open(null);
@@ -168,7 +168,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	public void test006() throws Exception {
+	public void test006() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Java9Elements", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 			project.open(null);
@@ -201,7 +201,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements2");
 		}
 	}
-	public void test007() throws Exception {
+	public void test007() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Java9Elements", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 			project.open(null);
@@ -232,7 +232,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements2");
 		}
 	}
-	public void test008() throws Exception {
+	public void test008() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Java9Elements", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 			project.open(null);
@@ -262,7 +262,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements2");
 		}
 	}
-	public void test009() throws Exception {
+	public void test009() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Java9Elements", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 			project.open(null);
@@ -286,7 +286,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	public void test010() throws Exception {
+	public void test010() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Java9Elements", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "1.9");
 			project.open(null);
@@ -307,7 +307,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	public void test011() throws Exception {
+	public void test011() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Java9Elements", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 			project.open(null);
@@ -332,7 +332,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	public void test012() throws Exception {
+	public void test012() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Java9Elements", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 			project.open(null);
@@ -356,7 +356,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	public void test013() throws Exception {
+	public void test013() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Java9Elements", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 			project.open(null);
@@ -374,7 +374,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	public void test014() throws Exception {
+	public void test014() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Java9Elements", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 			project.open(null);
@@ -392,7 +392,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	public void testBug510339_001_since_9() throws Exception {
+	public void testBug510339_001_since_9() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Java9Elements", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 			addClasspathEntry(project, JavaCore.newContainerEntry(new Path("org.eclipse.jdt.MODULE_PATH")));
@@ -419,7 +419,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	public void testBug510339_002_since_9() throws Exception {
+	public void testBug510339_002_since_9() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 
 			IJavaProject project1 = createJavaProject("Java9Elements", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -463,7 +463,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("second");
 		}
 	}
-	public void testBug510339_003_since_9() throws Exception {
+	public void testBug510339_003_since_9() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Java9Elements", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 			addClasspathEntry(project, JavaCore.newContainerEntry(new Path("org.eclipse.jdt.MODULE_PATH")));
@@ -490,7 +490,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	public void testBug510339_004_since_9() throws Exception {
+	public void testBug510339_004_since_9() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 
 			IJavaProject project1 = createJavaProject("Java9Elements", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -534,7 +534,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("second");
 		}
 	}
-	public void testBug510339_005_since_9() throws Exception {
+	public void testBug510339_005_since_9() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 
 			IJavaProject project1 = createJavaProject("Java9Elements", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -583,7 +583,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("second");
 		}
 	}
-	public void testBug510339_006_since_9() throws Exception {
+	public void testBug510339_006_since_9() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 
 			IJavaProject project1 = createJavaProject("Java9Elements", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -632,7 +632,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("second");
 		}
 	}
-	public void testBug510339_007_since_9() throws Exception {
+	public void testBug510339_007_since_9() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 
 			IJavaProject project1 = createJavaProject("Java9Elements", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -664,7 +664,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	public void testBug510339_008_since_9() throws Exception {
+	public void testBug510339_008_since_9() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 
 			IJavaProject project1 = createJavaProject("Java9Elements", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -713,7 +713,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("second");
 		}
 	}
-	public void testBug510339_009_since_9() throws Exception {
+	public void testBug510339_009_since_9() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 
 			IJavaProject project1 = createJavaProject("Java9Elements", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -745,7 +745,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	public void testBug510339_010_since_9() throws Exception {
+	public void testBug510339_010_since_9() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project1 = createJavaProject("Java9Elements", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 			project1.open(null);
@@ -776,12 +776,12 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	public void testSystemLibAsJMod() throws Exception {
+	public void testSystemLibAsJMod() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project1 = createJava9Project("Java9Elements", new String[] {"src"});
 			project1.open(null);
 			IClasspathEntry[] rawClasspath = project1.getRawClasspath();
-			for (int i = 0; i < rawClasspath.length; i++) {
+			for (int i = 0; i < rawClasspath.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPath path = rawClasspath[i].getPath();
 				if (path.lastSegment().equals("jrt-fs.jar")) {
 					path = path.removeLastSegments(2).append("jmods").append("java.base.jmod");
@@ -816,7 +816,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	public void test515342a() throws Exception {
+	public void test515342a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Java9Elements", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 			project.open(null);
@@ -835,12 +835,12 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	public void test515342b() throws Exception {
+	public void test515342b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project1 = createJava9Project("Java9Elements", new String[] {"src"});
 			project1.open(null);
 			IClasspathEntry[] rawClasspath = project1.getRawClasspath();
-			for (int i = 0; i < rawClasspath.length; i++) {
+			for (int i = 0; i < rawClasspath.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPath path = rawClasspath[i].getPath();
 				if (path.lastSegment().equals("jrt-fs.jar")) {
 					path = path.removeLastSegments(2).append("jmods").append("java.base.jmod");
@@ -868,7 +868,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			assertTrue("Invalid selection result", (elements[0] instanceof BinaryModule));
 			IModuleDescription mod = (IModuleDescription) elements[0];
 			String id = mod.getHandleIdentifier();
-			assertTrue("incorrect id", id.matches("=Java9Elements/.*"+Pattern.quote("\\/jmods\\/java.base.jmod=/module=/true=/<'`java.base")));
+			assertTrue("incorrect id", id.matches("=Java9Elements/.*"+Pattern.quote("\\/jmods\\/java.base.jmod=/module=/true=/<'`java.base"))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IJavaElement element = JavaCore.create(id);
 			assertEquals("incorrect element type", IJavaElement.JAVA_MODULE, element.getElementType());
 			assertEquals("incorrect module name", "java.base", element.getElementName());
@@ -877,13 +877,13 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	public void test_binary_module_bug520651() throws Exception {
+	public void test_binary_module_bug520651() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Java9Elements", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 			project.open(null);
 			ITypeRoot classFile = null;
 			IModuleDescription moduleDescription = null;
-			for (IPackageFragmentRoot root : project.getAllPackageFragmentRoots()) {
+			for (IPackageFragmentRoot root : project.getAllPackageFragmentRoots()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				moduleDescription = root.getModuleDescription();
 				if (moduleDescription != null && moduleDescription.getElementName().equals("java.base")) {
 					try {
@@ -910,7 +910,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	public void test_module_in_classfolder_bug520651() throws Exception {
+	public void test_module_in_classfolder_bug520651() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject libPrj= createJavaProject("Java9Lib", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 			createFile("Java9Lib/src/module-info.java", "module java9.lib {}\n");
@@ -922,7 +922,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 					"bin", "9");
 			project.open(null);
 			IModuleDescription moduleDescription = null;
-			for (IPackageFragmentRoot root : project.getAllPackageFragmentRoots()) {
+			for (IPackageFragmentRoot root : project.getAllPackageFragmentRoots()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (root.getPath().toString().equals("/Java9Lib/bin")) {
 					moduleDescription = root.getModuleDescription();
 					assertEquals("module name", "java9.lib", moduleDescription.getElementName());
@@ -936,7 +936,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	public void testFindModule1() throws CoreException, IOException {
+	public void testFindModule1() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createJavaProject("mod.zero", new String[]{"src"}, null, "bin", JavaCore.VERSION_9);
 			createFolder("/mod.zero/src/test0");
@@ -1011,16 +1011,16 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 
 	private IJavaElement parentChain(IJavaElement element, int[] elementTypes) {
 		IJavaElement current = element;
-		for (int i = 0; i < elementTypes.length; i++) {
+		for (int i = 0; i < elementTypes.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			current = current.getParent();
-			assertEquals("Parent type at level "+i, elementTypes[i], current.getElementType());
+			assertEquals("Parent type at level "+i, elementTypes[i], current.getElementType()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return current;
 	}
 	/*
 	 * Test finding module elements with similarly named types in the environment
 	 */
-	public void testBug521287a() throws CoreException, IOException {
+	public void testBug521287a() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createJavaProject("mod.zero", new String[]{"src"}, null, "bin", JavaCore.VERSION_9);
 			createFolder("/mod.zero/src/test0");
@@ -1063,7 +1063,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 	/*
 	 * Test finding module elements with similarly named types in the environment
 	 */
-	public void testBug521287b() throws CoreException, IOException {
+	public void testBug521287b() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createJavaProject("mod.zero", new String[]{"src"}, null, "bin", JavaCore.VERSION_9);
 			createFolder("/mod.zero/src/test0");
@@ -1105,7 +1105,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 	}
 
 	// using classpath attribute
-	public void testModuleAttributes1() throws Exception {
+	public void testModuleAttributes1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject javaProject = createJava9Project("mod.zero");
 			IClasspathAttribute[] cpMainAttribute = {JavaCore.newClasspathAttribute(IClasspathAttribute.MODULE_MAIN_CLASS, "test0.PQRS")};
@@ -1125,7 +1125,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 
 			javaProject.getProject().build(IncrementalProjectBuilder.FULL_BUILD, null);
 
-			String classFile = javaProject.getProject().getLocation().toString()+"/bin/module-info.class";
+			String classFile = javaProject.getProject().getLocation().toString()+"/bin/module-info.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IClassFileReader cfr = ToolFactory.createDefaultClassFileReader(classFile, IClassFileReader.ALL);
 			assertNotNull("Error reading class bytes", cfr);
 			IClassFileAttribute attr = Arrays.stream(cfr.getAttributes())
@@ -1142,7 +1142,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 	}
 
 	// using dedicated API
-	public void testModuleAttributes2() throws Exception {
+	public void testModuleAttributes2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject javaProject = createJava9Project("mod.zero");
 
@@ -1182,7 +1182,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			ICompilationUnit unit = getCompilationUnit("/mod.zero/src/module-info.java");
 			IModuleDescription module = unit.getModule();
 
-			Map<String,String> attributes = new HashMap<>();
+			Map<String,String> attributes = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			attributes.put(String.valueOf(IAttributeNamesConstants.MODULE_MAIN_CLASS), "test0.SPQR");
 			attributes.put(String.valueOf(IAttributeNamesConstants.MODULE_PACKAGES), "");
 
@@ -1230,7 +1230,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("mod.zero");
 		}
 	}
-	public void testModuleAttributes_disassembler_508889_001() throws Exception {
+	public void testModuleAttributes_disassembler_508889_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject javaProject = createJava9Project("mod.zero");
 
@@ -1270,7 +1270,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			ICompilationUnit unit = getCompilationUnit("/mod.zero/src/module-info.java");
 			IModuleDescription module = unit.getModule();
 
-			Map<String,String> attributes = new HashMap<>();
+			Map<String,String> attributes = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			attributes.put(String.valueOf(IAttributeNamesConstants.MODULE_MAIN_CLASS), "test0.SPQR");
 			attributes.put(String.valueOf(IAttributeNamesConstants.MODULE_PACKAGES), "");
 
@@ -1310,7 +1310,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("mod.zero");
 		}
 	}
-	public void testAutoModule1() throws Exception {
+	public void testAutoModule1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project1 = createJavaProject("my_mod", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 			project1.open(null);
@@ -1340,7 +1340,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 
 			assertEquals("names of module descriptions should be equal", mod1.getElementName(), mod2.getElementName());
 
-			for (IModuleDescription m : new IModuleDescription[] {mod1, mod2}) {
+			for (IModuleDescription m : new IModuleDescription[] {mod1, mod2}) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				assertFalse(m.exists()); // exists would imply: included in getParent().getChildren()
 				assertTrue(m.getParent().exists());
 				assertNull(m.getClassFile());
@@ -1364,7 +1364,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("your.mod");
 		}
 	}
-	public void testSystemModule() throws Exception {
+	public void testSystemModule() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project1 = createJava9Project("my_mod");
 			IModuleDescription mod = project1.findModule("java.base", this.wcOwner);
@@ -1391,7 +1391,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("my_mod");
 		}
 	}
-	public void test526761a() throws Exception {
+	public void test526761a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project1 = createJava9Project("Java9Elements", new String[] {"work/src/java"});
 			project1.open(null);
@@ -1431,12 +1431,12 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	private IJavaProject createJavaProjectWithBaseSql() throws CoreException {
+	private IJavaProject createJavaProjectWithBaseSql() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project1 = createJava9Project("Java9Elements", new String[] {"src"});
 		project1.open(null);
 		IClasspathEntry[] rawClasspath = project1.getRawClasspath();
 		IClasspathEntry[] newClasspath = new IClasspathEntry[rawClasspath.length + 1];
-		for (int i = 0; i < rawClasspath.length; i++) {
+		for (int i = 0; i < rawClasspath.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IPath path = rawClasspath[i].getPath();
 			if (path.lastSegment().equals("jrt-fs.jar")) {
 				path = path.removeLastSegments(2).append("jmods").append("java.base.jmod");
@@ -1457,7 +1457,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 		project1.setRawClasspath(rawClasspath, null);
 		return project1;
 	}
-	public void test526326a() throws Exception {
+	public void test526326a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProjectWithBaseSql();
 			project.open(null);
@@ -1507,7 +1507,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	public void test526326b() throws Exception {
+	public void test526326b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProjectWithBaseSql();
 			project.open(null);
@@ -1557,7 +1557,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	public void test526326c() throws Exception {
+	public void test526326c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProjectWithBaseSql();
 			project.open(null);
@@ -1605,13 +1605,13 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	public void test530024_001() throws Exception {
+	public void test530024_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project1 = createJava9Project("Java9Elements", new String[] {"src"});
 			project1.open(null);
 			IClasspathEntry[] rawClasspath = project1.getRawClasspath();
 			IPath jdkRootPath = null;
-			for (int i = 0; i < rawClasspath.length; i++) {
+			for (int i = 0; i < rawClasspath.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPath path = rawClasspath[i].getPath();
 				if (path.lastSegment().equals("jrt-fs.jar")) {
 					jdkRootPath = path.removeLastSegments(2);
@@ -1640,7 +1640,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			assertTrue("Invalid selection result", (elements[0] instanceof BinaryModule));
 			IModuleDescription mod = (IModuleDescription) elements[0];
 			String id = mod.getHandleIdentifier();
-			assertEquals("identifier", "=Java9Elements/" + MementoTokenizer.escape(jdkRootPath.toString())
+			assertEquals("identifier", "=Java9Elements/" + MementoTokenizer.escape(jdkRootPath.toString()) //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ "\\/jmods\\/java.base.jmod=/module=/true=/<'`java.base", id);
 			ISourceRange ir =mod.getNameRange();
 			assertTrue("positive offset", ir.getOffset() > 0);
@@ -1650,7 +1650,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	public void testBug530402() throws CoreException {
+	public void testBug530402() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("Java9Elements", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 			project.open(null);
@@ -1670,7 +1670,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	public void testBug530402b() throws CoreException, IOException {
+	public void testBug530402b() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJava9Project("Java9Elements");
 			IPath libPath = project.getProject().getLocation().append("lib530402.jar");
@@ -1702,7 +1702,7 @@ public class Java9ElementTests extends AbstractJavaModelTests {
 			deleteProject("Java9Elements");
 		}
 	}
-	public void test530653() throws CoreException, IOException {
+	public void test530653() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJava9Project("Java9Elements");
 			addModularLibrary(project, "lib530653.jar", "lib530653src.zip", new String[] {

@@ -34,7 +34,7 @@ public class OrPattern extends SearchPattern implements IIndexConstants, IParall
 	 */
 	int matchCompatibility;
 
-	public OrPattern(SearchPattern leftPattern, SearchPattern rightPattern) {
+	public OrPattern(SearchPattern leftPattern, SearchPattern rightPattern) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		super(Math.max(leftPattern.getMatchRule(), rightPattern.getMatchRule()));
 		this.kind = OR_PATTERN;
 		this.mustResolve = leftPattern.mustResolve || rightPattern.mustResolve;
@@ -56,7 +56,7 @@ public class OrPattern extends SearchPattern implements IIndexConstants, IParall
 
 		// Store erasure match
 		this.matchCompatibility = 0;
-		for (SearchPattern pattern : this.patterns) {
+		for (SearchPattern pattern : this.patterns) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.matchCompatibility |= ((JavaSearchPattern) pattern).matchCompatibility;
 		}
 	}
@@ -65,7 +65,7 @@ public class OrPattern extends SearchPattern implements IIndexConstants, IParall
 		// per construction, OR pattern can only be used with a PathCollector (which already gather results using a set)
 		try {
 			index.startQuery();
-			for (SearchPattern pattern : this.patterns)
+			for (SearchPattern pattern : this.patterns) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				pattern.findIndexMatches(index, requestor, participant, scope, progressMonitor);
 		} finally {
 			index.stopQuery();
@@ -77,7 +77,7 @@ public class OrPattern extends SearchPattern implements IIndexConstants, IParall
 		// per construction, OR pattern can only be used with a PathCollector (which already gather results using a set)
 		try {
 			index.startQuery();
-			for (SearchPattern pattern : this.patterns)
+			for (SearchPattern pattern : this.patterns) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				pattern.findIndexMatches(index, requestor, participant, scope, resolveDocumentName, progressMonitor);
 		} finally {
 			index.stopQuery();
@@ -104,7 +104,7 @@ public class OrPattern extends SearchPattern implements IIndexConstants, IParall
 
 	@Override
 	public boolean isPolymorphicSearch() {
-		for (SearchPattern pattern : this.patterns)
+		for (SearchPattern pattern : this.patterns) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (pattern.isPolymorphicSearch()) return true;
 		return false;
 	}
@@ -116,7 +116,7 @@ public class OrPattern extends SearchPattern implements IIndexConstants, IParall
 	 * 	pattern ({@link PackageDeclarationPattern}), <code>false</code> otherwise.
 	 */
 	public final boolean hasPackageDeclaration() {
-		for (SearchPattern pattern : this.patterns) {
+		for (SearchPattern pattern : this.patterns) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (pattern instanceof PackageDeclarationPattern) return true;
 		}
 		return false;
@@ -128,7 +128,7 @@ public class OrPattern extends SearchPattern implements IIndexConstants, IParall
 	 */
 	public final boolean hasSignatures() {
 		boolean isErasureMatch = isErasureMatch();
-		for (int i = 0, length = this.patterns.length; i < length && !isErasureMatch; i++) {
+		for (int i = 0, length = this.patterns.length; i < length && !isErasureMatch; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (((JavaSearchPattern) this.patterns[i]).hasSignatures()) return true;
 		}
 		return false;
@@ -136,11 +136,11 @@ public class OrPattern extends SearchPattern implements IIndexConstants, IParall
 
 	@Override
 	public String toString() {
-		StringBuilder buffer = new StringBuilder();
-		buffer.append(this.patterns[0].toString());
-		for (int i = 1, length = this.patterns.length; i < length; i++) {
-			buffer.append("\n| "); //$NON-NLS-1$
-			buffer.append(this.patterns[i].toString());
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append(this.patterns[0].toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (int i = 1, length = this.patterns.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append("\n| "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(this.patterns[i].toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return buffer.toString();
 	}
@@ -154,7 +154,7 @@ public class OrPattern extends SearchPattern implements IIndexConstants, IParall
 	public SearchPattern clone() throws CloneNotSupportedException {
 		OrPattern pattern = (OrPattern) super.clone();
 		pattern.patterns = this.patterns.clone();
-		for (int i = 0; i < this.patterns.length; i++) {
+		for (int i = 0; i < this.patterns.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			 pattern.patterns[i] =  this.patterns[i].clone();
 		}
 		return pattern;

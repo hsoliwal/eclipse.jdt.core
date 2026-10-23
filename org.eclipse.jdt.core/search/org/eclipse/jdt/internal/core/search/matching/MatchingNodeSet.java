@@ -34,7 +34,7 @@ public class MatchingNodeSet {
  * Map of matching ast nodes that don't need to be resolved to their accuracy level.
  * Each node is removed as it is reported.
  */
-Map<ASTNode, Integer> matchingNodes = new HashMap<>(); // node -> accuracy
+Map<ASTNode, Integer> matchingNodes = new HashMap<>(); // node -> accuracy //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 private final HashtableOfLong matchingNodesKeys = new HashtableOfLong(3); // sourceRange -> node
 static Integer EXACT_MATCH = Integer.valueOf(SearchMatch.A_ACCURATE);
 static Integer POTENTIAL_MATCH = Integer.valueOf(SearchMatch.A_INACCURATE);
@@ -58,7 +58,7 @@ public MatchingNodeSet(boolean mustResolvePattern) {
 	this.mustResolve = mustResolvePattern;
 }
 
-public int addMatch(ASTNode node, int matchLevel) {
+public int addMatch(ASTNode node, int matchLevel) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int maskedLevel = matchLevel & PatternLocator.MATCH_LEVEL_MASK;
 	switch (maskedLevel) {
 		case PatternLocator.INACCURATE_MATCH:
@@ -120,12 +120,12 @@ void addTrustedMatch(ASTNode node, Integer level) {
 }
 protected boolean hasPossibleNodes(int start, int end) {
 	Object[] nodes = this.possibleMatchingNodesSet.values;
-	for (Object n : nodes) {
+	for (Object n : nodes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		ASTNode node = (ASTNode) n;
 		if (node != null && start <= node.sourceStart && node.sourceEnd <= end)
 			return true;
 	}
-	for (ASTNode node : this.matchingNodes.keySet()) {
+	for (ASTNode node : this.matchingNodes.keySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (node != null && start <= node.sourceStart && node.sourceEnd <= end)
 			return true;
 	}
@@ -134,11 +134,11 @@ protected boolean hasPossibleNodes(int start, int end) {
 /**
  * Returns the matching nodes that are in the given range in the source order.
  */
-protected ASTNode[] matchingNodes(int start, int end) {
+protected ASTNode[] matchingNodes(int start, int end) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	List<ASTNode> nodes = null;
-	for (ASTNode node : this.matchingNodes.keySet()) {
+	for (ASTNode node : this.matchingNodes.keySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (node != null && start <= node.sourceStart && node.sourceEnd <= end) {
-			if (nodes == null) nodes = new ArrayList<>();
+			if (nodes == null) nodes = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			nodes.add(node);
 		}
 	}
@@ -172,35 +172,35 @@ public Object removeTrustedMatch(ASTNode node) {
 	this.matchingNodesKeys.put(key, null);
 	return this.matchingNodes.remove(node);
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public String toString() {
 	// TODO (jerome) should show both tables
-	StringBuilder result = new StringBuilder();
-	result.append("Exact matches:"); //$NON-NLS-1$
-	for (Entry<ASTNode, Integer> entry:this.matchingNodes.entrySet()) {
+	StringBuilder result = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	result.append("Exact matches:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	for (Entry<ASTNode, Integer> entry:this.matchingNodes.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		ASTNode node = entry.getKey();
 		if (node == null) continue;
-		result.append("\n\t"); //$NON-NLS-1$
+		result.append("\n\t"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		switch (entry.getValue().intValue()) {
 			case SearchMatch.A_ACCURATE:
-				result.append("ACCURATE_MATCH: "); //$NON-NLS-1$
+				result.append("ACCURATE_MATCH: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case SearchMatch.A_INACCURATE:
-				result.append("INACCURATE_MATCH: "); //$NON-NLS-1$
+				result.append("INACCURATE_MATCH: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case SearchPattern.R_ERASURE_MATCH:
-				result.append("ERASURE_MATCH: "); //$NON-NLS-1$
+				result.append("ERASURE_MATCH: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 		}
 		node.print(0, result);
 	}
 
-	result.append("\nPossible matches:"); //$NON-NLS-1$
+	result.append("\nPossible matches:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	Object[] nodes = this.possibleMatchingNodesSet.values;
-	for (Object n : nodes) {
+	for (Object n : nodes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		ASTNode node = (ASTNode) n;
 		if (node == null) continue;
-		result.append("\nPOSSIBLE_MATCH: "); //$NON-NLS-1$
+		result.append("\nPOSSIBLE_MATCH: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.print(0, result);
 	}
 	return result.toString();

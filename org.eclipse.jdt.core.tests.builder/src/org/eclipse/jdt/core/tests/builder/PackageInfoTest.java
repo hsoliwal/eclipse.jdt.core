@@ -50,7 +50,7 @@ static {
 public static Test suite() {
 	return buildTestSuite(PackageInfoTest.class);
 }
-public void test001() throws JavaModelException {
+public void test001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion()); //$NON-NLS-1$
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
 	fullBuild(projectPath);
@@ -83,7 +83,7 @@ public void test001() throws JavaModelException {
 	if (problemsLength == 1) {
 		writer.print(problems[0].getMessage());
 	} else {
-		for (int i = 0; i < problemsLength - 1; i++)
+		for (int i = 0; i < problemsLength - 1; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			writer.println(problems[i].getMessage());
 		writer.print(problems[problemsLength - 1].getMessage());
 	}
@@ -93,7 +93,7 @@ public void test001() throws JavaModelException {
 		"The declared package \"p1\" does not match the expected package \"pack\"";
 	assertSourceEquals("Different messages", expectedOutput, stringWriter.toString());
 }
-public void test002() throws JavaModelException {
+public void test002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion()); //$NON-NLS-1$
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
 	fullBuild(projectPath);
@@ -145,7 +145,7 @@ public void test002() throws JavaModelException {
 	}
 	executeClass(projectPath, "testcase.Main", "@testcase.TestAnnotation()@testcase.TestAnnotation()", ""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 }
-public void test003() throws JavaModelException {
+public void test003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion()); //$NON-NLS-1$
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
 	fullBuild(projectPath);
@@ -168,7 +168,7 @@ public void test003() throws JavaModelException {
 }
 // test for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=252555 : NPE
 // on duplicate package-info
-public void test004() throws JavaModelException {
+public void test004() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion()); //$NON-NLS-1$
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
 	fullBuild(projectPath);
@@ -207,7 +207,7 @@ public void test004() throws JavaModelException {
 }
 // test for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=258145 : JME
 // on duplicate package-info
-public void test258145() throws JavaModelException {
+public void test258145() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion()); //$NON-NLS-1$
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
 	fullBuild(projectPath);
@@ -248,7 +248,7 @@ public void test258145() throws JavaModelException {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=323785
 // (NPE upon creation/deletion of package-info.java in default package)
-public void test323785 () throws JavaModelException {
+public void test323785 () throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion());
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -270,7 +270,7 @@ public void test323785 () throws JavaModelException {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=323785
 // verify that changes to package info containing secondary types do trigger incremental build.
-public void test323785a () throws JavaModelException {
+public void test323785a () throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion());
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -298,7 +298,7 @@ public void test323785a () throws JavaModelException {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=372012
 // test missing default nullness annotation for a package without package-info
 // test when the package-info is added with the default annotation, the problem disappears
-public void testBug372012() throws JavaModelException {
+public void testBug372012() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion());
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -355,7 +355,7 @@ public void testBug372012() throws JavaModelException {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=372012
 // test missing default nullness annotation for a package without package-info
 // test when the the default annotations are added to all top level types, the problem stays
-public void testBug372012a() throws JavaModelException {
+public void testBug372012a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion());
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -414,7 +414,7 @@ public void testBug372012a() throws JavaModelException {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=372012
 // test missing default nullness annotation for a package without package-info
 // test when the the default annotations is added to only 1 top level type, the problem stays
-public void testBug372012b() throws JavaModelException {
+public void testBug372012b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion());
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -472,7 +472,7 @@ public void testBug372012b() throws JavaModelException {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=372012
 // test missing default nullness annotation for a package with package-info
 // test when the the default annotation is removed from package-info, the problem comes back
-public void testBug372012c() throws JavaModelException {
+public void testBug372012c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion());
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -526,7 +526,7 @@ public void testBug372012c() throws JavaModelException {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=367836
  */
-public void testBug367836() throws JavaModelException {
+public void testBug367836() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
 	env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
@@ -548,7 +548,7 @@ public void testBug367836() throws JavaModelException {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=374063
 // verify that markers are created on the correct resource
-public void testBug374063() throws JavaModelException {
+public void testBug374063() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion());
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -593,7 +593,7 @@ public void testBug374063() throws JavaModelException {
 	expectingUniqueCompiledClasses(new String[] { "p1.Test1", "p1.package-info" });
 }
 // 382960
-public void testBug382960() throws JavaModelException, CoreException {
+public void testBug382960() throws JavaModelException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion());
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
 	fullBuild(projectPath);
@@ -644,7 +644,7 @@ public void testBug382960() throws JavaModelException, CoreException {
 }
 // test that when a package-info.java has been created, markers on the
 // package fragments in all source folders are removed.
-public void testBug525469() throws JavaModelException {
+public void testBug525469() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion());
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -708,7 +708,7 @@ public void testBug525469() throws JavaModelException {
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/803
 // [BUG] Syntax error, modifiers are not allowed here on a @deprecated javadoc tag in package-info.java
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=569780
-public void testIssue803() throws JavaModelException {
+public void testIssue803() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion());
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
 	env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
@@ -734,7 +734,7 @@ public void testIssue803() throws JavaModelException {
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/803
 // [BUG] Syntax error, modifiers are not allowed here on a @deprecated javadoc tag in package-info.java
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=569780
-public void testIssue803_2() throws JavaModelException {
+public void testIssue803_2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion());
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
 	env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
@@ -759,7 +759,7 @@ public void testIssue803_2() throws JavaModelException {
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/803
 // [BUG] Syntax error, modifiers are not allowed here on a @deprecated javadoc tag in package-info.java
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=569780
-public void testIssue803_3() throws JavaModelException {
+public void testIssue803_3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion());
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
 	env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
@@ -782,7 +782,7 @@ public void testIssue803_3() throws JavaModelException {
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/803
 // [BUG] Syntax error, modifiers are not allowed here on a @deprecated javadoc tag in package-info.java
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=569780
-public void testIssue803_4() throws JavaModelException {
+public void testIssue803_4() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion());
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
 	env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
@@ -808,7 +808,7 @@ public void testIssue803_4() throws JavaModelException {
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/803
 // [BUG] Syntax error, modifiers are not allowed here on a @deprecated javadoc tag in package-info.java
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=569780
-public void testIssue803_5() throws JavaModelException {
+public void testIssue803_5() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion());
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
 	env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
@@ -832,7 +832,7 @@ public void testIssue803_5() throws JavaModelException {
 void setupProjectForNullAnnotations(IPath projectPath) throws JavaModelException {
 	// add the org.eclipse.jdt.annotation library (bin/ folder or jar) to the project:
 	File bundleFile = FileLocator.getBundleFileLocation(Platform.getBundle("org.eclipse.jdt.annotation")).get();
-	String annotationsLib = bundleFile.isDirectory() ? bundleFile.getPath()+"/bin" : bundleFile.getPath();
+	String annotationsLib = bundleFile.isDirectory() ? bundleFile.getPath()+"/bin" : bundleFile.getPath(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	IJavaProject javaProject = env.getJavaProject(projectPath);
 	IClasspathEntry[] rawClasspath = javaProject.getRawClasspath();
 	int len = rawClasspath.length;

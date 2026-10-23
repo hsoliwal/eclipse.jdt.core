@@ -30,7 +30,7 @@ public class PackageVisibilityInfo extends ClassFileStruct implements IPackageVi
 	private int[] targetModuleIndices;
 	private char[][] targetModuleNames;
 
-	public PackageVisibilityInfo(byte[] classFileBytes, IConstantPool constantPool, int offset) throws ClassFormatException {
+	public PackageVisibilityInfo(byte[] classFileBytes, IConstantPool constantPool, int offset) throws ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int readOffset = 0;
 		this.index = u2At(classFileBytes, readOffset, offset);
 		readOffset += 2;
@@ -49,7 +49,7 @@ public class PackageVisibilityInfo extends ClassFileStruct implements IPackageVi
 		if (this.targetsCount != 0) {
 			this.targetModuleIndices = new int[this.targetsCount];
 			this.targetModuleNames = new char[this.targetsCount][];
-			for (int i = 0; i < this.targetsCount; i++) {
+			for (int i = 0; i < this.targetsCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.targetModuleIndices[i] = u2At(classFileBytes, readOffset, offset);
 				readOffset += 2;
 				constantPoolEntry = constantPool.decodeEntry(this.targetModuleIndices[i]);

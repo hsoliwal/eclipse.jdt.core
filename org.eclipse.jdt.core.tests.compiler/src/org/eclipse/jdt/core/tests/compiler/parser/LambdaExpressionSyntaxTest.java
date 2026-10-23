@@ -55,7 +55,7 @@ public class LambdaExpressionSyntaxTest extends AbstractSyntaxTreeTest {
 		}
 	}
 	// type elided, unparenthesized parameter + expression body lambda in casting context.
-	public void test0001() throws IOException {
+	public void test0001() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"interface I {\n" +
 				"    int square(int x);\n" +
@@ -81,7 +81,7 @@ public class LambdaExpressionSyntaxTest extends AbstractSyntaxTreeTest {
 		checkParse(CHECK_PARSER | CHECK_JAVAC_PARSER , source.toCharArray(), null, "test0001", expectedUnitToString);
 	}
 	// type elided, unparenthesized parameter + expression body lambda as initializer.
-	public void test0002() throws IOException {
+	public void test0002() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"interface I {\n" +
 				"    int square(int x);\n" +
@@ -109,7 +109,7 @@ public class LambdaExpressionSyntaxTest extends AbstractSyntaxTreeTest {
 		checkParse(CHECK_PARSER | CHECK_JAVAC_PARSER , source.toCharArray(), null, "test0002", expectedUnitToString);
 	}
 	// type elided, unparenthesized parameter + expression body lambda as initializer, full lambda is parenthesized.
-	public void test0003() throws IOException {
+	public void test0003() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"interface I {\n" +
 				"    int square(int x);\n" +
@@ -137,7 +137,7 @@ public class LambdaExpressionSyntaxTest extends AbstractSyntaxTreeTest {
 		checkParse(CHECK_PARSER | CHECK_JAVAC_PARSER , source.toCharArray(), null, "test0003", expectedUnitToString);
 	}
 	// type elided, unparenthesized parameter + expression body lambda as RHS of assignment, full lambda is parenthesized.
-	public void test0004() throws IOException {
+	public void test0004() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"interface I {\n" +
 				"    int square(int x);\n" +
@@ -167,7 +167,7 @@ public class LambdaExpressionSyntaxTest extends AbstractSyntaxTreeTest {
 		checkParse(CHECK_PARSER | CHECK_JAVAC_PARSER , source.toCharArray(), null, "test0004", expectedUnitToString);
 	}
 	// type elided, unparenthesized parameter + expression body lambda in return statement, full lambda is parenthesized.
-	public void test0005() throws IOException {
+	public void test0005() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"interface I {\n" +
 				"    int square(int x);\n" +
@@ -201,7 +201,7 @@ public class LambdaExpressionSyntaxTest extends AbstractSyntaxTreeTest {
 		checkParse(CHECK_PARSER | CHECK_JAVAC_PARSER , source.toCharArray(), null, "test0005", expectedUnitToString);
 	}
 	// type elided, unparenthesized parameter + expression body lambda in conditional expression.
-	public void test0006() throws IOException {
+	public void test0006() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"interface I {\n" +
 				"    int square(int x);\n" +
@@ -229,7 +229,7 @@ public class LambdaExpressionSyntaxTest extends AbstractSyntaxTreeTest {
 		checkParse(CHECK_PARSER | CHECK_JAVAC_PARSER , source.toCharArray(), null, "test0006", expectedUnitToString);
 	}
 	// type elided, unparenthesized parameter + expression body lambda in message send.
-	public void test0007() throws IOException {
+	public void test0007() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"interface I {\n" +
 				"    int square(int x);\n" +
@@ -263,7 +263,7 @@ public class LambdaExpressionSyntaxTest extends AbstractSyntaxTreeTest {
 		checkParse(CHECK_PARSER | CHECK_JAVAC_PARSER , source.toCharArray(), null, "test0007", expectedUnitToString);
 	}
 	// type elided, unparenthesized parameter + expression body lambda in constructor call.
-	public void test0008() throws IOException {
+	public void test0008() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"interface I {\n" +
 				"    int square(int x);\n" +
@@ -295,7 +295,7 @@ public class LambdaExpressionSyntaxTest extends AbstractSyntaxTreeTest {
 		checkParse(CHECK_PARSER | CHECK_JAVAC_PARSER , source.toCharArray(), null, "test0008", expectedUnitToString);
 	}
 	// type elided, unparenthesized parameter + expression body lambda in lambda.
-	public void test0009() throws IOException {
+	public void test0009() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"interface I {\n" +
 				"    I square(int x);\n" +
@@ -321,7 +321,7 @@ public class LambdaExpressionSyntaxTest extends AbstractSyntaxTreeTest {
 		checkParse(CHECK_PARSER | CHECK_JAVAC_PARSER , source.toCharArray(), null, "test0009", expectedUnitToString);
 	}
 	// type elided, unparenthesized parameter + expression body lambda in an initializer block
-	public void test00010() throws IOException {
+	public void test00010() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"interface I {\n" +
 				"    int square(int x);\n" +
@@ -357,7 +357,7 @@ public class LambdaExpressionSyntaxTest extends AbstractSyntaxTreeTest {
 		checkParse(CHECK_PARSER | CHECK_JAVAC_PARSER , source.toCharArray(), null, "test00010", expectedUnitToString);
 	}
 	// type elided, parenthesized parameter + expression body lambda in casting context.
-	public void test0011() throws IOException {
+	public void test0011() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"interface I {\n" +
 				"    int square(int x);\n" +
@@ -383,7 +383,7 @@ public class LambdaExpressionSyntaxTest extends AbstractSyntaxTreeTest {
 		checkParse(CHECK_PARSER | CHECK_JAVAC_PARSER , source.toCharArray(), null, "test0011", expectedUnitToString);
 	}
 	// Normal & minimal parameter list + expression body lambda in assignment context.
-	public void test0012() throws IOException {
+	public void test0012() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"interface I {\n" +
 				"    int square(int x);\n" +
@@ -411,7 +411,7 @@ public class LambdaExpressionSyntaxTest extends AbstractSyntaxTreeTest {
 		checkParse(CHECK_PARSER | CHECK_JAVAC_PARSER , source.toCharArray(), null, "test0012", expectedUnitToString);
 	}
 	// Normal parameter list, with modifiers & annotations  + expression body lambda in invocation context.
-	public void test0013() throws IOException {
+	public void test0013() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"interface I {\n" +
 				"    int square(int x);\n" +
@@ -448,7 +448,7 @@ public class LambdaExpressionSyntaxTest extends AbstractSyntaxTreeTest {
 		checkParse(CHECK_PARSER | CHECK_JAVAC_PARSER , source.toCharArray(), null, "test0013", expectedUnitToString);
 	}
 	// Vararg parameter list, with modifiers & annotations + expression body lambda in message send context.
-	public void test0014() throws IOException {
+	public void test0014() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"interface I {\n" +
 				"    int square(int ... x);\n" +
@@ -485,7 +485,7 @@ public class LambdaExpressionSyntaxTest extends AbstractSyntaxTreeTest {
 		checkParse(CHECK_PARSER | CHECK_JAVAC_PARSER , source.toCharArray(), null, "test0014", expectedUnitToString);
 	}
 	// multi parameter type elided list + expression body lambda in return statement.
-	public void test0015() throws IOException {
+	public void test0015() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"interface I {\n" +
 				"    int product(int x, int y);\n" +
@@ -519,7 +519,7 @@ public class LambdaExpressionSyntaxTest extends AbstractSyntaxTreeTest {
 		checkParse(CHECK_PARSER | CHECK_JAVAC_PARSER , source.toCharArray(), null, "test0015", expectedUnitToString);
 	}
 	// multi parameter type specified list + block body lambda in return statement.
-	public void test0016() throws IOException {
+	public void test0016() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"interface I {\n" +
 				"    int product(int x, int y);\n" +
@@ -555,7 +555,7 @@ public class LambdaExpressionSyntaxTest extends AbstractSyntaxTreeTest {
 		checkParse(CHECK_PARSER | CHECK_JAVAC_PARSER , source.toCharArray(), null, "test0016", expectedUnitToString);
 	}
 	// noarg + block body lambda
-	public void test0017() throws IOException {
+	public void test0017() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"interface I {\n" +
 				"    String noarg();\n" +
@@ -583,7 +583,7 @@ public class LambdaExpressionSyntaxTest extends AbstractSyntaxTreeTest {
 		checkParse(CHECK_PARSER | CHECK_JAVAC_PARSER , source.toCharArray(), null, "test0017", expectedUnitToString);
 	}
 	// Assorted tests.
-	public void test0018() throws IOException {
+	public void test0018() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"interface I {\n" +
 				"    void foo();\n" +
@@ -643,7 +643,7 @@ public class LambdaExpressionSyntaxTest extends AbstractSyntaxTreeTest {
 	}
 
 	// like test0001() but body expression is an assignment
-	public void test0019() throws IOException {
+	public void test0019() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"interface I {\n" +
 						"    int square(int x);\n" +
@@ -674,7 +674,7 @@ public class LambdaExpressionSyntaxTest extends AbstractSyntaxTreeTest {
 	// Coverage:  exercise this condition in Parser.consumeExpression():
 	//   if (this.valueLambdaNestDepth >= 0 && this.stateStackLengthStack[this.valueLambdaNestDepth] == this.stateStackTop - 1)
 	// make sure we see a (true && false) combination
-	public void testNestedLambda01() throws IOException {
+	public void testNestedLambda01() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"public class C {\n" +
 				"	I foo() {\n" +

@@ -59,15 +59,15 @@ public char[] getTypeName() {
  */
 @Override
 public String toString() {
-	StringBuilder buffer = new StringBuilder();
-	buffer.append(this.typeName);
-	buffer.append(" "); //$NON-NLS-1$
-	buffer.append(this.name);
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	buffer.append(this.typeName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(" "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(this.name); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (this.initializer != null) {
-		buffer.append("= "); //$NON-NLS-1$
-		buffer.append(this.initializer);
+		buffer.append("= "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(this.initializer); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	buffer.append(";"); //$NON-NLS-1$
+	buffer.append(";"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return buffer.toString();
 }
 }

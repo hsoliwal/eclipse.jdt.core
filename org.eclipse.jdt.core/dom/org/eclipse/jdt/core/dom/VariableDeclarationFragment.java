@@ -82,14 +82,14 @@ public class VariableDeclarationFragment extends VariableDeclaration {
 	private static final List PROPERTY_DESCRIPTORS_8_0;
 
 	static {
-		List propertyList = new ArrayList(4);
+		List propertyList = new ArrayList(4); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(VariableDeclarationFragment.class, propertyList);
 		addProperty(NAME_PROPERTY, propertyList);
 		addProperty(EXTRA_DIMENSIONS_PROPERTY, propertyList);
 		addProperty(INITIALIZER_PROPERTY, propertyList);
 		PROPERTY_DESCRIPTORS = reapPropertyList(propertyList);
 
-		propertyList = new ArrayList(4);
+		propertyList = new ArrayList(4); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(VariableDeclarationFragment.class, propertyList);
 		addProperty(NAME_PROPERTY, propertyList);
 		addProperty(EXTRA_DIMENSIONS2_PROPERTY, propertyList);
@@ -168,7 +168,7 @@ public class VariableDeclarationFragment extends VariableDeclaration {
 		return super.internalGetSetIntProperty(property, get, value);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final ASTNode internalGetSetChildProperty(ChildPropertyDescriptor property, boolean get, ASTNode child) {
 		if (property == NAME_PROPERTY) {
 			if (get) {

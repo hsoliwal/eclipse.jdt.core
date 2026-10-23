@@ -46,12 +46,12 @@ public class FactoryPathTests extends TestCase {
 	}
 
 	private static void assertExtJars(List<String> expected, Map<FactoryContainer, Attributes> actual) {
-		List<FactoryContainer> toIterate = new ArrayList<>();
+		List<FactoryContainer> toIterate = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		toIterate.addAll(actual.keySet());
 		Collections.reverse(toIterate);
 		assertEquals("The size of the path list should match up", expected.size(), toIterate.size());
 		int index = 0;
-		for (FactoryContainer container : toIterate) {
+		for (FactoryContainer container : toIterate) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			FactoryContainer fc = FactoryPathUtil.newExtJarFactoryContainer(new File(expected.get(index++)));
 			assertEquals("Unexpected jar file", fc, container);
 		}
@@ -60,7 +60,7 @@ public class FactoryPathTests extends TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		path = new FactoryPath();
-		for (String next : filesInPath) {
+		for (String next : filesInPath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			path.addExternalJar(new File(next));
 		}
 		super.setUp();

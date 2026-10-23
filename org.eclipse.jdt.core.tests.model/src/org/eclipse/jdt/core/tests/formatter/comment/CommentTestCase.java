@@ -33,7 +33,7 @@ public abstract class CommentTestCase extends SuiteOfTestCases {
 	public static Test buildTestSuite(Class evaluationTestClass, String suiteName) {
 		TestSuite suite = new Suite(suiteName==null?evaluationTestClass.getName():suiteName);
 		List tests = buildTestsList(evaluationTestClass);
-		for (int index=0, size=tests.size(); index<size; index++) {
+		for (int index=0, size=tests.size(); index<size; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			suite.addTest((Test)tests.get(index));
 		}
 		return suite;
@@ -63,7 +63,7 @@ public abstract class CommentTestCase extends SuiteOfTestCases {
 
 	protected void setUserOption(String name, String value) {
 		if (this.userOptions == null)
-			this.userOptions= new HashMap();
+			this.userOptions= new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 		this.userOptions.put(name, value);
 	}

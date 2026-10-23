@@ -125,7 +125,7 @@ public class PrimitiveType extends AnnotatableType {
 	 */
 	private static final Map CODES;
 	static {
-		CODES = new HashMap(20);
+		CODES = new HashMap(20); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		Code[] ops = {
 				INT,
 				BYTE,
@@ -137,7 +137,7 @@ public class PrimitiveType extends AnnotatableType {
 				DOUBLE,
 				VOID,
 			};
-		for (Code op : ops) {
+		for (Code op : ops) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			CODES.put(op.toString(), op);
 		}
 	}
@@ -187,12 +187,12 @@ public class PrimitiveType extends AnnotatableType {
 	 */
 	private static final List PROPERTY_DESCRIPTORS_8_0;
 	static {
-		List propertyList = new ArrayList(2);
+		List propertyList = new ArrayList(2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(PrimitiveType.class, propertyList);
 		addProperty(PRIMITIVE_TYPE_CODE_PROPERTY, propertyList);
 		PROPERTY_DESCRIPTORS = reapPropertyList(propertyList);
 
-		propertyList = new ArrayList(3);
+		propertyList = new ArrayList(3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(PrimitiveType.class, propertyList);
 		addProperty(ANNOTATIONS_PROPERTY, propertyList);
 		addProperty(PRIMITIVE_TYPE_CODE_PROPERTY, propertyList);

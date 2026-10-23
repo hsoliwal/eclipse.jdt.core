@@ -72,10 +72,10 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 	private static final int LINE_COMMENT = 100;
 	private static final int BLOCK_COMMENT =200;
 	private static final int DOC_COMMENT = 300;
-	List comments = new ArrayList();
+	List comments = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	private String chars;
 	// List of tags contained in each comment read from test source.
-	List allTags = new ArrayList();
+	List allTags = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	// tags inhibiting inline tags
 	static final String TAG_CODE = "code";
 	static final String TAG_LITERAL = "literal";
@@ -97,7 +97,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 	Map savedOptions = null;
 	protected ICompilationUnit moduleUnit;
 
-	private static String SNIPPET_TAG = '@' + new String(JavadocTagConstants.TAG_SNIPPET);
+	private static String SNIPPET_TAG = '@' + new String(JavadocTagConstants.TAG_SNIPPET); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	public ASTConverterJavadocTest_18(String name) {
 		super(name);
@@ -112,7 +112,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 	public static void buildSuite(TestSuite suite) {
 		Class c = ASTConverterJavadocTest_18.class;
 		Method[] methods = c.getMethods();
-		for (int i = 0, max = methods.length; i < max; i++) {
+		for (int i = 0, max = methods.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (methods[i].getName().startsWith("test")) { //$NON-NLS-1$
 				suite.addTest(new ASTConverterJavadocTest_18(methods[i].getName()));
 			}
@@ -145,15 +145,15 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 	protected void setUp() throws Exception {
 		super.setUp();
 		TEST_COUNTERS[0]++;
-		this.failures = new ArrayList();
-		this.problems = new StringBuilder();
+		this.failures = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		this.problems = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		this.workingCopies = null;
 		this.savedLevel = this.astLevel;
 	}
 	/* (non-Javadoc)
 	 * @see junit.framework.TestCase#tearDown()
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void tearDown() throws Exception {
 		int size = this.failures.size();
 		String title = size+" positions/bindings were incorrect in "+getName();
@@ -167,9 +167,9 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 			TEST_COUNTERS[2]++;
 		} else {
 			TEST_COUNTERS[3]++;
-			System.out.println(title+":");
-			for (int i=0; i<size; i++) {
-				System.out.println("	- "+this.failures.get(i));
+			System.out.println(title+":"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			for (int i=0; i<size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				System.out.println("	- "+this.failures.get(i)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 //		if (!stopOnFailure) {
@@ -196,10 +196,10 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 			intFormat.setMinimumIntegerDigits(3);
 			intFormat.setMaximumIntegerDigits(3);
 			System.out.println("=====================================");
-			System.out.println(intFormat.format(TEST_COUNTERS[0])+" tests have been executed:");
-			System.out.println("  - "+intFormat.format(TEST_COUNTERS[1])+" tests have been actually executed.");
-			System.out.println("  - "+intFormat.format(TEST_COUNTERS[2])+" tests were skipped due to compilation errors.");
-			System.out.println("  - "+intFormat.format(TEST_COUNTERS[3])+" tests failed.");
+			System.out.println(intFormat.format(TEST_COUNTERS[0])+" tests have been executed:"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			System.out.println("  - "+intFormat.format(TEST_COUNTERS[1])+" tests have been actually executed."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			System.out.println("  - "+intFormat.format(TEST_COUNTERS[2])+" tests were skipped due to compilation errors."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			System.out.println("  - "+intFormat.format(TEST_COUNTERS[3])+" tests failed."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -226,7 +226,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 		return runConversion(source, unitName, project);
 	}
 
-	private char getNextChar(char[] source, int idx) {
+	private char getNextChar(char[] source, int idx) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			// get next char
 			char ch = source[idx];
 			int charLength = 1;
@@ -236,7 +236,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 				//-------------unicode traitement ------------
 				int c1, c2, c3, c4;
 				charLength++;
-				while (source[idx+charLength] == 'u') charLength++;
+				while (source[idx+charLength] == 'u') charLength++; //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (((c1 = ScannerHelper.getHexadecimalValue(source[idx+charLength++])) > 15 || c1 < 0)
 					|| ((c2 = ScannerHelper.getHexadecimalValue(source[idx+charLength++])) > 15 || c2 < 0)
 					|| ((c3 = ScannerHelper.getHexadecimalValue(source[idx+charLength++])) > 15 || c3 < 0)
@@ -253,14 +253,14 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 	 * Store converted comments and their corresponding tags respectively
 	 * in comments and allTags fields
 	 */
-	protected void setSourceComment(char[] source) throws ArrayIndexOutOfBoundsException {
-		this.comments = new ArrayList();
-		this.allTags = new ArrayList();
+	protected void setSourceComment(char[] source) throws ArrayIndexOutOfBoundsException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		this.comments = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		this.allTags = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		StringBuilder buffer = null;
 		int comment = 0;
 		boolean end = false, lineStarted = false;
 		String tag = null;
-		List tags = new ArrayList();
+		List tags = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		int length = source.length;
 		// https://bugs.eclipse.org/bugs/show_bug.cgi?id=206345
 		// when parsing tags such as @code and @literal,
@@ -269,7 +269,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 		boolean considerTagAsPlainText = false;
 		int openingBraces = 0;
 		char previousChar=0, currentChar=0;
-		for (int i=0; i<length;) {
+		for (int i=0; i<length;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			previousChar = currentChar;
 			// get next char
 			currentChar = getNextChar(source, i);
@@ -280,12 +280,12 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 					switch (currentChar) {
 						case '/':
 							comment = 1; // first char for comments...
-							buffer = new StringBuilder();
-							if (this.chars == null) buffer.append(currentChar);
-							else buffer.append(this.chars);
+							buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+							if (this.chars == null) buffer.append(currentChar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+							else buffer.append(this.chars); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							break;
 						case '\'':
-							while (i<length) {
+							while (i<length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								// get next char
 								currentChar = getNextChar(source, i);
 								i += (this.chars==null) ? 1 : this.chars.length();
@@ -301,7 +301,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 							}
 							break;
 						case '"':
-							while (i<length) {
+							while (i<length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								// get next char
 								currentChar = getNextChar(source, i);
 								i += (this.chars==null) ? 1 : this.chars.length();
@@ -327,13 +327,13 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 				case 1: // first '/' has been found...
 					switch (currentChar) {
 						case '/':
-							if (this.chars == null) buffer.append(currentChar);
-							else buffer.append(this.chars);
+							if (this.chars == null) buffer.append(currentChar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+							else buffer.append(this.chars); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							comment = LINE_COMMENT;
 							break;
 						case '*':
-							if (this.chars == null) buffer.append(currentChar);
-							else buffer.append(this.chars);
+							if (this.chars == null) buffer.append(currentChar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+							else buffer.append(this.chars); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							comment = 2; // next step
 							break;
 						default:
@@ -347,15 +347,15 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 					} else {
 						comment = BLOCK_COMMENT;
 					}
-					if (this.chars == null) buffer.append(currentChar);
-					else buffer.append(this.chars);
+					if (this.chars == null) buffer.append(currentChar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					else buffer.append(this.chars); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case 3: // '/**' has bee found, verify that's not an empty block comment
 					if (currentChar == '/') { // empty block comment
-						if (this.chars == null) buffer.append(currentChar);
-						else buffer.append(this.chars);
+						if (this.chars == null) buffer.append(currentChar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						else buffer.append(this.chars); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						this.comments.add(buffer.toString());
-						this.allTags.add(new ArrayList());
+						this.allTags.add(new ArrayList()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 						comment = 0;
 						break;
 					}
@@ -410,14 +410,14 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 					}
 					// $FALL-THROUGH$ - common treatment for block and javadoc comments
 				case BLOCK_COMMENT:
-					if (this.chars == null) buffer.append(currentChar);
-					else buffer.append(this.chars);
+					if (this.chars == null) buffer.append(currentChar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					else buffer.append(this.chars); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					if (end && currentChar == '/') {
 						comment = 0;
 						lineStarted = false;
 						this.comments.add(buffer.toString());
 						this.allTags.add(tags);
-						tags = new ArrayList();
+						tags = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 					}
 					end = currentChar == '*';
 					break;
@@ -432,8 +432,8 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 						this.comments.add(buffer.toString());
 						this.allTags.add(tags);
 					} else {
-						if (this.chars == null) buffer.append(currentChar);
-						else buffer.append(this.chars);
+						if (this.chars == null) buffer.append(currentChar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						else buffer.append(this.chars); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 					break;
 				default:
@@ -448,12 +448,12 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 	 * Store converted comments and their corresponding tags respectively
 	 * in comments and allTags fields
 	 */
-	char[] getUnicodeSource(char[] source) {
+	char[] getUnicodeSource(char[] source) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int length = source.length;
 		int unicodeLength = length*6;
 		char[] unicodeSource = new char[unicodeLength];
 		int u=0;
-		for (int i=0; i<length; i++) {
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// get next char
 			if (source[i] == '\\' && source[i+1] == 'u') {
 				//-------------unicode traitement ------------
@@ -464,9 +464,9 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 					|| ((c2 = ScannerHelper.getHexadecimalValue(source[i+2])) > 15 || c2 < 0)
 					|| ((c3 = ScannerHelper.getHexadecimalValue(source[i+3])) > 15 || c3 < 0)
 					|| ((c4 = ScannerHelper.getHexadecimalValue(source[i+4])) > 15 || c4 < 0)) {
-					throw new RuntimeException("Invalid unicode in source at "+i);
+					throw new RuntimeException("Invalid unicode in source at "+i); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
-				for (int j=0; j<4; j++) unicodeSource[u++] = source[++i];
+				for (int j=0; j<4; j++) unicodeSource[u++] = source[++i]; //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			} else {
 				unicodeSource[u++] = '\\';
 				unicodeSource[u++] = 'u';
@@ -492,12 +492,12 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 	 * Store converted comments and their corresponding tags respectively
 	 * in comments and allTags fields
 	 */
-	char[] getUnixSource(char[] source) {
+	char[] getUnixSource(char[] source) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int length = source.length;
 		int unixLength = length;
 		char[] unixSource = new char[unixLength];
 		int u=0;
-		for (int i=0; i<length; i++) {
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// get next char
 			if (source[i] == '\r' && source[i+1] == '\n') {
 				i++;
@@ -516,17 +516,17 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 	/*
 	 * Return all tags number for a given Javadoc
 	 */
-	int allTags(Javadoc docComment) {
+	int allTags(Javadoc docComment) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int all = 0;
 		// Count main tags
 		Iterator tags = docComment.tags().listIterator();
-		while (tags.hasNext()) {
+		while (tags.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TagElement tagElement = (TagElement) tags.next();
 			if (tagElement.getTagName() != null) {
 				all++;
 			}
 			Iterator fragments = tagElement.fragments().listIterator();
-			while (fragments.hasNext()) {
+			while (fragments.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ASTNode node = (ASTNode) fragments.next();
 				if (node.getNodeType() == ASTNode.TAG_ELEMENT) {
 					all++;
@@ -587,7 +587,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 	 */
 	protected void assumeEquals(String msg, int expected, int actual) {
 		if (expected != actual) {
-			addFailure(msg+", expected="+expected+" actual="+actual);
+			addFailure(msg+", expected="+expected+" actual="+actual); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			if (this.stopOnFailure) assertEquals(msg, expected, actual);
 		}
 	}
@@ -602,7 +602,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 			return;
 		if (expected != null && expected.equals(actual))
 			return;
-		addFailure(msg+", expected:<"+expected+"> actual:<"+actual+'>');
+		addFailure(msg+", expected:<"+expected+"> actual:<"+actual+'>'); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (this.stopOnFailure) assertEquals(msg, expected, actual);
 	}
 
@@ -610,8 +610,8 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 	 * @see junit.framework.TestCase#setUp()
 	 */
 	protected void verifyComments(String test) throws JavaModelException {
-		ICompilationUnit[] units = getCompilationUnits("Converter" , "src", "javadoc."+test); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		for (int i=0; i<units.length; i++) {
+		ICompilationUnit[] units = getCompilationUnits("Converter" , "src", "javadoc."+test); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		for (int i=0; i<units.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			verifyComments(units[i]);
 		}
 	}
@@ -623,7 +623,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 		assumeNotNull("No working copies to verify!", this.workingCopies);
 		int length = this.workingCopies.length;
 		assumeTrue("We need to have at least one working copy to verify!", length>0);
-		for (int i=0; i<length; i++) {
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			verifyComments(this.workingCopies[i]);
 		}
 	}
@@ -631,10 +631,10 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 	/*
 	 * Verify the comments of a compilation unit.
 	 */
-	protected CompilationUnit verifyComments(ICompilationUnit unit) throws JavaModelException {
+	protected CompilationUnit verifyComments(ICompilationUnit unit) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Get test file
 		this.sourceUnit = unit;
-		this.prefix = unit.getElementName()+": ";
+		this.prefix = unit.getElementName()+": "; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		// Get current project
 		String sourceStr = this.sourceUnit.getSource();
@@ -668,7 +668,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 		return verifyComments(fileName, source, null);
 	}
 
-	protected CompilationUnit verifyComments(String fileName, char[] source, Map options) {
+	protected CompilationUnit verifyComments(String fileName, char[] source, Map options) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Verify comments either in unicode or not
 		char[] testedSource = source;
@@ -691,28 +691,28 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 		}
 		CompilationUnit compilUnit = (CompilationUnit) runConversion(testedSource, fileName, this.currentProject, options);
 		if (this.compilerOption.equals(JavaCore.ERROR)) {
-			assumeEquals(this.prefix+"Unexpected problems", 0, compilUnit.getProblems().length); //$NON-NLS-1$
+			assumeEquals(this.prefix+"Unexpected problems", 0, compilUnit.getProblems().length); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else if (this.compilerOption.equals(JavaCore.WARNING)) {
 			IProblem[] problemsList = compilUnit.getProblems();
 			int length = problemsList.length;
 			if (length > 0) {
-				this.problems.append("  - "+this.prefix+length+" problems:"); //$NON-NLS-1$
-				for (int i = 0; i < problemsList.length; i++) {
-					this.problems.append("	+ ");
-					this.problems.append(problemsList[i]);
-					this.problems.append("\n");
+				this.problems.append("  - "+this.prefix+length+" problems:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (int i = 0; i < problemsList.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					this.problems.append("	+ "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.problems.append(problemsList[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.problems.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
 		}
 		unitComments = compilUnit.getCommentList();
-		assumeNotNull(this.prefix+"Unexpected problems", unitComments);
+		assumeNotNull(this.prefix+"Unexpected problems", unitComments); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		// Basic comments verification
 		int size = unitComments.size();
-		assumeEquals(this.prefix+"Wrong number of comments!", this.comments.size(), size);
+		assumeEquals(this.prefix+"Wrong number of comments!", this.comments.size(), size); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		// Verify comments positions and bindings
-		for (int i=0; i<size; i++) {
+		for (int i=0; i<size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Comment comment = (Comment) unitComments.get(i);
 			List tags = (List) this.allTags.get(i);
 			// Verify flattened content
@@ -720,12 +720,12 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 //			ASTConverterJavadocFlattener printer = new ASTConverterJavadocFlattener(stringComment);
 //			comment.accept(printer);
 			String text = new String(testedSource, comment.getStartPosition(), comment.getLength());
-			assumeEquals(this.prefix+"Flattened comment does NOT match source!", stringComment, text);
+			assumeEquals(this.prefix+"Flattened comment does NOT match source!", stringComment, text); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			// Verify javdoc tags positions and bindings
 			if (comment.isDocComment()) {
 				Javadoc docComment = (Javadoc)comment;
 				int counter = (int) tags.stream().filter(s -> s != null && !((String) s).trim().isEmpty()).count();
-				assumeEquals(this.prefix+"Invalid tags number in javadoc:\n"+docComment+"\n", counter, allTags(docComment));
+				assumeEquals(this.prefix+"Invalid tags number in javadoc:\n"+docComment+"\n", counter, allTags(docComment)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 
@@ -745,17 +745,17 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 		return compilUnit;
 	}
 
-	private TagElement getSnippetTag(Javadoc docComment) {
+	private TagElement getSnippetTag(Javadoc docComment) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TagElement snippet = null;
 		if (docComment != null) {
-			for (Object tag : docComment.tags()) {
+			for (Object tag : docComment.tags()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (tag instanceof TagElement) {
 					TagElement tagElement = (TagElement) tag;
 					if (SNIPPET_TAG.equals(tagElement.getTagName())) {
 						return tagElement;
 					}
 					List fragments = tagElement.fragments();
-					for (Object fragment : fragments) {
+					for (Object fragment : fragments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (fragment instanceof TagElement) {
 							TagElement tagElem = (TagElement) fragment;
 							if (SNIPPET_TAG.equals(tagElem.getTagName())) {
@@ -770,7 +770,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 		return snippet;
 	}
 
-	public void testSnippetStartJavadoc1() throws JavaModelException {
+	public void testSnippetStartJavadoc1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Converter_15_1/src/javadoc/X.java",
 			"package javadoc;\n" +
@@ -798,7 +798,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 		assertEquals("Snippet should be valid", true, (validPorperty instanceof Boolean) ? ((Boolean)validPorperty).booleanValue() : false);
 	}
 
-	public void testSnippetStartJavadoc2() throws JavaModelException {
+	public void testSnippetStartJavadoc2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Converter_15_1/src/javadoc/X.java",
 			"package javadoc;\n" +
@@ -831,7 +831,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 		assertEquals("Snippet should be valid", true, (validPorperty instanceof Boolean) ? ((Boolean)validPorperty).booleanValue() : false);
 	}
 
-	public void testSnippetStartJavadoc3() throws JavaModelException {
+	public void testSnippetStartJavadoc3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Converter_15_1/src/javadoc/X.java",
 			"package javadoc;\n" +
@@ -864,7 +864,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 		assertEquals("Snippet should be valid", true, (validPorperty instanceof Boolean) ? ((Boolean)validPorperty).booleanValue() : false);
 	}
 
-	public void testSnippetStartJavadoc4() throws JavaModelException {
+	public void testSnippetStartJavadoc4() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Converter_15_1/src/javadoc/X.java",
 			"package javadoc;\n" +
@@ -897,7 +897,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 		assertEquals("Snippet should not be valid", false, (validPorperty instanceof Boolean) ? ((Boolean)validPorperty).booleanValue() : false);
 	}
 
-	public void testSnippetMultiLineTagsJavadoc1() throws JavaModelException {
+	public void testSnippetMultiLineTagsJavadoc1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Converter_15_1/src/javadoc/X.java",
 			"package javadoc;\n" +
@@ -935,7 +935,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 		assertEquals("JavaDocRegion should have 1 text fragmwent", 1, region.fragments().size());
 	}
 
-	public void testSnippetMultiLineTagsJavadoc2() throws JavaModelException {
+	public void testSnippetMultiLineTagsJavadoc2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Converter_15_1/src/javadoc/X.java",
 			"package javadoc;\n" +
@@ -973,7 +973,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 		assertEquals("JavaDocRegion should have 1 text fragmwent", 1, region.fragments().size());
 	}
 
-	public void testSnippetMultiLineTagsJavadoc3() throws JavaModelException {
+	public void testSnippetMultiLineTagsJavadoc3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Converter_15_1/src/javadoc/X.java",
 			"package javadoc;\n" +
@@ -1017,7 +1017,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 		assertEquals("original JavaDocRegion should be present here", true, regions.contains(region));
 	}
 
-	public void testSnippetMultiLineTagsJavadoc4() throws JavaModelException {
+	public void testSnippetMultiLineTagsJavadoc4() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Converter_15_1/src/javadoc/X.java",
 			"package javadoc;\n" +
@@ -1059,7 +1059,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 		assertEquals("Fourth fragment should be TextElement", true, fragments.get(3) instanceof TextElement);
 	}
 
-	public void testSnippetMultilineOnlyJavadoc5() throws JavaModelException {
+	public void testSnippetMultilineOnlyJavadoc5() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Converter_15_1/src/javadoc/X.java",
 				"""
@@ -1087,7 +1087,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 
 	}
 
-	public void testSnippetNestedBlocksJavadoc() throws JavaModelException {
+	public void testSnippetNestedBlocksJavadoc() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 			"/Converter_15_1/src/javadoc/X.java",
@@ -1124,7 +1124,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 		assertTrue("Snippet should contain method call", ((TextElement) fragments.get(2)).getText().contains("foo();"));
 	}
 
-	public void testSnippetEmptyBodyJavadoc() throws JavaModelException {
+	public void testSnippetEmptyBodyJavadoc() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 			"/Converter_15_1/src/javadoc/X.java",
@@ -1155,7 +1155,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 		assertTrue("Empty snippet should not contain non-empty text",empty_text.trim().isEmpty());
 	}
 
-	public void testSnippetSingleElementJavadoc() throws JavaModelException {
+	public void testSnippetSingleElementJavadoc() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 			"/Converter_15_1/src/javadoc/X.java",
@@ -1185,7 +1185,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 		assertTrue("Snippet should contain the statement", ((TextElement) fragments.get(0)).getText().contains("int a = 10;"));
 	}
 
-	public void testSnippetBlankLineInsideBodyJavadoc() throws JavaModelException {
+	public void testSnippetBlankLineInsideBodyJavadoc() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 			"/Converter_15_1/src/javadoc/X.java",
@@ -1220,7 +1220,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 		assertTrue("Snippet should contain second statement", ((TextElement) fragments.get(3)).getText().contains("int b = 2;"));
 	}
 
-	public void testSnippetMultipleAttributesJavadoc() throws JavaModelException {
+	public void testSnippetMultipleAttributesJavadoc() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 			"/Converter_15_1/src/javadoc/X.java",
@@ -1250,7 +1250,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 		assertTrue("Snippet should contain the statement", ((TextElement) fragments.get(0)).getText().contains("int a;"));
 	}
 
-	public void testSnippetSingleQuoteAttributesJavadoc() throws JavaModelException {
+	public void testSnippetSingleQuoteAttributesJavadoc() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 			"/Converter_15_1/src/javadoc/X.java",
@@ -1281,7 +1281,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 	}
 
 
-	public void testSnippetReplaceTagJavadoc() throws JavaModelException {
+	public void testSnippetReplaceTagJavadoc() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 			"/Converter_15_1/src/javadoc/X.java",
@@ -1327,7 +1327,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 			);
 	}
 
-	public void testSnippetLinkTagJavadoc() throws JavaModelException {
+	public void testSnippetLinkTagJavadoc() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 			"/Converter_15_1/src/javadoc/X.java",
@@ -1370,7 +1370,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 			);
 	}
 
-	public void testJavadocIncorrectlyParsingAnnotationInlineTag5055() throws JavaModelException {
+	public void testJavadocIncorrectlyParsingAnnotationInlineTag5055() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 			"/Converter_15_1/src/javadoc/X.java",
@@ -1398,7 +1398,7 @@ public class ASTConverterJavadocTest_18 extends ConverterTestSetup {
 		TagElement snippetTag = getSnippetTag(javadoc);
 		List<TextElement> frags = snippetTag.fragments();
 		assertEquals("Invalid snippet fragments", 6, frags.size());
-		assertEquals("Invalid content for first Element", " @MyAnnotation" + System.lineSeparator(), frags.get(0).getText());
-		assertEquals("Invalid content for third Element", "     @AnotherAnnotation" + System.lineSeparator(), frags.get(2).getText());
+		assertEquals("Invalid content for first Element", " @MyAnnotation" + System.lineSeparator(), frags.get(0).getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertEquals("Invalid content for third Element", "     @AnotherAnnotation" + System.lineSeparator(), frags.get(2).getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }

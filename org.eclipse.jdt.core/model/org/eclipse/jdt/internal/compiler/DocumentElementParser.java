@@ -65,7 +65,7 @@ public DocumentElementParser(
  * Additionally, before investigating for @deprecated, retrieve the positions
  * of the JavaDoc comments so as to notify requestor with them.
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void checkComment() {
 
 	/* persisting javadoc positions */
@@ -75,7 +75,7 @@ public void checkComment() {
 	int commentPtr = this.scanner.commentPtr;
 
 	//since jdk1.2 look only in the last java doc comment...
-	nextComment : for (lastCommentIndex = this.scanner.commentPtr; lastCommentIndex >= 0; lastCommentIndex--){
+	nextComment : for (lastCommentIndex = this.scanner.commentPtr; lastCommentIndex >= 0; lastCommentIndex--){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		// skip all non-javadoc comments or those which are after the last modifier
 		int commentSourceStart = this.scanner.commentStarts[lastCommentIndex];
 		if (commentSourceStart < 0 || // line comment
@@ -101,7 +101,7 @@ public void checkComment() {
  *
  * INTERNAL USE-ONLY
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeCatchFormalParameter() {
 	// FormalParameter ::= Type VariableDeclaratorId ==> false
 	// FormalParameter ::= Modifiers Type VariableDeclaratorId ==> true
@@ -177,7 +177,7 @@ protected void consumeClassDeclaration() {
  *
  * INTERNAL USE-ONLY
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeClassHeader() {
 	//ClassHeader ::= $empty
 	super.consumeClassHeader();
@@ -196,7 +196,7 @@ protected void consumeClassHeader() {
 		interfaceNames = new char[superInterfacesLength][];
 		interfaceNameStarts = new int[superInterfacesLength];
 		interfaceNameEnds = new int[superInterfacesLength];
-		for (int i = 0; i < superInterfacesLength; i++) {
+		for (int i = 0; i < superInterfacesLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeReference superInterface = superInterfaces[i];
 			interfaceNames[i] = CharOperation.concatWith(superInterface.getTypeName(), '.');
 			interfaceNameStarts[i] = superInterface.sourceStart;
@@ -243,7 +243,7 @@ protected void consumeClassHeader() {
 
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeClassHeaderName1() {
 	// ClassHeaderName ::= Modifiersopt 'class' 'Identifier'
 	TypeDeclaration typeDecl = new TypeDeclaration(this.compilationUnit.compilationResult);
@@ -319,7 +319,7 @@ protected void consumeConstructorDeclaration() {
  *
  * INTERNAL USE-ONLY
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeConstructorHeader() {
 	// ConstructorHeader ::= ConstructorHeaderName MethodHeaderParameters MethodHeaderThrowsClauseopt
 	super.consumeConstructorHeader();
@@ -344,7 +344,7 @@ protected void consumeConstructorHeader() {
 		argumentNameEnds = new int[argumentLength];
 		argumentTypeStarts = new int[argumentLength];
 		argumentTypeEnds = new int[argumentLength];
-		for (int i = 0; i < argumentLength; i++) {
+		for (int i = 0; i < argumentLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Argument argument = arguments[i];
 			TypeReference argumentType = argument.type;
 			argumentTypes[i] = returnTypeName(argumentType);
@@ -364,7 +364,7 @@ protected void consumeConstructorHeader() {
 		exceptionTypes = new char[thrownExceptionLength][];
 		exceptionTypeStarts = new int[thrownExceptionLength];
 		exceptionTypeEnds = new int[thrownExceptionLength];
-		for (int i = 0; i < thrownExceptionLength; i++) {
+		for (int i = 0; i < thrownExceptionLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeReference exception = thrownExceptions[i];
 			exceptionTypes[i] = CharOperation.concatWith(exception.getTypeName(), '.');
 			exceptionTypeStarts[i] = exception.sourceStart;
@@ -394,7 +394,7 @@ protected void consumeConstructorHeader() {
 			exceptionTypeEnds,
 			this.scanner.currentPosition - 1);
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeConstructorHeaderName(boolean isCompact) {
 	// ConstructorHeaderName ::=  Modifiersopt 'Identifier' '('
 	ConstructorDeclaration cd = new ConstructorDeclaration(this.compilationUnit.compilationResult);
@@ -461,7 +461,7 @@ protected void consumeEnterCompilationUnit() {
  *
  * INTERNAL USE-ONLY
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeEnterVariable() {
 	// EnterVariable ::= $empty
 	boolean isLocalDeclaration = isLocalDeclaration();
@@ -555,7 +555,7 @@ protected void consumeEnterVariable() {
 				extendedTypeDimension == 0 ? -1 : this.endPosition);
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeEnhancedForStatementHeaderInit(boolean hasModifiers) {
 	TypeReference type;
 
@@ -610,7 +610,7 @@ protected void consumeEnhancedForStatementHeaderInit(boolean hasModifiers) {
 
 	iteratorForStatement.sourceEnd = localDeclaration.declarationSourceEnd;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeMethodHeaderNameWithTypeParameters(boolean isAnnotationMethod) {
 	// MethodHeaderName ::= Modifiersopt TypeParameters Type 'Identifier' '('
 	// AnnotationMethodHeaderName ::= Modifiersopt TypeParameters Type 'Identifier' '('
@@ -721,7 +721,7 @@ protected void consumeFieldDeclaration() {
 		this.requestor.exitField(this.lastFieldBodyEndPosition, this.lastFieldEndPosition);
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeSingleVariableDeclarator(boolean isVarArgs) {
 	// FormalParameter ::= Type VariableDeclaratorId ==> false
 	// FormalParameter ::= Modifiers Type VariableDeclaratorId ==> true
@@ -841,7 +841,7 @@ protected void consumeInterfaceDeclaration() {
  *
  * INTERNAL USE-ONLY
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeInterfaceHeader() {
 	//InterfaceHeader ::= $empty
 	super.consumeInterfaceHeader();
@@ -863,7 +863,7 @@ protected void consumeInterfaceHeader() {
 		interfacenameEnds = new int[superInterfacesLength];
 	}
 	if (superInterfaces != null) {
-		for (int i = 0; i < superInterfacesLength; i++) {
+		for (int i = 0; i < superInterfacesLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeReference superInterface = superInterfaces[i];
 			interfaceNames[i] = CharOperation.concatWith(superInterface.getTypeName(), '.');
 			interfaceNameStarts[i] = superInterface.sourceStart;
@@ -886,7 +886,7 @@ protected void consumeInterfaceHeader() {
 		interfacenameEnds,
 		this.scanner.currentPosition - 1);
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeInterfaceHeaderName1() {
 	// InterfaceHeaderName ::= Modifiersopt 'interface' 'Identifier'
 	TypeDeclaration typeDecl = new TypeDeclaration(this.compilationUnit.compilationResult);
@@ -986,7 +986,7 @@ protected void consumeMethodDeclaration(boolean isNotAbstract, boolean isDefault
  *
  * INTERNAL USE-ONLY
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeMethodHeader() {
 	// MethodHeader ::= MethodHeaderName MethodHeaderParameters MethodHeaderExtendedDims ThrowsClauseopt
 	super.consumeMethodHeader();
@@ -1014,7 +1014,7 @@ protected void consumeMethodHeader() {
 		argumentNameEnds = new int[argumentLength];
 		argumentTypeStarts = new int[argumentLength];
 		argumentTypeEnds = new int[argumentLength];
-		for (int i = 0; i < argumentLength; i++) {
+		for (int i = 0; i < argumentLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Argument argument = arguments[i];
 			TypeReference argumentType = argument.type;
 			argumentTypes[i] = returnTypeName(argumentType);
@@ -1034,7 +1034,7 @@ protected void consumeMethodHeader() {
 		exceptionTypeStarts = new int[thrownExceptionLength];
 		exceptionTypeEnds = new int[thrownExceptionLength];
 		exceptionTypes = new char[thrownExceptionLength][];
-		for (int i = 0; i < thrownExceptionLength; i++) {
+		for (int i = 0; i < thrownExceptionLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeReference exception = thrownExceptions[i];
 			exceptionTypes[i] = CharOperation.concatWith(exception.getTypeName(), '.');
 			exceptionTypeStarts[i] = exception.sourceStart;
@@ -1084,7 +1084,7 @@ protected void consumeMethodHeaderExtendedDims() {
 		}
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeMethodHeaderName(boolean isAnnotationMethod) {
 	// MethodHeaderName ::= Modifiersopt Type 'Identifier' '('
 	MethodDeclaration md = null;
@@ -1361,7 +1361,7 @@ public void initialize() {
  */
 private boolean isLocalDeclaration() {
 	int nestedDepth = this.nestedType;
-	while (nestedDepth >= 0) {
+	while (nestedDepth >= 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (this.nestedMethod[nestedDepth] != 0) {
 			return true;
 		}
@@ -1378,7 +1378,7 @@ protected void parse() {
 /*
  * Investigate one entire unit.
  */
-public void parseCompilationUnit(ICompilationUnit unit) {
+public void parseCompilationUnit(ICompilationUnit unit) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[] regionSource = unit.getContents();
 	try {
 		initialize(true);
@@ -1419,7 +1419,7 @@ public void parseConstructor(char[] regionSource) {
 /*
  * Investigate one field declaration statement (might have multiple declarations in it).
  */
-public void parseField(char[] regionSource) {
+public void parseField(char[] regionSource) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		initialize();
 		goForFieldDeclaration();
@@ -1440,7 +1440,7 @@ public void parseField(char[] regionSource) {
 /*
  * Investigate one import statement declaration.
  */
-public void parseImport(char[] regionSource) {
+public void parseImport(char[] regionSource) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		initialize();
 		goForImportDeclaration();
@@ -1464,7 +1464,7 @@ public void parseImport(char[] regionSource) {
  * e.g: static { i = 4; }
  * { name = "test"; }
  */
-public void parseInitializer(char[] regionSource) {
+public void parseInitializer(char[] regionSource) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		initialize();
 		goForInitializer();
@@ -1505,7 +1505,7 @@ public void parseMethod(char[] regionSource) {
 /*
  * Investigate one package statement declaration.
  */
-public void parsePackage(char[] regionSource) {
+public void parsePackage(char[] regionSource) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		initialize();
 		goForPackageDeclaration();
@@ -1526,7 +1526,7 @@ public void parsePackage(char[] regionSource) {
 /*
  * Investigate one type declaration, its fields, methods and member types.
  */
-public void parseType(char[] regionSource) {
+public void parseType(char[] regionSource) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		initialize();
 		goForTypeDeclaration();
@@ -1591,7 +1591,7 @@ private char[] returnTypeName(TypeReference type) {
 	int dimension = type.dimensions();
 	if (dimension != 0) {
 		char[] dimensionsArray = new char[dimension * 2];
-		for (int i = 0; i < dimension; i++) {
+		for (int i = 0; i < dimension; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			dimensionsArray[i*2] = '[';
 			dimensionsArray[(i*2) + 1] = ']';
 		}
@@ -1603,9 +1603,9 @@ private char[] returnTypeName(TypeReference type) {
 }
 @Override
 public String toString() {
-	StringBuilder buffer = new StringBuilder();
-	buffer.append("intArrayPtr = " + this.intArrayPtr + "\n"); //$NON-NLS-1$ //$NON-NLS-2$
-	buffer.append(super.toString());
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	buffer.append("intArrayPtr = " + this.intArrayPtr + "\n"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(super.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return buffer.toString();
 }
 }

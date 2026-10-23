@@ -42,7 +42,7 @@ public class RunFormatterMassiveTests extends junit.framework.TestCase {
 		"join_lines=only_comments,braces=next_line",
 	};
 
-public static Test suite() {
+public static Test suite() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	TestSuite ts = new TestSuite(RunFormatterMassiveTests.class.getName());
 
 	// Reset forgotten subsets of tests
@@ -55,12 +55,12 @@ public static Test suite() {
 	// Add all tests suite of tests
 	String wksp = System.getProperty("wksp");
 	boolean valid = false;
-	Map workspaces = new HashMap();
-	for (int i=0; i<SUPPORTED_WORKSPACES.length; i++) {
+	Map workspaces = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	for (int i=0; i<SUPPORTED_WORKSPACES.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (wksp == null || wksp.equals(SUPPORTED_WORKSPACES[i])) {
 			File inputDir = new File(INPUT_DIR, SUPPORTED_WORKSPACES[i]);
 			if (PROFILE == null) {
-				for (int j=0; j< SUPPORTED_PROFILES.length; j++) {
+				for (int j=0; j< SUPPORTED_PROFILES.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					addClass(ts, inputDir, SUPPORTED_PROFILES[j], workspaces);
 				}
 			} else {
@@ -70,7 +70,7 @@ public static Test suite() {
 		}
 	}
 	if (!valid) {
-		System.err.println(wksp+" is not a valid workspace name!!!");
+		System.err.println(wksp+" is not a valid workspace name!!!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	return ts;
 }

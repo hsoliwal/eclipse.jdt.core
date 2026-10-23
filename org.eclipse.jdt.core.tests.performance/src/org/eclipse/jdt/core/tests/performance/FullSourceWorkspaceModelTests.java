@@ -106,7 +106,7 @@ protected void setUp() throws Exception {
 	setUpBigProject();
 	setUpBigJars();
 }
-private void setUpBigProject() throws CoreException, IOException {
+private void setUpBigProject() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		IWorkspaceRoot workspaceRoot = workspace.getRoot();
@@ -117,7 +117,7 @@ private void setUpBigProject() throws CoreException, IOException {
 		File wkspDir = new File(targetWorkspacePath);
 		File projectDir = new File(wkspDir, BIG_PROJECT_NAME);
 		if (projectDir.exists()) {
-			System.out.print("Add existing project "+BIG_PROJECT_NAME+" in "+workspaceRoot.getLocation()+" to workspace...");
+			System.out.print("Add existing project "+BIG_PROJECT_NAME+" in "+workspaceRoot.getLocation()+" to workspace..."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IProject bigProject = workspaceRoot.getProject(BIG_PROJECT_NAME);
 			if (bigProject.exists()) {
 				ENV.addProject(bigProject);
@@ -127,26 +127,26 @@ private void setUpBigProject() throws CoreException, IOException {
 			BIG_PROJECT = (JavaProject) ENV.getJavaProject(BIG_PROJECT_NAME);
 			BIG_PROJECT.setRawClasspath(BIG_PROJECT.getRawClasspath(), null);
 		} else {
-			System.out.println("Create project "+BIG_PROJECT_NAME+" in "+workspaceRoot.getLocation()+":");
+			System.out.println("Create project "+BIG_PROJECT_NAME+" in "+workspaceRoot.getLocation()+":"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 			// setup projects with several source folders and several packages per source folder
-			System.out.println("	- create "+FOLDERS_COUNT+" folders x "+PACKAGES_COUNT+" packages...");
+			System.out.println("	- create "+FOLDERS_COUNT+" folders x "+PACKAGES_COUNT+" packages..."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			final String[] sourceFolders = new String[FOLDERS_COUNT];
-			for (int i = 0; i < FOLDERS_COUNT; i++) {
-				sourceFolders[i] = "src" + i;
+			for (int i = 0; i < FOLDERS_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				sourceFolders[i] = "src" + i; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
-			String path = workspaceRoot.getLocation().toString() + "/BigProject/src";
-			for (int i = 0; i < FOLDERS_COUNT; i++) {
-				if (PRINT && i>0 && i%10==0) System.out.print("		+ folder src"+i+"...");
+			String path = workspaceRoot.getLocation().toString() + "/BigProject/src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			for (int i = 0; i < FOLDERS_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				if (PRINT && i>0 && i%10==0) System.out.print("		+ folder src"+i+"..."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				long topNanos = System.nanoTime();
-				for (int j = 0; j < PACKAGES_COUNT; j++) {
-					new java.io.File(path + i + "/org/eclipse/jdt/core/tests" + i + "/performance" + j).mkdirs();
+				for (int j = 0; j < PACKAGES_COUNT; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					new java.io.File(path + i + "/org/eclipse/jdt/core/tests" + i + "/performance" + j).mkdirs(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				if (PRINT && i > 0 && i % 10 == 0) {
-					System.out.println("(" + (System.nanoTime() - topNanos) / 1_000_000L + " ms)");
+					System.out.println("(" + (System.nanoTime() - topNanos) / 1_000_000L + " ms)"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
-			System.out.println("		=> global time = " + (System.nanoTime() - startNanos) / 1_000_000L + " ms)");
+			System.out.println("		=> global time = " + (System.nanoTime() - startNanos) / 1_000_000L + " ms)"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 			// Add project to workspace
 			startNanos = System.nanoTime();
@@ -155,15 +155,15 @@ private void setUpBigProject() throws CoreException, IOException {
 			BIG_PROJECT = (JavaProject) createJavaProject(BIG_PROJECT_NAME, sourceFolders, "bin", "1.4");
 			BIG_PROJECT.setRawClasspath(BIG_PROJECT.getRawClasspath(), null);
 		}
-		System.out.println("(" + (System.nanoTime() - startNanos) / 1_000_000L + " ms)");
+		System.out.println("(" + (System.nanoTime() - startNanos) / 1_000_000L + " ms)"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		// Add CU with secondary type
 		System.out.print("	- Create compilation unit with secondary type...");
 		startNanos = System.nanoTime();
-		BIG_PROJECT_TYPE_PATH = new Path("/BigProject/src" + (FOLDERS_COUNT-1) + "/org/eclipse/jdt/core/tests" + (FOLDERS_COUNT-1) + "/performance" + (PACKAGES_COUNT-1) + "/TestBigProject.java");
+		BIG_PROJECT_TYPE_PATH = new Path("/BigProject/src" + (FOLDERS_COUNT-1) + "/org/eclipse/jdt/core/tests" + (FOLDERS_COUNT-1) + "/performance" + (PACKAGES_COUNT-1) + "/TestBigProject.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IFile file = workspaceRoot.getFile(BIG_PROJECT_TYPE_PATH);
 		if (!file.exists()) {
-			String content = "package org.eclipse.jdt.core.tests" + (FOLDERS_COUNT-1) + ".performance" + (PACKAGES_COUNT-1) + ";\n" +
+			String content = "package org.eclipse.jdt.core.tests" + (FOLDERS_COUNT-1) + ".performance" + (PACKAGES_COUNT-1) + ";\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"public class TestBigProject {\n" +
 				"	class Level1 {\n" +
 				"		class Level2 {\n" +
@@ -189,22 +189,22 @@ private void setUpBigProject() throws CoreException, IOException {
 			file.create(content.getBytes(), true, false, null);
 		}
 		WORKING_COPY = (ICompilationUnit)JavaCore.create(file);
-		System.out.println("(" + (System.nanoTime() - startNanos) / 1_000_000L + "ms)");
+		System.out.println("(" + (System.nanoTime() - startNanos) / 1_000_000L + "ms)"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} finally {
 		// do not delete project
 	}
 
 }
-private void setUpBigJars() throws Exception {
+private void setUpBigJars() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String bigProjectLocation = BIG_PROJECT.getResource().getLocation().toOSString();
 	int size = PACKAGES_COUNT * 10;
 	File bigJar1 = new File(bigProjectLocation, BIG_JAR1_NAME);
 	if (!bigJar1.exists()) {
 		String[] pathAndContents = new String[size * 2];
-		for (int i = 0; i < size; i++) {
-			pathAndContents[i*2] = "/p" + i + "/X" + i + ".java";
+		for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			pathAndContents[i*2] = "/p" + i + "/X" + i + ".java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			pathAndContents[i*2 + 1] =
-				"package p" + i + ";\n" +
+				"package p" + i + ";\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"public class X" + i + "{\n" +
 				"}";
 		}
@@ -214,10 +214,10 @@ private void setUpBigJars() throws Exception {
 	File bigJar2 = new File(bigProjectLocation, BIG_JAR2_NAME);
 	if (!bigJar2.exists()) {
 		String[] pathAndContents = new String[size * 2];
-		for (int i = 0; i < size; i++) {
-			pathAndContents[i*2] = "/q" + i + "/Y" + i + ".java";
+		for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			pathAndContents[i*2] = "/q" + i + "/Y" + i + ".java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			pathAndContents[i*2 + 1] =
-				"package q" + i + ";\n" +
+				"package q" + i + ";\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"public class Y" + i + "{\n" +
 				"}";
 		}
@@ -228,7 +228,7 @@ private void setUpBigJars() throws Exception {
 /* (non-Javadoc)
  * @see junit.framework.TestCase#tearDown()
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void tearDown() throws Exception {
 
 	// End of execution => one test less
@@ -278,7 +278,7 @@ protected void search(String patternString, int searchFor, int limitTo) throws C
 }
 */
 
-protected void searchAllTypeNames(IJavaSearchScope scope) throws CoreException {
+protected void searchAllTypeNames(IJavaSearchScope scope) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	class TypeNameCounter extends TypeNameRequestor {
 		int count = 0;
 		public void acceptType(int modifiers, char[] packageName, char[] simpleTypeName, char[][] enclosingTypeNames, String path) {
@@ -306,7 +306,7 @@ protected void assertElementEquals(String message, String expected, IJavaElement
 	String actual = element == null ? "<null>" : ((JavaElement) element).toStringWithAncestors(false/*don't show key*/);
 	if (!expected.equals(actual)) {
 		System.out.println(getName()+" actual result is:");
-		System.out.println(actual + ',');
+		System.out.println(actual + ','); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	assertEquals(message, expected, actual);
 }
@@ -319,30 +319,30 @@ protected void assertElementsEqual(String message, String expected, IJavaElement
 /**
  * @see org.eclipse.jdt.core.tests.model.AbstractJavaModelTests#assertElementsEqual(String, String, IJavaElement[], boolean)
  */
-protected void assertElementsEqual(String message, String expected, IJavaElement[] elements, boolean showResolvedInfo) {
-	StringBuilder buffer = new StringBuilder();
+protected void assertElementsEqual(String message, String expected, IJavaElement[] elements, boolean showResolvedInfo) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	if (elements != null) {
-		for (int i = 0, length = elements.length; i < length; i++){
+		for (int i = 0, length = elements.length; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JavaElement element = (JavaElement)elements[i];
 			if (element == null) {
-				buffer.append("<null>");
+				buffer.append("<null>"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				buffer.append(element.toStringWithAncestors(showResolvedInfo));
+				buffer.append(element.toStringWithAncestors(showResolvedInfo)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			if (i != length-1) buffer.append("\n");
+			if (i != length-1) buffer.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	} else {
-		buffer.append("<null>");
+		buffer.append("<null>"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	String actual = buffer.toString();
 	if (!expected.equals(actual)) {
 		System.out.println(getName()+" actual result is:");
-		System.out.println(actual + ',');
+		System.out.println(actual + ','); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	assertEquals(message, expected, actual);
 }
 private void touchFiles(File[] files) {
-	for(int index=0; index < files.length; index++) {
+	for(int index=0; index < files.length; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		files[index].setLastModified(System.currentTimeMillis());
 	}
 }
@@ -373,7 +373,7 @@ private NameLookup getNameLookup(JavaProject project) throws JavaModelException 
  * First wait that already started indexing jobs end before perform test.
  * Perform one find before measure performance for warm-up.
  */
-public void testNameLookupFindKnownType() throws CoreException {
+public void testNameLookupFindKnownType() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Wait for indexing end
 	waitUntilIndexesReady();
@@ -381,18 +381,18 @@ public void testNameLookupFindKnownType() throws CoreException {
 	// Warm up
 	String fullQualifiedName = BIG_PROJECT_TYPE_PATH.removeFileExtension().removeFirstSegments(2).toString();
 	fullQualifiedName = fullQualifiedName.replace('/', '.');
-	for (int i=0; i<WARMUP_COUNT; i++) {
+	for (int i=0; i<WARMUP_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		NameLookup nameLookup = BIG_PROJECT.newNameLookup(DefaultWorkingCopyOwner.PRIMARY);
 		IType type = nameLookup.findType(fullQualifiedName, false /*full match*/, NameLookup.ACCEPT_ALL);
-		if (i==0) assertNotNull("We should find type '"+fullQualifiedName+"' in project "+BIG_PROJECT_NAME, type);
+		if (i==0) assertNotNull("We should find type '"+fullQualifiedName+"' in project "+BIG_PROJECT_NAME, type); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	// Measures
 	resetCounters();
-	for (int i=0; i<MEASURES_COUNT; i++) {
+	for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		runGc();
 		startMeasuring();
-		for (int n=0; n<50000; n++) {
+		for (int n=0; n<50000; n++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			NameLookup nameLookup = BIG_PROJECT.newNameLookup(DefaultWorkingCopyOwner.PRIMARY);
 			nameLookup.findType(fullQualifiedName, false /*full match*/, NameLookup.ACCEPT_ALL);
 		}
@@ -410,28 +410,28 @@ public void testNameLookupFindKnownType() throws CoreException {
  * First wait that already started indexing jobs end before perform test.
  * Perform one find before measure performance for warm-up.
  */
-public void testNameLookupFindKnownSecondaryType() throws CoreException {
+public void testNameLookupFindKnownSecondaryType() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Wait for indexing end
 	waitUntilIndexesReady();
 
 	// Warm up
 	String fullQualifiedName = BIG_PROJECT_TYPE_PATH.removeFileExtension().removeFirstSegments(2).removeLastSegments(1).toString();
-	fullQualifiedName = fullQualifiedName.replace('/', '.')+".TestSecondary";
-	for (int i=0; i<WARMUP_COUNT; i++) {
+	fullQualifiedName = fullQualifiedName.replace('/', '.')+".TestSecondary"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	for (int i=0; i<WARMUP_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		NameLookup nameLookup = BIG_PROJECT.newNameLookup(DefaultWorkingCopyOwner.PRIMARY);
 		IType type = nameLookup.findType(fullQualifiedName, false /*full match*/, NameLookup.ACCEPT_ALL);
 		if (i==0 && LOG_VERSION.compareTo("v_623") > 0) {
-			assertNotNull("We should find type '"+fullQualifiedName+"' in project "+BIG_PROJECT_NAME, type);
+			assertNotNull("We should find type '"+fullQualifiedName+"' in project "+BIG_PROJECT_NAME, type); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
 	// Measures
 	resetCounters();
-	for (int i=0; i<MEASURES_COUNT; i++) {
+	for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		runGc();
 		startMeasuring();
-		for (int n=0; n<50000; n++) {
+		for (int n=0; n<50000; n++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			NameLookup nameLookup = BIG_PROJECT.newNameLookup(DefaultWorkingCopyOwner.PRIMARY);
 			nameLookup.findType(fullQualifiedName, false /*full match*/, NameLookup.ACCEPT_ALL);
 		}
@@ -449,26 +449,26 @@ public void testNameLookupFindKnownSecondaryType() throws CoreException {
  * First wait that already started indexing jobs end before perform test.
  * Perform one find before measure performance for warm-up.
  */
-public void testNameLookupFindUnknownType() throws CoreException {
+public void testNameLookupFindUnknownType() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Wait for indexing end
 	waitUntilIndexesReady();
 
 	// Warm up
 	String fullQualifiedName = BIG_PROJECT_TYPE_PATH.removeFileExtension().removeFirstSegments(2).removeLastSegments(1).toString();
-	fullQualifiedName = fullQualifiedName.replace('/', '.')+".Unknown";
-	for (int i=0; i<WARMUP_COUNT; i++) {
+	fullQualifiedName = fullQualifiedName.replace('/', '.')+".Unknown"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	for (int i=0; i<WARMUP_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		NameLookup nameLookup = BIG_PROJECT.newNameLookup(DefaultWorkingCopyOwner.PRIMARY);
 		IType type = nameLookup.findType(fullQualifiedName, false /*full match*/, NameLookup.ACCEPT_ALL);
-		if (i==0) assertNull("We should not find an unknown type in project "+BIG_PROJECT_NAME, type);
+		if (i==0) assertNull("We should not find an unknown type in project "+BIG_PROJECT_NAME, type); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	// Measures
 	resetCounters();
-	for (int i=0; i<MEASURES_COUNT; i++) {
+	for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		runGc();
 		startMeasuring();
-		for (int n=0; n<50000; n++) {
+		for (int n=0; n<50000; n++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			NameLookup nameLookup = BIG_PROJECT.newNameLookup(DefaultWorkingCopyOwner.PRIMARY);
 			nameLookup.findType(fullQualifiedName, false /*full match*/, NameLookup.ACCEPT_ALL);
 		}
@@ -486,7 +486,7 @@ public void testNameLookupFindUnknownType() throws CoreException {
  * First wait that already started indexing jobs end before perform test.
  * Perform one find before measure performance for warm-up.
  */
-public void testProjectFindKnownType() throws CoreException {
+public void testProjectFindKnownType() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	tagAsSummary("Find known type in project", false); // do NOT put in fingerprint
 
 	// Wait for indexing end
@@ -495,17 +495,17 @@ public void testProjectFindKnownType() throws CoreException {
 	// Warm up
 	String fullQualifiedName = BIG_PROJECT_TYPE_PATH.removeFileExtension().removeFirstSegments(2).toString();
 	fullQualifiedName = fullQualifiedName.replace('/', '.');
-	for (int i=0; i<WARMUP_COUNT; i++) {
+	for (int i=0; i<WARMUP_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IType type = BIG_PROJECT.findType(fullQualifiedName);
-		if (i==0) assertNotNull("We should find type '"+fullQualifiedName+"' in project "+BIG_PROJECT_NAME, type);
+		if (i==0) assertNotNull("We should find type '"+fullQualifiedName+"' in project "+BIG_PROJECT_NAME, type); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	// Measures
 	resetCounters();
-	for (int i=0; i<MEASURES_COUNT; i++) {
+	for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		runGc();
 		startMeasuring();
-		for (int n=0; n<50000; n++) {
+		for (int n=0; n<50000; n++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			BIG_PROJECT.findType(fullQualifiedName);
 		}
 		stopMeasuring();
@@ -522,7 +522,7 @@ public void testProjectFindKnownType() throws CoreException {
  * First wait that already started indexing jobs end before perform test.
  * Perform one find before measure performance for warm-up.
  */
-public void testProjectFindKnownMemberType() throws CoreException {
+public void testProjectFindKnownMemberType() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	tagAsSummary("Find known member type in project", false); // do NOT put in fingerprint
 
 	// Wait for indexing end
@@ -531,20 +531,20 @@ public void testProjectFindKnownMemberType() throws CoreException {
 	// Warm up
 	String fullQualifiedName = BIG_PROJECT_TYPE_PATH.removeFileExtension().removeFirstSegments(2).toString();
 	fullQualifiedName = fullQualifiedName.replace('/', '.');
-	for (int i=1; i<=10; i++) {
-		fullQualifiedName += ".Level" + i;
+	for (int i=1; i<=10; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		fullQualifiedName += ".Level" + i; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	for (int i=0; i<WARMUP_COUNT; i++) {
+	for (int i=0; i<WARMUP_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IType type = BIG_PROJECT.findType(fullQualifiedName);
-		if (i==0) assertNotNull("We should find type '"+fullQualifiedName+"' in project "+BIG_PROJECT_NAME, type);
+		if (i==0) assertNotNull("We should find type '"+fullQualifiedName+"' in project "+BIG_PROJECT_NAME, type); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	// Measures
 	resetCounters();
-	for (int i=0; i<MEASURES_COUNT; i++) {
+	for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		runGc();
 		startMeasuring();
-		for (int n=0; n<4000; n++) {
+		for (int n=0; n<4000; n++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			BIG_PROJECT.findType(fullQualifiedName);
 		}
 		stopMeasuring();
@@ -561,7 +561,7 @@ public void testProjectFindKnownMemberType() throws CoreException {
  * First wait that already started indexing jobs end before perform test.
  * Perform one find before measure performance for warm-up.
  */
-public void testProjectFindKnownSecondaryType() throws CoreException {
+public void testProjectFindKnownSecondaryType() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	tagAsSummary("Find known secondary type in project", false); // do NOT put in fingerprint
 
 	// Wait for indexing end
@@ -569,17 +569,17 @@ public void testProjectFindKnownSecondaryType() throws CoreException {
 
 	// Warm up
 	String fullQualifiedName = BIG_PROJECT_TYPE_PATH.removeFileExtension().removeFirstSegments(2).removeLastSegments(1).toString();
-	fullQualifiedName = fullQualifiedName.replace('/', '.')+".TestSecondary";
-	for (int i=0; i<WARMUP_COUNT; i++) {
+	fullQualifiedName = fullQualifiedName.replace('/', '.')+".TestSecondary"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	for (int i=0; i<WARMUP_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		BIG_PROJECT.findType(fullQualifiedName);
 	}
 
 	// Measures
 	resetCounters();
-	for (int i=0; i<MEASURES_COUNT; i++) {
+	for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		runGc();
 		startMeasuring();
-		for (int n=0; n<1000; n++) {
+		for (int n=0; n<1000; n++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			BIG_PROJECT.findType(fullQualifiedName);
 		}
 		stopMeasuring();
@@ -596,7 +596,7 @@ public void testProjectFindKnownSecondaryType() throws CoreException {
  * First wait that already started indexing jobs end before perform test.
  * Perform one find before measure performance for warm-up.
  */
-public void testProjectFindUnknownType() throws CoreException {
+public void testProjectFindUnknownType() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	tagAsSummary("Find unknown type in project", false); // do NOT put in fingerprint
 
 	// Wait for indexing end
@@ -604,18 +604,18 @@ public void testProjectFindUnknownType() throws CoreException {
 
 	// Warm up
 	String fullQualifiedName = BIG_PROJECT_TYPE_PATH.removeFileExtension().removeFirstSegments(2).removeLastSegments(1).toString();
-	fullQualifiedName = fullQualifiedName.replace('/', '.')+".Unknown";
-	for (int i=0; i<WARMUP_COUNT; i++) {
+	fullQualifiedName = fullQualifiedName.replace('/', '.')+".Unknown"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	for (int i=0; i<WARMUP_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IType type = BIG_PROJECT.findType(fullQualifiedName);
-		assertNull("We should not find an unknown type in project "+BIG_PROJECT_NAME, type);
+		assertNull("We should not find an unknown type in project "+BIG_PROJECT_NAME, type); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	// Measures
 	resetCounters();
-	for (int i=0; i<MEASURES_COUNT; i++) {
+	for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		runGc();
 		startMeasuring();
-		for (int n=0; n<2000; n++) {
+		for (int n=0; n<2000; n++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			BIG_PROJECT.findType(fullQualifiedName);
 		}
 		stopMeasuring();
@@ -630,7 +630,7 @@ public void testProjectFindUnknownType() throws CoreException {
  * Performance tests for model: Find Unknown type after resetting the classpath
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=217059 )
  */
-public void testProjectFindUnknownTypeAfterSetClasspath() throws CoreException {
+public void testProjectFindUnknownTypeAfterSetClasspath() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	tagAsSummary("Find unknown type in project after resetting classpath", false); // do NOT put in fingerprint
 
 	// Wait for indexing end
@@ -638,24 +638,24 @@ public void testProjectFindUnknownTypeAfterSetClasspath() throws CoreException {
 
 	// First findType populates the package fragment roots in the Java model cache
 	String fullQualifiedName = BIG_PROJECT_TYPE_PATH.removeFileExtension().removeFirstSegments(2).removeLastSegments(1).toString();
-	fullQualifiedName = fullQualifiedName.replace('/', '.')+".Unknown";
+	fullQualifiedName = fullQualifiedName.replace('/', '.')+".Unknown"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	IType type = BIG_PROJECT.findType(fullQualifiedName);
-	assertNull("We should not find an unknown type in project "+BIG_PROJECT_NAME, type);
+	assertNull("We should not find an unknown type in project "+BIG_PROJECT_NAME, type); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	// Reset classpath
 	BIG_PROJECT.setRawClasspath(BIG_PROJECT.getRawClasspath(), null);
 
 	// Warm up
-	for (int i=0; i<WARMUP_COUNT; i++) {
+	for (int i=0; i<WARMUP_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		BIG_PROJECT.findType(fullQualifiedName);
 	}
 
 	// Measures
 	resetCounters();
-	for (int i=0; i<MEASURES_COUNT; i++) {
+	for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		runGc();
 		startMeasuring();
-		for (int n=0; n<2000; n++) {
+		for (int n=0; n<2000; n++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			BIG_PROJECT.findType(fullQualifiedName);
 		}
 		stopMeasuring();
@@ -670,7 +670,7 @@ public void testProjectFindUnknownTypeAfterSetClasspath() throws CoreException {
  * Ensures that the reconciler does nothing when the source
  * to reconcile with is the same as the current contents.
  */
-public void testPerfReconcile() throws CoreException {
+public void testPerfReconcile() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	tagAsGlobalSummary("Reconcile editor change", true); // put in global fingerprint
 
 	// Wait for indexing end
@@ -687,7 +687,7 @@ public void testPerfReconcile() throws CoreException {
 		};
 		workingCopy = PARSER_WORKING_COPY.getWorkingCopy(owner, null);
 		int warmup = WARMUP_COUNT / 5;
-		for (int i=0; i<warmup; i++) {
+		for (int i=0; i<warmup; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			CompilationUnit unit = workingCopy.reconcile(JLS3_INTERNAL, true, null, null);
 			assertNotNull("Compilation Unit should not be null!", unit);
 			assertNotNull("Bindings were not resolved!", unit.getPackage().resolveBinding());
@@ -696,10 +696,10 @@ public void testPerfReconcile() throws CoreException {
 		// Measures
 		resetCounters();
 		int iterations = 2;
-		for (int i=0; i<MEASURES_COUNT; i++) {
+		for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			runGc();
 			startMeasuring();
-			for (int n=0; n<iterations; n++) {
+			for (int n=0; n<iterations; n++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				workingCopy.reconcile(JLS3_INTERNAL, true, null, null);
 			}
 			stopMeasuring();
@@ -719,7 +719,7 @@ public void testPerfReconcile() throws CoreException {
  * Ensures that the performance of reconcile on a big CU when there are syntax errors is acceptable.
  * (regression test for bug 135083 RangeUtil#isInInterval(...) takes significant amount of time while editing)
  */
-public void testPerfReconcileBigFileWithSyntaxError() throws JavaModelException {
+public void testPerfReconcileBigFileWithSyntaxError() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	tagAsSummary("Reconcile editor change on big file with syntax error", false); // do NOT put in fingerprint
 
 	// build big file contents
@@ -743,13 +743,13 @@ public void testPerfReconcileBigFileWithSyntaxError() throws JavaModelException 
 		"	 \"}\\n\"" +
 		"  );\n" +
 		"}\n";
-	StringBuilder bigContents = new StringBuilder();
-	bigContents.append("public class BigCU {\n");
+	StringBuilder bigContents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	bigContents.append("public class BigCU {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	int fooIndex = 0;
-	while (fooIndex < 2000) { // add 2000 methods (so that source is close to 1MB)
-		bigContents.append("public void foo");
-		bigContents.append(fooIndex++);
-		bigContents.append(method);
+	while (fooIndex < 2000) { // add 2000 methods (so that source is close to 1MB) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		bigContents.append("public void foo"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		bigContents.append(fooIndex++); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		bigContents.append(method); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	// don't add closing } for class def so as to have a syntax error
 
@@ -761,15 +761,15 @@ public void testPerfReconcileBigFileWithSyntaxError() throws JavaModelException 
 
 		// Warm up
 		int warmup = WARMUP_COUNT / 10;
-		for (int i=0; i<warmup; i++) {
-			workingCopy.getBuffer().setContents(bigContents.append("a").toString());
+		for (int i=0; i<warmup; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			workingCopy.getBuffer().setContents(bigContents.append("a").toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			workingCopy.reconcile(JLS3_INTERNAL, false/*no pb detection*/, null/*no owner*/, null/*no progress*/);
 		}
 
 		// Measures
 		resetCounters();
-		for (int i=0; i<MEASURES_COUNT; i++) {
-			workingCopy.getBuffer().setContents(bigContents.append("a").toString());
+		for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			workingCopy.getBuffer().setContents(bigContents.append("a").toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			runGc();
 			startMeasuring();
 			workingCopy.reconcile(JLS3_INTERNAL, false/*no pb detection*/, null/*no owner*/, null/*no progress*/);
@@ -790,18 +790,18 @@ public void testPerfReconcileBigFileWithSyntaxError() throws JavaModelException 
  * Ensures that the performance of reconcile on a CU with lots of duplicates is acceptable.
  * (regression test for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=135906 )
  */
-public void testReconcileDuplicates() throws JavaModelException {
+public void testReconcileDuplicates() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	tagAsSummary("Reconcile editor change on file with lots of duplicates", false); // do NOT put in fingerprint
 
 	// build big file contents
-	StringBuilder contents = new StringBuilder();
-	contents.append("public class CUWithDuplicates {\n");
+	StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	contents.append("public class CUWithDuplicates {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	int fooIndex = 0;
-	while (fooIndex < 2000) { // add 2000 duplicate methods
-		contents.append("  void foo() {}\n");
-		contents.append(fooIndex++);
+	while (fooIndex < 2000) { // add 2000 duplicate methods //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		contents.append("  void foo() {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append(fooIndex++); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	contents.append("} //"); // ensure it ends with a line comment that is edited below
+	contents.append("} //"); // ensure it ends with a line comment that is edited below //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 	ICompilationUnit workingCopy = null;
 	try {
@@ -811,15 +811,15 @@ public void testReconcileDuplicates() throws JavaModelException {
 
 		// Warm up
 		int warmup = WARMUP_COUNT / 10;
-		for (int i=0; i<warmup; i++) {
-			workingCopy.getBuffer().setContents(contents.append('a').toString());
+		for (int i=0; i<warmup; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			workingCopy.getBuffer().setContents(contents.append('a').toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			workingCopy.reconcile(JLS3_INTERNAL, false/*no pb detection*/, null/*no owner*/, null/*no progress*/);
 		}
 
 		// Measures
 		resetCounters();
-		for (int i=0; i<MEASURES_COUNT; i++) {
-			workingCopy.getBuffer().setContents(contents.append('a').toString());
+		for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			workingCopy.getBuffer().setContents(contents.append('a').toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			runGc();
 			startMeasuring();
 			workingCopy.reconcile(JLS3_INTERNAL, false/*no pb detection*/, null/*no owner*/, null/*no progress*/);
@@ -840,19 +840,19 @@ public void testReconcileDuplicates() throws JavaModelException {
  * Ensures that the performance of reconcile after deleting lots of members is acceptable
  * (regression test for bug 443928 Building large Java element deltas is really slow)
  */
-public void testPerfDeleteLotsOfMembersAndReconcile() throws JavaModelException {
+public void testPerfDeleteLotsOfMembersAndReconcile() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	tagAsSummary("Reconcile editor change after deleting lots of members", false); // do NOT put in fingerprint
 
 	// build big file contents
-	StringBuilder contents = new StringBuilder();
-	contents.append("public class LotsOfMembers {\n");
+	StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	contents.append("public class LotsOfMembers {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	int fooIndex = 0;
-	while (fooIndex < 15000) { // add 15000 methods
-		contents.append("  void foo");
-		contents.append(fooIndex++);
-		contents.append("() {}\n");
+	while (fooIndex < 15000) { // add 15000 methods //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		contents.append("  void foo"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append(fooIndex++); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("() {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	contents.append("}");
+	contents.append("}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 	String oldContents = contents.toString(); // initially, 15000 members
 	String newContents = "public class LotsOfMembers {\n}"; // then, no members
@@ -865,7 +865,7 @@ public void testPerfDeleteLotsOfMembersAndReconcile() throws JavaModelException 
 
 		// Warm up
 		int warmup = WARMUP_COUNT / 10;
-		for (int i=0; i<warmup; i++) {
+		for (int i=0; i<warmup; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			workingCopy.getBuffer().setContents(oldContents);
 			workingCopy.reconcile(JLS3_INTERNAL, false/*no pb detection*/, null/*no owner*/, null/*no progress*/);
 			workingCopy.getBuffer().setContents(newContents);
@@ -874,7 +874,7 @@ public void testPerfDeleteLotsOfMembersAndReconcile() throws JavaModelException 
 
 		// Measures
 		resetCounters();
-		for (int i=0; i<MEASURES_COUNT; i++) {
+		for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			workingCopy.getBuffer().setContents(oldContents);
 			workingCopy.reconcile(JLS3_INTERNAL, false/*no pb detection*/, null/*no owner*/, null/*no progress*/);
 			workingCopy.getBuffer().setContents(newContents);
@@ -898,7 +898,7 @@ public void testPerfDeleteLotsOfMembersAndReconcile() throws JavaModelException 
  * Ensures that the performance of reconcile after creating a package fragment in a batch operation is acceptable
  * (regression test for bug 234718 JarPackageFragmentRoot.computeChildren(..) is slow )
  */
-public void testPerfBatchCreatePackageAndReconcile() throws CoreException {
+public void testPerfBatchCreatePackageAndReconcile() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	tagAsSummary("Reconcile editor change after creating a package fragment in a batch operation", false); // do NOT put in fingerprint
 
 	IJavaProject project = null;
@@ -925,12 +925,12 @@ public void testPerfBatchCreatePackageAndReconcile() throws CoreException {
 		// Warm up
 		try {
 			final ICompilationUnit copy = workingCopy;
-			IWorkspaceRunnable runnable = new IWorkspaceRunnable(){
+			IWorkspaceRunnable runnable = new IWorkspaceRunnable(){ //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
 					root.createPackageFragment("p2", false/*don't force*/, monitor);
 					copy.reconcile(JLS3_INTERNAL, true, null, monitor);
 					int warmup = WARMUP_COUNT / 5;
-					for (int i=0; i<warmup; i++) {
+					for (int i=0; i<warmup; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						copy.reconcile(JLS3_INTERNAL, true, null, monitor);
 					}
 				}
@@ -943,19 +943,19 @@ public void testPerfBatchCreatePackageAndReconcile() throws CoreException {
 
 			// Measures
 			resetCounters();
-			runnable = new IWorkspaceRunnable(){
+			runnable = new IWorkspaceRunnable(){ //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
 					root.createPackageFragment("p2", false/*don't force*/, monitor);
 					copy.reconcile(JLS3_INTERNAL, true, null, monitor);
 					int iterations = 10;
 					startMeasuring();
-					for (int n=0; n<iterations; n++) {
+					for (int n=0; n<iterations; n++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						copy.reconcile(JLS3_INTERNAL, true, null, monitor);
 					}
 					stopMeasuring();
 				}
 			};
-			for (int i=0; i<MEASURES_COUNT; i++) {
+			for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				runGc();
 				try {
 					JavaCore.run(runnable, null);
@@ -982,7 +982,7 @@ public void testPerfBatchCreatePackageAndReconcile() throws CoreException {
  * Ensures that the reconciler does nothing when the source
  * to reconcile with is the same as the current contents.
  */
-public void testPerfSearchAllTypeNamesAndReconcile() throws CoreException {
+public void testPerfSearchAllTypeNamesAndReconcile() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	tagAsSummary("Reconcile editor change and complete", true); // put in fingerprint
 
 	// Wait for indexing end
@@ -1000,7 +1000,7 @@ public void testPerfSearchAllTypeNamesAndReconcile() throws CoreException {
 		workingCopy = PARSER_WORKING_COPY.getWorkingCopy(owner, null);
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaElement[] { JDT_CORE_PROJECT });
 		int warmup = WARMUP_COUNT / 5;
-		for (int i=0; i<warmup; i++) {
+		for (int i=0; i<warmup; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			searchAllTypeNames(scope);
 			CompilationUnit unit = workingCopy.reconcile(JLS3_INTERNAL, true, null, null);
 			if (i == 0) {
@@ -1012,10 +1012,10 @@ public void testPerfSearchAllTypeNamesAndReconcile() throws CoreException {
 		// Measures
 		int iterations = 2;
 		resetCounters();
-		for (int i=0; i<MEASURES_COUNT; i++) {
+		for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			runGc();
 			startMeasuring();
-			for (int n=0; n<iterations; n++) {
+			for (int n=0; n<iterations; n++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				searchAllTypeNames(scope);
 				workingCopy.reconcile(JLS3_INTERNAL, true, null, null);
 			}
@@ -1036,7 +1036,7 @@ public void testPerfSearchAllTypeNamesAndReconcile() throws CoreException {
  * Performance test for the opening of class files in 2 big jars (that each would fill the Java model cache if all pkgs were opened).
  * (see bug 190094 Java Outline Causes Eclipse Lock-up.)
  */
-public void testPopulateTwoBigJars() throws CoreException {
+public void testPopulateTwoBigJars() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IJavaProject project = null;
 	try {
@@ -1056,22 +1056,22 @@ public void testPopulateTwoBigJars() throws CoreException {
 		// warm up
 		int max = 20;
 		int warmup = WARMUP_COUNT / 10;
-		for (int i = 0; i < warmup; i++) {
+		for (int i = 0; i < warmup; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			project.close();
-			for (int j = 0; j < max; j++) {
-				root1.getPackageFragment("p" + j).open(null);
-				root2.getPackageFragment("q" + j).open(null);
+			for (int j = 0; j < max; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				root1.getPackageFragment("p" + j).open(null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				root2.getPackageFragment("q" + j).open(null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 
 		// measure performance
-		for (int i = 0; i < MEASURES_COUNT; i++) {
+		for (int i = 0; i < MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			project.close();
 			runGc();
 			startMeasuring();
-			for (int j = 0; j < max; j++) {
-				root1.getPackageFragment("p" + j).open(null);
-				root2.getPackageFragment("q" + j).open(null);
+			for (int j = 0; j < max; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				root1.getPackageFragment("p" + j).open(null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				root2.getPackageFragment("q" + j).open(null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			stopMeasuring();
 		}
@@ -1088,10 +1088,10 @@ public void testPopulateTwoBigJars() throws CoreException {
  * Performance test for looking up package fragments
  * (see bug 72683 Slow code assist in Display view)
  */
-public void testSeekPackageFragments() throws CoreException {
+public void testSeekPackageFragments() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	assertNotNull("We should have the 'BigProject' in workspace!", BIG_PROJECT);
 	class PackageRequestor implements IJavaElementRequestor {
-		ArrayList pkgs = new ArrayList();
+		ArrayList pkgs = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		public void acceptField(IField field) {}
 		public void acceptInitializer(IInitializer initializer) {}
 		public void acceptMemberType(IType type) {}
@@ -1110,7 +1110,7 @@ public void testSeekPackageFragments() throws CoreException {
 
 	// first pass: ensure all class are loaded, and ensure that the test works as expected
 	PackageRequestor requestor = new PackageRequestor();
-	for (int i=0; i<WARMUP_COUNT; i++) {
+	for (int i=0; i<WARMUP_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		getNameLookup(BIG_PROJECT).seekPackageFragments("org.eclipse.jdt.core.tests78.performance5", false/*not partial match*/, requestor);
 		if (i == 0) {
 			int size = requestor.pkgs.size();
@@ -1118,7 +1118,7 @@ public void testSeekPackageFragments() throws CoreException {
 			requestor.pkgs.toArray(result);
 			assertElementsEqual(
 				"Unexpected packages",
-				"org.eclipse.jdt.core.tests78.performance5 [in src78 [in "+BIG_PROJECT_NAME+"]]",
+				"org.eclipse.jdt.core.tests78.performance5 [in src78 [in "+BIG_PROJECT_NAME+"]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result
 			);
 		}
@@ -1127,11 +1127,11 @@ public void testSeekPackageFragments() throws CoreException {
 	// measure performance
 	requestor.pkgs = null;
 	resetCounters();
-	for (int i = 0; i < MEASURES_COUNT; i++) {
+	for (int i = 0; i < MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		runGc();
 		startMeasuring();
-		for (int j = 0; j < 50000; j++) {
-			getNameLookup(BIG_PROJECT).seekPackageFragments("org.eclipse.jdt.core.tests" + i + "0.performance" + i, false/*not partial match*/, requestor);
+		for (int j = 0; j < 50000; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			getNameLookup(BIG_PROJECT).seekPackageFragments("org.eclipse.jdt.core.tests" + i + "0.performance" + i, false/*not partial match*/, requestor); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		stopMeasuring();
 	}
@@ -1139,31 +1139,31 @@ public void testSeekPackageFragments() throws CoreException {
 	assertPerformance();
 }
 
-public void testCloseProjects() throws JavaModelException {
+public void testCloseProjects() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	tagAsSummary("Close all workspace projects", false); // do NOT put in fingerprint
 
 	// Warm-up
 	int length=ALL_PROJECTS.length;
 	int wmax = WARMUP_COUNT / 10;
-	for (int i=0; i<wmax; i++) {
-		for (int j=0; j<length; j++) {
+	for (int i=0; i<wmax; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		for (int j=0; j<length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ENV.closeProject(ALL_PROJECTS[j].getPath());
 		}
-		for (int j=0; j<length; j++) {
+		for (int j=0; j<length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ENV.openProject(ALL_PROJECTS[j].getPath());
 		}
 	}
 
 	// Measures
-	for (int i=0; i<MEASURES_COUNT; i++) {
+	for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		waitUntilIndexesReady();
 		runGc();
 		startMeasuring();
-		for (int j=0; j<length; j++) {
+		for (int j=0; j<length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ENV.closeProject(ALL_PROJECTS[j].getPath());
 		}
 		stopMeasuring();
-		for (int j=0; j<length; j++) {
+		for (int j=0; j<length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ENV.openProject(ALL_PROJECTS[j].getPath());
 		}
 	}
@@ -1177,7 +1177,7 @@ public void testCloseProjects() throws JavaModelException {
  * Tests the performance of JavaCore#create(IResource).
  * (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=133141)
  */
-public void testCreateJavaElement() throws CoreException {
+public void testCreateJavaElement() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// setup (force the project cache to be created)
 	IFile file = (IFile) WORKING_COPY.getResource();
 	getNameLookup(BIG_PROJECT);
@@ -1185,17 +1185,17 @@ public void testCreateJavaElement() throws CoreException {
 	// warm up
 	int warmup = WARMUP_COUNT / 10;
 	int iterations = 5000;
-	for (int i = 0; i < warmup; i++) {
-		for (int j = 0; j < iterations; j++) {
+	for (int i = 0; i < warmup; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		for (int j = 0; j < iterations; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JavaCore.create(file);
 		}
 	}
 
 	// measure performance
-	for (int i = 0; i < MEASURES_COUNT; i++) {
+	for (int i = 0; i < MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		runGc();
 		startMeasuring();
-		for (int j = 0; j < iterations; j++) {
+		for (int j = 0; j < iterations; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JavaCore.create(file);
 		}
 		stopMeasuring();
@@ -1205,19 +1205,19 @@ public void testCreateJavaElement() throws CoreException {
 	assertPerformance();
 }
 
-public void testInitJDTPlugin() throws JavaModelException, CoreException {
+public void testInitJDTPlugin() throws JavaModelException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	tagAsSummary("JDT/Core plugin initialization", true); // put in fingerprint
 	setComment(Performance.EXPLAINS_DEGRADATION_COMMENT, "Bug 338649:Extra check for source attachment in missing drive causing regression");
 	// Warm-up
 	int wmax = WARMUP_COUNT / 5;
-	for (int i=0; i<wmax; i++) {
+	for (int i=0; i<wmax; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		simulateExitRestart();
 		JavaCore.initializeAfterLoad(null);
 		waitUntilIndexesReady();
 	}
 
 	// Measures
-	for (int i=0; i<MEASURES_COUNT; i++) {
+	for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		// shutdwon
 		simulateExit();
 		runGc();
@@ -1237,22 +1237,22 @@ public void testInitJDTPlugin() throws JavaModelException, CoreException {
  * Performance test for the first use of findType(...)
  * (see bug 161175 JarPackageFragmentRoot slow to initialize)
  */
-public void testFindType() throws CoreException {
+public void testFindType() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IJavaModel model = JavaCore.create(ResourcesPlugin.getWorkspace().getRoot());
 	IJavaProject[] existingProjects = model.getJavaProjects();
 
 	try {
 		// close existing projects
-		for (int i = 0, length = existingProjects.length; i < length; i++) {
+		for (int i = 0, length = existingProjects.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			existingProjects[i].getProject().close(null);
 		}
 
 		// get 20 projects
 		int max = 20;
 		IJavaProject[] projects = new IJavaProject[max];
-		for (int i = 0; i < max; i++) {
-			projects[i] = createJavaProject("FindType" + i);
+		for (int i = 0; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			projects[i] = createJavaProject("FindType" + i); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		waitUntilIndexesReady();
 		waitForAutoBuild();
@@ -1260,19 +1260,19 @@ public void testFindType() throws CoreException {
 		try {
 			// warm up
 			int warmup = WARMUP_COUNT / 10;
-			for (int i = 0; i < warmup; i++) {
+			for (int i = 0; i < warmup; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				model.close();
-				for (int j = 0; j < max; j++) {
+				for (int j = 0; j < max; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					projects[j].findType("java.lang.Object");
 				}
 			}
 
 			// measure performance
-			for (int i = 0; i < MEASURES_COUNT; i++) {
+			for (int i = 0; i < MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				model.close();
 				runGc();
 				startMeasuring();
-				for (int j = 0; j < max; j++) {
+				for (int j = 0; j < max; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					projects[j].findType("java.lang.Object");
 				}
 				stopMeasuring();
@@ -1281,13 +1281,13 @@ public void testFindType() throws CoreException {
 			commitMeasurements();
 			assertPerformance();
 		} finally {
-			for (int i = 0; i < max; i++) {
+			for (int i = 0; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				projects[i].getProject().delete(false, null);
 			}
 		}
 	} finally {
 		// reopen existing projects
-		for (int i = 0, length = existingProjects.length; i < length; i++) {
+		for (int i = 0, length = existingProjects.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			existingProjects[i].getProject().open(null);
 		}
 	}
@@ -1297,7 +1297,7 @@ public void testFindType() throws CoreException {
  * Performance test for the first time we get the source of a class file in a bug jar with no source attached
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=190840 )
  */
-public void testGetSourceBigJarNoAttachment() throws CoreException {
+public void testGetSourceBigJarNoAttachment() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IJavaProject project = null;
 	try {
@@ -1315,18 +1315,18 @@ public void testGetSourceBigJarNoAttachment() throws CoreException {
 		// warm up
 		int max = 20;
 		int warmup = WARMUP_COUNT / 10;
-		for (int i = 0; i < warmup; i++) {
-			for (int j = 0; j < max; j++) {
+		for (int i = 0; i < warmup; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (int j = 0; j < max; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				root.close();
 				classFile.getSource();
 			}
 		}
 
 		// measure performance
-		for (int i = 0; i < MEASURES_COUNT; i++) {
+		for (int i = 0; i < MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			runGc();
 			startMeasuring();
-			for (int j = 0; j < max; j++) {
+			for (int j = 0; j < max; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				root.close();
 				classFile.getSource();
 			}
@@ -1342,7 +1342,7 @@ public void testGetSourceBigJarNoAttachment() throws CoreException {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331632
-public void testReopenSingleProject() throws CoreException {
+public void testReopenSingleProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	tagAsSummary("Reopen a single project in a workspace", false); // do NOT put in fingerprint
 
 	// First close all Eclipse projects
@@ -1352,13 +1352,13 @@ public void testReopenSingleProject() throws CoreException {
 		startNanos = System.nanoTime();
 	}
 	int length=ALL_PROJECTS.length;
-	for (int j=0; j<length; j++) {
+	for (int j=0; j<length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		ALL_PROJECTS[j].getProject().close(null);
 	}
 	waitUntilIndexesReady();
 	waitForAutoBuild();
 	if (PRINT) {
-		System.out.println((System.nanoTime() - startNanos) / 1_000_000L + "ms");
+		System.out.println((System.nanoTime() - startNanos) / 1_000_000L + "ms"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 
@@ -1368,7 +1368,7 @@ public void testReopenSingleProject() throws CoreException {
 		startNanos = System.nanoTime();
 	}
 	final int warmup = WARMUP_COUNT / 10;
-	for (int i=0; i<warmup; i++) {
+	for (int i=0; i<warmup; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		BIG_PROJECT.getProject().close(null);
 		waitUntilIndexesReady();
 		waitForAutoBuild();
@@ -1378,7 +1378,7 @@ public void testReopenSingleProject() throws CoreException {
 		waitForManualRefresh();
 	}
 	if (PRINT) {
-		System.out.println((System.nanoTime() - startNanos) / 1_000_000L + "ms");
+		System.out.println((System.nanoTime() - startNanos) / 1_000_000L + "ms"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	// Measures
@@ -1387,7 +1387,7 @@ public void testReopenSingleProject() throws CoreException {
 		System.out.println("Start measures:");
 		startNanos = System.nanoTime();
 	}
-	for (int i=0; i<MEASURES_COUNT; i++) {
+	for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		runGc();
 		BIG_PROJECT.getProject().close(null);
 		waitUntilIndexesReady();
@@ -1400,7 +1400,7 @@ public void testReopenSingleProject() throws CoreException {
 		stopMeasuring();
 	}
 	if (PRINT) {
-		System.out.println("	total time: " + ((System.nanoTime() - startNanos) / 1_000_000L) + "ms");
+		System.out.println("	total time: " + ((System.nanoTime() - startNanos) / 1_000_000L) + "ms"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	// Commit
@@ -1417,7 +1417,7 @@ public void testReopenSingleProject() throws CoreException {
 		System.out.print("Reopen Eclipse projects...");
 		startNanos = System.nanoTime();
 	}
-	for (int i=0; i<length; i++) {
+	for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		ALL_PROJECTS[i].getProject().open(null);
 	}
 	waitUntilIndexesReady();
@@ -1425,19 +1425,19 @@ public void testReopenSingleProject() throws CoreException {
 	waitForManualRefresh();
 	runGc();
 	if (PRINT) {
-		System.out.println((System.nanoTime() - startNanos) / 1_000_000L + "ms");
+		System.out.println((System.nanoTime() - startNanos) / 1_000_000L + "ms"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=354332
-public void testRefreshExternalArchives() throws Exception {
+public void testRefreshExternalArchives() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int jarCount = 100;
 	File[] files = new File[jarCount];
 	IJavaModel model = JavaCore.create(ResourcesPlugin.getWorkspace().getRoot());
 	IClasspathEntry[] oldClasspath = BIG_PROJECT.getRawClasspath();
 	try {
 		IClasspathEntry[] classpath = new IClasspathEntry[jarCount];
-		for (int index = 0; index < jarCount; index++) {
-			String filePath = getExternalResourcePath("lib"+ index +".jar");
+		for (int index = 0; index < jarCount; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			String filePath = getExternalResourcePath("lib"+ index +".jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			org.eclipse.jdt.core.tests.util.Util.createJar(new String[0],
 				new String[] {
 					"META-INF/MANIFEST.MF",
@@ -1453,18 +1453,18 @@ public void testRefreshExternalArchives() throws Exception {
 		// warm up
 		int max = 20;
 		int warmup = WARMUP_COUNT / 10;
-		for (int i = 0; i < warmup; i++) {
-			for (int j = 0; j < max; j++) {
+		for (int i = 0; i < warmup; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (int j = 0; j < max; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				touchFiles(files);
 				model.refreshExternalArchives(new IJavaElement[] {BIG_PROJECT}, null);
 			}
 		}
 
 		// measure performance
-		for (int i = 0; i < MEASURES_COUNT; i++) {
+		for (int i = 0; i < MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			runGc();
 			startMeasuring();
-			for (int j = 0; j < max; j++) {
+			for (int j = 0; j < max; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				touchFiles(files);
 				model.refreshExternalArchives(new IJavaElement[] {BIG_PROJECT}, null);
 			}
@@ -1476,22 +1476,22 @@ public void testRefreshExternalArchives() throws Exception {
 
 	} finally {
 		BIG_PROJECT.setRawClasspath(oldClasspath, null);
-		for(int index=0; index < files.length; index++) {
+		for(int index=0; index < files.length; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			files[index].delete();
 		}
 	}
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=411423
-public void testResolveClasspath() throws Exception {
+public void testResolveClasspath() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int jarCount = 100;
 	File[] libraryFiles = new File[jarCount];
 	File[] srcAttachmentFiles = new File[jarCount];
 	IClasspathEntry[] oldClasspath = BIG_PROJECT.getRawClasspath();
 	try {
 		IClasspathEntry[] classpath = new IClasspathEntry[jarCount];
-		for (int index = 0; index < jarCount; index++) {
-			String libraryFilePath = getExternalResourcePath("lib" + index + ".jar");
+		for (int index = 0; index < jarCount; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			String libraryFilePath = getExternalResourcePath("lib" + index + ".jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			org.eclipse.jdt.core.tests.util.Util.createJar(new String[0],
 					new String[] {
 						"META-INF/MANIFEST.MF",
@@ -1501,7 +1501,7 @@ public void testResolveClasspath() throws Exception {
 					JavaCore.VERSION_1_4);
 			libraryFiles[index] = new File(libraryFilePath);
 
-			String srcAttachmentFilePath = getExternalResourcePath("lib" + index + "-src.jar");
+			String srcAttachmentFilePath = getExternalResourcePath("lib" + index + "-src.jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			org.eclipse.jdt.core.tests.util.Util.createJar(new String[0],
 					new String[] {
 						"META-INF/MANIFEST.MF",
@@ -1518,17 +1518,17 @@ public void testResolveClasspath() throws Exception {
 		// warm up
 		int max = 20;
 		int warmup = WARMUP_COUNT / 10;
-		for (int i = 0; i < warmup; i++) {
-			for (int j = 0; j < max; j++) {
+		for (int i = 0; i < warmup; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (int j = 0; j < max; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				BIG_PROJECT.resolveClasspath(classpath);
 			}
 		}
 
 		// measure performance
-		for (int i = 0; i < MEASURES_COUNT; i++) {
+		for (int i = 0; i < MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			runGc();
 			startMeasuring();
-			for (int j = 0; j < max; j++) {
+			for (int j = 0; j < max; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				BIG_PROJECT.resolveClasspath(classpath);
 			}
 			stopMeasuring();
@@ -1539,7 +1539,7 @@ public void testResolveClasspath() throws Exception {
 
 	} finally {
 		BIG_PROJECT.setRawClasspath(oldClasspath, null);
-		for (int index = 0; index < libraryFiles.length; index++) {
+		for (int index = 0; index < libraryFiles.length; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			libraryFiles[index].delete();
 			srcAttachmentFiles[index].delete();
 		}
@@ -1559,13 +1559,13 @@ protected String getExternalPath() {
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=421165
-public void testGetAllPackageFragmentRoots() throws Exception {
+public void testGetAllPackageFragmentRoots() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int jarCount = 100;
 	IClasspathEntry[] oldClasspath = BIG_PROJECT.getRawClasspath();
 	try {
 	    IClasspathEntry[] classpath = new IClasspathEntry[jarCount];
-	    for (int index = 0; index < jarCount; index++) {
-	        String filePath = getExternalResourcePath("lib"+ index +".jar");
+	    for (int index = 0; index < jarCount; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+	        String filePath = getExternalResourcePath("lib"+ index +".jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        org.eclipse.jdt.core.tests.util.Util.createJar(new String[0],
 	            new String[] {
 	                "META-INF/MANIFEST.MF",
@@ -1581,18 +1581,18 @@ public void testGetAllPackageFragmentRoots() throws Exception {
 	    // warm up
 	    int max = 20;
 	    int warmup = WARMUP_COUNT / 10;
-	    for (int i = 0; i < warmup; i++) {
-	        for (int j = 0; j < max; j++) {
+	    for (int i = 0; i < warmup; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+	        for (int j = 0; j < max; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	            file.touch(null/*no progress*/);
 	            BIG_PROJECT.getAllPackageFragmentRoots();
 	        }
 	    }
 
 	    // measure performance
-	    for (int i = 0; i < MEASURES_COUNT; i++) {
+	    for (int i = 0; i < MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	        runGc();
 	        startMeasuring();
-	        for (int j = 0; j < max; j++) {
+	        for (int j = 0; j < max; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	          file.touch(null/*no progress*/);
 	          BIG_PROJECT.getAllPackageFragmentRoots();
 	        }

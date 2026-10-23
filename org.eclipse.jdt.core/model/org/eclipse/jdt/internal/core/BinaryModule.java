@@ -102,7 +102,7 @@ public class BinaryModule extends BinaryMember implements AbstractModule {
 		if (javadocContents == null) return null;
 		return javadocContents.getModuleDoc();
 	}
-	public IJavadocContents getJavadocContents(IProgressMonitor monitor) throws JavaModelException {
+	public IJavadocContents getJavadocContents(IProgressMonitor monitor) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		PerProjectInfo projectInfo = JavaModelManager.getJavaModelManager().getPerProjectInfoCheckExistence(getJavaProject().getProject());
 		IJavadocContents cachedJavadoc = null;
 		synchronized (projectInfo.javadocCache) {
@@ -116,12 +116,12 @@ public class BinaryModule extends BinaryMember implements AbstractModule {
 		if (baseLocation == null) {
 			return null;
 		}
-		StringBuilder pathBuffer = new StringBuilder(baseLocation.toExternalForm());
+		StringBuilder pathBuffer = new StringBuilder(baseLocation.toExternalForm()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
 		if (!(pathBuffer.charAt(pathBuffer.length() - 1) == '/')) {
-			pathBuffer.append('/');
+			pathBuffer.append('/'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		pathBuffer.append(getElementName()).append(ExternalJavadocSupport.MODULE_FILE_SUFFIX);
+		pathBuffer.append(getElementName()).append(ExternalJavadocSupport.MODULE_FILE_SUFFIX); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (monitor != null && monitor.isCanceled()) throw new OperationCanceledException();
 		String contents = getURLContents(baseLocation, String.valueOf(pathBuffer));
 		IJavadocContents javadocContents = ExternalJavadocSupport.forHtml(null, contents);
@@ -132,7 +132,7 @@ public class BinaryModule extends BinaryMember implements AbstractModule {
 	}
 	@Override
 	public String toString(String lineDelimiter) {
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		try {
 			toStringContent(buffer, lineDelimiter);
 		} catch (JavaModelException e) {

@@ -43,8 +43,8 @@ public class WeakHashSetOfCharArray {
 		@Override
 		public String toString() {
 			char[] referent = (char[]) get();
-			if (referent == null) return "[hashCode=" + this.hashCode + "] <referent was garbage collected>"; //$NON-NLS-1$  //$NON-NLS-2$
-			return "[hashCode=" + this.hashCode + "] \"" + new String(referent) + '\"'; //$NON-NLS-1$ //$NON-NLS-2$
+			if (referent == null) return "[hashCode=" + this.hashCode + "] <referent was garbage collected>"; //$NON-NLS-1$  //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			return "[hashCode=" + this.hashCode + "] \"" + new String(referent) + '\"'; //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -71,12 +71,12 @@ public class WeakHashSetOfCharArray {
 	 * If a char array that is equals to the given char array already exists, do nothing.
 	 * Returns the existing char array or the new char array if not found.
 	 */
-	public char[] add(char[] array) {
+	public char[] add(char[] array) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		cleanupGarbageCollectedValues();
 		int valuesLength = this.values.length,
 			index = (CharOperation.hashCode(array) & 0x7FFFFFFF) % valuesLength;
 		HashableWeakReference currentValue;
-		while ((currentValue = this.values[index]) != null) {
+		while ((currentValue = this.values[index]) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[] referent;
 			if (CharOperation.equals(array, referent = (char[]) currentValue.get())) {
 				return referent;
@@ -94,13 +94,13 @@ public class WeakHashSetOfCharArray {
 		return array;
 	}
 
-	private void addValue(HashableWeakReference value) {
+	private void addValue(HashableWeakReference value) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] array = (char[]) value.get();
 		if (array == null) return;
 		int valuesLength = this.values.length;
 		int index = (value.hashCode & 0x7FFFFFFF) % valuesLength;
 		HashableWeakReference currentValue;
-		while ((currentValue = this.values[index]) != null) {
+		while ((currentValue = this.values[index]) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (CharOperation.equals(array, (char[]) currentValue.get())) {
 				return;
 			}
@@ -115,19 +115,19 @@ public class WeakHashSetOfCharArray {
 			rehash();
 	}
 
-	private void cleanupGarbageCollectedValues() {
+	private void cleanupGarbageCollectedValues() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		HashableWeakReference toBeRemoved;
-		while ((toBeRemoved = (HashableWeakReference) this.referenceQueue.poll()) != null) {
+		while ((toBeRemoved = (HashableWeakReference) this.referenceQueue.poll()) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int hashCode = toBeRemoved.hashCode;
 			int valuesLength = this.values.length;
 			int index = (hashCode & 0x7FFFFFFF) % valuesLength;
 			HashableWeakReference currentValue;
-			while ((currentValue = this.values[index]) != null) {
+			while ((currentValue = this.values[index]) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (currentValue == toBeRemoved) {
 					// replace the value at index with the last value with the same hash
 					int sameHash = index;
 					int current;
-					while ((currentValue = this.values[current = (sameHash + 1) % valuesLength]) != null && currentValue.hashCode == hashCode)
+					while ((currentValue = this.values[current = (sameHash + 1) % valuesLength]) != null && currentValue.hashCode == hashCode) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						sameHash = current;
 					this.values[index] = this.values[sameHash];
 					this.values[sameHash] = null;
@@ -154,7 +154,7 @@ public class WeakHashSetOfCharArray {
 		int valuesLength = this.values.length;
 		int index = (CharOperation.hashCode(array) & 0x7FFFFFFF) % valuesLength;
 		HashableWeakReference currentValue;
-		while ((currentValue = this.values[index]) != null) {
+		while ((currentValue = this.values[index]) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[] referent;
 			if (CharOperation.equals(array, referent = (char[]) currentValue.get())) {
 				return referent;
@@ -170,7 +170,7 @@ public class WeakHashSetOfCharArray {
 		WeakHashSetOfCharArray newHashSet = new WeakHashSetOfCharArray(this.elementSize * 2);		// double the number of expected elements
 		newHashSet.referenceQueue = this.referenceQueue;
 		HashableWeakReference currentValue;
-		for (HashableWeakReference value : this.values)
+		for (HashableWeakReference value : this.values) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if ((currentValue = value) != null)
 				newHashSet.addValue(currentValue);
 
@@ -183,12 +183,12 @@ public class WeakHashSetOfCharArray {
 	 * Removes the char array that is in this set and that is equals to the given char array.
 	 * Return the char array that was in the set, or null if not found.
 	 */
-	public char[] remove(char[] array) {
+	public char[] remove(char[] array) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		cleanupGarbageCollectedValues();
 		int valuesLength = this.values.length;
 		int index = (CharOperation.hashCode(array) & 0x7FFFFFFF) % valuesLength;
 		HashableWeakReference currentValue;
-		while ((currentValue = this.values[index]) != null) {
+		while ((currentValue = this.values[index]) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[] referent;
 			if (CharOperation.equals(array, referent = (char[]) currentValue.get())) {
 				this.elementSize--;
@@ -209,18 +209,18 @@ public class WeakHashSetOfCharArray {
 
 	@Override
 	public String toString() {
-		StringBuilder buffer = new StringBuilder("{"); //$NON-NLS-1$
-		for (HashableWeakReference value : this.values) {
+		StringBuilder buffer = new StringBuilder("{"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (HashableWeakReference value : this.values) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (value != null) {
 				char[] ref = (char[]) value.get();
 				if (ref != null) {
-					buffer.append('\"');
-					buffer.append(ref);
-					buffer.append("\", "); //$NON-NLS-1$
+					buffer.append('\"'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(ref); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append("\", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
 		}
-		buffer.append("}"); //$NON-NLS-1$
+		buffer.append("}"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return buffer.toString();
 	}
 }

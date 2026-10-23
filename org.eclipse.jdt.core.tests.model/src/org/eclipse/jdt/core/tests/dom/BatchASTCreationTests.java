@@ -32,7 +32,7 @@ import org.eclipse.jdt.internal.compiler.impl.CompilerOptions;
 public class BatchASTCreationTests extends AbstractASTTests {
 
 	public static class TestASTRequestor extends ASTRequestor {
-		public ArrayList asts = new ArrayList();
+		public ArrayList asts = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		public void acceptAST(ICompilationUnit source, CompilationUnit ast) {
 			this.asts.add(ast);
 		}
@@ -41,9 +41,9 @@ public class BatchASTCreationTests extends AbstractASTTests {
 	}
 
 	class BindingResolver extends TestASTRequestor {
-		private final ArrayList bindingKeys = new ArrayList();
+		private final ArrayList bindingKeys = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		int index = -1;
-		private final ArrayList foundKeys = new ArrayList();
+		private final ArrayList foundKeys = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		MarkerInfo[] markerInfos;
 		public BindingResolver(MarkerInfo[] markerInfos) {
 			this.markerInfos = markerInfos;
@@ -52,7 +52,7 @@ public class BatchASTCreationTests extends AbstractASTTests {
 		public void acceptAST(ICompilationUnit source, CompilationUnit cu) {
 			super.acceptAST(source, cu);
 			ASTNode[] nodes = findNodes(cu, this.markerInfos[++this.index]);
-			for (int i = 0, length = nodes.length; i < length; i++) {
+			for (int i = 0, length = nodes.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IBinding binding = resolveBinding(nodes[i]);
 				String bindingKey = binding == null ? "null" : binding.getKey();
 
@@ -151,12 +151,12 @@ public class BatchASTCreationTests extends AbstractASTTests {
 	 * Resolves a dummy cu as a batch and on the first accept, create a binding with the expected key using ASTRequestor#createBindings.
 	 * Ensures that the returned binding corresponds to the expected key.
 	 */
-	private void assertBindingsCreated(String[] pathAndSources, final String[] expectedKeys) throws JavaModelException {
+	private void assertBindingsCreated(String[] pathAndSources, final String[] expectedKeys) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit[] copies = null;
 		try {
 			copies = createWorkingCopies(pathAndSources);
 			class Requestor extends TestASTRequestor {
-				ArrayList createdBindingKeys = new ArrayList();
+				ArrayList createdBindingKeys = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				@Override
 				public void acceptAST(ICompilationUnit source, CompilationUnit cu) {
 					super.acceptAST(source, cu);
@@ -165,11 +165,11 @@ public class BatchASTCreationTests extends AbstractASTTests {
 						this.createdBindingKeys.add(bindings[0].getKey());
 				}
 				public String getCreatedKeys() {
-					StringBuilder buffer = new StringBuilder();
-					for (int i = 0, length = this.createdBindingKeys.size(); i < length; i++) {
-						buffer.append(this.createdBindingKeys.get(i));
+					StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+					for (int i = 0, length = this.createdBindingKeys.size(); i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+						buffer.append(this.createdBindingKeys.get(i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						if (i < length - 1)
-							buffer.append('\n');
+							buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 					return buffer.toString();
 				}
@@ -248,7 +248,7 @@ public class BatchASTCreationTests extends AbstractASTTests {
 	/*
 	 * Tests the batch creation of 2 ASTs without resolving.
 	 */
-	public void test001() throws CoreException {
+	public void test001() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = createWorkingCopies(new String[] {
 			"/P/p1/X.java",
 			"package p1;\n" +
@@ -277,7 +277,7 @@ public class BatchASTCreationTests extends AbstractASTTests {
 	/*
 	 * Tests the batch creation of 2 ASTs with resolving.
 	 */
-	public void test002() throws CoreException {
+	public void test002() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		MarkerInfo[] markerInfos = createMarkerInfos(new String[] {
 			"/P/p1/X.java",
 			"package p1;\n" +
@@ -315,7 +315,7 @@ public class BatchASTCreationTests extends AbstractASTTests {
 	/*
 	 * Ensures that ASTs that are required by original source but were not asked for are not handled.
 	 */
-	public void test003() throws CoreException {
+	public void test003() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit[] otherWorkingCopies = null;
 		try {
 			this.workingCopies = createWorkingCopies(new String[] {
@@ -678,7 +678,7 @@ public class BatchASTCreationTests extends AbstractASTTests {
 	/*
 	 * Ensures that a method binding in an anonymous type with several kind of parameters can be created using its key in ASTRequestor#createBindings
 	 */
-	public void test025() throws CoreException {
+	public void test025() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		assertBindingCreated(
 			new String[] {
 				"/P/p1/X.java",
@@ -715,7 +715,7 @@ public class BatchASTCreationTests extends AbstractASTTests {
 	/*
 	 * Ensures that a generic type binding can be created using its key in ASTRequestor#createBindings.
 	 */
-	public void test027() throws CoreException {
+	public void test027() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		assertBindingCreated(
 			new String[] {
 				"/P/p1/X.java",
@@ -834,7 +834,7 @@ public class BatchASTCreationTests extends AbstractASTTests {
 	/*
 	 * Ensures that a local variable binding can be created using its key in ASTRequestor#createBindings
 	 */
-	public void test034() throws CoreException {
+	public void test034() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		assertBindingCreated(
 			new String[] {
 				"/P/p1/X.java",
@@ -990,7 +990,7 @@ public class BatchASTCreationTests extends AbstractASTTests {
 	/*
 	 * Ensures that requesting 2 bindings and an AST for the same compilation unit reports the 2 bindings.
 	 */
-	public void test042() throws CoreException {
+	public void test042() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit workingCopy = null;
 		try {
 			workingCopy = getWorkingCopy(
@@ -1057,7 +1057,7 @@ public class BatchASTCreationTests extends AbstractASTTests {
 	 * Ensures that restoring a second key that references a type in a first key doesn't throw a NPE
 	 * (regression test for bug 83499 NPE when restoring ITypeBinding from key)
 	 */
-	public void test045() throws CoreException {
+	public void test045() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ITypeBinding[] bindings = createTypeBindings(
 			new String[] {
 				"/P/p1/X.java",
@@ -1173,7 +1173,7 @@ public class BatchASTCreationTests extends AbstractASTTests {
 	/*
 	 * Ensures that an anonymous type binding coming from secondary type can be created using its key in ASTRequestor#createBindings.
 	 */
-	public void test053() throws CoreException {
+	public void test053() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFolder("/P/p1");
 			createFile(
@@ -1196,7 +1196,7 @@ public class BatchASTCreationTests extends AbstractASTTests {
 	/*
 	 * Ensures that an anonymous type binding inside a local type can be retrieved using its key.
 	 */
-	public void test054() throws CoreException {
+	public void test054() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		assertRequestedBindingFound(
 			new String[] {
 				"/P/p1/X.java",
@@ -1240,7 +1240,7 @@ public class BatchASTCreationTests extends AbstractASTTests {
 	 * Ensures that creating a binary member type binding returns the correct binding
 	 * (regression test for bug 86967 [1.5][dom] NPE in BindingKeyResolver for multi-level parameterized type binding)
 	 */
-	public void test056() throws CoreException, IOException {
+	public void test056() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("BinaryProject", new String[0], new String[] {"JCL18_LIB"}, "", CompilerOptions.getFirstSupportedJavaVersion());
 			addLibrary(project, "lib.jar", "src.zip", new String[] {
@@ -1316,7 +1316,7 @@ public class BatchASTCreationTests extends AbstractASTTests {
 	/*
 	 * Ensures that a capture binding can be created using its key in batch creation.
 	 */
-	public void test060() throws CoreException {
+	public void test060() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		assertRequestedBindingFound(
 			new String[] {
 				"/P/xy/Cap.java",
@@ -1380,7 +1380,7 @@ public class BatchASTCreationTests extends AbstractASTTests {
 	 * Ensures that a raw method binding can be created using its key in batch creation.
 	 * (regression test for bug 87749 different IMethodBindings of generic method have equal getKey())
 	 */
-	public void test063() throws CoreException {
+	public void test063() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		assertRequestedBindingFound(
 			new String[] {
 				"/P/p1/X.java",
@@ -1410,7 +1410,7 @@ public class BatchASTCreationTests extends AbstractASTTests {
 	 * Ensures that a raw method binding can be created using its key in batch creation.
 	 * (regression test for bug 87749 different IMethodBindings of generic method have equal getKey())
 	 */
-	public void test063a() throws CoreException {
+	public void test063a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		assertRequestedBindingFound(
 			new String[] {
 				"/P/p1/X.java",
@@ -1440,7 +1440,7 @@ public class BatchASTCreationTests extends AbstractASTTests {
 	 * Ensures that a parameterized type binding with a capture binding in its arguments can be created using its key in batch creation.
 	 * (regression test for bug 94092 ASTParser#createASTs(..) restores wrong bindings from capture keys)
 	 */
-	public void test064() throws CoreException {
+	public void test064() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		assertRequestedBindingsFound(
 			new String[] {
 				"/P/p1/X.java",
@@ -1488,7 +1488,7 @@ public class BatchASTCreationTests extends AbstractASTTests {
 	 * Ensures that the compilation with a owner is used instead of a primary working copy when looking up a type.
 	 * (regression test for bug 97542 ASTParser#createASTs does not correctly resolve bindings in working copies)
 	 */
-	public void test066() throws CoreException {
+	public void test066() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit primaryWorkingCopy = null;
 		ICompilationUnit ownedWorkingcopy = null;
 		try {
@@ -1535,7 +1535,7 @@ public class BatchASTCreationTests extends AbstractASTTests {
 	/*
 	 * Ensures that the declaring class of a member parameterized type binding with a raw enclosing type is correct
 	 */
-	public void test067() throws CoreException {
+	public void test067() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ITypeBinding[] bindings = createTypeBindings(
 			new String[] {
 				"/P/p1/X.java",
@@ -1557,7 +1557,7 @@ public class BatchASTCreationTests extends AbstractASTTests {
 	/*
 	 * Ensures that a raw member type can be created using its key in batch creation.
 	 */
-	public void test068() throws CoreException, IOException {
+	public void test068() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("P1", new String[] {""}, new String[] {"JCL18_LIB"}, "", CompilerOptions.getFirstSupportedJavaVersion());
 			addLibrary(project, "lib.jar", "src.zip", new String[] {
@@ -1593,7 +1593,7 @@ public class BatchASTCreationTests extends AbstractASTTests {
 	 * Ensures that requesting a CU needing a constant in a previously processed CU doesn't throw an NPE
 	 * (regression test for bug 111822 DOMParser.createASTs() NPE at FieldReference.getConstantFor(FieldReference.java:408))
 	 */
-	public void test069() throws CoreException {
+	public void test069() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = createWorkingCopies(new String[] {
 			"/P/pkg/RefAnnoAndClassWithAnno.java",
 			"package pkg;\n" +
@@ -1628,7 +1628,7 @@ public class BatchASTCreationTests extends AbstractASTTests {
 	 * Ensures that unrequested compilation units are not resolved
 	 * (regression test for bug 114935 ASTParser.createASTs parses more CUs then required)
 	 */
-	public void test070() throws CoreException {
+	public void test070() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		MarkerInfo[] markerInfos = createMarkerInfos(new String[] {
 			"/P/p1/X.java",
 			"package p1;\n" +
@@ -1656,7 +1656,7 @@ public class BatchASTCreationTests extends AbstractASTTests {
 	 * Ensures that unrequested compilation units are not resolved
 	 * (regression test for bug 117018 IVariableBinding#getConstantValue() could be lazy resolved)
 	 */
-	public void test071() throws CoreException {
+	public void test071() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final MarkerInfo[] markerInfos = createMarkerInfos(new String[] {
 			"/P/p1/X.java",
 			"package p1;\n" +
@@ -1691,7 +1691,7 @@ public class BatchASTCreationTests extends AbstractASTTests {
 	 * is not null
 	 * (regression test for bug 129804 Local variable bindings from ASTParser#createASTs(.., String[], .., ..) have no declaring method)
 	 */
-	public void test072() throws CoreException {
+	public void test072() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IVariableBinding[] bindings = createVariableBindings(
 			new String[] {
 				"/P/X.java",
@@ -1711,7 +1711,7 @@ public class BatchASTCreationTests extends AbstractASTTests {
 	}
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=159631
-public void test073() throws CoreException, IOException {
+public void test073() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P072", new String[] {}, Util.getJavaClassLibs(), "", CompilerOptions.getFirstSupportedJavaVersion());
 		ICompilationUnit compilationUnits[] = new ICompilationUnit[3];
@@ -1752,7 +1752,7 @@ public void test073() throws CoreException, IOException {
  * test Ensure that thrown exceptions are added in method unique key (not in signature)
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=155003"
  */
-public void test074_Bug155003() throws CoreException {
+public void test074_Bug155003() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	assertBindingCreated(
 		new String[] {
 			"/P/X.java",
@@ -1784,7 +1784,7 @@ public void test074_Bug155003() throws CoreException {
 		bindingKey.getThrownExceptions()
 	);
 }
-public void test075_Bug155003() throws CoreException {
+public void test075_Bug155003() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String content = "public class X<T> {\n" +
 		"	<U extends Exception> X<T> foo(X<T> x) throws RuntimeException, U {\n" +
 		"		return null;\n" +
@@ -1804,7 +1804,7 @@ public void test075_Bug155003() throws CoreException {
 		bindingKey.getThrownExceptions()
 	);
 }
-public void test076_Bug155003() throws CoreException {
+public void test076_Bug155003() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String content = "public class X<T> {\n" +
 		"	<K, V> V bar(K key, V value) throws Exception {\n" +
 		"		return value;\n" +
@@ -1830,7 +1830,7 @@ public void test076_Bug155003() throws CoreException {
  * 			even when declaring class is a capture
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=163647"
  */
-public void test077_Bug163647() throws CoreException {
+public void test077_Bug163647() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String content = 	"public class Test {\n" +
 		"    public X<? extends Object> getX() { return null; }\n" +
 		"    public void bar() {\n" +
@@ -1858,7 +1858,7 @@ public void test077_Bug163647() throws CoreException {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152060
-public void test078() throws CoreException, IOException {
+public void test078() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P078", new String[] {}, Util.getJavaClassLibs(), "", CompilerOptions.getFirstSupportedJavaVersion());
 		ICompilationUnit compilationUnits[] = new ICompilationUnit[1];
@@ -1914,7 +1914,7 @@ public void test078() throws CoreException, IOException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152060
-public void test079() throws CoreException, IOException {
+public void test079() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P079", new String[] {"src"}, Util.getJavaClassLibs(), "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		createFolder("/P079/src/test");
@@ -1969,12 +1969,12 @@ public void test079() throws CoreException, IOException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152060
-public void test080() throws CoreException, IOException {
+public void test080() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final String projectName = "P080";
 	try {
 		IJavaProject project = createJavaProject(projectName, new String[] {"src"}, Util.getJavaClassLibs(), "bin", CompilerOptions.getFirstSupportedJavaVersion());
-		createFolder("/" + projectName + "/src/test");
-		createFile("/" + projectName + "/src/test/Test.java",
+		createFolder("/" + projectName + "/src/test"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		createFile("/" + projectName + "/src/test/Test.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package test;\n" +
 				"import java.util.*;\n" +
 				"public class Test {\n" +
@@ -2028,7 +2028,7 @@ public void test080() throws CoreException, IOException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=111529
-public void test081() throws CoreException, IOException {
+public void test081() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final String projectName = "P081";
 	try {
 		IJavaProject javaProject = createJavaProject(projectName, new String[] {"src"}, Util.getJavaClassLibs(), "bin", CompilerOptions.getFirstSupportedJavaVersion());
@@ -2057,7 +2057,7 @@ public void test081() throws CoreException, IOException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=111529
-public void test082() throws CoreException, IOException {
+public void test082() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final String projectName = "P082";
 	try {
 		IJavaProject javaProject = createJavaProject(projectName, new String[] {"src"}, Util.getJavaClassLibs(), "bin", CompilerOptions.getFirstSupportedJavaVersion());
@@ -2184,7 +2184,7 @@ public void test082() throws CoreException, IOException {
 	 * can be created using its key in ASTRequestor#createBindings
 	 * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=236445 )
 	 */
-	public void test088() throws CoreException {
+	public void test088() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		assertBindingCreated(
 			new String[] {
 				"/P/A.java",
@@ -2208,7 +2208,7 @@ public void test082() throws CoreException, IOException {
 			"LA~B<LC;:1TV;LC;:1TE;>;");
 	}
 
-	public void testIgnoreMethodBodies1() throws CoreException {
+	public void testIgnoreMethodBodies1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = createWorkingCopies(new String[] {
 				"/P/p1/X.java",
 				"package p1;\n" +
@@ -2240,7 +2240,7 @@ public void test082() throws CoreException, IOException {
 					requestor.asts
 				);
 	}
-	public void testIgnoreMethodBodies2() throws CoreException {
+	public void testIgnoreMethodBodies2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = createWorkingCopies(new String[] {
 				"/P/p1/X.java",
 				"package p1;\n" +

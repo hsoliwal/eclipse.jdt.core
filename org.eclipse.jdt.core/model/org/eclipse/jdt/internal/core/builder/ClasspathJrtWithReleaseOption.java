@@ -56,7 +56,7 @@ public class ClasspathJrtWithReleaseOption extends ClasspathJrt {
 	private CtSym ctSym;
 
 
-	public ClasspathJrtWithReleaseOption(String zipFilename, AccessRuleSet accessRuleSet, IPath externalAnnotationPath,
+	public ClasspathJrtWithReleaseOption(String zipFilename, AccessRuleSet accessRuleSet, IPath externalAnnotationPath, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String release) throws CoreException {
 		super(zipFilename);
 		if (release == null || release.equals("")) { //$NON-NLS-1$
@@ -70,7 +70,7 @@ public class ClasspathJrtWithReleaseOption extends ClasspathJrt {
 		try {
 			this.ctSym = JRTUtil.getCtSym(Path.of(this.zipFilename).getParent().getParent());
 		} catch (IOException e) {
-			throw new CoreException(Status.error("Failed to init ct.sym for " + this.zipFilename, e)); //$NON-NLS-1$
+			throw new CoreException(Status.error("Failed to init ct.sym for " + this.zipFilename, e)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		/**
@@ -82,11 +82,11 @@ public class ClasspathJrtWithReleaseOption extends ClasspathJrt {
 		this.releaseCode = CtSym.getReleaseCode(this.release);
 		this.fs = this.ctSym.getFs();
 		this.releasePath = this.ctSym.getRoot();
-		Path modPath = this.fs.getPath(this.releaseCode + (this.ctSym.isJRE12Plus() ? "" : "-modules")); //$NON-NLS-1$ //$NON-NLS-2$
-		this.modPathString = !Files.exists(modPath) ? null: (this.zipFilename + "|"+ modPath.toString()); //$NON-NLS-1$
+		Path modPath = this.fs.getPath(this.releaseCode + (this.ctSym.isJRE12Plus() ? "" : "-modules")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		this.modPathString = !Files.exists(modPath) ? null: (this.zipFilename + "|"+ modPath.toString()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		if (!Files.exists(this.releasePath.resolve(this.releaseCode))) {
-			Exception e = new IllegalArgumentException("release " + this.release + " is not found in the system"); //$NON-NLS-1$//$NON-NLS-2$
+			Exception e = new IllegalArgumentException("release " + this.release + " is not found in the system"); //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			throw new CoreException(Status.error(e.getMessage(), e));
 		}
 		if (Files.exists(this.fs.getPath(this.releaseCode, "system-modules"))) { //$NON-NLS-1$
@@ -111,7 +111,7 @@ public class ClasspathJrtWithReleaseOption extends ClasspathJrt {
 			if (comp.indexOf('.') == -1) {
 				return comp;
 			}
-			throw new CoreException(Status.error("Invalid value for --release argument:" + comp)); //$NON-NLS-1$
+			throw new CoreException(Status.error("Invalid value for --release argument:" + comp)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -120,7 +120,7 @@ public class ClasspathJrtWithReleaseOption extends ClasspathJrt {
 		return this.release;
 	}
 
-	public void loadModules() {
+	public void loadModules() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.fs == null || !this.ctSym.isJRE12Plus()) {
 			ClasspathJrt.loadModules(this);
 			return;
@@ -130,8 +130,8 @@ public class ClasspathJrtWithReleaseOption extends ClasspathJrt {
 		}
 		modulesCache.computeIfAbsent(this.modPathString, key -> {
 			List<Path> releaseRoots = this.ctSym.releaseRoots(this.releaseCode);
-			Map<String, IModule> newCache = new HashMap<>();
-			for (Path root : releaseRoots) {
+			Map<String, IModule> newCache = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+			for (Path root : releaseRoots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					Files.walkFileTree(root, Collections.emptySet(), 2, new SimpleFileVisitor<Path>() {
 						@Override
@@ -150,7 +150,7 @@ public class ClasspathJrtWithReleaseOption extends ClasspathJrt {
 						}
 					});
 				} catch (IOException e) {
-					Util.log(e, "Failed to init modules cache for " + key); //$NON-NLS-1$
+					Util.log(e, "Failed to init modules cache for " + key); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 			return newCache.isEmpty() ? null : Map.copyOf(newCache);
@@ -158,7 +158,7 @@ public class ClasspathJrtWithReleaseOption extends ClasspathJrt {
 	}
 
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public NameEnvironmentAnswer findClass(String binaryFileName, String qualifiedPackageName, String moduleName,
 			String qualifiedBinaryFileName, boolean asBinaryOnly, Predicate<String> moduleNameFilter) {
 
@@ -262,7 +262,7 @@ public class ClasspathJrtWithReleaseOption extends ClasspathJrt {
 
 	@Override
 	public String toString() {
-		String start = "Classpath jrt file " + this.zipFilename + " with --release option " + this.release; //$NON-NLS-1$ //$NON-NLS-2$
+		String start = "Classpath jrt file " + this.zipFilename + " with --release option " + this.release; //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		return start;
 	}
 

@@ -69,7 +69,7 @@ public class FactoryLoaderTests extends APTTestBase {
 		return new TestSuite( FactoryLoaderTests.class );
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void setUp() throws Exception {
 		super.setUp();
 
@@ -94,7 +94,7 @@ public class FactoryLoaderTests extends APTTestBase {
 		env.addClass(srcRoot, ColorTestCodeExample.CODE_PACKAGE, ColorTestCodeExample.CODE_CLASS_NAME, code);
 	}
 
-	public void testExternalJarLoader() throws Exception {
+	public void testExternalJarLoader() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		LoaderTestAnnotationProcessor.clearLoaded();
 		IProject project = env.getProject( getProjectName() );
 		fullBuild( project.getFullPath() );
@@ -149,7 +149,7 @@ public class FactoryLoaderTests extends APTTestBase {
 	}
 
 	// Test what happens when the factory path contains a jar file that can't be found.
-	public void testNonexistentEntry() throws Exception {
+	public void testNonexistentEntry() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		LoaderTestAnnotationProcessor.clearLoaded();
 		IProject project = env.getProject( getProjectName() );
 		fullBuild( project.getFullPath() );
@@ -192,7 +192,7 @@ public class FactoryLoaderTests extends APTTestBase {
 
 	// Test that the jars of the factory path are not locked: they are loaded from a private
 	// copy, which is deleted when the class loader is discarded.
-	public void testExternalJarIsLoadedFromCopy() throws Exception {
+	public void testExternalJarIsLoadedFromCopy() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject project = env.getProject( getProjectName() );
 		IJavaProject jproj = env.getJavaProject( getProjectName() );
 		IFactoryPath ifp = AptConfig.getFactoryPath(jproj);
@@ -209,7 +209,7 @@ public class FactoryLoaderTests extends APTTestBase {
 		assertFalse("The jar should be loaded from a copy", findCopies(_extJar).isEmpty());
 
 		// On Windows this fails if the jar is still held by the class loader
-		File savedJar = new File(_extJar.getPath() + ".saved");
+		File savedJar = new File(_extJar.getPath() + ".saved"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Files.copy(_extJar.toPath(), savedJar.toPath());
 		try {
 			Files.delete(_extJar.toPath());
@@ -235,7 +235,7 @@ public class FactoryLoaderTests extends APTTestBase {
 
 	// Test that threads which load the factories of a project at the same time end up
 	// with the same class loaders, and that the redundant ones are closed.
-	public void testConcurrentLoadCreatesOneClassLoader() throws Exception {
+	public void testConcurrentLoadCreatesOneClassLoader() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject jproj = env.getJavaProject( getProjectName() );
 		// a batch mode entry: its class loader is created by each load of the factories
 		FactoryPath fp = FactoryPathUtil.getFactoryPath(jproj);
@@ -250,12 +250,12 @@ public class FactoryLoaderTests extends APTTestBase {
 		CyclicBarrier start = new CyclicBarrier(threadCount);
 		ExecutorService executor = Executors.newFixedThreadPool(threadCount);
 		try {
-			List<Future<Set<ClassLoader>>> results = new ArrayList<>();
-			for (int i = 0; i < threadCount; i++) {
+			List<Future<Set<ClassLoader>>> results = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			for (int i = 0; i < threadCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				results.add(executor.submit(() -> {
 					start.await();
-					Set<ClassLoader> classLoaders = new HashSet<>();
-					for (AnnotationProcessorFactory factory : loader.getJava5FactoriesForProject(jproj)) {
+					Set<ClassLoader> classLoaders = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+					for (AnnotationProcessorFactory factory : loader.getJava5FactoriesForProject(jproj)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						// ignore the factories that are contributed by plugins
 						if (factory.getClass().getClassLoader() instanceof URLClassLoader classLoader) {
 							classLoaders.add(classLoader);
@@ -264,8 +264,8 @@ public class FactoryLoaderTests extends APTTestBase {
 					return classLoaders;
 				}));
 			}
-			Set<ClassLoader> classLoaders = new HashSet<>();
-			for (Future<Set<ClassLoader>> result : results) {
+			Set<ClassLoader> classLoaders = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+			for (Future<Set<ClassLoader>> result : results) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				classLoaders.addAll(result.get());
 			}
 			assertEquals("All threads should use the same class loader", 1, classLoaders.size());
@@ -300,10 +300,10 @@ public class FactoryLoaderTests extends APTTestBase {
 	 */
 	private static List<java.nio.file.Path> findCopies(File jar) throws IOException {
 		java.nio.file.Path tempDir = Paths.get(System.getProperty("java.io.tmpdir"));
-		List<java.nio.file.Path> copies = new ArrayList<>();
+		List<java.nio.file.Path> copies = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		try (DirectoryStream<java.nio.file.Path> copyDirs = Files.newDirectoryStream(tempDir, "jdt-apt-*")) {
-			for (java.nio.file.Path copyDir : copyDirs) {
-				try (DirectoryStream<java.nio.file.Path> files = Files.newDirectoryStream(copyDir, "*_" + jar.getName())) {
+			for (java.nio.file.Path copyDir : copyDirs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				try (DirectoryStream<java.nio.file.Path> files = Files.newDirectoryStream(copyDir, "*_" + jar.getName())) { //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					files.forEach(copies::add);
 				} catch (NoSuchFileException | NotDirectoryException e) {
 					// deleted in the meantime, or not ours

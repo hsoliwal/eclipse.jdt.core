@@ -48,7 +48,7 @@ final class ImportComparator implements Comparator<ImportName> {
 		this.qualifiedNameComparator = createQualifiedNameComparator();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public int compare(ImportName o1, ImportName o2) {
 		final int comparison;
 

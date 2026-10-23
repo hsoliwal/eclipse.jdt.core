@@ -46,7 +46,7 @@ public class SelectionOnFieldReference extends FieldReference {
 	@Override
 	public StringBuilder printExpression(int indent, StringBuilder output){
 
-		output.append("<SelectionOnFieldReference:");  //$NON-NLS-1$
+		output.append("<SelectionOnFieldReference:");  //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return super.printExpression(0, output).append('>');
 	}
 

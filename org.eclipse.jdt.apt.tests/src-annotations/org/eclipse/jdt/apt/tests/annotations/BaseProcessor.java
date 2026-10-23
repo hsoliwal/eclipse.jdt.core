@@ -24,7 +24,7 @@ public abstract class BaseProcessor implements AnnotationProcessor {
 	public static final String SUCCESS = "succeeded";
 
 	public static String getPropertyName(Class<? extends AnnotationProcessor> processor) {
-		return processor.getName() + ".result";
+		return processor.getName() + ".result"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	protected void reportSuccess(Class<? extends AnnotationProcessor> processor) {
@@ -44,37 +44,37 @@ public abstract class BaseProcessor implements AnnotationProcessor {
 	protected void assertEqual(final int expected, final int actual, final String message){
 		if(expected != actual){
 			final Messager msgr = _env.getMessager();
-			msgr.printError(message + " expected: " + expected + " actual: " + actual );
+			msgr.printError(message + " expected: " + expected + " actual: " + actual ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
 	protected void assertEqual(final Object expected, final Object actual, final String message) {
 		if( expected == null ){
 			final Messager msgr = _env.getMessager();
-			msgr.printError(message + " actual: " + actual );
+			msgr.printError(message + " actual: " + actual ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		else if( actual == null ){
 			final Messager msgr = _env.getMessager();
-			msgr.printError(message + "expected " + expected );
+			msgr.printError(message + "expected " + expected ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		else if( !expected.equals(actual) ){
 			final Messager msgr = _env.getMessager();
-			msgr.printError(message + " expected: " + expected + " actual: " + actual );
+			msgr.printError(message + " expected: " + expected + " actual: " + actual ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
 	protected void assertEqual(final String expected, final String actual, final String message){
 		if( expected == null ){
 			final Messager msgr = _env.getMessager();
-			msgr.printError(message + " actual: " + actual );
+			msgr.printError(message + " actual: " + actual ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		else if( actual == null ){
 			final Messager msgr = _env.getMessager();
-			msgr.printError(message + "expected " + expected );
+			msgr.printError(message + "expected " + expected ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		else if( !expected.equals(actual) ){
 			final Messager msgr = _env.getMessager();
-			msgr.printError(message + " expected: " + expected + " actual: " + actual );
+			msgr.printError(message + " expected: " + expected + " actual: " + actual ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 

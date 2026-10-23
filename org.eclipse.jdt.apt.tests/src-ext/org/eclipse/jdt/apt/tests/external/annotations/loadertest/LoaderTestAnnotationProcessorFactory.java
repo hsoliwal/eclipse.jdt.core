@@ -29,7 +29,7 @@ import java.util.Set;
 public class LoaderTestAnnotationProcessorFactory implements
 		AnnotationProcessorFactory {
 
-	private static ArrayList<String> annotations = new ArrayList<>();
+	private static ArrayList<String> annotations = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 	{
 		annotations.add( LoaderTestAnnotation.class.getName() );

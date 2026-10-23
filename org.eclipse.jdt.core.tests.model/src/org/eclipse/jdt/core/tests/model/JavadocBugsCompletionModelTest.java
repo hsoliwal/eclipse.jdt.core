@@ -49,7 +49,7 @@ protected void setUp() throws Exception {
  * Bug 3270: [javadoc][assist] Javadoc content assist should show classes after @throws tag (1GDWWV9)
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=3270"
  */
-public void testBug3270() throws JavaModelException {
+public void testBug3270() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package javadoc.bugs;\n" +
 		"public class BasicTestBugs {\n" +
@@ -61,11 +61,11 @@ public void testBug3270() throws JavaModelException {
 	completeInJavadoc("/Completion/src/javadoc/bugs/BasicTestBugs.java", source, true, "@throws ", 0); // empty token
 	if (CompletionEngine.NO_TYPE_COMPLETION_ON_EMPTY_TOKEN) {
 		assertSortedResults(
-			"InterruptedException[TYPE_REF]{InterruptedException, java.lang, Ljava.lang.InterruptedException;, null, null, "+this.positions+R_DRICUNREETE+"}"
+			"InterruptedException[TYPE_REF]{InterruptedException, java.lang, Ljava.lang.InterruptedException;, null, null, "+this.positions+R_DRICUNREETE+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		);
 	} else {
 		assertSortedResults(
-			"InterruptedException[TYPE_REF]{InterruptedException, java.lang, Ljava.lang.InterruptedException;, null, null, "+this.positions+R_DRICUNREETEJ+"}\n" +
+			"InterruptedException[TYPE_REF]{InterruptedException, java.lang, Ljava.lang.InterruptedException;, null, null, "+this.positions+R_DRICUNREETEJ+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"BasicTestBugs[TYPE_REF]{BasicTestBugs, javadoc.bugs, Ljavadoc.bugs.BasicTestBugs;, null, null, "+this.positions+R_DRICUNR+"}"
 		);
 	}
@@ -81,7 +81,7 @@ public void testBug3270a() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/bugs/BasicTestBugs.java", source, true, "I");
 	assertSortedResults(
-		"InterruptedException[TYPE_REF]{InterruptedException, java.lang, Ljava.lang.InterruptedException;, null, null, "+this.positions+R_DRICUNREEETJ+"}\n" +
+		"InterruptedException[TYPE_REF]{InterruptedException, java.lang, Ljava.lang.InterruptedException;, null, null, "+this.positions+R_DRICUNREEETJ+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"IllegalMonitorStateException[TYPE_REF]{IllegalMonitorStateException, java.lang, Ljava.lang.IllegalMonitorStateException;, null, null, "+this.positions+R_DRICUNREJ+"}\n"+
 		"Inherited[TYPE_REF]{java.lang.annotation.Inherited, java.lang.annotation, Ljava.lang.annotation.Inherited;, null, null, "+this.positions+R_DRICNRJ+"}\n" +
 		"Iterator[TYPE_REF]{java.util.Iterator, java.util, Ljava.util.Iterator;, null, null, "+this.positions+R_DRICNRJ+"}"
@@ -98,7 +98,7 @@ public void testBug3270b() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/bugs/BasicTestBugs.java", source, true, "Cl");
 	assertSortedResults(
-		"CloneNotSupportedException[TYPE_REF]{CloneNotSupportedException, java.lang, Ljava.lang.CloneNotSupportedException;, null, null, "+this.positions+R_DRICUNREJ+"}\n" +
+		"CloneNotSupportedException[TYPE_REF]{CloneNotSupportedException, java.lang, Ljava.lang.CloneNotSupportedException;, null, null, "+this.positions+R_DRICUNREJ+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Class[TYPE_REF]{Class, java.lang, Ljava.lang.Class;, null, null, "+this.positions+R_DRICUNRJ+"}"
 	);
 }
@@ -119,7 +119,7 @@ public void testBug22043() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/bugs/BasicTestBugs.java", source, true, "S", 2); // 2nd occurence
 	assertSortedResults(
-		"String[TYPE_REF]{String, java.lang, Ljava.lang.String;, null, null, "+this.positions+R_DRICUNRJ+"}\n" +
+		"String[TYPE_REF]{String, java.lang, Ljava.lang.String;, null, null, "+this.positions+R_DRICUNRJ+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Serializable[TYPE_REF]{java.io.Serializable, java.io, Ljava.io.Serializable;, null, null, "+this.positions+R_DRICNRJ+"}\n" +
 		"short[KEYWORD]{short, null, null, short, null, "+this.positions+R_DRINR+"}"
 	);
@@ -137,7 +137,7 @@ public void testBug22043a() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/bugs/BasicTestBugs.java", source, true, "thisIsAMethod", 2); // 2nd occurence
 	assertResults(
-		"thisIsAMethod[METHOD_REF]{thisIsAMethod(String), Ljavadoc.bugs.BasicTestBugs;, (Ljava.lang.String;)V, thisIsAMethod, (param), "+this.positions+R_DRICENNRNS+"}"
+		"thisIsAMethod[METHOD_REF]{thisIsAMethod(String), Ljavadoc.bugs.BasicTestBugs;, (Ljava.lang.String;)V, thisIsAMethod, (param), "+this.positions+R_DRICENNRNS+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -153,7 +153,7 @@ public void testBug22043b() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/bugs/BasicTestBugs.java", source, true, "thisIsAMethod(", 2); // 2nd occurence
 	assertResults(
-		"thisIsAMethod[METHOD_REF]{thisIsAMethod(String), Ljavadoc.bugs.BasicTestBugs;, (Ljava.lang.String;)V, thisIsAMethod, (param), "+this.positions+R_DRICENUNR+"}"
+		"thisIsAMethod[METHOD_REF]{thisIsAMethod(String), Ljavadoc.bugs.BasicTestBugs;, (Ljava.lang.String;)V, thisIsAMethod, (param), "+this.positions+R_DRICENUNR+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -170,7 +170,7 @@ public void testBug22043c() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/bugs/BasicTestBugs.java", source, true, "thisIsAMethod(", 2); // 2nd occurence
 	assertResults(
-		"thisIsAMethod[METHOD_REF]{thisIsAMethod(Object), Ljavadoc.bugs.BasicTestBugs;, (Ljava.lang.Object;)V, thisIsAMethod, (str), "+this.positions+R_DRICENUNR+"}\n" +
+		"thisIsAMethod[METHOD_REF]{thisIsAMethod(Object), Ljavadoc.bugs.BasicTestBugs;, (Ljava.lang.Object;)V, thisIsAMethod, (str), "+this.positions+R_DRICENUNR+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"thisIsAMethod[METHOD_REF]{thisIsAMethod(String), Ljavadoc.bugs.BasicTestBugs;, (Ljava.lang.String;)V, thisIsAMethod, (param), "+this.positions+R_DRICENUNR+"}"
 	);
 }
@@ -190,7 +190,7 @@ public void testBug67732() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/bugs/BasicTestBugs.java", source, true, "to");
 	assertSortedResults(
-		"toString[METHOD_REF]{toString(), Ljava.lang.Object;, ()Ljava.lang.String;, toString, null, "+this.positions+R_DRICNRNS+"}"
+		"toString[METHOD_REF]{toString(), Ljava.lang.Object;, ()Ljava.lang.String;, toString, null, "+this.positions+R_DRICNRNS+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -198,7 +198,7 @@ public void testBug67732() throws JavaModelException {
  * Bug 68757: [javadoc][assist] inconsistent type qualification
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=68757"
  */
-public void testBug68757() throws JavaModelException {
+public void testBug68757() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] sources = {
 		"/Completion/src/javadoc/bugs/BasicTestBugs.java",
 			"package javadoc.bugs;\n" +
@@ -216,10 +216,10 @@ public void testBug68757() throws JavaModelException {
 	};
 	completeInJavadoc(sources, true, "Other", 2);	// 2nd occurrence
 	assertSortedResults(
-		"OtherType[TYPE_REF]{OtherType, javadoc.tests, Ljavadoc.tests.OtherType;, null, null, "+this.positions+R_DRICUNR+"}"
+		"OtherType[TYPE_REF]{OtherType, javadoc.tests, Ljavadoc.tests.OtherType;, null, null, "+this.positions+R_DRICUNR+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
-public void testBug68757a() throws JavaModelException {
+public void testBug68757a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] sources = {
 		"/Completion/src/javadoc/bugs/BasicTestBugs.java",
 			"package javadoc.bugs;\n" +
@@ -236,10 +236,10 @@ public void testBug68757a() throws JavaModelException {
 	};
 	completeInJavadoc(sources, true, "Other");
 	assertSortedResults(
-		"OtherType[TYPE_REF]{javadoc.tests.OtherType, javadoc.tests, Ljavadoc.tests.OtherType;, null, null, "+this.positions+R_DRICNR+"}"
+		"OtherType[TYPE_REF]{javadoc.tests.OtherType, javadoc.tests, Ljavadoc.tests.OtherType;, null, null, "+this.positions+R_DRICNR+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
-public void testBug68757b() throws JavaModelException {
+public void testBug68757b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] sources = {
 		"/Completion/src/javadoc/bugs/BasicTestBugs.java",
 			"package javadoc.bugs;\n" +
@@ -256,7 +256,7 @@ public void testBug68757b() throws JavaModelException {
 	};
 	completeInJavadoc(sources, true, "Other");
 	assertSortedResults(
-		"OtherType[TYPE_REF]{javadoc.tests.OtherType, javadoc.tests, Ljavadoc.tests.OtherType;, null, null, "+this.positions+R_DRICNR+"}"
+		"OtherType[TYPE_REF]{javadoc.tests.OtherType, javadoc.tests, Ljavadoc.tests.OtherType;, null, null, "+this.positions+R_DRICNR+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -265,7 +265,7 @@ public void testBug68757b() throws JavaModelException {
  * TODO (frederic) fix while fixing bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=96237
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=75551"
  */
-public void _testBug75551() throws JavaModelException {
+public void _testBug75551() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] sources = {
 		"/Completion/src/javadoc/bugs/BasicTestBugs.java",
 			"package javadoc.bugs;\n" +
@@ -286,7 +286,7 @@ public void _testBug75551() throws JavaModelException {
 	};
 	completeInJavadoc(sources, true, "Inner");
 	assertSortedResults(
-		"SuperClass.InnerClass[TYPE_REF]{SuperClass.InnerClass, javadoc.bugs, Ljavadoc.bugs.SuperClass$InnerClass;, null, null, "+this.positions+R_DRICUNR+"}"
+		"SuperClass.InnerClass[TYPE_REF]{SuperClass.InnerClass, javadoc.bugs, Ljavadoc.bugs.SuperClass$InnerClass;, null, null, "+this.positions+R_DRICUNR+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -294,7 +294,7 @@ public void _testBug75551() throws JavaModelException {
  * Bug 86112: [javadoc][assist] Wrong reference to binary static initializer in javadoc
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=86112"
  */
-public void testBug86112() throws JavaModelException {
+public void testBug86112() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] sources = {
 		"/Completion/src/javadoc/bugs/BasicTestBugs.java",
 			"package javadoc.bugs;\n" +
@@ -314,7 +314,7 @@ public void testBug86112() throws JavaModelException {
 	};
 	completeInJavadoc(sources, true, "#", 0); // empty token
 	assertSortedResults(
-		"clone[METHOD_REF]{clone(), Ljava.lang.Object;, ()Ljava.lang.Object;, clone, null, "+this.positions+R_DRICNRNS+"}\n" +
+		"clone[METHOD_REF]{clone(), Ljava.lang.Object;, ()Ljava.lang.Object;, clone, null, "+this.positions+R_DRICNRNS+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"equals[METHOD_REF]{equals(Object), Ljava.lang.Object;, (Ljava.lang.Object;)Z, equals, (obj), "+this.positions+R_DRICNRNS+"}\n" +
 		"finalize[METHOD_REF]{finalize(), Ljava.lang.Object;, ()V, finalize, null, "+this.positions+R_DRICNRNS+"}\n" +
 		"getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, getClass, null, "+this.positions+R_DRICNRNS+"}\n" +
@@ -345,7 +345,7 @@ public void testBug87868() throws JavaModelException {
 		"}";
 	completeInJavadoc("/Completion/src/javadoc/bugs/BasicTestBugs.java", source, true, "meth");
 	assertSortedResults(
-		"method[METHOD_REF]{method(Object), Ljavadoc.bugs.BasicTestBugs;, (Ljava.lang.Object;)V, method, (s), "+this.positions+R_DRICNRNS+"}"
+		"method[METHOD_REF]{method(Object), Ljavadoc.bugs.BasicTestBugs;, (Ljava.lang.Object;)V, method, (s), "+this.positions+R_DRICNRNS+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -382,7 +382,7 @@ public void testBug113374b() throws JavaModelException {
  * Bug 113376: [javadoc][assist] wrong overwrite range on completion followed by a tag
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=113376"
  */
-public void testBug113376a() throws JavaModelException {
+public void testBug113376a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setUpProjectOptions(CompilerOptions.getFirstSupportedJavaVersion());
 	String[] sources = {
 		"/Completion/src/javadoc/bugs/BasicTestFields.java",
@@ -401,10 +401,10 @@ public void testBug113376a() throws JavaModelException {
 	};
 	completeInJavadoc(sources, true, "javadoc.util.Collection");
 	assertSortedResults(
-		"Collection[TYPE_REF]{javadoc.util.Collection, javadoc.util, Ljavadoc.util.Collection;, null, null, "+this.positions+R_DRICENQNR+"}"
+		"Collection[TYPE_REF]{javadoc.util.Collection, javadoc.util, Ljavadoc.util.Collection;, null, null, "+this.positions+R_DRICENQNR+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
-public void testBug113376b() throws JavaModelException {
+public void testBug113376b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setUpProjectOptions(CompilerOptions.getFirstSupportedJavaVersion());
 	String[] sources = {
 		"/Completion/src/javadoc/bugs/BasicTestFields.java",
@@ -431,7 +431,7 @@ public void testBug113376b() throws JavaModelException {
  * Bug 114341: [javadoc][assist] range of the qualified type completion in javadoc text isn't corect
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=114341"
  */
-public void testBug114341a() throws JavaModelException {
+public void testBug114341a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package javadoc.text;\n" +
 		"public class BasicTestTextIns {\n" +
@@ -445,7 +445,7 @@ public void testBug114341a() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "Secondary.Mem");
 	assertSortedResults(
-		"Secondary.Member[JAVADOC_TYPE_REF]{{@link Member}, javadoc.text, Ljavadoc.text.Secondary$Member;, null, null, "+this.positions+R_DRICNRIT+"}\n" +
+		"Secondary.Member[JAVADOC_TYPE_REF]{{@link Member}, javadoc.text, Ljavadoc.text.Secondary$Member;, null, null, "+this.positions+R_DRICNRIT+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Secondary.Member[TYPE_REF]{Member, javadoc.text, Ljavadoc.text.Secondary$Member;, null, null, "+this.positions+R_DRICNR+"}"
 	);
 }
@@ -464,7 +464,7 @@ public void testBug114341b() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "Mem");
 	assertSortedResults(
-		"Secondary.Member[TYPE_REF]{Member, javadoc.text, Ljavadoc.text.Secondary$Member;, null, null, "+this.positions+R_DRICNR+"}"
+		"Secondary.Member[TYPE_REF]{Member, javadoc.text, Ljavadoc.text.Secondary$Member;, null, null, "+this.positions+R_DRICNR+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -482,10 +482,10 @@ public void testBug114341c() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "Mem");
 	assertSortedResults(
-		"Secondary.Member[TYPE_REF]{Member, javadoc.text, Ljavadoc.text.Secondary$Member;, null, null, "+this.positions+R_DRICNR+"}"
+		"Secondary.Member[TYPE_REF]{Member, javadoc.text, Ljavadoc.text.Secondary$Member;, null, null, "+this.positions+R_DRICNR+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
-public void testBug114341d() throws JavaModelException {
+public void testBug114341d() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package javadoc.text;\n" +
 		"public class BasicTestTextIns {\n" +
@@ -499,7 +499,7 @@ public void testBug114341d() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "javadoc.text.Secondary.Mem");
 	assertSortedResults(
-		"Secondary.Member[JAVADOC_TYPE_REF]{{@link Member}, javadoc.text, Ljavadoc.text.Secondary$Member;, null, null, "+this.positions+R_DRICNRIT+"}\n" +
+		"Secondary.Member[JAVADOC_TYPE_REF]{{@link Member}, javadoc.text, Ljavadoc.text.Secondary$Member;, null, null, "+this.positions+R_DRICNRIT+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Secondary.Member[TYPE_REF]{Member, javadoc.text, Ljavadoc.text.Secondary$Member;, null, null, "+this.positions+R_DRICNR+"}"
 	);
 }
@@ -518,7 +518,7 @@ public void testBug114341e() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "Mem");
 	assertSortedResults(
-		"Secondary.Member[TYPE_REF]{Member, javadoc.text, Ljavadoc.text.Secondary$Member;, null, null, "+this.positions+R_DRICNR+"}"
+		"Secondary.Member[TYPE_REF]{Member, javadoc.text, Ljavadoc.text.Secondary$Member;, null, null, "+this.positions+R_DRICNR+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -536,7 +536,7 @@ public void testBug114341f() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "Mem");
 	assertSortedResults(
-		"Secondary.Member[TYPE_REF]{Member, javadoc.text, Ljavadoc.text.Secondary$Member;, null, null, "+this.positions+R_DRICNR+"}"
+		"Secondary.Member[TYPE_REF]{Member, javadoc.text, Ljavadoc.text.Secondary$Member;, null, null, "+this.positions+R_DRICNR+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -555,7 +555,7 @@ public void testBug115662a() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/bugs/b115662/Test.java", source, true, "to");
 	assertSortedResults(
-		"toString[METHOD_REF]{toString(), Ljava.lang.Object;, ()Ljava.lang.String;, toString, null, "+this.positions+R_DRICNRNS+"}\n" +
+		"toString[METHOD_REF]{toString(), Ljava.lang.Object;, ()Ljava.lang.String;, toString, null, "+this.positions+R_DRICNRNS+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"toto[FIELD_REF]{toto, Lbugs.b115662.Tests;, I, toto, null, "+this.positions+R_DRICNRNS+"}"
 	);
 }
@@ -571,7 +571,7 @@ public void testBug115662b() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/bugs/b115662/Test.java", source, true, "to");
 	assertSortedResults(
-		"toString[METHOD_REF]{toString(), Ljava.lang.Object;, ()Ljava.lang.String;, toString, null, "+this.positions+R_DRICNRNS+"}\n" +
+		"toString[METHOD_REF]{toString(), Ljava.lang.Object;, ()Ljava.lang.String;, toString, null, "+this.positions+R_DRICNRNS+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"toto[FIELD_REF]{toto, Lbugs.b115662.Tests;, I, toto, null, "+this.positions+R_DRICNRNS+"}"
 	);
 }
@@ -587,7 +587,7 @@ public void testBug115662c() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/bugs/b115662/Test.java", source, true, "toString");
 	assertSortedResults(
-		"toString[METHOD_REF]{toString(), Ljava.lang.Object;, ()Ljava.lang.String;, toString, null, "+this.positions+R_DRICENNRNS+"}"
+		"toString[METHOD_REF]{toString(), Ljava.lang.Object;, ()Ljava.lang.String;, toString, null, "+this.positions+R_DRICENNRNS+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -595,7 +595,7 @@ public void testBug115662c() throws JavaModelException {
  * Bug 117183: [javadoc][assist] No completion in text when cursor location is followed by a '.'
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=117183"
  */
-public void testBug117183a() throws JavaModelException {
+public void testBug117183a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] sources = {
 		"/Completion/src/javadoc/bugs/BasicTestBugs.java",
 			"package javadoc.bugs;\n" +
@@ -613,11 +613,11 @@ public void testBug117183a() throws JavaModelException {
 	};
 	completeInJavadoc(sources, true, "Reference#A_");
 	assertSortedResults(
-		"A_STATIC_FIELD[JAVADOC_FIELD_REF]{{@link Reference#A_STATIC_FIELD}, Ljavadoc.bugs.Reference;, I, A_STATIC_FIELD, null, "+this.positions+R_DRICNRIT+"}\n" +
+		"A_STATIC_FIELD[JAVADOC_FIELD_REF]{{@link Reference#A_STATIC_FIELD}, Ljavadoc.bugs.Reference;, I, A_STATIC_FIELD, null, "+this.positions+R_DRICNRIT+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"A_STATIC_FIELD[JAVADOC_VALUE_REF]{{@value Reference#A_STATIC_FIELD}, Ljavadoc.bugs.Reference;, I, A_STATIC_FIELD, null, "+this.positions+R_DRICNRIT+"}"
 	);
 }
-public void testBug117183b() throws JavaModelException {
+public void testBug117183b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] sources = {
 		"/Completion/src/javadoc/bugs/BasicTestBugs.java",
 			"package javadoc.bugs;\n" +
@@ -635,7 +635,7 @@ public void testBug117183b() throws JavaModelException {
 	};
 	completeInJavadoc(sources, true, "Reference#A_STATIC_FIELD");
 	assertSortedResults(
-		"A_STATIC_FIELD[JAVADOC_FIELD_REF]{{@link Reference#A_STATIC_FIELD}, Ljavadoc.bugs.Reference;, I, A_STATIC_FIELD, null, "+this.positions+R_DRICENNRIT+"}\n" +
+		"A_STATIC_FIELD[JAVADOC_FIELD_REF]{{@link Reference#A_STATIC_FIELD}, Ljavadoc.bugs.Reference;, I, A_STATIC_FIELD, null, "+this.positions+R_DRICENNRIT+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"A_STATIC_FIELD[JAVADOC_VALUE_REF]{{@value Reference#A_STATIC_FIELD}, Ljavadoc.bugs.Reference;, I, A_STATIC_FIELD, null, "+this.positions+R_DRICENNRIT+"}"
 	);
 }
@@ -651,7 +651,7 @@ public void testBug117183c() throws JavaModelException {
 	};
 	completeInJavadoc(sources, true, "Obj");
 	assertSortedResults(
-		"Object[JAVADOC_TYPE_REF]{{@link Object}, java.lang, Ljava.lang.Object;, null, null, "+this.positions+R_DRICUNRITJ+"}\n" +
+		"Object[JAVADOC_TYPE_REF]{{@link Object}, java.lang, Ljava.lang.Object;, null, null, "+this.positions+R_DRICUNRITJ+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Object[TYPE_REF]{Object, java.lang, Ljava.lang.Object;, null, null, "+this.positions+R_DRICUNRJ+"}"
 	);
 }
@@ -667,7 +667,7 @@ public void testBug117183d() throws JavaModelException {
 	};
 	completeInJavadoc(sources, true, "Str");
 	assertSortedResults(
-		"String[JAVADOC_TYPE_REF]{{@link String}, java.lang, Ljava.lang.String;, null, null, "+this.positions+R_DRICUNRITJ+"}\n" +
+		"String[JAVADOC_TYPE_REF]{{@link String}, java.lang, Ljava.lang.String;, null, null, "+this.positions+R_DRICUNRITJ+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"String[TYPE_REF]{String, java.lang, Ljava.lang.String;, null, null, "+this.positions+R_DRICUNRJ+"}"
 	);
 }
@@ -686,7 +686,7 @@ public void testBug118105() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/bugs/b118105/BasicTestBugs.java", source, true, "Str");
 	assertSortedResults(
-		"String[TYPE_REF]{String, java.lang, Ljava.lang.String;, null, null, "+this.positions+R_DRICUNRJ+"}"
+		"String[TYPE_REF]{String, java.lang, Ljava.lang.String;, null, null, "+this.positions+R_DRICUNRJ+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -712,7 +712,7 @@ public void testBug118092() throws JavaModelException {
  * Bug 118311: [javadoc][assist] type \@ in javadoc comment and code assist == hang
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=118311"
  */
-public void testBug118311() throws JavaModelException {
+public void testBug118311() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package bugs.b118311;\n" +
 		"/**\n" +
@@ -723,7 +723,7 @@ public void testBug118311() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/bugs/b118311/BasicTestBugs.java", source, true, "@");
 	assertSortedResults(
-		"code[JAVADOC_INLINE_TAG]{{@code}, null, null, code, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
+		"code[JAVADOC_INLINE_TAG]{{@code}, null, null, code, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"docRoot[JAVADOC_INLINE_TAG]{{@docRoot}, null, null, docRoot, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
 		"link[JAVADOC_INLINE_TAG]{{@link}, null, null, link, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
 		"linkplain[JAVADOC_INLINE_TAG]{{@linkplain}, null, null, linkplain, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
@@ -746,7 +746,7 @@ public void testBug118397a() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/bugs/b118397/BasicTestBugs.java", source, true, "bugs.b118", 2); // 2nd occurence
 	assertSortedResults(
-		"bugs.b118397[PACKAGE_REF]{bugs.b118397, bugs.b118397, null, null, null, "+this.positions+R_DRICQNR+"}"
+		"bugs.b118397[PACKAGE_REF]{bugs.b118397, bugs.b118397, null, null, null, "+this.positions+R_DRICQNR+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 public void testBug118397b() throws JavaModelException {
@@ -761,11 +761,11 @@ public void testBug118397b() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/bugs/b118397/BasicTestBugs.java", source, true, "Basic");
 	assertSortedResults(
-		"BasicTestBugs[TYPE_REF]{BasicTestBugs, bugs.b118397, Lbugs.b118397.BasicTestBugs;, null, null, "+this.positions+R_DRICUNR+"}\n" +
+		"BasicTestBugs[TYPE_REF]{BasicTestBugs, bugs.b118397, Lbugs.b118397.BasicTestBugs;, null, null, "+this.positions+R_DRICUNR+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"BasicTestReferences[TYPE_REF]{org.eclipse.jdt.core.tests.BasicTestReferences, org.eclipse.jdt.core.tests, Lorg.eclipse.jdt.core.tests.BasicTestReferences;, null, null, "+this.positions+R_DRICNR+"}"
 	);
 }
-public void testBug118397c() throws JavaModelException {
+public void testBug118397c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package bugs.b118397;\n" +
 		"/**\n" +
@@ -781,10 +781,10 @@ public void testBug118397c() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/bugs/b118397/BasicTestBugs.java", source, true, "In");
 	assertSortedResults(
-		"BasicTestBugs.Inner[TYPE_REF]{Inner, bugs.b118397, Lbugs.b118397.BasicTestBugs$Inner;, null, null, "+this.positions+R_DRICNR+"}"
+		"BasicTestBugs.Inner[TYPE_REF]{Inner, bugs.b118397, Lbugs.b118397.BasicTestBugs$Inner;, null, null, "+this.positions+R_DRICNR+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
-public void testBug118397d() throws JavaModelException {
+public void testBug118397d() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package bugs.b118397;\n" +
 		"/**\n" +
@@ -800,7 +800,7 @@ public void testBug118397d() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/bugs/b118397/BasicTestBugs.java", source, true, "Lev");
 	assertSortedResults(
-		"BasicTestBugs.Inner.Level2[TYPE_REF]{Level2, bugs.b118397, Lbugs.b118397.BasicTestBugs$Inner$Level2;, null, null, "+this.positions+R_DRICNR+"}"
+		"BasicTestBugs.Inner.Level2[TYPE_REF]{Level2, bugs.b118397, Lbugs.b118397.BasicTestBugs$Inner$Level2;, null, null, "+this.positions+R_DRICNR+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -820,10 +820,10 @@ public void testBug139621a() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/bugs/b139621/BasicTestBugs.java", source, true, "Obj");
 	assertSortedResults(
-		"Object[TYPE_REF]{Object, java.lang, Ljava.lang.Object;, null, null, "+this.positions+R_DRICUNRJ+"}"
+		"Object[TYPE_REF]{Object, java.lang, Ljava.lang.Object;, null, null, "+this.positions+R_DRICUNRJ+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
-public void testBug139621b() throws JavaModelException {
+public void testBug139621b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package bugs.b139621;\n" +
 		"/**\n" +
@@ -838,10 +838,10 @@ public void testBug139621b() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/bugs/b139621/BasicTestBugs.java", source, true, "Obj");
 	assertSortedResults(
-		"Object[TYPE_REF]{Object, java.lang, Ljava.lang.Object;, null, null, "+this.positions+R_DRICUNRJ+"}"
+		"Object[TYPE_REF]{Object, java.lang, Ljava.lang.Object;, null, null, "+this.positions+R_DRICUNRJ+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
-public void testBug139621c() throws JavaModelException {
+public void testBug139621c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package bugs.b139621;\n" +
 		"public class BasicTestBugs {\n" +
@@ -853,7 +853,7 @@ public void testBug139621c() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/bugs/b139621/BasicTestBugs.java", source, true, "@");
 	assertSortedResults(
-		"apiNote[JAVADOC_BLOCK_TAG]{@apiNote, null, null, apiNote, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
+		"apiNote[JAVADOC_BLOCK_TAG]{@apiNote, null, null, apiNote, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"author[JAVADOC_BLOCK_TAG]{@author, null, null, author, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
 		"category[JAVADOC_BLOCK_TAG]{@category, null, null, category, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
 		"code[JAVADOC_INLINE_TAG]{{@code}, null, null, code, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
@@ -878,7 +878,7 @@ public void testBug139621c() throws JavaModelException {
 		"version[JAVADOC_BLOCK_TAG]{@version, null, null, version, null, "+this.positions+JAVADOC_RELEVANCE+"}"
 	);
 }
-public void testBug139621d() throws JavaModelException {
+public void testBug139621d() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package bugs.b139621;\n" +
 		"public class BasicTestBugs {\n" +
@@ -891,7 +891,7 @@ public void testBug139621d() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/bugs/b139621/BasicTestBugs.java", source, true, "@", 2);
 	assertSortedResults(
-		"code[JAVADOC_INLINE_TAG]{{@code}, null, null, code, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
+		"code[JAVADOC_INLINE_TAG]{{@code}, null, null, code, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"docRoot[JAVADOC_INLINE_TAG]{{@docRoot}, null, null, docRoot, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
 		"inheritDoc[JAVADOC_INLINE_TAG]{{@inheritDoc}, null, null, inheritDoc, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
 		"link[JAVADOC_INLINE_TAG]{{@link}, null, null, link, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
@@ -900,7 +900,7 @@ public void testBug139621d() throws JavaModelException {
 		"value[JAVADOC_INLINE_TAG]{{@value}, null, null, value, null, "+this.positions+JAVADOC_RELEVANCE+"}"
 	);
 }
-public void testBug139621e() throws JavaModelException {
+public void testBug139621e() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package bugs.b139621;\n" +
 		"/**\n" +
@@ -916,10 +916,10 @@ public void testBug139621e() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/bugs/b139621/BasicTestBugs.java", source, true, "Obj");
 	assertSortedResults(
-		"Object[TYPE_REF]{Object, java.lang, Ljava.lang.Object;, null, null, "+this.positions+R_DRICUNRJ+"}"
+		"Object[TYPE_REF]{Object, java.lang, Ljava.lang.Object;, null, null, "+this.positions+R_DRICUNRJ+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
-public void testBug139621f() throws JavaModelException {
+public void testBug139621f() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package bugs.b139621;\n" +
 		"/**\n" +
@@ -935,7 +935,7 @@ public void testBug139621f() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/bugs/b139621/BasicTestBugs.java", source, true, "Obj");
 	assertSortedResults(
-		"Object[TYPE_REF]{Object, java.lang, Ljava.lang.Object;, null, null, "+this.positions+R_DRICUNRJ+"}"
+		"Object[TYPE_REF]{Object, java.lang, Ljava.lang.Object;, null, null, "+this.positions+R_DRICUNRJ+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 public void testBug139621g() throws JavaModelException {
@@ -947,10 +947,10 @@ public void testBug139621g() throws JavaModelException {
 		" */\n";
 	completeInJavadoc("/Completion/src/bugs/b139621/BasicTestBugs.java", source, true, "Obj");
 	assertSortedResults(
-		"Object[TYPE_REF]{Object, java.lang, Ljava.lang.Object;, null, null, "+this.positions+R_DRICUNRJ+"}"
+		"Object[TYPE_REF]{Object, java.lang, Ljava.lang.Object;, null, null, "+this.positions+R_DRICUNRJ+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
-public void testBug139621h() throws JavaModelException {
+public void testBug139621h() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package bugs.b139621;\n" +
 		"/**\n" +
@@ -960,7 +960,7 @@ public void testBug139621h() throws JavaModelException {
 		" */\n";
 	completeInJavadoc("/Completion/src/bugs/b139621/BasicTestBugs.java", source, true, "@");
 	assertSortedResults(
-		"apiNote[JAVADOC_BLOCK_TAG]{@apiNote, null, null, apiNote, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
+		"apiNote[JAVADOC_BLOCK_TAG]{@apiNote, null, null, apiNote, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"author[JAVADOC_BLOCK_TAG]{@author, null, null, author, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
 		"category[JAVADOC_BLOCK_TAG]{@category, null, null, category, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
 		"code[JAVADOC_INLINE_TAG]{{@code}, null, null, code, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
@@ -979,7 +979,7 @@ public void testBug139621h() throws JavaModelException {
 		"version[JAVADOC_BLOCK_TAG]{@version, null, null, version, null, "+this.positions+JAVADOC_RELEVANCE+"}"
 	);
 }
-public void testBug139621i() throws JavaModelException {
+public void testBug139621i() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package bugs.b139621;\n" +
 		"/**\n" +
@@ -990,7 +990,7 @@ public void testBug139621i() throws JavaModelException {
 		" */\n";
 	completeInJavadoc("/Completion/src/bugs/b139621/BasicTestBugs.java", source, true, "@", 2);
 	assertSortedResults(
-		"code[JAVADOC_INLINE_TAG]{{@code}, null, null, code, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
+		"code[JAVADOC_INLINE_TAG]{{@code}, null, null, code, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"docRoot[JAVADOC_INLINE_TAG]{{@docRoot}, null, null, docRoot, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
 		"link[JAVADOC_INLINE_TAG]{{@link}, null, null, link, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
 		"linkplain[JAVADOC_INLINE_TAG]{{@linkplain}, null, null, linkplain, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
@@ -1003,7 +1003,7 @@ public void testBug139621i() throws JavaModelException {
  * Bug 144866: [assist][javadoc] Wrong completion inside @value tag
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=144866"
  */
-public void testBug144866() throws JavaModelException {
+public void testBug144866() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package bugs.b144866;\n" +
 		"public class BasicTestBugs {\n" +
@@ -1018,7 +1018,7 @@ public void testBug144866() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/bugs/b144866/BasicTestBugs.java", source, true, "EX", 2); // 2nd occurence
 	assertSortedResults(
-		"EXAMPLE[FIELD_REF]{EXAMPLE, Lbugs.b144866.BasicTestBugs;, I, EXAMPLE, null, "+this.positions+R_DRICNR+"}"
+		"EXAMPLE[FIELD_REF]{EXAMPLE, Lbugs.b144866.BasicTestBugs;, I, EXAMPLE, null, "+this.positions+R_DRICNR+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -1041,7 +1041,7 @@ public void testBug171016() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/bugs/b171016/BasicTestBugs.java", source, true, "{@In", 1);
 	assertSortedResults(
-		"inheritDoc[JAVADOC_INLINE_TAG]{{@inheritDoc}, null, null, inheritDoc, null, "+this.positions+JAVADOC_RELEVANCE+"}"
+		"inheritDoc[JAVADOC_INLINE_TAG]{{@inheritDoc}, null, null, inheritDoc, null, "+this.positions+JAVADOC_RELEVANCE+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 public void testBug171016b() throws JavaModelException {
@@ -1058,7 +1058,7 @@ public void testBug171016b() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/bugs/b171016/BasicTestBugs.java", source, true, "@In", 1);
 	assertSortedResults(
-		"inheritDoc[JAVADOC_INLINE_TAG]{{@inheritDoc}, null, null, inheritDoc, null, "+this.positions+JAVADOC_RELEVANCE+"}"
+		"inheritDoc[JAVADOC_INLINE_TAG]{{@inheritDoc}, null, null, inheritDoc, null, "+this.positions+JAVADOC_RELEVANCE+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -1086,7 +1086,7 @@ public void _testBug171031() throws JavaModelException {
  * test Do not include type params in Javadoc content assist proposals
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=185576"
  */
-public void testBug185576a() throws JavaModelException {
+public void testBug185576a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setUpProjectOptions(CompilerOptions.getFirstSupportedJavaVersion());
 	String source =
 		"package bugs.b185576;\n" +
@@ -1103,12 +1103,12 @@ public void testBug185576a() throws JavaModelException {
 		"	}\n" +
 		"}\n";
 	completeInJavadoc("/Completion/src/bugs/b185576/BasicTestBugs.java", source, true, "@link ", 0);
-	String emptyPositions = "["+this.completionStart+", "+this.completionStart+"], ";
+	String emptyPositions = "["+this.completionStart+", "+this.completionStart+"], "; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	assertSortedResults(
-		"BasicTestBugs[TYPE_REF]{BasicTestBugs, bugs.b185576, Lbugs.b185576.BasicTestBugs;, null, null, "+emptyPositions+R_DRICUNR+"}"
+		"BasicTestBugs[TYPE_REF]{BasicTestBugs, bugs.b185576, Lbugs.b185576.BasicTestBugs;, null, null, "+emptyPositions+R_DRICUNR+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
-public void testBug185576b() throws JavaModelException {
+public void testBug185576b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setUpProjectOptions(CompilerOptions.getFirstSupportedJavaVersion());
 	String source =
 		"package bugs.b185576;\n" +
@@ -1126,14 +1126,14 @@ public void testBug185576b() throws JavaModelException {
 		"  class X {}\n" +
 		"}\n";
 	completeInJavadoc("/Completion/src/bugs/b185576/BasicTestBugs.java", source, true, "@link ", 0);
-	String emptyPositions = "["+this.completionStart+", "+this.completionStart+"], ";
+	String emptyPositions = "["+this.completionStart+", "+this.completionStart+"], "; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	assertSortedResults(
-		"BasicTestBugs[TYPE_REF]{BasicTestBugs, bugs.b185576, Lbugs.b185576.BasicTestBugs;, null, null, "+emptyPositions+R_DRICUNR+"}\n" +
+		"BasicTestBugs[TYPE_REF]{BasicTestBugs, bugs.b185576, Lbugs.b185576.BasicTestBugs;, null, null, "+emptyPositions+R_DRICUNR+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"BasicTestBugs.X[TYPE_REF]{X, bugs.b185576, Lbugs.b185576.BasicTestBugs$X;, null, null, "+emptyPositions+R_DRICUNR+"}"
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=249785
-public void testBug249785a() throws JavaModelException {
+public void testBug249785a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package bugs.b171016;\n" +
 		"public class BasicTestBugs {\n" +
@@ -1148,7 +1148,7 @@ public void testBug249785a() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/bugs/b171016/BasicTestBugs.java", source, true, "fie", -1);
 	assertSortedResults(
-		"field[FIELD_REF]{field, Lbugs.b171016.BasicTestBugs;, I, field, null, "+this.positions+R_DRICNRNS+"}"
+		"field[FIELD_REF]{field, Lbugs.b171016.BasicTestBugs;, I, field, null, "+this.positions+R_DRICNRNS+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 /**
@@ -1171,7 +1171,7 @@ public void testBug255752() throws JavaModelException {
  * Additional tests for bug 255752
  * test whether an orphan Javadoc comment gets all the possible tags applicable to the class level.
  */
-public void testBug255752a() throws JavaModelException {
+public void testBug255752a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"/**\n" +
 		" *\n" +
@@ -1180,7 +1180,7 @@ public void testBug255752a() throws JavaModelException {
 		"\n";
 	completeInJavadoc("/Completion/src/javadoc/bugs/BasicTestBugs.java", source, true, "@", -1);
 	assertResults(
-			"author[JAVADOC_BLOCK_TAG]{@author, null, null, author, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
+			"author[JAVADOC_BLOCK_TAG]{@author, null, null, author, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"deprecated[JAVADOC_BLOCK_TAG]{@deprecated, null, null, deprecated, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
 			"param[JAVADOC_BLOCK_TAG]{@param, null, null, param, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
 			"see[JAVADOC_BLOCK_TAG]{@see, null, null, see, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +

@@ -76,9 +76,9 @@ public class UnindexedSearchScope extends AbstractSearchScope {
 	public IPath[] enclosingProjectsAndJars() {
 		IPath[] unfiltered = this.searchScope.enclosingProjectsAndJars();
 
-		List<IPath> result = new ArrayList<>();
+		List<IPath> result = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
-		for (IPath next : unfiltered) {
+		for (IPath next : unfiltered) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (isJarFile(next.lastSegment())) {
 				continue;
 			}

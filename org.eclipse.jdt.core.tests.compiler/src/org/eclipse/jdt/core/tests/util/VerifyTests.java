@@ -42,7 +42,7 @@ public class VerifyTests {
 
 private static URL[] classPathToURLs(String[] classPath) throws MalformedURLException {
 	URL[] urls = new URL[classPath.length];
-	for (int i = 0; i < classPath.length; i++) {
+	for (int i = 0; i < classPath.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		urls[i] = new File(classPath[i]).toURI().toURL();
 	}
 	return urls;
@@ -70,21 +70,21 @@ public static void main(String[] args) throws IOException {
 	verify.portNumber = Integer.parseInt(args[0]);
 	verify.run();
 }
-public void run() throws IOException {
+public void run() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.socket = new Socket("localhost", this.portNumber);
 	this.socket.setTcpNoDelay(true);
 
 	DataInputStream in = new DataInputStream(this.socket.getInputStream());
 	final DataOutputStream out = new DataOutputStream(this.socket.getOutputStream());
-	while (true) {
+	while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		final String className = in.readUTF();
 		final int length = in.readInt();
 		final String[] classPath = new String[length];
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			classPath[i] = in.readUTF();
 		}
 		Thread thread = new Thread() {
-			@Override
+			@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			public void run() {
 				try {
 					loadAndRun(className, classPath);

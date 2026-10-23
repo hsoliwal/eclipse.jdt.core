@@ -56,8 +56,8 @@ public class CompletionOnStringLiteral extends StringLiteral implements Completi
 
 	@Override
 	public StringBuilder printExpression(int indent, StringBuilder output) {
-		output.append("<CompletionOnString:"); //$NON-NLS-1$
+		output.append("<CompletionOnString:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		output = super.printExpression(indent, output);
-		return output.append('>');
+		return output.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 }

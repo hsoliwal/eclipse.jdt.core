@@ -1091,7 +1091,7 @@ public abstract class ASTNode {
 	 * @param nodeType AST node type
 	 * @return the corresponding <code>ASTNode</code> subclass
 	 * @exception IllegalArgumentException if <code>nodeType</code> is
-	 * not a legal AST node type
+	 * not a legal AST node type //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	 * @see #getNodeType()
 	 * @since 3.0
 	 */
@@ -1346,7 +1346,7 @@ public abstract class ASTNode {
 	 */
 	private ASTNode parent = null;
 
-	/**
+	/** //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	 * An unmodifiable empty map (used to implement <code>properties()</code>).
 	 */
 	private static final Map UNMODIFIABLE_EMPTY_MAP
@@ -1498,7 +1498,7 @@ public abstract class ASTNode {
 		private ASTNode[] store = EMPTY_NODE_ARRAY;
 
 		/** Logical size, independent of the capacity retained after removal. */
-		private int size;
+		private int size; //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		/**
 		 * The property descriptor for this list.
@@ -1590,7 +1590,7 @@ public abstract class ASTNode {
 			return this.store[Objects.checkIndex(index, this.size)];
 		}
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public Object set(int index, Object element) {
 		    if (element == null) {
 		        throw new IllegalArgumentException();
@@ -1620,7 +1620,7 @@ public abstract class ASTNode {
 			ASTNode.this.ast.postReplaceChildEvent(ASTNode.this, oldChild, newChild, this.propertyDescriptor);
 			return result;
 		}
-
+ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		@Override
 		public void add(int index, Object element) {
 		    if (element == null) {
@@ -1642,7 +1642,7 @@ public abstract class ASTNode {
 			}
 			if (this.size == Integer.MAX_VALUE) {
 				throw new OutOfMemoryError("Required array length too large"); //$NON-NLS-1$
-			}
+			} //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			if (this.size == this.store.length) {
 				int capacity = Math.max(this.size + 1, this.store.length + (this.store.length >>> 1));
 				this.store = Arrays.copyOf(this.store, capacity);
@@ -1681,7 +1681,7 @@ public abstract class ASTNode {
 			updateCursors(index, -1);
 			ASTNode.this.ast.postRemoveChildEvent(ASTNode.this, oldChild, this.propertyDescriptor);
 			return result;
-
+ //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		}
 
 		/**
@@ -1727,7 +1727,7 @@ public abstract class ASTNode {
 					this.cursors = null;
 				}
 			}
-		}
+		} //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 		/**
 		 * Adjusts all cursors to accommodate an add/remove at the given
@@ -1763,7 +1763,7 @@ public abstract class ASTNode {
 		 */
 		int memSize() {
 			int result = HEADERS + 5 * 4;
-			result += HEADERS + 2 * 4;
+			result += HEADERS + 2 * 4; //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			result += HEADERS + 4 * size();
 			return result;
 		}
@@ -1858,7 +1858,7 @@ public abstract class ASTNode {
 	 * @return the location of this node in its parent,
 	 * or <code>null</code> if this node has no parent
 	 * @since 3.0
-	 */
+	 */ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	public final StructuralPropertyDescriptor getLocationInParent() {
 		return this.location;
 	}
@@ -1884,7 +1884,7 @@ public abstract class ASTNode {
 	/**
 	 * Returns the value of the given structural property for this node. The value
 	 * returned depends on the kind of property:
-	 * <ul>
+	 * <ul> //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	 * <li>{@link SimplePropertyDescriptor} - the value of the given simple property,
 	 * or <code>null</code> if none; primitive values are "boxed"</li>
 	 * <li>{@link ChildPropertyDescriptor} - the child node (type <code>ASTNode</code>),
@@ -1923,7 +1923,7 @@ public abstract class ASTNode {
 	 * Sets the value of the given structural property for this node. The value
 	 * passed depends on the kind of property:
 	 * <ul>
-	 * <li>{@link SimplePropertyDescriptor} - the new value of the given simple property,
+	 * <li>{@link SimplePropertyDescriptor} - the new value of the given simple property, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	 * or <code>null</code> if none; primitive values are "boxed"</li>
 	 * <li>{@link ChildPropertyDescriptor} - the new child node (type <code>ASTNode</code>),
 	 * or <code>null</code> if none</li>
@@ -2054,7 +2054,7 @@ public abstract class ASTNode {
 		throw new RuntimeException("Node does not have this property");  //$NON-NLS-1$
 	}
 
-	/**
+	/** //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	 * Returns the list value of the given property for this node.
 	 * The default implementation of this method throws an exception explaining
 	 * that this node does not have such a property. This method should be
@@ -2152,7 +2152,7 @@ public abstract class ASTNode {
 		}
 		propertyList.add(property);
 	}
-
+ //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	/**
 	 * Internal helper method that completes the building of
 	 * a node type's structural property descriptor list.
@@ -2673,7 +2673,7 @@ public abstract class ASTNode {
 	 * @param node the parent-to-be node
 	 * @param newChild the new child of the parent
 	 * @param cycleCheck <code>true</code> if cycles are possible and need
-	 *   to be checked, <code>false</code> if cycles are impossible and do
+	 *   to be checked, <code>false</code> if cycles are impossible and do //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	 *   not need to be checked
 	 * @param nodeType a type constraint on child nodes, or <code>null</code>
 	 *   if no special check is required
@@ -2690,7 +2690,7 @@ public abstract class ASTNode {
 			boolean cycleCheck, Class nodeType) {
 		if (newChild.ast != node.ast) {
 			// new child is from a different AST
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		if (newChild.getParent() != null) {
 			// new child currently has a different parent
@@ -2737,7 +2737,7 @@ public abstract class ASTNode {
 	 *
 	 * @param oldChild the old child of this node, or <code>null</code> if
 	 *   there was no old child to replace
-	 * @param newChild the new child of this node, or <code>null</code> if
+	 * @param newChild the new child of this node, or <code>null</code> if //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	 *   there is no replacement child
 	 * @param property the property descriptor of this node describing
      * the relationship between node and child
@@ -2900,7 +2900,7 @@ public abstract class ASTNode {
 		// IMPORTANT: this method is called by readers
 		// ASTNode.this is locked at this point
 		// newChild is brand new (so no chance of concurrent access)
-		newChild.setParent(this, property);
+		newChild.setParent(this, property); //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// turn events back on (they were turned off in corresponding preLazyInit)
 		this.ast.reenableEvents();
 		return newChild;
@@ -2941,7 +2941,7 @@ public abstract class ASTNode {
 	 * Clients should employ property names that are sufficiently unique
 	 * to avoid inadvertent conflicts with other clients that might also be
 	 * setting properties on the same node.
-	 * </p>
+	 * </p> //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	 * <p>
 	 * Note that modifying a property is not considered a modification to the
 	 * AST itself. This is to allow clients to decorate existing nodes with
@@ -2978,7 +2978,7 @@ public abstract class ASTNode {
 				// we're in luck
 				if (data == null) {
 					// just deleted last property
-					this.property1 = null;
+					this.property1 = null; //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 					this.property2 = null;
 				} else {
 					this.property2 = data;
@@ -3228,8 +3228,8 @@ public abstract class ASTNode {
 	 * given list of nodes. The resulting nodes are owned by the given AST,
 	 * which may be different from the ASTs of the nodes in the list.
 	 * Even if the nodes in the list have parents, the nodes in the result
-	 * will be unparented.
-	 * <p>
+	 * will be unparented. //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	 * <p> //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	 * Source range information on the original nodes is automatically copied to the new
 	 * nodes. Client properties (<code>properties</code>) are not carried over.
 	 * </p>
@@ -3378,7 +3378,7 @@ public abstract class ASTNode {
 	 * child nodes.
 	 * <p>
 	 * This method must be used by the concrete implementations of
-	 * <code>accept</code> to traverse list-values properties; it
+	 * <code>accept</code> to traverse list-values properties; it //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	 * encapsulates the proper handling of on-the-fly changes to the list.
 	 * </p>
 	 *
@@ -3443,10 +3443,10 @@ public abstract class ASTNode {
 	 * See {@link ASTParser#setKind(int)} for details
 	 * on precisely where source ranges are supposed to begin and end.
 	 * </p>
-	 *
+	 * //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	 * @param startPosition a 0-based character index,
 	 *    or <code>-1</code> if no source position information is
-	 *    available for this node
+	 *    available for this node //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	 * @param length a (possibly 0) length,
 	 *    or <code>0</code> if no source position information is recorded
 	 *    for this node
@@ -3463,7 +3463,7 @@ public abstract class ASTNode {
 		}
 		// source positions are not considered a structural property
 		// but we protect them nevertheless
-		checkModifiable();
+		checkModifiable(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		this.startPosition = startPosition;
 		this.length = length;
 	}
@@ -3471,8 +3471,8 @@ public abstract class ASTNode {
 	/**
 	 * Returns a string representation of this node suitable for debugging
 	 * purposes only.
-	 *
-	 * @return a debug string
+	 * //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	 * @return a debug string //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	 */
 	@Override
 	public final String toString() {
@@ -3510,7 +3510,7 @@ public abstract class ASTNode {
 	 * @param buffer the string buffer to append to
 	 */
 	void appendDebugString(StringBuilder buffer) {
-		// print the subtree by default
+		// print the subtree by default //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		appendPrintString(buffer);
 	}
 

@@ -75,7 +75,7 @@ public class ReferenceCollectionTest extends BuilderTests {
 		}
 	}
 
-	public void testInternQualifiedNamesSorts_01() {
+	public void testInternQualifiedNamesSorts_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[][][] qualifiedNames = new char[][][] {
 			CharOperation.splitOn('.', "java.lang.RuntimeException".toCharArray()),
 			CharOperation.splitOn('.', "a.a.a".toCharArray()),
@@ -94,7 +94,7 @@ public class ReferenceCollectionTest extends BuilderTests {
 				toStringArray(internQualifiedNames));
 	}
 
-	public void testInternQualifiedNamesSorts_02() {
+	public void testInternQualifiedNamesSorts_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[][][] qualifiedNames = new char[][][] {
 			CharOperation.splitOn('.', "java.lang.RuntimeException".toCharArray()),
 			CharOperation.splitOn('.', "a.a.a".toCharArray()),
@@ -137,7 +137,7 @@ public class ReferenceCollectionTest extends BuilderTests {
 				toStringArray(internSimpleNames));
 	}
 
-	public void testInternSimpleNamesSorts_02() {
+	public void testInternSimpleNamesSorts_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[][] simpleNames = new char[][] {
 			"aaa".toCharArray(),
 			"bbb".toCharArray(),
@@ -161,7 +161,7 @@ public class ReferenceCollectionTest extends BuilderTests {
 				toStringArray(internSimpleNames));
 	}
 
-	public void testIncludesWithBinarySearch() {
+	public void testIncludesWithBinarySearch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[][] simpleNames = ReferenceCollection.internSimpleNames(new char[][] {
 			"a".toCharArray(),
 			"b".toCharArray(),
@@ -191,9 +191,9 @@ public class ReferenceCollectionTest extends BuilderTests {
 			"z".toCharArray()
 		}, false);
 		ReferenceCollection collection = new TestableReferenceCollection(null, simpleNames, null);
-		for(char[] simpleName: simpleNames) {
-			assertTrue("Should include " + simpleName[0], collection.includes(simpleName));
-			assertFalse("Should not include " + CharOperation.toUpperCase(simpleName)[0], collection.includes(CharOperation.toUpperCase(simpleName)));
+		for(char[] simpleName: simpleNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			assertTrue("Should include " + simpleName[0], collection.includes(simpleName)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertFalse("Should not include " + CharOperation.toUpperCase(simpleName)[0], collection.includes(CharOperation.toUpperCase(simpleName))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -209,9 +209,9 @@ public class ReferenceCollectionTest extends BuilderTests {
 			"h".toCharArray()
 		}, false);
 		ReferenceCollection collection = new TestableReferenceCollection(null, simpleNames, null);
-		for(char[] simpleName: simpleNames) {
-			assertTrue("Should include " + simpleName[0], collection.includes(simpleName));
-			assertFalse("Should not include " + CharOperation.toUpperCase(simpleName)[0], collection.includes(CharOperation.toUpperCase(simpleName)));
+		for(char[] simpleName: simpleNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			assertTrue("Should include " + simpleName[0], collection.includes(simpleName)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertFalse("Should not include " + CharOperation.toUpperCase(simpleName)[0], collection.includes(CharOperation.toUpperCase(simpleName))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -285,7 +285,7 @@ public class ReferenceCollectionTest extends BuilderTests {
 		assertFalse(other.includes(refColl.getQualifiedNameReferences(), refColl.getSimpleNameReferences(), refColl.getRootReferences()));
 	}
 
-	public void testAddDependencies() {
+	public void testAddDependencies() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TestableReferenceCollection refColl = new TestableReferenceCollection(null, null, null);
 
 		String[] array = new String[] {"a.b.c.D"};
@@ -322,7 +322,7 @@ public class ReferenceCollectionTest extends BuilderTests {
 		return Arrays.stream(qualifiedNameReferences).map(CharOperation::charToString).toArray(String[]::new);
 	}
 
-	public void testRegression01() {
+	public void testRegression01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[][][] qualifiedNames = new char[][][] {
 			CharOperation.splitOn('.', "p1.IX".toCharArray()),
 			CharOperation.splitOn('.', "p2.X".toCharArray())
@@ -347,7 +347,7 @@ public class ReferenceCollectionTest extends BuilderTests {
 		assertTrue("Should include", collection.includes(qualifiedNames, simpleNames, rootNames));
 	}
 
-	public void testRegression02() {
+	public void testRegression02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[][][] qualifiedNames = new char[][][] {};
 		char[][] simpleNames = new char[][] {
 			"GeneratedAnnotation".toCharArray(), "Test".toCharArray()

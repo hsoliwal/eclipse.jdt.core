@@ -74,7 +74,7 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 		return allTests();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void setUp() throws Exception {
 		this.indexDisabledForTest = false;
 		super.setUp();
@@ -108,14 +108,14 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 	 * Addresses https://bugs.eclipse.org/465566 ("Organize imports does not remove duplicated
 	 * imports").
 	 */
-	public void testDuplicateImportOmittedWhenRestoreExistingImportsIsFalse() throws Exception {
-		StringBuilder contents = new StringBuilder();
-		contents.append("package pack1;\n");
-		contents.append("\n");
-		contents.append("import java.io.Serializable;\n");
-		contents.append("import java.io.Serializable;\n");
-		contents.append("\n");
-		contents.append("public class Clazz {}");
+	public void testDuplicateImportOmittedWhenRestoreExistingImportsIsFalse() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import java.io.Serializable;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import java.io.Serializable;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("public class Clazz {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu = createCompilationUnit("pack1", "Clazz", contents.toString());
 
 		String[] order = new String[] { "java" };
@@ -126,12 +126,12 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("import java.io.Serializable;\n");
-		expected.append("\n");
-		expected.append("public class Clazz {}");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.io.Serializable;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class Clazz {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
@@ -143,7 +143,7 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 	 * Addresses https://bugs.eclipse.org/461863 ("addImport creates .ypename for unqualified type
 	 * from default package").
 	 */
-	public void testAddImportsFromUnnamedPackage() throws Exception {
+	public void testAddImportsFromUnnamedPackage() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit cu = createCompilationUnit("pack1", "C");
 
 		String[] order = new String[] { "java" };
@@ -157,15 +157,15 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("import java.util.*;\n");
-		expected.append("\n");
-		expected.append("import Bar;\n");
-		expected.append("import Foo;\n");
-		expected.append("\n");
-		expected.append("public class C {}");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.util.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import Bar;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import Foo;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
@@ -173,7 +173,7 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 	 * Addresses https://bugs.eclipse.org/412929 ("Adding a type results in adding a package and
 	 * later does not honor order").
 	 */
-	public void testImportGroupMatchingQualifiedName() throws Exception {
+	public void testImportGroupMatchingQualifiedName() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit cu = createCompilationUnit("pack1", "C");
 
 		String[] order = new String[] { "#android.R.doFoo", "android.R", "java", "android" };
@@ -187,18 +187,18 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("import static android.R.doFoo;\n");
-		expected.append("\n");
-		expected.append("import android.R;\n");
-		expected.append("\n");
-		expected.append("import java.util.List;\n");
-		expected.append("\n");
-		expected.append("import android.Foo;\n");
-		expected.append("\n");
-		expected.append("public class C {}");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import static android.R.doFoo;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import android.R;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.util.List;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import android.Foo;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
@@ -206,33 +206,33 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 	 * Expects that the comments from single imports are reassigned
 	 * to a new on-demand import into which they are reduced.
 	 */
-	public void testReduceNewOnDemand() throws Exception {
-		StringBuilder contents = new StringBuilder();
-		contents.append("package pack1;\n");
-		contents.append("\n");
-		contents.append("import java.io.Serializable;\n");
-		contents.append("\n");
-		contents.append("// A floating leading\n");
-		contents.append("\n");
-		contents.append("// A leading\n");
-		contents.append("/* A same-line leading */ import java.net.A; // A same-line trailing\n");
-		contents.append("// A trailing\n");
-		contents.append("\n");
-		contents.append("// B floating leading\n");
-		contents.append("\n");
-		contents.append("// B leading\n");
-		contents.append("/* B same-line leading */ import java.net.B; // B same-line trailing\n");
-		contents.append("// B trailing\n");
-		contents.append("\n");
-		contents.append("// C floating leading\n");
-		contents.append("\n");
-		contents.append("// C leading\n");
-		contents.append("/* C same-line leading */ import java.net.C; // C same-line trailing\n");
-		contents.append("// C trailing\n");
-		contents.append("\n");
-		contents.append("import java.util.List;\n");
-		contents.append("\n");
-		contents.append("public class Clazz {}");
+	public void testReduceNewOnDemand() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import java.io.Serializable;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// A floating leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// A leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* A same-line leading */ import java.net.A; // A same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// A trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// B floating leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// B leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* B same-line leading */ import java.net.B; // B same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// B trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// C floating leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// C leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* C same-line leading */ import java.net.C; // C same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// C trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import java.util.List;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("public class Clazz {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu = createCompilationUnit("pack1", "Clazz", contents.toString());
 
 		String[] order = new String[] { "java" };
@@ -247,35 +247,35 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("import java.io.*;\n");
-		expected.append("\n");
-		expected.append("// A floating leading\n");
-		expected.append("\n");
-		expected.append("// A leading\n");
-		expected.append("/* A same-line leading */\n");
-		expected.append("// A same-line trailing\n");
-		expected.append("// A trailing\n");
-		expected.append("\n");
-		expected.append("// B floating leading\n");
-		expected.append("\n");
-		expected.append("// B leading\n");
-		expected.append("/* B same-line leading */\n");
-		expected.append("// B same-line trailing\n");
-		expected.append("// B trailing\n");
-		expected.append("\n");
-		expected.append("// C floating leading\n");
-		expected.append("\n");
-		expected.append("// C leading\n");
-		expected.append("/* C same-line leading */\n");
-		expected.append("// C same-line trailing\n");
-		expected.append("// C trailing\n");
-		expected.append("import java.net.*;\n");
-		expected.append("import java.util.*;\n");
-		expected.append("\n");
-		expected.append("public class Clazz {}");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.io.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// A floating leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// A leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* A same-line leading */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// A same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// A trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// B floating leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// B leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* B same-line leading */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// B same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// B trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// C floating leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// C leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* C same-line leading */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// C same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// C trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.net.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.util.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class Clazz {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
@@ -284,39 +284,39 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 	 * to an existing on-demand import into which they are reduced,
 	 * and that the on-demand import's own comments are preserved.
 	 */
-	public void testReduceExistingOnDemand() throws Exception {
-		StringBuilder contents = new StringBuilder();
-		contents.append("package pack1;\n");
-		contents.append("\n");
-		contents.append("import java.io.*;\n");
-		contents.append("\n");
-		contents.append("// on-demand floating\n");
-		contents.append("\n");
-		contents.append("// on-demand leading\n");
-		contents.append("/* on-demand same-line leading */ import java.net.*; // on-demand same-line trailing\n");
-		contents.append("// on-demand trailing\n");
-		contents.append("\n");
-		contents.append("// A floating leading\n");
-		contents.append("\n");
-		contents.append("// A leading\n");
-		contents.append("/* A same-line leading */ import java.net.A; // A same-line trailing\n");
-		contents.append("// A trailing\n");
-		contents.append("\n");
-		contents.append("// B floating leading\n");
-		contents.append("\n");
-		contents.append("// B leading\n");
-		contents.append("/* B same-line leading */ import java.net.B; // B same-line trailing\n");
-		contents.append("// B trailing\n");
-		contents.append("\n");
-		contents.append("// C floating leading\n");
-		contents.append("\n");
-		contents.append("// C leading\n");
-		contents.append("/* C same-line leading */ import java.net.C; // C same-line trailing\n");
-		contents.append("// C trailing\n");
-		contents.append("\n");
-		contents.append("import java.util.*;\n");
-		contents.append("\n");
-		contents.append("public class Clazz {}");
+	public void testReduceExistingOnDemand() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import java.io.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// on-demand floating\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// on-demand leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* on-demand same-line leading */ import java.net.*; // on-demand same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// on-demand trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// A floating leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// A leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* A same-line leading */ import java.net.A; // A same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// A trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// B floating leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// B leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* B same-line leading */ import java.net.B; // B same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// B trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// C floating leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// C leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* C same-line leading */ import java.net.C; // C same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// C trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import java.util.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("public class Clazz {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu = createCompilationUnit("pack1", "Clazz", contents.toString());
 
 		String[] order = new String[] { "java.io", "java", "java.util" };
@@ -331,41 +331,41 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("import java.io.*;\n");
-		expected.append("\n");
-		expected.append("// A floating leading\n");
-		expected.append("\n");
-		expected.append("// A leading\n");
-		expected.append("/* A same-line leading */\n");
-		expected.append("// A same-line trailing\n");
-		expected.append("// A trailing\n");
-		expected.append("\n");
-		expected.append("// B floating leading\n");
-		expected.append("\n");
-		expected.append("// B leading\n");
-		expected.append("/* B same-line leading */\n");
-		expected.append("// B same-line trailing\n");
-		expected.append("// B trailing\n");
-		expected.append("\n");
-		expected.append("// C floating leading\n");
-		expected.append("\n");
-		expected.append("// C leading\n");
-		expected.append("/* C same-line leading */\n");
-		expected.append("// C same-line trailing\n");
-		expected.append("// C trailing\n");
-		expected.append("\n");
-		expected.append("// on-demand floating\n");
-		expected.append("\n");
-		expected.append("// on-demand leading\n");
-		expected.append("/* on-demand same-line leading */ import java.net.*; // on-demand same-line trailing\n");
-		expected.append("// on-demand trailing\n");
-		expected.append("\n");
-		expected.append("import java.util.*;\n");
-		expected.append("\n");
-		expected.append("public class Clazz {}");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.io.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// A floating leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// A leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* A same-line leading */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// A same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// A trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// B floating leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// B leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* B same-line leading */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// B same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// B trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// C floating leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// C leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* C same-line leading */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// C same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// C trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// on-demand floating\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// on-demand leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* on-demand same-line leading */ import java.net.*; // on-demand same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// on-demand trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.util.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class Clazz {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
@@ -374,39 +374,39 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 	 * to a corresponding single import, and that comments of other single imports
 	 * with the same container name are preserved.
 	 */
-	public void testExpandOnDemand() throws Exception {
-		StringBuilder contents = new StringBuilder();
-		contents.append("package pack1\n");
-		contents.append("\n");
-		contents.append("import com.example;\n");
-		contents.append("\n");
-		contents.append("/* on-demand floating */\n");
-		contents.append("\n");
-		contents.append("// on-demand leading\n");
-		contents.append("/* on-demand same-line leading */ import java.util.*; // on-demand same-line trailing\n");
-		contents.append("// on-demand trailing\n");
-		contents.append("\n");
-		contents.append("/* ArrayList floating */\n");
-		contents.append("\n");
-		contents.append("// ArrayList leading\n");
-		contents.append("/* ArrayList same-line leading */ import java.util.ArrayList; // ArrayList same-line trailing\n");
-		contents.append("// ArrayList trailing\n");
-		contents.append("\n");
-		contents.append("/* List floating */\n");
-		contents.append("\n");
-		contents.append("// List leading\n");
-		contents.append("/* List same-line leading */ import java.util.List; // List same-line trailing\n");
-		contents.append("// List trailing\n");
-		contents.append("\n");
-		contents.append("/* Map floating */\n");
-		contents.append("\n");
-		contents.append("// Map leading\n");
-		contents.append("/* Map same-line leading */ import java.util.Map; // Map same-line trailing\n");
-		contents.append("// Map trailing\n");
-		contents.append("\n");
-		contents.append("import java.net.Socket;\n");
-		contents.append("\n");
-		contents.append("public class C {}\n");
+	public void testExpandOnDemand() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("package pack1\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import com.example;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* on-demand floating */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// on-demand leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* on-demand same-line leading */ import java.util.*; // on-demand same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// on-demand trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* ArrayList floating */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// ArrayList leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* ArrayList same-line leading */ import java.util.ArrayList; // ArrayList same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// ArrayList trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* List floating */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// List leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* List same-line leading */ import java.util.List; // List same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// List trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* Map floating */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// Map leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* Map same-line leading */ import java.util.Map; // Map same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// Map trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import java.net.Socket;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("public class C {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu = createCompilationUnit("pack1", "C", contents.toString());
 
 		String[] order = new String[] { "com", "java.util", "java.net" };
@@ -420,32 +420,32 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(importRewrite);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1\n");
-		expected.append("\n");
-		expected.append("/* on-demand floating */\n");
-		expected.append("\n");
-		expected.append("// on-demand leading\n");
-		expected.append("/* on-demand same-line leading */\n");
-		expected.append("// on-demand same-line trailing\n");
-		expected.append("// on-demand trailing\n");
-		expected.append("\n");
-		expected.append("/* ArrayList floating */\n");
-		expected.append("\n");
-		expected.append("// ArrayList leading\n");
-		expected.append("/* ArrayList same-line leading */ import java.util.ArrayList; // ArrayList same-line trailing\n");
-		expected.append("// ArrayList trailing\n");
-		expected.append("\n");
-		expected.append("/* Map floating */\n");
-		expected.append("\n");
-		expected.append("// Map leading\n");
-		expected.append("/* Map same-line leading */ import java.util.Map; // Map same-line trailing\n");
-		expected.append("// Map trailing\n");
-		expected.append("import java.util.Set;\n");
-		expected.append("\n");
-		expected.append("import java.net.Socket;\n");
-		expected.append("\n");
-		expected.append("public class C {}\n");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* on-demand floating */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// on-demand leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* on-demand same-line leading */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// on-demand same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// on-demand trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* ArrayList floating */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// ArrayList leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* ArrayList same-line leading */ import java.util.ArrayList; // ArrayList same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// ArrayList trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* Map floating */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// Map leading\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* Map same-line leading */ import java.util.Map; // Map same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// Map trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.util.Set;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.net.Socket;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class C {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
@@ -454,18 +454,18 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 	 * a corresponding single import, or a reduced single import with a correponding on-demand
 	 * import) are removed.
 	 */
-	public void testRemovedImportCommentsAreRemoved() throws Exception {
+	public void testRemovedImportCommentsAreRemoved() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder contents = new StringBuilder();
-		contents.append("package pack1;\n");
-		contents.append("\n");
-		contents.append("/* Socket is a very useful class */\n");
-		contents.append("import java.net.Socket; // Socket to 'em!\n");
-		contents.append("/* Thank goodness Java has built-in networking libraries! */\n");
-		contents.append("\n");
-		contents.append("import java.util.ArrayList;\n");
-		contents.append("\n");
-		contents.append("public class C {}\n");
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* Socket is a very useful class */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import java.net.Socket; // Socket to 'em!\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* Thank goodness Java has built-in networking libraries! */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import java.util.ArrayList;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("public class C {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu = pack1.createCompilationUnit("C.java", contents.toString(), false, null);
 
 		String[] order = new String[] { "java" };
@@ -475,12 +475,12 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("import java.util.ArrayList;\n");
-		expected.append("\n");
-		expected.append("public class C {}\n");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.util.ArrayList;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class C {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
@@ -489,7 +489,7 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 	 * for .*") and https://bugs.eclipse.org/359724 ("nested type imports not collapsed to wildcards
 	 * ('*')").
 	 */
-	public void testOnDemandWithinType() throws Exception {
+	public void testOnDemandWithinType() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit cu = createCompilationUnit("pack1", "C");
 
 		String[] order = new String[] { "java" };
@@ -500,25 +500,25 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("import java.util.Map.*;\n");
-		expected.append("\n");
-		expected.append("public class C {}");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.util.Map.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
 	/**
 	 * Expects that a comment embedded within an import declaration is preserved.
 	 */
-	public void testCommentWithinImportDeclaration() throws Exception {
-		StringBuilder contents = new StringBuilder();
-		contents.append("package pack1;\n");
-		contents.append("\n");
-		contents.append("import /* comment */ java.util.Map.*;\n");
-		contents.append("\n");
-		contents.append("public class C {}");
+	public void testCommentWithinImportDeclaration() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import /* comment */ java.util.Map.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu = createCompilationUnit("pack1", "C", contents.toString());
 
@@ -530,12 +530,12 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("import /* comment */ java.util.Map.*;\n");
-		expected.append("\n");
-		expected.append("public class C {}");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import /* comment */ java.util.Map.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
@@ -543,17 +543,17 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 	 * Addresses https://bugs.eclipse.org/457051 ("comment is discarded when reducing imports to an
 	 * on-demand import").
 	 */
-	public void testFloatingCommentPreservedWhenReducingOnDemandAbove() throws Exception {
-		StringBuilder contents = new StringBuilder();
-		contents.append("package pack1;\n");
-		contents.append("\n");
-		contents.append("import java.util.Queue;\n");
-		contents.append("\n");
-		contents.append("/* floating comment */\n");
-		contents.append("\n");
-		contents.append("import java.util.concurrent.BlockingDeque;\n");
-		contents.append("\n");
-		contents.append("public class C {}");
+	public void testFloatingCommentPreservedWhenReducingOnDemandAbove() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import java.util.Queue;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* floating comment */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import java.util.concurrent.BlockingDeque;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu = createCompilationUnit("pack1", "C", contents.toString());
 
@@ -565,16 +565,16 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(importRewrite);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("import java.util.*;\n");
-		expected.append("\n");
-		expected.append("/* floating comment */\n");
-		expected.append("\n");
-		expected.append("import java.util.concurrent.BlockingDeque;\n");
-		expected.append("\n");
-		expected.append("public class C {}");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.util.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* floating comment */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.util.concurrent.BlockingDeque;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
@@ -582,19 +582,19 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 	 * Addresses https://bugs.eclipse.org/457089 ("imports are improperly reordered in the presence
 	 * of a floating comment").
 	 */
-	public void testFloatingCommentDoesntCauseImportsToMove() throws Exception {
-		StringBuilder contents = new StringBuilder();
-		contents.append("package pack1;\n");
-		contents.append("\n");
-		contents.append("import java.io.Serializable;\n");
-		contents.append("\n");
-		contents.append("/* floating comment */\n");
-		contents.append("\n");
-		contents.append("import java.util.List;\n");
-		contents.append("\n");
-		contents.append("import javax.sql.DataSource;\n");
-		contents.append("\n");
-		contents.append("public class C {}\n");
+	public void testFloatingCommentDoesntCauseImportsToMove() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import java.io.Serializable;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* floating comment */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import java.util.List;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import javax.sql.DataSource;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("public class C {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu = createCompilationUnit("pack1", "C", contents.toString());
 
@@ -608,28 +608,28 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(importRewrite);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("import java.io.Serializable;\n");
-		expected.append("\n");
-		expected.append("/* floating comment */\n");
-		expected.append("\n");
-		expected.append("import java.util.List;\n");
-		expected.append("\n");
-		expected.append("import javax.sql.DataSource;\n");
-		expected.append("\n");
-		expected.append("public class C {}\n");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.io.Serializable;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* floating comment */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.util.List;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import javax.sql.DataSource;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class C {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
-	public void testAddImportIntoMatchAllImportGroup() throws Exception {
-		StringBuilder contents = new StringBuilder();
-		contents.append("package pack1;\n");
-		contents.append("\n");
-		contents.append("import java.util.ArrayList;\n");
-		contents.append("\n");
-		contents.append("public class C {}");
+	public void testAddImportIntoMatchAllImportGroup() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import java.util.ArrayList;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu = createCompilationUnit("pack1", "C", contents.toString());
 
@@ -641,20 +641,20 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(importRewrite);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("import java.util.ArrayList;\n");
-		expected.append("\n");
-		expected.append("import java.net.Socket;\n");
-		expected.append("\n");
-		expected.append("public class C {}");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.util.ArrayList;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.net.Socket;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
-	public void testCuInDefaultPackageWithNoExistingImports() throws Exception {
-		StringBuilder contents = new StringBuilder();
-		contents.append("public class C {}");
+	public void testCuInDefaultPackageWithNoExistingImports() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu = createCompilationUnit("pack1", "C", contents.toString());
 
@@ -667,12 +667,12 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(importRewrite);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("import java.util.ArrayList;\n");
-		expected.append("\n");
-		expected.append("import java.net.Socket;\n");
-		expected.append("\n");
-		expected.append("public class C {}");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("import java.util.ArrayList;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.net.Socket;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
@@ -680,7 +680,7 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 	 * Addresses https://bugs.eclipse.org/71761 ("ImportRewrite should let me add explicit import to
 	 * existing on demand import").
 	 */
-	public void testNeedsExplicitImport() throws Exception {
+	public void testNeedsExplicitImport() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit cu = createCompilationUnit("pack1", "C");
 
 		String[] order = new String[] { "java" };
@@ -700,23 +700,23 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(importRewrite);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("import static java.util.Collections.*;\n");
-		expected.append("import static java.util.Collections.shuffle;\n");
-		expected.append("\n");
-		expected.append("import java.util.*;\n");
-		expected.append("import java.util.List;\n");
-		expected.append("\n");
-		expected.append("public class C {}");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import static java.util.Collections.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import static java.util.Collections.shuffle;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.util.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.util.List;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
-	public void testOrganizeNoImportsWithOneLineDelim() throws Exception {
-		StringBuilder contents = new StringBuilder();
-		contents.append("package pack1;\n");
-		contents.append("public class C {}");
+	public void testOrganizeNoImportsWithOneLineDelim() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu = createCompilationUnit("pack1", "C", contents.toString());
 
@@ -727,17 +727,17 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(importRewrite);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1;\n");
-		expected.append("public class C {}");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
-	public void testOrganizeNoImportsWithTwoLineDelims() throws Exception {
-		StringBuilder contents = new StringBuilder();
-		contents.append("package pack1;\n");
-		contents.append("\n");
-		contents.append("public class C {}");
+	public void testOrganizeNoImportsWithTwoLineDelims() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu = createCompilationUnit("pack1", "C", contents.toString());
 
@@ -748,22 +748,22 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(importRewrite);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("public class C {}");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
-	public void testOrganizeNoImportsWithJavadoc() throws Exception {
-		StringBuilder contents = new StringBuilder();
-		contents.append("package pack1;\n");
-		contents.append("\n");
-		contents.append("/**\n");
-		contents.append(" * Best class ever.\n");
-		contents.append(" */\n");
-		contents.append("\n");
-		contents.append("public class C {\n}");
+	public void testOrganizeNoImportsWithJavadoc() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/**\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append(" * Best class ever.\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append(" */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("public class C {\n}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu = createCompilationUnit("pack1", "C", contents.toString());
 
@@ -774,14 +774,14 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(importRewrite);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("/**\n");
-		expected.append(" * Best class ever.\n");
-		expected.append(" */\n");
-		expected.append("\n");
-		expected.append("public class C {\n}");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/**\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append(" * Best class ever.\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append(" */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class C {\n}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
@@ -789,15 +789,15 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 	 * Expects that imports are correctly placed after the end of a package declaration's multiline
 	 * trailing comment.
 	 */
-	public void testPackageDeclarationTrailingComment() throws Exception {
+	public void testPackageDeclarationTrailingComment() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder contents = new StringBuilder();
-		contents.append("package pack1; /* pack1 \n");
-		contents.append("trailing \n");
-		contents.append("comment */\n");
-		contents.append("\n");
-		contents.append("public class C {\n");
-		contents.append("}\n");
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("package pack1; /* pack1 \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("trailing \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("comment */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu = pack1.createCompilationUnit("C.java", contents.toString(), false, null);
 
 		String[] order = new String[] { "java" };
@@ -807,15 +807,15 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1; /* pack1 \n");
-		expected.append("trailing \n");
-		expected.append("comment */\n");
-		expected.append("\n");
-		expected.append("import java.util.ArrayList;\n");
-		expected.append("\n");
-		expected.append("public class C {\n");
-		expected.append("}\n");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1; /* pack1 \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("trailing \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("comment */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.util.ArrayList;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
@@ -823,10 +823,10 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 	 * Expects correct placement of an import when package declaration, type declaration, and
 	 * associated comments are all on one line.
 	 */
-	public void testAddImportWithPackageAndTypeOnSameLine() throws Exception {
+	public void testAddImportWithPackageAndTypeOnSameLine() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder contents = new StringBuilder();
-		contents.append("package pack1; /* pack1 trailing */  /** C leading */ public class C {}\n");
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("package pack1; /* pack1 trailing */  /** C leading */ public class C {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu = pack1.createCompilationUnit("C.java", contents.toString(), false, null);
 
 		String[] order = new String[] { "java" };
@@ -836,12 +836,12 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1; /* pack1 trailing */\n");
-		expected.append("\n");
-		expected.append("import java.util.ArrayList;\n");
-		expected.append("\n");
-		expected.append("/** C leading */ public class C {}\n");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1; /* pack1 trailing */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.util.ArrayList;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/** C leading */ public class C {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
@@ -850,7 +850,7 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 	 *
 	 * Addresses https://bugs.eclipse.org/430303 ("import group sorting is broken").
 	 */
-	public void testUnmatchedImports() throws Exception {
+	public void testUnmatchedImports() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit cu = createCompilationUnit("pack1", "C");
 
 		String[] order = new String[] { "java.net", "com.google" };
@@ -865,19 +865,19 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("import java.net.Socket;\n");
-		expected.append("\n");
-		expected.append("import com.google.Tgif;\n");
-		expected.append("\n");
-		expected.append("import com.acme.BirdSeed;\n");
-		expected.append("import com.acme.Dynamite;\n");
-		expected.append("import java.new.Bar;\n");
-		expected.append("import org.linux.Kernel;\n");
-		expected.append("\n");
-		expected.append("public class C {}");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.net.Socket;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import com.google.Tgif;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import com.acme.BirdSeed;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import com.acme.Dynamite;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.new.Bar;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import org.linux.Kernel;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
@@ -887,10 +887,10 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 	 *
 	 * Addresses https://bugs.eclipse.org/430303 ("import group sorting is broken").
 	 */
-	public void testAddImportsInVaryingOrder() throws Exception {
+	public void testAddImportsInVaryingOrder() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] order = new String[] { "h", "a" };
 
-		List importsToAdd = new ArrayList();
+		List importsToAdd = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		importsToAdd.add("a.ClassInA");
 		importsToAdd.add("b.ClassInB");
 		importsToAdd.add("c.ClassInC");
@@ -902,7 +902,7 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		ICompilationUnit cu1 = createCompilationUnit("pack1", "C");
 		ImportRewrite imports1 = newImportsRewrite(cu1, order, 99, 99, false);
-		for (Iterator importsToAddIter = importsToAdd.iterator(); importsToAddIter.hasNext(); ) {
+		for (Iterator importsToAddIter = importsToAdd.iterator(); importsToAddIter.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			imports1.addImport((String) importsToAddIter.next());
 		}
 		apply(imports1);
@@ -912,7 +912,7 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		ICompilationUnit cu2 = createCompilationUnit("pack1", "C");
 		ImportRewrite imports2 = newImportsRewrite(cu2, order, 99, 99, false);
-		for (Iterator importsToAddIter = importsToAdd.iterator(); importsToAddIter.hasNext(); ) {
+		for (Iterator importsToAddIter = importsToAdd.iterator(); importsToAddIter.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			imports2.addImport((String) importsToAddIter.next());
 		}
 		apply(imports2);
@@ -929,7 +929,7 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 	 *
 	 * Addresses https://bugs.eclipse.org/430303 ("import group sorting is broken").
 	 */
-	public void testStaticAndNonStaticUnmatchedImports() throws Exception {
+	public void testStaticAndNonStaticUnmatchedImports() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit cu = createCompilationUnit("pack1", "C");
 
 		String[] order = new String[] { "#a", "h" };
@@ -942,42 +942,42 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("import static b.ClassInB.staticMethodInB;\n");
-		expected.append("\n");
-		expected.append("import static a.ClassInA.staticMethodInA;\n");
-		expected.append("\n");
-		expected.append("import h.ClassInH;\n");
-		expected.append("\n");
-		expected.append("import g.ClassInG;\n");
-		expected.append("\n");
-		expected.append("public class C {}");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import static b.ClassInB.staticMethodInB;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import static a.ClassInA.staticMethodInA;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import h.ClassInH;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import g.ClassInG;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
 	/**
 	 * Expect that two duplicate on-demand imports and their comments survive a rewrite.
 	 */
-	public void testAddWithDuplicateOnDemandImports() throws Exception {
+	public void testAddWithDuplicateOnDemandImports() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder contents = new StringBuilder();
-		contents.append("package pack1;\n");
-		contents.append("\n");
-		contents.append("import java.lang.*;\n");
-		contents.append("\n");
-		contents.append("/* foo.bar.* 1 leading */\n");
-		contents.append("/* foo.bar.* 1 same-line leading */ import foo.bar.*; // foo.bar.* 1 same-line trailing\n");
-		contents.append("/* foo.bar.* 1 trailing */\n");
-		contents.append("\n");
-		contents.append("import pack1.*;\n");
-		contents.append("\n");
-		contents.append("/* foo.bar.* 2 leading */\n");
-		contents.append("/* foo.bar.* 2 same-line leading */ import foo.bar.*; // foo.bar.* 2 same-line trailing\n");
-		contents.append("/* foo.bar.* 2 trailing */\n");
-		contents.append("\n");
-		contents.append("public class C {}\n");
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import java.lang.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* foo.bar.* 1 leading */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* foo.bar.* 1 same-line leading */ import foo.bar.*; // foo.bar.* 1 same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* foo.bar.* 1 trailing */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import pack1.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* foo.bar.* 2 leading */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* foo.bar.* 2 same-line leading */ import foo.bar.*; // foo.bar.* 2 same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* foo.bar.* 2 trailing */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("public class C {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu = pack1.createCompilationUnit("C.java", contents.toString(), false, null);
 
 		String[] order = new String[] { "java.lang", "foo", "pack1", "com" };
@@ -987,48 +987,48 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("import java.lang.*;\n");
-		expected.append("\n");
-		expected.append("/* foo.bar.* 1 leading */\n");
-		expected.append("/* foo.bar.* 1 same-line leading */ import foo.bar.*; // foo.bar.* 1 same-line trailing\n");
-		expected.append("/* foo.bar.* 1 trailing */\n");
-		expected.append("\n");
-		expected.append("import pack1.*;\n");
-		expected.append("\n");
-		expected.append("import com.example.MyClass;\n");
-		expected.append("\n");
-		expected.append("/* foo.bar.* 2 leading */\n");
-		expected.append("/* foo.bar.* 2 same-line leading */ import foo.bar.*; // foo.bar.* 2 same-line trailing\n");
-		expected.append("/* foo.bar.* 2 trailing */\n");
-		expected.append("\n");
-		expected.append("public class C {}\n");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.lang.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* foo.bar.* 1 leading */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* foo.bar.* 1 same-line leading */ import foo.bar.*; // foo.bar.* 1 same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* foo.bar.* 1 trailing */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import pack1.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import com.example.MyClass;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* foo.bar.* 2 leading */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* foo.bar.* 2 same-line leading */ import foo.bar.*; // foo.bar.* 2 same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* foo.bar.* 2 trailing */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class C {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
 	/**
 	 * Expect that two duplicate single imports and their comments survive a rewrite.
 	 */
-	public void testAddWithDuplicateSingleImports() throws Exception {
+	public void testAddWithDuplicateSingleImports() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder contents = new StringBuilder();
-		contents.append("package pack1;\n");
-		contents.append("\n");
-		contents.append("import java.lang.*;\n");
-		contents.append("\n");
-		contents.append("/* foo.Bar 1 leading */\n");
-		contents.append("/* foo.Bar 1 same-line leading */ import foo.Bar; // foo.Bar 1 same-line trailing\n");
-		contents.append("/* foo.Bar 1 trailing */\n");
-		contents.append("\n");
-		contents.append("import pack1.*;\n");
-		contents.append("\n");
-		contents.append("/* foo.Bar 2 leading */\n");
-		contents.append("/* foo.Bar 2 same-line leading */ import foo.Bar; // foo.Bar 2 same-line trailing\n");
-		contents.append("/* foo.Bar 2 trailing */\n");
-		contents.append("\n");
-		contents.append("public class C {}");
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import java.lang.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* foo.Bar 1 leading */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* foo.Bar 1 same-line leading */ import foo.Bar; // foo.Bar 1 same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* foo.Bar 1 trailing */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import pack1.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* foo.Bar 2 leading */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* foo.Bar 2 same-line leading */ import foo.Bar; // foo.Bar 2 same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* foo.Bar 2 trailing */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu = pack1.createCompilationUnit("C.java", contents.toString(), false, null);
 
 		String[] order = new String[] { "java.lang", "foo", "pack1", "com" };
@@ -1038,42 +1038,42 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("import java.lang.*;\n");
-		expected.append("\n");
-		expected.append("/* foo.Bar 1 leading */\n");
-		expected.append("/* foo.Bar 1 same-line leading */ import foo.Bar; // foo.Bar 1 same-line trailing\n");
-		expected.append("/* foo.Bar 1 trailing */\n");
-		expected.append("\n");
-		expected.append("import pack1.*;\n");
-		expected.append("\n");
-		expected.append("import com.example.MyClass;\n");
-		expected.append("\n");
-		expected.append("/* foo.Bar 2 leading */\n");
-		expected.append("/* foo.Bar 2 same-line leading */ import foo.Bar; // foo.Bar 2 same-line trailing\n");
-		expected.append("/* foo.Bar 2 trailing */\n");
-		expected.append("\n");
-		expected.append("public class C {}");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.lang.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* foo.Bar 1 leading */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* foo.Bar 1 same-line leading */ import foo.Bar; // foo.Bar 1 same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* foo.Bar 1 trailing */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import pack1.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import com.example.MyClass;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* foo.Bar 2 leading */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* foo.Bar 2 same-line leading */ import foo.Bar; // foo.Bar 2 same-line trailing\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* foo.Bar 2 trailing */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
-	public void testOtherDuplicateImportsNotDisturbed() throws Exception {
+	public void testOtherDuplicateImportsNotDisturbed() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder contents = new StringBuilder();
-		contents.append("package pack1;\n");
-		contents.append("\n");
-		contents.append("import pack1.SomeClass; // first import\n");
-		contents.append("import java.util.ArrayList;\n");
-		contents.append("\n");
-		contents.append("import pack1.SomeClass; // second import\n");
-		contents.append("import com.mycompany.Frobnigator;\n");
-		contents.append("\n");
-		contents.append("import pack1.SomeClass; // third import\n");
-		contents.append("import org.eclipse.GreatIde;\n");
-		contents.append("\n");
-		contents.append("public class C {}");
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import pack1.SomeClass; // first import\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import java.util.ArrayList;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import pack1.SomeClass; // second import\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import com.mycompany.Frobnigator;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import pack1.SomeClass; // third import\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import org.eclipse.GreatIde;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu = pack1.createCompilationUnit("C.java", contents.toString(), false, null);
 
 		String[] order = new String[] { "java", "pack1", "com", "org" };
@@ -1083,33 +1083,33 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("import pack1.SomeClass; // first import\n");
-		expected.append("import java.util.ArrayList;\n");
-		expected.append("\n");
-		expected.append("import pack1.SomeClass; // second import\n");
-		expected.append("\n");
-		expected.append("import com.mycompany.Foo;\n");
-		expected.append("import com.mycompany.Frobnigator;\n");
-		expected.append("\n");
-		expected.append("import pack1.SomeClass; // third import\n");
-		expected.append("import org.eclipse.GreatIde;\n");
-		expected.append("\n");
-		expected.append("public class C {}");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import pack1.SomeClass; // first import\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import java.util.ArrayList;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import pack1.SomeClass; // second import\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import com.mycompany.Foo;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import com.mycompany.Frobnigator;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import pack1.SomeClass; // third import\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import org.eclipse.GreatIde;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
-	public void testDuplicateImportsDoNotCountTowardOnDemandThreshold() throws Exception {
+	public void testDuplicateImportsDoNotCountTowardOnDemandThreshold() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder contents = new StringBuilder();
-		contents.append("package pack1;\n");
-		contents.append("\n");
-		contents.append("import com.mycompany.Foo;\n");
-		contents.append("import com.mycompany.Foo;\n");
-		contents.append("\n");
-		contents.append("public class C {}");
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import com.mycompany.Foo;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import com.mycompany.Foo;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu = pack1.createCompilationUnit("C.java", contents.toString(), false, null);
 
 		String[] order = new String[] {};
@@ -1120,14 +1120,14 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 		apply(imports);
 
 		// Expect that the 3-import on-demand threshold has not been reached.
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("import com.mycompany.Bar;\n");
-		expected.append("import com.mycompany.Foo;\n");
-		expected.append("import com.mycompany.Foo;\n");
-		expected.append("\n");
-		expected.append("public class C {}");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import com.mycompany.Bar;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import com.mycompany.Foo;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import com.mycompany.Foo;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
@@ -1138,19 +1138,19 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 	 * Addresses https://bugs.eclipse.org/360789 ("Organize imports changes static imports to .*
 	 * even when that introduces compile errors").
 	 */
-	public void testOnDemandConflictBetweenStaticFields() throws Exception {
+	public void testOnDemandConflictBetweenStaticFields() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit cu = createCompilationUnit("pack1", "C");
 
 		// This test uses enum constants because the example in bug 360789 used enum constants,
 		// but the behavior generalizes to static fields that are not enum constants.
 		IPackageFragment pack2 = this.sourceFolder.createPackageFragment("pack2", false, null);
-		StringBuilder horizontalEnum = new StringBuilder();
-		horizontalEnum.append("package pack2;\n");
-		horizontalEnum.append("public enum Horizontal { LEFT, CENTER, RIGHT }\n");
+		StringBuilder horizontalEnum = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		horizontalEnum.append("package pack2;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		horizontalEnum.append("public enum Horizontal { LEFT, CENTER, RIGHT }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		pack2.createCompilationUnit("Horizontal.java", horizontalEnum.toString(), false, null);
-		StringBuilder verticalEnum = new StringBuilder();
-		verticalEnum.append("package pack2;\n");
-		verticalEnum.append("public enum Vertical { TOP, CENTER, BOTTOM }\n");
+		StringBuilder verticalEnum = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		verticalEnum.append("package pack2;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		verticalEnum.append("public enum Vertical { TOP, CENTER, BOTTOM }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		pack2.createCompilationUnit("Vertical.java", verticalEnum.toString(), false, null);
 
 		String[] order = new String[] {};
@@ -1161,13 +1161,13 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("import static pack2.Horizontal.CENTER;\n");
-		expected.append("import static pack2.Vertical.*;\n");
-		expected.append("\n");
-		expected.append("public class C {}");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import static pack2.Horizontal.CENTER;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import static pack2.Vertical.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
@@ -1177,22 +1177,22 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 	 *
 	 * Inspired by https://bugs.eclipse.org/360789
 	 */
-	public void testOnDemandConflictBetweenTypeAndNestedStaticType() throws Exception {
+	public void testOnDemandConflictBetweenTypeAndNestedStaticType() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit cu = createCompilationUnit("pack1", "C");
 
 		IPackageFragment pack2 = this.sourceFolder.createPackageFragment("pack2", false, null);
-		StringBuilder containingType = new StringBuilder();
-		containingType.append("package pack2;\n");
-		containingType.append("public class ContainingType {\n");
-		containingType.append("    public static class TypeWithSameName {}\n");
-		containingType.append("    public static final int CONSTANT = 42;\n");
-		containingType.append("}\n");
+		StringBuilder containingType = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		containingType.append("package pack2;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		containingType.append("public class ContainingType {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		containingType.append("    public static class TypeWithSameName {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		containingType.append("    public static final int CONSTANT = 42;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		containingType.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		pack2.createCompilationUnit("ContainingType.java", containingType.toString(), false, null);
 
 		IPackageFragment pack3 = this.sourceFolder.createPackageFragment("pack3", false, null);
-		StringBuilder typeWithSameName = new StringBuilder();
-		typeWithSameName.append("package pack3;\n");
-		typeWithSameName.append("public class TypeWithSameName {}\n");
+		StringBuilder typeWithSameName = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		typeWithSameName.append("package pack3;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		typeWithSameName.append("public class TypeWithSameName {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		pack3.createCompilationUnit("TypeWithSameName.java", typeWithSameName.toString(), false, null);
 
 		String[] order = new String[] {};
@@ -1203,31 +1203,31 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("import static pack2.ContainingType.*;\n");
-		expected.append("\n");
-		expected.append("import pack3.TypeWithSameName;\n");
-		expected.append("\n");
-		expected.append("public class C {}");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import static pack2.ContainingType.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import pack3.TypeWithSameName;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
-	public void testFloatingCommentWithBlankLine() throws Exception {
+	public void testFloatingCommentWithBlankLine() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder contents = new StringBuilder();
-		contents.append("package pack1;\n");
-		contents.append("\n");
-		contents.append("import com.mycompany.Bar;\n");
-		contents.append("\n");
-		contents.append("/*hello!\n");
-		contents.append("\n");
-		contents.append("this is a comment!*/\n");
-		contents.append("\n");
-		contents.append("import com.mycompany.Foo;\n");
-		contents.append("\n");
-		contents.append("public class C {}");
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import com.mycompany.Bar;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/*hello!\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("this is a comment!*/\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import com.mycompany.Foo;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu = pack1.createCompilationUnit("C.java", contents.toString(), false, null);
 
 		String[] order = new String[] {};
@@ -1238,38 +1238,38 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("import com.mycompany.Bar;\n");
-		expected.append("\n");
-		expected.append("/*hello!\n");
-		expected.append("\n");
-		expected.append("this is a comment!*/\n");
-		expected.append("\n");
-		expected.append("import com.mycompany.Foo;\n");
-		expected.append("\n");
-		expected.append("public class C {}");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import com.mycompany.Bar;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/*hello!\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("this is a comment!*/\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import com.mycompany.Foo;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
 	/**
 	 * Expects that an import rewrite with no effective changes produces an empty TextEdit.
 	 */
-	public void testNoEdits() throws Exception {
+	public void testNoEdits() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder contents = new StringBuilder();
-		contents.append("package pack1;\n");
-		contents.append("\n");
-		contents.append("// leading comment\n");
-		contents.append("import com.mycompany.Foo;\n");
-		contents.append("// trailing comment\n");
-		contents.append("\n");
-		contents.append("// leading comment\n");
-		contents.append("import java.util.ArrayList;\n");
-		contents.append("// trailing comment\n");
-		contents.append("\n");
-		contents.append("public class C {}");
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// leading comment\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import com.mycompany.Foo;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// trailing comment\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// leading comment\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import java.util.ArrayList;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// trailing comment\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu = pack1.createCompilationUnit("C.java", contents.toString(), false, null);
 
 		String[] order = new String[] {"com", "java"};
@@ -1283,17 +1283,17 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 		assertEquals(0, edit.getChildrenSize());
 	}
 
-	public void testAddImportWithCommentBetweenImportsAndType() throws Exception {
+	public void testAddImportWithCommentBetweenImportsAndType() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder contents = new StringBuilder();
-		contents.append("package pack1;\n");
-		contents.append("\n");
-		contents.append("import com.mycompany.Bar;\n");
-		contents.append("\n");
-		contents.append("/* floating comment */\n");
-		contents.append("\n");
-		contents.append("// type comment\n");
-		contents.append("public class C {}");
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import com.mycompany.Bar;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("/* floating comment */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("// type comment\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu = pack1.createCompilationUnit("C.java", contents.toString(), false, null);
 
 		String[] order = new String[] {"com", "java"};
@@ -1304,31 +1304,31 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("import com.mycompany.Bar;\n");
-		expected.append("import com.mycompany.Foo;\n");
-		expected.append("\n");
-		expected.append("/* floating comment */\n");
-		expected.append("\n");
-		expected.append("// type comment\n");
-		expected.append("public class C {}");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import com.mycompany.Bar;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import com.mycompany.Foo;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("/* floating comment */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("// type comment\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class C {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(expected.toString(), cu.getSource());
 	}
 
-	public void testRenameImportedClassWithImportedNestedClass() throws Exception {
-		StringBuilder contents = new StringBuilder();
-		contents.append("package pack1;\n");
-		contents.append("\n");
-		contents.append("import com.example.A;\n");
-		contents.append("import com.example.A.ANested;\n");
-		contents.append("import com.example.C;\n");
-		contents.append("import com.example.C.CNested;\n");
-		contents.append("import com.example.E;\n");
-		contents.append("import com.example.E.ENested;\n");
-		contents.append("\n");
-		contents.append("public class Clazz {}");
+	public void testRenameImportedClassWithImportedNestedClass() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import com.example.A;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import com.example.A.ANested;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import com.example.C;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import com.example.C.CNested;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import com.example.E;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import com.example.E.ENested;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("public class Clazz {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu = createCompilationUnit("pack1", "Clazz", contents.toString());
 
 		String[] order = new String[] { "com" };
@@ -1343,52 +1343,52 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("import com.example.C;\n");
-		expected.append("import com.example.C.CNested;\n");
-		expected.append("import com.example.D;\n");
-		expected.append("import com.example.D.ANested;\n");
-		expected.append("import com.example.E;\n");
-		expected.append("import com.example.E.ENested;\n");
-		expected.append("\n");
-		expected.append("public class Clazz {}");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import com.example.C;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import com.example.C.CNested;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import com.example.D;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import com.example.D.ANested;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import com.example.E;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import com.example.E.ENested;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class Clazz {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
-	public void testConflictsBetweenOriginalOnDemands() throws Exception {
+	public void testConflictsBetweenOriginalOnDemands() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Create a type named "A" in each of two packages.
 		createCompilationUnit("conflicting1", "A");
 		createCompilationUnit("conflicting2", "A");
 
 		// Create a static member named "doStuff" in each of two types.
-		StringBuilder statics1 = new StringBuilder();
-		statics1.append("package statics;\n");
-		statics1.append("\n");
-		statics1.append("public class Statics1 {\n");
-		statics1.append("    public static void doStuff() {}\n");
-		statics1.append("}\n");
+		StringBuilder statics1 = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		statics1.append("package statics;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		statics1.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		statics1.append("public class Statics1 {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		statics1.append("    public static void doStuff() {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		statics1.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		createCompilationUnit("statics", "Statics1", statics1.toString());
-		StringBuilder statics2 = new StringBuilder();
-		statics2.append("package statics;\n");
-		statics2.append("\n");
-		statics2.append("public class Statics2 {\n");
-		statics2.append("    public static void doStuff() {}\n");
-		statics2.append("}\n");
+		StringBuilder statics2 = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		statics2.append("package statics;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		statics2.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		statics2.append("public class Statics2 {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		statics2.append("    public static void doStuff() {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		statics2.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		createCompilationUnit("statics", "Statics2", statics2.toString());
 
 		// Import the types and static members ambiguously via conflicting on-demand imports.
-		StringBuilder contents = new StringBuilder();
-		contents.append("package pack1;\n");
-		contents.append("\n");
-		contents.append("import static statics.Statics1.*;\n");
-		contents.append("import static statics.Statics2.*;\n");
-		contents.append("\n");
-		contents.append("import conflicting1.*;\n");
-		contents.append("import conflicting2.*;\n");
-		contents.append("\n");
-		contents.append("class Clazz {}");
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import static statics.Statics1.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import static statics.Statics2.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import conflicting1.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import conflicting2.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("class Clazz {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu = createCompilationUnit("pack1", "Clazz", contents.toString());
 
 		ImportRewrite imports = newImportsRewrite(cu, new String[0], 1, 1, true);
@@ -1399,30 +1399,30 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		StringBuilder expected = new StringBuilder();
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		// Expect that explicit single imports are added to resolve the conflicts.
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("import static statics.Statics1.*;\n");
-		expected.append("import static statics.Statics1.doStuff;\n");
-		expected.append("import static statics.Statics2.*;\n");
-		expected.append("\n");
-		expected.append("import conflicting1.*;\n");
-		expected.append("import conflicting1.A;\n");
-		expected.append("import conflicting2.*;\n");
-		expected.append("\n");
-		expected.append("class Clazz {}");
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import static statics.Statics1.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import static statics.Statics1.doStuff;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import static statics.Statics2.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import conflicting1.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import conflicting1.A;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import conflicting2.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("class Clazz {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
-	public void testRemoveImportsWithPackageDocComment() throws Exception {
-		StringBuilder contents = new StringBuilder();
-		contents.append("/** package doc comment */\n");
-		contents.append("package pack1;\n");
-		contents.append("\n");
-		contents.append("import com.example.Foo;\n");
-		contents.append("\n");
-		contents.append("public class Clazz {}\n");
+	public void testRemoveImportsWithPackageDocComment() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("/** package doc comment */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import com.example.Foo;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("public class Clazz {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu = createCompilationUnit("pack1", "Clazz", contents.toString());
 
 		ImportRewrite rewrite = newImportsRewrite(cu, new String[] {}, 999, 999, true);
@@ -1430,15 +1430,15 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 		rewrite.removeImport("com.example.Foo");
 		apply(rewrite);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("/** package doc comment */\n");
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("public class Clazz {}\n");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("/** package doc comment */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class Clazz {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
-	public void testImplicitImportFiltering() throws Exception {
+	public void testImplicitImportFiltering() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] order = new String[] {};
 
 		ICompilationUnit cuWithFiltering = createCompilationUnit("pack1", "CuWithFiltering");
@@ -1449,11 +1449,11 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 		rewriteWithFiltering.addImport("java.lang.Integer");
 		apply(rewriteWithFiltering);
 
-		StringBuilder expectedWithFiltering = new StringBuilder();
+		StringBuilder expectedWithFiltering = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		// Expect that the implicit java.lang import has been filtered out.
-		expectedWithFiltering.append("package pack1;\n");
-		expectedWithFiltering.append("\n");
-		expectedWithFiltering.append("public class CuWithFiltering {}");
+		expectedWithFiltering.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expectedWithFiltering.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expectedWithFiltering.append("public class CuWithFiltering {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cuWithFiltering.getSource(), expectedWithFiltering.toString());
 
 		ICompilationUnit cuWithoutFiltering = createCompilationUnit("pack1", "CuWithoutFiltering");
@@ -1464,13 +1464,13 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 		rewriteWithoutFiltering.addImport("java.lang.Integer");
 		apply(rewriteWithoutFiltering);
 
-		StringBuilder expectedWithoutFiltering = new StringBuilder();
+		StringBuilder expectedWithoutFiltering = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		// Expect that the java.lang import has been added to the compilation unit.
-		expectedWithoutFiltering.append("package pack1;\n");
-		expectedWithoutFiltering.append("\n");
-		expectedWithoutFiltering.append("import java.lang.Integer;\n");
-		expectedWithoutFiltering.append("\n");
-		expectedWithoutFiltering.append("public class CuWithoutFiltering {}");
+		expectedWithoutFiltering.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expectedWithoutFiltering.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expectedWithoutFiltering.append("import java.lang.Integer;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expectedWithoutFiltering.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expectedWithoutFiltering.append("public class CuWithoutFiltering {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cuWithoutFiltering.getSource(), expectedWithoutFiltering.toString());
 	}
 
@@ -1478,14 +1478,14 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 	 * Addresses https://bugs.eclipse.org/460484 ("ImportRewrite throws SIOOBE when trying to add
 	 * import").
 	 */
-	public void testAddAdjacentImportWithCommonPrefixButLongerInitialSegment() throws Exception {
-		StringBuilder contents = new StringBuilder();
-		contents.append("package pack1;\n");
-		contents.append("\n");
-		contents.append("import a.FromA;\n");
-		contents.append("import b.FromB;\n");
-		contents.append("\n");
-		contents.append("public class Clazz {}\n");
+	public void testAddAdjacentImportWithCommonPrefixButLongerInitialSegment() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import a.FromA;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("import b.FromB;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("public class Clazz {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu = createCompilationUnit("pack1", "Clazz", contents.toString());
 
 		ImportRewrite rewrite = newImportsRewrite(cu, new String[] {}, 999, 999, true);
@@ -1494,23 +1494,23 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 		rewrite.addImport("ab.FromAb");
 		apply(rewrite);
 
-		StringBuilder expected = new StringBuilder();
-		expected.append("package pack1;\n");
-		expected.append("\n");
-		expected.append("import a.FromA;\n");
-		expected.append("import ab.FromAb;\n");
-		expected.append("import b.FromB;\n");
-		expected.append("\n");
-		expected.append("public class Clazz {}\n");
+		StringBuilder expected = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expected.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import a.FromA;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import ab.FromAb;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("import b.FromB;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expected.append("public class Clazz {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), expected.toString());
 	}
 
 	// https://bugs.eclipse.org/459320
-	public void testAddImportToCuNotOnClasspath() throws Exception {
-		StringBuilder contents = new StringBuilder();
-		contents.append("package pack1;\n");
-		contents.append("\n");
-		contents.append("public class Clazz {}\n");
+	public void testAddImportToCuNotOnClasspath() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("public class Clazz {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		createFolder("/P/alt-src/pack1/");
 		IFile clazz = createFile("/P/alt-src/pack1/Clazz.java", contents.toString());
@@ -1529,21 +1529,21 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 		}
 	}
 
-	public void testAddImports1() throws Exception {
+	public void testAddImports1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import java.util.Map;\n");
-		buf.append("import java.util.Set;\n");
-		buf.append("import java.util.Vector;\n");
-		buf.append("\n");
-		buf.append("import pack.List;\n");
-		buf.append("import pack.List2;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Map;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Set;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Vector;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import pack.List;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import pack.List2;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		String[] order= new String[] { "java", "com", "pack" };
@@ -1558,38 +1558,38 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 		// java.net.Socket gets added to the "java" import group
 		// p.A gets added to the default match-all group at the end
 		// com.something.Foo gets added to the "com" import group
-		buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import java.net.Socket;\n");
-		buf.append("import java.util.Map;\n");
-		buf.append("import java.util.Set;\n");
-		buf.append("import java.util.Vector;\n");
-		buf.append("\n");
-		buf.append("import com.something.Foo;\n");
-		buf.append("\n");
-		buf.append("import pack.List;\n");
-		buf.append("import pack.List2;\n");
-		buf.append("\n");
-		buf.append("import p.A;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.net.Socket;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Map;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Set;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Vector;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import com.something.Foo;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import pack.List;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import pack.List2;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import p.A;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), buf.toString());
 	}
 
-	public void testAddImportsNoEmptyLines() throws Exception {
+	public void testAddImportsNoEmptyLines() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		this.sourceFolder.getJavaProject().setOption(DefaultCodeFormatterConstants.FORMATTER_BLANK_LINES_BETWEEN_IMPORT_GROUPS, String.valueOf(0));
 
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import java.util.Set;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Set;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		String[] order= new String[] { "java.util", "java.net", "p" };
@@ -1601,30 +1601,30 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import java.util.Set;\n");
-		buf.append("import java.net.Socket;\n");
-		buf.append("import p.A;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Set;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.net.Socket;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import p.A;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), buf.toString());
 	}
 
-	public void testAddImportsMoreEmptyLines() throws Exception {
+	public void testAddImportsMoreEmptyLines() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		this.sourceFolder.getJavaProject().setOption(DefaultCodeFormatterConstants.FORMATTER_BLANK_LINES_BETWEEN_IMPORT_GROUPS, String.valueOf(2));
 
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import java.util.Set;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Set;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		String[] order= new String[] { "java.util", "java.net", "p" };
@@ -1636,33 +1636,33 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import java.util.Set;\n");
-		buf.append("\n");
-		buf.append("\n");
-		buf.append("import java.net.Socket;\n");
-		buf.append("\n");
-		buf.append("\n");
-		buf.append("import p.A;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Set;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.net.Socket;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import p.A;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), buf.toString());
 	}
 
-	public void testAddImports2() throws Exception {
+	public void testAddImports2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import java.util.Set;\n");
-		buf.append("import java.util.Vector;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Set;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Vector;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		String[] order= new String[] { "java", "java.util", "com", "pack" };
@@ -1672,30 +1672,30 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import java.x.Socket;\n");
-		buf.append("\n");
-		buf.append("import java.util.Set;\n");
-		buf.append("import java.util.Vector;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.x.Socket;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Set;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Vector;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), buf.toString());
 	}
 
 
-	public void testAddImports3() throws Exception {
+	public void testAddImports3() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import java.util.Set; // comment\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Set; // comment\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		String[] order= new String[] { "java", "java.util", "com", "pack" };
@@ -1705,28 +1705,28 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import java.util.Set; // comment\n");
-		buf.append("import java.util.Vector;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Set; // comment\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Vector;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), buf.toString());
 	}
 
-	public void testAddImports4() throws Exception {
+	public void testAddImports4() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		getJavaProject("P").setOption(DefaultCodeFormatterConstants.FORMATTER_INSERT_SPACE_BEFORE_SEMICOLON, JavaCore.INSERT);
 
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import java.util.Set; // comment\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Set; // comment\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		String[] order= new String[] { "java", "java.util", "com", "pack" };
@@ -1736,26 +1736,26 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import java.util.Set; // comment\n");
-		buf.append("import java.util.Vector ;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Set; // comment\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Vector ;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), buf.toString());
 	}
 
-	public void testAddImports5() throws Exception {
+	public void testAddImports5() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		getJavaProject("P").setOption(DefaultCodeFormatterConstants.FORMATTER_INSERT_SPACE_BEFORE_SEMICOLON, JavaCore.INSERT);
 
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		String[] order= new String[] { "java", "java.util", "com", "pack" };
@@ -1771,21 +1771,21 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		// java.util.{Map,Set,Collections} are reduced to java.util.*
 		// java.util.Map.Entry is reduced to java.util.Map.*
-		buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import java.util.* ;\n");
-		buf.append("import java.util.Map.* ;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.* ;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Map.* ;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), buf.toString());
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=306568
-	public void testAddImports6() throws Exception {
+	public void testAddImports6() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append(
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				"package pack1;\n" +
 				"\n" +
 				"import java.util.*;\n" +
@@ -1811,8 +1811,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 		apply(imports);
 
 		// With on-demand threshold set to 1, java.util.Map.Entry is reduced to java.util.Map.*.
-		buf= new StringBuilder();
-		buf.append(
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				"package pack1;\n" +
 				"\n" +
 				"import java.util.*;\n" +
@@ -1832,10 +1832,10 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=309022
-	public void testAddImports7() throws Exception {
+	public void testAddImports7() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append(
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				"package pack1;\n" +
 				"\n" +
 				"import java.util.*;\n" +
@@ -1862,8 +1862,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		buf= new StringBuilder();
-		buf.append(
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				"package pack1;\n" +
 				"\n" +
 				"import java.io.*;\n" +
@@ -1885,14 +1885,14 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 		assertEqualString(cu.getSource(), buf.toString());
 	}
 
-	public void testAddImportsWithGroupsOfUnmatched1() throws Exception {
+	public void testAddImportsWithGroupsOfUnmatched1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		String[] order= new String[] { "java", "", "org", "#", "pack" };
@@ -1906,32 +1906,32 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import java.util.Vector;\n");
-		buf.append("\n");
-		buf.append("import my.M;\n");
-		buf.append("\n");
-		buf.append("import org.x.Y;\n");
-		buf.append("\n");
-		buf.append("import static stat.X.CONST;\n");
-		buf.append("\n");
-		buf.append("import pack.P;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Vector;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import my.M;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import org.x.Y;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import static stat.X.CONST;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import pack.P;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), buf.toString());
 	}
 
-	public void testAddImportsWithGroupsOfUnmatched2() throws Exception {
+	public void testAddImportsWithGroupsOfUnmatched2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		String[] order= new String[] { "org", "com", "pack", "#", "" };
@@ -1945,39 +1945,39 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import org.Vector;\n");
-		buf.append("\n");
-		buf.append("import com.x.Y;\n");
-		buf.append("\n");
-		buf.append("import pack.P;\n");
-		buf.append("\n");
-		buf.append("import static stat.X.CONST;\n");
-		buf.append("\n");
-		buf.append("import my.M;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import org.Vector;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import com.x.Y;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import pack.P;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import static stat.X.CONST;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import my.M;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), buf.toString());
 	}
 
-	public void testRemoveImports1() throws Exception {
+	public void testRemoveImports1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import java.util.Set;\n");
-		buf.append("import java.util.Vector;\n");
-		buf.append("import java.util.Map;\n");
-		buf.append("\n");
-		buf.append("import pack.List;\n");
-		buf.append("import pack.List2;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Set;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Vector;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Map;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import pack.List;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import pack.List2;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		String[] order= new String[] { "java", "com", "pack" };
@@ -1988,29 +1988,29 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import java.util.*;\n");
-		buf.append("\n");
-		buf.append("import pack.List2;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import pack.List2;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), buf.toString());
 	}
 
-	public void testRemoveImports2() throws Exception {
+	public void testRemoveImports2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import java.util.Set;\n");
-		buf.append("import java.util.Vector; // comment\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Set;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Vector; // comment\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		String[] order= new String[] { "java", "com", "pack" };
@@ -2020,40 +2020,40 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import java.util.Set;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Set;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), buf.toString());
 	}
 
-	public void testRemoveImports3() throws Exception {
+	public void testRemoveImports3() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack= this.sourceFolder.createPackageFragment("pack", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package pack;\n");
-		buf.append("\n");
-		buf.append("public class A {\n");
-		buf.append("    public class Inner {\n");
-		buf.append("    }\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class A {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    public class Inner {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		pack.createCompilationUnit("A.java", buf.toString(), false, null);
 
 		IPackageFragment test1= this.sourceFolder.createPackageFragment("test1", false, null);
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("\n");
-		buf.append("import pack.A;\n");
-		buf.append("import pack.A.Inner;\n");
-		buf.append("import pack.A.NotThere;\n");
-		buf.append("import pack.B;\n");
-		buf.append("import pack.B.Inner;\n");
-		buf.append("import pack.B.NotThere;\n");
-		buf.append("\n");
-		buf.append("public class T {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import pack.A;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import pack.A.Inner;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import pack.A.NotThere;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import pack.B;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import pack.B.Inner;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import pack.B.NotThere;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class T {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cuT= test1.createCompilationUnit("T.java", buf.toString(), false, null);
 
 		ASTParser parser= ASTParser.newParser(AST.getAllSupportedVersions().getFirst());
@@ -2071,28 +2071,28 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("\n");
-		buf.append("import pack.A;\n");
-		buf.append("import pack.B;\n");
-		buf.append("\n");
-		buf.append("public class T {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import pack.A;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import pack.B;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class T {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cuT.getSource(), buf.toString());
 	}
 
-	public void testRemoveImportWithSyntaxError_bug494691() throws Exception {
+	public void testRemoveImportWithSyntaxError_bug494691() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import java.util.*;\n");
-		buf.append("\n");
-		buf.append("syntaxError\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("syntaxError\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		ImportRewrite imports= newImportsRewrite(cu, new String[0], 2, 2, true);
@@ -2100,24 +2100,24 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("syntaxError\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("syntaxError\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), buf.toString());
 	}
 
-	public void testAddImports_bug23078() throws Exception {
+	public void testAddImports_bug23078() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import p.A.*;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import p.A.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		String[] order= new String[] { };
@@ -2131,28 +2131,28 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		// Without having set useContextToFilterImplicitImports to true, we get pre-3.6 behavior,
 		// which sorts imports by containing type and/or package before sorting by qualified name.
-		buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import p.A;\n");
-		buf.append("import p.Inner;\n");
-		buf.append("import p.A.*;\n");
-		buf.append("import p.Inner.*;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import p.A;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import p.Inner;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import p.A.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import p.Inner.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), buf.toString());
 	}
 
-	public void testAddImports_bug23078_usingContext() throws Exception {
+	public void testAddImports_bug23078_usingContext() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import p.A.*;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import p.A.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		String[] order= new String[] { };
@@ -2167,31 +2167,31 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		// Having set useContextToFilterImplicitImports to true, we get 3.6-and-later behavior,
 		// which sorts imports by containing package and then by qualified name.
-		buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import p.A;\n");
-		buf.append("import p.A.*;\n");
-		buf.append("import p.Inner;\n");
-		buf.append("import p.Inner.*;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import p.A;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import p.A.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import p.Inner;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import p.Inner.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), buf.toString());
 	}
 
-	public void testAddImports_bug25113() throws Exception {
+	public void testAddImports_bug25113() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import java.awt.Panel;\n");
-		buf.append("\n");
-		buf.append("import java.math.BigInteger;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.awt.Panel;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.math.BigInteger;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		String[] order= new String[] { "java.awt", "java" };
@@ -2201,29 +2201,29 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import java.awt.Panel;\n");
-		buf.append("\n");
-		buf.append("import java.beans.Beans;\n");
-		buf.append("import java.math.BigInteger;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.awt.Panel;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.beans.Beans;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.math.BigInteger;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), buf.toString());
 	}
 
-	public void testAddImports_bug42637() throws Exception {
+	public void testAddImports_bug42637() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import java.lang.System;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.lang.System;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		String[] order= new String[] { "java" };
@@ -2233,14 +2233,14 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import java.io.Exception;\n");
-		buf.append("import java.lang.System;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.io.Exception;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.lang.System;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), buf.toString());
 	}
 
@@ -2248,15 +2248,15 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 	 * Expects that, in the absence of a package declaration, comments preceding the first import
 	 * declaration are treated as file header comments and left in place.
 	 */
-	public void testAddImports_bug121428() throws Exception {
+	public void testAddImports_bug121428() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("/** comment */\n");
-		buf.append("import java.lang.System;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("/** comment */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.lang.System;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		String[] order= new String[] { "java" };
@@ -2266,12 +2266,12 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		buf= new StringBuilder();
-		buf.append("/** comment */\n");
-		buf.append("import java.io.Exception;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("/** comment */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.io.Exception;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), buf.toString());
 	}
 
@@ -2280,17 +2280,17 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 	 *
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=194358"
 	 */
-	public void testBug194358() throws Exception {
+	public void testBug194358() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
-		StringBuilder buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import pack2.A;\n");
-		buf.append("import pack2.A.Inner;\n");
-		buf.append("import pack2.B;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import pack2.A;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import pack2.A.Inner;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import pack2.B;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("pack1", false, null);
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
@@ -2314,15 +2314,15 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import pack2.A;\n");
-		buf.append("import pack2.A.Inner;\n");
-		buf.append("import pack2.B;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import pack2.A;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import pack2.A.Inner;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import pack2.B;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), buf.toString());
 	}
 
@@ -2333,16 +2333,16 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 	 *
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=194358"
 	 */
-	public void testBug194358a() throws Exception {
-		StringBuilder buf= new StringBuilder();
-		buf.append("package com.pack1;\n");
-		buf.append("\n");
-		buf.append("import com.pack1.A;\n");
-		buf.append("import com.pack1.A.Inner;\n");
-		buf.append("import com.pack2.B;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+	public void testBug194358a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package com.pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import com.pack1.A;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import com.pack1.A.Inner;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import com.pack2.B;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("com.pack1", false, null);
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
@@ -2363,14 +2363,14 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		buf= new StringBuilder();
-		buf.append("package com.pack1;\n");
-		buf.append("\n");
-		buf.append("import com.pack1.A.Inner;\n");
-		buf.append("import com.pack2.B;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package com.pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import com.pack1.A.Inner;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import com.pack2.B;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), buf.toString());
 	}
 	/**
@@ -2380,15 +2380,15 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 	 *
 	 * see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=235253"
 	 */
-	public void testBug235253() throws Exception {
-		StringBuilder buf= new StringBuilder();
-		buf.append("package bug;\n");
-		buf.append("\n");
-		buf.append("class Bug {\n");
-		buf.append("public void addFile(File file) {}\n");
-		buf.append("\tinterface Proto{};\n");
-		buf.append("}\n");
-		buf.append("class Foo implements Proto{}");
+	public void testBug235253() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package bug;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("class Bug {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public void addFile(File file) {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\tinterface Proto{};\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("class Foo implements Proto{}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("bug", false, null);
 		ICompilationUnit cu= pack1.createCompilationUnit("Bug.java", buf.toString(), false, null);
@@ -2399,31 +2399,31 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 		imports.addImport("java.io.File");
 
 		apply(imports);
-		buf = new StringBuilder();
-		buf.append("package bug;\n");
-		buf.append("\n");
-		buf.append("import bug.Bug.Proto;\n");
-		buf.append("\n");
-		buf.append("import java.io.File;\n");
-		buf.append("\n");
-		buf.append("class Bug {\n");
-		buf.append("public void addFile(File file) {}\n");
-		buf.append("\tinterface Proto{};\n");
-		buf.append("}\n");
-		buf.append("class Foo implements Proto{}");
+		buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package bug;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import bug.Bug.Proto;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.io.File;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("class Bug {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public void addFile(File file) {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\tinterface Proto{};\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("class Foo implements Proto{}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), buf.toString());
 	}
 
-	public void testAddStaticImports1() throws Exception {
+	public void testAddStaticImports1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import java.lang.System;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.lang.System;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		String[] order= new String[] { "#", "java" };
@@ -2435,29 +2435,29 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import static java.lang.Math.max;\n");
-		buf.append("import static java.lang.Math.min;\n");
-		buf.append("\n");
-		buf.append("import java.lang.System;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import static java.lang.Math.max;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import static java.lang.Math.min;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.lang.System;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), buf.toString());
 	}
 
-	public void testAddStaticImports2() throws Exception {
+	public void testAddStaticImports2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import java.lang.System;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.lang.System;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		String[] order= new String[] { "#", "java" };
@@ -2469,31 +2469,31 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import static xx.MyConstants.SIZE;\n");
-		buf.append("import static xy.MyConstants.*;\n");
-		buf.append("\n");
-		buf.append("import java.lang.System;\n");
-		buf.append("\n");
-		buf.append("import xy.MyConstants;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import static xx.MyConstants.SIZE;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import static xy.MyConstants.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.lang.System;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import xy.MyConstants;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), buf.toString());
 	}
 
-	public void testAddStaticImports3() throws Exception {
+	public void testAddStaticImports3() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import java.lang.System;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.lang.System;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		String[] order= new String[] { "#", "java" };
@@ -2512,30 +2512,30 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import static java.io.File.pathSeparator;\n");
-		buf.append("import static java.io.File.separator;\n");
-		buf.append("import static java.lang.Math.*;\n");
-		buf.append("\n");
-		buf.append("import java.lang.System;\n");
-		buf.append("import java.util.ArrayList;\n");
-		buf.append("import java.util.List;\n");
-		buf.append("import java.util.Vector;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import static java.io.File.pathSeparator;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import static java.io.File.separator;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import static java.lang.Math.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.lang.System;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.ArrayList;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.List;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Vector;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), buf.toString());
 	}
 
 
 	private void createClassStub(String pack, String typeName, String typeKind) throws JavaModelException {
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment(pack, false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package ").append(pack).append(";\n");
-		buf.append("public ").append(typeKind).append(" ").append(typeName).append(" {\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package ").append(pack).append(";\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public ").append(typeKind).append(" ").append(typeName).append(" {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		String content= buf.toString();
 
 		String name= typeName;
@@ -2543,36 +2543,36 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 		if (idx != -1) {
 			name= typeName.substring(0, idx);
 		}
-		pack1.createCompilationUnit(name + ".java", content, false, null);
+		pack1.createCompilationUnit(name + ".java", content, false, null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 
-	public void testImportStructureWithSignatures() throws Exception {
+	public void testImportStructureWithSignatures() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		createClassStub("java.io", "IOException", "class");
 		createClassStub("java.net", "URL", "class");
 		createClassStub("java.util", "List<E>", "interface");
 		createClassStub("java.net", "SocketAddress", "class");
 
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("import java.util.*;\n");
-		buf.append("import java.net.*;\n");
-		buf.append("import java.io.*;\n");
-		buf.append("public class A {\n");
-		buf.append("    public void foo() {\n");
-		buf.append("        IOException s;\n");
-		buf.append("        URL[][] t;\n");
-		buf.append("        List<SocketAddress> x;\n");
-		buf.append("    }\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.net.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.io.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class A {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    public void foo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        IOException s;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        URL[][] t;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        List<SocketAddress> x;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		String content= buf.toString();
 		ICompilationUnit cu1= pack1.createCompilationUnit("A.java", content, false, null);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public class B {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class B {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		String content2= buf.toString();
 		ICompilationUnit cu2= pack1.createCompilationUnit("B.java", content2, false, null);
 
@@ -2606,46 +2606,46 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 		}
 		apply(importsRewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("\n");
-		buf.append("import java.util.List;\n");
-		buf.append("\n");
-		buf.append("import java.io.IOException;\n");
-		buf.append("\n");
-		buf.append("import java.net.SocketAddress;\n");
-		buf.append("import java.net.URL;\n");
-		buf.append("\n");
-		buf.append("public class B {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.List;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.io.IOException;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.net.SocketAddress;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.net.URL;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class B {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		assertEqualStringIgnoreDelim(cu2.getSource(), buf.toString());
 	}
 
-	public void testImportStructureWithSignatures2() throws Exception {
+	public void testImportStructureWithSignatures2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		createClassStub("java.util", "Map<S, T>", "interface");
 		createClassStub("java.util", "Set<S>", "interface");
 		createClassStub("java.net", "SocketAddress", "class");
 		createClassStub("java.net", "ServerSocket", "class");
 
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("import java.util.*;\n");
-		buf.append("import java.net.*;\n");
-		buf.append("import java.io.*;\n");
-		buf.append("public class A {\n");
-		buf.append("    public void foo() {\n");
-		buf.append("        Map<?, ? extends Set<? super ServerSocket>> z;\n");
-		buf.append("    }\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.net.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.io.*;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class A {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    public void foo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        Map<?, ? extends Set<? super ServerSocket>> z;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		String content= buf.toString();
 		ICompilationUnit cu1= pack1.createCompilationUnit("A.java", content, false, null);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public class B {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class B {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		String content2= buf.toString();
 		ICompilationUnit cu2= pack1.createCompilationUnit("B.java", content2, false, null);
 
@@ -2664,31 +2664,31 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(importsRewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("\n");
-		buf.append("import java.util.Map;\n");
-		buf.append("import java.util.Set;\n");
-		buf.append("\n");
-		buf.append("import java.net.ServerSocket;\n");
-		buf.append("\n");
-		buf.append("public class B {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Map;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Set;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.net.ServerSocket;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class B {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		assertEqualStringIgnoreDelim(cu2.getSource(), buf.toString());
 	}
 
 
-	public void testAddedRemovedImportsAPI() throws Exception {
+	public void testAddedRemovedImportsAPI() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import java.util.Vector;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("    public final static int CONST= 9;\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Vector;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    public final static int CONST= 9;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		String[] order= new String[] { "#", "java" };
@@ -2729,26 +2729,26 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import static java.lang.Math.max;\n");
-		buf.append("import static java.lang.Math.min;\n");
-		buf.append("import static pack1.C.CONST;\n");
-		buf.append("\n");
-		buf.append("import java.util.Vector;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("    public final static int CONST= 9;\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import static java.lang.Math.max;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import static java.lang.Math.min;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import static pack1.C.CONST;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Vector;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    public final static int CONST= 9;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), buf.toString());
 	}
 
-	public void testPackageInfo() throws Exception {
+	public void testPackageInfo() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("\n");
-		buf.append("package pack1;");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("package pack1;"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("package-info.java", buf.toString(), false, null);
 
@@ -2759,15 +2759,15 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		buf= new StringBuilder();
-		buf.append("\n");
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("import foo.Bar;\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import foo.Bar;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), buf.toString());
 	}
 
-	public void testBug252379() throws CoreException, BackingStoreException,
+	public void testBug252379() throws CoreException, BackingStoreException, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			MalformedTreeException, BadLocationException {
 
 
@@ -2776,32 +2776,32 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 		IPackageFragment pack1 = this.sourceFolder.createPackageFragment(
 				"bug", false, null);
 
-		StringBuilder buf = new StringBuilder();
-		buf.append("package bug;\n");
-		buf.append("\n");
-		buf.append("enum CaseType {\n");
-		buf.append("\tone;\n");
-		buf.append("\tstatic CaseType[] all(){return null;}\n");
-		buf.append("}\n");
+		StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package bug;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("enum CaseType {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\tone;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\tstatic CaseType[] all(){return null;}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		units[0] = pack1.createCompilationUnit("CaseType.java", buf.toString(), false, null);
 
-		buf = new StringBuilder();
-		buf.append("package bug;\n");
-		buf.append("enum ShareLevel{all})\n");
+		buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package bug;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("enum ShareLevel{all})\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		units[1] = pack1.createCompilationUnit("ShareLevel.java", buf.toString(), false, null);
 
-		buf = new StringBuilder();
-		buf.append("package bug;\n");
-		buf.append("class Bug {\n");
-		buf.append("public ShareLevel createControl() {\n");
-		buf.append("for (CaseType cat : all())\n");
-		buf.append("cat.hashCode();\n");
-		buf.append("ShareLevel temp = all;\n");
-		buf.append("return temp;\n");
-		buf.append("};\n");
-		buf.append("}\n");
+		buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package bug;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("class Bug {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public ShareLevel createControl() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("for (CaseType cat : all())\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("cat.hashCode();\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("ShareLevel temp = all;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("return temp;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("};\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		units[2] = pack1.createCompilationUnit("Bug.java", buf.toString(), false, null);
 
 		ImportRewrite imports = newImportsRewrite(units[2], new String[] {}, 99, 99, false);
@@ -2810,18 +2810,18 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		buf = new StringBuilder();
-		buf.append("package bug;\n\n");
-		buf.append("import static bug.CaseType.all;\n");
-		buf.append("import static bug.ShareLevel.all;\n\n");
-		buf.append("class Bug {\n");
-		buf.append("public ShareLevel createControl() {\n");
-		buf.append("for (CaseType cat : all())\n");
-		buf.append("cat.hashCode();\n");
-		buf.append("ShareLevel temp = all;\n");
-		buf.append("return temp;\n");
-		buf.append("};\n");
-		buf.append("}\n");
+		buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package bug;\n\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import static bug.CaseType.all;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import static bug.ShareLevel.all;\n\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("class Bug {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public ShareLevel createControl() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("for (CaseType cat : all())\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("cat.hashCode();\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("ShareLevel temp = all;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("return temp;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("};\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(units[2].getSource(), buf.toString());
 	}
 
@@ -2829,24 +2829,24 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 	 * Expects that comments in a variety of positions around and between import declarations
 	 * are preserved when restoreExistingImports is set to false.
 	 */
-	public void testAddImports_bug24804() throws Exception {
+	public void testAddImports_bug24804() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("pack1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("/** floating comment before first import */\n");
-		buf.append("\n");
-		buf.append("import java.util.ArrayList; // trailing same-line comment\n");
-		buf.append("\n");
-		buf.append("/** floating comment between imports*/\n");
-		buf.append("\n");
-		buf.append("/** preceding-line comment */\n");
-		buf.append("import java.util.Collection;\n");
-		buf.append("/** comment on line between imports */\n");
-		buf.append("import java.util.Deque;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("/** floating comment before first import */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.ArrayList; // trailing same-line comment\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("/** floating comment between imports*/\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("/** preceding-line comment */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Collection;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("/** comment on line between imports */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Deque;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		String[] order= new String[] { "java" };
@@ -2858,31 +2858,31 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
 		apply(imports);
 
-		buf= new StringBuilder();
-		buf.append("package pack1;\n");
-		buf.append("\n");
-		buf.append("/** floating comment before first import */\n");
-		buf.append("\n");
-		buf.append("import java.util.ArrayList; // trailing same-line comment\n");
-		buf.append("\n");
-		buf.append("/** floating comment between imports*/\n");
-		buf.append("\n");
-		buf.append("/** preceding-line comment */\n");
-		buf.append("import java.util.Collection;\n");
-		buf.append("/** comment on line between imports */\n");
-		buf.append("import java.util.Deque;\n");
-		buf.append("\n");
-		buf.append("public class C {\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package pack1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("/** floating comment before first import */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.ArrayList; // trailing same-line comment\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("/** floating comment between imports*/\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("/** preceding-line comment */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Collection;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("/** comment on line between imports */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.util.Deque;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(cu.getSource(), buf.toString());
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=376930
-    public void testBug376930() throws Exception {
+    public void testBug376930() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-        StringBuilder buf = new StringBuilder();
+        StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
         // 2 imports are in 1 group but third is separated by a comment
-        buf.append(
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "import java.util.*; // test\n" +
@@ -2912,8 +2912,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
         apply(imports);
 
-        buf = new StringBuilder();
-        buf.append(
+        buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "import java.io.*;\n" +
@@ -2939,11 +2939,11 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
     }
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376930
-    public void testBug376930_2() throws Exception {
+    public void testBug376930_2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-        StringBuilder buf = new StringBuilder();
+        StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
         // all imports are in same group
-        buf.append(
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -2973,8 +2973,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
         apply(imports);
 
-        buf = new StringBuilder();
-        buf.append(
+        buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "import java.io.*;\n" +
@@ -3000,12 +3000,12 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
     }
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376930
-    public void testBug376930_3() throws Exception {
+    public void testBug376930_3() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-        StringBuilder buf = new StringBuilder();
+        StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
         // all imports are in same group
         // leading and trailing comments
-        buf.append(
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -3035,8 +3035,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
         apply(imports);
 
-        buf = new StringBuilder();
-        buf.append(
+        buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "import java.io.*;\n" +
@@ -3063,10 +3063,10 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376930
     // remove imports, preserve all comments
-    public void testBug376930_3a() throws Exception {
+    public void testBug376930_3a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-        StringBuilder buf = new StringBuilder();
-        buf.append(
+        StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -3096,8 +3096,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
         apply(imports);
 
-        buf = new StringBuilder();
-        buf.append(
+        buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
 				"import java.io.*;\n" +
@@ -3117,13 +3117,13 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
     }
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376930
-    public void testBug376930_4() throws Exception {
+    public void testBug376930_4() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-        StringBuilder buf = new StringBuilder();
+        StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
         // all imports are in same group
         // leading and trailing comments
         // two on demand imports in the group
-        buf.append(
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -3153,8 +3153,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
         apply(imports);
 
-        buf = new StringBuilder();
-        buf.append(
+        buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "import java.io.*;\n" +
@@ -3181,10 +3181,10 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376930
     // remove imports, preserve all comments
-    public void testBug376930_4a() throws Exception {
+    public void testBug376930_4a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-        StringBuilder buf = new StringBuilder();
-        buf.append(
+        StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -3214,8 +3214,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
         apply(imports);
 
-        buf = new StringBuilder();
-        buf.append(
+        buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
 				"import java.io.*;\n" +
@@ -3235,13 +3235,13 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
     }
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376930
-    public void testBug376930_5() throws Exception {
+    public void testBug376930_5() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-        StringBuilder buf = new StringBuilder();
+        StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
         // all imports of same group are scattered around
         // leading and trailing comments
         // adding an on-demand import belonging to a group
-        buf.append(
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -3271,10 +3271,10 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
         apply(imports);
 
-        buf = new StringBuilder();
+        buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
         // java.util.Map.* is placed after java.util.* and is assigned the comments
         // from java.util.Map.SomethingElse.
-        buf.append(
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -3301,13 +3301,13 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
     }
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376930
-    public void testBug376930_5a() throws Exception {
+    public void testBug376930_5a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-        StringBuilder buf = new StringBuilder();
+        StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
         // all imports are in same group
         // leading and trailing comments
         // adding an on-demand import belonging to a group
-        buf.append(
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -3339,8 +3339,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
         // java.util.Map.* takes the place of java.util.Map.SomethingElse,
         // and the latter's comments are reassigned to it.
-        buf = new StringBuilder();
-        buf.append(
+        buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -3367,10 +3367,10 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376930
     // added import should get folded into existing *, without touching comments
-    public void testBug376930_5b() throws Exception {
+    public void testBug376930_5b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-        StringBuilder buf = new StringBuilder();
-        buf.append(
+        StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -3400,8 +3400,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
         apply(imports);
 
-        buf = new StringBuilder();
-        buf.append(
+        buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "/* lead 1*/ import java.util.*; // test1\n" +
@@ -3422,10 +3422,10 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376930
     // remove imports, preserve all comments
-    public void testBug376930_5c() throws Exception {
+    public void testBug376930_5c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-        StringBuilder buf = new StringBuilder();
-        buf.append(
+        StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -3457,8 +3457,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
         // java.util.Map.* takes the place of java.util.Map.SomethingElse,
         // and the latter's comments are reassigned to it.
-        buf = new StringBuilder();
-        buf.append(
+        buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
 				"/* lead 3*/\n" +
@@ -3482,10 +3482,10 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376930
     // added import should get folded along with existing import into *, without deleting comments
-    public void testBug376930_5d() throws Exception {
+    public void testBug376930_5d() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-        StringBuilder buf = new StringBuilder();
-        buf.append(
+        StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -3514,8 +3514,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
         apply(imports);
 
-        buf = new StringBuilder();
-        buf.append(
+        buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -3542,10 +3542,10 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376930
     // separating comment should not prevent folding into *-import
-    public void testBug376930_5e() throws Exception {
+    public void testBug376930_5e() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-        StringBuilder buf = new StringBuilder();
-        buf.append(
+        StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "import java.util.Map;\n" +
@@ -3571,8 +3571,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
         apply(imports);
 
-        buf = new StringBuilder();
-        buf.append(
+        buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "import java.util.*;\n" +
@@ -3592,10 +3592,10 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
     }
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=378024
-    public void testBug378024() throws Exception {
+    public void testBug378024() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-        StringBuilder buf = new StringBuilder();
-        buf.append(
+        StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -3632,8 +3632,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
         apply(imports);
 
-        buf = new StringBuilder();
-        buf.append(
+        buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -3662,10 +3662,10 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
     }
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=378024
-    public void testBug378024b() throws Exception {
+    public void testBug378024b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-        StringBuilder buf = new StringBuilder();
-        buf.append(
+        StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -3702,8 +3702,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
         apply(imports);
 
-        buf = new StringBuilder();
-        buf.append(
+        buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -3738,10 +3738,10 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=378024
     // leading and trailing comments always move with imports.
     // comments in between stay where they are
-    public void testBug378024c() throws Exception {
+    public void testBug378024c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-        StringBuilder buf = new StringBuilder();
-        buf.append(
+        StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -3789,8 +3789,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
         apply(imports);
 
-        buf = new StringBuilder();
-        buf.append(
+        buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -3832,10 +3832,10 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=378024
     // leading and trailing comments always move with imports.
     // comments in between stay where they are
-    public void testBug378024c_1() throws Exception {
+    public void testBug378024c_1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-        StringBuilder buf = new StringBuilder();
-        buf.append(
+        StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -3883,8 +3883,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
         apply(imports);
 
-        buf = new StringBuilder();
-        buf.append(
+        buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -3926,10 +3926,10 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=378024
     // leading and trailing comments always move with imports, even if they get folded.
     // comments in between stay where they are
-    public void testBug378024c_2() throws Exception {
+    public void testBug378024c_2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-        StringBuilder buf = new StringBuilder();
-        buf.append(
+        StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -3977,8 +3977,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
         apply(imports);
 
-        buf = new StringBuilder();
-        buf.append(
+        buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -4022,10 +4022,10 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=378024
     // not adding an import should preserve its comments and put them at the end.
-    public void testBug378024d() throws Exception {
+    public void testBug378024d() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-        StringBuilder buf = new StringBuilder();
-        buf.append(
+        StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -4072,8 +4072,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
         apply(imports);
 
-        buf = new StringBuilder();
-        buf.append(
+        buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -4106,10 +4106,10 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=378024
     // adding a new import should not disturb comments and import should be added in its group
-    public void testBug378024e() throws Exception {
+    public void testBug378024e() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-        StringBuilder buf = new StringBuilder();
-        buf.append(
+        StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -4158,8 +4158,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
         apply(imports);
 
-        buf = new StringBuilder();
-        buf.append(
+        buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -4202,10 +4202,10 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=378024
     // removing an import should preserve its comments at the end, and adding a new import should not disturb
     // existing comments
-    public void testBug378024e_1() throws Exception {
+    public void testBug378024e_1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-        StringBuilder buf = new StringBuilder();
-        buf.append(
+        StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -4253,8 +4253,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
         apply(imports);
 
-        buf = new StringBuilder();
-        buf.append(
+        buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -4286,10 +4286,10 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=378024
     // folding imports because of a newly added import should preserve comments
-    public void testBug378024f() throws Exception {
+    public void testBug378024f() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-        StringBuilder buf = new StringBuilder();
-        buf.append(
+        StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -4338,8 +4338,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
         apply(imports);
 
-        buf = new StringBuilder();
-        buf.append(
+        buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -4381,10 +4381,10 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=378024
     // folding imports because of a newly added import should preserve comments
-    public void testBug378024f_1() throws Exception {
+    public void testBug378024f_1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-        StringBuilder buf = new StringBuilder();
-        buf.append(
+        StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -4439,8 +4439,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
         apply(imports);
 
-        buf = new StringBuilder();
-        buf.append(
+        buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -4487,10 +4487,10 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=378024
     // Re-ordering imports and converting them to *
-    public void testBug378024g() throws Exception {
+    public void testBug378024g() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-        StringBuilder buf = new StringBuilder();
-        buf.append(
+        StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -4537,8 +4537,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
         apply(imports);
 
-        StringBuilder buf2 = new StringBuilder();
-        buf2.append(
+        StringBuilder buf2 = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf2.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -4582,10 +4582,10 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=378024
     // Preserve comments when imports are removed in case the restoring of imports is enabled
     // This will test changes in org.eclipse.jdt.internal.core.dom.rewrite.ImportRewriteAnalyzer.removeImport(String, boolean)
-    public void testBug378024h() throws Exception {
+    public void testBug378024h() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-        StringBuilder buf = new StringBuilder();
-        buf.append(
+        StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -4630,8 +4630,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
         apply(imports);
 
-        buf = new StringBuilder();
-        buf.append(
+        buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "/*\n" +
@@ -4662,10 +4662,10 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=378024
     // Preserve comments when imports are removed in case the restoring of imports is enabled
-    public void testBug378024h_1() throws Exception {
+    public void testBug378024h_1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-        StringBuilder buf = new StringBuilder();
-        buf.append(
+        StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -4711,8 +4711,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
         apply(imports);
 
-        buf = new StringBuilder();
-        buf.append(
+        buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "/*\n" +
@@ -4744,10 +4744,10 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=378024
     // Preserve comments when imports are unfolded.
-    public void testBug378024i() throws Exception {
+    public void testBug378024i() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-        StringBuilder buf = new StringBuilder();
-        buf.append(
+        StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -4797,8 +4797,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
         imports.addImport("java.util.Map");
         apply(imports);
 
-        buf = new StringBuilder();
-        buf.append(
+        buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -4845,10 +4845,10 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=378024
     // Preserve comments when imports are folded but a member type import is present
-    public void testBug378024j() throws Exception {
+    public void testBug378024j() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
-        StringBuilder buf = new StringBuilder();
-        buf.append(
+        StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -4900,8 +4900,8 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 
         apply(imports);
 
-        buf = new StringBuilder();
-        buf.append(
+        buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
                 "package pack1;\n" +
                 "\n" +
                 "// comment 1\n" +
@@ -4946,7 +4946,7 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
         assertEqualString(cu.getSource(), buf.toString());
     }
 
-	public void testBug430108_001() throws Exception {
+	public void testBug430108_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
 		String contents = "package pack1;\n" +
 				"public class X {\n" +
@@ -4971,7 +4971,7 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 		assertEquals("pack1.X", actualType.toString());
 	}
 
-	public void testBug430108_002() throws Exception {
+	public void testBug430108_002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1 = this.sourceFolder.createPackageFragment("pack1", false, null);
 		String contents = "package pack1;\n" +
 				"public class X {\n" +
@@ -4998,17 +4998,17 @@ public class ImportRewriteTest extends AbstractJavaModelTests {
 	}
 
 	private ICompilationUnit createCompilationUnit(String packageName, String className) throws JavaModelException {
-		StringBuilder contents = new StringBuilder();
-		contents.append("package " + packageName + ";\n");
-		contents.append("\n");
-		contents.append("public class " + className + " {}");
+		StringBuilder contents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		contents.append("package " + packageName + ";\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		contents.append("public class " + className + " {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return createCompilationUnit(packageName, className, contents.toString());
 	}
 
 	private ICompilationUnit createCompilationUnit(
 			String packageName, String className, String contents) throws JavaModelException {
 		IPackageFragment pack1 = this.sourceFolder.createPackageFragment(packageName, false, null);
-		ICompilationUnit cu = pack1.createCompilationUnit(className + ".java", contents, /* force */ true, null);
+		ICompilationUnit cu = pack1.createCompilationUnit(className + ".java", contents, /* force */ true, null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		return cu;
 	}
 

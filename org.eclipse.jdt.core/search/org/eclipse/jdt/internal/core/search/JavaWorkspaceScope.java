@@ -67,7 +67,7 @@ public boolean encloses(String resourcePathString) {
 	return true;
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public IPath[] enclosingProjectsAndJars() {
 	IPath[] result = this.enclosingPaths;
 	if (result != null) {
@@ -78,7 +78,7 @@ public IPath[] enclosingProjectsAndJars() {
 		IJavaProject[] projects = JavaModelManager.getJavaModelManager().getJavaModel().getJavaProjects();
 		// use a linked set to preserve the order during search: see bug 348507
 		Set<IPath> paths = new LinkedHashSet<>(projects.length * 2);
-		for (IJavaProject project : projects) {
+		for (IJavaProject project : projects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JavaProject javaProject = (JavaProject) project;
 
 			// Add project full path
@@ -90,12 +90,12 @@ public IPath[] enclosingProjectsAndJars() {
 		// to ensure source files always get higher precedence during search.
 		// see bug 348507
 
-		for (IJavaProject project : projects) {
+		for (IJavaProject project : projects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JavaProject javaProject = (JavaProject) project;
 
 			// Add project libraries paths
 			IClasspathEntry[] entries = javaProject.getResolvedClasspath();
-			for (IClasspathEntry entry : entries) {
+			for (IClasspathEntry entry : entries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (entry.getEntryKind() == IClasspathEntry.CPE_LIBRARY) {
 					paths.add(entry.getPath());
 				}
@@ -111,7 +111,7 @@ public IPath[] enclosingProjectsAndJars() {
 		if (BasicSearchEngine.VERBOSE) {
 			long time = System.currentTimeMillis() - start;
 			int length = result == null ? 0 : result.length;
-			JavaModelManager.trace("JavaWorkspaceScope.enclosingProjectsAndJars: "+length+" paths computed in "+time+"ms."); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			JavaModelManager.trace("JavaWorkspaceScope.enclosingProjectsAndJars: "+length+" paths computed in "+time+"ms."); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 }
@@ -135,7 +135,7 @@ public int hashCode() {
 /**
  * @see AbstractJavaSearchScope#packageFragmentRoot(String, int, String)
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public IPackageFragmentRoot packageFragmentRoot(String resourcePathString, int jarSeparatorIndex, String jarPath) {
 	Map<IPath, RootInfo> rootInfos = JavaModelManager.getDeltaState().roots;
 	DeltaProcessor.RootInfo rootInfo = null;
@@ -150,7 +150,7 @@ public IPackageFragmentRoot packageFragmentRoot(String resourcePathString, int j
 				rootInfo = rootInfos.get(resource.getLocation());
 		} else {
 			rootInfo = rootInfos.get(path);
-			while (rootInfo == null && path.segmentCount() > 0) {
+			while (rootInfo == null && path.segmentCount() > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				path = path.removeLastSegments(1);
 				rootInfo = rootInfos.get(path);
 			}
@@ -161,14 +161,14 @@ public IPackageFragmentRoot packageFragmentRoot(String resourcePathString, int j
 	return rootInfo.getPackageFragmentRoot(null/*no resource hint*/);
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void processDelta(IJavaElementDelta delta, int eventType) {
 	if (this.enclosingPaths == null) return;
 	IJavaElement element = delta.getElement();
 	switch (element.getElementType()) {
 		case IJavaElement.JAVA_MODEL:
 			IJavaElementDelta[] children = delta.getAffectedChildren();
-			for (IJavaElementDelta child : children) {
+			for (IJavaElementDelta child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				processDelta(child, eventType);
 			}
 			break;
@@ -186,7 +186,7 @@ public void processDelta(IJavaElementDelta delta, int eventType) {
 						this.enclosingPaths = null;
 					} else {
 						children = delta.getAffectedChildren();
-						for (IJavaElementDelta child : children) {
+						for (IJavaElementDelta child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							processDelta(child, eventType);
 						}
 					}
@@ -215,18 +215,18 @@ public void processDelta(IJavaElementDelta delta, int eventType) {
 
 @Override
 public String toString() {
-	StringBuilder result = new StringBuilder("JavaWorkspaceScope on "); //$NON-NLS-1$
+	StringBuilder result = new StringBuilder("JavaWorkspaceScope on "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	IPath[] paths = enclosingProjectsAndJars();
 	int length = paths == null ? 0 : paths.length;
 	if (length == 0) {
-		result.append("[empty scope]"); //$NON-NLS-1$
+		result.append("[empty scope]"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	} else {
-		result.append("["); //$NON-NLS-1$
-		for (int i = 0; i < length; i++) {
-			result.append("\n\t"); //$NON-NLS-1$
-			result.append(paths[i]);
+		result.append("["); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			result.append("\n\t"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			result.append(paths[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		result.append("\n]"); //$NON-NLS-1$
+		result.append("\n]"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	return result.toString();
 }

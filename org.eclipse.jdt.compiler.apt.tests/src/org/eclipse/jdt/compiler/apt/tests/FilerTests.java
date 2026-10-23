@@ -56,12 +56,12 @@ public class FilerTests extends TestCase {
 	 * Test the createResource() by processing resources/targets/filer/FilerTarget1.java
 	 * and verifying the existence and content of the resulting files.
 	 */
-	private void internalTestCreateResource(JavaCompiler compiler, boolean isSystemCommpiler) throws IOException {
+	private void internalTestCreateResource(JavaCompiler compiler, boolean isSystemCommpiler) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "filer");
 		File inputFile = BatchTestUtils.copyResource("targets/filer/FilerTarget1.java", targetFolder);
 		assertNotNull("No input file", inputFile);
 
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		BatchTestUtils.compileOneClass(compiler, options, inputFile);
 
 		// check that the resource and class files were generated

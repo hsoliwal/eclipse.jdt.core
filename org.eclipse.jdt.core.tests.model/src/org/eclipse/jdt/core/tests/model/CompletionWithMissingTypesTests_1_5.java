@@ -38,7 +38,7 @@ public static Test suite() {
 	return buildModelTestSuite(CompletionWithMissingTypesTests_1_5.class);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=44984
-public void test0001() throws JavaModelException {
+public void test0001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -70,12 +70,12 @@ public void test0001() throws JavaModelException {
 	int start2 = str.lastIndexOf("MissingType");
 	int end2 = start2 + "MissingType".length();
 	assertResults(
-			"bar[METHOD_REF]{bar(), Lmissing.MissingType<Ljava.lang.Object;>;, ()V, bar, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" +
+			"bar[METHOD_REF]{bar(), Lmissing.MissingType<Ljava.lang.Object;>;, ()V, bar, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   MissingType[TYPE_REF]{missing.MissingType, missing, Lmissing.MissingType;, null, null, ["+start2+", "+end2+"], " + (relevance1) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=44984
-public void test0002() throws JavaModelException {
+public void test0002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -116,7 +116,7 @@ public void test0002() throws JavaModelException {
 	int start3 = str.lastIndexOf("MissingType<");
 	int end3 = start3 + "MissingType".length();
 	assertResults(
-			"bar[METHOD_REF]{bar(), Lmissing.MissingType<Lmissing.MissingType2;>;, ()V, bar, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" +
+			"bar[METHOD_REF]{bar(), Lmissing.MissingType<Lmissing.MissingType2;>;, ()V, bar, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   MissingType[TYPE_REF]{missing.MissingType, missing, Lmissing.MissingType;, null, null, ["+start3+", "+end3+"], " + (relevance1) + "}\n" +
 			"   MissingType2[TYPE_REF]{missing.MissingType2, missing, Lmissing.MissingType2;, null, null, ["+start2+", "+end2+"], " + (relevance1) + "}\n" +
 			"bar[METHOD_REF]{bar(), Lmissing.MissingType<Lmissing.MissingType2;>;, (Lmissing.MissingType2;)V, bar, (t), ["+start1+", "+end1+"], " + (relevance1) + "}\n" +
@@ -125,7 +125,7 @@ public void test0002() throws JavaModelException {
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=44984
-public void test0003() throws JavaModelException {
+public void test0003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -165,14 +165,14 @@ public void test0003() throws JavaModelException {
 	int start2 = str.lastIndexOf("MissingType2");
 	int end2 = start2 + "MissingType2".length();
 	assertResults(
-			"bar[METHOD_REF]{bar(), Lmissing.MissingType<Lmissing.MissingType2;>;, ()V, bar, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" +
+			"bar[METHOD_REF]{bar(), Lmissing.MissingType<Lmissing.MissingType2;>;, ()V, bar, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   MissingType2[TYPE_REF]{missing.MissingType2, missing, Lmissing.MissingType2;, null, null, ["+start2+", "+end2+"], " + (relevance1) + "}\n" +
 			"bar[METHOD_REF]{bar(), Lmissing.MissingType<Lmissing.MissingType2;>;, (Lmissing.MissingType2;)V, bar, (t), ["+start1+", "+end1+"], " + (relevance1) + "}\n" +
 			"   MissingType2[TYPE_REF]{missing.MissingType2, missing, Lmissing.MissingType2;, null, null, ["+start2+", "+end2+"], " + (relevance1) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=44984
-public void test0004() throws JavaModelException {
+public void test0004() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -212,14 +212,14 @@ public void test0004() throws JavaModelException {
 	int start2 = str.lastIndexOf("MissingType<");
 	int end2 = start2 + "MissingType".length();
 	assertResults(
-			"bar[METHOD_REF]{bar(), Lmissing.MissingType<Lmissing.MissingType2;>;, ()V, bar, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" +
+			"bar[METHOD_REF]{bar(), Lmissing.MissingType<Lmissing.MissingType2;>;, ()V, bar, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   MissingType[TYPE_REF]{missing.MissingType, missing, Lmissing.MissingType;, null, null, ["+start2+", "+end2+"], " + (relevance1) + "}\n" +
 			"bar[METHOD_REF]{bar(), Lmissing.MissingType<Lmissing.MissingType2;>;, (Lmissing.MissingType2;)V, bar, (t), ["+start1+", "+end1+"], " + (relevance1) + "}\n" +
 			"   MissingType[TYPE_REF]{missing.MissingType, missing, Lmissing.MissingType;, null, null, ["+start2+", "+end2+"], " + (relevance1) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=44984
-public void test0005() throws JavaModelException {
+public void test0005() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[6];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -279,7 +279,7 @@ public void test0005() throws JavaModelException {
 	int start4 = str.lastIndexOf("MissingType<");
 	int end4 = start4 + "MissingType".length();
 	assertResults(
-			"bar[METHOD_REF]{bar(), Lmissing.MissingType<Lmissing.MissingType1;Lmissing.MissingType2;>;, (Lmissing.MissingType1;Lmissing.MissingType2;)V, bar, (t, u), ["+start1+", "+end1+"], " + (relevance1) + "}\n" +
+			"bar[METHOD_REF]{bar(), Lmissing.MissingType<Lmissing.MissingType1;Lmissing.MissingType2;>;, (Lmissing.MissingType1;Lmissing.MissingType2;)V, bar, (t, u), ["+start1+", "+end1+"], " + (relevance1) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   MissingType[TYPE_REF]{missing.MissingType, missing, Lmissing.MissingType;, null, null, ["+start4+", "+end4+"], " + (relevance1) + "}\n" +
 			"   MissingType1[TYPE_REF]{missing.MissingType1, missing, Lmissing.MissingType1;, null, null, ["+start2+", "+end2+"], " + (relevance1) + "}\n" +
 			"   MissingType2[TYPE_REF]{missing.MissingType2, missing, Lmissing.MissingType2;, null, null, ["+start3+", "+end3+"], " + (relevance1) + "}\n" +
@@ -298,7 +298,7 @@ public void test0005() throws JavaModelException {
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=44984
-public void test0006() throws JavaModelException {
+public void test0006() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -330,12 +330,12 @@ public void test0006() throws JavaModelException {
 	int start2 = str.lastIndexOf("MissingType");
 	int end2 = start2 + "MissingType".length();
 	assertResults(
-			"bar[METHOD_REF]{bar(), Lmissing.MissingType;, ()V, bar, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" +
+			"bar[METHOD_REF]{bar(), Lmissing.MissingType;, ()V, bar, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   MissingType[TYPE_REF]{missing.MissingType, missing, Lmissing.MissingType;, null, null, ["+start2+", "+end2+"], " + (relevance1) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=44984
-public void test0007() throws JavaModelException {
+public void test0007() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -373,12 +373,12 @@ public void test0007() throws JavaModelException {
 	int start2 = str.lastIndexOf("MissingType");
 	int end2 = start2 + "MissingType".length();
 	assertResults(
-			"bar[METHOD_REF]{bar(), Ltest.AType<Lmissing.MissingType;>;, (Lmissing.MissingType;)V, bar, (t), ["+start1+", "+end1+"], " + (relevance1) + "}\n" +
+			"bar[METHOD_REF]{bar(), Ltest.AType<Lmissing.MissingType;>;, (Lmissing.MissingType;)V, bar, (t), ["+start1+", "+end1+"], " + (relevance1) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   MissingType[TYPE_REF]{missing.MissingType, missing, Lmissing.MissingType;, null, null, ["+start2+", "+end2+"], " + (relevance1) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=44984
-public void test0008() throws JavaModelException {
+public void test0008() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -412,12 +412,12 @@ public void test0008() throws JavaModelException {
 	int start2 = str.lastIndexOf("MissingType");
 	int end2 = start2 + "MissingType".length();
 	assertResults(
-			"bar[METHOD_REF]{bar(), Lmissing.MissingType$MissingMemberType<Ljava.lang.Object;>;, ()V, bar, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" +
+			"bar[METHOD_REF]{bar(), Lmissing.MissingType$MissingMemberType<Ljava.lang.Object;>;, ()V, bar, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   MissingType[TYPE_REF]{missing.MissingType, missing, Lmissing.MissingType;, null, null, ["+start2+", "+end2+"], " + (relevance1) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=44984
-public void test0009() throws JavaModelException {
+public void test0009() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -448,7 +448,7 @@ public void test0009() throws JavaModelException {
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=44984
-public void _test0010() throws JavaModelException {
+public void _test0010() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -482,12 +482,12 @@ public void _test0010() throws JavaModelException {
 	int start2 = str.lastIndexOf("MissingType");
 	int end2 = start2 + "MissingType".length();
 	assertResults(
-			"bar[METHOD_REF]{bar(), Lmissing.MissingType<Ljava.lang.Object;>.MissingMemberType<Ljava.lang.Object;>;, ()V, bar, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" +
+			"bar[METHOD_REF]{bar(), Lmissing.MissingType<Ljava.lang.Object;>.MissingMemberType<Ljava.lang.Object;>;, ()V, bar, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   MissingType[TYPE_REF]{missing.MissingType, missing, Lmissing.MissingType;, null, null, ["+start2+", "+end2+"], " + (relevance1) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=44984
-public void test0011() throws JavaModelException {
+public void test0011() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -520,7 +520,7 @@ public void test0011() throws JavaModelException {
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=161204
-public void test0012() throws JavaModelException {
+public void test0012() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -560,14 +560,14 @@ public void test0012() throws JavaModelException {
 	int start2 = str.lastIndexOf("MissingType");
 	int end2 = start2 + "MissingType".length();
 	assertResults(
-			"bar[METHOD_REF]{bar(), Lmissing1.MissingType;, ()V, bar, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" +
+			"bar[METHOD_REF]{bar(), Lmissing1.MissingType;, ()V, bar, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   MissingType[TYPE_REF]{missing1.MissingType, missing1, Lmissing1.MissingType;, null, null, ["+start2+", "+end2+"], " + (relevance1) + "}\n" +
 			"bar[METHOD_REF]{bar(), Lmissing2.MissingType;, ()V, bar, null, ["+start1+", "+end1+"], " + (relevance2) + "}\n" +
 			"   MissingType[TYPE_REF]{missing2.MissingType, missing2, Lmissing2.MissingType;, null, null, ["+start2+", "+end2+"], " + (relevance2) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=223495
-public void test0013() throws JavaModelException {
+public void test0013() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -596,12 +596,12 @@ public void test0013() throws JavaModelException {
 	int start2 = str.indexOf("MissingType");
 	int end2 = start2 + "MissingType".length();
 	assertResults(
-			"MissingType<java.lang.Object>.Member[TYPE_REF]{Member, missing, Lmissing.MissingType<Ljava.lang.Object;>.Member;, null, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" +
+			"MissingType<java.lang.Object>.Member[TYPE_REF]{Member, missing, Lmissing.MissingType<Ljava.lang.Object;>.Member;, null, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   MissingType[TYPE_REF]{missing.MissingType, missing, Lmissing.MissingType;, null, null, ["+start2+", "+end2+"], " + (relevance1) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=223495
-public void test0014() throws JavaModelException {
+public void test0014() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -632,12 +632,12 @@ public void test0014() throws JavaModelException {
 	int start2 = str.indexOf("MissingType");
 	int end2 = start2 + "MissingType".length();
 	assertResults(
-			"MissingType<java.lang.Object>.Member[TYPE_REF]{Member, missing, Lmissing.MissingType<Ljava.lang.Object;>.Member;, null, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" +
+			"MissingType<java.lang.Object>.Member[TYPE_REF]{Member, missing, Lmissing.MissingType<Ljava.lang.Object;>.Member;, null, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   MissingType[TYPE_REF]{missing.MissingType, missing, Lmissing.MissingType;, null, null, ["+start2+", "+end2+"], " + (relevance1) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=260717
-public void test0015() throws JavaModelException {
+public void test0015() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -668,7 +668,7 @@ public void test0015() throws JavaModelException {
 	int start2 = str.indexOf("MissingType");
 	int end2 = start2 + "MissingType".length();
 	assertResults(
-			"MissingType[ANONYMOUS_CLASS_DECLARATION]{, Lmissing.MissingType;, <T:Ljava.lang.Object;>()V, null, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" +
+			"MissingType[ANONYMOUS_CLASS_DECLARATION]{, Lmissing.MissingType;, <T:Ljava.lang.Object;>()V, null, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   MissingType[TYPE_REF]{missing.MissingType, missing, Lmissing.MissingType;, null, null, ["+start2+", "+end2+"], " + (relevance1) + "}\n" +
 			"MissingType[METHOD_REF<CONSTRUCTOR>]{, Lmissing.MissingType;, <T:Ljava.lang.Object;>()V, MissingType, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" +
 			"   MissingType[TYPE_REF]{missing.MissingType, missing, Lmissing.MissingType;, null, null, ["+start2+", "+end2+"], " + (relevance1) + "}",

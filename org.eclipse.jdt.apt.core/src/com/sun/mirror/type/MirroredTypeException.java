@@ -55,7 +55,7 @@ public class MirroredTypeException extends RuntimeException {
      * @param type  the type being accessed
      */
     public MirroredTypeException(TypeMirror type) {
-	super("Attempt to access Class object for TypeMirror " + type); //$NON-NLS-1$
+	super("Attempt to access Class object for TypeMirror " + type); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	this.type = type;
 	name = type.toString();
     }

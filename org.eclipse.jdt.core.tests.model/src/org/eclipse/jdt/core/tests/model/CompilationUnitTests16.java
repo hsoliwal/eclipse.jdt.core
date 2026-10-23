@@ -31,7 +31,7 @@ public CompilationUnitTests16(String name) {
 	super(name);
 }
 
-public void setUpSuite() throws Exception {
+public void setUpSuite() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	super.setUpSuite();
 
 	final String compliance = "16"; //$NON-NLS-1$
@@ -126,7 +126,7 @@ public void tearDownSuite() throws Exception {
  * Ensures that correct number of types with the correct names and modifiers
  * exist in a compilation unit.
  */
-public void testGetTypes() throws JavaModelException {
+public void testGetTypes() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (canRunJava16()) {
 		IType[] types = this.cu.getTypes();
 		String[] typeNames = new String[] {"X", "I", "I2", "I3", "Y", "Colors", "Annot", "Record"};
@@ -149,21 +149,21 @@ public void testGetTypes() throws JavaModelException {
 		};
 
 		assertEquals("Wrong number of types returned", typeNames.length, types.length);
-		for (int i = 0; i < types.length; i++) {
-			assertEquals("Incorrect name for the " + i + " type", typeNames[i], types[i].getElementName());
+		for (int i = 0; i < types.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			assertEquals("Incorrect name for the " + i + " type", typeNames[i], types[i].getElementName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String mod= Flags.toString(types[i].getFlags());
-			assertEquals("Unexpected modifier for " + types[i].getElementName(), flags[i], mod);
-			assertTrue("Type does not exist " + types[i], types[i].exists());
-			assertEquals("Incorrect isClass for the " + i + " type", isClass[i], types[i].isClass());
-			assertEquals("Incorrect isInterface for the " + i + " type", isInterface[i], types[i].isInterface());
-			assertEquals("Incorrect isAnnotation for the " + i + " type", isAnnotation[i], types[i].isAnnotation());
-			assertEquals("Incorrect isEnum for the " + i + " type", isEnum[i], types[i].isEnum());
-			assertEquals("Incorrect isRecord for the " + i + " type", isRecord[i], types[i].isRecord());
-			assertEquals("Incorrect superclassName for the " + i + " type", superclassName[i], types[i].getSuperclassName());
-			assertEquals("Incorrect superclassType for the " + i + " type", superclassType[i], types[i].getSuperclassTypeSignature());
-			assertEquals("Incorrect superInterfaceNames for the " + i + " type", superInterfaceNames[i].length, types[i].getSuperInterfaceNames().length);
-			assertEquals("Incorrect superInterfaceTypes for the " + i + " type", superInterfaceTypes[i].length, types[i].getSuperInterfaceTypeSignatures().length);
-			assertEquals("Incorrect formalTypeParameters for the " + i + " type", formalTypeParameters[i].length, types[i].getTypeParameters().length);
+			assertEquals("Unexpected modifier for " + types[i].getElementName(), flags[i], mod); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertTrue("Type does not exist " + types[i], types[i].exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertEquals("Incorrect isClass for the " + i + " type", isClass[i], types[i].isClass()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertEquals("Incorrect isInterface for the " + i + " type", isInterface[i], types[i].isInterface()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertEquals("Incorrect isAnnotation for the " + i + " type", isAnnotation[i], types[i].isAnnotation()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertEquals("Incorrect isEnum for the " + i + " type", isEnum[i], types[i].isEnum()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertEquals("Incorrect isRecord for the " + i + " type", isRecord[i], types[i].isRecord()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertEquals("Incorrect superclassName for the " + i + " type", superclassName[i], types[i].getSuperclassName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertEquals("Incorrect superclassType for the " + i + " type", superclassType[i], types[i].getSuperclassTypeSignature()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertEquals("Incorrect superInterfaceNames for the " + i + " type", superInterfaceNames[i].length, types[i].getSuperInterfaceNames().length); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertEquals("Incorrect superInterfaceTypes for the " + i + " type", superInterfaceTypes[i].length, types[i].getSuperInterfaceTypeSignatures().length); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertEquals("Incorrect formalTypeParameters for the " + i + " type", formalTypeParameters[i].length, types[i].getTypeParameters().length); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 }

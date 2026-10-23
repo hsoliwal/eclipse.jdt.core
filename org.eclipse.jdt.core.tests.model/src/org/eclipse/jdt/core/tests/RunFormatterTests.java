@@ -33,7 +33,7 @@ import org.eclipse.jdt.core.tests.util.CleanupAfterSuiteTests;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class RunFormatterTests extends junit.framework.TestCase {
 
-	public final static List TEST_SUITES = new ArrayList();
+	public final static List TEST_SUITES = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	static {
 		TEST_SUITES.add(FormatterCommentsBugsTest.class);
 		TEST_SUITES.add(FormatterCommentsTests.class);
@@ -51,14 +51,14 @@ public class RunFormatterTests extends junit.framework.TestCase {
 		return (Class[]) TEST_SUITES.toArray();
 	}
 
-	public static Test suite() {
+	public static Test suite() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TestSuite ts = new TestSuite(RunFormatterTests.class.getName());
 
 		// Store test classes with same "JavaSearch"project
-		FormatterCommentsTests.ALL_TEST_SUITES = new ArrayList(TEST_SUITES);
+		FormatterCommentsTests.ALL_TEST_SUITES = new ArrayList(TEST_SUITES); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		// Get all classes
-		List allClasses = new ArrayList();
+		List allClasses = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		String type = System.getProperty("type");
 		if (type == null || !type.equals("javadoc")) {
 			allClasses.add(FormatterRegressionTests.class);
@@ -79,7 +79,7 @@ public class RunFormatterTests extends junit.framework.TestCase {
 		TestCase.RUN_ONLY_ID = null;
 
 		// Add all tests suite of tests
-		for (int i = 0, size = allClasses.size(); i < size; i++) {
+		for (int i = 0, size = allClasses.size(); i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Class testClass = (Class) allClasses.get(i);
 
 			// call the suite() method and add the resulting suite to the suite

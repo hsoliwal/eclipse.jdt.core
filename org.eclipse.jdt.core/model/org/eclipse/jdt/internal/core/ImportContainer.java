@@ -111,8 +111,8 @@ protected void toString(int tab, StringBuilder buffer) {
 	Object info = JavaModelManager.getJavaModelManager().peekAtInfo(this);
 	if (info == null || !(info instanceof JavaElementInfo)) return;
 	IJavaElement[] children = ((JavaElementInfo)info).getChildren();
-	for (int i = 0; i < children.length; i++) {
-		if (i > 0) buffer.append("\n"); //$NON-NLS-1$
+	for (int i = 0; i < children.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		if (i > 0) buffer.append("\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		((JavaElement)children[i]).toString(tab, buffer);
 	}
 }
@@ -121,10 +121,10 @@ protected void toString(int tab, StringBuilder buffer) {
  */
 @Override
 protected void toStringInfo(int tab, StringBuilder buffer, Object info, boolean showResolvedInfo) {
-	buffer.append(tabString(tab));
-	buffer.append("<import container>"); //$NON-NLS-1$
+	buffer.append(tabString(tab)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append("<import container>"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (info == null) {
-		buffer.append(" (not open)"); //$NON-NLS-1$
+		buffer.append(" (not open)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 }
 @Override

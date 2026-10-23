@@ -52,8 +52,8 @@ public int getElementType() {
 @Override
 protected void getHandleMemento(StringBuilder buff) {
 	getParent().getHandleMemento(buff);
-	buff.append(getHandleMementoDelimiter());
-	buff.append(this.getOccurrenceCount());
+	buff.append(getHandleMementoDelimiter()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buff.append(this.getOccurrenceCount()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 }
 /**
  * @see JavaElement#getHandleMemento()
@@ -94,28 +94,28 @@ public JavaElement getPrimaryElement(boolean checkOwner) {
 /**
  * for debugging only
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void toStringInfo(int tab, StringBuilder buffer, Object info, boolean showResolvedInfo) {
-	buffer.append(tabString(tab));
+	buffer.append(tabString(tab)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (info == null) {
-		buffer.append("<initializer #"); //$NON-NLS-1$
-		buffer.append(this.getOccurrenceCount());
-		buffer.append("> (not open)"); //$NON-NLS-1$
+		buffer.append("<initializer #"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(this.getOccurrenceCount()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("> (not open)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	} else if (info == NO_INFO) {
-		buffer.append("<initializer #"); //$NON-NLS-1$
-		buffer.append(this.getOccurrenceCount());
-		buffer.append(">"); //$NON-NLS-1$
+		buffer.append("<initializer #"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(this.getOccurrenceCount()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(">"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	} else {
 		try {
-			buffer.append("<"); //$NON-NLS-1$
+			buffer.append("<"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (Flags.isStatic(getFlags())) {
-				buffer.append("static "); //$NON-NLS-1$
+				buffer.append("static "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-		buffer.append("initializer #"); //$NON-NLS-1$
-		buffer.append(this.getOccurrenceCount());
-		buffer.append(">"); //$NON-NLS-1$
+		buffer.append("initializer #"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(this.getOccurrenceCount()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(">"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} catch (JavaModelException e) {
-			buffer.append("<JavaModelException in toString of " + getElementName()); //$NON-NLS-1$
+			buffer.append("<JavaModelException in toString of " + getElementName()); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 }

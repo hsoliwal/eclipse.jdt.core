@@ -70,13 +70,13 @@ public class SuperConstructorInvocation extends Statement {
 	private static final List PROPERTY_DESCRIPTORS_3_0;
 
 	static {
-		List propertyList = new ArrayList(3);
+		List propertyList = new ArrayList(3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(SuperConstructorInvocation.class, propertyList);
 		addProperty(EXPRESSION_PROPERTY, propertyList);
 		addProperty(ARGUMENTS_PROPERTY, propertyList);
 		PROPERTY_DESCRIPTORS_2_0 = reapPropertyList(propertyList);
 
-		propertyList = new ArrayList(4);
+		propertyList = new ArrayList(4); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(SuperConstructorInvocation.class, propertyList);
 		addProperty(EXPRESSION_PROPERTY, propertyList);
 		addProperty(TYPE_ARGUMENTS_PROPERTY, propertyList);

@@ -74,7 +74,7 @@ public class UserLibrary {
 		if (obj != null && obj.getClass() == getClass()) {
 			UserLibrary other= (UserLibrary) obj;
 			if (this.entries.length == other.entries.length && this.isSystemLibrary == other.isSystemLibrary) {
-				for (int i= 0; i < this.entries.length; i++) {
+				for (int i= 0; i < this.entries.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (!this.entries[i].equals(other.entries[i])) {
 						return false;
 					}
@@ -91,25 +91,25 @@ public class UserLibrary {
 		if (this.isSystemLibrary) {
 			hashCode++;
 		}
-		for (IClasspathEntry entry : this.entries) {
+		for (IClasspathEntry entry : this.entries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			hashCode= hashCode * 17 + entry.hashCode();
 		}
 		return hashCode;
 	}
 
-	public static String serialize(IClasspathEntry[] entries, boolean isSystemLibrary) throws IOException {
+	public static String serialize(IClasspathEntry[] entries, boolean isSystemLibrary) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		StringWriter writer = new StringWriter();
 		XMLWriter xmlWriter = new XMLWriter(writer, null/*use the workspace line delimiter*/, true/*print XML version*/);
 
-		HashMap library = new HashMap();
+		HashMap library = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		library.put(TAG_VERSION, String.valueOf(CURRENT_VERSION));
 		library.put(TAG_SYSTEMLIBRARY, String.valueOf(isSystemLibrary));
 		xmlWriter.printTag(TAG_USERLIBRARY, library, true, true, false);
 
-		for (IClasspathEntry entry : entries) {
+		for (IClasspathEntry entry : entries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ClasspathEntry cpEntry = (ClasspathEntry) entry;
 
-			HashMap archive = new HashMap();
+			HashMap archive = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			archive.put(TAG_PATH, cpEntry.getPath().toPortableString());
 			IPath sourceAttach= cpEntry.getSourceAttachmentPath();
 			if (sourceAttach != null)
@@ -141,7 +141,7 @@ public class UserLibrary {
 		return writer.toString();
 	}
 
-	public static UserLibrary createFromString(Reader reader) throws IOException {
+	public static UserLibrary createFromString(Reader reader) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Element cpElement;
 		try {
 			@SuppressWarnings("restriction")
@@ -162,8 +162,8 @@ public class UserLibrary {
 		NodeList list= cpElement.getChildNodes();
 		int length = list.getLength();
 
-		ArrayList res= new ArrayList(length);
-		for (int i = 0; i < length; ++i) {
+		ArrayList res= new ArrayList(length); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (int i = 0; i < length; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Node node = list.item(i);
 
 			if (node.getNodeType() == Node.ELEMENT_NODE) {
@@ -207,10 +207,10 @@ public class UserLibrary {
 	public String toString() {
 		if (this.entries == null)
 			return "null"; //$NON-NLS-1$
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		int length = this.entries.length;
-		for (int i=0; i<length; i++) {
-			buffer.append(this.entries[i].toString()+'\n');
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(this.entries[i].toString()+'\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return buffer.toString();
 	}

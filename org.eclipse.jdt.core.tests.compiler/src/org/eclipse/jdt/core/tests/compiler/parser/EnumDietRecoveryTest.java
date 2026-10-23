@@ -46,7 +46,7 @@ protected Map getCompilerOptions() {
 	return options;
 }
 
-public void checkParse(
+public void checkParse( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[] source,
 	String expectedDietUnitToString,
 	String expectedDietPlusBodyUnitToString,
@@ -73,7 +73,7 @@ public void checkParse(
 			System.out.println(Util.displayString(computedUnitToString));
 		}
 		assertEquals(
-			"Invalid unit diet structure" + testName,
+			"Invalid unit diet structure" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedDietUnitToString,
 			computedUnitToString);
 	}
@@ -96,11 +96,11 @@ public void checkParse(
 			System.out.println(Util.displayString(computedUnitToString));
 		}
 		assertEquals(
-			"Invalid unit diet structure" + testName,
+			"Invalid unit diet structure" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedDietUnitToString,
 			computedUnitToString);
 		if (computedUnit.types != null) {
-			for (int i = 0, length = computedUnit.types.length; i < length; i++){
+			for (int i = 0, length = computedUnit.types.length; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				computedUnit.types[i].parseMethods(parser, computedUnit);
 			}
 		}
@@ -110,7 +110,7 @@ public void checkParse(
 		}
 
 		assertEquals(
-			"Invalid unit diet+body structure" + testName,
+			"Invalid unit diet+body structure" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedDietPlusBodyUnitToString,
 			computedUnitToString);
 	}
@@ -133,7 +133,7 @@ public void checkParse(
 			System.out.println(Util.displayString(computedUnitToString));
 		}
 		assertEquals(
-			"Invalid unit full structure" + testName,
+			"Invalid unit full structure" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedFullUnitToString,
 			computedUnitToString);
 
@@ -157,7 +157,7 @@ public void checkParse(
 			System.out.println(Util.displayString(computedUnitToString));
 		}
 		assertEquals(
-			"Invalid source element diet structure" + testName,
+			"Invalid source element diet structure" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedDietUnitToString,
 			computedUnitToString);
 	}
@@ -180,7 +180,7 @@ public void checkParse(
 			System.out.println(Util.displayString(computedUnitToString));
 		}
 		assertEquals(
-			"Invalid source element full structure" + testName,
+			"Invalid source element full structure" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedFullUnitToString,
 			computedUnitToString);
 	}
@@ -204,13 +204,13 @@ public void checkParse(
 			System.out.println(Util.displayString(computedUnitToString));
 		}
 		assertEquals(
-			"Invalid completion diet structure" + testName,
+			"Invalid completion diet structure" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedCompletionDietUnitToString,
 			computedUnitToString);
 	}
 }
 
-public void test0001() {
+public void test0001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"package a;											\n"
@@ -251,7 +251,7 @@ public void test0001() {
 		expectedCompletionDietUnitToString,
 		testName);
 }
-public void test0002() {
+public void test0002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"package a;											\n"
@@ -298,7 +298,7 @@ public void test0002() {
 		expectedCompletionDietUnitToString,
 		testName);
 }
-public void test0003() {
+public void test0003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"package a;											\n"
@@ -347,7 +347,7 @@ public void test0003() {
 		expectedCompletionDietUnitToString,
 		testName);
 }
-public void test0004() {
+public void test0004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"package a;											\n"
@@ -400,7 +400,7 @@ public void test0004() {
 		expectedCompletionDietUnitToString,
 		testName);
 }
-public void test0005() {
+public void test0005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"package a;											\n"
@@ -454,7 +454,7 @@ public void test0005() {
 		expectedCompletionDietUnitToString,
 		testName);
 }
-public void test0006() {
+public void test0006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"package a;											\n"
@@ -512,7 +512,7 @@ public void test0006() {
 		expectedCompletionDietUnitToString,
 		testName);
 }
-public void test0007() {
+public void test0007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"package a;											\n"
@@ -570,7 +570,7 @@ public void test0007() {
 		expectedCompletionDietUnitToString,
 		testName);
 }
-public void test0008() {
+public void test0008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"package a;											\n"
@@ -623,7 +623,7 @@ public void test0008() {
 		expectedCompletionDietUnitToString,
 		testName);
 }
-public void test0009() {
+public void test0009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"package a;											\n"
@@ -676,7 +676,7 @@ public void test0009() {
 		expectedCompletionDietUnitToString,
 		testName);
 }
-public void test0010() {
+public void test0010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"package a;											\n"
@@ -735,7 +735,7 @@ public void test0010() {
 		expectedCompletionDietUnitToString,
 		testName);
 }
-public void test0011() {
+public void test0011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"package a;											\n"
@@ -793,7 +793,7 @@ public void test0011() {
 		expectedCompletionDietUnitToString,
 		testName);
 }
-public void test0012() {
+public void test0012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"package a;											\n"
@@ -853,7 +853,7 @@ public void test0012() {
 		expectedCompletionDietUnitToString,
 		testName);
 }
-public void test0013() {
+public void test0013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"package a;											\n"
@@ -914,7 +914,7 @@ public void test0013() {
 		expectedCompletionDietUnitToString,
 		testName);
 }
-public void test0014() {
+public void test0014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"package a;											\n"
@@ -1005,7 +1005,7 @@ public void test0014() {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=76874
  */
-public void test0015() {
+public void test0015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"public enum Enum1 {						\n"
@@ -1067,7 +1067,7 @@ public void test0015() {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=107580
  */
-public void test0016() {
+public void test0016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String s =
 		"public enum Enum {								\n"
 			+ "  BEGIN(\"blabla\"),						\n"
@@ -1110,7 +1110,7 @@ public void test0016() {
 		expectedCompletionDietUnitToString,
 		testName);
 }
-public void test0017() {
+public void test0017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"package a;											\n"

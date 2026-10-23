@@ -55,7 +55,7 @@ public class ModuleImportTests extends TestCase {
 		JavaCompiler compiler = BatchTestUtils.getEclipseCompiler();
 		internalTest(compiler, MODULE_PROC, "24", "test002", null, "java24", false, true);
 	}
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({ "rawtypes", "unchecked" }) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void internalTest(JavaCompiler compiler, String processor, String compliance, String testMethod, String testClass, String resourceArea,
 				boolean setModuleSourcePath, boolean compilationFails) throws IOException {
 		if (!canRunJava24()) {
@@ -64,19 +64,19 @@ public class ModuleImportTests extends TestCase {
 		System.clearProperty(processor);
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "mod_locations", resourceArea);
 		if (testClass == null || testClass.equals("")) {
-			BatchTestUtils.copyResources("mod_locations/" + resourceArea, targetFolder);
+			BatchTestUtils.copyResources("mod_locations/" + resourceArea, targetFolder); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
-			BatchTestUtils.copyResource("mod_locations/" + resourceArea + "/" + testClass, targetFolder);
+			BatchTestUtils.copyResource("mod_locations/" + resourceArea + "/" + testClass, targetFolder); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
-		List<String> options = new ArrayList<>();
-		options.add("-A" + processor);
-		options.add("-A" + testMethod);
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		options.add("-A" + processor); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		options.add("-A" + testMethod); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		options.add("-processor");
 		options.add(processor);
 		// Javac 1.8 doesn't (yet?) support the -1.8 option
 		if (compiler instanceof EclipseCompiler) {
-			options.add("-" + compliance);
+			options.add("-" + compliance); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
 			options.add("-source");
 			options.add(compliance);
@@ -85,7 +85,7 @@ public class ModuleImportTests extends TestCase {
 			@Override
 			public void report(Diagnostic d) {
 				if (d.getKind() == Diagnostic.Kind.ERROR) {
-					System.err.println("Compilation error: " + d.getMessage(Locale.getDefault()));
+					System.err.println("Compilation error: " + d.getMessage(Locale.getDefault())); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}, true, setModuleSourcePath, compilationFails);
@@ -93,7 +93,7 @@ public class ModuleImportTests extends TestCase {
 	public static void addModuleSourcePath(StandardJavaFileManager fileManager, String folder) throws IOException {
 		File moduleLoc = new File(folder);
 		File[] list = moduleLoc.listFiles(pathname -> pathname.isDirectory());
-		for (File file : list) {
+		for (File file : list) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String modName = file.getName();
 			fileManager.setLocationForModule(
 					StandardLocation.MODULE_SOURCE_PATH,
@@ -107,12 +107,12 @@ public class ModuleImportTests extends TestCase {
 		fileManager.setLocation(StandardLocation.CLASS_PATH, singletonList);
 		fileManager.setLocation(StandardLocation.ANNOTATION_PROCESSOR_PATH, singletonList);
 	}
-	public static void compileInModuleMode(JavaCompiler compiler, List<String> options, String processor,
+	public static void compileInModuleMode(JavaCompiler compiler, List<String> options, String processor, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			File targetFolder, DiagnosticListener<? super JavaFileObject> listener, 
 			boolean multiModule, boolean setModuleSourcePath, boolean compilationFails) throws IOException {
 		StandardJavaFileManager manager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
 		// create new list containing inputfile
-		List<File> files = new ArrayList<>();
+		List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		BatchTestUtils.findFilesUnder(targetFolder, files);
 		files.sort(new Comparator<File>() {
 			@Override
@@ -125,11 +125,11 @@ public class ModuleImportTests extends TestCase {
 		StringWriter stringWriter = new StringWriter();
 		PrintWriter printWriter = new PrintWriter(stringWriter);
 
-		List<String> copyOptions = new ArrayList<>();
+		List<String> copyOptions = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		copyOptions.addAll(options);
 		copyOptions.add("-processor");
 		copyOptions.add(processor);
-		copyOptions.add("-A" + processor);
+		copyOptions.add("-A" + processor); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		copyOptions.add("-d");
 		copyOptions.add(BatchTestUtils._tmpBinFolderName);
 		copyOptions.add("-s");
@@ -143,8 +143,8 @@ public class ModuleImportTests extends TestCase {
 		String errorOutput = stringWriter.getBuffer().toString();
 		if (!result.booleanValue() || errorOutput.length() > 0) {
 			if (!compilationFails) {
-				System.err.println("Compilation failed: " + errorOutput);
-				junit.framework.TestCase.assertTrue("Compilation failed : " + errorOutput, false);
+				System.err.println("Compilation failed: " + errorOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				junit.framework.TestCase.assertTrue("Compilation failed : " + errorOutput, false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} else {
 			if (compilationFails) {

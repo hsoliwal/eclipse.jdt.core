@@ -62,7 +62,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// a list with nullable elements is used
-	public void test_nonnull_list_elements_01() {
+	public void test_nonnull_list_elements_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -92,7 +92,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// a list with nullable elements is used, custom annotations
-	public void test_nonnull_list_elements_01a() {
+	public void test_nonnull_list_elements_01a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customOptions = getCompilerOptions();
 		customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "org.foo.Nullable");
 		customOptions.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "org.foo.NonNull");
@@ -134,7 +134,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// a list with nullable elements is used, @Nullable is second annotation
-	public void test_nonnull_list_elements_02() {
+	public void test_nonnull_list_elements_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"Dummy.java",
@@ -180,7 +180,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// a list with non-null elements is used, list itself is nullable
-	public void test_nonnull_list_elements_03() {
+	public void test_nonnull_list_elements_03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"Dummy.java",
@@ -249,7 +249,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 
 	// an outer and inner class both have a type parameter,
 	// client instantiates with nullable/nonnull actual type arguments
-	public void test_nestedType_01() {
+	public void test_nestedType_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"A.java",
@@ -285,7 +285,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	// a subclass instantiates with nullable/nonnull actual type arguments
 	// and correctly implements an abstract inherited method
 	// compile errors only inside that method
-	public void test_nestedType_02() {
+	public void test_nestedType_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"A.java",
@@ -323,7 +323,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	// an outer and inner class both have a type parameter,
 	// a subclass instantiates with nullable/nonnull actual type arguments
 	// and incorrectly implements an abstract inherited method
-	public void test_nestedType_03() {
+	public void test_nestedType_03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"A.java",
@@ -356,7 +356,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// a reference to a nested type has annotations for both types
-	public void test_nestedType_04() {
+	public void test_nestedType_04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"A.java",
@@ -386,7 +386,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// a reference to a nested type has annotations for both types, mismatch in detail of outer
-	public void test_nestedType_05() {
+	public void test_nestedType_05() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"A.java",
@@ -410,7 +410,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			"----------\n");
 	}
 
-	public void testMissingAnnotationTypes_01() {
+	public void testMissingAnnotationTypes_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -436,7 +436,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 
 	// bug 392862 - [1.8][compiler][null] Evaluate null annotations on array types
 	// annotation on leaf type in 1-dim array
-	public void testArrayType_01() {
+	public void testArrayType_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"Wrapper.java",
@@ -471,7 +471,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 
 	// bug 392862 - [1.8][compiler][null] Evaluate null annotations on array types
 	// annotation on leaf type in 2-dim array
-	public void testArrayType_02() {
+	public void testArrayType_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"Wrapper.java",
@@ -506,7 +506,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 
 	// bug 392862 - [1.8][compiler][null] Evaluate null annotations on array types
 	// annotation on array type (1-dim array)
-	public void testArrayType_03() {
+	public void testArrayType_03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"A.java",
@@ -565,7 +565,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 
 	// bug 392862 - [1.8][compiler][null] Evaluate null annotations on array types
 	// annotation on intermediate type in 2-dim array
-	public void testArrayType_04() {
+	public void testArrayType_04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"A.java",
@@ -638,7 +638,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 
 	// bug 392862 - [1.8][compiler][null] Evaluate null annotations on array types
 	// mismatches against outer array type, test display of type annotation in error messages
-	public void testArrayType_05() {
+	public void testArrayType_05() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"A.java",
@@ -696,7 +696,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 
 	// bug 392862 - [1.8][compiler][null] Evaluate null annotations on array types
 	// more compiler messages
-	public void testArrayType_10() {
+	public void testArrayType_10() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"A.java",
@@ -753,7 +753,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// combine flow info on outer type with annotation analysis for inners
-	public void testArrayType_11() {
+	public void testArrayType_11() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"ArrayTest.java",
@@ -811,7 +811,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// https://bugs.eclipse.org/403216 - [1.8][null] TypeReference#captureTypeAnnotations treats type annotations as type argument annotations
-	public void testBug403216_1() {
+	public void testBug403216_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTestWithLibs(
 			new String[] {
 				"Test.java",
@@ -835,7 +835,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// issue from https://bugs.eclipse.org/bugs/show_bug.cgi?id=403216#c7
-	public void testBug403216_2() {
+	public void testBug403216_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = getCompilerOptions();
 		options.put(JavaCore.COMPILER_PB_ANNOTATED_TYPE_ARGUMENT_TO_UNANNOTATED, JavaCore.IGNORE);
 		runConformTestWithLibs(
@@ -855,7 +855,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=403216#c9
-	public void testBug403216_3a() {
+	public void testBug403216_3a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"Test.java",
@@ -883,7 +883,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=403216#c9
-	public void testBug403216_3b() {
+	public void testBug403216_3b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTestWithLibs(
 			new String[] {
 				"Test.java",
@@ -905,7 +905,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// https://bugs.eclipse.org/403457 - [1.8][compiler] NPE in WildcardBinding.signature
-	public void testBug403457_1() {
+	public void testBug403457_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -940,7 +940,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 
 	// https://bugs.eclipse.org/403457 - [1.8][compiler] NPE in WildcardBinding.signature
 	// variant with null annotations
-	public void testBug403457_2() {
+	public void testBug403457_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -968,7 +968,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// storing and decoding null-type-annotations to/from classfile: RETURN_TYPE
-	public void testBinary01() {
+	public void testBinary01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customOptions = getCompilerOptions();
 		customOptions.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
 		runConformTestWithLibs(
@@ -1006,7 +1006,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 
 	// storing and decoding null-type-annotations to/from classfile: METHOD_FORMAL_PARAMETER & METHOD_RECEIVER
 	// Note: receiver annotation is not evaluated by the compiler, this part of the test only serves debugging purposes.
-	public void testBinary02() {
+	public void testBinary02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customOptions = getCompilerOptions();
 		customOptions.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
 		runConformTestWithLibs(
@@ -1049,7 +1049,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// storing and decoding null-type-annotations to/from classfile: FIELD
-	public void testBinary03() {
+	public void testBinary03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customOptions = getCompilerOptions();
 		customOptions.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
 		customOptions.put(JavaCore.COMPILER_PB_MISSING_SERIAL_VERSION, JavaCore.IGNORE);
@@ -1092,7 +1092,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// storing and decoding null-type-annotations to/from classfile: SUPER_TYPE
-	public void testBinary04() {
+	public void testBinary04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customOptions = getCompilerOptions();
 		customOptions.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
 		runConformTestWithLibs(
@@ -1149,7 +1149,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// storing and decoding null-type-annotations to/from classfile: CLASS_TYPE_PARAMETER & METHOD_TYPE_PARAMETER
-	public void testBinary05() {
+	public void testBinary05() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customOptions = getCompilerOptions();
 		customOptions.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
 		runConformTestWithLibs(
@@ -1192,7 +1192,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// storing and decoding null-type-annotations to/from classfile: CLASS_TYPE_PARAMETER_BOUND & METHOD_TYPE_PARAMETER_BOUND
-	public void testBinary06() {
+	public void testBinary06() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customOptions = getCompilerOptions();
 		customOptions.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
 		runNegativeTestWithLibs(
@@ -1266,7 +1266,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 
 	// storing and decoding null-type-annotations to/from classfile: CLASS_TYPE_PARAMETER_BOUND & METHOD_TYPE_PARAMETER_BOUND
 	// variant: qualified type references
-	public void testBinary06b() {
+	public void testBinary06b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customOptions = getCompilerOptions();
 		customOptions.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
 		runNegativeTestWithLibs(
@@ -1337,7 +1337,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// storing and decoding null-type-annotations to/from classfile: method with all kinds of type annotations
-	public void testBinary07() {
+	public void testBinary07() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customOptions = getCompilerOptions();
 		customOptions.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
 		customOptions.put(JavaCore.COMPILER_PB_MISSING_SERIAL_VERSION, JavaCore.IGNORE);
@@ -1386,7 +1386,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// storing and decoding null-type-annotations to/from classfile: details
-	public void testBinary08() {
+	public void testBinary08() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customOptions = getCompilerOptions();
 		customOptions.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
 		customOptions.put(JavaCore.COMPILER_PB_MISSING_SERIAL_VERSION, JavaCore.IGNORE);
@@ -1467,7 +1467,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 
 	// storing and decoding null-type-annotations to/from classfile: details
 	// variant: qualified references
-	public void testBinary08b() {
+	public void testBinary08b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customOptions = getCompilerOptions();
 		customOptions.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
 		customOptions.put(JavaCore.COMPILER_PB_MISSING_SERIAL_VERSION, JavaCore.IGNORE);
@@ -1546,7 +1546,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// storing and decoding null-type-annotations to/from classfile: EXTENDED DIMENSIONS.
-	public void testBinary09() {
+	public void testBinary09() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customOptions = getCompilerOptions();
 		customOptions.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
 		runNegativeTestWithLibs(
@@ -1629,7 +1629,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 }
 
 	// storing and decoding null-type-annotations to/from classfile: array annotations.
-	public void testBinary10() {
+	public void testBinary10() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customOptions = getCompilerOptions();
 		customOptions.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
 		runNegativeTestWithLibs(
@@ -1685,7 +1685,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 				"----------\n");
 	}
 
-	public void testConditional1() {
+	public void testConditional1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runWarningTestWithLibs(
 			true/*flush*/,
 			new String[] {
@@ -1718,7 +1718,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			"----------\n");
 	}
 
-	public void testConditional2() {
+	public void testConditional2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runWarningTestWithLibs(
 			true/*flush*/,
 			new String[] {
@@ -1752,7 +1752,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// conditional in argument position
-	public void testConditional3() {
+	public void testConditional3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runWarningTestWithLibs(
 			true/*flush*/,
 			new String[] {
@@ -1783,7 +1783,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// types with null annotations on details (type parameter) are compatible to equal types
-	public void testCompatibility1() {
+	public void testCompatibility1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTestWithLibs(
 			new String[] {
 				"X.java",
@@ -1811,7 +1811,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// types with null annotations on details (array content) are compatible to equal types
-	public void testCompatibility1a() {
+	public void testCompatibility1a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTestWithLibs(
 			new String[] {
 				"X.java",
@@ -1838,7 +1838,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// types with null annotations on details (type parameter) are compatible to types lacking the annotation
-	public void testCompatibility2() {
+	public void testCompatibility2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = getCompilerOptions();
 		options.put(JavaCore.COMPILER_PB_ANNOTATED_TYPE_ARGUMENT_TO_UNANNOTATED, JavaCore.IGNORE);
 		runConformTestWithLibs(
@@ -1874,7 +1874,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// types with null annotations on details (array content) are compatible to types lacking the annotation
-	public void testCompatibility2a() {
+	public void testCompatibility2a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTestWithLibs(
 			new String[] {
 				"X.java",
@@ -1907,7 +1907,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// types without null annotations are converted (unsafe) to types with detail annotations (type parameter)
-	public void testCompatibility3() {
+	public void testCompatibility3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runWarningTestWithLibs(
 			true/*flush*/,
 			new String[] {
@@ -1968,7 +1968,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// types without null annotations are converted (unsafe) to types with detail annotations (array content)
-	public void testCompatibility3a() {
+	public void testCompatibility3a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runWarningTestWithLibs(
 			true/*flush*/,
 			new String[] {
@@ -2028,7 +2028,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// types with null annotations on details (type parameter) are incompatible to opposite types
-	public void testCompatibility4() {
+	public void testCompatibility4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -2084,7 +2084,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// types with null annotations on details (array content) are incompatible to opposite types
-	public void testCompatibility4a() {
+	public void testCompatibility4a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -2139,7 +2139,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// challenge parameterized type with partial substitution of super's type parameters
-	public void testCompatibility5() {
+	public void testCompatibility5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -2164,7 +2164,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// challenge parameterized type with partial substitution of super's type parameters
-	public void testCompatibility6() {
+	public void testCompatibility6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -2205,7 +2205,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// illegal for enclosing class (locations: field, argument, return type, local
-	public void testUnsupportedLocation02() {
+	public void testUnsupportedLocation02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -2243,7 +2243,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// illegal / unchecked for cast & instanceof with scalar type
-	public void testUnsupportedLocation03() {
+	public void testUnsupportedLocation03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -2275,7 +2275,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// illegal / unchecked for cast & instanceof with complex type
-	public void testUnsupportedLocation04() {
+	public void testUnsupportedLocation04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"p/X.java",
@@ -2301,7 +2301,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 				"	}" +
 				"}\n"
 			},
-			((this.complianceLevel >= ClassFileConstants.JDK16) ?
+			((this.complianceLevel >= ClassFileConstants.JDK16) ? //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"----------\n" +
 					"1. WARNING in p\\X.java (at line 6)\n" +
 					"	if (!(arg instanceof List<@NonNull X>))\n" +
@@ -2364,7 +2364,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// illegal instanceof check with annotated type argument
-	public void testUnsupportedLocation04a() {
+	public void testUnsupportedLocation04a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -2385,7 +2385,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// illegal for allocation expression
-	public void testUnsupportedLocation05() {
+	public void testUnsupportedLocation05() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -2429,7 +2429,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// receiver type in method/constructor reference
-	public void testUnsupportedLocation07() {
+	public void testUnsupportedLocation07() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -2458,7 +2458,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// exceptions (throws & catch)
-	public void testUnsupportedLocation08() {
+	public void testUnsupportedLocation08() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -2486,7 +2486,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			"----------\n");
 	}
 
-	public void testForeach() {
+	public void testForeach() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -2514,7 +2514,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// poly-null method
-	public void testNullTypeInference1() {
+	public void testNullTypeInference1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map compilerOptions = getCompilerOptions();
 		compilerOptions.put(CompilerOptions.OPTION_ReportNonNullTypeVariableFromLegacyInvocation, CompilerOptions.IGNORE);
 		runNegativeTestWithLibs(
@@ -2548,7 +2548,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// functional interface with explicit nullness
-	public void testNullTypeInference2a() {
+	public void testNullTypeInference2a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"PolyNull.java",
@@ -2577,7 +2577,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// functional interface with nullness inferred from target type with explicit nullness
-	public void testNullTypeInference2b() {
+	public void testNullTypeInference2b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"PolyNull.java",
@@ -2606,7 +2606,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// functional interface with unspecified nullness matched against lambda parameter with explicit type & nullness
-	public void testNullTypeInference2c() {
+	public void testNullTypeInference2c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"PolyNull.java",
@@ -2635,7 +2635,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// the only null annotation is on the target type, which propagates into the implicitly typed lambda argument
-	public void testNullTypeInference2d() {
+	public void testNullTypeInference2d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"PolyNull.java",
@@ -2664,7 +2664,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// demonstrate that null annotations from the functional interface win, resulting in successful inference but null-safety issues
-	public void testNullTypeInference2e() {
+	public void testNullTypeInference2e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runWarningTestWithLibs(
 			true/*flush*/,
 			new String[] {
@@ -2691,7 +2691,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// demonstrate that null annotations from the functional interface win, resulting in successful inference but null-safety issues
-	public void testNullTypeInference2f() {
+	public void testNullTypeInference2f() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"PolyNull.java",
@@ -2725,7 +2725,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 
 	// seemingly conflicting annotations from type variable application and type variable substitution
 	// -> ignore @Nullable which overrides the type variable's nullness for this one location
-	public void testNullTypeInference3() {
+	public void testNullTypeInference3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map compilerOptions = getCompilerOptions();
 		compilerOptions.put(JavaCore.COMPILER_PB_NULL_UNCHECKED_CONVERSION, JavaCore.ERROR);
 		runNegativeTestWithLibs(
@@ -2754,7 +2754,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// conflicting annotations from type variable application and type variable substitution -> exclude null annotations from inference
-	public void testNullTypeInference3b() {
+	public void testNullTypeInference3b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"Generics.java",
@@ -2787,7 +2787,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// conflicting annotations from type variable application and type variable substitution
-	public void testNullTypeInference3c() {
+	public void testNullTypeInference3c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"Generics.java",
@@ -2828,7 +2828,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// missing return type should not cause NPE
-	public void testBug415850_01() {
+	public void testBug415850_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2864,7 +2864,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// when mapping 1st parameter to method receiver, avoid AIOOBE in ReferenceExpression#resolveType(..)
-	public void testBug415850_03() throws Exception {
+	public void testBug415850_03() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.customOptions = getCompilerOptions();
 		runner.customOptions.put(JavaCore.COMPILER_PB_DEPRECATION, JavaCore.IGNORE);
@@ -2891,7 +2891,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// ensure annotation type has super types connected, to avoid NPE in ImplicitNullAnnotationVerifier.collectOverriddenMethods(..)
-	public void testBug415850_04() throws Exception {
+	public void testBug415850_04() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTestWithLibs(
 			new String[] {
 				"X.java",
@@ -2924,7 +2924,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// don't let type annotations on array dimensions spoil type compatibility
-	public void testBug415850_05() {
+	public void testBug415850_05() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[]{
 				"X.java",
@@ -2953,7 +2953,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 
 	// don't let type annotations on array dimensions spoil type compatibility
 	// case without any error
-	public void testBug415850_06() {
+	public void testBug415850_06() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTestWithLibs(
 			new String[]{
 				"X.java",
@@ -2973,7 +2973,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			"");
 	}
 
-	public void testBug416172() {
+	public void testBug416172() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runNegativeTestWithLibs(
             new String[] {
                 "X.java",
@@ -3008,7 +3008,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
     }
 
 	// incompatible null constraints on parameters
-	public void testBug416174() {
+	public void testBug416174() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = getCompilerOptions();
 		options.put(JavaCore.COMPILER_PB_NONNULL_PARAMETER_ANNOTATION_DROPPED, JavaCore.IGNORE);
 		runNegativeTestWithLibs(
@@ -3052,7 +3052,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// incompatibility at return type, which should be shown here in the error message
-	public void testBug416174b() {
+	public void testBug416174b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -3112,7 +3112,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// overriding an unconstrained return with nullable
-	public void testNullableReturn() {
+	public void testNullableReturn() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTestWithLibs(
 			new String[] {
 				"X.java",
@@ -3136,7 +3136,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			"");
 	}
 
-	public void testBug416175() {
+	public void testBug416175() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -3190,7 +3190,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// variant to challenge merging of annotation on type variable and its use
-	public void testBug416176a() {
+	public void testBug416176a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -3234,7 +3234,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// variant to challenge duplicate methods, though with different parameter annotations
-	public void testBug416176b() {
+	public void testBug416176b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3265,7 +3265,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			true/*flush*/);
 	}
 
-	public void testBug416180() {
+	public void testBug416180() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runWarningTestWithLibs(
 			true,
 			new String[] {
@@ -3298,7 +3298,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			"----------\n");
 	}
 
-	public void testBug416181() {
+	public void testBug416181() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -3328,7 +3328,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			"----------\n");
 	}
 
-	public void testBug416182() {
+	public void testBug416182() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -3372,7 +3372,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// introduce unrelated method lookup before the bogus one
-	public void testBug416182a() {
+	public void testBug416182a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -3418,7 +3418,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// avoid extra warning by use of diamond.
-	public void testBug416182b() {
+	public void testBug416182b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -3456,7 +3456,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			"----------\n");
 	}
 
-	public void testBug416183() {
+	public void testBug416183() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTestWithLibs(
 			new String[] {
 				"X.java",
@@ -3477,7 +3477,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			"");
 	}
 	// See https://bugs.eclipse.org/bugs/show_bug.cgi?id=417113#c25, point 4.
-	public void testSubstitution() {
+	public void testSubstitution() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -3515,7 +3515,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			"----------\n");
 	}
 	// See https://bugs.eclipse.org/bugs/show_bug.cgi?id=417113#c25, point 4.
-	public void testSubstitution2() {
+	public void testSubstitution2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -3566,7 +3566,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			"----------\n");
 	}
 	// See https://bugs.eclipse.org/bugs/show_bug.cgi?id=417113#c25, point 4.
-	public void testSubstitution3() {
+	public void testSubstitution3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -3591,7 +3591,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			"----------\n");
 	}
 	// See https://bugs.eclipse.org/bugs/show_bug.cgi?id=417113#c25, point 4.
-	public void testSubstitution4() {
+	public void testSubstitution4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -3620,7 +3620,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			"----------\n");
 	}
 	// See https://bugs.eclipse.org/bugs/show_bug.cgi?id=417113#c25, point 4.
-	public void testSubstitution5() {
+	public void testSubstitution5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runWarningTestWithLibs(
 			true/*flush*/,
 			new String[] {
@@ -3648,7 +3648,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 
 	// https://bugs.eclipse.org/417758 - [1.8][null] Null safety compromise during array creation.
 	// original test case
-	public void testArray1() {
+	public void testArray1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -3686,7 +3686,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 
 	// https://bugs.eclipse.org/417758 - [1.8][null] Null safety compromise during array creation.
 	// two-dim array with annotations on dimensions
-	public void testArray2() {
+	public void testArray2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -3726,7 +3726,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 
 	// https://bugs.eclipse.org/417758 - [1.8][null] Null safety compromise during array creation.
 	// three-dim array with annotations on dimensions, also assignment has a problem
-	public void testArray3() {
+	public void testArray3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = getCompilerOptions();
 		options.put(JavaCore.COMPILER_PB_ANNOTATED_TYPE_ARGUMENT_TO_UNANNOTATED, JavaCore.WARNING);
 		runNegativeTestWithLibs(
@@ -3760,7 +3760,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			"----------\n");
 	}
 
-	public void testArray4() {
+	public void testArray4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = getCompilerOptions();
 		options.put(JavaCore.COMPILER_PB_ANNOTATED_TYPE_ARGUMENT_TO_UNANNOTATED, JavaCore.WARNING);
 		runNegativeTestWithLibs(
@@ -3809,7 +3809,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			"----------\n");
 	}
 
-	public void testBug417759() {
+	public void testBug417759() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -3841,7 +3841,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			"Null type mismatch (type annotations): required \'@NonNull X<@NonNull ?>\' but this expression has type \'@NonNull X<@Nullable String>\'\n" +
 			"----------\n");
 	}
-	public void testTypeVariable1() {
+	public void testTypeVariable1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -3870,7 +3870,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			"----------\n");
 	}
 	// free type variable does not ensure @NonNull, but cannot accept null either, unbounded type variable
-	public void testTypeVariable2() {
+	public void testTypeVariable2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -3928,7 +3928,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			"----------\n");
 	}
 	// free type variable does not ensure @NonNull, but cannot accept null either, type variable with upper bound
-	public void testTypeVariable3() {
+	public void testTypeVariable3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -3986,7 +3986,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			"----------\n");
 	}
 	// free type variable is compatible to itself even with different not null-related type annotations
-	public void testTypeVariable4() {
+	public void testTypeVariable4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -4014,7 +4014,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/433906
-	public void testTypeVariable5() {
+	public void testTypeVariable5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTestWithLibs(
 			new String[] {
 				"ExFunction.java",
@@ -4033,7 +4033,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			getCompilerOptions(),
 			"");
 	}
-	public void testSE7AnnotationCopy() { // we were dropping annotations here, but null analysis worked already since the tagbits were not "dropped", just the same capturing in a test
+	public void testSE7AnnotationCopy() { // we were dropping annotations here, but null analysis worked already since the tagbits were not "dropped", just the same capturing in a test //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -4058,7 +4058,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			"Null type mismatch: required \'X.@NonNull Y\' but the provided value is null\n" +
 			"----------\n");
 	}
-	public void testWildcardCapture() {
+	public void testWildcardCapture() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runWarningTestWithLibs(
 			true/*flush*/,
 			new String[] {
@@ -4098,7 +4098,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			"Unsafe interpretation of method return type as \'@NonNull\' based on the receiver type \'List<@NonNull P>\'. Type \'List<E>\' doesn\'t seem to be designed with null type annotations in mind\n" +
 			"----------\n");
 	}
-	public void testWildcardCapture2() {
+	public void testWildcardCapture2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runWarningTestWithLibs(
 			true, // flush
 			new String[] {
@@ -4133,7 +4133,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			"Unsafe interpretation of method return type as \'@NonNull\' based on the receiver type \'List<@NonNull P>\'. Type \'List<E>\' doesn\'t seem to be designed with null type annotations in mind\n" +
 			"----------\n");
 	}
-	public void testWildcardCapture3() {
+	public void testWildcardCapture3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -4173,7 +4173,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			"Unsafe interpretation of method return type as \'@NonNull\' based on the receiver type \'List<@NonNull P>\'. Type \'List<E>\' doesn\'t seem to be designed with null type annotations in mind\n" +
 			"----------\n");
 	}
-	public void testNonNullBoundedWildcard() {
+	public void testNonNullBoundedWildcard() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(new String[] {
 				"X.java",
 				"""
@@ -4200,7 +4200,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			----------
 			""");
 	}
-	public void testLocalArrays() {
+	public void testLocalArrays() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -4259,7 +4259,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 				"",
 				"Done");
 	}
-	public void testRawType() {
+	public void testRawType() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -4296,7 +4296,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=420456, [1.8][null] AIOOB in null analysis code.
-	public void test420456() {
+	public void test420456() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final Map compilerOptions = getCompilerOptions();
 		compilerOptions.put(JavaCore.COMPILER_PB_NULL_UNCHECKED_CONVERSION, JavaCore.IGNORE);
 		runConformTestWithLibs(
@@ -4316,7 +4316,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 			"78912345678");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=422134, [1.8] NPE in NullAnnotationMatching with inlined lambda expression used with a raw type
-	public void test422134() {
+	public void test422134() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4359,7 +4359,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 	}
 
 	// should not try to analyze arguments of a polymorphic method call
-	public void testBug424725() {
+	public void testBug424725() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTestWithLibs(
 			new String[] {
 				"AnnotatedRecordMapper.java",
@@ -4402,7 +4402,7 @@ public class NullTypeAnnotationTest extends AbstractNullAnnotationTest {
 		// note: to be updated with https://bugs.eclipse.org/415918
 	}
 
-public void testBug424637() {
+public void testBug424637() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4428,7 +4428,7 @@ public void testBug424637() {
 		true/*flush*/);
 }
 
-public void testBug424637a() {
+public void testBug424637a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -4501,7 +4501,7 @@ public void testBug427163() {
 		""
 	);
 }
-public void testBug427163b() {
+public void testBug427163b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -4531,7 +4531,7 @@ public void testBug427163b() {
 		"----------\n"
 	);
 }
-public void testBug427163c() {
+public void testBug427163c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -4580,7 +4580,7 @@ public void testBug427163c() {
 	);
 }
 // assorted tests with upper-bounded wildcards with null annotations
-public void testTypeBounds1() {
+public void testTypeBounds1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"C.java",
@@ -4652,7 +4652,7 @@ public void testTypeBounds1() {
 	);
 }
 // assorted tests with lower-bounded wildcards with null annotations
-public void testTypeBounds2() {
+public void testTypeBounds2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"C.java",
@@ -4729,7 +4729,7 @@ public void testTypeBounds2() {
 	);
 }
 // assigning values upper bounded wildcard types carrying null annotations
-public void testTypeBounds3() {
+public void testTypeBounds3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"C.java",
@@ -4760,7 +4760,7 @@ public void testTypeBounds3() {
 	);
 }
 // assigning values lower bounded wildcard types carrying null annotations
-public void testTypeBounds4() {
+public void testTypeBounds4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"C.java",
@@ -4791,7 +4791,7 @@ public void testTypeBounds4() {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=429387, [1.8][compiler] AIOOBE in AbstractMethodDeclaration.createArgumentBindings
-public void test429387() {
+public void test429387() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4839,7 +4839,7 @@ public void test429387() {
 		this.LIBS,
 		true/*flush*/);
 }
-public void testBug429403() {
+public void testBug429403() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -4857,7 +4857,7 @@ public void testBug429403() {
 		"Null type mismatch (type annotations): required \'List<@NonNull Person>\' but this expression has type \'@NonNull ArrayList<@Nullable Person>\', corresponding supertype is \'List<@Nullable Person>\'\n" +
 		"----------\n");
 }
-public void testBug430219() {
+public void testBug430219() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     runNegativeTest(
         new String[] {
             "X.java",
@@ -4893,7 +4893,7 @@ public void testBug430219a() {
 }
 
 // apply null default to type arguments:
-public void testDefault01() {
+public void testDefault01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -4936,7 +4936,7 @@ public void testDefault01() {
 }
 
 // apply null default to type arguments - no effect on type variable or wildcard, but apply strict checking assuming nothing
-public void testDefault01b() {
+public void testDefault01b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -4972,7 +4972,7 @@ public void testDefault01b() {
 }
 
 // apply null default to parameters:
-public void testDefault02() {
+public void testDefault02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -5006,7 +5006,7 @@ public void testDefault02() {
 }
 
 // apply null default to return type - annotation at method:
-public void testDefault03() {
+public void testDefault03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -5030,7 +5030,7 @@ public void testDefault03() {
 }
 
 // apply null default to field
-public void testDefault04() {
+public void testDefault04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -5050,7 +5050,7 @@ public void testDefault04() {
 }
 
 // default default
-public void testDefault05() {
+public void testDefault05() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -5076,7 +5076,7 @@ public void testDefault05() {
 }
 
 //default default
-public void testDefault05_custom() {
+public void testDefault05_custom() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "org.foo.Nullable");
@@ -5117,7 +5117,7 @@ public void testDefault05_custom() {
 }
 
 //default default
-public void testDefault05_custom2() {
+public void testDefault05_custom2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "org.foo.Nullable");
@@ -5163,7 +5163,7 @@ public void testDefault05_custom2() {
 }
 
 // apply default to type parameter - inner class
-public void testDefault06() {
+public void testDefault06() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -5201,7 +5201,7 @@ public void testDefault06() {
 }
 
 //apply default to type parameter - class above
-public void testDefault06_b() {
+public void testDefault06_b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -5235,7 +5235,7 @@ public void testDefault06_b() {
 }
 
 // apply default to type bound - method in inner class
-public void testDefault07() {
+public void testDefault07() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -5280,7 +5280,7 @@ public void testDefault07() {
 }
 
 //apply null default to type arguments:
-public void testDefault01_bin() {
+public void testDefault01_bin() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 			new String[] {
 				"X.java",
@@ -5332,7 +5332,7 @@ public void testDefault01_bin() {
 }
 
 //apply null default to parameters:
-public void testDefault02_bin() {
+public void testDefault02_bin() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"X.java",
@@ -5371,7 +5371,7 @@ public void testDefault02_bin() {
 }
 
 //apply null default to return type - annotation at method:
-public void testDefault03_bin() {
+public void testDefault03_bin() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.IGNORE);
@@ -5405,7 +5405,7 @@ public void testDefault03_bin() {
 }
 
 // apply null default to field - also test mixing of explicit annotation with default @NonNull (other annot is not rendered in error)
-public void testDefault04_bin() {
+public void testDefault04_bin() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.IGNORE);
@@ -5446,7 +5446,7 @@ public void testDefault04_bin() {
 }
 
 // default default
-public void testDefault05_bin() {
+public void testDefault05_bin() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.IGNORE);
@@ -5485,7 +5485,7 @@ public void testDefault05_bin() {
 		"----------\n");}
 
 // apply default to type parameter - inner class
-public void testDefault06_bin() {
+public void testDefault06_bin() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"X.java",
@@ -5525,7 +5525,7 @@ public void testDefault06_bin() {
 		"----------\n");}
 
 // apply default to type bound - method in inner class
-public void testDefault07_bin() {
+public void testDefault07_bin() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"X.java",
@@ -5566,7 +5566,7 @@ public void testDefault07_bin() {
 		"Null type mismatch (type annotations): required \'List<? extends @NonNull Number>\' but this expression has type \'@NonNull ArrayList<@Nullable Integer>\', corresponding supertype is \'List<@Nullable Integer>\'\n" +
 		"----------\n");
 }
-public void testBug431269() {
+public void testBug431269() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"p/QField.java",
@@ -5629,7 +5629,7 @@ public void testBug431269() {
 		true/*flush*/);
 }
 // was inferring null type annotations too aggressively
-public void testBug432223() {
+public void testBug432223() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"X.java",
@@ -5655,7 +5655,7 @@ public void testBug432223() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug432977() {
+public void testBug432977() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Bar.java",
@@ -5686,7 +5686,7 @@ public void testBug432977() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug433586() {
+public void testBug433586() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"NullConversionWarning.java",
@@ -5711,7 +5711,7 @@ public void testBug433586() {
 		"");
 }
 // NPE without the fix.
-public void testBug433478() {
+public void testBug433478() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
             new String[] {
                 "X.java",
@@ -5740,7 +5740,7 @@ public void testBug433478() {
     		"----------\n");
 }
 // https://bugs.eclipse.org/434899
-public void testTypeVariable6() {
+public void testTypeVariable6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"Assert.java",
@@ -5764,7 +5764,7 @@ public void testTypeVariable6() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/434899 - variant which has always worked
-public void testTypeVariable6a() {
+public void testTypeVariable6a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Assert.java",
@@ -5786,7 +5786,7 @@ public void testTypeVariable6a() {
 }
 // Bug 438458 - [1.8][null] clean up handling of null type annotations wrt type variables
 // - type parameter with explicit nullness, cannot infer otherwise
-public void testTypeVariable7() {
+public void testTypeVariable7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -5809,7 +5809,7 @@ public void testTypeVariable7() {
 }
 // Bug 438458 - [1.8][null] clean up handling of null type annotations wrt type variables
 // - type parameter with explicit nullness, nullness must not spoil inference
-public void testTypeVariable7a() {
+public void testTypeVariable7a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(JavaCore.COMPILER_PB_NULL_SPECIFICATION_VIOLATION, JavaCore.WARNING); // allow ignoring bad substitution
 	runWarningTestWithLibs(
@@ -5845,7 +5845,7 @@ public void testTypeVariable7a() {
 }
 // Bug 438458 - [1.8][null] clean up handling of null type annotations wrt type variables
 // - type parameter with explicit nullness, nullness must not spoil inference
-public void testTypeVariable7err() {
+public void testTypeVariable7err() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -5907,7 +5907,7 @@ public void testTypeVariable9() {
 		"");
 }
 // Bug 439516 - [1.8][null] NonNullByDefault wrongly applied to implicit type bound of binary type
-public void testTypeVariable10() {
+public void testTypeVariable10() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"X.java",
@@ -5933,7 +5933,7 @@ public void testTypeVariable10() {
 }
 // Bug 439516 - [1.8][null] NonNullByDefault wrongly applied to implicit type bound of binary type
 // Problem 1 from: Bug 438971 - [1.8][null] @NonNullByDefault/@Nullable on parameter of generic interface
-public void testTypeVariable10a() {
+public void testTypeVariable10a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"X.java",
@@ -5961,7 +5961,7 @@ public void testTypeVariable10a() {
 }
 // Bug 439516 - [1.8][null] NonNullByDefault wrongly applied to implicit type bound of binary type
 // warning for explicit "<T extends Object>"
-public void testTypeVariable11() {
+public void testTypeVariable11() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runWarningTestWithLibs(
 		true/*flush*/,
 		new String[] {
@@ -5987,7 +5987,7 @@ public void testTypeVariable11() {
 		"----------\n");
 }
 // Bug 438179 - [1.8][null] 'Contradictory null annotations' error on type variable with explicit null-annotation.
-public void testTypeVariable12() {
+public void testTypeVariable12() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Test.java",
@@ -6022,7 +6022,7 @@ public void testTypeVariable13() {
 		"");
 }
 // Bug 438469 - [null] How-to use null type annotations with generic methods from interfaces in some library you only have as binary JAR?
-public void testTypeVariable14() {
+public void testTypeVariable14() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"ITest.java",
@@ -6050,7 +6050,7 @@ public void testTypeVariable14() {
 		"");
 }
 // Bug 438467 - [compiler][null] Better error position for "The method _ cannot implement the corresponding method _ due to incompatible nullness constraints"
-public void testTypeVariable15() {
+public void testTypeVariable15() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"ITest.java",
@@ -6087,7 +6087,7 @@ public void testTypeVariable15() {
 		"----------\n");
 }
 // Bug 438467 - [compiler][null] Better error position for "The method _ cannot implement the corresponding method _ due to incompatible nullness constraints"
-public void testTypeVariable15a() {
+public void testTypeVariable15a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"ITest.java",
@@ -6119,7 +6119,7 @@ public void testTypeVariable15a() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=434602
 // Possible error with inferred null annotations leading to contradictory null annotations
-public void testTypeVariable16() {
+public void testTypeVariable16() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -6151,7 +6151,7 @@ public void testTypeVariable16() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=434602
 // Possible error with inferred null annotations leading to contradictory null annotations
 // Method part of parameterized class.
-public void testTypeVariable16a() {
+public void testTypeVariable16a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 			new String[] {
 				"X.java",
@@ -6174,7 +6174,7 @@ public void testTypeVariable16a() {
 			getCompilerOptions(),
 			"");
 }
-public void testTypeVariable16b() {
+public void testTypeVariable16b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -6203,7 +6203,7 @@ public void testTypeVariable16b() {
 			"----------\n");
 }
 // Bug 440143 - [1.8][null] one more case of contradictory null annotations regarding type variables
-public void testTypeVariable17() {
+public void testTypeVariable17() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"Test7.java",
@@ -6235,7 +6235,7 @@ public void testTypeVariable17() {
 }
 // Bug 440143 - [1.8][null] one more case of contradictory null annotations regarding type variables
 // use local variable to avoid the null type mismatch
-public void testTypeVariable17a() {
+public void testTypeVariable17a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Test7.java",
@@ -6262,7 +6262,7 @@ public void testTypeVariable17a() {
 		"");
 }
 // NPE reported in https://bugs.eclipse.org/bugs/show_bug.cgi?id=438458#c5
-public void testTypeVariable18() {
+public void testTypeVariable18() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"Test.java",
@@ -6292,7 +6292,7 @@ public void testTypeVariable18() {
 		"Null type mismatch (type annotations): required \'@NonNull Collection<String>\' but this expression has type \'@Nullable Collection<String>\'\n" +
 		"----------\n");
 }
-public void testTypeVariable18raw() {
+public void testTypeVariable18raw() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"Test.java",
@@ -6324,7 +6324,7 @@ public void testTypeVariable18raw() {
 		"----------\n");
 }
 // top-level annotation is overridden at use-site, details remain - parameterized type
-public void testTypeVariable19() {
+public void testTypeVariable19() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportNonNullTypeVariableFromLegacyInvocation, CompilerOptions.IGNORE);
 	runNegativeTestWithLibs(
@@ -6389,7 +6389,7 @@ public void testTypeVariable19() {
 		"----------\n");
 }
 // top-level annotation is overridden at use-site, array with anotations on dimensions
-public void testTypeVariable19a() {
+public void testTypeVariable19a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -6468,7 +6468,7 @@ public void testTypeVariable20() {
 		"Null constraint mismatch: The type \'String\' is not a valid substitute for the type parameter \'@Nullable T\'\n" +
 		"----------\n");
 }
-public void testBug434600() {
+public void testBug434600() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"bug/Main.java",
@@ -6536,7 +6536,7 @@ public void testBug434600a_qualified() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug434600b() {
+public void testBug434600b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"I.java",
@@ -6571,7 +6571,7 @@ public void testBug434600b() {
 		"Null constraint mismatch: The type \'@NonNull ArrayList<@NonNull List<@Nullable String>>\' is not a valid substitute for the type parameter \'T extends @NonNull List<@NonNull List<S>>\'\n" +
 		"----------\n");
 }
-public void testBug434600b_qualified() {
+public void testBug434600b_qualified() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"p/I.java",
@@ -6602,7 +6602,7 @@ public void testBug434600b_qualified() {
 		"Null constraint mismatch: The type \'@Nullable ArrayList<@NonNull List<@Nullable String>>\' is not a valid substitute for the type parameter \'T extends @Nullable List<@NonNull List<S>>\'\n" +
 		"----------\n");
 }
-public void testBug435399() {
+public void testBug435399() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"bug/Bug1.java",
@@ -6621,7 +6621,7 @@ public void testBug435399() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug435962() {
+public void testBug435962() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_REDUNDANT_NULL_ANNOTATION, JavaCore.IGNORE);
 	runConformTestWithLibs(
@@ -6707,7 +6707,7 @@ public void testBug440462() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug440773() {
+public void testBug440773() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"CountingComparator.java",
@@ -6738,7 +6738,7 @@ public void testBug440773() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug439298_comment2() {
+public void testBug439298_comment2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Extract.java",
@@ -6758,7 +6758,7 @@ public void testBug439298_comment2() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug439298_comment3() {
+public void testBug439298_comment3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runWarningTestWithLibs(
 		true,
 		new String[] {
@@ -6783,7 +6783,7 @@ public void testBug439298_comment3() {
 		"Unsafe null type conversion (type annotations): The value of type '@NonNull R<@NonNull A>' is made accessible using the less-annotated type 'R<A>'\n" +
 		"----------\n");
 }
-public void testBug439298_comment4() {
+public void testBug439298_comment4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Extract.java",
@@ -6804,7 +6804,7 @@ public void testBug439298_comment4() {
 }
 // this code raised: java.lang.IllegalArgumentException: Type doesn't have its own method?
 // at org.eclipse.jdt.internal.compiler.lookup.SyntheticFactoryMethodBinding.applyTypeArgumentsOnConstructor(SyntheticFactoryMethodBinding.java:40)
-public void testBug440764() {
+public void testBug440764() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"Extract.java",
@@ -6840,7 +6840,7 @@ public void testBug440764() {
 		"Null type mismatch: required \'@NonNull Integer\' but the provided value is null\n" +
 		"----------\n");
 }
-public void testBug440759a() {
+public void testBug440759a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -6867,7 +6867,7 @@ public void testBug440759a() {
 		"----------\n");
 }
 // involves overriding, work done in ImplicitNullAnnotationVerifier.checkNullSpecInheritance()
-public void testBug440759b() {
+public void testBug440759b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -6896,7 +6896,7 @@ public void testBug440759b() {
 		"Null type mismatch (type annotations): \'null\' is not compatible to the free type variable \'T\'\n" +
 		"----------\n");
 }
-public void testBug438383() {
+public void testBug438383() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Foo.java",
@@ -6931,7 +6931,7 @@ public void testBug437270() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug437270_comment3() {
+public void testBug437270_comment3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Foo.java",
@@ -6953,7 +6953,7 @@ public void testBug437270_comment3() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug435841() {
+public void testBug435841() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"ArrayProblem.java",
@@ -6979,7 +6979,7 @@ public void testBug435841() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug441693() {
+public void testBug441693() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Foo.java",
@@ -7002,7 +7002,7 @@ public void testBug441693() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug441693other() {
+public void testBug441693other() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"Foo.java",
@@ -7048,7 +7048,7 @@ public void testBug441693other() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=439158, [1.8][compiler][null] Adding null annotation to return type causes IllegalStateException and sometimes InvocationTargetException
-public void testBug439158() {
+public void testBug439158() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Test.java",
@@ -7077,7 +7077,7 @@ public void testBug439158() {
 		"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=434579, [1.8][compiler][null] Annotation-based null analysis causes incorrect type errors
-public void testBug434579() {
+public void testBug434579() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	runConformTestWithLibs(
 		new String[] {
@@ -7136,7 +7136,7 @@ public void testBug434579() {
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=434582,
 //[1.8][compiler][null] @Nullable annotation in type parameter causes NullPointerException in JDT core
-public void testBug434582() {
+public void testBug434582() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -7169,7 +7169,7 @@ public void testBug434582() {
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=434582,
 //[1.8][compiler][null] @Nullable annotation in type parameter causes NullPointerException in JDT core
-public void testBug434582a() {
+public void testBug434582a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 				"X.java",
@@ -7199,7 +7199,7 @@ public void testBug434582a() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=443467, [1.8][null]InternalError: Unexpected binding type
-public void test443467() throws Exception {
+public void test443467() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"BuildIdeMain.java",
@@ -7224,7 +7224,7 @@ public void test443467() throws Exception {
 		this.LIBS,
 		true/*flush*/);
 }
-public void testBug445227() {
+public void testBug445227() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Bar.java",
@@ -7252,7 +7252,7 @@ public void testBug445227() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=446715, [compiler] org.eclipse.jdt.internal.compiler.lookup.TypeSystem.cacheDerivedType
-public void test446715() {
+public void test446715() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	runConformTestWithLibs(
 		new String[] {
@@ -7288,7 +7288,7 @@ public void test446715() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=445669, java.lang.IllegalStateException at org.eclipse.jdt.internal.compiler.lookup.UnresolvedReferenceBinding.clone
-public void test445669() {
+public void test445669() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	runConformTestWithLibs(
 		new String[] {
@@ -7331,7 +7331,7 @@ public void test445669() {
 		"Null type mismatch: required \'@NonNull Z\' but the provided value is null\n" +
 		"----------\n");
 }
-public void testArrayOfArrays() {
+public void testArrayOfArrays() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runWarningTestWithLibs(
 		true/*flush*/,
 		new String[] {
@@ -7370,7 +7370,7 @@ public void testBug447088() {
 		null,
 		"");
 }
-public void testBug448777() {
+public void testBug448777() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"DoubleInference.java",
@@ -7421,7 +7421,7 @@ public void testBug448777() {
 		"Contradictory null annotations: method was inferred as \'@Nullable @NonNull String a(@Nullable @NonNull String)\', but only one of \'@NonNull\' and \'@Nullable\' can be effective at any location\n" +
 		"----------\n");
 }
-public void testBug446442_comment2a() {
+public void testBug446442_comment2a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"Test.java",
@@ -7452,7 +7452,7 @@ public void testBug446442_comment2a() {
 		"----------\n");
 }
 // swapped order of method declarations
-public void testBug446442_comment2b() {
+public void testBug446442_comment2b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"Test.java",
@@ -7483,7 +7483,7 @@ public void testBug446442_comment2b() {
 		"----------\n");
 }
 // inherit from two different supers
-public void testBug446442_comment2c() {
+public void testBug446442_comment2c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"Test.java",
@@ -7516,7 +7516,7 @@ public void testBug446442_comment2c() {
 		"----------\n");
 }
 // merging @NonNull & unannotated in arg-position must answer unannotated
-public void testBug446442_2a() {
+public void testBug446442_2a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runWarningTestWithLibs(
 		true/*flush*/,
 		new String[] {
@@ -7545,7 +7545,7 @@ public void testBug446442_2a() {
 		"----------\n");
 }
 // merging @NonNull & unannotated in arg-position must answer unannotated - swapped order
-public void testBug446442_2b() {
+public void testBug446442_2b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runWarningTestWithLibs(
 		true/*flush*/,
 		new String[] {
@@ -7574,7 +7574,7 @@ public void testBug446442_2b() {
 		"----------\n");
 }
 // using inherited implementation to fulfill both contracts
-public void testBug446442_3() {
+public void testBug446442_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Test.java",
@@ -7601,7 +7601,7 @@ public void testBug446442_3() {
 		"");
 }
 // unsuccessful attempt to trigger use of MostSpecificExceptionMethodBinding
-public void testBug446442_4() {
+public void testBug446442_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Test.java",
@@ -7628,7 +7628,7 @@ public void testBug446442_4() {
 		"");
 }
 // annotated return types
-public void testBug446442_5() {
+public void testBug446442_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"Test.java",
@@ -7662,7 +7662,7 @@ public void testBug446442_5() {
 		"----------\n");
 }
 // conflicting annotations on type arguments
-public void testBug446442_6a() {
+public void testBug446442_6a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"Test.java",
@@ -7706,7 +7706,7 @@ public void testBug446442_6a() {
 		"----------\n");
 }
 // swapped order of method declarations + added return type
-public void testBug446442_6b() {
+public void testBug446442_6b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"Test.java",
@@ -7768,7 +7768,7 @@ public void testBug446442_6b() {
 		"Contradictory null annotations: method was inferred as \'@Nullable @NonNull Integer get(int)\', but only one of \'@NonNull\' and \'@Nullable\' can be effective at any location\n" +
 		"----------\n");
 }
-public void testBug453475() {
+public void testBug453475() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"TestMap.java",
@@ -7798,7 +7798,7 @@ public void testBug453475() {
 		}, null, "");
 }
 // also: don't apply default to use of type variable
-public void testBug453475a() {
+public void testBug453475a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"NamespaceStorage.java",
@@ -7834,7 +7834,7 @@ public void testBug453475a() {
 		null, "");
 }
 // also: don't apply default to wildcard
-public void testBug453475b() {
+public void testBug453475b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"X.java",
@@ -7861,7 +7861,7 @@ public void testBug453475b() {
 		},
 		null, "");
 }
-public void testBug456236() {
+public void testBug456236() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Nullsafe.java",
@@ -7881,7 +7881,7 @@ public void testBug456236() {
 		"");
 }
 
-public void testBug456497() throws Exception {
+public void testBug456497() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"libs/Lib1.java",
@@ -7917,7 +7917,7 @@ public void testBug456497() throws Exception {
 		"");
 }
 // original case
-public void testBug456487a() {
+public void testBug456487a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[]{
 			"Optional.java",
@@ -7938,7 +7938,7 @@ public void testBug456487a() {
 		"");
 }
 // witness for NPE in NullAnnotationMatching.providedNullTagBits:
-public void testBug456487b() {
+public void testBug456487b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[]{
 			"Optional.java",
@@ -8017,12 +8017,12 @@ public void testBug456487b() {
 		"Contradictory null annotations: method was inferred as \'@Nullable @NonNull String orElse(@Nullable @NonNull String)\', but only one of \'@NonNull\' and \'@Nullable\' can be effective at any location\n" +
 		"----------\n");
 }
-public void testBug454182() {
+public void testBug454182() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_NONNULL_BY_DEFAULT_ANNOTATION_NAME, "annot.NonNullByDefault");
 	String[] libs = this.LIBS.clone();
-	libs[libs.length-1] = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "Test454182.jar";
+	libs[libs.length-1] = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "Test454182.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runConformTest(
 		new String[] {
 			"p/package-info.java",
@@ -8035,7 +8035,7 @@ public void testBug454182() {
 		options,
 		null);
 }
-public void testBug443870() {
+public void testBug443870() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"X.java",
@@ -8058,7 +8058,7 @@ public void testBug443870() {
 		null,
 		"");
 }
-public void testBug437072() {
+public void testBug437072() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -8108,7 +8108,7 @@ public void testBug437072() {
 		this.LIBS,
 		true/*flush*/);
 }
-public void testBug448709() {
+public void testBug448709() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(JavaCore.COMPILER_PB_NULL_SPECIFICATION_VIOLATION, JavaCore.WARNING); // ensure program is runnable
 	compilerOptions.put(JavaCore.COMPILER_PB_PESSIMISTIC_NULL_ANALYSIS_FOR_FREE_TYPE_VARIABLES, JavaCore.WARNING); // ensure program is runnable
@@ -8194,7 +8194,7 @@ public void testBug448709() {
 		"1->2\n" +
 		"1->2");
 }
-public void testBug448709b() {
+public void testBug448709b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Test.java",
@@ -8216,7 +8216,7 @@ public void testBug448709b() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug459967_Array_constructor() {
+public void testBug459967_Array_constructor() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"X.java",
@@ -8234,7 +8234,7 @@ public void testBug459967_Array_constructor() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug459967_Array_constructor_b() {
+public void testBug459967_Array_constructor_b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runWarningTestWithLibs(
 		true/*flush*/,
 		new String[] {
@@ -8258,7 +8258,7 @@ public void testBug459967_Array_constructor_b() {
 		"Null type safety at method return type: Method descriptor FI<String>.getArray(int) promises \'@NonNull String @NonNull[]\' but referenced method provides \'String @NonNull[]\'\n" +
 		"----------\n");
 }
-public void testBug459967_Array_clone() {
+public void testBug459967_Array_clone() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -8283,7 +8283,7 @@ public void testBug459967_Array_clone() {
 		----------
 		""");
 }
-public void testBug459967_Array_clone_fixed() {
+public void testBug459967_Array_clone_fixed() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"X.java",
@@ -8301,7 +8301,7 @@ public void testBug459967_Array_clone_fixed() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug459967_Array_clone_b() {
+public void testBug459967_Array_clone_b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runWarningTestWithLibs(
 		true/*flush*/,
 		new String[] {
@@ -8325,7 +8325,7 @@ public void testBug459967_Array_clone_b() {
 		"Null type safety at method return type: Method descriptor FI<String>.getArray(String[]) promises \'@NonNull String @NonNull[]\' but referenced method provides \'String @NonNull[]\'\n" +
 		"----------\n");
 }
-public void testBug448709_allocationExpression1() {
+public void testBug448709_allocationExpression1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -8348,7 +8348,7 @@ public void testBug448709_allocationExpression1() {
 		"Null type safety (type annotations): The expression of type \'String\' needs unchecked conversion to conform to \'@NonNull String\'\n" +
 		"----------\n");
 }
-public void testBug448709_allocationExpression2() {
+public void testBug448709_allocationExpression2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -8368,7 +8368,7 @@ public void testBug448709_allocationExpression2() {
 		"Null constraint mismatch: The type \'@NonNull Integer\' is not a valid substitute for the type parameter \'@Nullable U\'\n" +
 		"----------\n");
 }
-public void testBug448709_allocationExpression3() {
+public void testBug448709_allocationExpression3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -8388,7 +8388,7 @@ public void testBug448709_allocationExpression3() {
 		"Null constraint mismatch: The type \'@NonNull Integer\' is not a valid substitute for the type parameter \'@Nullable U\'\n" +
 		"----------\n");
 }
-public void testBug465513() {
+public void testBug465513() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"pack1/A.java",
@@ -8410,7 +8410,7 @@ public void testBug465513() {
 		"----------\n");
 }
 
-public void testBug455180() {
+public void testBug455180() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     runConformTestWithLibs( // same warning from ecj & javac
     		true/*flush*/,
             new String[] {
@@ -8462,7 +8462,7 @@ public void testBug455180() {
     		"----------\n");
 }
 
-public void testBug455180WithOtherAnnotation() {
+public void testBug455180WithOtherAnnotation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 			new String[] {
 				"proj0/MyAnnotation.java",
@@ -8564,7 +8564,7 @@ public void testBug466713c() {
 		"");
 }
 // variant for https://bugs.eclipse.org/bugs/show_bug.cgi?id=466713#c5
-public void testBug466713d() {
+public void testBug466713d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"MyAnnot.java",
@@ -8579,7 +8579,7 @@ public void testBug466713d() {
 			"	}\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in Bug.java (at line 3)\n" +
 		"	return o instanceof java.util.Iterator<java.lang. @MyAnnot @org.eclipse.jdt.annotation.Nullable String>;\n" +
 		((this.complianceLevel >= ClassFileConstants.JDK16) ?
@@ -8598,7 +8598,7 @@ public void testBug466713d() {
 		this.LIBS,
 		true/*flush*/);
 }
-public void testBug466969() {
+public void testBug466969() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"GenericType.java",
@@ -8618,7 +8618,7 @@ public void testBug466969() {
 			"}"
 			}, getCompilerOptions(), "");
 }
-public void testBug467032() {
+public void testBug467032() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 			new String[] {
 				"Class1.java",
@@ -8670,7 +8670,7 @@ public void testBug467430mismatch() {
 			getCompilerOptions(),
 			"");
 }
-public void testBug467430array() {
+public void testBug467430array() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 				"A.java",
@@ -8688,7 +8688,7 @@ public void testBug467430array() {
 			getCompilerOptions(),
 			"");
 }
-public void testBug467430arrayMismatch() {
+public void testBug467430arrayMismatch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 				"A.java",
@@ -8707,7 +8707,7 @@ public void testBug467430arrayMismatch() {
 			"");
 }
 
-public void testBug446217() {
+public void testBug446217() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.classLibraries = this.LIBS;
 	runner.testFiles =
@@ -8747,7 +8747,7 @@ public void testBug446217() {
 	runner.javacTestOptions = new JavacTestOptions.SuppressWarnings("auxiliaryclass");
 	runner.runConformTest();
 }
-public void testBug456584orig() {
+public void testBug456584orig() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(JavaCore.COMPILER_PB_PESSIMISTIC_NULL_ANALYSIS_FOR_FREE_TYPE_VARIABLES, JavaCore.WARNING);
 	runWarningTestWithLibs(
@@ -8779,7 +8779,7 @@ public void testBug456584orig() {
 		"Null type safety: required \'@NonNull\' but this expression has type \'capture#2-of ? extends R\', a free type variable that may represent a \'@Nullable\' type\n" +
 		"----------\n");
 }
-public void testBug456584() {
+public void testBug456584() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// the compiler now has special information regarding Objects.requireNonNull
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(JavaCore.COMPILER_PB_PESSIMISTIC_NULL_ANALYSIS_FOR_FREE_TYPE_VARIABLES, JavaCore.WARNING);
@@ -8803,7 +8803,7 @@ public void testBug456584() {
 		compilerOptions,
 		"");
 }
-public void testBug447661() {
+public void testBug447661() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Two.java",
@@ -8834,7 +8834,7 @@ public void testBug447661() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug436091() {
+public void testBug436091() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"p/package-info.java",
@@ -8917,7 +8917,7 @@ public void testBug436091() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug474239() {
+public void testBug474239() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_REDUNDANT_NULL_CHECK, JavaCore.ERROR);
 	options.put(JavaCore.COMPILER_PB_SYNTACTIC_NULL_ANALYSIS_FOR_FIELDS, JavaCore.ENABLED);
@@ -8946,7 +8946,7 @@ public void testBug474239() {
 		"");
 }
 
-public void testBug467482() {
+public void testBug467482() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[]{
 			"Util.java",
@@ -8970,7 +8970,7 @@ public void testBug467482() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug467482simple() {
+public void testBug467482simple() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// reduced example without generics that still exhibits the bug
 	runConformTestWithLibs(
 		new String[]{
@@ -8991,7 +8991,7 @@ public void testBug467482simple() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug467482while() {
+public void testBug467482while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// even simpler with while loop
 	runConformTestWithLibs(
 		new String[]{
@@ -9013,7 +9013,7 @@ public void testBug467482while() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug467482switch() {
+public void testBug467482switch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// bug behaviour visible via switch
 	runConformTestWithLibs(
 		new String[]{
@@ -9035,7 +9035,7 @@ public void testBug467482switch() {
 		"");
 }
 
-public void testBug467482regression() {
+public void testBug467482regression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// simple regression test that verifies that possibly be the patch affected messages stay unchanged
 	runNegativeTestWithLibs(
 		new String[]{
@@ -9065,7 +9065,7 @@ public void testBug467482regression() {
 		"Null type mismatch (type annotations): required \'@NonNull Object\' but this expression has type \'@Nullable Object\'\n" +
 		"----------\n");
 }
-public void testBug484735() {
+public void testBug484735() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/NullabilityLoopBug.java",
@@ -9120,7 +9120,7 @@ public void testBug484735() {
 		"",
 		"key");
 }
-public void testBug474239b() {
+public void testBug474239b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_REDUNDANT_NULL_CHECK, JavaCore.ERROR);
 	options.put(JavaCore.COMPILER_PB_SYNTACTIC_NULL_ANALYSIS_FOR_FIELDS, JavaCore.ENABLED);
@@ -9147,7 +9147,7 @@ public void testBug474239b() {
 		options,
 		"");
 }
-public void testBug472663() {
+public void testBug472663() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/Callee.java",
@@ -9218,7 +9218,7 @@ public void testBug467094() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug467094_local() {
+public void testBug467094_local() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -9254,7 +9254,7 @@ public void testBug467094_method() {
 				"}\n"
 			}, getCompilerOptions(), "");
 }
-public void testBug440398() {
+public void testBug440398() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"NullTest.java",
@@ -9274,7 +9274,7 @@ public void testBug440398() {
 		"",
 		"NULL");
 }
-public void testBug440398_comment2() {
+public void testBug440398_comment2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"MyClass.java",
@@ -9293,7 +9293,7 @@ public void testBug440398_comment2() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug440398_comment2a() {
+public void testBug440398_comment2a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"p/package-info.java",
@@ -9315,7 +9315,7 @@ public void testBug440398_comment2a() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug481332() {
+public void testBug481332() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -9377,7 +9377,7 @@ public void testBug481332() {
 		"Null type mismatch (type annotations): required \'@Nullable Object @Nullable[]\' but this expression has type \'@NonNull Object @Nullable[]\'\n" +
 		"----------\n");
 }
-public void testBug481322a() {
+public void testBug481322a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -9417,7 +9417,7 @@ public void testBug481322a() {
 		"Null constraint mismatch: The type \'List<@Nullable String>\' is not a valid substitute for the type parameter \'T extends List<S>\'\n" +
 		"----------\n");
 }
-public void testBug477719() {
+public void testBug477719() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportNonNullTypeVariableFromLegacyInvocation, CompilerOptions.IGNORE);
@@ -9440,7 +9440,7 @@ public void testBug477719() {
 	runner.javacTestOptions = new JavacTestOptions.SuppressWarnings("deprecation");
 	runner.runConformTest();
 }
-public void testBug482247() {
+public void testBug482247() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runWarningTestWithLibs(
 		true/*flush*/,
 		new String[] {
@@ -9474,7 +9474,7 @@ public void testBug482247() {
 		"Null type safety (type annotations): The expression of type \'String[]\' needs unchecked conversion to conform to \'@NonNull String @NonNull[]\'\n" +
 		"----------\n");
 }
-public void testBug482247_length0() {
+public void testBug482247_length0() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		true/*flush*/,
 		new String[] {
@@ -9513,7 +9513,7 @@ public void testBug482247_comment5() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug483146() {
+public void testBug483146() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Foo.java",
@@ -9546,7 +9546,7 @@ public void testBug483146() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug483146b() {
+public void testBug483146b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Foo.java",
@@ -9579,7 +9579,7 @@ public void testBug483146b() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug473713() {
+public void testBug473713() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"a/A1.java",
@@ -9612,7 +9612,7 @@ public void testBug473713() {
 			"}\n",
 		}, getCompilerOptions(), "");
 }
-public void testBug482228() {
+public void testBug482228() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -9657,7 +9657,7 @@ public void testBug482228() {
 		"Null constraint mismatch: The type \'T extends List<@Nullable String>\' is not a valid substitute for the type parameter \'T extends List<@NonNull String>\'\n" +
 		"----------\n");
 }
-public void testBug483527() {
+public void testBug483527() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(JavaCore.COMPILER_PB_SYNTACTIC_NULL_ANALYSIS_FOR_FIELDS, JavaCore.ENABLED);
 	runConformTestWithLibs(
@@ -9675,8 +9675,8 @@ public void testBug483527() {
 		compilerOptions,
 		"");
 }
-public void testMultipleAnnotations1() {
-	Map options1 = new HashMap<>(getCompilerOptions());
+public void testMultipleAnnotations1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map options1 = new HashMap<>(getCompilerOptions()); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	options1.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "org.foo.NonNull");
 	options1.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "org.foo.Nullable");
 	runConformTest(
@@ -9733,7 +9733,7 @@ public void testMultipleAnnotations1() {
 		"Null type mismatch (type annotations): required \'@NonNull String\' but this expression has type \'@Nullable String\'\n" +
  		"----------\n");
 }
-public void test483952 () {
+public void test483952 () { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/Test.java",
@@ -9769,7 +9769,7 @@ public void test483952 () {
 		"Type safety: The expression of type Function needs unchecked conversion to conform to Function<String,String>\n" +
 		"----------\n");
 }
-public void test484055() {
+public void test484055() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"B.java",
@@ -9790,7 +9790,7 @@ public void test484055() {
 		null,
 		"");
 }
-public void testBug484108() {
+public void testBug484108() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/Test.java",
@@ -9838,7 +9838,7 @@ public void testBug484108() {
 		"",
 		"2");
 }
-public void testBug484954() {
+public void testBug484954() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "org.foo.Nullable");
 	customOptions.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "org.foo.NonNull");
@@ -9866,7 +9866,7 @@ public void testBug484954() {
 		customOptions,
 		"");
 }
-public void testBug484981() {
+public void testBug484981() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test1/GenericWithNullableBound.java",
@@ -9996,7 +9996,7 @@ public void testBug484981() {
 	);
 }
 // same testBinary06 but via SourceTypeBindings
-public void testBug484981b() {
+public void testBug484981b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
 	customOptions.put(JavaCore.COMPILER_PB_MISSING_SERIAL_VERSION, JavaCore.IGNORE);
@@ -10041,7 +10041,7 @@ public void testBug484981b() {
 }
 
 // same testBinary06b but via SourceTypeBindings
-public void testBug484981c() {
+public void testBug484981c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
 	customOptions.put(JavaCore.COMPILER_PB_MISSING_SERIAL_VERSION, JavaCore.IGNORE);
@@ -10085,7 +10085,7 @@ public void testBug484981c() {
 }
 
 // same testBinary07 but via SourceTypeBindings
-public void testBug484981d() {
+public void testBug484981d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
 	customOptions.put(JavaCore.COMPILER_PB_MISSING_SERIAL_VERSION, JavaCore.IGNORE);
@@ -10126,7 +10126,7 @@ public void testBug484981d() {
 			"Null type mismatch: required \'@NonNull String\' but the provided value is null\n" +
 			"----------\n");
 }
-public void testBug466562() {
+public void testBug466562() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"x/C.java",
@@ -10193,7 +10193,7 @@ public void testBug466562() {
 		"----------\n"
 	);
 }
-public void testBug485056() {
+public void testBug485056() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"TestExplainedValue.java",
@@ -10216,7 +10216,7 @@ public void testBug485056() {
 		""
 	);
 }
-public void testBug484741() {
+public void testBug484741() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/Test.java",
@@ -10249,7 +10249,7 @@ public void testBug484741b() {
 			"}"
 	}, getCompilerOptions(), "");
 }
-public void testBug484741c() {
+public void testBug484741c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/Test3.java",
@@ -10288,7 +10288,7 @@ public void testBug484741d() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug484741e() {
+public void testBug484741e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/AbstractFeature.java",
@@ -10309,7 +10309,7 @@ public void testBug484741e() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug484741Invoke() {
+public void testBug484741Invoke() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/TestInterdepInvoke.java",
@@ -10454,7 +10454,7 @@ public void testBug484741Invoke() {
 		"----------\n"
 	);
 }
-public void testBug484741Invoke2() {
+public void testBug484741Invoke2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/TestInterdepInvokeNN.java",
@@ -10576,7 +10576,7 @@ public void testBug484741Invoke2() {
 		"----------\n"
 	);
 }
-public void testBug484741Invoke3() {
+public void testBug484741Invoke3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/TestInterdepInvoke.java",
@@ -10657,7 +10657,7 @@ public void testBug484741Invoke3() {
 }
 
 
-public void testBug484471SubclassNullable() {
+public void testBug484471SubclassNullable() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/TestInterdepSubClass.java",
@@ -10779,7 +10779,7 @@ public void testBug484471SubclassNullable() {
 		"----------\n"
 	);
 }
-public void testBug484471SubclassNonNull() {
+public void testBug484471SubclassNonNull() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/TestInterdepSubClassNN.java",
@@ -10901,7 +10901,7 @@ public void testBug484471SubclassNonNull() {
 				"----------\n"
 	);
 }
-public void testBug485058() {
+public void testBug485058() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/Test4.java",
@@ -10958,7 +10958,7 @@ public void testBug485058() {
 		"----------\n"
 	);
 }
-public void testBug485030() {
+public void testBug485030() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(new String[] {
 			"SomeAnnotation.java",
 			"import static java.lang.annotation.ElementType.TYPE_USE;\n" +
@@ -10982,7 +10982,7 @@ public void testBug485030() {
 			"}\n"
 	}, getCompilerOptions(), "");
 }
-public void testBug485302() {
+public void testBug485302() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 		"WildCardNullable.java",
@@ -11036,7 +11036,7 @@ public void testBug485302() {
 	);
 }
 
-public void testBug485027() {
+public void testBug485027() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(new String[] {
 			"SomeAnnotation.java",
 			"import static java.lang.annotation.ElementType.TYPE_USE;\n" +
@@ -11079,7 +11079,7 @@ public void testBug485027() {
 			"}"
 	}, getCompilerOptions(), "");
 }
-public void testBug485565() {
+public void testBug485565() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 			new String[] {
 			"test2/ClassWithRegistry.java",
@@ -11139,7 +11139,7 @@ public void testBug485565() {
 			""
 	);
 }
-public void testBug485814() {
+public void testBug485814() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/ExplainedResult.java",
@@ -11187,7 +11187,7 @@ public void testBug485814() {
 		""
 	);
 }
-public void testBug485581() {
+public void testBug485581() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 		"test/MatchResult.java",
@@ -11234,7 +11234,7 @@ public void testBug485581() {
 		""
 	);
 }
-public void testBug482752_lambda() {
+public void testBug482752_lambda() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/StringProcessor.java",
@@ -11276,7 +11276,7 @@ public void testBug482752_lambda() {
 		);
 }
 
-public void testBug482752_methodref() {
+public void testBug482752_methodref() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/StringProcessor.java",
@@ -11318,7 +11318,7 @@ public void testBug482752_methodref() {
 		);
 }
 
-public void testBug485374() {
+public void testBug485374() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/I.java",
@@ -11357,7 +11357,7 @@ public void testBug485374() {
 		);
 }
 
-public void testBug466556a() {
+public void testBug466556a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/C.java",
@@ -11385,7 +11385,7 @@ public void testBug466556a() {
 		"----------\n"
 	);
 }
-public void testBug466556nonfree() {
+public void testBug466556nonfree() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/C.java",
@@ -11408,7 +11408,7 @@ public void testBug466556nonfree() {
 		"----------\n"
 	);
 }
-public void testBug466556b() {
+public void testBug466556b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/C.java",
@@ -11439,7 +11439,7 @@ public void testBug466556b() {
 		"----------\n"
 	);
 }
-public void testBug466556c() {
+public void testBug466556c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/C.java",
@@ -11473,7 +11473,7 @@ public void testBug466556c() {
 		"----------\n"
 	);
 }
-public void testBug466556field() {
+public void testBug466556field() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/D.java",
@@ -11590,7 +11590,7 @@ public void testBug466556field() {
 		"----------\n"
 	);
 }
-public void testBug466556withRaw() {
+public void testBug466556withRaw() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/TestWithRaw.java",
@@ -11609,7 +11609,7 @@ public void testBug466556withRaw() {
 		""
 	);
 }
-public void testBug466556withPGMB() {
+public void testBug466556withPGMB() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/TestWithParameterizedGenericMethodBinding.java",
@@ -11635,7 +11635,7 @@ public void testBug466556withPGMB() {
 		"----------\n"
 	);
 }
-public void testBug466556captures() {
+public void testBug466556captures() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/TestCapture.java",
@@ -11724,7 +11724,7 @@ public void testBug466556captures() {
 		"----------\n"
 	);
 }
-public void testBug466556Loops() {
+public void testBug466556Loops() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/TestLoop.java",
@@ -11838,7 +11838,7 @@ public void testBug466556Loops() {
 		"----------\n"
 	);
 }
-public void testBug461268() {
+public void testBug461268() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportNonNullTypeVariableFromLegacyInvocation, JavaCore.ERROR);
 	compilerOptions.put(CompilerOptions.OPTION_PessimisticNullAnalysisForFreeTypeVariables, JavaCore.IGNORE);
@@ -11861,7 +11861,7 @@ public void testBug461268() {
 		"Unsafe interpretation of method return type as \'@NonNull\' based on the receiver type \'List<@NonNull String>\'. Type \'List<E>\' doesn\'t seem to be designed with null type annotations in mind\n" +
 		"----------\n");
 }
-public void testBug461268invoke() {
+public void testBug461268invoke() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportNonNullTypeVariableFromLegacyInvocation, JavaCore.ERROR);
 	runNegativeTestWithLibs(
@@ -11883,7 +11883,7 @@ public void testBug461268invoke() {
 		"Unsafe interpretation of method return type as \'@NonNull\' based on the receiver type \'Map<Object,@NonNull String>\'. Type \'Map<K,V>\' doesn\'t seem to be designed with null type annotations in mind\n" +
 		"----------\n");
 }
-public void testBug461268nnbd() {
+public void testBug461268nnbd() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportNonNullTypeVariableFromLegacyInvocation, JavaCore.ERROR);
 	runConformTestWithLibs(
@@ -11935,7 +11935,7 @@ public void testBug461268nnbd() {
 		""
 	);
 }
-public void testBug485988WildcardOverride() {
+public void testBug485988WildcardOverride() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/Result.java",
@@ -11982,7 +11982,7 @@ public void testBug485988WildcardOverride() {
 		""
 	);
 }
-public void testBug485988neutral() {
+public void testBug485988neutral() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"neutral/WildcardTest.java",
@@ -12081,7 +12081,7 @@ public void testBug485988neutral() {
 		""
 	);
 }
-public void testBug485988nonnull() {
+public void testBug485988nonnull() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"nonnull/WildcardNonNullTest.java",
@@ -12260,7 +12260,7 @@ public void testBug485988nonnull() {
 		"----------\n"
 	);
 }
-public void testBug485988nullable() {
+public void testBug485988nullable() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"nullable/WildcardNullableTest.java",
@@ -12439,7 +12439,7 @@ public void testBug485988nullable() {
 		"----------\n"
 	);
 }
-public void testBug485988WildCardForTVWithNonNullBound() {
+public void testBug485988WildCardForTVWithNonNullBound() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/WildCard.java",
@@ -12467,7 +12467,7 @@ public void testBug485988WildCardForTVWithNonNullBound() {
 		""
 	);
 }
-public void testBug485988WildcardWithGenericBound() {
+public void testBug485988WildcardWithGenericBound() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runWarningTestWithLibs(
 		true/*flush*/,
 		new String[] {
@@ -12496,7 +12496,7 @@ public void testBug485988WildcardWithGenericBound() {
 		"----------\n"
 	);
 }
-public void testBug485988Contradictory() {
+public void testBug485988Contradictory() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/Test1.java",
@@ -12545,7 +12545,7 @@ public void testBug485988Contradictory() {
 		"----------\n"
 	);
 }
-public void testBug485988bound() {
+public void testBug485988bound() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"C.java",
@@ -12578,7 +12578,7 @@ public void testBug466585_comment_0() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug466585_comment_4() {
+public void testBug466585_comment_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"C3.java",
@@ -12615,7 +12615,7 @@ public void testBug466585_comment_4() {
 		"Null constraint mismatch: The type \'@Nullable ? super Integer\' is not a valid substitute for the type parameter \'T extends @NonNull Number\'\n" +
 		"----------\n");
 }
-public void testBug489978() {
+public void testBug489978() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/BinaryClass.java",
@@ -12660,7 +12660,7 @@ public void testBug489978() {
 		""
 	);
 }
-public void testBug489245_info() {
+public void testBug489245_info() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_PessimisticNullAnalysisForFreeTypeVariables, JavaCore.INFO);
 	runWarningTestWithLibs(
@@ -12703,7 +12703,7 @@ public void testBug489245_info() {
 		"----------\n"
 	);
 }
-public void testBug489245_improvedNullInference() {
+public void testBug489245_improvedNullInference() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_PessimisticNullAnalysisForFreeTypeVariables, JavaCore.INFO);
 	runConformTestWithLibs(
@@ -12740,8 +12740,8 @@ public void testBug489245_improvedNullInference() {
 		""
 	);
 }
-public void testBug489674() {
-	Map options = new HashMap<>(getCompilerOptions());
+public void testBug489674() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map options = new HashMap<>(getCompilerOptions()); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	options.put(JavaCore.COMPILER_NONNULL_ANNOTATION_SECONDARY_NAMES, "org.foo.NonNull");
 	options.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_SECONDARY_NAMES, "org.foo.Nullable");
 	runConformTest(
@@ -12837,7 +12837,7 @@ public void testBug489674() {
 			false
 		);
 }
-public void testBug492327() {
+public void testBug492327() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"WatchEvent.java",
@@ -12866,7 +12866,7 @@ public void testBug492327() {
 		""
 	);
 }
-public void testBug488495collector() {
+public void testBug488495collector() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/Test.java",
@@ -12902,7 +12902,7 @@ public void testBug488495collector() {
 	);
 }
 
-public void testBug496591() {
+public void testBug496591() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test2/Descriptors.java",
@@ -12959,7 +12959,7 @@ public void testBug496591() {
 		""
 	);
 }
-public void testBug497698() {
+public void testBug497698() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"test/And.java",
@@ -12997,7 +12997,7 @@ public void testBug497698() {
 		true/*flush*/
 	);
 }
-public void testBug497698raw() {
+public void testBug497698raw() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"test/And.java",
@@ -13041,7 +13041,7 @@ public void testBug497698raw() {
 		false/*shouldFlush*/
 	);
 }
-public void testBug497698nestedinraw() {
+public void testBug497698nestedinraw() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"test/And.java",
@@ -13087,7 +13087,7 @@ public void testBug497698nestedinraw() {
 		true/*flush*/
 	);
 }
-public void testBug492322() {
+public void testBug492322() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test1/Base.java",
@@ -13130,7 +13130,7 @@ public void testBug492322() {
 		""
 	);
 }
-public void testBug492322field() {
+public void testBug492322field() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test1/Base.java",
@@ -13170,7 +13170,7 @@ public void testBug492322field() {
 			""
 		);
 }
-public void testBug492322deep() {
+public void testBug492322deep() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test1/Base.java",
@@ -13221,7 +13221,7 @@ public void testBug492322deep() {
 		""
 	);
 }
-public void testBug492322withGenericBase() {
+public void testBug492322withGenericBase() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test1/Base.java",
@@ -13272,7 +13272,7 @@ public void testBug492322withGenericBase() {
 		""
 	);
 }
-public void testBug499862a() {
+public void testBug499862a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Test.java",
@@ -13291,7 +13291,7 @@ public void testBug499862a() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug499862b() {
+public void testBug499862b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"Test.java",
@@ -13312,7 +13312,7 @@ public void testBug499862b() {
 		"Potential null pointer access: The variable s may be null at this location\n" +
 		"----------\n");
 }
-public void testBug499862c() {
+public void testBug499862c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"Test.java",
@@ -13332,7 +13332,7 @@ public void testBug499862c() {
 		"Potential null pointer access: this expression has type \'T\', a free type variable that may represent a \'@Nullable\' type\n" +
 		"----------\n");
 }
-public void testBug499597simplified() {
+public void testBug499597simplified() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Foo2.java",
@@ -13365,7 +13365,7 @@ public void testBug499597simplified() {
 		""
 	);
 }
-public void testBug499597original() {
+public void testBug499597original() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runWarningTestWithLibs(
 		true/*flush*/,
 		new String[] {
@@ -13421,7 +13421,7 @@ public void testBug499597original() {
 		"----------\n"
 	);
 }
-public void testBug501031() {
+public void testBug501031() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"X.java",
@@ -13442,7 +13442,7 @@ public void testBug501031() {
 	);
 }
 
-public void testBug501031return() {
+public void testBug501031return() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -13466,7 +13466,7 @@ public void testBug501031return() {
 		"----------\n"
 	);
 }
-public void testBug501031btb() {
+public void testBug501031btb() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// this already worked without the patch for bug 501031.
 	runConformTestWithLibs(
 			new String[] {
@@ -13507,7 +13507,7 @@ public void testBug501031btb() {
 			"----------\n"
 		);
 }
-public void testBug501449() {
+public void testBug501449() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"Test.java",
@@ -13537,7 +13537,7 @@ public void testBug501449() {
 		"----------\n"
 	);
 }
-public void testBug502112() {
+public void testBug502112() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"org/foo/Nullable.java",
@@ -13569,7 +13569,7 @@ public void testBug502112() {
 			getCompilerOptions(),
 			""
 		);
-	Map options = new HashMap<>(getCompilerOptions());
+	Map options = new HashMap<>(getCompilerOptions()); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	options.put(JavaCore.COMPILER_NONNULL_ANNOTATION_SECONDARY_NAMES, "org.foo.NonNull");
 	options.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_SECONDARY_NAMES, "org.foo.Nullable");
 	runNegativeTestWithLibs(
@@ -13607,7 +13607,7 @@ public void testBug502112() {
 	"----------\n"
 );
 }
-public void testBug502112b() {
+public void testBug502112b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 		"org/foo/NonNull.java",
@@ -13642,7 +13642,7 @@ public void testBug502112b() {
 			getCompilerOptions(),
 			""
 		);
-	Map options = new HashMap<>(getCompilerOptions());
+	Map options = new HashMap<>(getCompilerOptions()); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	options.put(JavaCore.COMPILER_NONNULL_ANNOTATION_SECONDARY_NAMES, "org.foo.NonNull");
 	options.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_SECONDARY_NAMES, "org.foo.Nullable");
 	runNegativeTestWithLibs(
@@ -13684,7 +13684,7 @@ public void testBug502112b() {
 		"----------\n"
 	);
 }
-public void testBug484926locals() {
+public void testBug484926locals() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_ANNOTATED_TYPE_ARGUMENT_TO_UNANNOTATED, JavaCore.IGNORE);
 	runNegativeTestWithLibs(
@@ -13748,7 +13748,7 @@ public void testBug484926locals() {
 		"----------\n"
 	);
 }
-public void testBug484926fields() {
+public void testBug484926fields() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_ANNOTATED_TYPE_ARGUMENT_TO_UNANNOTATED, JavaCore.IGNORE);
 	runNegativeTestWithLibs(
@@ -13812,7 +13812,7 @@ public void testBug484926fields() {
 		"----------\n"
 	);
 }
-public void testBug484926() {
+public void testBug484926() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/NNBDOnLocalOrField.java",
@@ -13862,7 +13862,7 @@ public void testBug484926() {
 		""
 	);
 }
-public void testBug484926nesting() {
+public void testBug484926nesting() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/NNBDOnLocalOrField.java",
@@ -13911,7 +13911,7 @@ public void testBug484926nesting() {
 		"----------\n"
 	);
 }
-public void testBug484926localDeclarationInForLoop() {
+public void testBug484926localDeclarationInForLoop() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/NNBDOnLocalOrField.java",
@@ -13948,7 +13948,7 @@ public void testBug484926localDeclarationInForLoop() {
 		""
 	);
 }
-public void testBug484926redundantNNBD() {
+public void testBug484926redundantNNBD() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"testnnbd/NNBDRedundantOnLocalOrField.java",
@@ -14172,7 +14172,7 @@ public void testBug484926redundantNNBD() {
 		"----------\n"
 	);
 }
-public void testBug484926BTB() {
+public void testBug484926BTB() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/ClassWithNNBDOnField.java",
@@ -14236,7 +14236,7 @@ public void testBug484926BTB() {
 		""
 	);
 }
-public void testBug500885() {
+public void testBug500885() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"annot/NonNull.java",
@@ -14280,7 +14280,7 @@ public void testBug500885() {
 		options,
 		"");
 }
-public void testBug505671() {
+public void testBug505671() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"snippet/Pair.java",
@@ -14329,7 +14329,7 @@ public void testBug505671() {
 		"----------\n"
 	);
 }
-public void testBug501564() {
+public void testBug501564() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"xxx/Foo.java",
@@ -14374,7 +14374,7 @@ public void testBug501564() {
 		"----------\n"
 	);
 }
-public void testBug501564interface() {
+public void testBug501564interface() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"xxx/Foo.java",
@@ -14419,7 +14419,7 @@ public void testBug501564interface() {
 		"----------\n"
 	);
 }
-public void testBug501464() {
+public void testBug501464() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runWarningTestWithLibs(
 		true/*flush*/,
 		new String[] {
@@ -14467,7 +14467,7 @@ public void testBug501464() {
 		"----------\n"
 	);
 }
-public void testBug507840() {
+public void testBug507840() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"nnbd_on_typevar/AtomicReference.java",
@@ -14502,7 +14502,7 @@ public void testBug507840() {
 		""
 	);
 }
-public void testBug508497() {
+public void testBug508497() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Reference.java",
@@ -14551,7 +14551,7 @@ public void testBug508497() {
 		"----------\n"
 	);
 }
-public void testBug509025_a() {
+public void testBug509025_a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"MyAnno.java",
@@ -14603,7 +14603,7 @@ public void testBug509025_a() {
 		""
 	);
 }
-public void testBug509025_b() {
+public void testBug509025_b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"MyAnno.java",
@@ -14655,7 +14655,7 @@ public void testBug509025_b() {
 		""
 	);
 }
-public void testBug509025_c() {
+public void testBug509025_c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"MyAnno.java",
@@ -14697,7 +14697,7 @@ public void testBug509025_c() {
 		""
 	);
 }
-public void testBug501598() {
+public void testBug501598() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runWarningTestWithLibs(
 		true/*flush*/,
 		new String[] {
@@ -14724,7 +14724,7 @@ public void testBug501598() {
 		"----------\n"
 	);
 }
-public void testBug509328() {
+public void testBug509328() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/Feature.java",
@@ -14768,7 +14768,7 @@ public void testBug509328() {
 		"----------\n"
 	);
 }
-public void testBug510799() {
+public void testBug510799() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/TestNNBDBreaksDimensionAnnotation.java",
@@ -14788,7 +14788,7 @@ public void testBug510799() {
 		""
 	);
 }
-public void testBug490403() {
+public void testBug490403() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/TestNullInt.java",
@@ -14811,7 +14811,7 @@ public void testBug490403() {
 		""
 	);
 }
-public void testBug490403while() {
+public void testBug490403while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/TestNullInt.java",
@@ -14835,7 +14835,7 @@ public void testBug490403while() {
 	);
 }
 
-public void testBug490403negative() {
+public void testBug490403negative() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/TestNullInt.java",
@@ -14884,7 +14884,7 @@ public void testBug490403negative() {
 		"----------\n"
 	);
 }
-public void testBug490403typeArgAnnotationMismatch() {
+public void testBug490403typeArgAnnotationMismatch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/Test.java",
@@ -14928,7 +14928,7 @@ public void testBug490403typeArgAnnotationMismatch() {
 		"----------\n"
 	);
 }
-public void testBug499589() {
+public void testBug499589() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/BogusWarning.java",
@@ -14962,7 +14962,7 @@ public void testBug499589() {
 		""
 	);
 }
-public void testBug499589multidim() {
+public void testBug499589multidim() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/BogusWarning.java",
@@ -14995,7 +14995,7 @@ public void testBug499589multidim() {
 	);
 }
 
-public void testBug499589leafTypeNullable() {
+public void testBug499589leafTypeNullable() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/BogusWarning.java",
@@ -15028,7 +15028,7 @@ public void testBug499589leafTypeNullable() {
 	);
 }
 
-public void testBug499589qualified() {
+public void testBug499589qualified() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/BogusWarning.java",
@@ -15055,7 +15055,7 @@ public void testBug499589qualified() {
 	);
 }
 
-public void testBug499589qualified_leafTypeNullable() {
+public void testBug499589qualified_leafTypeNullable() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/BogusWarning.java",
@@ -15087,7 +15087,7 @@ public void testBug499589qualified_leafTypeNullable() {
 		"----------\n"
 	);
 }
-public void testBug499589qualified_multidim() {
+public void testBug499589qualified_multidim() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/BogusWarning.java",
@@ -15119,7 +15119,7 @@ public void testBug499589qualified_multidim() {
 		"----------\n"
 	);
 }
-public void testBug499589STB() {
+public void testBug499589STB() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/Ref.java",
@@ -15226,7 +15226,7 @@ public void testBug499589STB() {
 		"----------\n"
 	);
 }
-public void testBug499589BTB() {
+public void testBug499589BTB() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.classLibraries = this.LIBS;
 	runner.testFiles =
@@ -15351,7 +15351,7 @@ public void testBug499589BTB() {
 	);
 }
 
-public void testBug499589STBqualified() {
+public void testBug499589STBqualified() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/Ref.java",
@@ -15465,7 +15465,7 @@ public void testBug499589STBqualified() {
 		"----------\n"
 	);
 }
-public void testBug499589BTBqualified() {
+public void testBug499589BTBqualified() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.classLibraries = this.LIBS;
 	runner.testFiles =
@@ -15592,7 +15592,7 @@ public void testBug499589BTBqualified() {
 		"----------\n"
 	);
 }
-public void testBug499589arrayAllocation() {
+public void testBug499589arrayAllocation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/ArrayAllocation.java",
@@ -15630,7 +15630,7 @@ public void testBug499589arrayAllocation() {
 		"----------\n"
 	);
 }
-public void testBug499589generics() {
+public void testBug499589generics() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/Methods.java",
@@ -15697,7 +15697,7 @@ public void testBug499589generics() {
 		"----------\n"
 	);
 }
-public void testBug511723() {
+public void testBug511723() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/ArrayVsList.java",
@@ -15737,7 +15737,7 @@ public void testBug511723() {
 		"----------\n"
 	);
 }
-public void testBug498084() {
+public void testBug498084() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/Test.java",
@@ -15774,7 +15774,7 @@ public void testBug498084() {
 		""
 	);
 }
-public void testBug498084b() {
+public void testBug498084b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/Test2.java",
@@ -15811,7 +15811,7 @@ public void testBug498084b() {
 		"----------\n"
 	);
 }
-public void testBug513495() {
+public void testBug513495() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/Test3.java",
@@ -15853,7 +15853,7 @@ public void testBug513495() {
 		"----------\n"
 	);
 }
-public void testBug513855() {
+public void testBug513855() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test1/X.java",
@@ -15886,7 +15886,7 @@ public void testBug513855() {
 		""
 	);
 }
-public void testBug513855lambda() {
+public void testBug513855lambda() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test1/Lambda3.java",
@@ -15916,7 +15916,7 @@ public void testBug513855lambda() {
 		""
 	);
 }
-public void testBug514091() {
+public void testBug514091() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test1/SAM.java",
@@ -15951,7 +15951,7 @@ public void testBug514091() {
 		""
 	);
 }
-public void testBug514570() {
+public void testBug514570() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(JavaCore.COMPILER_DOC_COMMENT_SUPPORT, JavaCore.ENABLED);
 	runConformTestWithLibs(
@@ -15976,7 +15976,7 @@ public void testBug514570() {
 		""
 	);
 }
-public void testBug514977() {
+public void testBug514977() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/Test.java",
@@ -16053,7 +16053,7 @@ public void testBug514977() {
 		"----------\n"
 	);
 }
-public void testBug515292() {
+public void testBug515292() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/BoundedByFinal.java",
@@ -16079,7 +16079,7 @@ public void testBug515292() {
 		""
 	);
 }
-public void testBug526555() {
+public void testBug526555() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_NULL_SPECIFICATION_VIOLATION, JavaCore.WARNING);
 
@@ -16120,7 +16120,7 @@ public void testBug526555() {
 		"----------\n"
 	);
 }
-public void testBug530913() {
+public void testBug530913() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "annotation.Nullable");
 	customOptions.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "annotation.NonNull");
@@ -16397,7 +16397,7 @@ public void testBug530913() {
 		"----------\n"
 	);
 }
-public void testBug530913b() {
+public void testBug530913b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "annotation.Nullable");
 	customOptions.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "annotation.NonNull");
@@ -16489,7 +16489,7 @@ public void testBug530913b() {
 		};
 	runner.runConformTest();
 }
-public void testBug530971() {
+public void testBug530971() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "annotation.Nullable");
 	customOptions.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "annotation.NonNull");
@@ -16894,7 +16894,7 @@ public void testBug530971() {
 }
 
 // same as testBug530971, but X is read via class file
-public void testBug530971_BTB() {
+public void testBug530971_BTB() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "annotation.Nullable");
 	customOptions.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "annotation.NonNull");
@@ -17339,7 +17339,7 @@ public void testBug530971_BTB() {
 		"----------\n"
 	);
 }
-public void testBug530971_redundant() {
+public void testBug530971_redundant() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "annotation.Nullable");
 	customOptions.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "annotation.NonNull");
@@ -17513,7 +17513,7 @@ public void testBug530971_redundant() {
 	runner.javacTestOptions = JavacTestOptions.Excuse.EclipseHasSomeMoreWarnings;
 	runner.runWarningTest();
 }
-public void testBug530971_locally_redundant() {
+public void testBug530971_locally_redundant() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "annotation.Nullable");
 	customOptions.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "annotation.NonNull");
@@ -17664,7 +17664,7 @@ public void testBug530971_locally_redundant() {
 		""
 	);
 }
-public void testBug518839() {
+public void testBug518839() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "annotation.Nullable");
 	customOptions.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "annotation.NonNull");
@@ -17811,7 +17811,7 @@ public void testBug518839() {
 		"----------\n"
 	);
 }
-public void testBug518839_BTB() {
+public void testBug518839_BTB() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "annotation.Nullable");
 	customOptions.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "annotation.NonNull");
@@ -17991,7 +17991,7 @@ public void testBug518839_BTB() {
 		"----------\n"
 	);
 }
-public void testBug531040() {
+public void testBug531040() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK10)
 		return;
 	runNegativeTestWithLibs(
@@ -18033,7 +18033,7 @@ public void testBug531040() {
 		"----------\n"
 	);
 }
-public void testBug533339() {
+public void testBug533339() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -18085,7 +18085,7 @@ public void testBug533339() {
 	runner.javacTestOptions = JavacTestOptions.Excuse.EclipseHasSomeMoreWarnings;
 	runner.runWarningTest();
 }
-public void testBug534516() {
+public void testBug534516() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 			new String[] {
 				"testbug/nullannotations/Utility.java",
@@ -18156,7 +18156,7 @@ public void testBug536459() {
 			getCompilerOptions(),
 			"");
 }
-public void testBug536555() {
+public void testBug536555() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(JavaCore.COMPILER_DOC_COMMENT_SUPPORT, JavaCore.ENABLED);
@@ -18184,7 +18184,7 @@ public void testBug536555() {
 	runner.javacTestOptions = JavacTestOptions.Excuse.EclipseHasSomeMoreWarnings;
 	runner.runWarningTest();
 }
-public void testBug540264() {
+public void testBug540264() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		true,
 		new String[] {
@@ -18220,7 +18220,7 @@ public void testBug540264() {
 		JavacTestOptions.DEFAULT
 	);
 }
-public void testBug542707_1() {
+public void testBug542707_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14)
 		return;
 	// switch expression has a functional type with interesting type inference and various null issues:
@@ -18267,7 +18267,7 @@ public void testBug542707_1() {
 			"----------\n";
 	runner.runNegativeTest();
 }
-public void testBug499714() {
+public void testBug499714() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"Type.java",
@@ -18288,7 +18288,7 @@ public void testBug499714() {
 		"Potential null pointer access: The method get() may return null\n" +
 		"----------\n");
 }
-public void testBug482242_simple() {
+public void testBug482242_simple() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_ANNOTATED_TYPE_ARGUMENT_TO_UNANNOTATED, JavaCore.ERROR);
 	runNegativeTestWithLibs(
@@ -18316,7 +18316,7 @@ public void testBug482242_simple() {
 		"Unsafe null type conversion (type annotations): The value of type \'List<@NonNull String>\' is made accessible using the less-annotated type \'List<String>\'\n" +
 		"----------\n");
 }
-public void testBug482242_intermediate() {
+public void testBug482242_intermediate() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_ANNOTATED_TYPE_ARGUMENT_TO_UNANNOTATED, JavaCore.ERROR);
 	runNegativeTestWithLibs(
@@ -18354,7 +18354,7 @@ public void testBug482242_intermediate() {
 		"Unsafe null type conversion (type annotations): The value of type \'List<@NonNull String>\' is made accessible using the less-annotated type \'List<? super String>\'\n" +
 		"----------\n");
 }
-public void testBug482242_annotatedTypeVariable() {
+public void testBug482242_annotatedTypeVariable() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_ANNOTATED_TYPE_ARGUMENT_TO_UNANNOTATED, JavaCore.ERROR);
 	runNegativeTestWithLibs(
@@ -18390,7 +18390,7 @@ public void testBug482242_annotatedTypeVariable() {
 		"Null type safety (type annotations): The expression of type \'String\' needs unchecked conversion to conform to \'capture#of ? super String\'\n" +
 		"----------\n");
 }
-public void testBug482242_boundedWildcard() {
+public void testBug482242_boundedWildcard() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_ANNOTATED_TYPE_ARGUMENT_TO_UNANNOTATED, JavaCore.ERROR);
 	runNegativeTestWithLibs(
@@ -18431,7 +18431,7 @@ public void testBug482242_boundedWildcard() {
 		"Null type safety (type annotations): The expression of type \'String\' needs unchecked conversion to conform to \'capture#of ? super @Nullable String\'\n" +
 		"----------\n");
 }
-public void testBug560213source() {
+public void testBug560213source() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.classLibraries = this.LIBS;
@@ -18462,7 +18462,7 @@ public void testBug560213source() {
 	};
 	runner.runConformTest();
 }
-public void testBug560213binary() {
+public void testBug560213binary() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.testFiles = new String[] {
@@ -18498,7 +18498,7 @@ public void testBug560213binary() {
 	};
 	runner.runConformTest();
 }
-public void testBug560310() {
+public void testBug560310() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.testFiles =
@@ -18534,7 +18534,7 @@ public void testBug560310() {
 		"----------\n";
 	runner.runWarningTest();
 }
-public void testBug560310try_finally() {
+public void testBug560310try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.testFiles =
@@ -18577,7 +18577,7 @@ public void testBug560310try_finally() {
 		"----------\n";
 	runner.runWarningTest();
 }
-public void testBug562347_561280c9() {
+public void testBug562347_561280c9() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"Example.java",
@@ -18630,7 +18630,7 @@ public void testBug562347_561280c9() {
 		"Dead code\n" +
 		"----------\n");
 }
-public void testBug562347() {
+public void testBug562347() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -18686,7 +18686,7 @@ public void testBug562347() {
 	runner.classLibraries = this.LIBS;
 	runner.runNegativeTest();
 }
-public void testBug578300() {
+public void testBug578300() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -18728,7 +18728,7 @@ public void testBug578300() {
 	runner.runNegativeTest();
 }
 
-public void testRequireNonNull() {
+public void testRequireNonNull() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"X.java",
@@ -18756,7 +18756,7 @@ public void testRequireNonNull() {
 	runner.runConformTest();
 }
 
-public void testBug522142_redundant1() {
+public void testBug522142_redundant1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -18781,7 +18781,7 @@ public void testBug522142_redundant1() {
 	runner.runWarningTest();
 }
 
-public void testBug522142_redundant2() {
+public void testBug522142_redundant2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// challenge ArrayQualifiedTypeReference:
 	Runner runner = new Runner();
 	runner.testFiles =
@@ -18812,7 +18812,7 @@ public void testBug522142_redundant2() {
 	runner.runWarningTest();
 }
 
-public void testBug522142_redundant3() {
+public void testBug522142_redundant3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// challenge ArrayQualifiedTypeReference:
 	Runner runner = new Runner();
 	runner.testFiles =
@@ -18836,7 +18836,7 @@ public void testBug522142_redundant3() {
 	runner.classLibraries = this.LIBS;
 	runner.runWarningTest();
 }
-public void testBug522142_bogusError() {
+public void testBug522142_bogusError() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -18855,7 +18855,7 @@ public void testBug522142_bogusError() {
 	runner.classLibraries = this.LIBS;
 	runner.runConformTest();
 }
-public void testBug499596() throws Exception {
+public void testBug499596() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -18931,7 +18931,7 @@ public void testBug499596() throws Exception {
 	runner.classLibraries = this.LIBS;
 	runner.runWarningTest();
 }
-public void testRedundantNonNull_field() {
+public void testRedundantNonNull_field() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -18953,7 +18953,7 @@ public void testRedundantNonNull_field() {
 	runner.classLibraries = this.LIBS;
 	runner.runWarningTest();
 }
-public void testGH1007_srikanth() {
+public void testGH1007_srikanth() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -18978,7 +18978,7 @@ public void testGH1007_srikanth() {
 		};
 	runner.runConformTest();
 }
-public void testGH854() {
+public void testGH854() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -19003,7 +19003,7 @@ public void testGH854() {
 	runner.runConformTest();
 }
 // duplicate of #1077
-public void testGH476() {
+public void testGH476() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -19032,7 +19032,7 @@ public void testGH476() {
 		};
 	runner.runConformTest();
 }
-public void testVSCodeIssue3076() {
+public void testVSCodeIssue3076() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -19078,7 +19078,7 @@ public void testVSCodeIssue3076() {
 		};
 	runner.runConformTest();
 }
-public void testGH986() {
+public void testGH986() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -19098,7 +19098,7 @@ public void testGH986() {
 		};
 	runner.runConformTest();
 }
-public void testGHjdtls2386() {
+public void testGHjdtls2386() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -19138,7 +19138,7 @@ public void testGHjdtls2386() {
 		};
 	runner.runConformTest();
 }
-public void testGH1311() {
+public void testGH1311() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_SyntacticNullAnalysisForFields, CompilerOptions.ENABLED);
@@ -19167,7 +19167,7 @@ public void testGH1311() {
 	runner.classLibraries = this.LIBS;
 	runner.runConformTest();
 }
-public void testGH1311_expiry() {
+public void testGH1311_expiry() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_SyntacticNullAnalysisForFields, CompilerOptions.ENABLED);
@@ -19226,7 +19226,7 @@ public void testGH1311_expiry() {
 	runner.classLibraries = this.LIBS;
 	runner.runNegativeTest();
 }
-public void testBreakInNested_GH1659() {
+public void testBreakInNested_GH1659() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 		"Foo.java",
@@ -19255,7 +19255,7 @@ public void testBreakInNested_GH1659() {
 	runner.classLibraries = this.LIBS;
 	runner.runConformTest();
 }
-public void testBreakInNested_GH1659_defNull() {
+public void testBreakInNested_GH1659_defNull() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 		"Foo.java",
@@ -19293,7 +19293,7 @@ public void testBreakInNested_GH1659_defNull() {
 			""";
 	runner.runNegativeTest();
 }
-public void testBreakInNested_GH1661() {
+public void testBreakInNested_GH1661() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 		"Foo.java",
@@ -19337,7 +19337,7 @@ public void testBreakInNested_GH1661() {
 	runner.classLibraries = this.LIBS;
 	runner.runConformTest();
 }
-public void testGH1693_a() {
+public void testGH1693_a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 		"X.java",
@@ -19374,7 +19374,7 @@ public void testGH1693_a() {
 			"----------\n";
 	runner.runNegativeTest();
 }
-public void testGH1693_b() {
+public void testGH1693_b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 		"X.java",
@@ -19411,7 +19411,7 @@ public void testGH1693_b() {
 			"----------\n";
 	runner.runNegativeTest();
 }
-public void testGH1693_c() {
+public void testGH1693_c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 		"X.java",
@@ -19448,7 +19448,7 @@ public void testGH1693_c() {
 	runner.runNegativeTest();
 }
 
-public void testGH2158() {
+public void testGH2158() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 		"abc/Connection.java",
@@ -19520,7 +19520,7 @@ public void testGH2158() {
 		TypeDeclaration.TESTING_GH_2158 = false;
 	}
 }
-public void testGH2325() {
+public void testGH2325() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.IGNORE);
@@ -19555,7 +19555,7 @@ public void testGH2325() {
 	runner.classLibraries = this.LIBS;
 	runner.runConformTest();
 }
-public void testGH2325_a() {
+public void testGH2325_a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// argument nullness variance
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
@@ -19589,7 +19589,7 @@ public void testGH2325_a() {
 	runner.classLibraries = this.LIBS;
 	runner.runConformTest();
 }
-public void testGH2325_b() {
+public void testGH2325_b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.testFiles = new String[] {
@@ -19613,7 +19613,7 @@ public void testGH2325_b() {
 	runner.classLibraries = this.LIBS;
 	runner.runConformTest();
 }
-public void testGH3192() {
+public void testGH3192() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_SyntacticNullAnalysisForFields, CompilerOptions.ENABLED);
@@ -19655,14 +19655,14 @@ public void testGH3192() {
 		};
 	runner.runConformTest();
 }
-public void testErrorPosition() {
-	StringBuilder padding = new StringBuilder();
+public void testErrorPosition() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	StringBuilder padding = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	// push the relevant source to a position beyond 0xFFFF to trigger bug in position computation
-	for (int i=0; i<1000; i++)
-		padding.append("// ============================== padding ================================\n");
+	for (int i=0; i<1000; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		padding.append("// ============================== padding ================================\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	runNegativeTestWithLibs(new String[]{
 			"X.java",
-			padding.toString() +
+			padding.toString() + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"""
 			import org.eclipse.jdt.annotation.*;
 			class X {
@@ -19682,7 +19682,7 @@ public void testErrorPosition() {
 		----------
 		""");
 }
-public void testGH3461() {
+public void testGH3461() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.testFiles = new String[] {
@@ -19721,7 +19721,7 @@ public void testGH3461() {
 	runner.classLibraries = this.LIBS;
 	runner.runConformTest();
 }
-public void testGH4011() {
+public void testGH4011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportNonNullTypeVariableFromLegacyInvocation, CompilerOptions.ERROR);
@@ -19786,7 +19786,7 @@ public void testGH4011() {
 			""";
 	runner.runNegativeTest();
 }
-public void testGH4668a() throws Exception {
+public void testGH4668a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(JavaCore.COMPILER_ANNOTATION_NULL_ANALYSIS, JavaCore.ENABLED);
@@ -19848,7 +19848,7 @@ public void testGH4668a() throws Exception {
 			""";
 	runner.runNegativeTest();
 }
-public void testGH4717_OR() {
+public void testGH4717_OR() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_SyntacticNullAnalysisForFields, CompilerOptions.ENABLED);
@@ -19896,7 +19896,7 @@ public void testGH4717_OR() {
 			""";
 	runner.runNegativeTest();
 }
-public void testGH4717_nullExit() {
+public void testGH4717_nullExit() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_SyntacticNullAnalysisForFields, CompilerOptions.ENABLED);
@@ -19971,7 +19971,7 @@ public void testGH4717_nullExit() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4494
 // Trouble annotating explicit receiver with ECJ (works fine with javac)
-public void testGH4494() throws Exception {
+public void testGH4494() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 			"AnnotatedExplicitReceiverError.java",
 			"""
@@ -19994,7 +19994,7 @@ public void testGH4494() throws Exception {
 	});
 }
 
-public void testGH5042() throws Exception {
+public void testGH5042() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_SUPPRESS_OPTIONAL_ERRORS, JavaCore.ENABLED);
 	runConformTestWithLibs(new String[] {
@@ -20018,7 +20018,7 @@ public void testGH5042() throws Exception {
 		"");
 }
 
-public void testGH5042b() throws Exception {
+public void testGH5042b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK16)
 		return;
 	// documents reporting against instanceof and cast
@@ -20079,7 +20079,7 @@ public void testGH5042b() throws Exception {
 		----------
 		""");
 }
-public void testGH4297_1() {
+public void testGH4297_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_NULL_UNCHECKED_CONVERSION, JavaCore.ERROR);
 	runNegativeTestWithLibs(
@@ -20120,7 +20120,7 @@ public void testGH4297_1() {
 		----------
 		""");
 }
-public void testGH4297_2() {
+public void testGH4297_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(new String[] {
 			"GenericsOrder.java",
 			"""
@@ -20157,7 +20157,7 @@ public void testGH4297_2() {
 		----------
 		""");
 }
-public void testGH4297_3() {
+public void testGH4297_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_NULL_UNCHECKED_CONVERSION, JavaCore.ERROR);
 	runNegativeTestWithLibs(
@@ -20200,7 +20200,7 @@ public void testGH4297_3() {
 		----------
 		""");
 }
-public void testGH5070() {
+public void testGH5070() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(new String[] {
 			"GenericsOrder.java",
 			"""
@@ -20224,7 +20224,7 @@ public void testGH5070() {
 		getCompilerOptions(),
 		"");
 }
-public void testGH5070_returnType() {
+public void testGH5070_returnType() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(new String[] {
 			"GenericsOrder.java",
 			"""
@@ -20263,7 +20263,7 @@ public void testGH5070_returnType() {
 		----------
 		""");
 }
-public void testGH5249() {
+public void testGH5249() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(true, new String[] {
 			"Test.java",
 			"""
@@ -20291,7 +20291,7 @@ public void testGH5249() {
 		getCompilerOptions(),
 		"");
 }
-public void testGH5249_inheritedBuilders() {
+public void testGH5249_inheritedBuilders() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String client = """
 		public class Test {
 			Builders.Child build(Builders.ChildBuilder builder) {
@@ -20325,7 +20325,7 @@ public void testGH5249_inheritedBuilders() {
 		"");
 	runConformTestWithLibs(false, new String[] { "Test.java", client }, getCompilerOptions(), "");
 }
-public void testGH5249_inheritedBuilders_variation1() {
+public void testGH5249_inheritedBuilders_variation1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String client = """
 		import org.eclipse.jdt.annotation.*;
 		public class Test {
@@ -20371,7 +20371,7 @@ public void testGH5249_inheritedBuilders_variation1() {
 			----------
 			""");
 }
-public void testGH5249_inheritedBuilders_variation2() {
+public void testGH5249_inheritedBuilders_variation2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String client = """
 		import org.eclipse.jdt.annotation.*;
 		public class Test {
@@ -20407,7 +20407,7 @@ public void testGH5249_inheritedBuilders_variation2() {
 		"");
 	runConformTestWithLibs(false, new String[] { "Test.java", client }, getCompilerOptions(), "");
 }
-public void testGH5249_inheritedNullAnnotations() {
+public void testGH5249_inheritedNullAnnotations() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(new String[] {
 			"Test.java",
 			"""
@@ -20438,7 +20438,7 @@ public void testGH5249_inheritedNullAnnotations() {
 		getCompilerOptions(),
 		"");
 }
-public void testGH5316() throws Exception {
+public void testGH5316() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(new String[] {
 			"MyInnocentClass.java",
 			"""
@@ -20458,7 +20458,7 @@ public void testGH5316() throws Exception {
 		getCompilerOptions(),
 		"");
 }
-public void testGH5340() throws Exception {
+public void testGH5340() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(new String[] {
 		"X.java",
 		"""
@@ -20482,7 +20482,7 @@ public void testGH5340() throws Exception {
 		getCompilerOptions(),
 		"");
 }
-public void testIssue5391() throws Exception {
+public void testIssue5391() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(new String[] {
 			"Repro.java",
 			"""
@@ -20502,7 +20502,7 @@ public void testIssue5391() throws Exception {
 		getCompilerOptions(),
 		"");
 }
-public void testIssue5391a() throws Exception {
+public void testIssue5391a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(new String[] {
 			"Repro.java",
 			"""
@@ -20525,7 +20525,7 @@ public void testIssue5391a() throws Exception {
 		getCompilerOptions(),
 		"");
 }
-public void testIssue5387_orig() throws Exception {
+public void testIssue5387_orig() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(new String[] {
 			"Repro.java",
 			"""
@@ -20553,7 +20553,7 @@ public void testIssue5387_orig() throws Exception {
 		getCompilerOptions(),
 		"");
 }
-public void testIssue5387_tweaked() throws Exception {
+public void testIssue5387_tweaked() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// + avoid inference problem regarding different return types
 	// + add problematic null annotation so that weakerTypes() has annotations to merge
 	runNegativeTestWithLibs(new String[] {
@@ -20596,7 +20596,7 @@ public void testIssue5387_tweaked() throws Exception {
 		----------
 		""");
 }
-public void testIssue5387_tweaked2() throws Exception {
+public void testIssue5387_tweaked2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// + avoid inference problem regarding different return types
 	// + add problematic null annotation so that weakerTypes() has annotations to merge
 	// + one more array dimension

@@ -43,7 +43,7 @@ public class CompletionOnKeyword3 extends SingleNameReference implements Complet
 	@Override
 	public StringBuilder printExpression(int indent, StringBuilder output) {
 
-		return output.append("<CompleteOnKeyword:").append(this.token).append('>'); //$NON-NLS-1$
+		return output.append("<CompleteOnKeyword:").append(this.token).append('>'); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	@Override
 	public TypeBinding resolveType(BlockScope scope) {

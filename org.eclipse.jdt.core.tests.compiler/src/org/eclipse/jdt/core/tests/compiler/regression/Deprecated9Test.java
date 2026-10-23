@@ -53,8 +53,8 @@ public class Deprecated9Test extends AbstractRegressionTest9 {
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=159709
 	// guard variant for DeprecatedTest#test015 using an annotation
-	public void test002() {
-		Map<String, String> customOptions = new HashMap<>();
+	public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		Map<String, String> customOptions = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		customOptions.put(JavaCore.COMPILER_PB_DEPRECATION, CompilerOptions.WARNING);
 		customOptions.put(JavaCore.COMPILER_PB_TERMINAL_DEPRECATION, CompilerOptions.ERROR);
 		customOptions.put(CompilerOptions.OPTION_ReportNullReference, CompilerOptions.IGNORE);
@@ -101,9 +101,9 @@ public class Deprecated9Test extends AbstractRegressionTest9 {
 			"----------\n",
 			JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 	}
-	public void test002binary() {
+	public void test002binary() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
-		runner.customOptions = new HashMap<>();
+		runner.customOptions = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		runner.customOptions.put(JavaCore.COMPILER_PB_DEPRECATION, CompilerOptions.WARNING);
 		runner.customOptions.put(JavaCore.COMPILER_PB_TERMINAL_DEPRECATION, CompilerOptions.ERROR);
 		runner.customOptions.put(CompilerOptions.OPTION_ReportNullReference, CompilerOptions.IGNORE);
@@ -147,8 +147,8 @@ public class Deprecated9Test extends AbstractRegressionTest9 {
 		runner.runNegativeTest();
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=191909
-	public void test004() {
-		Map<String, String> customOptions = new HashMap<>();
+	public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		Map<String, String> customOptions = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		customOptions.put(JavaCore.COMPILER_PB_DEPRECATION, CompilerOptions.WARNING);
 		customOptions.put(JavaCore.COMPILER_PB_TERMINAL_DEPRECATION, CompilerOptions.ERROR);
 		this.runNegativeTest(
@@ -184,9 +184,9 @@ public class Deprecated9Test extends AbstractRegressionTest9 {
 			JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 	}
 	// Bug 354536 - compiling package-info.java still depends on the order of compilation units
-	public void test005a() {
+	public void test005a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
-		runner.customOptions = new HashMap<>();
+		runner.customOptions = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		runner.customOptions.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.WARNING);
 		runner.customOptions.put(CompilerOptions.OPTION_ReportTerminalDeprecation, CompilerOptions.ERROR);
 		runner.testFiles =
@@ -211,8 +211,8 @@ public class Deprecated9Test extends AbstractRegressionTest9 {
 			};
 		runner.runConformTest();
 	}
-	public void test005b() {
-		Map<String, String> customOptions = new HashMap<>();
+	public void test005b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		Map<String, String> customOptions = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		customOptions.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.WARNING);
 		customOptions.put(CompilerOptions.OPTION_ReportTerminalDeprecation, CompilerOptions.IGNORE);
 		this.runConformTest(
@@ -237,9 +237,9 @@ public class Deprecated9Test extends AbstractRegressionTest9 {
 			},
 			customOptions);
 	}
-	public void test005c() {
+	public void test005c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
-		runner.customOptions = new HashMap<>();
+		runner.customOptions = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		runner.customOptions.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.WARNING);
 		runner.customOptions.put(CompilerOptions.OPTION_ReportTerminalDeprecation, CompilerOptions.WARNING);
 		runner.testFiles =
@@ -278,9 +278,9 @@ public class Deprecated9Test extends AbstractRegressionTest9 {
 			"----------\n";
 		runner.runWarningTest();
 	}
-	public void test006() {
+	public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
-		runner.customOptions = new HashMap<>();
+		runner.customOptions = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		runner.customOptions.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.WARNING);
 		runner.customOptions.put(CompilerOptions.OPTION_ReportTerminalDeprecation, CompilerOptions.ERROR);
 		runner.testFiles =
@@ -309,8 +309,8 @@ public class Deprecated9Test extends AbstractRegressionTest9 {
 		runner.runWarningTest();
 	}
 	// method overriding
-	public void test007() {
-		Map<String, String> customOptions = new HashMap<>();
+	public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		Map<String, String> customOptions = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		customOptions.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.WARNING);
 		customOptions.put(CompilerOptions.OPTION_ReportTerminalDeprecation, CompilerOptions.ERROR);
 		customOptions.put(CompilerOptions.OPTION_ReportDeprecationWhenOverridingDeprecatedMethod, CompilerOptions.ENABLED);
@@ -347,9 +347,9 @@ public class Deprecated9Test extends AbstractRegressionTest9 {
 			"----------\n",
 			JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 	}
-	public void testSinceSource() {
+	public void testSinceSource() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
-		runner.customOptions = new HashMap<>();
+		runner.customOptions = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		runner.customOptions.put(JavaCore.COMPILER_PB_DEPRECATION, CompilerOptions.WARNING);
 		runner.customOptions.put(JavaCore.COMPILER_PB_DEPRECATION_WHEN_OVERRIDING_DEPRECATED_METHOD, CompilerOptions.ENABLED);
 		runner.customOptions.put(JavaCore.COMPILER_PB_TERMINAL_DEPRECATION, CompilerOptions.ERROR);
@@ -417,9 +417,9 @@ public class Deprecated9Test extends AbstractRegressionTest9 {
 			"----------\n";
 		runner.runWarningTest();
 	}
-	public void testSinceBinary() {
+	public void testSinceBinary() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
-		runner.customOptions = new HashMap<>();
+		runner.customOptions = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		runner.customOptions.put(JavaCore.COMPILER_PB_DEPRECATION, CompilerOptions.WARNING);
 		runner.customOptions.put(JavaCore.COMPILER_PB_DEPRECATION_WHEN_OVERRIDING_DEPRECATED_METHOD, CompilerOptions.ENABLED);
 		runner.customOptions.put(JavaCore.COMPILER_PB_TERMINAL_DEPRECATION, CompilerOptions.ERROR);
@@ -493,9 +493,9 @@ public class Deprecated9Test extends AbstractRegressionTest9 {
 			"----------\n";
 		runner.runWarningTest();
 	}
-	public void testSinceTerminally() {
+	public void testSinceTerminally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
-		runner.customOptions = new HashMap<>();
+		runner.customOptions = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		runner.customOptions.put(JavaCore.COMPILER_PB_DEPRECATION, CompilerOptions.WARNING);
 		runner.customOptions.put(JavaCore.COMPILER_PB_DEPRECATION_WHEN_OVERRIDING_DEPRECATED_METHOD, CompilerOptions.ENABLED);
 		runner.customOptions.put(JavaCore.COMPILER_PB_TERMINAL_DEPRECATION, CompilerOptions.ERROR);
@@ -565,14 +565,14 @@ public class Deprecated9Test extends AbstractRegressionTest9 {
 			JavacTestOptions.Excuse.EclipseWarningConfiguredAsError;
 		runner.runNegativeTest();
 	}
-	public void testDeprecatedPackageExport() {
+	public void testDeprecatedPackageExport() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		associateToModule("mod1",
 				"p1/package-info.java", "p1/C1.java",
 				"p2/package-info.java", "p2/C2.java",
 				"p3/package-info.java", "p3/C3.java",
 				"p4/package-info.java", "p4/C4.java");
 		Runner runner = new Runner();
-		runner.customOptions = new HashMap<>();
+		runner.customOptions = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		runner.customOptions.put(JavaCore.COMPILER_PB_DEPRECATION, CompilerOptions.ERROR);
 		runner.customOptions.put(JavaCore.COMPILER_PB_TERMINAL_DEPRECATION, CompilerOptions.ERROR);
 		runner.testFiles =
@@ -603,9 +603,9 @@ public class Deprecated9Test extends AbstractRegressionTest9 {
 			};
 		runner.runConformTest();
 	}
-	public void testDeprecatedModule() {
+	public void testDeprecatedModule() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
-		runner.customOptions = new HashMap<>();
+		runner.customOptions = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		runner.customOptions.put(JavaCore.COMPILER_PB_DEPRECATION, CompilerOptions.WARNING);
 		runner.customOptions.put(JavaCore.COMPILER_PB_TERMINAL_DEPRECATION, CompilerOptions.ERROR);
 		runner.testFiles =
@@ -650,12 +650,12 @@ public class Deprecated9Test extends AbstractRegressionTest9 {
 			"----------\n";
 		runner.runNegativeTest();
 	}
-	public void testDeprecatedProvidedServices() {
+	public void testDeprecatedProvidedServices() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		javacUsePathOption(" --module-source-path ");
 		associateToModule("mod0", "module-info.java", "p1/IServiceDep.java", "p1/IServiceDepSince.java", "p1/IServiceTermDep.java", "p1/IServiceTermDepSince.java");
 		associateToModule("mod1", "p1impl/ServiceDep.java", "p1impl/ServiceDepSince.java", "p1impl/ServiceTermDep.java", "p1impl/ServiceTermDepSince.java");
 		Runner runner = new Runner();
-		runner.customOptions = new HashMap<>();
+		runner.customOptions = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		runner.customOptions.put(JavaCore.COMPILER_PB_DEPRECATION, CompilerOptions.INFO);
 		runner.customOptions.put(JavaCore.COMPILER_PB_TERMINAL_DEPRECATION, CompilerOptions.WARNING);
 		runner.testFiles =
@@ -761,12 +761,12 @@ public class Deprecated9Test extends AbstractRegressionTest9 {
 			"----------\n";
 		runner.runWarningTest();
 	}
-	public void testDeprecatedUsedServices() {
+	public void testDeprecatedUsedServices() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		javacUsePathOption(" --module-path ");
 
 		associateToModule("mod0", "p1/IServiceDep.java", "p1/IServiceDepSince.java", "p1/IServiceTermDep.java", "p1/IServiceTermDepSince.java");
 		Runner runner = new Runner();
-		runner.customOptions = new HashMap<>();
+		runner.customOptions = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		runner.customOptions.put(JavaCore.COMPILER_PB_DEPRECATION, CompilerOptions.INFO);
 		runner.customOptions.put(JavaCore.COMPILER_PB_TERMINAL_DEPRECATION, CompilerOptions.WARNING);
 		runner.testFiles =
@@ -830,7 +830,7 @@ public class Deprecated9Test extends AbstractRegressionTest9 {
 			"----------\n";
 		runner.runWarningTest();
 	}
-	public void testBug533063_1() throws Exception {
+	public void testBug533063_1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		INameEnvironment save = this.javaClassLib;
 		try {
 			List<String> limitModules = Arrays.asList("java.se", "jdk.xml.bind");
@@ -865,7 +865,7 @@ public class Deprecated9Test extends AbstractRegressionTest9 {
 			this.javaClassLib = save;
 		}
 	}
-	public void testBug533063_2() throws Exception {
+	public void testBug533063_2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		javacUsePathOption(" --module-path ");
 
 		runConformTest(new String[] {
@@ -890,7 +890,7 @@ public class Deprecated9Test extends AbstractRegressionTest9 {
 			"----------\n";
 		runner.runWarningTest();
 	}
-	public void testBug534304() throws Exception {
+	public void testBug534304() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"p1/C1.java",
@@ -930,9 +930,9 @@ public class Deprecated9Test extends AbstractRegressionTest9 {
 			"CMissing cannot be resolved to a type\n" +
 			"----------\n");
 	}
-	public void testBug542795() throws Exception {
+	public void testBug542795() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
-		runner.customOptions = new HashMap<>();
+		runner.customOptions = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		runner.customOptions.put(JavaCore.COMPILER_PB_DEPRECATION, CompilerOptions.ERROR);
 		runner.testFiles = new String[] {
 			"test/ReaderWarningView.java",
@@ -977,7 +977,7 @@ public class Deprecated9Test extends AbstractRegressionTest9 {
 				"----------\n";
 		runner.runNegativeTest();
 	}
-	public void testGH1431() {
+	public void testGH1431() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"Parent.java",
@@ -1002,7 +1002,7 @@ public class Deprecated9Test extends AbstractRegressionTest9 {
 			};
 		runner.runConformTest();
 	}
-	public void testGH1412() {
+	public void testGH1412() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 			"AbstractClass.java",
@@ -1030,7 +1030,7 @@ public class Deprecated9Test extends AbstractRegressionTest9 {
 		};
 		runner.runConformTest();
 	}
-	public void testJEP211_2() {
+	public void testJEP211_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"p1/C1.java",
@@ -1066,7 +1066,7 @@ public class Deprecated9Test extends AbstractRegressionTest9 {
 				""";
 		runner.runWarningTest();
 	}
-	public void testJEP211_3() {
+	public void testJEP211_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"p1/C1.java",
@@ -1101,7 +1101,7 @@ public class Deprecated9Test extends AbstractRegressionTest9 {
 				""";
 		runner.runWarningTest();
 	}
-	public void testGH4580() {
+	public void testGH4580() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"p/Dep.java",
@@ -1134,7 +1134,7 @@ public class Deprecated9Test extends AbstractRegressionTest9 {
 			};
 		runner.runConformTest();
 	}
-	public void testGH4579_fromNonDeprecated() {
+	public void testGH4579_fromNonDeprecated() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.customOptions = getCompilerOptions();
 		runner.customOptions.put(JavaCore.COMPILER_PB_DEPRECATION, JavaCore.WARNING);
@@ -1210,7 +1210,7 @@ public class Deprecated9Test extends AbstractRegressionTest9 {
 			""";
 		runner.runWarningTest();
 	}
-	public void testGH4579_fromOrdinarilyDeprecated() {
+	public void testGH4579_fromOrdinarilyDeprecated() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.customOptions = getCompilerOptions();
 		runner.customOptions.put(JavaCore.COMPILER_PB_UNUSED_LOCAL, JavaCore.IGNORE);
@@ -1274,7 +1274,7 @@ public class Deprecated9Test extends AbstractRegressionTest9 {
 			""";
 		runner.runWarningTest();
 	}
-	public void testGH4579_fromTerminallyDeprecated() {
+	public void testGH4579_fromTerminallyDeprecated() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.customOptions = getCompilerOptions();
 		runner.customOptions.put(JavaCore.COMPILER_PB_DEPRECATION, JavaCore.WARNING);

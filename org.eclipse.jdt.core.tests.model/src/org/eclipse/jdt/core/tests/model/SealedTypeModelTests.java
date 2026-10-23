@@ -58,7 +58,7 @@ public class SealedTypeModelTests extends AbstractJavaModelTests {
 		return createJavaProject;
 	}
 	// Check types with neither sealed nor non-sealed don't return those modifiers
-	public void test001() throws Exception {
+	public void test001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("SealedTypes");
 			project.open(null);
@@ -70,15 +70,15 @@ public class SealedTypeModelTests extends AbstractJavaModelTests {
 			ICompilationUnit unit = getCompilationUnit("/SealedTypes/src/X.java");
 			IType[] types = unit.getTypes();
 			assertEquals("Incorret no of types", 3, types.length);
-			for (IType iType : types) {
-				assertFalse("modifier should not contain sealed : " + iType.getElementName(), iType.isSealed());
+			for (IType iType : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				assertFalse("modifier should not contain sealed : " + iType.getElementName(), iType.isSealed()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		finally {
 			deleteProject("SealedTypes");
 		}
 	}
-	public void test002() throws Exception {
+	public void test002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("SealedTypes");
 			project.open(null);
@@ -90,11 +90,11 @@ public class SealedTypeModelTests extends AbstractJavaModelTests {
 			ICompilationUnit unit = getCompilationUnit("/SealedTypes/src/X.java");
 			IType[] types = unit.getTypes();
 			assertEquals("Incorret no of types", 3, types.length);
-			for (IType iType : types) {
+			for (IType iType : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (iType.getElementName().equals("I")) {
 					assertTrue("modifier should contain sealed", iType.isSealed());
 				} else {
-					assertFalse("modifier should not contain sealed : " + iType.getElementName(), iType.isSealed());
+					assertFalse("modifier should not contain sealed : " + iType.getElementName(), iType.isSealed()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}
@@ -103,7 +103,7 @@ public class SealedTypeModelTests extends AbstractJavaModelTests {
 		}
 	}
 	// Test explicitly permitted sub types in Source Type
-	public void test003() throws Exception {
+	public void test003() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] permitted = new String[] {"X", "Y"};
 		try {
 			IJavaProject project = createJavaProject("SealedTypes");
@@ -116,12 +116,12 @@ public class SealedTypeModelTests extends AbstractJavaModelTests {
 			ICompilationUnit unit = getCompilationUnit("/SealedTypes/src/X.java");
 			IType[] types = unit.getTypes();
 			assertEquals("Incorret no of types", 3, types.length);
-			for (IType iType : types) {
+			for (IType iType : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (iType.getElementName().equals("I")) {
 					assertTrue("modifier should contain sealed", iType.isSealed());
 					String[] permittedSubtypeNames = iType.getPermittedSubtypeNames();
 					assertEquals("incorrect permitted sub types", permitted.length, permittedSubtypeNames.length);
-					for (int i = 0; i < permitted.length; i++) {
+					for (int i = 0; i < permitted.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						assertEquals("incorrect permitted sub type", permitted[i], permittedSubtypeNames[i]);
 					}
 				}
@@ -132,7 +132,7 @@ public class SealedTypeModelTests extends AbstractJavaModelTests {
 		}
 	}
 	// Test implicitly permitted sub types in Source Type
-	public void test004() throws Exception {
+	public void test004() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] permitted = new String[] {"X", "Y"};
 		try {
 			IJavaProject project = createJavaProject("SealedTypes");
@@ -145,12 +145,12 @@ public class SealedTypeModelTests extends AbstractJavaModelTests {
 			ICompilationUnit unit = getCompilationUnit("/SealedTypes/src/X.java");
 			IType[] types = unit.getTypes();
 			assertEquals("Incorrect no of types", 3, types.length);
-			for (IType iType : types) {
+			for (IType iType : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (iType.getElementName().equals("I")) {
 					assertTrue("modifier should contain sealed", iType.isSealed());
 					String[] permittedSubtypeNames = iType.getPermittedSubtypeNames();
 					assertEquals("incorrect permitted sub types", permitted.length, permittedSubtypeNames.length);
-					for (int i = 0; i < permitted.length; i++) {
+					for (int i = 0; i < permitted.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						assertEquals("incorrect permitted sub type", permitted[i], permittedSubtypeNames[i]);
 					}
 				}
@@ -161,7 +161,7 @@ public class SealedTypeModelTests extends AbstractJavaModelTests {
 		}
 	}
 	// Test implicitly permitted sub types in Source Type
-	public void test004_2() throws Exception {
+	public void test004_2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] permitted = new String[] {"Maybe.Maybe1", "Maybe.Maybe2"};
 		try {
 			IJavaProject project = createJavaProject("SealedTypes");
@@ -187,12 +187,12 @@ public class SealedTypeModelTests extends AbstractJavaModelTests {
 			ICompilationUnit unit = getCompilationUnit("/SealedTypes/src/X.java");
 			IType[] types = unit.getTypes();
 			assertEquals("Incorrect no of types", 3, types.length);
-			for (IType iType : types) {
+			for (IType iType : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (iType.getElementName().equals("Maybe")) {
 					assertTrue("modifier should contain sealed", iType.isSealed());
 					String[] permittedSubtypeNames = iType.getPermittedSubtypeNames();
 					assertEquals("incorrect permitted sub types", permitted.length, permittedSubtypeNames.length);
-					for (int i = 0; i < permitted.length; i++) {
+					for (int i = 0; i < permitted.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						assertEquals("incorrect permitted sub type", permitted[i], permittedSubtypeNames[i]);
 					}
 				}
@@ -204,7 +204,7 @@ public class SealedTypeModelTests extends AbstractJavaModelTests {
 	}
 
 	// Test implicitly permitted sub types in Source Type
-	public void test004_3() throws Exception {
+	public void test004_3() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] permitted = new String[] {"Maybe.Maybe1", "Maybe.Maybe2"};
 		try {
 			IJavaProject project = createJavaProject("SealedTypes");
@@ -230,12 +230,12 @@ public class SealedTypeModelTests extends AbstractJavaModelTests {
 			ICompilationUnit unit = getCompilationUnit("/SealedTypes/src/X.java");
 			IType[] types = unit.getTypes();
 			assertEquals("Incorrect no of types", 3, types.length);
-			for (IType iType : types) {
+			for (IType iType : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (iType.getElementName().equals("Maybe")) {
 					assertTrue("modifier should contain sealed", iType.isSealed());
 					String[] permittedSubtypeNames = iType.getPermittedSubtypeNames();
 					assertEquals("incorrect permitted sub types", permitted.length, permittedSubtypeNames.length);
-					for (int i = 0; i < permitted.length; i++) {
+					for (int i = 0; i < permitted.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						assertEquals("incorrect permitted sub type", permitted[i], permittedSubtypeNames[i]);
 					}
 				}
@@ -247,7 +247,7 @@ public class SealedTypeModelTests extends AbstractJavaModelTests {
 	}
 
 	// Test implicitly permitted sub types in Source Type
-	public void test004_4() throws Exception {
+	public void test004_4() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] permitted = new String[] {"Maybe.Maybe1", "Maybe.Maybe2"};
 		try {
 			IJavaProject project = createJavaProject("SealedTypes");
@@ -274,12 +274,12 @@ public class SealedTypeModelTests extends AbstractJavaModelTests {
 			ICompilationUnit unit = getCompilationUnit("/SealedTypes/src/X.java");
 			IType[] types = unit.getTypes();
 			assertEquals("Incorrect no of types", 3, types.length);
-			for (IType iType : types) {
+			for (IType iType : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (iType.getElementName().equals("Maybe")) {
 					assertTrue("modifier should contain sealed", iType.isSealed());
 					String[] permittedSubtypeNames = iType.getPermittedSubtypeNames();
 					assertEquals("incorrect permitted sub types", permitted.length, permittedSubtypeNames.length);
-					for (int i = 0; i < permitted.length; i++) {
+					for (int i = 0; i < permitted.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						assertEquals("incorrect permitted sub type", permitted[i], permittedSubtypeNames[i]);
 					}
 				}
@@ -292,7 +292,7 @@ public class SealedTypeModelTests extends AbstractJavaModelTests {
 
 
 	// Test explicitly permitted sub types in binary
-	public void test005() throws Exception {
+	public void test005() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] permitted = new String[] {"p.X", "p.Y"};
 		try {
 			String[] sources = {
@@ -304,7 +304,7 @@ public class SealedTypeModelTests extends AbstractJavaModelTests {
 				};
 			String outputDirectory = Util.getOutputDirectory();
 
-			String jarPath = outputDirectory + File.separator + "sealed.jar";
+			String jarPath = outputDirectory + File.separator + "sealed.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			Util.createJar(sources, jarPath, "17", false);
 
 			IJavaProject project = createJavaProject("SealedTypes");
@@ -313,7 +313,7 @@ public class SealedTypeModelTests extends AbstractJavaModelTests {
 			project.getProject().build(IncrementalProjectBuilder.FULL_BUILD, null);
 			IPackageFragmentRoot[] roots = project.getPackageFragmentRoots();
 			IPackageFragmentRoot root = null;
-			for (IPackageFragmentRoot iRoot : roots) {
+			for (IPackageFragmentRoot iRoot : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (iRoot.getRawClasspathEntry().getPath().toString().endsWith("sealed.jar")) {
 					root = iRoot;
 				}
@@ -327,7 +327,7 @@ public class SealedTypeModelTests extends AbstractJavaModelTests {
 			assertNotNull("type is null", type);
 			String[] permittedSubtypeNames = type.getPermittedSubtypeNames();
 			assertEquals("incorrect permitted sub types", permitted.length, permittedSubtypeNames.length);
-			for (int i = 0; i < permitted.length; i++) {
+			for (int i = 0; i < permitted.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				assertEquals("incorrect permitted sub type", permitted[i], permittedSubtypeNames[i]);
 			}
 			assertTrue("modifier should contain sealed", type.isSealed());
@@ -353,7 +353,7 @@ public class SealedTypeModelTests extends AbstractJavaModelTests {
 		}
 	}
 	// Test implicitly permitted sub types in binary
-	public void test006() throws Exception {
+	public void test006() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] permitted = new String[] {"p.X", "p.Y"};
 		try {
 			String[] sources = {
@@ -365,7 +365,7 @@ public class SealedTypeModelTests extends AbstractJavaModelTests {
 			};
 			String outputDirectory = Util.getOutputDirectory();
 
-			String jarPath = outputDirectory + File.separator + "sealed.jar";
+			String jarPath = outputDirectory + File.separator + "sealed.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			Util.createJar(sources, jarPath, "17", false);
 
 			IJavaProject project = createJavaProject("SealedTypes");
@@ -374,7 +374,7 @@ public class SealedTypeModelTests extends AbstractJavaModelTests {
 			project.getProject().build(IncrementalProjectBuilder.FULL_BUILD, null);
 			IPackageFragmentRoot[] roots = project.getPackageFragmentRoots();
 			IPackageFragmentRoot root = null;
-			for (IPackageFragmentRoot iRoot : roots) {
+			for (IPackageFragmentRoot iRoot : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (iRoot.getRawClasspathEntry().getPath().toString().endsWith("sealed.jar")) {
 					root = iRoot;
 				}
@@ -388,7 +388,7 @@ public class SealedTypeModelTests extends AbstractJavaModelTests {
 			assertNotNull("type is null", type);
 			String[] permittedSubtypeNames = type.getPermittedSubtypeNames();
 			assertEquals("incorrect permitted sub types", permitted.length, permittedSubtypeNames.length);
-			for (int i = 0; i < permitted.length; i++) {
+			for (int i = 0; i < permitted.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				assertEquals("incorrect permitted sub type", permitted[i], permittedSubtypeNames[i]);
 			}
 			assertTrue("modifier should contain sealed", type.isSealed());
@@ -414,7 +414,7 @@ public class SealedTypeModelTests extends AbstractJavaModelTests {
 		}
 	}
 	// Test sealed types for reconciler
-	public void test007() throws Exception {
+	public void test007() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] permitted = new String[] {"p.X"};
 		try {
 			IJavaProject project = createJavaProject("SealedTypes");
@@ -441,12 +441,12 @@ public class SealedTypeModelTests extends AbstractJavaModelTests {
 
 			IType[] types = unit.getTypes();
 			assertEquals("Incorret no of types", 1, types.length);
-			for (IType iType : types) {
+			for (IType iType : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (iType.getElementName().equals("I")) {
 					assertTrue("modifier should contain sealed", iType.isSealed());
 					String[] permittedSubtypeNames = iType.getPermittedSubtypeNames();
 					assertEquals("incorrect permitted sub types", permitted.length, permittedSubtypeNames.length);
-					for (int i = 0; i < permitted.length; i++) {
+					for (int i = 0; i < permitted.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						assertEquals("incorrect permitted sub type", permitted[i], permittedSubtypeNames[i]);
 					}
 				}
@@ -457,7 +457,7 @@ public class SealedTypeModelTests extends AbstractJavaModelTests {
 		}
 	}
 	// Test sealed types for reconciler
-	public void test008() throws Exception {
+	public void test008() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("SealedTypes");
 			project.open(null);
@@ -485,7 +485,7 @@ public class SealedTypeModelTests extends AbstractJavaModelTests {
 		}
 	}
 	// Test sealed types for reconciler
-	public void test009() throws Exception {
+	public void test009() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("SealedTypes");
 			project.open(null);

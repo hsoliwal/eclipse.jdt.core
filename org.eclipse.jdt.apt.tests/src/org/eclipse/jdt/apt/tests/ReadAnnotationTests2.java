@@ -61,7 +61,7 @@ public class ReadAnnotationTests2 extends BuilderTests {
 	}
 
 	public String getUniqueProjectName(){
-		projectName = ReadAnnotationTests.class.getName() + "Project" + counter; //$NON-NLS-1$
+		projectName = ReadAnnotationTests.class.getName() + "Project" + counter; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		counter ++;
 		return projectName;
 	}
@@ -88,7 +88,7 @@ public class ReadAnnotationTests2 extends BuilderTests {
 		return bin;
 	}
 
-	private void addAllSources()
+	private void addAllSources() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		IPath srcRoot = getSourcePath();
 		// SimpleAnnotation.java
@@ -173,7 +173,7 @@ public class ReadAnnotationTests2 extends BuilderTests {
 		_testAnnotations();
 	}
 
-	private ITypeBinding getTypeBinding(final String key, final IJavaProject javaProj)
+	private ITypeBinding getTypeBinding(final String key, final IJavaProject javaProj) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		class BindingRequestor extends ASTRequestor
 		{
@@ -194,7 +194,7 @@ public class ReadAnnotationTests2 extends BuilderTests {
 		return requestor._result;
 	}
 
-	public void _testAnnotations()
+	public void _testAnnotations() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		final String typeKey = BindingKey.createTypeBindingKey("question.AnnotationTest");
 		final ITypeBinding typeBinding = getTypeBinding(typeKey, env.getJavaProject(getProjectName()));
@@ -216,8 +216,8 @@ public class ReadAnnotationTests2 extends BuilderTests {
 		final IVariableBinding[] fieldBindings = typeBinding.getDeclaredFields();
 		int counter = 0;
 		assertEquals(5, fieldBindings.length);
-		for(IVariableBinding fieldDecl : fieldBindings ){
-			final String name = "field" + counter;
+		for(IVariableBinding fieldDecl : fieldBindings ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			final String name = "field" + counter; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 			assertEquals("field name mismatch", name, fieldDecl.getName());
 			final String[] expected;
@@ -252,8 +252,8 @@ public class ReadAnnotationTests2 extends BuilderTests {
 		final IMethodBinding[] methodBindings = typeBinding.getDeclaredMethods();
 		counter = 0;
 		assertEquals(7, methodBindings.length);
-		for(IMethodBinding methodDecl : methodBindings ){
-			final String name = "method" + counter;
+		for(IMethodBinding methodDecl : methodBindings ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			final String name = "method" + counter; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 			assertEquals("method name mismatch", name, methodDecl.getName());
 			final String[] expected;
@@ -287,7 +287,7 @@ public class ReadAnnotationTests2 extends BuilderTests {
 
 			if( counter == 5 ){
 				final int numParameters = methodDecl.getParameterTypes().length;
-				for( int pCounter=0; pCounter<numParameters; pCounter++ ){
+				for( int pCounter=0; pCounter<numParameters; pCounter++ ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					final String[] expectedParamAnnotations;
 					switch( pCounter )
 					{
@@ -309,17 +309,17 @@ public class ReadAnnotationTests2 extends BuilderTests {
 		}
 	}
 
-	private void assertAnnotation(final String[] expected, IAnnotationBinding[] annotations)
+	private void assertAnnotation(final String[] expected, IAnnotationBinding[] annotations) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		final int expectedLen = expected.length;
 		assertEquals("annotation number mismatch", expected.length, annotations.length); //$NON-NLS-1$
 
-		final HashSet<String> expectedSet = new HashSet<>(expectedLen * 4 / 3 + 1);
-		for( int i=0; i<expectedLen; i++ )
+		final HashSet<String> expectedSet = new HashSet<>(expectedLen * 4 / 3 + 1); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+		for( int i=0; i<expectedLen; i++ ) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			expectedSet.add(expected[i]);
 
 		int counter = 0;
-		for( IAnnotationBinding mirror : annotations ){
+		for( IAnnotationBinding mirror : annotations ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if( counter >= expectedLen )
 				assertEquals("", mirror.toString()); //$NON-NLS-1$
 			else{
@@ -329,7 +329,7 @@ public class ReadAnnotationTests2 extends BuilderTests {
 					System.err.println(mirrorToString);
 					System.err.println(expectedSet);
 				}
-				assertTrue("unexpected annotation " + mirrorToString, contains); //$NON-NLS-1$
+				assertTrue("unexpected annotation " + mirrorToString, contains); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				expectedSet.remove(mirrorToString);
 			}
 			counter ++;

@@ -61,7 +61,7 @@ public class LambdaExpression extends SourceType {
 		this.elementInfo.children = new IJavaElement[] { this.lambdaMethod };
 	}
 
-	public TypeBinding findLambdaSuperType(org.eclipse.jdt.internal.compiler.ast.LambdaExpression lambdaExpression) {
+	public TypeBinding findLambdaSuperType(org.eclipse.jdt.internal.compiler.ast.LambdaExpression lambdaExpression) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// start from the specific type, ignoring type arguments:
 		TypeBinding original = lambdaExpression.resolvedType.original();
 		// infer type arguments from here:
@@ -76,7 +76,7 @@ public class LambdaExpression extends SourceType {
 								if (originalSuper instanceof ParameterizedTypeBinding) {
 									ParameterizedTypeBinding originalSuperPTB = (ParameterizedTypeBinding) originalSuper;
 									TypeBinding[] superArguments = originalSuperPTB.arguments;
-									for (int i = 0; i < superArguments.length; i++) {
+									for (int i = 0; i < superArguments.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 										// if originalSuper holds typeVariable as it i'th argument, then the i'th argument of descType is our answer:
 										if (TypeBinding.equalsEquals(superArguments[i], typeVariable))
 											return descPTB.arguments[i];
@@ -121,7 +121,7 @@ public class LambdaExpression extends SourceType {
 	}
 
 	// Lambda expression is not backed by model, fabricate element information structure and stash it.
-	static private SourceTypeElementInfo makeTypeElementInfo (LambdaExpression handle, String interphase, int sourceStart, int sourceEnd, int arrowPosition) {
+	static private SourceTypeElementInfo makeTypeElementInfo (LambdaExpression handle, String interphase, int sourceStart, int sourceEnd, int arrowPosition) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		SourceTypeElementInfo elementInfo = new SourceTypeElementInfo();
 
@@ -191,17 +191,17 @@ public class LambdaExpression extends SourceType {
 		appendEscapedDelimiter(buff, getHandleMementoDelimiter());
 		appendEscapedDelimiter(buff, JEM_STRING);
 		escapeMementoName(buff, this.interphase);
-		buff.append(JEM_COUNT);
-		buff.append(this.sourceStart);
-		buff.append(JEM_COUNT);
-		buff.append(this.sourceEnd);
-		buff.append(JEM_COUNT);
-		buff.append(this.arrowPosition);
+		buff.append(JEM_COUNT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buff.append(this.sourceStart); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buff.append(JEM_COUNT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buff.append(this.sourceEnd); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buff.append(JEM_COUNT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buff.append(this.arrowPosition); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (serializeChild)
 			this.lambdaMethod.getHandleMemento(buff, false);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public IJavaElement getHandleFromMemento(String token, MementoTokenizer memento, WorkingCopyOwner workingCopyOwner) {
 
 		if (token.charAt(0) != JEM_LAMBDA_METHOD)
@@ -215,7 +215,7 @@ public class LambdaExpression extends SourceType {
 		int length = Integer.parseInt(memento.nextToken());
 		String [] parameterTypes = new String[length];
 		String [] parameterNames = new String[length];
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!memento.hasMoreTokens() || memento.nextToken().charAt(0) != JEM_STRING) return this;
 			parameterTypes[i] = memento.nextToken();
 			if (!memento.hasMoreTokens() || memento.nextToken().charAt(0) != JEM_STRING) return this;
@@ -227,7 +227,7 @@ public class LambdaExpression extends SourceType {
 		String key = memento.nextToken();
 		this.lambdaMethod = LambdaFactory.createLambdaMethod(this, selector, key, this.sourceStart, this.sourceEnd, this.arrowPosition, parameterTypes, parameterNames, returnType);
 		ILocalVariable [] parameters = new ILocalVariable[length];
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			parameters[i] = (ILocalVariable) this.lambdaMethod.getHandleFromMemento(memento, workingCopyOwner);
 		}
 		this.lambdaMethod.elementInfo.arguments  = parameters;
@@ -277,9 +277,9 @@ public class LambdaExpression extends SourceType {
 	@Override
 	public void toStringName(StringBuilder buffer) {
 		super.toStringName(buffer);
-		buffer.append("<lambda #"); //$NON-NLS-1$
-		buffer.append(this.getOccurrenceCount());
-		buffer.append(">"); //$NON-NLS-1$
+		buffer.append("<lambda #"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(this.getOccurrenceCount()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(">"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	@Override
@@ -291,7 +291,7 @@ public class LambdaExpression extends SourceType {
 		IJavaElement primaryParent = this.getParent().getPrimaryElement(false);
 		if (primaryParent instanceof JavaElement) {
 			JavaElement ancestor = (JavaElement) primaryParent;
-			StringBuilder buffer = new StringBuilder(32);
+			StringBuilder buffer = new StringBuilder(32); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			getHandleMemento(buffer, false, true);
 			String memento = buffer.toString();
 			return (JavaElement) ancestor.getHandleFromMemento(new MementoTokenizer(memento), DefaultWorkingCopyOwner.PRIMARY).getParent();

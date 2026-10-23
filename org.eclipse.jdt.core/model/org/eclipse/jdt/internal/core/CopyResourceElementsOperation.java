@@ -76,7 +76,7 @@ import org.eclipse.text.edits.TextEditGroup;
  *    It does not copy package fragment roots - a platform operation must be used for that.
  * </ul>
  */
-@SuppressWarnings({"rawtypes", "unchecked"})
+@SuppressWarnings({"rawtypes", "unchecked"}) //FLLDCIM: MARK — T09  IMPLEMENTS
 public class CopyResourceElementsOperation extends MultiOperation implements SuffixConstants {
 	/**
 	 * The list of new resources created during this operation.
@@ -87,7 +87,7 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 	 * copied/moved/renamed. Keyed by elements' project(s), and
 	 * values are the corresponding deltas.
 	 */
-	protected Map deltasPerProject = new HashMap(1);
+	protected Map deltasPerProject = new HashMap(1); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	/**
 	 * The <code>ASTParser</code> used to manipulate the source code of
 	 * <code>ICompilationUnit</code>.
@@ -111,14 +111,14 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 	 * If <code>source</code> is a <code>K_SOURCE</code>, these are the <code>.java</code>
 	 * files, if it is a <code>K_BINARY</code>, they are the <code>.class</code> files.
 	 */
-	private IResource[] collectResourcesOfInterest(IPackageFragment source) throws JavaModelException {
+	private IResource[] collectResourcesOfInterest(IPackageFragment source) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaElement[] children = source.getChildren();
 		int childOfInterest = IJavaElement.COMPILATION_UNIT;
 		if (source.getKind() == IPackageFragmentRoot.K_BINARY) {
 			childOfInterest = IJavaElement.CLASS_FILE;
 		}
-		ArrayList correctKindChildren = new ArrayList(children.length);
-		for (IJavaElement child : children) {
+		ArrayList correctKindChildren = new ArrayList(children.length); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (IJavaElement child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (child.getElementType() == childOfInterest) {
 				correctKindChildren.add(((JavaElement) child).resource());
 			}
@@ -126,11 +126,11 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 		// Gather non-java resources
 		Object[] nonJavaResources = source.getNonJavaResources();
 		int actualNonJavaResourceCount = 0;
-		for (Object res : nonJavaResources) {
+		for (Object res : nonJavaResources) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (res instanceof IResource) actualNonJavaResourceCount++;
 		}
 		IResource[] actualNonJavaResources = new IResource[actualNonJavaResourceCount];
-		for (int i = 0, max = nonJavaResources.length, index = 0; i < max; i++){
+		for (int i = 0, max = nonJavaResources.length, index = 0; i < max; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (nonJavaResources[i] instanceof IResource) actualNonJavaResources[index++] = (IResource)nonJavaResources[i];
 		}
 
@@ -150,14 +150,14 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 	 * Creates any destination package fragment(s) which do not exists yet.
 	 * Return true if a read-only package fragment has been found among package fragments, false otherwise
 	 */
-	private boolean createNeededPackageFragments(IContainer sourceFolder, PackageFragmentRoot root, String[] newFragName, boolean moveFolder) throws JavaModelException {
+	private boolean createNeededPackageFragments(IContainer sourceFolder, PackageFragmentRoot root, String[] newFragName, boolean moveFolder) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		boolean containsReadOnlyPackageFragment = false;
 		IContainer parentFolder = (IContainer) root.resource();
 		JavaElementDelta projectDelta = null;
 		String[] sideEffectPackageName = null;
 		char[][] inclusionPatterns = root.fullInclusionPatternChars();
 		char[][] exclusionPatterns = root.fullExclusionPatternChars();
-		for (int i = 0; i < newFragName.length; i++) {
+		for (int i = 0; i < newFragName.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String subFolderName = newFragName[i];
 			sideEffectPackageName = Util.arrayConcat(sideEffectPackageName, subFolderName);
 			IResource subFolder = parentFolder.findMember(subFolderName);
@@ -207,7 +207,7 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 	protected String getMainTaskName() {
 		return Messages.operation_copyResourceProgress;
 	}
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected ISchedulingRule getSchedulingRule() {
 		if (this.elementsToProcess == null)
 			return null;
@@ -216,7 +216,7 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 			return getSchedulingRule(this.elementsToProcess[0]);
 		ISchedulingRule[] rules = new ISchedulingRule[length];
 		int index = 0;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ISchedulingRule rule = getSchedulingRule(this.elementsToProcess[i]);
 			if (rule != null) {
 				rules[index++] = rule;
@@ -226,7 +226,7 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 			System.arraycopy(rules, 0, rules = new ISchedulingRule[index], 0, index);
 		return new MultiRule(rules);
 	}
-	private ISchedulingRule getSchedulingRule(IJavaElement element) {
+	private ISchedulingRule getSchedulingRule(IJavaElement element) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (element == null)
 			return null;
 		IResource sourceResource = getResource(element);
@@ -289,7 +289,7 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 	 * <li> When a CU is being overwritten, the delta on the destination will be of type F_CONTENT </ul></ul>
 	 * If the operation is rooted in a single project, the delta is rooted in that project
 	 */
-	protected void prepareDeltas(IJavaElement sourceElement, IJavaElement destinationElement, boolean isMove, boolean overWriteCU) {
+	protected void prepareDeltas(IJavaElement sourceElement, IJavaElement destinationElement, boolean isMove, boolean overWriteCU) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (Util.isExcluded(sourceElement) || Util.isExcluded(destinationElement)) return;
 
 		IJavaProject destProject = destinationElement.getJavaProject();
@@ -317,7 +317,7 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 	 * @exception JavaModelException if the operation is unable to
 	 * complete
 	 */
-	private void processCompilationUnitResource(ICompilationUnit source, PackageFragment dest) throws JavaModelException {
+	private void processCompilationUnitResource(ICompilationUnit source, PackageFragment dest) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String newCUName = getNewNameFor(source);
 		String destName = (newCUName != null) ? newCUName : source.getElementName();
 		TextEdit edit = updateContent(source, dest, newCUName); // null if unchanged
@@ -411,7 +411,7 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 	 * Process all of the changed deltas generated by this operation.
 	 */
 	protected void processDeltas() {
-		for (Object deltta : this.deltasPerProject.values()) {
+		for (Object deltta : this.deltasPerProject.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			addDelta((IJavaElementDelta) deltta);
 		}
 	}
@@ -443,7 +443,7 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 	 */
 	@Override
 	protected void processElements() throws JavaModelException {
-		this.createdElements = new ArrayList(this.elementsToProcess.length);
+		this.createdElements = new ArrayList(this.elementsToProcess.length); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		try {
 			super.processElements();
 		} catch (JavaModelException jme) {
@@ -461,7 +461,7 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 	 * @exception JavaModelException if the operation is unable to
 	 * complete
 	 */
-	private void processPackageFragmentResource(PackageFragment source, PackageFragmentRoot root, String newName) throws JavaModelException {
+	private void processPackageFragmentResource(PackageFragment source, PackageFragmentRoot root, String newName) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] newFragName = (newName == null) ? source.names : Util.getTrimmedSimpleNames(newName);
 			PackageFragment newFrag = root.getPackageFragment(newFragName);
@@ -478,7 +478,7 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 				} else {
 					// check if there are no sub-packages
 					IResource[] members = srcFolder.members();
-					for (IResource member : members) {
+					for (IResource member : members) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if ( member instanceof IFolder) {
 							shouldMoveFolder = false;
 							break;
@@ -510,7 +510,7 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 						}
 					} else if (isMove()) {
 						// we need to delete this resource if this operation wants to override existing resources
-						for (IResource resource : resources) {
+						for (IResource resource : resources) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							IResource destinationResource = ResourcesPlugin.getWorkspace().getRoot().findMember(destPath.append(resource.getName()));
 							if (destinationResource != null) {
 								if (this.force) {
@@ -525,7 +525,7 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 						moveResources(resources, destPath);
 					} else {
 						// we need to delete this resource if this operation wants to override existing resources
-						for (IResource resource : resources) {
+						for (IResource resource : resources) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							IResource destinationResource = ResourcesPlugin.getWorkspace().getRoot().findMember(destPath.append(resource.getName()));
 							if (destinationResource != null) {
 								if (this.force) {
@@ -547,7 +547,7 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 			if (!Util.equalArraysOrNull(newFragName, source.names)) { // if package has been renamed, update the compilation units
 				char[][] inclusionPatterns = root.fullInclusionPatternChars();
 				char[][] exclusionPatterns = root.fullExclusionPatternChars();
-				for (IResource resource : resources) {
+				for (IResource resource : resources) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String resourceName = resource.getName();
 					if (Util.isJavaLikeFileName(resourceName)) {
 						// we only consider potential compilation units
@@ -575,7 +575,7 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 				updateReadOnlyPackageFragmentsForMove((IContainer) source.getParent().resource(), root, newFragName, sourceIsReadOnly);
 				if (srcFolder.exists()) {
 					IResource[] remaining = srcFolder.members();
-					for (IResource file : remaining) {
+					for (IResource file : remaining) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (file instanceof IFile) {
 							if (Util.isReadOnly(file)) {
 								Util.setReadOnly(file, false);
@@ -615,7 +615,7 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 			throw new JavaModelException(ce);
 		}
 	}
-	private void saveContent(PackageFragment dest, String destName, TextEdit edits, String sourceEncoding, IFile destFile) throws JavaModelException {
+	private void saveContent(PackageFragment dest, String destName, TextEdit edits, String sourceEncoding, IFile destFile) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			// TODO (frederic) remove when bug 67606 will be fixed (bug 67823)
 			// fix bug 66898
@@ -639,7 +639,7 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 	 *
 	 * @return an AST rewrite or null if no rewrite needed
 	 */
-	private TextEdit updateContent(ICompilationUnit cu, PackageFragment dest, String newName) throws JavaModelException {
+	private TextEdit updateContent(ICompilationUnit cu, PackageFragment dest, String newName) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] currPackageName = ((PackageFragment) cu.getParent()).names;
 		String[] destPackageName = dest.names;
 		if (Util.equalArraysOrNull(currPackageName, destPackageName) && newName == null) {
@@ -664,16 +664,16 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 	 * (package declaration, import declarations, type declarations, and non-doc comments),
 	 * keyed by start position.
 	 */
-	private static NavigableMap<Integer, ASTNode> mapTopLevelNodes(CompilationUnit compilationUnit) {
-		NavigableMap<Integer, ASTNode> map = new TreeMap<>();
+	private static NavigableMap<Integer, ASTNode> mapTopLevelNodes(CompilationUnit compilationUnit) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		NavigableMap<Integer, ASTNode> map = new TreeMap<>(); //FLLDCIM: MARK — M05 M3_SORTED_LANES NEW
 
-		Collection<ASTNode> nodes = new ArrayList<>();
+		Collection<ASTNode> nodes = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		if (compilationUnit.getPackage() != null) {
 			nodes.add(compilationUnit.getPackage());
 		}
 		nodes.addAll(compilationUnit.imports());
 		nodes.addAll(compilationUnit.types());
-		for (Comment comment : ((List<Comment>) compilationUnit.getCommentList())) {
+		for (Comment comment : ((List<Comment>) compilationUnit.getCommentList())) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// Include only top-level (non-doc) comments;
 			// doc comments are contained within their parent nodes' ranges.
 			if (comment.getParent() == null) {
@@ -681,13 +681,13 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 			}
 		}
 
-		for (ASTNode node : nodes) {
+		for (ASTNode node : nodes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			map.put(node.getStartPosition(), node);
 		}
 
 		return map;
 	}
-	private void updatePackageStatement(CompilationUnit astCU, String[] pkgName, ASTRewrite rewriter, ICompilationUnit cu, TextEdit additionalEdits) throws JavaModelException {
+	private void updatePackageStatement(CompilationUnit astCU, String[] pkgName, ASTRewrite rewriter, ICompilationUnit cu, TextEdit additionalEdits) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		boolean defaultPackage = pkgName.length == 0;
 		AST ast = astCU.getAST();
 		if (defaultPackage) {
@@ -727,7 +727,7 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 					int startPosition = topNode.getStartPosition();
 					int endPosition = topNode.getStartPosition() + topNode.getLength();
 					int deleteEnd = endPosition;
-					for (ASTNode node : nodesTreeMap.values()) {
+					for (ASTNode node : nodesTreeMap.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (!(node instanceof Comment)) {
 							deleteEnd = node.getStartPosition();
 							break;
@@ -737,7 +737,7 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 						}
 					}
 					String commentSource = cu.getSource().substring(startPosition, endPosition);
-					commentSource = commentSource + System.lineSeparator() + "package " + pkgName[0] + ";" + System.lineSeparator(); //$NON-NLS-1$ //$NON-NLS-2$
+					commentSource = commentSource + System.lineSeparator() + "package " + pkgName[0] + ";" + System.lineSeparator(); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					ASTNode newPkg = rewriter.createStringPlaceholder(commentSource, ASTNode.PACKAGE_DECLARATION);
 					rewriter.set(astCU, CompilationUnit.PACKAGE_PROPERTY, newPkg, group);
 
@@ -755,7 +755,7 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 
 	private void updateReadOnlyPackageFragmentsForCopy(IContainer sourceFolder, PackageFragmentRoot root, String[] newFragName) {
 		IContainer parentFolder = (IContainer) root.resource();
-		for (String subFolderName : newFragName) {
+		for (String subFolderName : newFragName) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			parentFolder = parentFolder.getFolder(new Path(subFolderName));
 			sourceFolder = sourceFolder.getFolder(new Path(subFolderName));
 			if (sourceFolder.exists() && Util.isReadOnly(sourceFolder)) {
@@ -766,7 +766,7 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 
 	private void updateReadOnlyPackageFragmentsForMove(IContainer sourceFolder, PackageFragmentRoot root, String[] newFragName, boolean sourceFolderIsReadOnly) {
 		IContainer parentFolder = (IContainer) root.resource();
-		for (int i = 0, length = newFragName.length; i < length; i++) {
+		for (int i = 0, length = newFragName.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String subFolderName = newFragName[i];
 			parentFolder = parentFolder.getFolder(new Path(subFolderName));
 			sourceFolder = sourceFolder.getFolder(new Path(subFolderName));
@@ -780,14 +780,14 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 			/**
 		 * Renames the main type in <code>cu</code>.
 		 */
-		private void updateTypeName(ICompilationUnit cu, CompilationUnit astCU, String oldName, String newName, ASTRewrite rewriter) throws JavaModelException {
+		private void updateTypeName(ICompilationUnit cu, CompilationUnit astCU, String oldName, String newName, ASTRewrite rewriter) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			if (newName != null) {
 				String oldTypeName= Util.getNameWithoutJavaLikeExtension(oldName);
 				String newTypeName= Util.getNameWithoutJavaLikeExtension(newName);
 				AST ast = astCU.getAST();
 				// update main type name
 				IType[] types = cu.getTypes();
-				for (IType currentType : types) {
+				for (IType currentType : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (currentType.getElementName().equals(oldTypeName)) {
 						AbstractTypeDeclaration typeNode = (AbstractTypeDeclaration) ((JavaElement) currentType).findNode(astCU);
 						if (typeNode != null) {
@@ -795,7 +795,7 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 							rewriter.replace(typeNode.getName(), ast.newSimpleName(newTypeName), null);
 							// rename constructors
 							Iterator bodyDeclarations = typeNode.bodyDeclarations().iterator();
-							while (bodyDeclarations.hasNext()) {
+							while (bodyDeclarations.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								Object bodyDeclaration = bodyDeclarations.next();
 								if (bodyDeclaration instanceof MethodDeclaration) {
 									MethodDeclaration methodDeclaration = (MethodDeclaration) bodyDeclaration;
@@ -835,7 +835,7 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 	/**
 	 * @see MultiOperation
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void verify(IJavaElement element) throws JavaModelException {
 		if (element == null || !element.exists())
 			error(IJavaModelStatusConstants.ELEMENT_DOES_NOT_EXIST, element);

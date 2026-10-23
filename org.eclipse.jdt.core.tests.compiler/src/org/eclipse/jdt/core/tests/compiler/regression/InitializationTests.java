@@ -37,7 +37,7 @@ public static Test suite() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=318020
-public void test318020a() {
+public void test318020a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -74,7 +74,7 @@ public void test318020b() {
 		"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=318020
-public void test318020c() {
+public void test318020c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportDeadCode, CompilerOptions.IGNORE);
 	this.runNegativeTest(
@@ -108,7 +108,7 @@ public void test318020c() {
 			null, false, options);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=318020
-public void test318020d() {
+public void test318020d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportDeadCode, CompilerOptions.IGNORE);
 	this.runNegativeTest(
@@ -141,7 +141,7 @@ public void test318020d() {
 			null, false, options);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=318020
-public void test318020e() {
+public void test318020e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportDeadCode, CompilerOptions.IGNORE);
 	this.runNegativeTest(
@@ -171,7 +171,7 @@ public void test318020e() {
 			null, false, options);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=318020
-public void test318020f() {
+public void test318020f() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportDeadCode, CompilerOptions.IGNORE);
 	this.runNegativeTest(
@@ -203,7 +203,7 @@ public void test318020f() {
 			null, false, options);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=318020
-public void test318020g() {
+public void test318020g() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportDeadCode, CompilerOptions.IGNORE);
 	this.runNegativeTest(
@@ -257,7 +257,7 @@ public void test318020h() {
 			"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=318020
-public void test318020i() {
+public void test318020i() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -288,7 +288,7 @@ public void test318020i() {
 			"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=318020
-public void test318020j() {
+public void test318020j() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportDeadCode, CompilerOptions.IGNORE);
 	this.runNegativeTest(
@@ -318,7 +318,7 @@ public void test318020j() {
 			null, false, options);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=318020
-public void test318020k() {
+public void test318020k() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportDeadCode, CompilerOptions.IGNORE);
 	this.runNegativeTest(
@@ -348,7 +348,7 @@ public void test318020k() {
 			null, false, options);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=325567
-public void test325567() {
+public void test325567() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportDeadCode, CompilerOptions.IGNORE);
 	this.runNegativeTest(
@@ -405,7 +405,7 @@ public void test325567() {
 
 // Bug 324178 - [null] ConditionalExpression.nullStatus(..) doesn't take into account the analysis of condition itself
 // definite assignment along all true-yielding paths is sufficient
-public void testBug324178b() {
+public void testBug324178b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Bug324178.java",
@@ -426,7 +426,7 @@ public void testBug324178b() {
 
 // Bug 324178 - [null] ConditionalExpression.nullStatus(..) doesn't take into account the analysis of condition itself
 // definite assignment along all true-yielding paths is sufficient
-public void testBug324178c() {
+public void testBug324178c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Bug324178.java",
@@ -446,7 +446,7 @@ public void testBug324178c() {
 }
 // Bug 324178 - [null] ConditionalExpression.nullStatus(..) doesn't take into account the analysis of condition itself
 // must detect that b2 may be uninitialized, no special semantics for Boolean
-public void testBug324178d() {
+public void testBug324178d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"Bug324178.java",
@@ -470,7 +470,7 @@ public void testBug324178d() {
 		"----------\n");
 }
 // Bug 383690 - [compiler] location of error re uninitialized final field should be aligned
-public void testBug383690() {
+public void testBug383690() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -493,7 +493,7 @@ public void testBug383690() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4416
 // Bogus error: The blank final field o may not have been initialized
-public void testIssue4416() {
+public void testIssue4416() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 			"WrongNotInitialized.java",
 			"""
@@ -513,7 +513,7 @@ public void testIssue4416() {
 			"""
 	});
 }
-public void testIssue4416_withPrologue() {
+public void testIssue4416_withPrologue() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK25)
 		return; // uses flexible constructor bodies
 	runConformTest(new String[] {
@@ -538,7 +538,7 @@ public void testIssue4416_withPrologue() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4416
 // Bogus error: The blank final field o may not have been initialized
-public void testIssue4416b() {
+public void testIssue4416b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 			"Test.java",
 			"""
@@ -560,7 +560,7 @@ public void testIssue4416b() {
 			"""
 	});
 }
-public void testIssue4416b_withPrologue() {
+public void testIssue4416b_withPrologue() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK25)
 		return; // uses flexible constructor bodies
 	runConformTest(new String[] {
@@ -604,7 +604,7 @@ public void testIssue4416c() {
 			"""
 	});
 }
-public void testIssue4416c_withPrologue() {
+public void testIssue4416c_withPrologue() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK25)
 		return; // uses flexible constructor bodies
 	runConformTest(new String[] {
@@ -624,7 +624,7 @@ public void testIssue4416c_withPrologue() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4416
 // Bogus error: The blank final field o may not have been initialized
-public void testIssue4416d() {
+public void testIssue4416d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 			"Test.java",
 			"""
@@ -646,7 +646,7 @@ public void testIssue4416d() {
 }
 //https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4416
 //Bogus error: The blank final field o may not have been initialized
-public void testIssue4416d_withPrologue() {
+public void testIssue4416d_withPrologue() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK25)
 		return; // uses flexible constructor bodies
 	runConformTest(new String[] {
@@ -669,7 +669,7 @@ public void testIssue4416d_withPrologue() {
 			"""
 	});
 }
-public void testGH4865() {
+public void testGH4865() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 			"Foo.java",
 			"""

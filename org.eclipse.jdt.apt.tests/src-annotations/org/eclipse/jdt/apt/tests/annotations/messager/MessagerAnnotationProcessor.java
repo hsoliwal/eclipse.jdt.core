@@ -46,10 +46,10 @@ public class MessagerAnnotationProcessor extends BaseProcessor {
 	/* (non-Javadoc)
 	 * @see com.sun.mirror.apt.AnnotationProcessor#process()
 	 */
-	public void process() {
+	public void process() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         Collection<Declaration> annotatedDecls = _env.getDeclarationsAnnotatedWith(_annotationDecl);
         Messager m = _env.getMessager();
-        for (Declaration decl : annotatedDecls) {
+        for (Declaration decl : annotatedDecls) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
         	MessagerAnnotation a = decl.getAnnotation(MessagerAnnotation.class);
         	SourcePosition sp = decl.getPosition();
         	MessagerAnnotation.Severity sev = a.severity();

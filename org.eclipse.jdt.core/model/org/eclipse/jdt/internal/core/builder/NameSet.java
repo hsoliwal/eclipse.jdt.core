@@ -35,7 +35,7 @@ public char[] add(char[] name) {
 	int length = this.names.length;
 	int index = CharOperation.hashCode(name) % length;
 	char[] current;
-	while ((current = this.names[index]) != null) {
+	while ((current = this.names[index]) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (CharOperation.equals(current, name)) return current;
 		if (++index == length) index = 0;
 	}
@@ -49,7 +49,7 @@ public char[] add(char[] name) {
 private void rehash() {
 	NameSet newSet = new NameSet(this.elementSize * 2); // double the number of expected elements
 	char[] current;
-	for (int i = this.names.length; --i >= 0;)
+	for (int i = this.names.length; --i >= 0;) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if ((current = this.names[i]) != null)
 			newSet.add(current);
 
@@ -61,9 +61,9 @@ private void rehash() {
 @Override
 public String toString() {
 	String s = ""; //$NON-NLS-1$
-	for (char[] name : this.names)
+	for (char[] name : this.names) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (name != null)
-			s += new String(name) + "\n"; //$NON-NLS-1$
+			s += new String(name) + "\n"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	return s;
 }
 }

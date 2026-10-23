@@ -58,15 +58,15 @@ public CompletionOnQualifiedNameReference(char[][] previousIdentifiers, char[] c
 @Override
 public StringBuilder printExpression(int indent, StringBuilder output) {
 
-	output.append("<CompleteOnName:"); //$NON-NLS-1$
-	for (char[] token : this.tokens) {
-		output.append(token);
-		output.append('.');
+	output.append("<CompleteOnName:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	for (char[] token : this.tokens) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		output.append(token); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	output.append(this.completionIdentifier).append('>');
+	output.append(this.completionIdentifier).append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return output;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public TypeBinding resolveType(BlockScope scope) {
 	// it can be a package, type, member type, local variable or field
 	this.binding = scope.getBinding(this.tokens, this);

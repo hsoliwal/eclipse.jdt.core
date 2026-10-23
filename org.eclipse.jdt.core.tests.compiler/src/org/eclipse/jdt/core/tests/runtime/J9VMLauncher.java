@@ -43,34 +43,34 @@ public J9VMLauncher() {
 /**
  * Builds the actual boot class path that is going to be passed to the VM.
  */
-protected String buildBootClassPath() {
-	StringBuilder bootPathString = new StringBuilder();
+protected String buildBootClassPath() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	StringBuilder bootPathString = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	char pathSeparator = File.pathSeparatorChar;
 
 	if (this.bootPath != null) {
 		// Add boot class path given by client
 		int length = this.bootPath.length;
-		for (int i = 0; i < length; i++){
-			bootPathString.append(this.bootPath[i]);
-			bootPathString.append(pathSeparator);
+		for (int i = 0; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			bootPathString.append(this.bootPath[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			bootPathString.append(pathSeparator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	} else {
 		// Add regular classes.zip
-		bootPathString.append(this.vmPath);
-		bootPathString.append(File.separator);
-		bootPathString.append("lib");
-		bootPathString.append(File.separator);
-		bootPathString.append("jclMax");
-		bootPathString.append(File.separator);
-		bootPathString.append("classes.zip");
-		bootPathString.append(pathSeparator);
+		bootPathString.append(this.vmPath); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		bootPathString.append(File.separator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		bootPathString.append("lib"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		bootPathString.append(File.separator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		bootPathString.append("jclMax"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		bootPathString.append(File.separator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		bootPathString.append("classes.zip"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		bootPathString.append(pathSeparator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	// Add boot class path directory if needed
 	if (this.evalTargetPath != null && TARGET_HAS_FILE_SYSTEM) {
-		bootPathString.append(this.evalTargetPath);
-		bootPathString.append(File.separatorChar);
-		bootPathString.append(BOOT_CLASSPATH_DIRECTORY);
+		bootPathString.append(this.evalTargetPath); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		bootPathString.append(File.separatorChar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		bootPathString.append(BOOT_CLASSPATH_DIRECTORY); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	return bootPathString.toString();
@@ -90,13 +90,13 @@ protected Process execCommandLine() throws TargetException {
 /**
  * @see LocalVMLauncher#getCommandLine
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public String[] getCommandLine() {
-	List<String> commandLine = new ArrayList<>();
+	List<String> commandLine = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 	// VM binary
 	commandLine.add(
-		this.vmPath +
+		this.vmPath + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		(this.vmPath.endsWith(File.separator) ? "" : File.separator) +
 		"bin" +
 		File.separator +
@@ -104,18 +104,18 @@ public String[] getCommandLine() {
 
 	// VM arguments
 	if (this.vmArguments != null) {
-		for (int i = 0; i < this.vmArguments.length; i++) {
+		for (int i = 0; i < this.vmArguments.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			commandLine.add(this.vmArguments[i]);
 		}
 	}
 
 	// debug mode
 	if (this.debugPort != -1 && this.internalDebugPort != -1) {
-		commandLine.add("-debug:" + this.internalDebugPort);
+		commandLine.add("-debug:" + this.internalDebugPort); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	// boot class path
-	commandLine.add("-Xbootclasspath:" + buildBootClassPath());
+	commandLine.add("-Xbootclasspath:" + buildBootClassPath()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	// regular class path
 	commandLine.add("-classpath");
@@ -132,9 +132,9 @@ public String[] getCommandLine() {
 		commandLine.add(Integer.toString(this.evalPort));
 		if (TARGET_HAS_FILE_SYSTEM) {
 			commandLine.add(CODESNIPPET_CLASSPATH_ARG);
-			commandLine.add(this.evalTargetPath + File.separator + REGULAR_CLASSPATH_DIRECTORY);
+			commandLine.add(this.evalTargetPath + File.separator + REGULAR_CLASSPATH_DIRECTORY); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			commandLine.add(CODESNIPPET_BOOTPATH_ARG);
-			commandLine.add(this.evalTargetPath + File.separator + BOOT_CLASSPATH_DIRECTORY);
+			commandLine.add(this.evalTargetPath + File.separator + BOOT_CLASSPATH_DIRECTORY); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -145,7 +145,7 @@ public String[] getCommandLine() {
 
 	// program arguments
 	if (this.programArguments != null) {
-		for (int i=0;i<this.programArguments.length;i++) {
+		for (int i=0;i<this.programArguments.length;i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			commandLine.add(this.programArguments[i]);
 		}
 	}
@@ -154,10 +154,10 @@ public String[] getCommandLine() {
 	commandLine.toArray(result);
 
 	// check for spaces in result
-	for (int i = 0; i < result.length; i++) {
+	for (int i = 0; i < result.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String argument = result[i];
 		if (argument.indexOf(' ') != -1) {
-			result[i] = "\"" + argument + "\"";
+			result[i] = "\"" + argument + "\""; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -175,19 +175,19 @@ public int getInternalDebugPort() {
 /**
  * Returns the command line which will be used to launch the Proxy.
  */
-public String[] getProxyCommandLine() {
-	List<String> commandLine = new ArrayList<>();
+public String[] getProxyCommandLine() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	List<String> commandLine = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 	// Proxy binary
 	commandLine.add(
-		this.vmPath +
+		this.vmPath + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		(this.vmPath.endsWith(File.separator) ? "" : File.separator) +
 		"bin" +
 		File.separator +
 		"j9proxy");
 
 	// Arguments
-	commandLine.add(getTargetAddress() + ":" + this.internalDebugPort);
+	commandLine.add(getTargetAddress() + ":" + this.internalDebugPort); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	commandLine.add(Integer.toString(this.debugPort));
 	if (this.symbolPath != null && this.symbolPath != "") {
 		commandLine.add(this.symbolPath);
@@ -215,7 +215,7 @@ public String getSymbolPath() {
 /**
  * @see LocalVMLauncher#launch
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public LocalVirtualMachine launch() throws TargetException {
 	// Launch VM
 	LocalVirtualMachine localVM = super.launch();
@@ -239,7 +239,7 @@ public LocalVirtualMachine launch() throws TargetException {
 			proxyProcess= Runtime.getRuntime().exec(commandLine);
 		} catch (IOException e) {
 			localVM.shutDown();
-			throw new TargetException("Error launching J9 Proxy at " + this.vmPath);
+			throw new TargetException("Error launching J9 Proxy at " + this.vmPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 

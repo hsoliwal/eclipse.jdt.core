@@ -73,7 +73,7 @@ public class SourceTypeElementInfo extends AnnotatableInfo implements ISourceTyp
 protected void addCategories(IJavaElement element, char[][] elementCategories) {
 	if (elementCategories == null) return;
 	if (this.categories == null)
-		this.categories = new HashMap<>();
+		this.categories = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	this.categories.put(element, CharOperation.toStrings(elementCategories));
 }
 
@@ -114,7 +114,7 @@ public ISourceField[] getFields() {
 	SourceField[] fieldHandles = getFieldHandles();
 	int length = fieldHandles.length;
 	ISourceField[] fields = new ISourceField[length];
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		try {
 			ISourceField field = (ISourceField) fieldHandles[i].getElementInfo();
 			fields[i] = field;
@@ -129,7 +129,7 @@ public SourceField[] getFieldHandles() {
 	if (length == 0) return NO_FIELDS;
 	SourceField[] fields = new SourceField[length];
 	int fieldIndex = 0;
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IJavaElement child = this.children[i];
 		if (child instanceof SourceField)
 			fields[fieldIndex++] = (SourceField) child;
@@ -156,12 +156,12 @@ public IType getHandle() {
  * Returns the InitializerElementInfos for this type.
  * Returns an empty array if none.
  */
-public InitializerElementInfo[] getInitializers() {
+public InitializerElementInfo[] getInitializers() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int length = this.children.length;
 	if (length == 0) return NO_INITIALIZERS;
 	InitializerElementInfo[] initializers = new InitializerElementInfo[length];
 	int initializerIndex = 0;
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IJavaElement child = this.children[i];
 		if (child instanceof Initializer) {
 			try {
@@ -204,7 +204,7 @@ public ISourceType[] getMemberTypes() {
 	SourceType[] memberTypeHandles = getMemberTypeHandles();
 	int length = memberTypeHandles.length;
 	ISourceType[] memberTypes = new ISourceType[length];
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		try {
 			ISourceType type = (ISourceType) memberTypeHandles[i].getElementInfo();
 			memberTypes[i] = type;
@@ -219,7 +219,7 @@ public SourceType[] getMemberTypeHandles() {
 	if (length == 0) return NO_TYPES;
 	SourceType[] memberTypes = new SourceType[length];
 	int typeIndex = 0;
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IJavaElement child = this.children[i];
 		if (child instanceof SourceType)
 			memberTypes[typeIndex++] = (SourceType)child;
@@ -238,7 +238,7 @@ public ISourceMethod[] getMethods() {
 	int length = methodHandles.length;
 	ISourceMethod[] methods = new ISourceMethod[length];
 	int methodIndex = 0;
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		try {
 			ISourceMethod method = (ISourceMethod) methodHandles[i].getElementInfo();
 			methods[methodIndex++] = method;
@@ -253,7 +253,7 @@ public SourceMethod[] getMethodHandles() {
 	if (length == 0) return NO_METHODS;
 	SourceMethod[] methods = new SourceMethod[length];
 	int methodIndex = 0;
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IJavaElement child = this.children[i];
 		if (child instanceof SourceMethod)
 			methods[methodIndex++] = (SourceMethod) child;
@@ -287,7 +287,7 @@ public char[] getSuperclassName() {
 public char[][][] getTypeParameterBounds() {
 	int length = this.typeParameters.length;
 	char[][][] typeParameterBounds = new char[length][][];
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		try {
 			TypeParameterElementInfo info = (TypeParameterElementInfo) ((JavaElement)this.typeParameters[i]).getElementInfo();
 			typeParameterBounds[i] = info.bounds;
@@ -302,7 +302,7 @@ public char[][] getTypeParameterNames() {
 	int length = this.typeParameters.length;
 	if (length == 0) return CharOperation.NO_CHAR_CHAR;
 	char[][] typeParameterNames = new char[length][];
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		typeParameterNames[i] = this.typeParameters[i].getElementName().toCharArray();
 	}
 	return typeParameterNames;
@@ -352,6 +352,6 @@ protected void setPermittedSubtypeNames(char[][] permittedTypeNames) {
 }
 @Override
 public String toString() {
-	return "Info for " + this.handle.toString(); //$NON-NLS-1$
+	return "Info for " + this.handle.toString(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 }

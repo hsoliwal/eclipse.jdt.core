@@ -72,11 +72,11 @@ public class BatchDispatchTests extends TestCase {
 	 * Verify that Eclipse compiler properly supports apt-related command line options
 	 */
 	public void testCheckOptions() {
-		for (String option : ONE_ARG_OPTIONS) {
-			assertEquals(option + " requires 1 argument", 1, BatchTestUtils.getEclipseCompiler().isSupportedOption(option));
+		for (String option : ONE_ARG_OPTIONS) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			assertEquals(option + " requires 1 argument", 1, BatchTestUtils.getEclipseCompiler().isSupportedOption(option)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		for (String option : ZERO_ARG_OPTIONS) {
-			assertEquals(option + " requires no argument", 0, BatchTestUtils.getEclipseCompiler().isSupportedOption(option));
+		for (String option : ZERO_ARG_OPTIONS) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			assertEquals(option + " requires no argument", 0, BatchTestUtils.getEclipseCompiler().isSupportedOption(option)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -121,13 +121,13 @@ public class BatchDispatchTests extends TestCase {
 	/**
 	 * Read annotation values and generate a class using Eclipse compiler
 	 */
-	public void testGhIssue4687WithEclipseCompiler() throws IOException {
+	public void testGhIssue4687WithEclipseCompiler() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		JavaCompiler compiler = BatchTestUtils.getEclipseCompiler();
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "gh4687");
 		File inputFile = BatchTestUtils.copyResource("targets/gh4687/Comp.java", targetFolder);
 		assertNotNull("No input file", inputFile);
 
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		BatchTestUtils.compileOneClass(compiler, options, inputFile);
 
 		// check that the gen-src and class files were generated
@@ -137,7 +137,7 @@ public class BatchDispatchTests extends TestCase {
 		inputFile = BatchTestUtils.copyResource("targets/gh4687/Container.java", targetFolder);
 		assertNotNull("No input file", inputFile);
 
-		options = new ArrayList<>();
+		options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		BatchTestUtils.compileOneClass(compiler, options, inputFile);
 		// check that the gen-src and class files were generated
  		genSrcFile = TestUtils.concatPath(BatchTestUtils.getGenFolderName(), "foobar", "WorkingRecordBuilder.java");
@@ -170,20 +170,20 @@ public class BatchDispatchTests extends TestCase {
 
 	public void testNoWarningsInFolderWithEclipseCompiler() throws IOException {
 		JavaCompiler compiler = BatchTestUtils.getEclipseCompiler();
-		internalTestWarnings(compiler, 0, "-warn:+unused", "-nowarn:[" + BatchTestUtils.getGenFolderName() + ']');
+		internalTestWarnings(compiler, 0, "-warn:+unused", "-nowarn:[" + BatchTestUtils.getGenFolderName() + ']'); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public void testNoWarningsInFolderWithEclipseCompiler2() throws IOException {
 		JavaCompiler compiler = BatchTestUtils.getEclipseCompiler();
-		internalTestWarnings(compiler, 0, "-nowarn:[" + BatchTestUtils.getGenFolderName() + ']', "-warn:+unused");
+		internalTestWarnings(compiler, 0, "-nowarn:[" + BatchTestUtils.getGenFolderName() + ']', "-warn:+unused"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
-	private void internalTestWarnings(JavaCompiler compiler, int numberOfWarnings, String... extraOptions) throws IOException {
+	private void internalTestWarnings(JavaCompiler compiler, int numberOfWarnings, String... extraOptions) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "dispatch");
 		File inputFile = BatchTestUtils.copyResource("targets/dispatch/WarnGenClass.java", targetFolder);
 		assertNotNull("No input file", inputFile);
 
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		if (extraOptions != null) {
 			options.addAll(Arrays.asList(extraOptions));
 		}
@@ -226,12 +226,12 @@ public class BatchDispatchTests extends TestCase {
 	/**
 	 * Verify that if a type has two annotations, both processors are run.
 	 */
-	public void _testTwoAnnotations() throws IOException {
+	public void _testTwoAnnotations() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "dispatch");
 		File inputFile = BatchTestUtils.copyResource("targets/dispatch/TwoAnnotations.java", targetFolder);
 		assertNotNull("No input file", inputFile);
 
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		// See corresponding list in CheckArgsProc processor.
 		// Processor will throw IllegalStateException if it detects a mismatch.
 		options.add("-Afoo=bar");
@@ -251,12 +251,12 @@ public class BatchDispatchTests extends TestCase {
 	}
 
 	// Called with system compiler and Eclipse compiler
-	private void internalTestGenerateClass(JavaCompiler compiler) throws IOException {
+	private void internalTestGenerateClass(JavaCompiler compiler) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "dispatch");
 		File inputFile = BatchTestUtils.copyResource("targets/dispatch/HasGenClass.java", targetFolder);
 		assertNotNull("No input file", inputFile);
 
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		BatchTestUtils.compileOneClass(compiler, options, inputFile);
 
 		// check that the gen-src and class files were generated
@@ -276,7 +276,7 @@ public class BatchDispatchTests extends TestCase {
 		File inputFile = BatchTestUtils.copyResource("targets/dispatch/HasCheckArgs.java", targetFolder);
 		assertNotNull("No input file", inputFile);
 
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		// See corresponding list in CheckArgsProc processor.
 		// Processor will throw IllegalStateException if it detects a mismatch.
 		options.add("-Afoo=bar");
@@ -295,8 +295,8 @@ public class BatchDispatchTests extends TestCase {
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets/dispatch", "inheritedanno");
 		BatchTestUtils.copyResources("targets/dispatch/inheritedanno", targetFolder);
 
-		List<String> options = new ArrayList<>();
-		options.add("-A" + processorClass);
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		options.add("-A" + processorClass); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		BatchTestUtils.compileTree(compiler, options, targetFolder);
 
 		// If it succeeded, the processor will have set this property to "succeeded";
@@ -307,7 +307,7 @@ public class BatchDispatchTests extends TestCase {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=209961
 	 */
-	public void test209961() throws IOException {
+	public void test209961() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "dispatch");
 		File inputFile = BatchTestUtils.copyResource("targets/dispatch/X.java", targetFolder);
 		assertNotNull("No input file", inputFile);
@@ -316,7 +316,7 @@ public class BatchDispatchTests extends TestCase {
 			"targets",
 			"dispatch");
 
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		// See corresponding list in CheckArgsProc processor.
 		// Processor will throw IllegalStateException if it detects a mismatch.
 		options.add("-classpath");

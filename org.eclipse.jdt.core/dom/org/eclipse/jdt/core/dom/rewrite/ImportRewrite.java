@@ -328,34 +328,34 @@ public final class ImportRewrite {
 	 * @return the created import rewriter.
 	 * @throws JavaModelException thrown when the compilation unit could not be accessed.
 	 */
-	public static ImportRewrite create(ICompilationUnit cu, boolean restoreExistingImports) throws JavaModelException {
+	public static ImportRewrite create(ICompilationUnit cu, boolean restoreExistingImports) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (cu == null) {
 			throw new IllegalArgumentException("Compilation unit must not be null"); //$NON-NLS-1$
 		}
 		List existingImport= null;
 		Map<String, List<String>> moduleEntries= null;
 		if (restoreExistingImports) {
-			existingImport= new ArrayList();
-			moduleEntries= new HashMap<>();
+			existingImport= new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			moduleEntries= new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			IImportDeclaration[] imports= cu.getImports();
 			CompilationUnit compilationUnit= null;
-			for (IImportDeclaration curr : imports) {
+			for (IImportDeclaration curr : imports) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				char prefix= Flags.isStatic(curr.getFlags()) ? STATIC_PREFIX :
 					Flags.isModule(curr.getFlags()) ? MODULE_PREFIX : NORMAL_PREFIX;
 				String currName= curr.getElementName();
 				if (currName.endsWith(".*") && prefix == MODULE_PREFIX) { //$NON-NLS-1$
 					currName= currName.substring(0, currName.length() - 2);
 				}
-				existingImport.add(prefix + currName);
+				existingImport.add(prefix + currName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				if (Flags.isModule(curr.getFlags())) {
-					List<String> packageNames= new ArrayList<>();
+					List<String> packageNames= new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 					if (compilationUnit == null) {
 						compilationUnit= convertICUtoCU(cu);
 					}
 					if (compilationUnit != null) {
 						List<ImportDeclaration> astImports= compilationUnit.imports();
 						ImportDeclaration foundModuleImport= null;
-						for (ImportDeclaration astImport : astImports) {
+						for (ImportDeclaration astImport : astImports) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (Modifier.isModule(astImport.getModifiers()) && astImport.getName().getFullyQualifiedName().equals(currName)) {
 								foundModuleImport= astImport;
 								break;
@@ -395,8 +395,8 @@ public final class ImportRewrite {
 	 */
 	public static List<String> getPackageNamesForModule(IModuleBinding binding, IJavaProject project) {
 		List<IPackageBinding> packageBindings= getPackageBindingsForModule(binding, project);
-		List<String> packageNames= new ArrayList<>();
-		for (IPackageBinding packageBinding : packageBindings) {
+		List<String> packageNames= new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (IPackageBinding packageBinding : packageBindings) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			packageNames.add(packageBinding.getName());
 		}
 		return packageNames;
@@ -416,8 +416,8 @@ public final class ImportRewrite {
 	 *
 	 * @since 3.44
 	 */
-	public static List<IPackageBinding> getPackageBindingsForModule(IModuleBinding binding, IJavaProject project) {
- 		Set<IModuleBinding> modules= new HashSet<>();
+	public static List<IPackageBinding> getPackageBindingsForModule(IModuleBinding binding, IJavaProject project) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+ 		Set<IModuleBinding> modules= new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
  		String currentModuleName= null;
 		try {
 			IModuleDescription modDesc= project.getModuleDescription();
@@ -428,29 +428,29 @@ public final class ImportRewrite {
 			// if we cannot retrieve a module description then we'll treat it as unnamed module
 		}
  		populateTransitiveModules(binding, modules);
-		Set<IPackageBinding> packageList= new HashSet<>();
- 		for (IModuleBinding moduleBinding : modules) {
+		Set<IPackageBinding> packageList= new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+ 		for (IModuleBinding moduleBinding : modules) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			packageList.addAll(getPackages(moduleBinding, currentModuleName));
  		}
- 		return new ArrayList<>(packageList);
+ 		return new ArrayList<>(packageList); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
  	}
 
 	private static void populateTransitiveModules(IModuleBinding binding, Set<IModuleBinding> transitiveModules) {
 		if (transitiveModules.add(binding)) {
 			IModuleBinding[] requiredTransitiveModules= binding.getRequiredTransitiveModules();
-			for (IModuleBinding requiredModule : requiredTransitiveModules) {
+			for (IModuleBinding requiredModule : requiredTransitiveModules) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				populateTransitiveModules(requiredModule, transitiveModules);
 			}
 		}
 	}
 
-	private static Set<IPackageBinding> getPackages(IModuleBinding binding, String currentModuleName) {
-		Set<IPackageBinding> result= new HashSet<>();
+	private static Set<IPackageBinding> getPackages(IModuleBinding binding, String currentModuleName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		Set<IPackageBinding> result= new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		IPackageBinding[] packageBindings= binding.getExportedPackages();
-		for (IPackageBinding packageBinding : packageBindings) {
+		for (IPackageBinding packageBinding : packageBindings) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String[] exportedToList= binding.getExportedTo(packageBinding);
 			if (exportedToList.length > 0) {
-				for (String moduleName : exportedToList) {
+				for (String moduleName : exportedToList) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (currentModuleName != null && currentModuleName.equals(moduleName)) {
 						result.add(packageBinding);
 						break;
@@ -486,7 +486,7 @@ public final class ImportRewrite {
 	 * @return the created import rewriter.
 	 * @throws IllegalArgumentException thrown when the passed AST is null or was not created from a compilation unit.
 	 */
-	public static ImportRewrite create(CompilationUnit astRoot, boolean restoreExistingImports) {
+	public static ImportRewrite create(CompilationUnit astRoot, boolean restoreExistingImports) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (astRoot == null) {
 			throw new IllegalArgumentException("AST must not be null"); //$NON-NLS-1$
 		}
@@ -497,20 +497,20 @@ public final class ImportRewrite {
 		List existingImport= null;
 		Map<String, List<String>> moduleEntries= null;
 		if (restoreExistingImports) {
-			existingImport= new ArrayList();
-			moduleEntries= new HashMap<>();
+			existingImport= new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			moduleEntries= new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			List imports= astRoot.imports();
-			for (int i= 0; i < imports.size(); i++) {
+			for (int i= 0; i < imports.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ImportDeclaration curr= (ImportDeclaration) imports.get(i);
-				StringBuilder buf= new StringBuilder();
-				buf.append(curr.isStatic() ? STATIC_PREFIX : Modifier.isModule(curr.getModifiers()) ? MODULE_PREFIX : NORMAL_PREFIX).append(curr.getName().getFullyQualifiedName());
+				StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				buf.append(curr.isStatic() ? STATIC_PREFIX : Modifier.isModule(curr.getModifiers()) ? MODULE_PREFIX : NORMAL_PREFIX).append(curr.getName().getFullyQualifiedName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (curr.isOnDemand() && !Modifier.isModule(curr.getModifiers())) {
 					if (buf.length() > 1)
-						buf.append('.');
-					buf.append('*');
+						buf.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buf.append('*'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				if (Modifier.isModule(curr.getModifiers())) {
-					List<String> packageList= new ArrayList<>();
+					List<String> packageList= new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 					IBinding binding= curr.resolveBinding();
 					if (binding instanceof IModuleBinding moduleBinding) {
 						packageList= getPackageNamesForModule(moduleBinding, astRoot.getJavaElement().getJavaProject());
@@ -523,19 +523,19 @@ public final class ImportRewrite {
 		return new ImportRewrite((ICompilationUnit) typeRoot, astRoot, existingImport, moduleEntries);
 	}
 
-	private ImportRewrite(ICompilationUnit cu, CompilationUnit astRoot, List existingImports, Map<String, List<String>> moduleEntries) {
+	private ImportRewrite(ICompilationUnit cu, CompilationUnit astRoot, List existingImports, Map<String, List<String>> moduleEntries) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.compilationUnit= cu;
 		this.astRoot= astRoot; // might be null
 		if (moduleEntries != null) {
 			this.moduleEntries= moduleEntries;
 		} else {
-			this.moduleEntries= new HashMap<>();
+			this.moduleEntries= new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		}
 		if (existingImports != null) {
 			this.existingImports= existingImports;
 			this.restoreExistingImports= !existingImports.isEmpty();
 		} else {
-			this.existingImports= new ArrayList();
+			this.existingImports= new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			this.restoreExistingImports= false;
 		}
 		this.filterImplicitImports= true;
@@ -548,10 +548,10 @@ public final class ImportRewrite {
 				return findInImports(qualifier, name, kind);
 			}
 		};
-		this.addedImports= new ArrayList<>();
-		this.removedImports= new ArrayList<>();
-		this.typeExplicitSimpleNames = new HashSet<>();
-		this.staticExplicitSimpleNames = new HashSet<>();
+		this.addedImports= new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		this.removedImports= new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		this.typeExplicitSimpleNames = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+		this.staticExplicitSimpleNames = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		this.createdImports= null;
 		this.createdStaticImports= null;
 		this.createdModuleImports= null;
@@ -560,7 +560,7 @@ public final class ImportRewrite {
 		this.importOnDemandThreshold= 99;
 		this.staticImportOnDemandThreshold= 99;
 
-		this.importsKindMap = new HashMap();
+		this.importsKindMap = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	}
 
 
@@ -667,11 +667,11 @@ public final class ImportRewrite {
 		this.useContextToFilterImplicitImports = useContextToFilterImplicitImports;
 	}
 
-	private static int compareImport(char prefix, String qualifier, String name, String curr, Map<String, List<String>> moduleExportsMap) {
+	private static int compareImport(char prefix, String qualifier, String name, String curr, Map<String, List<String>> moduleExportsMap) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (curr.charAt(0) == MODULE_PREFIX) {
 			List<String> exportedPackageList= moduleExportsMap.get(curr.substring(1));
 			if (exportedPackageList != null) {
-				for (String exportedPackage : exportedPackageList) {
+				for (String exportedPackage : exportedPackageList) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (exportedPackage.equals(qualifier)) {
 						return ImportRewriteContext.RES_NAME_FOUND;
 					}
@@ -706,12 +706,12 @@ public final class ImportRewrite {
 	/**
 	 * Not API, package visibility as accessed from an anonymous type
 	 */
-	/* package */ final int findInImports(String qualifier, String name, int kind) {
+	/* package */ final int findInImports(String qualifier, String name, int kind) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		boolean allowAmbiguity=  (kind == ImportRewriteContext.KIND_STATIC_METHOD) || (name.length() == 1 && name.charAt(0) == '*');
 		List imports= this.existingImports;
 		char prefix= (kind == ImportRewriteContext.KIND_TYPE) ? NORMAL_PREFIX : STATIC_PREFIX;
 
-		for (int i= imports.size() - 1; i >= 0 ; i--) {
+		for (int i= imports.size() - 1; i >= 0 ; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String curr= (String) imports.get(i);
 			int res= compareImport(prefix, qualifier, name, curr, this.moduleEntries);
 			if (res != ImportRewriteContext.RES_NAME_UNKNOWN) {
@@ -720,7 +720,7 @@ public final class ImportRewrite {
 						return res;
 					}
 					Object currKind = this.importsKindMap.get(curr.substring(1));
-					if (currKind != null && currKind.equals(this.importsKindMap.get(qualifier + '.' + name))) {
+					if (currKind != null && currKind.equals(this.importsKindMap.get(qualifier + '.' + name))) { //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						return res;
 					}
 				}
@@ -740,7 +740,7 @@ public final class ImportRewrite {
 				if (this.astRoot != null) {
 					List<AbstractTypeDeclaration> types = this.astRoot.types();
 					int nTypes = types.size();
-					for (int i = 0; i < nTypes; i++) {
+					for (int i = 0; i < nTypes; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						AbstractTypeDeclaration type = types.get(i);
 						SimpleName simpleName = type.getName();
 						if (simpleName.getIdentifier().equals(name)) {
@@ -753,7 +753,7 @@ public final class ImportRewrite {
 					try {
 						IType[] types = this.compilationUnit.getTypes();
 						int nTypes = types.length;
-						for (int i = 0; i < nTypes; i++) {
+						for (int i = 0; i < nTypes; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							IType type = types[i];
 							String typeName = type.getElementName();
 							if (typeName.equals(name)) {
@@ -791,7 +791,7 @@ public final class ImportRewrite {
 	 *
 	 * @since 3.10
 	 */
-	public Annotation addAnnotation(IAnnotationBinding annotation, AST ast, ImportRewriteContext context) {
+	public Annotation addAnnotation(IAnnotationBinding annotation, AST ast, ImportRewriteContext context) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Type type = addImport(annotation.getAnnotationType(), ast, context, TypeLocation.OTHER);
 		Name name;
 		if (type instanceof SimpleType) {
@@ -818,7 +818,7 @@ public final class ImportRewrite {
 		} else {
 			NormalAnnotation result = ast.newNormalAnnotation();
 			result.setTypeName(name);
-			for (IMemberValuePairBinding mvp : mvps) {
+			for (IMemberValuePairBinding mvp : mvps) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				MemberValuePair mvpNode = ast.newMemberValuePair();
 				mvpNode.setName(ast.newSimpleName(mvp.getName()));
 				Object value = mvp.getValue();
@@ -872,7 +872,7 @@ public final class ImportRewrite {
 	 * @return a type node for the given type signature. Type names are simple names if an import could be used,
 	 * or else qualified names if an import conflict prevented an import.
 	 */
-	public Type addImportFromSignature(String typeSig, AST ast, ImportRewriteContext context) {
+	public Type addImportFromSignature(String typeSig, AST ast, ImportRewriteContext context) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (typeSig == null || typeSig.length() == 0) {
 			throw new IllegalArgumentException("Invalid type signature: empty or null"); //$NON-NLS-1$
 		}
@@ -895,7 +895,7 @@ public final class ImportRewrite {
 				if (typeArguments.length > 0) {
 					ParameterizedType type= ast.newParameterizedType(baseType);
 					List argNodes= type.typeArguments();
-					for (String curr : typeArguments) {
+					for (String curr : typeArguments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (containsNestedCapture(curr)) { // see bug 103044
 							argNodes.add(ast.newWildcardType());
 						} else {
@@ -918,7 +918,7 @@ public final class ImportRewrite {
 			case Signature.CAPTURE_TYPE_SIGNATURE:
 				return addImportFromSignature(typeSig.substring(1), ast, context);
 			default:
-				throw new IllegalArgumentException("Unknown type signature kind: " + typeSig); //$NON-NLS-1$
+				throw new IllegalArgumentException("Unknown type signature kind: " + typeSig); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -964,7 +964,7 @@ public final class ImportRewrite {
 	 * @return a type reference for the given type binding. Type names are simple names if an import could be used,
 	 * or else qualified names if an import conflict prevented an import.
 	 */
-	public String addImport(ITypeBinding binding, ImportRewriteContext context) {
+	public String addImport(ITypeBinding binding, ImportRewriteContext context) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (binding.isPrimitive() || binding.isTypeVariable() || binding.isRecovered()) {
 			return binding.getName();
 		}
@@ -974,23 +974,23 @@ public final class ImportRewrite {
 			return "invalid"; //$NON-NLS-1$
 		}
 		if (normalizedBinding.isWildcardType()) {
-			StringBuilder res= new StringBuilder("?"); //$NON-NLS-1$
+			StringBuilder res= new StringBuilder("?"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			ITypeBinding bound= normalizedBinding.getBound();
 			if (bound != null && !bound.isWildcardType() && !bound.isCapture()) { // bug 95942
 				if (normalizedBinding.isUpperbound()) {
-					res.append(" extends "); //$NON-NLS-1$
+					res.append(" extends "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else {
-					res.append(" super "); //$NON-NLS-1$
+					res.append(" super "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				res.append(addImport(bound, context));
+				res.append(addImport(bound, context)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			return res.toString();
 		}
 
 		if (normalizedBinding.isArray()) {
-			StringBuilder res= new StringBuilder(addImport(normalizedBinding.getElementType(), context));
-			for (int i= normalizedBinding.getDimensions(); i > 0; i--) {
-				res.append("[]"); //$NON-NLS-1$
+			StringBuilder res= new StringBuilder(addImport(normalizedBinding.getElementType(), context)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			for (int i= normalizedBinding.getDimensions(); i > 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				res.append("[]"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			return res.toString();
 		}
@@ -1001,20 +1001,20 @@ public final class ImportRewrite {
 
 			ITypeBinding[] typeArguments= normalizedBinding.getTypeArguments();
 			if (typeArguments.length > 0) {
-				StringBuilder res= new StringBuilder(str);
-				res.append('<');
-				for (int i= 0; i < typeArguments.length; i++) {
+				StringBuilder res= new StringBuilder(str); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				res.append('<'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (int i= 0; i < typeArguments.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (i > 0) {
-						res.append(',');
+						res.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 					ITypeBinding curr= typeArguments[i];
 					if (containsNestedCapture(curr, false)) { // see bug 103044
-						res.append('?');
+						res.append('?'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					} else {
-						res.append(addImport(curr, context));
+						res.append(addImport(curr, context)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
-				res.append('>');
+				res.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				return res.toString();
 			}
 			return str;
@@ -1022,7 +1022,7 @@ public final class ImportRewrite {
 		return getRawName(normalizedBinding);
 	}
 
-	private boolean containsNestedCapture(ITypeBinding binding, boolean isNested) {
+	private boolean containsNestedCapture(ITypeBinding binding, boolean isNested) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (binding == null || binding.isPrimitive() || binding.isTypeVariable()) {
 			return false;
 		}
@@ -1039,7 +1039,7 @@ public final class ImportRewrite {
 			return containsNestedCapture(binding.getElementType(), true);
 		}
 		ITypeBinding[] typeArguments= binding.getTypeArguments();
-		for (ITypeBinding typeArgument : typeArguments) {
+		for (ITypeBinding typeArgument : typeArguments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (containsNestedCapture(typeArgument, true)) {
 				return true;
 			}
@@ -1086,7 +1086,7 @@ public final class ImportRewrite {
 			return null;
 		}
 		this.moduleEntries.put(name, getPackageNamesForModule(moduleBinding, this.astRoot.getJavaElement().getJavaProject()));
-		addEntry(MODULE_PREFIX + name);
+		addEntry(MODULE_PREFIX + name); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		return name;
 	}
 
@@ -1102,7 +1102,7 @@ public final class ImportRewrite {
 	 */
 	public void addModuleImport(String name, List<String> packageNames) {
 		this.moduleEntries.put(name, packageNames);
-		addEntry(MODULE_PREFIX + name);
+		addEntry(MODULE_PREFIX + name); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/**
@@ -1204,11 +1204,11 @@ public final class ImportRewrite {
 	public String addImport(String qualifiedTypeName, ImportRewriteContext context) {
 		int angleBracketOffset= qualifiedTypeName.indexOf('<');
 		if (angleBracketOffset != -1) {
-			return internalAddImport(qualifiedTypeName.substring(0, angleBracketOffset), context, false) + qualifiedTypeName.substring(angleBracketOffset);
+			return internalAddImport(qualifiedTypeName.substring(0, angleBracketOffset), context, false) + qualifiedTypeName.substring(angleBracketOffset); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		int bracketOffset= qualifiedTypeName.indexOf('[');
 		if (bracketOffset != -1) {
-			return internalAddImport(qualifiedTypeName.substring(0, bracketOffset), context, false) + qualifiedTypeName.substring(bracketOffset);
+			return internalAddImport(qualifiedTypeName.substring(0, bracketOffset), context, false) + qualifiedTypeName.substring(bracketOffset); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return internalAddImport(qualifiedTypeName, context, false);
 	}
@@ -1325,8 +1325,8 @@ public final class ImportRewrite {
 	 * @return either the simple member name if the import was successful or else the qualified name if
 	 * an import conflict prevented the import
 	 */
-	public String addStaticImport(String declaringTypeName, String simpleName, boolean isField, ImportRewriteContext context) {
-		String key = declaringTypeName + '.' + simpleName;
+	public String addStaticImport(String declaringTypeName, String simpleName, boolean isField, ImportRewriteContext context) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		String key = declaringTypeName + '.' + simpleName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (declaringTypeName.indexOf('.') == -1) {
 			return key;
 		}
@@ -1340,16 +1340,16 @@ public final class ImportRewrite {
 			return key;
 		}
 		if (res == ImportRewriteContext.RES_NAME_UNKNOWN) {
-			addEntry(STATIC_PREFIX + key);
+			addEntry(STATIC_PREFIX + key); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		if (res == ImportRewriteContext.RES_NAME_UNKNOWN_NEEDS_EXPLICIT_IMPORT) {
-			addEntry(STATIC_PREFIX + key);
+			addEntry(STATIC_PREFIX + key); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			this.staticExplicitSimpleNames.add(simpleName);
 		}
 		return simpleName;
 	}
 
-	private String internalAddImport(String fullTypeName, ImportRewriteContext context, boolean isTypeInUnnamedPackage) {
+	private String internalAddImport(String fullTypeName, ImportRewriteContext context, boolean isTypeInUnnamedPackage) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int idx= fullTypeName.lastIndexOf('.');
 		String typeContainerName, typeName;
 		if (idx != -1) {
@@ -1373,10 +1373,10 @@ public final class ImportRewrite {
 			return fullTypeName;
 		}
 		if (res == ImportRewriteContext.RES_NAME_UNKNOWN) {
-			addEntry(NORMAL_PREFIX + fullTypeName);
+			addEntry(NORMAL_PREFIX + fullTypeName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		if (res == ImportRewriteContext.RES_NAME_UNKNOWN_NEEDS_EXPLICIT_IMPORT) {
-			addEntry(NORMAL_PREFIX + fullTypeName);
+			addEntry(NORMAL_PREFIX + fullTypeName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			this.typeExplicitSimpleNames.add(typeName);
 		}
 		return typeName;
@@ -1416,7 +1416,7 @@ public final class ImportRewrite {
 	 * @return <code>true</code> is returned of an import of the given name could be found.
 	 */
 	public boolean removeImport(String qualifiedName) {
-		return removeEntry(NORMAL_PREFIX + qualifiedName);
+		return removeEntry(NORMAL_PREFIX + qualifiedName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/**
@@ -1431,7 +1431,7 @@ public final class ImportRewrite {
 	 * @since 3.44
 	 */
 	public boolean removeModuleImport(String qualifiedName) {
-		return removeEntry(MODULE_PREFIX + qualifiedName);
+		return removeEntry(MODULE_PREFIX + qualifiedName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/**
@@ -1445,7 +1445,7 @@ public final class ImportRewrite {
 	 * @return <code>true</code> is returned of an import of the given name could be found.
 	 */
 	public boolean removeStaticImport(String qualifiedName) {
-		return removeEntry(STATIC_PREFIX + qualifiedName);
+		return removeEntry(STATIC_PREFIX + qualifiedName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	private static String getRawName(ITypeBinding normalizedBinding) {
@@ -1470,7 +1470,7 @@ public final class ImportRewrite {
 	 * recorded by this rewriter
 	 * @throws CoreException the exception is thrown if the rewrite fails.
 	 */
-	public final TextEdit rewriteImports(IProgressMonitor monitor) throws CoreException {
+	public final TextEdit rewriteImports(IProgressMonitor monitor) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		SubMonitor subMonitor = SubMonitor.convert(monitor,
 				Messages.bind(Messages.importRewrite_processDescription), 2);
@@ -1495,25 +1495,25 @@ public final class ImportRewrite {
 		ImportRewriteAnalyzer computer=
 			new ImportRewriteAnalyzer(this.compilationUnit, usedAstRoot, config);
 
-		for (String addedImport : this.addedImports) {
+		for (String addedImport : this.addedImports) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			boolean isStatic = STATIC_PREFIX == addedImport.charAt(0);
 			boolean isModule = MODULE_PREFIX == addedImport.charAt(0);
 			String qualifiedName = addedImport.substring(1);
 			computer.addImport(isStatic, isModule, qualifiedName);
 		}
 
-		for (String removedImport : this.removedImports) {
+		for (String removedImport : this.removedImports) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			boolean isStatic = STATIC_PREFIX == removedImport.charAt(0);
 			boolean isModule = MODULE_PREFIX == removedImport.charAt(0);
 			String qualifiedName = removedImport.substring(1);
 			computer.removeImport(isStatic, isModule, qualifiedName);
 		}
 
-		for (String typeExplicitSimpleName : this.typeExplicitSimpleNames) {
+		for (String typeExplicitSimpleName : this.typeExplicitSimpleNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			computer.requireExplicitImport(false, typeExplicitSimpleName);
 		}
 
-		for (String staticExplicitSimpleName : this.staticExplicitSimpleNames) {
+		for (String staticExplicitSimpleName : this.staticExplicitSimpleNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			computer.requireExplicitImport(true, staticExplicitSimpleName);
 		}
 
@@ -1526,7 +1526,7 @@ public final class ImportRewrite {
 		return result.getTextEdit();
 	}
 
-	private ImportRewriteConfiguration buildImportRewriteConfiguration() {
+	private ImportRewriteConfiguration buildImportRewriteConfiguration() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ImportRewriteConfiguration.Builder configBuilder;
 
 		if (this.restoreExistingImports) {
@@ -1667,8 +1667,8 @@ public final class ImportRewrite {
 		if (imports == null) {
 			return CharOperation.NO_STRINGS;
 		}
-		List<String> res= new ArrayList<>();
-		for (String curr : imports) {
+		List<String> res= new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (String curr : imports) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (prefix == curr.charAt(0)) {
 				res.add(curr.substring(1));
 			}
@@ -1681,7 +1681,7 @@ public final class ImportRewrite {
 		if (context == null)
 			context= this.defaultContext;
 		annotationBindings = context.removeRedundantTypeAnnotations(annotationBindings, location, type);
-		for (IAnnotationBinding annotationBinding : annotationBindings) {
+		for (IAnnotationBinding annotationBinding : annotationBindings) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Annotation annotation = addAnnotation(annotationBinding, ast, context);
 			if (annotation != null) annotations.add(annotation);
 		}
@@ -1707,7 +1707,7 @@ public final class ImportRewrite {
 
 	private ITypeBinding checkAnnotationAndGenerics(ITypeBinding binding) {
 		ITypeBinding bindingPoint = null;
-		while (binding != null) {
+		while (binding != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IAnnotationBinding annotationBinding [] = binding.getTypeAnnotations();
 			ITypeBinding []  typeArguments = binding.getTypeArguments();
 			if ((annotationBinding != null && annotationBinding.length > 0) ||
@@ -1723,7 +1723,7 @@ public final class ImportRewrite {
 		return bindingPoint;
 	}
 
-	private Type createBaseType(AST ast, ImportRewriteContext context, ITypeBinding normalizedBinding, TypeLocation location) {
+	private Type createBaseType(AST ast, ImportRewriteContext context, ITypeBinding normalizedBinding, TypeLocation location) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Type type;
 		IAnnotationBinding annotationBinding [] = normalizedBinding.getTypeAnnotations();
 		boolean annotsPresent = annotationBinding != null && annotationBinding.length > 0;
@@ -1751,7 +1751,7 @@ public final class ImportRewrite {
 		int noDimensions = normalizedBinding.getDimensions();
 		ArrayType arrayType = ast.newArrayType(elementType, noDimensions);
 		if (ast.apiLevel() >= JLS8_INTERNAL) {
-			for (int i = 0; i < noDimensions; i++) {
+			for (int i = 0; i < noDimensions; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IAnnotationBinding[] typeAnnotations = normalizedBinding.getTypeAnnotations();
 				if (typeAnnotations.length > 0) {
 					Dimension dimension = (Dimension) arrayType.dimensions().get(i);
@@ -1764,7 +1764,7 @@ public final class ImportRewrite {
 		return arrayType;
 	}
 
-	private Type internalAddImport(ITypeBinding binding, AST ast, ImportRewriteContext context, Type currentType, boolean getBase, TypeLocation location) {
+	private Type internalAddImport(ITypeBinding binding, AST ast, ImportRewriteContext context, Type currentType, boolean getBase, TypeLocation location) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Type type = null;
 		ITypeBinding normalizedBinding = null;
 
@@ -1808,7 +1808,7 @@ public final class ImportRewrite {
 		if (typeArguments.length > 0) {
 			ParameterizedType paramType = ast.newParameterizedType(type);
 			List arguments = paramType.typeArguments();
-			for (ITypeBinding curr : typeArguments) {
+			for (ITypeBinding curr : typeArguments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (containsNestedCapture(curr, false)) { // see bug 103044
 					arguments.add(ast.newWildcardType());
 				} else {
@@ -1820,7 +1820,7 @@ public final class ImportRewrite {
 		return type;
 	}
 
-	private Expression addAnnotation(AST ast, Object value, ImportRewriteContext context) {
+	private Expression addAnnotation(AST ast, Object value, ImportRewriteContext context) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (value instanceof Boolean) {
 			return ast.newBooleanLiteral(((Boolean) value).booleanValue());
 		} else if (value instanceof Byte || value instanceof Short || value instanceof Integer || value instanceof Long
@@ -1865,7 +1865,7 @@ public final class ImportRewrite {
 			ArrayInitializer initializer = ast.newArrayInitializer();
 			List expressions = initializer.expressions();
 			int size = values.length;
-			for (int i = 0; i < size; i++)
+			for (int i = 0; i < size; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				expressions.add(addAnnotation(ast, values[i], context));
 			return initializer;
 		} else {

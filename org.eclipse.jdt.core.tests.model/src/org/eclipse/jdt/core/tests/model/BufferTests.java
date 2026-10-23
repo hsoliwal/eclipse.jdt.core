@@ -44,7 +44,7 @@ protected IBuffer createBuffer(String path, String content) throws CoreException
 	ICompilationUnit cu = this.getCompilationUnit(path);
 	IBuffer buffer = cu.getBuffer();
 	buffer.addBufferChangedListener(this);
-	this.events = new ArrayList();
+	this.events = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	return buffer;
 }
 protected void deleteBuffer(IBuffer buffer) throws CoreException {
@@ -84,7 +84,7 @@ public static Test suite() {
 /**
  * Tests appending to a buffer.
  */
-public void testAppend() throws CoreException {
+public void testAppend() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IBuffer buffer = createBuffer(
 		"P/x/y/A.java",
 		"package x.y;\n" +
@@ -111,14 +111,14 @@ public void testAppend() throws CoreException {
 /**
  * Tests appending to a read-only buffer.
  */
-public void testAppendReadOnly() throws CoreException {
+public void testAppendReadOnly() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IBuffer buffer = null;
 	try {
 		createJavaProject("P1", new String[] {}, new String[] {"JCL18_LIB,JCL18_SRC,JCL_SRCROOT"}, "");
 		IClassFile classFile = getClassFile("P1", getExternalJCLPathString(), "java.lang", "String.class");
 		buffer = classFile.getBuffer();
 		buffer.addBufferChangedListener(this);
-		this.events = new ArrayList();
+		this.events = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		buffer.append("\nclass B {}");
 		assertTrue("unexpected event", this.events.isEmpty());
 		assertSourceEquals(
@@ -157,7 +157,7 @@ public void testClose() throws CoreException {
 /**
  * Tests getting the underlying resource of a buffer.
  */
-public void testGetUnderlyingResource() throws CoreException {
+public void testGetUnderlyingResource() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IBuffer buffer = createBuffer(
 		"P/x/y/A.java",
 		"package x.y;\n" +
@@ -181,7 +181,7 @@ public void testGetUnderlyingResource() throws CoreException {
 /**
  * Tests deleting text at the beginning of a buffer.
  */
-public void testDeleteBeginning() throws CoreException {
+public void testDeleteBeginning() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IBuffer buffer = createBuffer(
 		"P/x/y/A.java",
 		"package x.y;\n" +
@@ -205,7 +205,7 @@ public void testDeleteBeginning() throws CoreException {
 /**
  * Tests deleting text in the middle of a buffer.
  */
-public void testDeleteMiddle() throws CoreException {
+public void testDeleteMiddle() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IBuffer buffer = createBuffer(
 		"P/x/y/A.java",
 		"package x.y;\n" +
@@ -231,7 +231,7 @@ public void testDeleteMiddle() throws CoreException {
 /**
  * Tests deleting text at the end of a buffer.
  */
-public void testDeleteEnd() throws CoreException {
+public void testDeleteEnd() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IBuffer buffer = createBuffer(
 		"P/x/y/A.java",
 		"package x.y;\n" +
@@ -323,7 +323,7 @@ public void testGetText() throws CoreException {
 /**
  * Tests inserting text at the beginning of a buffer.
  */
-public void testInsertBeginning() throws CoreException {
+public void testInsertBeginning() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IBuffer buffer = createBuffer(
 		"P/x/y/A.java",
 		"package x.y;\n" +
@@ -349,7 +349,7 @@ public void testInsertBeginning() throws CoreException {
 /**
  * Tests replacing text at the beginning of a buffer.
  */
-public void testReplaceBeginning() throws CoreException {
+public void testReplaceBeginning() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IBuffer buffer = createBuffer(
 		"P/x/y/A.java",
 		"package x.y;\n" +
@@ -374,7 +374,7 @@ public void testReplaceBeginning() throws CoreException {
 /**
  * Tests replacing text in the middle of a buffer.
  */
-public void testReplaceMiddle() throws CoreException {
+public void testReplaceMiddle() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IBuffer buffer = createBuffer(
 		"P/x/y/A.java",
 		"package x.y;\n" +
@@ -400,7 +400,7 @@ public void testReplaceMiddle() throws CoreException {
 /**
  * Tests replacing text at the end of a buffer.
  */
-public void testReplaceEnd() throws CoreException {
+public void testReplaceEnd() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IBuffer buffer = createBuffer(
 		"P/x/y/A.java",
 		"package x.y;\n" +
@@ -428,7 +428,7 @@ public void testReplaceEnd() throws CoreException {
  * Ensure that saving a buffer on a non-yet existing resource and using the UTF-8 encoding doesn't throw an exception
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=234307 )
  */
-public void testSaveNonExistingUTF8() throws Exception {
+public void testSaveNonExistingUTF8() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IBuffer buffer = (new WorkingCopyOwner() {}).createBuffer(getCompilationUnit("/P/X234307.java"));
 	buffer.setContents(
 		"public class X234307 {\n" +
@@ -453,7 +453,7 @@ public void testSaveNonExistingUTF8() throws Exception {
 /**
  * Tests inserting text in the middle of a buffer.
  */
-public void testInsertMiddle() throws CoreException {
+public void testInsertMiddle() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IBuffer buffer = createBuffer(
 		"P/x/y/A.java",
 		"package x.y;\n" +
@@ -480,7 +480,7 @@ public void testInsertMiddle() throws CoreException {
 /**
  * Tests inserting text at the end of a buffer.
  */
-public void testInsertEnd() throws CoreException {
+public void testInsertEnd() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IBuffer buffer = createBuffer(
 		"P/x/y/A.java",
 		"package x.y;\n" +
@@ -510,7 +510,7 @@ public void testInsertEnd() throws CoreException {
  * Tests replacing text within a buffer using a create import
  * (regression test for PR #1G7A0WI).
  */
-public void testCreateImport() throws CoreException {
+public void testCreateImport() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IFile file = this.createFile(
 		"P/x/y/A.java",
 		"package x.y;\n" +
@@ -523,7 +523,7 @@ public void testCreateImport() throws CoreException {
 		copy = this.getCompilationUnit("P/x/y/A.java").getWorkingCopy(null);
 		buffer = copy.getBuffer();
 		buffer.addBufferChangedListener(this);
-		this.events = new ArrayList();
+		this.events = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		copy.createImport("java.io.IOException", null, null);
 		assertBufferEvents(
 			"(12, 0) import java.io.IOException;\n" +
@@ -557,21 +557,21 @@ protected void assertBufferEvent(int offset, int length, String text) {
 	}
 }
 
-protected void assertBufferEvents(String expected) {
-	StringBuilder buffer = new StringBuilder();
+protected void assertBufferEvents(String expected) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	if (this.events == null)
-		buffer.append("<null>");
+		buffer.append("<null>"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	else {
-		for (int i = 0, length = this.events.size(); i < length; i++) {
+		for (int i = 0, length = this.events.size(); i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			BufferChangedEvent event = (BufferChangedEvent) this.events.get(i);
-			buffer.append('(');
-			buffer.append(event.getOffset());
-			buffer.append(", ");
-			buffer.append(event.getLength());
-			buffer.append(") ");
-			buffer.append(event.getText());
+			buffer.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(event.getOffset()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(", "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(event.getLength()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(") "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(event.getText()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (i < length-1)
-				buffer.append("\n");
+				buffer.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 	assertSourceEquals("Unexpected buffer events", expected, buffer.toString());

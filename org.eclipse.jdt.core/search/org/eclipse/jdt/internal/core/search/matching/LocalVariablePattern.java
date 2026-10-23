@@ -39,21 +39,21 @@ public LocalVariablePattern(LocalVariable localVariable, int limitTo, int matchR
 	super(LOCAL_VAR_PATTERN, localVariable.getElementName().toCharArray(), limitTo, matchRule);
 	this.localVariable = localVariable;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void findIndexMatches(Index index, IndexQueryRequestor requestor, SearchParticipant participant, IJavaSearchScope scope, IProgressMonitor progressMonitor) {
     IPackageFragmentRoot root = (IPackageFragmentRoot)this.localVariable.getAncestor(IJavaElement.PACKAGE_FRAGMENT_ROOT);
 	String documentPath;
 	String relativePath;
     if (root.isArchive()) {
         IType type = (IType)this.localVariable.getAncestor(IJavaElement.TYPE);
-        relativePath = (type.getFullyQualifiedName('$')).replace('.', '/') + SuffixConstants.SUFFIX_STRING_class;
+        relativePath = (type.getFullyQualifiedName('$')).replace('.', '/') + SuffixConstants.SUFFIX_STRING_class; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         IModuleDescription md = root.getModuleDescription();
         if(md != null) {
         	String module = md.getElementName();
-				documentPath = root.getPath() + IJavaSearchScope.JAR_FILE_ENTRY_SEPARATOR
+				documentPath = root.getPath() + IJavaSearchScope.JAR_FILE_ENTRY_SEPARATOR //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						+ module + IJavaSearchScope.JAR_FILE_ENTRY_SEPARATOR + relativePath;
         } else {
-        	documentPath = root.getPath() + IJavaSearchScope.JAR_FILE_ENTRY_SEPARATOR + relativePath;
+        	documentPath = root.getPath() + IJavaSearchScope.JAR_FILE_ENTRY_SEPARATOR + relativePath; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         }
     } else {
 		IPath path = this.localVariable.getPath();
@@ -84,13 +84,13 @@ public void findIndexMatches(Index index, IndexQueryRequestor requestor, SearchP
 @Override
 protected StringBuilder print(StringBuilder output) {
 	if (this.findDeclarations) {
-		output.append(this.findReferences
+		output.append(this.findReferences //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			? "LocalVarCombinedPattern: " //$NON-NLS-1$
 			: "LocalVarDeclarationPattern: "); //$NON-NLS-1$
 	} else {
-		output.append("LocalVarReferencePattern: "); //$NON-NLS-1$
+		output.append("LocalVarReferencePattern: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	output.append(this.localVariable.toStringWithAncestors());
+	output.append(this.localVariable.toStringWithAncestors()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return super.print(output);
 }
 }

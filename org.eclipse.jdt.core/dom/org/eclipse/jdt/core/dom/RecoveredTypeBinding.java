@@ -148,7 +148,7 @@ class RecoveredTypeBinding implements ITypeBinding {
 		return this.dimensions;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public ITypeBinding getElementType() {
 		if (this.binding != null) {
 			if (this.binding.isArrayType()) {
@@ -193,12 +193,12 @@ class RecoveredTypeBinding implements ITypeBinding {
 	@Override
 	public String getName() {
 		char[] brackets = new char[this.dimensions * 2];
-		for (int i = this.dimensions * 2 - 1; i >= 0; i -= 2) {
+		for (int i = this.dimensions * 2 - 1; i >= 0; i -= 2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			brackets[i] = ']';
 			brackets[i - 1] = '[';
 		}
-		StringBuilder buffer = new StringBuilder(getInternalName());
-		buffer.append(brackets);
+		StringBuilder buffer = new StringBuilder(getInternalName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append(brackets); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return String.valueOf(buffer);
 	}
 
@@ -235,7 +235,7 @@ class RecoveredTypeBinding implements ITypeBinding {
 		return packageBinding != null ? packageBinding.getModule() : null;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public IPackageBinding getPackage() {
 		if (this.binding != null) {
 			switch (this.binding.kind()) {
@@ -263,14 +263,14 @@ class RecoveredTypeBinding implements ITypeBinding {
 	public String getQualifiedName() {
 		ReferenceBinding referenceBinding = getReferenceBinding();
 		if (referenceBinding != null) {
-			StringBuilder buffer = new StringBuilder();
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			char[] brackets = new char[this.dimensions * 2];
-			for (int i = this.dimensions * 2 - 1; i >= 0; i -= 2) {
+			for (int i = this.dimensions * 2 - 1; i >= 0; i -= 2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				brackets[i] = ']';
 				brackets[i - 1] = '[';
 			}
-			buffer.append(CharOperation.toString(referenceBinding.compoundName));
-			buffer.append(brackets);
+			buffer.append(CharOperation.toString(referenceBinding.compoundName)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(brackets); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return String.valueOf(buffer);
 		} else {
 			return getName();
@@ -301,7 +301,7 @@ class RecoveredTypeBinding implements ITypeBinding {
 		return this.resolver.resolveWellKnownType("java.lang.Object"); //$NON-NLS-1$
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public ITypeBinding[] getTypeArguments() {
 		if (this.binding != null) {
 			return this.typeArguments = TypeBinding.NO_TYPE_BINDINGS;
@@ -319,7 +319,7 @@ class RecoveredTypeBinding implements ITypeBinding {
 			List typeArgumentsList = parameterizedType.typeArguments();
 			int size = typeArgumentsList.size();
 			ITypeBinding[] temp = new ITypeBinding[size];
-			for (int i = 0; i < size; i++) {
+			for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ITypeBinding currentTypeBinding = ((Type) typeArgumentsList.get(i)).resolveBinding();
 				if (currentTypeBinding == null) {
 					return this.typeArguments = TypeBinding.NO_TYPE_BINDINGS;
@@ -506,42 +506,42 @@ class RecoveredTypeBinding implements ITypeBinding {
 			final IJavaElement javaElement = packageBinding.getJavaElement();
 			if (javaElement != null && javaElement.getElementType() == IJavaElement.PACKAGE_FRAGMENT) {
 				// best effort: we don't know if the recovered binding is a binary or source binding, so go with a simple source type
-				return ((PackageFragment) javaElement).getCompilationUnit(getInternalName() + SuffixConstants.SUFFIX_STRING_java).getType(this.getName());
+				return ((PackageFragment) javaElement).getCompilationUnit(getInternalName() + SuffixConstants.SUFFIX_STRING_java).getType(this.getName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		return null;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public String getKey() {
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("Recovered#"); //$NON-NLS-1$
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("Recovered#"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (this.innerTypeBinding != null) {
-			buffer.append("innerTypeBinding") //$NON-NLS-1$
+			buffer.append("innerTypeBinding") //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			      .append(this.innerTypeBinding.getKey());
 		} else if (this.currentType != null) {
-			buffer.append("currentType") //$NON-NLS-1$
+			buffer.append("currentType") //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			      .append(this.currentType.toString());
 		} else if (this.binding != null) {
-			buffer.append("typeBinding") //$NON-NLS-1$
+			buffer.append("typeBinding") //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				  .append(this.binding.computeUniqueKey());
 		} else if (this.variableDeclaration != null) {
-			buffer
+			buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				.append("variableDeclaration") //$NON-NLS-1$
 				.append(this.variableDeclaration.getClass())
 				.append(this.variableDeclaration.getName().getIdentifier())
 				.append(this.variableDeclaration.getExtraDimensions());
 		}
-		buffer.append(getDimensions());
+		buffer.append(getDimensions()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (this.typeArguments != null) {
-			buffer.append('<');
-			for (int i = 0, max = this.typeArguments.length; i < max; i++) {
+			buffer.append('<'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (int i = 0, max = this.typeArguments.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (i != 0) {
-					buffer.append(',');
+					buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				buffer.append(this.typeArguments[i].getKey());
+				buffer.append(this.typeArguments[i].getKey()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buffer.append('>');
+			buffer.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return String.valueOf(buffer);
 	}
@@ -572,7 +572,7 @@ class RecoveredTypeBinding implements ITypeBinding {
 		return false;
 	}
 
-	private String getTypeNameFrom(Type type) {
+	private String getTypeNameFrom(Type type) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (type == null) return Util.EMPTY_STRING;
 		switch(type.getNodeType0()) {
 			case ASTNode.ARRAY_TYPE :
@@ -581,18 +581,18 @@ class RecoveredTypeBinding implements ITypeBinding {
 				return getTypeNameFrom(type);
 			case ASTNode.PARAMETERIZED_TYPE :
 				ParameterizedType parameterizedType = (ParameterizedType) type;
-				StringBuilder buffer = new StringBuilder(getTypeNameFrom(parameterizedType.getType()));
+				StringBuilder buffer = new StringBuilder(getTypeNameFrom(parameterizedType.getType())); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 				ITypeBinding[] tArguments = getTypeArguments();
 				final int typeArgumentsLength = tArguments.length;
 				if (typeArgumentsLength != 0) {
-					buffer.append('<');
-					for (int i = 0; i < typeArgumentsLength; i++) {
+					buffer.append('<'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					for (int i = 0; i < typeArgumentsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (i > 0) {
-							buffer.append(',');
+							buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
-						buffer.append(tArguments[i].getName());
+						buffer.append(tArguments[i].getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
-					buffer.append('>');
+					buffer.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				return String.valueOf(buffer);
 			case ASTNode.PRIMITIVE_TYPE :
@@ -616,7 +616,7 @@ class RecoveredTypeBinding implements ITypeBinding {
 		return Util.EMPTY_STRING;
 	}
 
-	private Type getType() {
+	private Type getType() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.currentType != null) {
 			return this.currentType;
 		}

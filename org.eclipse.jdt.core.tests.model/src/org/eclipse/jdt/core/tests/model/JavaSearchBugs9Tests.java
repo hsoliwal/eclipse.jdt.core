@@ -84,42 +84,42 @@ class ReferenceCollector extends JavaSearchResultCollector {
 		ReferenceMatch refMatch = (ReferenceMatch) this.match;
 		IJavaElement localElement = refMatch.getLocalElement();
 		if (localElement != null) {
-			this.line.append("+[");
+			this.line.append("+["); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (localElement.getElementType() == IJavaElement.ANNOTATION) {
-				this.line.append('@');
-				this.line.append(localElement.getElementName());
-				this.line.append(" on ");
-				this.line.append(localElement.getParent().getElementName());
+				this.line.append('@'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				this.line.append(localElement.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				this.line.append(" on "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				this.line.append(localElement.getParent().getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				this.line.append(localElement.getElementName());
+				this.line.append(localElement.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			this.line.append(']');
+			this.line.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
 }
 class TypeReferenceCollector extends ReferenceCollector {
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void writeLine() throws CoreException {
 		super.writeLine();
 		TypeReferenceMatch typeRefMatch = (TypeReferenceMatch) this.match;
 		IJavaElement[] others = typeRefMatch.getOtherElements();
 		int length = others==null ? 0 : others.length;
 		if (length > 0) {
-			this.line.append("+[");
-			for (int i=0; i<length; i++) {
+			this.line.append("+["); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IJavaElement other = others[i];
-				if (i>0) this.line.append(',');
+				if (i>0) this.line.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (other.getElementType() == IJavaElement.ANNOTATION) {
-					this.line.append('@');
-					this.line.append(other.getElementName());
-					this.line.append(" on ");
-					this.line.append(other.getParent().getElementName());
+					this.line.append('@'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.line.append(other.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.line.append(" on "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.line.append(other.getParent().getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else {
-					this.line.append(other.getElementName());
+					this.line.append(other.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
-			this.line.append(']');
+			this.line.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 }
@@ -159,7 +159,7 @@ protected void setUp () throws Exception {
 	this.resultCollector.showAccuracy(true);
 }
 
-public void _testBug499338_001() throws CoreException {
+public void _testBug499338_001() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 			"public class X {\n" +
@@ -194,7 +194,7 @@ public void _testBug499338_001() throws CoreException {
 			"src/X.java void X.main(String[]) [z1] EXACT_MATCH");
 }
 
-public void testBug501162_001() throws Exception {
+public void testBug501162_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -245,7 +245,7 @@ public void testBug501162_001() throws Exception {
 		deleteProject("second");
 	}
 }
-public void testBug501162_002() throws Exception {
+public void testBug501162_002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -300,7 +300,7 @@ public void testBug501162_002() throws Exception {
 		deleteProject("second");
 	}
 }
-public void testBug501162_003() throws Exception {
+public void testBug501162_003() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -356,7 +356,7 @@ public void testBug501162_003() throws Exception {
 		deleteProject("second");
 	}
 }
-public void testBug501162_005() throws CoreException {
+public void testBug501162_005() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/module-info.java",
 			"module first {\n" +
@@ -375,7 +375,7 @@ public void testBug501162_005() throws CoreException {
 	assertSearchResults(
 			"src/module-info.java first [first] EXACT_MATCH");
 }
-public void testBug501162_006() throws Exception {
+public void testBug501162_006() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -424,7 +424,7 @@ public void testBug501162_006() throws Exception {
 		deleteProject("second");
 	}
 }
-public void testBug501162_007() throws Exception {
+public void testBug501162_007() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -473,7 +473,7 @@ public void testBug501162_007() throws Exception {
 		deleteProject("second");
 	}
 }
-public void testBug501162_008() throws Exception {
+public void testBug501162_008() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -523,7 +523,7 @@ public void testBug501162_008() throws Exception {
 	}
 }
 
-public void testBug501162_009() throws Exception {
+public void testBug501162_009() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -580,7 +580,7 @@ public void testBug501162_009() throws Exception {
 		deleteProject("second");
 	}
 }
-public void testBug501162_010() throws Exception {
+public void testBug501162_010() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -629,7 +629,7 @@ public void testBug501162_010() throws Exception {
 		deleteProject("second");
 	}
 }
-public void testBug501162_011() throws Exception {
+public void testBug501162_011() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -678,7 +678,7 @@ public void testBug501162_011() throws Exception {
 		deleteProject("second");
 	}
 }
-public void testBug501162_012() throws Exception {
+public void testBug501162_012() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -733,7 +733,7 @@ public void testBug501162_012() throws Exception {
 		deleteProject("second");
 	}
 }
-public void testBug501162_013() throws Exception {
+public void testBug501162_013() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -788,7 +788,7 @@ public void testBug501162_013() throws Exception {
 		deleteProject("second");
 	}
 }
-public void testBug501162_014() throws Exception {
+public void testBug501162_014() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -843,7 +843,7 @@ public void testBug501162_014() throws Exception {
 		deleteProject("second");
 	}
 }
-public void testBug501162_015() throws Exception {
+public void testBug501162_015() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -898,7 +898,7 @@ public void testBug501162_015() throws Exception {
 		deleteProject("second");
 	}
 }
-public void testBug501162_016() throws Exception {
+public void testBug501162_016() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -953,7 +953,7 @@ public void testBug501162_016() throws Exception {
 		deleteProject("second");
 	}
 }
-public void testBug501162_017() throws Exception {
+public void testBug501162_017() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -1008,7 +1008,7 @@ public void testBug501162_017() throws Exception {
 		deleteProject("second");
 	}
 }
-public void testBug501162_018() throws Exception {
+public void testBug501162_018() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -1062,7 +1062,7 @@ public void testBug501162_018() throws Exception {
 		deleteProject("second");
 	}
 }
-public void testBug501162_019() throws Exception {
+public void testBug501162_019() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -1101,7 +1101,7 @@ public void testBug501162_019() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug501162_020() throws Exception {
+public void testBug501162_020() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -1141,7 +1141,7 @@ public void testBug501162_020() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug501162_021() throws Exception {
+public void testBug501162_021() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -1181,7 +1181,7 @@ public void testBug501162_021() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug501162_022() throws Exception {
+public void testBug501162_022() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -1218,7 +1218,7 @@ public void testBug501162_022() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug501162_023() throws Exception {
+public void testBug501162_023() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -1256,7 +1256,7 @@ public void testBug501162_023() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug501162_024() throws Exception {
+public void testBug501162_024() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -1293,7 +1293,7 @@ public void testBug501162_024() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug501162_025() throws Exception {
+public void testBug501162_025() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -1330,7 +1330,7 @@ public void testBug501162_025() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug501162_026() throws Exception {
+public void testBug501162_026() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -1367,7 +1367,7 @@ public void testBug501162_026() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug501162_027() throws Exception {
+public void testBug501162_027() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -1406,7 +1406,7 @@ public void testBug501162_027() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug501162_028() throws Exception {
+public void testBug501162_028() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -1443,7 +1443,7 @@ public void testBug501162_028() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug501162_029() throws Exception {
+public void testBug501162_029() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -1483,7 +1483,7 @@ public void testBug501162_029() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug501162_030() throws Exception {
+public void testBug501162_030() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -1520,7 +1520,7 @@ public void testBug501162_030() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug501162_031() throws Exception {
+public void testBug501162_031() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -1557,7 +1557,7 @@ public void testBug501162_031() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug501162_032() throws Exception {
+public void testBug501162_032() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -1594,7 +1594,7 @@ public void testBug501162_032() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug501162_033() throws Exception {
+public void testBug501162_033() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -1633,7 +1633,7 @@ public void testBug501162_033() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug501162_034() throws Exception {
+public void testBug501162_034() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -1673,7 +1673,7 @@ public void testBug501162_034() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug501162_035() throws Exception {
+public void testBug501162_035() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -1713,7 +1713,7 @@ public void testBug501162_035() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void _testBug501162_036() throws Exception {
+public void _testBug501162_036() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -1750,7 +1750,7 @@ public void _testBug501162_036() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug501162_037() throws Exception {
+public void testBug501162_037() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -1788,7 +1788,7 @@ public void testBug501162_037() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug501162_038() throws Exception {
+public void testBug501162_038() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -1825,7 +1825,7 @@ public void testBug501162_038() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug501162_039() throws Exception {
+public void testBug501162_039() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -1862,7 +1862,7 @@ public void testBug501162_039() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug501162_040() throws Exception {
+public void testBug501162_040() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -1899,7 +1899,7 @@ public void testBug501162_040() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug501162_041() throws Exception {
+public void testBug501162_041() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -1938,7 +1938,7 @@ public void testBug501162_041() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug501162_042() throws Exception {
+public void testBug501162_042() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -1975,7 +1975,7 @@ public void testBug501162_042() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug501162_043() throws Exception {
+public void testBug501162_043() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -2017,7 +2017,7 @@ public void testBug501162_043() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug501162_044() throws Exception {
+public void testBug501162_044() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -2055,7 +2055,7 @@ public void testBug501162_044() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug501162_045() throws Exception {
+public void testBug501162_045() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -2092,7 +2092,7 @@ public void testBug501162_045() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug501162_046() throws Exception {
+public void testBug501162_046() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -2129,7 +2129,7 @@ public void testBug501162_046() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void _testBug501162_047() throws Exception {
+public void _testBug501162_047() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -2201,7 +2201,7 @@ public void _testBug501162_047() throws Exception {
 		deleteProject("split.second");
 	}
 }
-public void testBug519211_001() throws CoreException {
+public void testBug519211_001() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -2253,7 +2253,7 @@ public void testBug519211_001() throws CoreException {
 		deleteProject("second");
 	}
 }
-public void testBug519980_001() throws Exception {
+public void testBug519980_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -2301,7 +2301,7 @@ public void testBug519980_001() throws Exception {
 		deleteProject("second");
 	}
 }
-public void testBug519980_002() throws Exception {
+public void testBug519980_002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -2350,7 +2350,7 @@ public void testBug519980_002() throws Exception {
 		deleteProject("second");
 	}
 }
-public void testBug520477_001() throws Exception {
+public void testBug520477_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src", "src2"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -2385,7 +2385,7 @@ public void testBug520477_001() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug521221_001() throws Exception {
+public void testBug521221_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -2418,7 +2418,7 @@ public void testBug521221_001() throws Exception {
 		deleteProject("JavaSearchBugs9");
 	}
 }
-public void testBug522455_001() throws CoreException {
+public void testBug522455_001() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/pack/MyAnnot.java",
 			"package pack;\n" +
@@ -2444,7 +2444,7 @@ public void testBug522455_001() throws CoreException {
 			null);
 	assertSearchResults("src/module-info.java mod.one [MyAnnot] EXACT_MATCH");
 }
-public void testBug519151_001() throws CoreException {
+public void testBug519151_001() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/pack/X.java",
 			"package pack;\n" +
@@ -2453,7 +2453,7 @@ public void testBug519151_001() throws CoreException {
 	this.workingCopies[1] = getWorkingCopy("/JavaSearchBugs/src/module-info.java",
 			"import pack.*;\n" +
 			"module mod.one {}");
-	String needle = "mod.one" + this.module_separator + "pack.X";
+	String needle = "mod.one" + this.module_separator + "pack.X"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	SearchPattern pattern = SearchPattern.createPattern(needle, IJavaSearchConstants.TYPE, DECLARATIONS, ERASURE_RULE);
 	new SearchEngine(this.workingCopies).search(pattern,
 			new SearchParticipant[] {SearchEngine.getDefaultSearchParticipant()},
@@ -2479,7 +2479,7 @@ public void testBug519151_002() throws CoreException {
 			null);
 	assertSearchResults("src/pack/X.java pack.X [X] EXACT_MATCH");
 }
-public void testBug519151_003() throws CoreException {
+public void testBug519151_003() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/pack/X.java",
 			"package pack;\n" +
@@ -2488,7 +2488,7 @@ public void testBug519151_003() throws CoreException {
 	this.workingCopies[1] = getWorkingCopy("/JavaSearchBugs/src/module-info.java",
 			"import pack.*;\n" +
 			"module mod.one {}");
-	String needle = this.module_separator + "pack.X";
+	String needle = this.module_separator + "pack.X"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	SearchPattern pattern = SearchPattern.createPattern(needle, IJavaSearchConstants.TYPE, DECLARATIONS, ERASURE_RULE);
 	new SearchEngine(this.workingCopies).search(pattern,
 			new SearchParticipant[] {SearchEngine.getDefaultSearchParticipant()},
@@ -2497,7 +2497,7 @@ public void testBug519151_003() throws CoreException {
 			null);
 	assertSearchResults("");
 }
-public void testBug519151_004() throws Exception {
+public void testBug519151_004() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -2531,7 +2531,7 @@ public void testBug519151_004() throws Exception {
 		project2.open(null);
 		project1.open(null);
 
-		String needle = "first" + this.module_separator + "pack.X";
+		String needle = "first" + this.module_separator + "pack.X"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		SearchPattern pattern = SearchPattern.createPattern(needle, IJavaSearchConstants.TYPE, DECLARATIONS, ERASURE_RULE);
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaProject[]
 				{getJavaProject("JavaSearchBugs9")});
@@ -2546,7 +2546,7 @@ public void testBug519151_004() throws Exception {
 	}
 }
 
-public void testBug519151_005() throws Exception {
+public void testBug519151_005() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -2595,7 +2595,7 @@ public void testBug519151_005() throws Exception {
 	}
 }
 
-public void testBug519151_006() throws Exception {
+public void testBug519151_006() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -2629,7 +2629,7 @@ public void testBug519151_006() throws Exception {
 		project2.open(null);
 		project1.open(null);
 
-		String needle = this.module_separator + "pack.X";
+		String needle = this.module_separator + "pack.X"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		SearchPattern pattern = SearchPattern.createPattern(needle, IJavaSearchConstants.TYPE, DECLARATIONS, ERASURE_RULE);
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaProject[]
 				{getJavaProject("JavaSearchBugs9")});
@@ -2643,7 +2643,7 @@ public void testBug519151_006() throws Exception {
 	}
 }
 
-public void testBug519151_007() throws Exception {
+public void testBug519151_007() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -2687,7 +2687,7 @@ public void testBug519151_007() throws Exception {
 		deleteProject("second");
 	}
 }
-public void testBug519151_008() throws Exception {
+public void testBug519151_008() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -2727,7 +2727,7 @@ public void testBug519151_008() throws Exception {
 		deleteProject("second");
 	}
 }
-public void testBug519151_009() throws Exception {
+public void testBug519151_009() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -2761,7 +2761,7 @@ public void testBug519151_009() throws Exception {
 		project2.open(null);
 		project1.open(null);
 
-		String needle = "first,second" + this.module_separator + "pack.X";
+		String needle = "first,second" + this.module_separator + "pack.X"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		SearchPattern pattern = SearchPattern.createPattern(needle, IJavaSearchConstants.TYPE, DECLARATIONS, ERASURE_RULE);
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaProject[]
 				{getJavaProject("JavaSearchBugs9")});
@@ -2776,7 +2776,7 @@ public void testBug519151_009() throws Exception {
 		deleteProject("second");
 	}
 }
-public void testBug519151_010() throws Exception {
+public void testBug519151_010() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -2810,7 +2810,7 @@ public void testBug519151_010() throws Exception {
 		project2.open(null);
 		project1.open(null);
 
-		String needle = " first, second"+ this.module_separator +"pack.X"; // with white space
+		String needle = " first, second"+ this.module_separator +"pack.X"; // with white space //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		SearchPattern pattern = SearchPattern.createPattern(needle, IJavaSearchConstants.TYPE, DECLARATIONS, ERASURE_RULE);
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaProject[]
 				{getJavaProject("JavaSearchBugs9")});
@@ -2825,7 +2825,7 @@ public void testBug519151_010() throws Exception {
 		deleteProject("second");
 	}
 }
-public void testBug519151_011() throws Exception {
+public void testBug519151_011() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -2859,7 +2859,7 @@ public void testBug519151_011() throws Exception {
 		project2.open(null);
 		project1.open(null);
 
-		String needle = "mod."+ this.module_separator +"pack.X";
+		String needle = "mod."+ this.module_separator +"pack.X"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		SearchPattern pattern = SearchPattern.createPattern(needle, IJavaSearchConstants.TYPE, DECLARATIONS, SearchPattern.R_PREFIX_MATCH);
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaProject[]
 				{getJavaProject("JavaSearchBugs9")});
@@ -2875,7 +2875,7 @@ public void testBug519151_011() throws Exception {
 	}
 }
 
-public void testBug519151_012() throws Exception {
+public void testBug519151_012() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -2909,7 +2909,7 @@ public void testBug519151_012() throws Exception {
 		project2.open(null);
 		project1.open(null);
 
-		String needle = "mod.*" + this.module_separator + "pack.X";
+		String needle = "mod.*" + this.module_separator + "pack.X"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		SearchPattern pattern = SearchPattern.createPattern(needle, IJavaSearchConstants.TYPE, DECLARATIONS, SearchPattern.R_PATTERN_MATCH);
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaProject[]
 				{getJavaProject("JavaSearchBugs9")});
@@ -2924,7 +2924,7 @@ public void testBug519151_012() throws Exception {
 		deleteProject("second");
 	}
 }
-public void testBug519151_013() throws Exception {
+public void testBug519151_013() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -2959,7 +2959,7 @@ public void testBug519151_013() throws Exception {
 		project2.open(null);
 		project1.open(null);
 
-		String needle = "first" + this.module_separator + "pack.Y";
+		String needle = "first" + this.module_separator + "pack.Y"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		SearchPattern pattern = SearchPattern.createPattern(needle, IJavaSearchConstants.TYPE, IJavaSearchConstants.MODULE_GRAPH, SearchPattern.R_PATTERN_MATCH);
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaProject[]
 				{getJavaProject("JavaSearchBugs9")});
@@ -2973,7 +2973,7 @@ public void testBug519151_013() throws Exception {
 		deleteProject("second");
 	}
 }
-public void testBug519151_014() throws Exception {
+public void testBug519151_014() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -3023,7 +3023,7 @@ public void testBug519151_014() throws Exception {
 		project2.open(null);
 		project1.open(null);
 
-		String needle = "third" + this.module_separator + "pack.X";
+		String needle = "third" + this.module_separator + "pack.X"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		SearchPattern pattern = SearchPattern.createPattern(needle, IJavaSearchConstants.TYPE, IJavaSearchConstants.MODULE_GRAPH, SearchPattern.R_PATTERN_MATCH);
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaProject[]
 				{getJavaProject("JavaSearchBugs9")});
@@ -3039,7 +3039,7 @@ public void testBug519151_014() throws Exception {
 	}
 }
 
-public void testBug519151_015() throws Exception {
+public void testBug519151_015() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -3089,7 +3089,7 @@ public void testBug519151_015() throws Exception {
 		project2.open(null);
 		project1.open(null);
 
-		String needle = "mod.second,third" + this.module_separator + "pack.X";
+		String needle = "mod.second,third" + this.module_separator + "pack.X"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		SearchPattern pattern = SearchPattern.createPattern(needle, IJavaSearchConstants.TYPE, IJavaSearchConstants.MODULE_GRAPH, SearchPattern.R_PATTERN_MATCH);
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaProject[]
 				{getJavaProject("JavaSearchBugs9")});
@@ -3106,7 +3106,7 @@ public void testBug519151_015() throws Exception {
 	}
 }
 
-public void testBug519151_016() throws Exception {
+public void testBug519151_016() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -3156,7 +3156,7 @@ public void testBug519151_016() throws Exception {
 		project2.open(null);
 		project1.open(null);
 
-		String needle = "non.existant.module" + this.module_separator + "pack.X";
+		String needle = "non.existant.module" + this.module_separator + "pack.X"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		SearchPattern pattern = SearchPattern.createPattern(needle, IJavaSearchConstants.TYPE, IJavaSearchConstants.MODULE_GRAPH, SearchPattern.R_PATTERN_MATCH);
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaProject[]
 				{getJavaProject("JavaSearchBugs9")});
@@ -3170,7 +3170,7 @@ public void testBug519151_016() throws Exception {
 		deleteProject("third");
 	}
 }
-public void testBug519151_017() throws Exception {
+public void testBug519151_017() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -3220,7 +3220,7 @@ public void testBug519151_017() throws Exception {
 		project2.open(null);
 		project1.open(null);
 
-		String needle = this.module_separator + "pack.X";
+		String needle = this.module_separator + "pack.X"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		SearchPattern pattern = SearchPattern.createPattern(needle, IJavaSearchConstants.TYPE, IJavaSearchConstants.MODULE_GRAPH, SearchPattern.R_PATTERN_MATCH);
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaProject[]
 				{getJavaProject("JavaSearchBugs9")});
@@ -3234,7 +3234,7 @@ public void testBug519151_017() throws Exception {
 		deleteProject("third");
 	}
 }
-public void testBug519151_018() throws Exception {
+public void testBug519151_018() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -3271,7 +3271,7 @@ public void testBug519151_018() throws Exception {
 		project2.open(null);
 		project1.open(null);
 
-		String needle = this.module_separator + "pack.X";
+		String needle = this.module_separator + "pack.X"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		SearchPattern pattern = SearchPattern.createPattern(needle, IJavaSearchConstants.TYPE, IJavaSearchConstants.MODULE_GRAPH, SearchPattern.R_PATTERN_MATCH);
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaProject[]
 				{getJavaProject("JavaSearchBugs9")});
@@ -3286,7 +3286,7 @@ public void testBug519151_018() throws Exception {
 		deleteProject("third");
 	}
 }
-public void testBug519151_019() throws Exception {
+public void testBug519151_019() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -3323,7 +3323,7 @@ public void testBug519151_019() throws Exception {
 		project2.open(null);
 		project1.open(null);
 
-		String needle = this.explicit_unnamed + this.module_separator + "pack.X"; // "ALL-UNNAMED/pack.X"
+		String needle = this.explicit_unnamed + this.module_separator + "pack.X"; // "ALL-UNNAMED/pack.X" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		SearchPattern pattern = SearchPattern.createPattern(needle, IJavaSearchConstants.TYPE, IJavaSearchConstants.MODULE_GRAPH, SearchPattern.R_PATTERN_MATCH);
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaProject[]
 				{getJavaProject("JavaSearchBugs9")});
@@ -3338,7 +3338,7 @@ public void testBug519151_019() throws Exception {
 		deleteProject("third");
 	}
 }
-public void testBug519151_020() throws Exception {
+public void testBug519151_020() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -3377,7 +3377,7 @@ public void testBug519151_020() throws Exception {
 
 		String module1 = this.explicit_unnamed; // "ALL-UNNAMED/pack.X"
 		String module2 = "mod.second";
-		String needle = module1 + "," + module2 + this.module_separator + "pack.X"; // "ALL-UNNAMED,second/pack.X"
+		String needle = module1 + "," + module2 + this.module_separator + "pack.X"; // "ALL-UNNAMED,second/pack.X" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		SearchPattern pattern = SearchPattern.createPattern(needle, IJavaSearchConstants.TYPE, IJavaSearchConstants.DECLARATIONS, SearchPattern.R_PATTERN_MATCH);
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaProject[]
 				{getJavaProject("JavaSearchBugs9")});
@@ -3393,7 +3393,7 @@ public void testBug519151_020() throws Exception {
 		deleteProject("third");
 	}
 }
-public void testBug519151_021() throws Exception {
+public void testBug519151_021() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -3439,7 +3439,7 @@ public void testBug519151_021() throws Exception {
 
 		String module1 = this.explicit_unnamed; // "ALL-UNNAMED/pack.X"
 		String module2 = "mod.second";
-		String needle = module1 + "," + module2 + this.module_separator + "pack.X"; // "ALL-UNNAMED,second/pack.X"
+		String needle = module1 + "," + module2 + this.module_separator + "pack.X"; // "ALL-UNNAMED,second/pack.X" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		SearchPattern pattern = SearchPattern.createPattern(needle, IJavaSearchConstants.TYPE, IJavaSearchConstants.MODULE_GRAPH,
 				SearchPattern.R_PATTERN_MATCH);
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaProject[]
@@ -3457,7 +3457,7 @@ public void testBug519151_021() throws Exception {
 		deleteProject("third");
 	}
 }
-public void testBug519151_022() throws Exception {
+public void testBug519151_022() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -3504,7 +3504,7 @@ public void testBug519151_022() throws Exception {
 		deleteProject("second");
 	}
 }
-public void testBug519151_023() throws Exception {
+public void testBug519151_023() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("first", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -3534,7 +3534,7 @@ public void testBug519151_023() throws Exception {
 		deleteProject("second");
 	}
 }
-public void _testBug519151_0X1() throws Exception {
+public void _testBug519151_0X1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -3568,7 +3568,7 @@ public void _testBug519151_0X1() throws Exception {
 		project2.open(null);
 		project1.open(null);
 
-		String needle = "0mod.*" + this.module_separator + "pack.X"; // Pattern
+		String needle = "0mod.*" + this.module_separator + "pack.X"; // Pattern //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		SearchPattern pattern = SearchPattern.createPattern(needle, IJavaSearchConstants.CLASS, DECLARATIONS, ERASURE_RULE);
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaProject[]
 				{getJavaProject("JavaSearchBugs9")});
@@ -3584,7 +3584,7 @@ public void _testBug519151_0X1() throws Exception {
 	}
 }
 
-public void _testBug519151_0X2() throws Exception {
+public void _testBug519151_0X2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -3618,7 +3618,7 @@ public void _testBug519151_0X2() throws Exception {
 		project2.open(null);
 		project1.open(null);
 
-		String needle = "0mod\\.s.*" + this.module_separator + "pack.X"; // Pattern
+		String needle = "0mod\\.s.*" + this.module_separator + "pack.X"; // Pattern //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		SearchPattern pattern = SearchPattern.createPattern(needle, IJavaSearchConstants.CLASS, DECLARATIONS, ERASURE_RULE);
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaProject[]
 				{getJavaProject("JavaSearchBugs9")});
@@ -3633,72 +3633,7 @@ public void _testBug519151_0X2() throws Exception {
 	}
 }
 
-public void _testBug519151_0X3() throws Exception {
-	try {
-
-		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
-		project1.open(null);
-		addClasspathEntry(project1, JavaCore.newContainerEntry(new Path("org.eclipse.jdt.MODULE_PATH")));
-		String fileContent =
-			"module mod.first {\n" +
-			"}\n";
-		createFile("/JavaSearchBugs9/src/module-info.java",	fileContent);
-		createFolder("/JavaSearchBugs9/src/pack");
-		createFile("/JavaSearchBugs9/src/pack/X.java",
-				"package pack;\n" +
-				"public class X {}\n");
-
-		IJavaProject project2 = createJavaProject("second", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
-		project2.open(null);
-		addClasspathEntry(project2, JavaCore.newContainerEntry(new Path("org.eclipse.jdt.MODULE_PATH")));
-		String secondFile =
-				"module mod.second {\n" +
-				"}\n";
-		createFile("/second/src/module-info.java",	secondFile);
-		createFolder("/second/src/pack");
-		createFile("/second/src/pack/X.java",
-				"package pack;\n" +
-				"public class X {}\n");
-		addClasspathEntry(project1, JavaCore.newProjectEntry(project2.getPath()));
-
-		IJavaProject project3 = createJavaProject("third", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
-		project3.open(null);
-		addClasspathEntry(project3, JavaCore.newContainerEntry(new Path("org.eclipse.jdt.MODULE_PATH")));
-		String thirdFile =
-				"module third {\n" +
-				"}\n";
-		createFile("/third/src/module-info.java",	thirdFile);
-		createFolder("/third/src/pack");
-		createFile("/third/src/pack/X.java",
-				"package pack;\n" +
-				"public class X {}\n");
-		addClasspathEntry(project1, JavaCore.newProjectEntry(project3.getPath()));
-
-		project1.close(); // sync
-		project2.close();
-		project3.close();
-		project3.open(null);
-		project2.open(null);
-		project1.open(null);
-
-		String needle = "0mod\\.f.*,mod\\.s.*" + this.module_separator + "pack.X"; // Pattern
-		SearchPattern pattern = SearchPattern.createPattern(needle, IJavaSearchConstants.CLASS, DECLARATIONS, ERASURE_RULE);
-		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaProject[]
-				{getJavaProject("JavaSearchBugs9")});
-		search(pattern, scope, this.resultCollector);
-		assertSearchResults(
-				"src/pack/X.java pack.X [X] EXACT_MATCH\n" +
-				"src/pack/X.java pack.X [X] EXACT_MATCH",
-			this.resultCollector);
-	}
-	finally {
-		deleteProject("JavaSearchBugs9");
-		deleteProject("second");
-		deleteProject("third");
-	}
-}
-
-public void _testBug519151_0X4() throws Exception {
+public void _testBug519151_0X3() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -3746,7 +3681,7 @@ public void _testBug519151_0X4() throws Exception {
 		project2.open(null);
 		project1.open(null);
 
-		String needle = "0mod\\.f.*,mod\\.s.*" + this.module_separator + "pack.X"; // Pattern
+		String needle = "0mod\\.f.*,mod\\.s.*" + this.module_separator + "pack.X"; // Pattern //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		SearchPattern pattern = SearchPattern.createPattern(needle, IJavaSearchConstants.CLASS, DECLARATIONS, ERASURE_RULE);
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaProject[]
 				{getJavaProject("JavaSearchBugs9")});
@@ -3763,7 +3698,72 @@ public void _testBug519151_0X4() throws Exception {
 	}
 }
 
-public void testBug528059_001() throws Exception {
+public void _testBug519151_0X4() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	try {
+
+		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
+		project1.open(null);
+		addClasspathEntry(project1, JavaCore.newContainerEntry(new Path("org.eclipse.jdt.MODULE_PATH")));
+		String fileContent =
+			"module mod.first {\n" +
+			"}\n";
+		createFile("/JavaSearchBugs9/src/module-info.java",	fileContent);
+		createFolder("/JavaSearchBugs9/src/pack");
+		createFile("/JavaSearchBugs9/src/pack/X.java",
+				"package pack;\n" +
+				"public class X {}\n");
+
+		IJavaProject project2 = createJavaProject("second", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
+		project2.open(null);
+		addClasspathEntry(project2, JavaCore.newContainerEntry(new Path("org.eclipse.jdt.MODULE_PATH")));
+		String secondFile =
+				"module mod.second {\n" +
+				"}\n";
+		createFile("/second/src/module-info.java",	secondFile);
+		createFolder("/second/src/pack");
+		createFile("/second/src/pack/X.java",
+				"package pack;\n" +
+				"public class X {}\n");
+		addClasspathEntry(project1, JavaCore.newProjectEntry(project2.getPath()));
+
+		IJavaProject project3 = createJavaProject("third", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
+		project3.open(null);
+		addClasspathEntry(project3, JavaCore.newContainerEntry(new Path("org.eclipse.jdt.MODULE_PATH")));
+		String thirdFile =
+				"module third {\n" +
+				"}\n";
+		createFile("/third/src/module-info.java",	thirdFile);
+		createFolder("/third/src/pack");
+		createFile("/third/src/pack/X.java",
+				"package pack;\n" +
+				"public class X {}\n");
+		addClasspathEntry(project1, JavaCore.newProjectEntry(project3.getPath()));
+
+		project1.close(); // sync
+		project2.close();
+		project3.close();
+		project3.open(null);
+		project2.open(null);
+		project1.open(null);
+
+		String needle = "0mod\\.f.*,mod\\.s.*" + this.module_separator + "pack.X"; // Pattern //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		SearchPattern pattern = SearchPattern.createPattern(needle, IJavaSearchConstants.CLASS, DECLARATIONS, ERASURE_RULE);
+		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaProject[]
+				{getJavaProject("JavaSearchBugs9")});
+		search(pattern, scope, this.resultCollector);
+		assertSearchResults(
+				"src/pack/X.java pack.X [X] EXACT_MATCH\n" +
+				"src/pack/X.java pack.X [X] EXACT_MATCH",
+			this.resultCollector);
+	}
+	finally {
+		deleteProject("JavaSearchBugs9");
+		deleteProject("second");
+		deleteProject("third");
+	}
+}
+
+public void testBug528059_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -3813,7 +3813,7 @@ public void testBug528059_001() throws Exception {
 	}
 }
 
-public void testReDoSModuleSearchViaSearchEngine() throws Exception {
+public void testReDoSModuleSearchViaSearchEngine() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -3821,14 +3821,14 @@ public void testReDoSModuleSearchViaSearchEngine() throws Exception {
 
 		// Module name = 40 'a's + ".b": a valid module name that is a NON-match for (a+)+$ and
 		// therefore forces exponential backtracking in an unguarded regex engine.
-		StringBuilder name = new StringBuilder();
-		for (int i = 0; i < 40; i++) {
-			name.append('a');
+		StringBuilder name = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0; i < 40; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			name.append('a'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		name.append(".b");
+		name.append(".b"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		String moduleName = name.toString();
 		createFile("/JavaSearchBugs9/src/module-info.java",
-				"module " + moduleName + " {\n}\n");
+				"module " + moduleName + " {\n}\n"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		String needle = "(a+)+$"; // user-typed pathological regex
 		SearchPattern pattern = SearchPattern.createPattern(needle, IJavaSearchConstants.MODULE, DECLARATIONS, SearchPattern.R_REGEXP_MATCH);
@@ -3862,7 +3862,7 @@ public void testReDoSModuleSearchViaSearchEngine() throws Exception {
 	}
 }
 
-public void testBug528059_002() throws Exception {
+public void testBug528059_002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -3911,7 +3911,7 @@ public void testBug528059_002() throws Exception {
 	}
 }
 
-public void testBug528059_003() throws Exception {
+public void testBug528059_003() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -3960,7 +3960,7 @@ public void testBug528059_003() throws Exception {
 	}
 }
 
-public void testBug528059_004() throws Exception {
+public void testBug528059_004() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -4009,7 +4009,7 @@ public void testBug528059_004() throws Exception {
 	}
 }
 
-public void testBug528059_005() throws Exception {
+public void testBug528059_005() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -4058,7 +4058,7 @@ public void testBug528059_005() throws Exception {
 	}
 }
 
-public void testBug528059_006() throws Exception {
+public void testBug528059_006() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -4108,7 +4108,7 @@ public void testBug528059_006() throws Exception {
 	}
 }
 
-public void testBug528059_007() throws Exception {
+public void testBug528059_007() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -4175,7 +4175,7 @@ public void testBug528059_007() throws Exception {
 	}
 }
 
-public void testBug530016_001() throws Exception {
+public void testBug530016_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -4225,7 +4225,7 @@ public void testBug530016_001() throws Exception {
 	}
 }
 
-public void testBug530016_002() throws Exception {
+public void testBug530016_002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -4274,7 +4274,7 @@ public void testBug530016_002() throws Exception {
 	}
 }
 
-public void testBug530016_003() throws Exception {
+public void testBug530016_003() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -4323,7 +4323,7 @@ public void testBug530016_003() throws Exception {
 	}
 }
 
-public void testBug530016_004() throws Exception {
+public void testBug530016_004() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -4372,7 +4372,7 @@ public void testBug530016_004() throws Exception {
 	}
 }
 
-public void testBug530016_005() throws Exception {
+public void testBug530016_005() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -4421,7 +4421,7 @@ public void testBug530016_005() throws Exception {
 	}
 }
 
-public void testBug530016_006() throws Exception {
+public void testBug530016_006() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -4471,7 +4471,7 @@ public void testBug530016_006() throws Exception {
 	}
 }
 
-public void testBug530016_007() throws Exception {
+public void testBug530016_007() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject project1 = createJavaProject("JavaSearchBugs9", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
@@ -4538,7 +4538,7 @@ public void testBug530016_007() throws Exception {
 	}
 }
 
-public void testBug529367() throws Exception {
+public void testBug529367() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project1 = createJavaProject("Library", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 		project1.open(null);
@@ -4594,7 +4594,7 @@ public void testBug529367() throws Exception {
 		deleteProject("second");
 	}
 }
-public void testBug531705() throws Exception {
+public void testBug531705() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("JavaSearchBugs9_1", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 	try  {
 		project1.open(null);
@@ -4619,7 +4619,7 @@ public void testBug531705() throws Exception {
 		deleteProject(project1);
 	}
 }
-public void testBug545293() throws Exception {
+public void testBug545293() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if(!isJRE11) return;
 
 	// Note: this test only failed (without the fix for bug 545293) if it was
@@ -4697,7 +4697,7 @@ public void testBug545293() throws Exception {
 	}
 }
 
-@SuppressWarnings("unused")
+@SuppressWarnings("unused") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void testBug547051_modular() throws Exception {
 	try {
 		IJavaProject project = createJava9Project("P");
@@ -4712,14 +4712,14 @@ public void testBug547051_modular() throws Exception {
 				TYPE, scope,
 				(modifiers, packageName1, simpleTypeName, enclosingTypeNames, path, access) -> r.set(true),
 				IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH, new NullProgressMonitor());
-		assertTrue("Type search has no matches for subtypes of " + type, r.get());
+		assertTrue("Type search has no matches for subtypes of " + type, r.get()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	finally {
 		deleteProject("P");
 	}
 }
 
-@SuppressWarnings("unused")
+@SuppressWarnings("unused") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void testBug547051_modular2() throws Exception {
 	if (!isJRE9) {
 		return;
@@ -4737,13 +4737,13 @@ public void testBug547051_modular2() throws Exception {
 				TYPE, scope,
 				(modifiers, packageName1, simpleTypeName, enclosingTypeNames, path, access) -> r.set(true),
 				IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH, new NullProgressMonitor());
-		assertTrue("Type search has no matches for subtypes of " + type, r.get());
+		assertTrue("Type search has no matches for subtypes of " + type, r.get()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	finally {
 		deleteProject("P");
 	}
 }
-@SuppressWarnings("unused")
+@SuppressWarnings("unused") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void testBug547051_modular3() throws Exception {
 	if(!isJRE9) {
 		return;
@@ -4761,7 +4761,7 @@ public void testBug547051_modular3() throws Exception {
 				TYPE, scope,
 				(modifiers, packageName1, simpleTypeName, enclosingTypeNames, path, access) -> r.set(true),
 				IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH, new NullProgressMonitor());
-		assertTrue("Type search has no matches for subtypes of " + type, r.get());
+		assertTrue("Type search has no matches for subtypes of " + type, r.get()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	finally {
 		deleteProject("P");
@@ -4803,14 +4803,14 @@ public void testBug547095_type_patter_search_modular() throws Exception {
  * Test for call hierarchy of a field with a type coming from a JRE module.
  * https://github.com/eclipse-jdt/eclipse.jdt.core/issues/740
  */
-public void testMethodReferenceForTypeFromJREModuleBugGh740() throws Exception {
+public void testMethodReferenceForTypeFromJREModuleBugGh740() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String projectName = "gh740MethodReferenceForTypeParameterFromModuleBug";
 	try {
 		IJavaProject project = createJavaProject(projectName, new String[] {"src"}, new String[] {}, "bin", "11");
 
 		String jrePath = Util.getJREDirectory();
-		Path bootModPath = new Path(jrePath +"/lib/jrt-fs.jar");
-		Path sourceAttachment = new Path(jrePath +"/lib/src.zip");
+		Path bootModPath = new Path(jrePath +"/lib/jrt-fs.jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		Path sourceAttachment = new Path(jrePath +"/lib/src.zip"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		addClasspathEntry(project, JavaCore.newContainerEntry(new Path("container/default"), ClasspathEntry.NO_ACCESS_RULES, new IClasspathAttribute[0], false));
 		JavaCore.setClasspathContainer(
@@ -4824,7 +4824,7 @@ public void testMethodReferenceForTypeFromJREModuleBugGh740() throws Exception {
 						})
 				},
 				null);
-		String packageFolder = "/" + projectName + "/src/test";
+		String packageFolder = "/" + projectName + "/src/test"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createFolder(packageFolder);
 		String testSource =
 				"package test;\n" +
@@ -4834,7 +4834,7 @@ public void testMethodReferenceForTypeFromJREModuleBugGh740() throws Exception {
 				"    testField = null;\n" +
 				"  }\n" +
 				"}";
-		createFile(packageFolder + "/Test.java", testSource);
+		createFile(packageFolder + "/Test.java", testSource); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		buildAndExpectNoProblems(project);
 		IType type = project.findType("test.Test");
 		IField field = type.getField("testField");
@@ -4846,7 +4846,7 @@ public void testMethodReferenceForTypeFromJREModuleBugGh740() throws Exception {
 	}
 }
 
-public void testGH902_whenTypeReferenceIsUnknown_expectToBeFound() throws CoreException {
+public void testGH902_whenTypeReferenceIsUnknown_expectToBeFound() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJava9Project("JavaSearchBugs9");
 		project.open(null);
@@ -4871,7 +4871,7 @@ public void testGH902_whenTypeReferenceIsUnknown_expectToBeFound() throws CoreEx
 	}
 }
 
-public void testGH902_whenTypeReferenceIsUnknownButQualified_expectToBeFound() throws CoreException {
+public void testGH902_whenTypeReferenceIsUnknownButQualified_expectToBeFound() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJava9Project("JavaSearchBugs9");
 		project.open(null);
@@ -4896,7 +4896,7 @@ public void testGH902_whenTypeReferenceIsUnknownButQualified_expectToBeFound() t
 	}
 }
 
-public void testGH902_whenTypeReferenceIsUnknownButQualifiedNested_expectToBeFound() throws CoreException {
+public void testGH902_whenTypeReferenceIsUnknownButQualifiedNested_expectToBeFound() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJava9Project("JavaSearchBugs9");
 		project.open(null);
@@ -4921,7 +4921,7 @@ public void testGH902_whenTypeReferenceIsUnknownButQualifiedNested_expectToBeFou
 	}
 }
 
-public void testGH902_whenTypeReferenceIsUnknownButNested_expectToBeFound() throws CoreException {
+public void testGH902_whenTypeReferenceIsUnknownButNested_expectToBeFound() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJava9Project("JavaSearchBugs9");
 		project.open(null);
@@ -4951,7 +4951,7 @@ public void testGH902_whenTypeReferenceIsUnknownButNested_expectToBeFound() thro
  * when the search is initiated in a project that defines a module.
  * https://github.com/eclipse-jdt/eclipse.jdt.core/issues/740
  */
-public void testModuleContainerSearchBugGh1039() throws Exception {
+public void testModuleContainerSearchBugGh1039() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String jarProjectName = "gh1039ModuleContainerSearch";
 	setUpJavaProject(jarProjectName);
 	String projectName = "gh1039ModuleContainerSearchTest";
@@ -4978,8 +4978,8 @@ public void testModuleContainerSearchBugGh1039() throws Exception {
 				    requires dummymodule;
 				}
 				""";
-		createFile("/" + projectName + "/src/module-info.java",	fileContent);
-		String packageFolder = "/" + projectName + "/src/test";
+		createFile("/" + projectName + "/src/module-info.java",	fileContent); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String packageFolder = "/" + projectName + "/src/test"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createFolder(packageFolder);
 		String testSource =
 				"""
@@ -4988,7 +4988,7 @@ public void testModuleContainerSearchBugGh1039() throws Exception {
 				public class Test {
 				};
 				""";
-		createFile(packageFolder + "/Test.java", testSource);
+		createFile(packageFolder + "/Test.java", testSource); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		buildAndExpectNoProblems(project);
 		IType type = project.findType("dummy.Dummy");
 		search(type, REFERENCES, EXACT_RULE, SearchEngine.createWorkspaceScope(), this.resultCollector);
@@ -5006,7 +5006,7 @@ public void testModuleContainerSearchBugGh1039() throws Exception {
  * https://github.com/eclipse-jdt/eclipse.jdt.core/issues/935
  * See also: https://github.com/eclipse-jdt/eclipse.jdt.core/issues/675
  */
-public void testNoMatchesInModularJarOnClasspathBugGh935() throws Exception {
+public void testNoMatchesInModularJarOnClasspathBugGh935() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String projectName = "gh935NoMatchesInModularJarOnClasspath";
 	try {
 		IJavaProject project = createJavaProject(projectName, new String[] {"src"}, new String[] {"JCL11_LIB"}, "bin", "11");
@@ -5077,10 +5077,10 @@ public void testModuleJarOnContainerModularEntrySearchBugGh5361() throws Excepti
 	doTestModuleJarOnContainerSearchBugGh5361("gh5361ModuleJarOnContainerModularSearchTest", moduleAttribute());
 }
 
-private void doTestModuleJarOnContainerSearchBugGh5361(String name, IClasspathAttribute[] attributes) throws Exception {
-	String p1Name = name + "_Declaration";
-	String p2Name = name + "_Export";
-	String p3Name = name + "_Caller";
+private void doTestModuleJarOnContainerSearchBugGh5361(String name, IClasspathAttribute[] attributes) throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String p1Name = name + "_Declaration"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	String p2Name = name + "_Export"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	String p3Name = name + "_Caller"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	try {
 		IJavaProject p1 = createJava9Project(p1Name);
 		IJavaProject p2 = createJava9Project(p2Name);
@@ -5125,7 +5125,7 @@ private void doTestModuleJarOnContainerSearchBugGh5361(String name, IClasspathAt
 						})
 				},
 				null);
-		String p1Package = "/" + p1Name + "/src/p1";
+		String p1Package = "/" + p1Name + "/src/p1"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createFolder(p1Package);
 		String p1Source =
 				"""
@@ -5134,7 +5134,7 @@ private void doTestModuleJarOnContainerSearchBugGh5361(String name, IClasspathAt
 				    public void someMethod(dummy.Dummy dummy) {}
 				};
 				""";
-		createFile(p1Package + "/Declaration.java", p1Source);
+		createFile(p1Package + "/Declaration.java", p1Source); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		addLibraryEntry(p1, p2Jar, null, null, null, null, attributes, true);
 
@@ -5151,7 +5151,7 @@ private void doTestModuleJarOnContainerSearchBugGh5361(String name, IClasspathAt
 						})
 				},
 				null);
-		String p3Package = "/" + p3Name + "/src/p3";
+		String p3Package = "/" + p3Name + "/src/p3"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createFolder(p3Package);
 		String p3Source =
 				"""
@@ -5162,7 +5162,7 @@ private void doTestModuleJarOnContainerSearchBugGh5361(String name, IClasspathAt
 				    }
 				};
 				""";
-		createFile(p3Package + "/Caller.java", p3Source);
+		createFile(p3Package + "/Caller.java", p3Source); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		buildAndExpectNoProblems(p2, p1, p3);
 
@@ -5182,7 +5182,7 @@ private void doTestModuleJarOnContainerSearchBugGh5361(String name, IClasspathAt
  *
  * @see "https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5498"
  */
-public void testGH5498() throws Exception {
+public void testGH5498() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject required = createJava9Project("required", "17");
 		createFolder("/required/src/api");

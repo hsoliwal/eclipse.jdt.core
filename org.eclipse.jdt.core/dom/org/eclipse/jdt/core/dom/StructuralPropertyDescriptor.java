@@ -122,27 +122,27 @@ public abstract class StructuralPropertyDescriptor {
 	 * Returns a string suitable for debug purposes.
 	 * @return {@inheritDoc}
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public String toString() {
-		StringBuilder b = new StringBuilder();
+		StringBuilder b = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		if (isChildListProperty()) {
-			b.append("ChildList"); //$NON-NLS-1$
+			b.append("ChildList"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (isChildProperty()) {
-			b.append("Child"); //$NON-NLS-1$
+			b.append("Child"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (isSimpleProperty()) {
-			b.append("Simple"); //$NON-NLS-1$
+			b.append("Simple"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		b.append("Property["); //$NON-NLS-1$
+		b.append("Property["); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (this.nodeClass != null) {
-			b.append(this.nodeClass.getName());
+			b.append(this.nodeClass.getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		b.append(","); //$NON-NLS-1$
+		b.append(","); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (this.propertyId != null) {
-			b.append(this.propertyId);
+			b.append(this.propertyId); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		b.append("]"); //$NON-NLS-1$
+		b.append("]"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return b.toString();
 	}
 }

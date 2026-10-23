@@ -64,41 +64,41 @@ public class JavaSearchBugs16Tests extends AbstractJavaSearchTests {
 			ReferenceMatch refMatch = (ReferenceMatch) this.match;
 			IJavaElement localElement = refMatch.getLocalElement();
 			if (localElement != null) {
-				this.line.append("+[");
+				this.line.append("+["); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (localElement.getElementType() == IJavaElement.ANNOTATION) {
-					this.line.append('@');
-					this.line.append(localElement.getElementName());
-					this.line.append(" on ");
-					this.line.append(localElement.getParent().getElementName());
+					this.line.append('@'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.line.append(localElement.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.line.append(" on "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.line.append(localElement.getParent().getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else {
-					this.line.append(localElement.getElementName());
+					this.line.append(localElement.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				this.line.append(']');
+				this.line.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 	}
 
 	class TypeReferenceCollector extends ReferenceCollector {
-		protected void writeLine() throws CoreException {
+		protected void writeLine() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			super.writeLine();
 			TypeReferenceMatch typeRefMatch = (TypeReferenceMatch) this.match;
 			IJavaElement[] others = typeRefMatch.getOtherElements();
 			int length = others==null ? 0 : others.length;
 			if (length > 0) {
-				this.line.append("+[");
-				for (int i=0; i<length; i++) {
+				this.line.append("+["); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IJavaElement other = others[i];
-					if (i>0) this.line.append(',');
+					if (i>0) this.line.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					if (other.getElementType() == IJavaElement.ANNOTATION) {
-						this.line.append('@');
-						this.line.append(other.getElementName());
-						this.line.append(" on ");
-						this.line.append(other.getParent().getElementName());
+						this.line.append('@'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						this.line.append(other.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						this.line.append(" on "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						this.line.append(other.getParent().getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					} else {
-						this.line.append(other.getElementName());
+						this.line.append(other.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
-				this.line.append(']');
+				this.line.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 	}
@@ -146,7 +146,7 @@ public class JavaSearchBugs16Tests extends AbstractJavaSearchTests {
 
 
 	// all occurrences of local enum
-	public void testBug570246_001() throws CoreException {
+	public void testBug570246_001() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 			"public class X2 {\n" +
@@ -175,7 +175,7 @@ public class JavaSearchBugs16Tests extends AbstractJavaSearchTests {
 	}
 
 	// declaration occurrence of local enum
-		public void testBug570246_002() throws CoreException {
+		public void testBug570246_002() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"public class X2 {\n" +
@@ -201,7 +201,7 @@ public class JavaSearchBugs16Tests extends AbstractJavaSearchTests {
 		}
 
 		// declaration occurrence of local enum
-		public void testBug570246_003a() throws CoreException {
+		public void testBug570246_003a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 
@@ -270,7 +270,7 @@ public class JavaSearchBugs16Tests extends AbstractJavaSearchTests {
 
 
 		}
-		public void testBug570246_003b() throws CoreException {
+		public void testBug570246_003b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 
@@ -338,7 +338,7 @@ public class JavaSearchBugs16Tests extends AbstractJavaSearchTests {
 		}
 
 		// declaration occurrence of local interface
-		public void testBug570246_004() throws CoreException {
+		public void testBug570246_004() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 					"public class X {\n"+
@@ -367,7 +367,7 @@ public class JavaSearchBugs16Tests extends AbstractJavaSearchTests {
 		}
 
 		// all occurrence of local interface
-		public void testBug570246_005() throws CoreException {
+		public void testBug570246_005() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 					"public class X {\n"+
@@ -396,7 +396,7 @@ public class JavaSearchBugs16Tests extends AbstractJavaSearchTests {
 
 		}
 
-		public void testBug570246_006() throws CoreException {
+		public void testBug570246_006() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				this.workingCopies = new ICompilationUnit[1];
 				this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 						"public class X {\n"+
@@ -428,7 +428,7 @@ public class JavaSearchBugs16Tests extends AbstractJavaSearchTests {
 						+ "src/X.java void X.foo():C#1 [Inter] EXACT_MATCH");
 
 			}
-		public void testBug572100 () throws CoreException {
+		public void testBug572100 () throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/Bug572100/X.java",
 					"public interface X {\n"+
@@ -458,7 +458,7 @@ public class JavaSearchBugs16Tests extends AbstractJavaSearchTests {
 					""
 			);
 		}
-		public void testBug573388 () throws CoreException {
+		public void testBug573388 () throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[3];
 			this.workingCopies[2] = getWorkingCopy("/JavaSearchBugs/src/b573388/X.java",
 				"package b573388;\n\n" +
@@ -491,7 +491,7 @@ public class JavaSearchBugs16Tests extends AbstractJavaSearchTests {
 					"src/b573388/C.java b573388.C [C] EXACT_MATCH"
 			);
 		}
-		public void testBug574870_1() throws CoreException {
+		public void testBug574870_1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy(
 					"/JavaSearchBugs/src/X.java",
@@ -523,7 +523,7 @@ public class JavaSearchBugs16Tests extends AbstractJavaSearchTests {
 
 			}
 		}
-		public void testBug574870_2() throws CoreException {
+		public void testBug574870_2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy(
 					"/JavaSearchBugs/src/X.java",
@@ -556,7 +556,7 @@ public class JavaSearchBugs16Tests extends AbstractJavaSearchTests {
 
 			}
 		}
-		public void testBug574870_3() throws CoreException {
+		public void testBug574870_3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy(
 					"/JavaSearchBugs/src/X.java",
@@ -590,7 +590,7 @@ public class JavaSearchBugs16Tests extends AbstractJavaSearchTests {
 
 			}
 		}
-		public void testBug574870_4() throws CoreException {
+		public void testBug574870_4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy(
 					"/JavaSearchBugs/src/X.java",
@@ -630,12 +630,12 @@ public class JavaSearchBugs16Tests extends AbstractJavaSearchTests {
 	 * The same AIOOBE can be reproduced with a reference search in the same snippet.
 	 * https://github.com/eclipse-jdt/eclipse.jdt.core/issues/790
 	 */
-	public void testAIOOBEForRecordClassGh790() throws Exception {
+	public void testAIOOBEForRecordClassGh790() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (isJRE25) return; // FIXME see https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3976
 		String testProjectName = "gh790AIOOBEForRecordClass";
 		try {
 			IJavaProject project = createJava16Project(testProjectName, new String[] {"src"});
-			String packageFolder = "/" + testProjectName + "/src/test";
+			String packageFolder = "/" + testProjectName + "/src/test"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			createFolder(packageFolder);
 			String testSource =
 				"package test;\n" +
@@ -647,7 +647,7 @@ public class JavaSearchBugs16Tests extends AbstractJavaSearchTests {
 				"	    map = internal;\n" +
 				"    }\n" +
 			    "}\n";
-			createFile(packageFolder + "/Test.java", testSource);
+			createFile(packageFolder + "/Test.java", testSource); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			buildAndExpectNoProblems(project);
 
 			IType type = project.findType("test.Test");
@@ -660,14 +660,14 @@ public class JavaSearchBugs16Tests extends AbstractJavaSearchTests {
 			deleteProject(testProjectName);
 		}
 	}
-	public void testGH1519_ImplicitRecordConstructors() throws CoreException {
+	public void testGH1519_ImplicitRecordConstructors() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String testProjectName = "testGH1519_ImplicitRecordConstructors";
 		try {
 			IJavaProject project = createJava16Project(testProjectName, new String[] {"src"});
-			String packageFolder = "/" + testProjectName + "/src";
+			String packageFolder = "/" + testProjectName + "/src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			createFolder(packageFolder);
 			String source = "public record Person (String name, int age) {}";
-			createFile(packageFolder + "/Person.java", source);
+			createFile(packageFolder + "/Person.java", source); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			buildAndExpectNoProblems(project);
 
 			ConstructorDeclarationsCollector requestor = new ConstructorDeclarationsCollector();
@@ -682,7 +682,7 @@ public class JavaSearchBugs16Tests extends AbstractJavaSearchTests {
 	/*
 	 * unit test for https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1297
 	 */
-	public void testBug1297_01() throws Exception {
+	public void testBug1297_01() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		try
 		{
@@ -752,7 +752,7 @@ public class JavaSearchBugs16Tests extends AbstractJavaSearchTests {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3394
 	// [Record][Search] Search for references to a local record draws a blank
-	public void testIssue3394() throws CoreException {
+	public void testIssue3394() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/JavaSearchBugs/src/X.java",

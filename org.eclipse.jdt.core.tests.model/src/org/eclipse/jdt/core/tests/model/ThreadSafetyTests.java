@@ -40,7 +40,7 @@ public static Test suite() {
 /**
  * 33231 - deadlocked if activating initializer while some concurrent action is populating the JavaModel
  */
-public void testDeadlock01() throws CoreException {
+public void testDeadlock01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	System.out.println("Test deadlock scenario");
 	try {
@@ -54,8 +54,8 @@ public void testDeadlock01() throws CoreException {
 		waitUntilIndexesReady();
 		project.getJavaModel().close();
 		JavaModelManager manager = JavaModelManager.getJavaModelManager();
-		manager.previousSessionContainers = new HashMap<>(5);
-		manager.containers = new HashMap<>(5);
+		manager.previousSessionContainers = new HashMap<>(5); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		manager.containers = new HashMap<>(5); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		manager.removePerProjectInfo((JavaProject)project, true /* remove external jar files indexes and timestamps*/);
 
 		// use a thread to hold the lock, so as to recreate potential deadlock situation
@@ -67,9 +67,9 @@ public void testDeadlock01() throws CoreException {
 			@Override
 			public void initialize(IPath containerPath, IJavaProject javaProject) throws CoreException {
 				step2.release();
-				System.out.println(Thread.currentThread() + " initializer has started: attempting to acquire workspace lock");
+				System.out.println(Thread.currentThread() + " initializer has started: attempting to acquire workspace lock"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				super.initialize(containerPath, javaProject);
-				System.out.println(Thread.currentThread() + " initializer has finished");
+				System.out.println(Thread.currentThread() + " initializer has finished"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		});
 
@@ -78,19 +78,19 @@ public void testDeadlock01() throws CoreException {
 				@Override
 				public void run() {
 					try {
-						ResourcesPlugin.getWorkspace().run(new IWorkspaceRunnable() {
+						ResourcesPlugin.getWorkspace().run(new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 							public void run(IProgressMonitor monitor)	throws CoreException {
-								System.out.println(Thread.currentThread() + " got workspace lock");
+								System.out.println(Thread.currentThread() + " got workspace lock"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								step1.release();
 								step2.acquire(); // ensure the java model lock is taken
 								ThreadSafetyTests.this.createFile("/P/X.java", "public class X {}");
-								System.out.println(Thread.currentThread() + " created file X.java");
+								System.out.println(Thread.currentThread() + " created file X.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							}
 						}, null);
 					} catch (CoreException e) {
 					}
 					hasCompleted.release();
-					System.out.println(Thread.currentThread() +" ResourceModification DONE");
+					System.out.println(Thread.currentThread() +" ResourceModification DONE"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			},"ModifyResource");
 		performJavaOperationInsideWorkspaceLock.setDaemon(true);
@@ -101,14 +101,14 @@ public void testDeadlock01() throws CoreException {
 				public void run() {
 					try {
 							step1.acquire(); // ensure workspace lock is taken already
-							System.out.println(Thread.currentThread() + " about to populate Java model");
+							System.out.println(Thread.currentThread() + " about to populate Java model"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							// needs the JavaModel lock to populate the project
 							project.getChildren(); // trigger classpath initializer activation (requires workspace lock)
-							System.out.println(Thread.currentThread() + " done populating the model");
+							System.out.println(Thread.currentThread() + " done populating the model"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					} catch (JavaModelException e) {
 					}
 					hasCompleted.release();
-					System.out.println(Thread.currentThread() +" Populate JavaModel DONE");
+					System.out.println(Thread.currentThread() +" Populate JavaModel DONE"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			},"PopulateModel");
 		attemptPopulateTheJavaModel.setDaemon(true);

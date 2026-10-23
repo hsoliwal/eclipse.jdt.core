@@ -162,7 +162,7 @@ public class JavaProject
 	/**
 	 * Extension for file containing custom project preferences
 	 */
-	public static final String JAVA_CORE_PREFS_FILE = JavaCore.PLUGIN_ID+".prefs"; //$NON-NLS-1$
+	public static final String JAVA_CORE_PREFS_FILE = JavaCore.PLUGIN_ID+".prefs"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/*
 	 * Value of project's resolved classpath while it is being resolved
@@ -200,7 +200,7 @@ public class JavaProject
 	 */
 	public static synchronized void addCPResolutionBPListener(ClasspathResolutionBreakpointListener listener) {
 		if (CP_RESOLUTION_BP_LISTENERS == null)
-			CP_RESOLUTION_BP_LISTENERS = new ArrayList();
+			CP_RESOLUTION_BP_LISTENERS = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		CP_RESOLUTION_BP_LISTENERS.add(listener);
 	}
 
@@ -225,7 +225,7 @@ public class JavaProject
 		ClasspathResolutionBreakpointListener[] listeners = getBPListeners();
 		if (listeners == null)
 			return;
-		for (ClasspathResolutionBreakpointListener listener : listeners) {
+		for (ClasspathResolutionBreakpointListener listener : listeners) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			listener.breakpoint(bp);
 		}
 	}
@@ -235,7 +235,7 @@ public class JavaProject
 			IPath firstOutputLocation, IPath secondOutputLocation) {
 		int length = firstClasspath.length;
 		if (length != secondClasspath.length) return false;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!firstClasspath[i].equals(secondClasspath[i]))
 				return false;
 		}
@@ -252,7 +252,7 @@ public class JavaProject
 	 * @param otherClasspathWithOutput IClasspathEntry[]
 	 * @return boolean
 	 */
-	private static boolean areClasspathsEqual(IClasspathEntry[] newClasspath, IPath newOutputLocation, IClasspathEntry[] otherClasspathWithOutput) {
+	private static boolean areClasspathsEqual(IClasspathEntry[] newClasspath, IPath newOutputLocation, IClasspathEntry[] otherClasspathWithOutput) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		if (otherClasspathWithOutput == null || otherClasspathWithOutput.length == 0)
 			return false;
@@ -264,7 +264,7 @@ public class JavaProject
 
 
 		// compare classpath entries
-		for (int i = 0; i < length - 1; i++) {
+		for (int i = 0; i < length - 1; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!otherClasspathWithOutput[i].equals(newClasspath[i]))
 				return false;
 		}
@@ -282,7 +282,7 @@ public class JavaProject
 			int length = first.length;
 			if (second == null || second.length != length)
 				return false;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (!first[i].equals(second[i]))
 					return false;
 			}
@@ -325,7 +325,7 @@ public class JavaProject
 		return capitailzePath(externalPath);
 	}
 
-    private static IPath capitailzePath(IPath externalPath) {
+    private static IPath capitailzePath(IPath externalPath) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		if (externalPath == null)
 			return null;
@@ -404,7 +404,7 @@ public class JavaProject
 	 * and create markers if necessary.
 	 * @param preferredClasspaths Map
 	 */
-	public static void validateCycles(Map preferredClasspaths) throws JavaModelException {
+	public static void validateCycles(Map preferredClasspaths) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		//long start = System.currentTimeMillis();
 
 		IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
@@ -413,12 +413,12 @@ public class JavaProject
 		JavaProject[] projects = new JavaProject[length];
 
 		LinkedHashSet<IPath> cycleParticipants = new LinkedHashSet<>();
-		HashSet traversed = new HashSet();
+		HashSet traversed = new HashSet(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 
 		// compute cycle participants
-		List<IPath> prereqChain = new ArrayList<>();
-		Map<IPath,List<CycleInfo>> cyclesPerProject = new HashMap<>();
-		for (int i = 0; i < length; i++){
+		List<IPath> prereqChain = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		Map<IPath,List<CycleInfo>> cyclesPerProject = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		for (int i = 0; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (hasJavaNature(rscProjects[i])) {
 				JavaProject project = (projects[i] = (JavaProject)JavaCore.create(rscProjects[i]));
 				if (!traversed.contains(project.getPath())){
@@ -428,19 +428,19 @@ public class JavaProject
 			}
 		}
 
-		for (int i = 0; i < length; i++){
+		for (int i = 0; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JavaProject project = projects[i];
 			if (project != null) {
 				List<CycleInfo> cycles = cyclesPerProject.get(project.getPath());
 				if (cycles != null) {
-					StringBuilder cycleString = new StringBuilder();
+					StringBuilder cycleString = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 					boolean first = true;
-					for (CycleInfo cycleInfo : cycles) {
-						if (!first) cycleString.append('\n');
-						cycleString.append(cycleInfo.pathToCycleAsString());
-						cycleString.append("->{"); //$NON-NLS-1$
-						cycleString.append(cycleInfo.cycleAsString());
-						cycleString.append('}');
+					for (CycleInfo cycleInfo : cycles) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+						if (!first) cycleString.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						cycleString.append(cycleInfo.pathToCycleAsString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						cycleString.append("->{"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						cycleString.append(cycleInfo.cycleAsString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						cycleString.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						first = false;
 					}
 
@@ -482,7 +482,7 @@ public class JavaProject
 			byte[] bytes = markerMessage.getBytes(StandardCharsets.UTF_8);
 			if (bytes.length > 65535) {
 				bytes = Arrays.copyOfRange(bytes, 0, 65500);
-				markerMessage = new String(bytes, StandardCharsets.UTF_8)+"..."; //$NON-NLS-1$
+				markerMessage = new String(bytes, StandardCharsets.UTF_8)+"..."; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		return markerMessage;
@@ -492,7 +492,7 @@ public class JavaProject
 	/**
 	 * @see Openable
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected boolean buildStructure(OpenableElementInfo info, IProgressMonitor pm, Map newElements, IResource underlyingResource) throws JavaModelException {
 		// cannot refresh cp markers on opening (emulate cp check on startup) since can create deadlocks (see bug 37274)
 		IClasspathEntry[] resolvedClasspath = getResolvedClasspath();
@@ -502,7 +502,7 @@ public class JavaProject
 		info.setChildren(roots);
 		IModuleDescription module = null;
 		IModuleDescription current = null;
-		for (IPackageFragmentRoot root : roots) {
+		for (IPackageFragmentRoot root : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (root.getKind() != IPackageFragmentRoot.K_SOURCE)
 				continue;
 			module = root.getModuleDescription();
@@ -520,7 +520,7 @@ public class JavaProject
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void close() throws JavaModelException {
 		if (JavaProject.hasJavaNature(this.project)) {
 			// Get cached preferences if exist
@@ -550,7 +550,7 @@ public class JavaProject
 	 * Internal computation of an expanded classpath. It will eliminate duplicates, and produce copies
 	 * of exported or restricted classpath entries to avoid possible side-effects ever after.
 	 */
-	private void computeExpandedClasspath(
+	private void computeExpandedClasspath( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ClasspathEntry referringEntry,
 		HashMap<String, Boolean> rootIDs,
 		ArrayList<ClasspathEntry> accumulatedEntries, boolean excludeTestCode) throws JavaModelException {
@@ -559,7 +559,7 @@ public class JavaProject
 
 		IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
 		boolean isInitialProject = referringEntry == null;
-		for (IClasspathEntry cpe : resolvedClasspath) {
+		for (IClasspathEntry cpe : resolvedClasspath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ClasspathEntry entry = (ClasspathEntry) cpe;
 			if (excludeTestCode && entry.isTest()) {
 				continue;
@@ -581,7 +581,7 @@ public class JavaProject
 						} else {
 							// find the existing entry and update it.
 							rootIDs.put(rootID, Boolean.FALSE);
-							for (int j = 0; j < accumulatedEntries.size(); j++) {
+							for (int j = 0; j < accumulatedEntries.size(); j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								// it is unclear how oldEntry and combinedEntry could be merged.
 								// main code compilation should remain untouched as far as possible,
 								// so take all settings from oldEntry and just remove WITHOUT_TEST_CODE
@@ -691,7 +691,7 @@ public class JavaProject
 	 *    if a limit-modules attribute exists, this is used, otherwise system modules will be filtered
 	 *    according to the rules of root modules per JEP 261.
 	 */
-	public void computePackageFragmentRoots(
+	public void computePackageFragmentRoots( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IClasspathEntry resolvedEntry,
 		ObjectVector accumulatedRoots,
 		HashSet rootIDs,
@@ -831,12 +831,12 @@ public class JavaProject
 				releaseVersion);
 	}
 
-	public static <T> List<String> internalDefaultRootModules(Iterable<T> allSystemModules, Function<T,String> getModuleName, Function<T,IModule> getModule, String releaseVersion) {
-		List<String> result = new ArrayList<>();
+	public static <T> List<String> internalDefaultRootModules(Iterable<T> allSystemModules, Function<T,String> getModuleName, Function<T,IModule> getModule, String releaseVersion) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		List<String> result = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		boolean beforeJDK8205169 = JavaCore.VERSION_9.equals(releaseVersion) || JavaCore.VERSION_10.equals(releaseVersion);
 		boolean hasJavaDotSE = false;
 		if (beforeJDK8205169) {
-			for (T mod : allSystemModules) {
+			for (T mod : allSystemModules) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String moduleName = getModuleName.apply(mod);
 				if ("java.se".equals(moduleName)) { //$NON-NLS-1$
 					result.add(moduleName);
@@ -845,7 +845,7 @@ public class JavaProject
 				}
 			}
 		}
-		for (T mod : allSystemModules) {
+		for (T mod : allSystemModules) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String moduleName = getModuleName.apply(mod);
 			boolean isPotentialRoot = true;  // since JDK-8205169 all system modules are considered
 			if (beforeJDK8205169) {
@@ -858,7 +858,7 @@ public class JavaProject
 			if (isPotentialRoot) {
 				IModule module = getModule.apply(mod);
 				if (module != null) {
-					for (IPackageExport packageExport : module.exports()) {
+					for (IPackageExport packageExport : module.exports()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (!packageExport.isQualified()) {
 							result.add(moduleName);
 							break;
@@ -870,22 +870,22 @@ public class JavaProject
 		return result;
 	}
 
-	private ObjectVector filterLimitedModules(IPath jrtPath, ObjectVector imageRoots, List<String> rootModuleNames) {
-		Set<String> limitModulesSet = new HashSet<>(rootModuleNames);
+	private ObjectVector filterLimitedModules(IPath jrtPath, ObjectVector imageRoots, List<String> rootModuleNames) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		Set<String> limitModulesSet = new HashSet<>(rootModuleNames); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		ModuleLookup lookup = new ModuleLookup(jrtPath.toFile());
 		// collect all module roots:
-		for (int i = 0; i < imageRoots.size(); i++) {
+		for (int i = 0; i < imageRoots.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			lookup.recordRoot((JrtPackageFragmentRoot) imageRoots.elementAt(i));
 		}
 		// for those contained in limitModules, add the transitive closure:
-		for (int i = 0; i < imageRoots.size(); i++) {
+		for (int i = 0; i < imageRoots.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String moduleName = ((JrtPackageFragmentRoot) imageRoots.elementAt(i)).moduleName;
 			if (limitModulesSet.contains(moduleName))
 				lookup.addTransitive(moduleName);
 		}
 		// map the result back to package fragment roots:
 		ObjectVector result = new ObjectVector(lookup.resultModuleSet.size());
-		for (IModule mod : lookup.resultModuleSet) {
+		for (IModule mod : lookup.resultModuleSet) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			result.add(lookup.getRoot(mod));
 		}
 		return result;
@@ -894,9 +894,9 @@ public class JavaProject
 	/** Helper for computing the transitive closure of a set of modules. */
 	private static class ModuleLookup {
 		private final File jrtFile;
-		private final Map<String, JrtPackageFragmentRoot> modNames2Roots = new HashMap<>();
-		private final Map<String, IModule> modules = new HashMap<>();
-		private final Set<IModule> resultModuleSet = new HashSet<>();
+		private final Map<String, JrtPackageFragmentRoot> modNames2Roots = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		private final Map<String, IModule> modules = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		private final Set<IModule> resultModuleSet = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 
 		public ModuleLookup(File jrtFile) {
 			this.jrtFile = jrtFile;
@@ -908,7 +908,7 @@ public class JavaProject
 		void addTransitive(String moduleName) {
 			IModule module = getModule(moduleName);
 			if (module != null && this.resultModuleSet.add(module)) {
-				for (IModuleReference reqRef : module.requires())
+				for (IModuleReference reqRef : module.requires()) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					addTransitive(String.valueOf(reqRef.name()));
 			}
 		}
@@ -965,7 +965,7 @@ public class JavaProject
 		}
 	}
 
-	private void loadModulesInJimage(final IPath imagePath, final ObjectVector roots, final Map rootToResolvedEntries,
+	private void loadModulesInJimage(final IPath imagePath, final ObjectVector roots, final Map rootToResolvedEntries, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				final IClasspathEntry resolvedEntry, final IClasspathEntry referringEntry) {
 		try {
 			org.eclipse.jdt.internal.compiler.util.JRTUtil.walkModuleImage(imagePath.toFile(),
@@ -990,7 +990,7 @@ public class JavaProject
 				}
 			}, JRTUtil.NOTIFY_MODULES);
 		} catch (IOException e) {
-			Util.log(e, "Error reading modules from " + imagePath.toOSString()); //$NON-NLS-1$
+			Util.log(e, "Error reading modules from " + imagePath.toOSString()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -1035,7 +1035,7 @@ public class JavaProject
 		computePackageFragmentRoots(
 			resolvedClasspath,
 			accumulatedRoots,
-			new HashSet(5), // rootIDs
+			new HashSet(5), // rootIDs //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			null, // inside original project
 			retrieveExportedRoots,
 			filterModuleRoots,
@@ -1085,7 +1085,7 @@ public class JavaProject
 		if (referringEntry == null){
 			rootIDs.add(rootID());
 		}
-		for (IClasspathEntry cpe : resolvedClasspath) {
+		for (IClasspathEntry cpe : resolvedClasspath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			computePackageFragmentRoots(
 				cpe,
 				accumulatedRoots,
@@ -1104,7 +1104,7 @@ public class JavaProject
 	 */
 	public String computeSharedPropertyFileName(QualifiedName qName) {
 
-		return '.' + qName.getLocalName();
+		return '.' + qName.getLocalName(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/*
@@ -1112,7 +1112,7 @@ public class JavaProject
 	 * Returns true if the resource is not in the project.
 	 * Assumes that the resource is a folder or a file.
 	 */
-	public boolean contains(IResource resource) {
+	public boolean contains(IResource resource) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IClasspathEntry[] classpath;
 		IPath output;
@@ -1127,7 +1127,7 @@ public class JavaProject
 		IPath innerMostOutput = output.isPrefixOf(fullPath) ? output : null;
 		IClasspathEntry innerMostEntry = null;
 		ExternalFoldersManager foldersManager = JavaModelManager.getExternalManager();
-		for (IClasspathEntry entry : classpath) {
+		for (IClasspathEntry entry : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IPath entryPath = entry.getPath();
 			if (entry.getEntryKind() == IClasspathEntry.CPE_LIBRARY) {
 				IResource linkedFolder = foldersManager.getFolder(entryPath);
@@ -1171,7 +1171,7 @@ public class JavaProject
 	/**
 	 * Record a new marker denoting a classpath problem
 	 */
-	public void createClasspathProblemMarker(IJavaModelStatus status) {
+	public void createClasspathProblemMarker(IJavaModelStatus status) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IMarker marker = null;
 		int severity;
@@ -1244,7 +1244,7 @@ public class JavaProject
 				if (bytes.length > 65535) {
 					msgLength = 21000 - 15;
 				}
-				message = message.substring(0, msgLength) + "..."; //$NON-NLS-1$
+				message = message.substring(0, msgLength) + "..."; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			marker.setAttributes(
 				new String[] {
@@ -1293,9 +1293,9 @@ public class JavaProject
 	 * The first element is an array of raw classpath entries and the second element is an array of referenced entries that may have been stored
 	 * by the client earlier. See {@link IJavaProject#getReferencedClasspathEntries()} for more details.
 	 */
-	public IClasspathEntry[][] decodeClasspath(String xmlClasspath, Map unknownElements) throws IOException, ClasspathEntry.AssertionFailedException {
+	public IClasspathEntry[][] decodeClasspath(String xmlClasspath, Map unknownElements) throws IOException, ClasspathEntry.AssertionFailedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
-		ArrayList paths = new ArrayList();
+		ArrayList paths = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		IClasspathEntry defaultOutput = null;
 		Element cpElement;
 		try (StringReader reader = new StringReader(xmlClasspath)) {
@@ -1312,7 +1312,7 @@ public class JavaProject
 		NodeList list = cpElement.getElementsByTagName(ClasspathEntry.TAG_CLASSPATHENTRY);
 		int length = list.getLength();
 
-		for (int i = 0; i < length; ++i) {
+		for (int i = 0; i < length; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Node node = list.item(i);
 			if (node.getNodeType() == Node.ELEMENT_NODE) {
 				IClasspathEntry entry = ClasspathEntry.elementDecode((Element)node, this, unknownElements);
@@ -1335,7 +1335,7 @@ public class JavaProject
 		list = cpElement.getElementsByTagName(ClasspathEntry.TAG_REFERENCED_ENTRY);
 		length = list.getLength();
 
-		for (int i = 0; i < length; ++i) {
+		for (int i = 0; i < length; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Node node = list.item(i);
 			if (node.getNodeType() == Node.ELEMENT_NODE) {
 				IClasspathEntry entry = ClasspathEntry.elementDecode((Element)node, this, unknownElements);
@@ -1350,7 +1350,7 @@ public class JavaProject
 		return entries;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public IClasspathEntry decodeClasspathEntry(String encodedEntry) {
 
 		try {
@@ -1398,26 +1398,26 @@ public class JavaProject
 	/**
 	 * Returns the XML String encoding of the class path.
 	 */
-	protected String encodeClasspath(IClasspathEntry[] classpath, IClasspathEntry[] referencedEntries, IPath outputLocation, boolean indent, Map unknownElements) throws JavaModelException {
+	protected String encodeClasspath(IClasspathEntry[] classpath, IClasspathEntry[] referencedEntries, IPath outputLocation, boolean indent, Map unknownElements) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		StringWriter writer = new StringWriter();
 		XMLWriter xmlWriter = new XMLWriter(writer, this, true/*print XML version*/);
 
 		xmlWriter.startTag(ClasspathEntry.TAG_CLASSPATH, indent);
-		for (IClasspathEntry cpe : classpath) {
+		for (IClasspathEntry cpe : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			((ClasspathEntry)cpe).elementEncode(xmlWriter, this.project.getFullPath(), indent, true, unknownElements, false);
 		}
 
 		if (outputLocation != null) {
 			outputLocation = outputLocation.removeFirstSegments(1);
 			outputLocation = outputLocation.makeRelative();
-			HashMap parameters = new HashMap();
+			HashMap parameters = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			parameters.put(ClasspathEntry.TAG_KIND, ClasspathEntry.kindToString(ClasspathEntry.K_OUTPUT));
 			parameters.put(ClasspathEntry.TAG_PATH, String.valueOf(outputLocation));
 			xmlWriter.printTag(ClasspathEntry.TAG_CLASSPATHENTRY, parameters, indent, true, true);
 		}
 
 		if (referencedEntries != null) {
-			for (IClasspathEntry referencedEntry : referencedEntries) {
+			for (IClasspathEntry referencedEntry : referencedEntries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				((ClasspathEntry) referencedEntry).elementEncode(xmlWriter, this.project.getFullPath(), indent, true, unknownElements, true);
 			}
 		}
@@ -1470,7 +1470,7 @@ public class JavaProject
 	/**
 	 * @see IJavaProject#findElement(IPath, WorkingCopyOwner)
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public IJavaElement findElement(IPath path, WorkingCopyOwner owner) throws JavaModelException {
 
 		if (path == null || path.isAbsolute()) {
@@ -1491,7 +1491,7 @@ public class JavaProject
 				typeName = typeName.substring(0, typeName.length() - extension.length() - 1);
 				String qualifiedName = null;
 				if (packageName.length() > 0) {
-					qualifiedName = packageName + "." + typeName; //$NON-NLS-1$
+					qualifiedName = packageName + "." + typeName; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				} else {
 					qualifiedName = typeName;
 				}
@@ -1526,7 +1526,7 @@ public class JavaProject
 		}
 	}
 
-	public IJavaElement findPackageFragment(String packageName)
+	public IJavaElement findPackageFragment(String packageName) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			throws JavaModelException {
 		NameLookup lookup = newNameLookup((WorkingCopyOwner)null/*no need to look at working copies for pkgs*/);
 		IPackageFragment[] pkgFragments = lookup.findPackageFragments(packageName, false);
@@ -1535,7 +1535,7 @@ public class JavaProject
 
 		} else {
 			// try to return one that is a child of this project
-			for (IPackageFragment pkgFragment : pkgFragments) {
+			for (IPackageFragment pkgFragment : pkgFragments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 				if (equals(pkgFragment.getParent().getParent())) {
 					return pkgFragment;
@@ -1593,7 +1593,7 @@ public class JavaProject
 		if (!path.isAbsolute()) {
 			throw new IllegalArgumentException(Messages.path_mustBeAbsolute);
 		}
-		for (IPackageFragmentRoot classpathRoot : allRoots) {
+		for (IPackageFragmentRoot classpathRoot : allRoots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (classpathRoot.getPath() != null && classpathRoot.getPath().equals(path)) {
 				return classpathRoot;
 			}
@@ -1603,11 +1603,11 @@ public class JavaProject
 	/**
 	 * @see IJavaProject
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public IPackageFragmentRoot[] findPackageFragmentRoots(IClasspathEntry entry) {
 		try {
 			IClasspathEntry[] classpath = getRawClasspath();
-			for (IClasspathEntry cpe : classpath) {
+			for (IClasspathEntry cpe : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (cpe.equals(entry)) { // entry may need to be resolved
 					return
 						computePackageFragmentRoots(
@@ -1640,7 +1640,7 @@ public class JavaProject
 	/*
 	 * Internal findType with instanciated name lookup
 	 */
-	IType findType(String fullyQualifiedName, NameLookup lookup, boolean considerSecondaryTypes, IProgressMonitor progressMonitor) throws JavaModelException {
+	IType findType(String fullyQualifiedName, NameLookup lookup, boolean considerSecondaryTypes, IProgressMonitor progressMonitor) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		NameLookup.Answer answer = lookup.findType(
 			fullyQualifiedName,
 			false,
@@ -1758,11 +1758,11 @@ public class JavaProject
 	/**
 	 * Remove all markers denoting classpath problems
 	 */ //TODO (philippe) should improve to use a bitmask instead of booleans (CYCLE, FORMAT, VALID)
-	protected void flushClasspathProblemMarkers(boolean flushCycleMarkers, boolean flushClasspathFormatMarkers, boolean flushOverlappingOutputMarkers) {
+	protected void flushClasspathProblemMarkers(boolean flushCycleMarkers, boolean flushClasspathFormatMarkers, boolean flushOverlappingOutputMarkers) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			if (this.project.isAccessible()) {
 				IMarker[] markers = this.project.findMarkers(IJavaModelMarker.BUILDPATH_PROBLEM_MARKER, false, IResource.DEPTH_ZERO);
-				for (IMarker marker : markers) {
+				for (IMarker marker : markers) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (flushCycleMarkers && flushClasspathFormatMarkers && flushOverlappingOutputMarkers) {
 						marker.delete();
 					} else {
@@ -1797,7 +1797,7 @@ public class JavaProject
 		int patternCount;
 		if ((patternCount  = patterns.length) > 0) {
 			rules = new IPath[patternCount];
-			for (int j = 0; j < patterns.length; j++){
+			for (int j = 0; j < patterns.length; j++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				rules[j] = new Path(new String(patterns[j]));
 			}
 		}
@@ -1845,7 +1845,7 @@ public class JavaProject
 		try {
 			if (this.project.isAccessible()) {
 				IMarker[] markers = this.project.findMarkers(IJavaModelMarker.BUILDPATH_PROBLEM_MARKER, false, IResource.DEPTH_ZERO);
-				for (IMarker marker : markers) {
+				for (IMarker marker : markers) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String cycleAttr = (String)marker.getAttribute(IJavaModelMarker.CYCLE_DETECTED);
 					if (cycleAttr != null && cycleAttr.equals("true")){ //$NON-NLS-1$
 						return marker;
@@ -1864,7 +1864,7 @@ public class JavaProject
 	 * @return IEclipsePreferences or <code>null</code> if the project
 	 * 	does not have a java nature.
 	 */
-	public IEclipsePreferences getEclipsePreferences() {
+	public IEclipsePreferences getEclipsePreferences() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!JavaProject.hasJavaNature(this.project)) return null;
 		// Get cached preferences if exist
 		JavaModelManager.PerProjectInfo perProjectInfo = JavaModelManager.getJavaModelManager().getPerProjectInfo(this.project, true);
@@ -1904,7 +1904,7 @@ public class JavaProject
 			eclipsePreferences.removePreferenceChangeListener(this.preferencesChangeListener);
 		}
 		this.preferencesChangeListener = new IEclipsePreferences.IPreferenceChangeListener() {
-			@Override
+			@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			public void preferenceChange(IEclipsePreferences.PreferenceChangeEvent event) {
 				String propertyName = event.getKey();
 				JavaModelManager manager = JavaModelManager.getJavaModelManager();
@@ -1995,8 +1995,8 @@ public class JavaProject
 	}
 	public IClasspathEntry[] getExpandedClasspath(boolean excludeTestCode)	throws JavaModelException {
 
-			ArrayList<ClasspathEntry> accumulatedEntries = new ArrayList<>();
-			HashMap<String,Boolean> rootIDs = new HashMap<>(5);
+			ArrayList<ClasspathEntry> accumulatedEntries = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			HashMap<String,Boolean> rootIDs = new HashMap<>(5); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			rootIDs.put(this.rootID(), excludeTestCode);
 			computeExpandedClasspath(null, rootIDs, accumulatedEntries, excludeTestCode);
 
@@ -2021,15 +2021,15 @@ public class JavaProject
 	/*
 	 * @see JavaElement
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public IJavaElement getHandleFromMemento(String token, MementoTokenizer memento, WorkingCopyOwner owner) {
 		String mod = null;
 		switch (token.charAt(0)) {
 			case JEM_PACKAGEFRAGMENTROOT:
 				String rootPath = IPackageFragmentRoot.DEFAULT_PACKAGEROOT_PATH;
 				token = null;
-				List<IClasspathAttribute> attributes = new ArrayList<>();
-				while (memento.hasMoreTokens()) {
+				List<IClasspathAttribute> attributes = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+				while (memento.hasMoreTokens()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					token = memento.nextToken();
 					// https://bugs.eclipse.org/bugs/show_bug.cgi?id=331821
 					if (token == MementoTokenizer.PACKAGEFRAGMENT || token == MementoTokenizer.COUNT) {
@@ -2118,7 +2118,7 @@ public class JavaProject
 	/**
 	 * @see org.eclipse.jdt.core.IJavaProject#getOptions(boolean)
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public Map<String, String> getOptions(boolean inheritJavaCoreOptions) {
 
 		// initialize to the defaults from JavaCore options pool
@@ -2139,7 +2139,7 @@ public class JavaProject
 				// create project options
 				String[] propertyNames = projectPreferences.keys();
 				projectOptions = new Hashtable(propertyNames.length);
-				for (String propertyName : propertyNames) {
+				for (String propertyName : propertyNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String value = projectPreferences.get(propertyName, null);
 					if (value != null) {
 						value = value.trim();
@@ -2150,7 +2150,7 @@ public class JavaProject
 							// try to migrate deprecated options
 							String[] compatibleOptions = javaModelManager.deprecatedOptions.get(propertyName);
 							if (compatibleOptions != null) {
-								for (String compatibleOption : compatibleOptions) {
+								for (String compatibleOption : compatibleOptions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 									if (!projectOptions.containsKey(compatibleOption))
 										projectOptions.put(compatibleOption, value);
 								}
@@ -2168,7 +2168,7 @@ public class JavaProject
 		// Inherit from JavaCore options if specified
 		if (inheritJavaCoreOptions) {
 			Iterator propertyNames = projectOptions.entrySet().iterator();
-			while (propertyNames.hasNext()) {
+			while (propertyNames.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Map.Entry entry = (Map.Entry) propertyNames.next();
 				String propertyName = (String) entry.getKey();
 				String propertyValue = (String) entry.getValue();
@@ -2211,7 +2211,7 @@ public class JavaProject
 	 * an absolute path that has less than 1 segment. The path may be relative or
 	 * absolute.
 	 */
-	public IPackageFragmentRoot getPackageFragmentRoot(IPath path, IClasspathAttribute[] extraAttributes) {
+	public IPackageFragmentRoot getPackageFragmentRoot(IPath path, IClasspathAttribute[] extraAttributes) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!path.isAbsolute()) {
 			path = getPath().append(path);
 		}
@@ -2351,8 +2351,8 @@ public class JavaProject
 	 */
 	public IPackageFragment[] getPackageFragmentsInRoots(IPackageFragmentRoot[] roots) {
 
-		ArrayList frags = new ArrayList();
-		for (IPackageFragmentRoot root : roots) {
+		ArrayList frags = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (IPackageFragmentRoot root : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				IJavaElement[] rootFragments = root.getChildren();
 				Collections.addAll(frags, rootFragments);
@@ -2465,7 +2465,7 @@ public class JavaProject
 	/**
 	 * @see IJavaProject
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public IClasspathEntry[] getResolvedClasspath(boolean ignoreUnresolvedEntry) throws JavaModelException {
 		if  (JavaModelManager.getJavaModelManager().isClasspathBeingResolved(this)) {
 			if (JavaModelManager.CP_RESOLVE_VERBOSE_ADVANCED)
@@ -2504,7 +2504,7 @@ public class JavaProject
 
 	private void verbose_reentering_classpath_resolution() {
 		trace(
-			"CPResolution: reentering raw classpath resolution, will use empty classpath instead" + //$NON-NLS-1$
+			"CPResolution: reentering raw classpath resolution, will use empty classpath instead" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	project: " + getElementName() + '\n' + //$NON-NLS-1$
 			"	invocation stack trace:", new Exception("<Fake exception>")); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -2527,7 +2527,7 @@ public class JavaProject
 	 * @see JavaProject#setSharedProperty(String, String)
 	 * @return String
 	 */
-	public String getSharedProperty(String key) throws CoreException {
+	public String getSharedProperty(String key) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		String property = null;
 		IFile rscFile = this.project.getFile(key);
@@ -2600,9 +2600,9 @@ public class JavaProject
 	@Override
 	public boolean hasClasspathCycle(IClasspathEntry[] preferredClasspath) {
 		LinkedHashSet cycleParticipants = new LinkedHashSet();
-		HashMap preferredClasspaths = new HashMap(1);
+		HashMap preferredClasspaths = new HashMap(1); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		preferredClasspaths.put(this, preferredClasspath);
-		updateCycleParticipants(new ArrayList(2), cycleParticipants, new HashMap<>(), ResourcesPlugin.getWorkspace().getRoot(), new HashSet(2), preferredClasspaths);
+		updateCycleParticipants(new ArrayList(2), cycleParticipants, new HashMap<>(), ResourcesPlugin.getWorkspace().getRoot(), new HashSet(2), preferredClasspaths); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		return !cycleParticipants.isEmpty();
 	}
 
@@ -2612,7 +2612,7 @@ public class JavaProject
 
 	private boolean hasUTF8BOM(byte[] bytes) {
 		if (bytes.length > IContentDescription.BOM_UTF_8.length) {
-			for (int i = 0, length = IContentDescription.BOM_UTF_8.length; i < length; i++) {
+			for (int i = 0, length = IContentDescription.BOM_UTF_8.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (IContentDescription.BOM_UTF_8[i] != bytes[i])
 					return false;
 			}
@@ -2635,7 +2635,7 @@ public class JavaProject
 		} catch (JavaModelException e) {
 			return true; // unsure
 		}
-		for (IClasspathEntry entry : entries) {
+		for (IClasspathEntry entry : entries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (entry.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
 				return true;
 			}
@@ -2648,7 +2648,7 @@ public class JavaProject
 	/*
 	 * @see IJavaProject
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean isOnClasspath(IJavaElement element) {
 		IClasspathEntry[] rawClasspath;
 		try {
@@ -2682,7 +2682,7 @@ public class JavaProject
 
 		// first look at unresolved entries
 		int length = rawClasspath.length;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IClasspathEntry entry = rawClasspath[i];
 			switch (entry.getEntryKind()) {
 				case IClasspathEntry.CPE_LIBRARY:
@@ -2708,7 +2708,7 @@ public class JavaProject
 			return false; // Perhaps, not a Java project
 		}
 
-		for (IClasspathEntry cpe : resolvedClasspath) {
+		for (IClasspathEntry cpe : resolvedClasspath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (isOnClasspathEntry(elementPath, isFolderPath, isPackageFragmentRoot, cpe))
 				return true;
 		}
@@ -2727,7 +2727,7 @@ public class JavaProject
 	/*
 	 * @see IJavaProject
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public IClasspathEntry findContainingClasspathEntry(IResource resource) {
 		if (resource == null) {
 			return null;
@@ -2742,7 +2742,7 @@ public class JavaProject
 			return null; // not a Java project
 		}
 		final IPath path = resource.getFullPath();
-		for (IClasspathEntry entry : classpath) {
+		for (IClasspathEntry entry : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IPath entryPath = entry.getPath();
 			if (entryPath.equals(path)) { // package fragment roots must match exactly entry pathes (no exclusion there)
 				return entry;
@@ -2762,7 +2762,7 @@ public class JavaProject
 		return null;
 	}
 
-	private boolean isOnClasspathEntry(IPath elementPath, boolean isFolderPath, boolean isPackageFragmentRoot, IClasspathEntry entry) {
+	private boolean isOnClasspathEntry(IPath elementPath, boolean isFolderPath, boolean isPackageFragmentRoot, IClasspathEntry entry) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath entryPath = entry.getPath();
 		if (isPackageFragmentRoot) {
 			// package fragment roots must match exactly entry pathes (no exclusion there)
@@ -2784,7 +2784,7 @@ public class JavaProject
 	/**
 	 * load preferences from a shareable format (VCM-wise)
 	 */
-	 private IEclipsePreferences loadPreferences() {
+	 private IEclipsePreferences loadPreferences() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	 	IEclipsePreferences preferences = null;
 	 	IPath projectMetaLocation = getPluginWorkingLocation();
@@ -2919,7 +2919,7 @@ public class JavaProject
 	public int getRelease(IPath sourcePath) {
 		if (sourcePath != null) {
 			try {
-				for (IClasspathEntry entry : getRawClasspath()) {
+				for (IClasspathEntry entry : getRawClasspath()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (entry.getEntryKind() == IClasspathEntry.CPE_SOURCE && entry.getPath().isPrefixOf(sourcePath)) {
 						return getRelease(entry);
 					}
@@ -3016,8 +3016,8 @@ public class JavaProject
 	public String[] projectPrerequisites(IClasspathEntry[] resolvedClasspath)
 		throws JavaModelException {
 
-		ArrayList prerequisites = new ArrayList();
-		for (IClasspathEntry entry : resolvedClasspath) {
+		ArrayList prerequisites = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (IClasspathEntry entry : resolvedClasspath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (entry.getEntryKind() == IClasspathEntry.CPE_PROJECT) {
 				prerequisites.add(entry.getPath().lastSegment());
 			}
@@ -3041,7 +3041,7 @@ public class JavaProject
 	 * As a side effect, unknown elements are stored in the given map (if not null)
 	 * Throws exceptions if the file cannot be accessed or is malformed.
 	 */
-	public IClasspathEntry[][] readFileEntriesWithException(Map unknownElements) throws CoreException, IOException, ClasspathEntry.AssertionFailedException {
+	public IClasspathEntry[][] readFileEntriesWithException(Map unknownElements) throws CoreException, IOException, ClasspathEntry.AssertionFailedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IFile rscFile = this.project.getFile(JavaProject.CLASSPATH_FILENAME);
 		byte[] bytes;
 		if (rscFile.exists()) {
@@ -3052,10 +3052,10 @@ public class JavaProject
 			// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=96258
 			URI location = rscFile.getLocationURI();
 			if (location == null)
-				throw new IOException("Cannot obtain a location URI for " + rscFile); //$NON-NLS-1$
+				throw new IOException("Cannot obtain a location URI for " + rscFile); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			File file = Util.toLocalFile(location, null/*no progress monitor available*/);
 			if (file == null)
-				throw new IOException("Unable to fetch file from " + location); //$NON-NLS-1$
+				throw new IOException("Unable to fetch file from " + location); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			try {
 				bytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(file);
 			} catch (IOException e) {
@@ -3088,7 +3088,7 @@ public class JavaProject
 		try {
 			return readFileEntriesWithException(unkwownElements);
 		} catch (CoreException | IOException | ClasspathEntry.AssertionFailedException e) {
-			Util.log(e, "Exception while reading " + getPath().append(JavaProject.CLASSPATH_FILENAME)); //$NON-NLS-1$
+			Util.log(e, "Exception while reading " + getPath().append(JavaProject.CLASSPATH_FILENAME)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			return new IClasspathEntry[][]{JavaProject.INVALID_CLASSPATH, ClasspathEntry.NO_ENTRIES};
 		}
 	}
@@ -3165,8 +3165,8 @@ public class JavaProject
 	static class ResolvedClasspath {
 		IClasspathEntry[] resolvedClasspath;
 		IJavaModelStatus unresolvedEntryStatus = JavaModelStatus.VERIFIED_OK;
-		HashMap rawReverseMap = new HashMap();
-		Map rootPathToResolvedEntries = new HashMap();
+		HashMap rawReverseMap = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		Map rootPathToResolvedEntries = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		IClasspathEntry[] referencedEntries = null;
 	}
 
@@ -3174,18 +3174,18 @@ public class JavaProject
 		return resolveClasspath(rawClasspath, null, usePreviousSession, resolveChainedLibraries);
 	}
 
-	public ResolvedClasspath resolveClasspath(IClasspathEntry[] rawClasspath, IClasspathEntry[] referencedEntries, boolean usePreviousSession, boolean resolveChainedLibraries) throws JavaModelException {
+	public ResolvedClasspath resolveClasspath(IClasspathEntry[] rawClasspath, IClasspathEntry[] referencedEntries, boolean usePreviousSession, boolean resolveChainedLibraries) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		JavaModelManager manager = JavaModelManager.getJavaModelManager();
 		ExternalFoldersManager externalFoldersManager = JavaModelManager.getExternalManager();
 		ResolvedClasspath result = new ResolvedClasspath();
-		Map knownDrives = new HashMap();
+		Map knownDrives = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
-		Map referencedEntriesMap = new HashMap();
+		Map referencedEntriesMap = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		Set<IPath> rawLibrariesPath = new LinkedHashSet<>();
 		LinkedHashSet resolvedEntries = new LinkedHashSet();
 
 		if(resolveChainedLibraries) {
-			for (IClasspathEntry currentEntry : rawClasspath) {
+			for (IClasspathEntry currentEntry : rawClasspath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (currentEntry.getEntryKind() == IClasspathEntry.CPE_LIBRARY) {
 					rawLibrariesPath.add(ClasspathEntry.resolveDotDot(getProject().getLocation(), currentEntry.getPath()));
 				}
@@ -3194,7 +3194,7 @@ public class JavaProject
 				// The Set is required to keep the order intact while the referencedEntriesMap (Map)
 				// is used to map the referenced entries with path
 				LinkedHashSet referencedEntriesSet = new LinkedHashSet();
-				for (IClasspathEntry referencedEntry : referencedEntries) {
+				for (IClasspathEntry referencedEntry : referencedEntries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IPath path = referencedEntry.getPath();
 					if (!rawLibrariesPath.contains(path) && referencedEntriesMap.get(path) == null) {
 						referencedEntriesMap.put(path, referencedEntry);
@@ -3209,7 +3209,7 @@ public class JavaProject
 		}
 
 		int length = rawClasspath.length;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 			IClasspathEntry rawEntry = rawClasspath[i];
 			IClasspathEntry resolvedEntry = rawEntry;
@@ -3234,7 +3234,7 @@ public class JavaProject
 													&& result.rawReverseMap.get(resolvedEntry.getPath()) == null) {
 							// resolve Class-Path: in manifest
 							ClasspathEntry[] extraEntries = ((ClasspathEntry) resolvedEntry).resolvedChainedLibraries();
-							for (ClasspathEntry extraEntry : extraEntries) {
+							for (ClasspathEntry extraEntry : extraEntries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								if (!rawLibrariesPath.contains(extraEntry.getPath())) {
 									// https://bugs.eclipse.org/bugs/show_bug.cgi?id=305037
 									// referenced entries for variable entries could also be persisted with extra attributes, so addAsChainedEntry = true
@@ -3262,7 +3262,7 @@ public class JavaProject
 					}
 
 					// container was bound
-					for (IClasspathEntry containerEntry : containerEntries) {
+					for (IClasspathEntry containerEntry : containerEntries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ClasspathEntry cEntry = (ClasspathEntry) containerEntry;
 						if (cEntry == null) {
 							if (JavaModelManager.CP_RESOLVE_VERBOSE || JavaModelManager.CP_RESOLVE_VERBOSE_FAILURE) {
@@ -3283,7 +3283,7 @@ public class JavaProject
 									&& result.rawReverseMap.get(cEntry.getPath()) == null) {
 								// resolve Class-Path: in manifest
 								ClasspathEntry[] extraEntries = cEntry.resolvedChainedLibraries();
-								for (ClasspathEntry extraEntry : extraEntries) {
+								for (ClasspathEntry extraEntry : extraEntries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 									if (!rawLibrariesPath.contains(extraEntry.getPath())) {
 										addToResult(rawEntry, extraEntry, result, resolvedEntries, externalFoldersManager, referencedEntriesMap, false, knownDrives);
 									}
@@ -3301,7 +3301,7 @@ public class JavaProject
 					if (resolveChainedLibraries && result.rawReverseMap.get(resolvedEntry.getPath()) == null) {
 						// resolve Class-Path: in manifest
 						ClasspathEntry[] extraEntries = ((ClasspathEntry) resolvedEntry).resolvedChainedLibraries();
-						for (ClasspathEntry extraEntry : extraEntries) {
+						for (ClasspathEntry extraEntry : extraEntries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (!rawLibrariesPath.contains(extraEntry.getPath())) {
 								addToResult(rawEntry, extraEntry, result, resolvedEntries, externalFoldersManager, referencedEntriesMap, true, knownDrives);
 							}
@@ -3320,7 +3320,7 @@ public class JavaProject
 		return result;
 	}
 
-	private void addToResult(IClasspathEntry rawEntry, IClasspathEntry resolvedEntry, ResolvedClasspath result,
+	private void addToResult(IClasspathEntry rawEntry, IClasspathEntry resolvedEntry, ResolvedClasspath result, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			LinkedHashSet resolvedEntries, ExternalFoldersManager externalFoldersManager,
 			Map oldChainedEntriesMap, boolean addAsChainedEntry, Map knownDrives) {
 
@@ -3389,7 +3389,7 @@ public class JavaProject
 	/*
 	 * Resolve the given perProjectInfo's raw classpath and store the resolved classpath in the perProjectInfo.
 	 */
-	public void resolveClasspath(PerProjectInfo perProjectInfo, boolean usePreviousSession, boolean addClasspathChange) throws JavaModelException {
+	public void resolveClasspath(PerProjectInfo perProjectInfo, boolean usePreviousSession, boolean addClasspathChange) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (CP_RESOLUTION_BP_LISTENERS != null)
 			breakpoint(1, this);
 		JavaModelManager manager = JavaModelManager.getJavaModelManager();
@@ -3433,7 +3433,7 @@ public class JavaProject
 	 * @return String
 	 */
 	public String rootID(){
-		return "[PRJ]"+this.project.getFullPath(); //$NON-NLS-1$
+		return "[PRJ]"+this.project.getFullPath(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/**
@@ -3444,11 +3444,11 @@ public class JavaProject
 	 * @param newOutputLocation IPath
 	 * @return boolean Return whether the .classpath file was modified.
 	 */
-	public boolean writeFileEntries(IClasspathEntry[] newClasspath, IClasspathEntry[] referencedEntries, IPath newOutputLocation) throws JavaModelException {
+	public boolean writeFileEntries(IClasspathEntry[] newClasspath, IClasspathEntry[] referencedEntries, IPath newOutputLocation) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		if (!this.project.isAccessible()) return false;
 
-		Map unknownElements = new HashMap();
+		Map unknownElements = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		IClasspathEntry[][] fileEntries = readFileEntries(unknownElements);
 		if (fileEntries[0] != JavaProject.INVALID_CLASSPATH &&
 				areClasspathsEqual(newClasspath, newOutputLocation, fileEntries[0])
@@ -3491,7 +3491,7 @@ public class JavaProject
 	/**
 	 * @see org.eclipse.jdt.core.IJavaProject#setOptions(Map)
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void setOptions(Map<String, String> newOptions) {
 
 		IEclipsePreferences projectPreferences = getEclipsePreferences();
@@ -3501,7 +3501,7 @@ public class JavaProject
 				projectPreferences.clear();
 			} else {
 				JavaModelManager javaModelManager = JavaModelManager.getJavaModelManager();
-				for (Entry<String, String> entry : newOptions.entrySet()) {
+				for (Entry<String, String> entry : newOptions.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String key = entry.getKey();
 					String value = entry.getValue();
 					javaModelManager.storePreference(key, value, projectPreferences, newOptions);
@@ -3512,7 +3512,7 @@ public class JavaProject
 				// @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=49691
 				String[] pNames = projectPreferences.keys();
 				int ln = pNames.length;
-				for (int i=0; i<ln; i++) {
+				for (int i=0; i<ln; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String key = pNames[i];
 					if (!newOptions.containsKey(key)) {
 						projectPreferences.remove(key); // old preferences => remove from preferences table
@@ -3600,7 +3600,7 @@ public class JavaProject
 		setRawClasspath(entries, referencedEntries, outputLocation, true, monitor);
 	}
 
-	protected void setRawClasspath(IClasspathEntry[] newRawClasspath, IClasspathEntry[] referencedEntries, IPath newOutputLocation,
+	protected void setRawClasspath(IClasspathEntry[] newRawClasspath, IClasspathEntry[] referencedEntries, IPath newOutputLocation, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			boolean canModifyResources,	IProgressMonitor monitor) throws JavaModelException {
 
 		try {
@@ -3674,8 +3674,8 @@ public class JavaProject
 		public final List<IPath> cycle;
 
 		public CycleInfo(List<IPath> pathToCycle, List<IPath> cycle) {
-			this.pathToCycle = new ArrayList<>(pathToCycle);
-			this.cycle = new ArrayList<>(cycle);
+			this.pathToCycle = new ArrayList<>(pathToCycle); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			this.cycle = new ArrayList<>(cycle); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		}
 
 		public static Optional<CycleInfo> findCycleContaining(Collection<List<CycleInfo>> infos, IPath path) {
@@ -3685,9 +3685,9 @@ public class JavaProject
 		public static void add(IPath project, List<IPath> prefix, List<IPath> cycle, Map<IPath, List<CycleInfo>> cyclesPerProject) {
 			List<CycleInfo> list = cyclesPerProject.get(project);
 			if (list == null) {
-				cyclesPerProject.put(project, list = new ArrayList<>());
+				cyclesPerProject.put(project, list = new ArrayList<>()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			} else {
-				for (CycleInfo cycleInfo: list) {
+				for (CycleInfo cycleInfo: list) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (cycleInfo.pathToCycle.size() > prefix.size() && cycleInfo.cycle.equals(cycle)) {
 						// use same cycle with shorter prefix:
 						cycleInfo.pathToCycle.clear();
@@ -3716,7 +3716,7 @@ public class JavaProject
 	 * @param traversed HashSet
 	 * @param preferredClasspaths Map
 	 */
-	public void updateCycleParticipants(
+	public void updateCycleParticipants( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			List<IPath> prereqChain,
 			LinkedHashSet<IPath> cycleParticipants,
 			Map<IPath,List<CycleInfo>> cyclesPerProject,
@@ -3731,7 +3731,7 @@ public class JavaProject
 			IClasspathEntry[] classpath = null;
 			if (preferredClasspaths != null) classpath = (IClasspathEntry[])preferredClasspaths.get(this);
 			if (classpath == null) classpath = getResolvedClasspath();
-			for (IClasspathEntry entry : classpath) {
+			for (IClasspathEntry entry : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (entry.getEntryKind() == IClasspathEntry.CPE_PROJECT){
 					IPath prereqProjectPath = entry.getPath();
 					int prereqIndex = prereqChain.indexOf(prereqProjectPath);
@@ -3740,11 +3740,11 @@ public class JavaProject
 						List<IPath> cycle = prereqChain.subList(prereqIndex, prereqChain.size());
 						// empty-prefix CycleInfo for all members of the cycle:
 						List<IPath> prefix = Collections.emptyList();
-						for (IPath prjInCycle : cycle) {
+						for (IPath prjInCycle : cycle) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							CycleInfo.add(prjInCycle, prefix, cycle, cyclesPerProject);
 						}
 						// also record with all members of the prereqChain with transitive dependency on the cycle:
-						for (int j = 0; j < prereqIndex; j++) {
+						for (int j = 0; j < prereqIndex; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							CycleInfo.add(prereqChain.get(j), prereqChain.subList(j, prereqIndex), cycle, cyclesPerProject);
 						}
 					} else if (cycleParticipants.contains(prereqProjectPath)) {
@@ -3752,20 +3752,20 @@ public class JavaProject
 						Optional<CycleInfo> cycle = CycleInfo.findCycleContaining(cyclesPerProject.values(), prereqProjectPath);
 						if (cycle.isPresent()) {
 							List<IPath> theCycle = cycle.get().cycle;
-							for (int j = 0; j < prereqChain.size(); j++) {
+							for (int j = 0; j < prereqChain.size(); j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								IPath prereq = prereqChain.get(j);
 								List<IPath> prereqSubList = prereqChain.subList(j, prereqChain.size());
 								int joinIndex1 = theCycle.indexOf(prereq);
 								if (joinIndex1 != -1) {
 									// prereqSubList -> prereqProjectPath + theCycle create a new cycle
-									List<IPath> newCycle = new ArrayList<>(prereqSubList);
+									List<IPath> newCycle = new ArrayList<>(prereqSubList); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 									int joinIndex2 = theCycle.indexOf(prereqProjectPath); // always != -1 since that's how we found 'cycle'
-									while (joinIndex2 != joinIndex1) {
+									while (joinIndex2 != joinIndex1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 										newCycle.add(theCycle.get(joinIndex2++));
 										if (joinIndex2 == theCycle.size())
 											joinIndex2 = 0; // it's a cycle :)
 									}
-									for (IPath newMember : newCycle) {
+									for (IPath newMember : newCycle) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 										CycleInfo.add(newMember, Collections.emptyList(), newCycle, cyclesPerProject);
 									}
 									break; // the rest of prereqChain is already included via newCycle
@@ -3786,7 +3786,7 @@ public class JavaProject
 						continue;
 					}
 					// fall through from both positive branches above
-					for (int index = prereqIndex, size = prereqChain.size(); index < size; index++) {
+					for (int index = prereqIndex, size = prereqChain.size(); index < size; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						cycleParticipants.add(prereqChain.get(index));
 					}
 				}
@@ -3800,13 +3800,13 @@ public class JavaProject
 	/*
 	 * Update eclipse preferences from old preferences.
 	 */
-	 private void updatePreferences(IEclipsePreferences preferences) {
+	 private void updatePreferences(IEclipsePreferences preferences) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	 	IEclipsePreferences oldPreferences = loadPreferences();
 	 	if (oldPreferences != null) {
 			try {
 		 		String[] propertyNames = oldPreferences.childrenNames();
-				for (String propertyName : propertyNames) {
+				for (String propertyName : propertyNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String propertyValue = oldPreferences.get(propertyName, ""); //$NON-NLS-1$
 				    if (!"".equals(propertyValue)) { //$NON-NLS-1$
 					    preferences.put(propertyName, propertyValue);
@@ -3837,13 +3837,13 @@ public class JavaProject
 		return getModuleDescription(NO_RELEASE);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public IModuleDescription getModuleDescription(int release) throws JavaModelException {
 		IModuleDescription module = getOwnModuleDescription(release);
 		if (module != null) {
 			return module;
 		}
-		for(IClasspathEntry entry : getRawClasspath()) {
+		for(IClasspathEntry entry : getRawClasspath()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			List<String> patchedModules = getPatchedModules(entry);
 			if (patchedModules.size() == 1) { // > 1 is malformed, 0 means not affecting this project
 				String mainModule = patchedModules.get(0);
@@ -3856,7 +3856,7 @@ public class JavaProject
 						break;
 					case IClasspathEntry.CPE_LIBRARY:
 					case IClasspathEntry.CPE_CONTAINER:
-						for (IPackageFragmentRoot root : findPackageFragmentRoots(entry)) {
+						for (IPackageFragmentRoot root : findPackageFragmentRoots(entry)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							module = root.getModuleDescription();
 							if (module != null && module.getElementName().equals(mainModule))
 								return module;
@@ -3872,7 +3872,7 @@ public class JavaProject
 		return getOwnModuleDescription(NO_RELEASE);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public IModuleDescription getOwnModuleDescription(int release) throws JavaModelException {
 		if (release >= FIRST_MULTI_RELEASE) {
 			IModuleDescription releaseSpecificDescriptor = Arrays.stream(getRawClasspath())
@@ -3890,7 +3890,7 @@ public class JavaProject
 				.filter(Objects::nonNull).filter(entry -> entry.release() <= release)
 				.sorted(Comparator.comparingInt(ReleaseClasspathEntry::release).reversed())
 				.map(entry -> {
-					for (IPackageFragmentRoot root : findPackageFragmentRoots(entry.entry())) {
+					for (IPackageFragmentRoot root : findPackageFragmentRoots(entry.entry())) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						IModuleDescription module = root.getModuleDescription();
 						if (module != null) {
 							return module;
@@ -3907,17 +3907,17 @@ public class JavaProject
 		return info.getModule();
 	}
 
-	public List<String> getPatchedModules(IClasspathEntry cpEntry) {
+	public List<String> getPatchedModules(IClasspathEntry cpEntry) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String patchModules = ClasspathEntry.getExtraAttribute(cpEntry, IClasspathAttribute.PATCH_MODULE);
 		if (patchModules != null) {
-			List<String> result = new ArrayList<>();
+			List<String> result = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			IPath prjPath = getPath();
-			for (String patchModule : patchModules.split("::")) { //$NON-NLS-1$
+			for (String patchModule : patchModules.split("::")) { //$NON-NLS-1$ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int equalsIdx = patchModule.indexOf('=');
 				if (equalsIdx != -1) {
 					if (equalsIdx < patchModule.length()-1) { // otherwise malformed?
 						String locations = patchModule.substring(equalsIdx + 1);
-						for (String location : locations.split(File.pathSeparator)) {
+						for (String location : locations.split(File.pathSeparator)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (prjPath.isPrefixOf(new Path(location))) {
 								result.add(patchModule.substring(0, equalsIdx));
 								break;
@@ -3966,7 +3966,7 @@ public class JavaProject
 		IModuleDescription module = info.getModule();
 		if (module != null)
 			return false;
-		for(IClasspathEntry entry : getRawClasspath()) {
+		for(IClasspathEntry entry : getRawClasspath()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!getPatchedModules(entry).isEmpty())
 				return false;
 		}

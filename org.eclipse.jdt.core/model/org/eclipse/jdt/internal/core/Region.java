@@ -39,7 +39,7 @@ public class Region implements IRegion {
 
 		public Node createChildFor(IJavaElement element) {
 			if (this.children.isEmpty()) {
-				this.children = new HashMap<>();
+				this.children = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			}
 
 			Node child = this.children.get(element);
@@ -62,7 +62,7 @@ public class Region implements IRegion {
 			}
 
 			int result = 0;
-			for (Node next : this.children.values()) {
+			for (Node next : this.children.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				result += next.countLeafNodes();
 			}
 			return result;
@@ -73,7 +73,7 @@ public class Region implements IRegion {
 		}
 
 		public int gatherLeaves(IJavaElement[] result, int i) {
-			for (Map.Entry<IJavaElement, Node> next : this.children.entrySet()) {
+			for (Map.Entry<IJavaElement, Node> next : this.children.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Node nextNode = next.getValue();
 				if (nextNode.isEmpty()) {
 					result[i++] = next.getKey();
@@ -166,7 +166,7 @@ public class Region implements IRegion {
 		return parentNode.findChildFor(element);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean remove(IJavaElement element) {
 		Node node = findExactNode(element);
 
@@ -176,13 +176,13 @@ public class Region implements IRegion {
 		node.clearChildren();
 		boolean returnValue = node.isEmpty();
 
-		List<Node> ancestors = new ArrayList<>();
+		List<Node> ancestors = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		findPath(ancestors, element);
 
 		IJavaElement currentElement = element;
 		int idx = ancestors.size();
 
-		while (--idx > 0 && currentElement != null) {
+		while (--idx > 0 && currentElement != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Node current = ancestors.get(idx);
 			Node parent = ancestors.get(idx - 1);
 

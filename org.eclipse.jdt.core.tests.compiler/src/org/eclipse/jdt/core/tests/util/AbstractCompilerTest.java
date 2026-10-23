@@ -134,7 +134,7 @@ public class AbstractCompilerTest extends TestCase {
 	}
 	public static void buildAllCompliancesTestSuite(TestSuite suite, Class evaluationTestClass) {
 		int complianceLevels = AbstractCompilerTest.getPossibleComplianceLevels();
-		for (int[] map : complianceTestLevelMapping) {
+		for (int[] map : complianceTestLevelMapping) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if ((complianceLevels & map[0]) != 0) {
 				suite.addTest(buildUniqueComplianceTestSuite(evaluationTestClass, ClassFileConstants.getComplianceLevelForJavaVersion(map[1])));
 			}
@@ -155,7 +155,7 @@ public class AbstractCompilerTest extends TestCase {
 		TestSuite suite = new TestSuite(testSuiteClass.getName());
 		int complianceLevels = AbstractCompilerTest.getPossibleComplianceLevels();
 
-		for (int[] map : complianceTestLevelMapping) {
+		for (int[] map : complianceTestLevelMapping) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if ((complianceLevels & map[0]) != 0) {
 				suite.addTest(buildComplianceTestSuite(testClasses, setupClass, ClassFileConstants.getComplianceLevelForJavaVersion(map[1])));
 			}
@@ -191,7 +191,7 @@ public class AbstractCompilerTest extends TestCase {
 	 * @param testClasses The list of test suites to include in main test suite.
 	 * @return built test suite (see {@link TestSuite}
 	 */
-	private static Test buildComplianceTestSuite(List testClasses, Class setupClass, long complianceLevel) {
+	private static Test buildComplianceTestSuite(List testClasses, Class setupClass, long complianceLevel) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (testClassFilter != null) {
 			testClasses = testClasses.stream().filter(testClassFilter).toList();
 		}
@@ -215,7 +215,7 @@ public class AbstractCompilerTest extends TestCase {
 		int spec = Integer.parseInt(specVersion);
 		boolean futureJREUsed = spec > Integer.parseInt(CompilerOptions.getLatestVersion());
 		// add tests
-		for (int i=0, m=testClasses.size(); i<m ; i++) {
+		for (int i=0, m=testClasses.size(); i<m ; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Class testClass = (Class)testClasses.get(i);
 			if (futureJREUsed) {
 				Annotation annotation = testClass.getAnnotation(PreviewTest.class);
@@ -233,7 +233,7 @@ public class AbstractCompilerTest extends TestCase {
 				// ignore
 			}
 			List tests = buildTestsList(testClass, inheritedDepth, ORDERING);
-			for (int index=0, size=tests.size(); index<size; index++) {
+			for (int index=0, size=tests.size(); index<size; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				suite.addTest((Test)tests.get(index));
 			}
 			complianceSuite.addTest(suite);
@@ -254,7 +254,7 @@ public class AbstractCompilerTest extends TestCase {
 	public static Test buildMinimalComplianceTestSuite(Class evaluationTestClass, int minimalCompliance) {
 		TestSuite suite = new TestSuite(evaluationTestClass.getName());
 		int complianceLevels = AbstractCompilerTest.getPossibleComplianceLevels();
-		for (int[] map : complianceTestLevelMapping) {
+		for (int[] map : complianceTestLevelMapping) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if ((complianceLevels & map[0]) != 0) {
 				long complianceLevelForJavaVersion = ClassFileConstants.getComplianceLevelForJavaVersion(map[1]);
 				checkCompliance(evaluationTestClass, minimalCompliance, suite, complianceLevels, map[0], map[1], getVersionString(complianceLevelForJavaVersion));
@@ -267,7 +267,7 @@ public class AbstractCompilerTest extends TestCase {
 		int lev = complianceLevels & abstractCompilerTestCompliance;
 		if (lev != 0) {
 			if (lev < minimalCompliance) {
-				System.err.println("Cannot run "+evaluationTestClass.getName()+" at compliance " + release + "!");
+				System.err.println("Cannot run "+evaluationTestClass.getName()+" at compliance " + release + "!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			} else {
 				suite.addTest(buildUniqueComplianceTestSuite(evaluationTestClass, ClassFileConstants.getComplianceLevelForJavaVersion(classFileConstantsVersion)));
 			}
@@ -283,7 +283,7 @@ public class AbstractCompilerTest extends TestCase {
 	 * @param evaluationTestClass The test suite to run.
 	 * @return built test suite (see {@link TestSuite}
 	 */
-	public static Test buildUniqueComplianceTestSuite(Class evaluationTestClass, long uniqueCompliance) {
+	public static Test buildUniqueComplianceTestSuite(Class evaluationTestClass, long uniqueCompliance) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long highestLevel = highestComplianceLevels();
 		if (highestLevel < uniqueCompliance) {
 			String complianceString;
@@ -303,12 +303,12 @@ public class AbstractCompilerTest extends TestCase {
 
 			}
 
-			System.err.println("Cannot run "+evaluationTestClass.getName()+" at compliance "+complianceString+"!");
+			System.err.println("Cannot run "+evaluationTestClass.getName()+" at compliance "+complianceString+"!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			return new TestSuite();
 		}
 		TestSuite complianceSuite = new RegressionTestSetup(uniqueCompliance);
 		List tests = buildTestsList(evaluationTestClass);
-		for (int index=0, size=tests.size(); index<size; index++) {
+		for (int index=0, size=tests.size(); index<size; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			complianceSuite.addTest((Test)tests.get(index));
 		}
 		return complianceSuite;
@@ -320,7 +320,7 @@ public class AbstractCompilerTest extends TestCase {
 	public static long highestComplianceLevels() {
 		int complianceLevels = AbstractCompilerTest.getPossibleComplianceLevels();
 		int size = complianceTestLevelMapping.length;
-		for(int i = size - 1; i >= 0; i-- ) {
+		for(int i = size - 1; i >= 0; i-- ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int[] map = complianceTestLevelMapping[i];
 			if ((complianceLevels & map[0]) != 0) {
 				return ClassFileConstants.getComplianceLevelForJavaVersion(map[1]);
@@ -329,10 +329,10 @@ public class AbstractCompilerTest extends TestCase {
 		return CompilerOptions.getFirstSupportedJdkLevel();
 	}
 
-	static void initReflectionVersion() {
+	static void initReflectionVersion() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (isJRE9Plus) {
 			reflectNestedClassUseDollar = true;
-			System.out.println("reflectNestedClassUseDollar="+reflectNestedClassUseDollar+" due to isJRE9Plus");
+			System.out.println("reflectNestedClassUseDollar="+reflectNestedClassUseDollar+" due to isJRE9Plus"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
 			String version = System.getProperty("java.version");
 			if (version.startsWith("1.8.0_")) {
@@ -343,16 +343,16 @@ public class AbstractCompilerTest extends TestCase {
 				// Just assume they are > 171 build. Nothing much can be done.
 				reflectNestedClassUseDollar = true;
 			} else {
-				throw new IllegalStateException("Unrecognized Java version: "+version);
+				throw new IllegalStateException("Unrecognized Java version: "+version); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
-			System.out.println("reflectNestedClassUseDollar="+reflectNestedClassUseDollar+" based on version="+version);
+			System.out.println("reflectNestedClassUseDollar="+reflectNestedClassUseDollar+" based on version="+version); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
 	/*
 	 * Returns the possible compliance levels this VM instance can run.
 	 */
-	public static int getPossibleComplianceLevels() {
+	public static int getPossibleComplianceLevels() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (possibleComplianceLevels == UNINITIALIZED) {
 			String specVersion = System.getProperty("java.specification.version");
 			// During the EA phase of development, the above property is set to the
@@ -384,16 +384,16 @@ public class AbstractCompilerTest extends TestCase {
 			isJRE10Plus = isJRE11Plus || CompilerOptions.VERSION_10.equals(specVersion);
 			isJRE9Plus = isJRE10Plus || CompilerOptions.VERSION_9.equals(specVersion);
 			initReflectionVersion();
-			String key = "compliance.jre." + specVersion;
+			String key = "compliance.jre." + specVersion; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String compliances = System.getProperty(key);
 			if (compliances == null) {
 				compliances = System.getProperty("compliance");
 			}
 			if (compliances != null) {
 				possibleComplianceLevels = 0;
-				for (String compliance : compliances.split(",")) {
+				for (String compliance : compliances.split(",")) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					boolean versionValid = false;
-					for(int i = 0; i < complianceTestLevelMapping.length; i++) {
+					for(int i = 0; i < complianceTestLevelMapping.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						int[] versionMap = complianceTestLevelMapping[i];
 						long jdkLevel = ClassFileConstants.getComplianceLevelForJavaVersion(versionMap[1]);
 						String versionString = CompilerOptions.versionFromJdkLevel(jdkLevel);
@@ -404,7 +404,7 @@ public class AbstractCompilerTest extends TestCase {
 						}
 					}
 					if (!versionValid) {
-						System.out.println("Ignoring invalid compliance (" + compliance + ")");
+						System.out.println("Ignoring invalid compliance (" + compliance + ")"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						System.out.print("Use one of ");
 						System.out.print(CompilerOptions.VERSION_1_8 + ", ");
 						System.out.print(CompilerOptions.VERSION_9 + ", ");
@@ -438,7 +438,7 @@ public class AbstractCompilerTest extends TestCase {
 					possibleComplianceLevels = FIRST_SUPPORTED_JAVA_VERSION;
 					boolean canRunPrevious = true;
 					String previousVersion = CompilerOptions.getFirstSupportedJavaVersion();
-					for(int i = 0; i < complianceTestLevelMapping.length; i++) {
+					for(int i = 0; i < complianceTestLevelMapping.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						int[] versionMap = complianceTestLevelMapping[i];
 						long jdkLevel = ClassFileConstants.getComplianceLevelForJavaVersion(versionMap[1]);
 						String versionString = CompilerOptions.versionFromJdkLevel(jdkLevel);
@@ -451,7 +451,7 @@ public class AbstractCompilerTest extends TestCase {
 						previousVersion = versionString;
 					}
 				} else {
-					for(int i = 0; i < complianceTestLevelMapping.length; i++) {
+					for(int i = 0; i < complianceTestLevelMapping.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						int[] versionMap = complianceTestLevelMapping[i];
 						long jdkLevel = ClassFileConstants.getComplianceLevelForJavaVersion(versionMap[1]);
 						String versionString = CompilerOptions.versionFromJdkLevel(jdkLevel);
@@ -481,7 +481,7 @@ public class AbstractCompilerTest extends TestCase {
 	 * Returns a test suite including the tests defined by the given classes for the given complianceLevel
 	 * (see AbstractCompilerTest for valid values) and using the given setup class (CompilerTestSetup or a subclass)
 	 */
-	public static Test suiteForComplianceLevel(long complianceLevel, Class setupClass, ArrayList testClasses) {
+	public static Test suiteForComplianceLevel(long complianceLevel, Class setupClass, ArrayList testClasses) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// call the setup constructor with the compliance level
 		TestSuite suite = null;
 		try {
@@ -506,7 +506,7 @@ public class AbstractCompilerTest extends TestCase {
 			TESTS_COUNTERS.put(testClass.getName(), Integer.valueOf(suite.countTestCases()));
 		} else {
 			suite = new TestSuite(CompilerOptions.versionFromJdkLevel(complianceLevel));
-			for (int i = 0, length = testClasses.size(); i < length; i++) {
+			for (int i = 0, length = testClasses.size(); i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				TestSuite innerSuite = new TestSuite(testClass = (Class)testClasses.get(i));
 				TESTS_COUNTERS.put(testClass.getName(), Integer.valueOf(innerSuite.countTestCases()));
 				suite.addTest(innerSuite);
@@ -516,7 +516,7 @@ public class AbstractCompilerTest extends TestCase {
 	}
 
 	public static Test setupSuite(Class clazz) {
-		ArrayList testClasses = new ArrayList();
+		ArrayList testClasses = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		testClasses.add(clazz);
 		return suite(clazz.getName(), RegressionTestSetup.class, testClasses);
 	}
@@ -531,7 +531,7 @@ public class AbstractCompilerTest extends TestCase {
 	public static Test buildTestSuite(Class evaluationTestClass, long complianceLevel) {
 		TestSuite suite = new RegressionTestSetup(complianceLevel);
 		List tests = buildTestsList(evaluationTestClass);
-		for (int index=0, size=tests.size(); index<size; index++) {
+		for (int index=0, size=tests.size(); index<size; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			suite.addTest((Test)tests.get(index));
 		}
 		String className = evaluationTestClass.getName();
@@ -552,9 +552,9 @@ public class AbstractCompilerTest extends TestCase {
 		if (!isJRE9Plus) {
 			return val;
 		}
-		StringBuilder builder = new StringBuilder(val);
+		StringBuilder builder = new StringBuilder(val); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		builder.insert(0, "\"");
-		builder.append("\"");
+		builder.append("\""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return builder.toString();
 	}
 
@@ -562,7 +562,7 @@ public class AbstractCompilerTest extends TestCase {
 		super(name);
 	}
 
-	protected Map getCompilerOptions() {
+	protected Map getCompilerOptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = new CompilerOptions().getMap();
 		options.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.IGNORE);
 		if (this.complianceLevel == ClassFileConstants.JDK1_8) {
@@ -591,7 +591,7 @@ public class AbstractCompilerTest extends TestCase {
 	public String getName() {
 		String name = super.getName();
 		if (this.complianceLevel != 0) {
-			name = name + " - " + CompilerOptions.versionFromJdkLevel(this.complianceLevel);
+			name = name + " - " + CompilerOptions.versionFromJdkLevel(this.complianceLevel); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return name;
 	}
@@ -604,7 +604,7 @@ public class AbstractCompilerTest extends TestCase {
 		if (compliance > ClassFileConstants.JDK10) {
 			String ver = CompilerOptions.versionFromJdkLevel(compliance);
 			int major = Integer.parseInt(ver) + ClassFileConstants.MAJOR_VERSION_0;
-			return "version " + ver + " : " + major + ".0";
+			return "version " + ver + " : " + major + ".0"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		if (compliance >= ClassFileConstants.getComplianceLevelForJavaVersion(ClassFileConstants.MAJOR_LATEST_VERSION))
 			return version;
@@ -645,7 +645,7 @@ public class AbstractCompilerTest extends TestCase {
 		createOutputTestDirectory(testName());
 
 		// Write each given test file
-		for (int i = 0, length = testFiles.length; i < length; ) {
+		for (int i = 0, length = testFiles.length; i < length; ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String fileName = testFiles[i++];
 			String contents = testFiles[i++];
 			File file = new File(this.outputTestDirectory, fileName);
@@ -661,5 +661,5 @@ public class AbstractCompilerTest extends TestCase {
 
 	// Summary display
 	// Used by AbstractRegressionTest for javac comparison tests
-	protected static Map TESTS_COUNTERS = new HashMap();
+	protected static Map TESTS_COUNTERS = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 }

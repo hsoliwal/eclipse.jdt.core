@@ -51,7 +51,7 @@ public class BinaryModuleFactory {
 	 * Returns a descriptor for the given class within the given package fragment, or null if the fragment doesn't have
 	 * a location on the filesystem.
 	 */
-	private static BinaryModuleDescriptor createDescriptor(PackageFragmentRoot root, ModularClassFile classFile) {
+	private static BinaryModuleDescriptor createDescriptor(PackageFragmentRoot root, ModularClassFile classFile) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath location = BinaryTypeFactory.getLocationForElement(root);
 		if (location == null) {
 			return null;
@@ -63,7 +63,7 @@ public class BinaryModuleFactory {
 
 		if (root instanceof JarPackageFragmentRoot) {
 			entryName = ((JarPackageFragmentRoot) root).getClassFilePath(entryName);
-			indexPath = root.getHandleIdentifier() + IDependent.JAR_FILE_ENTRY_SEPARATOR + entryName;
+			indexPath = root.getHandleIdentifier() + IDependent.JAR_FILE_ENTRY_SEPARATOR + entryName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			// see additional comments in BinaryTypeFactor.createDescriptor()
 			if (root instanceof JrtPackageFragmentRoot) {
 				moduleName = root.getElementName().toCharArray();
@@ -113,7 +113,7 @@ public class BinaryModuleFactory {
 	 * @throws JavaModelException if unable to read the class file due to a transient failure
 	 * @throws FileNotFoundException if the file does not exist
 	 */
-	public static IBinaryModule rawReadModuleTestForExists(BinaryModuleDescriptor descriptor, boolean fullyInitialize,
+	public static IBinaryModule rawReadModuleTestForExists(BinaryModuleDescriptor descriptor, boolean fullyInitialize, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			boolean useInvalidArchiveCache) throws JavaModelException, ClassFormatException, FileNotFoundException {
 		if (descriptor == null) {
 			return null;

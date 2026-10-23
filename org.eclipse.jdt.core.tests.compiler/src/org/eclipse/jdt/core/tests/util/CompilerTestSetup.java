@@ -28,7 +28,7 @@ public class CompilerTestSetup extends TestSuite {
 		this.complianceLevel = complianceLevel;
 	}
 
-	protected void initTest(Object test) {
+	protected void initTest(Object test) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (test instanceof AbstractCompilerTest) {
 			AbstractCompilerTest compilerTest = (AbstractCompilerTest)test;
 			compilerTest.initialize(this);
@@ -37,14 +37,14 @@ public class CompilerTestSetup extends TestSuite {
 		if (test instanceof TestSuite) {
 			TestSuite testSuite = (TestSuite)test;
 			Enumeration evaluationTestClassTests = testSuite.tests();
-			while (evaluationTestClassTests.hasMoreElements()) {
+			while (evaluationTestClassTests.hasMoreElements()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				initTest(evaluationTestClassTests.nextElement());
 			}
 			return;
 		}
 		if (test instanceof Enumeration) {
 			Enumeration evaluationTestClassTests = (Enumeration) test;
-			while (evaluationTestClassTests.hasMoreElements()) {
+			while (evaluationTestClassTests.hasMoreElements()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				initTest(evaluationTestClassTests.nextElement());
 			}
 			return;

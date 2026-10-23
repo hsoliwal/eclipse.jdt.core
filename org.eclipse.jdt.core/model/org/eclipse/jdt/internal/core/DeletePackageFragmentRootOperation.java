@@ -30,7 +30,7 @@ import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.JavaModelException;
 
-@SuppressWarnings({"rawtypes", "unchecked"})
+@SuppressWarnings({"rawtypes", "unchecked"}) //FLLDCIM: MARK — T09  IMPLEMENTS
 public class DeletePackageFragmentRootOperation extends JavaModelOperation {
 
 	int updateResourceFlags;
@@ -46,7 +46,7 @@ public class DeletePackageFragmentRootOperation extends JavaModelOperation {
 		this.updateModelFlags = updateModelFlags;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void executeOperation() throws JavaModelException {
 
 		IPackageFragmentRoot root = (IPackageFragmentRoot)getElementToProcess();
@@ -55,7 +55,7 @@ public class DeletePackageFragmentRootOperation extends JavaModelOperation {
 		// remember olds roots
 		DeltaProcessor deltaProcessor = JavaModelManager.getJavaModelManager().getDeltaProcessor();
 		if (deltaProcessor.oldRoots == null)
-			deltaProcessor.oldRoots = new HashMap();
+			deltaProcessor.oldRoots = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 		// update classpath if needed
 		if ((this.updateModelFlags & IPackageFragmentRoot.ORIGINATING_PROJECT_CLASSPATH) != 0) {
@@ -71,7 +71,7 @@ public class DeletePackageFragmentRootOperation extends JavaModelOperation {
 		}
 	}
 
-	protected void deleteResource(
+	protected void deleteResource( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragmentRoot root,
 		IClasspathEntry rootEntry)
 		throws JavaModelException {
@@ -85,7 +85,7 @@ public class DeletePackageFragmentRootOperation extends JavaModelOperation {
 			}
 		} else {
 			final IPath[] nestedFolders = getNestedFolders(root);
-			IResourceProxyVisitor visitor = new IResourceProxyVisitor() {
+			IResourceProxyVisitor visitor = new IResourceProxyVisitor() { //FLLDCIM: MARK — T07  ANONYMOUS
 				@Override
 				public boolean visit(IResourceProxy proxy) throws CoreException {
 					if (proxy.getType() == IResource.FOLDER) {
@@ -120,7 +120,7 @@ public class DeletePackageFragmentRootOperation extends JavaModelOperation {
 	protected void updateReferringProjectClasspaths(IPath rootPath, IJavaProject projectOfRoot, Map oldRoots) throws JavaModelException {
 		IJavaModel model = getJavaModel();
 		IJavaProject[] projects = model.getJavaProjects();
-		for (IJavaProject project : projects) {
+		for (IJavaProject project : projects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (project.equals(projectOfRoot)) continue;
 			updateProjectClasspath(rootPath, project, oldRoots);
 		}
@@ -129,7 +129,7 @@ public class DeletePackageFragmentRootOperation extends JavaModelOperation {
 	/*
 	 * Deletes the classpath entries equals to the given rootPath from the given project.
 	 */
-	protected void updateProjectClasspath(IPath rootPath, IJavaProject project, Map oldRoots) throws JavaModelException {
+	protected void updateProjectClasspath(IPath rootPath, IJavaProject project, Map oldRoots) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// remember old roots
 		oldRoots.put(project, project.getPackageFragmentRoots());
 
@@ -137,7 +137,7 @@ public class DeletePackageFragmentRootOperation extends JavaModelOperation {
 		IClasspathEntry[] newClasspath = null;
 		int cpLength = classpath.length;
 		int newCPIndex = -1;
-		for (int j = 0; j < cpLength; j++) {
+		for (int j = 0; j < cpLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IClasspathEntry entry = classpath[j];
 			if (rootPath.equals(entry.getPath())) {
 				if (newClasspath == null) {
@@ -156,7 +156,7 @@ public class DeletePackageFragmentRootOperation extends JavaModelOperation {
 			project.setRawClasspath(newClasspath, this.progressMonitor);
 		}
 	}
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected IJavaModelStatus verify() {
 		IJavaModelStatus status = super.verify();
 		if (!status.isOK()) {

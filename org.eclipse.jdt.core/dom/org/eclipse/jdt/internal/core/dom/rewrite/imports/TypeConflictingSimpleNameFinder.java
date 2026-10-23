@@ -31,12 +31,12 @@ import org.eclipse.jdt.core.search.TypeNameRequestor;
 final class TypeConflictingSimpleNameFinder implements ConflictingSimpleNameFinder {
 	private static class ConflictAccumulatingTypeRequestor extends TypeNameRequestor {
 		private static String buildContainerName(char[] packageName, char[][] enclosingTypeNames) {
-			StringBuilder buf= new StringBuilder();
-			buf.append(packageName);
-			for (char[] enclosingTypeName : enclosingTypeNames) {
+			StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buf.append(packageName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (char[] enclosingTypeName : enclosingTypeNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (buf.length() > 0)
-					buf.append('.');
-				buf.append(enclosingTypeName);
+					buf.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buf.append(enclosingTypeName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			return buf.toString();
 		}
@@ -45,8 +45,8 @@ final class TypeConflictingSimpleNameFinder implements ConflictingSimpleNameFind
 		private final Map<String, String> lastContainerFoundForType;
 
 		ConflictAccumulatingTypeRequestor() {
-			this.namesFoundInMultipleContainers = new HashSet<>();
-			this.lastContainerFoundForType = new HashMap<>();
+			this.namesFoundInMultipleContainers = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+			this.lastContainerFoundForType = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		}
 
 		@Override
@@ -72,7 +72,7 @@ final class TypeConflictingSimpleNameFinder implements ConflictingSimpleNameFind
 	private static char[][] stringsToCharArrays(Collection<String> strings) {
 		char[][] arrayOfArrays = new char[strings.size()][];
 		int i = 0;
-		for (String string : strings) {
+		for (String string : strings) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			arrayOfArrays[i] = string.toCharArray();
 			i++;
 		}

@@ -47,10 +47,10 @@ public class AbstractCompilerToolTest extends BatchCompilerTest {
 		}
 		@Override
 		public String toString() {
-			StringBuilder result = new StringBuilder();
-			for (String option: this.options) {
-				result.append(option);
-				result.append(' ');
+			StringBuilder result = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			for (String option: this.options) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				result.append(option); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				result.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			return result.toString();
 		}
@@ -89,7 +89,7 @@ public class AbstractCompilerToolTest extends BatchCompilerTest {
 	}
 	static EclipseCompiler COMPILER = new EclipseCompiler();
 	static JavaCompiler JAVAC_COMPILER = ToolProvider.getSystemJavaCompiler();
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected boolean invokeCompiler(
 			PrintWriter out,
 			PrintWriter err,
@@ -103,13 +103,13 @@ public class AbstractCompilerToolTest extends BatchCompilerTest {
 			ownsManager = true;
 		}
 		try {
-			List<File> files = new ArrayList<>();
+			List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			String[] fileNames = arguments.fileNames;
-			for (int i = 0, l = fileNames.length; i < l; i++) {
+			for (int i = 0, l = fileNames.length; i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (fileNames[i].startsWith(OUTPUT_DIR)) {
 					files.add(new File(fileNames[i]));
 				} else {
-					files.add(new File(OUTPUT_DIR + File.separator + fileNames[i]));
+					files.add(new File(OUTPUT_DIR + File.separator + fileNames[i])); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 			CompilationTask task = COMPILER.getTask(out, arguments.standardJavaFileManager /* carry the null over */, new CompilerInvocationDiagnosticListener(err), arguments.options, null, manager.getJavaFileObjectsFromFiles(files));

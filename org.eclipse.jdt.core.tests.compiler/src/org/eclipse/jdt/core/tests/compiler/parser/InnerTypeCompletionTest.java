@@ -28,7 +28,7 @@ public static Test suite() {
 /*
  * Test completion in the first method of an anonymous inner class
  */
-public void testAnonymousFirstMethod() {
+public void testAnonymousFirstMethod() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {									\n" +
@@ -71,7 +71,7 @@ public void testAnonymousFirstMethod() {
 /*
  * Test completion in anonymous inner class with no statement defined before.
  */
-public void testAnonymousNoStatementBefore() {
+public void testAnonymousNoStatementBefore() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {									\n" +
@@ -111,7 +111,7 @@ public void testAnonymousNoStatementBefore() {
  * Test completion in anonymous inner class with one field defined before
  * the method containing the completion.
  */
-public void testAnonymousOneFieldBefore() {
+public void testAnonymousOneFieldBefore() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {									\n" +
@@ -152,7 +152,7 @@ public void testAnonymousOneFieldBefore() {
 /*
  * Test completion in anonymous inner class with one statement defined before.
  */
-public void testAnonymousOneStatementBefore() {
+public void testAnonymousOneStatementBefore() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {									\n" +
@@ -193,7 +193,7 @@ public void testAnonymousOneStatementBefore() {
 /*
  * Test completion in the second method of an anonymous inner class
  */
-public void testAnonymousSecondMethod() {
+public void testAnonymousSecondMethod() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {									\n" +
@@ -236,7 +236,7 @@ public void testAnonymousSecondMethod() {
 /*
  * Test completion in the first method of a local type declaration
  */
-public void testLocalTypeFirstMethod() {
+public void testLocalTypeFirstMethod() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {									\n" +
@@ -281,7 +281,7 @@ public void testLocalTypeFirstMethod() {
 /*
  * Test completion in local type declaration with no statement defined before.
  */
-public void testLocalTypeNoStatementBefore() {
+public void testLocalTypeNoStatementBefore() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {									\n" +
@@ -323,7 +323,7 @@ public void testLocalTypeNoStatementBefore() {
  * Test completion in local type declaration with one field defined before
  * the method containing the completion.
  */
-public void testLocalTypeOneFieldBefore() {
+public void testLocalTypeOneFieldBefore() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {									\n" +
@@ -366,7 +366,7 @@ public void testLocalTypeOneFieldBefore() {
 /*
  * Test completion in local type declaration with one statement defined before.
  */
-public void testLocalTypeOneStatementBefore() {
+public void testLocalTypeOneStatementBefore() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {									\n" +
@@ -409,7 +409,7 @@ public void testLocalTypeOneStatementBefore() {
 /*
  * Test completion in the second method of a local type declaration
  */
-public void testLocalTypeSecondMethod() {
+public void testLocalTypeSecondMethod() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {									\n" +

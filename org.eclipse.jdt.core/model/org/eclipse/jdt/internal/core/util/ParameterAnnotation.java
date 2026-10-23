@@ -42,7 +42,7 @@ public class ParameterAnnotation extends ClassFileStruct implements IParameterAn
 		this.annotationsNumber = length;
 		if (length != 0) {
 			this.annotations = new IAnnotation[length];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Annotation annotation = new Annotation(classFileBytes, constantPool, offset + this.readOffset);
 				this.annotations[i] = annotation;
 				this.readOffset += annotation.sizeInBytes();

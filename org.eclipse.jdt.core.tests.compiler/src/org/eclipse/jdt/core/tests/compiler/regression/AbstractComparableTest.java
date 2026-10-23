@@ -119,12 +119,12 @@ public class AbstractComparableTest extends AbstractRegressionTest {
 		return options;
 	}
 
-	protected String intersection(String... types) {
+	protected String intersection(String... types) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// From JDK 12, Comparable gets two new super interfaces, namely Constable and ConstantDesc.
 		// The idea is to append Comparable with &Constable&ConstantDesc automatically.
 		if (isJRE12Plus) {
 			int index = -1;
-			for(int i = 0; i < types.length; i++) {
+			for(int i = 0; i < types.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (types[i].startsWith("Comparable") && !types[i].endsWith("ConstantDesc")) {
 					if ((types.length <= i+1) || !types[i+1].startsWith("CharSequence")) {
 						index = i;

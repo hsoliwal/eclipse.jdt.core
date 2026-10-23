@@ -45,29 +45,29 @@ public class ASTRewritingSwitchPatternTest extends ASTRewritingTest {
 
 	private boolean checkAPILevel() {
 		if (this.apiLevel < 21) {
-			System.err.println("Test "+getName()+" requires a JRE 21");
+			System.err.println("Test "+getName()+" requires a JRE 21"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			return true;
 		}
 		return false;
 	}
 
 
-	@SuppressWarnings("removal")
+	@SuppressWarnings("removal") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testAddTypePattern() throws Exception {
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	int i = switch (o) {\n");
-		buf.append(	    "		case Integer i -> 1;\n");
-		buf.append(	    "		default       	-> 0;\n");
-		buf.append(	    "	};\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	int i = switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case Integer i -> 1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		default       	-> 0;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	};\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
@@ -115,36 +115,36 @@ public class ASTRewritingSwitchPatternTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	int i = switch (o) {\n");
-		buf.append(	    "		case Integer i -> 1;\n");
-		buf.append(	    "        case String s -> yield 2;\n");
-		buf.append(	    "		default       	-> 0;\n");
-		buf.append(	    "	};\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	int i = switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case Integer i -> 1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "        case String s -> yield 2;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		default       	-> 0;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	};\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	@SuppressWarnings("removal")
+	@SuppressWarnings("removal") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void tesModifyTypePattern() throws Exception {
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	int i = switch (o) {\n");
-		buf.append(	    "		case Integer i -> 1;\n");
-		buf.append(	    "		default       	-> 0;\n");
-		buf.append(	    "	};\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	int i = switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case Integer i -> 1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		default       	-> 0;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	};\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
@@ -179,35 +179,35 @@ public class ASTRewritingSwitchPatternTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	int i = switch (o) {\n");
-		buf.append(	    "		case String s -> 1;\n");
-		buf.append(	    "		default       	-> 0;\n");
-		buf.append(	    "	};\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	int i = switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case String s -> 1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		default       	-> 0;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	};\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void testRemoveTypePattern() throws Exception {
+	public void testRemoveTypePattern() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	int i = switch (o) {\n");
-		buf.append(	    "		case Integer i -> 1;\n");
-		buf.append(	    "		case String s  -> 2;\n");
-		buf.append(	    "		default       	-> 0;\n");
-		buf.append(	    "	};\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	int i = switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case Integer i -> 1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case String s  -> 2;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		default       	-> 0;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	};\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
@@ -239,35 +239,35 @@ public class ASTRewritingSwitchPatternTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	int i = switch (o) {\n");
-		buf.append(	    "		case Integer i -> 1;\n");
-		buf.append(	    "		default       	-> 0;\n");
-		buf.append(	    "	};\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	int i = switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case Integer i -> 1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		default       	-> 0;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	};\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
 
-	@SuppressWarnings("removal")
+	@SuppressWarnings("removal") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testAddGuardedPattern() throws Exception {
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	switch (o) {\n");
-		buf.append(	    "		default       	: System.out.println(\"0\");\n");
-		buf.append(	    "	}\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		default       	: System.out.println(\"0\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
@@ -329,36 +329,36 @@ public class ASTRewritingSwitchPatternTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	switch (o) {\n");
-		buf.append(	    "		case Integer i when i > 10:\n");
-		buf.append(	    "            System.out.println(\"Greater than 10\");\n");
-		buf.append(	    "        default       	: System.out.println(\"0\");\n");
-		buf.append(	    "	}\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case Integer i when i > 10:\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "            System.out.println(\"Greater than 10\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "        default       	: System.out.println(\"0\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	@SuppressWarnings("removal")
+	@SuppressWarnings("removal") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testModifyGuardedPattern() throws Exception {
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	switch (o) {\n");
-		buf.append(	    "       case String s when s.equals(\"hi\") : System.out.println(\"hi\");\n");
-		buf.append(	    "		default       	: System.out.println(\"0\");\n");
-		buf.append(	    "	}\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "       case String s when s.equals(\"hi\") : System.out.println(\"hi\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		default       	: System.out.println(\"0\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
@@ -404,35 +404,35 @@ public class ASTRewritingSwitchPatternTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	switch (o) {\n");
-		buf.append(	    "       case Integer i when i > 10 : System.out.println(\"hi\");\n");
-		buf.append(	    "		default       	: System.out.println(\"0\");\n");
-		buf.append(	    "	}\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "       case Integer i when i > 10 : System.out.println(\"hi\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		default       	: System.out.println(\"0\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void testRemoveGuardedPattern() throws Exception {
+	public void testRemoveGuardedPattern() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	int i = switch (o) {\n");
-		buf.append(	    "		case Integer i when i > 10 : System.out.println(\"hi\");\n");
-		buf.append(	    "       case String s when s.equals(\"hi\") : System.out.println(\"hi\");\n");
-		buf.append(	    "		default       	-> 0;\n");
-		buf.append(	    "	};\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	int i = switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case Integer i when i > 10 : System.out.println(\"hi\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "       case String s when s.equals(\"hi\") : System.out.println(\"hi\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		default       	-> 0;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	};\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
@@ -462,34 +462,34 @@ public class ASTRewritingSwitchPatternTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	int i = switch (o) {\n");
-		buf.append(	    "		case String s when s.equals(\"hi\") : System.out.println(\"hi\");\n");
-		buf.append(	    "		default       	-> 0;\n");
-		buf.append(	    "	};\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	int i = switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case String s when s.equals(\"hi\") : System.out.println(\"hi\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		default       	-> 0;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	};\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void testAddNullPattern() throws Exception {
+	public void testAddNullPattern() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	switch (o) {\n");
-		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n");
-		buf.append(	    "		default       	-> 0;\n");
-		buf.append(	    "	}\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		default       	-> 0;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
@@ -534,36 +534,36 @@ public class ASTRewritingSwitchPatternTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	switch (o) {\n");
-		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n");
-		buf.append(	    "        case null -> System.out.println(\"Null\");\n");
-		buf.append(	    "		default       	-> 0;\n");
-		buf.append(	    "	}\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "        case null -> System.out.println(\"Null\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		default       	-> 0;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void testRemoveNullPattern() throws Exception {
+	public void testRemoveNullPattern() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	switch (o) {\n");
-		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n");
-		buf.append(	    "		case null -> System.out.println(\"Null\");\n");
-		buf.append(	    "		default       	-> 0;\n");
-		buf.append(	    "	}\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case null -> System.out.println(\"Null\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		default       	-> 0;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
@@ -592,33 +592,33 @@ public class ASTRewritingSwitchPatternTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	switch (o) {\n");
-		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n");
-		buf.append(	    "		default       	-> 0;\n");
-		buf.append(	    "	}\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		default       	-> 0;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void testAddCaseDefaultPattern() throws Exception {
+	public void testAddCaseDefaultPattern() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	switch (o) {\n");
-		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n");
-		buf.append(	    "	}\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
@@ -663,34 +663,34 @@ public class ASTRewritingSwitchPatternTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	switch (o) {\n");
-		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n");
-		buf.append(	    "        case default -> System.out.println(\"Default\");\n");
-		buf.append(	    "	}\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "        case default -> System.out.println(\"Default\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void testRemoveCaseDefaultPattern() throws Exception {
+	public void testRemoveCaseDefaultPattern() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	switch (o) {\n");
-		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n");
-		buf.append(	    "		case default -> System.out.println(\"Default\");\n");
-		buf.append(	    "	}\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case default -> System.out.println(\"Default\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
@@ -718,32 +718,32 @@ public class ASTRewritingSwitchPatternTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	switch (o) {\n");
-		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n");
-		buf.append(	    "	}\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void testAddCaseDefaulAndNulltPattern() throws Exception {
+	public void testAddCaseDefaulAndNulltPattern() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	switch (o) {\n");
-		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n");
-		buf.append(	    "	}\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
@@ -790,34 +790,34 @@ public class ASTRewritingSwitchPatternTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	switch (o) {\n");
-		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n");
-		buf.append(	    "        case default, null -> System.out.println(\"Default\");\n");
-		buf.append(	    "	}\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "        case default, null -> System.out.println(\"Default\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void testRemoveCaseDefaultAndNullPattern() throws Exception {
+	public void testRemoveCaseDefaultAndNullPattern() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	switch (o) {\n");
-		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n");
-		buf.append(	    "		case default, null -> System.out.println(\"Default\");\n");
-		buf.append(	    "	}\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case default, null -> System.out.println(\"Default\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
@@ -845,33 +845,33 @@ public class ASTRewritingSwitchPatternTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	switch (o) {\n");
-		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n");
-		buf.append(	    "	}\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void testAddCaseDefaultToNullPattern() throws Exception {
+	public void testAddCaseDefaultToNullPattern() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	switch (o) {\n");
-		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n");
-		buf.append(	    "		case null -> System.out.println(\"Default\");\n");
-		buf.append(	    "	}\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case null -> System.out.println(\"Default\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
@@ -900,34 +900,34 @@ public class ASTRewritingSwitchPatternTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	switch (o) {\n");
-		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n");
-		buf.append(	    "		case null, default -> System.out.println(\"Default\");\n");
-		buf.append(	    "	}\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case null, default -> System.out.println(\"Default\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void testAddNullPatternToCaseDefault() throws Exception {
+	public void testAddNullPatternToCaseDefault() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	switch (o) {\n");
-		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n");
-		buf.append(	    "		case default -> System.out.println(\"Default\");\n");
-		buf.append(	    "	}\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case default -> System.out.println(\"Default\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
@@ -956,34 +956,34 @@ public class ASTRewritingSwitchPatternTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	switch (o) {\n");
-		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n");
-		buf.append(	    "		case null, default -> System.out.println(\"Default\");\n");
-		buf.append(	    "	}\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case null, default -> System.out.println(\"Default\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void testRemoveNullPatternFromNullAndCaseDefault() throws Exception {
+	public void testRemoveNullPatternFromNullAndCaseDefault() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	switch (o) {\n");
-		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n");
-		buf.append(	    "		case null, default -> System.out.println(\"Default\");\n");
-		buf.append(	    "	}\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case null, default -> System.out.println(\"Default\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
@@ -1009,34 +1009,34 @@ public class ASTRewritingSwitchPatternTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	switch (o) {\n");
-		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n");
-		buf.append(	    "		case default -> System.out.println(\"Default\");\n");
-		buf.append(	    "	}\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case default -> System.out.println(\"Default\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void testRemoveDefaultPatternFromNullAndCaseDefault() throws Exception {
+	public void testRemoveDefaultPatternFromNullAndCaseDefault() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	switch (o) {\n");
-		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n");
-		buf.append(	    "		case null, default -> System.out.println(\"Default\");\n");
-		buf.append(	    "	}\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case null, default -> System.out.println(\"Default\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
@@ -1062,35 +1062,35 @@ public class ASTRewritingSwitchPatternTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append(		"void foo(Object o) {\n");
-		buf.append(		"	switch (o) {\n");
-		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n");
-		buf.append(	    "		case null -> System.out.println(\"Default\");\n");
-		buf.append(	    "	}\n");
-		buf.append(	    "}\n");
-		buf.append(		"\n");
-		buf.append(		"}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"	switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case Integer i -> System.out.println(\"Integer\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "		case null -> System.out.println(\"Default\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(	    "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(		"}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void testNPEinASTRewriteFlattener() throws Exception {
+	public void testNPEinASTRewriteFlattener() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         if (checkAPILevel()) {
             return;
         }
         IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-        StringBuilder buf= new StringBuilder();
-        buf.append("public class X {\n");
-        buf.append(     "void foo(Object o) {\n");
-        buf.append(     "   switch (o) {\n");
-        buf.append(     "       case Integer i when i > 10:\n");
-        buf.append(     "            System.out.println(\"Greater than 10\");\n");
-        buf.append(     "       default         : System.out.println(\"0\");\n");
-        buf.append(     "   }\n");
-        buf.append(     "}\n");
-        buf.append(     "\n");
-        buf.append(     "}\n");
+        StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        buf.append(     "void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        buf.append(     "   switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        buf.append(     "       case Integer i when i > 10:\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        buf.append(     "            System.out.println(\"Greater than 10\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        buf.append(     "       default         : System.out.println(\"0\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        buf.append(     "   }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        buf.append(     "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        buf.append(     "\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        buf.append(     "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
         ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
@@ -1119,18 +1119,18 @@ public class ASTRewritingSwitchPatternTest extends ASTRewritingTest {
 
         String preview= evaluateRewrite(cu, rewrite);
 
-        StringBuilder buf1= new StringBuilder();
-        buf1= new StringBuilder();
-        buf1.append("public class X {\n");
-        buf1.append(        "void foo(Object o) {\n");
-        buf1.append(        "   switch (o) {\n");
-        buf1.append(        "       case null when null:\n");
-        buf1.append(        "            System.out.println(\"Greater than 10\");\n");
-        buf1.append(        "       default         : System.out.println(\"0\");\n");
-        buf1.append(        "   }\n");
-        buf1.append(        "}\n");
-        buf1.append(        "\n");
-        buf1.append(        "}\n");
+        StringBuilder buf1= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf1= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        buf1.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        buf1.append(        "void foo(Object o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        buf1.append(        "   switch (o) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        buf1.append(        "       case null when null:\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        buf1.append(        "            System.out.println(\"Greater than 10\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        buf1.append(        "       default         : System.out.println(\"0\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        buf1.append(        "   }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        buf1.append(        "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        buf1.append(        "\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        buf1.append(        "}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
         assertEqualString(preview, buf1.toString());
     }
 

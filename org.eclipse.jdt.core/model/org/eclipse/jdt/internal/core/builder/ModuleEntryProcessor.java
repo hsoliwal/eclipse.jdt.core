@@ -41,7 +41,7 @@ class ModuleEntryProcessor {
 	 * @see IClasspathAttribute#PATCH_MODULE
 	 */
 	static String pushPatchToFront(IClasspathEntry[] classpathEntries, JavaProject javaProject) {
-		for (int i = 0; i < classpathEntries.length; i++) {
+		for (int i = 0; i < classpathEntries.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IClasspathEntry entry = classpathEntries[i];
 			List<String> patchedModules = javaProject.getPatchedModules(entry);
 			if (patchedModules.size() == 1) {
@@ -63,7 +63,7 @@ class ModuleEntryProcessor {
 	 * @param patchedModule module defined in the target location
 	 * @param moduleEntries map of known module locations
 	 */
-	static void combinePatchIntoModuleEntry(ClasspathLocation sourceLocation, IModule patchedModule, Map<String, IModulePathEntry> moduleEntries) {
+	static void combinePatchIntoModuleEntry(ClasspathLocation sourceLocation, IModule patchedModule, Map<String, IModulePathEntry> moduleEntries) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		sourceLocation.setModule(patchedModule);
 		String patchedModuleName = String.valueOf(patchedModule.name());
 		IModulePathEntry mainEntry = moduleEntries.get(patchedModuleName);
@@ -82,7 +82,7 @@ class ModuleEntryProcessor {
 		} else if (mainEntry instanceof ClasspathLocation) {
 			combinedLocations = new ClasspathLocation[] { (ClasspathLocation) mainEntry, sourceLocation };
 		} else {
-			throw new IllegalStateException("Cannot patch the module of classpath entry "+mainEntry); //$NON-NLS-1$
+			throw new IllegalStateException("Cannot patch the module of classpath entry "+mainEntry); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		moduleEntries.put(patchedModuleName, new ModulePathEntry(null, patchedModule, combinedLocations));
 	}

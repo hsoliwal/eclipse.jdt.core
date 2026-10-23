@@ -76,9 +76,9 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 	static protected final int SHOW_JAR_FILE			= 0x0400;
 
 	public static class ConstructorDeclarationsCollector implements IRestrictedAccessConstructorRequestor {
-		List<String> results = new ArrayList<>();
+		List<String> results = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
-		public void acceptConstructor(
+		public void acceptConstructor( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				int modifiers,
 				char[] simpleTypeName,
 				int parameterCount,
@@ -90,27 +90,27 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 				int extraFlags,
 				String path,
 				AccessRestriction access) {
-			StringBuilder buffer = new StringBuilder();
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
 			boolean isMemberType = (extraFlags & ExtraFlags.IsMemberType) != 0;
 
-			buffer.append(packageName == null ? CharOperation.NO_CHAR : packageName);
+			buffer.append(packageName == null ? CharOperation.NO_CHAR : packageName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (isMemberType) {
-				buffer.append('.');
-				buffer.append('?'); // enclosing type names are not stored in the indexes
-				buffer.append('?');
-				buffer.append('?');
+				buffer.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append('?'); // enclosing type names are not stored in the indexes //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append('?'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append('?'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buffer.append('.');
-			buffer.append(simpleTypeName);
-			buffer.append('#');
-			buffer.append(simpleTypeName);
-			buffer.append('(');
+			buffer.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(simpleTypeName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append('#'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(simpleTypeName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 			parameterTypes = signature == null ? parameterTypes : Signature.getParameterTypes(signature);
 
-			for (int i = 0; i < parameterCount; i++) {
-				if (i != 0) buffer.append(',');
+			for (int i = 0; i < parameterCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				if (i != 0) buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 				if (parameterTypes != null) {
 					char[] parameterType;
@@ -120,23 +120,23 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 					} else {
 						parameterType = parameterTypes[i];
 					}
-					buffer.append(parameterType);
+					buffer.append(parameterType); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else {
-					buffer.append('?'); // parameter type names are not stored in the indexes
-					buffer.append('?');
-					buffer.append('?');
+					buffer.append('?'); // parameter type names are not stored in the indexes //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append('?'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append('?'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				buffer.append(' ');
+				buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (parameterNames != null) {
-					buffer.append(parameterNames[i]);
+					buffer.append(parameterNames[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else {
-					buffer.append("arg"+i);
+					buffer.append("arg"+i); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
-			buffer.append(')');
+			buffer.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 			if (parameterCount < 0) {
-				buffer.append('*');
+				buffer.append('*'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 
 			this.results.add(buffer.toString());
@@ -148,11 +148,11 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 			String[] strings = new String[length];
 			this.results.toArray(strings);
 			org.eclipse.jdt.internal.core.util.Util.sort(strings);
-			StringBuilder buffer = new StringBuilder(100);
-			for (int i = 0; i < length; i++){
-				buffer.append(strings[i]);
+			StringBuilder buffer = new StringBuilder(100); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			for (int i = 0; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append(strings[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (i != length-1) {
-					buffer.append('\n');
+					buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
 			return buffer.toString();
@@ -164,13 +164,13 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 
 	static void checkAndAddtoBuffer(StringBuilder buffer, char[] precond, char c) {
 		if (precond == null || precond.length == 0) return;
-		buffer.append(precond);
-		buffer.append(c);
+		buffer.append(precond); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(c); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	public static class MethodDeclarationsCollector implements IRestrictedAccessMethodRequestor {
-		List<String> results = new ArrayList<>();
+		List<String> results = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public void acceptMethod(
 				char[] methodName,
 				int parameterCount,
@@ -187,21 +187,21 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 				AccessRestriction access,
 				int methodIndex) {
 
-			StringBuilder buffer = new StringBuilder();
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			char c = '.';
 			char[] noname = new String("<NONAME>").toCharArray();
-			buffer.append(path);
-			buffer.append(' ');
-			buffer.append(returnType == null ? CharOperation.NO_CHAR: returnType);
-			buffer.append(' ');
+			buffer.append(path); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(returnType == null ? CharOperation.NO_CHAR: returnType); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			checkAndAddtoBuffer(buffer, packageName, c);
 			checkAndAddtoBuffer(buffer, declaringQualifier, c);
 			checkAndAddtoBuffer(buffer, simpleTypeName == null ? noname : simpleTypeName, c);
-			buffer.append(methodName);
-			buffer.append('(');
+			buffer.append(methodName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			parameterTypes = signature == null ? parameterTypes : Signature.getParameterTypes(signature);
 
-			for (int i = 0; i < parameterCount; i++) {
+			for (int i = 0; i < parameterCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (parameterTypes != null) {
 					char[] parameterType;
 					if (parameterTypes.length != parameterCount) {
@@ -213,24 +213,24 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 					} else {
 						parameterType = this.getTypeErasure(parameterTypes[i]);
 					}
-					buffer.append(parameterType);
+					buffer.append(parameterType); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else {
-					buffer.append('?'); // parameter type names are not stored in the indexes
-					buffer.append('?');
-					buffer.append('?');
+					buffer.append('?'); // parameter type names are not stored in the indexes //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append('?'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append('?'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				buffer.append(' ');
+				buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (parameterNames != null) {
-					buffer.append(parameterNames[i]);
+					buffer.append(parameterNames[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else {
-					buffer.append("arg"+i);
+					buffer.append("arg"+i); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				if (parameterCount > 1 && i < parameterCount - 1) buffer.append(',');
+				if (parameterCount > 1 && i < parameterCount - 1) buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buffer.append(')');
+			buffer.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			this.results.add(buffer.toString());
 		}
-		private char[] getTypeErasure(char[] typeName) {
+		private char[] getTypeErasure(char[] typeName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			int index;
 			if ((index = CharOperation.indexOf('<', typeName)) == -1) return typeName;
 
@@ -240,7 +240,7 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 			System.arraycopy(typeName, 0, typeErasurename, 0, index);
 
 			int depth = 1;
-			for (int i = index + 1; i < length; i++) {
+			for (int i = index + 1; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				switch (typeName[i]) {
 					case '<':
 						depth++;
@@ -265,11 +265,11 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 			String[] strings = new String[length];
 			this.results.toArray(strings);
 			org.eclipse.jdt.internal.core.util.Util.sort(strings);
-			StringBuilder buffer = new StringBuilder(100);
-			for (int i = 0; i < length; i++){
-				buffer.append(strings[i]);
+			StringBuilder buffer = new StringBuilder(100); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			for (int i = 0; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append(strings[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (i != length-1) {
-					buffer.append('\n');
+					buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
 			return buffer.toString();
@@ -284,10 +284,10 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 	public static class JavaSearchResultCollector extends SearchRequestor {
 		int flags = SHOW_POTENTIAL; // default
 		protected SearchMatch match;
-		public StringBuilder results = new StringBuilder(), line;
+		public StringBuilder results = new StringBuilder(), line; //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		public int showFlavors = 0;
 		public int count = 0;
-		List lines = new ArrayList();
+		List lines = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		boolean sorted;
 		public JavaSearchResultCollector() {
 			this(false);
@@ -306,54 +306,54 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 		protected void addLine(String text) {
 			this.lines.add(text);
 		}
-		protected void writeLine() throws CoreException {
+		protected void writeLine() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			try {
 				IResource resource = this.match.getResource();
 				IJavaElement element = getElement(this.match);
-				this.line = new StringBuilder();
+				this.line = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 				if ((this.flags & SHOW_MATCH_KIND) != 0) {
 					String matchClassName = this.match.getClass().getName();
-					this.line.append(matchClassName.substring(matchClassName.lastIndexOf('.')+1));
-					this.line.append(": ");
+					this.line.append(matchClassName.substring(matchClassName.lastIndexOf('.')+1)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.line.append(": "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				this.line.append(getPathString(resource, element));
+				this.line.append(getPathString(resource, element)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if ((this.flags & SHOW_PROJECT) != 0) {
 					IProject project = element.getJavaProject().getProject();
-					this.line.append(" [in ");
-					this.line.append(project.getName());
-					this.line.append("]");
+					this.line.append(" [in "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.line.append(project.getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.line.append("]"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				ICompilationUnit unit = null;
 				if (element instanceof IModuleDescription) {
 					IModuleDescription md = (IModuleDescription) element;
-					this.line.append(" ");
+					this.line.append(" "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					append(md);
 					unit = md.getCompilationUnit();
 				} else if (element instanceof IMethod) {
-					this.line.append(" ");
+					this.line.append(" "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					IMethod method = (IMethod)element;
 					append(method);
 					unit = method.getCompilationUnit();
 				} else if (element instanceof IType) {
-					this.line.append(" ");
+					this.line.append(" "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					IType type = (IType)element;
 					append(type);
 					unit = type.getCompilationUnit();
 				} else if (element instanceof IField) {
-					this.line.append(" ");
+					this.line.append(" "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					IField field = (IField)element;
 					append(field);
 					unit = field.getCompilationUnit();
 				} else if (element instanceof IInitializer) {
-					this.line.append(" ");
+					this.line.append(" "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					IInitializer initializer = (IInitializer)element;
 					append(initializer);
 					unit = initializer.getCompilationUnit();
 				} else if (element instanceof IPackageFragment) {
-					this.line.append(" ");
+					this.line.append(" "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					append((IPackageFragment)element);
 				} else if (element instanceof ILocalVariable) {
-					this.line.append(" ");
+					this.line.append(" "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					ILocalVariable localVar = (ILocalVariable)element;
 					IJavaElement parent = localVar.getDeclaringMember();
 					if (parent instanceof IInitializer) {
@@ -363,11 +363,11 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 						IMethod method = (IMethod)parent;
 						append(method);
 					}
-					this.line.append(".");
-					this.line.append(localVar.getElementName());
+					this.line.append("."); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.line.append(localVar.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					unit = (ICompilationUnit)localVar.getAncestor(IJavaElement.COMPILATION_UNIT);
 				} else if (element instanceof ITypeParameter) {
-					this.line.append(" ");
+					this.line.append(" "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					ITypeParameter typeParam = (ITypeParameter)element;
 					IJavaElement parent = typeParam.getParent();
 					if (parent instanceof IType) {
@@ -379,11 +379,11 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 						append(method);
 						unit = method.getCompilationUnit();
 					} else {
-						this.line.append("<Unexpected kind of parent for type parameter>");
+						this.line.append("<Unexpected kind of parent for type parameter>"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						unit = (ICompilationUnit)typeParam.getAncestor(IJavaElement.COMPILATION_UNIT);
 					}
-					this.line.append(".");
-					this.line.append(typeParam.getElementName());
+					this.line.append("."); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.line.append(typeParam.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else if (element instanceof IImportDeclaration) {
 					IImportDeclaration importDeclaration = (IImportDeclaration)element;
 					unit = (ICompilationUnit)importDeclaration.getAncestor(IJavaElement.COMPILATION_UNIT);
@@ -391,7 +391,7 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 					IPackageDeclaration packageDeclaration = (IPackageDeclaration)element;
 					unit = (ICompilationUnit)packageDeclaration.getAncestor(IJavaElement.COMPILATION_UNIT);
 				} else if (element instanceof IAnnotation) {
-					this.line.append(" ");
+					this.line.append(" "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					append((IAnnotation)element);
 					unit = (ICompilationUnit) element.getAncestor(IJavaElement.COMPILATION_UNIT);
 				}
@@ -400,71 +400,71 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 					int start = this.match.getOffset();
 					int end = start + this.match.getLength();
 					if (start == -1 || (contents != null && contents.length > 0)) { // retrieving attached source not implemented here
-						this.line.append(" [");
+						this.line.append(" ["); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						if (start > -1) {
 							if ((this.flags & SHOW_SELECTION) != 0) {
 								int lineStart1 = CharOperation.lastIndexOf('\n', contents, 0, start);
 								int lineStart2 = CharOperation.lastIndexOf('\r', contents, 0, start);
 								int lineStart = Math.max(lineStart1, lineStart2) + 1;
-								this.line.append(CharOperation.subarray(contents, lineStart, start));
-								this.line.append("!|");
+								this.line.append(CharOperation.subarray(contents, lineStart, start)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+								this.line.append("!|"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							}
-							this.line.append(CharOperation.subarray(contents, start, end));
+							this.line.append(CharOperation.subarray(contents, start, end)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							if ((this.flags & SHOW_SELECTION) != 0) {
-								this.line.append("|!");
+								this.line.append("|!"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 								int lineEnd1 = CharOperation.indexOf('\n', contents, end);
 								int lineEnd2 = CharOperation.indexOf('\r', contents, end);
 								int lineEnd = lineEnd1 > 0 && lineEnd2 > 0 ? Math.min(lineEnd1, lineEnd2) : Math.max(lineEnd1, lineEnd2);
 								if (lineEnd == -1) lineEnd = contents.length;
-								this.line.append(CharOperation.subarray(contents, end, lineEnd));
+								this.line.append(CharOperation.subarray(contents, end, lineEnd)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							}
 							if ((this.flags & SHOW_OFFSET) != 0) {
-								this.line.append('@');
-								this.line.append(start);
+								this.line.append('@'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+								this.line.append(start); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							}
 						} else {
-							this.line.append("No source");
+							this.line.append("No source"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
-						this.line.append("]");
+						this.line.append("]"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
 				if ((this.flags & SHOW_ACCURACY) != 0) {
-					this.line.append(" ");
+					this.line.append(" "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					if (this.match.getAccuracy() == SearchMatch.A_ACCURATE) {
 						if ((this.flags & SHOW_RULE) != 0) {
 							if (this.match.isExact()) {
-								this.line.append("EXACT_");
+								this.line.append("EXACT_"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							} else if (this.match.isEquivalent()) {
-								this.line.append("EQUIVALENT_");
+								this.line.append("EQUIVALENT_"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							} else if (this.match.isErasure()) {
-								this.line.append("ERASURE_");
+								this.line.append("ERASURE_"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							} else {
-								this.line.append("INVALID_RULE_");
+								this.line.append("INVALID_RULE_"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							}
 							if (this.match.isRaw()) {
-								this.line.append("RAW_");
+								this.line.append("RAW_"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							}
 						} else {
-							this.line.append("EXACT_");
+							this.line.append("EXACT_"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
-						this.line.append("MATCH");
+						this.line.append("MATCH"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					} else {
-						this.line.append("POTENTIAL_MATCH");
+						this.line.append("POTENTIAL_MATCH"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
 				if ((this.flags & SHOW_INSIDE_DOC) != 0) {
-					this.line.append(" ");
+					this.line.append(" "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					if (this.match.isInsideDocComment()) {
-						this.line.append("INSIDE_JAVADOC");
+						this.line.append("INSIDE_JAVADOC"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					} else {
-						this.line.append("OUTSIDE_JAVADOC");
+						this.line.append("OUTSIDE_JAVADOC"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
 				if ((this.flags & SHOW_SYNTHETIC) != 0) {
 					if (this.match instanceof MethodReferenceMatch) {
 						MethodReferenceMatch methRef = (MethodReferenceMatch) this.match;
 						if (methRef.isSynthetic()) {
-							this.line.append(" SYNTHETIC");
+							this.line.append(" SYNTHETIC"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
 					}
 				}
@@ -472,7 +472,7 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 					if (this.match instanceof MethodReferenceMatch) {
 						MethodReferenceMatch methRef = (MethodReferenceMatch) this.match;
 						if (methRef.isSuperInvocation() && showSuperInvocation()) {
-							this.line.append(" SUPER INVOCATION");
+							this.line.append(" SUPER INVOCATION"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
 					}
 				}
@@ -480,26 +480,26 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 					if (this.match instanceof FieldReferenceMatch) {
 						FieldReferenceMatch fieldRef = (FieldReferenceMatch) this.match;
 						if (fieldRef.isReadAccess()) {
-							this.line.append(" READ");
-							if (fieldRef.isWriteAccess()) this.line.append("/WRITE");
-							this.line.append(" ACCESS");
+							this.line.append(" READ"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+							if (fieldRef.isWriteAccess()) this.line.append("/WRITE"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+							this.line.append(" ACCESS"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						} else if (fieldRef.isWriteAccess()) {
-							this.line.append(" WRITE ACCESS");
+							this.line.append(" WRITE ACCESS"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
 					} else if (this.match instanceof LocalVariableReferenceMatch) {
 						LocalVariableReferenceMatch variableRef = (LocalVariableReferenceMatch) this.match;
 						if (variableRef.isReadAccess()) {
-							this.line.append(" READ");
-							if (variableRef.isWriteAccess()) this.line.append("/WRITE");
-							this.line.append(" ACCESS");
+							this.line.append(" READ"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+							if (variableRef.isWriteAccess()) this.line.append("/WRITE"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+							this.line.append(" ACCESS"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						} else if (variableRef.isWriteAccess()) {
-							this.line.append(" WRITE ACCESS");
+							this.line.append(" WRITE ACCESS"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
 					}
 				}
 			} catch (JavaModelException e) {
-				this.line.append("\n");
-				this.line.append(e.toString());
+				this.line.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				this.line.append(e.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		private boolean showSuperInvocation() {
@@ -546,76 +546,76 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 		public void showSynthetic() {
 			this.flags |= SHOW_SYNTHETIC;
 		}
-		protected void append(IAnnotation annotation) throws JavaModelException {
-			this.line.append("@");
-			this.line.append(annotation.getElementName());
-			this.line.append('(');
+		protected void append(IAnnotation annotation) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+			this.line.append("@"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			this.line.append(annotation.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			this.line.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			IMemberValuePair[] pairs = annotation.getMemberValuePairs();
 			int length = pairs == null ? 0 : pairs.length;
-			for (int i=0; i<length; i++) {
-				this.line.append(pairs[i].getMemberName());
-				this.line.append('=');
+			for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				this.line.append(pairs[i].getMemberName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				this.line.append('='); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				Object value = pairs[i].getValue();
 				switch (pairs[i].getValueKind()) {
 					case IMemberValuePair.K_CLASS:
-						this.line.append(value);
-						this.line.append(".class");
+						this.line.append(value); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						this.line.append(".class"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						break;
 					default:
-						this.line.append(value);
+						this.line.append(value); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				}
 			}
-			this.line.append(')');
+			this.line.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		protected void append(IField field) throws JavaModelException {
 			append(field.getDeclaringType());
-			this.line.append(".");
-			this.line.append(field.getElementName());
+			this.line.append("."); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			this.line.append(field.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		private void append(IInitializer initializer) throws JavaModelException {
 			append(initializer.getDeclaringType());
-			this.line.append(".");
+			this.line.append("."); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (Flags.isStatic(initializer.getFlags())) {
-				this.line.append("static ");
+				this.line.append("static "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			this.line.append("{}");
+			this.line.append("{}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		private void append(IMethod method) throws JavaModelException {
+		private void append(IMethod method) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			if (!method.isConstructor()) {
-				this.line.append(Signature.toString(method.getReturnType()));
-				this.line.append(" ");
+				this.line.append(Signature.toString(method.getReturnType())); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				this.line.append(" "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			append(method.getDeclaringType());
 			if (!method.isConstructor()) {
-				this.line.append(".");
-				this.line.append(method.getElementName());
+				this.line.append("."); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				this.line.append(method.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			this.line.append("(");
+			this.line.append("("); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			String[] parameters = method.getParameterTypes();
 			boolean varargs = Flags.isVarargs(method.getFlags());
-			for (int i = 0, length=parameters.length; i<length; i++) {
+			for (int i = 0, length=parameters.length; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (i < length - 1) {
-					this.line.append(Signature.toString(parameters[i]));
-					this.line.append(", "); //$NON-NLS-1$
+					this.line.append(Signature.toString(parameters[i])); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.line.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else if (varargs) {
 					// remove array from signature
 					String parameter = parameters[i].substring(1);
-					this.line.append(Signature.toString(parameter));
-					this.line.append(" ..."); //$NON-NLS-1$
+					this.line.append(Signature.toString(parameter)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.line.append(" ..."); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else {
-					this.line.append(Signature.toString(parameters[i]));
+					this.line.append(Signature.toString(parameters[i])); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
-			this.line.append(")");
+			this.line.append(")"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		private void append(IModuleDescription md) {
-			this.line.append(md.getElementName());
+			this.line.append(md.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		private void append(IPackageFragment pkg) {
-			this.line.append(pkg.getElementName());
+			this.line.append(pkg.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		private void append(IType type) throws JavaModelException {
+		private void append(IType type) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			IJavaElement parent = type.getParent();
 			boolean isLocal = false;
 			switch (parent.getElementType()) {
@@ -623,25 +623,25 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 					IPackageFragment pkg = type.getPackageFragment();
 					append(pkg);
 					if (!pkg.getElementName().equals(IPackageFragment.DEFAULT_PACKAGE_NAME)) {
-						this.line.append(".");
+						this.line.append("."); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 					break;
 				case IJavaElement.CLASS_FILE:
 					IType declaringType = type.getDeclaringType();
 					if (declaringType != null) {
 						append(type.getDeclaringType());
-						this.line.append("$");
+						this.line.append("$"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					} else {
 						pkg = type.getPackageFragment();
 						append(pkg);
 						if (!pkg.getElementName().equals(IPackageFragment.DEFAULT_PACKAGE_NAME)) {
-							this.line.append(".");
+							this.line.append("."); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
 					}
 					break;
 				case IJavaElement.TYPE:
 					append((IType)parent);
-					this.line.append("$");
+					this.line.append("$"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IJavaElement.FIELD:
 					append((IField)parent);
@@ -657,7 +657,7 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 					break;
 			}
 			if (isLocal) {
-				this.line.append(":");
+				this.line.append(":"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			String typeName = type.getElementName();
 			boolean anonymous = false;
@@ -666,21 +666,21 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 			} catch(JavaModelException jme) {
 			}
 			if (anonymous) {
-				this.line.append("<anonymous>");
+				this.line.append("<anonymous>"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else if (type.isLambda()) {
 				((LambdaExpression) type).toStringName(this.line);
 			} else {
-				this.line.append(typeName);
+				this.line.append(typeName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			if (isLocal && !(type instanceof LambdaExpression)) { // don't want occurrence counts for lambdas. it can be confusing at best, as not all are built.
-				this.line.append("#");
-				this.line.append(((SourceRefElement)type).getOccurrenceCount());
+				this.line.append("#"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				this.line.append(((SourceRefElement)type).getOccurrenceCount()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		protected IJavaElement getElement(SearchMatch searchMatch) {
 			return (IJavaElement) searchMatch.getElement();
 		}
-		protected String getPathString(IResource resource, IJavaElement element) {
+		protected String getPathString(IResource resource, IJavaElement element) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String pathString;
 			if (resource != null) {
 				IPath path = resource.getProjectRelativePath();
@@ -697,12 +697,12 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 						} else {
 							pathString = path.toString();
 						}
-						return pathString + "|" + ((Member)element).getTypeRoot().getElementName();
+						return pathString + "|" + ((Member)element).getTypeRoot().getElementName(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 				}
 				if (path.segmentCount() == 0) {
 					IJavaElement root = element;
-					while (root != null && !(root instanceof IPackageFragmentRoot)) {
+					while (root != null && !(root instanceof IPackageFragmentRoot)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						root = root.getParent();
 					}
 					if (root != null) {
@@ -723,7 +723,7 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 			}
 			return pathString;
 		}
-		protected char[] getSource(IResource resource, IJavaElement element, ICompilationUnit unit) throws CoreException {
+		protected char[] getSource(IResource resource, IJavaElement element, ICompilationUnit unit) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			char[] contents = CharOperation.NO_CHAR;
 			if ("java".equals(resource.getFileExtension())) {
 				ICompilationUnit cu = (ICompilationUnit)element.getAncestor(IJavaElement.COMPILATION_UNIT);
@@ -750,11 +750,11 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 			this.match = null;
 			this.count = 0;
 		}
-		public String toString() {
-	    	StringBuilder buffer = new StringBuilder();
-	    	List displayedLines = new ArrayList(this.lines);
+		public String toString() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	    	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	    	List displayedLines = new ArrayList(this.lines); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	    	if (this.sorted) {
-	    		Collections.sort(displayedLines, new Comparator() {
+	    		Collections.sort(displayedLines, new Comparator() { //FLLDCIM: MARK — M16 SORT_LANE CALL
 					@Override
 					public int compare(Object o1, Object o2) {
 						return o1.toString().compareTo(o2.toString());
@@ -762,16 +762,16 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 				});
 	    	}
 	    	int size = displayedLines.size();
-	    	for (int i=0; i<size; i++) {
-	    		if (i > 0) buffer.append('\n');
-	    		buffer.append(displayedLines.get(i).toString());
+	    	for (int i=0; i<size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+	    		if (i > 0) buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	    		buffer.append(displayedLines.get(i).toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	    	}
 	        return buffer.toString();
 	    }
 	}
 
 	static class MethodNameMatchCollector extends MethodNameMatchRequestor {
-		List matches = new ArrayList();
+		List matches = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		public void acceptMethodNameMatch(MethodNameMatch match) {
 			IMethod method = match.getMethod();
 			if (method != null) {
@@ -781,11 +781,11 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 		public int size() {
 			return this.matches.size();
 		}
-		private String toString(boolean withTypeName) {
+		private String toString(boolean withTypeName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			int size = size();
 			if (size == 0) return "";
 			String[] strings = new String[size];
-			for (int i=0; i<size; i++) {
+			for (int i=0; i<size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IMethod method = (IMethod) this.matches.get(i);
 				IType type = method.getDeclaringType();
 				String path = type.getPath().toPortableString();
@@ -799,44 +799,44 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 				}
 				int nParameterNames = parameterNames.length;
 
-				StringBuilder buf = new StringBuilder();
-				buf.append(path);
-				buf.append(' ');
+				StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				buf.append(path); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buf.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				try {
-					buf.append(Signature.toString(Signature.getTypeErasure(method.getReturnType())));
-					buf.append(' ');
+					buf.append(Signature.toString(Signature.getTypeErasure(method.getReturnType()))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buf.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} catch (JavaModelException e) {
 					// do nothing
 				}
 				if (withTypeName) {
-					buf.append(declaringTypeName);
-					buf.append('.');
+					buf.append(declaringTypeName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buf.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				buf.append(method.getElementName());
-				buf.append('(');
+				buf.append(method.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buf.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				int l = parameterTypes.length;
 				if (l > 0) {
-					buf.append(Signature.toString(Signature.getTypeErasure(parameterTypes[0])));
+					buf.append(Signature.toString(Signature.getTypeErasure(parameterTypes[0]))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					if (nParameterNames > 0) {
-						buf.append(' ');
-						buf.append(parameterNames[0]);
+						buf.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						buf.append(parameterNames[0]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
-					for (int j = 1; j < l; ++j) {
-						buf.append(',');
-						buf.append(Signature.toString(Signature.getTypeErasure(parameterTypes[j])));
+					for (int j = 1; j < l; ++j) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+						buf.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						buf.append(Signature.toString(Signature.getTypeErasure(parameterTypes[j]))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						if (j < nParameterNames) {
-							buf.append(' ');
-							buf.append(parameterNames[j]);
+							buf.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+							buf.append(parameterNames[j]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
 					}
 				}
-				buf.append(')');
-				if (i < size - 1) buf.append('\n');
+				buf.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				if (i < size - 1) buf.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				strings[i] = buf.toString();
 			}
-			StringBuilder buffer = new StringBuilder();
-			for (int i=0; i<size; i++) {
-				buffer.append(strings[i]);
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			for (int i=0; i<size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append(strings[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			return buffer.toString();
 		}
@@ -849,7 +849,7 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 	}
 
 	static class TypeNameMatchCollector extends TypeNameMatchRequestor {
-		List matches = new ArrayList();
+		List matches = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		public void acceptTypeNameMatch(TypeNameMatch match) {
 			IType type = match.getType();
 			if (type != null) {
@@ -859,11 +859,11 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 		public int size() {
 			return this.matches.size();
 		}
-		private String toString(int kind) {
+		private String toString(int kind) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			int size = size();
 			if (size == 0) return "";
 			String[] strings = new String[size];
-			for (int i=0; i<size; i++) {
+			for (int i=0; i<size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IType type = (IType) this.matches.get(i);
 				switch (kind) {
 					case 1: // fully qualified name
@@ -875,10 +875,10 @@ public class AbstractJavaSearchTests extends ModifyingResourceTests implements I
 				}
 			}
 			Arrays.sort(strings);
-			StringBuilder buffer = new StringBuilder();
-			for (int i=0; i<size; i++) {
-				if (i>0) buffer.append('\n');
-				buffer.append(strings[i]);
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			for (int i=0; i<size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				if (i>0) buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(strings[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			return buffer.toString();
 		}
@@ -909,7 +909,7 @@ protected JavaSearchResultCollector resultCollector;
 	protected void assertSearchResults(String expected, JavaSearchResultCollector collector) {
 		assertSearchResults("Unexpected search results", expected, collector);
 	}
-	protected void assertSearchResults(String message, String expected, JavaSearchResultCollector collector) {
+	protected void assertSearchResults(String message, String expected, JavaSearchResultCollector collector) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String actual = collector.toString();
 		if (!expected.equals(actual)) {
 			if (this.displayName) {
@@ -933,7 +933,7 @@ protected JavaSearchResultCollector resultCollector;
 			if (this.workingCopies != null) {
 				int length = this.workingCopies.length;
 				String[] sources = new String[length*2];
-				for (int i=0; i<length; i++) {
+				for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					sources[i*2] = this.workingCopies[i].getPath().toString();
 					try {
 						sources[i*2+1] = this.workingCopies[i].getSource();
@@ -943,7 +943,7 @@ protected JavaSearchResultCollector resultCollector;
 				}
 				System.out.println("--------------------------------------------------------------------------------");
 				length *= 2;
-				for (int i=0; i<length; i+=2) {
+				for (int i=0; i<length; i+=2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					System.out.println(sources[i]);
 					System.out.println(sources[i+1]);
 				}
@@ -985,23 +985,23 @@ protected JavaSearchResultCollector resultCollector;
 		if (packageName == null) return getJavaSearchScope15();
 		return getJavaSearchPackageScope("JavaSearch15", packageName, addSubpackages);
 	}
-	IJavaSearchScope getJavaSearchPackageScope(String projectName, String packageName, boolean addSubpackages) throws JavaModelException {
+	IJavaSearchScope getJavaSearchPackageScope(String projectName, String packageName, boolean addSubpackages) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment fragment = getPackageFragment(projectName, "src", packageName);
 		if (fragment == null) return null;
 		IJavaElement[] searchPackages = null;
 		if (addSubpackages) {
 			// Create list of package with first found one
-			List packages = new ArrayList();
+			List packages = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			packages.add(fragment);
 			// Add all possible subpackages
 			IJavaElement[] children= ((IPackageFragmentRoot)fragment.getParent()).getChildren();
 			String[] names = ((PackageFragment)fragment).names;
 			int namesLength = names.length;
-			nextPackage: for (int i= 0, length = children.length; i < length; i++) {
+			nextPackage: for (int i= 0, length = children.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				PackageFragment currentPackage = (PackageFragment) children[i];
 				String[] otherNames = currentPackage.names;
 				if (otherNames.length <= namesLength) continue nextPackage;
-				for (int j = 0; j < namesLength; j++) {
+				for (int j = 0; j < namesLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (!names[j].equals(otherNames[j]))
 						continue nextPackage;
 				}
@@ -1247,18 +1247,18 @@ protected JavaSearchResultCollector resultCollector;
 		new SearchEngine().searchDeclarationsOfSentMessages(enclosingElement, requestor, null);
 	}
 	protected void buildAndExpectNoProblems(IJavaProject... javaProjects) throws CoreException {
-		List<IProject> projects = new ArrayList<>();
+		List<IProject> projects = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		if (javaProjects != null) {
 			Arrays.stream(javaProjects).forEach(jp -> projects.add(jp.getProject()));
 		}
-		for (IProject project : projects) {
+		for (IProject project : projects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			project.build(IncrementalProjectBuilder.AUTO_BUILD, new NullProgressMonitor());
 		}
 		waitForAutoBuild();
 		waitUntilIndexesReady();
 
-		for (IProject project : projects) {
-			assertProblemMarkers("Expected no build problems on project: " + project, "", project);
+		for (IProject project : projects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			assertProblemMarkers("Expected no build problems on project: " + project, "", project); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	protected void buildAndExpectProblems(IJavaProject javaProject, String expectedMarkers) throws CoreException {

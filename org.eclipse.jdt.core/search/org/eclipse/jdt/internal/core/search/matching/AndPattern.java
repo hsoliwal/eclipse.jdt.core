@@ -39,7 +39,7 @@ private static int combinedMatchRule(int matchRule, int matchRule2) {
 		| (combined & (R_CAMELCASE_MATCH | R_CAMELCASE_SAME_PART_COUNT_MATCH));
 }
 
-public AndPattern(SearchPattern leftPattern, SearchPattern rightPattern) {
+public AndPattern(SearchPattern leftPattern, SearchPattern rightPattern) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	super(AND_PATTERN, combinedMatchRule(leftPattern.getMatchRule(), rightPattern.getMatchRule()));
 	this.mustResolve = leftPattern.mustResolve || rightPattern.mustResolve;
 
@@ -88,7 +88,7 @@ public boolean isParallelSearchSupported() {
 public SearchPattern clone() throws CloneNotSupportedException {
 	AndPattern pattern = (AndPattern) super.clone();
 	pattern.patterns = this.patterns.clone();
-	for (int i = 0; i < this.patterns.length; i++) {
+	for (int i = 0; i < this.patterns.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		 pattern.patterns[i] =  this.patterns[i].clone();
 	}
 	return pattern;

@@ -44,7 +44,7 @@ public class UsesDirective extends ModuleDirective {
 	private static final List PROPERTY_DESCRIPTORS_9_0;
 
 	static {
-		List properyList = new ArrayList(2);
+		List properyList = new ArrayList(2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(UsesDirective.class, properyList);
 		addProperty(NAME_PROPERTY, properyList);
 		PROPERTY_DESCRIPTORS_9_0 = reapPropertyList(properyList);

@@ -52,13 +52,13 @@ public class ModularClassFileMatchLocator implements IIndexConstants {
 		matchPackageReferences(pattern, locator);
 		matchTypeReferences(pattern, locator);
 	}
-	private void matchModuleDeclaration(SearchPattern pattern, MatchLocator locator) throws CoreException {
+	private void matchModuleDeclaration(SearchPattern pattern, MatchLocator locator) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch (pattern.kind) {
 			case MODULE_PATTERN:
 				break;
 			case OR_PATTERN:
 				SearchPattern[] patterns = ((OrPattern) pattern).patterns;
-				for (SearchPattern p : patterns) {
+				for (SearchPattern p : patterns) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (p.kind == MODULE_PATTERN)
 						matchModuleReferences(p, locator);
 				}
@@ -81,14 +81,14 @@ public class ModularClassFileMatchLocator implements IIndexConstants {
 		SearchMatch match = locator.newDeclarationMatch(this.moduleDesc, moduleBinding, accuracy, -1, 0);
 		locator.report(match);
 	}
-	private void matchModuleReferences(SearchPattern pattern, MatchLocator locator) throws CoreException {
+	private void matchModuleReferences(SearchPattern pattern, MatchLocator locator) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Only process Module patterns
 		switch (pattern.kind) {
 			case MODULE_PATTERN:
 				break;
 			case OR_PATTERN:
 				SearchPattern[] patterns = ((OrPattern) pattern).patterns;
-				for (SearchPattern p : patterns) {
+				for (SearchPattern p : patterns) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (p.kind == MODULE_PATTERN)
 						matchModuleReferences(p, locator);
 				}
@@ -110,7 +110,7 @@ public class ModularClassFileMatchLocator implements IIndexConstants {
 			char[][] modules, boolean isTarget) throws CoreException {
 		if (modules == null)
 			return;
-		for (char[] module1 : modules) {
+		for (char[] module1 : modules) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (module1 == null || module1.length == 0) continue;
 			if (!locator.patternLocator.matchesName(modulePattern.name, module1)) continue;
 			// no resolve for target modules - report accurate match else resolve
@@ -121,14 +121,14 @@ public class ModularClassFileMatchLocator implements IIndexConstants {
 	private void matchModuleReferences(MatchLocator locator, ModulePattern modulePattern,
 			IPackageExport[] pvs) throws CoreException {
 		if (pvs == null) return;
-		for (IPackageExport pv : pvs) {
+		for (IPackageExport pv : pvs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			matchModuleReference(locator, modulePattern, pv.targets(), true /* isTarget */);
 		}
 	}
 	private void matchModuleReferences(MatchLocator locator, ModulePattern modulePattern,
 			ModuleBinding[] refs) throws CoreException {
 		if (refs == null) return;
-		for (ModuleBinding ref : refs) {
+		for (ModuleBinding ref : refs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[] name = ref.name();
 			if (name == null) continue;
 			int level =  locator.patternLocator.resolveLevel(ref);
@@ -138,14 +138,14 @@ public class ModularClassFileMatchLocator implements IIndexConstants {
 			locator.report(match);
 		}
 	}
-	private void matchPackageReferences(SearchPattern pattern, MatchLocator locator) throws CoreException {
+	private void matchPackageReferences(SearchPattern pattern, MatchLocator locator) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Only process PackageReference patterns
 		switch (pattern.kind) {
 			case PKG_REF_PATTERN:
 				break;
 			case OR_PATTERN:
 				SearchPattern[] patterns = ((OrPattern) pattern).patterns;
-				for (SearchPattern p : patterns) {
+				for (SearchPattern p : patterns) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (p.kind == PKG_REF_PATTERN)
 						matchPackageReferences(p, locator);
 				}
@@ -159,7 +159,7 @@ public class ModularClassFileMatchLocator implements IIndexConstants {
 		TypeBinding[] services = this.module.getServices();
 		if (services != null) {
 			matchPackReferences(locator, (PackageReferencePattern) pattern, services);
-			for (TypeBinding service : services) {
+			for (TypeBinding service : services) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				matchPackReferences(locator, (PackageReferencePattern) pattern, this.module.getImplementations(service));
 			}
 		}
@@ -167,7 +167,7 @@ public class ModularClassFileMatchLocator implements IIndexConstants {
 	private void matchPackReferences(MatchLocator locator, PackageReferencePattern packReferencePattern,
 			PackageBinding[] packBindings) throws CoreException {
 		if (packBindings == null) return;
-		for (PackageBinding pb : packBindings) {
+		for (PackageBinding pb : packBindings) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			reportPackageMatch(locator, pb);
 		}
 	}
@@ -182,18 +182,18 @@ public class ModularClassFileMatchLocator implements IIndexConstants {
 	private void matchPackReferences(MatchLocator locator, PackageReferencePattern packReferencePattern,
 			TypeBinding[] types) throws CoreException {
 		if (types == null) return;
-		for (TypeBinding type : types) {
+		for (TypeBinding type : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			reportPackageMatch(locator, type.getPackage());
 		}
 	}
-	private void matchTypeReferences(SearchPattern pattern, MatchLocator locator) throws CoreException {
+	private void matchTypeReferences(SearchPattern pattern, MatchLocator locator) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Only process TypeReference patterns
 		switch (pattern.kind) {
 			case TYPE_REF_PATTERN:
 				break;
 			case OR_PATTERN:
 				SearchPattern[] patterns = ((OrPattern) pattern).patterns;
-				for (SearchPattern p : patterns) {
+				for (SearchPattern p : patterns) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (p.kind == TYPE_REF_PATTERN)
 						matchTypeReferences(p, locator);
 				}
@@ -205,7 +205,7 @@ public class ModularClassFileMatchLocator implements IIndexConstants {
 		TypeBinding[] services = this.module.getServices();
 		if (services != null) {
 			matchTypeReferences(locator, (TypeReferencePattern) pattern, services);
-			for (TypeBinding service : services) {
+			for (TypeBinding service : services) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				matchTypeReferences(locator, (TypeReferencePattern) pattern, this.module.getImplementations(service));
 			}
 		}
@@ -213,7 +213,7 @@ public class ModularClassFileMatchLocator implements IIndexConstants {
 	private void matchTypeReferences(MatchLocator locator, TypeReferencePattern typeReferencePattern,
 			TypeBinding[] types) throws CoreException {
 		if (types == null) 	return;
-		for (TypeBinding type : types) {
+		for (TypeBinding type : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int level =  locator.patternLocator.resolveLevel(type);
 			if (level == PatternLocator.IMPOSSIBLE_MATCH) continue;
 			int accuracy = level == PatternLocator.ACCURATE_MATCH ? SearchMatch.A_ACCURATE : SearchMatch.A_INACCURATE;

@@ -38,7 +38,7 @@ public class SourceElementNotifier {
 		ArrayList declaringTypes;
 		public void pushDeclaringType(TypeDeclaration declaringType) {
 			if (this.declaringTypes == null) {
-				this.declaringTypes = new ArrayList();
+				this.declaringTypes = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			}
 			this.declaringTypes.add(declaringType);
 		}
@@ -90,12 +90,12 @@ public SourceElementNotifier(ISourceElementRequestor requestor, boolean reportLo
 	this.superTypeNames = new char[4][];
 	this.nestedTypeIndex = 0;
 }
-protected Object[][] getArgumentInfos(AbstractVariableDeclaration[] arguments) {
+protected Object[][] getArgumentInfos(AbstractVariableDeclaration[] arguments) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int argumentLength = arguments.length;
 	char[][] argumentTypes = new char[argumentLength][];
 	char[][] argumentNames = new char[argumentLength][];
 	ParameterInfo[] parameterInfos = new ParameterInfo[argumentLength];
-	for (int i = 0; i < argumentLength; i++) {
+	for (int i = 0; i < argumentLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		AbstractVariableDeclaration argument = arguments[i];
 		argumentTypes[i] = CharOperation.concatWith(argument.type.getParameterizedTypeName(), '.');
 		char[] name = argument.name;
@@ -112,7 +112,7 @@ protected Object[][] getArgumentInfos(AbstractVariableDeclaration[] arguments) {
 
 	return new Object[][] { parameterInfos, new char[][][] { argumentTypes, argumentNames } };
 }
-protected char[][] getInterfaceNames(TypeDeclaration typeDeclaration) {
+protected char[][] getInterfaceNames(TypeDeclaration typeDeclaration) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[][] interfaceNames = null;
 	int superInterfacesLength = 0;
 	TypeReference[] superInterfaces = typeDeclaration.superInterfaces;
@@ -131,7 +131,7 @@ protected char[][] getInterfaceNames(TypeDeclaration typeDeclaration) {
 		}
 	}
 	if (superInterfaces != null) {
-		for (int i = 0; i < superInterfacesLength; i++) {
+		for (int i = 0; i < superInterfacesLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			interfaceNames[i] =
 				CharOperation.concatWith(superInterfaces[i].getParameterizedTypeName(), '.');
 		}
@@ -142,7 +142,7 @@ protected char[] getSuperclassName(TypeDeclaration typeDeclaration) {
 	TypeReference superclass = typeDeclaration.superclass;
 	return superclass != null ? CharOperation.concatWith(superclass.getParameterizedTypeName(), '.') : null;
 }
-private void gatherPermittedTypesOf(TypeDeclaration potentialSubtype, TypeDeclaration sealedType, List<char []> list, char [] prefix) {
+private void gatherPermittedTypesOf(TypeDeclaration potentialSubtype, TypeDeclaration sealedType, List<char []> list, char [] prefix) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (potentialSubtype != sealedType) {
 		char[][] qName = potentialSubtype.superclass == null ? null : potentialSubtype.superclass.getTypeName();
 		if (qName != null && CharOperation.equals(qName[qName.length - 1], sealedType.name)) {
@@ -150,7 +150,7 @@ private void gatherPermittedTypesOf(TypeDeclaration potentialSubtype, TypeDeclar
 			list.add(subTypeName);
 		}
 		if (potentialSubtype.superInterfaces != null) {
-			for (TypeReference ref : potentialSubtype.superInterfaces) {
+			for (TypeReference ref : potentialSubtype.superInterfaces) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				qName = ref.getTypeName();
 				if (CharOperation.equals(qName[qName.length - 1], sealedType.name)) {
 					char [] subTypeName = CharOperation.concat(prefix, potentialSubtype.name, '.');
@@ -161,7 +161,7 @@ private void gatherPermittedTypesOf(TypeDeclaration potentialSubtype, TypeDeclar
 		}
 	}
 	if (potentialSubtype.memberTypes != null) {
-		for (int i = 0, size = potentialSubtype.memberTypes.length; i < size; i++) {
+		for (int i = 0, size = potentialSubtype.memberTypes.length; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char [] prefixNow = CharOperation.concat(prefix, potentialSubtype.name, '.');
 			gatherPermittedTypesOf(potentialSubtype.memberTypes[i], sealedType, list, prefixNow);
 		}
@@ -173,9 +173,9 @@ protected char[][] getPermittedSubTypes(CompilationUnitDeclaration parsedUnit, T
 		return extractTypeReferences(sealedType.permittedTypes);
 
 	// compute implicit permitted types on the fly.
-	List<char []> list = new ArrayList();
+	List<char []> list = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	if (parsedUnit != null) { // == null for local types.
-		for (TypeDeclaration type : parsedUnit.types) {
+		for (TypeDeclaration type : parsedUnit.types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			gatherPermittedTypesOf(type, sealedType, list, CharOperation.NO_CHAR);
 		}
 	}
@@ -189,14 +189,14 @@ private char[][] extractTypeReferences(TypeReference[] thrownExceptions) {
 	if (thrownExceptions != null) {
 		int thrownExceptionLength = thrownExceptions.length;
 		names = new char[thrownExceptionLength][];
-		for (int i = 0; i < thrownExceptionLength; i++) {
+		for (int i = 0; i < thrownExceptionLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			names[i] =
 				CharOperation.concatWith(thrownExceptions[i].getParameterizedTypeName(), '.');
 		}
 	}
 	return names;
 }
-protected char[][] getTypeParameterBounds(TypeParameter typeParameter) {
+protected char[][] getTypeParameterBounds(TypeParameter typeParameter) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	TypeReference firstBound = typeParameter.type;
 	TypeReference[] otherBounds = typeParameter.bounds;
 	char[][] typeParameterBounds = null;
@@ -205,7 +205,7 @@ protected char[][] getTypeParameterBounds(TypeParameter typeParameter) {
 			int otherBoundsLength = otherBounds.length;
 			char[][] boundNames = new char[otherBoundsLength+1][];
 			boundNames[0] = CharOperation.concatWith(firstBound.getParameterizedTypeName(), '.');
-			for (int j = 0; j < otherBoundsLength; j++) {
+			for (int j = 0; j < otherBoundsLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				boundNames[j+1] =
 					CharOperation.concatWith(otherBounds[j].getParameterizedTypeName(), '.');
 			}
@@ -219,11 +219,11 @@ protected char[][] getTypeParameterBounds(TypeParameter typeParameter) {
 
 	return typeParameterBounds;
 }
-private TypeParameterInfo[] getTypeParameterInfos(TypeParameter[] typeParameters) {
+private TypeParameterInfo[] getTypeParameterInfos(TypeParameter[] typeParameters) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (typeParameters == null) return null;
 	int typeParametersLength = typeParameters.length;
 	TypeParameterInfo[] result = new TypeParameterInfo[typeParametersLength];
-	for (int i = 0; i < typeParametersLength; i++) {
+	for (int i = 0; i < typeParametersLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		TypeParameter typeParameter = typeParameters[i];
 		char[][] typeParameterBounds = getTypeParameterBounds(typeParameter);
 		ISourceElementRequestor.TypeParameterInfo typeParameterInfo = new ISourceElementRequestor.TypeParameterInfo();
@@ -244,7 +244,7 @@ private TypeParameterInfo[] getTypeParameterInfos(TypeParameter[] typeParameters
  */
 private boolean hasDeprecatedAnnotation(Annotation[] annotations) {
 	if (annotations != null) {
-		for (Annotation annotation : annotations) {
+		for (Annotation annotation : annotations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (CharOperation.equals(annotation.type.getLastToken(), TypeConstants.JAVA_LANG_DEPRECATED[2])) {
 				return true;
 			}
@@ -255,7 +255,7 @@ private boolean hasDeprecatedAnnotation(Annotation[] annotations) {
 /*
  * Update the bodyStart of the corresponding parse node
  */
-protected void notifySourceElementRequestor(AbstractMethodDeclaration methodDeclaration, TypeDeclaration declaringType, ImportReference currentPackage) {
+protected void notifySourceElementRequestor(AbstractMethodDeclaration methodDeclaration, TypeDeclaration declaringType, ImportReference currentPackage) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// range check
 	boolean isInRange =
@@ -407,7 +407,7 @@ protected void notifySourceElementRequestor(AbstractMethodDeclaration methodDecl
 /*
  * Update the bodyStart of the corresponding parse node
  */
-public void notifySourceElementRequestor(
+public void notifySourceElementRequestor( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		CompilationUnitDeclaration parsedUnit,
 		int sourceStart,
 		int sourceEnd,
@@ -451,12 +451,12 @@ public void notifySourceElementRequestor(
 			nodes[index++] = currentPackage;
 		}
 		if (imports != null) {
-			for (ImportReference import1 : imports) {
+			for (ImportReference import1 : imports) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				nodes[index++] = import1;
 			}
 		}
 		if (types != null) {
-			for (TypeDeclaration type : types) {
+			for (TypeDeclaration type : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				nodes[index++] = type;
 			}
 		}
@@ -467,7 +467,7 @@ public void notifySourceElementRequestor(
 		// notify the nodes in the syntactical order
 		if (length > 0) {
 			quickSort(nodes, 0, length-1);
-			for (int i=0;i<length;i++) {
+			for (int i=0;i<length;i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ASTNode node = nodes[i];
 				if (node instanceof ImportReference) {
 					ImportReference importRef = (ImportReference)node;
@@ -495,7 +495,7 @@ public void notifySourceElementRequestor(
 /*
 * Update the bodyStart of the corresponding parse node
 */
-protected void notifySourceElementRequestor(AbstractVariableDeclaration fieldDeclaration, TypeDeclaration declaringType) {
+protected void notifySourceElementRequestor(AbstractVariableDeclaration fieldDeclaration, TypeDeclaration declaringType) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// range check
 	boolean isInRange =
@@ -604,7 +604,7 @@ protected void notifySourceElementRequestor(
 			importReference.modifiers);
 	}
 }
-protected void notifySourceElementRequestor(ModuleDeclaration moduleDeclaration) {
+protected void notifySourceElementRequestor(ModuleDeclaration moduleDeclaration) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	boolean isInRange =
 			this.initialPosition <= moduleDeclaration.declarationSourceStart
 			&& this.eofPosition >= moduleDeclaration.declarationSourceEnd;
@@ -674,7 +674,7 @@ protected void notifySourceElementRequestor(CompilationUnitDeclaration parsedUni
 		this.requestor.exitBlock(block.sourceEnd);
 	}
 }
-protected void notifySourceElementRequestor(CompilationUnitDeclaration parsedUnit, TypeDeclaration typeDeclaration, boolean notifyTypePresence, TypeDeclaration declaringType, ImportReference currentPackage) {
+protected void notifySourceElementRequestor(CompilationUnitDeclaration parsedUnit, TypeDeclaration typeDeclaration, boolean notifyTypePresence, TypeDeclaration declaringType, ImportReference currentPackage) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	if (CharOperation.equals(TypeConstants.PACKAGE_INFO_NAME, typeDeclaration.name)) return;
 
@@ -769,7 +769,7 @@ protected void notifySourceElementRequestor(CompilationUnitDeclaration parsedUni
 		this.typeNames[this.nestedTypeIndex] = typeDeclaration.name;
 		this.superTypeNames[this.nestedTypeIndex++] = implicitSuperclassName;
 	}
-	while ((fieldIndex < fieldCounter)
+	while ((fieldIndex < fieldCounter) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			|| (memberTypeIndex < memberTypeCounter)
 			|| (methodIndex < methodCounter)) {
 		AbstractVariableDeclaration nextFieldDeclaration = null;
@@ -821,10 +821,10 @@ protected void notifySourceElementRequestor(CompilationUnitDeclaration parsedUni
 		this.nestedTypeIndex--;
 	}
 }
-private void fillModuleInfo(ModuleDeclaration mod, ISourceElementRequestor.ModuleInfo modInfo) {
+private void fillModuleInfo(ModuleDeclaration mod, ISourceElementRequestor.ModuleInfo modInfo) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (mod.requiresCount > 0) {
 		ISourceElementRequestor.RequiresInfo reqs[] = new ISourceElementRequestor.RequiresInfo[mod.requiresCount];
-		for (int i = 0; i < mod.requiresCount; i++) {
+		for (int i = 0; i < mod.requiresCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ISourceElementRequestor.RequiresInfo req = new ISourceElementRequestor.RequiresInfo();
 			req.moduleName = CharOperation.concatWith(mod.requires[i].module.tokens, '.');
 			req.modifiers = mod.requires[i].modifiers;
@@ -834,7 +834,7 @@ private void fillModuleInfo(ModuleDeclaration mod, ISourceElementRequestor.Modul
 	}
 	if (mod.exportsCount > 0) {
 		ISourceElementRequestor.PackageExportInfo exps[] = new ISourceElementRequestor.PackageExportInfo[mod.exportsCount];
-		for (int i = 0; i < mod.exportsCount; i++) {
+		for (int i = 0; i < mod.exportsCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ISourceElementRequestor.PackageExportInfo exp = new ISourceElementRequestor.PackageExportInfo();
 			ExportsStatement exportsStatement = mod.exports[i];
 			exp.pkgName = exportsStatement.pkgName;
@@ -842,7 +842,7 @@ private void fillModuleInfo(ModuleDeclaration mod, ISourceElementRequestor.Modul
 				exp.targets = CharOperation.NO_CHAR_CHAR;
 			} else {
 				exp.targets = new char[exportsStatement.targets.length][];
-				for(int j = 0; j < exp.targets.length; j++) {
+				for(int j = 0; j < exp.targets.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					exp.targets[j] = CharOperation.concatWith(exportsStatement.targets[j].tokens, '.');
 				}
 			}
@@ -852,11 +852,11 @@ private void fillModuleInfo(ModuleDeclaration mod, ISourceElementRequestor.Modul
 	}
 	if (mod.servicesCount > 0) {
 		ISourceElementRequestor.ServicesInfo[] services = new ISourceElementRequestor.ServicesInfo[mod.servicesCount];
-		for (int i = 0; i < services.length; i++) {
+		for (int i = 0; i < services.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ISourceElementRequestor.ServicesInfo ser = new ISourceElementRequestor.ServicesInfo();
 			ser.serviceName = CharOperation.concatWith(mod.services[i].serviceInterface.getParameterizedTypeName(), '.');
 			ser.implNames = new char[mod.services[i].implementations.length][];
-			for (int j = 0; j < ser.implNames.length; j++) {
+			for (int j = 0; j < ser.implNames.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ser.implNames[j] = CharOperation.concatWith(mod.services[i].implementations[j].getParameterizedTypeName(), '.');
 			}
 			services[i] = ser;
@@ -865,14 +865,14 @@ private void fillModuleInfo(ModuleDeclaration mod, ISourceElementRequestor.Modul
 	}
 	if (mod.usesCount > 0) {
 		char[][] uses = new char[mod.usesCount][];
-		for (int i = 0; i < uses.length; i++) {
+		for (int i = 0; i < uses.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			uses[i] = CharOperation.concatWith(mod.uses[i].serviceInterface.getParameterizedTypeName(), '.');
 		}
 		modInfo.usedServices = uses;
 	}
 	if (mod.opensCount > 0) {
 		ISourceElementRequestor.PackageExportInfo opens[] = new ISourceElementRequestor.PackageExportInfo[mod.opensCount];
-		for (int i = 0; i < mod.opensCount; i++) {
+		for (int i = 0; i < mod.opensCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ISourceElementRequestor.PackageExportInfo op = new ISourceElementRequestor.PackageExportInfo();
 			OpensStatement openStmt = mod.opens[i];
 			op.pkgName = openStmt.pkgName;
@@ -880,7 +880,7 @@ private void fillModuleInfo(ModuleDeclaration mod, ISourceElementRequestor.Modul
 				op.targets = CharOperation.NO_CHAR_CHAR;
 			} else {
 				op.targets = new char[openStmt.targets.length][];
-				for(int j = 0; j < op.targets.length; j++) {
+				for(int j = 0; j < op.targets.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					op.targets[j] = CharOperation.concatWith(openStmt.targets[j].tokens, '.');
 				}
 			}
@@ -892,15 +892,15 @@ private void fillModuleInfo(ModuleDeclaration mod, ISourceElementRequestor.Modul
 /*
  * Sort the given ast nodes by their positions.
  */
-private static void quickSort(ASTNode[] sortedCollection, int left, int right) {
+private static void quickSort(ASTNode[] sortedCollection, int left, int right) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int original_left = left;
 	int original_right = right;
 	ASTNode mid = sortedCollection[left +  (right - left) / 2];
-	do {
-		while (sortedCollection[left].sourceStart < mid.sourceStart) {
+	do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		while (sortedCollection[left].sourceStart < mid.sourceStart) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			left++;
 		}
-		while (mid.sourceStart < sortedCollection[right].sourceStart) {
+		while (mid.sourceStart < sortedCollection[right].sourceStart) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			right--;
 		}
 		if (left <= right) {
@@ -940,7 +940,7 @@ private void visitIfNeeded(AbstractMethodDeclaration method) {
 		&& (method.bits & ASTNode.HasLocalType) != 0) {
 			if (method.statements != null) {
 				int statementsLength = method.statements.length;
-				for (int i = 0; i < statementsLength; i++)
+				for (int i = 0; i < statementsLength; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					method.statements[i].traverse(this.localDeclarationVisitor, method.scope);
 			}
 	}
@@ -972,7 +972,7 @@ private void visitIfNeeded(Block block) {
 	if (this.localDeclarationVisitor != null) {
 		if (block.statements != null) {
 			int statementsLength = block.statements.length;
-			for (int i = 0; i < statementsLength; i++)
+			for (int i = 0; i < statementsLength; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				block.statements[i].traverse(this.localDeclarationVisitor, block.scope);
 		}
 	}

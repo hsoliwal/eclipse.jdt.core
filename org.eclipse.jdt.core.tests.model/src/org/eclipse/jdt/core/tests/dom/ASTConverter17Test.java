@@ -62,7 +62,7 @@ public class ASTConverter17Test extends ConverterTestSetup {
 	/*
 	 * Binary literals
 	 */
-	public void test0001() throws JavaModelException {
+	public void test0001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X {\n" +
 			"	public static final int VAR = 0b001;\n" +
@@ -88,7 +88,7 @@ public class ASTConverter17Test extends ConverterTestSetup {
 	/*
 	 * Binary literals with underscores
 	 */
-	public void test0002() throws JavaModelException {
+	public void test0002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X {\n" +
 			"	public static final int VAR = 0b0_0__1;\n" +
@@ -115,7 +115,7 @@ public class ASTConverter17Test extends ConverterTestSetup {
 	/*
 	 * Integer literals with underscores
 	 */
-	public void test0003() throws JavaModelException {
+	public void test0003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X {\n" +
 			"	public static final int VAR = 1_2_3_4;\n" +
@@ -144,7 +144,7 @@ public class ASTConverter17Test extends ConverterTestSetup {
 	/*
 	 * Switch on strings
 	 */
-	public void test0004() throws JavaModelException {
+	public void test0004() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X {\n" +
 			"	public void foo(String s) {\n" +
@@ -172,7 +172,7 @@ public class ASTConverter17Test extends ConverterTestSetup {
 	/*
 	 * Union types (update for bug 340608)
 	 */
-	public void test0005() throws JavaModelException {
+	public void test0005() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X {\n" +
 			"	public void foo(String s) {\n" +
@@ -205,7 +205,7 @@ public class ASTConverter17Test extends ConverterTestSetup {
 	/*
 	 * Check that catch type with union type as a simple type is converted to a simple type
 	 */
-	public void test0006() throws JavaModelException {
+	public void test0006() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X {\n" +
 			"	public void foo(String s) {\n" +
@@ -236,7 +236,7 @@ public class ASTConverter17Test extends ConverterTestSetup {
 	/*
 	 * Check that catch type with union type as a simple type is converted to a simple type
 	 */
-	public void test0007() throws JavaModelException {
+	public void test0007() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X {\n" +
 			"	public void foo(String s) {\n" +
@@ -269,7 +269,7 @@ public class ASTConverter17Test extends ConverterTestSetup {
 	/*
 	 * Check that catch type with union type as a simple type is converted to a simple type
 	 */
-	public void test0008() throws JavaModelException {
+	public void test0008() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X {\n" +
 			"	public void foo(String s) {\n" +
@@ -302,7 +302,7 @@ public class ASTConverter17Test extends ConverterTestSetup {
 	/*
 	 * Check that catch type with union type as a simple type is converted to a simple type
 	 */
-	public void test0009() throws JavaModelException {
+	public void test0009() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X {\n" +
 			"	public void foo(String s) {\n" +
@@ -336,7 +336,7 @@ public class ASTConverter17Test extends ConverterTestSetup {
 	/*
 	 * Check that catch type with union type as a simple type is converted to a simple type
 	 */
-	public void test0010() throws JavaModelException {
+	public void test0010() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X {\n" +
 			"	public void foo(String s) {\n" +
@@ -370,7 +370,7 @@ public class ASTConverter17Test extends ConverterTestSetup {
 	/*
 	 * Union types (update for bug 340608)
 	 */
-	public void test0011() throws JavaModelException {
+	public void test0011() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X {\n" +
 			"    public static void main(String[] args) {\n" +
@@ -445,7 +445,7 @@ public class ASTConverter17Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=344522
 	 */
-	public void test0013() throws JavaModelException {
+	public void test0013() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"import java.util.*;\n" +
 				"public class X {\n" +
@@ -491,7 +491,7 @@ public class ASTConverter17Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=344522
 	 */
-	public void test0015() throws JavaModelException {
+	public void test0015() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"import java.lang.invoke.MethodHandle;\n" +
 				"import java.lang.invoke.MethodHandles;\n" +
@@ -545,17 +545,17 @@ public class ASTConverter17Test extends ConverterTestSetup {
 		assertEquals("Not a compilation unit", ASTNode.COMPILATION_UNIT, node.getNodeType());
 		CompilationUnit unit = (CompilationUnit) node;
 		IProblem[] problems = unit.getProblems();
-		for (int i = 0; i < problems.length; i++) {
+		for (int i = 0; i < problems.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IProblem iProblem = problems[i];
 			System.err.println(iProblem);
 		}
-		final List invokeExactMethods = new ArrayList();
+		final List invokeExactMethods = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		unit.accept(new ASTVisitor() {
 			public boolean visit(MethodInvocation methodInvocation) {
 				IMethodBinding methodBinding = methodInvocation.resolveMethodBinding();
 				if (methodBinding != null) {
 					IJavaElement javaElement = methodBinding.getJavaElement();
-					assertNotNull("No java element for : " + methodBinding, javaElement);
+					assertNotNull("No java element for : " + methodBinding, javaElement); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					String elementName = javaElement.getElementName();
 					if ("invokeExact".equals(elementName)) {
 						invokeExactMethods.add(methodBinding);
@@ -574,7 +574,7 @@ public class ASTConverter17Test extends ConverterTestSetup {
 		assertEquals("Wrong key", "Ljava/lang/invoke/MethodHandle;.invokeExact(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;|Ljava/lang/Throwable;", secondKey);
 		assertFalse("Not the same key", firstKey.equals(secondKey));
 		// check that all are resolved
-		for (Iterator iterator = invokeExactMethods.iterator(); iterator.hasNext();) {
+		for (Iterator iterator = invokeExactMethods.iterator(); iterator.hasNext();) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IMethodBinding methodBinding = (IMethodBinding) iterator.next();
 			assertTrue("Not resolved", ((IMethod) methodBinding.getJavaElement()).isResolved());
 			assertTrue("Not a varargs method", methodBinding.getMethodDeclaration().isVarargs());
@@ -585,7 +585,7 @@ public class ASTConverter17Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=350039
 	 */
-	public void test0016() throws JavaModelException {
+	public void test0016() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter17/src/X.java", true/*resolve*/);
 		String contents =
 				"import java.lang.invoke.MethodHandle;\n" +
@@ -645,7 +645,7 @@ public class ASTConverter17Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=350496
 	 */
-	public void test0017() throws JavaModelException {
+	public void test0017() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"package test0017;\n" +
 			"public class Y {}";
@@ -657,7 +657,7 @@ public class ASTConverter17Test extends ConverterTestSetup {
 		IType type = this.workingCopy.getJavaProject().findType("java.lang.invoke.MethodHandle");
 		IMethod[] methods = type.getMethods();
 		boolean found = false;
-		for (int i = 0; i < methods.length; i++) {
+		for (int i = 0; i < methods.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IMethod iMethod = methods[i];
 			if ("invokeExact".equals(iMethod.getElementName())) {
 				IAnnotation[] annotations = iMethod.getAnnotations();
@@ -671,7 +671,7 @@ public class ASTConverter17Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=350897
 	 */
-	public void test0018() throws JavaModelException {
+	public void test0018() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X<T> {\n" +
 			"	T field1;\n" +
@@ -707,9 +707,9 @@ public class ASTConverter17Test extends ConverterTestSetup {
 		CompilationUnit unit = (CompilationUnit) node;
 		assertProblemsSize(unit, 0);
 		class InferredTypeFromExpectedVisitor extends ASTVisitor {
-			StringBuilder buf = new StringBuilder();
+			StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			public boolean visit(ClassInstanceCreation creation) {
-				this.buf.append(creation.isResolvedTypeInferredFromExpectedType());
+				this.buf.append(creation.isResolvedTypeInferredFromExpectedType()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				return false;
 			}
 			public String toString() {
@@ -720,7 +720,7 @@ public class ASTConverter17Test extends ConverterTestSetup {
 		unit.accept(visitor);
 		assertEquals("Wrong contents", "falsetruetruetrue", String.valueOf(visitor));
 	}
-	public void test0018_methods() throws JavaModelException {
+	public void test0018_methods() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X<T> {\n" +
 			"	T field1;\n" +
@@ -759,10 +759,10 @@ public class ASTConverter17Test extends ConverterTestSetup {
 		CompilationUnit unit = (CompilationUnit) node;
 		assertProblemsSize(unit, 0);
 		class InferredTypeFromExpectedVisitor extends ASTVisitor {
-			StringBuilder buf = new StringBuilder();
+			StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			public boolean visit(MethodInvocation invocation) {
 				if (invocation.getName().getIdentifier().equals("create"))
-					this.buf.append(invocation.isResolvedTypeInferredFromExpectedType());
+					this.buf.append(invocation.isResolvedTypeInferredFromExpectedType()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				return false;
 			}
 			public String toString() {
@@ -776,7 +776,7 @@ public class ASTConverter17Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=353093
 	 */
-	public void test0019() throws JavaModelException {
+	public void test0019() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"package test0019;\n" +
 			"public class Y {}";
@@ -788,7 +788,7 @@ public class ASTConverter17Test extends ConverterTestSetup {
 		IType type = this.workingCopy.getJavaProject().findType("java.util.Arrays");
 		IMethod[] methods = type.getMethods();
 		boolean found = false;
-		for (int i = 0; i < methods.length; i++) {
+		for (int i = 0; i < methods.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IMethod iMethod = methods[i];
 			if ("asList".equals(iMethod.getElementName())) {
 				IAnnotation[] annotations = iMethod.getAnnotations();
@@ -802,7 +802,7 @@ public class ASTConverter17Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=353640
 	 */
-	public void test0020() throws JavaModelException {
+	public void test0020() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class DiamondTest<T> {\n" +
 			"	public <U> DiamondTest(T t) {}\n" +
@@ -825,7 +825,7 @@ public class ASTConverter17Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=399791
 	 */
-	public void test0021() throws JavaModelException {
+	public void test0021() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public interface X {\n" +
 				"	static void foo(){}\n" +
@@ -847,7 +847,7 @@ public class ASTConverter17Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=405934
 	 */
-	public void test0022() throws JavaModelException {
+	public void test0022() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X {\n" +
 				"	void foo() throws  @NonNull EOFException, java.io.@NonNull FileNotFoundException {}\n" +

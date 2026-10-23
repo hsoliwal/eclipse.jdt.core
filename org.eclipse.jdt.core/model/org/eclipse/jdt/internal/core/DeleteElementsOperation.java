@@ -43,7 +43,7 @@ import org.eclipse.text.edits.TextEdit;
  * a package, etc (which have an actual resource), a DeleteResourcesOperation
  * should be used.
  */
-@SuppressWarnings({"rawtypes", "unchecked"})
+@SuppressWarnings({"rawtypes", "unchecked"}) //FLLDCIM: MARK — T09  IMPLEMENTS
 public class DeleteElementsOperation extends MultiOperation {
 	/**
 	 * The elements this operation processes grouped by compilation unit
@@ -74,7 +74,7 @@ public class DeleteElementsOperation extends MultiOperation {
 		CompilationUnit astCU = (CompilationUnit) this.parser.createAST(this.progressMonitor);
 		ASTNode node = ((JavaElement) elementToRemove).findNode(astCU);
 		if (node == null)
-			Assert.isTrue(false, "Failed to locate " + elementToRemove.getElementName() + " in " + cu.getElementName()); //$NON-NLS-1$//$NON-NLS-2$
+			Assert.isTrue(false, "Failed to locate " + elementToRemove.getElementName() + " in " + cu.getElementName()); //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		AST ast = astCU.getAST();
 		ASTRewrite rewriter = ASTRewrite.create(ast);
 		rewriter.remove(node, null);
@@ -108,10 +108,10 @@ public class DeleteElementsOperation extends MultiOperation {
 	 * discarded (only the parents are processed). Removes any
 	 * duplicates specified in elements to be processed.
 	 */
-	protected void groupElements() throws JavaModelException {
-		this.childrenToRemove = new HashMap(1);
+	protected void groupElements() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		this.childrenToRemove = new HashMap(1); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		int uniqueCUs = 0;
-		for (IJavaElement e : this.elementsToProcess) {
+		for (IJavaElement e : this.elementsToProcess) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ICompilationUnit cu = getCompilationUnitFor(e);
 			if (cu == null) {
 				throw new JavaModelException(new JavaModelStatus(IJavaModelStatusConstants.READ_ONLY, e));
@@ -128,7 +128,7 @@ public class DeleteElementsOperation extends MultiOperation {
 		this.elementsToProcess = new IJavaElement[uniqueCUs];
 		Iterator iter = this.childrenToRemove.keySet().iterator();
 		int i = 0;
-		while (iter.hasNext()) {
+		while (iter.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.elementsToProcess[i++] = (IJavaElement) iter.next();
 		}
 	}
@@ -136,7 +136,7 @@ public class DeleteElementsOperation extends MultiOperation {
 	 * Deletes this element from its compilation unit.
 	 * @see MultiOperation
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void processElement(IJavaElement element) throws JavaModelException {
 		ICompilationUnit cu = (ICompilationUnit) element;
 
@@ -146,7 +146,7 @@ public class DeleteElementsOperation extends MultiOperation {
 
 		JavaElementDelta delta = new JavaElementDelta(cu);
 		IJavaElement[] cuElements = ((IRegion) this.childrenToRemove.get(cu)).getElements();
-		for (IJavaElement e : cuElements) {
+		for (IJavaElement e : cuElements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (e.exists()) {
 				deleteElement(e, cu);
 				delta.removed(e);
@@ -182,7 +182,7 @@ public class DeleteElementsOperation extends MultiOperation {
 	@Override
 	protected void verify(IJavaElement element) throws JavaModelException {
 		IJavaElement[] children = ((IRegion) this.childrenToRemove.get(element)).getElements();
-		for (IJavaElement child : children) {
+		for (IJavaElement child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (child.getCorrespondingResource() != null)
 				error(IJavaModelStatusConstants.INVALID_ELEMENT_TYPES, child);
 

@@ -28,7 +28,7 @@ public class Round1GenAnnotationFactory implements AnnotationProcessorFactory{
 	public static final List<String> SUPPORTED_TYPES;
 
 	static{
-		SUPPORTED_TYPES = new ArrayList<>();
+		SUPPORTED_TYPES = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		SUPPORTED_TYPES.add(GenBean.class.getName());
 	}
 

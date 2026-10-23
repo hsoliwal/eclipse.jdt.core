@@ -119,7 +119,7 @@ public void testApplicationLibrairiesExternalJar() throws CoreException {
 		IJavaProject project = createJavaProject("P");
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaElement[] {project}, IJavaSearchScope.APPLICATION_LIBRARIES);
 		assertScopeEquals(
-			"JavaSearchScope on [\n" +
+			"JavaSearchScope on [\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	"+  getExternalJCLPath().toOSString() +"\n" +
 			"]",
 			scope);
@@ -218,7 +218,7 @@ public void testApplicationLibrairiesClasspathContainer() throws CoreException {
  * Ensures that a Java search scope with SYSTEM_LIBRARIES only is correct
  * (classpath container case)
  */
-public void testSystemLibraries() throws CoreException {
+public void testSystemLibraries() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		DefaultContainerInitializer intializer = new DefaultContainerInitializer(new String[] {"P", "/P/lib.jar"}) {
 			@Override
@@ -895,7 +895,7 @@ public void testScopeEncloses41() throws CoreException {
  * Bug 101022: [search] JUnit Test Runner on folder runs tests outside directory
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=101022"
  */
-public void testBug101022() throws CoreException {
+public void testBug101022() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P1", new String[] {"src", "test", "test2"}, "bin");
 		createFile(
@@ -934,7 +934,7 @@ public void testBug101022() throws CoreException {
  * Bug 101426: Search doesn't work with imported plugin
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=101426"
  */
-public void testBug101426() throws CoreException {
+public void testBug101426() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P1", new String[] {"src/", "test/", "test2/"}, new String[] {"JCL18_LIB"}, "bin");
 		createFile(
@@ -972,7 +972,7 @@ public void testBug101426() throws CoreException {
  * Bug 101777: [search] selecting class with a main type ignores the default package
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=101777"
  */
-public void testBug101777() throws CoreException {
+public void testBug101777() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P1");
 		createFile(
@@ -983,7 +983,7 @@ public void testBug101777() throws CoreException {
 		);
 		IPackageFragment[] fragments = project.getPackageFragments();
 		IPackageFragment defaultFragment = null;
-		for (int i = 0; i < fragments.length; i++) {
+		for (int i = 0; i < fragments.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IPackageFragment fragment = fragments[i];
 			if (fragment.getElementName().length() == 0) {
 				defaultFragment = fragment;
@@ -1013,7 +1013,7 @@ public void testBug101777() throws CoreException {
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=119203"
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=127048"
  */
-public void testBug119203() throws CoreException {
+public void testBug119203() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P1", new String[] {"src"}, "bin");
 		createFile(
@@ -1044,7 +1044,7 @@ public void testBug119203() throws CoreException {
  * test Ensure that NPE does no longer happen when output location is also set as class folder in a project build path
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=179199"
  */
-public void testBug179199() throws CoreException {
+public void testBug179199() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Create project and files
 		IJavaProject project = createJavaProject("P1", new String[] {"src"}, new String[] {"bin"}, "bin");
@@ -1105,17 +1105,17 @@ public void testBug179199() throws CoreException {
  * If the bug was back again, then this test would never finish!
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=250211"
  */
-public void testBug250211() throws CoreException {
+public void testBug250211() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final int max = 50;
 	final IJavaProject[] projects = new IJavaProject[max];
 	try {
-		JavaCore.run(new IWorkspaceRunnable() {
-			public void run(IProgressMonitor monitor) throws CoreException {
-				for (int i = 0; i < max; i++){
-					String projectName = "P"+i;
+		JavaCore.run(new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
+			public void run(IProgressMonitor monitor) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+				for (int i = 0; i < max; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					String projectName = "P"+i; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					String[] dependents = new String[max-1];
 					boolean[] exportedProjects = new boolean[max-1];
-					for (int j = 0; j < max; j++){
+					for (int j = 0; j < max; j++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						int idx = -1;
 						if (j < i) {
 							idx = j;
@@ -1123,7 +1123,7 @@ public void testBug250211() throws CoreException {
 							idx = j-1;
 						}
 						if (idx != -1) {
-							dependents[idx] = "/P"+j;
+							dependents[idx] = "/P"+j; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							exportedProjects[idx] = true; // export all projects
 						}
 					}
@@ -1134,8 +1134,8 @@ public void testBug250211() throws CoreException {
 		null);
 		SearchEngine.createJavaSearchScope(projects);
 	} finally {
-		JavaCore.run(m -> {
-			for (int i = 0; i < max; i++) {
+		JavaCore.run(m -> { //FLLDCIM: MARK — T09  LAMBDA
+			for (int i = 0; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				assertNotNull("Unexpected null project!", projects[i]);
 				deleteProject(projects[i]);
 			}
@@ -1165,7 +1165,7 @@ public void testBug397818() throws CoreException {
  * using a type in the JRE as an example.
  * https://github.com/eclipse-jdt/eclipse.jdt.core/issues/332
  */
-public void testModuleJarSearchBugGh332() throws Exception {
+public void testModuleJarSearchBugGh332() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String testProjectName = "gh322ModuleJarSearchBug";
 	try {
 		IJavaProject project = setupModuleProject(testProjectName, new String[] {"src"}, new String[0], null);
@@ -1175,23 +1175,23 @@ public void testModuleJarSearchBugGh332() throws Exception {
 		JavaSearchResultCollector resultCollector = new JavaSearchResultCollector();
 		String timerTypeFqn = "java.util.Timer";
 		IType timerType = project.findType(timerTypeFqn);
-		assertNotNull("Failed to find JRE type: " + timerTypeFqn, timerType);
+		assertNotNull("Failed to find JRE type: " + timerTypeFqn, timerType); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String methodName = "sched";
 		IMethod schedMethod = null;
-		for (IMethod method : timerType.getMethods()) {
+		for (IMethod method : timerType.getMethods()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (methodName.equals(method.getElementName())) {
 				schedMethod = method;
 			}
 		}
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaElement[] { schedMethod.getAncestor(IJavaElement.PACKAGE_FRAGMENT) });
-		assertNotNull("Failed to find method: " + methodName + ", in JRE type: " + timerTypeFqn, schedMethod);
+		assertNotNull("Failed to find method: " + methodName + ", in JRE type: " + timerTypeFqn, schedMethod); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		int agnosticMatchRule = SearchPattern.R_EXACT_MATCH | SearchPattern.R_CASE_SENSITIVE | SearchPattern.R_ERASURE_MATCH;
 		SearchPattern pattern = SearchPattern.createPattern(schedMethod, IJavaSearchConstants.REFERENCES, agnosticMatchRule);
 		SearchEngine searchEngine = new SearchEngine();
 		searchEngine.search(pattern, new SearchParticipant[] {SearchEngine.getDefaultSearchParticipant()}, scope, resultCollector, new NullProgressMonitor());
 
 		String foundReferences = resultCollector.toString();
-		assertFalse("Expected search to find references of method: " + schedMethod, foundReferences.isEmpty());
+		assertFalse("Expected search to find references of method: " + schedMethod, foundReferences.isEmpty()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		List<String> results = Arrays.asList(foundReferences.split("\n"));
 		String[] expectedResults = {
 				"void java.util.Timer.schedule(java.util.TimerTask, long)",
@@ -1201,12 +1201,12 @@ public void testModuleJarSearchBugGh332() throws Exception {
 				"void java.util.Timer.scheduleAtFixedRate(java.util.TimerTask, long, long)",
 				"void java.util.Timer.scheduleAtFixedRate(java.util.TimerTask, java.util.Date, long)",
 		};
-		assertEquals("Unexpected search results:\n" + foundReferences, expectedResults.length, results.size());
+		assertEquals("Unexpected search results:\n" + foundReferences, expectedResults.length, results.size()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Set<String> notFound = new LinkedHashSet<>();
 		notFound.addAll(Arrays.asList(expectedResults));
-		for (String expectedResult : expectedResults) {
+		for (String expectedResult : expectedResults) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			boolean isFound = false;
-			for (String match : results) {
+			for (String match : results) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (match.contains(expectedResult)) {
 					isFound = true;
 					break;
@@ -1216,7 +1216,7 @@ public void testModuleJarSearchBugGh332() throws Exception {
 				notFound.remove(expectedResult);
 			}
 		}
-		assertTrue("Unexpected search result\nExpected:\n" + String.join("\n", expectedResults) + "\nActual:\n" + foundReferences + "\nExpected but not found:\n" + String.join("\n", notFound),
+		assertTrue("Unexpected search result\nExpected:\n" + String.join("\n", expectedResults) + "\nActual:\n" + foundReferences + "\nExpected but not found:\n" + String.join("\n", notFound), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				notFound.isEmpty());
 	} finally {
 		JavaCore.setOptions(getDefaultJavaCoreOptions());

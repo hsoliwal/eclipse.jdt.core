@@ -84,7 +84,7 @@ public class TypeParameterLocator extends PatternLocator {
 	 * For types, only look at declaring member name.
 	 * For methods, also look at declaring class and parameters type names
 	 */
-	protected int matchTypeParameter(TypeVariableBinding variable, boolean matchName) {
+	protected int matchTypeParameter(TypeVariableBinding variable, boolean matchName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (variable == null || variable.declaringElement == null) return INACCURATE_MATCH;
 		if (variable.declaringElement instanceof ReferenceBinding) {
 			ReferenceBinding refBinding  = (ReferenceBinding) variable.declaringElement;
@@ -99,7 +99,7 @@ public class TypeParameterLocator extends PatternLocator {
 				if (methBinding.parameters == null) {
 					if (length == 0) return ACCURATE_MATCH;
 				} else if (methBinding.parameters.length == length){
-					for (int i=0; i<length; i++) {
+					for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (!matchesName(methBinding.parameters[i].shortReadableName(), this.pattern.methodArgumentTypes[i])) {
 							return IMPOSSIBLE_MATCH;
 						}
@@ -150,6 +150,6 @@ public class TypeParameterLocator extends PatternLocator {
 
 	@Override
 	public String toString() {
-		return "Locator for " + this.pattern.toString(); //$NON-NLS-1$
+		return "Locator for " + this.pattern.toString(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }

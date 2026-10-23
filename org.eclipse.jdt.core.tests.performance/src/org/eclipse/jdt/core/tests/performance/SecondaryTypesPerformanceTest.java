@@ -35,7 +35,7 @@ import org.eclipse.test.performance.PerformanceTestCase;
 
 public class SecondaryTypesPerformanceTest extends PerformanceTestCase {
 
-	private static final String testScratchArea = Util.getOutputDirectory() + File.separator + "enumPerformanceTestScratchArea";
+	private static final String testScratchArea = Util.getOutputDirectory() + File.separator + "enumPerformanceTestScratchArea"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	private static final int numberOfClasspathsToCreate = 10; //can get set higher, but not lower than 3 (the first 3 packages are used within the test case)
 
 	public static Test suite() {
@@ -44,7 +44,7 @@ public class SecondaryTypesPerformanceTest extends PerformanceTestCase {
 		return suite;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void setUp() throws Exception {
 		super.setUp();
 
@@ -52,16 +52,16 @@ public class SecondaryTypesPerformanceTest extends PerformanceTestCase {
 		if(!testScratchAreaFile.exists()) {
 			testScratchAreaFile.mkdir();
 
-			File packageFile = new File(testScratchAreaFile, "test" + File.separator + "performance");
+			File packageFile = new File(testScratchAreaFile, "test" + File.separator + "performance"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			packageFile.mkdirs();
 			writeDummySourceClasses(packageFile, "test.performance");
 
 			Set<String> paths = createClasspathStrings();
-			for(String path: paths) {
+			for(String path: paths) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				File pathFile = new File(path);
 				pathFile.mkdir();
 
-				writeDummySourceClasses(pathFile, "test.performance." + pathFile.getName());
+				writeDummySourceClasses(pathFile, "test.performance." + pathFile.getName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
@@ -76,13 +76,13 @@ public class SecondaryTypesPerformanceTest extends PerformanceTestCase {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void test01() {
-		List<String> classpathList = new ArrayList<>();
+		List<String> classpathList = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		classpathList.addAll(createClasspathStrings());
 		classpathList.add(testScratchArea);
 
-		for (int i = 0; i<10; ++i) {
+		for (int i = 0; i<10; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ASTParser parser = ASTParser.newParser(AST.JLS16);
 			parser.setResolveBindings(true);
 			parser.setStatementsRecovery(true);
@@ -117,7 +117,7 @@ public class SecondaryTypesPerformanceTest extends PerformanceTestCase {
 	}
 
 	private Map<String, String> createCompilerOptions() {
-		Map<String, String> compilerOptions = new HashMap<>(10);
+		Map<String, String> compilerOptions = new HashMap<>(10); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		compilerOptions.put(JavaCore.COMPILER_COMPLIANCE, JavaCore.VERSION_1_8);
 		compilerOptions.put(JavaCore.COMPILER_CODEGEN_TARGET_PLATFORM, JavaCore.VERSION_1_8);
 		compilerOptions.put(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_1_8);
@@ -128,19 +128,19 @@ public class SecondaryTypesPerformanceTest extends PerformanceTestCase {
 
 	private Set<String> createClasspathStrings() {
 		Set<String> paths = new LinkedHashSet<>(numberOfClasspathsToCreate);
-		for(int i = 1; i <= numberOfClasspathsToCreate; i++) {
-			paths.add(testScratchArea + File.separator + "test" + File.separator + "performance" + File.separator + "test" + i);
+		for(int i = 1; i <= numberOfClasspathsToCreate; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			paths.add(testScratchArea + File.separator + "test" + File.separator + "performance" + File.separator + "test" + i); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return paths;
 	}
 
-	private void writeDummySourceClasses(File aPath, String packageName) throws IOException {
+	private void writeDummySourceClasses(File aPath, String packageName) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		writeFile(new File(aPath, "Z.java"), "public class Z {}");
 
 		"ABC".toLowerCase(Locale.ENGLISH);
 
-		for(int i = 1; i <= 100; i++) {
-			String sourceContent = "package " + packageName + ";\n" +
+		for(int i = 1; i <= 100; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			String sourceContent = "package " + packageName + ";\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"\n" +
 				"import java.util.Locale;\n" +
 				"\n" +
@@ -156,7 +156,7 @@ public class SecondaryTypesPerformanceTest extends PerformanceTestCase {
 				"\t}\n" +
 				"}";
 
-			writeFile(new File(aPath, "X" + i + ".java"), sourceContent);
+			writeFile(new File(aPath, "X" + i + ".java"), sourceContent); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 

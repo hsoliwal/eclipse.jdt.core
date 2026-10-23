@@ -51,7 +51,7 @@ protected CompletionResult complete(String path, String source, String completeB
 protected CompletionResult complete(String path, String source, boolean showPositions, String completeBehind, Predicate<CompletionProposal> filter) throws JavaModelException {
 	return this.complete(path,source,showPositions, completeBehind, null, null, filter);
 }
-protected CompletionResult complete(String path, String source, boolean showPositions, String completeBehind,
+protected CompletionResult complete(String path, String source, boolean showPositions, String completeBehind, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String tokenStartBehind, String token, Predicate<CompletionProposal> filter) throws JavaModelException {
 
 	this.wc = getWorkingCopy(path, source);
@@ -76,7 +76,7 @@ protected CompletionResult complete(String path, String source, boolean showPosi
 	result.tokenEnd = tokenEnd;
 	return result;
 }
-public void test0001_block_scope() throws JavaModelException {
+public void test0001_block_scope() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
         "/Completion/src3/test0001/Test.java",
         "package test0001;\n" +
@@ -94,10 +94,10 @@ public void test0001_block_scope() throws JavaModelException {
             result.context);
 
 	assertResults(
-			"var[KEYWORD]{var, null, null, var, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+			"var[KEYWORD]{var, null, null, var, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result.proposals);
 }
-public void test0001a_block_scope_switch() throws JavaModelException {
+public void test0001a_block_scope_switch() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
         "/Completion/src3/test0001/Test.java",
         "package test0001;\n" +
@@ -117,10 +117,10 @@ public void test0001a_block_scope_switch() throws JavaModelException {
             result.context);
 
 	assertResults(
-			"var[KEYWORD]{var, null, null, var, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+			"var[KEYWORD]{var, null, null, var, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result.proposals);
 }
-public void test0002_block_scope_final() throws JavaModelException {
+public void test0002_block_scope_final() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
         "/Completion/src3/test0002/Test.java",
         "package test0002;\n" +
@@ -138,10 +138,10 @@ public void test0002_block_scope_final() throws JavaModelException {
             result.context);
 
 	assertResults(
-			"var[KEYWORD]{var, null, null, var, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+			"var[KEYWORD]{var, null, null, var, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result.proposals);
 }
-public void test0003_inside_for() throws JavaModelException {
+public void test0003_inside_for() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
         "/Completion/src3/test0003/Test.java",
         "package test0003;\n" +
@@ -159,10 +159,10 @@ public void test0003_inside_for() throws JavaModelException {
             result.context);
 
 	assertResults(
-			"var[KEYWORD]{var, null, null, var, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+			"var[KEYWORD]{var, null, null, var, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result.proposals);
 }
-public void test0004_inside_for_final() throws JavaModelException {
+public void test0004_inside_for_final() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
         "/Completion/src3/test0004/Test.java",
         "package test0004;\n" +
@@ -180,10 +180,10 @@ public void test0004_inside_for_final() throws JavaModelException {
             result.context);
 
 	assertResults(
-			"var[KEYWORD]{var, null, null, var, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+			"var[KEYWORD]{var, null, null, var, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result.proposals);
 }
-public void test0005_inside_try() throws JavaModelException {
+public void test0005_inside_try() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
         "/Completion/src3/test0005/Test.java",
         "package test0005;\n" +
@@ -201,10 +201,10 @@ public void test0005_inside_try() throws JavaModelException {
             result.context);
 
 	assertResults(
-			"var[KEYWORD]{var, null, null, var, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+			"var[KEYWORD]{var, null, null, var, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result.proposals);
 }
-public void test0006_inside_try_final() throws JavaModelException {
+public void test0006_inside_try_final() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
         "/Completion/src3/test0006/Test.java",
         "package test0006;\n" +
@@ -222,11 +222,11 @@ public void test0006_inside_try_final() throws JavaModelException {
             result.context);
 
 	assertResults(
-			"var[KEYWORD]{var, null, null, var, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+			"var[KEYWORD]{var, null, null, var, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result.proposals);
 }
 
-public void test0007_not_inside_expression() throws JavaModelException {
+public void test0007_not_inside_expression() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
         "/Completion/src3/test0007/Test.java",
         "package test0007;\n" +
@@ -281,7 +281,7 @@ public void test0008_not_in_class_scope() throws JavaModelException {
 		assertProposalCount("var[KEYWORD]", 0, 15, result);
 	}
 
-public void testbug_529556_missing_type_info_on_vars() throws JavaModelException {
+public void testbug_529556_missing_type_info_on_vars() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
 	        "/Completion/src3/test0001/Test.java",
 	        "package test0001;\n" +
@@ -297,7 +297,7 @@ public void testbug_529556_missing_type_info_on_vars() throws JavaModelException
 	        "}",
 	    	"x.a");
 		assertResults(
-			"a_method[METHOD_REF]{a_method(), Ltest0001.Test$Dummy;, ()V, a_method, null, " + (R_DEFAULT + 30) + "}",
+			"a_method[METHOD_REF]{a_method(), Ltest0001.Test$Dummy;, ()V, a_method, null, " + (R_DEFAULT + 30) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			result.proposals);
 }
 public void testBug532476a() throws JavaModelException {
@@ -312,7 +312,7 @@ public void testBug532476a() throws JavaModelException {
 	        "}",
 	    	"i_");
 		assertResults(
-			"i_jk[LOCAL_VARIABLE_REF]{i_jk, null, I, i_jk, null, " + (R_DEFAULT + 22) + "}",
+			"i_jk[LOCAL_VARIABLE_REF]{i_jk, null, I, i_jk, null, " + (R_DEFAULT + 22) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			result.proposals);
 }
 public void testBug532476b() throws JavaModelException {
@@ -328,7 +328,7 @@ public void testBug532476b() throws JavaModelException {
 	        "}",
 	    	"i_");
 		assertResults(
-			"i_jkl[LOCAL_VARIABLE_REF]{i_jkl, null, Ljava.lang.String;, i_jkl, null, "  + (R_DEFAULT + 22) + "}",
+			"i_jkl[LOCAL_VARIABLE_REF]{i_jkl, null, Ljava.lang.String;, i_jkl, null, "  + (R_DEFAULT + 22) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			result.proposals);
 }
 public void testBug532476c() throws JavaModelException {
@@ -342,7 +342,7 @@ public void testBug532476c() throws JavaModelException {
 	        "}",
 	    	"i_");
 		assertResults(
-				"i_jkl[LOCAL_VARIABLE_REF]{i_jkl, null, I, i_jkl, null, " + (R_DEFAULT + 22) + "}",
+				"i_jkl[LOCAL_VARIABLE_REF]{i_jkl, null, I, i_jkl, null, " + (R_DEFAULT + 22) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			result.proposals);
 }
 public void testBug532476d() throws JavaModelException {
@@ -356,7 +356,7 @@ public void testBug532476d() throws JavaModelException {
 	        "}",
 	    	"i_");
 		assertResults(
-				"i_jkl[LOCAL_VARIABLE_REF]{i_jkl, null, I, i_jkl, null, " + (R_DEFAULT + 22) + "}",
+				"i_jkl[LOCAL_VARIABLE_REF]{i_jkl, null, I, i_jkl, null, " + (R_DEFAULT + 22) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			result.proposals);
 }
 public void testBug532476e() throws JavaModelException {
@@ -372,12 +372,12 @@ public void testBug532476e() throws JavaModelException {
 	        "}",
 	    	"i_jkl.fin");
 		assertResults(
-			"finalize[METHOD_REF]{finalize(), Ljava.lang.Object;, ()V, finalize, null, " + (R_DEFAULT + 30) + "}",
+			"finalize[METHOD_REF]{finalize(), Ljava.lang.Object;, ()V, finalize, null, " + (R_DEFAULT + 30) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			result.proposals);
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/228
 // 'var' typed locals are not suggested as auto-completion method arguments
-public void testIssue228() throws JavaModelException {
+public void testIssue228() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/X.java",
@@ -415,7 +415,7 @@ public void testIssue228() throws JavaModelException {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4172
 // NPE in code completion
-public void testIssue4172() throws JavaModelException {
+public void testIssue4172() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	CompletionResult result = complete(
 	        "/Completion/src/X.java",
@@ -443,7 +443,7 @@ public void testIssue4172() throws JavaModelException {
 
 	assertTrue(result.proposals.contains("length[METHOD_REF]{length(), Ljava.lang.String;, ()I, length, null, 60}"));
 }
-public void testIssue4649_1() throws JavaModelException {
+public void testIssue4649_1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Predicate<CompletionProposal> javaTypeRef = (p) -> {
 		char[] sig = p.getCompletion();
 		if (sig == null) {
@@ -473,7 +473,7 @@ public void testIssue4649_1() throws JavaModelException {
 			+ "foo[FIELD_REF]{foo, LTest;, Ljava.lang.String;, foo, null, 52}",
 			result.proposals);
 }
-public void testIssue4649_2() throws JavaModelException {
+public void testIssue4649_2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Predicate<CompletionProposal> javaTypeRef = (p) -> {
 		char[] sig = p.getCompletion();
 		if (sig == null) {
@@ -504,7 +504,7 @@ public void testIssue4649_2() throws JavaModelException {
 			+ "foo[FIELD_REF]{foo, LTest;, Ljava.lang.String;, foo, null, 82}",
 			result.proposals);
 }
-public void testIssue4649_3() throws JavaModelException {
+public void testIssue4649_3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Predicate<CompletionProposal> javaTypeRef = (p) -> {
 		char[] sig = p.getCompletion();
 		if (sig == null) {
@@ -533,7 +533,7 @@ public void testIssue4649_3() throws JavaModelException {
 			+ "foo[FIELD_REF]{foo, LTest;, Ljava.lang.String;, foo, null, 52}",
 			result.proposals);
 }
-public void testIssue4649_4() throws JavaModelException {
+public void testIssue4649_4() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Predicate<CompletionProposal> javaTypeRef = (p) -> {
 		char[] sig = p.getCompletion();
 		if (sig == null) {
@@ -562,7 +562,7 @@ public void testIssue4649_4() throws JavaModelException {
 			+ "foo[FIELD_REF]{foo, LTest;, [Ljava.lang.String;, foo, null, 52}",
 			result.proposals);
 }
-public void testIssue4649_5() throws JavaModelException {
+public void testIssue4649_5() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Predicate<CompletionProposal> javaTypeRef = (p) -> {
 		char[] sig = p.getCompletion();
 		if (sig == null) {
@@ -596,12 +596,12 @@ private void assertProposalCount(String proposal, int expectedCount, int expecte
 	String[] proposals = result.proposals.split("\n");
 	long proposalsCount = Stream.of(proposals).filter(s -> s.startsWith(proposal)).count();
 	assertEquals(
-			"Unexpected occurrences of " + proposal + " - result was " + result.proposals,
+			"Unexpected occurrences of " + proposal + " - result was " + result.proposals, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedCount, proposalsCount);
 
 	long otherProposalsCount = proposals.length - proposalsCount;
 	assertEquals(
-			"Unexpected occurrences that were not " + proposal + " - result was " + result.proposals,
+			"Unexpected occurrences that were not " + proposal + " - result was " + result.proposals, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedOtherCount, otherProposalsCount);
 }
 

@@ -40,7 +40,7 @@ public class CodeFormatter implements org.eclipse.jdt.core.ICodeFormatter {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public String format(String string, int indentLevel, int[] positions, String lineSeparator) {
 		// initialize the new formatter with old options
 		Map newOptions = DefaultCodeFormatterConstants.getEclipse21Settings();
@@ -144,13 +144,13 @@ public class CodeFormatter implements org.eclipse.jdt.core.ICodeFormatter {
 			int delta = 0;
 			int originalSourceLength = string.length() - 1;
 			if (textEditSize != 0) {
-				for (int i = 0, max = positions.length; i < max; i++) {
+				for (int i = 0, max = positions.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					int currentPosition = positions[i];
 					if (currentPosition > originalSourceLength) {
 						currentPosition = originalSourceLength;
 					}
 					ReplaceEdit currentEdit = (ReplaceEdit) edits[editsIndex];
-					while (currentEdit.getOffset() <= currentPosition) {
+					while (currentEdit.getOffset() <= currentPosition) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						delta += currentEdit.getText().length() - currentEdit.getLength();
 						editsIndex++;
 						if (editsIndex < textEditSize) {

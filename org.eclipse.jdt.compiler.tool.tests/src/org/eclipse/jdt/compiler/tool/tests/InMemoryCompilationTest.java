@@ -92,7 +92,7 @@ public class InMemoryCompilationTest extends TestCase {
 		assertEquals(false, file.isDirectory());
 	}
 
-	private Class<?> compile(String absClassName, String sourceCode) throws ClassNotFoundException {
+	private Class<?> compile(String absClassName, String sourceCode) throws ClassNotFoundException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		InMemoryJavaSourceFileObject sourceFileObject = new InMemoryJavaSourceFileObject(absClassName, sourceCode);
 		List<InMemoryJavaSourceFileObject> sources = Arrays.asList(sourceFileObject);
 
@@ -105,7 +105,7 @@ public class InMemoryCompilationTest extends TestCase {
 				classLoader);
 
 		Writer stdErrWriter = new PrintWriter(System.err);
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		options.add("-source");
 		options.add("1.8");
 		options.add("-target");
@@ -124,7 +124,7 @@ public class InMemoryCompilationTest extends TestCase {
 		private final String absClassName;
 
 		public InMemoryJavaSourceFileObject(String absClassName, String sourceCode) {
-			super(URI.create("memory:///" + absClassName.replace('.', '/') + ".java"), Kind.SOURCE);
+			super(URI.create("memory:///" + absClassName.replace('.', '/') + ".java"), Kind.SOURCE); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			this.sourceCode = sourceCode;
 			this.absClassName = absClassName;
 		}
@@ -148,7 +148,7 @@ public class InMemoryCompilationTest extends TestCase {
 		private ByteArrayOutputStream byteCode;
 
 		public InMemoryJavaClassFileObject(String absClassName) {
-			super(URI.create("memory:///" + absClassName.replace('.', '/') + ".class"), Kind.CLASS);
+			super(URI.create("memory:///" + absClassName.replace('.', '/') + ".class"), Kind.CLASS); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		@Override
@@ -187,11 +187,11 @@ public class InMemoryCompilationTest extends TestCase {
 			return super.contains(location, fo);
 		}
 
-		public Iterable<JavaFileObject> list(Location location, String packageName, Set<Kind> kinds, boolean recurse)
+		public Iterable<JavaFileObject> list(Location location, String packageName, Set<Kind> kinds, boolean recurse) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				throws IOException {
-			List<JavaFileObject> result = new ArrayList<>();
+			List<JavaFileObject> result = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			if (location == StandardLocation.SOURCE_PATH && kinds.contains(Kind.SOURCE)) {
-				for (InMemoryJavaSourceFileObject sourceFileObject : sources) {
+				for (InMemoryJavaSourceFileObject sourceFileObject : sources) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String name = sourceFileObject.getAbsClassName();
 					int lastDot = name.lastIndexOf('.');
 					if (lastDot == -1)
@@ -204,7 +204,7 @@ public class InMemoryCompilationTest extends TestCase {
 			}
 			if (super.hasLocation(location)) {
 				Iterable<JavaFileObject> superResult = super.list(location, packageName, kinds, recurse);
-				for (JavaFileObject fileObject : superResult) {
+				for (JavaFileObject fileObject : superResult) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					result.add(fileObject);
 				}
 			}
@@ -214,7 +214,7 @@ public class InMemoryCompilationTest extends TestCase {
 		@Override
 		public JavaFileObject getJavaFileForInput(Location location, String className, Kind kind) throws IOException {
 			if (location == StandardLocation.SOURCE_PATH && kind == Kind.SOURCE) {
-				for (InMemoryJavaSourceFileObject source : sources) {
+				for (InMemoryJavaSourceFileObject source : sources) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (source.getAbsClassName().equals(className)) {
 						return source;
 					}
@@ -235,7 +235,7 @@ public class InMemoryCompilationTest extends TestCase {
 	}
 
 	private static class InMemoryClassLoader extends ClassLoader {
-		public final Map<String, InMemoryJavaClassFileObject> classes = new HashMap<>();
+		public final Map<String, InMemoryJavaClassFileObject> classes = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 		public void add(String name, InMemoryJavaClassFileObject fileObject) {
 			classes.put(name.replace('/', '.'), fileObject);

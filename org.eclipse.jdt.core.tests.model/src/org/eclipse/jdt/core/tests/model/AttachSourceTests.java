@@ -117,13 +117,13 @@ private void setupExternalLibrary() throws IOException {
 			"public class X {\n" +
 			"}"
 		};
-	org.eclipse.jdt.core.tests.util.Util.createClassFolder(pathsAndContents, externalFolder + "/lib", CompilerOptions.getFirstSupportedJavaVersion());
-	org.eclipse.jdt.core.tests.util.Util.createSourceDir(pathsAndContents, externalFolder + "/src");
+	org.eclipse.jdt.core.tests.util.Util.createClassFolder(pathsAndContents, externalFolder + "/lib", CompilerOptions.getFirstSupportedJavaVersion()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	org.eclipse.jdt.core.tests.util.Util.createSourceDir(pathsAndContents, externalFolder + "/src"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-	org.eclipse.jdt.core.tests.util.Util.createJar(pathsAndContents, externalFolder + "/lib.abc", CompilerOptions.getFirstSupportedJavaVersion());
-	org.eclipse.jdt.core.tests.util.Util.createSourceZip(pathsAndContents, externalFolder + "/src.abc");
+	org.eclipse.jdt.core.tests.util.Util.createJar(pathsAndContents, externalFolder + "/lib.abc", CompilerOptions.getFirstSupportedJavaVersion()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	org.eclipse.jdt.core.tests.util.Util.createSourceZip(pathsAndContents, externalFolder + "/src.abc"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
-private void setUpGenericJar() throws IOException, CoreException {
+private void setUpGenericJar() throws IOException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] pathAndContents = new String[] {
 		"generic/X.java",
 		"package generic;\n" +
@@ -165,7 +165,7 @@ private void setUpGenericJar() throws IOException, CoreException {
 	};
 	addLibrary("generic.jar", "genericsrc.zip", pathAndContents, CompilerOptions.getFirstSupportedJavaVersion());
 }
-private void setUpInnerClassesJar() throws IOException, CoreException {
+private void setUpInnerClassesJar() throws IOException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] pathAndContents = new String[] {
 		"inner/X.java",
 		"""
@@ -257,7 +257,7 @@ private void setUpInnerClassesJar() throws IOException, CoreException {
 @Override
 protected void tearDown() throws Exception {
 	IPackageFragmentRoot[] roots = this.currentProject.getAllPackageFragmentRoots();
-	for (int i = 0; i < roots.length; i++) {
+	for (int i = 0; i < roots.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IPackageFragmentRoot root = roots[i];
 		if (root.getKind() == IPackageFragmentRoot.K_BINARY) {
 			attachSource(root, null, null); // detach source
@@ -316,7 +316,7 @@ public void testASTParsing2() throws JavaModelException {
  * Changing the source attachment file should update the java model.
  * (regression test for bug 23292 Must restart Eclipse after debug of source in .zip is updated)
  */
-public void testChangeSourceAttachmentFile() throws CoreException {
+public void testChangeSourceAttachmentFile() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IOrdinaryClassFile cf = this.pkgFragmentRoot.getPackageFragment("x.y").getOrdinaryClassFile("A.class");
 	IMethod method = cf.getType().getMethod("foo", new String[] {});
 
@@ -444,14 +444,14 @@ public void testDetachSource() throws JavaModelException {
 /*
  * Ensures that one can attach an external source folder to a library folder.
  */
-public void testExternalFolder1() throws CoreException {
+public void testExternalFolder1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IProject p = createProject("P1");
 		IFolder lib = p.getFolder("lib");
-		lib.createLink(new Path(getExternalFolder() + "/lib"), IResource.NONE, null);
+		lib.createLink(new Path(getExternalFolder() + "/lib"), IResource.NONE, null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IJavaProject javaProject = createJavaProject("P2", new String[0], new String[] {"/P1/lib"}, "");
 		IPackageFragmentRoot root = javaProject.getPackageFragmentRoot(lib);
-		attachSource(root, getExternalFolder() + "/src", "");
+		attachSource(root, getExternalFolder() + "/src", ""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IType type = root.getPackageFragment("p").getOrdinaryClassFile("X.class").getType();
 		assertSourceEquals(
 			"Unexpected source",
@@ -466,12 +466,12 @@ public void testExternalFolder1() throws CoreException {
 /*
  * Ensures that one can attach a source folder to an external library folder.
  */
-public void testExternalFolder2() throws CoreException {
+public void testExternalFolder2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IProject p = createProject("P1");
 		IFolder src = p.getFolder("src");
-		src.createLink(new Path(getExternalFolder() + "/src"), IResource.NONE, null);
-		String externalLib = getExternalFolder() + "/lib";
+		src.createLink(new Path(getExternalFolder() + "/src"), IResource.NONE, null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String externalLib = getExternalFolder() + "/lib"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IJavaProject javaProject = createJavaProject("P2", new String[0], new String[] {externalLib}, "");
 		IPackageFragmentRoot root = javaProject.getPackageFragmentRoot(externalLib);
 		attachSource(root, "/P1/src", "");
@@ -491,10 +491,10 @@ public void testExternalFolder2() throws CoreException {
  */
 public void testExternalFolder3() throws CoreException {
 	try {
-		String externalLib = getExternalFolder() + "/lib";
+		String externalLib = getExternalFolder() + "/lib"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IJavaProject javaProject = createJavaProject("P", new String[0], new String[] {externalLib}, "");
 		IPackageFragmentRoot root = javaProject.getPackageFragmentRoot(externalLib);
-		attachSource(root, getExternalFolder() + "/src", "");
+		attachSource(root, getExternalFolder() + "/src", ""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IType type = root.getPackageFragment("p").getOrdinaryClassFile("X.class").getType();
 		assertSourceEquals(
 			"Unexpected source",
@@ -509,7 +509,7 @@ public void testExternalFolder3() throws CoreException {
  * Ensures that root paths are correctly detected when attaching an external source folder to an external library folder.
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=227813 )
  */
-public void testExternalFolder4() throws Exception {
+public void testExternalFolder4() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String externalFolder = getExternalFolder();
 		String[] pathsAndContents =
@@ -519,7 +519,7 @@ public void testExternalFolder4() throws Exception {
 				"public class X {\n" +
 				"}"
 			};
-		org.eclipse.jdt.core.tests.util.Util.createSourceDir(pathsAndContents, externalFolder + "/src227813/root1/subroot");
+		org.eclipse.jdt.core.tests.util.Util.createSourceDir(pathsAndContents, externalFolder + "/src227813/root1/subroot"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		pathsAndContents =
 			new String[] {
 				"q/X.java",
@@ -527,12 +527,12 @@ public void testExternalFolder4() throws Exception {
 				"public class X {\n" +
 				"}"
 			};
-		org.eclipse.jdt.core.tests.util.Util.createSourceDir(pathsAndContents, externalFolder + "/src227813/root2/subroot");
+		org.eclipse.jdt.core.tests.util.Util.createSourceDir(pathsAndContents, externalFolder + "/src227813/root2/subroot"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		String externalLib = externalFolder + "/lib";
+		String externalLib = externalFolder + "/lib"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IJavaProject javaProject = createJavaProject("P", new String[0], new String[] {externalLib}, "");
 		IPackageFragmentRoot root = javaProject.getPackageFragmentRoot(externalLib);
-		attachSource(root, externalFolder + "/src227813", "");
+		attachSource(root, externalFolder + "/src227813", ""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IType type = root.getPackageFragment("p").getOrdinaryClassFile("X.class").getType();
 		assertSourceEquals(
 			"Unexpected source",
@@ -548,7 +548,7 @@ public void testExternalFolder4() throws Exception {
  * Ensures that root paths are correctly detected when attaching an external source folder that contains a META-INF folder to an external library folder.
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=228639 )
  */
-public void testExternalFolder5() throws Exception {
+public void testExternalFolder5() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String externalFolder = getExternalFolder();
 		String[] pathsAndContents =
@@ -558,12 +558,12 @@ public void testExternalFolder5() throws Exception {
 				"public class X {\n" +
 				"}"
 			};
-		org.eclipse.jdt.core.tests.util.Util.createSourceDir(pathsAndContents, externalFolder + "/src228639/src");
+		org.eclipse.jdt.core.tests.util.Util.createSourceDir(pathsAndContents, externalFolder + "/src228639/src"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		createExternalFolder("externalFolder/src228639/META-INF");
 		createExternalFolder("externalFolder/lib/META-INF");
 
-		String externalLib = externalFolder + "/lib";
+		String externalLib = externalFolder + "/lib"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IJavaProject javaProject = null;
 		try {
 			javaProject = createJavaProject("P", new String[0], new String[] {externalLib}, "");
@@ -571,15 +571,15 @@ public void testExternalFolder5() throws Exception {
 		catch (Exception e) {
 			IFolder folder = getFolder(externalLib);
 			System.out.println("----------  This information is logged for debugging purposes as this test fails sporadically.---------");
-			System.out.println("Failing when creating Link folder for: " + externalFolder);
-			System.out.println("Existing? " + folder.exists());
+			System.out.println("Failing when creating Link folder for: " + externalFolder); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			System.out.println("Existing? " + folder.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IProject externalFolderProject = JavaModelManager.getExternalManager().getExternalFoldersProject();
 			IFile externalProjectFile = externalFolderProject.getFile(".project");
 			if (externalProjectFile.exists()) {
 				System.out.println("External Folder Project exists with following content:");
 				BufferedInputStream bs = new BufferedInputStream(externalProjectFile.getContents());
 				int available = 0;
-				while ((available = bs.available()) > 0) {
+				while ((available = bs.available()) > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					byte[] contents = new byte[available];
 					bs.read(contents);
 					System.out.println(new String(contents));
@@ -593,7 +593,7 @@ public void testExternalFolder5() throws Exception {
 			throw e;
 		}
 		IPackageFragmentRoot root = javaProject.getPackageFragmentRoot(externalLib);
-		attachSource(root, externalFolder + "/src228639", "");
+		attachSource(root, externalFolder + "/src228639", ""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IType type = root.getPackageFragment("p").getOrdinaryClassFile("X.class").getType();
 		assertSourceEquals(
 			"Unexpected source",
@@ -609,14 +609,14 @@ public void testExternalFolder5() throws Exception {
 /*
  * Ensures that one can attach an external ZIP archive containing sources to a library folder.
  */
-public void testZIPArchive1() throws CoreException {
+public void testZIPArchive1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IProject p = createProject("P1");
 		IFolder lib = p.getFolder("lib");
-		lib.createLink(new Path(getExternalFolder() + "/lib"), IResource.NONE, null);
+		lib.createLink(new Path(getExternalFolder() + "/lib"), IResource.NONE, null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IJavaProject javaProject = createJavaProject("P2", new String[0], new String[] {"/P1/lib"}, "");
 		IPackageFragmentRoot root = javaProject.getPackageFragmentRoot(lib);
-		attachSource(root, getExternalFolder() + "/src.abc", "");
+		attachSource(root, getExternalFolder() + "/src.abc", ""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IType type = root.getPackageFragment("p").getOrdinaryClassFile("X.class").getType();
 		assertSourceEquals(
 			"Unexpected source",
@@ -631,12 +631,12 @@ public void testZIPArchive1() throws CoreException {
 /*
  * Ensures that one can attach a source folder to an external ZIP archive.
  */
-public void testZIPArchive2() throws CoreException {
+public void testZIPArchive2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IProject p = createProject("P1");
 		IFolder src = p.getFolder("src");
-		src.createLink(new Path(getExternalFolder() + "/src"), IResource.NONE, null);
-		String externalLib = getExternalFolder() + "/lib.abc";
+		src.createLink(new Path(getExternalFolder() + "/src"), IResource.NONE, null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String externalLib = getExternalFolder() + "/lib.abc"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IJavaProject javaProject = createJavaProject("P2", new String[0], new String[] {externalLib}, "");
 		IPackageFragmentRoot root = javaProject.getPackageFragmentRoot(externalLib);
 		attachSource(root, "/P1/src", "");
@@ -656,10 +656,10 @@ public void testZIPArchive2() throws CoreException {
  */
 public void testZIPArchive3() throws CoreException {
 	try {
-		String externalLib = getExternalFolder() + "/lib.abc";
+		String externalLib = getExternalFolder() + "/lib.abc"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IJavaProject javaProject = createJavaProject("P", new String[0], new String[] {externalLib}, "");
 		IPackageFragmentRoot root = javaProject.getPackageFragmentRoot(externalLib);
-		attachSource(root, getExternalFolder() + "/src.abc", "");
+		attachSource(root, getExternalFolder() + "/src.abc", ""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IType type = root.getPackageFragment("p").getOrdinaryClassFile("X.class").getType();
 		assertSourceEquals(
 			"Unexpected source",
@@ -673,13 +673,13 @@ public void testZIPArchive3() throws CoreException {
 /*
  * Ensures that one can attach an internal ZIP archive containing sources to an internal ZIP archive.
  */
-public void testZIPArchive4() throws CoreException {
+public void testZIPArchive4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IProject p = createProject("P1");
 		IFile lib = p.getFile("lib.abc");
-		lib.createLink(new Path(getExternalFolder() + "/lib.abc"), IResource.NONE, null);
+		lib.createLink(new Path(getExternalFolder() + "/lib.abc"), IResource.NONE, null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IFile src = p.getFile("src.abc");
-		src.createLink(new Path(getExternalFolder() + "/src.abc"), IResource.NONE, null);
+		src.createLink(new Path(getExternalFolder() + "/src.abc"), IResource.NONE, null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IJavaProject javaProject = createJavaProject("P2", new String[0], new String[] {"/P1/lib.abc"}, "");
 		IPackageFragmentRoot root = javaProject.getPackageFragmentRoot(lib);
 		attachSource(root, "/P1/src.abc", "");
@@ -700,7 +700,7 @@ public void testZIPArchive4() throws CoreException {
  * to the current workspace location root. The test runs on Windows only, so
  * the path is usually "C:\" or "D:\".
  */
-public void test264301() throws CoreException {
+public void test264301() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String os = Platform.getOS();
 	if (!Platform.OS_WIN32.equals(os)) {
 		return;
@@ -714,7 +714,7 @@ public void test264301() throws CoreException {
 			"\n" +
 			"public class Test {}");
 		IPackageFragmentRoot root = javaProject.getPackageFragmentRoot(getFile("/AttachSourceTests/test.jar"));
-		String dev = ResourcesPlugin.getWorkspace().getRoot().getLocation().getDevice() + IPath.SEPARATOR;
+		String dev = ResourcesPlugin.getWorkspace().getRoot().getLocation().getDevice() + IPath.SEPARATOR; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try {
 			attachSource(root, dev, null);
 			assertTrue("Should not be here", false);
@@ -882,7 +882,7 @@ public void testGetNameRange04() throws JavaModelException {
 
 	IOrdinaryClassFile classFile = fragment.getOrdinaryClassFile("X$Inner.class");
 	IMethod[] methods = classFile.getType().getMethods();
-	for (int i = 0; i < methods.length; i++) {
+	for (int i = 0; i < methods.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IMethod iMethod = methods[i];
 		ISourceRange nameRange = iMethod.getNameRange();
 		assertTrue("Unexpected name range", nameRange.getOffset() != -1);
@@ -896,7 +896,7 @@ public void testGetNameRange04() throws JavaModelException {
  */
 public void testGetSourceAttachmentPath() throws JavaModelException {
 	IPath saPath= this.pkgFragmentRoot.getSourceAttachmentPath();
-	assertEquals("Source attachment path not correct for root " + this.pkgFragmentRoot, "/AttachSourceTests/attachsrc.zip", saPath.toString());
+	assertEquals("Source attachment path not correct for root " + this.pkgFragmentRoot, "/AttachSourceTests/attachsrc.zip", saPath.toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	assertEquals("Source attachment root path should be empty", new Path(""), this.pkgFragmentRoot.getSourceAttachmentRootPath());
 }
 /**
@@ -924,7 +924,7 @@ public void testGetSourceRangeInnerClass() throws JavaModelException {
 /*
  * Ensures that the source of an inner class can be retrieved.
  */
-public void testInnerClass1() throws JavaModelException {
+public void testInnerClass1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = this.getJavaProject("/AttachSourceTests");
 	IPackageFragmentRoot root = project.getPackageFragmentRoot(getFile("/AttachSourceTests/innerClasses.jar"));
 	attachSource(root, "/AttachSourceTests/innerClassessrc.zip", null);
@@ -1087,7 +1087,7 @@ public void testInnerClass5() throws JavaModelException {
 /*
  * Ensures that the source of an inner class can be retrieved.
  */
-public void testInnerClass6() throws JavaModelException {
+public void testInnerClass6() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = this.getJavaProject("/AttachSourceTests");
 	IPackageFragmentRoot root = project.getPackageFragmentRoot(getFile("/AttachSourceTests/innerClasses.jar"));
 	attachSource(root, "/AttachSourceTests/innerClassessrc.zip", null);
@@ -1171,7 +1171,7 @@ public void testInnerClass9() throws JavaModelException {
 	attachSource(root, null, null); // detach source
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=476304
-public void testInnerClass10() throws JavaModelException {
+public void testInnerClass10() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = this.getJavaProject("/AttachSourceTests");
 	IPackageFragmentRoot root = project.getPackageFragmentRoot(getFile("/AttachSourceTests/innerClasses.jar"));
 	attachSource(root, "/AttachSourceTests/innerClassessrc.zip", null);
@@ -1212,7 +1212,7 @@ public void testInnerClass11() throws JavaModelException {
 		type.getSource());
 	attachSource(root, null, null); // detach source
 }
-public void testInnerClass12() throws JavaModelException {
+public void testInnerClass12() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = this.getJavaProject("/AttachSourceTests");
 	IPackageFragmentRoot root = project.getPackageFragmentRoot(getFile("/AttachSourceTests/innerClasses.jar"));
 	attachSource(root, "/AttachSourceTests/innerClassessrc.zip", null);
@@ -1232,7 +1232,7 @@ public void testInnerClass12() throws JavaModelException {
 		type.getSource());
 	attachSource(root, null, null); // detach source
 }
-public void testInnerClass13() throws JavaModelException {
+public void testInnerClass13() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = this.getJavaProject("/AttachSourceTests");
 	IPackageFragmentRoot root = project.getPackageFragmentRoot(getFile("/AttachSourceTests/innerClasses.jar"));
 	attachSource(root, "/AttachSourceTests/innerClassessrc.zip", null);
@@ -1346,9 +1346,9 @@ public void testLibFolder() throws JavaModelException {
 public void testMethodRetrieval() throws JavaModelException {
 	IOrdinaryClassFile cf = this.pkgFragmentRoot.getPackageFragment("x.y").getOrdinaryClassFile("A.class");
 	IMethod[] methods = cf.getType().getMethods();
-	for (int i = 0; i < methods.length; i++) {
+	for (int i = 0; i < methods.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IMethod method = methods[i];
-		assertTrue("source code does not exist for the method " + method, method.getSource() != null);
+		assertTrue("source code does not exist for the method " + method, method.getSource() != null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertTrue("method name range not correct", method.getNameRange().getOffset() != -1 && method.getNameRange().getLength() != 0);
 	}
 }
@@ -1367,7 +1367,7 @@ public void testPersistence() throws JavaModelException {
  * of a class in a non-default package.
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=65186)
  */
-public void testProjectAsClassFolder1() throws CoreException {
+public void testProjectAsClassFolder1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1");
 		createFolder("/P1/p");
@@ -1400,7 +1400,7 @@ public void testProjectAsClassFolder1() throws CoreException {
  * of a class in the default package.
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=65186)
  */
-public void testProjectAsClassFolder2() throws CoreException {
+public void testProjectAsClassFolder2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1");
 		createFile(
@@ -1429,7 +1429,7 @@ public void testProjectAsClassFolder2() throws CoreException {
  * Ensures that having a project as source attachment finds the source
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=65186)
  */
-public void testProjectAsSourceAttachment() throws CoreException {
+public void testProjectAsSourceAttachment() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject javaProject = createJavaProject("Test", new String[]{""}, new String[]{"/AttachSourceTests/test.jar"}, "");
 		createFolder("/Test/test1");
@@ -1456,7 +1456,7 @@ public void testProjectAsSourceAttachment() throws CoreException {
  * if the entry has a source attachment.
  * (regression test for bug 183413 PDE can't find the source for plug-ins in the target)
  */
-public void testRestart() throws Exception {
+public void testRestart() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.pkgFragmentRoot.attachSource(new Path("/AttachSourceTests/attachsrc.new.zip"), new Path("")/*source root*/, null/*no progress*/);
 
@@ -1481,7 +1481,7 @@ public void testRestart() throws Exception {
  * a nested root structure and exists as a resource.  Tests that
  * the attachment is persisted as a server property for the jar.
  */
-public void testRootPath() throws JavaModelException {
+public void testRootPath() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = getJavaProject("AttachSourceTests");
 	IFile jar = (IFile) project.getProject().findMember("attach2.jar");
 	IFile srcZip=(IFile) project.getProject().findMember("attach2src.zip");
@@ -1495,10 +1495,10 @@ public void testRootPath() throws JavaModelException {
 	assertTrue("source code does not exist for the entire attached compilation unit", cf.getSource() != null);
 
 	IPath rootSAPath= root.getSourceAttachmentRootPath();
-	assertEquals("Unexpected source attachment root path for " + root.getPath(), "src/nested", rootSAPath.toString());
+	assertEquals("Unexpected source attachment root path for " + root.getPath(), "src/nested", rootSAPath.toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	IPath saPath= root.getSourceAttachmentPath();
-	assertEquals("Unexpected source attachment path for " + root.getPath(), "/AttachSourceTests/attach2src.zip", saPath.toString());
+	assertEquals("Unexpected source attachment path for " + root.getPath(), "/AttachSourceTests/attach2src.zip", saPath.toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	root.close();
 }
@@ -1556,7 +1556,7 @@ public void testRootPath4() throws JavaModelException {
 /**
  * Attach a jar with a source attachment that doesn't contain the source folders
  */
-public void testRootPath5() throws JavaModelException {
+public void testRootPath5() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = getJavaProject("/AttachSourceTests");
 	IPackageFragmentRoot root = project.getPackageFragmentRoot(getFile("/AttachSourceTests/update.jar"));
 	attachSource(root, "/AttachSourceTests/src.zip", "invalid");
@@ -1580,7 +1580,7 @@ public void testRootPath5() throws JavaModelException {
 /**
  * Attach a jar with a source attachment that doesn't contain the source folders
  */
-public void testRootPath6() throws JavaModelException {
+public void testRootPath6() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = getJavaProject("/AttachSourceTests");
 	IPackageFragmentRoot root = project.getPackageFragmentRoot(getFile("/AttachSourceTests/update.jar"));
 	attachSource(root, "/AttachSourceTests/src.zip", null);
@@ -1604,7 +1604,7 @@ public void testRootPath6() throws JavaModelException {
 /**
  * Attach a jar with a source attachment that doesn't contain the source folders
  */
-public void testRootPath7() throws JavaModelException {
+public void testRootPath7() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = getJavaProject("/AttachSourceTests");
 	IPackageFragmentRoot root = project.getPackageFragmentRoot(getFile("/AttachSourceTests/full.jar"));
 	attachSource(root, "/AttachSourceTests/src.zip", null);
@@ -1636,7 +1636,7 @@ public void testRootPath7() throws JavaModelException {
 /**
  * Attach a jar with a source attachment that contains the source folders
  */
-public void testRootPath8() throws JavaModelException {
+public void testRootPath8() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = getJavaProject("/AttachSourceTests");
 	IPackageFragmentRoot root = project.getPackageFragmentRoot(getFile("/AttachSourceTests/full.jar"));
 	attachSource(root, "/AttachSourceTests/fullsrc.zip", null);
@@ -1668,7 +1668,7 @@ public void testRootPath8() throws JavaModelException {
 /**
  * Attach a jar with a source attachment that contains the source folders
  */
-public void testRootPath9() throws JavaModelException {
+public void testRootPath9() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = getJavaProject("/AttachSourceTests");
 	IPackageFragmentRoot root = project.getPackageFragmentRoot(getFile("/AttachSourceTests/full.jar"));
 	attachSource(root, "/AttachSourceTests/fullsrc.zip", "invalid");
@@ -1700,7 +1700,7 @@ public void testRootPath9() throws JavaModelException {
 /**
  * Attach a jar with a source attachment that is itself
  */
-public void testRootPath10() throws JavaModelException {
+public void testRootPath10() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = getJavaProject("/AttachSourceTests");
 	IPackageFragmentRoot root = project.getPackageFragmentRoot(getFile("/AttachSourceTests/test2.jar"));
 	attachSource(root, "/AttachSourceTests/test2.jar", null);
@@ -1721,7 +1721,7 @@ public void testRootPath10() throws JavaModelException {
 /**
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=35965
  */
-public void testRootPath11() throws JavaModelException {
+public void testRootPath11() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = getJavaProject("/AttachSourceTests");
 	IPackageFragmentRoot root = project.getPackageFragmentRoot(getFile("/AttachSourceTests/test4.jar"));
 	attachSource(root, "/AttachSourceTests/test4_src.zip", null);
@@ -1767,7 +1767,7 @@ public void testRootPath12() throws JavaModelException {
 /**
  * @see "http://bugs.eclipse.org/bugs/show_bug.cgi?id=110172"
  */
-public void testBug110172() throws JavaModelException {
+public void testBug110172() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = getJavaProject("/AttachSourceTests");
 	IPackageFragmentRoot root = project.getPackageFragmentRoot(getFile("/AttachSourceTests/test6.jar"));
 	assertTrue("Root doesn't exist", root.exists());
@@ -1787,7 +1787,7 @@ public void testBug110172() throws JavaModelException {
 		IJavaElement[] members = type.getChildren();
 		final int length = members.length;
 		assertEquals("Wrong number", 9, length);
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			element = members[i];
 			assertTrue(element instanceof IMember);
 			final ISourceRange javadocRange = ((IMember) element).getJavadocRange();
@@ -1846,7 +1846,7 @@ public void testBug110172() throws JavaModelException {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=242029
  */
-public void testRootPath13() throws JavaModelException {
+public void testRootPath13() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = this.getJavaProject("/AttachSourceTests");
 	IPackageFragmentRoot root = project.getPackageFragmentRoot(this.getFile("/AttachSourceTests/test7.jar"));
 	attachSource(root, "/AttachSourceTests/test7src/", null);
@@ -1871,7 +1871,7 @@ public void testRootPath13() throws JavaModelException {
  * bug 153133: [model] toggle breakpoint in constructor creates a class load breakpoint
  * @see "http://bugs.eclipse.org/bugs/show_bug.cgi?id=153133"
  */
-public void testBug153133() throws JavaModelException {
+public void testBug153133() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPackageFragmentRoot root = this.currentProject.getPackageFragmentRoot(getFile("/AttachSourceTests/b153133.jar"));
 	assertTrue("Root doesn't exist", root.exists());
 
@@ -1891,19 +1891,19 @@ public void testBug153133() throws JavaModelException {
 		assertEquals("Wrong number", 7, length);
 
 		// Need to get type members constructors
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			assertTrue(members[i] instanceof IMember);
 			if (members[i].getElementType() == IJavaElement.TYPE) {
 				IType typeMember = (IType) members[i];
 				String typeName = typeMember.getElementName();
 				IMethod[] methods = typeMember.getMethods();
-				assertEquals("Expected only one constructor defined in type "+typeName, 1, methods.length);
+				assertEquals("Expected only one constructor defined in type "+typeName, 1, methods.length); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				// Verify that source range is valid
-				assertTrue("Expected a constructor instead of a method in type "+typeName, methods[0].isConstructor());
+				assertTrue("Expected a constructor instead of a method in type "+typeName, methods[0].isConstructor()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				IMethod constructor = methods[0];
 				ISourceRange sourceRange = constructor.getSourceRange();
-				assertTrue("Constructor "+constructor.getElementName()+" has invalid offset: "+sourceRange, sourceRange.getOffset() >= 0);
-				assertTrue("Constructor "+constructor.getElementName()+" has invalid length: "+sourceRange, sourceRange.getLength() > 0);
+				assertTrue("Constructor "+constructor.getElementName()+" has invalid offset: "+sourceRange, sourceRange.getOffset() >= 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				assertTrue("Constructor "+constructor.getElementName()+" has invalid length: "+sourceRange, sourceRange.getLength() > 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	} finally {
@@ -1911,7 +1911,7 @@ public void testBug153133() throws JavaModelException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=267046
-public void test267046() throws JavaModelException {
+public void test267046() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = getJavaProject("/AttachSourceTests");
 	IPackageFragmentRoot root = project.getPackageFragmentRoot(getFile("/AttachSourceTests/267046.jar"));
 	attachSource(root, "/AttachSourceTests/267046_src.zip", null);
@@ -1945,10 +1945,10 @@ public void test267046() throws JavaModelException {
 		cf.getSource());
 	IType type = cf.getType();
 	IMethod[] methods = type.getMethods();
-	for (int i = 0, max = methods.length; i < max; i++) {
+	for (int i = 0, max = methods.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IMethod currentMethod = methods[i];
 		if (currentMethod.isConstructor()) continue;
-		assertNotNull("No source for method : " + currentMethod.getElementName(), currentMethod.getSource());
+		assertNotNull("No source for method : " + currentMethod.getElementName(), currentMethod.getSource()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	attachSource(root, null, null); // detach source
@@ -1986,7 +1986,7 @@ public void testClassFileBuffer() throws JavaModelException {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=242029
  */
-public void testConstructorAccess() throws JavaModelException {
+public void testConstructorAccess() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = this.getJavaProject("/AttachSourceTests");
 	IPackageFragmentRoot root = project.getPackageFragmentRoot(getFile("/AttachSourceTests/generic.jar"));
 	attachSource(root, "/AttachSourceTests/genericsrc.zip", null);
@@ -2007,14 +2007,14 @@ public void testConstructorAccess() throws JavaModelException {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=336046
  */
-public void testBug336046() throws Exception {
-	String externalSourceLocation = getExternalFolder() + File.separator + "336046src";
+public void testBug336046() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String externalSourceLocation = getExternalFolder() + File.separator + "336046src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	IJavaProject project = this.getJavaProject("/AttachSourceTests");
 	Hashtable<String, String> javaCoreOptions = JavaCore.getOptions();
 	IJavaProject importedProject = null;
 	try {
 
-		String classpathContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+		String classpathContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"<classpath>\n" +
 		"    <classpathentry kind=\"lib\" path=\"attach.jar\"/>\n" +
 		"    <classpathentry kind=\"lib\" path=\"attach2.jar\"/>\n" +
@@ -2044,7 +2044,7 @@ public void testBug336046() throws Exception {
 
 		FileOutputStream fos = new FileOutputStream(classpathLocation);
 		fos.write(classpathContent.getBytes());
-		assertTrue(srcFolder.renameTo(new File(getExternalFolder() + File.separator + "336046src")));
+		assertTrue(srcFolder.renameTo(new File(getExternalFolder() + File.separator + "336046src"))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		fos.close();
 
 		IProject newProject = workspace.getRoot().getProject("ImportedProject");
@@ -2059,7 +2059,7 @@ public void testBug336046() throws Exception {
 		importedProject.setOptions(project.getOptions(false));
 
 		((JavaProject)importedProject).resolveClasspath(importedProject.getRawClasspath());
-		IFolder linkedFolder = ExternalFoldersManager.getExternalFoldersManager().getFolder(new Path(getExternalFolder() + File.separator + "336046src"));
+		IFolder linkedFolder = ExternalFoldersManager.getExternalFoldersManager().getFolder(new Path(getExternalFolder() + File.separator + "336046src")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertNotNull(linkedFolder);
 	}
 	finally {
@@ -2069,7 +2069,7 @@ public void testBug336046() throws Exception {
 		JavaCore.setOptions(javaCoreOptions);
 	}
 }
-public void testModule1() throws CoreException, IOException {
+public void testModule1() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9) {
 		System.err.println(this.getClass().getName()+'.'+getName()+" needs a Java 9 JRE - skipped");
 		return;
@@ -2119,7 +2119,7 @@ public void testModule1() throws CoreException, IOException {
 		deleteProject("Test");
 	}
 }
-public void testModule2() throws CoreException, IOException {
+public void testModule2() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9) {
 		System.err.println(this.getClass().getName()+'.'+getName()+" needs a Java 9 JRE - skipped");
 		return;
@@ -2156,15 +2156,15 @@ public void testModule2() throws CoreException, IOException {
 		deleteProject("Test");
 	}
 }
-public void testModule2b() throws CoreException, IOException {
+public void testModule2b() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9) {
 		System.err.println(this.getClass().getName()+'.'+getName()+" needs a Java 9 JRE - skipped");
 		return;
 	}
 	try {
 		// create project with incomplete source attachment:
-		String javaHome = System.getProperty("java.home") + File.separator;
-		Path bootModPath = new Path(javaHome +"/lib/jrt-fs.jar");
+		String javaHome = System.getProperty("java.home") + File.separator; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		Path bootModPath = new Path(javaHome +"/lib/jrt-fs.jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createSourceZip(
 				new String[] {
 					"java.base/module-info.java",
@@ -2172,7 +2172,7 @@ public void testModule2b() throws CoreException, IOException {
 					"java.se.ee/module-info.java",
 					"module java.se.ee {}\n"
 				},
-				getWorkspacePath()+"/Test/src.zip");
+				getWorkspacePath()+"/Test/src.zip"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Path sourceAttachment = new Path("/Test/src.zip");
 		IClasspathEntry jrtEntry;
 		jrtEntry = JavaCore.newLibraryEntry(bootModPath, sourceAttachment, null, null, null, false);

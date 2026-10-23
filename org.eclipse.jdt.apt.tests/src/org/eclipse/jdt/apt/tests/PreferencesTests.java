@@ -49,9 +49,9 @@ public class PreferencesTests extends APTTestBase {
 		return new TestSuite( PreferencesTests.class );
 	}
 
-	public void testFactoryPathEncodingAndDecoding() throws Exception {
+	public void testFactoryPathEncodingAndDecoding() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		//encode
-		Map<FactoryContainer, FactoryPath.Attributes> factories = new LinkedHashMap<>();
+		Map<FactoryContainer, FactoryPath.Attributes> factories = new LinkedHashMap<>(); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
 		FactoryContainer jarFactory1 = FactoryPathUtil.newExtJarFactoryContainer(new File(JAR_PATH_1)); //$NON-NLS-1$
 		FactoryPath.Attributes jarFPA1 = new FactoryPath.Attributes(true, false);
 		FactoryContainer jarFactory2 = FactoryPathUtil.newExtJarFactoryContainer(new File(JAR_PATH_2)); //$NON-NLS-1$
@@ -69,7 +69,7 @@ public class PreferencesTests extends APTTestBase {
 		assertEquals(3, factories.size());
 
 		int index=0;
-		for (Map.Entry<FactoryContainer, FactoryPath.Attributes> entry : factories.entrySet()) {
+		for (Map.Entry<FactoryContainer, FactoryPath.Attributes> entry : factories.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			FactoryContainer container = entry.getKey();
 			switch (index) {
 			case 0:
@@ -91,7 +91,7 @@ public class PreferencesTests extends APTTestBase {
 				assertEquals("org.eclipse.jdt.apt.tests", container.getId()); //$NON-NLS-1$
 				break;
 			default:
-				fail("FactoryPath had an unexpected number of entries: " + (index + 1));
+				fail("FactoryPath had an unexpected number of entries: " + (index + 1)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 
 			index++;
@@ -122,7 +122,7 @@ public class PreferencesTests extends APTTestBase {
 	}
 
 	private static final String serializedFactories =
-		"<factorypath>\n" +
+		"<factorypath>\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"    <factorypathentry kind=\"EXTJAR\" id=\"" + JAR_PATH_1 + "\" enabled=\"true\" runInBatchMode=\"false\"/>\n" +
 		"    <factorypathentry kind=\"EXTJAR\" id=\"" + JAR_PATH_2 + "\" enabled=\"true\" runInBatchMode=\"true\"/>\n" +
 		"    <factorypathentry kind=\"PLUGIN\" id=\"org.eclipse.jdt.apt.tests\" enabled=\"false\" runInBatchMode=\"false\"/>\n" +
@@ -131,7 +131,7 @@ public class PreferencesTests extends APTTestBase {
 	/**
 	 * Test the config API for settings other than factory path
 	 */
-	public void testSimpleConfigApi() throws Exception {
+	public void testSimpleConfigApi() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject jproj = env.getJavaProject( getProjectName() );
 
 		// aptEnabled
@@ -143,7 +143,7 @@ public class PreferencesTests extends APTTestBase {
 		assertFalse(AptConfig.isEnabled(null));
 
 		// processorOptions
-		Map<String, String> wkspOpts = new HashMap<>(3);
+		Map<String, String> wkspOpts = new HashMap<>(3); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		wkspOpts.put("b", "bVal");
 		wkspOpts.put("another option", "and\\more \"punctuation!\"");
 		AptConfig.setProcessorOptions(wkspOpts, null);
@@ -151,7 +151,7 @@ public class PreferencesTests extends APTTestBase {
 		assertTrue("getRawProcessorOptions() should return the values set in setProcessorOptions()",
 				wkspOpts.equals(retrievedWkspOpts));
 
-		Map<String, String> projOpts = new HashMap<>(3);
+		Map<String, String> projOpts = new HashMap<>(3); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		projOpts.put("a", "aVal");
 		projOpts.put("with spaces", "value also has spaces");
 		projOpts.put("foo", "bar");
@@ -206,7 +206,7 @@ public class PreferencesTests extends APTTestBase {
 	/**
 	 * Test the config API for automatically generated options.
 	 */
-	public void testAutomaticOptions() throws Exception {
+	public void testAutomaticOptions() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject jproj = env.getJavaProject( getProjectName() );
 		Map<String,String> options = AptConfig.getProcessorOptions(jproj, false);
 
@@ -233,7 +233,7 @@ public class PreferencesTests extends APTTestBase {
 		assertTrue(gensrcdirAuto.length() > 0);
 	}
 
-	public void testGenSrcDir() throws Exception {
+	public void testGenSrcDir() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject jproj = env.getJavaProject( getProjectName() );
 		String genSrcDir = AptConfig.getGenSrcDir(jproj);
 		String genTestSrcDir = AptConfig.getGenTestSrcDir(jproj);
@@ -260,7 +260,7 @@ public class PreferencesTests extends APTTestBase {
 	 *
 	 * See comments in method body for detail testing scenarios
 	 */
-	public void testConfigGenSrcDir() throws Exception {
+	public void testConfigGenSrcDir() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		final String projectName = "ConfigTestProj";
 		IPath projectPath = env.addProject( projectName, CompilerOptions.getFirstSupportedJavaVersion() );
@@ -359,7 +359,7 @@ public class PreferencesTests extends APTTestBase {
 		testFolderName = testSrcFolder.getProjectRelativePath().toOSString();
 		// test 12: make sure we deleted the source folder when we disable apt
 		assertEquals(false, srcFolder.exists());
-		assertEquals("testSrcFolder '"+testSrcFolder+"' does still exist",false, testSrcFolder.exists());
+		assertEquals("testSrcFolder '"+testSrcFolder+"' does still exist",false, testSrcFolder.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		// test 13: make sure we didn't overwrite the configure folder name
 		assertEquals(newName, folderName);
 		assertEquals(newTestName, testFolderName);
@@ -372,7 +372,7 @@ public class PreferencesTests extends APTTestBase {
 			throws JavaModelException
 	{
 		final IClasspathEntry[] cp = javaProj.getRawClasspath();
-		for (int i = 0; i < cp.length; i++)
+		for (int i = 0; i < cp.length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		{
 			if (cp[i].getPath().equals( path ))
 			{

@@ -65,7 +65,7 @@ public class AllPerformanceTests extends junit.framework.TestCase {
 	 * Build test suite.
 	 * All classes suite method are called and bundle to main test suite.
 	 */
-	public static Test suite() {
+	public static Test suite() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		PerformanceTestSuite perfSuite = new PerformanceTestSuite(AllPerformanceTests.class.getName());
 		Class[] testSuites = getAllTestClasses();
 
@@ -73,52 +73,52 @@ public class AllPerformanceTests extends junit.framework.TestCase {
 		// (this may modify tests run order and make stored results invalid)
 		StringBuilder buffer = null;
 		if (TestCase.TESTS_NAMES != null) {
-			buffer = new StringBuilder("WARNING: Performance tests results may be invalid !!!\n");
-			buffer.append("	- following subset is still defined and may alter tests order:\n");
-			buffer.append("		+ TESTS_NAMES = new String[] { ");
+			buffer = new StringBuilder("WARNING: Performance tests results may be invalid !!!\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buffer.append("	- following subset is still defined and may alter tests order:\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("		+ TESTS_NAMES = new String[] { "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			int length = TestCase.TESTS_NAMES.length;
-			for (int i=0; i<length; i++) {
-				if (i>0) buffer.append(',');
-				buffer.append('"');
-				buffer.append(TestCase.TESTS_NAMES[i]);
-				buffer.append('"');
+			for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				if (i>0) buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append('"'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(TestCase.TESTS_NAMES[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append('"'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buffer.append(" };\n");
+			buffer.append(" };\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (TestCase.TESTS_PREFIX != null) {
 			if (buffer == null) {
-				buffer = new StringBuilder("WARNING: Performance tests results may be invalid !!!\n");
-				buffer.append("	- following subset is still defined and may alter tests order:\n");
+				buffer = new StringBuilder("WARNING: Performance tests results may be invalid !!!\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				buffer.append("	- following subset is still defined and may alter tests order:\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buffer.append("		+ TESTS_PREFIX = ");
-			buffer.append('"');
-			buffer.append(TestCase.TESTS_PREFIX);
-			buffer.append('"');
-			buffer.append(";\n");
+			buffer.append("		+ TESTS_PREFIX = "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append('"'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(TestCase.TESTS_PREFIX); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append('"'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(";\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (TestCase.TESTS_NUMBERS != null) {
 			if (buffer == null) {
-				buffer = new StringBuilder("WARNING: Performance tests results may be invalid !!!\n");
-				buffer.append("	- following subset is still defined and may alter tests order:\n");
+				buffer = new StringBuilder("WARNING: Performance tests results may be invalid !!!\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				buffer.append("	- following subset is still defined and may alter tests order:\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buffer.append("		+ TESTS_NUMBERS = new int[] { ");
+			buffer.append("		+ TESTS_NUMBERS = new int[] { "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			int length = TestCase.TESTS_NUMBERS.length;
-			for (int i=0; i<length; i++) {
-				if (i>0) buffer.append(',');
-				buffer.append(TestCase.TESTS_NUMBERS[i]);
+			for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				if (i>0) buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(TestCase.TESTS_NUMBERS[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buffer.append(" };\n");
+			buffer.append(" };\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (TestCase.TESTS_RANGE != null) {
 			if (buffer == null) {
-				buffer = new StringBuilder("WARNING: Performance tests results may be invalid !!!\n");
-				buffer.append("	- following subset is still defined and may alter tests order:\n");
+				buffer = new StringBuilder("WARNING: Performance tests results may be invalid !!!\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				buffer.append("	- following subset is still defined and may alter tests order:\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buffer.append("		+ TESTS_RANGE = new int[] { ");
-			buffer.append(TestCase.TESTS_RANGE[0]);
-			buffer.append(',');
-			buffer.append(TestCase.TESTS_RANGE[1]);
-			buffer.append(";\n");
+			buffer.append("		+ TESTS_RANGE = new int[] { "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(TestCase.TESTS_RANGE[0]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(TestCase.TESTS_RANGE[1]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(";\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		// Verify VM memory arguments: should be -Xmx256M -Xms256M
@@ -127,28 +127,28 @@ public class AllPerformanceTests extends junit.framework.TestCase {
 		long maxMem = Runtime.getRuntime().maxMemory(); // -Xmx
 		boolean tooMuch = false;
 		if (maxMem < (MAX_MEM*0.98) || (tooMuch = maxMem > (MAX_MEM*1.02))) {
-			if (buffer == null) buffer = new StringBuilder("WARNING: Performance tests results may be invalid !!!\n");
-			buffer.append("	- ");
-			buffer.append(tooMuch ? "too much " : "not enough ");
-			buffer.append("max memory allocated (");
-			buffer.append(floatFormat.format(((maxMem/1024.0)/1024.0)));
-			buffer.append("M)!\n");
-			buffer.append("		=> -Xmx");
-			buffer.append(floatFormat.format(((MAX_MEM/1024.0)/1024.0)));
-			buffer.append("M should have been specified.\n");
+			if (buffer == null) buffer = new StringBuilder("WARNING: Performance tests results may be invalid !!!\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buffer.append("	- "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(tooMuch ? "too much " : "not enough "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("max memory allocated ("); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(floatFormat.format(((maxMem/1024.0)/1024.0))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("M)!\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("		=> -Xmx"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(floatFormat.format(((MAX_MEM/1024.0)/1024.0))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("M should have been specified.\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		long totalMem = Runtime.getRuntime().totalMemory(); // -Xms
 		tooMuch = false;
 		if (totalMem < (TOTAL_MEM*0.98)|| (tooMuch = totalMem > (TOTAL_MEM*1.02))) {
-			if (buffer == null) buffer = new StringBuilder("WARNING: Performance tests results may be invalid !!!\n");
-			buffer.append("	- ");
-			buffer.append(tooMuch ? "too much " : "not enough ");
-			buffer.append("total memory allocated (");
-			buffer.append(floatFormat.format(((totalMem/1024.0)/1024.0)));
-			buffer.append("M)!\n");
-			buffer.append("		=> -Xms");
-			buffer.append(floatFormat.format(((MAX_MEM/1024.0)/1024.0)));
-			buffer.append("M should have been specified.\n");
+			if (buffer == null) buffer = new StringBuilder("WARNING: Performance tests results may be invalid !!!\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buffer.append("	- "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(tooMuch ? "too much " : "not enough "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("total memory allocated ("); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(floatFormat.format(((totalMem/1024.0)/1024.0))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("M)!\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("		=> -Xms"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(floatFormat.format(((MAX_MEM/1024.0)/1024.0))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("M should have been specified.\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		// Display warning message if any
@@ -161,7 +161,7 @@ public class AllPerformanceTests extends junit.framework.TestCase {
 		if (RUN_ID != null) {
 			Class[] subSetSuites = new Class[length];
 			int count = 0;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String name = FullSourceWorkspaceTests.suiteTypeShortName(testSuites[i]);
 				if (RUN_ID.indexOf(name.charAt(0)) >= 0) {
 					subSetSuites[count++] = testSuites[i];
@@ -189,12 +189,12 @@ public class AllPerformanceTests extends junit.framework.TestCase {
 		}
 		String suitesAcronym = "";
 		if (RUN_ID == null) {
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String name = FullSourceWorkspaceTests.suiteTypeShortName(testSuites[i]);
 				if (name != null) {
 					char firstChar = name.charAt(0);
 					if (suitesAcronym.indexOf(firstChar) >= 0) {
-						System.out.println("WARNING: Duplicate letter in RUN_ID for test suite: "+name);
+						System.out.println("WARNING: Duplicate letter in RUN_ID for test suite: "+name); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 					suitesAcronym += firstChar;
 				}
@@ -205,7 +205,7 @@ public class AllPerformanceTests extends junit.framework.TestCase {
 		FullSourceWorkspaceTests.RUN_ID = suitesAcronym; //.toLowerCase();
 
 		// Get tests of suites
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Class testClass = testSuites[i];
 			// call the suite() method and add the resulting suite to the suite
 			try {

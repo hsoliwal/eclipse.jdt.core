@@ -30,7 +30,7 @@ public class CompletionOnExpressionOfType extends FieldReference implements Comp
 
 	@Override
 	public StringBuilder printExpression(int indent, StringBuilder output) {
-		output.append("<CompleteOnExpressionOfType:"); //$NON-NLS-1$
+		output.append("<CompleteOnExpressionOfType:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return super.printExpression(0, output).append('>');
 	}
 

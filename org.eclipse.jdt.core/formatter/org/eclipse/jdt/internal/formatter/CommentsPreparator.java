@@ -64,8 +64,8 @@ public class CommentsPreparator extends ASTVisitor {
 		String otherTags = "([\\S&&[^<>]]++)"; //$NON-NLS-1$
 		String ws = "(?>[ \\t]++|[\\r\\n]++[ \\t]*+\\*?)"; // whitespace or line break with optional asterisk //$NON-NLS-1$
 		String attributeValue = "(?>\"[^\"]*\")|(?>\'[^\']*\')|[\\S&&[^/>\"\']]++"; //$NON-NLS-1$
-		String attribute = "(?>" + ws + "+[\\S&&[^=]]+" + ws + "*(=)" + ws + "*(?>" + attributeValue  + "))"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
-		HTML_TAG_PATTERN = Pattern.compile("<(/)?+(?:" //$NON-NLS-1$
+		String attribute = "(?>" + ws + "+[\\S&&[^=]]+" + ws + "*(=)" + ws + "*(?>" + attributeValue  + "))"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		HTML_TAG_PATTERN = Pattern.compile("<(/)?+(?:" //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ formatCodeTags + '|' + separateLineTags + '|' + breakBeforeTags + '|' + breakAfterTags + '|' + noFormatTags + '|' + blockTags + '|' + otherTags + ')'
 				+ "(" + attribute + "*)" + ws + "*/?>", Pattern.CASE_INSENSITIVE); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		HTML_ATTRIBUTE_PATTERN = Pattern.compile(attribute);
@@ -84,12 +84,12 @@ public class CommentsPreparator extends ASTVisitor {
 		String markupTagNames = "(@start|@end|@highlight|@replace|@link)"; //$NON-NLS-1$
 		String ws = "(?>[ \\t]++|[\\r\\n]++[ \\t]*+\\*?)"; // whitespace or line break with optional asterisk //$NON-NLS-1$
 		String attributeValue = "(?>\"[^\"]*\")|(?>\'[^\']*\')|[\\S&&[^\"':]]++"; //$NON-NLS-1$
-		String snippetAttribute = "(?>" + ws + "*" + attributeNames + ws + "*(=)" + ws + "*(" + attributeValue  + "))"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
-		String markupTagArgument = "(?>[ \\t]*\\w+(?>[ \\t]*(=)[ \\t]*(" + attributeValue  + "))?)"; //$NON-NLS-1$ //$NON-NLS-2$
+		String snippetAttribute = "(?>" + ws + "*" + attributeNames + ws + "*(=)" + ws + "*(" + attributeValue  + "))"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String markupTagArgument = "(?>[ \\t]*\\w+(?>[ \\t]*(=)[ \\t]*(" + attributeValue  + "))?)"; //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		SNIPPET_ATTRIBUTE_PATTERN = Pattern.compile(snippetAttribute);
-		SNIPPET_ATTRIBUTES_PATTERN = Pattern.compile(snippetAttribute + "*" + ws + "*(?<colon>:?)"); //$NON-NLS-1$ //$NON-NLS-2$
+		SNIPPET_ATTRIBUTES_PATTERN = Pattern.compile(snippetAttribute + "*" + ws + "*(?<colon>:?)"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		SNIPPET_MARKUP_TAG_ARGUMENT_PATTERN = Pattern.compile(markupTagArgument);
-		SNIPPET_MARKUP_TAG_PATTERN = Pattern.compile(markupTagNames + markupTagArgument + "*"); //$NON-NLS-1$
+		SNIPPET_MARKUP_TAG_PATTERN = Pattern.compile(markupTagNames + markupTagArgument + "*"); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	private final static Pattern MARKDOWN_LEADING_SPACES_PATTERN = Pattern.compile("(?m)^[ \\t]*///( *)[^ ]"); //$NON-NLS-1$
@@ -131,7 +131,7 @@ public class CommentsPreparator extends ASTVisitor {
 	private int noFormatOpenTagStartIndex = -1;
 	private int formatCodeOpenTagEndIndex = -1;
 	private int lastFormatCodeClosingTagIndex = -1;
-	private final ArrayList<Integer> commonAttributeAnnotations = new ArrayList<>();
+	private final ArrayList<Integer> commonAttributeAnnotations = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	private DefaultCodeFormatter preTagCodeFormatter;
 	private DefaultCodeFormatter snippetCodeFormatter;
 
@@ -156,7 +156,7 @@ public class CommentsPreparator extends ASTVisitor {
 		return true;
 	}
 
-	public void handleLineComment(int commentIndex) {
+	public void handleLineComment(int commentIndex) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Token commentToken = this.tm.get(commentIndex);
 
 		boolean isOnFirstColumn = handleWhitespaceAround(commentIndex);
@@ -238,7 +238,7 @@ public class CommentsPreparator extends ASTVisitor {
 		}
 	}
 
-	private void preserveWhitespace(Token commentToken, int commentIndex) {
+	private void preserveWhitespace(Token commentToken, int commentIndex) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.options.comment_preserve_white_space_between_code_and_line_comments
 				&& commentToken.getLineBreaksBefore() == 0 && commentIndex > 0) {
 			commentToken.clearSpaceBefore();
@@ -251,7 +251,7 @@ public class CommentsPreparator extends ASTVisitor {
 			if (previous.originalEnd + 1 >= commentToken.originalStart)
 				return;
 			if (structure == null || structure.isEmpty()) {
-				structure = new ArrayList<>();
+				structure = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				structure.add(new Token(previous.originalEnd + 1, commentToken.originalEnd, TokenNameCOMMENT_LINE));
 				commentToken.setInternalStructure(structure);
 			} else {
@@ -282,16 +282,16 @@ public class CommentsPreparator extends ASTVisitor {
 		return offIndex >= 0 || onIndex >= 0;
 	}
 
-	private void handleNLSTags(Token comment, int commentIndex) {
+	private void handleNLSTags(Token comment, int commentIndex) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		List<Token> stringLiterals = findStringLiteralsInLine(commentIndex);
 		if (stringLiterals.isEmpty())
 			return;
 
-		List<Token> commentFragments = new ArrayList<>();
-		Matcher matcher = NLS_TAG_PATTERN.matcher(this.tm.toString(comment));
+		List<Token> commentFragments = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		Matcher matcher = NLS_TAG_PATTERN.matcher(this.tm.toString(comment)); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		int previousMatcherEnd = 0;
 		boolean nlsFound = false;
-		while (matcher.find()) {
+		while (matcher.find()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int nlsNumber = Integer.parseInt(matcher.group(1));
 			if (nlsNumber > 0 && nlsNumber <= stringLiterals.size()) {
 				if (matcher.start() > previousMatcherEnd) {
@@ -318,7 +318,7 @@ public class CommentsPreparator extends ASTVisitor {
 		}
 	}
 
-	private void handleCompilerTags(Token commentToken, int commentIndex) {
+	private void handleCompilerTags(Token commentToken, int commentIndex) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String commentText = this.tm.toString(commentToken);
 		final List<Token> structure = commentToken.getInternalStructure();
 		if (commentText.startsWith("//$FALL-THROUGH$") //$NON-NLS-1$
@@ -328,7 +328,7 @@ public class CommentsPreparator extends ASTVisitor {
 		if (commentText.contains("//$IDENTITY-COMPARISON$")) { //$NON-NLS-1$
 			// make sure the whole line is not broken
 			Token token = commentToken;
-			for (int i = commentIndex; i > 0; i--) {
+			for (int i = commentIndex; i > 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Token left = this.tm.get(i - 1);
 				if (this.tm.countLineBreaksBetween(left, token) > 0)
 					break;
@@ -340,19 +340,19 @@ public class CommentsPreparator extends ASTVisitor {
 		}
 	}
 
-	private void handleSnippetMarkupTags(Token commentToken) {
+	private void handleSnippetMarkupTags(Token commentToken) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String commentText = this.tm.toString(commentToken);
 
-		Matcher m = SNIPPET_MARKUP_TAG_PATTERN.matcher(commentText);
-		while (m.find()) {
-			Matcher m2 = SNIPPET_MARKUP_TAG_ARGUMENT_PATTERN.matcher(m.group());
+		Matcher m = SNIPPET_MARKUP_TAG_PATTERN.matcher(commentText); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+		while (m.find()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			Matcher m2 = SNIPPET_MARKUP_TAG_ARGUMENT_PATTERN.matcher(m.group()); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			if (!m2.find())
 				continue;
 			this.commentStructure = commentToken.getInternalStructure();
 			this.ctm = new TokenManager(this.commentStructure, this.tm);
 			if (commentToken.tokenType != TokenNameCOMMENT_LINE)
 				continue;
-			do {
+			do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				handleFoundAssignment(m2, 1, commentToken.originalStart + m.start());
 				handleFoundStringLiteral(m2, 2, commentToken.originalStart + m.start());
 			} while (m2.find());
@@ -360,9 +360,9 @@ public class CommentsPreparator extends ASTVisitor {
 	}
 
 	private List<Token> findStringLiteralsInLine(int lastTokenIndex) {
-		List<Token> stringLiterals = new ArrayList<>();
+		List<Token> stringLiterals = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		Token previous = this.tm.get(lastTokenIndex);
-		for (int i = lastTokenIndex - 1; i >= 0; i--) {
+		for (int i = lastTokenIndex - 1; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Token token = this.tm.get(i);
 			if (this.tm.countLineBreaksBetween(token, previous) > 0)
 				break;
@@ -374,13 +374,13 @@ public class CommentsPreparator extends ASTVisitor {
 		return stringLiterals;
 	}
 
-	private List<Token> tokenizeLineComment(Token commentToken) {
+	private List<Token> tokenizeLineComment(Token commentToken) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		List<Token> fragments = commentToken.getInternalStructure();
 		if (fragments == null) {
 			fragments = Arrays.asList(commentToken);
 		}
-		ArrayList<Token> result = new ArrayList<>();
-		for (Token token : fragments) {
+		ArrayList<Token> result = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (Token token : fragments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (token.hasNLSTag()) {
 				if (ScannerHelper.isWhitespace(this.tm.charAt(token.originalStart - 1)))
 					token.spaceBefore();
@@ -390,12 +390,12 @@ public class CommentsPreparator extends ASTVisitor {
 			int sourcePosition = token.originalStart;
 			if (sourcePosition == commentToken.originalStart) {
 				// separate starting slashes
-				while (sourcePosition <= token.originalEnd && this.tm.charAt(sourcePosition) == '/')
+				while (sourcePosition <= token.originalEnd && this.tm.charAt(sourcePosition) == '/') //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					sourcePosition++;
 				result.add(new Token(commentToken.originalStart, sourcePosition - 1, TokenNameCOMMENT_LINE));
 			}
 			int tokenStart = sourcePosition;
-			while (sourcePosition <= token.originalEnd + 1) {
+			while (sourcePosition <= token.originalEnd + 1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (sourcePosition == token.originalEnd + 1
 						|| ScannerHelper.isWhitespace(this.tm.charAt(sourcePosition))) {
 					if (tokenStart < sourcePosition) {
@@ -419,7 +419,7 @@ public class CommentsPreparator extends ASTVisitor {
 		return true;
 	}
 
-	public void handleBlockComment(int commentIndex) {
+	public void handleBlockComment(int commentIndex) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Token commentToken = this.tm.get(commentIndex);
 		boolean isFirstColumn = handleWhitespaceAround(commentIndex);
 
@@ -451,7 +451,7 @@ public class CommentsPreparator extends ASTVisitor {
 		}
 	}
 
-	private boolean handleWhitespaceAround(int commentIndex) {
+	private boolean handleWhitespaceAround(int commentIndex) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Token commentToken = this.tm.get(commentIndex);
 		char charBefore = commentToken.originalStart > 0 ? this.tm.charAt(commentToken.originalStart - 1) : 0;
 		if (charBefore == ' ' || charBefore == '\t')
@@ -486,7 +486,7 @@ public class CommentsPreparator extends ASTVisitor {
 				commentToken.setWrapPolicy(previous.getWrapPolicy());
 		} else {
 			int i = commentIndex + 2;
-			while (existingBreaksAfter <= 1 && i < this.tm.size()
+			while (existingBreaksAfter <= 1 && i < this.tm.size() //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					&& (next.tokenType == TokenNameCOMMENT_LINE || next.tokenType == TokenNameCOMMENT_BLOCK)) {
 				Token next2 = this.tm.get(i++);
 				existingBreaksAfter = this.tm.countLineBreaksBetween(next, next2);
@@ -515,8 +515,8 @@ public class CommentsPreparator extends ASTVisitor {
 		return isFirstColumn;
 	}
 
-	private List<Token> commentToLines(Token commentToken, int commentStartPositionInLine) {
-		List<Token> lines = new ArrayList<>();
+	private List<Token> commentToLines(Token commentToken, int commentStartPositionInLine) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		List<Token> lines = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		int tab = this.options.tab_size;
 		String commentText = this.tm.toString(commentToken);
@@ -529,7 +529,7 @@ public class CommentsPreparator extends ASTVisitor {
 		boolean firstLine = true; // all lines except first will be NotAToken to disable asterisk adding
 		boolean emptyLine = true;
 
-		for (int i = 0; i < commentText.length(); i++) {
+		for (int i = 0; i < commentText.length(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char c = commentText.charAt(i);
 			switch (c) {
 				case ' ':
@@ -582,7 +582,7 @@ public class CommentsPreparator extends ASTVisitor {
 		return lines;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(Javadoc node) {
 		this.noFormatOpenTagStartIndex = -1;
 		this.formatCodeOpenTagEndIndex = -1;
@@ -628,7 +628,7 @@ public class CommentsPreparator extends ASTVisitor {
 		addSubstituteWraps();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(TagElement node) {
 		String tagName = node.getTagName();
 		if (tagName == null || tagName.length() <= 1 || !node.tagProperties().isEmpty() /*snippet markup tags*/)
@@ -673,27 +673,27 @@ public class CommentsPreparator extends ASTVisitor {
 		}
 	}
 
-	private void handleJavadocTagAlignment(Javadoc node) {
+	private void handleJavadocTagAlignment(Javadoc node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Lists of tag tokens: index 0 for tag name, index 1 for param name (or throws etc) (may be null),
 		// the rest for description
-		List<List<Token>> javadocRootTags = new ArrayList<>();
+		List<List<Token>> javadocRootTags = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		List<TagElement> tagElements = node.tags();
-		for (TagElement tagElement : tagElements) {
+		for (TagElement tagElement : tagElements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String tagName = tagElement.getTagName();
 			if (tagName == null || tagName.length() <= 1)
 				continue;
 			int startIndex = tokenStartingAt(tagElement.getStartPosition());
 			int nodeEnd = tagElement.getStartPosition() + tagElement.getLength() - 1;
-			while (ScannerHelper.isWhitespace(this.ctm.charAt(nodeEnd)))
+			while (ScannerHelper.isWhitespace(this.ctm.charAt(nodeEnd))) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				nodeEnd--;
 			int endIndex = tokenEndingAt(nodeEnd);
 
-			List<Token> tagTokens = new ArrayList<>();
+			List<Token> tagTokens = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			tagTokens.add(this.ctm.get(startIndex));
 			if (!PARAM_TAGS.contains(tagName) || startIndex == endIndex) {
 				tagTokens.add(null);
 			}
-			for (int i = startIndex + 1; i <= endIndex; i++) {
+			for (int i = startIndex + 1; i <= endIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				tagTokens.add(this.ctm.get(i));
 			}
 			javadocRootTags.add(tagTokens);
@@ -702,7 +702,7 @@ public class CommentsPreparator extends ASTVisitor {
 		if (this.options.comment_align_tags_names_descriptions) {
 			int maxTagNameLength = 0;
 			int maxParamNameLength = 0;
-			for (List<Token> tagTokens : javadocRootTags) {
+			for (List<Token> tagTokens : javadocRootTags) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Token tagName = tagTokens.get(0);
 				Token paramName = tagTokens.get(1);
 				maxTagNameLength = Math.max(maxTagNameLength, this.tm.getLength(tagName, 0));
@@ -713,18 +713,18 @@ public class CommentsPreparator extends ASTVisitor {
 			int descriptionAlign = paramNameAlign;
 			if (maxParamNameLength > 0)
 				descriptionAlign += maxParamNameLength + 1;
-			for (List<Token> tagTokens : javadocRootTags) {
+			for (List<Token> tagTokens : javadocRootTags) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				alignJavadocTag(tagTokens, paramNameAlign, descriptionAlign);
 			}
 		} else if (this.options.comment_align_tags_descriptions_grouped) {
 			int groupStart = 0;
 			String groupTagName = null;
 			int descriptionAlign = 0;
-			for (int i = 0; i < javadocRootTags.size(); i++) {
+			for (int i = 0; i < javadocRootTags.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				List<Token> tagTokens = javadocRootTags.get(i);
 				String tagName = this.ctm.toString(tagTokens.get(0));
 				if (!tagName.equals(groupTagName)) {
-					for (int j = groupStart; j < i; j++) {
+					for (int j = groupStart; j < i; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						alignJavadocTag(javadocRootTags.get(j), 0, descriptionAlign);
 					}
 					groupStart = i;
@@ -736,11 +736,11 @@ public class CommentsPreparator extends ASTVisitor {
 					indent += 1 + this.ctm.getLength(tagTokens.get(1), 0);
 				descriptionAlign = Math.max(descriptionAlign, indent);
 			}
-			for (int j = groupStart; j < javadocRootTags.size(); j++) {
+			for (int j = groupStart; j < javadocRootTags.size(); j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				alignJavadocTag(javadocRootTags.get(j), 0, descriptionAlign);
 			}
 		} else {
-			for (List<Token> tagTokens : javadocRootTags) {
+			for (List<Token> tagTokens : javadocRootTags) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int tagNameLength = this.ctm.getLength(tagTokens.get(0), 0);
 				int align = this.options.comment_indent_root_tags ? tagNameLength + 1 : 0;
 				alignJavadocTag(tagTokens, 0, align);
@@ -748,14 +748,14 @@ public class CommentsPreparator extends ASTVisitor {
 		}
 	}
 
-	private void handleJavadocBlankLines(Javadoc node) {
+	private void handleJavadocBlankLines(Javadoc node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		List<TagElement> tagElements = node.tags();
 		List<Integer> tagIndexes = tagElements.stream()
 				.filter(t -> !t.isNested() && t.getTagName() != null && t.getTagName().length() > 1)
 				.map(t -> tokenStartingAt(t.getStartPosition()))
 				.collect(Collectors.toList());
 		tagIndexes.addAll(this.commonAttributeAnnotations);
-		Collections.sort(tagIndexes);
+		Collections.sort(tagIndexes); //FLLDCIM: MARK — M16 SORT_LANE CALL
 
 		String previousName = null;
 		if (!tagIndexes.isEmpty()) {
@@ -765,7 +765,7 @@ public class CommentsPreparator extends ASTVisitor {
 				this.ctm.get(firstIndex).putLineBreaksBefore(2);
 		}
 		if (this.options.comment_insert_empty_line_between_different_tags) {
-			for (int i = 1; i < tagIndexes.size(); i++) {
+			for (int i = 1; i < tagIndexes.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Token tagToken = this.ctm.get(tagIndexes.get(i));
 				String thisName = this.tm.toString(tagToken);
 				boolean sameType = previousName.equals(thisName)
@@ -787,14 +787,14 @@ public class CommentsPreparator extends ASTVisitor {
 		}
 
 		boolean extraIndent = (paramName != null ? this.options.comment_indent_parameter_description : this.options.comment_indent_tag_description);
-		for (int i = 2; i < tagTokens.size(); i++) {
+		for (int i = 2; i < tagTokens.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Token token = tagTokens.get(i);
 			token.setAlign(descriptionAlign);
 			token.setIndent(extraIndent ? this.options.indentation_size : 0);
 		}
 	}
 
-	private void handleMarkdown(TagElement node) {
+	private void handleMarkdown(TagElement node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!(node.getParent() instanceof Javadoc javaDoc) || !javaDoc.isMarkdown()
 				|| !this.options.comment_format_markdown_comment) {
 			return;
@@ -802,8 +802,8 @@ public class CommentsPreparator extends ASTVisitor {
 
 		String text = this.tm.toString(node);
 
-		Matcher matcher = MARKDOWN_HEADINGS_PATTERN_1.matcher(text); // Check for MarkDown headings #h1 - #h6
-		while (matcher.find()) {
+		Matcher matcher = MARKDOWN_HEADINGS_PATTERN_1.matcher(text); // Check for MarkDown headings #h1 - #h6 //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+		while (matcher.find()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int startPos = matcher.start() + node.getStartPosition();
 			int tokenIndex = tokenStartingAt(startPos);
 			Token headingToken = this.ctm.get(tokenIndex);
@@ -817,8 +817,8 @@ public class CommentsPreparator extends ASTVisitor {
 			headingToken.spaceBefore();
 		}
 
-		matcher = MARKDOWN_HEADINGS_PATTERN_2.matcher(text); // Check for MarkDown headings with styles '-- & ==='
-		while (matcher.find()) {
+		matcher = MARKDOWN_HEADINGS_PATTERN_2.matcher(text); // Check for MarkDown headings with styles '-- & ===' //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+		while (matcher.find()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int startPos = matcher.start() + node.getStartPosition();
 			int tokenIndex = tokenStartingAt(startPos);
 			Token headingToken = this.ctm.get(tokenIndex);
@@ -829,20 +829,20 @@ public class CommentsPreparator extends ASTVisitor {
 		}
 
 		int leadingSpaces = Integer.MAX_VALUE;
-		Matcher m = MARKDOWN_LEADING_SPACES_PATTERN.matcher(this.tm.toString(node));
-		while (m.find())
+		Matcher m = MARKDOWN_LEADING_SPACES_PATTERN.matcher(this.tm.toString(node)); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+		while (m.find()) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			leadingSpaces = Math.min(leadingSpaces, m.group(1).length());
 		leadingSpaces = leadingSpaces == Integer.MAX_VALUE ? 0 : leadingSpaces;
 		List<ASTNode> fragments = node.fragments();
-		ArrayDeque<ASTNode> fragmentsDeque = new ArrayDeque<>(fragments);
+		ArrayDeque<ASTNode> fragmentsDeque = new ArrayDeque<>(fragments); //FLLDCIM: MARK — M08 M3_DEQUE_LANES NEW
 		handleMarkdownList(fragmentsDeque, leadingSpaces, 0, null, 4000 - leadingSpaces);
 		handleMarkdownTable(fragments);
 	}
 
-	private Character handleMarkdownList(ArrayDeque<ASTNode> fragments, int srcIndent, int indentToSet,
+	private Character handleMarkdownList(ArrayDeque<ASTNode> fragments, int srcIndent, int indentToSet, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			Character itemType, int tabStartShift) {
 		Character prevRecursionItemType = null;
-		while (!fragments.isEmpty()) {
+		while (!fragments.isEmpty()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (handleMarkdownIndentedCodeBlock(fragments, srcIndent, false, tabStartShift)) {
 				continue;
 			}
@@ -902,7 +902,7 @@ public class CommentsPreparator extends ASTVisitor {
 				continue;
 			}
 			int lastTokenIndex = this.ctm.findIndex(fragment.getStartPosition() + fragment.getLength() - 1, ANY, false);
-			for (int i = firstTokenIndex; i <= lastTokenIndex; i++)
+			for (int i = firstTokenIndex; i <= lastTokenIndex; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.ctm.get(i).setAlign(indentToSet);
 			if (thisItemType != null) {
 				if (firstTokenIndex > 1)
@@ -917,13 +917,13 @@ public class CommentsPreparator extends ASTVisitor {
 		return null;
 	}
 
-	private boolean handleMarkdownIndentedCodeBlock(ArrayDeque<ASTNode> fragments, int srcIndent, boolean isListItem,
+	private boolean handleMarkdownIndentedCodeBlock(ArrayDeque<ASTNode> fragments, int srcIndent, boolean isListItem, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			int tabStartShift) {
 		int codeBlockStartIndex = -1;
 		int codeBlockEndIndex = -1;
 		String openingFence = null;
 		boolean canAssumeJava = false;
-		while (!fragments.isEmpty()) {
+		while (!fragments.isEmpty()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ASTNode fragment = fragments.peekFirst();
 			int firstTokenIndex = this.ctm.findIndex(fragment.getStartPosition(), ANY, true);
 			int lastTokenIndex = this.ctm.findIndex(fragment.getStartPosition() + fragment.getLength() - 1, ANY, false);
@@ -931,7 +931,7 @@ public class CommentsPreparator extends ASTVisitor {
 			int slashPos = this.ctm.getSource().lastIndexOf('/', firstToken.originalStart);
 			int fragmentIndent = this.ctm.getLength(slashPos + 1, firstToken.originalStart - 1, tabStartShift, 4);
 			int indentDiff = fragmentIndent - srcIndent;
-			Matcher fenceMatcher = MARKDOWN_FENCE_PATTERN.matcher(this.ctm.toString(fragment).trim());
+			Matcher fenceMatcher = MARKDOWN_FENCE_PATTERN.matcher(this.ctm.toString(fragment).trim()); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 
 			if (codeBlockStartIndex == -1) {
 				if (isListItem) {
@@ -940,7 +940,7 @@ public class CommentsPreparator extends ASTVisitor {
 					firstToken = this.ctm.get(firstTokenIndex);
 					fragmentIndent = this.ctm.getLength(slashPos + 1, firstToken.originalStart - 1, tabStartShift, 4);
 					indentDiff = fragmentIndent - srcIndent - 1; // somehow indent threshold is 1 higher in lists
-					fenceMatcher = MARKDOWN_FENCE_PATTERN.matcher(this.ctm.getSource()
+					fenceMatcher = MARKDOWN_FENCE_PATTERN.matcher(this.ctm.getSource() //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 							.substring(firstToken.originalStart, fragment.getStartPosition() + fragment.getLength()));
 				}
 
@@ -997,15 +997,15 @@ public class CommentsPreparator extends ASTVisitor {
 		return codeBlockStartIndex != -1;
 	}
 
-	private void handleMarkdownTable(List<ASTNode> fragments) {
+	private void handleMarkdownTable(List<ASTNode> fragments) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int tableStartIndex = -1;
 		int tableLastIndex = -1;
 		boolean columnUnderlineFound = false;
 		Matcher matcher;
-		for (Object fragment : fragments) {
+		for (Object fragment : fragments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (fragment instanceof TextElement textElement) {
 				String textContent = textElement.getText();
-				matcher = MARKDOWN_TABLE_START.matcher(textContent);
+				matcher = MARKDOWN_TABLE_START.matcher(textContent); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 				if (matcher.find()) {
 					if (tableStartIndex == -1) {
 						int startPos = matcher.start() + textElement.getStartPosition();
@@ -1017,7 +1017,7 @@ public class CommentsPreparator extends ASTVisitor {
 							columnUnderlineFound = true;
 						}
 					} else if (columnUnderlineFound) {
-						matcher = MARKDOWN_TABLE_END.matcher(textContent);
+						matcher = MARKDOWN_TABLE_END.matcher(textContent); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 						matcher.find(); // find the last one
 						int startPos = matcher.start() + textElement.getStartPosition();
 						tableLastIndex = tokenStartingAt(startPos);
@@ -1035,12 +1035,12 @@ public class CommentsPreparator extends ASTVisitor {
 		}
 	}
 
-	private void handleHtml(TagElement node) {
+	private void handleHtml(TagElement node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!this.options.comment_format_html && !this.options.comment_format_source)
 			return;
 		String text = this.tm.toString(node);
-		Matcher matcher = HTML_TAG_PATTERN.matcher(text);
-		while (matcher.find()) {
+		Matcher matcher = HTML_TAG_PATTERN.matcher(text); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+		while (matcher.find()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int startPos = matcher.start() + node.getStartPosition();
 			int endPos = matcher.end() - 1 + node.getStartPosition();
 			boolean isOpeningTag = (matcher.start(1) == matcher.end(1));
@@ -1048,7 +1048,7 @@ public class CommentsPreparator extends ASTVisitor {
 			if (this.options.comment_format_html) {
 				// make sure tokens inside the tag are wrapped only as a substitute
 				int firstTokenIndex = tokenStartingAt(startPos), lastTokenIndex = tokenEndingAt(endPos);
-				for (int i = firstTokenIndex + 1; i <= lastTokenIndex; i++) {
+				for (int i = firstTokenIndex + 1; i <= lastTokenIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Token token = this.ctm.get(i);
 					if (token.getWrapPolicy() == null)
 						token.setWrapPolicy(WrapPolicy.SUBSTITUTE_ONLY);
@@ -1056,9 +1056,9 @@ public class CommentsPreparator extends ASTVisitor {
 
 				// allow wraps around equals sign in attributes
 				String attributesText = matcher.group(9);
-				Matcher attrMatcher = HTML_ATTRIBUTE_PATTERN.matcher(attributesText);
+				Matcher attrMatcher = HTML_ATTRIBUTE_PATTERN.matcher(attributesText); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 				final int commentStart = this.ctm.get(0).originalStart;
-				while (attrMatcher.find()) {
+				while (attrMatcher.find()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					int equalPos = node.getStartPosition() + matcher.start(9) + attrMatcher.start(1);
 					assert this.tm.charAt(equalPos) == '=';
 					this.allowSubstituteWrapping[equalPos - commentStart] = true;
@@ -1066,7 +1066,7 @@ public class CommentsPreparator extends ASTVisitor {
 			}
 
 			int matchedGroups = 0;
-			for (int i = 2; i <= 7; i++)
+			for (int i = 2; i <= 7; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (matcher.start(i) < matcher.end(i))
 					matchedGroups++;
 			if (matchedGroups != 1)
@@ -1133,7 +1133,7 @@ public class CommentsPreparator extends ASTVisitor {
 			int lastIndex = tokenEndingAt(node.getStartPosition() + node.getLength() - 1);
 			if (this.ctm.charAt(this.ctm.get(lastIndex + 1).originalStart) == '}')
 				lastIndex++;
-			for (int i = firstIndex; i <= lastIndex; i++) {
+			for (int i = firstIndex; i <= lastIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Token token = this.ctm.get(i);
 				token.setWrapPolicy(WrapPolicy.DISABLE_WRAP);
 			}
@@ -1141,8 +1141,8 @@ public class CommentsPreparator extends ASTVisitor {
 	}
 
 	private void handleStringLiterals(String text, int textStartPosition) {
-		Matcher matcher = STRING_LITERAL_PATTERN.matcher(text);
-		while (matcher.find()) {
+		Matcher matcher = STRING_LITERAL_PATTERN.matcher(text); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+		while (matcher.find()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			handleFoundStringLiteral(matcher, 0, textStartPosition);
 		}
 	}
@@ -1163,7 +1163,7 @@ public class CommentsPreparator extends ASTVisitor {
 			noSubstituteWrapping(startPosition, endPosition);
 	}
 
-	private void handleFoundAssignment(Matcher matcher, int group, int textStartPosition) {
+	private void handleFoundAssignment(Matcher matcher, int group, int textStartPosition) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (matcher.start(group) == matcher.end(group))
 			return;
 		int equalsPosition = textStartPosition + matcher.start(group);
@@ -1226,7 +1226,7 @@ public class CommentsPreparator extends ASTVisitor {
 		}
 	}
 
-	private void handleFormatCodeTag(TagElement tagElement, int startPos, int endPos, boolean isOpeningTag) {
+	private void handleFormatCodeTag(TagElement tagElement, int startPos, int endPos, boolean isOpeningTag) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!this.options.comment_format_source) {
 			handleNoFormatTag(startPos, endPos, isOpeningTag);
 			return;
@@ -1247,7 +1247,7 @@ public class CommentsPreparator extends ASTVisitor {
 			if (endTagIndex < this.ctm.size() - 2)
 				this.ctm.get(endTagIndex).putLineBreaksAfter(2);
 
-			List<ASTNode> tags = new ArrayList<ASTNode>(tagElement.fragments());
+			List<ASTNode> tags = new ArrayList<ASTNode>(tagElement.fragments()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			tags.removeIf(f -> !(f instanceof TagElement) || !((TagElement) f).isNested());
 			tags.removeIf(f -> f.getStartPosition() > endPos || f.getStartPosition()
 					+ f.getLength() < this.ctm.get(this.formatCodeOpenTagEndIndex).originalStart);
@@ -1257,7 +1257,7 @@ public class CommentsPreparator extends ASTVisitor {
 				String AT_CODE = TagElement.TAG_CODE;
 				String src = this.ctm.getSource();
 				tags.removeIf(f -> !((TagElement) f).getTagName().equals(AT_CODE));
-				for (ASTNode tagNode : tags) {
+				for (ASTNode tagNode : tags) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					TagElement tag = (TagElement) tagNode;
 					if (tag.getTagName().equals(AT_CODE)) {
 						int nameEndPos = src.indexOf(AT_CODE, tag.getStartPosition()) + AT_CODE.length() - 1;
@@ -1265,7 +1265,7 @@ public class CommentsPreparator extends ASTVisitor {
 						// TODO bug 570137 workaround
 						int closingBracePos = tag.getStartPosition() + 1;
 						int lastPos = this.ctm.get(this.ctm.size() - 2).originalEnd;
-						for (int braces = 1; braces > 0 && closingBracePos < lastPos; closingBracePos++) {
+						for (int braces = 1; braces > 0 && closingBracePos < lastPos; closingBracePos++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (src.charAt(closingBracePos) == '{')
 								braces++;
 							if (src.charAt(closingBracePos) == '}')
@@ -1280,7 +1280,7 @@ public class CommentsPreparator extends ASTVisitor {
 									new Token(t, t.originalStart, t.originalEnd, TokenNameCOMMENT_JAVADOC));
 							boolean allowAnnotationAtLineStart = CompilerOptions.versionToJdkLevel(
 									this.sourceLevel) > CompilerOptions.versionToJdkLevel(CompilerOptions.VERSION_14);
-							for (int i = tokenEndingAt(nameEndPos) + 1; i < closingIndex; i++) {
+							for (int i = tokenEndingAt(nameEndPos) + 1; i < closingIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								t = this.ctm.get(i);
 								if (this.ctm.charAt(t.originalStart) == '@') {
 									if (allowAnnotationAtLineStart) {
@@ -1304,7 +1304,7 @@ public class CommentsPreparator extends ASTVisitor {
 		}
 	}
 
-	private void handleSnippet(TagElement node, int startIndex, int endIndex) {
+	private void handleSnippet(TagElement node, int startIndex, int endIndex) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Token startToken = this.ctm.get(startIndex), endToken = this.ctm.get(endIndex);
 		startToken.breakBefore();
 		endToken.breakAfter();
@@ -1313,11 +1313,11 @@ public class CommentsPreparator extends ASTVisitor {
 		boolean isInline = false;
 		int snippetTextStartPos = startToken.originalEnd + 1;
 		String snippetText = this.ctm.getSource().substring(snippetTextStartPos, endToken.originalEnd + 1);
-		Matcher m = SNIPPET_ATTRIBUTES_PATTERN.matcher(snippetText);
+		Matcher m = SNIPPET_ATTRIBUTES_PATTERN.matcher(snippetText); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		if (m.find() && m.start() == 0) {
 			isInline = !m.group("colon").isEmpty(); //$NON-NLS-1$
-			Matcher m2 = SNIPPET_ATTRIBUTE_PATTERN.matcher(snippetText);
-			while (m2.find()) {
+			Matcher m2 = SNIPPET_ATTRIBUTE_PATTERN.matcher(snippetText); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+			while (m2.find()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				handleFoundAssignment(m2, 2, snippetTextStartPos);
 				handleFoundStringLiteral(m2, 3, snippetTextStartPos);
 				if (m2.group(1).equals("lang")) //$NON-NLS-1$
@@ -1338,7 +1338,7 @@ public class CommentsPreparator extends ASTVisitor {
 	}
 
 	private void fixJavadocTagAlign(Token baseToken, int fixFirstIndex) {
-		for (int i = fixFirstIndex; i < this.ctm.size() - 1; i++) {
+		for (int i = fixFirstIndex; i < this.ctm.size() - 1; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Token token = this.ctm.get(i);
 			if (token.getAlign() == 0 && token.getIndent() == 0)
 				break;
@@ -1347,12 +1347,12 @@ public class CommentsPreparator extends ASTVisitor {
 		}
 	}
 
-	private void disableFormatting(int startIndex, int endIndex, boolean isHtml) {
+	private void disableFormatting(int startIndex, int endIndex, boolean isHtml) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Token startToken = this.ctm.get(startIndex), endToken = this.ctm.get(endIndex);
 
 		Token noFormatToken = new Token(startToken.originalStart, endToken.originalEnd, TokenNameCOMMENT_JAVADOC);
 		List<Token> lines = commentToLines(noFormatToken, findCommentLineIndent(startIndex));
-		for (Token line : lines)
+		for (Token line : lines) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			line.setToEscape(isHtml);
 		Token first = lines.get(0);
 		if (startToken.isSpaceBefore())
@@ -1371,14 +1371,14 @@ public class CommentsPreparator extends ASTVisitor {
 		tokensToReplace.addAll(lines);
 	}
 
-	private void disableFormattingExclusively(int openingTagIndex, int closingTagIndex, boolean isSnippet) {
+	private void disableFormattingExclusively(int openingTagIndex, int closingTagIndex, boolean isSnippet) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Token openingTag = this.ctm.get(openingTagIndex);
 		int noFormatStart = openingTag.originalEnd + 1;
 		int noFormatEnd = this.ctm.get(closingTagIndex - 1).originalEnd;
 		if (noFormatStart <= noFormatEnd) {
 			Token noFormatToken = new Token(noFormatStart, noFormatEnd, TokenNameCOMMENT_JAVADOC);
 			List<Token> lines = commentToLines(noFormatToken, findCommentLineIndent(openingTagIndex));
-			for (Token line : lines) {
+			for (Token line : lines) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(!isSnippet) {
 					line.setToEscape(true);
 				}
@@ -1400,7 +1400,7 @@ public class CommentsPreparator extends ASTVisitor {
 	private int findCommentLineIndent(int commentFragmentIndex) {
 		int position = this.ctm.get(commentFragmentIndex).originalStart;
 		int lastNonWhitespace = position;
-		while (--position > 0) {
+		while (--position > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char c = this.ctm.charAt(position);
 			if (c == '\r' || c == '\n')
 				break;
@@ -1453,7 +1453,7 @@ public class CommentsPreparator extends ASTVisitor {
 		this.commentStructure.add(tokenIndex + 1, part2);
 	}
 
-	private boolean tokenizeMultilineComment(Token commentToken) {
+	private boolean tokenizeMultilineComment(Token commentToken) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.allowSubstituteWrapping == null || this.allowSubstituteWrapping.length < commentToken.countChars()) {
 			this.allowSubstituteWrapping = new boolean[commentToken.countChars()];
 		}
@@ -1464,25 +1464,25 @@ public class CommentsPreparator extends ASTVisitor {
 		final boolean cleanBlankLines = isJavadoc ? this.options.comment_clear_blank_lines_in_javadoc_comment
 				: this.options.comment_clear_blank_lines_in_block_comment;
 
-		List<Token> structure = new ArrayList<>();
+		List<Token> structure = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		int firstTokenEnd = commentToken.originalStart + 1;
 		char markerChar = isMarkdown ? '/' : '*';
-		while (firstTokenEnd < commentToken.originalEnd - 1 && this.tm.charAt(firstTokenEnd + 1) == markerChar)
+		while (firstTokenEnd < commentToken.originalEnd - 1 && this.tm.charAt(firstTokenEnd + 1) == markerChar) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			firstTokenEnd++;
 		Token first = new Token(commentToken.originalStart, firstTokenEnd, commentToken.tokenType);
 		first.spaceAfter();
 		structure.add(first);
 
 		int positionLimit = isMarkdown ? commentToken.originalEnd + 1: commentToken.originalEnd - 1;
-		while (positionLimit - 1 > firstTokenEnd && this.tm.charAt(positionLimit - 1) == markerChar)
+		while (positionLimit - 1 > firstTokenEnd && this.tm.charAt(positionLimit - 1) == markerChar) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			positionLimit--;
 
 		int position = firstTokenEnd + 1;
 		int lineBreaks = 0;
-		while (position <= commentToken.originalEnd) {
+		while (position <= commentToken.originalEnd) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// find line start
-			for (int i = position; i < positionLimit; i++) {
+			for (int i = position; i < positionLimit; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				char c = this.tm.charAt(i);
 				if (c == '\r' || c == '\n') {
 					lineBreaks++;
@@ -1492,7 +1492,7 @@ public class CommentsPreparator extends ASTVisitor {
 					position = i + 1;
 				} else if (!ScannerHelper.isWhitespace(c)) {
 					int markerCharCount = 0;
-					while (this.tm.charAt(i) == markerChar && lineBreaks > 0 && (markerCharCount < 3 || !isMarkdown)) {
+					while (this.tm.charAt(i) == markerChar && lineBreaks > 0 && (markerCharCount < 3 || !isMarkdown)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						markerCharCount++;
 						i++;
 					}
@@ -1502,7 +1502,7 @@ public class CommentsPreparator extends ASTVisitor {
 			}
 
 			int tokenStart = position;
-			while (position <= commentToken.originalEnd + 1 && (!isMarkdown || position <= positionLimit)) {
+			while (position <= commentToken.originalEnd + 1 && (!isMarkdown || position <= positionLimit)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				char c = 0;
 				if (position == commentToken.originalEnd + 1 || position == positionLimit
 						|| ScannerHelper.isWhitespace(c = this.tm.charAt(position))) {
@@ -1575,10 +1575,10 @@ public class CommentsPreparator extends ASTVisitor {
 		Arrays.fill(this.allowSubstituteWrapping, from - commentStart, to - commentStart + 1, false);
 	}
 
-	private void addSubstituteWraps() {
+	private void addSubstituteWraps() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Token previous = this.ctm.get(0);
 		int commentStart = previous.originalStart;
-		for (int i = 1; i < this.ctm.size() - 1; i++) {
+		for (int i = 1; i < this.ctm.size() - 1; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Token token = this.ctm.get(i);
 			boolean touchesPrevious = token.originalStart == this.ctm.get(i - 1).originalEnd + 1;
 			if (touchesPrevious && token.getLineBreaksBefore() == 0 && previous.getLineBreaksAfter() == 0
@@ -1586,7 +1586,7 @@ public class CommentsPreparator extends ASTVisitor {
 				boolean allowWrap = this.allowSubstituteWrapping[token.originalStart - commentStart];
 				token.setWrapPolicy(allowWrap ? WrapPolicy.SUBSTITUTE_ONLY : WrapPolicy.DISABLE_WRAP);
 			}
-			for (int pos = token.originalStart + 1; pos < token.originalEnd; pos++) {
+			for (int pos = token.originalStart + 1; pos < token.originalEnd; pos++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (!this.allowSubstituteWrapping[pos - commentStart])
 					continue;
 				char c = this.ctm.charAt(pos);
@@ -1599,11 +1599,11 @@ public class CommentsPreparator extends ASTVisitor {
 		}
 	}
 
-	private boolean formatCode(int openingIndex, int closingIndex, boolean snippetTag, boolean isMarkdown) {
+	private boolean formatCode(int openingIndex, int closingIndex, boolean snippetTag, boolean isMarkdown) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int codeStartPosition = this.ctm.get(openingIndex).originalEnd + 1;
 		int codeEndPosition = closingIndex < this.ctm.size() ? this.ctm.get(closingIndex).originalStart - 1
 				: this.ctm.get(this.ctm.size() - 1).originalEnd;
-		StringBuilder codeBuilder = new StringBuilder(codeEndPosition - codeStartPosition + 1);
+		StringBuilder codeBuilder = new StringBuilder(codeEndPosition - codeStartPosition + 1); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		int[] positionMapping = new int[codeEndPosition - codeStartPosition + 1];
 		// ^ index: original source position (minus startPosition), value: position in code string
 		getCodeToFormat(codeStartPosition, codeEndPosition, codeBuilder, positionMapping, isMarkdown);
@@ -1619,7 +1619,7 @@ public class CommentsPreparator extends ASTVisitor {
 				snippetTag);
 
 		Token openingToken = this.ctm.get(openingIndex);
-		for (Token token : formattedTokens)
+		for (Token token : formattedTokens) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			token.setAlign(token.getAlign() + openingToken.getAlign() + openingToken.getIndent());
 		fixJavadocTagAlign(openingToken, closingIndex);
 
@@ -1669,7 +1669,7 @@ public class CommentsPreparator extends ASTVisitor {
 		return this.snippetCodeFormatter;
 	}
 
-	private void getCodeToFormat(int startPos, int endPos, StringBuilder sb, int[] posMapping, boolean isMarkdown) {
+	private void getCodeToFormat(int startPos, int endPos, StringBuilder sb, int[] posMapping, boolean isMarkdown) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int position = 0; // original source position (minus startPos)
 
 		// skip excessive line break at the beginning
@@ -1680,12 +1680,12 @@ public class CommentsPreparator extends ASTVisitor {
 				posMapping[position++] = sb.length() - 1;
 		}
 
-		while (position + startPos <= endPos) {
+		while (position + startPos <= endPos) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int lineStart = position + startPos;
-			for (int i = lineStart;; i++) {
+			for (int i = lineStart;; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				c = this.ctm.charAt(i);
 				if (c == '\r' || c == '\n') {
-					sb.append(c);
+					sb.append(c); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					lineStart = i + 1;
 				} else if (!ScannerHelper.isWhitespace(c)) {
 					if (c == '*')
@@ -1698,7 +1698,7 @@ public class CommentsPreparator extends ASTVisitor {
 				}
 			}
 			int lineEnd = endPos + 1;
-			for (int i = lineStart; i <= endPos; i++) {
+			for (int i = lineStart; i <= endPos; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				c = this.ctm.charAt(i);
 				if (c == '\r' || c == '\n') {
 					lineEnd = i;
@@ -1706,14 +1706,14 @@ public class CommentsPreparator extends ASTVisitor {
 				}
 			}
 
-			while (position + startPos < lineStart && position < posMapping.length) {
+			while (position + startPos < lineStart && position < posMapping.length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				posMapping[position++] = sb.length() - 1;
 			}
 
 			int htmlEntityStart = -1;
-			for (int i = lineStart; i < lineEnd; i++) {
+			for (int i = lineStart; i < lineEnd; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				c = this.ctm.charAt(i);
-				sb.append(c);
+				sb.append(c); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				posMapping[position++] = sb.length() - 1;
 
 				if (c == '&') {
@@ -1722,8 +1722,8 @@ public class CommentsPreparator extends ASTVisitor {
 					char replacementChar = getHtmlEntityChar(this.ctm.getSource().substring(htmlEntityStart, i + 1));
 					if (replacementChar != 0) {
 						sb.setLength(sb.length() - (i + 1 - htmlEntityStart));
-						sb.append(replacementChar);
-						for (int k = position - (i + 1 - htmlEntityStart); k < position; k++)
+						sb.append(replacementChar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						for (int k = position - (i + 1 - htmlEntityStart); k < position; k++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							posMapping[k] = sb.length() - 1;
 					}
 					htmlEntityStart = -1;
@@ -1732,7 +1732,7 @@ public class CommentsPreparator extends ASTVisitor {
 		}
 
 		// remove last line if empty
-		while (sb.length() > 0 && ((c = sb.charAt(sb.length() - 1)) == ' ' || c == '\t'))
+		while (sb.length() > 0 && ((c = sb.charAt(sb.length() - 1)) == ' ' || c == '\t')) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			sb.deleteCharAt(sb.length() - 1);
 		if (sb.length() > 0 && ((c = sb.charAt(sb.length() - 1)) == '\r' || c == '\n')) {
 			sb.deleteCharAt(sb.length() - 1);
@@ -1741,11 +1741,11 @@ public class CommentsPreparator extends ASTVisitor {
 		}
 	}
 
-	private char getHtmlEntityChar(String entity) {
-		Matcher matcher = HTML_ENTITY_PATTERN.matcher(entity);
+	private char getHtmlEntityChar(String entity) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		Matcher matcher = HTML_ENTITY_PATTERN.matcher(entity); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		if (matcher.find()) {
 			char replaceChar = 0;
-			for (int i = 1; i < HTML_ENTITY_REPLACE.length(); i++) {
+			for (int i = 1; i < HTML_ENTITY_REPLACE.length(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int start = matcher.start(i);
 				int end = matcher.end(i);
 				if (start == end)
@@ -1768,16 +1768,16 @@ public class CommentsPreparator extends ASTVisitor {
 		return 0;
 	}
 
-	private List<Token> translateFormattedTokens(int startPosition, List<Token> formattedTokens, int[] positionMapping,
+	private List<Token> translateFormattedTokens(int startPosition, List<Token> formattedTokens, int[] positionMapping, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			HashMap<Token, Token> translationMap, boolean isSnippet) {
 		int previousLineBreaks = 0;
-		List<Token> result = new ArrayList<>();
-		for (Token token : formattedTokens) {
+		List<Token> result = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (Token token : formattedTokens) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int newStart = Arrays.binarySearch(positionMapping, token.originalStart);
-			while (newStart > 0 && positionMapping[newStart - 1] == token.originalStart)
+			while (newStart > 0 && positionMapping[newStart - 1] == token.originalStart) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				newStart--;
 			int newEnd = Arrays.binarySearch(positionMapping, token.originalEnd);
-			while (newEnd + 1 < positionMapping.length && positionMapping[newEnd + 1] == token.originalEnd)
+			while (newEnd + 1 < positionMapping.length && positionMapping[newEnd + 1] == token.originalEnd) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				newEnd++;
 			Token translated = new Token(token, newStart + startPosition, newEnd + startPosition, token.tokenType);
 			if (translated.getWrapPolicy() == null)
@@ -1785,7 +1785,7 @@ public class CommentsPreparator extends ASTVisitor {
 
 			if (token.hasNLSTag()) {
 				if (translationMap == null)
-					translationMap = new HashMap<>();
+					translationMap = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				Token translatedNLS = translationMap.get(token.getNLSTag());
 				if (translatedNLS != null) {
 					translatedNLS.setNLSTag(translated);

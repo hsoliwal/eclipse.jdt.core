@@ -28,7 +28,7 @@ public static Test suite() {
 /*
  * Completion with no receiver inside a for statement.
  */
-public void test1FVVWS8_1() {
+public void test1FVVWS8_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class X {									\n" +
@@ -61,7 +61,7 @@ public void test1FVVWS8_1() {
 /*
  * Completion with no receiver inside an if statement.
  */
-public void test1FVVWS8_2() {
+public void test1FVVWS8_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class X {									\n" +
@@ -94,7 +94,7 @@ public void test1FVVWS8_2() {
  * Completion with no receiver inside a for statement
  * and after a field access.
  */
-public void test1FW2ZTB_1() {
+public void test1FW2ZTB_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class X {											\n" +
@@ -130,7 +130,7 @@ public void test1FW2ZTB_1() {
  * Completion with no receiver inside another message send
  * and after a field access in a previous argument.
  */
-public void test1FW2ZTB_2() {
+public void test1FW2ZTB_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class X {											\n" +
@@ -164,7 +164,7 @@ public void test1FW2ZTB_2() {
  * Complete on method invocation with expression receiver
  * inside another invocation with no receiver.
  */
-public void test1FW35YZ_1() {
+public void test1FW35YZ_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -196,7 +196,7 @@ public void test1FW35YZ_1() {
  * Complete on qualified allocation expression
  * inside an invocation with no receiver.
  */
-public void test1FW35YZ_2() {
+public void test1FW35YZ_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -227,7 +227,7 @@ public void test1FW35YZ_2() {
 /*
  * Completion with primary receiver.
  */
-public void test1FWYBKF() {
+public void test1FWYBKF() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class X {									\n" +
@@ -258,7 +258,7 @@ public void test1FWYBKF() {
 /*
  * Completion just after a parameter which is a message send.
  */
-public void test1GAJBUQ() {
+public void test1GAJBUQ() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -290,7 +290,7 @@ public void test1GAJBUQ() {
  * Completion just before the second parameter, the first parameter being an empty
  * anonymous class.
  */
-public void testAfterEmptyAnonymous() {
+public void testAfterEmptyAnonymous() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -322,7 +322,7 @@ public void testAfterEmptyAnonymous() {
 /*
  * Completion just after the first parameter.
  */
-public void testAfterFirstParameter() {
+public void testAfterFirstParameter() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -353,7 +353,7 @@ public void testAfterFirstParameter() {
 /*
  * Completion just before the first parameter.
  */
-public void testBeforeFirstParameter() {
+public void testBeforeFirstParameter() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -384,7 +384,7 @@ public void testBeforeFirstParameter() {
 /*
  * Completion just before the last parameter.
  */
-public void testBeforeLastParameter() {
+public void testBeforeLastParameter() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -415,7 +415,7 @@ public void testBeforeLastParameter() {
 /*
  * Completion just before the second parameter.
  */
-public void testBeforeSecondParameter() {
+public void testBeforeSecondParameter() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -446,7 +446,7 @@ public void testBeforeSecondParameter() {
 /*
  * Completion on empty name inside the expression of the first parameter.
  */
-public void testEmptyInFirstParameter() {
+public void testEmptyInFirstParameter() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -477,7 +477,7 @@ public void testEmptyInFirstParameter() {
 /*
  * Completion inside the expression of the first parameter.
  */
-public void testInFirstParameter() {
+public void testInFirstParameter() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -508,7 +508,7 @@ public void testInFirstParameter() {
 /*
  * Completion inside an if statement.
  */
-public void testInIfStatement() {
+public void testInIfStatement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class X {									\n" +
@@ -544,7 +544,7 @@ public void testInIfStatement() {
 /*
  * Completion in labeled method invocation with expression receiver.
  */
-public void testLabeledWithExpressionReceiver() {
+public void testLabeledWithExpressionReceiver() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class X {									\n" +
@@ -577,7 +577,7 @@ public void testLabeledWithExpressionReceiver() {
 /*
  * Completion in labeled method invocation without receiver.
  */
-public void testLabeledWithoutReceiver() {
+public void testLabeledWithoutReceiver() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -610,7 +610,7 @@ public void testLabeledWithoutReceiver() {
 /*
  * MethodInvocation ::= Name '(' ArgumentListopt ')'
  */
-public void testNoReceiver() {
+public void testNoReceiver() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -641,7 +641,7 @@ public void testNoReceiver() {
 /*
  * Completion just before the first parameter with a space after the open parenthesis.
  */
-public void testSpaceThenFirstParameter() {
+public void testSpaceThenFirstParameter() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -672,7 +672,7 @@ public void testSpaceThenFirstParameter() {
 /*
  * MethodInvocation ::= 'super' '.' 'Identifier' '(' ArgumentListopt ')'
  */
-public void testSuper() {
+public void testSuper() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -703,7 +703,7 @@ public void testSuper() {
 /*
  * Complete on method invocation with expression receiver.
  */
-public void testWithExpressionReceiver() {
+public void testWithExpressionReceiver() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -734,7 +734,7 @@ public void testWithExpressionReceiver() {
 /*
  * Completion with a name receiver.
  */
-public void testWithNameReceiver() {
+public void testWithNameReceiver() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -767,7 +767,7 @@ public void testWithNameReceiver() {
 /*
  * Completion with a name receiver after conditional expression.
  */
-public void testWithNameReceiverAfterConditionalExpression() {
+public void testWithNameReceiverAfterConditionalExpression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class X {									\n" +
@@ -801,7 +801,7 @@ public void testWithNameReceiverAfterConditionalExpression() {
 /*
  * Completion with a name receiver and 2 arguments.
  */
-public void testWithNameReceiverAndTwoArgs() {
+public void testWithNameReceiverAndTwoArgs() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -834,7 +834,7 @@ public void testWithNameReceiverAndTwoArgs() {
 /*
  * Completion with a qualified name receiver.
  */
-public void testWithQualifiedNameReceiver() {
+public void testWithQualifiedNameReceiver() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +

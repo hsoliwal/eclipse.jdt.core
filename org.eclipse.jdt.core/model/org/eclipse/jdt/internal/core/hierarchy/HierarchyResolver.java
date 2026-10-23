@@ -156,7 +156,7 @@ public void accept(ICompilationUnit sourceUnit, AccessRestriction accessRestrict
 		this.lookupEnvironment.completeTypeBindings(parsedUnit, true, false /*no annotations*/); // work done inside checkAndSetImports()
 	} else {
 		this.lookupEnvironment.problemReporter.abortDueToInternalError(
-			new StringBuilder(Messages.accept_cannot)
+			new StringBuilder(Messages.accept_cannot) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				.append(sourceUnit.getFileName())
 				.toString());
 	}
@@ -177,7 +177,7 @@ private Parser basicParser() {
 /**
  * Add additional source types
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void accept(ISourceType[] sourceTypes, PackageBinding packageBinding, AccessRestriction accessRestriction) {
 	IProgressMonitor progressMonitor = this.builder.hierarchy.progressMonitor;
 	if (progressMonitor != null && progressMonitor.isCanceled())
@@ -186,7 +186,7 @@ public void accept(ISourceType[] sourceTypes, PackageBinding packageBinding, Acc
 	// find most enclosing type first (needed when explicit askForType(...) is done
 	// with a member type (e.g. p.A$B))
 	ISourceType sourceType = sourceTypes[0];
-	while (sourceType.getEnclosingType() != null)
+	while (sourceType.getEnclosingType() != null) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		sourceType = sourceType.getEnclosingType();
 
 	// build corresponding compilation unit
@@ -221,7 +221,7 @@ public void accept(ISourceType[] sourceTypes, PackageBinding packageBinding, Acc
  * Returns null if the type has no super class.
  * Adds the simple name to the hierarchy missing types if the class is not found and returns null.
  */
-private IType findSuperClass(IGenericType type, ReferenceBinding typeBinding) {
+private IType findSuperClass(IGenericType type, ReferenceBinding typeBinding) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ReferenceBinding superBinding = typeBinding.superclass();
 
 	if (superBinding != null) {
@@ -269,7 +269,7 @@ private IType findSuperClass(IGenericType type, ReferenceBinding typeBinding) {
  * Returns the handles of the super interfaces of the given type.
  * Adds the simple name to the hierarchy missing types if an interface is not found (but don't put null in the returned array)
  */
-private IType[] findSuperInterfaces(IGenericType type, ReferenceBinding typeBinding) {
+private IType[] findSuperInterfaces(IGenericType type, ReferenceBinding typeBinding) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[][] superInterfaceNames;
 	char separator;
 	if (type instanceof IBinaryType) {
@@ -312,7 +312,7 @@ private IType[] findSuperInterfaces(IGenericType type, ReferenceBinding typeBind
 	int length = superInterfaceNames == null ? 0 : superInterfaceNames.length;
 	IType[] superinterfaces = new IType[length];
 	int index = 0;
-	next : for (int i = 0; i < length; i++) {
+	next : for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		char[] superInterfaceName = superInterfaceNames[i];
 		int end = superInterfaceName.length;
 
@@ -356,8 +356,8 @@ private IType[] findSuperInterfaces(IGenericType type, ReferenceBinding typeBind
  * For all type bindings that have hierarchy problems, artificially fix their superclass/superInterfaces so that the connection
  * can be made.
  */
-private void fixSupertypeBindings() {
-	for (int current = this.typeIndex; current >= 0; current--) {
+private void fixSupertypeBindings() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	for (int current = this.typeIndex; current >= 0; current--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		ReferenceBinding typeBinding = this.typeBindings[current];
 		if ((typeBinding.tagBits & TagBits.HierarchyHasProblems) == 0)
 			continue;
@@ -393,7 +393,7 @@ private void fixSupertypeBindings() {
 				if (superInterfaces != null && (length = superInterfaces.length) > (interfaceBindings == null ? 0 : interfaceBindings.length)) { // check for interfaceBindings being null (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=139689)
 					interfaceBindings = new ReferenceBinding[length];
 					int index = 0;
-					for (int i = 0; i < length; i++) {
+					for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						TypeBinding superInterface = superInterfaces[i].resolvedType;
 						if (superInterface != null) {
 							superInterface = superInterface.closestMatch();
@@ -439,7 +439,7 @@ private void remember(IGenericType suppliedType, ReferenceBinding typeBinding) {
 	this.typeBindings[this.typeIndex] = typeBinding;
 	this.bindingMap.put(typeBinding, suppliedType);
 }
-private void remember(IType type, ReferenceBinding typeBinding) {
+private void remember(IType type, ReferenceBinding typeBinding) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (((CompilationUnit)type.getCompilationUnit()).isOpen()) {
 		try {
 			IGenericType genericType = (IGenericType)((JavaElement)type).getElementInfo();
@@ -478,7 +478,7 @@ private void remember(IType type, ReferenceBinding typeBinding) {
 			if (superInterfaces != null) {
 				int length = superInterfaces.length;
 				superInterfaceNames = new char[length][];
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					TypeReference superInterface = superInterfaces[i];
 					char[][] typeName = superInterface.getTypeName();
 					superInterfaceNames[i] = typeName[typeName.length-1];
@@ -509,10 +509,10 @@ private void remember(IType type, ReferenceBinding typeBinding) {
 /*
  * Remembers all type bindings defined in the given parsed unit, adding local/anonymous types if specified.
  */
-private void rememberAllTypes(CompilationUnitDeclaration parsedUnit, org.eclipse.jdt.core.ICompilationUnit cu, boolean includeLocalTypes) {
+private void rememberAllTypes(CompilationUnitDeclaration parsedUnit, org.eclipse.jdt.core.ICompilationUnit cu, boolean includeLocalTypes) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	TypeDeclaration[] types = parsedUnit.types;
 	if (types != null) {
-		for (TypeDeclaration type : types) {
+		for (TypeDeclaration type : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			rememberWithMemberTypes(type, cu.getType(DeduplicationUtil.toString(type.name)));
 		}
 	}
@@ -520,17 +520,17 @@ private void rememberAllTypes(CompilationUnitDeclaration parsedUnit, org.eclipse
 		return;
 
 	HandleFactory factory = new HandleFactory();
-	HashSet existingElements = new HashSet(parsedUnit.localTypes.size() + parsedUnit.functionalExpressionsCount);
-	HashMap knownScopes = new HashMap(parsedUnit.localTypes.size() + parsedUnit.functionalExpressionsCount);
+	HashSet existingElements = new HashSet(parsedUnit.localTypes.size() + parsedUnit.functionalExpressionsCount); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+	HashMap knownScopes = new HashMap(parsedUnit.localTypes.size() + parsedUnit.functionalExpressionsCount); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
-	for (LocalTypeBinding localType : parsedUnit.localTypes.values()) {
+	for (LocalTypeBinding localType : parsedUnit.localTypes.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		ClassScope classScope = localType.scope;
 		TypeDeclaration typeDecl = classScope.referenceType();
 		IType typeHandle = (IType)factory.createElement(classScope, cu, existingElements, knownScopes);
 		rememberWithMemberTypes(typeDecl, typeHandle);
 	}
 	if (parsedUnit.functionalExpressions != null) {
-		for (int i = 0; i < parsedUnit.functionalExpressionsCount; i++) {
+		for (int i = 0; i < parsedUnit.functionalExpressionsCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (parsedUnit.functionalExpressions[i] instanceof LambdaExpression) {
 				final LambdaExpression expression = (LambdaExpression) parsedUnit.functionalExpressions[i];
 				if (expression.resolvedType != null && expression.resolvedType.isValidBinding()) {
@@ -546,7 +546,7 @@ private void rememberWithMemberTypes(TypeDeclaration typeDecl, IType typeHandle)
 
 	TypeDeclaration[] memberTypes = typeDecl.memberTypes;
 	if (memberTypes != null) {
-		for (TypeDeclaration memberType : memberTypes) {
+		for (TypeDeclaration memberType : memberTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			rememberWithMemberTypes(memberType, typeHandle.getType(DeduplicationUtil.toString(memberType.name)));
 		}
 	}
@@ -555,7 +555,7 @@ private void rememberWithMemberTypes(TypeDeclaration typeDecl, IType typeHandle)
  * Reports the hierarchy from the remembered bindings.
  * Note that 'binaryTypeBinding' is null if focus type is a source type.
  */
-private void reportHierarchy(IType focus, TypeDeclaration focusLocalType, ReferenceBinding binaryTypeBinding) {
+private void reportHierarchy(IType focus, TypeDeclaration focusLocalType, ReferenceBinding binaryTypeBinding) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// set focus type binding
 	if (focus != null) {
@@ -580,7 +580,7 @@ private void reportHierarchy(IType focus, TypeDeclaration focusLocalType, Refere
 
 	int objectIndex = -1;
 	IProgressMonitor progressMonitor = this.builder.hierarchy.progressMonitor;
-	for (int current = this.typeIndex; current >= 0; current--) {
+	for (int current = this.typeIndex; current >= 0; current--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (progressMonitor != null && progressMonitor.isCanceled())
 			throw new OperationCanceledException();
 
@@ -630,7 +630,7 @@ private void reset(){
  * Inform the requestor of the resolved supertypes using:
  *    connect(ISourceType suppliedType, IGenericType superclass, IGenericType[] superinterfaces)
  */
-public void resolve(IGenericType suppliedType) {
+public void resolve(IGenericType suppliedType) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		if (suppliedType.isBinaryType()) {
 			sanitizeBinaryType(suppliedType);
@@ -638,7 +638,7 @@ public void resolve(IGenericType suppliedType) {
 			remember(suppliedType, binaryTypeBinding);
 			// We still need to add superclasses and superinterfaces bindings (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=53095)
 			int startIndex = this.typeIndex;
-			for (int i = startIndex; i <= this.typeIndex; i++) {
+			for (int i = startIndex; i <= this.typeIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IGenericType igType = this.typeModels[i];
 				if (igType != null && igType.isBinaryType()) {
 					CompilationUnitDeclaration previousUnitBeingCompleted = this.lookupEnvironment.unitBeingCompleted;
@@ -664,7 +664,7 @@ public void resolve(IGenericType suppliedType) {
 		} else {
 			org.eclipse.jdt.core.ICompilationUnit cu = ((SourceTypeElementInfo)suppliedType).getHandle().getCompilationUnit();
 			if (cu != null) {
-				HashSet localTypes = new HashSet();
+				HashSet localTypes = new HashSet(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 				localTypes.add(cu.getPath().toString());
 				this.superTypesOnly = true;
 				resolve(new Openable[] {(Openable)cu}, localTypes, null);
@@ -686,7 +686,7 @@ public void resolve(IGenericType suppliedType) {
  * additional requested super type which is also a source type
  * instead of a binary type.
  */
-public void resolve(Openable[] openables, HashSet localTypes, IProgressMonitor monitor) {
+public void resolve(Openable[] openables, HashSet localTypes, IProgressMonitor monitor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	SubMonitor subMonitor = SubMonitor.convert(monitor, 3);
 	try {
 		int openablesLength = openables.length;
@@ -710,7 +710,7 @@ public void resolve(Openable[] openables, HashSet localTypes, IProgressMonitor m
 		subMonitor.split(1);
 		// build type bindings
 		Parser parser = new Parser(this.lookupEnvironment.problemReporter, true);
-		for (int i = 0; i < openablesLength; i++) {
+		for (int i = 0; i < openablesLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Openable openable = openables[i];
 			if (openable instanceof org.eclipse.jdt.core.ICompilationUnit) {
 				org.eclipse.jdt.core.ICompilationUnit cu = (org.eclipse.jdt.core.ICompilationUnit)openable;
@@ -735,7 +735,7 @@ public void resolve(Openable[] openables, HashSet localTypes, IProgressMonitor m
 						int topLevelLength = topLevelTypes.length;
 						if (topLevelLength == 0) continue; // empty cu: no need to parse (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=65677)
 						typeInfos = new SourceTypeElementInfo[topLevelLength];
-						for (int j = 0; j < topLevelLength; j++) {
+						for (int j = 0; j < topLevelLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							IType topLevelType = topLevelTypes[j];
 							typeInfos[j] = (SourceTypeElementInfo)((JavaElement)topLevelType).getElementInfo();
 						}
@@ -812,7 +812,7 @@ public void resolve(Openable[] openables, HashSet localTypes, IProgressMonitor m
 		}
 
 
-		for (int i = 0; i <= this.typeIndex; i++) {
+		for (int i = 0; i <= this.typeIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IGenericType suppliedType = this.typeModels[i];
 			if (suppliedType != null && suppliedType.isBinaryType()) {
 				CompilationUnitDeclaration previousUnitBeingCompleted = this.lookupEnvironment.unitBeingCompleted;
@@ -836,7 +836,7 @@ public void resolve(Openable[] openables, HashSet localTypes, IProgressMonitor m
 
 		SubMonitor unitLoopMonitor = subMonitor.split(1).setWorkRemaining(unitsIndex);
 		// complete type bindings (i.e. connect super types)
-		for (int i = 0; i < unitsIndex; i++) {
+		for (int i = 0; i < unitsIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			unitLoopMonitor.split(1);
 			CompilationUnitDeclaration parsedUnit = parsedUnits[i];
 			if (parsedUnit != null) {
@@ -857,7 +857,7 @@ public void resolve(Openable[] openables, HashSet localTypes, IProgressMonitor m
 			SubMonitor completeLoopMonitor = subMonitor.split(1).setWorkRemaining(unitsIndex);
 			this.lookupEnvironment.completeTypeBindings(parsedUnits, hasLocalType, unitsIndex);
 			// remember type bindings
-			for (int i = 0; i < unitsIndex; i++) {
+			for (int i = 0; i < unitsIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				completeLoopMonitor.split(1);
 				CompilationUnitDeclaration parsedUnit = parsedUnits[i];
 				// https://bugs.eclipse.org/bugs/show_bug.cgi?id=462158
@@ -930,7 +930,7 @@ private void setEnvironment(LookupEnvironment lookupEnvironment, HierarchyBuilde
  * Set the focus type (i.e. the type that this resolver is computing the hierarch for.
  * Returns the binding of this focus type or null if it could not be found.
  */
-public ReferenceBinding setFocusType(char[][] compoundName) {
+public ReferenceBinding setFocusType(char[][] compoundName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (compoundName == null || this.lookupEnvironment == null) return null;
 	this.focusType = this.lookupEnvironment.getCachedType(compoundName);
 	if (this.focusType == null) {
@@ -944,7 +944,7 @@ public ReferenceBinding setFocusType(char[][] compoundName) {
 				this.focusType = this.lookupEnvironment.askForType(compoundName, this.lookupEnvironment.UnNamedModule);
 				if (this.focusType != null) {
 					char[][] memberTypeNames = CharOperation.splitOn('$', typeName, firstDollar+1, typeName.length);
-					for (char[] memberTypeName : memberTypeNames) {
+					for (char[] memberTypeName : memberTypeNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						this.focusType = this.focusType.getMemberType(memberTypeName);
 						if (this.focusType == null)
 							return null;
@@ -966,10 +966,10 @@ public boolean subOrSuperOfFocus(ReferenceBinding typeBinding) {
 	return false;
 }
 private boolean subTypeOfType(ReferenceBinding subType, ReferenceBinding typeBinding) {
-	return subTypeOfType(subType, typeBinding, new IdentityHashMap<>());
+	return subTypeOfType(subType, typeBinding, new IdentityHashMap<>()); //FLLDCIM: MARK — M06 M3_IDENTITY_WEAK_LANES NEW
 }
 
-private boolean subTypeOfType(ReferenceBinding subType, ReferenceBinding typeBinding,
+private boolean subTypeOfType(ReferenceBinding subType, ReferenceBinding typeBinding, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<ReferenceBinding, Object> visited) {
 	if (typeBinding == null || subType == null) return false;
 	if (visited.put(subType, subType) != null) return false; // don't evaluate the same "subType" twice
@@ -980,7 +980,7 @@ private boolean subTypeOfType(ReferenceBinding subType, ReferenceBinding typeBin
 	if (subTypeOfType(superclass, typeBinding, visited)) return true;
 	ReferenceBinding[] superInterfaces = subType.superInterfaces();
 	if (superInterfaces != null) {
-		for (ReferenceBinding si : superInterfaces) {
+		for (ReferenceBinding si : superInterfaces) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ReferenceBinding superInterface = (ReferenceBinding) si.erasure();
 			if (superInterface.isHierarchyInconsistent()) return false;
 			if (subTypeOfType(superInterface, typeBinding, visited)) return true;

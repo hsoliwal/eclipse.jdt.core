@@ -40,7 +40,7 @@ import org.eclipse.jdt.core.search.DerivedSourceSearchParticipant;
  */
 public class DerivedSourceSearchParticipantRegistry implements IRegistryEventListener {
 
-	private static final String EXTENSION_POINT_ID = JavaCore.PLUGIN_ID + ".derivedSourceSearchParticipant"; //$NON-NLS-1$
+	private static final String EXTENSION_POINT_ID = JavaCore.PLUGIN_ID + ".derivedSourceSearchParticipant"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	private static final String ELEMENT_NAME = "derivedSourceSearchParticipant"; //$NON-NLS-1$
 	private static final String ATTR_CLASS = "class"; //$NON-NLS-1$
 	private static final String ATTR_ID = "id"; //$NON-NLS-1$
@@ -50,10 +50,10 @@ public class DerivedSourceSearchParticipantRegistry implements IRegistryEventLis
 	private static final DerivedSourceSearchParticipantRegistry INSTANCE = new DerivedSourceSearchParticipantRegistry();
 
 	/** file extension &rarr; instantiated participant. Guarded by {@code synchronized(INSTANCE)}. */
-	private final Map<String, DerivedSourceSearchParticipant> participantsByExtension = new HashMap<>();
+	private final Map<String, DerivedSourceSearchParticipant> participantsByExtension = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	/** file extension &rarr; LSP language identifier. Guarded by {@code synchronized(INSTANCE)}. */
-	private final Map<String, String> languageIdsByExtension = new HashMap<>();
+	private final Map<String, String> languageIdsByExtension = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	private DerivedSourceSearchParticipantRegistry() {
 		Platform.getExtensionRegistry().addListener(this, EXTENSION_POINT_ID);
@@ -63,34 +63,34 @@ public class DerivedSourceSearchParticipantRegistry implements IRegistryEventLis
 	}
 
 	/** Must be called while holding {@code synchronized(this)}. */
-	@SuppressWarnings("unused")
+	@SuppressWarnings("unused") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	private void load() {
 		IConfigurationElement[] elements = Platform.getExtensionRegistry()
 				.getConfigurationElementsFor(EXTENSION_POINT_ID);
 		// group config elements by identity so each participant class is instantiated once
-		Map<IConfigurationElement, Set<String>> extensionsByConfig = new HashMap<>();
-		for (IConfigurationElement element : elements) {
+		Map<IConfigurationElement, Set<String>> extensionsByConfig = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		for (IConfigurationElement element : elements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!ELEMENT_NAME.equals(element.getName())) continue;
 			String fileExtensions = element.getAttribute(ATTR_FILE_EXTENSIONS);
 			if (fileExtensions == null || fileExtensions.isBlank()) continue;
-			for (String ext : fileExtensions.split(",")) { //$NON-NLS-1$
+			for (String ext : fileExtensions.split(",")) { //$NON-NLS-1$ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String trimmed = ext.trim().toLowerCase();
 				if (!trimmed.isEmpty()) {
 					extensionsByConfig.computeIfAbsent(element, k -> new LinkedHashSet<>()).add(trimmed);
 				}
 			}
 		}
-		for (Map.Entry<IConfigurationElement, Set<String>> entry : extensionsByConfig.entrySet()) {
+		for (Map.Entry<IConfigurationElement, Set<String>> entry : extensionsByConfig.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IConfigurationElement config = entry.getKey();
 			Set<String> exts = entry.getValue();
 			try {
 				Object instance = config.createExecutableExtension(ATTR_CLASS);
 				if (instance instanceof DerivedSourceSearchParticipant sp) {
 					String languageId = config.getAttribute(ATTR_LANGUAGE_ID);
-					for (String ext : exts) {
+					for (String ext : exts) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						DerivedSourceSearchParticipant existing = this.participantsByExtension.put(ext, sp);
 						if (existing != null && existing != sp) {
-							ILog.get().warn("Duplicate derivedSourceSearchParticipant registration for extension '" //$NON-NLS-1$
+							ILog.get().warn("Duplicate derivedSourceSearchParticipant registration for extension '" //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 									+ ext + "': '" + config.getAttribute(ATTR_ID) //$NON-NLS-1$
 									+ "' overrides previous participant"); //$NON-NLS-1$
 						}
@@ -99,12 +99,12 @@ public class DerivedSourceSearchParticipantRegistry implements IRegistryEventLis
 						this.languageIdsByExtension.put(ext, langId);
 					}
 				} else {
-					ILog.get().error("derivedSourceSearchParticipant '" + config.getAttribute(ATTR_ID) //$NON-NLS-1$
+					ILog.get().error("derivedSourceSearchParticipant '" + config.getAttribute(ATTR_ID) //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							+ "' class does not extend DerivedSourceSearchParticipant: " //$NON-NLS-1$
 							+ config.getAttribute(ATTR_CLASS));
 				}
 			} catch (CoreException e) {
-				ILog.get().error("Could not instantiate derivedSourceSearchParticipant: '" //$NON-NLS-1$
+				ILog.get().error("Could not instantiate derivedSourceSearchParticipant: '" //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						+ config.getAttribute(ATTR_ID) + "'", e); //$NON-NLS-1$
 			}
 		}

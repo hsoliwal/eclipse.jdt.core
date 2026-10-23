@@ -54,7 +54,7 @@ public class CompletionJavadoc extends Javadoc {
 	 * Resolve selected node if not null and throw exception to let clients know
 	 * that it has been found.
 	 */
-	private void internalResolve(Scope scope) {
+	private void internalResolve(Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.completionNode != null) {
 			if (this.completionNode instanceof CompletionOnJavadocTag) {
 				((CompletionOnJavadocTag)this.completionNode).filterPossibleTags(scope);
@@ -124,12 +124,12 @@ public class CompletionJavadoc extends Javadoc {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public StringBuilder print(int indent, StringBuilder output) {
 		printIndent(indent, output).append("/**\n"); //$NON-NLS-1$
 		boolean nodePrinted = false;
 		if (this.paramReferences != null) {
-			for (JavadocSingleNameReference ref : this.paramReferences) {
+			for (JavadocSingleNameReference ref : this.paramReferences) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				printIndent(indent, output).append(" * @param "); //$NON-NLS-1$
 				ref.print(indent, output).append('\n');
 				if (!nodePrinted && this.completionNode != null) {
@@ -138,7 +138,7 @@ public class CompletionJavadoc extends Javadoc {
 			}
 		}
 		if (this.paramTypeParameters != null) {
-			for (JavadocSingleTypeReference paramTypeParameter : this.paramTypeParameters) {
+			for (JavadocSingleTypeReference paramTypeParameter : this.paramTypeParameters) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				printIndent(indent, output).append(" * @param <"); //$NON-NLS-1$
 				paramTypeParameter.print(indent, output).append(">\n"); //$NON-NLS-1$
 				if (!nodePrinted && this.completionNode != null) {
@@ -151,7 +151,7 @@ public class CompletionJavadoc extends Javadoc {
 			this.returnStatement.print(indent, output).append('\n');
 		}
 		if (this.exceptionReferences != null) {
-			for (TypeReference ref : this.exceptionReferences) {
+			for (TypeReference ref : this.exceptionReferences) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				printIndent(indent, output).append(" * @throws "); //$NON-NLS-1$
 				ref.print(indent, output).append('\n');
 				if (!nodePrinted && this.completionNode != null) {
@@ -160,7 +160,7 @@ public class CompletionJavadoc extends Javadoc {
 			}
 		}
 		if (this.seeReferences != null) {
-			for (Expression ref : this.seeReferences) {
+			for (Expression ref : this.seeReferences) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				printIndent(indent, output).append(" * @see "); //$NON-NLS-1$
 				ref.print(indent, output).append('\n');
 				if (!nodePrinted && this.completionNode != null) {
@@ -208,7 +208,7 @@ public class CompletionJavadoc extends Javadoc {
 	/*
 	 * Look for missing record component @param tags
 	 */
-	private char[][] missingRecordComponentNames(Binding paramNameRefBinding, ClassScope scope) {
+	private char[][] missingRecordComponentNames(Binding paramNameRefBinding, ClassScope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TypeDeclaration type = scope.referenceContext;
 		if (type == null || !type.isRecord()) {
 			return null;
@@ -221,7 +221,7 @@ public class CompletionJavadoc extends Javadoc {
 
 		char[][] missingComponents = new char[componentSize][];
 		if (paramTagsSize == 0) {
-			for (int i = 0; i < componentSize; i++) {
+			for (int i = 0; i < componentSize; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				missingComponents[i] = components[i].name;
 			}
 			return missingComponents;
@@ -229,11 +229,11 @@ public class CompletionJavadoc extends Javadoc {
 
 		missingComponents = new char[componentSize][];
 		int size = 0;
-		for (int i = 0; i < componentSize; i++) {
+		for (int i = 0; i < componentSize; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			RecordComponent arg = components[i];
 			boolean found = false;
 			int paramNameRefCount = 0;
-			for (int j = 0; j < paramTagsSize && !found; j++) {
+			for (int j = 0; j < paramTagsSize && !found; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				JavadocSingleNameReference param = this.paramReferences[j];
 				VariableBinding field = type.binding.getField(arg.name, false);
 				if (field == param.binding) {
@@ -260,7 +260,7 @@ public class CompletionJavadoc extends Javadoc {
 	/*
 	 * Look for missing method @param tags
 	 */
-	private char[][] missingParamTags(Binding paramNameRefBinding, MethodScope methScope) {
+	private char[][] missingParamTags(Binding paramNameRefBinding, MethodScope methScope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Verify if there's some possible param tag
 		AbstractMethodDeclaration md = methScope.referenceMethod();
@@ -272,7 +272,7 @@ public class CompletionJavadoc extends Javadoc {
 		// Store all method arguments if there's no @param in javadoc
 		if (paramTagsSize == 0) {
 			char[][] missingParams = new char[argumentsSize][];
-			for (int i = 0; i < argumentsSize; i++) {
+			for (int i = 0; i < argumentsSize; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				missingParams[i] = md.arguments[i].name;
 			}
 			return missingParams;
@@ -281,11 +281,11 @@ public class CompletionJavadoc extends Javadoc {
 		// Look for missing arguments
 		char[][] missingParams = new char[argumentsSize][];
 		int size = 0;
-		for (int i = 0; i < argumentsSize; i++) {
+		for (int i = 0; i < argumentsSize; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Argument arg = md.arguments[i];
 			boolean found = false;
 			int paramNameRefCount = 0;
-			for (int j = 0; j < paramTagsSize && !found; j++) {
+			for (int j = 0; j < paramTagsSize && !found; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				JavadocSingleNameReference param = this.paramReferences[j];
 				if (arg.binding == param.binding) {
 					if (param.binding == paramNameRefBinding) { // do not count first occurence of param name reference
@@ -312,7 +312,7 @@ public class CompletionJavadoc extends Javadoc {
 	/*
 	 * Look for missing type parameters @param tags
 	 */
-	private char[][] missingTypeParameterTags(Binding paramNameRefBinding, Scope scope) {
+	private char[][] missingTypeParameterTags(Binding paramNameRefBinding, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int paramTypeParamLength = this.paramTypeParameters == null ? 0 : this.paramTypeParameters.length;
 
 		// Verify if there's any type parameter to tag
@@ -338,7 +338,7 @@ public class CompletionJavadoc extends Javadoc {
 			int typeParametersLength = parameters.length;
 			if (paramTypeParamLength == 0) {
 				char[][] missingParams = new char[typeParametersLength][];
-				for (int i = 0; i < typeParametersLength; i++) {
+				for (int i = 0; i < typeParametersLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					missingParams[i] = parameters[i].name;
 				}
 				return missingParams;
@@ -347,11 +347,11 @@ public class CompletionJavadoc extends Javadoc {
 			// Look for missing type parameter
 			char[][] missingParams = new char[typeParametersLength][];
 			int size = 0;
-			for (int i = 0; i < typeParametersLength; i++) {
+			for (int i = 0; i < typeParametersLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				TypeParameter parameter = parameters[i];
 				boolean found = false;
 				int paramNameRefCount = 0;
-				for (int j = 0; j < paramTypeParamLength && !found; j++) {
+				for (int j = 0; j < paramTypeParamLength && !found; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (TypeBinding.equalsEquals(parameter.binding, this.paramTypeParameters[j].resolvedType)) {
 						if (parameter.binding == paramNameRefBinding) { // do not count first occurence of param nmae reference
 							paramNameRefCount++;

@@ -22,7 +22,7 @@ import org.eclipse.test.internal.performance.data.Sample;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class JdtCorePerformanceMeter extends OSPerformanceMeter {
 
-public static final Map STATISTICS = new HashMap();
+public static final Map STATISTICS = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 public JdtCorePerformanceMeter(String scenarioId) {
 	super(scenarioId);
@@ -42,7 +42,7 @@ private void storeDataPoints(Sample sample) {
 	DataPoint[] dataPoints = sample.getDataPoints();
 	int length = dataPoints.length;
 	if (length > 0) {
-		System.out.println("	Store " + length + " data points...");
+		System.out.println("	Store " + length + " data points..."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		STATISTICS.put(getReadableName(), dataPoints);
 	}
 }

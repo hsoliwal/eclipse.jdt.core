@@ -85,8 +85,8 @@ public class SearchTests extends ModifyingResourceTests implements IJavaSearchCo
 		}
 	}
 	public static class SearchMethodNameRequestor extends MethodNameRequestor {
-		List<String> results = new ArrayList<>();
-		@Override
+		List<String> results = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public void acceptMethod(
 				char[] methodName,
 				int parameterCount,
@@ -101,21 +101,21 @@ public class SearchTests extends ModifyingResourceTests implements IJavaSearchCo
 				int modifiers,
 				String path,
 				int methodIndex) {
-			StringBuilder buffer = new StringBuilder();
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			char c = '.';
 			char[] noname = new String("<NONAME>").toCharArray();
-			buffer.append(path);
-			buffer.append(' ');
-			buffer.append(returnType == null ? CharOperation.NO_CHAR: returnType);
-			buffer.append(' ');
+			buffer.append(path); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(returnType == null ? CharOperation.NO_CHAR: returnType); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			checkAndAddtoBuffer(buffer, packageName, c);
 			checkAndAddtoBuffer(buffer, declaringQualifier, c);
 			checkAndAddtoBuffer(buffer, simpleTypeName == null ? noname : simpleTypeName, c);
-			buffer.append(methodName);
-			buffer.append('(');
+			buffer.append(methodName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			parameterTypes = signature == null ? parameterTypes : Signature.getParameterTypes(signature);
 
-			for (int i = 0; i < parameterCount; i++) {
+			for (int i = 0; i < parameterCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 				if (parameterTypes != null) {
 					char[] parameterType;
@@ -128,38 +128,38 @@ public class SearchTests extends ModifyingResourceTests implements IJavaSearchCo
 					} else {
 						parameterType = parameterTypes[i];
 					}
-					buffer.append(parameterType);
+					buffer.append(parameterType); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else {
-					buffer.append('?'); // parameter type names are not stored in the indexes
-					buffer.append('?');
-					buffer.append('?');
+					buffer.append('?'); // parameter type names are not stored in the indexes //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append('?'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append('?'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				buffer.append(' ');
+				buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (parameterNames != null) {
-					buffer.append(parameterNames[i]);
+					buffer.append(parameterNames[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else {
-					buffer.append("arg"+i);
+					buffer.append("arg"+i); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				if (parameterCount > 1 && i < parameterCount - 1) buffer.append(',');
+				if (parameterCount > 1 && i < parameterCount - 1) buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buffer.append(')');
+			buffer.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			this.results.add(buffer.toString());
 		}
 		static void checkAndAddtoBuffer(StringBuilder buffer, char[] precond, char c) {
 			if (precond == null || precond.length == 0) return;
-			buffer.append(precond);
-			buffer.append(c);
+			buffer.append(precond); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(c); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		public String toString(){
 			int length = this.results.size();
 			String[] strings = new String[length];
 			this.results.toArray(strings);
 			org.eclipse.jdt.internal.core.util.Util.sort(strings);
-			StringBuilder buffer = new StringBuilder(100);
-			for (int i = 0; i < length; i++){
-				buffer.append(strings[i]);
+			StringBuilder buffer = new StringBuilder(100); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			for (int i = 0; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append(strings[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (i != length-1) {
-					buffer.append('\n');
+					buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
 			return buffer.toString();
@@ -169,7 +169,7 @@ public class SearchTests extends ModifyingResourceTests implements IJavaSearchCo
 		}
 	}
 	public static class SearchTypeNameRequestor extends TypeNameRequestor {
-		ArrayList<String> results = new ArrayList<>();
+		ArrayList<String> results = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		public void acceptType(int modifiers, char[] packageName, char[] simpleTypeName, char[][] enclosingTypeNames, String path) {
 			char[] typeName =
 				CharOperation.concat(
@@ -183,11 +183,11 @@ public class SearchTests extends ModifyingResourceTests implements IJavaSearchCo
 			String[] strings = new String[length];
 			this.results.toArray(strings);
 			org.eclipse.jdt.internal.core.util.Util.sort(strings);
-			StringBuilder buffer = new StringBuilder(100);
-			for (int i = 0; i < length; i++){
-				buffer.append(strings[i]);
+			StringBuilder buffer = new StringBuilder(100); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			for (int i = 0; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append(strings[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (i != length-1) {
-					buffer.append('\n');
+					buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
 			return buffer.toString();
@@ -196,11 +196,11 @@ public class SearchTests extends ModifyingResourceTests implements IJavaSearchCo
 			int length = this.results.size();
 			String[] strings = new String[length];
 			this.results.toArray(strings);
-			StringBuilder buffer = new StringBuilder(100);
-			for (int i = 0; i < length; i++){
-				buffer.append(strings[i]);
+			StringBuilder buffer = new StringBuilder(100); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			for (int i = 0; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append(strings[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (i != length-1) {
-					buffer.append('\n');
+					buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
 			return buffer.toString();
@@ -237,14 +237,14 @@ public class SearchTests extends ModifyingResourceTests implements IJavaSearchCo
 		}
 		public void runAndSuspend(IWorkspaceRunnable runnable) throws Semaphore.TimeOutException, CoreException {
 	 		IndexManager indexManager = JavaModelManager.getIndexManager();
-	 		while(indexManager.isEnabled()) {
+	 		while(indexManager.isEnabled()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	 			indexManager.disable();
 	 		}
 			if (runnable != null) {
 				runnable.run(null);
 			}
 			indexManager.request(this);
-			while(!indexManager.isEnabled()) {
+			while(!indexManager.isEnabled()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	 			indexManager.enable();
 	 		}
 			this.startingSem.acquire(30000); // wait for job to start (wait 30s max)
@@ -275,7 +275,7 @@ protected void assertAllTypes(String expected) throws JavaModelException {
 protected void assertAllTypes(String message, IJavaProject project, String expected) throws JavaModelException {
 	assertAllTypes(message, project, WAIT_UNTIL_READY_TO_SEARCH, null/* no progress monitor*/, expected);
 }
-protected void assertAllTypes(String message, IJavaProject project, int waitingPolicy, IProgressMonitor progressMonitor, String[] expected) throws JavaModelException {
+protected void assertAllTypes(String message, IJavaProject project, int waitingPolicy, IProgressMonitor progressMonitor, String[] expected) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaSearchScope scope =
 		project == null ?
 			SearchEngine.createWorkspaceScope() :
@@ -300,7 +300,7 @@ protected void assertAllTypes(String message, IJavaProject project, int waitingP
 		expected,
 		requestor.results.toArray(new String[requestor.results.size()]));
 }
-protected void assertAllTypes(String message, IJavaProject project, int waitingPolicy, IProgressMonitor progressMonitor, String expected) throws JavaModelException {
+protected void assertAllTypes(String message, IJavaProject project, int waitingPolicy, IProgressMonitor progressMonitor, String expected) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaSearchScope scope =
 		project == null ?
 			SearchEngine.createWorkspaceScope() :
@@ -340,7 +340,7 @@ protected void assertPattern(String expected, SearchPattern actualPattern) {
 protected void assertValidMatchRule(String pattern, int rule) {
 	assertValidMatchRule(pattern, rule, rule);
 }
-protected void assertValidMatchRule(String pattern, int rule, int expected) {
+protected void assertValidMatchRule(String pattern, int rule, int expected) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int validated = SearchPattern.validateMatchRule(pattern, rule);
 	String givenRule = BasicSearchEngine.getMatchRuleString(rule);
 	String validatedRule = BasicSearchEngine.getMatchRuleString(validated);
@@ -356,10 +356,10 @@ protected void assertValidMatchRule(String pattern, int rule, int expected) {
 		System.out.print("		SearchPattern.");
 		System.out.print(validatedRule);
 		System.out.println(");");
-		assertEquals(pattern+"' does not match expected match rule!", expectedRule, validatedRule);
+		assertEquals(pattern+"' does not match expected match rule!", expectedRule, validatedRule); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void setUpSuite() throws Exception {
 	super.setUpSuite();
 	createJavaProject("P");
@@ -391,7 +391,7 @@ public void tearDownSuite() throws Exception {
  * Ensure that changing the classpath in the middle of reindexing
  * a project causes another request to reindex.
  */
-public void testChangeClasspath() throws CoreException, TimeOutException {
+public void testChangeClasspath() throws CoreException, TimeOutException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	boolean indexDisabled = isIndexDisabledForTest();
 	if(indexDisabled) {
 		enableIndexer();
@@ -399,9 +399,9 @@ public void testChangeClasspath() throws CoreException, TimeOutException {
 	WaitingJob job = new WaitingJob();
 	try {
 		// setup: suspend indexing and create a project (prj=src) with one cu
-		job.runAndSuspend(new IWorkspaceRunnable() {
+		job.runAndSuspend(new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 			public void run(IProgressMonitor monitor) throws CoreException {
-				JavaCore.run(new IWorkspaceRunnable() {
+				JavaCore.run(new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 					public void run(IProgressMonitor monitor2) throws CoreException {
 						createJavaProject("P1");
 						createFile(
@@ -440,7 +440,7 @@ public void testChangeClasspath() throws CoreException, TimeOutException {
  * Ensure that removing a project source folder and adding another source folder removes the existing cus from the index
  * (regression test for bug 73356 Index not updated after adding a source folder
  */
-public void testChangeClasspath2() throws CoreException {
+public void testChangeClasspath2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		final IJavaProject project = createJavaProject("P1", new String[] {""}, "bin");
 		createFile(
@@ -488,7 +488,7 @@ public void testChangeClasspath2() throws CoreException {
 			x.y.Foo
 			x.y.I"""
 		);
-		getWorkspace().run(new IWorkspaceRunnable() {
+		getWorkspace().run(new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 			public void run(IProgressMonitor monitor) throws CoreException {
 				createFolder("/P1/src");
 				project.setRawClasspath(createClasspath(new String[] {"/P1/src"}, false, false), null);
@@ -542,17 +542,17 @@ public void testChangeClasspath2() throws CoreException {
  * Ensure that performing a concurrent job while indexing a jar doesn't use the old index.
  * (regression test for bug 35306 Index update request can be incorrectly handled)
  */
-public void testConcurrentJob() throws Exception {
+public void testConcurrentJob() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	WaitingJob job = new WaitingJob();
 	final String library = "jclMin" + CompilerOptions.getFirstSupportedJavaVersion() + ".jar";
 	try {
 		// setup: suspend indexing and create a project with one empty jar on its classpath
-		job.runAndSuspend(new IWorkspaceRunnable() {
+		job.runAndSuspend(new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 			public void run(IProgressMonitor monitor) throws CoreException {
-				JavaCore.run(new IWorkspaceRunnable() {
+				JavaCore.run(new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 					public void run(IProgressMonitor monitor2) throws CoreException {
-						createJavaProject("P1", new String[] {}, new String[] {"/P1/" + library}, "bin");
-						createFile("/P1/" + library, EMPTY_JAR);
+						createJavaProject("P1", new String[] {}, new String[] {"/P1/" + library}, "bin"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+						createFile("/P1/" + library, EMPTY_JAR); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 				}, monitor);
 			}
@@ -565,7 +565,7 @@ public void testConcurrentJob() throws Exception {
 		final WaitUntilReadyMonitor monitor = new WaitUntilReadyMonitor();
 		AtomicReference<Exception> ex = new AtomicReference<>();
 		Thread thread = new Thread() {
-			@Override
+			@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			public void run() {
 				try {
 					assertAllTypes(
@@ -601,7 +601,7 @@ public void testConcurrentJob() throws Exception {
 		monitor.sem.acquire(30000); // wait 30s max
 
 		// change jar contents
-		getFile("/P1/" + library).setContents(new FileInputStream(getExternalJCLPathString()), IResource.NONE, null);
+		getFile("/P1/" + library).setContents(new FileInputStream(getExternalJCLPathString()), IResource.NONE, null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			// setContents closes the stream
 
 		// resume waiting job
@@ -625,7 +625,7 @@ public void testConcurrentJob() throws Exception {
  * waiting policy doesn't throw a NullPointerException but an OperationCanceledException.
  * (regression test for bug 33571 SearchEngine.searchAllTypeNames: NPE when passing null as progress monitor)
  */
- public void testNullProgressMonitor() throws CoreException, TimeOutException {
+ public void testNullProgressMonitor() throws CoreException, TimeOutException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	WaitingJob job = new WaitingJob();
  	try {
  		job.suspend();
@@ -672,10 +672,10 @@ public void testConcurrentJob() throws Exception {
  * from index
  * (regression test for bug 32607 Removing outer folder removes nested folder's cus from index)
  */
-public void testRemoveOuterFolder() throws CoreException {
+public void testRemoveOuterFolder() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// setup: one cu in a nested source folder
-		JavaCore.run(new IWorkspaceRunnable() {
+		JavaCore.run(new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 			public void run(IProgressMonitor monitor) throws CoreException {
 				IJavaProject project = createJavaProject("P1");
 				project.setRawClasspath(
@@ -1210,7 +1210,7 @@ public void testSearchPatternCreation36() {
 /**
  * Fine grain patterns
  */
-public void testSearchPatternCreation37() {
+public void testSearchPatternCreation37() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int allFlags = 0xFFFFFFF0;
 	SearchPattern searchPattern = createPattern("*", TYPE, allFlags, true);
 	assertPattern(

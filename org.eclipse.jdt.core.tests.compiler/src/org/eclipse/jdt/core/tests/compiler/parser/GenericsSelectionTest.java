@@ -20,7 +20,7 @@ public GenericsSelectionTest(String testName) {
 /*
  * Selection at specific location
  */
-public void test0001() {
+public void test0001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		\n" +
@@ -57,7 +57,7 @@ public void test0001() {
 /*
  * Selection at specific location
  */
-public void test0002() {
+public void test0002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		\n" +
@@ -98,7 +98,7 @@ public void test0002() {
 /*
  * Selection at specific location
  */
-public void test0003() {
+public void test0003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		\n" +
@@ -135,7 +135,7 @@ public void test0003() {
 /*
  * Selection at specific location
  */
-public void test0004() {
+public void test0004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		\n" +
@@ -176,7 +176,7 @@ public void test0004() {
 /*
  * Selection at specific location
  */
-public void test0005() {
+public void test0005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		\n" +
@@ -213,7 +213,7 @@ public void test0005() {
 /*
  * Selection at specific location
  */
-public void test0006() {
+public void test0006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		\n" +
@@ -254,7 +254,7 @@ public void test0006() {
 /*
  * Selection at specific location
  */
-public void test0007() {
+public void test0007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		\n" +
@@ -291,7 +291,7 @@ public void test0007() {
 /*
  * Selection at specific location
  */
-public void test0008() {
+public void test0008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		\n" +
@@ -332,7 +332,7 @@ public void test0008() {
 /*
  * Selection of simple name
  */
-public void test0009() {
+public void test0009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		\n" +
@@ -369,7 +369,7 @@ public void test0009() {
 /*
  * Selection of simple name
  */
-public void test0010() {
+public void test0010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		\n" +
@@ -410,7 +410,7 @@ public void test0010() {
 /*
  * Selection of qualified name
  */
-public void test0011() {
+public void test0011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		\n" +
@@ -447,7 +447,7 @@ public void test0011() {
 /*
  * Selection of qualified name
  */
-public void test0012() {
+public void test0012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		\n" +
@@ -488,7 +488,7 @@ public void test0012() {
 /*
  * Selection of qualified name
  */
-public void test0013() {
+public void test0013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		\n" +
@@ -525,7 +525,7 @@ public void test0013() {
 /*
  * Selection of qualified name
  */
-public void test0014() {
+public void test0014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		\n" +
@@ -566,7 +566,7 @@ public void test0014() {
 /*
  * Selection of qualified name
  */
-public void test0015() {
+public void test0015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		\n" +
@@ -603,7 +603,7 @@ public void test0015() {
 /*
  * Selection of qualified name
  */
-public void test0016() {
+public void test0016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		\n" +
@@ -641,7 +641,7 @@ public void test0016() {
 		expectedReplacedSource,
 		testName);
 }
-public void test0017() {
+public void test0017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		\n" +
@@ -681,7 +681,7 @@ public void test0017() {
 		expectedReplacedSource,
 		testName);
 }
-public void test0018() {
+public void test0018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X <U>{		\n" +
@@ -721,7 +721,7 @@ public void test0018() {
 		expectedReplacedSource,
 		testName);
 }
-public void test0019() {
+public void test0019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		\n" +
@@ -767,7 +767,7 @@ public void test0019() {
 		expectedReplacedSource,
 		testName);
 }
-public void test0020() {
+public void test0020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		\n" +
@@ -813,7 +813,7 @@ public void test0020() {
 		expectedReplacedSource,
 		testName);
 }
-public void test0021() {
+public void test0021() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X<V> {		\n" +
@@ -862,7 +862,7 @@ public void test0021() {
 /*
  * Selection of simple name
  */
-public void test0022() {
+public void test0022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		\n" +
@@ -897,7 +897,7 @@ public void test0022() {
 		testName);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=209639
-public void test0023() {
+public void test0023() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"package test;\n" +
@@ -938,7 +938,7 @@ public void test0023() {
 		testName);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=255142
-public void test0024() {
+public void test0024() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.util.List;\n" +

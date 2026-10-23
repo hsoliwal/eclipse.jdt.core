@@ -88,7 +88,7 @@ public class TokenScanner {
 	 */
 	public TerminalToken readNext(boolean ignoreComments) throws CoreException {
 		TerminalToken curr= TerminalToken.TokenNameNotAToken;
-		do {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				curr= this.scanner.getNextToken();
 				if (curr == TerminalToken.TokenNameEOF) {
@@ -148,7 +148,7 @@ public class TokenScanner {
 	 */
 	public void readToToken(TerminalToken tok) throws CoreException {
 		TerminalToken curr= TerminalToken.TokenNameNotAToken;
-		do {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			curr= readNext(false);
 		} while (curr != tok);
 	}
@@ -203,7 +203,7 @@ public class TokenScanner {
 		setOffset(startOffset);
 		int res= startOffset;
 		TerminalToken curr= readNext(false);
-		while (curr != token) {
+		while (curr != token) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			res= getCurrentEndOffset();
 			curr= readNext(false);
 		}
@@ -215,7 +215,7 @@ public class TokenScanner {
 			|| token == TerminalToken.TokenNameCOMMENT_LINE;
 	}
 
-	public static boolean isModifier(TerminalToken token) {
+	public static boolean isModifier(TerminalToken token) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch (token) {
 			case TokenNamepublic:
 			case TokenNameprotected:

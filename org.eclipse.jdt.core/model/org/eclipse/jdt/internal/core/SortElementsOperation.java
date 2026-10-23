@@ -44,7 +44,7 @@ import org.eclipse.text.edits.TextEditGroup;
  *
  * @since 2.1
  */
-@SuppressWarnings({"rawtypes", "unchecked"})
+@SuppressWarnings({"rawtypes", "unchecked"}) //FLLDCIM: MARK — T09  IMPLEMENTS
 public class SortElementsOperation extends JavaModelOperation {
 	public static final String CONTAINS_MALFORMED_NODES = "malformed"; //$NON-NLS-1$
 
@@ -85,7 +85,7 @@ public class SortElementsOperation extends JavaModelOperation {
 	/**
 	 * @see org.eclipse.jdt.internal.core.JavaModelOperation#executeOperation()
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void executeOperation() throws JavaModelException {
 		try {
 			beginTask(Messages.operation_sortelements, getMainAmountOfWork());
@@ -110,7 +110,7 @@ public class SortElementsOperation extends JavaModelOperation {
 	 * Calculates the required text edits to sort the <code>unit</code>
 	 * @return the edit or null if no sorting is required
 	 */
-	public TextEdit calculateEdit(org.eclipse.jdt.core.dom.CompilationUnit unit, TextEditGroup group) throws JavaModelException {
+	public TextEdit calculateEdit(org.eclipse.jdt.core.dom.CompilationUnit unit, TextEditGroup group) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.elementsToProcess.length != 1)
 			throw new JavaModelException(new JavaModelStatus(IJavaModelStatusConstants.NO_ELEMENTS_TO_PROCESS));
 
@@ -137,7 +137,7 @@ public class SortElementsOperation extends JavaModelOperation {
 	/**
 	 * Method processElement.
 	 */
-	private String processElement(ICompilationUnit unit, char[] source) {
+	private String processElement(ICompilationUnit unit, char[] source) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Document document = new Document(new String(source));
 		CompilerOptions options = new CompilerOptions(unit.getJavaProject().getOptions(true));
 		ASTParser parser = ASTParser.newParser(this.apiLevel);
@@ -156,7 +156,7 @@ public class SortElementsOperation extends JavaModelOperation {
 		RangeMarker[] markers = null;
 		if (this.positions != null) {
 			markers = new RangeMarker[this.positions.length];
-			for (int i = 0, max = this.positions.length; i < max; i++) {
+			for (int i = 0, max = this.positions.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				markers[i]= new RangeMarker(this.positions[i], 0);
 				insert(edits, markers[i]);
 			}
@@ -164,7 +164,7 @@ public class SortElementsOperation extends JavaModelOperation {
 		try {
 			edits.apply(document, TextEdit.UPDATE_REGIONS);
 			if (this.positions != null) {
-				for (int i= 0, max = markers.length; i < max; i++) {
+				for (int i= 0, max = markers.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					this.positions[i]= markers[i].getOffset();
 				}
 			}
@@ -175,13 +175,13 @@ public class SortElementsOperation extends JavaModelOperation {
 	}
 
 
-	private ASTRewrite sortCompilationUnit(org.eclipse.jdt.core.dom.CompilationUnit ast, final TextEditGroup group) {
+	private ASTRewrite sortCompilationUnit(org.eclipse.jdt.core.dom.CompilationUnit ast, final TextEditGroup group) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ast.accept(new ASTVisitor() {
 			@Override
 			public boolean visit(org.eclipse.jdt.core.dom.CompilationUnit compilationUnit) {
 				List types = compilationUnit.types();
 				boolean contains_malformed_nodes = false;
-				for (Object type : types) {
+				for (Object type : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					AbstractTypeDeclaration typeDeclaration = (AbstractTypeDeclaration) type;
 					typeDeclaration.setProperty(CompilationUnitSorter.RELATIVE_ORDER, Integer.valueOf(typeDeclaration.getStartPosition()));
 					contains_malformed_nodes |= isMalformed(typeDeclaration);
@@ -193,7 +193,7 @@ public class SortElementsOperation extends JavaModelOperation {
 			public boolean visit(AnnotationTypeDeclaration annotationTypeDeclaration) {
 				List bodyDeclarations = annotationTypeDeclaration.bodyDeclarations();
 				boolean contains_malformed_nodes = false;
-				for (Object decl : bodyDeclarations) {
+				for (Object decl : bodyDeclarations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					BodyDeclaration bodyDeclaration = (BodyDeclaration) decl;
 					bodyDeclaration.setProperty(CompilationUnitSorter.RELATIVE_ORDER, Integer.valueOf(bodyDeclaration.getStartPosition()));
 					contains_malformed_nodes |= isMalformed(bodyDeclaration);
@@ -206,7 +206,7 @@ public class SortElementsOperation extends JavaModelOperation {
 			public boolean visit(AnonymousClassDeclaration anonymousClassDeclaration) {
 				List bodyDeclarations = anonymousClassDeclaration.bodyDeclarations();
 				boolean contains_malformed_nodes = false;
-				for (Object decl : bodyDeclarations) {
+				for (Object decl : bodyDeclarations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					BodyDeclaration bodyDeclaration = (BodyDeclaration) decl;
 					bodyDeclaration.setProperty(CompilationUnitSorter.RELATIVE_ORDER, Integer.valueOf(bodyDeclaration.getStartPosition()));
 					contains_malformed_nodes |= isMalformed(bodyDeclaration);
@@ -219,7 +219,7 @@ public class SortElementsOperation extends JavaModelOperation {
 			public boolean visit(TypeDeclaration typeDeclaration) {
 				List bodyDeclarations = typeDeclaration.bodyDeclarations();
 				boolean contains_malformed_nodes = false;
-				for (Object decl : bodyDeclarations) {
+				for (Object decl : bodyDeclarations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					BodyDeclaration bodyDeclaration = (BodyDeclaration) decl;
 					bodyDeclaration.setProperty(CompilationUnitSorter.RELATIVE_ORDER, Integer.valueOf(bodyDeclaration.getStartPosition()));
 					contains_malformed_nodes |= isMalformed(bodyDeclaration);
@@ -232,13 +232,13 @@ public class SortElementsOperation extends JavaModelOperation {
 			public boolean visit(EnumDeclaration enumDeclaration) {
 				List bodyDeclarations = enumDeclaration.bodyDeclarations();
 				boolean contains_malformed_nodes = false;
-				for (Object decl : bodyDeclarations) {
+				for (Object decl : bodyDeclarations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					BodyDeclaration bodyDeclaration = (BodyDeclaration) decl;
 					bodyDeclaration.setProperty(CompilationUnitSorter.RELATIVE_ORDER, Integer.valueOf(bodyDeclaration.getStartPosition()));
 					contains_malformed_nodes |= isMalformed(bodyDeclaration);
 				}
 				List enumConstants = enumDeclaration.enumConstants();
-				for (Object enumConstant : enumConstants) {
+				for (Object enumConstant : enumConstants) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					EnumConstantDeclaration enumConstantDeclaration = (EnumConstantDeclaration) enumConstant;
 					enumConstantDeclaration.setProperty(CompilationUnitSorter.RELATIVE_ORDER, Integer.valueOf(enumConstantDeclaration.getStartPosition()));
 					contains_malformed_nodes |= isMalformed(enumConstantDeclaration);
@@ -257,11 +257,11 @@ public class SortElementsOperation extends JavaModelOperation {
 				if (elements.size() == 0)
 					return;
 
-				final List myCopy = new ArrayList();
+				final List myCopy = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				myCopy.addAll(elements);
-				Collections.sort(myCopy, SortElementsOperation.this.comparator);
+				Collections.sort(myCopy, SortElementsOperation.this.comparator); //FLLDCIM: MARK — M16 SORT_LANE CALL
 
-				for (int i = 0; i < elements.size(); i++) {
+				for (int i = 0; i < elements.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					ASTNode oldNode= (ASTNode) elements.get(i);
 					ASTNode newNode= (ASTNode) myCopy.get(i);
 					if (oldNode != newNode) {
@@ -351,14 +351,14 @@ public class SortElementsOperation extends JavaModelOperation {
 		return JavaModelStatus.VERIFIED_OK;
 	}
 
-	public static void insert(TextEdit parent, TextEdit edit) {
+	public static void insert(TextEdit parent, TextEdit edit) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!parent.hasChildren()) {
 			parent.addChild(edit);
 			return;
 		}
 		TextEdit[] children= parent.getChildren();
 		// First dive down to find the right parent.
-		for (TextEdit child : children) {
+		for (TextEdit child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (covers(child, edit)) {
 				insert(child, edit);
 				return;
@@ -366,7 +366,7 @@ public class SortElementsOperation extends JavaModelOperation {
 		}
 		// We have the right parent. Now check if some of the children have to
 		// be moved under the new edit since it is covering it.
-		for (int i= children.length - 1; i >= 0; i--) {
+		for (int i= children.length - 1; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TextEdit child= children[i];
 			if (covers(edit, child)) {
 				parent.removeChild(i);

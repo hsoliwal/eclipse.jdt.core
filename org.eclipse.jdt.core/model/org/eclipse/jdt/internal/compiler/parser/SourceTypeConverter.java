@@ -116,7 +116,7 @@ public class SourceTypeConverter extends TypeConverter {
 	 * The argument types are then all grouped in the same unit. The argument types must
 	 * at least contain one type.
 	 */
-	private CompilationUnitDeclaration convert(ISourceType[] sourceTypes, CompilationResult compilationResult) throws JavaModelException {
+	private CompilationUnitDeclaration convert(ISourceType[] sourceTypes, CompilationResult compilationResult) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.unit = new CompilationUnitDeclaration(this.problemReporter, compilationResult, 0);
 		// not filled at this point
 
@@ -151,7 +151,7 @@ public class SourceTypeConverter extends TypeConverter {
 		IImportDeclaration[] importDeclarations = topLevelTypeInfo.getHandle().getCompilationUnit().getImports();
 		int importCount = importDeclarations.length;
 		this.unit.imports = new ImportReference[importCount];
-		for (int i = 0; i < importCount; i++) {
+		for (int i = 0; i < importCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ImportDeclaration importDeclaration = (ImportDeclaration) importDeclarations[i];
 			ISourceImport sourceImport = (ISourceImport) importDeclaration.getElementInfo();
 			String nameWithoutStar = importDeclaration.getNameWithoutStar();
@@ -171,7 +171,7 @@ public class SourceTypeConverter extends TypeConverter {
 			 * convert(...) when the source is syntactically incorrect and the parser is flushing the unit's types.
 			 * See https://bugs.eclipse.org/bugs/show_bug.cgi?id=97466
 			 */
-			for (int i = 0; i < typeCount; i++) {
+			for (int i = 0; i < typeCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				SourceTypeElementInfo typeInfo = (SourceTypeElementInfo) sourceTypes[i];
 				types[i] = convert((SourceType) typeInfo.getHandle(), compilationResult);
 			}
@@ -196,7 +196,7 @@ public class SourceTypeConverter extends TypeConverter {
 	/*
 	 * Convert an initializerinfo into a parsed initializer declaration
 	 */
-	private Initializer convert(InitializerElementInfo initializerInfo, CompilationResult compilationResult) throws JavaModelException {
+	private Initializer convert(InitializerElementInfo initializerInfo, CompilationResult compilationResult) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		Block block = new Block(0);
 		Initializer initializer = new Initializer(block, ClassFileConstants.AccDefault);
@@ -213,7 +213,7 @@ public class SourceTypeConverter extends TypeConverter {
 		int typesLength = children.length;
 		if (typesLength > 0) {
 			Statement[] statements = new Statement[typesLength];
-			for (int i = 0; i < typesLength; i++) {
+			for (int i = 0; i < typesLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				SourceType type = (SourceType) children[i];
 				TypeDeclaration localType = convert(type, compilationResult);
 				if ((localType.bits & ASTNode.IsAnonymousType) != 0) {
@@ -236,7 +236,7 @@ public class SourceTypeConverter extends TypeConverter {
 	/*
 	 * Convert a record component source element into a parsed record component declaration
 	 */
-	private RecordComponent convertRecordComponent(SourceField componentHandle,
+	private RecordComponent convertRecordComponent(SourceField componentHandle, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 										TypeDeclaration type,
 										CompilationResult compilationResult) throws JavaModelException {
 
@@ -264,7 +264,7 @@ public class SourceTypeConverter extends TypeConverter {
 	/*
 	 * Convert a field source element into a parsed field declaration
 	 */
-	private FieldDeclaration convert(SourceField fieldHandle, TypeDeclaration type, CompilationResult compilationResult) throws JavaModelException {
+	private FieldDeclaration convert(SourceField fieldHandle, TypeDeclaration type, CompilationResult compilationResult) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		SourceFieldElementInfo fieldInfo = (SourceFieldElementInfo) fieldHandle.getElementInfo();
 		FieldDeclaration field = new FieldDeclaration();
@@ -312,7 +312,7 @@ public class SourceTypeConverter extends TypeConverter {
 				field.initialization = initializer;
 				Expression[] expressions = new Expression[childrenLength];
 				initializer.expressions = expressions;
-				for (int i = 0; i < childrenLength; i++) {
+				for (int i = 0; i < childrenLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					expressions[i] = convert(children[i], isEnumConstant ? field : null, compilationResult);
 				}
 			}
@@ -338,7 +338,7 @@ public class SourceTypeConverter extends TypeConverter {
 	/*
 	 * Convert a method source element into a parsed method/constructor declaration
 	 */
-	private AbstractMethodDeclaration convert(SourceMethod methodHandle, SourceMethodElementInfo methodInfo, CompilationResult compilationResult) throws JavaModelException {
+	private AbstractMethodDeclaration convert(SourceMethod methodHandle, SourceMethodElementInfo methodInfo, CompilationResult compilationResult) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		AbstractMethodDeclaration method;
 
 		/* only source positions available */
@@ -359,7 +359,7 @@ public class SourceTypeConverter extends TypeConverter {
 			if (parameterCount > 0) { // method's type parameters must be null if no type parameter
 				char[][][] typeParameterBounds = methodInfo.getTypeParameterBounds();
 				typeParams = new TypeParameter[parameterCount];
-				for (int i = 0; i < parameterCount; i++) {
+				for (int i = 0; i < parameterCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					typeParams[i] = createTypeParameter(typeParameterNames[i], typeParameterBounds[i], start, end);
 				}
 			}
@@ -430,7 +430,7 @@ public class SourceTypeConverter extends TypeConverter {
 			ILocalVariable[] parameters = methodHandle.getParameters();
 			long position = ((long) start << 32) + end;
 			method.arguments = new Argument[argumentCount];
-			for (int i = 0; i < argumentCount; i++) {
+			for (int i = 0; i < argumentCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				TypeReference typeReference = createTypeReference(argumentTypeSignatures[i], start, end);
 				if (isVarargs && i == argumentCount-1) {
 					typeReference.bits |= ASTNode.IsVarArgs;
@@ -453,7 +453,7 @@ public class SourceTypeConverter extends TypeConverter {
 		int exceptionCount = exceptionTypeNames == null ? 0 : exceptionTypeNames.length;
 		if (exceptionCount > 0) {
 			method.thrownExceptions = new TypeReference[exceptionCount];
-			for (int i = 0; i < exceptionCount; i++) {
+			for (int i = 0; i < exceptionCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				method.thrownExceptions[i] =
 					createTypeReference(exceptionTypeNames[i], start, end);
 			}
@@ -465,7 +465,7 @@ public class SourceTypeConverter extends TypeConverter {
 			int typesLength = children.length;
 			if (typesLength != 0) {
 				Statement[] statements = new Statement[typesLength];
-				for (int i = 0; i < typesLength; i++) {
+				for (int i = 0; i < typesLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					SourceType type = (SourceType) children[i];
 					TypeDeclaration localType = convert(type, compilationResult);
 					if ((localType.bits & ASTNode.IsAnonymousType) != 0) {
@@ -489,7 +489,7 @@ public class SourceTypeConverter extends TypeConverter {
 	/*
 	 * Convert a source element type into a parsed type declaration
 	 */
-	private TypeDeclaration convert(SourceType typeHandle, CompilationResult compilationResult) throws JavaModelException {
+	private TypeDeclaration convert(SourceType typeHandle, CompilationResult compilationResult) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		SourceTypeElementInfo typeInfo = (SourceTypeElementInfo) typeHandle.getElementInfo();
 		if (typeInfo.isAnonymousMember())
 			throw new AnonymousMemberFound();
@@ -499,7 +499,7 @@ public class SourceTypeConverter extends TypeConverter {
 			type.modifiers |= ExtraCompilerModifiers.AccRecord;
 			IField[] recordComponents = typeHandle.getRecordComponents();
 			type.recordComponents = new RecordComponent[recordComponents.length];
-			for (int i = 0, length = recordComponents.length; i < length; i++) {
+			for (int i = 0, length = recordComponents.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				type.recordComponents[i] = convertRecordComponent((SourceField)recordComponents[i], type, compilationResult);
 			}
 		}
@@ -541,7 +541,7 @@ public class SourceTypeConverter extends TypeConverter {
 			int parameterCount = typeParameterNames.length;
 			char[][][] typeParameterBounds = typeInfo.getTypeParameterBounds();
 			type.typeParameters = new TypeParameter[parameterCount];
-			for (int i = 0; i < parameterCount; i++) {
+			for (int i = 0; i < parameterCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				type.typeParameters[i] = createTypeParameter(typeParameterNames[i], typeParameterBounds[i], start, end);
 			}
 		}
@@ -554,7 +554,7 @@ public class SourceTypeConverter extends TypeConverter {
 		int interfaceCount = interfaceNames == null ? 0 : interfaceNames.length;
 		if (interfaceCount > 0) {
 			type.superInterfaces = new TypeReference[interfaceCount];
-			for (int i = 0; i < interfaceCount; i++) {
+			for (int i = 0; i < interfaceCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				type.superInterfaces[i] = createTypeReference(interfaceNames[i], start, end, true /* include generics */);
 			}
 		}
@@ -562,7 +562,7 @@ public class SourceTypeConverter extends TypeConverter {
 		int permittedSubtypeCount = permittedSubtypeNames == null ? 0 : permittedSubtypeNames.length;
 		if (permittedSubtypeCount > 0) {
 			type.permittedTypes = new TypeReference[permittedSubtypeCount];
-			for (int i = 0; i < permittedSubtypeCount; i++) {
+			for (int i = 0; i < permittedSubtypeCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				type.permittedTypes[i] = createTypeReference(permittedSubtypeNames[i], start, end, true /* include generics */);
 			}
 		}
@@ -571,7 +571,7 @@ public class SourceTypeConverter extends TypeConverter {
 			SourceType[] sourceMemberTypes = typeInfo.getMemberTypeHandles();
 			int sourceMemberTypeCount = sourceMemberTypes.length;
 			type.memberTypes = new TypeDeclaration[sourceMemberTypeCount];
-			for (int i = 0; i < sourceMemberTypeCount; i++) {
+			for (int i = 0; i < sourceMemberTypeCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				type.memberTypes[i] = convert(sourceMemberTypes[i], compilationResult);
 				type.memberTypes[i].enclosingType = type;
 			}
@@ -593,11 +593,11 @@ public class SourceTypeConverter extends TypeConverter {
 		int length = initializerCount + sourceFieldCount;
 		if (length > 0) {
 			type.fields = new FieldDeclaration[length];
-			for (int i = 0; i < initializerCount; i++) {
+			for (int i = 0; i < initializerCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				type.fields[i] = convert(initializers[i], compilationResult);
 			}
 			int index = 0;
-			for (int i = initializerCount; i < length; i++) {
+			for (int i = initializerCount; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				type.fields[i] = convert((SourceField) sourceFields[index++], type, compilationResult);
 			}
 		}
@@ -618,7 +618,7 @@ public class SourceTypeConverter extends TypeConverter {
 			boolean isAbstract = kind == TypeDeclaration.INTERFACE_DECL || kind == TypeDeclaration.ANNOTATION_TYPE_DECL;
 			if (!isAbstract) {
 				extraConstructor = needConstructor ? 1 : 0;
-				for (int i = 0; i < sourceMethodCount; i++) {
+				for (int i = 0; i < sourceMethodCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (sourceMethods[i].isConstructor()) {
 						if (needConstructor) {
 							extraConstructor = 0; // Does not need the extra constructor since one constructor already exists.
@@ -637,7 +637,7 @@ public class SourceTypeConverter extends TypeConverter {
 			}
 			int index = 0;
 			boolean hasAbstractMethods = false;
-			for (int i = 0; i < sourceMethodCount; i++) {
+			for (int i = 0; i < sourceMethodCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				SourceMethod sourceMethod = sourceMethods[i];
 				SourceMethodElementInfo methodInfo = (SourceMethodElementInfo)sourceMethod.getElementInfo();
 				boolean isConstructor = methodInfo.isConstructor();
@@ -658,14 +658,14 @@ public class SourceTypeConverter extends TypeConverter {
 		return type;
 	}
 
-	private Annotation[] convertAnnotations(IAnnotatable element) throws JavaModelException {
+	private Annotation[] convertAnnotations(IAnnotatable element) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IAnnotation[] annotations = element.getAnnotations();
 		int length = annotations.length;
 		Annotation[] astAnnotations = new Annotation[length];
 		if (length > 0) {
 			char[] cuSource = getSource();
 			int recordedAnnotations = 0;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ISourceRange positions = annotations[i].getSourceRange();
 				int start = positions.getOffset();
 				int end = start + positions.getLength();

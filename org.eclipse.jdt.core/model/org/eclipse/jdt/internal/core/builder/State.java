@@ -105,12 +105,12 @@ protected State(JavaBuilder javaBuilder) {
 	this.binaryLocations = javaBuilder.nameEnvironment.binaryLocations;
 	this.testSourceLocations = javaBuilder.testNameEnvironment.sourceLocations;
 	this.testBinaryLocations = javaBuilder.testNameEnvironment.binaryLocations;
-	this.references = new LinkedHashMap<>(7);
+	this.references = new LinkedHashMap<>(7); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
 	this.typeLocators = new TypeLocators();
 
 	this.buildNumber = 0; // indicates a full build
 	this.lastStructuralBuildTime = computeStructuralBuildTime(javaBuilder.lastState == null ? 0 : javaBuilder.lastState.lastStructuralBuildTime);
-	this.structuralBuildTimes = new HashMap<>();
+	this.structuralBuildTimes = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 }
 
 long computeStructuralBuildTime(long previousTime) {
@@ -127,14 +127,14 @@ void copyFrom(State lastState) {
 	this.lastStructuralBuildTime = lastState.lastStructuralBuildTime;
 	this.structuralBuildTimes = lastState.structuralBuildTimes;
 
-	this.references = new LinkedHashMap<>(lastState.references);
+	this.references = new LinkedHashMap<>(lastState.references); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
 	this.typeLocators = new TypeLocators(lastState.typeLocators);
 }
 
 /**
  * Compares this build state with other one in terms of persistence (transient data is ignored)
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public boolean equals(Object obj) {
 	if (this == obj) {
 		return true;
@@ -231,7 +231,7 @@ void removePackage(IResourceDelta sourceDelta, int release) {
 	switch(resource.getType()) {
 		case IResource.FOLDER :
 			IResourceDelta[] children = sourceDelta.getAffectedChildren();
-			for (IResourceDelta child : children)
+			for (IResourceDelta child : children) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				removePackage(child, release);
 			return;
 		case IResource.FILE :
@@ -245,14 +245,14 @@ void removeQualifiedTypeName(String qualifiedTypeNameToRemove) {
 	this.typeLocators.removeLocator(qualifiedTypeNameToRemove);
 }
 
-static State read(IProject project, DataInputStream input) throws IOException, CoreException {
+static State read(IProject project, DataInputStream input) throws IOException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompressedReader in = new CompressedReader(input);
 	if (JavaBuilder.DEBUG) {
-		trace("About to read state " + project.getName()); //$NON-NLS-1$
+		trace("About to read state " + project.getName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	if (VERSION != in.readByte()) {
 		if (JavaBuilder.DEBUG) {
-			trace("Found non-compatible state version... answered null for " + project.getName()); //$NON-NLS-1$
+			trace("Found non-compatible state version... answered null for " + project.getName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return null;
 	}
@@ -270,7 +270,7 @@ static State read(IProject project, DataInputStream input) throws IOException, C
 
 	ArrayList<ClasspathLocation> allLocationsForEEA = null;
 	if (JavaCore.ENABLED.equals(JavaCore.create(project).getOption(JavaCore.CORE_JAVA_BUILD_EXTERNAL_ANNOTATIONS_FROM_ALL_LOCATIONS, true))) {
-		allLocationsForEEA = new ArrayList<>(); // signals that we are collecting locations
+		allLocationsForEEA = new ArrayList<>(); // signals that we are collecting locations //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	}
 
 	newState.sourceLocations = readSourceLocations(project, in, allLocationsForEEA);
@@ -280,12 +280,12 @@ static State read(IProject project, DataInputStream input) throws IOException, C
 	newState.testBinaryLocations = readBinaryLocations(project, in, newState.testSourceLocations, allLocationsForEEA);
 
 	int length;
-	newState.structuralBuildTimes = new HashMap<>(length = in.readInt());
-	for (int i = 0; i < length; i++)
+	newState.structuralBuildTimes = new HashMap<>(length = in.readInt()); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	for (int i = 0; i < length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		newState.structuralBuildTimes.put(in.readStringUsingDictionary(), Long.valueOf(in.readLong()));
 
 	String[] internedTypeLocators = new String[length = in.readInt()];
-	for (int i = 0; i < length; i++)
+	for (int i = 0; i < length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		internedTypeLocators[i] = in.readStringUsingLast();
 	newState.typeLocators.read(in, internedTypeLocators);
 
@@ -295,58 +295,58 @@ static State read(IProject project, DataInputStream input) throws IOException, C
 	char[][] internedRootNames = ReferenceCollection.internSimpleNames(readNames(in), false /* keep well known */, false /* do not sort */);
 	char[][] internedSimpleNames = ReferenceCollection.internSimpleNames(readNames(in), false /* keep well known */, false /* do not sort */);
 	char[][][] internedQualifiedNames = new char[length = in.readInt()][][];
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int qLength = in.readInt();
 		char[][] qName = new char[qLength][];
-		for (int j = 0; j < qLength; j++)
+		for (int j = 0; j < qLength; j++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			qName[j] = internedSimpleNames[in.readIntInRange(internedSimpleNames.length)];
 		internedQualifiedNames[i] = qName;
 	}
 	internedQualifiedNames = ReferenceCollection.internQualifiedNames(internedQualifiedNames, false /* drop well known */, false /* do not sort */);
 
 	length = in.readInt();
-	newState.references = new LinkedHashMap((int) (length / 0.75 + 1));
-	for (int i = 0; i < length; i++) {
+	newState.references = new LinkedHashMap((int) (length / 0.75 + 1)); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String typeLocator = internedTypeLocators[in.readInt()];
 		ReferenceCollection collection = null;
 		switch (in.readByte()) {
 			case 1 :
 				char[][] additionalTypeNames = readNames(in);
 				char[][][] qualifiedNames = new char[in.readInt()][][];
-				for (int j = 0, m = qualifiedNames.length; j < m; j++)
+				for (int j = 0, m = qualifiedNames.length; j < m; j++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					qualifiedNames[j] = internedQualifiedNames[in.readIntInRange(internedQualifiedNames.length)];
 				char[][] simpleNames = new char[in.readInt()][];
-				for (int j = 0, m = simpleNames.length; j < m; j++)
+				for (int j = 0, m = simpleNames.length; j < m; j++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					simpleNames[j] = internedSimpleNames[in.readIntInRange(internedSimpleNames.length)];
 				char[][] rootNames = new char[in.readInt()][];
-				for (int j = 0, m = rootNames.length; j < m; j++)
+				for (int j = 0, m = rootNames.length; j < m; j++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					rootNames[j] = internedRootNames[in.readIntInRange(internedRootNames.length)];
 				collection = new AdditionalTypeCollection(additionalTypeNames, qualifiedNames, simpleNames, rootNames);
 				break;
 			case 2 :
 				char[][][] qNames = new char[in.readInt()][][];
-				for (int j = 0, m = qNames.length; j < m; j++)
+				for (int j = 0, m = qNames.length; j < m; j++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					qNames[j] = internedQualifiedNames[in.readIntInRange(internedQualifiedNames.length)];
 				char[][] sNames = new char[in.readInt()][];
-				for (int j = 0, m = sNames.length; j < m; j++)
+				for (int j = 0, m = sNames.length; j < m; j++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					sNames[j] = internedSimpleNames[in.readIntInRange(internedSimpleNames.length)];
 				char[][] rNames = new char[in.readInt()][];
-				for (int j = 0, m = rNames.length; j < m; j++)
+				for (int j = 0, m = rNames.length; j < m; j++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					rNames[j] = internedRootNames[in.readIntInRange(internedRootNames.length)];
 				collection = new ReferenceCollection(qNames, sNames, rNames);
 		}
 		newState.references.put(typeLocator, collection);
 	}
 	if (JavaBuilder.DEBUG) {
-		trace("Successfully read state for " + newState.javaProjectName); //$NON-NLS-1$
+		trace("Successfully read state for " + newState.javaProjectName); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	return newState;
 }
 
-private static ClasspathMultiDirectory[] readSourceLocations(IProject project, CompressedReader in, List<ClasspathLocation> allLocationsForEEA) throws IOException {
+private static ClasspathMultiDirectory[] readSourceLocations(IProject project, CompressedReader in, List<ClasspathLocation> allLocationsForEEA) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int length = in.readInt();
 	ClasspathMultiDirectory[] sourceLocations = new ClasspathMultiDirectory[length];
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IContainer sourceFolder = project, outputFolder = project;
 		String folderName;
 		if ((folderName = in.readStringUsingDictionary()).length() > 0) sourceFolder = project.getFolder(folderName);
@@ -369,11 +369,11 @@ private static ClasspathMultiDirectory[] readSourceLocations(IProject project, C
 	return sourceLocations;
 }
 
-private static ClasspathLocation[] readBinaryLocations(IProject project, CompressedReader in, ClasspathMultiDirectory[] sourceLocations, ArrayList<ClasspathLocation> allLocationsForEEA) throws IOException, CoreException {
+private static ClasspathLocation[] readBinaryLocations(IProject project, CompressedReader in, ClasspathMultiDirectory[] sourceLocations, ArrayList<ClasspathLocation> allLocationsForEEA) throws IOException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int length = in.readInt();
 	ClasspathLocation[] locations = new ClasspathLocation[length];
 	IWorkspaceRoot root = project.getWorkspace().getRoot();
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		byte kind = in.readByte();
 		switch (kind) {
 			case SOURCE_FOLDER :
@@ -410,7 +410,7 @@ private static ClasspathLocation[] readBinaryLocations(IProject project, Compres
 		int limitSize = in.readInt();
 		if (limitSize != 0) {
 			loc.limitModuleNames = new LinkedHashSet<>(limitSize);
-			for (int j = 0; j < limitSize; j++) {
+			for (int j = 0; j < limitSize; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				loc.limitModuleNames.add(in.readStringUsingDictionary());
 			}
 		} else {
@@ -421,7 +421,7 @@ private static ClasspathLocation[] readBinaryLocations(IProject project, Compres
 		int packageUpdatesSize = in.readInt();
 		if (packageUpdatesSize != 0) {
 			packageUpdates = updates.getList(UpdateKind.PACKAGE, true);
-			for (int j = 0; j < packageUpdatesSize; j++) {
+			for (int j = 0; j < packageUpdatesSize; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				char[] pkgName = in.readChars();
 				char[][] targets = readNames(in);
 				packageUpdates.add(new AddExports(pkgName, targets));
@@ -452,7 +452,7 @@ private static AccessRuleSet readRestriction(CompressedReader in) throws IOExcep
 	if (length == 0) return null; // no restriction specified
 	AccessRule[] accessRules = new AccessRule[length];
 	JavaModelManager manager = JavaModelManager.getJavaModelManager();
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		char[] pattern = in.readCharsUsingLast();
 		int problemId = in.readIntWithHint(PROBLEM_IDS);
 		accessRules[i] = manager.getAccessRuleForProblemId(pattern, problemId);
@@ -492,7 +492,7 @@ void wasStructurallyChanged(String typeName) {
 	}
 }
 
-void write(DataOutputStream output) throws IOException {
+void write(DataOutputStream output) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompressedWriter out=new CompressedWriter(output);
 /*
  * byte		VERSION
@@ -539,7 +539,7 @@ void write(DataOutputStream output) throws IOException {
  * int			last structural build number
 */
 	out.writeInt(this.structuralBuildTimes.size());
-	for (Entry<String, Long> entry: this.structuralBuildTimes.entrySet()) {
+	for (Entry<String, Long> entry: this.structuralBuildTimes.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		out.writeStringUsingDictionary(entry.getKey());
 		out.writeLong(entry.getValue().longValue());
 	}
@@ -548,8 +548,8 @@ void write(DataOutputStream output) throws IOException {
  * String[]	Interned type locators
  */
 	out.writeInt(this.references.size());
-	Map<String, Integer> internedTypeLocators = new HashMap<>(this.references.size());
-	for (String key : this.references.keySet()) {
+	Map<String, Integer> internedTypeLocators = new HashMap<>(this.references.size()); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	for (String key : this.references.keySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		out.writeStringUsingLast(key);
 		internedTypeLocators.put(key, internedTypeLocators.size());
 	}
@@ -561,52 +561,52 @@ void write(DataOutputStream output) throws IOException {
  * char[][][]	Interned qualified names
  * char[][]	Interned simple names
  */
-	Map<CharArray, Integer> internedRootNames = new HashMap<>();
-	Map<CharCharArray, Integer> internedQualifiedNames = new HashMap<>();
-	Map<CharArray, Integer> internedSimpleNames = new HashMap<>();
-	for (ReferenceCollection collection : this.references.values()) {
-		for (char[] rName : collection.rootReferences) {
+	Map<CharArray, Integer> internedRootNames = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	Map<CharCharArray, Integer> internedQualifiedNames = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	Map<CharArray, Integer> internedSimpleNames = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	for (ReferenceCollection collection : this.references.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		for (char[] rName : collection.rootReferences) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// remember the names have been interned
 			internedRootNames.putIfAbsent(new CharArray(rName), internedRootNames.size());
 		}
-		for (char[][] qName : collection.qualifiedNameReferences) {
+		for (char[][] qName : collection.qualifiedNameReferences) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// remember the names have been interned
 			if (internedQualifiedNames.putIfAbsent(new CharCharArray(qName), internedQualifiedNames.size()) == null) {
-				for (char[] sName : qName) {
+				for (char[] sName : qName) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					// remember the names have been interned
 					internedSimpleNames.putIfAbsent(new CharArray(sName), internedSimpleNames.size());
 				}
 			}
 		}
-		for (char[] sName : collection.simpleNameReferences) {
+		for (char[] sName : collection.simpleNameReferences) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// remember the names have been interned
 			internedSimpleNames.putIfAbsent(new CharArray(sName), internedSimpleNames.size());
 		}
 	}
 	char[][] internedArray = new char[internedRootNames.size()][];
-	for (Entry<CharArray, Integer> entry: internedRootNames.entrySet()) {
+	for (Entry<CharArray, Integer> entry: internedRootNames.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int index = entry.getValue().intValue();
 			internedArray[index] = entry.getKey().getKey();
 	}
 	writeNames(internedArray, out);
 	// now write the interned simple names
 	internedArray = new char[internedSimpleNames.size()][];
-	for (Entry<CharArray, Integer> entry: internedSimpleNames.entrySet()) {
+	for (Entry<CharArray, Integer> entry: internedSimpleNames.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int index = entry.getValue().intValue();
 		internedArray[index] = entry.getKey().getKey();
 	}
 	writeNames(internedArray, out);
 	// now write the interned qualified names as arrays of interned simple names
 	char[][][] internedQArray = new char[internedQualifiedNames.size()][][];
-	for (Entry<CharCharArray, Integer> entry: internedQualifiedNames.entrySet()) {
+	for (Entry<CharCharArray, Integer> entry: internedQualifiedNames.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int index = entry.getValue().intValue();
 		internedQArray[index] = entry.getKey().getKey();
 	}
 	out.writeInt(internedQArray.length);
-	for (char[][] qName : internedQArray) {
+	for (char[][] qName : internedQArray) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int qLength = qName.length;
 		out.writeInt(qLength);
-		for (char[] qN:qName) {
+		for (char[] qN:qName) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Integer index = internedSimpleNames.get(new CharArray(qN));
 			out.writeIntInRange(index.intValue(), internedSimpleNames.size());
 		}
@@ -618,7 +618,7 @@ void write(DataOutputStream output) throws IOException {
  * ReferenceCollection
 */
 	out.writeInt(this.references.size());
-	for (Entry<String, ReferenceCollection> entry : this.references.entrySet()) {
+	for (Entry<String, ReferenceCollection> entry : this.references.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String key = entry.getKey();
 		Integer index = internedTypeLocators.get(key);
 		out.writeInt(index.intValue());
@@ -633,21 +633,21 @@ void write(DataOutputStream output) throws IOException {
 		char[][][] qNames = collection.qualifiedNameReferences;
 		int qLength = qNames.length;
 		out.writeInt(qLength);
-		for (char[][] qName:qNames) {
+		for (char[][] qName:qNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Integer i = internedQualifiedNames.get(new CharCharArray(qName));
 			out.writeIntInRange(i.intValue(), internedQualifiedNames.size());
 		}
 		char[][] sNames = collection.simpleNameReferences;
 		int sLength = sNames.length;
 		out.writeInt(sLength);
-		for (char[] sName: sNames) {
+		for (char[] sName: sNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Integer i = internedSimpleNames.get(new CharArray(sName));
 			out.writeIntInRange(i.intValue(), internedSimpleNames.size());
 		}
 		char[][] rNames = collection.rootReferences;
 		int rLength = rNames.length;
 		out.writeInt(rLength);
-		for (char[] rName: rNames) {
+		for (char[] rName: rNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Integer i = internedRootNames.get(new CharArray(rName));
 			out.writeIntInRange(i.intValue(), internedRootNames.size());
 		}
@@ -656,7 +656,7 @@ void write(DataOutputStream output) throws IOException {
 
 private void writeSourceLocations(CompressedWriter out, ClasspathMultiDirectory[] srcLocations) throws IOException {
 	out.writeInt(srcLocations.length);
-	for (ClasspathMultiDirectory md: srcLocations) {
+	for (ClasspathMultiDirectory md: srcLocations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		out.writeStringUsingDictionary(md.sourceFolder.getProjectRelativePath().toString());
 		out.writeStringUsingDictionary(md.binaryFolder.getProjectRelativePath().toString());
 		writeNames(md.inclusionPatterns, out);
@@ -668,7 +668,7 @@ private void writeSourceLocations(CompressedWriter out, ClasspathMultiDirectory[
 	}
 }
 
-private void writeBinaryLocations(CompressedWriter out, ClasspathLocation[] locations, ClasspathMultiDirectory[] srcLocations)
+private void writeBinaryLocations(CompressedWriter out, ClasspathLocation[] locations, ClasspathMultiDirectory[] srcLocations) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		throws IOException {
 	/*
 	 * ClasspathLocation[]
@@ -678,10 +678,10 @@ private void writeBinaryLocations(CompressedWriter out, ClasspathLocation[] loca
 	*/
 
 	out.writeInt(locations.length);
-	for (ClasspathLocation c : locations) {
+	for (ClasspathLocation c : locations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (c instanceof ClasspathMultiDirectory) {
 			out.writeByte(SOURCE_FOLDER);
-			for (int j = 0, m = srcLocations.length; j < m; j++) {
+			for (int j = 0, m = srcLocations.length; j < m; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (srcLocations[j] == c) {
 					out.writeInt(j);
 					//continue next;
@@ -725,7 +725,7 @@ private void writeBinaryLocations(CompressedWriter out, ClasspathLocation[] loca
 		out.writeChars(patchName);
 		if (c.limitModuleNames != null) {
 			out.writeInt(c.limitModuleNames.size());
-			for (String name : c.limitModuleNames) {
+			for (String name : c.limitModuleNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				out.writeStringUsingDictionary(name);
 			}
 		} else {
@@ -759,7 +759,7 @@ private void writeBinaryLocations(CompressedWriter out, ClasspathLocation[] loca
 				// TODO, here we cannot handle MODULE_MAIN_CLASS nor MODULE_PACKAGES (ModuleUpdater stores a lambda), should we?
 				List<AddReads> allReads = mu.stream().filter(AddReads.class::isInstance).map(AddReads.class::cast).collect(Collectors.toList());
 				out.writeInt(allReads.size());
-				for (AddReads m : allReads) {
+				for (AddReads m : allReads) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					out.writeChars(m.getTarget());
 				}
 			} else {
@@ -776,7 +776,7 @@ private void writeNames(char[][] names, CompressedWriter out) throws IOException
 	int length = names == null ? 0 : names.length;
 	out.writeInt(length);
 	if (names != null) {
-		for (char[] name : names) {
+		for (char[] name : names) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			out.writeChars(name);
 		}
 	}
@@ -785,7 +785,7 @@ private void writeNames(char[][] names, CompressedWriter out) throws IOException
 private static char[][] readNames(CompressedReader in) throws IOException {
 	int length = in.readInt();
 	char[][] names = new char[length][];
-	for (int i = 0; i < length; i++)
+	for (int i = 0; i < length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		names[i] = in.readChars();
 	return names;
 }
@@ -802,7 +802,7 @@ private void writeRestriction(AccessRuleSet accessRuleSet, CompressedWriter out)
 		int length = accessRules.length;
 		out.writeInt(length);
 		if (length != 0) {
-			for (AccessRule accessRule : accessRules) {
+			for (AccessRule accessRule : accessRules) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				out.writeCharsUsingLast(accessRule.pattern);
 				out.writeIntWithHint(accessRule.problemId, PROBLEM_IDS);
 			}
@@ -817,7 +817,7 @@ private void writeRestriction(AccessRuleSet accessRuleSet, CompressedWriter out)
  */
 @Override
 public String toString() {
-	return "State for " + this.javaProjectName //$NON-NLS-1$
+	return "State for " + this.javaProjectName //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ " (#" + this.buildNumber //$NON-NLS-1$
 			+ " @ " + new Date(this.lastStructuralBuildTime) //$NON-NLS-1$
 				+ ")"; //$NON-NLS-1$

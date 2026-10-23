@@ -50,7 +50,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 	protected void runConformTest(String[] testFiles, String expectedOutput, Map<String, String> customOptions) {
 		runConformTest(true, testFiles, null, expectedOutput, null, new JavacTestOptions("-source 15"));
 	}
-	protected void runConformTest(
+	protected void runConformTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			// test directory preparation
 			boolean shouldFlushOutputDirectory,
 			String[] testFiles,
@@ -86,7 +86,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 			// javac options
 			javacTestOptions /* javac test options */);
 	}
-	public void test001() {
+	public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -104,7 +104,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"Syntax error on token \"\"\"\", invalid AssignmentOperator\n" +
 				"----------\n");
 	}
-	public void test002() {
+	public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -122,7 +122,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"Syntax error on token \"\" \"\", invalid AssignmentOperator\n" +
 				"----------\n");
 	}
-	public void test003() {
+	public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -142,7 +142,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"Text block is not properly closed with the delimiter\n" +
 				"----------\n");
 	}
-	public void test003a() {
+	public void test003a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -165,7 +165,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 	/*
 	 * negative - unescaped '\' in a text block
 	 */
-	public void test004() {
+	public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -244,7 +244,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 	 * Positive - Multi line text block with varying indentation
 	 * and \n
 	 */
-	public void test007() {
+	public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -269,7 +269,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 	 * Positive - Multi line text block with varying indentation
 	 * and \n and \r
 	 */
-	public void test008() {
+	public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -294,7 +294,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 	 * Positive - Multi line text block with varying indentation
 	 * and \n and \r
 	 */
-	public void test008a() {
+	public void test008a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -396,7 +396,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 	/*
 	 * positive - bigger piece of code as text block
 	 */
-	public void test013() {
+	public void test013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -419,7 +419,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 	/*
 	 * positive - concatenation of string with text block
 	 */
-	public void test014() {
+	public void test014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -442,7 +442,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 	/*
 	 * positive - freely using quotes
 	 */
-	public void test015() {
+	public void test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -472,7 +472,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 	/*
 	 * positive - html code with indentation
 	 */
-	public void test016() {
+	public void test016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -498,7 +498,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 	/*
 	 * positive - html code with indentation with empty lines
 	 */
-	public void test016a() {
+	public void test016a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -525,7 +525,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 	/*
 	 * positive - html code with indentation with \r as terminator
 	 */
-	public void test016c() {
+	public void test016c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -552,7 +552,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 	/*
 	 * positive - html code with indentation and trailing whitespace
 	 */
-	public void test017() {
+	public void test017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -579,7 +579,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 	/*
 	 * positive - using octal escape char for trailing whitespace
 	 */
-	public void test018() {
+	public void test018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -605,7 +605,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 	/*
 	 * positive - using text block as a method argument
 	 */
-	public void test019() {
+	public void test019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -631,7 +631,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 	/*
 	 * positive - using variable assigned with text block as a method argument
 	 */
-	public void test020() {
+	public void test020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -658,7 +658,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 	/*
 	 * positive - assigning strings and text blocks interchangeably.
 	 */
-	public void test021() {
+	public void test021() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -683,7 +683,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"</html>",
 				null);
 	}
-	public void test024() {
+	public void test024() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				true,
 				new String[] {
@@ -725,7 +725,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				null,
 				JavacTestOptions.DEFAULT);
 	}
-	public void test025() {
+	public void test025() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -749,7 +749,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				getCompilerOptions());
 	}
 
-	public void test027() {
+	public void test027() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -808,7 +808,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				getCompilerOptions());
 	}
 	// An empty text block
-	public void test029() {
+	public void test029() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"Cls2.java",
@@ -826,7 +826,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"Hello Guru", // output comparison tool strips off all trailing whitespace
 				getCompilerOptions());
 	}
-	public void testBug551948_1() {
+	public void testBug551948_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"Cls2.java",
@@ -845,7 +845,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", // output comparison tool strips off all trailing whitespace
 				getCompilerOptions());
 	}
-	public void testBug551948_2() {
+	public void testBug551948_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"Cls2.java",
@@ -863,7 +863,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"abc\n    defghi",
 				getCompilerOptions());
 	}
-	public void testBug551948_3() {
+	public void testBug551948_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"Cls2.java",
@@ -882,7 +882,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"    y == False",
 				getCompilerOptions());
 	}
-	public void testBug551948_4() {
+	public void testBug551948_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"Cls2.java",
@@ -901,7 +901,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"red   green blue  orange",
 				getCompilerOptions());
 	}
-	public void testBug551948_5() {
+	public void testBug551948_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"Cls2.java",
@@ -944,7 +944,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"A line with spaces",
 				getCompilerOptions());
 	}
-	public void testBug551948_7() {
+	public void testBug551948_7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"Cls2.java",
@@ -963,7 +963,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"red   \ngreen \nblue", // trailing whitespaces are trimmed
 				getCompilerOptions());
 	}
-	public void testBug551948_8() {
+	public void testBug551948_8() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"Cls2.java",
@@ -987,7 +987,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"ccc",
 				getCompilerOptions());
 	}
-	public void testCompliances_1() {
+	public void testCompliances_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"C.java",
@@ -1009,7 +1009,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"true",
 				getCompilerOptions());
 	}
-	public void testCompliances_2() {
+	public void testCompliances_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"C.java",
@@ -1032,7 +1032,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"true",
 				getCompilerOptions());
 	}
-	public void testCompliances_3() {
+	public void testCompliances_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"C.java",
@@ -1055,7 +1055,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"true",
 				getCompilerOptions());
 	}
-	public void testCompliances_4() {
+	public void testCompliances_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"C.java",
@@ -1084,7 +1084,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"true",
 				getCompilerOptions());
 	}
-	public void testCompliances_5() {
+	public void testCompliances_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"C.java",
@@ -1107,7 +1107,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"false",
 				getCompilerOptions());
 	}
-	public void testCompliances_6() {
+	public void testCompliances_6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"C.java",
@@ -1129,7 +1129,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"true",
 				getCompilerOptions());
 	}
-	public void testCompliances_7() {
+	public void testCompliances_7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"C.java",
@@ -1218,7 +1218,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"26",
 				getCompilerOptions());
 	}
-	public void testCompliances_12() {
+	public void testCompliances_12() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"C.java",
@@ -1240,7 +1240,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"true",
 				getCompilerOptions());
 	}
-	public void testCompliances_13() {
+	public void testCompliances_13() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"C.java",
@@ -1261,7 +1261,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"256",
 				getCompilerOptions());
 	}
-	public void testCompliances_14() {
+	public void testCompliances_14() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"C.java",
@@ -1285,9 +1285,9 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"true",
 				getCompilerOptions());
 	}
-	public void testBug553252() {
+	public void testBug553252() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> defaultOptions = super.getCompilerOptions();
-		Map<String, String> copy = new HashMap<>(defaultOptions);
+		Map<String, String> copy = new HashMap<>(defaultOptions); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		copy.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_14);
 		copy.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_14);
 		copy.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_14);
@@ -1330,7 +1330,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"true",
 				getCompilerOptions());
 	}
-	public void testCompliances_15() {
+	public void testCompliances_15() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -1350,7 +1350,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"8,97,97,",
 				getCompilerOptions());
 	}
-	public void testCompliances_16() {
+	public void testCompliances_16() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -1370,7 +1370,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"8,97,97,",
 				getCompilerOptions());
 	}
-	public void testCompliances_17() {
+	public void testCompliances_17() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -1390,7 +1390,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"9,8,97,97,",
 				getCompilerOptions());
 	}
-	public void testCompliances_18() {
+	public void testCompliances_18() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -1410,7 +1410,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"11,8,97,97,",
 				getCompilerOptions());
 	}
-	public void testBug565639_1() {
+	public void testBug565639_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(true,
 					new String[]{
 						"X.java",
@@ -1436,7 +1436,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				new String[] {"--enable-preview"},
 				new JavacTestOptions("-source 14 --enable-preview"));
 	}
-	public void testBug565639_2() {
+	public void testBug565639_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(true,
 				new String[]{
 					"X.java",
@@ -1462,7 +1462,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 			new String[] {"--enable-preview"},
 			new JavacTestOptions("-source 14 --enable-preview"));
 	}
-	public void testBug565639_3() {
+	public void testBug565639_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[]{
 					"X.java",
 					"public class X {\n" +
@@ -1485,7 +1485,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"String literal is not properly closed by a double-quote\n" +
 				"----------\n");
 	}
-	public void testBug565639_4() {
+	public void testBug565639_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[]{
 					"X.java",
 					"public class X {\n" +
@@ -1508,7 +1508,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"Syntax error on token \"\"\"\", delete this token\n" +
 				"----------\n");
 	}
-	public void testBug565639_5() {
+	public void testBug565639_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[]{
 					"X.java",
 					"public class X {\n" +
@@ -1531,7 +1531,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"Syntax error on token \"\"\"\", delete this token\n" +
 				"----------\n");
 	}
-	public void testBug565639_6() {
+	public void testBug565639_6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -1556,7 +1556,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				getCompilerOptions(),
 				new String[] {"--enable-preview"});
 	}
-	public void testBug575953() {
+	public void testBug575953() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -1588,7 +1588,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				getCompilerOptions(),
 				new String[] {"--enable-preview"});
 	}
-	public void testBug578649_1() {
+	public void testBug578649_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -1630,7 +1630,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 	 * positive - html code with indentation with empty lines
 	 * output compared with String API
 	 */
-	public void test016b() {
+	public void test016b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String text = "<html>\n" +
 					"    <body>\n" +
 					"      <p>Hello, world</p>\n" +
@@ -1639,7 +1639,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 		runConformTest(
 				new String[] {
 						"X.java",
-						"public class X {\n" +
+						"public class X {\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"	static String html = \"\"\"\n" +
 						text + "\\n" +
 						"\"\"\";\n" +
@@ -1656,12 +1656,12 @@ public class TextBlockTest extends AbstractRegressionTest {
 	/*
 	 * positive - escaped '\', compare with String::translateEscapes
 	 */
-	public void test022() {
+	public void test022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String text = "abc\\\\def";
 		runConformTest(
 				new String[] {
 						"X.java",
-						"public class X {\n" +
+						"public class X {\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"	public static String textb = \"\"\"\n" +
 						text +
 						"\"\"\";\n" +
@@ -1679,12 +1679,12 @@ public class TextBlockTest extends AbstractRegressionTest {
 	 * 							String::translateEscapes
 	 * 							String::stripIndent
 	 */
-	public void test023() {
+	public void test023() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String text = "abc\\\"\"\"def\"  ";
 		runConformTest(
 				new String[] {
 						"X.java",
-						"public class X {\n" +
+						"public class X {\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"	public static String textb = \"\"\"\n" +
 						text +
 						"\"\"\";\n" +
@@ -1713,7 +1713,7 @@ public class TextBlockTest extends AbstractRegressionTest {
 				"30",
 				getCompilerOptions());
 	}
-	public void testIssue544_2() {
+	public void testIssue544_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -1743,7 +1743,7 @@ String text = \\\"""
 			"true",
 			getCompilerOptions());
 	}
-	public void testIssue544_3() {
+	public void testIssue544_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -1764,7 +1764,7 @@ public class X {
 				"true",
 				getCompilerOptions());
 	}
-	public void testIssue544_4() {
+	public void testIssue544_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -1793,7 +1793,7 @@ string.\""");
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4129
 	// Text block with unicode escape before multiple backslashes has wrong value
-	public void testIssue4129() {
+	public void testIssue4129() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -1833,7 +1833,7 @@ string.\""");
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=561978
 	// Text block with the \<line-terminator> distorts line numbers for Unix-style line delimiters
-	public void testBug561978() {
+	public void testBug561978() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(true,
 				new String[] {
 						"X.java",
@@ -1865,7 +1865,7 @@ string.\""");
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=570719
 	// Text blocks: '\<line-terminator>' after '\s' compiled to "\\\n" instead of to ""
-	public void testBug570719() {
+	public void testBug570719() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",

@@ -47,7 +47,7 @@ public class Java8FilerTests extends TestCase {
 		internalTest(compiler, false);
 	}
 
-	private void internalTest(JavaCompiler compiler, boolean isSystemCommpiler) throws IOException {
+	private void internalTest(JavaCompiler compiler, boolean isSystemCommpiler) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!canRunJava8()) {
 			return;
 		}
@@ -55,8 +55,8 @@ public class Java8FilerTests extends TestCase {
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "filer8");
 		BatchTestUtils.copyResources("targets/filer8", targetFolder);
 
-		List<String> options = new ArrayList<>();
-		options.add("-A" + FILER_PROC);
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		options.add("-A" + FILER_PROC); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		// Javac 1.8 doesn't (yet?) support the -1.8 option
 		if (compiler instanceof EclipseCompiler) {
 			options.add("-1.8");

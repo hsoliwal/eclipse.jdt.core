@@ -94,14 +94,14 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 	 * The documents of a project are resolved in one environment, which gives the same index as resolving each of
 	 * them in its own environment.
 	 */
-	public void testSameIndexAsWithSeparateEnvironments() throws Exception {
+	public void testSameIndexAsWithSeparateEnvironments() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = createIndexedProject("src");
 		int types = 40;
-		for (int i = 0; i < types; i++) {
+		for (int i = 0; i < types; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int next = (i + 1) % types;
 			int other = (i + 7) % types;
-			createSource("/P/src/p" + (i % 4) + "/C" + i + ".java",
-					"package p" + (i % 4) + ";\n" +
+			createSource("/P/src/p" + (i % 4) + "/C" + i + ".java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+					"package p" + (i % 4) + ";\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"import java.util.ArrayList;\n" +
 					"import java.util.List;\n" +
 					"import java.util.function.Function;\n" +
@@ -162,7 +162,7 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 	 * A secondary type is only known once its unit is: whether another unit resolves it must not depend on the
 	 * units that were resolved before in the same environment.
 	 */
-	public void testSecondaryTypes() throws Exception {
+	public void testSecondaryTypes() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = createIndexedProject("src");
 		createSource("/P/src/p/Main.java",
 				"package p;\n" +
@@ -180,17 +180,17 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 				"interface OtherSecondary {\n" +
 				"	void other(String s);\n" +
 				"}\n");
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 6; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// refers to the secondary types only
-			createSource("/P/src/p/A" + i + ".java",
-					"package p;\n" +
+			createSource("/P/src/p/A" + i + ".java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+					"package p;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"public class A" + i + " {\n" +
 					"	Secondary secondary = i -> {};\n" +
 					"	OtherSecondary other = s -> {};\n" +
 					"}\n");
 			// refers to their units first
-			createSource("/P/src/p/B" + i + ".java",
-					"package p;\n" +
+			createSource("/P/src/p/B" + i + ".java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+					"package p;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"public class B" + i + " {\n" +
 					"	Main main = new Main();\n" +
 					"	Other other = new Other();\n" +
@@ -198,8 +198,8 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 					"	OtherSecondary otherSecondary = s -> {};\n" +
 					"}\n");
 			// refers to nothing of them
-			createSource("/P/src/p/C" + i + ".java",
-					"package p;\n" +
+			createSource("/P/src/p/C" + i + ".java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+					"package p;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"public class C" + i + " {\n" +
 					"	Runnable runnable = () -> {};\n" +
 					"}\n");
@@ -212,7 +212,7 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 	 * The only type of a unit is not named after it, so it is only known once its unit is: whether another unit
 	 * resolves it must not depend on the units that were resolved before in the same environment.
 	 */
-	public void testTypeNotNamedAfterItsUnit() throws Exception {
+	public void testTypeNotNamedAfterItsUnit() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = createIndexedProject("src");
 		createSource("/P/src/p/Unit.java",
 				"package p;\n" +
@@ -242,7 +242,7 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 	 * A type of a jar refers to a type that is missing from the classpath: where the resolution of a unit fails
 	 * must not depend on the units that were resolved before in the same environment.
 	 */
-	public void testMissingType() throws Exception {
+	public void testMissingType() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = createIndexedProject("src");
 		String jar = project.getProject().getLocation().append("lib.jar").toOSString();
 		createJar(new String[] {
@@ -282,12 +282,12 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 				"	lib.Missing missing;\n" +
 				"	java.util.function.Supplier<Object> supplier = () -> new lib.Holder().lib.missing;\n",
 				"	java.util.function.Function<String, Integer> length = String::length;\n" };
-		for (int i = 0; i < 20; i++) {
-			createSource("/P/src/p/A" + i + ".java",
-					"package p;\n" +
+		for (int i = 0; i < 20; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			createSource("/P/src/p/A" + i + ".java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+					"package p;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"public class A" + i + " {\n" +
 					bodies[i % bodies.length] +
-					(i > 0 ? "	A" + (i - 1) + " previous;\n" : "") +
+					(i > 0 ? "	A" + (i - 1) + " previous;\n" : "") + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"}\n");
 		}
 
@@ -296,10 +296,10 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 
 	private static void removeFromJar(String jar, String entryName) throws IOException {
 		java.nio.file.Path path = java.nio.file.Path.of(jar);
-		java.nio.file.Path copy = java.nio.file.Path.of(jar + ".tmp");
+		java.nio.file.Path copy = java.nio.file.Path.of(jar + ".tmp"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try (ZipInputStream in = new ZipInputStream(Files.newInputStream(path));
 				ZipOutputStream out = new ZipOutputStream(Files.newOutputStream(copy))) {
-			for (ZipEntry entry = in.getNextEntry(); entry != null; entry = in.getNextEntry()) {
+			for (ZipEntry entry = in.getNextEntry(); entry != null; entry = in.getNextEntry()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (!entry.getName().equals(entryName)) {
 					out.putNextEntry(new ZipEntry(entry.getName()));
 					in.transferTo(out);
@@ -313,7 +313,7 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 	/**
 	 * The same type is declared by two units.
 	 */
-	public void testDuplicateTypes() throws Exception {
+	public void testDuplicateTypes() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = createIndexedProject("src", "src2");
 		createSource("/P/src/p/I.java", "package p;\npublic interface I {\n	void foo();\n}\n");
 		createSource("/P/src/p/Duplicate.java",
@@ -356,7 +356,7 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 	/**
 	 * The units of a module refer to each other and to the modules it requires.
 	 */
-	public void testModule() throws Exception {
+	public void testModule() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = createIndexedProject("src");
 		createSource("/P/src/module-info.java",
 				"module m {\n" +
@@ -395,7 +395,7 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 	/**
 	 * A unit is resolved with the contents of the working copies, and indexed with its saved contents.
 	 */
-	public void testWorkingCopy() throws Exception {
+	public void testWorkingCopy() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = createIndexedProject("src");
 		createSource("/P/src/p/I.java", "package p;\npublic interface I {\n	void foo();\n}\n");
 		createSource("/P/src/p/A.java",
@@ -435,7 +435,7 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 	/**
 	 * A unit changes while others are waiting to be indexed: they are not resolved with what was known of it.
 	 */
-	public void testChangeWhileIndexing() throws Exception {
+	public void testChangeWhileIndexing() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = createIndexedProject("src");
 		createFolder("/P/src/p");
 		waitUntilIndexesReady();
@@ -500,7 +500,7 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 	 * The contents of a working copy change while others are waiting to be indexed: they are resolved with its
 	 * new contents.
 	 */
-	public void testWorkingCopyChangeWhileIndexing() throws Exception {
+	public void testWorkingCopyChangeWhileIndexing() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = createIndexedProject("src");
 		createSource("/P/src/p/I.java", "package p;\npublic interface I {\n	void foo();\n}\n");
 		waitUntilIndexesReady();
@@ -554,7 +554,7 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 	 * A unit that has a working copy is resolved with its saved contents when it is indexed: the units that are
 	 * indexed after it are still resolved with the contents of the working copy.
 	 */
-	public void testWorkingCopyIndexedFirst() throws Exception {
+	public void testWorkingCopyIndexedFirst() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = createIndexedProject("src");
 		createFolder("/P/src/p");
 		waitUntilIndexesReady();
@@ -605,7 +605,7 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 	 * A working copy is found by the package that its structure declares, which is the one of its buffer once it is
 	 * reconciled. It is reconciled while units are waiting to be indexed: they are resolved with its new package.
 	 */
-	public void testWorkingCopyReconciledWhileIndexing() throws Exception {
+	public void testWorkingCopyReconciledWhileIndexing() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = createIndexedProject("src");
 		createSource("/P/src/p/I.java", "package p;\npublic interface I {\n	void foo();\n}\n");
 		waitUntilIndexesReady();
@@ -661,7 +661,7 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 		JavaSearchParticipant participant = new JavaSearchParticipant() {
 			@Override
 			public void indexResolvedDocument(SearchDocument document, IPath indexPath) {
-				throw new IllegalStateException("Failure while indexing " + document.getPath());
+				throw new IllegalStateException("Failure while indexing " + document.getPath()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		};
 		whileIndexingIsHeld(() -> {
@@ -678,9 +678,9 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 	/**
 	 * Resolving a document fails in an unexpected way: the environment that failed is not kept.
 	 */
-	public void testUnexpectedFailureWhileResolving() throws Exception {
+	public void testUnexpectedFailureWhileResolving() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		JavaSearchParticipant participant = new JavaSearchParticipant() {
-			@Override
+			@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			public SearchDocument getDocument(String documentPath) {
 				// to be resolved, and without contents: there is no unit to resolve
 				SearchDocument document = new SearchDocument(documentPath, this) {
@@ -715,7 +715,7 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 	 * Creates the project P with a unit to resolve, src/p/A.java, and runs the given body while the indexing is
 	 * held: when idle, the index manager does not keep an environment.
 	 */
-	private void whileIndexingIsHeld(TestJob.Body body) throws Exception {
+	private void whileIndexingIsHeld(TestJob.Body body) throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		createIndexedProject("src");
 		createSource("/P/src/p/A.java",
 				"package p;\n" +
@@ -743,7 +743,7 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 	 *
 	 * @param indexDeleted whether the index is deleted while the document is resolved
 	 */
-	private void indexResolvedDocument(JavaSearchParticipant participant, boolean indexDeleted) {
+	private void indexResolvedDocument(JavaSearchParticipant participant, boolean indexDeleted) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = getJavaProject("P");
 		SearchDocument document = participant.getDocument("/P/src/p/A.java");
 		IndexLocation indexLocation = this.indexManager.computeIndexLocation(project.getPath());
@@ -771,7 +771,7 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 	 * The entries of the classpath are reordered while units are waiting to be indexed, which changes the unit that
 	 * declares a type found in two source folders: they are resolved with the new order.
 	 */
-	public void testClasspathOrderChangeWhileIndexing() throws Exception {
+	public void testClasspathOrderChangeWhileIndexing() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = createIndexedProject("src", "src2");
 		createSource("/P/src/p/I.java", "package p;\npublic interface I {\n	void foo();\n}\n");
 		createSource("/P/src2/p/I.java", "package p;\npublic interface I {\n	void bar(int x);\n}\n");
@@ -798,9 +798,9 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 			assertTrue("A and B should be indexed", firstIndexed.await(60, TimeUnit.SECONDS));
 			// src2 first
 			IClasspathEntry[] classpath = project.getRawClasspath();
-			List<IClasspathEntry> reordered = new ArrayList<>(Arrays.asList(classpath));
+			List<IClasspathEntry> reordered = new ArrayList<>(Arrays.asList(classpath)); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			IClasspathEntry src = null;
-			for (IClasspathEntry entry : classpath) {
+			for (IClasspathEntry entry : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (entry.getPath().lastSegment().equals("src")) {
 					src = entry;
 				}
@@ -824,7 +824,7 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 	 * A project that the indexed one requires is closed while units are waiting to be indexed, which no request to
 	 * the index manager follows: they are not resolved with its types any more.
 	 */
-	public void testRequiredProjectClosedWhileIndexing() throws Exception {
+	public void testRequiredProjectClosedWhileIndexing() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject required = createJava9ProjectWithJREAttributes("Q", new String[] { "src" }, null, CompilerOptions.VERSION_17);
 			createSource("/Q/src/q/I.java", "package q;\npublic interface I {\n	void foo();\n}\n");
@@ -862,7 +862,7 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 	 * What a builder writes in an output folder gives no Java delta: it is not counted as a change that may make a
 	 * source resolve differently. A new source is counted.
 	 */
-	public void testOutputChangeIsNotCounted() throws Exception {
+	public void testOutputChangeIsNotCounted() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = createIndexedProject("src");
 		IPath output = project.getOutputLocation();
 		createFolder(output.append("p"));
@@ -870,10 +870,10 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 		// Something else may be counted meanwhile, e.g. the classpath of the project once resolved: the output
 		// change is not counted if one of the attempts sees no change at all.
 		boolean notCounted = false;
-		for (int attempt = 0; attempt < 5 && !notCounted; attempt++) {
+		for (int attempt = 0; attempt < 5 && !notCounted; attempt++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			waitUntilIndexesReady();
 			int changeCount = this.indexManager.getSourceEnvironmentChangeCount();
-			createFile(output.append("p/A" + attempt + ".class").toString(), "");
+			createFile(output.append("p/A" + attempt + ".class").toString(), ""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			notCounted = this.indexManager.getSourceEnvironmentChangeCount() == changeCount;
 		}
 		assertTrue("A file of the output folder should not count", notCounted);
@@ -982,8 +982,8 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 	}
 
 	private static String toString(Map<String, String> index) {
-		StringBuilder builder = new StringBuilder();
-		index.forEach((key, documents) -> builder.append(key).append(" -> ").append(documents).append('\n'));
+		StringBuilder builder = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		index.forEach((key, documents) -> builder.append(key).append(" -> ").append(documents).append('\n')); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return builder.toString();
 	}
 
@@ -991,19 +991,19 @@ public class SourceIndexerResolveTests extends ModifyingResourceTests {
 	 * @return all the entries of the index of the given project: "category/key" to the sorted names of the
 	 *         documents
 	 */
-	private Map<String, String> dumpIndex(IProject project) throws IOException {
-		Map<String, String> entries = new TreeMap<>();
+	private Map<String, String> dumpIndex(IProject project) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		Map<String, String> entries = new TreeMap<>(); //FLLDCIM: MARK — M05 M3_SORTED_LANES NEW
 		Index index = this.indexManager.getIndex(project.getFullPath(), true, false);
-		assertNotNull("No index for " + project, index);
+		assertNotNull("No index for " + project, index); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		index.monitor.enterRead();
 		try {
-			for (char[] category : CATEGORIES) {
+			for (char[] category : CATEGORIES) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				EntryResult[] results = index.query(new char[][] { category }, null, SearchPattern.R_PREFIX_MATCH);
 				if (results != null) {
-					for (EntryResult result : results) {
+					for (EntryResult result : results) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						String[] documents = result.getDocumentNames(index);
 						Arrays.sort(documents);
-						entries.put(new String(category) + '/' + new String(result.getWord()), String.join(",", documents));
+						entries.put(new String(category) + '/' + new String(result.getWord()), String.join(",", documents)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 				}
 			}

@@ -93,7 +93,7 @@ public static Test suite() {
 	return buildModelTestSuite(JavaSearchBugsTests.class, BYTECODE_DECLARATION_ORDER);
 }
 class TestCollector extends JavaSearchResultCollector {
-	public List matches = new ArrayList();
+	public List matches = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	@Override
 	public void acceptSearchMatch(SearchMatch searchMatch) throws CoreException {
 		super.acceptSearchMatch(searchMatch);
@@ -107,42 +107,42 @@ class ReferenceCollector extends JavaSearchResultCollector {
 		ReferenceMatch refMatch = (ReferenceMatch) this.match;
 		IJavaElement localElement = refMatch.getLocalElement();
 		if (localElement != null) {
-			this.line.append("+[");
+			this.line.append("+["); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (localElement.getElementType() == IJavaElement.ANNOTATION) {
-				this.line.append('@');
-				this.line.append(localElement.getElementName());
-				this.line.append(" on ");
-				this.line.append(localElement.getParent().getElementName());
+				this.line.append('@'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				this.line.append(localElement.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				this.line.append(" on "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				this.line.append(localElement.getParent().getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				this.line.append(localElement.getElementName());
+				this.line.append(localElement.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			this.line.append(']');
+			this.line.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
 }
 class TypeReferenceCollector extends ReferenceCollector {
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void writeLine() throws CoreException {
 		super.writeLine();
 		TypeReferenceMatch typeRefMatch = (TypeReferenceMatch) this.match;
 		IJavaElement[] others = typeRefMatch.getOtherElements();
 		int length = others==null ? 0 : others.length;
 		if (length > 0) {
-			this.line.append("+[");
-			for (int i=0; i<length; i++) {
+			this.line.append("+["); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IJavaElement other = others[i];
-				if (i>0) this.line.append(',');
+				if (i>0) this.line.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (other.getElementType() == IJavaElement.ANNOTATION) {
-					this.line.append('@');
-					this.line.append(other.getElementName());
-					this.line.append(" on ");
-					this.line.append(other.getParent().getElementName());
+					this.line.append('@'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.line.append(other.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.line.append(" on "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.line.append(other.getParent().getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else {
-					this.line.append(other.getElementName());
+					this.line.append(other.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
-			this.line.append(']');
+			this.line.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 }
@@ -205,7 +205,7 @@ protected void tearDown() throws Exception {
  * bug 41018: Method reference not found
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=41018"
  */
-public void testBug41018() throws CoreException {
+public void testBug41018() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b41018/A.java",
 		"package b41018;\n" +
@@ -232,7 +232,7 @@ public void testBug41018() throws CoreException {
 	);
 }
 
-public void testBug6930_AllConstructorDeclarations01() throws Exception {
+public void testBug6930_AllConstructorDeclarations01() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/p6930/AllConstructorDeclarations01.java",
 		"package p6930;\n" +
@@ -260,7 +260,7 @@ public void testBug6930_AllConstructorDeclarations01() throws Exception {
 	);
 }
 
-public void testBug6930_AllConstructorDeclarations02() throws Exception {
+public void testBug6930_AllConstructorDeclarations02() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P", new String[] {}, new String[] {"/P/lib6930.jar"}, "");
 
@@ -293,7 +293,7 @@ public void testBug6930_AllConstructorDeclarations02() throws Exception {
 	}
 }
 
-public void testBug6930_AllConstructorDeclarations03() throws Exception {
+public void testBug6930_AllConstructorDeclarations03() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[] {}, "bin");
 
@@ -329,7 +329,7 @@ public void testBug6930_AllConstructorDeclarations03() throws Exception {
 	}
 }
 
-public void testBug6930_AllConstructorDeclarations04() throws Exception {
+public void testBug6930_AllConstructorDeclarations04() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P", new String[] {}, new String[] {"/P/lib6930.jar"}, "", CompilerOptions.getFirstSupportedJavaVersion());
 
@@ -357,7 +357,7 @@ public void testBug6930_AllConstructorDeclarations04() throws Exception {
 	}
 }
 
-public void testBug6930_AllConstructorDeclarations05() throws Exception {
+public void testBug6930_AllConstructorDeclarations05() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P", new String[] {}, new String[] {"/P/lib6930.jar"}, "");
 
@@ -387,7 +387,7 @@ public void testBug6930_AllConstructorDeclarations05() throws Exception {
  * bug 70827: [Search] wrong reference match to private method of supertype
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=70827"
  */
-public void testBug70827() throws CoreException {
+public void testBug70827() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b70827/A.java",
 		"package b70827;\n" +
@@ -416,7 +416,7 @@ public void testBug70827() throws CoreException {
  * bug 71279: [Search] NPE in TypeReferenceLocator when moving CU with unresolved type reference
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=71279"
  */
-public void testBug71279() throws CoreException {
+public void testBug71279() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	JavaSearchResultCollector result = new JavaSearchResultCollector() {
 	    public void beginReporting() {
 	    	addLine("Starting search...");
@@ -443,7 +443,7 @@ public void testBug71279() throws CoreException {
  * bug 72866: [search] references to endVisit(MethodInvocation) reports refs to endVisit(SuperMethodInvocation)
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=72866"
  */
-public void testBug72866() throws CoreException {
+public void testBug72866() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[4];
 	WorkingCopyOwner owner = new WorkingCopyOwner() {};
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b72866/A.java",
@@ -492,7 +492,7 @@ public void testBug72866() throws CoreException {
  * bug 73112: [Search] SearchEngine doesn't find all fields multiple field declarations
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=73112"
  */
-public void testBug73112a() throws CoreException {
+public void testBug73112a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b73112/A.java",
 		"package b73112;\n" +
@@ -513,7 +513,7 @@ public void testBug73112a() throws CoreException {
 		"src/b73112/A.java b73112.A.fieldA73112d [fieldA73112d] EXACT_MATCH"
 	);
 }
-public void testBug73112b() throws CoreException {
+public void testBug73112b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = super.getWorkingCopy("/JavaSearchBugs/src/b73112/B.java",
 		"package b73112;\n" +
@@ -542,7 +542,7 @@ public void testBug73112b() throws CoreException {
  * bug 73336: [1.5][search] Search Engine does not find type references of actual generic type parameters
  * @see "http://bugs.eclipse.org/bugs/show_bug.cgi?id=73336"
  */
-public void testBug73336() throws CoreException {
+public void testBug73336() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[6];
 	WorkingCopyOwner owner = new WorkingCopyOwner() {};
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b73336/A.java",
@@ -601,7 +601,7 @@ public void testBug73336() throws CoreException {
 		"src/b73336/C.java void b73336.C.foo() [A] EXACT_MATCH"
 	);
 }
-public void testBug73336b() throws CoreException {
+public void testBug73336b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[4];
 	WorkingCopyOwner owner = new WorkingCopyOwner() {};
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b73336b/A.java",
@@ -649,7 +649,7 @@ public void testBug73336b() throws CoreException {
 	);
 }
 // Verify that no NPE was raised on following case (which produces compiler error)
-public void testBug73336c() throws CoreException {
+public void testBug73336c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[4];
 	WorkingCopyOwner owner = new WorkingCopyOwner() {};
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b73336c/A.java",
@@ -696,7 +696,7 @@ public void testBug73336c() throws CoreException {
  * bug 73696: searching only works for IJavaSearchConstants.TYPE, but not CLASS or INTERFACE
  * @see "http://bugs.eclipse.org/bugs/show_bug.cgi?id=73696"
  */
-public void testBug73696() throws CoreException {
+public void testBug73696() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	WorkingCopyOwner owner = new WorkingCopyOwner() {};
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b73696/C.java",
@@ -750,7 +750,7 @@ public void testBug73696() throws CoreException {
  * bug 74776: [Search] Wrong search results for almost identical method
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=74776"
  */
-public void testBug74776() throws CoreException {
+public void testBug74776() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	WorkingCopyOwner owner = new WorkingCopyOwner() {};
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b74776/A.java",
@@ -807,7 +807,7 @@ public void testBug75816() throws CoreException {
  * bug 77093: [search] No references found to method with member type argument
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=77093"
  */
-private void setUpBug77093() throws CoreException {
+private void setUpBug77093() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b77093/X.java",
 		"package b77093;\n" +
@@ -868,7 +868,7 @@ public void testBug77093method() throws CoreException {
 /**
  * bug 77388: [compiler] Reference to constructor includes space after closing parenthesis
  */
-public void testBug77388() throws CoreException {
+public void testBug77388() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b77388/Test.java",
 		"package b77388;\n" +
@@ -892,7 +892,7 @@ public void testBug77388() throws CoreException {
  * bug 78082: [1.5][search] FieldReferenceMatch in static import should not include qualifier
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=78082"
  */
-public void testBug78082() throws CoreException {
+public void testBug78082() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	WorkingCopyOwner owner = new WorkingCopyOwner() {};
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b78082/M.java",
@@ -927,7 +927,7 @@ public void testBug78082() throws CoreException {
  * bug 79267: [search] Refactoring of static generic member fails partially
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=79267"
  */
-public void testBug79267() throws CoreException {
+public void testBug79267() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b79267/Test.java",
 		"package b79267;\n" +
@@ -971,7 +971,7 @@ public void testBug79267() throws CoreException {
  * bug 79378: [search] IOOBE when inlining a method
  * @see "http://bugs.eclipse.org/bugs/show_bug.cgi?id=79378"
  */
-public void testBug79378() throws CoreException {
+public void testBug79378() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b79378/A.java",
 		"package b79378;\n" +
@@ -992,7 +992,7 @@ public void testBug79378() throws CoreException {
 		"src/b79378/A.java void b79378.Test.call() [foo79378(s, exceptions)] POTENTIAL_MATCH"
 	);
 }
-public void testBug79378b() throws CoreException {
+public void testBug79378b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b79378/A.java",
@@ -1054,7 +1054,7 @@ public void testBug79803string() throws CoreException {
  * bug 79860: [1.5][search] Search doesn't find type reference in type parameter bound
  * @see "http://bugs.eclipse.org/bugs/show_bug.cgi?id=79860"
  */
-public void testBug79860() throws CoreException {
+public void testBug79860() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	WorkingCopyOwner owner = new WorkingCopyOwner() {};
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b79860/X.java",
@@ -1078,7 +1078,7 @@ public void testBug79860() throws CoreException {
 		"src/b79860/X.java b79860.X [A] EXACT_MATCH"
 	);
 }
-public void testBug79860string() throws CoreException {
+public void testBug79860string() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	WorkingCopyOwner owner = new WorkingCopyOwner() {};
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b79860/X.java",
@@ -1148,7 +1148,7 @@ public void testBug79990c() throws CoreException {
 		"src/b79990/Test.java void b79990.Sub.second(Exception) [second] EXACT_MATCH"
 	);
 }
-public void testBug79990d() throws CoreException {
+public void testBug79990d() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b79990/Test.java",
 		"package b79990;\n" +
@@ -1171,7 +1171,7 @@ public void testBug79990d() throws CoreException {
  * bug 80084: [1.5][search]Rename field fails on field based on parameterized type with member type parameter
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=80084"
  */
-public void testBug80084() throws CoreException, JavaModelException {
+public void testBug80084() throws CoreException, JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b80084/Test.java",
 		"package b80084;\n" +
@@ -1196,7 +1196,7 @@ public void testBug80084() throws CoreException, JavaModelException {
  * bug 80194: [1.5][search]Rename field fails on field based on parameterized type with member type parameter
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=80194"
  */
-private void setUpBug80194() throws CoreException, JavaModelException {
+private void setUpBug80194() throws CoreException, JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b80194/Test.java",
 		"package b80194;\n" +
@@ -1264,7 +1264,7 @@ public void testBug80194string3() throws CoreException, JavaModelException {
  * bug 80223: [search] Declaration search doesn't consider visibility to determine overriding methods
  * @see "http://bugs.eclipse.org/bugs/show_bug.cgi?id=80223"
  */
-public void testBug80223() throws CoreException {
+public void testBug80223() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	WorkingCopyOwner owner = new WorkingCopyOwner() {};
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b80223/a/A.java",
@@ -1299,7 +1299,7 @@ public void testBug80223() throws CoreException {
  * @see "http://bugs.eclipse.org/bugs/show_bug.cgi?id=87778"
  */
 // Methods
-private void setUpBug80264_Methods() throws CoreException {
+private void setUpBug80264_Methods() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b80264/Methods.java",
 		"package b80264;\n" +
@@ -1425,7 +1425,7 @@ public void testBug80264_ClassesIgnoreTypes() throws CoreException, JavaModelExc
 	);
 }
 // Fields
-private void setUpBug80264_Fields() throws CoreException {
+private void setUpBug80264_Fields() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b80264/Fields.java",
 		"package b80264;\n" +
@@ -1499,7 +1499,7 @@ public void testBug80264_FieldsIgnoreBothTypes() throws CoreException, JavaModel
  * bug 80890: [search] Strange search engine behaviour
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=80890"
  */
-public void testBug80890() throws CoreException, JavaModelException {
+public void testBug80890() throws CoreException, JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b80890/A.java",
 		"package b80890;\n" +
@@ -1549,7 +1549,7 @@ public void testBug80918() throws CoreException {
  * bug 81084: [1.5][search]Rename field fails on field based on parameterized type with member type parameter
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=81084"
  */
-public void testBug81084a() throws CoreException, JavaModelException {
+public void testBug81084a() throws CoreException, JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b81084a/Test.java",
 		"package b81084a;\n" +
@@ -1576,7 +1576,7 @@ public void testBug81084a() throws CoreException, JavaModelException {
 		"src/b81084a/Test.java b81084a.Test$Inner(List<Element>) [fList2] EXACT_MATCH"
 	);
 }
-public void testBug81084string() throws CoreException, JavaModelException {
+public void testBug81084string() throws CoreException, JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b81084a/Test.java",
 		"package b81084a;\n" +
@@ -1600,7 +1600,7 @@ public void testBug81084string() throws CoreException, JavaModelException {
 		"src/b81084a/Test.java b81084a.Test$Inner(List<Element>) [fList2] EXACT_MATCH"
 	);
 }
-public void testBug81084b() throws CoreException, JavaModelException {
+public void testBug81084b() throws CoreException, JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b81084b/Test.java",
 		"package b81084b;\n" +
@@ -1647,7 +1647,7 @@ public void testBug81556() throws CoreException {
  * bug 82088: [search][javadoc] Method parameter types references not found in @see/@link tags
  * @see "http://bugs.eclipse.org/bugs/show_bug.cgi?id=82088"
  */
-public void testBug82088method() throws CoreException {
+public void testBug82088method() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b82088/m/Test.java",
 		"package b82088.m;\n" +
@@ -1670,7 +1670,7 @@ public void testBug82088method() throws CoreException {
 		"src/b82088/m/Test.java void b82088.m.Test.setA(A) [A] EXACT_MATCH"
 	);
 }
-public void testBug82088constructor() throws CoreException {
+public void testBug82088constructor() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b82088/c/Test.java",
 		"package b82088.c;\n" +
@@ -1774,7 +1774,7 @@ public void testBug82208_CLASS_AND_ENUMERATION() throws CoreException {
  * bug 82673: [1.5][search][annot] Search for annotations misses references in default and values constructs
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=83012"
  */
-public void testBug82673() throws CoreException {
+public void testBug82673() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b82673/Test.java",
@@ -1807,7 +1807,7 @@ public void testBug82673() throws CoreException {
  * bug 83012: [1.5][search][annot] Search for annotations misses references in default and values constructs
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=83012"
  */
-public void testBug83012() throws CoreException {
+public void testBug83012() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b83012/Test.java",
@@ -1839,7 +1839,7 @@ public void testBug83012() throws CoreException {
  * bug 83230: [1.5][search][annot] search for annotation elements does not seem to be implemented yet
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=83230"
  */
-private void setUpBug83230_Explicit() throws CoreException {
+private void setUpBug83230_Explicit() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b83230/Test.java",
@@ -1939,7 +1939,7 @@ public void testBug83230_Explicit05() throws CoreException {
 		"src/b83230/Test.java b83230.Test.min [ageMin] EXACT_MATCH"
 	);
 }
-public void testBug83230_Implicit01() throws CoreException {
+public void testBug83230_Implicit01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b83230/Test.java",
@@ -1964,7 +1964,7 @@ public void testBug83230_Implicit01() throws CoreException {
 		"src/b83230/Test.java void b83230.Test.foo() [10] EXACT_MATCH"
 	);
 }
-public void testBug83230_Implicit02() throws CoreException {
+public void testBug83230_Implicit02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b83230/Test.java",
@@ -1995,7 +1995,7 @@ public void testBug83230_Implicit02() throws CoreException {
  * bug 83304: [search] correct results are missing in java search
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=83304"
  */
-public void testBug83304() throws CoreException {
+public void testBug83304() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b83304/Test.java",
@@ -2186,7 +2186,7 @@ public void testBug83304_ConstructorStringPattern() throws CoreException {
  * bug 83804: [1.5][javadoc] Missing Javadoc node for package declaration
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=83804"
  */
-private void setUpBug83804_Type() throws CoreException {
+private void setUpBug83804_Type() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b83804/package-info.java",
 		"/**\n" +
@@ -2252,7 +2252,7 @@ public void testBug83804_Field() throws CoreException {
  * bug 83388: [1.5][search] Search for varargs method not finding match
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=83388"
  */
-public void testBug83388() throws CoreException {
+public void testBug83388() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b83388/R.java",
@@ -2261,7 +2261,7 @@ public void testBug83388() throws CoreException {
 		"public class R {}\n"
 	);
 	IImportDeclaration importDeclaration = this.workingCopies[0].getImport("pack");
-	assertNotNull("Cannot find \"pack\" import declaration for "+this.workingCopies[0].getElementName(), importDeclaration);
+	assertNotNull("Cannot find \"pack\" import declaration for "+this.workingCopies[0].getElementName(), importDeclaration); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	SearchPattern pattern = SearchPattern.createPattern(
 		"pack",
 		PACKAGE,
@@ -2280,7 +2280,7 @@ public void testBug83388() throws CoreException {
 		"src/b83388/R.java b83388 [No source] EXACT_MATCH"
 	);
 }
-public void testBug83388b() throws CoreException {
+public void testBug83388b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b83388/R.java",
@@ -2289,7 +2289,7 @@ public void testBug83388b() throws CoreException {
 		"public class R {}\n"
 	);
 	IPackageDeclaration packageDeclaration = this.workingCopies[0].getPackageDeclaration("pack");
-	assertNotNull("Cannot find \"pack\" import declaration for "+this.workingCopies[0].getElementName(), packageDeclaration);
+	assertNotNull("Cannot find \"pack\" import declaration for "+this.workingCopies[0].getElementName(), packageDeclaration); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	SearchPattern pattern = SearchPattern.createPattern(
 		"pack",
 		PACKAGE,
@@ -2313,7 +2313,7 @@ public void testBug83388b() throws CoreException {
  * bug 83693: [search][javadoc] References to methods/constructors: range does not include parameter lists
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=83693"
  */
-public void testBug83693() throws CoreException {
+public void testBug83693() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	this.resultCollector.showInsideDoc();
 	this.workingCopies = new ICompilationUnit[1];
@@ -2347,7 +2347,7 @@ public void testBug83693() throws CoreException {
  * bug is effectively fixed as it appears only to potential match found in plugin dependencies...
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=83716"
  */
-public void testBug83716() throws CoreException {
+public void testBug83716() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b83716/X.java",
 		"package b83716;\n" +
@@ -2370,7 +2370,7 @@ public void testBug83716() throws CoreException {
  * bug 84100: [1.5][search] Search for varargs method not finding match
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=84100"
  */
-private void setUpBug84100() throws CoreException {
+private void setUpBug84100() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b84100/X.java",
@@ -2449,7 +2449,7 @@ public void testBug84100e() throws CoreException {
  * bug 84121: [1.5][search][varargs] reference to type reported as inaccurate in vararg
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=84121"
  */
-public void testBug84121() throws CoreException {
+public void testBug84121() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b84121/Test.java",
@@ -2474,7 +2474,7 @@ public void testBug84121() throws CoreException {
  * bug 84724: [1.5][search] Search for varargs method not finding match
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=84724"
  */
-private void setUpBug84724() throws CoreException {
+private void setUpBug84724() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b84724/X.java",
@@ -2543,7 +2543,7 @@ public void testBug84724d() throws CoreException {
  * bug 84727: [1.5][search] String pattern search does not work with multiply nested types
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=84727"
  */
-private void setUpBug84727() throws CoreException {
+private void setUpBug84727() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b84727/A.java",
@@ -2617,7 +2617,7 @@ public void testBug85810() throws CoreException {
  * bug 86596: [search] Search for type finds segments in import
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=86596"
  */
-public void testBug86596() throws CoreException {
+public void testBug86596() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b86596/aa/link/A.java",
@@ -2648,7 +2648,7 @@ public void testBug86596() throws CoreException {
  * bug 86642: [search] no match found of package-visible supertypes in subtypes
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=86642"
  */
-public void testBug86642() throws CoreException {
+public void testBug86642() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b86642/A.java",
@@ -2692,7 +2692,7 @@ public void testBug86293() throws CoreException {
  * bug 86380: [1.5][search][annot] Add support to find references inside annotations on a package declaration
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=86380"
  */
-private void setUpBug86380() throws CoreException {
+private void setUpBug86380() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showInsideDoc();
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b86380/package-info.java",
@@ -2752,7 +2752,7 @@ public void testBug86380_Field() throws CoreException {
  * bug 88174: [1.5][search][annot] Search for annotations misses references in default and values constructs
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=88174"
  */
-public void testBug88174() throws CoreException {
+public void testBug88174() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b88174/Test.java",
@@ -2794,7 +2794,7 @@ public void testBug88174() throws CoreException {
 public void testBug87627() throws CoreException {
 	IType type = getClassFile("JavaSearchBugs", "lib/b87627.jar", "b87627", "List.class").getType();
 	ITypeParameter[] parameters = type.getTypeParameters();
-	assertNotNull(type.getFullyQualifiedName()+" should have parameters", parameters);
+	assertNotNull(type.getFullyQualifiedName()+" should have parameters", parameters); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	assertEquals("Wrong number of parameters", 1, parameters.length);
 	search(parameters[0], REFERENCES);
 	assertSearchResults(
@@ -2807,7 +2807,7 @@ public void testBug87627() throws CoreException {
  * bug 88300: [search] Reference search result is changed by placement of private method
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=88300"
  */
-public void testBug88300() throws CoreException {
+public void testBug88300() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b88300/SubClass.java",
 		"package b88300;\n" +
@@ -2840,7 +2840,7 @@ public void testBug88300() throws CoreException {
 		"src/b88300/User.java void b88300.User.methodUsingSubClassMethod() [aMethod(new Object())] EXACT_MATCH"
 	);
 }
-public void testBug88300b() throws CoreException {
+public void testBug88300b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b88300/SubClass.java",
 		"package b88300;\n" +
@@ -2873,7 +2873,7 @@ public void testBug88300b() throws CoreException {
 		"src/b88300/User.java void b88300.User.methodUsingSubClassMethod() [aMethod(new Object())] EXACT_MATCH"
 	);
 }
-public void testBug88300c() throws CoreException {
+public void testBug88300c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b88300/not/fixed/ConditionalFlowInfo.java",
 		"package b88300.not.fixed;\n" +
@@ -2926,7 +2926,7 @@ public void testBug88300c() throws CoreException {
  * bug 89686: [1.5][search] JavaModelException on ResolvedSourceMethod during refactoring
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=89686"
  */
-public void testBug89686() throws CoreException {
+public void testBug89686() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b89686/A.java",
 		"package b89686;\n" +
@@ -2944,7 +2944,7 @@ public void testBug89686() throws CoreException {
 		"src/b89686/A.java b89686.Color.GREEN [GREEN()] EXACT_MATCH"
 	);
 }
-public void testBug89686b() throws CoreException {
+public void testBug89686b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b89686/A.java",
 		"package b89686;\n" +
@@ -2981,7 +2981,7 @@ public void testBug89848() throws CoreException {
  * bug 90779: [search] Constructor Declaration search with ignoring declaring and return type also ignores type name
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=90779"
  */
-public void testBug90779() throws CoreException {
+public void testBug90779() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b90779/A.java",
 		"package b90779;\n" +
@@ -3014,7 +3014,7 @@ public void testBug90779() throws CoreException {
  * bug 90915: [1.5][search] NPE in PatternLocator
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=90915"
  */
-public void testBug90915() throws CoreException {
+public void testBug90915() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b90915/X.java",
 		"package b90915;\n" +
@@ -3046,7 +3046,7 @@ public void testBug90915() throws CoreException {
  * bug 91542: [1.5][search] JavaModelException on ResolvedSourceMethod during refactoring
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=91542"
  */
-public void testBug91542() throws CoreException {
+public void testBug91542() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b91542/A.java",
 		"package b91542;\n" +
@@ -3073,7 +3073,7 @@ public void testBug91542() throws CoreException {
  * bug 91078: [search] Java search for package reference wrongly identifies inner class as package
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=91078"
  */
-public void testBug91078() throws CoreException {
+public void testBug91078() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b91078/test/Example.java",
 		"package b91078.test;\n" +
@@ -3118,7 +3118,7 @@ public void testBug91078() throws CoreException {
  * bug 92264: [search] all types names should support patterns for package/enclosing type name
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=92264"
  */
-public void testBug92264a() throws CoreException {
+public void testBug92264a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	TypeNameRequestor requestor =  new SearchTests.SearchTypeNameRequestor();
 	new SearchEngine().searchAllTypeNames(
 		"*.lang".toCharArray(),
@@ -3149,7 +3149,7 @@ public void testBug92264a() throws CoreException {
 		"java.lang.Throwable",
 		requestor);
 }
-public void testBug92264b() throws CoreException {
+public void testBug92264b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	TypeNameRequestor requestor =  new SearchTests.SearchTypeNameRequestor();
 	new SearchEngine().searchAllTypeNames(
 		"*.lang*".toCharArray(),
@@ -3173,7 +3173,7 @@ public void testBug92264b() throws CoreException {
 		"java.lang.annotation.Retention",
 		requestor);
 }
-public void testBug92264c() throws CoreException {
+public void testBug92264c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	TypeNameRequestor requestor =  new SearchTests.SearchTypeNameRequestor();
 	new SearchEngine().searchAllTypeNames(
 		"*.test*".toCharArray(),
@@ -3201,7 +3201,7 @@ public void testBug92264c() throws CoreException {
 		"test.Test$StaticClass$Member",
 		requestor);
 }
-public void testBug92264d() throws CoreException {
+public void testBug92264d() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	TypeNameRequestor requestor =  new SearchTests.SearchTypeNameRequestor();
 	new SearchEngine().searchAllTypeNames(
 		"b12*".toCharArray(),
@@ -3236,7 +3236,7 @@ private void setUpBug92944() throws CoreException {
 		"public class B92944 {}\n"
 	);
 }
-public void testBug92944_TYPE() throws CoreException {
+public void testBug92944_TYPE() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	setUpBug92944();
 	TypeNameRequestor requestor =  new SearchTests.SearchTypeNameRequestor();
@@ -3259,7 +3259,7 @@ public void testBug92944_TYPE() throws CoreException {
 		"b92944.B92944_I",
 		requestor);
 }
-public void testBug92944_CLASS() throws CoreException {
+public void testBug92944_CLASS() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	setUpBug92944();
 	TypeNameRequestor requestor =  new SearchTests.SearchTypeNameRequestor();
@@ -3280,7 +3280,7 @@ public void testBug92944_CLASS() throws CoreException {
 		"b92944.B92944",
 		requestor);
 }
-public void testBug92944_CLASS_AND_INTERFACE() throws CoreException {
+public void testBug92944_CLASS_AND_INTERFACE() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	setUpBug92944();
 	TypeNameRequestor requestor =  new SearchTests.SearchTypeNameRequestor();
@@ -3302,7 +3302,7 @@ public void testBug92944_CLASS_AND_INTERFACE() throws CoreException {
 		"b92944.B92944_I",  // Annotation is an interface in java.lang
 		requestor);
 }
-public void testBug92944_CLASS_AND_ENUM() throws CoreException {
+public void testBug92944_CLASS_AND_ENUM() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	setUpBug92944();
 	TypeNameRequestor requestor =  new SearchTests.SearchTypeNameRequestor();
@@ -3324,7 +3324,7 @@ public void testBug92944_CLASS_AND_ENUM() throws CoreException {
 		"b92944.B92944_E",
 		requestor);
 }
-public void testBug92944_INTERFACE() throws CoreException {
+public void testBug92944_INTERFACE() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	setUpBug92944();
 	TypeNameRequestor requestor =  new SearchTests.SearchTypeNameRequestor();
@@ -3344,7 +3344,7 @@ public void testBug92944_INTERFACE() throws CoreException {
 		"b92944.B92944_I",
 		requestor);
 }
-public void testBug92944_ENUM() throws CoreException {
+public void testBug92944_ENUM() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	setUpBug92944();
 	TypeNameRequestor requestor =  new SearchTests.SearchTypeNameRequestor();
@@ -3364,7 +3364,7 @@ public void testBug92944_ENUM() throws CoreException {
 		"b92944.B92944_E",
 		requestor);
 }
-public void testBug92944_ANNOTATION_TYPE() throws CoreException {
+public void testBug92944_ANNOTATION_TYPE() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	setUpBug92944();
 	TypeNameRequestor requestor =  new SearchTests.SearchTypeNameRequestor();
@@ -3393,7 +3393,7 @@ public void testBug92944_ANNOTATION_TYPE() throws CoreException {
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=93392"
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=94062"
  */
-public void testBug93392() throws CoreException {
+public void testBug93392() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	TestCollector collector = new TestCollector();
 	collector.showAccuracy(true);
 	this.workingCopies = new ICompilationUnit[1];
@@ -3441,7 +3441,7 @@ public void testBug93392() throws CoreException {
  * bug 94160: [1.5][search] Generic method in superclass does not exist
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=94160"
  */
-public void testBug94160() throws CoreException {
+public void testBug94160() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b94160/Test.java",
 		"package b94160;\n" +
@@ -3471,7 +3471,7 @@ public void testBug94160() throws CoreException {
  * bug 94389: [search] InvocationTargetException on Rename
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=94389"
  */
-public void testBug94389() throws CoreException {
+public void testBug94389() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b94389/Test.java",
 		"package b94389;\n" +
@@ -3488,7 +3488,7 @@ public void testBug94389() throws CoreException {
 
 	// Perform search on each duplicate method
 	IJavaSearchScope scope = getJavaSearchScope();
-	for (int m=0; m<methodsLength; m++) {
+	for (int m=0; m<methodsLength; m++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 		// Search method declaration
 		TestCollector collector = new TestCollector();
@@ -3503,8 +3503,8 @@ public void testBug94389() throws CoreException {
 
 		// Verify that all matches have correct occurence count
 		int size = collector.matches.size();
-		for (int i=0; i<size; i++) {
-			assertEquals("Invalid foo method occurence count (m="+(m+1)+")", i+1, ((SourceMethod) methods[i]).getOccurrenceCount());
+		for (int i=0; i<size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			assertEquals("Invalid foo method occurence count (m="+(m+1)+")", i+1, ((SourceMethod) methods[i]).getOccurrenceCount()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 }
@@ -3513,7 +3513,7 @@ public void testBug94389() throws CoreException {
  * bug 94718: [1.5][search][annot] Find references in workspace breaks on an annotation
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=94718"
  */
-public void testBug94718() throws CoreException {
+public void testBug94718() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b94718/SetUp.java",
 		"package b94718;\n" +
@@ -3586,7 +3586,7 @@ public void testBug95152_jar04() throws CoreException {
 		"lib/b95152.jar b95152.T4(b95152.T4, java.lang.String) EXACT_MATCH"
 	);
 }
-public void testBug95152_wc01() throws CoreException {
+public void testBug95152_wc01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b95152/T.java",
 		"package b95152;\n" +
@@ -3617,7 +3617,7 @@ public void testBug95152_wc01() throws CoreException {
 		"src/b95152/T.java b95152.T() [c2.new T3()] EXACT_MATCH"
 	);
 }
-public void testBug95152_wc02() throws CoreException {
+public void testBug95152_wc02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b95152/T.java",
 		"package b95152;\n" +
@@ -3648,7 +3648,7 @@ public void testBug95152_wc02() throws CoreException {
 		"src/b95152/T.java b95152.T(int) [c2.new T3(c)] EXACT_MATCH"
 	);
 }
-public void testBug95152_wc03() throws CoreException {
+public void testBug95152_wc03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b95152/T.java",
 		"package b95152;\n" +
@@ -3679,7 +3679,7 @@ public void testBug95152_wc03() throws CoreException {
 		"src/b95152/T.java b95152.T(T) [c2.new T3(c2)] EXACT_MATCH"
 	);
 }
-public void testBug95152_wc04() throws CoreException {
+public void testBug95152_wc04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b95152/T.java",
 		"package b95152;\n" +
@@ -3715,7 +3715,7 @@ public void testBug95152_wc04() throws CoreException {
  * bug 95794: [1.5][search][annot] Find references in workspace breaks on an annotation
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=95794"
  */
-public void testBug95794() throws CoreException {
+public void testBug95794() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit unit = getCompilationUnit("JavaSearchBugs", "src", "b95794", "Test.java");
 	IType type = unit.getType("Test");
 
@@ -3736,7 +3736,7 @@ public void testBug95794() throws CoreException {
 	search(type, REFERENCES, getJavaSearchScope(), referencesCollector);
 	assertEquals("Problem with occurences or references number of matches: ", occurencesCollector.matches.size()-1, referencesCollector.matches.size());
 }
-public void testBug95794b() throws CoreException {
+public void testBug95794b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	ICompilationUnit unit = getCompilationUnit("JavaSearchBugs", "src", "b95794", "Test.java");
 	IType type = unit.getType("Test").getType("Color");
@@ -3758,7 +3758,7 @@ public void testBug95794b() throws CoreException {
 	search(type, REFERENCES, getJavaSearchScope(), referencesCollector);
 	assertEquals("Problem with occurences or references number of matches: ", occurencesCollector.matches.size()-1, referencesCollector.matches.size());
 }
-public void testBug95794c() throws CoreException {
+public void testBug95794c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	ICompilationUnit unit = getCompilationUnit("JavaSearchBugs", "src", "b95794", "Test.java");
 	IField field = unit.getType("Test").getType("Color").getField("WHITE");
@@ -3784,7 +3784,7 @@ public void testBug95794c() throws CoreException {
  * bug 96761: [1.5][search] Search for declarations of generic method finds non-overriding method
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=96761"
  */
-public void testBug96761() throws CoreException {
+public void testBug96761() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b96761/Generic.java",
 		"package b96761;\n" +
@@ -3809,7 +3809,7 @@ public void testBug96761() throws CoreException {
  * bug 96763: [1.5][search] Search for method declarations does not find overridden method with different signature
  * @see "http://bugs.eclipse.org/bugs/show_bug.cgi?id=96763"
  */
-public void testBug96763() throws CoreException {
+public void testBug96763() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b96763/Test.java",
 		"package b96763;\n" +
@@ -3829,7 +3829,7 @@ public void testBug96763() throws CoreException {
 		"src/b96763/Test.java void b96763.Sub.first(Exception) [first] EXACT_MATCH"
 	);
 }
-public void testBug96763b() throws CoreException {
+public void testBug96763b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b96763/Test.java",
 		"package b96763;\n" +
@@ -3849,7 +3849,7 @@ public void testBug96763b() throws CoreException {
 		"src/b96763/Test.java void b96763.Sub.second(Exception) [second] EXACT_MATCH"
 	);
 }
-public void testBug96763c() throws CoreException {
+public void testBug96763c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b96763/Test.java",
 		"package b96763;\n" +
@@ -3872,7 +3872,7 @@ public void testBug96763c() throws CoreException {
  * bug 97087: [1.5][search] Can't find reference of generic class's constructor.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=97087"
  */
-public void testBug97087() throws CoreException {
+public void testBug97087() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.resultCollector.showRule();
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b97087/Bug.java",
@@ -3900,7 +3900,7 @@ public void testBug97087() throws CoreException {
  * bug 97120:
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=97120"
  */
-public void testBug97120() throws CoreException {
+public void testBug97120() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IType type = getClassFile("JavaSearchBugs", getExternalJCLPathString(CompilerOptions.getFirstSupportedJavaVersion()), "java.lang", "Throwable.class").getType();
 	IJavaSearchScope scope = SearchEngine.createHierarchyScope(type);
 	TypeNameRequestor requestor =  new SearchTests.SearchTypeNameRequestor();
@@ -3948,7 +3948,7 @@ public void testBug97322() throws CoreException {
  * bug 97547: [search] Package search does not find references in member types import clause
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=97547"
  */
-public void testBug97547() throws CoreException {
+public void testBug97547() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b97547/IX.java",
 		"package b97547;\n" +
@@ -3975,7 +3975,7 @@ public void testBug97547() throws CoreException {
  * bug 97606: [1.5][search] Raw type reference is reported as exact match for qualified names
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=97606"
  */
-public void testBug97606() throws CoreException {
+public void testBug97606() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[4];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b97606/pack/def/L.java",
 		"package b97606.pack.def;\n" +
@@ -4027,7 +4027,7 @@ public void testBug97606() throws CoreException {
 		deleteFolder(rootPath);
 	}
 }
-public void testBug97606b() throws CoreException {
+public void testBug97606b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[4];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b97606/pack/def/L.java",
 		"package b97606.pack.def;\n" +
@@ -4085,7 +4085,7 @@ public void testBug97606b() throws CoreException {
  * bug 97614: [1.5][search] Refactoring: renaming of field of a (complex) parametrized type does not replace all occurrences
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=97614"
  */
-public void testBug97614() throws CoreException {
+public void testBug97614() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b97614/W.java",
 		"package b97614;\n" +
@@ -4129,7 +4129,7 @@ public void testBug97614() throws CoreException {
  * bug 98378: [search] does not find method references in anonymous class of imported jarred plugin
  * @see "http://bugs.eclipse.org/bugs/show_bug.cgi?id=98378"
  */
-public void testBug98378() throws CoreException {
+public void testBug98378() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b98378/X.java",
 		"package b98378;\n" +
@@ -4152,11 +4152,11 @@ public void testBug98378() throws CoreException {
 	IMethod method = type.getMethod("length", new String[] {});
 	search(method, DECLARATIONS, SearchEngine.createHierarchyScope(type, this.wcOwner));
 	assertSearchResults(
-		jclPath + " int java.lang.CharSequence.length() EXACT_MATCH\n" +
+		jclPath + " int java.lang.CharSequence.length() EXACT_MATCH\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		jclPath + " int java.lang.String.length() EXACT_MATCH"
 	);
 }
-public void testBug98378b() throws CoreException {
+public void testBug98378b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b98378/X.java",
 		"package b98378;\n" +
@@ -4179,7 +4179,7 @@ public void testBug98378b() throws CoreException {
 	IMethod method = type.getMethod("length", new String[] {});
 	search(method, DECLARATIONS|IGNORE_DECLARING_TYPE|IGNORE_RETURN_TYPE, SearchEngine.createHierarchyScope(type, this.wcOwner));
 	assertSearchResults(
-		"src/b98378/X.java int b98378.X.length() [length] EXACT_MATCH\n" +
+		"src/b98378/X.java int b98378.X.length() [length] EXACT_MATCH\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		jclPath + " int java.lang.CharSequence.length() EXACT_MATCH\n" +
 		jclPath + " int java.lang.String.length() EXACT_MATCH"
 	);
@@ -4189,7 +4189,7 @@ public void testBug98378b() throws CoreException {
  * bug 99600: [search] Java model exception on "Move to new file" on inner type with inner type
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=99600"
  */
-public void testBug99600() throws CoreException {
+public void testBug99600() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b99600/Test.java",
 		"package b99600;\n" +
@@ -4216,7 +4216,7 @@ public void testBug99600() throws CoreException {
  * bug 99903: [1.5][search] range wrong for package-info
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=99903"
  */
-public void testBug99903_annotation() throws CoreException {
+public void testBug99903_annotation() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b99903/package-info.java",
 		"/**\n" +
@@ -4241,7 +4241,7 @@ public void testBug99903_annotation() throws CoreException {
 		"src/b99903/package-info.java [Annot] EXACT_MATCH"
 	);
 }
-public void testBug99903_javadoc() throws CoreException {
+public void testBug99903_javadoc() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b99903/package-info.java",
 		"/**\n" +
@@ -4272,7 +4272,7 @@ public void testBug99903_javadoc() throws CoreException {
  * bug 100695: [1.5][search] Renaming a field of generic array type has no effect
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=100695"
  */
-public void testBug100695() throws CoreException {
+public void testBug100695() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b100695/Test.java",
 		"package b100695;\n" +
@@ -4291,7 +4291,7 @@ public void testBug100695() throws CoreException {
 		"src/b100695/Test.java b100695.Test() [foo] EXACT_MATCH"
 	);
 }
-public void testBug100695a() throws CoreException {
+public void testBug100695a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b100695/Test.java",
 		"package b100695;\n" +
@@ -4311,7 +4311,7 @@ public void testBug100695a() throws CoreException {
 		"src/b100695/Test.java b100695.Test() [foo] EXACT_MATCH"
 	);
 }
-public void testBug100695b() throws CoreException {
+public void testBug100695b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b100695/Test.java",
 		"package b100695;\n" +
@@ -4331,7 +4331,7 @@ public void testBug100695b() throws CoreException {
 		"src/b100695/Test.java b100695.Test() [foo] EXACT_MATCH"
 	);
 }
-public void testBug100695c() throws CoreException {
+public void testBug100695c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b100695/Test.java",
 		"package b100695;\n" +
@@ -4351,7 +4351,7 @@ public void testBug100695c() throws CoreException {
 		"src/b100695/Test.java b100695.Test() [foo] EXACT_MATCH"
 	);
 }
-public void testBug100695d() throws CoreException {
+public void testBug100695d() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b100695/Test.java",
 		"package b100695;\n" +
@@ -4371,7 +4371,7 @@ public void testBug100695d() throws CoreException {
 		"src/b100695/Test.java void b100695.Test.bar() [foo(new Class[0])] EXACT_MATCH"
 	);
 }
-public void testBug100695e() throws CoreException {
+public void testBug100695e() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b100695/Test.java",
 		"package b100695;\n" +
@@ -4391,7 +4391,7 @@ public void testBug100695e() throws CoreException {
 		"src/b100695/Test.java void b100695.Test.bar() [foo(null)] EXACT_MATCH"
 	);
 }
-public void testBug100695f() throws CoreException {
+public void testBug100695f() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b100695/Test.java",
 		"package b100695;\n" +
@@ -4478,7 +4478,7 @@ public void testBug100772_HierarchyScope_ClassAndSubclass05() throws CoreExcepti
 		"src/b100772/Test.java void b100772.Sub.foo(Exception) [foo] EXACT_MATCH"
 	);
 }
-private void setUpBug100772_HierarchyScope_InterfacesAndClass() throws CoreException {
+private void setUpBug100772_HierarchyScope_InterfacesAndClass() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b100772/Test.java",
 		"package b100772;\n" +
@@ -4577,7 +4577,7 @@ public void testBug100772_HierarchyScope_InterfacesAndClass08() throws CoreExcep
 		"src/b100772/Test.java void b100772.X.foo(Exception) [foo] EXACT_MATCH"
 	);
 }
-private void setUpBug100772_HierarchyScope_Complex() throws CoreException {
+private void setUpBug100772_HierarchyScope_Complex() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b100772/Test.java",
 		"package b100772;\n" +
@@ -4715,7 +4715,7 @@ public void testBug100772_ProjectScope_ClassAndSubclass05() throws CoreException
 		"src/b100772/Sub.java void b100772.Sub.foo(Exception) [foo] EXACT_MATCH"
 	);
 }
-private void setUpBug100772_ProjectScope_InterfacesAndClass() throws CoreException {
+private void setUpBug100772_ProjectScope_InterfacesAndClass() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b100772/Test.java",
 		"package b100772;\n" +
@@ -4824,7 +4824,7 @@ public void testBug100772_ProjectScope_InterfacesAndClass08() throws CoreExcepti
 		"src/b100772/X.java void b100772.X.foo(Exception) [foo] EXACT_MATCH"
 	);
 }
-private void setUpBug100772_ProjectScope_Complex() throws CoreException {
+private void setUpBug100772_ProjectScope_Complex() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[6];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b100772/X.java",
 		"package b100772;\n" +
@@ -4936,7 +4936,7 @@ public void testBug108088() throws CoreException {
  * test Ensure that camel case pattern including numbers return correct set of types
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=109695"
  */
-public void testBug109695() throws CoreException {
+public void testBug109695() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/IDocumentExtension.java",
 		"public interface IDocumentExtension {}\n" +
@@ -4955,7 +4955,7 @@ public void testBug109695() throws CoreException {
 		requestor
 	);
 }
-public void testBug109695b() throws CoreException {
+public void testBug109695b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/IDocumentProviderExtension.java",
 		"public interface IDocumentProviderExtension {}\n" +
@@ -5072,7 +5072,7 @@ public void testBug109695h() throws CoreException {
 		requestor
 	);
 }
-public void testBug109695i() throws CoreException {
+public void testBug109695i() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/UTF16DocumentScannerSupport.java",
 		"public class UTF16DocumentScannerSupport {}\n" +
@@ -5100,7 +5100,7 @@ public void testBug109695i() throws CoreException {
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=110060"
  */
 // Types search
-private void setUpBug110060_TypePattern() throws CoreException {
+private void setUpBug110060_TypePattern() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b110060/Test.java",
 		"package b110060;\n" +
@@ -5142,7 +5142,7 @@ public void testBug110060_TypePattern01_SamePartCount() throws CoreException {
 		"src/b110060/Test.java b110060.Test.a6 [AxxAyy] EXACT_MATCH"
 	);
 }
-public void testBug110060_TypePattern02() throws CoreException {
+public void testBug110060_TypePattern02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setUpBug110060_TypePattern();
 	search("AA", TYPE, ALL_OCCURRENCES, SearchPattern.R_CAMELCASE_MATCH);
 	assertSearchResults(
@@ -5519,7 +5519,7 @@ public void testBug110060_AllTypeNames14() throws CoreException {
 }
 
 // Constructor search
-private void setUpBug110060_ConstructorPattern() throws CoreException {
+private void setUpBug110060_ConstructorPattern() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[5];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b110060/AAAA.java",
 		"package b110060;\n" +
@@ -5663,7 +5663,7 @@ public void testBug110060_ConstructorPattern05_SamePartCount() throws CoreExcept
 }
 
 // Methods search
-private void setUpBug110060_MethodPattern() throws CoreException {
+private void setUpBug110060_MethodPattern() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b110060/Test.java",
 		"package b110060;\n" +
@@ -5844,7 +5844,7 @@ public void testBug110060_MethodPattern09_SamePartCount() throws CoreException {
 }
 
 // Fields search
-private void setUpBug110060_FieldPattern() throws CoreException {
+private void setUpBug110060_FieldPattern() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b110060/Test.java",
 		"package b110060;\n" +
@@ -5961,7 +5961,7 @@ public void testBug110291() throws CoreException {
  * test Bug 110336: [plan][search] Should optionally return the local variable for type reference
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=110336"
  */
-public void testBug110336a() throws CoreException {
+public void testBug110336a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b110336/Test.java",
 		"package b110336;\n" +
@@ -5986,7 +5986,7 @@ public void testBug110336a() throws CoreException {
 		collector
 	);
 }
-public void testBug110336b() throws CoreException {
+public void testBug110336b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b110336/Test.java",
 		"package b110336;\n" +
@@ -6015,7 +6015,7 @@ public void testBug110336b() throws CoreException {
 		collector
 	);
 }
-public void testBug110336c() throws CoreException {
+public void testBug110336c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b110336/Test.java",
 		"package b110336;\n" +
@@ -6034,7 +6034,7 @@ public void testBug110336c() throws CoreException {
 		collector
 	);
 }
-public void testBug110336d() throws CoreException {
+public void testBug110336d() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b110336/Test.java",
 		"package b110336;\n" +
@@ -6057,7 +6057,7 @@ public void testBug110336d() throws CoreException {
 		collector
 	);
 }
-public void testBug110336e() throws CoreException {
+public void testBug110336e() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b110336/Test.java",
 		"package b110336;\n" +
@@ -6082,7 +6082,7 @@ public void testBug110336e() throws CoreException {
 		collector
 	);
 }
-public void testBug110336f() throws CoreException {
+public void testBug110336f() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b110336/Test.java",
 		"package b110336;\n" +
@@ -6111,7 +6111,7 @@ public void testBug110336f() throws CoreException {
 		collector
 	);
 }
-public void testBug110336g() throws CoreException {
+public void testBug110336g() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b110336/Test.java",
 		"package b110336;\n" +
@@ -6136,7 +6136,7 @@ public void testBug110336g() throws CoreException {
 		collector
 	);
 }
-public void testBug110336h() throws CoreException {
+public void testBug110336h() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b110336/Test.java",
 		"package b110336;\n" +
@@ -6183,7 +6183,7 @@ public void testBug110422b() throws CoreException {
  * bug 113671: [search] AIOOBE in SearchEngine#searchAllTypeNames
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=113671"
  */
-public void testBug113671() throws CoreException {
+public void testBug113671() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	TypeNameRequestor requestor =  new SearchTests.SearchTypeNameRequestor();
 	new SearchEngine().searchAllTypeNames(
 	   "java.lang".toCharArray(),
@@ -6219,7 +6219,7 @@ public void testBug113671() throws CoreException {
  * test Bug 114539: [search] Internal error when refactoring code with errors
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=114539"
  */
-public void testBug114539() throws CoreException {
+public void testBug114539() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b114539/Foo.java",
 		"package b114539;\n" +
@@ -6244,7 +6244,7 @@ public void testBug114539() throws CoreException {
  * bug 116459: [search] correct results are missing in java search
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=116459"
  */
-public void testBug116459() throws CoreException {
+public void testBug116459() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/p1/X.java",
 		"package p1;\n" +
@@ -6290,7 +6290,7 @@ public void testBug119545() throws CoreException {
  * test Bug 120816: [search] NullPointerException at ...jdt.internal.compiler.lookup.SourceTypeBinding.getMethods
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=120816"
  */
-public void testBug120816a() throws CoreException {
+public void testBug120816a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b120816/Test.java",
 		"package b120816;\n" +
@@ -6312,7 +6312,7 @@ public void testBug120816a() throws CoreException {
 		"src/b120816/Sub.java String b120816.Sub.foo(Exception) [foo] EXACT_MATCH"
 	);
 }
-public void testBug120816b() throws CoreException {
+public void testBug120816b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b120816/Test.java",
 		"package b120816;\n" +
@@ -6461,7 +6461,7 @@ public void testBug123679_cu() throws CoreException {
 		"src/b123679/test/Test.java I123679 b123679.test.Test$StaticClass$Member.getParent() [I123679] EXACT_MATCH"
 	);
 }
-public void testBug123679_wc() throws CoreException {
+public void testBug123679_wc() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/pack/I122679.java",
 		"package pack;\n" +
@@ -6505,7 +6505,7 @@ public void testBug123679_wc() throws CoreException {
  * bug 124469: [search] AIOOBE in PatternLocator when searching for dependency extent from manifest
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=124469"
  */
-public void testBug124469a() throws CoreException {
+public void testBug124469a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IType type = getClassFile("JavaSearchBugs", "lib/b124469.jar", "pack", "E.class").getType();
 	search(type, REFERENCES);
 	assertSearchResults(
@@ -6692,7 +6692,7 @@ public void testBug124469n() throws CoreException {
  * bug 124489: [search] correct results are missing in java search
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=124489"
  */
-public void testBug124489() throws CoreException {
+public void testBug124489() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/Foo.java",
 		"public class Foo<T> {}"
@@ -6939,7 +6939,7 @@ public void testBug124645d() throws CoreException {
  * bug 125178: [search] AIOOBE in PatternLocator when searching for dependency extent from manifest
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=125178"
  */
-public void testBug125178() throws CoreException {
+public void testBug125178() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Need a working copy as anonymous are not indexed...
 	ProblemRequestor problemRequestor = new ProblemRequestor();
 	this.workingCopies = new ICompilationUnit[1];
@@ -6963,7 +6963,7 @@ public void testBug125178() throws CoreException {
 	IPackageFragment jar = getPackageFragment("JavaSearchBugs", "lib/b125178.jar", "pack.age");
 	IJavaElement[] children = jar.getChildren();
 	assertNotNull("We should have children for in default package of lib/b125178.jar", children);
-	for (int i=0,l=children.length; i<l; i++) {
+	for (int i=0,l=children.length; i<l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		assertTrue("Jar should only have class files!", children[i] instanceof ClassFile);
 		IType type = ((ClassFile)children[i]).getType();
 		if (type.isAnonymous()) {
@@ -6991,7 +6991,7 @@ public void testBug126330() throws CoreException {
  * bug 127628: [index] CodeAssist doesn't filter deprecated types
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=127628"
  */
-public void testBug127628() throws CoreException {
+public void testBug127628() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	class DeprecatedTypesRequestor extends SearchTests.SearchTypeNameRequestor {
 		@Override
 		public void acceptType(int modifiers, char[] packageName, char[] simpleTypeName, char[][] enclosingTypeNames, String path) {
@@ -7059,7 +7059,7 @@ public void testBug128877c() throws CoreException {
  * test Bug 130390: CamelCase algorithm cleanup and improvement
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=130390"
  */
-private void setUpBug130390() throws CoreException {
+private void setUpBug130390() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[4];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b130390/TZ.java",
 		"package b130390;\n" +
@@ -7425,7 +7425,7 @@ public void testBug137984_cu() throws CoreException {
 		"src/b137984/C.java b137984.C(int) [c3] EXACT_MATCH"
 	);
 }
-public void testBug137984_wc() throws CoreException {
+public void testBug137984_wc() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/CW.java",
 		"public class CW {\n" +
@@ -7549,7 +7549,7 @@ public void testBug142044_Or() throws CoreException {
  * bug 144044: [search] NPE when trying to find references to field variable
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=144044"
  */
-public void testBug144044() throws CoreException {
+public void testBug144044() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/test1/p/Test.java",
 		"package test1.p;\n" +
@@ -7573,7 +7573,7 @@ public void testBug144044() throws CoreException {
 		"src/test1/p/Test.java String test1.p.Test.foo(X) [str] POTENTIAL_MATCH"
 	);
 }
-public void testBug144044b() throws CoreException {
+public void testBug144044b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[4];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/test2/p/Test.java",
 		"package test2.p;\n" +
@@ -7668,7 +7668,7 @@ public void testBug148215_Fields() throws CoreException {
  * 	instead of {@link TypeNameRequestor}
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=148380"
  */
-public void testBug148380_SearchAllTypes_wc() throws CoreException {
+public void testBug148380_SearchAllTypes_wc() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	this.workingCopies = new ICompilationUnit[4];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b148380/I.java",
@@ -7718,7 +7718,7 @@ public void testBug148380_SearchAllTypes_wc() throws CoreException {
 		null);
 	assertSearchResults(expected, requestor2);
 }
-public void testBug148380_SearchAllTypes_cu() throws CoreException, JavaModelException {
+public void testBug148380_SearchAllTypes_cu() throws CoreException, JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaSearchScope scope = getJavaSearchScope();
 	TypeNameMatchCollector requestor = new TypeNameMatchCollector();
 	new SearchEngine().searchAllTypeNames(
@@ -7736,7 +7736,7 @@ public void testBug148380_SearchAllTypes_cu() throws CoreException, JavaModelExc
 		requestor
 	);
 }
-public void testBug148380_SearchAllTypes_cu_wksp() throws CoreException, JavaModelException {
+public void testBug148380_SearchAllTypes_cu_wksp() throws CoreException, JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaSearchScope scope = SearchEngine.createWorkspaceScope();
 	TypeNameMatchCollector requestor = new TypeNameMatchCollector();
 	new SearchEngine().searchAllTypeNames(
@@ -7760,7 +7760,7 @@ public void testBug148380_SearchAllTypes_cu_wksp() throws CoreException, JavaMod
  * test Ensure that references to package are also found in qualified annotation
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=153765"
  */
-public void testBug153765() throws CoreException {
+public void testBug153765() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFolder("/JavaSearchBugs/src/b153765");
 		createFile("/JavaSearchBugs/src/b153765/Unimportant.java",
@@ -7791,7 +7791,7 @@ public void testBug153765() throws CoreException {
  * bug 156340: [search] searchAllTypeNames return nothing for empty prefix
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=156340"
  */
-public void testBug156340() throws CoreException {
+public void testBug156340() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	TypeNameRequestor requestor =  new SearchTests.SearchTypeNameRequestor();
 	IPackageFragment fragment = getPackageFragment("JavaSearchBugs", getExternalJCLPathString(CompilerOptions.getFirstSupportedJavaVersion()), "java.lang");
 	IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaElement[] { fragment });
@@ -7829,7 +7829,7 @@ public void testBug156340() throws CoreException {
  * bug 156177: [1.5][search] interfaces and annotations could be found with only one requets of searchAllTypeName
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=156177"
  */
-public void testBug156177() throws CoreException {
+public void testBug156177() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b156177/Test.java",
@@ -7862,7 +7862,7 @@ public void testBug156177() throws CoreException {
  * bug 156491: [1.5][search] interfaces and annotations could be found with only one requets of searchAllTypeName
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=156491"
  */
-public void testBug156491() throws CoreException {
+public void testBug156491() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/pack/Test.java",
@@ -7908,7 +7908,7 @@ public void testBug156491() throws CoreException {
 		"lib/b125178.jar java.lang.String pack.age.Test.foo(int) EXACT_MATCH SUPER INVOCATION"
 	);
 }
-private void setUpBug156491() throws CoreException {
+private void setUpBug156491() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/other/Test.java",
 		"package other;\n" +
@@ -7964,7 +7964,7 @@ public void testBug156491b() throws CoreException {
  * test Ensure that correct number of method references are found
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=160301"
  */
-public void testBug160301() throws CoreException {
+public void testBug160301() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/Test.java",
@@ -7994,7 +7994,7 @@ public void testBug160301() throws CoreException {
 		"src/Test.java void Test$A.bar() [foo()] EXACT_MATCH"
 	);
 }
-public void testBug160301b() throws CoreException {
+public void testBug160301b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/test/Test.java",
@@ -8030,7 +8030,7 @@ public void testBug160301b() throws CoreException {
 		"src/test/Test.java void test.Test.b() [foo()] EXACT_MATCH"
 	);
 }
-public void testBug160301_Interface() throws CoreException {
+public void testBug160301_Interface() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/Test.java",
@@ -8084,7 +8084,7 @@ public void testBug160301_Interface() throws CoreException {
 		"src/Test.java void Test$A3.a3() [foo()] EXACT_MATCH"
 	);
 }
-public void testBug160301_Abstract() throws CoreException {
+public void testBug160301_Abstract() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/Test.java",
@@ -8131,7 +8131,7 @@ public void testBug160301_Abstract() throws CoreException {
 		"src/Test.java void Test$B2.b2() [foo()] EXACT_MATCH"
 	);
 }
-public void testBug160301_Abstract2() throws CoreException {
+public void testBug160301_Abstract2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/Test.java",
@@ -8166,7 +8166,7 @@ public void testBug160301_Abstract2() throws CoreException {
 		"src/Test.java void Test$B.b() [foo()] EXACT_MATCH"
 	);
 }
-public void testBug160301_Abstract3() throws CoreException {
+public void testBug160301_Abstract3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/Test.java",
@@ -8206,7 +8206,7 @@ public void testBug160301_Abstract3() throws CoreException {
  * test Ensure that match equals and hashCode methods return same values than those of stored {@link IType}.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=160323"
  */
-public void testBug160323() throws CoreException {
+public void testBug160323() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Search all type names with TypeNameMatchRequestor
 	TypeNameMatchCollector collector = new TypeNameMatchCollector() {
 		@Override
@@ -8247,7 +8247,7 @@ public void testBug160323() throws CoreException {
  * 	are the same than with already existing API method using {@link TypeNameRequestor}...
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=160324"
  */
-public void testBug160324a() throws CoreException {
+public void testBug160324a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	boolean debug = false;
 	// Search all type names with new API
 	TypeNameMatchCollector collector = new TypeNameMatchCollector() {
@@ -8272,12 +8272,12 @@ public void testBug160324a() throws CoreException {
 		requestor,
 		IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH,
 		null);
-	if (debug) System.out.println("TypeNameRequestor results: \n"+requestor);
+	if (debug) System.out.println("TypeNameRequestor results: \n"+requestor); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	// Should have same types with these 2 searches
 	assertTrue("We should get some types!", collector.size() > 0);
 	assertEquals("Found types sounds not to be correct", requestor.toString(), collector.toString());
 }
-public void testBug160324b() throws CoreException {
+public void testBug160324b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Search all type names with new API
 	TypeNameMatchCollector collector = new TypeNameMatchCollector() {
 		@Override
@@ -8311,7 +8311,7 @@ public void testBug160324b() throws CoreException {
  * test Ensure that types of default packge are found when empty package is specified in package lists
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=160494"
  */
-public void testBug160324c() throws CoreException {
+public void testBug160324c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	boolean debug = false;
 	char[][] packagesList = new char[][] {
 			CharOperation.NO_CHAR,
@@ -8340,7 +8340,7 @@ public void testBug160324c() throws CoreException {
 		collector,
 		IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH,
 		null);
-	if (debug) System.out.println("TypeNameMatchRequestor results: \n"+collector);
+	if (debug) System.out.println("TypeNameMatchRequestor results: \n"+collector); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	// Search all type names with old API
 	TypeNameRequestor requestor =  new SearchTests.SearchTypeNameRequestor();
 	new SearchEngine().searchAllTypeNames(
@@ -8350,7 +8350,7 @@ public void testBug160324c() throws CoreException {
 		requestor,
 		IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH,
 		null);
-	if (debug) System.out.println("TypeNameRequestor results: \n"+requestor);
+	if (debug) System.out.println("TypeNameRequestor results: \n"+requestor); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	// Should have same types with these 2 searches
 	assertEquals("Wrong number of found types!", packagesList.length, collector.size());
 	assertEquals("Found types sounds not to be correct", requestor.toString(), collector.toString());
@@ -8361,7 +8361,7 @@ public void testBug160324c() throws CoreException {
  * test Ensure that types are found when typeNames parameter is null...
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=160854"
  */
-public void testBug160854() throws CoreException {
+public void testBug160854() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[][] packagesList = new char[][] {
 			"java.lang".toCharArray()
 	};
@@ -8432,7 +8432,7 @@ public void testBug161028() throws CoreException {
  * test Ensure that access rules does not change searchAllTypeNames results.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=161190"
  */
-public void testBug161190() throws CoreException {
+public void testBug161190() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[][] packagesList = new char[][] {
 			"xy".toCharArray()
 	};
@@ -8474,7 +8474,7 @@ public void testBug161190() throws CoreException {
  * test Ensure that types are found even when scope is made of elements
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=163984"
  */
-public void testBug163984() throws CoreException {
+public void testBug163984() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Search all type names with TypeNameMatchRequestor
 	TypeNameMatchCollector collector = new TypeNameMatchCollector() {
 		@Override
@@ -8555,14 +8555,14 @@ public void testBug164121b() throws CoreException {
  * test Ensure that match on anonymous type in local type is well reported
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=164791"
  */
-public void testBug164791() throws CoreException {
+public void testBug164791() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IType type = getClassFile("JavaSearchBugs", "lib/b164791.jar", "pack", "ELPM.class").getType();
 	JavaSearchResultCollector collector = new JavaSearchResultCollector() {
 		@Override
 		public void acceptSearchMatch(SearchMatch searchMatch) throws CoreException {
 			super.acceptSearchMatch(searchMatch);
 			IJavaElement element = (IJavaElement) searchMatch.getElement();
-			assertTrue("Search match element "+element.getElementName()+" should exist!!!", element.exists());
+			assertTrue("Search match element "+element.getElementName()+" should exist!!!", element.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	};
 	collector.showAccuracy(true);
@@ -8606,7 +8606,7 @@ public void testBug167190() throws CoreException, JavaModelException {
 	bug167190(false);
 }
 
-private void bug167190(boolean parallel) throws JavaModelException {
+private void bug167190(boolean parallel) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IJavaSearchScope scope = new AbstractSearchScope() {
 		IJavaSearchScope jsScope = getJavaSearchScope();
@@ -8657,7 +8657,7 @@ private void bug167190(boolean parallel) throws JavaModelException {
 		IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH,
 		null);
 	// Should have same types with these 2 searches
-	assertEquals(String.format("Found types sounds not to be correct [Parallel=%s]", parallel), requestor.toString(), collector.toString());
+	assertEquals(String.format("Found types sounds not to be correct [Parallel=%s]", parallel), requestor.toString(), collector.toString()); //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
 }
 
 /**
@@ -8665,7 +8665,7 @@ private void bug167190(boolean parallel) throws JavaModelException {
  * test Ensure that searching method reference finds the interface method reference
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=178596"
  */
-public void testBug178596() throws CoreException {
+public void testBug178596() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[5];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/ClassA.java",
 		"public class ClassA implements InterfaceA {\n" +
@@ -8717,7 +8717,7 @@ public void testBug178596() throws CoreException {
  * test Ensure that accurate matches are found
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=178847"
  */
-public void testBug178847() throws CoreException {
+public void testBug178847() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1", new String[] {"src" }, "bin");
 		createFolder("/P1/src/p");
@@ -8803,7 +8803,7 @@ public void testBug181488b() throws CoreException {
  * test Ensure that all package declarations are found only once
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=185452"
  */
-public void testBug185452() throws CoreException {
+public void testBug185452() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	JavaSearchResultCollector packageCollector = new JavaSearchResultCollector(true);
 	search(
 		"*",
@@ -8914,7 +8914,7 @@ public void testBug194185() throws CoreException {
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=108053"
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=195489"
  */
-public void testBug195489a() throws CoreException {
+public void testBug195489a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b195489/Test.java",
 		"package b195489;\n" +
@@ -8935,7 +8935,7 @@ public void testBug195489a() throws CoreException {
 		"src/b195489/Test.java b195489.Ref [Ref] EXACT_MATCH OUTSIDE_JAVADOC"
 	);
 }
-public void testBug195489b() throws CoreException {
+public void testBug195489b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b195489/Test.java",
 		"package b195489;\n" +
@@ -8974,7 +8974,7 @@ public void testBug195489c() throws CoreException {
 	);
 }
 // test case for bug 108053 workaround
-public void testBug195489d() throws CoreException {
+public void testBug195489d() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b195489/Test.java",
 		"package b195489;\n" +
@@ -9018,7 +9018,7 @@ public void testBug196339() throws CoreException {
 }
 // Possible workaround until this bug is fixed
 // Following test passed before the fix for bug 196339 was applied
-public void testBug196339b() throws CoreException {
+public void testBug196339b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b196339/x/y/z/Test1.java",
 		"package b196339.xy.y.z;\n" +
@@ -9040,7 +9040,7 @@ public void testBug196339b() throws CoreException {
 
 	final String qualifiedType = "a.b.c.Foo196339";
 	JavaSearchResultCollector collector = new JavaSearchResultCollector() {
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public void acceptSearchMatch(SearchMatch searchMatch) throws CoreException {
         Object element = searchMatch.getElement();
         if (element instanceof IType) {
@@ -9048,7 +9048,7 @@ public void testBug196339b() throws CoreException {
             // Look if super interface names matches the qualified type
             String[] superInterfaces = type.getSuperInterfaceNames();
             int length = superInterfaces == null ? 0 : superInterfaces.length;
-            for (int i=0; i<length; i++) {
+            for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
                 if (superInterfaces[i].equals(qualifiedType)) {
                     super.acceptSearchMatch(searchMatch);
                     return;
@@ -9057,7 +9057,7 @@ public void testBug196339b() throws CoreException {
             // Look if an import declaration matches the qualified type
             IImportDeclaration[] imports = ((ICompilationUnit) type.getAncestor(IJavaElement.COMPILATION_UNIT)).getImports();
             length = imports == null ? 0 : imports.length;
-            for (int i=0; i<length; i++) {
+            for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
                 String importName = imports[i].getElementName();
                 if (importName.equals(qualifiedType)) {
                     super.acceptSearchMatch(searchMatch);
@@ -9091,7 +9091,7 @@ public void testBug196339b() throws CoreException {
  * 			3) That match in system libraries are returned when no mask is used in scope
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=199004"
  */
-public void testBug199004_SystemLibraries() throws CoreException {
+public void testBug199004_SystemLibraries() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	DefaultContainerInitializer intializer = new DefaultContainerInitializer(new String[] {"JavaSearchBugs", "/JavaSearchBugs/lib/b199004.jar"}) {
 		@Override
 		protected DefaultContainer newContainer(char[][] libPaths) {
@@ -9117,7 +9117,7 @@ public void testBug199004_SystemLibraries() throws CoreException {
 		removeClasspathEntry(JAVA_PROJECT, libPath);
 	}
 }
-public void testBug199004_DefaultSystemLibraries() throws CoreException {
+public void testBug199004_DefaultSystemLibraries() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	DefaultContainerInitializer intializer = new DefaultContainerInitializer(new String[] {"JavaSearchBugs", "/JavaSearchBugs/lib/b199004.jar"}) {
 		@Override
 		protected DefaultContainer newContainer(char[][] libPaths) {
@@ -9143,7 +9143,7 @@ public void testBug199004_DefaultSystemLibraries() throws CoreException {
 		removeClasspathEntry(JAVA_PROJECT, libPath);
 	}
 }
-public void testBug199004_ApplicationLibraries() throws CoreException {
+public void testBug199004_ApplicationLibraries() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	DefaultContainerInitializer intializer = new DefaultContainerInitializer(new String[] {"JavaSearchBugs", "/JavaSearchBugs/lib/b199004.jar"}) {
 		@Override
 		protected DefaultContainer newContainer(char[][] libPaths) {
@@ -9171,7 +9171,7 @@ public void testBug199004_ApplicationLibraries() throws CoreException {
 		removeClasspathEntry(JAVA_PROJECT, libPath);
 	}
 }
-public void testBug199004_NoMask() throws CoreException {
+public void testBug199004_NoMask() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	DefaultContainerInitializer intializer = new DefaultContainerInitializer(new String[] {"JavaSearchBugs", "/JavaSearchBugs/lib/b199004.jar"}) {
 		@Override
 		protected DefaultContainer newContainer(char[][] libPaths) {
@@ -9204,7 +9204,7 @@ public void testBug199004_NoMask() throws CoreException {
  * test Ensure that indexing still works properly after close/restart
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=200064"
  */
-public void testBug200064() throws CoreException {
+public void testBug200064() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	waitUntilIndexesReady();
 	simulateExitRestart();
 	waitUntilIndexesReady();
@@ -9457,7 +9457,7 @@ public void testBug204652() throws CoreException {
  * test Ensure that searching method reference does not find wrong interface call
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=207657"
  */
-public void testBug207657() throws CoreException {
+public void testBug207657() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/test/Relationship.java",
 		"package test;\n" +
@@ -9495,7 +9495,7 @@ public void testBug207657() throws CoreException {
  * test Ensure that searching method reference does not find wrong interface call
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=209054"
  */
-public void testBug209054() throws CoreException {
+public void testBug209054() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/xy/Try.java",
 		"package xy;\n" +
@@ -9520,7 +9520,7 @@ public void testBug209054() throws CoreException {
  * test Ensure that the local element is no longer a local variable
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=209778"
  */
-public void testBug209778() throws CoreException {
+public void testBug209778() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/xy/Try.java",
 		"package xy;\n" +
@@ -9551,7 +9551,7 @@ public void testBug209778() throws CoreException {
  * test Verify the behavior of the new Search API {@link ReferenceMatch#getLocalElement()}
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=209996"
  */
-public void testBug209996a() throws CoreException {
+public void testBug209996a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/test/Test.java",
 		"package test;\n" +
@@ -9589,7 +9589,7 @@ public void testBug209996b() throws CoreException {
 		collector
 	);
 }
-public void testBug209996_c5() throws CoreException {
+public void testBug209996_c5() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/comment5/Ref.java",
 		"package comment5;\n" +
@@ -9619,7 +9619,7 @@ public void testBug209996_c5() throws CoreException {
 		collector
 	);
 }
-public void testBug209996_c10() throws CoreException {
+public void testBug209996_c10() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/comment10/Ref.java",
 		"package comment10;\n" +
@@ -9638,7 +9638,7 @@ public void testBug209996_c10() throws CoreException {
 		collector
 	);
 }
-public void testBug209996_c22_3() throws CoreException {
+public void testBug209996_c22_3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/comment22/Test.java",
 		"package comment22;\n" +
@@ -9662,7 +9662,7 @@ public void testBug209996_c22_3() throws CoreException {
 		collector
 	);
 }
-public void testBug209996_c22_4() throws CoreException {
+public void testBug209996_c22_4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/test/Test.java",
 		"package test;\n" +
@@ -9711,7 +9711,7 @@ public void testBug210689() throws CoreException {
  * test Ensure that all type references are found when used in type variables
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=210567"
  */
-public void testBug210567() throws CoreException {
+public void testBug210567() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/generics/Generic.java",
 		"package generics;\n" +
@@ -9756,7 +9756,7 @@ public void testBug210567() throws CoreException {
  * test Ensure that all qualified type reference in import references is selected when using "*" pattern
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=210691"
  */
-public void testBug210691() throws CoreException {
+public void testBug210691() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/pack/Test.java",
 		"package pack;\n" +
@@ -9799,7 +9799,7 @@ public void testBug211366() throws CoreException {
 		removeClasspathEntry(JAVA_PROJECT, new Path("/JavaSearchBugs/lib/b211366.jar"));
 	}
 }
-public void testBug211366_OrPattern() throws CoreException {
+public void testBug211366_OrPattern() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	addLibraryEntry(JAVA_PROJECT, "/JavaSearchBugs/lib/b211366.jar", false);
 	try {
 		IType type = getClassFile("JavaSearchBugs", "lib/b211366.jar", "test", "Bug.class").getType();
@@ -9826,7 +9826,7 @@ public void testBug211366_OrPattern() throws CoreException {
 		removeClasspathEntry(JAVA_PROJECT, new Path("/JavaSearchBugs/lib/b211366.jar"));
 	}
 }
-public void testBug211366_ComplexOrPattern() throws CoreException {
+public void testBug211366_ComplexOrPattern() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	addLibraryEntry(JAVA_PROJECT, "/JavaSearchBugs/lib/b211366.jar", false);
 	try {
 		IType bType = getClassFile("JavaSearchBugs", "lib/b211366.jar", "test", "Bug.class").getType();
@@ -9932,7 +9932,7 @@ public void testBug211872_ws() throws CoreException, IOException {
  * test Ensure that source folder nesting doesn't cause non existing elements to be returned
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=181981"
  */
-public void testBug181981() throws CoreException {
+public void testBug181981() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P", new String[] { "", "src"}, new String[] {"JCL18_LIB"}, null, null, "bin", null, null, new String[][] {new String[] {"src/"}, new String[0]}, CompilerOptions.getFirstSupportedJavaVersion());
 		createFolder("/P/p1");
@@ -9979,7 +9979,7 @@ public void testBug181981() throws CoreException {
  * test Ensure that read access is found inside qualified name reference
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=216875"
  */
-public void testBug216875() throws CoreException {
+public void testBug216875() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/Test.java",
 		"public class Test {\n" +
@@ -9999,7 +9999,7 @@ public void testBug216875() throws CoreException {
 		"src/Test.java void Test.m() [        !|test|!.fField = 42; // match for t is writeAccess, should be readAccess] EXACT_MATCH"
 	);
 }
-public void testBug216875b() throws CoreException {
+public void testBug216875b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/Test.java",
 		"public class Test {\n" +
@@ -10019,7 +10019,7 @@ public void testBug216875b() throws CoreException {
 		"src/Test.java void Test.wrapper() [        !|fWrapped|!.fField = 12; // match for fWrapped is writeAccess] EXACT_MATCH"
 	);
 }
-public void testBug216875c() throws CoreException {
+public void testBug216875c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/pack/Test.java",
 		"package pack;\n" +
@@ -10047,7 +10047,7 @@ public void testBug216875c() throws CoreException {
 		"src/test/X.java void test.X.foo(Test, Test) [		t2.field = !|t1|!.field;] EXACT_MATCH"
 	);
 }
-public void testBug216875d() throws CoreException {
+public void testBug216875d() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/pack/Test.java",
 		"package pack;\n" +
@@ -10076,7 +10076,7 @@ public void testBug216875d() throws CoreException {
 		"src/test/X.java void test.X.foo() [		t2.field = !|t1|!.field;] EXACT_MATCH"
 	);
 }
-public void testBug216875e() throws CoreException {
+public void testBug216875e() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/pack/Test.java",
 		"package pack;\n" +
@@ -10102,7 +10102,7 @@ public void testBug216875e() throws CoreException {
 		"src/test/X.java void test.X.foo(Test, Test) [		!|t1|! = t2;] EXACT_MATCH"
 	);
 }
-public void testBug216875f() throws CoreException {
+public void testBug216875f() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/pack/Test.java",
 		"package pack;\n" +
@@ -10129,7 +10129,7 @@ public void testBug216875f() throws CoreException {
 		"src/test/X.java void test.X.foo() [		!|t1|! = t2;] EXACT_MATCH"
 	);
 }
-public void testBug216875g() throws CoreException {
+public void testBug216875g() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/pack/Test.java",
 		"package pack;\n" +
@@ -10160,7 +10160,7 @@ public void testBug216875g() throws CoreException {
 		"src/test/X.java void test.X.foo(Test, Test) [		t2.field = !|t1|!.field;] READ ACCESS"
 	);
 }
-public void testBug216875h() throws CoreException {
+public void testBug216875h() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/pack/Test.java",
 		"package pack;\n" +
@@ -10198,7 +10198,7 @@ public void testBug216875h() throws CoreException {
  * test Ensure that the generic local class reference is well found (no CCE)
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=218397"
  */
-public void testBug218397() throws CoreException {
+public void testBug218397() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/Bug.java",
 		"class Bug{\n" +
@@ -10224,7 +10224,7 @@ public void testBug218397() throws CoreException {
  * 	one call to SearchEngine
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=221081"
  */
-public void testBug221081() throws CoreException {
+public void testBug221081() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/Test.java",
 		"public class Test {\n" +
@@ -10265,7 +10265,7 @@ public void testBug221081() throws CoreException {
  * 	when referenced in a unbound wildcard parameterized type
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=221110"
  */
-public void testBug221110() throws CoreException {
+public void testBug221110() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 		"public class X<T> {\n" +
@@ -10283,7 +10283,7 @@ public void testBug221110() throws CoreException {
 		"src/Y.java Y [public class Y<T extends !|X|!<?>> {] ERASURE_MATCH"
 	);
 }
-public void testBug221110b() throws CoreException {
+public void testBug221110b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/I.java",
 		"public interface I<T> {\n" +
@@ -10311,7 +10311,7 @@ public void testBug221110b() throws CoreException {
  * test Ensure that correct number of method references are found
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=221065"
  */
-public void testBug221065() throws CoreException {
+public void testBug221065() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resultCollector.showRule();
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/Test.java",
@@ -10347,9 +10347,9 @@ public void testBug221065() throws CoreException {
  * test Ensure that no exception is raised while searching for a type of the missing jar file
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=222284"
  */
-public void testBug222284() throws Exception {
+public void testBug222284() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String jarName = "lib222284.jar";
-	String jarPath = getExternalPath()+jarName;
+	String jarPath = getExternalPath()+jarName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	IFile jarFile = JAVA_PROJECT.getProject().getFile(jarName);
 	try {
 		// Create jar and add it to JavaSearchBugs project build path
@@ -10397,7 +10397,7 @@ public void testBug222284() throws Exception {
  * test Ensure that annotation are correctly recovered
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=228464"
  */
-public void testBug228464() throws CoreException {
+public void testBug228464() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/Test.java",
 		"public class Test {\n" +
@@ -10430,7 +10430,7 @@ public void testBug228464() throws CoreException {
  * test Ensure that types found in an internal jar exist when using a workspace scope
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=228852"
  */
-public void testBug228852a() throws Exception {
+public void testBug228852a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P", new String[] {}, new String[] {"/P/lib228852.jar"}, "");
 		createJar(new String[] {
@@ -10463,7 +10463,7 @@ public void testBug228852a() throws Exception {
  * test Ensure that types found in an internal jar exist when using a Java search scope
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=228852"
  */
-public void testBug228852b() throws Exception {
+public void testBug228852b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P", new String[] {}, new String[] {"/P/lib228852.jar"}, "");
 		createJar(new String[] {
@@ -10496,7 +10496,7 @@ public void testBug228852b() throws Exception {
  * test Ensure that types added through a container are found using a workspace scope
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=231622"
  */
-public void testBug231622() throws Exception {
+public void testBug231622() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P", new String[] {}, new String[] {"org.eclipse.jdt.core.tests.model.TEST_CONTAINER"}, "");
 		createJar(new String[] {
@@ -10534,7 +10534,7 @@ public void testBug231622() throws Exception {
  * test Ensure that no exception occurs even when code has compiler errors
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=236520"
  */
-public void testBug236520() throws CoreException {
+public void testBug236520() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/pack1/I.java",
 		"package pack1;\n" +
@@ -10560,7 +10560,7 @@ public void testBug236520() throws CoreException {
  * test Ensure that a library that is no longer referenced, modified, and referenced again is re-indexed
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=250083"
  */
-public void testBug250083() throws Exception {
+public void testBug250083() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String libPath = getExternalResourcePath("lib250083.jar");
 	try {
 		Util.createJar(
@@ -10569,7 +10569,7 @@ public void testBug250083() throws Exception {
 				"package p250083;\n" +
 				"public class Y250083 {}"
 			},
-			new HashMap(),
+			new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			libPath);
 		createJavaProject("P", new String[0], new String[] {libPath}, "");
 		waitUntilIndexesReady();
@@ -10582,7 +10582,7 @@ public void testBug250083() throws Exception {
 				"package p250083;\n" +
 				"public class X250083 {}"
 			},
-			new HashMap(),
+			new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			libPath);
 		createJavaProject("P", new String[0], new String[] {libPath}, "");
 		TypeNameMatchCollector collector = new TypeNameMatchCollector();
@@ -10594,7 +10594,7 @@ public void testBug250083() throws Exception {
 			IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH,
 			null);
 		assertSearchResults(
-			"X250083 (not open) [in X250083.class [in p250083 [in "+ getExternalPath() + "lib250083.jar]]]",
+			"X250083 (not open) [in X250083.class [in p250083 [in "+ getExternalPath() + "lib250083.jar]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			collector);
 	} finally {
 		deleteExternalFile(libPath);
@@ -10606,7 +10606,7 @@ public void testBug250083() throws Exception {
  * bug 251827: [search] Search for type reference with wildcards finds references in package
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=251827"
  */
-public void testBug251827a() throws CoreException {
+public void testBug251827a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	WorkingCopyOwner owner = new WorkingCopyOwner() {};
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b251827/B251827.java",
@@ -10634,7 +10634,7 @@ public void testBug251827a() throws CoreException {
 		"src/b251827/X.java [import static b251827.!|B251827|!.foo;] EXACT_MATCH"
 	);
 }
-public void testBug251827b() throws CoreException {
+public void testBug251827b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	WorkingCopyOwner owner = new WorkingCopyOwner() {};
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b251827/B251827.java",
@@ -10660,7 +10660,7 @@ public void testBug251827b() throws CoreException {
 		"src/b251827/X.java [import static b251827.!|B251827|!.*;] EXACT_MATCH"
 	);
 }
-public void testBug251827c() throws CoreException {
+public void testBug251827c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	WorkingCopyOwner owner = new WorkingCopyOwner() {};
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b251827/B251827.java",
@@ -10694,7 +10694,7 @@ public void testBug251827c() throws CoreException {
  * test Ensure that no NPE occurs when project is deleted before the end of the search request
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=261722"
  */
-public void testBug261722() throws Exception {
+public void testBug261722() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String libPath = getExternalResourcePath("lib261722.jar");
 	waitUntilIndexesReady();
 	IPath projectPath = null;
@@ -10704,15 +10704,15 @@ public void testBug261722() throws Exception {
 		pathsAndContents[0] = "p261722/X.java";
 		pathsAndContents[1] = "package p261722;\n" +
         	"public class X {}";
-		for (int i=1; i<=MAX; i++) {
-			String className = (i<10) ? "X0"+i : "X"+i;
-			pathsAndContents[i*2] = "p261722/"+className+".java";
-			pathsAndContents[i*2+1] = "package p261722;\n" +
+		for (int i=1; i<=MAX; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			String className = (i<10) ? "X0"+i : "X"+i; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			pathsAndContents[i*2] = "p261722/"+className+".java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			pathsAndContents[i*2+1] = "package p261722;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        	"public class "+className+" extends X {}";
         }
 		Util.createJar(
 			pathsAndContents,
-			new HashMap(),
+			new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			libPath);
 
 		IJavaProject javaProject = createJavaProject("P", new String[0], new String[] {libPath}, "");
@@ -10755,13 +10755,13 @@ public void testBug261722() throws Exception {
 
 		// Delete project in current thread after being sure that the search
 		// request was started
-		while (requestor.count < (MAX/3) && System.nanoTime() < maxEnd) {
+		while (requestor.count < (MAX/3) && System.nanoTime() < maxEnd) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Thread.sleep(10);
 		}
 		deleteProject(javaProject);
 
 		// Wait until search thread is finished
-		while (thread.isAlive()) {
+		while (thread.isAlive()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Thread.sleep(100);
 		}
 
@@ -10780,7 +10780,7 @@ public void testBug261722() throws Exception {
  * test Ensure that no CCE occurs while using an OrPattern made of VariablePattern
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=265065"
  */
-public void testBug265065() throws CoreException {
+public void testBug265065() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/MyClass.java",
 		"public class MyClass {\n" +
@@ -10824,7 +10824,7 @@ public void testBug265065() throws CoreException {
 		"src/MyClass.java MyClass$MyPrivateClass(String, Object) [value] EXACT_MATCH WRITE ACCESS"
 	);
 }
-public void testBug265065b() throws CoreException {
+public void testBug265065b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/pack/Test.java",
 		"package pack;\n" +
@@ -10870,7 +10870,7 @@ public void testBug265065b() throws CoreException {
  * 	in a project which has the same jar twice on its classpath
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=266582"
  */
-public void testBug266582() throws Exception {
+public void testBug266582() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	addLibraryEntry(JAVA_PROJECT, "/JavaSearchBugs/lib/b266582a.jar", false);
 	addLibraryEntry(JAVA_PROJECT, "/JavaSearchBugs/lib/b266582b.jar", false);
 	try {
@@ -10919,7 +10919,7 @@ public void testBug266837() throws Exception {
  * test Ensure that no IAE occurs when there is a change in JavaLikeNames.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=286379"
  */
-public void testBug286379a() throws CoreException {
+public void testBug286379a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IContentType javaContentType = Platform.getContentTypeManager().getContentType(JavaCore.JAVA_SOURCE_CONTENT_TYPE);
 	ICompilationUnit cu = null;
 	try {
@@ -10974,7 +10974,7 @@ public void testBug286379a() throws CoreException {
  * This is similar to testBug286379a, except that it ensures that IAE doesn't occur
  * at a different place
  */
-public void testBug286379b() throws CoreException {
+public void testBug286379b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IContentType javaContentType = Platform.getContentTypeManager().getContentType(JavaCore.JAVA_SOURCE_CONTENT_TYPE);
 	try {
 		assertNotNull("We should have got a Java Source a content type!", javaContentType);
@@ -11023,8 +11023,8 @@ public void testBug286379b() throws CoreException {
  * at least on the restart of the workspace.
  * If any javaLikeNames are deleted, this ensures that the index file is regenerated.
  */
-public void testBug286379c() throws CoreException {
-	class TestResourceChangeListener implements IResourceChangeListener {
+public void testBug286379c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	class TestResourceChangeListener implements IResourceChangeListener { //FLLDCIM: MARK — T07  IMPLEMENTS
 		boolean toRemPresent = false;
 		public void resourceChanged(IResourceChangeEvent event) {
 			this.toRemPresent = validate(event.getDelta());
@@ -11043,7 +11043,7 @@ public void testBug286379c() throws CoreException {
 	        		return true;
 	        	}
 	        } else {
-		        for (int i=0; i<length; i++) {
+		        for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		        	if (validate(children[i])) return true;
 		        }
 	        }
@@ -11079,7 +11079,7 @@ public void testBug286379c() throws CoreException {
 		// fail as we don't get any specific event from the platform to refresh the indexes.
 		// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=118619
 		int counter = 0;
-		while (!changeListener.toRemPresent) {
+		while (!changeListener.toRemPresent) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				Thread.sleep(100);
 			}
@@ -11115,7 +11115,7 @@ public void testBug286379c() throws CoreException {
 		changeListener.toRemPresent = true;
 		javaContentType.removeFileSpec("torem", IContentType.FILE_EXTENSION_SPEC);
 		counter = 0;
-		while (changeListener.toRemPresent) {
+		while (changeListener.toRemPresent) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				Thread.sleep(100);
 			}
@@ -11154,7 +11154,7 @@ public void testBug286379c() throws CoreException {
  * test using the hierarchy with the old API includes the focus type.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=295894"
  */
-public void testBug295894() throws Exception {
+public void testBug295894() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/Test.java",
 		"public class Test {\n" +
@@ -11186,7 +11186,7 @@ public void testBug295894() throws Exception {
  * test explicitly excluding the focus type
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=295894"
  */
-public void testBug295894a() throws Exception {
+public void testBug295894a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/Test.java",
 		"public class Test {\n" +
@@ -11218,7 +11218,7 @@ public void testBug295894a() throws Exception {
  * test explicitly including the focus type
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=295894"
  */
-public void testBug295894b() throws Exception {
+public void testBug295894b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/Test.java",
 		"public class Test {\n" +
@@ -11252,7 +11252,7 @@ public void testBug295894b() throws Exception {
  * test explicitly including the focus type, which has no subtypes.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=295894"
  */
-public void testBug295894c() throws Exception {
+public void testBug295894c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/A.java",
 		"public class A {\n" +
@@ -11278,7 +11278,7 @@ public void testBug295894c() throws Exception {
 	);
 }
 //Failing test while working with a compilation unit instead of working copy
-public void testBug295894c2() throws Exception {
+public void testBug295894c2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P");
 		createFile(
@@ -11309,7 +11309,7 @@ public void testBug295894c2() throws Exception {
 	}
 }
 // Similar test passing when the focus type has a subclass
-public void testBug295894c3() throws Exception {
+public void testBug295894c3() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P");
 		createFile(
@@ -11342,7 +11342,7 @@ public void testBug295894c3() throws Exception {
 	}
 }
 // similar test using older API in SearchEngine:
-public void testBug295894c4() throws Exception {
+public void testBug295894c4() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P");
 		createFile(
@@ -11373,7 +11373,7 @@ public void testBug295894c4() throws Exception {
 	}
 }
 //Similar test to testBug295894c3 but using separate files for types
-public void testBug295894c5() throws Exception {
+public void testBug295894c5() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P");
 		createFile(
@@ -11414,7 +11414,7 @@ public void testBug295894c5() throws Exception {
  * 		when a binary type has matches in several member or anonymous types
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=288174"
  */
-public void testBug288174() throws Exception {
+public void testBug288174() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final String libPath = "/JavaSearchBugs/lib/b288174.jar";
 	addLibraryEntry(JAVA_PROJECT, libPath, false);
 	try {
@@ -11465,7 +11465,7 @@ public void testBug293861a() throws CoreException {
 /*
  * SearchEngine#searchAllTypeNames should also not return classes with invalid package names
  */
-public void testBug293861b() throws CoreException {
+public void testBug293861b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try
 	{
 		IJavaProject project = createJavaProject("P");
@@ -11490,7 +11490,7 @@ public void testBug293861b() throws CoreException {
 /*
  * enum is a valid package name in Java1.4 and those classes should be returned by search
  */
-public void testBug293861c() throws CoreException {
+public void testBug293861c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try
 	{
 		IJavaProject project = createJavaProject("P");
@@ -11517,7 +11517,7 @@ public void testBug293861c() throws CoreException {
  * test Ensure that indexing thread context class loader is not the application class loader
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=296343"
  */
-public void testBug296343() throws Exception {
+public void testBug296343() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	simulateExit();
 	class TestClassLoader extends ClassLoader {
 		TestClassLoader(ClassLoader parent) {
@@ -11549,7 +11549,7 @@ public void testBug296343() throws Exception {
 		indexManager.request(tir);
 		int counter = 0;
 		// wait until the Index request gets executed
-		while (!tir.executed) {
+		while (!tir.executed) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				Thread.sleep(100);
 			}
@@ -11569,7 +11569,7 @@ public void testBug296343() throws Exception {
  * test Ensure that no NPE occurs when searching for a reference in a CU without primary type
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=304841"
  */
-public void testBug304841() throws Exception {
+public void testBug304841() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	boolean autoBuild = getWorkspace().isAutoBuilding();
 	IWorkspaceDescription preferences = getWorkspace().getDescription();
 	try {
@@ -11618,7 +11618,7 @@ public void testBug304841() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug304841b() throws Exception {
+public void testBug304841b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	boolean autoBuild = getWorkspace().isAutoBuilding();
 	IWorkspaceDescription preferences = getWorkspace().getDescription();
 	try {
@@ -11653,7 +11653,7 @@ public void testBug304841b() throws Exception {
  *       has a method that does not exist in the class file.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=306196"
  */
-public void testBug306196() throws Exception {
+public void testBug306196() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final String libPath = "/JavaSearchBugs/lib/b306196.jar";
 	addLibraryEntry(JAVA_PROJECT, libPath, false);
 	try {
@@ -11685,7 +11685,7 @@ public void testBug306196() throws Exception {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=306223"
  */
-public void testBug306223a() throws CoreException {
+public void testBug306223a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b306223/Test.java",
 			"import b306223.MyAnnot;\n"+
@@ -11720,7 +11720,7 @@ public void testBug306223a() throws CoreException {
  * This ensures that using ANNOTATION_TYPE_REFERENCE as fine grain constant reports only
  * annotations and not any other references to an annotation type
  */
-public void testBug306223b() throws CoreException {
+public void testBug306223b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b306223/Test.java",
 			"import b306223.MyAnnot;\n"+
@@ -11753,7 +11753,7 @@ public void testBug306223b() throws CoreException {
 /**
  * This test ensures that search for enum references does not report type references.
  */
-public void testBug306223c() throws CoreException {
+public void testBug306223c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b306223/Test.java",
 			"public class TestEnum {\n" +
@@ -11792,7 +11792,7 @@ public void testBug306223c() throws CoreException {
  * This test ensures that a reference search of ANNOTATION_TYPE should report POTENTIAL_MATCH
  * for unknown references types.
  */
-public void testBug306223d() throws CoreException {
+public void testBug306223d() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b306223/Test.java",
 			"public class TestAnnot {\n" +
@@ -11817,7 +11817,7 @@ public void testBug306223d() throws CoreException {
  * This test ensures that an ANNOTATION_TYPE reference search for a non-existing
  * type does not report any other references
  */
-public void testBug306223e() throws CoreException {
+public void testBug306223e() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b306223/Test.java",
 			"public class Test {\n" +
@@ -11840,7 +11840,7 @@ public void testBug306223e() throws CoreException {
  * This test ensures that a TYPE reference search reports EXACT_MATCH
  * for missing types
  */
-public void testBug306223f() throws CoreException {
+public void testBug306223f() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b306223/Test.java",
 			"public class Test {\n" +
@@ -11865,7 +11865,7 @@ public void testBug306223f() throws CoreException {
  * This test ensures that a TYPE reference search for a non-existing
  * type does not report any other references
  */
-public void testBug306223g() throws CoreException {
+public void testBug306223g() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b306223/Test.java",
 			"public class Test {\n" +
@@ -11890,7 +11890,7 @@ public void testBug306223g() throws CoreException {
  * test Ensure that references to package are also found in qualified annotation
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=310213"
  */
-public void testBug310213() throws CoreException {
+public void testBug310213() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	boolean autoBuild = getWorkspace().isAutoBuilding();
 	IWorkspaceDescription preferences = getWorkspace().getDescription();
 	try {
@@ -11941,7 +11941,7 @@ public void testBug310213() throws CoreException {
  * test Search for references to method should even return hierarchy sibling's reference.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=313668"
  */
-public void testBug313668() throws CoreException {
+public void testBug313668() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	boolean autoBuild = getWorkspace().isAutoBuilding();
 	IWorkspaceDescription preferences = getWorkspace().getDescription();
 	IJavaProject commonProject = null, clientProject = null, serverProject = null;
@@ -12016,7 +12016,7 @@ public void testBug313668() throws CoreException {
  * test types in enum package of org.apache.commons.lang.jar should not be reported for 1.5 projects
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=317264"
  */
-public void testBug317264a() throws CoreException {
+public void testBug317264a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = null;
 	try
 	{
@@ -12078,7 +12078,7 @@ public void testBug317264e() throws CoreException {
  * test search of implementors does no longer report matches in type arguments
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=322979"
  */
-public void testBug322979a() throws CoreException {
+public void testBug322979a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try
 	{
 		IJavaProject project = createJavaProject("P", new String[] {""}, new String[] {"JCL18_LIB"}, "", CompilerOptions.getFirstSupportedJavaVersion());
@@ -12102,7 +12102,7 @@ public void testBug322979a() throws CoreException {
 	}
 }
 
-public void testBug322979b() throws CoreException {
+public void testBug322979b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try
 	{
 		IJavaProject project = createJavaProject("P", new String[] {""}, new String[] {"JCL18_LIB"}, "", CompilerOptions.getFirstSupportedJavaVersion());
@@ -12127,7 +12127,7 @@ public void testBug322979b() throws CoreException {
 	}
 }
 
-public void testBug322979c() throws CoreException {
+public void testBug322979c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try
 	{
 		IJavaProject project = createJavaProject("P", new String[] {""}, new String[] {"JCL18_LIB"}, "", CompilerOptions.getFirstSupportedJavaVersion());
@@ -12151,7 +12151,7 @@ public void testBug322979c() throws CoreException {
 	}
 }
 
-public void testBug322979d() throws CoreException {
+public void testBug322979d() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try
 	{
 		IJavaProject project = createJavaProject("P", new String[] {""}, new String[] {"JCL18_LIB"}, "", CompilerOptions.getFirstSupportedJavaVersion());
@@ -12181,7 +12181,7 @@ public void testBug322979d() throws CoreException {
 	}
 }
 
-public void testBug322979e() throws CoreException {
+public void testBug322979e() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try
 	{
 		IJavaProject project = createJavaProject("P", new String[] {""}, new String[] {"JCL18_LIB"}, "", CompilerOptions.getFirstSupportedJavaVersion());
@@ -12230,7 +12230,7 @@ public void testBug322979e() throws CoreException {
 	}
 }
 
-public void testBug322979f() throws CoreException {
+public void testBug322979f() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try
 	{
 		IJavaProject project = createJavaProject("P", new String[] {""}, new String[] {"JCL18_LIB"}, "", CompilerOptions.getFirstSupportedJavaVersion());
@@ -12260,7 +12260,7 @@ public void testBug322979f() throws CoreException {
 	}
 }
 
-public void testBug322979g() throws CoreException {
+public void testBug322979g() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try
 	{
 		IJavaProject project = createJavaProject("P", new String[] {""}, new String[] {"JCL18_LIB"}, "", CompilerOptions.getFirstSupportedJavaVersion());
@@ -12287,7 +12287,7 @@ public void testBug322979g() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug322979h() throws CoreException {
+public void testBug322979h() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try
 	{
 		IJavaProject project = createJavaProject("P", new String[] {""}, new String[] {"JCL18_LIB"}, "", CompilerOptions.getFirstSupportedJavaVersion());
@@ -12326,7 +12326,7 @@ public void testBug322979h() throws CoreException {
  * test [indexing] The Java Indexer is taking longer to run in eclipse 3.6 when opening projects
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=323514"
  */
-public void testBug323514() throws Exception {
+public void testBug323514() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String libPath = getExternalResourcePath("lib323514.jar");
 	waitUntilIndexesReady();
 	try {
@@ -12337,7 +12337,7 @@ public void testBug323514() throws Exception {
 				"package p323514;\n" +
 				"public class Y323514 {}"
 			},
-			new HashMap(),
+			new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			libPath);
 		IJavaProject javaProject = createJavaProject("P", new String[0], new String[] {libPath}, "");
 		waitUntilIndexesReady();
@@ -12361,14 +12361,14 @@ public void testBug323514() throws Exception {
 			IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH,
 			null);
 		assertSearchResults(
-			"Y323514 (not open) [in Y323514.class [in p323514 [in "+ getExternalPath() + "lib323514.jar]]]",
+			"Y323514 (not open) [in Y323514.class [in p323514 [in "+ getExternalPath() + "lib323514.jar]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			collector);
 	} finally {
 		deleteExternalFile(libPath);
 		deleteProject("P");
 	}
 }
-public void testBug323514a() throws Exception {
+public void testBug323514a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String libPath = getExternalResourcePath("lib323514.jar");
 	waitUntilIndexesReady();
 	try {
@@ -12379,7 +12379,7 @@ public void testBug323514a() throws Exception {
 				"package p323514;\n" +
 				"public class Y323514 {}"
 			},
-			new HashMap(),
+			new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			libPath);
 		IJavaProject javaProject = createJavaProject("P", new String[0], new String[] {libPath}, "");
 		waitUntilIndexesReady();
@@ -12397,7 +12397,7 @@ public void testBug323514a() throws Exception {
 				"package p323514;\n" +
 				"public class X323514 {}"
 			},
-			new HashMap(),
+			new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			libPath);
 		project.open(null);
 		// A refresh external archives seems to be necessary when the external
@@ -12416,14 +12416,14 @@ public void testBug323514a() throws Exception {
 			IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH,
 			null);
 		assertSearchResults(
-			"X323514 (not open) [in X323514.class [in p323514 [in "+ getExternalPath() + "lib323514.jar]]]",
+			"X323514 (not open) [in X323514.class [in p323514 [in "+ getExternalPath() + "lib323514.jar]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			collector);
 	} finally {
 		deleteExternalFile(libPath);
 		deleteProject("P");
 	}
 }
-public void testBug323514b() throws Exception {
+public void testBug323514b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String libPath = getExternalResourcePath("lib323514.jar");
 	waitUntilIndexesReady();
 //	boolean isDebugging = false; // turn to true to verify using the trace that the external jar file is not re-indexed while opening the project
@@ -12436,7 +12436,7 @@ public void testBug323514b() throws Exception {
 				"package p323514;\n" +
 				"public class Y323514 {}"
 			},
-			new HashMap(),
+			new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			libPath);
 		IJavaProject javaProject = createJavaProject("P", new String[0], new String[] {libPath}, "");
 		waitUntilIndexesReady();
@@ -12453,7 +12453,7 @@ public void testBug323514b() throws Exception {
 				"package p323514;\n" +
 				"public class X323514 {}"
 			},
-			new HashMap(),
+			new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			libPath);
 		project.open(null);
 		// A refresh external archives seems to be necessary when the external
@@ -12472,7 +12472,7 @@ public void testBug323514b() throws Exception {
 			IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH,
 			null);
 		assertSearchResults(
-			"X323514 (not open) [in X323514.class [in p323514 [in "+ getExternalPath() + "lib323514.jar]]]",
+			"X323514 (not open) [in X323514.class [in p323514 [in "+ getExternalPath() + "lib323514.jar]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			collector);
 	} finally {
 		deleteExternalFile(libPath);
@@ -12505,7 +12505,7 @@ public void testBug324109() throws CoreException {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=329727"
  */
-public void testBug329727() throws CoreException, IOException {
+public void testBug329727() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = getJavaProject("JavaSearchBugs");
 	IClasspathEntry[] originalCP = project.getRawClasspath();
 		try {
@@ -12557,7 +12557,7 @@ public void testBug329727() throws CoreException, IOException {
  * test types in enum package should not be reported for 1.5 projects
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=327654"
  */
-public void testBug327654() throws CoreException {
+public void testBug327654() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = null;
 	try
 	{
@@ -12589,7 +12589,7 @@ public void testBug327654() throws CoreException {
  * 		 enclosing method's type variables should yield correct results.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=325418"
  */
-public void testBug325418a() throws Exception {
+public void testBug325418a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try
 	{
 		IJavaProject p = createJavaProject("P", new String[] {}, new String[] {"/P/lib325418.jar","JCL18_LIB"}, "",CompilerOptions.getFirstSupportedJavaVersion());
@@ -12619,7 +12619,7 @@ public void testBug325418a() throws Exception {
 	}
 }
 // local named class instead of anonymous class
-public void testBug325418b() throws Exception {
+public void testBug325418b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try
 	{
 		IJavaProject p = createJavaProject("P", new String[] {}, new String[] {"/P/lib325418.jar","JCL18_LIB"}, "",CompilerOptions.getFirstSupportedJavaVersion());
@@ -12652,7 +12652,7 @@ public void testBug325418b() throws Exception {
 	}
 }
 // should work good even if both the inner type and the enclosing methods have type variables
-public void testBug325418c() throws Exception {
+public void testBug325418c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try
 	{
 		IJavaProject p = createJavaProject("P", new String[] {}, new String[] {"/P/lib325418.jar","JCL18_LIB"}, "",CompilerOptions.getFirstSupportedJavaVersion());
@@ -12689,7 +12689,7 @@ public void testBug325418c() throws Exception {
 	}
 }
 // should work good even if the enclosing method having type variables is more than one level
-public void testBug325418d() throws Exception {
+public void testBug325418d() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try
 	{
 		IJavaProject p = createJavaProject("P", new String[] {}, new String[] {"/P/lib325418.jar","JCL18_LIB"}, "",CompilerOptions.getFirstSupportedJavaVersion());
@@ -12768,7 +12768,7 @@ public void testBug324189c() throws CoreException {
 	assertSearchResults("");
 }
 // TestWorker in a class file also should not be in the search result
-public void testBug324189d() throws CoreException, IOException {
+public void testBug324189d() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String libPath = getExternalResourcePath("lib324189.jar");
 	try {
 		// Create project and external jar file
@@ -12788,7 +12788,7 @@ public void testBug324189d() throws CoreException, IOException {
 				" public void run() {}\n" +
 				"}"
 			},
-			new HashMap(),
+			new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			libPath);
 		IJavaProject javaProject = createJavaProject("P", new String[0], new String[] {libPath, "JCL18_LIB"}, "");
 		waitUntilIndexesReady();
@@ -12797,7 +12797,7 @@ public void testBug324189d() throws CoreException, IOException {
 		this.resultCollector.showSelection();
 		search("Worker.run()", METHOD, DECLARATIONS, scope);
 		assertSearchResults(
-				getExternalPath() + "lib324189.jar void b324189.TestWorker$Worker.run() EXACT_MATCH\n" +
+				getExternalPath() + "lib324189.jar void b324189.TestWorker$Worker.run() EXACT_MATCH\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				getExternalPath() + "lib324189.jar void b324189.Worker.run() EXACT_MATCH"
 		);
 	} finally {
@@ -12825,7 +12825,7 @@ public void testBug324189e() throws CoreException {
  * test Search for type references in a multiple catch parameters
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=336322"
  */
-public void testBug336322a() throws CoreException{
+public void testBug336322a() throws CoreException{ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try
 	{
 		IJavaProject project = createJavaProject("P", new String[] {""}, new String[] {"JCL18_LIB"}, "", CompilerOptions.getFirstSupportedJavaVersion());
@@ -12847,7 +12847,7 @@ public void testBug336322a() throws CoreException{
 	}
 }
 // search for type in multiple catch parameters in catch clauses
-public void testBug336322b() throws CoreException{
+public void testBug336322b() throws CoreException{ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try
 	{
 		IJavaProject project = createJavaProject("P", new String[] {""}, new String[] {"JCL18_LIB"}, "", CompilerOptions.getFirstSupportedJavaVersion());
@@ -12869,7 +12869,7 @@ public void testBug336322b() throws CoreException{
 	}
 }
 // search for the multi-catch variable should return the variable
-public void testBug336322c() throws CoreException{
+public void testBug336322c() throws CoreException{ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try
 	{
 		IJavaProject project = createJavaProject("P", new String[] {""}, new String[] {"JCL18_LIB"}, "", CompilerOptions.getFirstSupportedJavaVersion());
@@ -12898,7 +12898,7 @@ public void testBug336322c() throws CoreException{
  * test Search for Worker.run() should not return results like TestWorker
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=339891"
  */
-public void testBug339891() throws CoreException {
+public void testBug339891() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P");
 		createFile("/P/Ref.java",
@@ -12921,7 +12921,7 @@ public void testBug339891() throws CoreException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=341462
-public void testBug341462() throws CoreException {
+public void testBug341462() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try
 	{
 		IJavaProject project = createJavaProject("P", new String[] {""}, new String[] {"JCL18_LIB"}, "", CompilerOptions.getFirstSupportedJavaVersion());
@@ -12956,7 +12956,7 @@ public void testBug341462() throws CoreException {
 	}
 }
 
-public void testBug350885() throws CoreException {
+public void testBug350885() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	boolean autoBuild = getWorkspace().isAutoBuilding();
 	IWorkspaceDescription preferences = getWorkspace().getDescription();
 	try {
@@ -12993,7 +12993,7 @@ public void testBug350885() throws CoreException {
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=349683
-public void testBug349683() throws CoreException {
+public void testBug349683() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try
 	{
 		IJavaProject project = createJavaProject("P", new String[] {""}, new String[] {"JCL18_LIB"}, "", CompilerOptions.getFirstSupportedJavaVersion());
@@ -13030,7 +13030,7 @@ public void testBug349683() throws CoreException {
 }
 
 // Ensure that results for jar are reported after the source projects
-public void testBug345807() throws CoreException {
+public void testBug345807() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Create a project depending on the jar
 		IJavaProject p1 = createJavaProject("P1", new String[] {}, new String[] {"/P1/01b345807.jar"}, "");
@@ -13070,7 +13070,7 @@ public void testBug345807() throws CoreException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=355605
-public void testBug355605_1() throws CoreException {
+public void testBug355605_1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 	createJavaProject("P");
 
@@ -13107,7 +13107,7 @@ public void testBug355605_1() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug355605_2() throws CoreException {
+public void testBug355605_2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P");
 
@@ -13150,7 +13150,7 @@ public void testBug355605_2() throws CoreException {
  * test that search for declarations of referenced types doesn't cause CCE
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=241834"
  */
-public void testBug241834() throws CoreException {
+public void testBug241834() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P");
 		project.setOption(JavaCore.COMPILER_DOC_COMMENT_SUPPORT, JavaCore.ENABLED);
@@ -13178,7 +13178,7 @@ public void testBug241834() throws CoreException {
 	 *
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=402902"
 	 */
-public void testBug400902a() throws CoreException {
+public void testBug400902a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b400902/X.java",
 			"import java.lang.annotation.ElementType;\n" +
@@ -13219,7 +13219,7 @@ public void testBug400902a() throws CoreException {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=400919"
  */
-public void testBug400919a() throws CoreException {
+public void testBug400919a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b400919/X.java",
 			"import java.lang.annotation.ElementType;\n" +
@@ -13303,7 +13303,7 @@ public void testBug400919a() throws CoreException {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=400919"
  */
-public void testBug400919b() throws CoreException {
+public void testBug400919b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b400919/X.java",
 			"import java.lang.annotation.ElementType;\n" +
@@ -13387,7 +13387,7 @@ public void testBug400919b() throws CoreException {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=400919"
  */
-public void testBug400919c() throws CoreException {
+public void testBug400919c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/b400919/X.java",
 			"import java.lang.annotation.ElementType;\n" +
@@ -13469,7 +13469,7 @@ public void testBug400919c() throws CoreException {
  * [search] Search API got wrong result, when searching for method references, where the parameter is a member type of another type.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=431357"
  */
-public void testBug431357_001() throws CoreException {
+public void testBug431357_001() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 			"interface I { \n" +
@@ -13518,7 +13518,7 @@ public void testBug431357_001() throws CoreException {
  * [search] Search API got wrong result, when searching for method references, where the parameter is a member type of another type.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=431357"
  */
-public void testBug431357_002() throws CoreException {
+public void testBug431357_002() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 			"interface I { \n" +
@@ -13567,7 +13567,7 @@ public void testBug431357_002() throws CoreException {
  * [search] Search API got wrong result, when searching for method references, where the parameter is a member type of another type.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=431357"
  */
-public void testBug431357_003() throws CoreException {
+public void testBug431357_003() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 			"interface I { \n" +
@@ -13616,7 +13616,7 @@ public void testBug431357_003() throws CoreException {
  * [search] Search API got wrong result, when searching for method references, where the parameter is a member type of another type.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=431357"
  */
-public void testBug431357_004() throws CoreException {
+public void testBug431357_004() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 			"// --\n" +
@@ -13673,7 +13673,7 @@ public void testBug431357_004() throws CoreException {
  * [search] Search API got wrong result, when searching for method references, where the parameter is a member type of another type.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=431357"
  */
-public void testBug431357_005() throws CoreException {
+public void testBug431357_005() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 			"// --\n" +
@@ -13730,7 +13730,7 @@ public void testBug431357_005() throws CoreException {
  * [search] Search API got wrong result, when searching for method references, where the parameter is a member type of another type.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=431357"
  */
-public void testBug431357_006() throws CoreException {
+public void testBug431357_006() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 			"// --\n" +
@@ -13793,7 +13793,7 @@ public void testBug431357_006() throws CoreException {
  * [search] Search API got wrong result, when searching for method references, where the parameter is a member type of another type.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=431357"
  */
-public void testBug431357_007() throws CoreException {
+public void testBug431357_007() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 			"// --\n" +
@@ -13857,7 +13857,7 @@ public void testBug431357_007() throws CoreException {
  * [search] Search API got wrong result, when searching for method references, where the parameter is a member type of another type.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=431357"
  */
-public void testBug431357_008() throws CoreException {
+public void testBug431357_008() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 			"// --\n" +
@@ -13921,7 +13921,7 @@ public void testBug431357_008() throws CoreException {
  * [search] Search API got wrong result, when searching for method references, where the parameter is a member type of another type.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=431357"
  */
-public void testBug431357_009() throws CoreException {
+public void testBug431357_009() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 		"interface MyIF { \n" +
@@ -13966,7 +13966,7 @@ public void testBug431357_009() throws CoreException {
  * [search] Search API got wrong result, when searching for method references, where the parameter is a member type of another type.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=431357"
  */
-public void testBug431357_010() throws CoreException {
+public void testBug431357_010() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 		"interface MyIF { \n" +
@@ -14008,7 +14008,7 @@ public void testBug431357_010() throws CoreException {
  * [search] Search API got wrong result, when searching for method references, where the parameter is a member type of another type.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=431357"
  */
-public void testBug431357_011() throws CoreException {
+public void testBug431357_011() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 		"interface MyIF { \n" +
@@ -14044,7 +14044,7 @@ public void testBug431357_011() throws CoreException {
  * [search] Search API got wrong result, when searching for method references, where the parameter is a member type of another type.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=431357"
  */
-public void testBug431357_012() throws CoreException {
+public void testBug431357_012() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 		"interface MyIF { \n" +
@@ -14090,7 +14090,7 @@ public void testBug431357_012() throws CoreException {
  * [search] Search API got wrong result, when searching for method references, where the parameter is a member type of another type.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=431357"
  */
-public void testBug431357_013() throws CoreException {
+public void testBug431357_013() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 		"interface MyIF { \n" +
@@ -14131,7 +14131,7 @@ public void testBug431357_013() throws CoreException {
  * [search] Search API got wrong result, when searching for method references, where the parameter is a member type of another type.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=431357"
  */
-public void testBug431357_014() throws CoreException {
+public void testBug431357_014() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 		"interface MyIF { \n" +
@@ -14171,9 +14171,9 @@ public void testBug431357_014() throws CoreException {
  * [search] Search API got wrong result, when searching for method references, where the parameter is a member type of another type.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=431357"
  */
-public void testBug431357_015() throws CoreException {
+public void testBug431357_015() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String folder = "/JavaSearchBugs/src/testBug431357_015";
-	String filename = folder + "/" + "X.java";
+	String filename = folder + "/" + "X.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	try {
 		String contents =
 		"package testBug431357_015;\n" +
@@ -14214,9 +14214,9 @@ public void testBug431357_015() throws CoreException {
  * enable this once 88997 is fixed
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=431357"
  */
-public void _testBug431357_016() throws CoreException {
+public void _testBug431357_016() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String folder = "/JavaSearchBugs/src/testBug431357_016";
-	String filename = folder + "/" + "X.java";
+	String filename = folder + "/" + "X.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	try {
 		String contents =
 			"package testBug431357_016;\n" +
@@ -14265,7 +14265,7 @@ public void _testBug431357_016() throws CoreException {
 		deleteFolder(folder);
 	}
 }
-public void testBug460465_since_5() throws CoreException {
+public void testBug460465_since_5() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/test/TestE.java",
 		"package test;\n" +
@@ -14311,7 +14311,7 @@ public void testBug460465_since_5() throws CoreException {
 			"src/test/ClassWithoutStaticImports.java test.ClassWithoutStaticImports() [TestE] EXACT_MATCH\n" +
 			"src/test/ClassWithoutStaticImports.java test.ClassWithoutStaticImports() [TestE] EXACT_MATCH");
 }
-public void testBug469320_0001() throws CoreException {
+public void testBug469320_0001() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject ProjectA = null;
 	IJavaProject ProjectB = null;
 	try	{
@@ -14367,7 +14367,7 @@ public void testBug469320_0001() throws CoreException {
 /** bug 476738
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=476738"
  */
-public void testBug476738_001() throws CoreException {
+public void testBug476738_001() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 			"interface I { \n" +
@@ -14416,7 +14416,7 @@ public void testBug476738_001() throws CoreException {
 /** bug 476738
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=476738"
  */
-public void testBug476738_002() throws CoreException {
+public void testBug476738_002() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 			"interface I { \n" +
@@ -14469,7 +14469,7 @@ public void testBug476738_002() throws CoreException {
 			"src/X.java void X.bar(I, Bar.InnerKey) [query(key)] EXACT_MATCH"
 	);
 }
-public void testBug478042_wScope_0001() throws Exception {
+public void testBug478042_wScope_0001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/p478042/AllMethodDeclarations01.java",
 		"package p478042;\n" +
@@ -14496,7 +14496,7 @@ public void testBug478042_wScope_0001() throws Exception {
 			requestor
 	);
 }
-public void testBug478042_wScope_0002() throws Exception {
+public void testBug478042_wScope_0002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/p478042/AllMethodDeclarations01.java",
 		"package p478042;\n" +
@@ -14523,7 +14523,7 @@ public void testBug478042_wScope_0002() throws Exception {
 			requestor
 	);
 }
-public void testBug478042_wScope_003() throws Exception {
+public void testBug478042_wScope_003() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/p478042/AllMethodDeclarations01.java",
 		"package p478042;\n" +
@@ -14550,7 +14550,7 @@ public void testBug478042_wScope_003() throws Exception {
 			requestor
 	);
 }
-public void testBug478042_wScope_004() throws Exception {
+public void testBug478042_wScope_004() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/p478042/AllMethodDeclarations01.java",
 		"package p478042;\n" +
@@ -14583,7 +14583,7 @@ public void testBug478042_wScope_004() throws Exception {
 			requestor
 	);
 }
-public void testBug478042_wScope_005() throws Exception {
+public void testBug478042_wScope_005() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/p478042/AllMethodDeclarations01.java",
 		"package p478042;\n" +
@@ -14621,7 +14621,7 @@ public void testBug478042_wScope_005() throws Exception {
 			collector
 	);
 }
-public void testBug478042_wScope_006() throws Exception {
+public void testBug478042_wScope_006() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/p478042/AllMethodDeclarations01.java",
 		"package p478042;\n" +
@@ -14658,7 +14658,7 @@ public void testBug478042_wScope_006() throws Exception {
 			collector
 	);
 }
-public void testBug478042_wScope_007() throws Exception {
+public void testBug478042_wScope_007() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/p478042/AllMethodDeclarations01.java",
 		"package p478042;\n" +
@@ -14697,7 +14697,7 @@ public void testBug478042_wScope_007() throws Exception {
 			collector
 	);
 }
-public void testBug478042_wScope_008() throws Exception {
+public void testBug478042_wScope_008() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/p478042/AllMethodDeclarations01.java",
 			"package p478042;\n" +
@@ -14738,7 +14738,7 @@ public void testBug478042_wScope_008() throws Exception {
 			collector
 	);
 }
-public void testBug483303_001() throws Exception {
+public void testBug483303_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/com/test/C1.java",
 			"package com.test;\n" +
@@ -14766,7 +14766,7 @@ public void testBug483303_001() throws Exception {
 			collector
 	);
 }
-public void testBug483303_002() throws Exception {
+public void testBug483303_002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/com/test/C1.java",
 			"package com.test;\n" +
@@ -14777,7 +14777,7 @@ public void testBug483303_002() throws Exception {
 	);
 
 	class Collector extends MethodNameMatchRequestor {
-		List<MethodNameMatch> matches = new ArrayList<>();
+		List<MethodNameMatch> matches = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		@Override
 		public void acceptMethodNameMatch(MethodNameMatch match) {
 			this.matches.add(match);
@@ -14800,7 +14800,7 @@ public void testBug483303_002() throws Exception {
 	assertTrue("IJavaElement Does not exist", method.exists());
 }
 
-public void testBug483650_wScope_0001() throws Exception {
+public void testBug483650_wScope_0001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/p478042/AllMethodDeclarations01.java",
 		"package p478042;\n" +
@@ -14832,7 +14832,7 @@ public void testBug483650_wScope_0001() throws Exception {
 			collector
 	);
 }
-public void testBug483650_wScope_0002() throws Exception {
+public void testBug483650_wScope_0002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/p478042/AllMethodDeclarations01.java",
 		"package p478042;\n" +
@@ -14864,7 +14864,7 @@ public void testBug483650_wScope_0002() throws Exception {
 			collector
 	);
 }
-public void testBug483650_wScope_003() throws Exception {
+public void testBug483650_wScope_003() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/p478042/AllMethodDeclarations01.java",
 		"package p478042;\n" +
@@ -14896,7 +14896,7 @@ public void testBug483650_wScope_003() throws Exception {
 			collector
 	);
 }
-public void testBug483650_wScope_004() throws Exception {
+public void testBug483650_wScope_004() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/p478042/AllMethodDeclarations01.java",
 		"package p478042;\n" +
@@ -14932,7 +14932,7 @@ public void testBug483650_wScope_004() throws Exception {
 			collector
 	);
 }
-public void testBug483650_wScope_005() throws Exception {
+public void testBug483650_wScope_005() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/p478042/AllMethodDeclarations01.java",
 		"package p478042;\n" +
@@ -14968,7 +14968,7 @@ public void testBug483650_wScope_005() throws Exception {
 			collector
 	);
 }
-public void testBug483650_wScope_006() throws Exception {
+public void testBug483650_wScope_006() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/p478042/AllMethodDeclarations01.java",
 		"package p478042;\n" +
@@ -15003,7 +15003,7 @@ public void testBug483650_wScope_006() throws Exception {
 			collector
 	);
 }
-public void testBug483650_wScope_007() throws Exception {
+public void testBug483650_wScope_007() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/p478042/AllMethodDeclarations01.java",
 		"package p478042;\n" +
@@ -15040,7 +15040,7 @@ public void testBug483650_wScope_007() throws Exception {
 			collector
 	);
 }
-public void testBug483650_wScope_008() throws Exception {
+public void testBug483650_wScope_008() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/p478042/AllMethodDeclarations01.java",
 			"package p478042;\n" +
@@ -15079,7 +15079,7 @@ public void testBug483650_wScope_008() throws Exception {
 			collector
 	);
 }
-public void testBug483650_009() throws Exception {
+public void testBug483650_009() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/com/test/C1.java",
 			"package com.test;\n" +
@@ -15105,7 +15105,7 @@ public void testBug483650_009() throws Exception {
 			collector
 	);
 }
-public void testBug483650_010() throws Exception {
+public void testBug483650_010() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/com/test/C1.java",
 			"package com.test;\n" +
@@ -15116,7 +15116,7 @@ public void testBug483650_010() throws Exception {
 	);
 
 	class Collector extends MethodNameMatchRequestor {
-		List<MethodNameMatch> matches = new ArrayList<>();
+		List<MethodNameMatch> matches = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		@Override
 		public void acceptMethodNameMatch(MethodNameMatch match) {
 			this.matches.add(match);
@@ -15136,7 +15136,7 @@ public void testBug483650_010() throws Exception {
 	assertTrue("Unexpected Method Name", expectedName.equals(name));
 	assertTrue("IJavaElement Does not exist", method.exists());
 }
-public void testBug521240_001() throws CoreException {
+public void testBug521240_001() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	WorkingCopyOwner owner = new WorkingCopyOwner() {};
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/pack1/X.java",
@@ -15174,7 +15174,7 @@ public void testBug521240_001() throws CoreException {
  * See problem report https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2575
  * See also analysis in https://github.com/eclipse-jdt/eclipse.jdt.core/pull/4341
  */
-public void testGH2575() throws CoreException, IOException {
+public void testGH2575() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String testProjectName = "BugGH4341";
 	try {
 		IJavaProject project = createJava9Project(testProjectName, new String[] {"src"});
@@ -15183,21 +15183,21 @@ public void testGH2575() throws CoreException, IOException {
 
 		 // Create a hierarchy of interfaces (D -> A -> B -> C) and an imports relation (C -> D).
 
-		String packageX = "/" + testProjectName + "/src/x";
+		String packageX = "/" + testProjectName + "/src/x"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createFolder(packageX);
-		createFile(packageX + "/A.java",
+		createFile(packageX + "/A.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 				package x;
 				public interface A extends B {}
 				""");
 
-		createFile(packageX + "/B.java",
+		createFile(packageX + "/B.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 				package x;
 				public interface B extends C {}
 				""");
 
-		createFile(packageX + "/C.java",
+		createFile(packageX + "/C.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 				package x;
 				import javax.annotation.processing.SupportedSourceVersion;
@@ -15211,9 +15211,9 @@ public void testGH2575() throws CoreException, IOException {
 				""");
 
 
-		String packageY = "/" + testProjectName + "/src/y";
+		String packageY = "/" + testProjectName + "/src/y"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createFolder(packageY);
-		createFile(packageY + "/D.java",
+		createFile(packageY + "/D.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 				package y;
 				import x.A;
@@ -15221,9 +15221,9 @@ public void testGH2575() throws CoreException, IOException {
 				""");
 
 
-		String packageZ = "/" + testProjectName + "/src/z";
+		String packageZ = "/" + testProjectName + "/src/z"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createFolder(packageZ);
-		createFile(packageZ + "/Main.java",
+		createFile(packageZ + "/Main.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 				package z;
 				import x.A;
@@ -15251,7 +15251,7 @@ public void testGH2575() throws CoreException, IOException {
 	}
 }
 
-@SuppressWarnings("unused")
+@SuppressWarnings("unused") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void testBug547051_nonModular() throws Exception {
 	try {
 		IJavaProject project = createJavaProject("P");
@@ -15268,14 +15268,14 @@ public void testBug547051_nonModular() throws Exception {
         		(modifiers, packageName1, simpleTypeName, enclosingTypeNames, path, access) -> r.set(true),
         		IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH, new NullProgressMonitor());
 
-        assertTrue("Type search has no matches for subtypes of " + type, r.get());
+        assertTrue("Type search has no matches for subtypes of " + type, r.get()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	finally {
 		deleteProject("P");
 	}
 }
 
-@SuppressWarnings("unused")
+@SuppressWarnings("unused") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void testBug547051_nonModular2() throws Exception {
 	try {
 		IJavaProject project = createJavaProject("P");
@@ -15292,13 +15292,13 @@ public void testBug547051_nonModular2() throws Exception {
         		(modifiers, packageName1, simpleTypeName, enclosingTypeNames, path, access) -> r.set(true),
         		IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH, new NullProgressMonitor());
 
-        assertTrue("Type search has no matches for subtypes of " + type, r.get());
+        assertTrue("Type search has no matches for subtypes of " + type, r.get()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	finally {
 		deleteProject("P");
 	}
 }
-@SuppressWarnings("unused")
+@SuppressWarnings("unused") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void testBug547051_nonModular3() throws Exception {
 	try {
 		IJavaProject project = createJavaProject("P");
@@ -15314,7 +15314,7 @@ public void testBug547051_nonModular3() throws Exception {
 				TYPE, scope,
 				(modifiers, packageName1, simpleTypeName, enclosingTypeNames, path, access) -> r.set(true),
 				IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH, new NullProgressMonitor());
-		assertTrue("Type search has no matches for subtypes of " + type, r.get());
+		assertTrue("Type search has no matches for subtypes of " + type, r.get()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	finally {
 		deleteProject("P");
@@ -15378,28 +15378,28 @@ public void testBug573486_showReferences_inMethodsAndFields_whenNoSource() throw
  * not knowing a package is in the unnamed module.
  * https://github.com/eclipse-jdt/eclipse.jdt.core/issues/485
  */
-public void testClasspathFilterUnnamedModuleBugGh485() throws Exception {
+public void testClasspathFilterUnnamedModuleBugGh485() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String testProject1Name = "gh485ClasspathFilterUnnamedModuleBugProject1";
 	String testProject2Name = "gh485ClasspathFilterUnnamedModuleBugProject2";
 	try {
 		JavaProject project1 = (JavaProject) setUpJavaProject(testProject1Name, "11", false);
-		String packageFolder1 = "/" + testProject1Name + "/src/t/t/t1/";
+		String packageFolder1 = "/" + testProject1Name + "/src/t/t/t1/"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createFolder(packageFolder1);
 		String snippet1 = "package t.t.t1;\n" +
 				"import com.g.f.t.f.FWC;\n" +
 				"public class F {\n" +
 				"  public static final FWC EMPTY = null;\n" +
 				"}";
-		createFile(packageFolder1 + "/F.java", snippet1);
+		createFile(packageFolder1 + "/F.java", snippet1); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		setUpJavaProject(testProject2Name, "11", false);
-		String packageFolder2 =  "/" + testProject2Name + "/src/com/g/f/t/f";
+		String packageFolder2 =  "/" + testProject2Name + "/src/com/g/f/t/f"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createFolder(packageFolder2);
 		String snippet2 = "package com.g.f.t.f;\n" +
 				"import com.g.f.t.f.FWC;\n" +
 				"public class FWC {\n" +
 				"  public static void main(String[] args) { }\n" +
 				"}";
-		createFile(packageFolder2 + "/FWC.java", snippet2);
+		createFile(packageFolder2 + "/FWC.java", snippet2); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		waitForAutoBuild();
 		waitUntilIndexesReady();
 
@@ -15411,8 +15411,8 @@ public void testClasspathFilterUnnamedModuleBugGh485() throws Exception {
 
 		char[][] packageName = { new char[] { 'c', 'o', 'm' } };
 		char[][] modules = search.getModulesDeclaringPackage(packageName, ModuleBinding.UNNAMED);
-		assertNotNull("Expected to find module for package: " + toString(packageName), modules);
-		assertEquals("Expected unnamed module for package: " + toString(packageName), "", toString(modules));
+		assertNotNull("Expected to find module for package: " + toString(packageName), modules); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertEquals("Expected unnamed module for package: " + toString(packageName), "", toString(modules)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} finally {
 		JavaCore.setOptions(getDefaultJavaCoreOptions());
 		deleteProject(testProject1Name);
@@ -15425,12 +15425,12 @@ public void testClasspathFilterUnnamedModuleBugGh485() throws Exception {
  * no call hierarchy was found for the then-existing method.
  * https://github.com/eclipse-jdt/eclipse.jdt.core/issues/438
  */
-public void testMethodReferenceAfterCompileErrorBugGh438() throws Exception {
+public void testMethodReferenceAfterCompileErrorBugGh438() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String testProjectName = "gh438MethodReferenceAfterCompileErrorProject";
 	try {
 		IJavaProject project = createJava11Project(testProjectName, new String[] {"src"});
 		setUpProjectCompliance(project, "11", true);
-		String packageFolder = "/" + testProjectName + "/src/test";
+		String packageFolder = "/" + testProjectName + "/src/test"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createFolder(packageFolder);
 		String testSource = "package test;\n" +
 				"public class Test {\n" +
@@ -15439,7 +15439,7 @@ public void testMethodReferenceAfterCompileErrorBugGh438() throws Exception {
 				"    java.util.stream.Stream.of(\"hello\").forEach(myClass::doSomething);\n" +
 				"  }\n" +
 				"}";
-		createFile(packageFolder + "/Test.java", testSource);
+		createFile(packageFolder + "/Test.java", testSource); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		buildAndExpectProblems(project, "MyClass cannot be resolved to a type\nMyClass cannot be resolved to a type");
 
 		String myClassSource = "package test;\n" +
@@ -15448,7 +15448,7 @@ public void testMethodReferenceAfterCompileErrorBugGh438() throws Exception {
 				"    System.out.println(s);\n" +
 				"  }\n" +
 				"}";
-		createFile(packageFolder + "/MyClass.java", myClassSource);
+		createFile(packageFolder + "/MyClass.java", myClassSource); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		buildAndExpectNoProblems(project);
 
 		IType type = project.findType("test.MyClass");
@@ -15466,11 +15466,11 @@ public void testMethodReferenceAfterCompileErrorBugGh438() throws Exception {
  * (and not the compile module path) doesn't affect searching for types in those projects.
  * https://github.com/eclipse-jdt/eclipse.jdt.core/issues/675
  */
-public void testModuleConflictForClasspathProjectsBugGh675() throws Exception {
+public void testModuleConflictForClasspathProjectsBugGh675() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String projectName = "gh675ModuleConflictForClasspathProjectsBugProject";
 	try {
 		IJavaProject project = createJavaProject(projectName, new String[] {"src"}, new String[] {"JCL11_LIB"}, "bin", "11");
-		String packageFolder = "/" + projectName + "/src/test/";
+		String packageFolder = "/" + projectName + "/src/test/"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createFolder(packageFolder);
 		String snippet =
 				"package test;\n" +
@@ -15481,7 +15481,7 @@ public void testModuleConflictForClasspathProjectsBugGh675() throws Exception {
 				"      testField = null;\n" +
 				"  }\n" +
 				"}";
-		createFile(packageFolder + "/Test.java", snippet);
+		createFile(packageFolder + "/Test.java", snippet); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		String ambiguousTypeDefinition =
 				"package testpackage;\n" +
@@ -15534,23 +15534,23 @@ public void testModuleConflictForClasspathProjectsBugGh675() throws Exception {
  *
  * https://github.com/eclipse-jdt/eclipse.jdt.core/issues/723
  */
-public void testModuleConflictGh723() throws Exception {
+public void testModuleConflictGh723() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String projectName = "gh723Project";
 	String modularProjectName = "gh723ProjectModular";
 	try {
 		IJavaProject project = createJavaProject(projectName, new String[] {"src"}, new String[] {"JCL11_LIB"}, "bin", "11");
 		IJavaProject modularProject = createJavaProject(modularProjectName, new String[] {"src"}, new String[] {"JCL11_LIB"}, "bin", "11");
 
-		createFolder("/" + projectName + "/src/test/");
-		createFile("/" + projectName + "/src/test/Test.java",
+		createFolder("/" + projectName + "/src/test/"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		createFile("/" + projectName + "/src/test/Test.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package test;\n" +
 				"public class Test {\n" +
 				"  public static void test(testpackage.TestClass t) {\n" +
 				"  }\n" +
 				"}");
 
-		createFolder("/" + modularProjectName + "/src/testmodular/");
-		createFile("/" + modularProjectName + "/src/testmodular/TestModular.java",
+		createFolder("/" + modularProjectName + "/src/testmodular/"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		createFile("/" + modularProjectName + "/src/testmodular/TestModular.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package testmodular;\n" +
 				"public class TestModular {\n" +
 				"  public void testModular() {\n" +
@@ -15602,7 +15602,7 @@ public void testModuleConflictGh723() throws Exception {
  * issue 3308: SearchEngine.searchDeclarationsOfSentMessages() does not support local or anonymous classes
  * @see "https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3308"
  */
-public void testIssue3308() throws CoreException {
+public void testIssue3308() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	String src= """
 			package issue3308;
@@ -15649,7 +15649,7 @@ public void testIssue3308() throws CoreException {
  * issue 3308: SearchEngine.searchDeclarationsOfSentMessages() does not support local or anonymous classes
  * @see "https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3308"
  */
-public void testIssue3308b() throws CoreException {
+public void testIssue3308b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	String src= """
 			package issue3308;
@@ -15694,7 +15694,7 @@ public void testIssue3308b() throws CoreException {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5262
 // [Search] Search for references to local declared inside static initializer block brings up nothing
-public void testIssue5262() throws CoreException {
+public void testIssue5262() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 			"public class X {\n" +
@@ -15719,9 +15719,9 @@ public void testIssue5262() throws CoreException {
 }
 
 private static String toString(char[][] modules) {
-	StringBuilder sb = new StringBuilder();
-	for (char[] m : modules) {
-		sb.append(m);
+	StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	for (char[] m : modules) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		sb.append(m); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	String s = sb.toString();
 	return s;

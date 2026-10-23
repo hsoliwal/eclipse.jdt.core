@@ -39,7 +39,7 @@ public ProxyConsoleReader(String name, InputStream input, String fileName) {
 		try {
 			this.output= new FileOutputStream(fileName);
 		} catch (IOException e) {
-			System.out.println("Could not create file " + fileName + ". Redirecting to stdout");
+			System.out.println("Could not create file " + fileName + ". Redirecting to stdout"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			this.output= System.out;
 		}
 	}
@@ -53,7 +53,7 @@ protected void readerLoop() {
 	try {
 		byte[] buffer= new byte[1024];
 		int read= 0;
-		while (!this.isStopping && read != -1) {
+		while (!this.isStopping && read != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			read= this.input.read(buffer);
 			if (read != -1)
 				this.output.write(buffer, 0, read);

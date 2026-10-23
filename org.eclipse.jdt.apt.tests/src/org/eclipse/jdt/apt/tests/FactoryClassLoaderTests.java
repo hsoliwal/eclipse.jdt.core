@@ -44,7 +44,7 @@ import org.eclipse.jdt.apt.core.internal.AnnotationProcessorFactoryLoader;
 public class FactoryClassLoaderTests extends TestCase {
 
 	private Path _dir; // holds the "original" factory path entries
-	private final List<ClassLoader> _loaders = new ArrayList<>();
+	private final List<ClassLoader> _loaders = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 	public FactoryClassLoaderTests(String name) {
 		super(name);
@@ -62,7 +62,7 @@ public class FactoryClassLoaderTests extends TestCase {
 
 	@Override
 	protected void tearDown() throws Exception {
-		for (ClassLoader loader : _loaders) {
+		for (ClassLoader loader : _loaders) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			((Closeable) loader).close();
 		}
 		_loaders.clear();
@@ -232,7 +232,7 @@ public class FactoryClassLoaderTests extends TestCase {
 
 	private static String read(ClassLoader loader, String resource) throws IOException {
 		URL url = loader.getResource(resource);
-		assertNotNull("Resource not found: " + resource, url); //$NON-NLS-1$
+		assertNotNull("Resource not found: " + resource, url); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		// no caching: a cached connection would keep the jar open after the class loader is closed
 		URLConnection connection = url.openConnection();
 		connection.setUseCaches(false);
@@ -246,7 +246,7 @@ public class FactoryClassLoaderTests extends TestCase {
 	 */
 	private static File getLoadedJar(ClassLoader loader, String resource) throws Exception {
 		URL url = loader.getResource(resource);
-		assertNotNull("Resource not found: " + resource, url); //$NON-NLS-1$
+		assertNotNull("Resource not found: " + resource, url); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertEquals("jar", url.getProtocol()); //$NON-NLS-1$
 		return new File(((JarURLConnection) url.openConnection()).getJarFileURL().toURI());
 	}

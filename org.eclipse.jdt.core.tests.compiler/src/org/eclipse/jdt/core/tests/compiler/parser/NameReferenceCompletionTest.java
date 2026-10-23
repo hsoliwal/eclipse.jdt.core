@@ -30,7 +30,7 @@ public static Test suite() {
  * The instance creation before the completion is not properly closed, and thus
  * the completion parser used to think the completion was on a type.
  */
-public void test1FTZ849() {
+public void test1FTZ849() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -63,7 +63,7 @@ public void test1FTZ849() {
 /*
  * Completion in a field initializer with no syntax error.
  */
-public void test1FUUP73() {
+public void test1FUUP73() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTestCheckDietParse(
 		// compilationUnit:
 		"public class A {					\n" +
@@ -114,7 +114,7 @@ public void test1FUUP73() {
 /*
  * Regression test for 1FVRQQA.
  */
-public void test1FVRQQA_1() {
+public void test1FVRQQA_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class X {									\n" +
@@ -147,7 +147,7 @@ public void test1FVRQQA_1() {
 /*
  * Regression test for 1FVRQQA.
  */
-public void test1FVRQQA_2() {
+public void test1FVRQQA_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class X {													\n" +
@@ -180,7 +180,7 @@ public void test1FVRQQA_2() {
 /*
  * Regression test for 1FVT66Q.
  */
-public void test1FVT66Q_1() {
+public void test1FVT66Q_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"package test;							\n" +
@@ -227,7 +227,7 @@ public void test1FVT66Q_1() {
 /*
  * Regression test for 1FVT66Q.
  */
-public void test1FVT66Q_2() {
+public void test1FVT66Q_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"package test;							\n" +
@@ -270,7 +270,7 @@ public void test1FVT66Q_2() {
 /*
  * Regression test for 1G8DE30.
  */
-public void test1G8DE30() {
+public void test1G8DE30() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -309,7 +309,7 @@ public void test1G8DE30() {
 /*
  * Completion on an empty name reference.
  */
-public void testEmptyNameReference() {
+public void testEmptyNameReference() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -342,7 +342,7 @@ public void testEmptyNameReference() {
 /*
  * Completion on an empty name reference after a cast.
  */
-public void testEmptyNameReferenceAfterCast() {
+public void testEmptyNameReferenceAfterCast() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class X {									\n" +
@@ -374,7 +374,7 @@ public void testEmptyNameReferenceAfterCast() {
 /*
  * Completion on an empty name reference after + operator.
  */
-public void testEmptyNameReferenceAfterPlus() {
+public void testEmptyNameReferenceAfterPlus() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class X {									\n" +
@@ -406,7 +406,7 @@ public void testEmptyNameReferenceAfterPlus() {
 /*
  * Completion on an empty name reference in an array dimension.
  */
-public void testEmptyNameReferenceInArrayDim() {
+public void testEmptyNameReferenceInArrayDim() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class X {									\n" +
@@ -438,7 +438,7 @@ public void testEmptyNameReferenceInArrayDim() {
 /*
  * Completion on an empty name reference in inner class.
  */
-public void testEmptyNameReferenceInInnerClass() {
+public void testEmptyNameReferenceInInnerClass() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class X {									\n" +
@@ -480,7 +480,7 @@ public void testEmptyNameReferenceInInnerClass() {
 /*
  * Completion in the statement following an if expression.
  */
-public void testInIfThenStatement() {
+public void testInIfThenStatement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -513,7 +513,7 @@ public void testInIfThenStatement() {
 /*
  * Completion in the statement following an if expression.
  */
-public void testInIfThenWithInstanceOfStatement() {
+public void testInIfThenWithInstanceOfStatement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -547,7 +547,7 @@ public void testInIfThenWithInstanceOfStatement() {
 /*
  * Completion on a name reference inside an inner class in a field initializer.
  */
-public void testInnerClassFieldInitializer() {
+public void testInnerClassFieldInitializer() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTestCheckDietParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -582,7 +582,7 @@ public void testInnerClassFieldInitializer() {
 /*
  * Completion on an empty name reference inside an invocation in a field initializer.
  */
-public void testInvocationFieldInitializer() {
+public void testInvocationFieldInitializer() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTestCheckDietParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -614,7 +614,7 @@ public void testInvocationFieldInitializer() {
  * Completion inside an anonymous inner class which is
  * inside a method invocation with receiver.
  */
-public void testMethodInvocationAnonymousInnerClass() {
+public void testMethodInvocationAnonymousInnerClass() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {									\n" +
@@ -656,7 +656,7 @@ public void testMethodInvocationAnonymousInnerClass() {
  * Completion on a qualified name reference, where the cursor is in the
  * first type reference.
  */
-public void testQualifiedNameReferenceShrinkAll() {
+public void testQualifiedNameReferenceShrinkAll() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -689,7 +689,7 @@ public void testQualifiedNameReferenceShrinkAll() {
 /*
  * Completion on a qualified name reference, where the cursor is right after the first dot.
  */
-public void testQualifiedNameReferenceShrinkAllButOne() {
+public void testQualifiedNameReferenceShrinkAllButOne() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {									\n" +
@@ -735,7 +735,7 @@ public void testQualifiedNameReferenceShrinkAllButOne() {
 /*
  * Completion on a qualified name reference, where the cursor is right after the first dot.
  */
-public void testQualifiedNameReferenceShrinkAllButOne2() {
+public void testQualifiedNameReferenceShrinkAllButOne2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -769,7 +769,7 @@ public void testQualifiedNameReferenceShrinkAllButOne2() {
  * Completion on a qualified name reference,where the cursor is right after the end
  * of the last name reference.
  */
-public void testQualifiedNameReferenceShrinkNone() {
+public void testQualifiedNameReferenceShrinkNone() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {									\n" +
@@ -816,7 +816,7 @@ public void testQualifiedNameReferenceShrinkNone() {
  * Completion on a qualified name reference, where the cursor is right after the end
  * of the last type reference.
  */
-public void testQualifiedNameReferenceShrinkNone2() {
+public void testQualifiedNameReferenceShrinkNone2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -850,7 +850,7 @@ public void testQualifiedNameReferenceShrinkNone2() {
  * Completion on a qualified name reference, where the cursor is right after the
  * last dot.
  */
-public void testQualifiedNameReferenceShrinkOne() {
+public void testQualifiedNameReferenceShrinkOne() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {									\n" +
@@ -897,7 +897,7 @@ public void testQualifiedNameReferenceShrinkOne() {
  * Completion on a qualified name reference, where the cursor is right after the
  * last dot.
  */
-public void testQualifiedNameReferenceShrinkOne2() {
+public void testQualifiedNameReferenceShrinkOne2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -930,7 +930,7 @@ public void testQualifiedNameReferenceShrinkOne2() {
 /*
  * Completion on a qualified name reference that contains a unicode.
  */
-public void testUnicode() {
+public void testUnicode() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class X {					\n" +

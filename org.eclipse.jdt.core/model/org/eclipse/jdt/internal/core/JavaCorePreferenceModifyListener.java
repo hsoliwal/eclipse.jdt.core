@@ -52,7 +52,7 @@ public class JavaCorePreferenceModifyListener extends PreferenceModifyListener {
 	void cleanJavaCore(Preferences preferences) {
 		try {
 			String[] keys = preferences.keys();
-			for (String key : keys) {
+			for (String key : keys) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (key.startsWith(JavaModelManager.CP_CONTAINER_PREFERENCES_PREFIX) && !isJavaProjectAccessible(key)) {
 					preferences.remove(key);
 				}

@@ -48,7 +48,7 @@ public class IdeJavaSourceOutputStream extends ByteArrayOutputStream {
 	/* (non-Javadoc)
 	 * @see java.io.ByteArrayOutputStream#close()
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void close() throws IOException {
 		synchronized(this) {
 			if (_closed) {

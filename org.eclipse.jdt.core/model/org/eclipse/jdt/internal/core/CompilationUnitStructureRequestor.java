@@ -126,13 +126,13 @@ protected CompilationUnitStructureRequestor(ICompilationUnit unit, CompilationUn
 	this.unit = unit;
 	this.unitInfo = unitInfo;
 	this.newElements = newElements;
-	this.occurenceCounts = new HashMap<>();
-	this.localOccurrenceCounts = new HashMap<>(5);
+	this.occurenceCounts = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	this.localOccurrenceCounts = new HashMap<>(5); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 }
 /**
  * @see ISourceElementRequestor
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void acceptImport(int declarationStart, int declarationEnd, int nameSourceStart, int nameSourceEnd, char[][] tokens, boolean onDemand, int modifiers) {
 	JavaElement parentHandle= (JavaElement) this.handleStack.peek();
 	if (!(parentHandle.getElementType() == IJavaElement.COMPILATION_UNIT)) {
@@ -176,7 +176,7 @@ public void acceptLineSeparatorPositions(int[] positions) {
 /**
  * @see ISourceElementRequestor
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void acceptPackage(ImportReference importReference) {
 
 		Object parentInfo = this.infoStack.peek();
@@ -202,7 +202,7 @@ public void acceptPackage(ImportReference importReference) {
 		this.newElements.put(handle, info);
 
 		if (importReference.annotations != null) {
-			for (org.eclipse.jdt.internal.compiler.ast.Annotation annotation : importReference.annotations) {
+			for (org.eclipse.jdt.internal.compiler.ast.Annotation annotation : importReference.annotations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				acceptAnnotation(annotation, info, handle);
 			}
 		}
@@ -216,7 +216,7 @@ public void acceptProblem(CategorizedProblem problem) {
 private void addToChildren(Object parentInfo, JavaElement handle) {
 	List<IJavaElement> childrenList = this.children.get(parentInfo);
 	if (childrenList == null)
-		this.children.put(parentInfo, childrenList = new ArrayList<>());
+		this.children.put(parentInfo, childrenList = new ArrayList<>()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	childrenList.add(handle);
 }
 protected Annotation createAnnotation(JavaElement parent, String name) {
@@ -275,12 +275,12 @@ protected static String[] convertTypeNamesToSigs(char[][] typeNames) {
 	if (n == 0)
 		return CharOperation.NO_STRINGS;
 	String[] typeSigs = new String[n];
-	for (int i = 0; i < n; ++i) {
+	for (int i = 0; i < n; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		typeSigs[i] = Signature.createTypeSignature(typeNames[i], false);
 	}
 	return DeduplicationUtil.intern(typeSigs);
 }
-protected IAnnotation acceptAnnotation(org.eclipse.jdt.internal.compiler.ast.Annotation annotation, AnnotatableInfo parentInfo, JavaElement parentHandle) {
+protected IAnnotation acceptAnnotation(org.eclipse.jdt.internal.compiler.ast.Annotation annotation, AnnotatableInfo parentInfo, JavaElement parentHandle) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String nameString = new String(CharOperation.concatWith(annotation.type.getTypeName(), '.'));
 	Annotation handle = createAnnotation(parentHandle, nameString); //NB: occurenceCount is computed in resolveDuplicates
 	resolveDuplicates(handle);
@@ -319,7 +319,7 @@ protected IAnnotation acceptAnnotation(org.eclipse.jdt.internal.compiler.ast.Ann
 @Override
 public void enterCompilationUnit() {
 	this.infoStack = new Stack<>();
-	this.children = new HashMap<>();
+	this.children = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	this.handleStack= new Stack<>();
 	this.infoStack.push(this.unitInfo);
 	this.handleStack.push(this.unit);
@@ -334,7 +334,7 @@ public void enterConstructor(MethodInfo methodInfo) {
 /**
  * @see ISourceElementRequestor
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void enterField(FieldInfo fieldInfo) {
 
 	TypeInfo parentInfo = (TypeInfo) this.infoStack.peek();
@@ -362,7 +362,7 @@ public void enterField(FieldInfo fieldInfo) {
 /**
  * @see ISourceElementRequestor
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void enterInitializer(int declarationSourceStart, int modifiers) {
 	Object parentInfo = this.infoStack.peek();
 	JavaElement parentHandle= (JavaElement) this.handleStack.peek();
@@ -384,7 +384,7 @@ public void enterInitializer(int declarationSourceStart, int modifiers) {
 /**
  * @see ISourceElementRequestor
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void enterMethod(MethodInfo methodInfo) {
 
 	TypeInfo parentInfo = (TypeInfo) this.infoStack.peek();
@@ -416,7 +416,7 @@ public void enterMethod(MethodInfo methodInfo) {
 	addToChildren(parentInfo, handle);
 	parentInfo.childrenCategories.put(handle, methodInfo.categories);
 }
-private SourceMethodElementInfo createMethodInfo(MethodInfo methodInfo, SourceMethod handle) {
+private SourceMethodElementInfo createMethodInfo(MethodInfo methodInfo, SourceMethod handle) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaElement[] elements = getChildren(methodInfo);
 	SourceMethodElementInfo info;
 	if (methodInfo.isConstructor) {
@@ -433,26 +433,26 @@ private SourceMethodElementInfo createMethodInfo(MethodInfo methodInfo, SourceMe
 	info.setNameSourceEnd(methodInfo.nameSourceEnd);
 	info.setFlags(flags);
 	char[][] parameterNames = methodInfo.parameterNames;
-	for (int i = 0, length = parameterNames.length; i < length; i++)
+	for (int i = 0, length = parameterNames.length; i < length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		parameterNames[i] = DeduplicationUtil.intern(parameterNames[i]);
 	info.setArgumentNames(parameterNames);
 	char[] returnType = methodInfo.returnType == null ? new char[]{'v', 'o','i', 'd'} : methodInfo.returnType;
 	info.setReturnType(DeduplicationUtil.intern(returnType));
 	char[][] exceptionTypes = methodInfo.exceptionTypes;
 	info.setExceptionTypeNames(exceptionTypes);
-	for (int i = 0, length = exceptionTypes.length; i < length; i++)
+	for (int i = 0, length = exceptionTypes.length; i < length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		exceptionTypes[i] = DeduplicationUtil.intern(exceptionTypes[i]);
 	this.newElements.put(handle, info);
 
 	if (methodInfo.typeParameters != null) {
-		for (TypeParameterInfo typeParameterInfo : methodInfo.typeParameters) {
+		for (TypeParameterInfo typeParameterInfo : methodInfo.typeParameters) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			acceptTypeParameter(typeParameterInfo, info);
 		}
 	}
 	if (methodInfo.annotations != null) {
 		int length = methodInfo.annotations.length;
 		this.unitInfo.annotationNumber += length;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			org.eclipse.jdt.internal.compiler.ast.Annotation annotation = methodInfo.annotations[i];
 			acceptAnnotation(annotation, info, handle);
 		}
@@ -469,11 +469,11 @@ private SourceMethodElementInfo createMethodInfo(MethodInfo methodInfo, SourceMe
 	}
 	return info;
 }
-private LocalVariable[] acceptMethodParameters(AbstractVariableDeclaration[] arguments, JavaElement methodHandle, MethodInfo methodInfo) {
+private LocalVariable[] acceptMethodParameters(AbstractVariableDeclaration[] arguments, JavaElement methodHandle, MethodInfo methodInfo) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (arguments == null) return null;
 	LocalVariable[] result = new LocalVariable[arguments.length];
 	Annotation[][] paramAnnotations = new Annotation[arguments.length][];
-	for(int i = 0; i < arguments.length; i++) {
+	for(int i = 0; i < arguments.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		AbstractVariableDeclaration argument = arguments[i];
 		AnnotatableInfo localVarInfo = new AnnotatableInfo();
 		localVarInfo.setSourceRangeStart(argument.declarationSourceStart);
@@ -498,7 +498,7 @@ private LocalVariable[] acceptMethodParameters(AbstractVariableDeclaration[] arg
 		this.handleStack.push(result[i]);
 		if (argument.annotations != null) {
 			paramAnnotations[i] = new Annotation[argument.annotations.length];
-			for (org.eclipse.jdt.internal.compiler.ast.Annotation annotation : argument.annotations) {
+			for (org.eclipse.jdt.internal.compiler.ast.Annotation annotation : argument.annotations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				acceptAnnotation(annotation, localVarInfo, result[i]);
 			}
 		}
@@ -536,7 +536,7 @@ public void enterType(TypeInfo typeInfo) {
 		((TypeInfo) parentInfo).childrenCategories.put(handle, typeInfo.categories);
 	addToChildren(parentInfo, handle);
 }
-private org.eclipse.jdt.internal.core.ModuleDescriptionInfo createModuleInfo(ModuleInfo modInfo, org.eclipse.jdt.internal.core.SourceModule handle) {
+private org.eclipse.jdt.internal.core.ModuleDescriptionInfo createModuleInfo(ModuleInfo modInfo, org.eclipse.jdt.internal.core.SourceModule handle) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	org.eclipse.jdt.internal.core.ModuleDescriptionInfo info = org.eclipse.jdt.internal.core.ModuleDescriptionInfo.createModule(modInfo.node);
 	info.setHandle(handle);
 	info.setSourceRangeStart(modInfo.declarationStart);
@@ -546,7 +546,7 @@ private org.eclipse.jdt.internal.core.ModuleDescriptionInfo createModuleInfo(Mod
 	info.addCategories(handle, modInfo.categories);
 	if (modInfo.annotations != null) {
 		int length = modInfo.annotations.length;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			org.eclipse.jdt.internal.compiler.ast.Annotation annotation = modInfo.annotations[i];
 			acceptAnnotation(annotation, info, handle);
 		}
@@ -555,7 +555,7 @@ private org.eclipse.jdt.internal.core.ModuleDescriptionInfo createModuleInfo(Mod
 
 	return info;
 }
-private SourceTypeElementInfo createTypeInfo(TypeInfo typeInfo, SourceType handle) {
+private SourceTypeElementInfo createTypeInfo(TypeInfo typeInfo, SourceType handle) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	SourceTypeElementInfo info =
 		typeInfo.anonymousMember ?
 			new SourceTypeElementInfo() {
@@ -573,31 +573,31 @@ private SourceTypeElementInfo createTypeInfo(TypeInfo typeInfo, SourceType handl
 	char[] superclass = typeInfo.superclass;
 	info.setSuperclassName(superclass == null ? null : DeduplicationUtil.intern(superclass));
 	char[][] typeNames = typeInfo.superinterfaces;
-	for (int i = 0, length = typeNames == null ? 0 : typeNames.length; i < length; i++)
+	for (int i = 0, length = typeNames == null ? 0 : typeNames.length; i < length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		typeNames[i] = DeduplicationUtil.intern(typeNames[i]);
 	info.setSuperInterfaceNames(typeNames);
 	typeNames = typeInfo.permittedSubtypes;
-	for (int i = 0, length = typeNames == null ? 0 : typeNames.length; i < length; i++)
+	for (int i = 0, length = typeNames == null ? 0 : typeNames.length; i < length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		typeNames[i] = DeduplicationUtil.intern(typeNames[i]);
 	info.setPermittedSubtypeNames(typeNames);
 	info.addCategories(handle, typeInfo.categories);
 	this.newElements.put(handle, info);
 
 	if (typeInfo.typeParameters != null) {
-		for (TypeParameterInfo typeParameterInfo : typeInfo.typeParameters) {
+		for (TypeParameterInfo typeParameterInfo : typeInfo.typeParameters) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			acceptTypeParameter(typeParameterInfo, info);
 		}
 	}
 	if (typeInfo.annotations != null) {
 		int length = typeInfo.annotations.length;
 		this.unitInfo.annotationNumber += length;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			org.eclipse.jdt.internal.compiler.ast.Annotation annotation = typeInfo.annotations[i];
 			acceptAnnotation(annotation, info, handle);
 		}
 	}
 	if (typeInfo.childrenCategories != null) {
-		for (Entry<IJavaElement, char[][]> entry : typeInfo.childrenCategories.entrySet()) {
+		for (Entry<IJavaElement, char[][]> entry : typeInfo.childrenCategories.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			info.addCategories(entry.getKey(), entry.getValue());
 		}
 
@@ -607,7 +607,7 @@ private SourceTypeElementInfo createTypeInfo(TypeInfo typeInfo, SourceType handl
 	}
 	return info;
 }
-protected void acceptTypeParameter(TypeParameterInfo typeParameterInfo, JavaElementInfo parentInfo) {
+protected void acceptTypeParameter(TypeParameterInfo typeParameterInfo, JavaElementInfo parentInfo) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	JavaElement parentHandle = (JavaElement) this.handleStack.peek();
 	String nameString = new String(typeParameterInfo.name);
 	TypeParameter handle = createTypeParameter(parentHandle, nameString); //NB: occurenceCount is computed in resolveDuplicates
@@ -665,7 +665,7 @@ public void exitConstructor(int declarationEnd) {
 /**
  * @see ISourceElementRequestor
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void exitField(int initializationStart, int declarationEnd, int declarationSourceEnd) {
 	JavaElement handle = (JavaElement) this.handleStack.peek();
 	FieldInfo fieldInfo = (FieldInfo) this.infoStack.peek();
@@ -683,7 +683,7 @@ public void exitField(int initializationStart, int declarationEnd, int declarati
 	if (fieldInfo.annotations != null) {
 		int length = fieldInfo.annotations.length;
 		this.unitInfo.annotationNumber += length;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			org.eclipse.jdt.internal.compiler.ast.Annotation annotation = fieldInfo.annotations[i];
 			acceptAnnotation(annotation, info, handle);
 		}
@@ -734,7 +734,7 @@ public void exitInitializer(int declarationEnd) {
 /**
  * @see ISourceElementRequestor
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void exitMethod(int declarationEnd, Expression defaultValue) {
 	SourceMethod handle = (SourceMethod) this.handleStack.peek();
 	MethodInfo methodInfo = (MethodInfo) this.infoStack.peek();
@@ -756,7 +756,7 @@ public void exitMethod(int declarationEnd, Expression defaultValue) {
 	this.handleStack.pop();
 	this.infoStack.pop();
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void exitModule(int declarationEnd) {
 	ModuleInfo moduleInfo = (ModuleInfo) this.infoStack.peek();
 	SourceModule handle = (SourceModule) this.handleStack.peek();
@@ -793,7 +793,7 @@ public void exitType(int declarationEnd) {
  * Resolves duplicate handles by incrementing the occurrence count
  * of the handle being created.
  */
-protected void resolveDuplicates(SourceRefElement handle) {
+protected void resolveDuplicates(SourceRefElement handle) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Integer occurenceCount = this.occurenceCounts.get(handle);
 	if (occurenceCount == null)
 		this.occurenceCounts.put(handle, Integer.valueOf(1));
@@ -825,7 +825,7 @@ protected IMemberValuePair getMemberValuePair(MemberValuePair memberValuePair) {
 protected IMemberValuePair[] getMemberValuePairs(MemberValuePair[] memberValuePairs) {
 	int membersLength = memberValuePairs.length;
 	IMemberValuePair[] members = new IMemberValuePair[membersLength];
-	for (int j = 0; j < membersLength; j++) {
+	for (int j = 0; j < membersLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		members[j] = getMemberValuePair(memberValuePairs[j]);
 	}
 	return members;
@@ -840,7 +840,7 @@ private IJavaElement[] getChildren(Object info) {
 /*
  * Creates the value from the given expression, and sets the valueKind on the given memberValuePair
  */
-protected Object getMemberValue(org.eclipse.jdt.internal.core.MemberValuePair memberValuePair, Expression expression) {
+protected Object getMemberValue(org.eclipse.jdt.internal.core.MemberValuePair memberValuePair, Expression expression) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (expression instanceof NullLiteral) {
 		return null;
 	} else if (expression instanceof Literal) {
@@ -873,7 +873,7 @@ protected Object getMemberValue(org.eclipse.jdt.internal.core.MemberValuePair me
 		Expression[] expressions = ((ArrayInitializer) expression).expressions;
 		int length = expressions == null ? 0 : expressions.length;
 		Object[] values = new Object[length];
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int previousValueKind = memberValuePair.valueKind;
 			Object value = getMemberValue(memberValuePair, expressions[i]);
 			if (previousValueKind != -1 && memberValuePair.valueKind != previousValueKind) {

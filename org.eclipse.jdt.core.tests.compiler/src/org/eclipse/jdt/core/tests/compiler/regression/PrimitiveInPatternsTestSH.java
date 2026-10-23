@@ -65,9 +65,9 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 
 	static String toConstantOfType(String constVal, String ptype) {
 		return switch (ptype) {
-			case "long" -> constVal+"L";
-			case "float" -> constVal+"f";
-			case "double" -> constVal+"d";
+			case "long" -> constVal+"L"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			case "float" -> constVal+"f"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			case "double" -> constVal+"d"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			default -> constVal;
 		};
 	}
@@ -117,7 +117,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 	protected INameEnvironment getNameEnvironment(final String[] testFiles, String[] classPaths, Map<String, String> options) {
 		this.classpaths = classPaths == null ? getDefaultClassPaths() : classPaths;
 		INameEnvironment[] classLibs = getClassLibs(false, options);
-		for (INameEnvironment nameEnvironment : classLibs) {
+		for (INameEnvironment nameEnvironment : classLibs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			((FileSystem) nameEnvironment).scanForModules(createParser());
 		}
 		return new InMemoryNameEnvironment9(testFiles, this.moduleMap, classLibs);
@@ -134,7 +134,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 		runConformTest(testFiles, expectedOutput, customOptions, VMARGS, JAVAC_OPTIONS);
 		checkPreviewFlag(testFiles);
 	}
-	protected void runConformTest(
+	protected void runConformTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles,
 		String expectedOutputString,
 		String[] classLibraries,
@@ -204,9 +204,9 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 	// https://cr.openjdk.org/~abimpoudis/instanceof/jep455-20240424/specs/instanceof-jls.html#jls-5.1.2
 	// 5.7 Testing Contexts
 	// Identity Conversion
-	public void testIdentity() throws IOException, ClassFormatException {
-		StringBuilder methods = new StringBuilder();
-		StringBuilder calls = new StringBuilder();
+	public void testIdentity() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder methods = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		StringBuilder calls = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		String methodTmpl =
 				"""
 					public static PRIM fooPRIM(PRIM v) {
@@ -223,21 +223,21 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 						System.out.print('|');
 				""";
 		// for all primitive types:
-		for (int i = 0; i < PRIMITIVES.length; i++) {
-			methods.append(fillIn(methodTmpl, i));
-			calls.append(fillInMax(callTmpl, i, true));
+		for (int i = 0; i < PRIMITIVES.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			methods.append(fillIn(methodTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			calls.append(fillInMax(callTmpl, i, true)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		StringBuilder classX = new StringBuilder("public class X {\n");
-		classX.append(methods.toString());
-		classX.append("public static void main(String[] args) {\n");
-		classX.append(calls);
-		classX.append("}}\n");
+		StringBuilder classX = new StringBuilder("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		classX.append(methods.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("public static void main(String[] args) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append(calls); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("}}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		runConformTest(new String[] { "X.java", classX.toString() }, MAX_VALUES_STRING);
 		verifyClassFile("version 27 : 71.65535", "X.class", ClassFileBytesDisassembler.SYSTEM);
 	}
-	public void testIdentityPattern() {
-		StringBuilder methods = new StringBuilder();
-		StringBuilder calls = new StringBuilder();
+	public void testIdentityPattern() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder methods = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		StringBuilder calls = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		String methodTmpl =
 				"""
 					public static PRIM fooPRIM(PRIM v) {
@@ -254,19 +254,19 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 						System.out.print('|');
 				""";
 		// for all primitive types:
-		for (int i = 0; i < PRIMITIVES.length; i++) {
-			methods.append(fillIn(methodTmpl, i));
-			calls.append(fillInMax(callTmpl, i, true));
+		for (int i = 0; i < PRIMITIVES.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			methods.append(fillIn(methodTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			calls.append(fillInMax(callTmpl, i, true)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		StringBuilder classX = new StringBuilder("public class X {\n");
-		classX.append(methods.toString());
-		classX.append("public static void main(String[] args) {\n");
-		classX.append(calls);
-		classX.append("}}\n");
+		StringBuilder classX = new StringBuilder("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		classX.append(methods.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("public static void main(String[] args) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append(calls); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("}}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		runConformTest(new String[] { "X.java", classX.toString() }, MAX_VALUES_STRING);
 	}
 
-	public void testIdentity_functionLhs() {
+	public void testIdentity_functionLhs() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// one sample should suffice here:
 		runConformTest(new String[] {
 			"X.java",
@@ -292,9 +292,9 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			"1");
 	}
 
-	public void testIdentityPattern_functionLhs() {
-		StringBuilder methods = new StringBuilder();
-		StringBuilder calls = new StringBuilder();
+	public void testIdentityPattern_functionLhs() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder methods = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		StringBuilder calls = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		String methodTmpl =
 				"""
 					public static PRIM fooPRIM() {
@@ -313,15 +313,15 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 						System.out.print('|');
 				""";
 		// for all primitive types:
-		for (int i = 0; i < PRIMITIVES.length; i++) {
-			methods.append(fillIn(methodTmpl, i));
-			calls.append(fillIn(callTmpl, i));
+		for (int i = 0; i < PRIMITIVES.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			methods.append(fillIn(methodTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			calls.append(fillIn(callTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		StringBuilder classX = new StringBuilder("public class X {\n");
-		classX.append(methods.toString());
-		classX.append("public static void main(String[] args) {\n");
-		classX.append(calls);
-		classX.append("}}\n");
+		StringBuilder classX = new StringBuilder("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		classX.append(methods.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("public static void main(String[] args) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append(calls); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("}}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		runConformTest(new String[] { "X.java", classX.toString() },
 			"true|49|1|49|49|49|49.0|49.0|");
 	}
@@ -334,7 +334,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 	// * from float to double
 	// inexact widening conversions:
 	// * from int to float, or from long to float, or from long to double
-	private void testWideningFrom(String from, int idx, boolean useMax, String expectedOut) {
+	private void testWideningFrom(String from, int idx, boolean useMax, String expectedOut) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		assert from.equals(PRIMITIVES[idx]) : "mismatch between from and idx";
 		// example (from="long", idx=5, useMax=false, ...):
 		//	public class X {
@@ -360,8 +360,8 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 		//			System.out.print('|');
 		//	}}
 
-		StringBuilder methods = new StringBuilder();
-		StringBuilder calls = new StringBuilder();
+		StringBuilder methods = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		StringBuilder calls = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		String methodTmpl =
 				"""
 					public static PRIM fooPRIM(FROM v) {
@@ -378,20 +378,20 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 						System.out.print('|');
 				""";
 		// for all numerical primitive types "greater" than 'from':
-		for (int i = idx+1; i < PRIMITIVES.length; i++) {
+		for (int i = idx+1; i < PRIMITIVES.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!IS_NUMERICAL[i]) continue;
-			methods.append(fillIn(methodTmpl.replace("FROM", from), i));
-			calls.append(fillIn(callTmpl, i));
+			methods.append(fillIn(methodTmpl.replace("FROM", from), i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			calls.append(fillIn(callTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		StringBuilder classX = new StringBuilder("public class X {\n");
-		classX.append(methods.toString());
-		classX.append("public static void main(String[] args) {\n");
-		classX.append(fillInMax("PRIM v = VAL;\n", idx, useMax));
-		classX.append(calls);
-		classX.append("}}\n");
+		StringBuilder classX = new StringBuilder("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		classX.append(methods.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("public static void main(String[] args) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append(fillInMax("PRIM v = VAL;\n", idx, useMax)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append(calls); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("}}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		runConformTest(new String[] { "X.java", classX.toString() }, expectedOut);
 	}
-	private void testWideningFrom_pattern(String from, int idx, boolean useMax, String expectedOut) {
+	private void testWideningFrom_pattern(String from, int idx, boolean useMax, String expectedOut) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		assert from.equals(PRIMITIVES[idx]) : "mismatch between from and idx";
 		// example (from="long", idx=5, useMax=false, ..):
 		//	public class X {
@@ -418,8 +418,8 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 		//		}
 		//	}
 
-		StringBuilder methods = new StringBuilder();
-		StringBuilder calls = new StringBuilder();
+		StringBuilder methods = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		StringBuilder calls = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		String methodTmpl =
 				"""
 					public static PRIM fooPRIM() {
@@ -441,17 +441,17 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 						System.out.print('|');
 				""";
 		// for all numerical primitive types "greater" than 'from':
-		for (int i = idx+1; i < PRIMITIVES.length; i++) {
+		for (int i = idx+1; i < PRIMITIVES.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!IS_NUMERICAL[i]) continue;
-			methods.append(fillIn(methodTmpl, i));
-			calls.append(fillIn(callTmpl, i));
+			methods.append(fillIn(methodTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			calls.append(fillIn(callTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		StringBuilder classX = new StringBuilder("public class X {\n");
-		classX.append(methods.toString());
-		classX.append(methodBar);
-		classX.append("public static void main(String[] args) {\n");
-		classX.append(calls);
-		classX.append("}}\n");
+		StringBuilder classX = new StringBuilder("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		classX.append(methods.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append(methodBar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("public static void main(String[] args) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append(calls); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("}}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		runConformTest(new String[] { "X.java", classX.toString() }, expectedOut);
 	}
 	private void testWideningFrom_both(String prim, int idx, boolean useMax, String expectedOut) {
@@ -473,7 +473,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 	public void testWideningInt() {
 		testWideningFrom_both("int", 4, false, "49|49.0|49.0|");
 		// max-int -> float is not exact
-		testWideningFrom_both("int", 4, true, "2147483647|-1.0|"+String.valueOf((double) Integer.MAX_VALUE)+'|');
+		testWideningFrom_both("int", 4, true, "2147483647|-1.0|"+String.valueOf((double) Integer.MAX_VALUE)+'|'); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testWideningLong() {
 		testWideningFrom_both("long", 5, false, "49.0|49.0|");
@@ -482,10 +482,10 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 	}
 	public void testWideningFloat() {
 		testWideningFrom_both("float", 6, false, "49.0|");
-		testWideningFrom_both("float", 6, true, String.valueOf((double) Float.MAX_VALUE)+"|");
+		testWideningFrom_both("float", 6, true, String.valueOf((double) Float.MAX_VALUE)+"|"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
-	private void testNarrowingFrom(String from, int idx, boolean useMax, String expectedOut) {
+	private void testNarrowingFrom(String from, int idx, boolean useMax, String expectedOut) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		assert from.equals(PRIMITIVES[idx]) : "mismatch between from and idx";
 		// example (from="short", idx=3, useMax=false):
 		//	public class X {
@@ -517,8 +517,8 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 		//		}
 		//	}
 
-		StringBuilder methods = new StringBuilder();
-		StringBuilder calls = new StringBuilder();
+		StringBuilder methods = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		StringBuilder calls = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		String methodTmpl =
 				"""
 					public static PRIM fooPRIM(FROM v) {
@@ -543,20 +543,20 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 						print(X.fooPRIM(v));
 				""";
 		// for all primitive types "smaller" than 'from' (except for boolean):
-		for (int i = 1; i < idx; i++) {
-			methods.append(fillIn(methodTmpl.replace("FROM", from), i));
-			calls.append(fillIn(callTmpl, i));
+		for (int i = 1; i < idx; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			methods.append(fillIn(methodTmpl.replace("FROM", from), i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			calls.append(fillIn(callTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		StringBuilder classX = new StringBuilder("public class X {\n");
-		classX.append(methods.toString());
-		classX.append(methodPrint);
-		classX.append("public static void main(String[] args) {\n");
-		classX.append(fillInMax("PRIM v = VAL;\n", idx, useMax));
-		classX.append(calls);
-		classX.append("}}\n");
+		StringBuilder classX = new StringBuilder("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		classX.append(methods.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append(methodPrint); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("public static void main(String[] args) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append(fillInMax("PRIM v = VAL;\n", idx, useMax)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append(calls); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("}}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		runConformTest(new String[] { "X.java", classX.toString() }, expectedOut);
 	}
-	private void testNarrowingFrom_pattern(String from, int idx, boolean useMax, String expectedOut) {
+	private void testNarrowingFrom_pattern(String from, int idx, boolean useMax, String expectedOut) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		assert from.equals(PRIMITIVES[idx]) : "mismatch between from and idx";
 		// example (from="short", idx=3, useMax=false, ...):
 		//	public class X {
@@ -588,8 +588,8 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 		//		}
 		//	}
 
-		StringBuilder methods = new StringBuilder();
-		StringBuilder calls = new StringBuilder();
+		StringBuilder methods = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		StringBuilder calls = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		String methodTmpl =
 				"""
 					public static PRIM fooPRIM() {
@@ -619,17 +619,17 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 						print(X.fooPRIM());
 				""";
 		// for all primitive types "smaller" than 'from' (except for boolean):
-		for (int i = 1; i < idx; i++) {
-			methods.append(fillIn(methodTmpl, i));
-			calls.append(fillIn(callTmpl, i));
+		for (int i = 1; i < idx; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			methods.append(fillIn(methodTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			calls.append(fillIn(callTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		StringBuilder classX = new StringBuilder("public class X {\n");
-		classX.append(methods.toString());
-		classX.append(methodBar);
-		classX.append(methodPrint);
-		classX.append("public static void main(String[] args) {\n");
-		classX.append(calls);
-		classX.append("}}\n");
+		StringBuilder classX = new StringBuilder("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		classX.append(methods.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append(methodBar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append(methodPrint); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("public static void main(String[] args) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append(calls); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("}}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		runConformTest(new String[] { "X.java", classX.toString() }, expectedOut);
 	}
 	private void testNarrowingFrom_both(String prim, int idx, boolean useMax, String expectedOut) {
@@ -660,7 +660,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 		testNarrowingFrom_both("char", 2, false, "49|"); // '1'
 	}
 
-	public void testNarrowingChar_various() {
+	public void testNarrowingChar_various() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -733,7 +733,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			"49|49|49|127|32767|-1|");
 	}
 
-	public void testBoxing() {
+	public void testBoxing() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		//	public class X {
 		//		public static Boolean boolean2Boolean(boolean v) {
 		//			if (v instanceof Boolean) {
@@ -759,8 +759,8 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 		//		}
 		//	}
 
-		StringBuilder methods = new StringBuilder();
-		StringBuilder calls = new StringBuilder();
+		StringBuilder methods = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		StringBuilder calls = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		String methodTmpl =
 				"""
 					public static BOX PRIM2BOX(PRIM v) {
@@ -777,19 +777,19 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 						System.out.print('|');
 				""";
 		// for all primitive types:
-		for (int i = 0; i < PRIMITIVES.length; i++) {
-			methods.append(fillIn(methodTmpl, i));
-			calls.append(fillIn(callTmpl, i));
+		for (int i = 0; i < PRIMITIVES.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			methods.append(fillIn(methodTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			calls.append(fillIn(callTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		StringBuilder classX = new StringBuilder("public class X {\n");
-		classX.append(methods.toString());
-		classX.append("public static void main(String[] args) {\n");
-		classX.append(calls);
-		classX.append("}}\n");
+		StringBuilder classX = new StringBuilder("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		classX.append(methods.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("public static void main(String[] args) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append(calls); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("}}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		runConformTest(new String[] { "X.java", classX.toString() },
 				"true|49|1|49|49|49|49.0|49.0|");
 	}
-	public void testBoxing_pattern() {
+	public void testBoxing_pattern() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		//	public class X {
 		//		public static Boolean boolean2Boolean() {
 		//			if (barboolean() instanceof Boolean v) {
@@ -819,8 +819,8 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 		//		}
 		//	}
 
-		StringBuilder methods = new StringBuilder();
-		StringBuilder calls = new StringBuilder();
+		StringBuilder methods = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		StringBuilder calls = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		String methodTmpl =
 				"""
 					public static BOX PRIM2BOX() {
@@ -839,20 +839,20 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 						System.out.print('|');
 				""";
 		// for all primitive types:
-		for (int i = 0; i < PRIMITIVES.length; i++) {
-			methods.append(fillIn(methodTmpl, i));
-			calls.append(fillIn(callTmpl, i));
+		for (int i = 0; i < PRIMITIVES.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			methods.append(fillIn(methodTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			calls.append(fillIn(callTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		StringBuilder classX = new StringBuilder("public class X {\n");
-		classX.append(methods.toString());
-		classX.append("public static void main(String[] args) {\n");
-		classX.append(calls);
-		classX.append("}}\n");
+		StringBuilder classX = new StringBuilder("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		classX.append(methods.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("public static void main(String[] args) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append(calls); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("}}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		runConformTest(new String[] { "X.java", classX.toString() },
 				"true|49|1|49|49|49|49.0|49.0|");
 	}
 
-	public void testUnboxing() {
+	public void testUnboxing() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		//	public class X {
 		//		public static boolean Boolean2boolean(Boolean v) {
 		//			if (v instanceof boolean) {
@@ -878,8 +878,8 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 		//		}
 		//	}
 
-		StringBuilder methods = new StringBuilder();
-		StringBuilder calls = new StringBuilder();
+		StringBuilder methods = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		StringBuilder calls = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		String methodTmpl =
 				"""
 					public static PRIM BOX2PRIM(BOX v) {
@@ -896,19 +896,19 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 						System.out.print('|');
 				""";
 		// for all primitive types:
-		for (int i = 0; i < PRIMITIVES.length; i++) {
-			methods.append(fillIn(methodTmpl, i));
-			calls.append(fillIn(callTmpl, i));
+		for (int i = 0; i < PRIMITIVES.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			methods.append(fillIn(methodTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			calls.append(fillIn(callTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		StringBuilder classX = new StringBuilder("public class X {\n");
-		classX.append(methods.toString());
-		classX.append("public static void main(String[] args) {\n");
-		classX.append(calls);
-		classX.append("}}\n");
+		StringBuilder classX = new StringBuilder("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		classX.append(methods.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("public static void main(String[] args) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append(calls); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("}}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		runConformTest(new String[] { "X.java", classX.toString() },
 				"true|49|1|49|49|49|49.0|49.0|");
 	}
-	public void testUnboxing_pattern() {
+	public void testUnboxing_pattern() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		//	public class X {
 		//		public static Boolean boolean2Boolean() {
 		//			if (barboolean() instanceof Boolean v) {
@@ -938,8 +938,8 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 		//		}
 		//	}
 
-		StringBuilder methods = new StringBuilder();
-		StringBuilder calls = new StringBuilder();
+		StringBuilder methods = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		StringBuilder calls = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		String methodTmpl =
 				"""
 					public static PRIM BOX2PRIM() {
@@ -958,22 +958,22 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 						System.out.print('|');
 				""";
 		// for all primitive types:
-		for (int i = 0; i < PRIMITIVES.length; i++) {
-			methods.append(fillIn(methodTmpl, i));
-			calls.append(fillIn(callTmpl, i));
+		for (int i = 0; i < PRIMITIVES.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			methods.append(fillIn(methodTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			calls.append(fillIn(callTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		StringBuilder classX = new StringBuilder("public class X {\n");
-		classX.append(methods.toString());
-		classX.append("public static void main(String[] args) {\n");
-		classX.append(calls);
-		classX.append("}}\n");
+		StringBuilder classX = new StringBuilder("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		classX.append(methods.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("public static void main(String[] args) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append(calls); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("}}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		runConformTest(new String[] { "X.java", classX.toString() },
 				"true|49|1|49|49|49|49.0|49.0|");
 	}
 
 	// boxing and widening reference conversion
 
-	private void primitive2Comparable(String prim, int idx, String expectedOut) {
+	private void primitive2Comparable(String prim, int idx, String expectedOut) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String methodTmpl =
 				"""
 					@SuppressWarnings("rawtypes")
@@ -1024,11 +1024,11 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 					System.out.print('|');
 				""";
 		}
-		StringBuilder classX = new StringBuilder("public class X {\n");
-		classX.append(fillIn(methodTmpl, idx));
-		classX.append("public static void main(String[] args) {\n");
-		classX.append(fillIn(callTmpl, idx));
-		classX.append("}}\n");
+		StringBuilder classX = new StringBuilder("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		classX.append(fillIn(methodTmpl, idx)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("public static void main(String[] args) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append(fillIn(callTmpl, idx)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("}}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		runConformTest(new String[] { "X.java", classX.toString() }, expectedOut);
 	}
 
@@ -1056,7 +1056,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 	public void test2Comparable_double() {
 		primitive2Comparable("double", 7, "49.0|49.0|49.0|49.0|");
 	}
-	public void test2Number_NOK() {
+	public void test2Number_NOK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"""
@@ -1091,7 +1091,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			""");
 	}
 
-	public void testNonPrim001() {
+	public void testNonPrim001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// no preview used
 		super.runConformTest(new String[] {
 			"X.java",
@@ -1115,9 +1115,9 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			"true");
 	}
 
-	public void testPrimitivePatternInSwitch() {
-		StringBuilder methods = new StringBuilder();
-		StringBuilder calls = new StringBuilder();
+	public void testPrimitivePatternInSwitch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder methods = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		StringBuilder calls = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		String methodTmpl =
 				"""
 					public static PRIM switchPRIM(PRIM in) {
@@ -1137,22 +1137,22 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 						System.out.print('|');
 				""";
 		// for all primitive types:
-		for (int i = 0; i < PRIMITIVES.length; i++) {
-			methods.append(fillIn(methodTmpl, i));
-			calls.append(fillIn(callTmpl, i));
+		for (int i = 0; i < PRIMITIVES.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			methods.append(fillIn(methodTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			calls.append(fillIn(callTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		StringBuilder classX = new StringBuilder("public class X {\n");
-		classX.append(methods.toString());
-		classX.append("public static void main(String[] args) {\n");
-		classX.append(calls);
-		classX.append("}}\n");
+		StringBuilder classX = new StringBuilder("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		classX.append(methods.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("public static void main(String[] args) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append(calls); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("}}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		runConformTest(new String[] { "X.java", classX.toString() },
 				"false|false|49|-1|1|-|49|-1|49|-1|49|-1|49.0|-1.0|49.0|-1.0|");
 	}
 
-	public void testPrimitivePatternInSwitch_unbox() {
-		StringBuilder methods = new StringBuilder();
-		StringBuilder calls = new StringBuilder();
+	public void testPrimitivePatternInSwitch_unbox() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder methods = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		StringBuilder calls = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		String methodTmpl =
 				"""
 					public static PRIM switchPRIM(BOX in) {
@@ -1172,22 +1172,22 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 						System.out.print('|');
 				""";
 		// for all primitive types:
-		for (int i = 0; i < PRIMITIVES.length; i++) {
-			methods.append(fillIn(methodTmpl, i));
-			calls.append(fillIn(callTmpl, i));
+		for (int i = 0; i < PRIMITIVES.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			methods.append(fillIn(methodTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			calls.append(fillIn(callTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		StringBuilder classX = new StringBuilder("public class X {\n");
-		classX.append(methods.toString());
-		classX.append("public static void main(String[] args) {\n");
-		classX.append(calls);
-		classX.append("}}\n");
+		StringBuilder classX = new StringBuilder("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		classX.append(methods.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("public static void main(String[] args) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append(calls); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("}}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		runConformTest(new String[] { "X.java", classX.toString() },
 				"false|false|49|-1|1|-|49|-1|49|-1|49|-1|49.0|-1.0|49.0|-1.0|");
 	}
 
-	public void testPrimitivePatternInSwitch_narrowConst_NOK() {
-		StringBuilder methods = new StringBuilder();
-		StringBuilder calls = new StringBuilder();
+	public void testPrimitivePatternInSwitch_narrowConst_NOK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder methods = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		StringBuilder calls = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		String methodTmpl =
 				"""
 					public static PRIM switchPRIM(Object in) {
@@ -1207,15 +1207,15 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 						System.out.print('|');
 				""";
 		// for all primitive types:
-		for (int i = 0; i < PRIMITIVES.length; i++) {
-			methods.append(fillIn(methodTmpl, i));
-			calls.append(fillIn(callTmpl, i));
+		for (int i = 0; i < PRIMITIVES.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			methods.append(fillIn(methodTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			calls.append(fillIn(callTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		StringBuilder classX = new StringBuilder("public class X {\n");
-		classX.append(methods.toString());
-		classX.append("public static void main(String[] args) {\n");
-		classX.append(calls);
-		classX.append("}}\n");
+		StringBuilder classX = new StringBuilder("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		classX.append(methods.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("public static void main(String[] args) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append(calls); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("}}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		runNegativeTest(new String[] { "X.java", classX.toString() },
 				"""
 				----------
@@ -1262,9 +1262,9 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 				""");
 	}
 
-	public void testPrimitivePatternInSwitch_narrowUnbox() {
-		StringBuilder methods = new StringBuilder();
-		StringBuilder calls = new StringBuilder();
+	public void testPrimitivePatternInSwitch_narrowUnbox() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder methods = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		StringBuilder calls = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		String methodTmpl =
 				"""
 					public static PRIM switchPRIM(Object in) {
@@ -1283,23 +1283,23 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 						System.out.print('|');
 				""";
 		// for all primitive types:
-		for (int i = 0; i < PRIMITIVES.length; i++) {
-			methods.append(fillIn(methodTmpl, i));
-			calls.append(fillIn(callTmpl, i));
+		for (int i = 0; i < PRIMITIVES.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			methods.append(fillIn(methodTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			calls.append(fillIn(callTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		StringBuilder classX = new StringBuilder("public class X {\n");
-		classX.append(methods.toString());
-		classX.append("public static void main(String[] args) {\n");
-		classX.append(calls);
-		classX.append("}}\n");
+		StringBuilder classX = new StringBuilder("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		classX.append(methods.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("public static void main(String[] args) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append(calls); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classX.append("}}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		runConformTest(new String[] { "X.java", classX.toString() },
 				"true|false|49|-1|1|-|49|-1|49|-1|49|-1|49.0|-1.0|49.0|-1.0|");
 	}
 
-	private void testPrimitivePatternInSwitch_from_unboxAndNarrow_NOK(String from, int idx, String suppress, String expectedError) {
+	private void testPrimitivePatternInSwitch_from_unboxAndNarrow_NOK(String from, int idx, String suppress, String expectedError) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		assert from.equals(BOXES[idx]) : "mismatching from vs idx";
-		StringBuilder methods = new StringBuilder();
-		StringBuilder calls = new StringBuilder();
+		StringBuilder methods = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		StringBuilder calls = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		String classTmpl =
 				"""
 				SUPPRESS public class X {
@@ -1325,10 +1325,10 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 						System.out.print('|');
 				""".replaceAll("FROM", from); // leaves only PRIM for replacement in the loop
 		// for all smaller numerical primitive types:
-		for (int i = 1; i < idx; i++) {
+		for (int i = 1; i < idx; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!IS_NUMERICAL[i]) continue;
-			methods.append(fillIn(methodTmpl, i));
-			calls.append(fillIn(callTmpl, i));
+			methods.append(fillIn(methodTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			calls.append(fillIn(callTmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		String classX = classTmpl.replace("METHODS", methods.toString()).replaceAll("CALLS", calls.toString());
 		runNegativeTest(new String[] { "X.java", classX },
@@ -1367,7 +1367,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 				----------
 				""");
 	}
-	public void testPrimitivePatternInSwitchLong_unboxAndNarrow_NOK() {
+	public void testPrimitivePatternInSwitchLong_unboxAndNarrow_NOK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		testPrimitivePatternInSwitch_from_unboxAndNarrow_NOK("Long", 5,
 				"@SuppressWarnings(\"preview\")",
 				"""
@@ -1389,7 +1389,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 				----------
 				""");
 	}
-	public void testPrimitivePatternInSwitchFloat_unboxAndNarrow_NOK() {
+	public void testPrimitivePatternInSwitchFloat_unboxAndNarrow_NOK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		testPrimitivePatternInSwitch_from_unboxAndNarrow_NOK("Float", 6,
 				"@SuppressWarnings(\"preview\")",
 				"""
@@ -1416,7 +1416,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 				----------
 				""");
 	}
-	public void testPrimitivePatternInSwitchDouble_unboxAndNarrow_NOK() {
+	public void testPrimitivePatternInSwitchDouble_unboxAndNarrow_NOK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		testPrimitivePatternInSwitch_from_unboxAndNarrow_NOK("Double", 7,
 				"@SuppressWarnings(\"preview\")",
 				"""
@@ -1448,7 +1448,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 				----------
 				""");
 	}
-	public void testPrimitivePatternInSwitch_Character_unboxAndNarrow_NOK() {
+	public void testPrimitivePatternInSwitch_Character_unboxAndNarrow_NOK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -1493,7 +1493,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			""");
 	}
 
-	public void testPrimitivePatternInSwitch_Character_unboxAndWiden() {
+	public void testPrimitivePatternInSwitch_Character_unboxAndWiden() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"""
@@ -1533,7 +1533,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			"97|98|99.0|100.0");
 	}
 
-	public void testPrimitivePatternInSwitch_widenUnbox() {
+	public void testPrimitivePatternInSwitch_widenUnbox() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"""
@@ -1560,7 +1560,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			},
 			"12");
 	}
-	void testInstanceof_widenUnbox(String fromBox, int idx, String expectedOuts) {
+	void testInstanceof_widenUnbox(String fromBox, int idx, String expectedOuts) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// for all numerical types challenge route WIDENING_REFERENCE_AND_UNBOXING_COVERSION_AND_WIDENING_PRIMITIVE_CONVERSION
 		//
 		// example (from="Integer", idx=4, ...):
@@ -1602,30 +1602,30 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 					return NEGVAL;
 				}
 				""".replace("FROM", fromBox);
-		StringBuilder clazz = new StringBuilder();
-		clazz.append("""
+		StringBuilder clazz = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		clazz.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				import java.util.Optional;
 				public class X {
 				""");
-		StringBuilder main = new StringBuilder();
-		main.append("public static void main(String... args) {\n");
-		main.append("\tFROM v = FROM.valueOf((CAST) VAL);\n"
+		StringBuilder main = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		main.append("public static void main(String... args) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		main.append("\tFROM v = FROM.valueOf((CAST) VAL);\n" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				.replace("FROM", fromBox)
 				.replace("CAST", PRIMITIVES[idx])
 				.replace("VAL", GOODVALUES[idx]));
 		String call1Tmpl = "\tSystem.out.print(m1PRIM(v));\n".replace("FROM", fromBox);
 		String call2Tmpl = "\tSystem.out.print(m2PRIM(Optional.of(v)));\n".replace("FROM", fromBox);
-		for (int i=idx+1; i<8; i++) {
+		for (int i=idx+1; i<8; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!IS_NUMERICAL[i]) continue;
-			clazz.append(fillIn(m1, i));
-			clazz.append(fillIn(m2, i));
-			main.append(fillIn(call1Tmpl, i));
-			main.append("\tSystem.out.print('+');\n");
-			main.append(fillIn(call2Tmpl, i));
-			main.append("\tSystem.out.print('|');\n");
+			clazz.append(fillIn(m1, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			clazz.append(fillIn(m2, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			main.append(fillIn(call1Tmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			main.append("\tSystem.out.print('+');\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			main.append(fillIn(call2Tmpl, i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			main.append("\tSystem.out.print('|');\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		clazz.append(main);
-		clazz.append("""
+		clazz.append(main); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		clazz.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
 				""");
@@ -1647,7 +1647,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 		testInstanceof_widenUnbox("Float", 6, "49.0+49.0|");
 	}
 
-	public void testInstanceof_widenUnboxWiden() {
+	public void testInstanceof_widenUnboxWiden() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// see https://bugs.openjdk.org/browse/JDK-8342397
 		// which links to our https://mail.openjdk.org/pipermail/compiler-dev/2024-September/027630.html
 		runConformTest(new String[] {
@@ -1709,7 +1709,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			111
 			111""");
 	}
-	public void testInstanceof_genericExpression() { // regression test for a checkCast which we failed to generate earlier
+	public void testInstanceof_genericExpression() { // regression test for a checkCast which we failed to generate earlier //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"""
@@ -1729,7 +1729,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void testPrimitivePatternInSwitch_more() {
+	public void testPrimitivePatternInSwitch_more() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"""
@@ -1778,7 +1778,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 				"true|v=false|1.0|1.5|v=1.6|A|2|_");
 	}
 
-	public void testPrimitivePatternInSwitch_byteToChar_notExhaustive() {
+	public void testPrimitivePatternInSwitch_byteToChar_notExhaustive() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -1807,7 +1807,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 );
 	}
 
-	private void testNarrowingInSwitchFrom(String from, int idx, String expectedOut) {
+	private void testNarrowingInSwitchFrom(String from, int idx, String expectedOut) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// case statements (constant & type pattern) apply narrowing to each smaller numerical type
 
 		assert from.equals(PRIMITIVES[idx]) : "mismatch between from and idx";
@@ -1861,14 +1861,14 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 						print(X.doswitch((FROM)(CONST+CONST)));
 				""";
 		// for all numerical primitive types up-to 'from':
-		StringBuilder cases = new StringBuilder();
-		StringBuilder calls = new StringBuilder();
-		for (int i = 0; i <= idx; i++) {
+		StringBuilder cases = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		StringBuilder calls = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0; i <= idx; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!IS_NUMERICAL[i]) continue;
 			String constVal = toConstantOfType(CONSTANTS[i], from);
 			String val10 = String.valueOf(i*10);
-			cases.append(casesTmpl.replaceAll("PRIM", PRIMITIVES[i]).replace("CONST", constVal).replace("VAL", val10));
-			calls.append(callsTmpl.replaceAll("FROM", from).replaceAll("CONST", constVal));
+			cases.append(casesTmpl.replaceAll("PRIM", PRIMITIVES[i]).replace("CONST", constVal).replace("VAL", val10)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			calls.append(callsTmpl.replaceAll("FROM", from).replaceAll("CONST", constVal)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		String retType = idx <= 4 /*int*/ ? "int" : from; // no syntax exists for constants below int
 		String classX = classTmpl.replace("FROM", from).replace("RET", retType)
@@ -1892,7 +1892,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 		testNarrowingInSwitchFrom("double", 7, "10.0|12.0|30.0|630.0|40.0|80040.0|50.0|1.000000005E10|60.0|1.2E21|70.0|1.4E41|");
 	}
 
-	public void testSwitchOn_long_wrongSelector() {
+	public void testSwitchOn_long_wrongSelector() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 			"""
@@ -1934,7 +1934,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 		----------
 		""");
 	}
-	public void testSwitchOn_Float_wrongSelector() {
+	public void testSwitchOn_Float_wrongSelector() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 			"""
@@ -1981,7 +1981,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 		----------
 		""");
 	}
-	public void testSwitchOnBoxed_OK() {
+	public void testSwitchOnBoxed_OK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// constant cases for all boxed primitive types except Boolean
 		// run as separate tests.
 		String classTmpl = """
@@ -2005,14 +2005,14 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 						System.out.print(m1((PRIM)NEGVAL));
 				""";
 		// for all primitive types other than boolean (boolean would have duplicate cases):
-		for (int i = 1; i < PRIMITIVES.length; i++) { // 1
+		for (int i = 1; i < PRIMITIVES.length; i++) { // 1 //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String calls = fillIn(callsTmpl, i);
 			String classX = fillIn(classTmpl, i)
 					.replace("CALLS", calls);
 			runConformTest_skipPreviewCheck(new String[] { "XBOX.java".replace("BOX", BOXES[i]), classX }, "12-2");
 		}
 	}
-	public void testSwitchOn_Boolean_OK() {
+	public void testSwitchOn_Boolean_OK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest_skipPreviewCheck(new String[] {
 			"X.java",
 			"""
@@ -2033,7 +2033,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 		"1-1");
 	}
 
-	public void testDuplicateBoolCase() {
+	public void testDuplicateBoolCase() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// saw SOE when executing bogus byte code:
 		runNegativeTest(new String[] {
 				"XBoolean.java",
@@ -2074,7 +2074,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			----------
 			""");
 	}
-	public void testBooleanSwitchExhaustive_OK() {
+	public void testBooleanSwitchExhaustive_OK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"""
@@ -2094,7 +2094,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			},
 			"10");
 	}
-	public void testBooleanSwitchExhaustive_NOK_1() {
+	public void testBooleanSwitchExhaustive_NOK_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -2126,7 +2126,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			----------
 			""");
 	}
-	public void testBooleanSwitchExhaustive_NOK_2() {
+	public void testBooleanSwitchExhaustive_NOK_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -2169,7 +2169,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			----------
 			""");
 	}
-	public void testBooleanSwitchExhaustive_NOK_3() {
+	public void testBooleanSwitchExhaustive_NOK_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -2212,7 +2212,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 
 	// exhaustiveness with identity conversion is already cover testNarrowingInSwitchFrom()
 
-	public void testShortSwitchExhaustive_int_Number_Comparable() {
+	public void testShortSwitchExhaustive_int_Number_Comparable() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"""
@@ -2252,7 +2252,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			"080808");
 	}
 
-	public void testIntSwitchExhaustive_NOK() {
+	public void testIntSwitchExhaustive_NOK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -2297,7 +2297,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			""");
 	}
 
-	public void testIntSwitchExhaustive_OK() {
+	public void testIntSwitchExhaustive_OK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"""
@@ -2329,7 +2329,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			"1.0|3.0|1.0|3.0");
 	}
 
-	public void testLongSwitchExhaustive_NOK() {
+	public void testLongSwitchExhaustive_NOK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -2389,7 +2389,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			""");
 	}
 
-	public void testPrimitiveRecordComponent_narrow() {
+	public void testPrimitiveRecordComponent_narrow() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"""
@@ -2413,7 +2413,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 				"Yay!");
 	}
 
-	public void testPrimitiveRecordComponent_unbox() {
+	public void testPrimitiveRecordComponent_unbox() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"""
@@ -2432,7 +2432,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 				"Yay");
 	}
 
-	public void testPrimitiveRecordComponent_unboxAndWiden() {
+	public void testPrimitiveRecordComponent_unboxAndWiden() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"""
@@ -2451,7 +2451,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 				"Yay");
 	}
 
-	public void testPrimitiveRecordComponent_narrowingAndUnboxing_nested() {
+	public void testPrimitiveRecordComponent_narrowingAndUnboxing_nested() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"""
@@ -2477,7 +2477,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 
 	}
 
-	public void testCoversTypePlusDefault() {
+	public void testCoversTypePlusDefault() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// case int i "covers" type Integer but is not unconditional
 		runConformTest(new String[] {
 				"X.java",
@@ -2500,7 +2500,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 				"true");
 	}
 
-	public void testUnconditionPlusDefault() {
+	public void testUnconditionPlusDefault() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// case int i "covers" type int and is unconditional
 		// various combinations of dominance with/without default
 		runNegativeTest(new String[] {
@@ -2575,7 +2575,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 				""");
 	}
 
-	public void testIncompatiblePrimitiveInInstanceof() {
+	public void testIncompatiblePrimitiveInInstanceof() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -2604,7 +2604,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3113
 	// [Switch][Record patterns] Unexpected operand error with switch pattern and widening unboxing conversion
-	public void testGH3113_ok() {
+	public void testGH3113_ok() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"""
@@ -2627,7 +2627,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3265
 	// [Primitive Patterns] Wrong duplicate case error
-	public void testIssue3265() {
+	public void testIssue3265() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"""
@@ -2655,7 +2655,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3265
 	// [Primitive Patterns] Wrong duplicate case error
-	public void testIssue3265_2() {
+	public void testIssue3265_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -2705,7 +2705,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3337
 	// [Enhanced Switch][Primitive Patterns] ECJ tolerates default case in boolean switch with both true and false cases.
-	public void testIssue3337() {
+	public void testIssue3337() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 			"""
@@ -2733,7 +2733,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			"Switch cannot have both boolean values and a default label\n" +
 			"----------\n");
 	}
-	public void testJDK8348410_negative() {
+	public void testJDK8348410_negative() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.customOptions = getCompilerOptions(false); // preview NOT enabled
 		runner.testFiles = new String[] {
@@ -2774,7 +2774,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 		runner.javacTestOptions = JavacHasABug.JavacBug8348410;
 		runner.runNegativeTest();
 	}
-	public void testJDK8348410_positive() {
+	public void testJDK8348410_positive() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.customOptions = getCompilerOptions(true); // preview enabled
 		runner.testFiles = new String[] {
@@ -2799,7 +2799,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 		runner.expectedOutputString = "1";
 		runner.runConformTest();
 	}
-	public void testJDK8348410_previewFlag() {
+	public void testJDK8348410_previewFlag() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.customOptions = getCompilerOptions(true); // preview enabled
 		runner.testFiles = new String[] {
@@ -2827,7 +2827,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 				""";
 		runner.runConformTest();
 	}
-	public void testGH3128() {
+	public void testGH3128() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"""
@@ -2863,7 +2863,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			},
 			"Null");
 	}
-	public void testGH3369_statement() {
+	public void testGH3369_statement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -2883,7 +2883,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			"This expression yields no value\n" +
 			"----------\n");
 	}
-	public void testGH3369_expression() {
+	public void testGH3369_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -2904,7 +2904,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			"This expression yields no value\n" +
 			"----------\n");
 	}
-	public void testJEP530Example1() {
+	public void testJEP530Example1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -2931,7 +2931,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			----------
 			""");
 	}
-	public void testJEP530Example2() {
+	public void testJEP530Example2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -3007,7 +3007,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			----------
 			""");
 	}
-	public void testJEP530Example2_short() {
+	public void testJEP530Example2_short() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -3052,7 +3052,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			----------
 			""");
 	}
-	public void testJEP530Example2_long_integral() {
+	public void testJEP530Example2_long_integral() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -3128,7 +3128,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			----------
 			""");
 	}
-	public void testJEP530Example2_long_fp() {
+	public void testJEP530Example2_long_fp() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -3178,7 +3178,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			----------
 			""");
 	}
-	public void testJEP530Example2_float() {
+	public void testJEP530Example2_float() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -3267,7 +3267,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			----------
 			""");
 	}
-	public void testJEP530Example2_double() {
+	public void testJEP530Example2_double() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -3356,7 +3356,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			----------
 			""");
 	}
-	public void testJEP530Example3() {
+	public void testJEP530Example3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// no primitives, but new dominance rule from JEP 530
 		runNegativeTest(new String[] {
 				"Dominance.java",
@@ -3384,7 +3384,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			----------
 			""");
 	}
-	public void testJEP530Example5() {
+	public void testJEP530Example5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"Dominance.java",
 				"""
@@ -3410,7 +3410,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			----------
 			""");
 	}
-	public void testJEP530Example6() {
+	public void testJEP530Example6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"""
@@ -3429,7 +3429,7 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			},
 			"0");
 	}
-	public void testJEP530Example7() {
+	public void testJEP530Example7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"""

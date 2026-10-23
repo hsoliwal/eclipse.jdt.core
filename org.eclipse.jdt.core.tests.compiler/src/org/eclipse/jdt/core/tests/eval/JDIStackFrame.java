@@ -78,7 +78,7 @@ public char[] declaringTypeName() {
 	}
 	return null;
 }
-protected ThreadReference getDebuggedThread(DebugEvaluationTest test) {
+protected ThreadReference getDebuggedThread(DebugEvaluationTest test) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// desintall previous breakpoints
 		this.jdiVM.eventRequestManager().deleteAllBreakpoints();
@@ -99,23 +99,23 @@ protected ThreadReference getDebuggedThread(DebugEvaluationTest test) {
 
 			// force load of class
 			test.evaluateWithExpectedDisplayString(
-				("return Class.forName(\"" + this.breakpointClassName + "\");").toCharArray(),
-				("class " + this.breakpointClassName).toCharArray()
+				("return Class.forName(\"" + this.breakpointClassName + "\");").toCharArray(), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				("class " + this.breakpointClassName).toCharArray() //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			);
 			classes = this.jdiVM.classesByName(this.breakpointClassName);
 			if (classes.size() == 0) {
 				// workaround bug in Standard VM
 				Iterator iterator = this.jdiVM.allClasses().iterator();
-				while (iterator.hasNext()) {
+				while (iterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					ReferenceType type = (ReferenceType)iterator.next();
 					if (type.name().equals(this.breakpointClassName)) {
-						classes = new ArrayList(1);
+						classes = new ArrayList(1); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 						classes.add(type);
 						break;
 					}
 				}
 				if (classes.size() == 0) {
-					throw new Error("JDI could not retrieve class for " + this.breakpointClassName);
+					throw new Error("JDI could not retrieve class for " + this.breakpointClassName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}
@@ -136,7 +136,7 @@ protected ThreadReference getDebuggedThread(DebugEvaluationTest test) {
 		try {
 			test.resetEnv();
 			test.context.evaluate(
-				("(new Thread() {\n" +
+				("(new Thread() {\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"  public void run() {\n" +
 				     this.userCode + "\n" +
 				(this.breakpointClassName.equals("_JDIStackFrame_") ? "    new _JDIStackFrame_().foo();\n" : "") +
@@ -150,10 +150,10 @@ protected ThreadReference getDebuggedThread(DebugEvaluationTest test) {
 				requestor,
 				test.getProblemFactory());
 		} catch (InstallException e) {
-			TestCase.assertTrue("Target exception " + e.getMessage(), false);
+			TestCase.assertTrue("Target exception " + e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		EvaluationResult[] results = requestor.results;
-		for (int i = 0; i < requestor.resultIndex + 1; i++){
+		for (int i = 0; i < requestor.resultIndex + 1; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (results[i].hasErrors()) {
 				TestCase.assertTrue("Compilation error in user code", false);
 			}
@@ -161,10 +161,10 @@ protected ThreadReference getDebuggedThread(DebugEvaluationTest test) {
 
 		// Wait for the breakpoint event
 		Event event = null;
-		do {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			EventSet set = this.jdiVM.eventQueue().remove();
 			Iterator iterator = set.eventIterator();
-			while (iterator.hasNext()) {
+			while (iterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				event = (Event)iterator.next();
 				if (event instanceof BreakpointEvent)
 					break;
@@ -225,8 +225,8 @@ public char[][] localVariableNames() {
 	try {
 		StackFrame frame = getStackFrame();
 		Iterator variables = frame.visibleVariables().iterator();
-		List<char[]> names = new ArrayList<>();
-		while (variables.hasNext()) {
+		List<char[]> names = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		while (variables.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			LocalVariable var = (LocalVariable)variables.next();
 			names.add(var.name().toCharArray());
 		}
@@ -241,8 +241,8 @@ public char[][] localVariableTypeNames() {
 	try {
 		StackFrame frame = getStackFrame();
 		Iterator variables = frame.visibleVariables().iterator();
-		List<char[]> names = new ArrayList();
-		while (variables.hasNext()) {
+		List<char[]> names = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		while (variables.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			LocalVariable var = (LocalVariable)variables.next();
 			names.add(var.typeName().toCharArray());
 		}
@@ -253,7 +253,7 @@ public char[][] localVariableTypeNames() {
 		return null;
 	}
 }
-public boolean run(String codeSnippetClassName) {
+public boolean run(String codeSnippetClassName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ClassType codeSnippetClass;
 		ObjectReference codeSnippet;
 		Method method;
@@ -263,7 +263,7 @@ public boolean run(String codeSnippetClassName) {
 			// Get the code snippet class
         	long timeoutNanos = System.nanoTime() + this.timeout * 1_000_000L;
 			List classes = this.jdiVM.classesByName(codeSnippetClassName);
-			while (classes.size() == 0) {
+			while (classes.size() == 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					Thread.sleep(1);
 				} catch (InterruptedException e) {
@@ -272,10 +272,10 @@ public boolean run(String codeSnippetClassName) {
 				if (classes.size() == 0) {
 					// workaround bug in Standard VM
 					Iterator iterator = this.jdiVM.allClasses().iterator();
-					while (iterator.hasNext()) {
+					while (iterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ReferenceType type = (ReferenceType)iterator.next();
 						if (type.name().equals(codeSnippetClassName)) {
-							classes = new ArrayList(1);
+							classes = new ArrayList(1); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 							classes.add(type);
 							break;
 						}
@@ -289,16 +289,16 @@ public boolean run(String codeSnippetClassName) {
 
 			// Create a new code snippet
 			Method constructor = codeSnippetClass.methodsByName("<init>").get(0);
-			codeSnippet = codeSnippetClass.newInstance(this.jdiThread, constructor, new ArrayList(), ClassType.INVOKE_SINGLE_THREADED);
+			codeSnippet = codeSnippetClass.newInstance(this.jdiThread, constructor, new ArrayList(), ClassType.INVOKE_SINGLE_THREADED); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 			// Install local variables and "this" into generated fields
 			StackFrame stackFrame = getStackFrame();
 			try {
 				Iterator variables = stackFrame.visibleVariables().iterator();
-				while (variables.hasNext()) {
+				while (variables.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					LocalVariable jdiVariable = (LocalVariable)variables.next();
 					Value value = stackFrame.getValue(jdiVariable);
-					Field field = codeSnippetClass.fieldByName(new String(LOCAL_VAR_PREFIX) + jdiVariable.name());
+					Field field = codeSnippetClass.fieldByName(new String(LOCAL_VAR_PREFIX) + jdiVariable.name()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					codeSnippet.setValue(field, value);
 				}
 			} catch (AbsentInformationException e) {
@@ -317,7 +317,7 @@ public boolean run(String codeSnippetClassName) {
 
 			// Get the method 'runCodeSnippet' and its arguments
 			method = codeSnippetRunnerClass.methodsByName(RUN_CODE_SNIPPET_METHOD).get(0);
-			arguments = new ArrayList();
+			arguments = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			arguments.add(codeSnippet);
 		} catch (ClassNotLoadedException e) {
 			e.printStackTrace();
@@ -341,9 +341,9 @@ public boolean run(String codeSnippetClassName) {
 			StackFrame stackFrame = getStackFrame();
 			try {
 				Iterator variables = stackFrame.visibleVariables().iterator();
-				while (variables.hasNext()) {
+				while (variables.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					LocalVariable jdiVariable = (LocalVariable)variables.next();
-					Field field = codeSnippetClass.fieldByName(new String(LOCAL_VAR_PREFIX) + jdiVariable.name());
+					Field field = codeSnippetClass.fieldByName(new String(LOCAL_VAR_PREFIX) + jdiVariable.name()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					Value value = codeSnippet.getValue(field);
 					stackFrame.setValue(jdiVariable, value);
 				}

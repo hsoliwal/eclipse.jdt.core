@@ -59,41 +59,41 @@ class ReferenceCollector extends JavaSearchResultCollector {
 		ReferenceMatch refMatch = (ReferenceMatch) this.match;
 		IJavaElement localElement = refMatch.getLocalElement();
 		if (localElement != null) {
-			this.line.append("+[");
+			this.line.append("+["); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (localElement.getElementType() == IJavaElement.ANNOTATION) {
-				this.line.append('@');
-				this.line.append(localElement.getElementName());
-				this.line.append(" on ");
-				this.line.append(localElement.getParent().getElementName());
+				this.line.append('@'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				this.line.append(localElement.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				this.line.append(" on "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				this.line.append(localElement.getParent().getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				this.line.append(localElement.getElementName());
+				this.line.append(localElement.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			this.line.append(']');
+			this.line.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
 }
 class TypeReferenceCollector extends ReferenceCollector {
-	protected void writeLine() throws CoreException {
+	protected void writeLine() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		super.writeLine();
 		TypeReferenceMatch typeRefMatch = (TypeReferenceMatch) this.match;
 		IJavaElement[] others = typeRefMatch.getOtherElements();
 		int length = others==null ? 0 : others.length;
 		if (length > 0) {
-			this.line.append("+[");
-			for (int i=0; i<length; i++) {
+			this.line.append("+["); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IJavaElement other = others[i];
-				if (i>0) this.line.append(',');
+				if (i>0) this.line.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (other.getElementType() == IJavaElement.ANNOTATION) {
-					this.line.append('@');
-					this.line.append(other.getElementName());
-					this.line.append(" on ");
-					this.line.append(other.getParent().getElementName());
+					this.line.append('@'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.line.append(other.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.line.append(" on "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.line.append(other.getParent().getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else {
-					this.line.append(other.getElementName());
+					this.line.append(other.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
-			this.line.append(']');
+			this.line.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 }
@@ -128,7 +128,7 @@ protected void setUp () throws Exception {
 
 //copy from JavaSearchBugs12Tests starts ( after deleting break with value tests since that is discarded)
 
-public void testBug542559_001() throws CoreException {
+public void testBug542559_001() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 			"public class X {\n" +
@@ -161,7 +161,7 @@ public void testBug542559_001() throws CoreException {
 /*
  * java search reference for an integer in default block of switch expression
  */
-public void testBug542559_004() throws CoreException {
+public void testBug542559_004() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 			"public class X {\n" +
@@ -197,7 +197,7 @@ public void testBug542559_004() throws CoreException {
 /*
  * java search reference for an integer in default block of switch expression
  */
-public void testBug542559_004_1() throws CoreException {
+public void testBug542559_004_1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 			"public class X {\n" +
@@ -233,7 +233,7 @@ public void testBug542559_004_1() throws CoreException {
 /*
  * java search reference for an integer in default of switch expression
  */
-public void testBug542559_005() throws CoreException {
+public void testBug542559_005() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 			"public class X {\n" +
@@ -268,7 +268,7 @@ public void testBug542559_005() throws CoreException {
 /*
  * java search reference for simple multi constant case statement for enum
  */
-public void testBug542559_006() throws CoreException {
+public void testBug542559_006() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 			"public class X {\n" +
@@ -304,7 +304,7 @@ public void testBug542559_006() throws CoreException {
 /*
  * java search reference for simple multi constant case statement for enum, 2nd case
  */
-public void testBug542559_007() throws CoreException {
+public void testBug542559_007() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 			"public class X {\n" +
@@ -341,7 +341,7 @@ public void testBug542559_007() throws CoreException {
 /*
  * java search reference for class file reference in switch expression
  */
-public void testBug542559_008() throws CoreException {
+public void testBug542559_008() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X2.java",
 			"public class X2 {\n" +
@@ -378,7 +378,7 @@ public void testBug542559_008() throws CoreException {
 /*
  * java search a method reference in switch expression
  */
-public void testBug542559_0012() throws CoreException {
+public void testBug542559_0012() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 			"interface I0 { void i(); }\n" +
@@ -419,7 +419,7 @@ public void testBug542559_0012() throws CoreException {
 
 // copy from JavaSearchBugs12Tests ends
 
-public void testBug549413_001() throws CoreException {
+public void testBug549413_001() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// field reference in yield
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
@@ -448,7 +448,7 @@ public void testBug549413_001() throws CoreException {
 	}
 }
 
-public void testBug549413_002() throws CoreException {
+public void testBug549413_002() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	//field all occurrences in yield
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
@@ -479,7 +479,7 @@ public void testBug549413_002() throws CoreException {
 }
 
 
-public void testBug549413_003() throws CoreException {
+public void testBug549413_003() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	//METHOD named yield -  all occurrences in yield
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
@@ -512,7 +512,7 @@ public void testBug549413_003() throws CoreException {
 	}
 }
 
-public void testBug549413_004() throws CoreException {
+public void testBug549413_004() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	//METHOD yield - references in yield
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
@@ -546,7 +546,7 @@ public void testBug549413_004() throws CoreException {
 }
 
 
-public void testBug549413_005() throws CoreException {
+public void testBug549413_005() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	//field yield - references in yield
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
@@ -576,7 +576,7 @@ public void testBug549413_005() throws CoreException {
 	}
 }
 
-public void testBug549413_006() throws CoreException {
+public void testBug549413_006() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	//field yield - all occurrence in yield
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
@@ -607,7 +607,7 @@ public void testBug549413_006() throws CoreException {
 	}
 }
 
-public void testBug549413_007() throws CoreException {
+public void testBug549413_007() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	//field yield - all reference of identifier in yield statement
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
@@ -639,7 +639,7 @@ public void testBug549413_007() throws CoreException {
 	}
 }
 
-public void testBug549413_008() throws CoreException {
+public void testBug549413_008() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	//field yield - all reference of identifier in yield statement ( yield -1 without braces)
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
@@ -672,7 +672,7 @@ public void testBug549413_008() throws CoreException {
 }
 
 
-public void testBug549413_009() throws CoreException {
+public void testBug549413_009() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	//field yield - all reference of identifier in yield statement ( yield -1 with braces)
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
@@ -705,7 +705,7 @@ public void testBug549413_009() throws CoreException {
 }
 
 
-public void testBug549413_010() throws CoreException {
+public void testBug549413_010() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	//method - break label
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
@@ -742,7 +742,7 @@ public void testBug549413_010() throws CoreException {
 	}
 }
 
-public void testBug549413_011() throws CoreException {
+public void testBug549413_011() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	//break label in combination with yield field
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
@@ -782,7 +782,7 @@ public void testBug549413_011() throws CoreException {
 }
 
 
-public void testBug549413_012() throws CoreException {
+public void testBug549413_012() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	//field yield - multiple yield references
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
@@ -816,7 +816,7 @@ public void testBug549413_012() throws CoreException {
 }
 
 
-public void testBug549413_013() throws CoreException {
+public void testBug549413_013() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	//field yield -another yield field test
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
@@ -847,7 +847,7 @@ public void testBug549413_013() throws CoreException {
 }
 
 
-public void testBug549413_014() throws CoreException {
+public void testBug549413_014() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	//field yield - ternary operator
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
@@ -880,7 +880,7 @@ public void testBug549413_014() throws CoreException {
 }
 
 
-public void testBug549413_015() throws CoreException {
+public void testBug549413_015() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	//field yield - another test case
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
@@ -915,7 +915,7 @@ public void testBug549413_015() throws CoreException {
 }
 
 
-public void testBug549413_016() throws CoreException {
+public void testBug549413_016() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	//method yield -method references
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
@@ -948,7 +948,7 @@ public void testBug549413_016() throws CoreException {
 	}
 }
 
-public void testBug549413_017() throws CoreException {
+public void testBug549413_017() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	//select local variable and find the declaration
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
@@ -981,7 +981,7 @@ public void testBug549413_017() throws CoreException {
 }
 
 
-public void testBug549413_018() throws CoreException {
+public void testBug549413_018() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	//select local variable and find the declaration
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
@@ -1013,7 +1013,7 @@ public void testBug549413_018() throws CoreException {
 }
 // add non-preview stuff involving yield field and method
 
-public void testBug549413_019() throws CoreException {
+public void testBug549413_019() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	//old style switch case without preview search for yield field.
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
@@ -1051,7 +1051,7 @@ public void testBug549413_019() throws CoreException {
 	}
 }
 
-public void testBug549413_020() throws CoreException {
+public void testBug549413_020() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	//old style switch case without preview search for yield method.
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",

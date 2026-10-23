@@ -50,7 +50,7 @@ public static Test suite() {
 public static Class testClass() {
 	return ProblemTypeAndMethodTest.class;
 }
-public void test001() {
+public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -91,11 +91,11 @@ public void test001() {
 		false /* do not show warning token */,
 		false  /* do not skip javac for this peculiar test */,
 		false  /* do not perform statements recovery */);
-	ClassFileReader reader = getClassFileReader(OUTPUT_DIR + File.separator  +"X$W.class", "X$W");
+	ClassFileReader reader = getClassFileReader(OUTPUT_DIR + File.separator  +"X$W.class", "X$W"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	IBinaryMethod[] methods = reader.getMethods();
 	assertEquals("Wrong size", 2, methods.length);
 	int counter = 0;
-	for (int i = 0; i < 2; i++) {
+	for (int i = 0; i < 2; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IBinaryMethod method = methods[i];
 		if (new String(method.getSelector()).equals("foo")) {
 			counter++;
@@ -103,11 +103,11 @@ public void test001() {
 	}
 	assertEquals("Wrong number of foo method", 1, counter);
 
-	reader = getClassFileReader(OUTPUT_DIR + File.separator  +"X$Y.class", "X$Y");
+	reader = getClassFileReader(OUTPUT_DIR + File.separator  +"X$Y.class", "X$Y"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	methods = reader.getMethods();
 	assertEquals("Wrong size", 2, methods.length);
 	counter = 0;
-	for (int i = 0; i < 2; i++) {
+	for (int i = 0; i < 2; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IBinaryMethod method = methods[i];
 		if (new String(method.getSelector()).equals("foo")) {
 			counter++;
@@ -115,11 +115,11 @@ public void test001() {
 	}
 	assertEquals("Wrong number of foo method", 1, counter);
 
-	reader = getClassFileReader(OUTPUT_DIR + File.separator  +"X$Z.class", "X$Z");
+	reader = getClassFileReader(OUTPUT_DIR + File.separator  +"X$Z.class", "X$Z"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	methods = reader.getMethods();
 	assertEquals("Wrong size", 2, methods.length);
 	counter = 0;
-	for (int i = 0; i < 2; i++) {
+	for (int i = 0; i < 2; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IBinaryMethod method = methods[i];
 		if (new String(method.getSelector()).equals("foo")) {
 			counter++;
@@ -128,7 +128,7 @@ public void test001() {
 	assertEquals("Wrong number of foo method", 1, counter);
 }
 
-public void test002() {
+public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 			"X.java",
 			"public class X extends Zork {\n" +
@@ -180,7 +180,7 @@ public void test002() {
 		"----------\n");
 }
 
-public void test003() {
+public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 			"X.java",
 			"public class X {\n" +
@@ -249,7 +249,7 @@ public void test003() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200
-public void test004() {
+public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"p/OtherFoo.java", //-----------------------------------------------------------------------
@@ -344,7 +344,7 @@ public void test004() {
 		false);
 
 	// delete binary file Zork (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "q" + File.separator + "Zork.class"));
+	Util.delete(new File(OUTPUT_DIR, "q" + File.separator + "Zork.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	this.runNegativeTest(
 			new String[] {
@@ -451,7 +451,7 @@ public void test004() {
 			false);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test005() {
+public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"p/OtherFoo.java", //-----------------------------------------------------------------------
@@ -508,7 +508,7 @@ public void test005() {
 		JavacTestOptions.SKIP_UNTIL_FRAMEWORK_FIX /* javac test options */);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test006() {
+public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"p/OtherFoo.java", //-----------------------------------------------------------------------
@@ -565,7 +565,7 @@ public void test006() {
 		JavacTestOptions.SKIP_UNTIL_FRAMEWORK_FIX /* javac test options */);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test007() {
+public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"p/OtherFoo.java", //-----------------------------------------------------------------------
@@ -627,7 +627,7 @@ public void test007() {
 		JavacTestOptions.SKIP_UNTIL_FRAMEWORK_FIX /* javac test options */);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test008() {
+public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"p/OtherFoo.java", //-----------------------------------------------------------------------
@@ -676,7 +676,7 @@ public void test008() {
 		JavacTestOptions.SKIP_UNTIL_FRAMEWORK_FIX /* javac test options */);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test009() {
+public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"p/OtherFoo.java", //-----------------------------------------------------------------------
@@ -730,7 +730,7 @@ public void test009() {
 		JavacTestOptions.SKIP_UNTIL_FRAMEWORK_FIX /* javac test options */);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test010() {
+public void test010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"p/OtherFoo.java", //-----------------------------------------------------------------------
@@ -785,7 +785,7 @@ public void test010() {
 		JavacTestOptions.SKIP_UNTIL_FRAMEWORK_FIX /* javac test options */);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test011() {
+public void test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 			"X.java",
 			"public class  X {\n" +
@@ -818,7 +818,7 @@ public void test011() {
 		"void[] is an invalid type\n" +
 		"----------\n");
 }
-public void test012() {
+public void test012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String expectedResult;
 	expectedResult =
 		"----------\n" +
@@ -869,7 +869,7 @@ public void test012() {
 		expectedResult);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test013() {
+public void test013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String expectedResult;
 	expectedResult =
 		"----------\n" +
@@ -893,7 +893,7 @@ public void test013() {
 		expectedResult);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test014() {
+public void test014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String expectedResult;
 	expectedResult =
 		"----------\n" +
@@ -917,7 +917,7 @@ public void test014() {
 		expectedResult);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test015() {
+public void test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String expectedResult;
 	expectedResult =
 		"----------\n" +
@@ -974,7 +974,7 @@ public void test015() {
 		expectedResult);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test016() {
+public void test016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 			"X.java",
 			"public class X {\n" +
@@ -995,7 +995,7 @@ public void test016() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test017() {
+public void test017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 			"X.java",
 			"public class X {\n" +
@@ -1016,7 +1016,7 @@ public void test017() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test018() {
+public void test018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 			"X.java",
 			"public class X {\n" +
@@ -1037,7 +1037,7 @@ public void test018() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test019() {
+public void test019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"p/OtherFoo.java", //-----------------------------------------------------------------------
@@ -1086,7 +1086,7 @@ public void test019() {
 			false);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test020() {
+public void test020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"p/OtherFoo.java", //-----------------------------------------------------------------------
@@ -1134,7 +1134,7 @@ public void test020() {
 			false);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test021() {
+public void test021() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java", //-----------------------------------------------------------------------
@@ -1168,7 +1168,7 @@ public void test021() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test022() {
+public void test022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"p/OtherFoo.java", //-----------------------------------------------------------------------
@@ -1220,7 +1220,7 @@ public void test022() {
 			false);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test023() {
+public void test023() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"p/OtherFoo.java", //-----------------------------------------------------------------------
@@ -1271,7 +1271,7 @@ public void test023() {
 			false);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test024() {
+public void test024() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"p/OtherFoo.java", //-----------------------------------------------------------------------
@@ -1323,7 +1323,7 @@ public void test024() {
 			false);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test025() {
+public void test025() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"p/OtherFoo.java", //-----------------------------------------------------------------------
@@ -1381,7 +1381,7 @@ public void test025() {
 			false);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test026() {
+public void test026() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java", //-----------------------------------------------------------------------
@@ -1404,7 +1404,7 @@ public void test026() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test027() {
+public void test027() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java", //-----------------------------------------------------------------------
@@ -1444,7 +1444,7 @@ public void test027() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test028() {
+public void test028() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java", //-----------------------------------------------------------------------
@@ -1483,7 +1483,7 @@ public void test028() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test029() throws Exception {
+public void test029() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"Y.java", //-----------------------------------------------------------------------
@@ -1507,7 +1507,7 @@ public void test029() throws Exception {
 	String expectedOutput =
 		"public class Y {\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "Y.class");
+	File f = new File(OUTPUT_DIR + File.separator + "Y.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -1520,7 +1520,7 @@ public void test029() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test030() {
+public void test030() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"Y.java", //-----------------------------------------------------------------------
@@ -1560,7 +1560,7 @@ public void test030() {
 			false);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test031() {
+public void test031() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", //-----------------------------------------------------------------------
@@ -1584,7 +1584,7 @@ public void test031() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test032() {
+public void test032() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", //-----------------------------------------------------------------------
@@ -1610,7 +1610,7 @@ public void test032() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test033() {
+public void test033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"Y.java", //-----------------------------------------------------------------------
@@ -1647,7 +1647,7 @@ public void test033() {
 		JavacTestOptions.SKIP_UNTIL_FRAMEWORK_FIX /* javac test options */);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test034() {
+public void test034() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", //-----------------------------------------------------------------------
@@ -1675,7 +1675,7 @@ public void test034() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test035() {
+public void test035() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X1.java", //-----------------------------------------------------------------------
@@ -1719,7 +1719,7 @@ public void test035() {
 			false);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test036() {
+public void test036() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", //-----------------------------------------------------------------------
@@ -1747,7 +1747,7 @@ public void test036() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test037() {
+public void test037() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X1.java", //-----------------------------------------------------------------------
@@ -1791,7 +1791,7 @@ public void test037() {
 			false);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test038() {
+public void test038() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", //-----------------------------------------------------------------------
@@ -1819,7 +1819,7 @@ public void test038() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test039() {
+public void test039() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X1.java", //-----------------------------------------------------------------------
@@ -1863,7 +1863,7 @@ public void test039() {
 			false);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test040() {
+public void test040() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", //-----------------------------------------------------------------------
@@ -1891,7 +1891,7 @@ public void test040() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test041() {
+public void test041() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X1.java", //-----------------------------------------------------------------------
@@ -1935,7 +1935,7 @@ public void test041() {
 			false);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test042() {
+public void test042() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", //-----------------------------------------------------------------------
@@ -1963,7 +1963,7 @@ public void test042() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test043() {
+public void test043() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X1.java", //-----------------------------------------------------------------------
@@ -2007,7 +2007,7 @@ public void test043() {
 			false);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test044() {
+public void test044() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", //-----------------------------------------------------------------------
@@ -2035,7 +2035,7 @@ public void test044() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test045() {
+public void test045() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X1.java", //-----------------------------------------------------------------------
@@ -2079,7 +2079,7 @@ public void test045() {
 			false);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test046() {
+public void test046() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", //-----------------------------------------------------------------------
@@ -2107,7 +2107,7 @@ public void test046() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test047() {
+public void test047() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X1.java", //-----------------------------------------------------------------------
@@ -2151,7 +2151,7 @@ public void test047() {
 			false);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test048() {
+public void test048() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", //-----------------------------------------------------------------------
@@ -2179,7 +2179,7 @@ public void test048() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test049() {
+public void test049() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X1.java", //-----------------------------------------------------------------------
@@ -2223,7 +2223,7 @@ public void test049() {
 			false);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test050() {
+public void test050() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", //-----------------------------------------------------------------------
@@ -2251,7 +2251,7 @@ public void test050() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test051() {
+public void test051() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X1.java", //-----------------------------------------------------------------------
@@ -2295,7 +2295,7 @@ public void test051() {
 			false);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test052() {
+public void test052() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", //-----------------------------------------------------------------------
@@ -2359,7 +2359,7 @@ public void test052() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test053() {
+public void test053() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", //-----------------------------------------------------------------------
@@ -2423,7 +2423,7 @@ public void test053() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test054() {
+public void test054() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", //-----------------------------------------------------------------------
@@ -2492,7 +2492,7 @@ public void test054() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test055() {
+public void test055() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X1.java", //-----------------------------------------------------------------------
@@ -2574,7 +2574,7 @@ public void test055() {
 			false);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test056() {
+public void test056() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X1.java", //-----------------------------------------------------------------------
@@ -2656,7 +2656,7 @@ public void test056() {
 			false);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test057() {
+public void test057() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X1.java", //-----------------------------------------------------------------------
@@ -2743,7 +2743,7 @@ public void test057() {
 			false);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test058() {
+public void test058() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", //-----------------------------------------------------------------------
@@ -2770,7 +2770,7 @@ public void test058() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test059() {
+public void test059() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", //-----------------------------------------------------------------------
@@ -2865,7 +2865,7 @@ public void test060() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test061() {
+public void test061() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", //-----------------------------------------------------------------------
@@ -2905,7 +2905,7 @@ public void test061() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test062() {
+public void test062() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", //-----------------------------------------------------------------------
@@ -2946,7 +2946,7 @@ public void test062() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test063() {
+public void test063() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"p/X.java", //-----------------------------------------------------------------------
@@ -2986,7 +2986,7 @@ public void test063() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test064() {
+public void test064() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", //-----------------------------------------------------------------------
@@ -3005,7 +3005,7 @@ public void test064() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test065() {
+public void test065() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", //-----------------------------------------------------------------------
@@ -3037,7 +3037,7 @@ public void test065() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test066() {
+public void test066() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", //-----------------------------------------------------------------------
@@ -3077,7 +3077,7 @@ public void test066() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test067() {
+public void test067() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"E.java", //-----------------------------------------------------------------------
@@ -3103,7 +3103,7 @@ public void test067() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test068() {
+public void test068() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"E.java", //-----------------------------------------------------------------------
@@ -3124,7 +3124,7 @@ public void test068() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test069() {
+public void test069() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"p/X.java", //-----------------------------------------------------------------------
@@ -3154,7 +3154,7 @@ public void test069() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test070() {
+public void test070() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"p/X.java", //-----------------------------------------------------------------------
@@ -3185,7 +3185,7 @@ public void test070() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test071() {
+public void test071() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", //-----------------------------------------------------------------------
@@ -3213,7 +3213,7 @@ public void test071() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test072() {
+public void test072() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", //-----------------------------------------------------------------------
@@ -3245,7 +3245,7 @@ public void test072() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test073() {
+public void test073() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", //-----------------------------------------------------------------------
@@ -3288,7 +3288,7 @@ public void test073() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test074() {
+public void test074() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String expected =
 				"----------\n" +
 				"1. ERROR in X.java (at line 4)\n" +
@@ -3352,7 +3352,7 @@ public void test074() {
 			expected);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test075() {
+public void test075() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String expected =
 				"----------\n" +
 				"1. ERROR in X.java (at line 3)\n" +
@@ -3399,7 +3399,7 @@ public void test075() {
 			expected);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test076() {
+public void test076() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String expected =
 				"----------\n" +
 				"1. ERROR in X.java (at line 3)\n" +
@@ -3446,7 +3446,7 @@ public void test076() {
 			expected);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-public void test077() {
+public void test077() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String expected =
 				"----------\n" +
 				"1. ERROR in X.java (at line 3)\n" +
@@ -3493,7 +3493,7 @@ public void test077() {
 			expected);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=220967
-public void test078() {
+public void test078() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", //-----------------------------------------------------------------------
@@ -3533,7 +3533,7 @@ public void test079() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=220967 - variation
-public void test080() {
+public void test080() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", //-----------------------------------------------------------------------
@@ -3554,7 +3554,7 @@ public void test080() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=239758
-public void test081() {
+public void test081() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(	CompilerOptions.OPTION_DocCommentSupport, CompilerOptions.ENABLED);
@@ -3648,7 +3648,7 @@ public void test081() {
 	runner.runNegativeTest();
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=239758 - variation
-public void test082() {
+public void test082() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"com/ost/util/report/Matrix.java", // =================
@@ -3718,7 +3718,7 @@ public void test083() {
 			"");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=239758 - variation
-public void test084() {
+public void test084() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"foo/X.java", // =================
@@ -3747,7 +3747,7 @@ public void test084() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=239758 - variation
-public void test085() {
+public void test085() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"p/X.java", // =================
@@ -3778,7 +3778,7 @@ public void test085() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=239758 - variation
-public void test086() {
+public void test086() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"p/X.java", // =================
@@ -3809,7 +3809,7 @@ public void test086() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=239758 - variation
-public void test087() {
+public void test087() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"p/X.java", // =================
@@ -3841,7 +3841,7 @@ public void test087() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=239758 - variation
-public void test088() {
+public void test088() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"p/X.java", // =================
@@ -3873,7 +3873,7 @@ public void test088() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=245304
-public void test089() {
+public void test089() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_DocCommentSupport, CompilerOptions.ENABLED);
 	this.runConformTest(
@@ -3907,7 +3907,7 @@ public void test089() {
 			null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=247666
-public void test090() {
+public void test090() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", // =================
@@ -3931,7 +3931,7 @@ public void test090() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=252288
-public void test091()  throws Exception {
+public void test091()  throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"TypeUtils.java",
@@ -4530,7 +4530,7 @@ public void test091()  throws Exception {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=250297
-public void test092() {
+public void test092() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"p1/p2/X.java", // =================
@@ -4582,7 +4582,7 @@ public void test092() {
 	runner.runConformTest();
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=250297 - variation
-public void test093() {
+public void test093() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", // =================
@@ -4604,7 +4604,7 @@ public void test093() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=250297 - variation
-public void test094() {
+public void test094() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", // =================
@@ -4630,7 +4630,7 @@ public void test094() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=250297 - variation
-public void test095() {
+public void test095() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java", // =================
@@ -4661,7 +4661,7 @@ public void test095() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=257384
-public void test096() {
+public void test096() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"p2/B.java", // =================
@@ -4705,7 +4705,7 @@ public void test096() {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=258248
-public void test097() {
+public void test097() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java", // =================
@@ -4728,7 +4728,7 @@ public void test097() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=296660
-public void test098() {
+public void test098() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -4848,7 +4848,7 @@ public void test098() {
 	runner.runWarningTest();
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=296660
-public void test099() {
+public void test099() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -4958,7 +4958,7 @@ public void test099() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=296660
 // check independence of textual order
-public void test099a() {
+public void test099a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -5068,7 +5068,7 @@ public void test099a() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=296660
 // check usage via super-call
-public void test099b() {
+public void test099b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -5138,7 +5138,7 @@ public void test099b() {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=296660
-public void test100() {
+public void test100() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -5166,7 +5166,7 @@ public void test100() {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=296660
-public void test101() {
+public void test101() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -5194,7 +5194,7 @@ public void test101() {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=296660
-public void test102() {
+public void test102() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -5241,7 +5241,7 @@ public void test102() {
 	runner.runWarningTest();
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=296660
-public void test103() {
+public void test103() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -5297,7 +5297,7 @@ public void test103() {
 		JavacTestOptions.Excuse.EclipseHasSomeMoreWarnings;
 	runner.runWarningTest();
 }
-public void test104() {
+public void test104() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"p/Bar.java", //-----------------------------------------------------------------------
@@ -5341,7 +5341,7 @@ public void test104() {
 	runner.runConformTest();
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=243917
-public void test105() {
+public void test105() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -5361,7 +5361,7 @@ public void test105() {
 		"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=245007
-public void test106() {
+public void test106() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -5389,7 +5389,7 @@ public void test106() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=319425
-public void test107() {
+public void test107() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"p/OuterBogus.java", //-----------------------------------------------------------------------
@@ -5441,7 +5441,7 @@ public void test107() {
 	runner.runConformTest();
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=321414
-public void test108() {
+public void test108() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String errMessage = isMinimumCompliant(ClassFileConstants.JDK11) ?
 			"----------\n" +
 			"1. WARNING in SyntheticConstructorTooManyArgs.java (at line 23)\n" +
@@ -5539,7 +5539,7 @@ public void test108() {
 		errMessage);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=321414
-public void test109() {
+public void test109() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"SyntheticConstructorTooManyArgs.java", //-----------------------------------------------------------------------
@@ -5621,7 +5621,7 @@ public void test109() {
 		"int pf0, int pf1, int pf2, int pf3, int pf4, int pf5, int pf6, int pf7, int pf8, int pf9, int pfa, int pfb, int pfc, int pfd, int pfe");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=321414
-public void test110() {
+public void test110() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"SyntheticConstructorTooManyArgs.java", //-----------------------------------------------------------------------
@@ -5703,7 +5703,7 @@ public void test110() {
 		"int pf0, int pf1, int pf2, int pf3, int pf4, int pf5, int pf6, int pf7, int pf8, int pf9, int pfa, int pfb, int pfc, int pfd, int pfe");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=321414
-public void test111() {
+public void test111() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String errMessage = isMinimumCompliant(ClassFileConstants.JDK11) ?
 			"----------\n" +
 			"1. WARNING in SyntheticConstructorTooManyArgs.java (at line 23)\n" +
@@ -5801,7 +5801,7 @@ public void test111() {
 		errMessage);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=321414
-public void test112() {
+public void test112() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"SyntheticConstructorTooManyArgs.java", //-----------------------------------------------------------------------
@@ -5883,7 +5883,7 @@ public void test112() {
 		"int pf0, int pf1, int pf2, int pf3, int pf4, int pf5, int pf6, int pf7, int pf8, int pf9, int pfa, int pfb, int pfc");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=325567
-public void test113() {
+public void test113() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -5958,7 +5958,7 @@ public void test113() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=318682
 // QualifiedNameReference, SingleNameReference and MessageSend
 // Can be static warning shown
-public void test114() {
+public void test114() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -6025,7 +6025,7 @@ public void test114() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=318682
 // FieldReference and MessageSend
 // Can be static warning shown
-public void test115() {
+public void test115() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -6070,7 +6070,7 @@ public void test115() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=318682
 // MessageSend in different ways
-public void test116a() {
+public void test116a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -6145,7 +6145,7 @@ public void test116a() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=318682
 // MessageSend in different ways, referencing a static method.
-public void test116b() {
+public void test116b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -6235,7 +6235,7 @@ public void test116b() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=318682
 // Referring a field in different ways, accessing non-static field.
-public void test117a() {
+public void test117a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -6335,7 +6335,7 @@ public void test117a() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=318682
 // Referring a field in different ways, accessing non-static field.
-public void test117b() {
+public void test117b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -6465,7 +6465,7 @@ public void test117b() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=318682
 // Final class -> can be static (and not potentially be static) warning shown
-public void test118() {
+public void test118() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -6501,7 +6501,7 @@ public void test118() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=318682
 // Method of a local class -> can't be static, so no warning
 // Also method with such a local class accessing a member of the outer class can't be static
-public void test119() {
+public void test119() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -6545,7 +6545,7 @@ public void test119() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=318682
 // Method using type parameters declared by enclosing class can't be static, so don't warn
-public void test120() {
+public void test120() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -6593,7 +6593,7 @@ public void test120() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=318682
 // Access to super in a method disqualifies it from being static
-public void test121() {
+public void test121() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -6638,7 +6638,7 @@ public void test121() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=318682
 // Methods of non-static member types can't be static
-public void test122() {
+public void test122() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -6674,7 +6674,7 @@ public void test122() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=318682
 // If method returns type parameter not declared by it, it cannot be static
-public void test123() {
+public void test123() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -6706,7 +6706,7 @@ public void test123() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=335845
 // If method allocates an inner non-static type without an enclosing object, method can't be static
-public void testBug335845a() {
+public void testBug335845a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBePotentiallyStatic, CompilerOptions.ERROR);
@@ -6736,7 +6736,7 @@ public void testBug335845a() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=335845
 // If method allocates an inner non-static type without an enclosing object, method can't be static
-public void testBug335845b() {
+public void testBug335845b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBePotentiallyStatic, CompilerOptions.ERROR);
@@ -6766,7 +6766,7 @@ public void testBug335845b() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=335845
 // If method allocates an inner static type without an enclosing object, method can be static
-public void testBug335845c() {
+public void testBug335845c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -6803,7 +6803,7 @@ public void testBug335845c() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=335845
 // If method allocates an inner non-static type without an enclosing object, method can't be static
-public void testBug335845d() {
+public void testBug335845d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBePotentiallyStatic, CompilerOptions.ERROR);
@@ -6833,7 +6833,7 @@ public void testBug335845d() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=335845
 // If method allocates an inner static type without an enclosing object, method can be static
-public void testBug335845e() {
+public void testBug335845e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -6869,7 +6869,7 @@ public void testBug335845e() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=335845
 // If method allocates an inner static type without an enclosing object, method can be static
-public void testBug335845f() {
+public void testBug335845f() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -6906,7 +6906,7 @@ public void testBug335845f() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=335845
 // If method allocates an inner static type without an enclosing object, method can be static
-public void testBug335845g() {
+public void testBug335845g() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBePotentiallyStatic, CompilerOptions.ERROR);
@@ -6944,7 +6944,7 @@ public void testBug335845g() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=335780
 // For this reference as an argument of a message send, method can't be static
-public void test124a() {
+public void test124a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBePotentiallyStatic, CompilerOptions.ERROR);
@@ -6972,7 +6972,7 @@ public void test124a() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=335780
 // For this reference as an argument of a message send, method can't be static
-public void test124b() {
+public void test124b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBePotentiallyStatic, CompilerOptions.ERROR);
@@ -7005,7 +7005,7 @@ public void test124b() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=354502
 // Anonymous class instantiation of a non-static member type, method can't be static
-public void test354502() {
+public void test354502() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -7038,7 +7038,7 @@ public void test354502() {
 	runner.runNegativeTest();
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=360164
-public void test360164() {
+public void test360164() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"p/B.java",
@@ -7077,7 +7077,7 @@ public void test360164() {
 			"");
 
 	// delete binary file I (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "p" + File.separator + "I.class"));
+	Util.delete(new File(OUTPUT_DIR, "p" + File.separator + "I.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	runNegativeTest(
 		// test directory preparation
@@ -7116,7 +7116,7 @@ public void test360164() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376550
 // SingleNameReference, assignment of instance field inside a local class method
-public void test376550_1a() {
+public void test376550_1a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBePotentiallyStatic, CompilerOptions.ERROR);
@@ -7146,7 +7146,7 @@ public void test376550_1a() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376550
 // SingleNameReference, assignment of instance field of local class inside a local class method
-public void test376550_1b() {
+public void test376550_1b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	new Runner() {{
 	  this.customOptions = getCompilerOptions();
 	  this.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -7182,7 +7182,7 @@ public void test376550_1b() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376550
 // LocalDeclaration with type as a type variable binding
-public void test376550_2a() {
+public void test376550_2a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -7216,7 +7216,7 @@ public void test376550_2a() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376550
 // LocalDeclaration with type as a type variable binding
-public void test376550_2b() {
+public void test376550_2b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBePotentiallyStatic, CompilerOptions.ERROR);
@@ -7244,7 +7244,7 @@ public void test376550_2b() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376550
 // MessageSend, calling outer class method inside a local class method
-public void test376550_3a() {
+public void test376550_3a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBePotentiallyStatic, CompilerOptions.ERROR);
@@ -7273,7 +7273,7 @@ public void test376550_3a() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376550
 // MessageSend, calling local class method inside a local class method
-public void test376550_3b() {
+public void test376550_3b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -7308,7 +7308,7 @@ public void test376550_3b() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376550
 // Local class instance field is an argument in messageSend in local class method
-public void test376550_4a() {
+public void test376550_4a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -7344,7 +7344,7 @@ public void test376550_4a() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376550
 // Outerclass instance field is an argument in messageSend in local class method
-public void test376550_4b() {
+public void test376550_4b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBePotentiallyStatic, CompilerOptions.ERROR);
@@ -7374,7 +7374,7 @@ public void test376550_4b() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376550
 // QualifiedNameReference, accessing local class instance field
-public void test376550_5a() {
+public void test376550_5a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -7410,7 +7410,7 @@ public void test376550_5a() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376550
 // https://bugs.eclispe.org/379784 - [compiler] "Method can be static" is not getting reported
 // Variation of the above
-public void test376550_5aa() {
+public void test376550_5aa() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -7447,7 +7447,7 @@ public void test376550_5aa() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376550
 // QualifiedNameReference, accessing outer class instance field
-public void test376550_5b() {
+public void test376550_5b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBePotentiallyStatic, CompilerOptions.ERROR);
@@ -7476,7 +7476,7 @@ public void test376550_5b() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376550
 // QualifiedNameRef.analyseCode()
-public void test376550_6a() {
+public void test376550_6a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -7511,7 +7511,7 @@ public void test376550_6a() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376550
 // QualifiedNameRef.analyseCode()
-public void test376550_6b() {
+public void test376550_6b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBePotentiallyStatic, CompilerOptions.ERROR);
@@ -7541,7 +7541,7 @@ public void test376550_6b() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376550
 // QualifiedAllocationExpression, allocating an anonymous type without an enclosing instance of parent type
 // anon. type is declared in local class
-public void test376550_7a() {
+public void test376550_7a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -7577,7 +7577,7 @@ public void test376550_7a() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376550
 // QualifiedAllocationExpression, allocating an anonymous type without an enclosing instance of parent type
 // anon. type is declared in outer class
-public void test376550_7b() {
+public void test376550_7b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBePotentiallyStatic, CompilerOptions.ERROR);
@@ -7606,7 +7606,7 @@ public void test376550_7b() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376550
 // FieldRef, from object of a class in outer class
-public void test376550_8a() {
+public void test376550_8a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -7641,7 +7641,7 @@ public void test376550_8a() {
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=376550
 //FieldRef, from object of a class in local class
-public void test376550_8b() {
+public void test376550_8b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBePotentiallyStatic, CompilerOptions.ERROR);
@@ -7670,7 +7670,7 @@ public void test376550_8b() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376550
 // QualifiedNameRef, accessing a field from local class field
-public void test376550_9a() {
+public void test376550_9a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -7707,7 +7707,7 @@ public void test376550_9a() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376550
 // QualifiedNameRef, accessing a field from local class field
-public void test376550_9b() {
+public void test376550_9b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBePotentiallyStatic, CompilerOptions.ERROR);
@@ -7738,7 +7738,7 @@ public void test376550_9b() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376550
 // QualifiedNameRef, accessing a field from local class field
-public void test376550_10a() {
+public void test376550_10a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -7775,7 +7775,7 @@ public void test376550_10a() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376550
 // QualifiedNameRef, accessing a field from local class field
-public void test376550_10b() {
+public void test376550_10b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBePotentiallyStatic, CompilerOptions.ERROR);
@@ -7806,7 +7806,7 @@ public void test376550_10b() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376550
 // bug test case
-public void test376550_11() {
+public void test376550_11() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -7841,7 +7841,7 @@ public void test376550_11() {
 // https://bugs.eclipse.org/376550
 // https://bugs.eclipse.org/379784 - [compiler] "Method can be static" is not getting reported
 // bug test case
-public void test376550_11a() {
+public void test376550_11a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -7874,7 +7874,7 @@ public void test376550_11a() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376550
-public void test376550_12() {
+public void test376550_12() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -7908,7 +7908,7 @@ public void test376550_12() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=376550
 // https://bugs.eclipse.org/379834 - Wrong "method can be static" in presence of qualified super and different staticness of nested super class.
-public void test376550_13() {
+public void test376550_13() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBePotentiallyStatic, CompilerOptions.ERROR);
@@ -7940,7 +7940,7 @@ public void test376550_13() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=379530
-public void test379530() {
+public void test379530() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBePotentiallyStatic, CompilerOptions.ERROR);
@@ -7965,7 +7965,7 @@ public void test379530() {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=393781
-public void test393781() {
+public void test393781() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions(); // OPTION_ReportRawTypeReference
 	Object oldOption = compilerOptions.get(CompilerOptions.OPTION_ReportRawTypeReference);
 	compilerOptions.put(CompilerOptions.OPTION_ReportRawTypeReference, CompilerOptions.IGNORE);
@@ -8028,7 +8028,7 @@ private void runStaticWarningConformTest(String fileName, String body) {
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=378674
 //Can be static warning shown in the wrong places, i.e. if the type parameter is used in the signature
-public void test378674_comment0() {
+public void test378674_comment0() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runStaticWarningConformTest(
 		"Test.java",
 		"public class Test<T> {\n" +
@@ -8110,7 +8110,7 @@ public void test378674_comment3() {
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=378674
 //Can be static warning shown in the wrong places
-public void test378674_comment5a() {
+public void test378674_comment5a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runStaticWarningConformTest(
 		"Test.java",
 		"public class Test<T> {\n" +
@@ -8133,7 +8133,7 @@ public void test378674_comment5a() {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=378674
-public void test378674_comment5b() {
+public void test378674_comment5b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runStaticWarningConformTest(
 		"Test.java",
 		"public class Test<T> {\n" +
@@ -8170,7 +8170,7 @@ public void test378674_comment9() {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=378674
-public void test378674_comment11() {
+public void test378674_comment11() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runStaticWarningConformTest(
 		"Test.java",
 		"public class Test<T> {\n" +
@@ -8240,7 +8240,7 @@ public void test378674_comment21d() {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=406396, Method can be static analysis misses a bunch of cases...
-public void test406396() {
+public void test406396() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -8294,7 +8294,7 @@ public void test406396() {
 	runner.runNegativeTest();
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=406396, Method can be static analysis misses a bunch of cases...
-public void test406396a() {
+public void test406396a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
@@ -8334,7 +8334,7 @@ public void test406396a() {
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError;
 	runner.runNegativeTest();
 }
-public void testBug542829() {
+public void testBug542829() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// m.Issing is a type that comes and goes:
 	String nameMissing = "m/Issing.java";
 	String contentMissing =
@@ -8367,7 +8367,7 @@ public void testBug542829() {
 	runner.runConformTest();
 
 	// now we break it:
-	Util.delete(new File(OUTPUT_DIR + File.separator + "m" + File.separator + "Issing.class"));
+	Util.delete(new File(OUTPUT_DIR + File.separator + "m" + File.separator + "Issing.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runner.shouldFlushOutputDirectory = false;
 
 	// in this class file a MissingTypes attribute ("m/Issing") is generated:
@@ -8418,8 +8418,8 @@ public void testBug542829() {
 	};
 	runner.runConformTest();
 }
-public void testBug576735() {
-	String path = getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "lib576735.jar";
+public void testBug576735() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String path = getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "lib576735.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String[] libs = getDefaultClassPaths();
 	int len = libs.length;
 	System.arraycopy(libs, 0, libs = new String[len+1], 0, len);
@@ -8461,7 +8461,7 @@ public void testBug576735() {
 			"----------\n";
 	runner.runNegativeTest();
 }
-public void testMissingClassNeededForOverloadResolution() {
+public void testMissingClassNeededForOverloadResolution() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"p1/A.java",
@@ -8483,7 +8483,7 @@ public void testMissingClassNeededForOverloadResolution() {
 	runner.runConformTest();
 
 	// delete binary file A (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class"));
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runner.shouldFlushOutputDirectory = false;
 
 	runner.testFiles = new String[] {
@@ -8523,7 +8523,7 @@ public void testMissingClassNeededForOverloadResolution() {
 		""";
 	runner.runNegativeTest();
 }
-public void testMissingClassNeededForOverloadResolution_pickByLateArg() {
+public void testMissingClassNeededForOverloadResolution_pickByLateArg() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"p1/MissingType.java",
@@ -8544,7 +8544,7 @@ public void testMissingClassNeededForOverloadResolution_pickByLateArg() {
 	runner.runConformTest();
 
 	// delete binary file A (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "MissingType.class"));
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "MissingType.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runner.shouldFlushOutputDirectory = false;
 
 	runner.testFiles = new String[] {
@@ -8561,7 +8561,7 @@ public void testMissingClassNeededForOverloadResolution_pickByLateArg() {
 		};
 	runner.runConformTest();
 }
-public void testMissingClassNeededForOverloadResolution_ctor() {
+public void testMissingClassNeededForOverloadResolution_ctor() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"p1/A.java",
@@ -8583,7 +8583,7 @@ public void testMissingClassNeededForOverloadResolution_ctor() {
 	runner.runConformTest();
 
 	// delete binary file A (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class"));
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runner.shouldFlushOutputDirectory = false;
 
 	runner.testFiles = new String[] {
@@ -8623,7 +8623,7 @@ public void testMissingClassNeededForOverloadResolution_ctor() {
 		""";
 	runner.runNegativeTest();
 }
-public void testMissingClassNeededForOverloadResolution_varargs1a() {
+public void testMissingClassNeededForOverloadResolution_varargs1a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// varargs arg: B vs Missing
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
@@ -8651,8 +8651,8 @@ public void testMissingClassNeededForOverloadResolution_varargs1a() {
 	runner.runConformTest();
 
 	// delete binary files A1, A2 (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A1.class"));
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A2.class"));
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A1.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A2.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runner.shouldFlushOutputDirectory = false;
 
 	runner.customOptions.put(CompilerOptions.OPTION_ReportVarargsArgumentNeedCast, CompilerOptions.IGNORE);
@@ -8702,7 +8702,7 @@ public void testMissingClassNeededForOverloadResolution_varargs1a() {
 			""";
 	runner.runNegativeTest();
 }
-public void testMissingClassNeededForOverloadResolution_varargs1a_ctor() {
+public void testMissingClassNeededForOverloadResolution_varargs1a_ctor() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// varargs arg: B vs Missing
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
@@ -8730,8 +8730,8 @@ public void testMissingClassNeededForOverloadResolution_varargs1a_ctor() {
 	runner.runConformTest();
 
 	// delete binary files A1, A2 (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A1.class"));
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A2.class"));
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A1.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A2.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runner.shouldFlushOutputDirectory = false;
 
 	runner.customOptions.put(CompilerOptions.OPTION_ReportVarargsArgumentNeedCast, CompilerOptions.IGNORE);
@@ -8781,7 +8781,7 @@ public void testMissingClassNeededForOverloadResolution_varargs1a_ctor() {
 			""";
 	runner.runNegativeTest();
 }
-public void testMissingClassNeededForOverloadResolution_varargs1b() {
+public void testMissingClassNeededForOverloadResolution_varargs1b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// like testMissingClassNeededForOverloadResolution_varargs1a, but no preceding regular parameter
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
@@ -8809,8 +8809,8 @@ public void testMissingClassNeededForOverloadResolution_varargs1b() {
 	runner.runConformTest();
 
 	// delete binary files A1, A1 (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A1.class"));
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A2.class"));
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A1.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A2.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runner.shouldFlushOutputDirectory = false;
 
 	runner.customOptions.put(CompilerOptions.OPTION_ReportVarargsArgumentNeedCast, CompilerOptions.IGNORE);
@@ -8873,7 +8873,7 @@ public void testMissingClassNeededForOverloadResolution_varargs1b() {
 			""";
 	runner.runNegativeTest();
 }
-public void testMissingClassNeededForOverloadResolution_varargs1c() {
+public void testMissingClassNeededForOverloadResolution_varargs1c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// varargs arg: only missing types competing
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
@@ -8900,8 +8900,8 @@ public void testMissingClassNeededForOverloadResolution_varargs1c() {
 	runner.runConformTest();
 
 	// delete binary files A1, A1 (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A1.class"));
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A2.class"));
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A1.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A2.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runner.shouldFlushOutputDirectory = false;
 
 	runner.customOptions.put(CompilerOptions.OPTION_ReportVarargsArgumentNeedCast, CompilerOptions.IGNORE);
@@ -8951,7 +8951,7 @@ public void testMissingClassNeededForOverloadResolution_varargs1c() {
 			""";
 	runner.runNegativeTest();
 }
-public void testMissingClassNeededForOverloadResolution_varargs1d() {
+public void testMissingClassNeededForOverloadResolution_varargs1d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// like testMissingClassNeededForOverloadResolution_varargs1c, but no preceding regular parameter
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
@@ -8978,8 +8978,8 @@ public void testMissingClassNeededForOverloadResolution_varargs1d() {
 	runner.runConformTest();
 
 	// delete binary files A1, A1 (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A1.class"));
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A2.class"));
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A1.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A2.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runner.shouldFlushOutputDirectory = false;
 
 	runner.customOptions.put(CompilerOptions.OPTION_ReportVarargsArgumentNeedCast, CompilerOptions.IGNORE);
@@ -9029,7 +9029,7 @@ public void testMissingClassNeededForOverloadResolution_varargs1d() {
 			""";
 	runner.runNegativeTest();
 }
-public void testMissingClassNeededForOverloadResolution_varargs2() {
+public void testMissingClassNeededForOverloadResolution_varargs2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// different arities
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
@@ -9053,7 +9053,7 @@ public void testMissingClassNeededForOverloadResolution_varargs2() {
 	runner.runConformTest();
 
 	// delete binary file A (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class"));
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runner.shouldFlushOutputDirectory = false;
 
 	runner.customOptions.put(CompilerOptions.OPTION_ReportVarargsArgumentNeedCast, CompilerOptions.IGNORE);
@@ -9101,7 +9101,7 @@ public void testMissingClassNeededForOverloadResolution_varargs2() {
 			""";
 	runner.runNegativeTest();
 }
-public void testMissingClassNeededForOverloadResolution_varargs2_ctorOK() {
+public void testMissingClassNeededForOverloadResolution_varargs2_ctorOK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// different arities
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
@@ -9123,7 +9123,7 @@ public void testMissingClassNeededForOverloadResolution_varargs2_ctorOK() {
 	runner.runConformTest();
 
 	// delete binary file A (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class"));
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runner.shouldFlushOutputDirectory = false;
 
 	runner.customOptions.put(CompilerOptions.OPTION_ReportVarargsArgumentNeedCast, CompilerOptions.IGNORE);
@@ -9142,7 +9142,7 @@ public void testMissingClassNeededForOverloadResolution_varargs2_ctorOK() {
 		};
 	runner.runConformTest();
 }
-public void testMissingClassNeededForOverloadResolution_varargs2_qualCtorOK() {
+public void testMissingClassNeededForOverloadResolution_varargs2_qualCtorOK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// different arities
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
@@ -9166,7 +9166,7 @@ public void testMissingClassNeededForOverloadResolution_varargs2_qualCtorOK() {
 	runner.runConformTest();
 
 	// delete binary file A (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class"));
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runner.shouldFlushOutputDirectory = false;
 
 	runner.customOptions.put(CompilerOptions.OPTION_ReportVarargsArgumentNeedCast, CompilerOptions.IGNORE);
@@ -9185,7 +9185,7 @@ public void testMissingClassNeededForOverloadResolution_varargs2_qualCtorOK() {
 		};
 	runner.runConformTest();
 }
-public void testMissingClassNeededForOverloadResolution_varargs2_ctorNOK() {
+public void testMissingClassNeededForOverloadResolution_varargs2_ctorNOK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// different arities
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
@@ -9207,7 +9207,7 @@ public void testMissingClassNeededForOverloadResolution_varargs2_ctorNOK() {
 	runner.runConformTest();
 
 	// delete binary file A (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class"));
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runner.shouldFlushOutputDirectory = false;
 
 	runner.customOptions.put(CompilerOptions.OPTION_ReportVarargsArgumentNeedCast, CompilerOptions.IGNORE);
@@ -9241,7 +9241,7 @@ public void testMissingClassNeededForOverloadResolution_varargs2_ctorNOK() {
 			""";
 	runner.runNegativeTest();
 }
-public void testMissingClassNeededForOverloadResolution_varargs3() {
+public void testMissingClassNeededForOverloadResolution_varargs3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// missing type in non-varargs position
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
@@ -9263,7 +9263,7 @@ public void testMissingClassNeededForOverloadResolution_varargs3() {
 	runner.runConformTest();
 
 	// delete binary file A (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class"));
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runner.shouldFlushOutputDirectory = false;
 
 	runner.testFiles = new String[] {
@@ -9289,7 +9289,7 @@ public void testMissingClassNeededForOverloadResolution_varargs3() {
 			""";
 	runner.runNegativeTest();
 }
-public void testMissingClassNeededForOverloadResolution_varargs3_ctor() {
+public void testMissingClassNeededForOverloadResolution_varargs3_ctor() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// missing type in non-varargs position
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
@@ -9311,7 +9311,7 @@ public void testMissingClassNeededForOverloadResolution_varargs3_ctor() {
 	runner.runConformTest();
 
 	// delete binary file A (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class"));
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runner.shouldFlushOutputDirectory = false;
 
 	runner.testFiles = new String[] {
@@ -9337,7 +9337,7 @@ public void testMissingClassNeededForOverloadResolution_varargs3_ctor() {
 			""";
 	runner.runNegativeTest();
 }
-public void testMissingClass_varargs4_noArg() {
+public void testMissingClass_varargs4_noArg() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// missing type in non-varargs position
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
@@ -9358,7 +9358,7 @@ public void testMissingClass_varargs4_noArg() {
 	runner.runConformTest();
 
 	// delete binary file A (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class"));
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runner.shouldFlushOutputDirectory = false;
 
 	runner.testFiles = new String[] {
@@ -9376,7 +9376,7 @@ public void testMissingClass_varargs4_noArg() {
 		};
 	runner.runConformTest();
 }
-public void testMissingClass_returnType_OK() {
+public void testMissingClass_returnType_OK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"p1/A.java",
@@ -9400,8 +9400,8 @@ public void testMissingClass_returnType_OK() {
 	runner.runConformTest();
 
 	// temporarily move A.class to A.moved (i.e. simulate removing it from classpath for the next compile)
-	File classFileA = new File(OUTPUT_DIR, "p1" + File.separator + "A.class");
-	File movedFileA = new File(OUTPUT_DIR, "p1" + File.separator + "A.moved");
+	File classFileA = new File(OUTPUT_DIR, "p1" + File.separator + "A.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	File movedFileA = new File(OUTPUT_DIR, "p1" + File.separator + "A.moved"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	classFileA.renameTo(movedFileA);
 	runner.shouldFlushOutputDirectory = false;
 
@@ -9440,7 +9440,7 @@ public void testMissingClass_returnType_OK() {
 	runner.expectedErrorString = null;
 	runner.runConformTest();
 }
-public void testMissingClass_returnType_NOK() {
+public void testMissingClass_returnType_NOK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"p1/A.java",
@@ -9460,7 +9460,7 @@ public void testMissingClass_returnType_NOK() {
 	runner.runConformTest();
 
 	// delete binary file A (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class"));
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	runner.shouldFlushOutputDirectory = false;
 
@@ -9530,7 +9530,7 @@ public void testMissingClass_returnType_NOK() {
 			""";
 	runner.runNegativeTest();
 }
-public void testMissingClass_exception() {
+public void testMissingClass_exception() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"p1/A.java",
@@ -9550,7 +9550,7 @@ public void testMissingClass_exception() {
 	runner.runConformTest();
 
 	// delete binary file A (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class"));
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	runner.shouldFlushOutputDirectory = false;
 	runner.testFiles = new String[] {
@@ -9575,7 +9575,7 @@ public void testMissingClass_exception() {
 			""";
 	runner.runNegativeTest();
 }
-public void testMissingClass_exception_ctor() {
+public void testMissingClass_exception_ctor() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"p1/A.java",
@@ -9595,7 +9595,7 @@ public void testMissingClass_exception_ctor() {
 	runner.runConformTest();
 
 	// delete binary file A (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class"));
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	runner.shouldFlushOutputDirectory = false;
 	runner.testFiles = new String[] {
@@ -9620,7 +9620,7 @@ public void testMissingClass_exception_ctor() {
 			""";
 	runner.runNegativeTest();
 }
-public void testMissingClass_typeVariableBound() {
+public void testMissingClass_typeVariableBound() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"p1/A.java",
@@ -9641,7 +9641,7 @@ public void testMissingClass_typeVariableBound() {
 	runner.runConformTest();
 
 	// delete binary file A (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class"));
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	runner.shouldFlushOutputDirectory = false;
 	runner.testFiles = new String[] {
@@ -9666,7 +9666,7 @@ public void testMissingClass_typeVariableBound() {
 			""";
 	runner.runNegativeTest();
 }
-public void testMissingClass_typeVariableBound_OK() {
+public void testMissingClass_typeVariableBound_OK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"p1/A.java",
@@ -9687,7 +9687,7 @@ public void testMissingClass_typeVariableBound_OK() {
 	runner.runConformTest();
 
 	// delete binary file A (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class"));
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	runner.shouldFlushOutputDirectory = false;
 	runner.testFiles = new String[] {
@@ -9712,7 +9712,7 @@ public void testMissingClass_typeVariableBound_OK() {
 			""";
 	runner.runNegativeTest();
 }
-public void testMissingClass_typeVariableBound2() {
+public void testMissingClass_typeVariableBound2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"p1/A.java",
@@ -9732,7 +9732,7 @@ public void testMissingClass_typeVariableBound2() {
 	runner.runConformTest();
 
 	// delete binary file A (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class"));
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	runner.shouldFlushOutputDirectory = false;
 	runner.testFiles = new String[] {
@@ -9762,7 +9762,7 @@ public void testMissingClass_typeVariableBound2() {
 			""";
 	runner.runNegativeTest();
 }
-public void testMissingClass_typeVariableBound2_ctor() {
+public void testMissingClass_typeVariableBound2_ctor() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"p1/A.java",
@@ -9782,7 +9782,7 @@ public void testMissingClass_typeVariableBound2_ctor() {
 	runner.runConformTest();
 
 	// delete binary file A (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class"));
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	runner.shouldFlushOutputDirectory = false;
 	runner.testFiles = new String[] {
@@ -9817,7 +9817,7 @@ public void testMissingClass_typeVariableBound2_ctor() {
 			""";
 	runner.runNegativeTest();
 }
-public void testMissingClass_samMissingParameterType_OK() {
+public void testMissingClass_samMissingParameterType_OK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"p1/A.java",
@@ -9837,7 +9837,7 @@ public void testMissingClass_samMissingParameterType_OK() {
 	runner.runConformTest();
 
 	// delete binary file A (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class"));
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	runner.shouldFlushOutputDirectory = false;
 	runner.testFiles = new String[] {
@@ -9862,7 +9862,7 @@ public void testMissingClass_samMissingParameterType_OK() {
 			""";
 	runner.runNegativeTest();
 }
-public void testMissingClass_samMissingParameterType_NOK() {
+public void testMissingClass_samMissingParameterType_NOK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"p1/A.java",
@@ -9882,7 +9882,7 @@ public void testMissingClass_samMissingParameterType_NOK() {
 	runner.runConformTest();
 
 	// delete binary file A (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class"));
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	runner.shouldFlushOutputDirectory = false;
 	runner.testFiles = new String[] {
@@ -9908,7 +9908,7 @@ public void testMissingClass_samMissingParameterType_NOK() {
 			""";
 	runner.runNegativeTest();
 }
-public void testMissingClass_samMissingReturnType() {
+public void testMissingClass_samMissingReturnType() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"p1/A.java",
@@ -9928,7 +9928,7 @@ public void testMissingClass_samMissingReturnType() {
 	runner.runConformTest();
 
 	// delete binary file A (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class"));
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "A.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	runner.shouldFlushOutputDirectory = false;
 	runner.testFiles = new String[] {
@@ -9953,7 +9953,7 @@ public void testMissingClass_samMissingReturnType() {
 			""";
 	runner.runNegativeTest();
 }
-public void testGH3047() throws Exception {
+public void testGH3047() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"resources/examples/mockito/MockingFromFinder.java",
@@ -10055,13 +10055,13 @@ public void testGH3047() throws Exception {
 	}
 	runner.runNegativeTest();
 }
-public void testGH3451() {
+public void testGH3451() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	String[] libs = getDefaultClassPaths();
 	int len = libs.length;
 	System.arraycopy(libs, 0, libs = new String[len+1], 0, len);
 	// contained gh3451/Abstract.class refers to missing super class gh3451.Super
-	libs[len] = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "gh3451.jar";
+	libs[len] = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "gh3451.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runner.classLibraries = libs;
 	runner.testFiles = new String[] {
 			"test/Bug.java",
@@ -10117,7 +10117,7 @@ public void testGH3451() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4209
 // ECJ should not warn about missing serialVersionUID for anonymous inner classes
-public void testIssue4209() throws Exception {
+public void testIssue4209() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -10143,7 +10143,7 @@ public void testIssue4209() throws Exception {
 			"----------\n");
 }
 
-public void testMissingClass_return() {
+public void testMissingClass_return() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"p1/I.java",
@@ -10163,7 +10163,7 @@ public void testMissingClass_return() {
 	runner.runConformTest();
 
 	// delete binary file I (i.e. simulate removing it from classpath for subsequent compile)
-	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "I.class"));
+	Util.delete(new File(OUTPUT_DIR, "p1" + File.separator + "I.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	runner.shouldFlushOutputDirectory = false;
 	runner.testFiles = new String[] {
@@ -10193,7 +10193,7 @@ public void testMissingClass_return() {
 // from required type Y" when an inner class accesses a field declared on its outer
 // class, and a transitive supertype of the inner class happens to have a field whose
 // type is absent from the classpath.
-public void testIssue5146() {
+public void testIssue5146() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel <= ClassFileConstants.JDK10) // we get access emulation warnings before nestmates arrival
 		return;
 	// Phase 1: compile the library stubs, including the "transitive" type (slf4j Logger).
@@ -10238,7 +10238,7 @@ public void testIssue5146() {
 	// Phase 2: remove slf4j.Logger from the classpath to simulate the missing
 	// transitive dependency (mirroring the real-world setup with Java-WebSocket).
 	Util.delete(new File(OUTPUT_DIR,
-			"lib" + File.separator + "slf4j" + File.separator + "Logger.class"));
+			"lib" + File.separator + "slf4j" + File.separator + "Logger.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runner.shouldFlushOutputDirectory = false;
 
 	// Phase 3: compile the user's source. The inner class WSDesc extends

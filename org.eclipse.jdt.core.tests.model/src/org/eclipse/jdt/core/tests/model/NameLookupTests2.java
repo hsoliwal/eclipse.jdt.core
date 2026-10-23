@@ -61,7 +61,7 @@ public static Test suite() {
 NameLookup getNameLookup(JavaProject project) throws JavaModelException {
 	return project.newNameLookup((WorkingCopyOwner)null);
 }
-public void testAddPackageFragmentRootAndPackageFrament() throws CoreException {
+public void testAddPackageFragmentRootAndPackageFrament() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p1 = createJavaProject("P1", new String[] {"src1"}, "bin");
 		IJavaProject p2 = createJavaProject("P2", new String[] {}, "");
@@ -94,7 +94,7 @@ public void testAddPackageFragmentRootAndPackageFrament() throws CoreException {
 		deleteProject("P2");
 	}
 }
-public void testAddPackageFragment() throws CoreException {
+public void testAddPackageFragment() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1", new String[] {"src1"}, "bin");
 		IJavaProject p2 = createJavaProject("P2", new String[] {}, "");
@@ -125,7 +125,7 @@ public void testAddPackageFragment() throws CoreException {
  * Resolve, add pkg, resolve again: new pkg should be accessible
  * (regression test for bug 37962 Unexpected transient problem during reconcile
  */
-public void testAddPackageFragment2() throws CoreException {
+public void testAddPackageFragment2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		JavaProject project = (JavaProject)createJavaProject("P", new String[] {"src"}, "bin");
 		createFolder("/P/src/p1");
@@ -151,7 +151,7 @@ public void testAddPackageFragment2() throws CoreException {
  * Ensures that a NameLookup can be created with working copies that contain duplicate types
  * (regression test for bug 63245 findPackageFragment won't return default package)
  */
-public void testDuplicateTypesInWorkingCopies() throws CoreException {
+public void testDuplicateTypesInWorkingCopies() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 //	ICompilationUnit[] workingCopies = new ICompilationUnit[3];
 	this.workingCopies = new ICompilationUnit[3];
 	try {
@@ -211,7 +211,7 @@ public void testFindDefaultPackageFragmentInNonDefaultRoot() throws CoreExceptio
  * Creates a package fragment and finds it in a dependent project in a batch operation
  * (regression test for bug 144776 JavaProject.resetCaches() needs to reset dependent projects
  */
-public void testNameLookupFindPackageFragmentAfterCreation() throws CoreException {
+public void testNameLookupFindPackageFragmentAfterCreation() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		final IJavaProject p1 = createJavaProject("P1");
 		final JavaProject p2 = (JavaProject) createJavaProject("P2", new String[] {""}, new String[0], new String[] {"/P1"}, "");
@@ -219,7 +219,7 @@ public void testNameLookupFindPackageFragmentAfterCreation() throws CoreExceptio
 		// populate namelookup for p2
 		getNameLookup(p2);
 
-		IWorkspaceRunnable runnable = new IWorkspaceRunnable(){
+		IWorkspaceRunnable runnable = new IWorkspaceRunnable(){ //FLLDCIM: MARK — T09  ANONYMOUS
 			public void run(IProgressMonitor monitor) throws CoreException {
 				p1.getPackageFragmentRoot(p1.getProject()).createPackageFragment("pkg", false/*don't force*/, monitor);
 				IPackageFragment[] pkgs = getNameLookup(p2).findPackageFragments("pkg", false/*exact match*/);
@@ -239,7 +239,7 @@ public void testNameLookupFindPackageFragmentAfterCreation() throws CoreExceptio
  * Ensure that finding a package fragment with a working copy opened returns one element only
  * (regression test for bug 89624 Open on selection proposes twice the same entry)
  */
-public void testFindPackageFragmentWithWorkingCopy() throws CoreException {
+public void testFindPackageFragmentWithWorkingCopy() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	try {
 		JavaProject project = (JavaProject)createJavaProject("P");
@@ -269,7 +269,7 @@ public void testFindPackageFragment2() throws CoreException {
 	try {
 		JavaProject project = (JavaProject)createJavaProject("P", new String[0], new String[] {"JCL18_LIB"}, "bin");
 		NameLookup nameLookup =getNameLookup(project);
-		IPath pathToSearch = new Path(getExternalJCLPathString() + 'a');
+		IPath pathToSearch = new Path(getExternalJCLPathString() + 'a'); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IPackageFragment pkg = nameLookup.findPackageFragment(pathToSearch);
 		assertElementEquals(
 			"Unexpected package",
@@ -284,7 +284,7 @@ public void testFindPackageFragment2() throws CoreException {
  * Ensure that a member type with a name ending with a dollar and a number is found
  * (regression test for bug 103466 Stack Overflow: Requesting Java AST from selection)
  */
-public void testFindBinaryTypeWithDollarName() throws CoreException, IOException {
+public void testFindBinaryTypeWithDollarName() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P");
 		addLibrary(project, "lib.jar", "libsrc.zip",
@@ -331,7 +331,7 @@ public void testFindBinaryTypeWithSameNameAsMember() throws CoreException, IOExc
  * Ensures that a type in working copy opened in an unrelated project is not found
  * (regression test for bug 169970 [model] code assist favorites must honour build path of project in context)
  */
-public void testFindTypeWithUnrelatedWorkingCopy() throws Exception {
+public void testFindTypeWithUnrelatedWorkingCopy() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit workingCopy = null;
 	try {
 		createJavaProject("P1");
@@ -361,8 +361,8 @@ public void testFindTypeWithUnrelatedWorkingCopy() throws Exception {
  * archive cache until a classpath change was generated, and would not make it into the project's
  * JavaProjectElementInfo cache without restarting Eclipse or closing and reopening the project.
  */
-public void testTransitionFromInvalidToValidJar() throws CoreException, IOException {
-	String transitioningJar = getExternalPath() + "transitioningJar.jar";
+public void testTransitionFromInvalidToValidJar() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String transitioningJar = getExternalPath() + "transitioningJar.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	java.nio.file.Path transitioningJarPath = java.nio.file.Path.of(transitioningJar);
 	IPath transitioningIPath = Path.fromOSString(transitioningJar);
 
@@ -423,7 +423,7 @@ public void testTransitionFromInvalidToValidJar() throws CoreException, IOExcept
 /**
  * Test for: {@link org.eclipse.jdt.internal.core.NameLookup.Answer#isNonAccessible()}
  */
-public void testNonAccessibleAccessAnswer() throws Exception {
+public void testNonAccessibleAccessAnswer() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		JavaProject project = (JavaProject)createJavaProject("P");
 		addLibrary(
@@ -457,7 +457,7 @@ public void testNonAccessibleAccessAnswer() throws Exception {
 	}
 }
 
-public void testMRJarIssue2495() throws Exception {
+public void testMRJarIssue2495() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	JavaProject project = (JavaProject) setUpJavaProject("MultiReleaseJar", "25");
 	try {
 		waitForAutoBuild();

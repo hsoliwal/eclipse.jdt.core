@@ -125,7 +125,7 @@ public final static Integer P_LOW = Integer.valueOf(IMarker.PRIORITY_LOW);
 public final static String COMPILER_FACTORY_KEY = "AbstractImageBuilder.compilerFactory"; //$NON-NLS-1$
 private final CompilationGroup compilationGroup;
 
-protected AbstractImageBuilder(JavaBuilder javaBuilder, boolean buildStarting, State newState, CompilationGroup compilationGroup) {
+protected AbstractImageBuilder(JavaBuilder javaBuilder, boolean buildStarting, State newState, CompilationGroup compilationGroup) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// local copies
 	this.javaBuilder = javaBuilder;
 	this.compilationGroup = compilationGroup;
@@ -141,12 +141,12 @@ protected AbstractImageBuilder(JavaBuilder javaBuilder, boolean buildStarting, S
 		this.problemSourceFiles = new LinkedHashSet(3);
 
 		if (this.javaBuilder.participants != null) {
-			for (CompilationParticipant participant : this.javaBuilder.participants) {
+			for (CompilationParticipant participant : this.javaBuilder.participants) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (participant.isAnnotationProcessor()) {
 					// initialize this set so the builder knows to gather CUs that define Annotation types
 					// each Annotation processor participant is then asked to process these files AFTER
 					// the compile loop. The normal dependency loop will then recompile all affected types
-					this.filesWithAnnotations = new HashMap<>(1);
+					this.filesWithAnnotations = new HashMap<>(1); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 					break;
 				}
 			}
@@ -154,7 +154,7 @@ protected AbstractImageBuilder(JavaBuilder javaBuilder, boolean buildStarting, S
 	}
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void acceptResult(CompilationResult result) {
 	// In Batch mode, we write out the class files, hold onto the dependency info
 	// & additional types and report problems.
@@ -191,9 +191,9 @@ public void acceptResult(CompilationResult result) {
 		ClassFile[] classFiles = result.getClassFiles();
 		int length = classFiles.length;
 		ArrayList duplicateTypeNames = null;
-		ArrayList definedTypeNames = new ArrayList(length);
-		ArrayList<CompilationParticipantResult> postProcessingResults = new ArrayList<>();
-		for (ClassFile classFile : classFiles) {
+		ArrayList definedTypeNames = new ArrayList(length); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		ArrayList<CompilationParticipantResult> postProcessingResults = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (ClassFile classFile : classFiles) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[][] compoundName = classFile.getCompoundName();
 			char[] typeName = compoundName[compoundName.length - 1];
 			boolean isNestedType = classFile.isNestedType;
@@ -207,7 +207,7 @@ public void acceptResult(CompilationResult result) {
 				String qualifiedTypeName = new String(classFile.fileName()); // the qualified type name "p1/p2/A"
 				if (this.newState.isDuplicateLocator(qualifiedTypeName, typeLocator, compilationUnit.sourceLocation.release)) {
 					if (duplicateTypeNames == null)
-						duplicateTypeNames = new ArrayList();
+						duplicateTypeNames = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 					duplicateTypeNames.add(compoundName);
 					if (mainType == null) {
 						try {
@@ -235,7 +235,7 @@ public void acceptResult(CompilationResult result) {
 				if (result.checkSecondaryTypes && !qualifiedTypeName.equals(compilationUnit.initialTypeName))
 					acceptSecondaryType(classFile);
 			}
-			for (int j = 0, l = this.javaBuilder.participants == null ? 0 : this.javaBuilder.participants.length; j < l; j++) {
+			for (int j = 0, l = this.javaBuilder.participants == null ? 0 : this.javaBuilder.participants.length; j < l; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				CompilationParticipant compilationParticipant = this.javaBuilder.participants[j];
 				if (!compilationParticipant.isPostProcessor()) {
 					continue;
@@ -267,7 +267,7 @@ public void acceptResult(CompilationResult result) {
 
 		this.compiler.lookupEnvironment.releaseClassFiles(classFiles);
 		finishedWith(typeLocator, result, compilationUnit.getMainTypeName(), definedTypeNames, duplicateTypeNames);
-		for (CompilationParticipantResult postProcessingResult : postProcessingResults) {
+		for (CompilationParticipantResult postProcessingResult : postProcessingResults) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			recordParticipantResult(postProcessingResult); // depends on new compiler state which was just recorded
 		}
 		this.notifier.compiled(compilationUnit);
@@ -277,8 +277,8 @@ public void acceptResult(CompilationResult result) {
 protected void acceptSecondaryType(ClassFile classFile) {
 	// noop
 }
-protected void addAllSourceFiles(final LinkedHashSet<SourceFile> sourceFiles) throws CoreException {
-	for (final ClasspathMultiDirectory sourceLocation : this.sourceLocations) {
+protected void addAllSourceFiles(final LinkedHashSet<SourceFile> sourceFiles) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	for (final ClasspathMultiDirectory sourceLocation : this.sourceLocations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		final char[][] exclusionPatterns = sourceLocation.exclusionPatterns;
 		final char[][] inclusionPatterns = sourceLocation.inclusionPatterns;
 		final boolean isAlsoProject = sourceLocation.sourceFolder.equals(this.javaBuilder.currentProject);
@@ -286,8 +286,8 @@ protected void addAllSourceFiles(final LinkedHashSet<SourceFile> sourceFiles) th
 		final IContainer outputFolder = sourceLocation.binaryFolder;
 		final boolean isOutputFolder = sourceLocation.sourceFolder.equals(outputFolder);
 		sourceLocation.sourceFolder.accept(
-			new IResourceProxyVisitor() {
-				@Override
+			new IResourceProxyVisitor() { //FLLDCIM: MARK — T07  ANONYMOUS
+				@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				public boolean visit(IResourceProxy proxy) throws CoreException {
 					switch(proxy.getType()) {
 						case IResource.FILE :
@@ -352,7 +352,7 @@ protected void cleanUp() {
 /* Compile the given elements, adding more elements to the work queue
 * if they are affected by the changes.
 */
-protected void compile(SourceFile[] units) {
+protected void compile(SourceFile[] units) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.filesWithAnnotations != null && this.filesWithAnnotations.size() > 0)
 		// will add files that have annotations in acceptResult() & then processAnnotations() before exitting this method
 		this.filesWithAnnotations.clear();
@@ -361,7 +361,7 @@ protected void compile(SourceFile[] units) {
 	CompilationParticipantResult[] participantResults = this.javaBuilder.participants == null ? null : notifyParticipants(units);
 	if (participantResults != null && participantResults.length > units.length) {
 		units = new SourceFile[participantResults.length];
-		for (int i = participantResults.length; --i >= 0;)
+		for (int i = participantResults.length; --i >= 0;) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			units[i] = participantResults[i].sourceFile;
 	}
 
@@ -370,8 +370,8 @@ protected void compile(SourceFile[] units) {
 	if (this.compiledAllAtOnce) {
 		// do them all now
 		if (JavaBuilder.DEBUG) {
-			for (int i = 0; i < unitsLength; i++) {
-				trace("About to compile " + units[i].typeLocator()); //$NON-NLS-1$
+			for (int i = 0; i < unitsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				trace("About to compile " + units[i].typeLocator()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		compile(units, null, true);
@@ -382,15 +382,15 @@ protected void compile(SourceFile[] units) {
 		SourceFile[] toCompile = new SourceFile[doNow];
 		int remainingIndex = 0;
 		boolean compilingFirstGroup = true;
-		while (remainingIndex < unitsLength) {
+		while (remainingIndex < unitsLength) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int count = 0;
-			while (remainingIndex < unitsLength && count < doNow) {
+			while (remainingIndex < unitsLength && count < doNow) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				// Although it needed compiling when this method was called, it may have
 				// already been compiled when it was referenced by another unit.
 				SourceFile unit = remainingUnits[remainingIndex];
 				if (unit != null && (compilingFirstGroup || this.workQueue.isWaiting(unit))) {
 					if (JavaBuilder.DEBUG) {
-						trace("About to compile #" + remainingIndex + " : "+ unit.typeLocator()); //$NON-NLS-1$ //$NON-NLS-2$
+						trace("About to compile #" + remainingIndex + " : "+ unit.typeLocator()); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 					toCompile[count++] = unit;
 				}
@@ -399,7 +399,7 @@ protected void compile(SourceFile[] units) {
 			if (count < doNow)
 				System.arraycopy(toCompile, 0, toCompile = new SourceFile[count], 0, count);
 			if (!compilingFirstGroup)
-				for (int a = remainingIndex; a < unitsLength; a++)
+				for (int a = remainingIndex; a < unitsLength; a++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (remainingUnits[a] != null && this.workQueue.isCompiled(remainingUnits[a]))
 						remainingUnits[a] = null; // use the class file for this source file since its been compiled
 			compile(toCompile, remainingUnits, compilingFirstGroup);
@@ -408,7 +408,7 @@ protected void compile(SourceFile[] units) {
 	}
 
 	if (participantResults != null) {
-		for (int i = participantResults.length; --i >= 0;)
+		for (int i = participantResults.length; --i >= 0;) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (participantResults[i] != null)
 				recordParticipantResult(participantResults[i]);
 
@@ -416,7 +416,7 @@ protected void compile(SourceFile[] units) {
 	}
 }
 
-protected void compile(SourceFile[] units, SourceFile[] additionalUnits, boolean compilingFirstGroup) {
+protected void compile(SourceFile[] units, SourceFile[] additionalUnits, boolean compilingFirstGroup) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (units.length == 0) return;
 	this.notifier.aboutToCompile(units[0]); // just to change the message
 
@@ -429,7 +429,7 @@ protected void compile(SourceFile[] units, SourceFile[] additionalUnits, boolean
 		else
 			System.arraycopy(additionalUnits, 0, additionalUnits = new SourceFile[length + toAdd], 0, length);
 		Iterator<SourceFile> iterator = this.problemSourceFiles.iterator();
-		for (int i = 0; i < toAdd; i++)
+		for (int i = 0; i < toAdd; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			additionalUnits[length + i] = iterator.next();
 	}
 	this.notifier.checkCancel();
@@ -438,7 +438,7 @@ protected void compile(SourceFile[] units, SourceFile[] additionalUnits, boolean
 		this.inCompiler = true;
 		Map<Integer, List<SourceFile>> releaseToSourceFolderMap = Arrays.stream(units)
 				.collect(Collectors.groupingBy(sf -> sf.sourceLocation.release, TreeMap::new, Collectors.toList()));
-		for (Entry<Integer, List<SourceFile>> sourceFolderReleaseMapping : releaseToSourceFolderMap.entrySet()) {
+		for (Entry<Integer, List<SourceFile>> sourceFolderReleaseMapping : releaseToSourceFolderMap.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			long oldTarget = this.compiler.options.targetJDK;
 			long oldCompliance = this.compiler.options.complianceLevel;
 			long oldSource = this.compiler.options.sourceLevel;
@@ -455,7 +455,7 @@ protected void compile(SourceFile[] units, SourceFile[] additionalUnits, boolean
 					try {
 						this.compiler.lookupEnvironment.nameEnvironment = this.javaBuilder.getNameEnvironment(release);
 					} catch (CoreException e) {
-						Util.log(e, "JavaBuilder handling CoreException while building: " + this.javaBuilder.currentProject.getName()); //$NON-NLS-1$
+						Util.log(e, "JavaBuilder handling CoreException while building: " + this.javaBuilder.currentProject.getName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						try {
 							this.javaBuilder.createInconsistentBuildMarker(e);
 						} catch (CoreException e1) {
@@ -467,7 +467,7 @@ protected void compile(SourceFile[] units, SourceFile[] additionalUnits, boolean
 								.map(sf -> sf.sourceLocation.sourceFolder)
 								.distinct()
 								.toList();
-						for (IContainer container : list) {
+						for (IContainer container : list) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							createProblemFor(container, null,
 									NLS.bind(Messages.AbstractImageBuilder_mr_missmatch_main,
 											new Object[] { container.getProjectRelativePath().toPortableString(),
@@ -505,11 +505,11 @@ protected void compile(SourceFile[] units, SourceFile[] additionalUnits, boolean
 
 protected String[] getInitalTypeNames(SourceFile[] units) {
 	String[] initialTypeNames = new String[units.length];
-	for (int i = 0, l = units.length; i < l; i++) {
+	for (int i = 0, l = units.length; i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		char[] moduleName = units[i].getModuleName();
 		initialTypeNames[i] = (moduleName == null)
 				? units[i].initialTypeName
-				: new StringBuilder(60).append(moduleName).append(':').append(units[i].initialTypeName).toString();
+				: new StringBuilder(60).append(moduleName).append(':').append(units[i].initialTypeName).toString(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	return initialTypeNames;
 }
@@ -527,7 +527,7 @@ protected void copyResource(IResource source, IResource destination) throws Core
 	Util.setReadOnly(destination, false); // just in case the original was read only
 }
 
-protected void createProblemFor(IResource resource, IMember javaElement, String message, String problemSeverity) {
+protected void createProblemFor(IResource resource, IMember javaElement, String message, String problemSeverity) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IMarker marker = resource.createMarker(IJavaModelMarker.JAVA_MODEL_PROBLEM_MARKER);
 		int severity = problemSeverity.equals(JavaCore.WARNING) ? IMarker.SEVERITY_WARNING : IMarker.SEVERITY_ERROR;
@@ -563,13 +563,13 @@ protected void deleteGeneratedFiles(IFile[] deletedGeneratedFiles) {
 	// no op by default
 }
 
-protected SourceFile findSourceFile(IFile file, boolean mustExist) {
+protected SourceFile findSourceFile(IFile file, boolean mustExist) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (mustExist && !file.exists()) return null;
 
 	ClasspathMultiDirectory md = null;
 	if (this.sourceLocations.length > 0) {
 		IPath sourceFileFullPath = file.getFullPath();
-		for (ClasspathMultiDirectory sourceLocation : this.sourceLocations) {
+		for (ClasspathMultiDirectory sourceLocation : this.sourceLocations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (sourceLocation.sourceFolder.getFullPath().isPrefixOf(sourceFileFullPath)) {
 				md = sourceLocation;
 				if (md.exclusionPatterns == null && md.inclusionPatterns == null)
@@ -582,7 +582,7 @@ protected SourceFile findSourceFile(IFile file, boolean mustExist) {
 	return md == null ? null: new SourceFile(file, md);
 }
 
-protected void finishedWith(String sourceLocator, CompilationResult result, char[] mainTypeName, ArrayList definedTypeNames, ArrayList duplicateTypeNames) {
+protected void finishedWith(String sourceLocator, CompilationResult result, char[] mainTypeName, ArrayList definedTypeNames, ArrayList duplicateTypeNames) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (duplicateTypeNames == null) {
 		this.newState.record(sourceLocator, result.qualifiedReferences, result.simpleNameReferences, result.rootReferences, mainTypeName, definedTypeNames);
 		return;
@@ -590,11 +590,11 @@ protected void finishedWith(String sourceLocator, CompilationResult result, char
 
 	char[][] simpleRefs = result.simpleNameReferences;
 	// for each duplicate type p1.p2.A, add the type name A (package was already added)
-	next : for (Object duplicateTypeName : duplicateTypeNames) {
+	next : for (Object duplicateTypeName : duplicateTypeNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		char[][] compoundName = (char[][]) duplicateTypeName;
 		char[] typeName = compoundName[compoundName.length - 1];
 		int sLength = simpleRefs.length;
-		for (int j = 0; j < sLength; j++)
+		for (int j = 0; j < sLength; j++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (CharOperation.equals(simpleRefs[j], typeName))
 				continue next;
 		System.arraycopy(simpleRefs, 0, simpleRefs = new char[sLength + 1][], 0, sLength);
@@ -652,7 +652,7 @@ protected boolean isExcludedFromProject(IPath childPath) throws JavaModelExcepti
 	// answer whether the folder should be ignored when walking the project as a source folder
 	if (childPath.segmentCount() > 2) return false; // is a subfolder of a package
 
-	for (ClasspathMultiDirectory sourceLocation : this.sourceLocations) {
+	for (ClasspathMultiDirectory sourceLocation : this.sourceLocations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (childPath.equals(sourceLocation.binaryFolder.getFullPath())) return true;
 		if (childPath.equals(sourceLocation.sourceFolder.getFullPath())) return true;
 	}
@@ -660,7 +660,7 @@ protected boolean isExcludedFromProject(IPath childPath) throws JavaModelExcepti
 	return childPath.equals(this.javaBuilder.javaProject.getOutputLocation());
 }
 
-protected Compiler newCompiler() {
+protected Compiler newCompiler() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// disable entire javadoc support if not interested in diagnostics
 	Map projectOptions = this.javaBuilder.javaProject.getOptions(true);
 	String option = (String) projectOptions.get(JavaCore.COMPILER_PB_INVALID_JAVADOC);
@@ -691,7 +691,7 @@ protected Compiler newCompiler() {
 			compilerFactory = constructor.newInstance();
 		} catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException
 				| IllegalArgumentException | InstantiationException | InvocationTargetException e) {
-			ILog.get().error("Failed to initialize the custom compiler factory - " + compilerFactoryClassName, e); //$NON-NLS-1$
+			ILog.get().error("Failed to initialize the custom compiler factory - " + compilerFactoryClassName, e); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -750,13 +750,13 @@ protected Compiler newCompiler() {
 	return newCompiler;
 }
 
-private CompilerConfiguration prepareCompilerConfiguration(CompilerOptions options) {
+private CompilerConfiguration prepareCompilerConfiguration(CompilerOptions options) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
-		List<URI> annotationProcessorPaths = new ArrayList<>();
-		List<IContainer> generatedSourcePaths = new ArrayList<>();
+		List<URI> annotationProcessorPaths = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		List<IContainer> generatedSourcePaths = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		boolean isTest = this.compilationGroup == CompilationGroup.TEST;
 		if (this.javaBuilder.participants != null) {
-			for (CompilationParticipant participant : this.javaBuilder.participants) {
+			for (CompilationParticipant participant : this.javaBuilder.participants) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (participant.isAnnotationProcessor()) {
 					URI[] paths = participant.getAnnotationProcessorPaths(this.javaBuilder.javaProject, isTest);
 					if (paths != null) {
@@ -773,7 +773,7 @@ private CompilerConfiguration prepareCompilerConfiguration(CompilerOptions optio
 		ClasspathLocation[] classpathLocations = this.nameEnvironment.binaryLocations;
 		Set<URI> classpaths = new LinkedHashSet<>();
 		Set<URI> modulepaths = new LinkedHashSet<>();
-		for (ClasspathLocation location : classpathLocations) {
+		for (ClasspathLocation location : classpathLocations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (location instanceof ClasspathDirectory cpDirectory) {
 				URI cpURI = cpDirectory.binaryFolder.getRawLocationURI();
 				if (cpURI == null) {
@@ -794,11 +794,11 @@ private CompilerConfiguration prepareCompilerConfiguration(CompilerOptions optio
 			}
 		}
 
-		Map<IContainer, IContainer> sourceOutputMapping = new HashMap<>();
+		Map<IContainer, IContainer> sourceOutputMapping = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		Set<IContainer> sourcepaths = new LinkedHashSet<>();
 		Set<IContainer> moduleSourcepaths = new LinkedHashSet<>();
 		ClasspathMultiDirectory[] srcLocations = this.nameEnvironment.sourceLocations;
-		for (ClasspathMultiDirectory sourceLocation : srcLocations) {
+		for (ClasspathMultiDirectory sourceLocation : srcLocations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			sourceOutputMapping.put(sourceLocation.sourceFolder, sourceLocation.binaryFolder);
 			if (sourceLocation.isOnModulePath) {
 				moduleSourcepaths.add(sourceLocation.sourceFolder);
@@ -823,21 +823,21 @@ private CompilerConfiguration prepareCompilerConfiguration(CompilerOptions optio
 	}
 }
 
-protected CompilationParticipantResult[] notifyParticipants(SourceFile[] unitsAboutToCompile) {
+protected CompilationParticipantResult[] notifyParticipants(SourceFile[] unitsAboutToCompile) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompilationParticipantResult[] results = new CompilationParticipantResult[unitsAboutToCompile.length];
-	for (int i = unitsAboutToCompile.length; --i >= 0;)
+	for (int i = unitsAboutToCompile.length; --i >= 0;) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		results[i] = new CompilationParticipantResult(unitsAboutToCompile[i], this.compilationGroup == CompilationGroup.TEST);
 
 	// TODO (kent) do we expect to have more than one participant?
 	// and if so should we pass the generated files from the each processor to the others to process?
 	// and what happens if some participants do not expect to be called with only a few files, after seeing 'all' the files?
-	for (CompilationParticipant participant : this.javaBuilder.participants)
+	for (CompilationParticipant participant : this.javaBuilder.participants) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		participant.buildStarting(results, this instanceof BatchImageBuilder);
 
 	SimpleSet uniqueFiles = null;
 	CompilationParticipantResult[] toAdd = null;
 	int added = 0;
-	for (int i = results.length; --i >= 0;) {
+	for (int i = results.length; --i >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		CompilationParticipantResult result = results[i];
 		if (result == null) continue;
 
@@ -847,12 +847,12 @@ protected CompilationParticipantResult[] notifyParticipants(SourceFile[] unitsAb
 
 		IFile[] addedGeneratedFiles = result.addedFiles;
 		if (addedGeneratedFiles != null) {
-			for (int j = addedGeneratedFiles.length; --j >= 0;) {
+			for (int j = addedGeneratedFiles.length; --j >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				SourceFile sourceFile = findSourceFile(addedGeneratedFiles[j], true);
 				if (sourceFile == null) continue;
 				if (uniqueFiles == null) {
 					uniqueFiles = new SimpleSet(unitsAboutToCompile.length + 3);
-					for (int f = unitsAboutToCompile.length; --f >= 0;)
+					for (int f = unitsAboutToCompile.length; --f >= 0;) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						uniqueFiles.add(unitsAboutToCompile[f]);
 				}
 				if (uniqueFiles.addIfNotIncluded(sourceFile) == sourceFile) {
@@ -884,23 +884,23 @@ protected abstract void processAnnotationResults(CompilationParticipantResult[] 
 
 protected void processAnnotations(CompilationParticipantResult[] results) {
 	boolean hasAnnotationProcessor = false;
-	for (int i = 0, l = this.javaBuilder.participants.length; !hasAnnotationProcessor && i < l; i++)
+	for (int i = 0, l = this.javaBuilder.participants.length; !hasAnnotationProcessor && i < l; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		hasAnnotationProcessor |= requiresProcessAnnotation(this.javaBuilder.participants[i]);
 	if (!hasAnnotationProcessor) return;
 
 	boolean foundAnnotations = this.filesWithAnnotations != null && this.filesWithAnnotations.size() > 0;
-	for (int i = results.length; --i >= 0;) {
+	for (int i = results.length; --i >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		results[i].reset(foundAnnotations ? this.filesWithAnnotations.get(results[i].sourceFile) : null);
 	}
 
 	// even if no files have annotations, must still tell every annotation processor in case the file used to have them
-	for (CompilationParticipant participant : this.javaBuilder.participants)
+	for (CompilationParticipant participant : this.javaBuilder.participants) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (requiresProcessAnnotation(participant))
 			participant.processAnnotations(results);
 	processAnnotationResults(results);
 }
 
-private boolean requiresProcessAnnotation(CompilationParticipant participant) {
+private boolean requiresProcessAnnotation(CompilationParticipant participant) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!participant.isAnnotationProcessor()) {
 		return false;
 	}
@@ -921,7 +921,7 @@ private boolean requiresProcessAnnotation(CompilationParticipant participant) {
 	return false;
 }
 
-protected void recordParticipantResult(CompilationParticipantResult result) {
+protected void recordParticipantResult(CompilationParticipantResult result) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// any added/changed/deleted generated files have already been taken care
 	// just record the problems and dependencies - do not expect there to be many
 	// must be called after we're finished with the compilation unit results but before incremental loop adds affected files
@@ -958,14 +958,14 @@ protected void recordParticipantResult(CompilationParticipantResult result) {
  *     the problem was generated by JDT; else the {@link IMarker#SOURCE_ID} attribute is
  *     carried from the problem to the marker in extra attributes, if present.
  */
-protected void storeProblemsFor(SourceFile sourceFile, CategorizedProblem[] problems) throws CoreException {
+protected void storeProblemsFor(SourceFile sourceFile, CategorizedProblem[] problems) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (sourceFile == null || problems == null || problems.length == 0) return;
 	 // once a classpath error is found, ignore all other problems for this project so the user can see the main error
 	// but still try to compile as many source files as possible to help the case when the base libraries are in source
 	if (!this.keepStoringProblemMarkers) return; // only want the one error recorded on this source file
 
 	HashSet managedMarkerTypes = JavaModelManager.getJavaModelManager().compilationParticipants.managedMarkerTypes();
-	problems: for (CategorizedProblem problem : problems) {
+	problems: for (CategorizedProblem problem : problems) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int id = problem.getID();
 		// we may use a different resource for certain problems such as IProblem.MissingNonNullByDefaultAnnotationOnPackage
 		// but at the start of the next problem we should reset it to the source file's resource
@@ -993,7 +993,7 @@ protected void storeProblemsFor(SourceFile sourceFile, CategorizedProblem[] prob
 				this.keepStoringProblemMarkers = false;
 			}
 
-			Map<String,Object> attributes = new HashMap<>();
+			Map<String,Object> attributes = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			attributes.put(IMarker.MESSAGE, buildPathProblemMessage);
 			attributes.put(IMarker.SEVERITY, Integer.valueOf(isInvalidClasspathError ? IMarker.SEVERITY_ERROR : IMarker.SEVERITY_WARNING));
 			attributes.put(IJavaModelMarker.CATEGORY_ID, Integer.valueOf(CategorizedProblem.CAT_BUILDPATH));
@@ -1023,7 +1023,7 @@ protected void storeProblemsFor(SourceFile sourceFile, CategorizedProblem[] prob
 					try {
 						IMarker[] existingMarkers = pkg.resource().findMarkers(IJavaModelMarker.JAVA_MODEL_PROBLEM_MARKER, false, IResource.DEPTH_ZERO);
 						int len = existingMarkers.length;
-						for (int j=0; j < len; j++) {
+						for (int j=0; j < len; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (((Integer)existingMarkers[j].getAttribute(IJavaModelMarker.ID)).intValue() == IProblem.MissingNonNullByDefaultAnnotationOnPackage) {
 								continue problems; // marker already present
 							}
@@ -1055,7 +1055,7 @@ protected void storeProblemsFor(SourceFile sourceFile, CategorizedProblem[] prob
 				extraAttributesExist = true;
 			}
 
-			Map<String, Object> attributes = new HashMap<>(attributesLength, 1.0f);
+			Map<String, Object> attributes = new HashMap<>(attributesLength, 1.0f); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			attributes.put(JAVA_PROBLEM_MARKER_ATTRIBUTE_NAMES[0], problem.getMessage()); //MESSAGE
 			attributes.put(JAVA_PROBLEM_MARKER_ATTRIBUTE_NAMES[1], problem.isError() ? S_ERROR : problem.isWarning() ? S_WARNING : S_INFO);//SEVERITY
 			attributes.put(JAVA_PROBLEM_MARKER_ATTRIBUTE_NAMES[2], Integer.valueOf(id));//ID
@@ -1071,7 +1071,7 @@ protected void storeProblemsFor(SourceFile sourceFile, CategorizedProblem[] prob
 			}
 
 			if (extraAttributesExist) {
-				for (int j = 0; j < extraAttributeNames.length; j++) {
+				for (int j = 0; j < extraAttributeNames.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					attributes.put(extraAttributeNames[j], extraAttributeValues[j]);
 				}
 			}
@@ -1082,11 +1082,11 @@ protected void storeProblemsFor(SourceFile sourceFile, CategorizedProblem[] prob
 	}
 }
 
-protected void storeTasksFor(SourceFile sourceFile, CategorizedProblem[] tasks) throws CoreException {
+protected void storeTasksFor(SourceFile sourceFile, CategorizedProblem[] tasks) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (sourceFile == null || tasks == null || tasks.length == 0) return;
 
 	IResource resource = sourceFile.resource;
-	for (CategorizedProblem task : tasks) {
+	for (CategorizedProblem task : tasks) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (task.getID() == IProblem.Task) {
 			Integer priority = P_NORMAL;
 			String compilerPriority = task.getArguments()[2];
@@ -1096,7 +1096,7 @@ protected void storeTasksFor(SourceFile sourceFile, CategorizedProblem[] tasks) 
 				priority = P_LOW;
 
 			// standard attributes
-			Map<String, Object> attributes = new HashMap<>();
+			Map<String, Object> attributes = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 			attributes.put(IMarker.MESSAGE, task.getMessage());
 			attributes.put(IMarker.PRIORITY, priority);
@@ -1112,7 +1112,7 @@ protected void storeTasksFor(SourceFile sourceFile, CategorizedProblem[] tasks) 
 			Object[] extraAttributeValues = task.getExtraMarkerAttributeValues();
 			if (extraAttributeNames != null && extraAttributeValues != null
 					&& extraAttributeNames.length == extraAttributeValues.length) {
-				for (int j = 0; j < extraAttributeNames.length; j++) {
+				for (int j = 0; j < extraAttributeNames.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					attributes.put(extraAttributeNames[j], extraAttributeValues[j]);
 				}
 			}

@@ -42,7 +42,7 @@ public class FileGenerationTests extends APTTestBase {
 		return new TestSuite(FileGenerationTests.class);
 	}
 
-	public void testSourceGenPackages() throws Exception
+	public void testSourceGenPackages() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		IProject project = env.getProject( getProjectName() );
 		IPath srcRoot = getSourcePath();
@@ -63,7 +63,7 @@ public class FileGenerationTests extends APTTestBase {
 		assertEquals(ProcessorTestStatus.NO_ERRORS, ProcessorTestStatus.getErrors());
 	}
 
-	public void testSourceGenOverwrite() throws Exception
+	public void testSourceGenOverwrite() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		IProject project = env.getProject( getProjectName() );
 		IPath srcRoot = getSourcePath();
@@ -84,7 +84,7 @@ public class FileGenerationTests extends APTTestBase {
 		assertEquals(ProcessorTestStatus.NO_ERRORS, ProcessorTestStatus.getErrors());
 	}
 
-	public void testSourceGenAfterDirChange() throws Exception
+	public void testSourceGenAfterDirChange() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		IJavaProject jproj = env.getJavaProject( getProjectName() );
 		IProject project = env.getProject( getProjectName() );
@@ -113,7 +113,7 @@ public class FileGenerationTests extends APTTestBase {
 		assertEquals(ProcessorTestStatus.NO_ERRORS, ProcessorTestStatus.getErrors());
 	}
 
-	public void testSourceGenSubDir() throws Exception
+	public void testSourceGenSubDir() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		IJavaProject jproj = env.getJavaProject( getProjectName() );
 		IProject project = env.getProject( getProjectName() );
@@ -137,7 +137,7 @@ public class FileGenerationTests extends APTTestBase {
 		assertEquals(ProcessorTestStatus.NO_ERRORS, ProcessorTestStatus.getErrors());
 	}
 
-	public void testTextFileGen() throws Exception {
+	public void testTextFileGen() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// enable the test only on windows for now
 		if (System.getProperty("os.name").indexOf("Windows") == -1) return;
 		final String TEXT_FILE_NAME = "TextFile.txt";
@@ -147,7 +147,7 @@ public class FileGenerationTests extends APTTestBase {
 		IPath srcRoot = getSourcePath();
 
 		String code =
-				"package test;" + "\n" +
+				"package test;" + "\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"import org.eclipse.jdt.apt.tests.annotations.filegen.TextGenAnnotation;" + "\n" +
 				"@TextGenAnnotation(\"" + TEXT_FILE_NAME + "\")" + "\n" +
 				"public class Test" + "\n" +
@@ -165,12 +165,12 @@ public class FileGenerationTests extends APTTestBase {
 		String outputRootPath = options.get("-d");
 		File theFile = new File(new File(outputRootPath), TEXT_FILE_NAME);
 
-		assertTrue("File was not found: " + theFile.getAbsolutePath(), theFile.exists());
+		assertTrue("File was not found: " + theFile.getAbsolutePath(), theFile.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		incrementalBuild( project.getFullPath() );
 		expectingNoProblems();
 		checkProcessorResult(TextGenAnnotationProcessor.class);
-		assertTrue("File was not found: " + theFile.getAbsolutePath(), theFile.exists());
+		assertTrue("File was not found: " + theFile.getAbsolutePath(), theFile.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		// Change the annotation to specify an illegal filename, and an exception should be thrown
 		code =
@@ -185,7 +185,7 @@ public class FileGenerationTests extends APTTestBase {
 		incrementalBuild( project.getFullPath() );
 		expectingNoProblems();
 		assertEquals("Could not generate text file due to IOException", getProcessorResult(TextGenAnnotationProcessor.class));
-		assertTrue("File was found, but should be deleted: " + theFile.getAbsolutePath(), !theFile.exists());
+		assertTrue("File was found, but should be deleted: " + theFile.getAbsolutePath(), !theFile.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		// remove the annotation, and the file should be deleted and processor should not run
 		code =
@@ -198,10 +198,10 @@ public class FileGenerationTests extends APTTestBase {
 		incrementalBuild( project.getFullPath() );
 		expectingNoProblems();
 		assertEquals(null, getProcessorResult(TextGenAnnotationProcessor.class));
-		assertTrue("File was found, but should be deleted: " + theFile.getAbsolutePath(), !theFile.exists());
+		assertTrue("File was found, but should be deleted: " + theFile.getAbsolutePath(), !theFile.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
-	public void testIsGeneratedOrParentFile() throws Exception
+	public void testIsGeneratedOrParentFile() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		IProject project = env.getProject( getProjectName() );
 		IPath srcRoot = getSourcePath();
@@ -224,14 +224,14 @@ public class FileGenerationTests extends APTTestBase {
 		String genSrcDir = AptConfig.getGenSrcDir(env.getJavaProject(getProjectName()));
 		String P = File.separator;
 
-		IFile parentFile = project.getFile("src" + P + "test" + P + "Test.java");
-		IFile generatedFile = project.getFile(genSrcDir + P + "test" + P + "A.java");
+		IFile parentFile = project.getFile("src" + P + "test" + P + "Test.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		IFile generatedFile = project.getFile(genSrcDir + P + "test" + P + "A.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		assertTrue("expected src/test/Test.java to be designated as parent file", gfm.isParentFile(parentFile));
 		assertTrue("expected .apt_generated/test/A.java to be designated as generated file", gfm.isGeneratedFile(generatedFile));
 	}
 
-	public void testTestSourceGen() throws Exception
+	public void testTestSourceGen() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		IJavaProject jproj = env.getJavaProject( getProjectName() );
 		IProject project = env.getProject( getProjectName() );
@@ -276,32 +276,32 @@ public class FileGenerationTests extends APTTestBase {
 		GeneratedFileManager maingfm = aptProj.getGeneratedFileManager(false);
 		GeneratedFileManager testgfm = aptProj.getGeneratedFileManager(true);
 
-		IFile mainParentFile = project.getFile("src" + P + "test" + P + "Main.java");
-		IFile mainGeneratedFile = project.getFile("__main_foo_src" + P + "generatedfilepackage" + P + "GeneratedFileMain.java");
+		IFile mainParentFile = project.getFile("src" + P + "test" + P + "Main.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		IFile mainGeneratedFile = project.getFile("__main_foo_src" + P + "generatedfilepackage" + P + "GeneratedFileMain.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		IFile testParentFile = project.getFile("src-tests" + P + "test" + P + "Test.java");
-		IFile testGeneratedFile = project.getFile("__test_foo_src" + P + "generatedfilepackage" + P + "GeneratedFileTest.java");
+		IFile testParentFile = project.getFile("src-tests" + P + "test" + P + "Test.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		IFile testGeneratedFile = project.getFile("__test_foo_src" + P + "generatedfilepackage" + P + "GeneratedFileTest.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		assertTrue("expected "
+		assertTrue("expected " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ mainParentFile.getProjectRelativePath()
 				+ " to be designated as main parent file", maingfm.isParentFile(mainParentFile));
-		assertTrue("expected " + mainGeneratedFile.getProjectRelativePath()
+		assertTrue("expected " + mainGeneratedFile.getProjectRelativePath() //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ " to be designated as main generated file", maingfm.isGeneratedFile(mainGeneratedFile));
-		assertFalse("expected "
+		assertFalse("expected " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ testParentFile.getProjectRelativePath()
 				+ " not to be designated as main parent file", maingfm.isParentFile(testParentFile));
-		assertFalse("expected " + testGeneratedFile.getProjectRelativePath()
+		assertFalse("expected " + testGeneratedFile.getProjectRelativePath() //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ " not to be designated as main generated file", maingfm.isGeneratedFile(testGeneratedFile));
 
-		assertTrue("expected "
+		assertTrue("expected " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ testParentFile.getProjectRelativePath()
 				+ " to be designated as test parent file", testgfm.isParentFile(testParentFile));
-		assertTrue("expected " + testGeneratedFile.getProjectRelativePath()
+		assertTrue("expected " + testGeneratedFile.getProjectRelativePath() //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ " to be designated as test generated file", testgfm.isGeneratedFile(testGeneratedFile));
-		assertFalse("expected "
+		assertFalse("expected " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ mainParentFile.getProjectRelativePath()
 				+ " not to be designated as test parent file", testgfm.isParentFile(mainParentFile));
-		assertFalse("expected " + mainGeneratedFile.getProjectRelativePath()
+		assertFalse("expected " + mainGeneratedFile.getProjectRelativePath() //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ " not to be designated as test generated file", testgfm.isGeneratedFile(mainGeneratedFile));
 
 	}

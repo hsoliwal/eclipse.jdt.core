@@ -90,15 +90,15 @@ public class JavaIndexerApplication implements IApplication {
 		displayHelp();
 	}
 
-	private boolean processCommandLine(String[] argsArray) {
-		List<String> args = new ArrayList<>();
-		for (String arg : argsArray) {
+	private boolean processCommandLine(String[] argsArray) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		List<String> args = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (String arg : argsArray) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			args.add(arg);
 		}
 		int index = 0;
 		final int argCount = argsArray.length;
 
-		loop: while (index < argCount) {
+		loop: while (index < argCount) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String currentArg = argsArray[index++];
 			if (PDE_LAUNCH.equals(currentArg)) {
 				continue loop;
@@ -128,7 +128,7 @@ public class JavaIndexerApplication implements IApplication {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public Object start(IApplicationContext context) throws Exception {
 		boolean execute = processCommandLine((String[]) context.getArguments().get(IApplicationContext.APPLICATION_ARGS));
 		if (execute) {

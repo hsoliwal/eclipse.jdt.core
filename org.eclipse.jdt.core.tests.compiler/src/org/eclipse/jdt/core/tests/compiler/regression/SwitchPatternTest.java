@@ -121,10 +121,10 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	private String withMissingPatterns(String message, String missingPatterns) {
 		if (this.complianceLevel < ClassFileConstants.JDK27)
 			return message;
-		return message + ", or add the missing case patterns: " + missingPatterns;
+		return message + ", or add the missing case patterns: " + missingPatterns; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
-	public void testIssue57_001() {
+	public void testIssue57_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -143,7 +143,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			},
 			"String: Hello World!");
 	}
-	public void testIssue57_002() {
+	public void testIssue57_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -162,7 +162,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			},
 			"Integer: greater than 10");
 	}
-	public void testBug573516_002() {
+	public void testBug573516_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -186,7 +186,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void testBug573516_003() {
+	public void testBug573516_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -211,7 +211,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void testBug573516_004() {
+	public void testBug573516_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -235,7 +235,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void testBug573516_005() {
+	public void testBug573516_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -275,7 +275,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void testBug573516_006() {
+	public void testBug573516_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -325,7 +325,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void testBug573516_007() {
+	public void testBug573516_007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -360,7 +360,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void testBug573516_008() {
+	public void testBug573516_008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -400,7 +400,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void testBug573516_009() {
+	public void testBug573516_009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -435,7 +435,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void testBug573516_010() {
+	public void testBug573516_010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -480,7 +480,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void testBug573516_011() {
+	public void testBug573516_011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -510,7 +510,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void testBug574228_001() {
+	public void testBug574228_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -540,7 +540,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testBug573936_01() {
+	public void testBug573936_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -576,7 +576,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Illegal fall-through to a pattern\n" +
 				"----------\n");
 	}
-	public void testBug573939_01() {
+	public void testBug573939_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -607,7 +607,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"The method Zork() is undefined for the type X\n" +
 				"----------\n");
 	}
-	public void testBug573939_02() {
+	public void testBug573939_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -633,7 +633,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"String\n" +
 				"Object");
 	}
-	public void testBug573939_03() {
+	public void testBug573939_03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -673,7 +673,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"H\n" +
 				"Object");
 	}
-	public void testBug573939_03b() {
+	public void testBug573939_03b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -713,7 +713,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"H\n" +
 				"Object");
 	}
-	public void test045() {
+	public void test045() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -737,7 +737,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"The local variable j may not have been initialized\n" +
 			"----------\n");
 	}
-	public void testBug574525_01() {
+	public void testBug574525_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -761,7 +761,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"NULL");
 	}
-	public void testBug574525_02() {
+	public void testBug574525_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -803,7 +803,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"NULL\n" +
 				"Object");
 	}
-	public void testBug574525_03() {
+	public void testBug574525_03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -827,7 +827,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"0");
 	}
-	public void testBug574525_04() {
+	public void testBug574525_04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -856,7 +856,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Case constant of type null is incompatible with switch selector type int\n" +
 				"----------\n");
 	}
-	public void testBug574538_01() {
+	public void testBug574538_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -883,7 +883,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Greater than 10:11\n" +
 				"Greater than 0:9");
 	}
-	public void testBug574538_02() {
+	public void testBug574538_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -908,7 +908,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Object:Hello World!");
 	}
 
-	public void testBug574549_01() {
+	public void testBug574549_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -927,7 +927,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"Object: Hello World!");
 	}
-	public void testBug574549_02() {
+	public void testBug574549_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -956,7 +956,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Greater than 0:9\n" +
 				"Give Me Some SunShine:Hello World!");
 	}
-	public void testBug574549_03() {
+	public void testBug574549_03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -995,7 +995,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"The default case is already defined\n" +
 				"----------\n");
 	}
-	public void testBug574549_04() {
+	public void testBug574549_04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -1031,7 +1031,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// Test that when a pattern variable is unused and when the OPTION_PreserveUnusedLocal
 	// option is used, no issue is reported at runtime.
-	public void testBug573937_1() {
+	public void testBug573937_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String,String> options = getCompilerOptions();
 		String opt = options.get(CompilerOptions.OPTION_PreserveUnusedLocal);
 		try {
@@ -1061,7 +1061,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// A simple pattern variable in a case is not visible in the
 	// following case statement
-	public void testBug573937_2() {
+	public void testBug573937_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 						"X.java",
@@ -1087,7 +1087,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"----------\n");
 	}
 	// Same as above, but without break statement
-	public void testBug573937_3() {
+	public void testBug573937_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 						"X.java",
@@ -1119,7 +1119,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// Test that compiler rejects attempts to redeclare local variable
 	// with same name as a pattern variable
-	public void testBug573937_4() {
+	public void testBug573937_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 						"X.java",
@@ -1145,7 +1145,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// Test that compiler allows local variable with same name as a
 	// pattern variable in a different case statement
-	public void testBug573937_5() {
+	public void testBug573937_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 						"X.java",
@@ -1169,7 +1169,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// Test that a pattern variable can't use name of an already existing local
 	// variable
-	public void testBug573937_6() {
+	public void testBug573937_6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 						"X.java",
@@ -1195,7 +1195,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	// Test that compiler rejects attempts to redeclare another pattern
 	// variable (instanceof) with same name as that a pattern variable in
 	// that case statement
-	public void testBug573937_7() {
+	public void testBug573937_7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 						"X.java",
@@ -1222,7 +1222,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// Test that when multiple case statements declare pattern variables
 	// with same name, correct ones are used in their respective scopes.
-	public void testBug573937_8() {
+	public void testBug573937_8() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 						"X.java",
@@ -1250,7 +1250,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// Test that a pattern variable declared in the preceding case statement
 	// can't be used in the case statement itself
-	public void testBug573937_9() {
+	public void testBug573937_9() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 						"X.java",
@@ -1277,7 +1277,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// Test that redefining pattern variables with null is allowed
 	// and produce expected result (NPE) when run.
-	public void testBug573937_10() {
+	public void testBug573937_10() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -1313,7 +1313,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// Test that a pattern variable is allowed in a switch label throw
 	// statement and when run, produces expected result
-	public void testBug573937_11() {
+	public void testBug573937_11() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -1348,7 +1348,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// A non effectively final referenced from the RHS of the guarding expression
 	// is reported by the compiler.
-	public void testBug574612_1() {
+	public void testBug574612_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 						"X.java",
@@ -1374,7 +1374,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// A non effectively final referenced from the LHS of the guarding expression
 	// is reported by the compiler.
-	public void testBug574612_2() {
+	public void testBug574612_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 						"X.java",
@@ -1400,7 +1400,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// An explicitly final local variable, also referenced in a guarding expression of a pattern
 	// and later on re-assigned is only reported for the explicit final being modified
-	public void testBug574612_3() {
+	public void testBug574612_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 						"X.java",
@@ -1424,7 +1424,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"The final local variable len cannot be assigned. It must be blank and not using a compound assignment\n" +
 				"----------\n");
 	}
-	public void testBug574612_4() {
+	public void testBug574612_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 						"X.java",
@@ -1446,7 +1446,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"hello");
 	}
-	public void testBug574719_001() {
+	public void testBug574719_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1470,7 +1470,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"A \'default\' can occur after \'case\' only as a second case label expression and that too only if \'null\' precedes  in \'case null, default\' \n" +
 			"----------\n");
 	}
-	public void testBug574719_006() {
+	public void testBug574719_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1506,7 +1506,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"A \'default\' can occur after \'case\' only as a second case label expression and that too only if \'null\' precedes  in \'case null, default\' \n" +
 			"----------\n");
 	}
-	public void testBug574561_001() {
+	public void testBug574561_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1531,7 +1531,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"Syntax error on token \",\", : expected\n" +
 			"----------\n");
 	}
-	public void testBug574561_002() {
+	public void testBug574561_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1566,7 +1566,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"A \'default\' can occur after \'case\' only as a second case label expression and that too only if \'null\' precedes  in \'case null, default\' \n" +
 			"----------\n");
 	}
-	public void testBug574561_003() {
+	public void testBug574561_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1601,7 +1601,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"A \'default\' can occur after \'case\' only as a second case label expression and that too only if \'null\' precedes  in \'case null, default\' \n" +
 			"----------\n");
 	}
-	public void testBug574793_001() {
+	public void testBug574793_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1647,7 +1647,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"Case constant of type int is incompatible with switch selector type Object\n" +
 			"----------\n");
 	}
-	public void testBug574559_001() {
+	public void testBug574559_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1667,7 +1667,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"Cannot mix pattern with other case labels\n" +
 			"----------\n");
 	}
-	public void testBug574559_002() {
+	public void testBug574559_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1693,7 +1693,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 	// Test that fall-through to a pattern is not allowed (label statement group has one statement)
-	public void testBug573940_1() {
+	public void testBug573940_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -1722,7 +1722,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"----------\n");
 	}
 	// Test that fall-through to a pattern is not allowed (label statement group has zero statement)
-	public void testBug573940_2() {
+	public void testBug573940_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -1751,7 +1751,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"----------\n");
 	}
 	// Test that fall-through to a pattern is not allowed (label statement group has zero statement)
-	public void testBug573940_2a() {
+	public void testBug573940_2a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -1774,7 +1774,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"----------\n");
 	}
 	// Test that falling through from a pattern to a default is allowed
-	public void testBug573940_3() {
+	public void testBug573940_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -1797,7 +1797,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// Test that a case statement with pattern is allowed when statement group ends
 	// with an Throw statement instead of a break statement
-	public void testBug573940_4() {
+	public void testBug573940_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -1825,7 +1825,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// Test that switch expression with pattern variables is reported when a case statement
 	// doesn't return any value.
-	public void testBug573940_5() {
+	public void testBug573940_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -1849,7 +1849,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"A switch labeled block in a switch expression must yield a value or throw an an exception\n" +
 				"----------\n");
 	}
-	public void testBug574564_001() {
+	public void testBug574564_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1872,7 +1872,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"'var' is not allowed here\n" +
 			"----------\n");
 	}
-	public void testBug574564_002() {
+	public void testBug574564_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1920,7 +1920,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"Named pattern variables are not allowed here\n" +
 			"----------\n");
 	}
-	public void testBug574564_003() {
+	public void testBug574564_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1948,7 +1948,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"Cannot mix pattern with other case labels\n" +
 			"----------\n");
 	}
-	public void testBug574564_004() {
+	public void testBug574564_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1986,7 +1986,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"'var' is not allowed here\n" +
 			"----------\n");
 	}
-	public void testBug574564_005() {
+	public void testBug574564_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2019,7 +2019,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"'var' is not allowed here\n" +
 			"----------\n");
 	}
-	public void testBug574564_006() {
+	public void testBug574564_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2057,7 +2057,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"The default case is already defined\n" +
 			"----------\n");
 	}
-	public void testBug574564_007() {
+	public void testBug574564_007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2105,7 +2105,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"The default case is already defined\n" +
 			"----------\n");
 	}
-	public void testBug574564_008() {
+	public void testBug574564_008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2143,7 +2143,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"The default case is already defined\n" +
 			"----------\n");
 	}
-	public void testBug574564_009() {
+	public void testBug574564_009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2177,7 +2177,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"This case label is dominated by one of the preceding case labels\n" +
 			"----------\n");
 	}
-	public void testBug574564_010() {
+	public void testBug574564_010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions();
 		options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_20);
 		runNegativeTest(
@@ -2216,7 +2216,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			true,
 			options);
 	}
-	public void testBug574564_013() {
+	public void testBug574564_013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2245,7 +2245,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"A \'default\' can occur after \'case\' only as a second case label expression and that too only if \'null\' precedes  in \'case null, default\' \n" +
 			"----------\n");
 	}
-	public void testBug574563_001() {
+	public void testBug574563_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2266,7 +2266,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"Duplicate case\n" +
 			"----------\n");
 	}
-	public void testBug574563_002() {
+	public void testBug574563_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2294,7 +2294,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void testBug574563_003() {
+	public void testBug574563_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2325,7 +2325,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void testBug574563_004() {
+	public void testBug574563_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2351,7 +2351,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void testBug574563_005() {
+	public void testBug574563_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2382,7 +2382,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void testBug575030_01() {
+	public void testBug575030_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -2400,7 +2400,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"Hello World!");
 	}
-	public void testBug574614_001() {
+	public void testBug574614_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -2425,7 +2425,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			},
 			"Hello World!");
 	}
-	public void testBug574614_002() {
+	public void testBug574614_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -2453,7 +2453,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			},
 			"Hello World!");
 	}
-	public void testBug573921_1() {
+	public void testBug573921_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -2478,7 +2478,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"This case label is dominated by one of the preceding case labels\n" +
 				"----------\n");
 	}
-	public void testBug573921_2() {
+	public void testBug573921_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -2504,7 +2504,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"This case label is dominated by one of the preceding case labels\n" +
 				"----------\n");
 	}
-	public void testBug573921_3() {
+	public void testBug573921_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -2528,7 +2528,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"String:Hello!");
 	}
-	public void testBug573921_4() {
+	public void testBug573921_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -2552,7 +2552,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"A CS:Hello!");
 	}
-	public void testBug573921_5() {
+	public void testBug573921_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -2575,7 +2575,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"2:Hello");
 	}
-	public void testBug573921_6() {
+	public void testBug573921_6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -2598,7 +2598,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"1:");
 	}
-	public void testBug573921_7() {
+	public void testBug573921_7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -2624,7 +2624,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Type Object cannot be safely cast to List<String>\n" +
 				"----------\n");
 	}
-	public void testBug573921_8() {
+	public void testBug573921_8() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -2648,7 +2648,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Type mismatch: cannot convert from int to String\n" +
 				"----------\n");
 	}
-	public void testBug573921_9() {
+	public void testBug573921_9() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -2672,7 +2672,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Switch case cannot have both unconditional pattern and default label\n" +
 				"----------\n");
 	}
-	public void testBug573921_10() {
+	public void testBug573921_10() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -2696,7 +2696,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Switch case cannot have both unconditional pattern and default label\n" +
 				"----------\n");
 	}
-	public void testBug573921_11() {
+	public void testBug573921_11() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -2720,7 +2720,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Switch case cannot have both unconditional pattern and default label\n" +
 				"----------\n");
 	}
-	public void testBug575049_001() {
+	public void testBug575049_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -2745,7 +2745,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			},
 			"0");
 	}
-	public void testBug575049_002() {
+	public void testBug575049_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -2769,7 +2769,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			},
 			"0");
 	}
-	public void testBug575049_003() {
+	public void testBug575049_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -2793,7 +2793,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			},
 			"0");
 	}
-	public void testBug575049_004() {
+	public void testBug575049_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2814,14 +2814,14 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				" }\n"+
 				"}",
 			},
-			"----------\n" +
+			"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"1. ERROR in X.java (at line 7)\n" +
 			"	return switch (i) {\n" +
 			"	               ^\n" +
 			withMissingPatterns("A switch expression should have a default case", "C _") + "\n" +
 			"----------\n");
 	}
-	public void testBug575048_01() {
+	public void testBug575048_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2844,7 +2844,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"This case label is dominated by one of the preceding case labels\n" +
 			"----------\n");
 	}
-	public void testBug575053_001() {
+	public void testBug575053_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -2866,7 +2866,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			},
 			"Null Pointer Exception Thrown");
 	}
-	public void testBug575053_002() {
+	public void testBug575053_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -2889,7 +2889,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"",
 			"Null Pointer Exception Thrown");
 	}
-	public void testBug575249_01() {
+	public void testBug575249_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2917,7 +2917,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"Syntax error on token \"yield\", AssignmentOperator expected after this token\n" +
 			"----------\n");
 	}
-	public void testBug575249_02() {
+	public void testBug575249_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -2935,7 +2935,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			},
 			"0");
 	}
-	public void testBug575249_03() {
+	public void testBug575249_03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2966,7 +2966,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"""
 				);
 	}
-	public void testBug575249_04() {
+	public void testBug575249_04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -3018,7 +3018,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			},
 			"0");
 	}
-	public void testBug575241_03() {
+	public void testBug575241_03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -3039,7 +3039,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"1\n" +
 			"0");
 	}
-	public void testBug575241_04() {
+	public void testBug575241_04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -3063,7 +3063,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"1\n" +
 			"NPE");
 	}
-	public void testBug575241_05() {
+	public void testBug575241_05() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -3087,7 +3087,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"0\n" +
 			"100");
 	}
-	public void testBug575241_06() {
+	public void testBug575241_06() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -3110,7 +3110,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"0\n" +
 			"NPE");
 	}
-	public void testBug575241_07() {
+	public void testBug575241_07() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -3130,7 +3130,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"Hello\n" +
 			"100");
 	}
-	public void testBug575241_08() {
+	public void testBug575241_08() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -3153,7 +3153,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"Hello\n" +
 			"NPE");
 	}
-	public void testBug575356_01() {
+	public void testBug575356_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -3176,7 +3176,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"A \'default\' can occur after \'case\' only as a second case label expression and that too only if \'null\' precedes  in \'case null, default\' \n" +
 				"----------\n");
 	}
-	public void testBug575356_02() {
+	public void testBug575356_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -3194,7 +3194,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"hello");
 	}
-	public void testBug575356_03() {
+	public void testBug575356_03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -3227,7 +3227,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"This case label is dominated by one of the preceding case labels\n" +
 				"----------\n");
 	}
-	public void testBug575356_04() {
+	public void testBug575356_04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -3249,7 +3249,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Integer:10\n" +
 				"Hello");
 	}
-	public void testBug575052_001() {
+	public void testBug575052_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -3267,7 +3267,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			},
 			"Hello");
 	}
-	public void testBug575052_002() {
+	public void testBug575052_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3289,7 +3289,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"An enhanced switch statement should be exhaustive; a default label expected\n" +
 			"----------\n");
 	}
-	public void testBug575052_003() {
+	public void testBug575052_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3311,7 +3311,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"An enhanced switch statement should be exhaustive; a default label expected\n" +
 			"----------\n");
 	}
-	public void testBug575052_004() {
+	public void testBug575052_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -3330,7 +3330,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			},
 			"0");
 	}
-	public void testBug575050_001() {
+	public void testBug575050_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3352,7 +3352,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"A switch expression should have a default case\n" +
 			"----------\n");
 	}
-	public void testBug575050_002() {
+	public void testBug575050_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3375,7 +3375,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 	// From 14.11.1.2 - null to be handled separately - no dominance here
-	public void testBug575047_01() {
+	public void testBug575047_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -3401,7 +3401,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	// following is true:
 	//   * the type of c is a primitive type and its wrapper class (5.1.7) is a subtype of the erasure of the type of p.
     //   * the type of c is a reference type and is a subtype of the erasure of the type of p.
-	public void testBug575047_02() {
+	public void testBug575047_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -3421,7 +3421,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"This case label is dominated by one of the preceding case labels\n" +
 				"----------\n");
 	}
-	public void testBug575047_03() {
+	public void testBug575047_03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -3444,7 +3444,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"This case label is dominated by one of the preceding case labels\n" +
 				"----------\n");
 	}
-	public void testBug575047_04() {
+	public void testBug575047_04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -3464,7 +3464,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"2\n" +
 				"0");
 	}
-	public void testBug575047_05() {
+	public void testBug575047_05() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -3485,7 +3485,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				+ "Cannot switch on a value of type float. Only convertible int values, strings or enum variables are permitted\n"
 				+ "----------\n");
 	}
-	public void testBug575047_06() {
+	public void testBug575047_06() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -3509,7 +3509,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	// Test that when a literal is used as case constant
 	// we report type mismatch error against the literal's type and
 	// not on other types the case statement may have resolved too
-	public void testBug575047_07() {
+	public void testBug575047_07() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -3535,7 +3535,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Case constant of type String is incompatible with switch selector type Number\n" +
 				"----------\n");
 	}
-	public void testBug575047_08() {
+	public void testBug575047_08() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -3555,7 +3555,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"3\n"+
 				"0");
 	}
-	public void testBug575047_09() {
+	public void testBug575047_09() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -3575,7 +3575,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"0\n" +
 				"-1");
 	}
-	public void testBug575047_10() {
+	public void testBug575047_10() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -3605,7 +3605,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"unknown");
 	}
 	// Positive - Mix enum constants as well as suitable pattern var
-	public void testBug575047_11() {
+	public void testBug575047_11() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -3628,7 +3628,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Const:Red\n" +
 				"Blue");
 	}
-	public void testBug575047_12() {
+	public void testBug575047_12() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -3652,7 +3652,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Red\n" +
 				"Blue");
 	}
-	public void testBug575047_13() {
+	public void testBug575047_13() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -3676,7 +3676,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"A Switch expression should cover all possible values\n" +
 				"----------\n");
 	}
-	public void testBug575047_14() {
+	public void testBug575047_14() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -3699,7 +3699,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"A Switch expression should cover all possible values\n" +
 				"----------\n");
 	}
-	public void testBug575047_15() {
+	public void testBug575047_15() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -3737,7 +3737,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"hello");
 	}
-	public void testBug575055_001() {
+	public void testBug575055_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -3759,7 +3759,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// Fails with Javac as it prints Javac instead of throwing NPE
 	// https://bugs.openjdk.java.net/browse/JDK-8272776
-	public void testBug575051_1() {
+	public void testBug575051_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -3789,7 +3789,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"----------\n");
 	}
 	// Test we don't report any illegal fall-through to null case
-	public void testBug575051_2() {
+	public void testBug575051_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -3812,7 +3812,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"");
 	}
-	public void testBug575571_1() {
+	public void testBug575571_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.customOptions = getCompilerOptions();
 		runner.customOptions.put(CompilerOptions.OPTION_ReportMissingDefaultCase, CompilerOptions.WARNING);
@@ -3839,7 +3839,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 		runner.javacTestOptions = Excuse.EclipseHasSomeMoreWarnings;
 		runner.runWarningTest();
 	}
-	public void testBug575571_2() {
+	public void testBug575571_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -3862,7 +3862,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Illegal fall-through to a pattern\n" +
 				"----------\n");
 	}
-	public void testBug575714_01() {
+	public void testBug575714_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -3884,7 +3884,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"The method Zork() is undefined for the type X\n" +
 				"----------\n");
 	}
-	public void testBug575714_02() {
+	public void testBug575714_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -3906,7 +3906,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"This method must return a result of type Object\n" +
 				"----------\n");
 	}
-	public void testBug575714_03() {
+	public void testBug575714_03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -3924,7 +3924,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"Hello");
 	}
-	public void testBug575714_04() {
+	public void testBug575714_04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -3945,7 +3945,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"Hello");
 	}
-	public void testBug575687_1() {
+	public void testBug575687_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -3978,7 +3978,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Case constant of type double is incompatible with switch selector type Number\n" +
 				"----------\n");
 	}
-	public void testBug575686_1() {
+	public void testBug575686_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -4060,7 +4060,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"This case label is dominated by one of the preceding case labels\n" +
 				"----------\n");
 	}
-	public void testBug575738_001() {
+	public void testBug575738_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -4083,7 +4083,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Unexpected type int, expected class or array type\n" +
 				"----------\n");
 	}
-	public void testBug575738_002() {
+	public void testBug575738_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -4107,7 +4107,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"----------\n");
 	}
 
-	public void testBug576075_001() throws Exception {
+	public void testBug576075_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"p/Rec.java",
@@ -4145,7 +4145,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"		#104 REF_getField c:Lp/Rec$MyInterface;";
 		verifyClassFile(expectedOutput, "p/Rec.class", ClassFileBytesDisassembler.SYSTEM);
 	}
-	public void testBug576785_001() {
+	public void testBug576785_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -4167,7 +4167,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			},
 			"42");
 	}
-	public void testBug576785_002() {
+	public void testBug576785_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 				"X.java",
@@ -4190,7 +4190,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				" }\n"+
 				"}"
 				},
-				"----------\n" +
+				"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in X.java (at line 9)\n" +
 				"	return switch (ji) { // Exhaustive!\n" +
 				"	               ^^\n" +
@@ -4202,7 +4202,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"The method Zork() is undefined for the type X\n" +
 				"----------\n");
 	}
-	public void testBug576830_001() {
+	public void testBug576830_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4223,7 +4223,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"An enhanced switch statement should be exhaustive; a default label expected\n" +
 			"----------\n");
 	}
-	public void testBug578107_001() {
+	public void testBug578107_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4241,7 +4241,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"       }\n"+
 				"}",
 			},
-			"----------\n" +
+			"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"1. ERROR in X.java (at line 5)\n" +
 			"	switch (ji) { // non-exhaustive\n" +
 			"	        ^^\n" +
@@ -4253,7 +4253,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void testBug578107_002() {
+	public void testBug578107_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4278,7 +4278,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void testBug578107_003() {
+	public void testBug578107_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4303,7 +4303,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void testBug578108_001() {
+	public void testBug578108_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4328,7 +4328,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void testBug578108_002() {
+	public void testBug578108_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4353,7 +4353,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void testBug578143_001() {
+	public void testBug578143_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -4389,7 +4389,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void testBug578402() {
+	public void testBug578402() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -4417,7 +4417,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"RED\n" +
 				"BLUE");
 	}
-	public void testBug578402_2() {
+	public void testBug578402_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -4449,7 +4449,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"2");
 	}
 	// to be enabled after bug 578417 is fixed.
-	public void testBug578402_3() {
+	public void testBug578402_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -4477,7 +4477,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"2");
 	}
-	public void testBug578241_1() {
+	public void testBug578241_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -4504,8 +4504,8 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"true");
 	}
-	private String getTestCaseForBug578504 (String caseConstant) {
-		return "public class X {\n"
+	private String getTestCaseForBug578504 (String caseConstant) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		return "public class X {\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "    public Object literal = \"a\";\n"
 				+ "	public boolean foo() {\n"
 				+ "        String s = switch(literal) {\n"
@@ -4565,7 +4565,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"false");
 	}
-	public void testBug578553_1() {
+	public void testBug578553_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -4607,7 +4607,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				----------
 				""");
 	}
-	public void testBug578553_2() {
+	public void testBug578553_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -4667,7 +4667,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Syntax error, insert \";\" to complete SwitchRule\n" +
 				"----------\n");
 	}
-	public void testBug578553_3() {
+	public void testBug578553_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -4724,7 +4724,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Syntax error, insert \";\" to complete SwitchRule\n" +
 				"----------\n");
 	}
-	public void testBug578553_4() {
+	public void testBug578553_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -4750,7 +4750,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Local variable i referenced from a guard must be final or effectively final\n" +
 				"----------\n");
 	}
-	public void testBug578553_5() {
+	public void testBug578553_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -4776,7 +4776,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Local variable i referenced from a guard must be final or effectively final\n" +
 				"----------\n");
 	}
-	public void testBug578553_6() {
+	public void testBug578553_6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -4802,7 +4802,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Local variable i referenced from a guard must be final or effectively final\n" +
 				"----------\n");
 	}
-	public void testBug578553_7() {
+	public void testBug578553_7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -4829,7 +4829,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Local variable i referenced from a guard must be final or effectively final\n" +
 				"----------\n");
 	}
-	public void testBug578568_1() {
+	public void testBug578568_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -4855,7 +4855,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"1");
 	}
-	public void testBug578568_2() {
+	public void testBug578568_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -4878,7 +4878,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"1");
 	}
-	public void testBug578568_3() {
+	public void testBug578568_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -4905,7 +4905,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"A switch labeled block in a switch expression must yield a value or throw an an exception\n" +
 				"----------\n");
 	}
-	public void testBug578416() {
+	public void testBug578416() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"public class X {\n"
@@ -4941,7 +4941,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"10\n" +
 				"0");
 	}
-	public void testBug578416_1() {
+	public void testBug578416_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"public class X {\n"
@@ -4977,7 +4977,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"10\n" +
 				"0");
 	}
-	public void testBug578416_2() {
+	public void testBug578416_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"public class X {\n"
@@ -5006,7 +5006,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"5\n" +
 				"0");
 	}
-	public void testBug578416_3() {
+	public void testBug578416_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"public class X {\n"
@@ -5035,7 +5035,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"5\n" +
 				"0");
 	}
-	public void testBug578635_1() {
+	public void testBug578635_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"public class X {\n"
@@ -5057,7 +5057,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"false\n" +
 				"true");
 	}
-	public void testBug578635_2() {
+	public void testBug578635_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"public class X {\n"
@@ -5087,7 +5087,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Switch case cannot have both unconditional pattern and default label\n" +
 				"----------\n");
 	}
-	public void testBug578635_3() {
+	public void testBug578635_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"public class X {\n"
@@ -5117,7 +5117,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Switch case cannot have both unconditional pattern and default label\n" +
 				"----------\n");
 	}
-	public void testBug578417_1() {
+	public void testBug578417_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"public class X {\n"
@@ -5143,7 +5143,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				+ "}"},
 				"1" );
 	}
-	public void testBug578132_001() {
+	public void testBug578132_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -5163,7 +5163,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"0\n"+
 				"1");
 	}
-	public void test576788_1() {
+	public void test576788_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -5189,7 +5189,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"true\n"+
 				"false");
 	}
-	public void testBug577374_001() {
+	public void testBug577374_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -5215,7 +5215,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"1");
 	}
-	public void testBug579355_001() {
+	public void testBug579355_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -5243,7 +5243,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"special case:1\n" +
 				"positive integer: 10");
 	}
-	public void testBug579355_002() {
+	public void testBug579355_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -5274,7 +5274,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"positive integer: 10\n"+
 				"null");
 	}
-	public void testBug579355_004() {
+	public void testBug579355_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -5299,7 +5299,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"Pass");
 	}
-	public void testBug579355_005() {
+	public void testBug579355_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -5358,7 +5358,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"1");
 	}
-	public void testIssue_556_001() {
+	public void testIssue_556_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -5385,7 +5385,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"A null case label has to be either the only expression in a case label or the first expression followed only by a default\n" +
 				"----------\n");
 	}
-	public void testIssue_556_002() {
+	public void testIssue_556_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -5409,7 +5409,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"A \'default\' can occur after \'case\' only as a second case label expression and that too only if \'null\' precedes  in \'case null, default\' \n" +
 				"----------\n");
 	}
-	public void testIssue_556_003() {
+	public void testIssue_556_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -5441,7 +5441,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"A \'default\' can occur after \'case\' only as a second case label expression and that too only if \'null\' precedes  in \'case null, default\' \n" +
 				"----------\n");
 	}
-	public void testIssue_556_004() {
+	public void testIssue_556_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -5480,7 +5480,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"A \'default\' can occur after \'case\' only as a second case label expression and that too only if \'null\' precedes  in \'case null, default\' \n" +
 				"----------\n");
 	}
-	public void testIssue_556_005() {
+	public void testIssue_556_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -5515,7 +5515,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void testIssue_556_006() {
+	public void testIssue_556_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -5539,7 +5539,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"A \'default\' can occur after \'case\' only as a second case label expression and that too only if \'null\' precedes  in \'case null, default\' \n" +
 			"----------\n");
 	}
-	public void testIssue_556_007() {
+	public void testIssue_556_007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -5563,7 +5563,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"A \'default\' can occur after \'case\' only as a second case label expression and that too only if \'null\' precedes  in \'case null, default\' \n" +
 			"----------\n");
 	}
-	public void testIssue_556_008() {
+	public void testIssue_556_008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -5600,7 +5600,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"This case label is dominated by one of the preceding case labels\n" +
 				"----------\n");
 	}
-	public void testIssue_556_009() {
+	public void testIssue_556_009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -5629,7 +5629,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"This case label is dominated by one of the preceding case labels\n" +
 				"----------\n");
 	}
-	public void testIssue658() {
+	public void testIssue658() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -5656,7 +5656,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"1\n0");
 	}
-	public void testIssue711_1() {
+	public void testIssue711_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -5681,7 +5681,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"This case label is dominated by one of the preceding case labels\n" +
 				"----------\n");
 	}
-	public void testIssue711_2() {
+	public void testIssue711_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -5706,7 +5706,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"This case label is dominated by one of the preceding case labels\n" +
 				"----------\n");
 	}
-	public void testIssue742_1() {
+	public void testIssue742_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -5729,7 +5729,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"This case label is dominated by one of the preceding case labels\n" +
 				"----------\n");
 	}
-	public void testIssue742_2() {
+	public void testIssue742_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -5752,7 +5752,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"This case label is dominated by one of the preceding case labels\n" +
 				"----------\n");
 	}
-	public void testIssue712_001() {
+	public void testIssue712_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -5781,7 +5781,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Hello World\n" +
 				"It\'s either an R or a string");
 	}
-	public void testIssue712_002() {
+	public void testIssue712_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -5808,7 +5808,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"Either R or an S");
 	}
-	public void testIssue712_003() {
+	public void testIssue712_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -5834,7 +5834,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"Either null or an R");
 	}
-	public void testIssue712_004() {
+	public void testIssue712_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -5859,7 +5859,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Illegal fall-through from a case label pattern\n" +
 				"----------\n");
 	}
-	public void testIssueDefaultDominance_001() {
+	public void testIssueDefaultDominance_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -5881,7 +5881,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"This case label is dominated by one of the preceding case labels\n" +
 				"----------\n");
 	}
-	public void testIssueDefaultDominance_002() {
+	public void testIssueDefaultDominance_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -5902,7 +5902,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"This case label is dominated by one of the preceding case labels\n" +
 				"----------\n");
 	}
-	public void testIssueDefaultDominance_003() {
+	public void testIssueDefaultDominance_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -5923,7 +5923,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"This case label is dominated by one of the preceding case labels\n" +
 				"----------\n");
 	}
-	public void testIssueDefaultDominance_004() {
+	public void testIssueDefaultDominance_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -5945,7 +5945,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"This case label is dominated by one of the preceding case labels\n" +
 				"----------\n");
 	}
-	public void testIssue919() {
+	public void testIssue919() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -5998,7 +5998,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"This case label is dominated by one of the preceding case labels\n" +
 			"----------\n");
 	}
-	public void testIssue1126a() {
+	public void testIssue1126a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -6019,7 +6019,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"1\n" +
 				"0");
 	}
-	public void testIssue1126b() {
+	public void testIssue1126b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -6040,7 +6040,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"1\n" +
 				"0");
 	}
-	public void testIssue587_001() {
+	public void testIssue587_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -6062,7 +6062,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"42");
 	}
-	public void testIssueExhaustiveness_001() {
+	public void testIssueExhaustiveness_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -6088,7 +6088,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"42");
 	}
-	public void testIssueExhaustiveness_002() {
+	public void testIssueExhaustiveness_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -6107,7 +6107,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"42");
 	}
-	public void testIssueExhaustiveness_003() {
+	public void testIssueExhaustiveness_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -6126,7 +6126,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"42");
 	}
-	public void testIssueExhaustiveness_004() {
+	public void testIssueExhaustiveness_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -6149,7 +6149,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 					"    }\n"+
 					"}"
 				},
-				"----------\n" +
+				"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in X.java (at line 10)\n" +
 				"	return switch (i) {\n" +
 				"	               ^\n" +
@@ -6162,7 +6162,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"----------\n"
 );
 	}
-	public void testIssueExhaustiveness_005() {
+	public void testIssueExhaustiveness_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -6186,7 +6186,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"0");
 	}
-	public void testIssue1250_1() {
+	public void testIssue1250_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21) {
 			return;
 		}
@@ -6214,7 +6214,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"A1");
 	}
-	public void testIssue1250_2() {
+	public void testIssue1250_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21) {
 			return;
 		}
@@ -6243,7 +6243,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"B1");
 	}
-	public void testIssue1250_3() {
+	public void testIssue1250_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21) {
 			return;
 		}
@@ -6277,7 +6277,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Case constant of type E is incompatible with switch selector type E.InnerE\n" +
 				"----------\n");
 	}
-	public void testIssue1250_4() {
+	public void testIssue1250_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21) {
 			return;
 		}
@@ -6336,7 +6336,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"const A1\n" +
 				"default");
 	}
-	public void testIssue1250_5() {
+	public void testIssue1250_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21) {
 			return;
 		}
@@ -6397,7 +6397,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				+ "B1\n"
 				+ "default");
 	}
-	public void testIssue1250_6() {
+	public void testIssue1250_6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21) {
 			return;
 		}
@@ -6438,7 +6438,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"A1");
 	}
-	public void testIssue1250_7() {
+	public void testIssue1250_7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21) {
 			return;
 		}
@@ -6474,7 +6474,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"A1");
 	}
-	public void testIssue1250_8() {
+	public void testIssue1250_8() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21) {
 			return;
 		}
@@ -6536,7 +6536,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				+ "B1\n"
 				+ "default");
 	}
-	public void testIssue1351_1() {
+	public void testIssue1351_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 						"X.java",
@@ -6567,7 +6567,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Local variable o1 is required to be final or effectively final based on its usage\n" +
 				"----------\n");
 	}
-	public void testIssue1351_2() {
+	public void testIssue1351_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 						"X.java",
@@ -6598,7 +6598,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Local variable o1 is required to be final or effectively final based on its usage\n" +
 				"----------\n" );
 	}
-	public void testIssue1351_3() {
+	public void testIssue1351_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 						"X.java",
@@ -6625,7 +6625,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Local variable c1 is required to be final or effectively final based on its usage\n" +
 				"----------\n");
 	}
-	public void testIssue1351_3a() {
+	public void testIssue1351_3a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 						"X.java",
@@ -6652,7 +6652,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Local variable c1 is required to be final or effectively final based on its usage\n" +
 				"----------\n");
 	}
-	public void testIssue1351_3b() {
+	public void testIssue1351_3b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 						"X.java",
@@ -6686,7 +6686,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Local variable i1 is required to be final or effectively final based on its usage\n" +
 				"----------\n");
 	}
-	public void testIssue1351_3c() {
+	public void testIssue1351_3c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 						"X.java",
@@ -6715,7 +6715,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Local variable i1 is required to be final or effectively final based on its usage\n" +
 				"----------\n");
 	}
-	public void testIssue1351_4() {
+	public void testIssue1351_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 						"X.java",
@@ -6741,7 +6741,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"An enhanced switch statement should be exhaustive; a default label expected\n" +
 				"----------\n");
 	}
-	public void testIssue1351_5() {
+	public void testIssue1351_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -6764,7 +6764,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"This case label is dominated by one of the preceding case labels\n" +
 				"----------\n");
 	}
-	public void testIssue1351_6() {
+	public void testIssue1351_6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -6788,7 +6788,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"This case label is dominated by one of the preceding case labels\n" +
 				"----------\n");
 	}
-	public void testIssue1351_7() {
+	public void testIssue1351_7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -6813,7 +6813,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"Cannot mix pattern with other case labels\n" +
 			"----------\n");
 	}
-	public void testIssue1351_8() {
+	public void testIssue1351_8() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -6838,7 +6838,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"Cannot mix pattern with other case labels\n" +
 			"----------\n");
 	}
-	public void testIssue1351_9() {
+	public void testIssue1351_9() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -6863,7 +6863,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"Cannot mix pattern with other case labels\n" +
 			"----------\n");
 	}
-	public void testIssue1351_10() {
+	public void testIssue1351_10() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -6893,7 +6893,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"A null case label has to be either the only expression in a case label or the first expression followed only by a default\n" +
 			"----------\n");
 	}
-	public void testIssue1351_11() {
+	public void testIssue1351_11() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -6956,7 +6956,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Pass");
 	}
 
-	public void testDisambiguatedRestrictedIdentifierWhenAsTypeInACase() {
+	public void testDisambiguatedRestrictedIdentifierWhenAsTypeInACase() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"when.java",
@@ -6991,7 +6991,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"true");
 	}
 
-	public void testValidCodeWithVeryAmbiguousUsageOfWhen() {
+	public void testValidCodeWithVeryAmbiguousUsageOfWhen() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"when.java",
@@ -7011,7 +7011,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"true");
 	}
-	public void testIssue1466_01() {
+	public void testIssue1466_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -7035,7 +7035,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"0");
 	}
-	public void testIssue1466_02() {
+	public void testIssue1466_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -7072,7 +7072,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1767
 	// NPE in switch with case null
-	public void testIssue1767() {
+	public void testIssue1767() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -7094,7 +7094,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/277
 	// [19] statement switch with a case null does not compile
-	public void testIssue277() {
+	public void testIssue277() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -7117,7 +7117,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/277
 	// [19] statement switch with a case null does not compile
-	public void testIssue277_original() {
+	public void testIssue277_original() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -7140,7 +7140,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/554
 	// [19] statement switch with a case null does not compile
-	public void testIssue554() {
+	public void testIssue554() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -7169,7 +7169,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/113
 	// [switch] The Class file generated by ECJ for guarded patterns behaves incorrectly
-	public void testGHI113() {
+	public void testGHI113() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -7227,7 +7227,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1853
 	// [switch][pattern] Scope of pattern binding extends illegally resulting in wrong diagnostic
-	public void testGH1853() {
+	public void testGH1853() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -7253,7 +7253,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1856
 	// [switch][record patterns] NPE: Cannot invoke "org.eclipse.jdt.internal.compiler.lookup.MethodBinding.isStatic()"
-	public void testGHI1856() {
+	public void testGHI1856() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -7290,7 +7290,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1856
 	// [switch][record patterns] NPE: Cannot invoke "org.eclipse.jdt.internal.compiler.lookup.MethodBinding.isStatic()"
-	public void testGHI1856_2() {
+	public void testGHI1856_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -7327,7 +7327,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1955
 	// [Patterns] Redesign resolution of patterns to follow natural visitation
-	public void testGH1955() {
+	public void testGH1955() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -7357,7 +7357,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/773
 	// [20][pattern switch] unnecessary code generated
-	public void testIssue773() throws Exception {
+	public void testIssue773() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -7416,7 +7416,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/773
 	// [20][pattern switch] unnecessary code generated
-	public void testIssue773_2() throws Exception {
+	public void testIssue773_2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -7452,7 +7452,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/773
 	// [20][pattern switch] unnecessary code generated
-	public void testIssue773_3() throws Exception {
+	public void testIssue773_3() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -7488,7 +7488,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/773
 	// [20][pattern switch] unnecessary code generated
-	public void testIssue773_4() throws Exception {
+	public void testIssue773_4() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -7524,7 +7524,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/773
 	// [20][pattern switch] unnecessary code generated
-	public void testIssue773_5() throws Exception {
+	public void testIssue773_5() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -7560,7 +7560,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/773
 	// [20][pattern switch] unnecessary code generated
-	public void testIssue773_6() throws Exception {
+	public void testIssue773_6() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -7595,7 +7595,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2053
 	// ECJ rejects guarded pattern in switch as being dominated by prior cases
-	public void testIssue2053() throws Exception {
+	public void testIssue2053() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -7631,7 +7631,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2053
 	// ECJ rejects guarded pattern in switch as being dominated by prior cases
-	public void testIssue2053_2() throws Exception {
+	public void testIssue2053_2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -7667,7 +7667,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2077
 	// [Patterns] Incorrect complaint about non-final variable reference from guard expression
-	public void testIssue2077() throws Exception {
+	public void testIssue2077() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -7701,7 +7701,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2077
 	// [Patterns] Incorrect complaint about non-final variable reference from guard expression
-	public void testIssue2077_2() throws Exception {
+	public void testIssue2077_2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -7750,7 +7750,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2077
 	// [Patterns] Incorrect complaint about non-final variable reference from guard expression
-	public void testIssue2077_3() throws Exception {
+	public void testIssue2077_3() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -7804,7 +7804,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2318
 	// [Switch Expression] Assertion Error compiling switch + try + string concat at target platforms levels < 9
-	public void testIssue2318() {
+	public void testIssue2318() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String,String> options = getCompilerOptions();
 		String tpf = options.get(CompilerOptions.OPTION_TargetPlatform);
 		try {
@@ -7834,7 +7834,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2319
 	// [Switch Expression] Verify error when using non-indy string concat
-	public void testIssue2319() {
+	public void testIssue2319() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String,String> options = getCompilerOptions();
 		String uscf = options.get(CompilerOptions.OPTION_UseStringConcatFactory);
 		try {
@@ -7864,7 +7864,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2503
 	// [Switch Expression] Switching on sealed interface instance compiles even when the switch expression does not cover all possible input values
-	public void testIssue2503() {
+	public void testIssue2503() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -7884,7 +7884,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 					}
 					"""
 				},
-				"----------\n"
+				"----------\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "1. ERROR in X.java (at line 9)\n"
 				+ "	System.out.println(switch((I) new J()) {\n"
 				+ "	                          ^^^^^^^^^^^\n"
@@ -7893,7 +7893,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2503
 	// [Switch Expression] Switching on sealed interface instance compiles even when the switch expression does not cover all possible input values
-	public void testIssue2503_2() {
+	public void testIssue2503_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -7913,7 +7913,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 					}
 					"""
 				},
-				"----------\n"
+				"----------\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "1. ERROR in X.java (at line 9)\n"
 				+ "	System.out.println(switch((I) new J() {}) {\n"
 				+ "	                          ^^^^^^^^^^^^^^\n"
@@ -7922,7 +7922,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2503
 	// [Switch Expression] Switching on sealed interface instance compiles even when the switch expression does not cover all possible input values
-	public void testIssue2503_3() {
+	public void testIssue2503_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -7949,7 +7949,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 					}
 					"""
 				},
-				"----------\n" +
+				"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in X.java (at line 11)\n" +
 				"	String test = switch(element) {\n" +
 				"	                     ^^^^^^^\n" +
@@ -7959,7 +7959,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2508
 	// [Switch expression] Compiler erroneously treats guarded case patterns as covering switch selector type
-	public void testIssue2508() {
+	public void testIssue2508() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -7979,7 +7979,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 					}
 					"""
 				},
-				"----------\n"
+				"----------\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "1. ERROR in X.java (at line 8)\n"
 				+ "	System.out.println(switch((I) new B()) {\n"
 				+ "	                          ^^^^^^^^^^^\n"
@@ -7988,7 +7988,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2508
 	// [Switch expression] Compiler erroneously treats guarded case patterns as covering switch selector type
-	public void testIssue2508_2() {
+	public void testIssue2508_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -8014,7 +8014,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2508
 	// [Switch expression] Compiler erroneously treats guarded case patterns as covering switch selector type
-	public void testIssue2508_3() {
+	public void testIssue2508_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -8040,7 +8040,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2513
 	// [Enhanced switch] Unexpected MatchException thrown at runtime
-	public void testIssue2513() {
+	public void testIssue2513() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -8072,7 +8072,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2582
 	// Switch exhaustiveness error with enum and 'case null'
-	public void testIssue2582() {
+	public void testIssue2582() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -8118,7 +8118,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2582
 	// Switch exhaustiveness error with enum and 'case null'
 	// optional warning enabled
-	public void testIssue2582b() {
+	public void testIssue2582b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.customOptions = getCompilerOptions();
 		runner.customOptions.put(CompilerOptions.OPTION_ReportMissingDefaultCase, CompilerOptions.WARNING);
@@ -8164,7 +8164,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2582
 	// Switch exhaustiveness error with enum and 'case null'
 	// optional warning enabled
-	public void testIssue2582c() {
+	public void testIssue2582c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.customOptions = getCompilerOptions();
 		runner.customOptions.put(CompilerOptions.OPTION_ReportMissingDefaultCase, CompilerOptions.ERROR);
@@ -8259,7 +8259,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2714
 	// [Sealed types + switch expression] Internal inconsistency warning at compile time and verify error at runtime
-	public void testIssue2714() {
+	public void testIssue2714() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -8289,7 +8289,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2870
 	// eclipse can't build when error in switch
-	public void testIssue2870() {
+	public void testIssue2870() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -8341,7 +8341,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3009
 	// A sealed interface with generic causes IllegalStateException and nothing can be done then
-	public void testIssue3009() {
+	public void testIssue3009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -8369,7 +8369,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3009
 	// A sealed interface with generic causes IllegalStateException and nothing can be done then
-	public void testIssue3009_2() {
+	public void testIssue3009_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"Editable.java",
@@ -8512,7 +8512,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3009
 	// A sealed interface with generic causes IllegalStateException and nothing can be done then
-	public void testIssue3009_3() {
+	public void testIssue3009_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -8546,7 +8546,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"42\n420\n4200");
 	}
 
-	public void testIssue3009_4() {
+	public void testIssue3009_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -8585,7 +8585,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"----------\n");
 	}
 
-	public void testIssue3009_5() {
+	public void testIssue3009_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -8621,7 +8621,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"42");
 	}
 
-	public void testIssue3009_6() {
+	public void testIssue3009_6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -8647,7 +8647,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"420");
 	}
 
-	public void testIssue3009_7() {
+	public void testIssue3009_7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -8694,7 +8694,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3031
 	// [Switch][Sealed types] Incorrect exhaustiveness check leads to MatchException at runtime
-	public void testIssue3031() {
+	public void testIssue3031() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -8720,7 +8720,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 						}
 						"""
 				},
-				"----------\n"
+				"----------\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "1. ERROR in X.java (at line 10)\n"
 				+ "	return switch (ji) { // Exhaustive!\n"
 				+ "	               ^^\n"
@@ -8729,7 +8729,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3031
 	// [Switch][Sealed types] Incorrect exhaustiveness check leads to MatchException at runtime
-	public void testIssue3031_2() {
+	public void testIssue3031_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -8760,7 +8760,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2719
 	// [Switch expression + Sealed Types] Suspect diagnostic about switch expression being inexhaustive
-	public void testIssue2719() {
+	public void testIssue2719() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -8792,7 +8792,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2719
 	// [Switch expression + Sealed Types] Suspect diagnostic about switch expression being inexhaustive
-	public void testIssue2719_2() {
+	public void testIssue2719_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -8830,7 +8830,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1735
 	// [Sealed types][Switch] Pattern switch - ECJ accepts code rejected by javac
-	public void testIssue1735() {
+	public void testIssue1735() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -8872,7 +8872,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3035
 	// [switch][sealed types] ECJ fails to signal a completely dominated case arm
-	public void testIssue3035() {
+	public void testIssue3035() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -8916,7 +8916,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2720
 	// [Sealed Types + Enhanced Switch] Incorrect diagnostic about switch not being exhaustive
-	public void testIssue2720() {
+	public void testIssue2720() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -8953,7 +8953,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2720
 	// [Sealed Types + Enhanced Switch] Incorrect diagnostic about switch not being exhaustive
-	public void testIssue2720_2() {
+	public void testIssue2720_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -9020,7 +9020,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 						}
 						"""
 				},
-				"----------\n" +
+				"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in X.java (at line 44)\n" +
 				"	switch (i) {\n" +
 				"	        ^\n" +
@@ -9030,7 +9030,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2720
 	// [Sealed Types + Enhanced Switch] Incorrect diagnostic about switch not being exhaustive
-	public void testIssue2720_3() {
+	public void testIssue2720_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -9080,7 +9080,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3096
 	// [Switch][Sealed types] Bad static analysis with the old switch syntax + an exhautive pattern matching on a sealed type throws a MatchException
-	public void testIssue3096() {
+	public void testIssue3096() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -9108,7 +9108,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3096
 	// [Switch][Sealed types] Bad static analysis with the old switch syntax + an exhautive pattern matching on a sealed type throws a MatchException
-	public void testIssue3096_2() {
+	public void testIssue3096_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -9137,7 +9137,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3096
 	// [Switch][Sealed types] Bad static analysis with the old switch syntax + an exhautive pattern matching on a sealed type throws a MatchException
-	public void testIssue3096_3() {
+	public void testIssue3096_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -9166,7 +9166,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3096
 	// [Switch][Sealed types] Bad static analysis with the old switch syntax + an exhautive pattern matching on a sealed type throws a MatchException
-	public void testIssue3096_4() {
+	public void testIssue3096_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -9197,7 +9197,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3096
 	// [Switch][Sealed types] Bad static analysis with the old switch syntax + an exhautive pattern matching on a sealed type throws a MatchException
-	public void testIssue3096_full() {
+	public void testIssue3096_full() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"EclipseBugFallThroughSwitch.java",
@@ -9235,7 +9235,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3135
 	// [Switch] default->null caused a building problem.
-	public void testIssue3135() {
+	public void testIssue3135() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -9257,7 +9257,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3039
 	// [Sealed types] Broken program crashes the compiler
-	public void testIssue3039_2() {
+	public void testIssue3039_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -9293,7 +9293,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"----------\n");
 	}
 
-	public void testNoFallThrough() {
+	public void testNoFallThrough() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -9320,7 +9320,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3169
 	// [21][Enhanced Switch] Bogus error: "Cannot mix pattern with other case labels
-	public void testIssue3169() {
+	public void testIssue3169() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -9350,7 +9350,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"----------\n");
 	}
 
-	public void testEnumLocalCase() {
+	public void testEnumLocalCase() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -9375,7 +9375,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testEnumLocalCase_2() {
+	public void testEnumLocalCase_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -9403,7 +9403,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testEnumLocalCase_3() {
+	public void testEnumLocalCase_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -9433,7 +9433,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3334
 	// [Enhanced Switch] Bogus duplicate case error from ECJ
-	public void testIssue3334() {
+	public void testIssue3334() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -9476,7 +9476,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3335
 	// [Enhanced Switch][Record Patterns] ECJ compiles non-exhaustive switch resulting in MatchException being thrown at runtime
-	public void testIssue3335() {
+	public void testIssue3335() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -9500,7 +9500,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 						}
 						"""
 				},
-				"----------\n" +
+				"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in X.java (at line 12)\n" +
 				"	switch (r) {\n" +
 				"	        ^\n" +
@@ -9510,7 +9510,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3339
 	// [Enhanced Switch][Regression] Incorrect duplicate case error since https://github.com/eclipse-jdt/eclipse.jdt.core/pull/3264
-	public void testIssue3339() {
+	public void testIssue3339() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -9534,7 +9534,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3344
 	// [Enhanced Switch] Problem with switch and enums - incorrect duplicate case error
-	public void testIssue3344() {
+	public void testIssue3344() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"Main.java",
@@ -9614,7 +9614,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3395
 	// [Enhanced Switch] ECG generated code hangs
-	public void testIssue3395() {
+	public void testIssue3395() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -9655,7 +9655,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3447
 	// [Enhanced Switch] Wasteful generation of switch ordinal mapping table for enum switches that are dispatched via enumSwitch indy
-	public void testIssue3447() throws Exception {
+	public void testIssue3447() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -9688,7 +9688,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3559
 	// Boolean switch inconsistency between ECJ and javac
-	public void testIssue3559() throws Exception {
+	public void testIssue3559() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel > ClassFileConstants.JDK23) // 21-23 testing is good enough
 			return;
 		runNegativeTest(
@@ -9730,7 +9730,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3812
 	// [Enhanced Switch] ECJ allows non-final variables in guard expressions of a case label if the containing switch is unreachable
-	public void testIssue3812() throws Exception {
+	public void testIssue3812() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -9769,7 +9769,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3840
 	// [Enhanced switch] ECJ allows assignments to locals declared outside of guard inside the guard
-	public void testIssue3840() throws Exception {
+	public void testIssue3840() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -9795,7 +9795,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3840
 	// [Enhanced switch] ECJ allows assignments to locals declared outside of guard inside the guard
-	public void testIssue3840_2() throws Exception {
+	public void testIssue3840_2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -9821,7 +9821,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3465
 	// [Enhanced Switch] Bug 575652 - [17][codegen][switch pattern] Unnecessary casts in switch
-	public void testIssue3465() throws Exception {
+	public void testIssue3465() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -9861,7 +9861,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4256
 	// [Enhanced switch] ECJ allows case null to be followed by a constant where only default is legal
-	public void testIssue4256() throws Exception {
+	public void testIssue4256() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -9893,7 +9893,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5000
 	// Switch guards are not respected when record has no components
-	public void testIssue5000() throws Exception {
+	public void testIssue5000() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -9932,7 +9932,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5000
 	// Switch guards are not respected when record has no components
-	public void testIssue5000_2() throws Exception {
+	public void testIssue5000_2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -9971,7 +9971,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5081
 	// NPE in IGenerateTypeCheck.generateTypeCheck with record patterns in switch expression inside lambda
-	public void testIssue5081() {
+	public void testIssue5081() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK22)
 			return;
 		runConformTest(
@@ -10016,7 +10016,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5081
 	// NPE in IGenerateTypeCheck.generateTypeCheck with record patterns in switch expression inside lambda
-	public void testIssue5081_2() {
+	public void testIssue5081_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK22)
 			return;
 		runConformTest(
@@ -10061,7 +10061,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5182
 	// ECJ accepts a non-exhaustive switch over nested sealed record patterns that javac rejects
-	public void testIssue5182() {
+	public void testIssue5182() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"ExhaustivenessGap.java",
@@ -10086,7 +10086,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 					}
 					"""
 				},
-				"----------\n" +
+				"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in ExhaustivenessGap.java (at line 13)\n" +
 				"	return switch (strategy) {\n" +
 				"	               ^^^^^^^^\n" +
@@ -10096,7 +10096,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5182
 	// Nested sealed components are exhaustive when every permitted subtype is covered
-	public void testIssue5182_exhaustive() {
+	public void testIssue5182_exhaustive() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"ExhaustivenessGap.java",
@@ -10132,7 +10132,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5182
 	// Type pattern (no nested narrowing) still covers the permitted record
-	public void testIssue5182_typePatternCoversRecord() {
+	public void testIssue5182_typePatternCoversRecord() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"ExhaustivenessGap.java",
@@ -10165,7 +10165,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// JLS 26 §14.11.1.1 — "P covers T if P rewrites to Q and Q covers T"
 	// Test 001: rewriting two narrower patterns over a sealed hierarchy establishes exhaustiveness
-	public void testIssue5080_001() {
+	public void testIssue5080_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -10195,7 +10195,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// JLS 26 §14.11.1.1 — "P covers T if P rewrites to Q and Q covers T"
 	// Test 002: switch is NOT exhaustive even after rewriting — must produce an error
-	public void testIssue5080_002() {
+	public void testIssue5080_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -10216,7 +10216,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 					}
 					"""
 				},
-				"----------\n" + //$NON-NLS-1$
+				"----------\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in X.java (at line 9)\n" + //$NON-NLS-1$
 				"	return switch (s) {\n" + //$NON-NLS-1$
 				"	               ^\n" + //$NON-NLS-1$
@@ -10226,7 +10226,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// JLS 26 §14.11.1.1 — "P covers T if P rewrites to Q and Q covers T"
 	// Test 003: multi-level sealed hierarchy — rewriting across subtypes covers the root interface
-	public void testIssue5080_003() {
+	public void testIssue5080_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -10260,7 +10260,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	// JLS 26 §14.11.1.1 — "P covers T if P rewrites to Q and Q covers T"
 	// Test 004: exhaustive switch over record patterns where the record component is a sealed interface
 	// Box(A), Box(B), Box(C) together rewrite to cover Box because A, B, C cover I
-	public void testIssue5080_004() {
+	public void testIssue5080_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -10296,7 +10296,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	//   RP covers some type U → rp is a type pattern of type U.
 	// Here {Box(A), Box(B), Box(C)} covers Box (all permits of I covered),
 	// so they reduce to the type pattern `Box b`, making the switch exhaustive over Wrapper.
-	public void testIssue5080_005() {
+	public void testIssue5080_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -10335,7 +10335,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	//   Record patterns with the same erasure R; one component cr reduces while all others are equivalent.
 	// Pair(A, Object) and Pair(B, Object) — cr = first component {A,B} reduces to I (covers I),
 	// second component {Object, Object} is equivalent to Object — reduces to Pair(I, Object).
-	public void testIssue5080_006() {
+	public void testIssue5080_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -10370,7 +10370,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	//   EP consists of type patterns with the same erasure T → ep is a type pattern of type T.
 	// {Integer i, Integer j} both have erasure Integer → equivalent to Integer k.
 	// Pair(Integer, Integer) and Pair(Integer, Integer) merge both components → covers Pair(int,int).
-	public void testIssue5080_007() {
+	public void testIssue5080_007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -10399,7 +10399,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	//   EP consists of record patterns with the same erasure R; every component-set is equivalent to qj.
 	// Two Box(Object) patterns → component sets {Object, Object} each equivalent to Object
 	// → EP equivalent to Box(Object) → single case covers Box.
-	public void testIssue5080_008() {
+	public void testIssue5080_008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -10425,7 +10425,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"hello"); //$NON-NLS-1$
 	}
 
-	public void testIssue5080_009() {
+	public void testIssue5080_009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -10448,7 +10448,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 					}
 					"""
 				},
-				"----------\n" + //$NON-NLS-1$
+				"----------\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in X.java (at line 11)\n" +
 				"	return switch (p) { //AB missing\n" +
 				"	               ^\n" +
@@ -10456,7 +10456,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"----------\n"); //$NON-NLS-1$
 	}
 
-	public void testIssue5080_010() {
+	public void testIssue5080_010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// deeply-nested record pattern: Box(Pair(A,B)) is not covered -> a default is required
 		runNegativeTest(
 				new String[] {
@@ -10482,7 +10482,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 					}
 					"""
 				},
-				"----------\n" + //$NON-NLS-1$
+				"----------\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in X.java (at line 13)\n" +
 				"	return switch (b) { //Box(Pair(A,B)) missing\n" +
 				"	               ^\n" +
@@ -10490,7 +10490,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"----------\n"); //$NON-NLS-1$
 	}
 
-	public void testIssue5080_011() {
+	public void testIssue5080_011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// deeply-nested record pattern that IS exhaustive -> compiles without a default
 		runConformTest(
 				new String[] {
@@ -10524,7 +10524,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"AB"); //$NON-NLS-1$
 	}
 
-	public void testIssue5080_012() {
+	public void testIssue5080_012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// deeply-nested generic record pattern that IS exhaustive (same-erasure rule) -> no default needed
 		runConformTest(
 				new String[] {
@@ -10557,7 +10557,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"1"); //$NON-NLS-1$
 	}
 
-	public void testIssue5080_013() {
+	public void testIssue5080_013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// A case pattern with an unsafe-cast error must not also trigger a redundant missing-default error.
 		runNegativeTest(
 				new String[] {
@@ -10595,7 +10595,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"----------\n"); //$NON-NLS-1$
 	}
 
-	public void testIssue5080_014() {
+	public void testIssue5080_014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// JLS 14.11.1.1: P covers T if P contains a pattern that is unconditional for T.
 		// An exact-type type pattern (I x) is unconditional for the sealed selector I -> exhaustive.
 		runConformTest(
@@ -10624,7 +10624,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"0"); //$NON-NLS-1$
 	}
 
-	public void testIssue5080_015() {
+	public void testIssue5080_015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// A guarded pattern is NOT unconditional (JLS 14.30.3), so it does not make the switch exhaustive.
 		runNegativeTest(
 				new String[] {
@@ -10645,7 +10645,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 					}
 					"""
 				},
-				"----------\n" + //$NON-NLS-1$
+				"----------\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in X.java (at line 9)\n" +
 				"	return switch (i) { // guarded pattern is not unconditional\n" +
 				"	               ^\n" +
@@ -10653,7 +10653,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"----------\n"); //$NON-NLS-1$
 	}
 
-	public void testIssue5080_016() {
+	public void testIssue5080_016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// JLS 14.11.1.1: P covers T if T is a type variable with upper bound B and P covers B.
 		// Selector is a type variable T bounded by sealed I; A and B cover I -> exhaustive.
 		runConformTest(
@@ -10683,7 +10683,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"1"); //$NON-NLS-1$
 	}
 
-	public void testIssue5080_017() {
+	public void testIssue5080_017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Type variable bounded by sealed I, but the bound is not fully covered (B missing) -> not exhaustive.
 		runNegativeTest(
 				new String[] {
@@ -10704,7 +10704,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 					}
 					"""
 				},
-				"----------\n" + //$NON-NLS-1$
+				"----------\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in X.java (at line 9)\n" +
 				"	return switch (x) { // bound I not fully covered (B missing)\n" +
 				"	               ^\n" +
@@ -10712,7 +10712,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"----------\n"); //$NON-NLS-1$
 	}
 
-	public void testIssue5080_018() {
+	public void testIssue5080_018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// JLS 14.11.1.1: P covers T if T is an intersection T1&...&Tn and P covers Ti for some i.
 		// Selector is a type variable with bound I & Marker; covering the first member I (via A,B) suffices.
 		runConformTest(
@@ -10739,7 +10739,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"0"); //$NON-NLS-1$
 	}
 
-	public void testIssue5080_019() {
+	public void testIssue5080_019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Intersection Marker & J: covering the SECOND member J (via C,D) is enough for exhaustiveness.
 		runConformTest(
 				new String[] {
@@ -10765,7 +10765,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"1"); //$NON-NLS-1$
 	}
 
-	public void testIssue5080_020() {
+	public void testIssue5080_020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Intersection I & Marker but no member fully covered (B missing) -> not exhaustive.
 		runNegativeTest(
 				new String[] {
@@ -10787,7 +10787,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 					}
 					"""
 				},
-				"----------\n" + //$NON-NLS-1$
+				"----------\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in X.java (at line 10)\n" +
 				"	return switch (x) { // bound I not fully covered (B missing)\n" +
 				"	               ^\n" +
@@ -10795,7 +10795,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"----------\n"); //$NON-NLS-1$
 	}
 
-	public void testIssue5080_021() {
+	public void testIssue5080_021() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// JLS 14.11.1.1: P covers an enum type E if P contains all the names of E's enum constants.
 		// A switch expression naming every constant is exhaustive without a default.
 		runConformTest(
@@ -10820,7 +10820,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"2"); //$NON-NLS-1$
 	}
 
-	public void testIssue5080_022() {
+	public void testIssue5080_022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Enum switch expression missing a constant (WED) is not exhaustive.
 		runNegativeTest(
 				new String[] {
@@ -10846,7 +10846,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"----------\n"); //$NON-NLS-1$
 	}
 
-	public void testIssue5080_023() {
+	public void testIssue5080_023() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// JLS 14.11.1.1 (sealed rule): a permitted subtype D need not be covered if no type both
 		// names D and is a subtype of T. Here A (I<String>) and C (Sub<String>) are excluded for an
 		// I<Integer> selector, so covering Sub via B makes the switch exhaustive - applied recursively
@@ -10875,7 +10875,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"1"); //$NON-NLS-1$
 	}
 
-	public void testIssue5080_024() {
+	public void testIssue5080_024() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Same shape but A now names I<T>, so A<Integer> IS a subtype of I<Integer> and must be
 		// covered; omitting it makes the switch non-exhaustive.
 		runNegativeTest(
@@ -10896,7 +10896,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 					}
 					"""
 				},
-				"----------\n" + //$NON-NLS-1$
+				"----------\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in X.java (at line 8)\n" +
 				"	return switch (i) { // A<Integer> is possible but not covered\n" +
 				"	               ^\n" +
@@ -10904,7 +10904,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"----------\n"); //$NON-NLS-1$
 	}
 
-	public void testIssue5080_025() {
+	public void testIssue5080_025() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// JLS 14.11.1.1 (record rule): a single record pattern p covers R when, for every component
 		// of type U, the corresponding component pattern covers U. Here each component pattern is a
 		// total type pattern (Object) over the sealed component type I -> exhaustive.
@@ -10931,7 +10931,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"0"); //$NON-NLS-1$
 	}
 
-	public void testIssue5080_026() {
+	public void testIssue5080_026() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Record with no components ("... of type U, if any ..."): a bare record pattern covers it.
 		runConformTest(
 				new String[] {
@@ -10952,7 +10952,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"7"); //$NON-NLS-1$
 	}
-	public void testIssue5080_027() {
+	public void testIssue5080_027() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK22) {
 			return; // "_" patterns are only supported in JDK 22 and later
 		}
@@ -11005,7 +11005,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"5\n" +
 				"6");
 	}
-	public void testIssue5080_028() {
+	public void testIssue5080_028() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK22) {
 			return; // "_" patterns are only supported in JDK 22 and later
 		}
@@ -11052,7 +11052,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"6");
 	}
 
-	public void testIssue5080_029() {
+	public void testIssue5080_029() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK22) {
 			return; // "_" patterns are only supported in JDK 22 and later
 		}
@@ -11100,14 +11100,14 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 						}
 					"""
 				},
-				"----------\n" +
+				"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in X.java (at line 19)\n" +
 				"	return switch(r) {\n" +
 				"	              ^\n" +
 				withMissingPatterns("A switch expression should have a default case", "R2(R(B1 _, B2 _, C3 _))") + "\n" +
 				"----------\n");
 	}
-	public void testIssue5080_030() {
+	public void testIssue5080_030() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK22) {
 			return; // "_" patterns are only supported in JDK 22 and later
 		}
@@ -11163,7 +11163,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"5\n" +
 				"6");
 	}
-	public void testIssue5080_031() {
+	public void testIssue5080_031() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK22) {
 			return; // "_" patterns are only supported in JDK 22 and later
 		}
@@ -11218,7 +11218,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"5\n" +
 				"6");
 	}
-	public void testIssue5080_032() {
+	public void testIssue5080_032() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK22) {
 			return; // "_" patterns are only supported in JDK 22 and later
 		}
@@ -11254,7 +11254,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 		"2\n" +
 		"3");
 }
-	public void testIssue5080_033() {
+	public void testIssue5080_033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK22) {
 			return; // "_" patterns are only supported in JDK 22 and later
 		}
@@ -11285,7 +11285,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 		"0\n" +
 		"0");
 }
-	public void testIssue5080_034() {
+	public void testIssue5080_034() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK22) {
 			return; // "_" patterns are only supported in JDK 22 and later
 		}
@@ -11321,14 +11321,14 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				}
            		"""
 				},
-				"----------\n" + //$NON-NLS-1$
+				"----------\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in X.java (at line 13)\n" +
 				"	return switch (r) {\n" +
 				"	               ^\n" +
 				withMissingPatterns("A switch expression should have a default case", "R(C(B _), C _)") + "\n" +
 				"----------\n"); //$NON-NLS-1$
 	}
-	public void testIssue5080_035() {
+	public void testIssue5080_035() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK22) {
 			return; // "_" patterns are only supported in JDK 22 and later
 		}
@@ -11356,14 +11356,14 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 					}
             		"""
 				},
-				"----------\n" + //$NON-NLS-1$
+				"----------\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in X.java (at line 3)\n" +
 				"	return switch (r) {\n" +
 				"	               ^\n" +
 				withMissingPatterns("A switch expression should have a default case", "Root(R2(R1 _), R2 _, R2(R1 _))") + "\n" +
 				"----------\n"); //$NON-NLS-1$
 	}
-	public void testIssue5080_036() {
+	public void testIssue5080_036() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK22) {
 			return; // "_" patterns are only supported in JDK 22 and later
 		}
@@ -11391,14 +11391,14 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 					}
             		"""
 				},
-				"----------\n" + //$NON-NLS-1$
+				"----------\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in X.java (at line 3)\n" +
 				"	return switch (r) {\n" +
 				"	               ^\n" +
 				withMissingPatterns("A switch expression should have a default case", "Root(R2(R1 _), R2 _, R2(R2 _))") + "\n" +
 				"----------\n"); //$NON-NLS-1$
 	}
-	public void testIssue5080_037() {
+	public void testIssue5080_037() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK22) {
 			return; // "_" patterns are only supported in JDK 22 and later
 		}
@@ -11426,14 +11426,14 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 					}
             		"""
 				},
-				"----------\n" + //$NON-NLS-1$
+				"----------\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in X.java (at line 3)\n" +
 				"	return switch (r) {\n" +
 				"	               ^\n" +
 				withMissingPatterns("A switch expression should have a default case", "Root(R2(R2 _), R2 _, R2 _)") + "\n" +
 				"----------\n"); //$NON-NLS-1$
 	}
-	public void testIssue5080_038() {
+	public void testIssue5080_038() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK22) {
 			return; // "_" patterns are only supported in JDK 22 and later
 		}
@@ -11464,7 +11464,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"0"); //$NON-NLS-1$
 	}
 
-	public void testIssue5080_039() {
+	public void testIssue5080_039() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK22) {
 			return;
 		}
@@ -11497,7 +11497,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"0"); //$NON-NLS-1$
 	}
-	public void testIssue5080_040() {
+	public void testIssue5080_040() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK22) {
 			return;
 		}
@@ -11529,7 +11529,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"0"); //$NON-NLS-1$
 	}
-	public void testIssue5080_041() {
+	public void testIssue5080_041() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK22) {
 			return;
 		}
@@ -11558,7 +11558,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 					}
             		"""
 				},
-				"----------\n" + //$NON-NLS-1$
+				"----------\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in X.java (at line 11)\n" +
 				"	return switch (r) {\n" +
 				"	               ^\n" +
@@ -11583,8 +11583,8 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	 * from the first switch statement found in the resolved AST. The compiler problem log is
 	 * intentionally ignored (the test sources are non-exhaustive on purpose).
 	 */
-	private List<String> collectMissingPatterns(String[] testFiles) {
-		final List<List<String>> collected = new ArrayList<>();
+	private List<String> collectMissingPatterns(String[] testFiles) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		final List<List<String>> collected = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		ASTVisitor visitor = new ASTVisitor() {
 			@Override
 			public boolean visit(SwitchStatement switchStatement, BlockScope scope) {
@@ -11744,7 +11744,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// Deeply nested record patterns: the continuation to the enclosing record's next component is
 	// threaded onto the *nested leaf* nodes, so the missing pattern must retain the nested details.
-	public void testExhaustiveNestedRecords_001() {
+	public void testExhaustiveNestedRecords_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		assertMissingPatterns(new String[] {
 			"X.java",
 			"""
@@ -11767,7 +11767,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 	}
 
 	// Same shape, but with the commented-out case restored -> exhaustive, nothing missing.
-	public void testExhaustiveNestedRecords_002() {
+	public void testExhaustiveNestedRecords_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		assertMissingPatterns(new String[] {
 			"X.java",
 			"""
@@ -11902,7 +11902,7 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// A permitted subtype that is a record only partially covered by a record pattern is reported in
 	// its precise, nested form ("M(L _)"), not coarsely as "M _"; plain subtypes still get "N _".
-	public void testSealedSelectorRecordPermittedSubtypeDetail() {
+	public void testSealedSelectorRecordPermittedSubtypeDetail() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		assertMissingPatterns(new String[] {
 			"X.java",
 			"sealed interface J permits K, L {}\n" +

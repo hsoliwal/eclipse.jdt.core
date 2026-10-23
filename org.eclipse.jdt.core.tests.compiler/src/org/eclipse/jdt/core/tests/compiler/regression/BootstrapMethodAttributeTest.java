@@ -40,10 +40,10 @@ public class BootstrapMethodAttributeTest extends AbstractRegressionTest {
 	public static Test suite() {
 		return buildMinimalComplianceTestSuite(testClass(), FIRST_SUPPORTED_JAVA_VERSION);
 	}
-	public void test001() throws Exception {
+	public void test001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 			ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-			String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "TestBootstrapMethodAtt.class";
+			String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "TestBootstrapMethodAtt.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(path));
 			String actualOutput =
 				disassembler.disassemble(

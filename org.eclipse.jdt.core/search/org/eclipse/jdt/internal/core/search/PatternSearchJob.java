@@ -77,7 +77,7 @@ private static final ForkJoinWorkerThreadFactory SEARCH_THREAD_FACTORY = new For
 		// them here (inside the plugin) they get the same permissions as the plugin,
 		// rather than the permissions of whichever caller submitted the first task.
 		ForkJoinWorkerThread thread = ForkJoinPool.defaultForkJoinWorkerThreadFactory.newThread(pool);
-		thread.setName("PatternSearchJob-worker-" + this.threadIndex.getAndIncrement()); //$NON-NLS-1$
+		thread.setName("PatternSearchJob-worker-" + this.threadIndex.getAndIncrement()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		thread.setDaemon(true);
 		return thread;
 	}
@@ -131,7 +131,7 @@ public void ensureReadyToRun() {
 	if (!this.areIndexesReady)
 		getIndexes(null/*progress*/); // may trigger some index recreation
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public boolean execute(IProgressMonitor progressMonitor) {
 	SubMonitor subMonitor = SubMonitor.convert(progressMonitor, 3);
 
@@ -147,7 +147,7 @@ public boolean execute(IProgressMonitor progressMonitor) {
 		if(parallel) {
 			isComplete = performParallelSearch(indexes, loopMonitor);
 		} else {
-			for (int i = 0; i < max; i++) {
+			for (int i = 0; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				isComplete &= search(indexes[i], this.requestor, loopMonitor.split(1), parallel);
 			}
 		}
@@ -155,11 +155,11 @@ public boolean execute(IProgressMonitor progressMonitor) {
 		if (JobManager.VERBOSE) {
 			if (parallel) {
 				long wallClockTime = System.currentTimeMillis() - startTime;
-				trace("-> execution time: " + wallClockTime + "ms - " + this);//$NON-NLS-1$//$NON-NLS-2$
-				trace("-> cumulative execution time (" + SEARCH_POOL.getParallelism() + "): " //$NON-NLS-1$//$NON-NLS-2$
+				trace("-> execution time: " + wallClockTime + "ms - " + this);//$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				trace("-> cumulative execution time (" + SEARCH_POOL.getParallelism() + "): " //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						+ this.executionTime.get() + "ms - " + this);//$NON-NLS-1$
 			} else {
-				trace("-> execution time: " + this.executionTime.get() + "ms - " + this);//$NON-NLS-1$//$NON-NLS-2$
+				trace("-> execution time: " + this.executionTime.get() + "ms - " + this);//$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		return isComplete;
@@ -167,9 +167,9 @@ public boolean execute(IProgressMonitor progressMonitor) {
 		SubMonitor.done(progressMonitor);
 	}
 }
-private boolean performParallelSearch(Index[] indexes, SubMonitor loopMonitor) {
+private boolean performParallelSearch(Index[] indexes, SubMonitor loopMonitor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	boolean isComplete = true;
-	List<Future<IndexResult>> futures = new ArrayList<>(indexes.length);
+	List<Future<IndexResult>> futures = new ArrayList<>(indexes.length); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	ForkJoinPool searchPool = SEARCH_POOL;
 	ParallelSearchMonitor monitor = new ParallelSearchMonitor(loopMonitor);
 
@@ -177,11 +177,11 @@ private boolean performParallelSearch(Index[] indexes, SubMonitor loopMonitor) {
 		if (this.scope instanceof IParallelizable) {
 			((IParallelizable) this.scope).initBeforeSearch(monitor);
 		}
-		for (Index index : indexes) {
+		for (Index index : indexes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			futures.add(searchPool.submit(() -> search(index, monitor, true)));
 		}
 
-		for (Future<IndexResult> future : futures) {
+		for (Future<IndexResult> future : futures) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			loopMonitor.split(1);
 			try {
 				IndexResult result = future.get();
@@ -204,14 +204,14 @@ private boolean performParallelSearch(Index[] indexes, SubMonitor loopMonitor) {
 		}
 	} catch (JavaModelException e) {
 		monitor.setCanceled(true);
-		throw new RuntimeException("Error initializing scope: " + this.scope, e); //$NON-NLS-1$
+		throw new RuntimeException("Error initializing scope: " + this.scope, e); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} catch (Exception e) {
 		monitor.setCanceled(true);
 		throw e;
 	}
 	return isComplete;
 }
-public Index[] getIndexes(IProgressMonitor progressMonitor) {
+public Index[] getIndexes(IProgressMonitor progressMonitor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// acquire the in-memory indexes on the fly
 	IndexLocation[] indexLocations;
 	int length;
@@ -222,7 +222,7 @@ public Index[] getIndexes(IProgressMonitor progressMonitor) {
 		IPath[] paths = this.participant.selectIndexes(this.pattern, this.scope);
 		length = paths.length;
 		indexLocations = new IndexLocation[paths.length];
-		for (int i = 0, len = paths.length; i < len; i++) {
+		for (int i = 0, len = paths.length; i < len; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			indexLocations[i] = new FileIndexLocation(paths[i].toFile(), true);
 		}
 	}
@@ -241,13 +241,13 @@ public String getJobFamily() {
 }
 
 private IndexResult search(Index index, IProgressMonitor progressMonitor, boolean parallel) {
-	List<IndexMatch> matches = new ArrayList<>();
+	List<IndexMatch> matches = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	boolean complete = search(index, collectTo(matches, progressMonitor), progressMonitor, parallel);
 	return new IndexResult(complete, matches);
 }
 
 
-public boolean search(Index index, IndexQueryRequestor queryRequestor, IProgressMonitor progressMonitor, boolean parallel) {
+public boolean search(Index index, IndexQueryRequestor queryRequestor, IProgressMonitor progressMonitor, boolean parallel) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (index == null) return COMPLETE;
 	if (progressMonitor != null && progressMonitor.isCanceled()) throw new OperationCanceledException();
 	ReadWriteMonitor monitor = index.monitor;
@@ -281,7 +281,7 @@ public boolean search(Index index, IndexQueryRequestor queryRequestor, IProgress
 		} else {
 			Throwable cause = e.getCause();
 			if (cause != null) {
-				Util.log(e, "Search failed for index " + index); //$NON-NLS-1$
+				Util.log(e, "Search failed for index " + index); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		return FAILED;
@@ -296,7 +296,7 @@ private static IJavaSearchScope clone(IJavaSearchScope searchScope) {
 			searchScope = ((AbstractSearchScope)searchScope).clone();
 		} catch (CloneNotSupportedException e) {
 			Util.log(new Status(IStatus.WARNING, JavaCore.PLUGIN_ID,
-					"PatternSearchJob could not clone " + searchScope, e));//$NON-NLS-1$
+					"PatternSearchJob could not clone " + searchScope, e));//$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	return searchScope;
@@ -308,7 +308,7 @@ private static SearchPattern clone(SearchPattern searchPattern) {
 			searchPattern = searchPattern.clone();
 		} catch (CloneNotSupportedException e) {
 			Util.log(new Status(IStatus.WARNING, JavaCore.PLUGIN_ID,
-					"PatternSearchJob could not clone " + searchPattern, e));//$NON-NLS-1$
+					"PatternSearchJob could not clone " + searchPattern, e));//$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	return searchPattern;
@@ -316,7 +316,7 @@ private static SearchPattern clone(SearchPattern searchPattern) {
 
 @Override
 public String toString() {
-	return "searching " + this.pattern.toString(); //$NON-NLS-1$
+	return "searching " + this.pattern.toString(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 private boolean canRunInParallel() {

@@ -33,11 +33,11 @@ import javax.tools.JavaFileObject;
 @SupportedAnnotationTypes({"java.lang.Deprecated"})
 @SupportedSourceVersion(SourceVersion.RELEASE_6)
 public class Bug419769Proc extends AbstractProcessor {
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
 		Set<? extends Element> rootElements = roundEnv.getRootElements();
 
-		for (Element element : rootElements) {
+		for (Element element : rootElements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(element.getSimpleName().contentEquals("AnnotatedClass")){
 				//Always create error
 				processingEnv.getMessager().printMessage(Kind.ERROR, "Some Error Message.", element);

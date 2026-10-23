@@ -95,7 +95,7 @@ public class AptProject {
 	 * deleted, false otherwise.
 	 */
 
-	public void projectClean( boolean deleteFiles, boolean cleanMain, boolean cleanTest )
+	public void projectClean( boolean deleteFiles, boolean cleanMain, boolean cleanTest ) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		if(cleanMain)
 			_main_gfm.projectCleaned();
@@ -112,7 +112,7 @@ public class AptProject {
 				if (f != null && f.exists()) {
 					try {
 						IResource[] members = f.members();
-						for (int i = 0; i < members.length; i++) {
+						for (int i = 0; i < members.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							FileSystemUtil.deleteDerivedResources(members[i]);
 						}
 					} catch (CoreException ce) {
@@ -125,7 +125,7 @@ public class AptProject {
 				if (f != null && f.exists()) {
 					try {
 						IResource[] members = f.members();
-						for (int i = 0; i < members.length; i++) {
+						for (int i = 0; i < members.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							FileSystemUtil.deleteDerivedResources(members[i]);
 						}
 					} catch (CoreException ce) {
@@ -155,7 +155,7 @@ public class AptProject {
 	public void projectDeleted()
 	{
 		if (AptPlugin.DEBUG)
-			AptPlugin.trace("AptProject.projectDeleted cleaning state for project " + _javaProject.getElementName()); //$NON-NLS-1$
+			AptPlugin.trace("AptProject.projectDeleted cleaning state for project " + _javaProject.getElementName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		_main_gfm.projectDeleted();
 		_test_gfm.projectDeleted();
 	}

@@ -59,7 +59,7 @@ protected IAnnotation[] getAnnotations(IBinaryAnnotation[] binaryAnnotations, lo
 		return Annotation.NO_ANNOTATIONS;
 	}
 	IAnnotation[] annotations = new IAnnotation[fullLength];
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		annotations[i] = Util.getAnnotation(this, binaryAnnotations[i], null);
 	}
 	System.arraycopy(standardAnnotations, 0, annotations, length, standardLength);
@@ -68,10 +68,10 @@ protected IAnnotation[] getAnnotations(IBinaryAnnotation[] binaryAnnotations, lo
 private IAnnotation getAnnotation(char[][] annotationName) {
 	return new Annotation(this, new String(CharOperation.concatWith(annotationName, '.')));
 }
-protected IAnnotation[] getStandardAnnotations(long tagBits) {
+protected IAnnotation[] getStandardAnnotations(long tagBits) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if ((tagBits & TagBits.AllStandardAnnotationsMask) == 0)
 		return Annotation.NO_ANNOTATIONS;
-	ArrayList annotations = new ArrayList();
+	ArrayList annotations = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 	if ((tagBits & TagBits.AnnotationRetentionMASK) != 0) {
 		annotations.add(getAnnotation(TypeConstants.JAVA_LANG_ANNOTATION_RETENTION));

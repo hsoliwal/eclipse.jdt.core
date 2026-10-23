@@ -26,7 +26,7 @@ import org.eclipse.jdt.internal.core.util.Messages;
  *
  * @see CopyResourceElementsOperation
  */
-public class MoveResourceElementsOperation extends CopyResourceElementsOperation {
+public class MoveResourceElementsOperation extends CopyResourceElementsOperation { //FLLDCIM: MARK — T09  IMPLEMENTS
 /**
  * When executed, this operation will move the given elements to the given containers.
  */

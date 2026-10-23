@@ -40,7 +40,7 @@ public class IdeClassOutputStream  extends ByteArrayOutputStream
 		_file = file;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void close() throws IOException {
 		super.close();
 		byte[] byteArray = toByteArray();
@@ -62,7 +62,7 @@ public class IdeClassOutputStream  extends ByteArrayOutputStream
 				}
 			}
 		} catch(Exception ex) {
-			Apt6Plugin.log(ex, "Could not create generated class file " + _file.getName()); //$NON-NLS-1$
+			Apt6Plugin.log(ex, "Could not create generated class file " + _file.getName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 }

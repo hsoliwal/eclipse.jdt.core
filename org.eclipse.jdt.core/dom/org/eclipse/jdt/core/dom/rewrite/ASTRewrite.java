@@ -216,7 +216,7 @@ public class ASTRewrite {
 	 * @return text edit object describing the changes to the
 	 * document corresponding to the changes recorded by this rewriter
 	 * @throws IllegalArgumentException An <code>IllegalArgumentException</code>
-	 * is thrown if the document passed does not correspond to the AST that is rewritten.
+	 * is thrown if the document passed does not correspond to the AST that is rewritten. //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	 */
 	public TextEdit rewriteAST(IDocument document, Map options) throws IllegalArgumentException {
 		if (document == null) {
@@ -270,7 +270,7 @@ public class ASTRewrite {
 	 * @throws IllegalArgumentException An {@link IllegalArgumentException}
 	 * is thrown if the document passed does not correspond to the AST that is rewritten.
 	 *
-	 * @since 3.2
+	 * @since 3.2 //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	 */
 	public TextEdit rewriteAST() throws JavaModelException, IllegalArgumentException {
 		ASTNode rootNode= getRootNode();
@@ -309,12 +309,12 @@ public class ASTRewrite {
 
 		this.eventStore.revertMovedNodes();
 		return result;
-	}
+	} //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	private ASTNode getRootNode() {
 		ASTNode node= null;
 		int start= -1;
-		int end= -1;
+		int end= -1; //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 		for (Iterator iter= getRewriteEventStore().getChangeRootIterator(); iter.hasNext();) {
 			ASTNode curr= (ASTNode) iter.next();
@@ -333,13 +333,13 @@ public class ASTRewrite {
 			}
 		}
 		if (node != null) {
-			int currStart= node.getStartPosition();
+			int currStart= node.getStartPosition(); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int currEnd= currStart + node.getLength();
 			while (start < currStart || end > currEnd) { // go up until a node covers all
 				node= node.getParent();
 				currStart= node.getStartPosition();
 				currEnd= currStart + node.getLength();
-			}
+			} //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ASTNode parent= node.getParent(); // go up until a parent has different range
 			while (parent != null && parent.getStartPosition() == node.getStartPosition() && parent.getLength() == node.getLength()) {
 				node= parent;
@@ -374,7 +374,7 @@ public class ASTRewrite {
 	 * text edits, or <code>null</code> if ungrouped
 	 * @throws IllegalArgumentException if the node is null, or if the node is not
 	 * part of this rewriter's AST, or if the described modification is invalid
-	 * (such as removing a required node)
+	 * (such as removing a required node) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	 */
 	public final void remove(ASTNode node, TextEditGroup editGroup) {
 		if (node == null) {
@@ -419,7 +419,7 @@ public class ASTRewrite {
 	 * text edits, or <code>null</code> if ungrouped
 	 * @throws IllegalArgumentException if the node is null, or if the node is not part
 	 * of this rewriter's AST, or if the replacement node is not a new node (or
-     * placeholder), or if the described modification is otherwise invalid
+     * placeholder), or if the described modification is otherwise invalid //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	 */
 	public final void replace(ASTNode node, ASTNode replacement, TextEditGroup editGroup) {
 		if (node == null) {
@@ -538,7 +538,7 @@ public class ASTRewrite {
 		validateIsCorrectAST(node);
 		ASTNode original= this.nodeStore.getOriginalNode(node);
 		if (this.eventStore.isRangeCopyPlaceholder(original)) {
-			throw new IllegalArgumentException("Range placeholder has no single original node"); //$NON-NLS-1$
+			throw new IllegalArgumentException("Range placeholder has no single original node"); //$NON-NLS-1$ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		}
 		return original;
 	}
@@ -598,19 +598,19 @@ public class ASTRewrite {
 
 	/**
 	 * Returns an object that tracks the source range of the given node
-	 * across the rewrite to its AST. Upon return, the result object reflects
+	 * across the rewrite to its AST. Upon return, the result object reflects //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	 * the given node's current source range in the AST. After
 	 * <code>rewrite</code> is called, the result object is updated to
 	 * reflect the given node's source range in the rewritten AST.
 	 *
 	 * @param node the node to track
 	 * @return an object that tracks the source range of <code>node</code>
-	 * @throws IllegalArgumentException if the node is null, or if the node
+	 * @throws IllegalArgumentException if the node is null, or if the node //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	 * is not part of this rewriter's AST, or if the node is already being
 	 * tracked
 	 */
 	public final ITrackedNodePosition track(ASTNode node) {
-		if (node == null) {
+		if (node == null) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			throw new IllegalArgumentException();
 		}
 		TextEditGroup group= this.eventStore.getTrackedNodeData(node);
@@ -622,7 +622,7 @@ public class ASTRewrite {
 	}
 
 	private void validateIsExistingNode(ASTNode node) {
-		if (node.getStartPosition() == -1) {
+		if (node.getStartPosition() == -1) { //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			throw new IllegalArgumentException("Node is not an existing node"); //$NON-NLS-1$
 		}
 	}
@@ -641,7 +641,7 @@ public class ASTRewrite {
 	}
 
 	private void validateIsPropertyOfNode(StructuralPropertyDescriptor property, ASTNode node) {
-		if (!property.getNodeClass().isInstance(node)) {
+		if (!property.getNodeClass().isInstance(node)) { //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String message= property.getId() + " is not a property of type " + node.getClass().getName(); //$NON-NLS-1$
 			throw new IllegalArgumentException(message);
 		}
@@ -667,7 +667,7 @@ public class ASTRewrite {
 			Class valueType;
 			if (prop.isSimpleProperty()) {
 				SimplePropertyDescriptor p = (SimplePropertyDescriptor) prop;
-				valueType = p.getValueType();
+				valueType = p.getValueType(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				if (valueType == int.class) {
 					valueType = Integer.class;
 				} else if (valueType == boolean.class) {
@@ -696,7 +696,7 @@ public class ASTRewrite {
 	 * @param nodeType the ASTNode type that corresponds to the passed code.
 	 * @return the new placeholder node
 	 * @throws IllegalArgumentException if the code is null, or if the node
-	 * type is invalid
+	 * type is invalid //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	 */
 	public final ASTNode createStringPlaceholder(String code, int nodeType) {
 		if (code == null) {
@@ -713,7 +713,7 @@ public class ASTRewrite {
 
 	/**
 	 * Creates and returns a node that represents a sequence of nodes.
-	 * Each of the given nodes must be either be brand new (not part of the original AST), or
+	 * Each of the given nodes must be either be brand new (not part of the original AST), or //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	 * a placeholder node (for example, one created by {@link #createCopyTarget(ASTNode)}
 	 * or {@link #createStringPlaceholder(String, int)}), or another group node.
 	 * The type of the returned node is unspecified. The returned node can be used
@@ -791,7 +791,7 @@ public class ASTRewrite {
 		return createTargetNode(node, true);
 	}
 
-	/**
+	/** //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	 * Returns the extended source range computer for this AST rewriter.
 	 * The default value is a <code>new TargetSourceRangeComputer()</code>.
 	 *
@@ -825,7 +825,7 @@ public class ASTRewrite {
 	 * @param propertyName the property name
 	 * @param data the new property value, or <code>null</code> if none
 	 * @see #getProperty(String)
-	 * @throws IllegalArgumentException if the given property name is <code>null</code>
+	 * @throws IllegalArgumentException if the given property name is <code>null</code> //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	 * @since 3.7
 	 */
 	public final void setProperty(String propertyName, Object data) {
@@ -873,11 +873,11 @@ public class ASTRewrite {
 		Map m = (Map) this.property1;
 		if (data == null) {
 			m.remove(propertyName);
-			// check for just one property left
-			if (m.size() == 1) {
+			// check for just one property left //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			if (m.size() == 1) { //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				// convert to more efficient representation
 				Map.Entry[] entries = (Map.Entry[]) m.entrySet().toArray(new Map.Entry[1]);
-				this.property1 = entries[0].getKey();
+				this.property1 = entries[0].getKey(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				this.property2 = entries[0].getValue();
 			}
 			return;

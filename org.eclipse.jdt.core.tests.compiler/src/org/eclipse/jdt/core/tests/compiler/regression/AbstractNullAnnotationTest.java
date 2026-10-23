@@ -83,7 +83,7 @@ public abstract class AbstractNullAnnotationTest extends AbstractComparableTest 
 		setUpAnnotationLib();
 	}
 
-	protected void setUpAnnotationLib() throws IOException {
+	protected void setUpAnnotationLib() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.LIBS == null) {
 			String[] defaultLibs = getDefaultClassPaths();
 			int len = defaultLibs.length;
@@ -96,7 +96,7 @@ public abstract class AbstractNullAnnotationTest extends AbstractComparableTest 
 					.filter(b -> "org.eclipse.jdt.annotation".equals(b.getSymbolicName())) //
 					.findFirst().flatMap(FileLocator::getBundleFileLocation).orElseThrow();
 			if (bundleFile.isDirectory())
-				this.LIBS[len] = bundleFile.getPath()+"/bin";
+				this.LIBS[len] = bundleFile.getPath()+"/bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			else
 				this.LIBS[len] = bundleFile.getPath();
 		}
@@ -106,7 +106,7 @@ public abstract class AbstractNullAnnotationTest extends AbstractComparableTest 
 		Bundle bundle = Platform.getBundle("org.eclipse.jdt.annotation");
 		File bundleFile = FileLocator.getBundleFileLocation(bundle).get();
 		if (bundleFile.isDirectory())
-			return bundleFile.getPath()+"/bin";
+			return bundleFile.getPath()+"/bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		else
 			return bundleFile.getPath();
 	}
@@ -119,7 +119,7 @@ public abstract class AbstractNullAnnotationTest extends AbstractComparableTest 
 	// Conditionally augment problem detection settings
 	static boolean setNullRelatedOptions = true;
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected Map getCompilerOptions() {
 	    Map defaultOptions = super.getCompilerOptions();
 	    if (setNullRelatedOptions) {

@@ -44,7 +44,7 @@ import org.eclipse.jdt.apt.pluggable.tests.ProcessorTestStatus;
 @SupportedOptions( {})
 public class InheritedAnnoProc extends AbstractProcessor {
 
-	private static final List<String> processedElements = new ArrayList<>();
+	private static final List<String> processedElements = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 	public static List<String> getProcessedElements() {
 		return Collections.unmodifiableList(processedElements);
@@ -73,7 +73,7 @@ public class InheritedAnnoProc extends AbstractProcessor {
 	public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
 		ProcessorTestStatus.setProcessorRan();
 		if (!roundEnv.processingOver()) {
-			for (Element el : roundEnv.getRootElements()) {
+			for (Element el : roundEnv.getRootElements()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				processedElements.add(el.getSimpleName().toString());
 			}
 		}

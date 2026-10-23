@@ -152,7 +152,7 @@ public void testSuggestFieldName002() {
 		"class1", //$NON-NLS-1$
 		toString(suggestions));
 }
-public void testSuggestFieldName003() {
+public void testSuggestFieldName003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Hashtable options = JavaCore.getOptions();
 	options.put(JavaCore.CODEASSIST_FIELD_PREFIXES,"f"); //$NON-NLS-1$
 	JavaCore.setOptions(options);
@@ -173,7 +173,7 @@ public void testSuggestFieldName003() {
 		"name", //$NON-NLS-1$
 		toString(suggestions));
 }
-public void testSuggestFieldName004() {
+public void testSuggestFieldName004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Hashtable options = JavaCore.getOptions();
 	options.put(JavaCore.CODEASSIST_FIELD_PREFIXES,"_"); //$NON-NLS-1$
 	JavaCore.setOptions(options);
@@ -194,7 +194,7 @@ public void testSuggestFieldName004() {
 		"name", //$NON-NLS-1$
 		toString(suggestions));
 }
-public void testSuggestFieldName005() {
+public void testSuggestFieldName005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Hashtable options = JavaCore.getOptions();
 	options.put(JavaCore.CODEASSIST_FIELD_PREFIXES,"f"); //$NON-NLS-1$
 	options.put(JavaCore.CODEASSIST_STATIC_FIELD_PREFIXES,"fg"); //$NON-NLS-1$
@@ -216,7 +216,7 @@ public void testSuggestFieldName005() {
 		"name", //$NON-NLS-1$
 		toString(suggestions));
 }
-public void testSuggestFieldName006() {
+public void testSuggestFieldName006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Hashtable options = JavaCore.getOptions();
 	options.put(JavaCore.CODEASSIST_FIELD_PREFIXES,"pre"); //$NON-NLS-1$
 	options.put(JavaCore.CODEASSIST_FIELD_SUFFIXES,"suf"); //$NON-NLS-1$
@@ -242,7 +242,7 @@ public void testSuggestFieldName006() {
 		"name", //$NON-NLS-1$
 		toString(suggestions));
 }
-public void testSuggestFieldName007() {
+public void testSuggestFieldName007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Hashtable options = JavaCore.getOptions();
 	options.put(JavaCore.CODEASSIST_FIELD_PREFIXES,"pre"); //$NON-NLS-1$
 	options.put(JavaCore.CODEASSIST_FIELD_SUFFIXES,"suf"); //$NON-NLS-1$
@@ -279,7 +279,7 @@ public void testSuggestFieldName008() {
 		"name2", //$NON-NLS-1$
 		toString(suggestions));
 }
-public void testSuggestFieldName009() {
+public void testSuggestFieldName009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Hashtable options = JavaCore.getOptions();
 	options.put(JavaCore.CODEASSIST_FIELD_PREFIXES,"pre"); //$NON-NLS-1$
 	options.put(JavaCore.CODEASSIST_FIELD_SUFFIXES,"suf"); //$NON-NLS-1$
@@ -305,7 +305,7 @@ public void testSuggestFieldName009() {
 		"name", //$NON-NLS-1$
 		toString(suggestions));
 }
-public void testSuggestFieldName010() {
+public void testSuggestFieldName010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Hashtable options = JavaCore.getOptions();
 	options.put(JavaCore.CODEASSIST_FIELD_PREFIXES,"pre"); //$NON-NLS-1$
 	options.put(JavaCore.CODEASSIST_FIELD_SUFFIXES,"suf"); //$NON-NLS-1$
@@ -508,7 +508,7 @@ public void testSuggestFieldName021() {
 /*
  * bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=38111
  */
-public void testSuggestFieldName022() {
+public void testSuggestFieldName022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Hashtable options = JavaCore.getOptions();
 	options.put(JavaCore.CODEASSIST_STATIC_FINAL_FIELD_PREFIXES,"pre"); //$NON-NLS-1$
 	options.put(JavaCore.CODEASSIST_STATIC_FINAL_FIELD_SUFFIXES,"suf"); //$NON-NLS-1$
@@ -554,7 +554,7 @@ public void testSuggestFieldName023() {
 /*
  * bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=38111
  */
-public void testSuggestFieldName024() {
+public void testSuggestFieldName024() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Hashtable options = JavaCore.getOptions();
 	options.put(JavaCore.CODEASSIST_FIELD_PREFIXES,"pre"); //$NON-NLS-1$
 	options.put(JavaCore.CODEASSIST_FIELD_SUFFIXES,"suf"); //$NON-NLS-1$
@@ -1310,10 +1310,10 @@ public void testSuggestSetterName003() {
 /*
  * bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=133562
  */
-public void testSuggestLocalName001() {
+public void testSuggestLocalName001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = this.project.getOptions(true);
 	try {
-		Map newOptions = new HashMap(options);
+		Map newOptions = new HashMap(options); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		newOptions.put(JavaCore.COMPILER_CODEGEN_TARGET_PLATFORM, CompilerOptions.getFirstSupportedJavaVersion());
 		newOptions.put(JavaCore.COMPILER_SOURCE, CompilerOptions.getFirstSupportedJavaVersion());
 		newOptions.put(JavaCore.COMPILER_COMPLIANCE, CompilerOptions.getFirstSupportedJavaVersion());
@@ -1338,10 +1338,10 @@ public void testSuggestLocalName001() {
 /*
  * bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=133562
  */
-public void testSuggestLocalName002() {
+public void testSuggestLocalName002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = this.project.getOptions(true);
 	try {
-		Map newOptions = new HashMap(options);
+		Map newOptions = new HashMap(options); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		newOptions.put(JavaCore.COMPILER_CODEGEN_TARGET_PLATFORM, CompilerOptions.getFirstSupportedJavaVersion());
 		newOptions.put(JavaCore.COMPILER_SOURCE, CompilerOptions.getFirstSupportedJavaVersion());
 		newOptions.put(JavaCore.COMPILER_COMPLIANCE, CompilerOptions.getFirstSupportedJavaVersion());
@@ -1380,7 +1380,7 @@ public void testSuggestConstantFieldName001() {
 /*
  * bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=38111
  */
-public void testSuggestConstantFieldName002() {
+public void testSuggestConstantFieldName002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Hashtable options = JavaCore.getOptions();
 	options.put(JavaCore.CODEASSIST_STATIC_FINAL_FIELD_PREFIXES,"PRE"); //$NON-NLS-1$
 	options.put(JavaCore.CODEASSIST_STATIC_FINAL_FIELD_SUFFIXES,"SUF"); //$NON-NLS-1$
@@ -1406,10 +1406,10 @@ public void testSuggestConstantFieldName002() {
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=283539
  * Test that suggestions for parameters include the underscores as supplied
  */
-public void testSuggestParamWithUnderscore() {
+public void testSuggestParamWithUnderscore() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = this.project.getOptions(true);
 	try {
-		Map newOptions = new HashMap(options);
+		Map newOptions = new HashMap(options); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		this.project.setOptions(newOptions);
 
 		String[] suggestions = NamingConventions.suggestVariableNames(

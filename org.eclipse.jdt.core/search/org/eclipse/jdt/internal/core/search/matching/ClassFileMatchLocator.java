@@ -121,7 +121,7 @@ private  boolean checkAnnotation(IBinaryAnnotation annotation, TypeReferencePatt
 	}
 	IBinaryElementValuePair[] valuePairs = annotation.getElementValuePairs();
 	if (valuePairs != null) {
-		for (IBinaryElementValuePair valuePair : valuePairs) {
+		for (IBinaryElementValuePair valuePair : valuePairs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Object pairValue = valuePair.getValue();
 			if (pairValue instanceof IBinaryAnnotation) {
 				if (checkAnnotation((IBinaryAnnotation) pairValue, pattern)) {
@@ -134,7 +134,7 @@ private  boolean checkAnnotation(IBinaryAnnotation annotation, TypeReferencePatt
 }
 private boolean checkAnnotations(TypeReferencePattern pattern, IBinaryAnnotation[] annotations, long tagBits) {
 	if (annotations != null) {
-		for (IBinaryAnnotation annotation : annotations) {
+		for (IBinaryAnnotation annotation : annotations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (checkAnnotation(annotation, pattern)) {
 				return true;
 			}
@@ -159,12 +159,12 @@ private boolean checkParameters(char[] methodDescriptor, char[][] parameterSimpl
 	char[][] arguments = Signature.getParameterTypes(methodDescriptor);
 	int parameterCount = parameterSimpleNames.length;
 	if (parameterCount != arguments.length) return false;
-	for (int i = 0; i < parameterCount; i++)
+	for (int i = 0; i < parameterCount; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (!checkTypeName(parameterSimpleNames[i], parameterQualifications[i], Signature.toCharArray(arguments[i]), isCaseSensitive, isCamelCase))
 			return false;
 	return true;
 }
-private boolean checkStandardAnnotations(long annotationTagBits, TypeReferencePattern pattern) {
+private boolean checkStandardAnnotations(long annotationTagBits, TypeReferencePattern pattern) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if ((annotationTagBits & TagBits.AllStandardAnnotationsMask) == 0) {
 		return false;
 	}
@@ -235,7 +235,7 @@ private boolean checkTypeName(char[] simpleName, char[] qualification, char[] fu
 /**
  * Locate declaration in the current class file. This class file is always in a jar.
  */
-public void locateMatches(MatchLocator locator, ClassFile classFile, IBinaryType info) throws CoreException {
+public void locateMatches(MatchLocator locator, ClassFile classFile, IBinaryType info) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	SearchPattern pattern = locator.pattern;
 
 	// check annotations references
@@ -275,7 +275,7 @@ public void locateMatches(MatchLocator locator, ClassFile classFile, IBinaryType
 			MethodBinding[] availableMethods = binding.availableMethods();
 			int aMethodsLength = availableMethods == null ? 0 : availableMethods.length;
 			hasUnresolvedMethods = bMethodsLength != aMethodsLength;
-			for (int i = 0; i < aMethodsLength; i++) {
+			for (int i = 0; i < aMethodsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				MethodBinding method = availableMethods[i];
 				char[] methodSignature = method.genericSignature();
 				if (methodSignature == null) methodSignature = method.signature();
@@ -294,14 +294,14 @@ public void locateMatches(MatchLocator locator, ClassFile classFile, IBinaryType
 				if (hasUnresolvedMethods) {
 					if (binaryMethodSignatures == null) { // Store binary method signatures to avoid multiple computation
 						binaryMethodSignatures = new char[bMethodsLength][];
-						for (int j=0; j<bMethodsLength; j++) {
+						for (int j=0; j<bMethodsLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							IBinaryMethod binaryMethod = binaryMethods[j];
 							char[] signature = binaryMethod.getGenericSignature();
 							if (signature == null) signature = binaryMethod.getMethodDescriptor();
 							binaryMethodSignatures[j] = signature;
 						}
 					}
-					for (int j=0; j<bMethodsLength; j++) {
+					for (int j=0; j<bMethodsLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (CharOperation.equals(binaryMethods[j].getSelector(), method.selector) && CharOperation.equals(binaryMethodSignatures[j], methodSignature)) {
 							if (unresolvedMethods == null) {
 								System.arraycopy(binaryMethods, 0, unresolvedMethods = new IBinaryMethod[bMethodsLength], 0, bMethodsLength);
@@ -317,7 +317,7 @@ public void locateMatches(MatchLocator locator, ClassFile classFile, IBinaryType
 			FieldBinding[] availableFields = binding.availableFields();
 			int aFieldsLength = availableFields == null ? 0 : availableFields.length;
 			hasUnresolvedFields = bFieldsLength != aFieldsLength;
-			for (int i = 0; i < aFieldsLength; i++) {
+			for (int i = 0; i < aFieldsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				FieldBinding field = availableFields[i];
 
 				// Report the match if possible
@@ -330,7 +330,7 @@ public void locateMatches(MatchLocator locator, ClassFile classFile, IBinaryType
 
 				// Remove the field from unresolved list
 				if (hasUnresolvedFields) {
-					for (int j=0; j<bFieldsLength; j++) {
+					for (int j=0; j<bFieldsLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if ( CharOperation.equals(binaryFields[j].getName(), field.name)) {
 							if (unresolvedFields == null) {
 								System.arraycopy(binaryFields, 0, unresolvedFields = new IBinaryField[bFieldsLength], 0, bFieldsLength);
@@ -353,7 +353,7 @@ public void locateMatches(MatchLocator locator, ClassFile classFile, IBinaryType
 	// Report inaccurate methods
 	if (mustResolve) binaryMethods = unresolvedMethods;
 	bMethodsLength = binaryMethods == null ? 0 : binaryMethods.length;
-	for (int i=0; i < bMethodsLength; i++) {
+	for (int i=0; i < bMethodsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IBinaryMethod method = binaryMethods[i];
 		if (method == null) continue; // impossible match or already reported as accurate
 		if (matchBinary(pattern, method, info)) {
@@ -382,7 +382,7 @@ public void locateMatches(MatchLocator locator, ClassFile classFile, IBinaryType
 	// Report inaccurate fields
 	if (mustResolve) binaryFields =  unresolvedFields;
 	bFieldsLength = binaryFields == null ? 0 : binaryFields.length;
-	for (int i=0; i<bFieldsLength; i++) {
+	for (int i=0; i<bFieldsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IBinaryField field = binaryFields[i];
 		if (field == null) continue; // impossible match or already reported as accurate
 		if (matchBinary(pattern, field, info)) {
@@ -396,14 +396,14 @@ public void locateMatches(MatchLocator locator, ClassFile classFile, IBinaryType
 /*
  * Look for annotations references
  */
-private void matchAnnotations(SearchPattern pattern, MatchLocator locator, ClassFile classFile, IBinaryType binaryType) throws CoreException {
+private void matchAnnotations(SearchPattern pattern, MatchLocator locator, ClassFile classFile, IBinaryType binaryType) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Only process TypeReference patterns
 	switch (pattern.kind) {
 		case TYPE_REF_PATTERN:
 			break;
 		case OR_PATTERN:
 			SearchPattern[] patterns = ((OrPattern) pattern).patterns;
-			for (SearchPattern p : patterns) {
+			for (SearchPattern p : patterns) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				matchAnnotations(p, locator, classFile, binaryType);
 			}
 			// $FALL-THROUGH$ - fall through default to return
@@ -427,7 +427,7 @@ private void matchAnnotations(SearchPattern pattern, MatchLocator locator, Class
 	// Look for references in methods annotations
 	IBinaryMethod[] methods = binaryType.getMethods();
 	if (methods != null) {
-		for (IBinaryMethod method : methods) {
+		for (IBinaryMethod method : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (checkAnnotations(typeReferencePattern, method.getAnnotations(), method.getTagBits())) {
 					binaryTypeBinding = locator.cacheBinaryType(classFileBinaryType, binaryType);
 					IMethod methodHandle = classFileBinaryType.getMethod(
@@ -444,7 +444,7 @@ private void matchAnnotations(SearchPattern pattern, MatchLocator locator, Class
 	// Look for references in fields annotations
 	IBinaryField[] fields = binaryType.getFields();
 	if (fields != null) {
-		for (IBinaryField field : fields) {
+		for (IBinaryField field : fields) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (checkAnnotations(typeReferencePattern, field.getAnnotations(), field.getTagBits())) {
 					IField fieldHandle = classFileBinaryType.getField(new String(field.getName()));
 					TypeReferenceMatch match = new TypeReferenceMatch(fieldHandle, SearchMatch.A_ACCURATE, -1, 0, false, locator.getParticipant(), locator.currentPossibleMatch.resource);
@@ -459,7 +459,7 @@ private void matchAnnotations(SearchPattern pattern, MatchLocator locator, Class
  * Finds out whether the given binary info matches the search pattern.
  * Default is to return false.
  */
-boolean matchBinary(SearchPattern pattern, Object binaryInfo, IBinaryType enclosingBinaryType) {
+boolean matchBinary(SearchPattern pattern, Object binaryInfo, IBinaryType enclosingBinaryType) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	switch (pattern.kind) {
 		case CONSTRUCTOR_PATTERN :
 			return matchConstructor((ConstructorPattern) pattern, binaryInfo, enclosingBinaryType);
@@ -473,7 +473,7 @@ boolean matchBinary(SearchPattern pattern, Object binaryInfo, IBinaryType enclos
 			return matchTypeDeclaration((TypeDeclarationPattern) pattern, binaryInfo, enclosingBinaryType);
 		case OR_PATTERN :
 			SearchPattern[] patterns = ((OrPattern) pattern).patterns;
-			for (SearchPattern p : patterns)
+			for (SearchPattern p : patterns) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (matchBinary(p, binaryInfo, enclosingBinaryType)) return true;
 	}
 	return false;
@@ -505,7 +505,7 @@ boolean matchField(FieldPattern pattern, Object binaryInfo, IBinaryType enclosin
 	char[] fieldTypeSignature = Signature.toCharArray(convertClassFileFormat(field.getTypeName()));
 	return checkTypeName(pattern.typeSimpleName, pattern.typeQualification, fieldTypeSignature, pattern.isCaseSensitive(), pattern.isCamelCase());
 }
-boolean matchMethod(MethodPattern pattern, Object binaryInfo, IBinaryType enclosingBinaryType) {
+boolean matchMethod(MethodPattern pattern, Object binaryInfo, IBinaryType enclosingBinaryType) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!pattern.findDeclarations) return false; // only relevant when finding declarations
 	if (!(binaryInfo instanceof IBinaryMethod)) return false;
 
@@ -529,7 +529,7 @@ boolean matchMethod(MethodPattern pattern, Object binaryInfo, IBinaryType enclos
 	}
 	return true;
 }
-boolean matchSuperTypeReference(SuperTypeReferencePattern pattern, Object binaryInfo, IBinaryType enclosingBinaryType) {
+boolean matchSuperTypeReference(SuperTypeReferencePattern pattern, Object binaryInfo, IBinaryType enclosingBinaryType) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!(binaryInfo instanceof IBinaryType)) return false;
 
 	IBinaryType type = (IBinaryType) binaryInfo;
@@ -545,7 +545,7 @@ boolean matchSuperTypeReference(SuperTypeReferencePattern pattern, Object binary
 	if (pattern.superRefKind != SuperTypeReferencePattern.ONLY_SUPER_CLASSES) {
 		char[][] superInterfaces = type.getInterfaceNames();
 		if (superInterfaces != null) {
-			for (char[] superInterface : superInterfaces) {
+			for (char[] superInterface : superInterfaces) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				char[] superInterfaceName = convertClassFileFormat(superInterface);
 				if (checkTypeName(pattern.superSimpleName, pattern.superQualification, superInterfaceName, pattern.isCaseSensitive(), pattern.isCamelCase()))
 					return true;
@@ -554,7 +554,7 @@ boolean matchSuperTypeReference(SuperTypeReferencePattern pattern, Object binary
 	}
 	return false;
 }
-boolean matchTypeDeclaration(TypeDeclarationPattern pattern, Object binaryInfo, IBinaryType enclosingBinaryType) {
+boolean matchTypeDeclaration(TypeDeclarationPattern pattern, Object binaryInfo, IBinaryType enclosingBinaryType) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!(binaryInfo instanceof IBinaryType)) return false;
 
 	IBinaryType type = (IBinaryType) binaryInfo;

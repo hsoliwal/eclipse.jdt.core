@@ -52,7 +52,7 @@ public class ModuleInfoBuilder {
 		}
 	}
 
-	public byte[] compileWithAttributes(IModuleDescription module, Map<String,String> classFileAttributes) throws JavaModelException {
+	public byte[] compileWithAttributes(IModuleDescription module, Map<String,String> classFileAttributes) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject javaProject = module.getJavaProject();
 		NameEnvironment nameEnvironment = new NameEnvironment(javaProject, CompilationGroup.MAIN);
 
@@ -72,7 +72,7 @@ public class ModuleInfoBuilder {
 		return collector.bytes;
 	}
 
-	private void addModuleUpdates(IModuleDescription module, ModuleUpdater moduleUpdater, Map<String,String> classFileAttributes) {
+	private void addModuleUpdates(IModuleDescription module, ModuleUpdater moduleUpdater, Map<String,String> classFileAttributes) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String mainClassName = classFileAttributes.remove(String.valueOf(IAttributeNamesConstants.MODULE_MAIN_CLASS));
 		if (mainClassName != null) {
 			moduleUpdater.addModuleUpdate(module.getElementName(), m -> m.setMainClassName(mainClassName.toCharArray()), UpdateKind.MODULE);
@@ -81,13 +81,13 @@ public class ModuleInfoBuilder {
 		if (modulePackageNames != null) {
 			SimpleSetOfCharArray namesSet = new SimpleSetOfCharArray();
 			String[] providedNames = modulePackageNames.split(","); //$NON-NLS-1$
-			for (String providedName : providedNames) {
+			for (String providedName : providedNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				namesSet.add(providedName.trim().toCharArray());
 			}
 			moduleUpdater.addModuleUpdate(module.getElementName(),  m -> m.setPackageNames(namesSet), UpdateKind.MODULE);
 		}
 		if (!classFileAttributes.isEmpty()) {
-			throw new IllegalArgumentException("Unsupported key(s): "+classFileAttributes.keySet().toString()); //$NON-NLS-1$
+			throw new IllegalArgumentException("Unsupported key(s): "+classFileAttributes.keySet().toString()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -95,7 +95,7 @@ public class ModuleInfoBuilder {
 			throws JavaModelException {
 		IPackageFragmentRoot root = (IPackageFragmentRoot) module.getAncestor(IJavaElement.PACKAGE_FRAGMENT_ROOT);
 		IResource rootResource = root.getCorrespondingResource();
-		for (ClasspathMultiDirectory sourceLocation : nameEnvironment.sourceLocations) {
+		for (ClasspathMultiDirectory sourceLocation : nameEnvironment.sourceLocations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (sourceLocation.sourceFolder.equals(rootResource)) {
 				return sourceLocation;
 			}

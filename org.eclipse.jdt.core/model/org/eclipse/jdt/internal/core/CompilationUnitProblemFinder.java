@@ -99,10 +99,10 @@ public class CompilationUnitProblemFinder extends Compiler {
 	/**
 	 * Add additional source types
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void accept(ISourceType[] sourceTypes, PackageBinding packageBinding, AccessRestriction accessRestriction) {
 		// ensure to jump back to toplevel type for first one (could be a member)
-		while (sourceTypes[0].getEnclosingType() != null) {
+		while (sourceTypes[0].getEnclosingType() != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			sourceTypes[0] = sourceTypes[0].getEnclosingType();
 		}
 
@@ -144,7 +144,7 @@ public class CompilationUnitProblemFinder extends Compiler {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void accept(IModule module, LookupEnvironment environment) {
 		IModuleDescription handle = null;
 		if (module instanceof ModuleDescriptionInfo) {
@@ -215,11 +215,11 @@ public class CompilationUnitProblemFinder extends Compiler {
 		};
 	}
 
-	private static boolean isTestSource(IJavaProject project, ICompilationUnit cu) {
+	private static boolean isTestSource(IJavaProject project, ICompilationUnit cu) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IClasspathEntry[] resolvedClasspath = project.getResolvedClasspath(true);
 			final IPath resourcePath = cu.getResource().getFullPath();
-			for (IClasspathEntry e : resolvedClasspath) {
+			for (IClasspathEntry e : resolvedClasspath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (e.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
 					if (e.isTest()) {
 						if (e.getPath().isPrefixOf(resourcePath)) {
@@ -229,7 +229,7 @@ public class CompilationUnitProblemFinder extends Compiler {
 				}
 			}
 		} catch (JavaModelException e) {
-			Util.log(e, "Exception while determining if compilation unit \"" + cu.getElementName() //$NON-NLS-1$
+			Util.log(e, "Exception while determining if compilation unit \"" + cu.getElementName() //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ "\" is test source"); //$NON-NLS-1$
 		}
 		return false;
@@ -243,7 +243,7 @@ public class CompilationUnitProblemFinder extends Compiler {
 	/*
 	 * Can return null if the process was aborted or canceled
 	 */
-	public static CompilationUnitDeclaration process(
+	public static CompilationUnitDeclaration process( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			CompilationUnit unitElement,
 			SourceElementParser parser,
 			WorkingCopyOwner workingCopyOwner,
@@ -319,8 +319,8 @@ public class CompilationUnitProblemFinder extends Compiler {
 					problems.put(IJavaModelMarker.TASK_MARKER, categorizedProblems);
 				}
 				if (NameLookup.VERBOSE) {
-					JavaModelManager.trace(Thread.currentThread() + " TIME SPENT in NameLoopkup#seekTypesInSourcePackage: " + environment.nameLookup.timeSpentInSeekTypesInSourcePackage + "ms");  //$NON-NLS-1$ //$NON-NLS-2$
-					JavaModelManager.trace(Thread.currentThread() + " TIME SPENT in NameLoopkup#seekTypesInBinaryPackage: " + environment.nameLookup.timeSpentInSeekTypesInBinaryPackage + "ms");  //$NON-NLS-1$ //$NON-NLS-2$
+					JavaModelManager.trace(Thread.currentThread() + " TIME SPENT in NameLoopkup#seekTypesInSourcePackage: " + environment.nameLookup.timeSpentInSeekTypesInSourcePackage + "ms");  //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+					JavaModelManager.trace(Thread.currentThread() + " TIME SPENT in NameLoopkup#seekTypesInBinaryPackage: " + environment.nameLookup.timeSpentInSeekTypesInBinaryPackage + "ms");  //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		} catch (OperationCanceledException e) {
@@ -329,13 +329,13 @@ public class CompilationUnitProblemFinder extends Compiler {
 		} catch(RuntimeException e) {
 			// avoid breaking other tools due to internal compiler failure (40334)
 			String lineDelimiter = unitElement.findRecommendedLineSeparator();
-			StringBuilder message = new StringBuilder("Exception occurred during problem detection:");  //$NON-NLS-1$
-			message.append(lineDelimiter);
-			message.append("----------------------------------- SOURCE BEGIN -------------------------------------"); //$NON-NLS-1$
-			message.append(lineDelimiter);
-			message.append(unitElement.getSource());
-			message.append(lineDelimiter);
-			message.append("----------------------------------- SOURCE END -------------------------------------"); //$NON-NLS-1$
+			StringBuilder message = new StringBuilder("Exception occurred during problem detection:");  //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			message.append(lineDelimiter); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			message.append("----------------------------------- SOURCE BEGIN -------------------------------------"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			message.append(lineDelimiter); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			message.append(unitElement.getSource()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			message.append(lineDelimiter); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			message.append("----------------------------------- SOURCE END -------------------------------------"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			Util.log(e, message.toString());
 			throw new JavaModelException(e, IJavaModelStatusConstants.COMPILER_FAILURE);
 		} finally {

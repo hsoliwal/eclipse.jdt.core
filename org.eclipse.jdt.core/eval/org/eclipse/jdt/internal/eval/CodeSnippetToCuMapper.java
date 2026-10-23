@@ -89,76 +89,76 @@ class CodeSnippetToCuMapper implements EvaluationConstants {
 	this.complianceVersion = complianceVersion;
 	buildCUSource(lineSeparator);
 }
-private void buildCUSource(String lineSeparator) {
-	StringBuilder buffer = new StringBuilder();
+private void buildCUSource(String lineSeparator) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
 	// package declaration
 	if (this.snippetPackageName != null && this.snippetPackageName.length != 0) {
-		buffer.append("package "); //$NON-NLS-1$
-		buffer.append(this.snippetPackageName);
-		buffer.append(";").append(lineSeparator); //$NON-NLS-1$
+		buffer.append("package "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(this.snippetPackageName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(";").append(lineSeparator); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		this.lineNumberOffset++;
 	}
 
 	// import declarations
 	char[][] imports = this.snippetImports;
-	for (char[] import1 : imports) {
-		buffer.append("import "); //$NON-NLS-1$
-		buffer.append(import1);
-		buffer.append(';').append(lineSeparator);
+	for (char[] import1 : imports) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		buffer.append("import "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(import1); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(';').append(lineSeparator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		this.lineNumberOffset++;
 	}
 
 	// class declaration
-	buffer.append("public class "); //$NON-NLS-1$
-	buffer.append(this.snippetClassName);
+	buffer.append("public class "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(this.snippetClassName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 	// super class is either a global variable class or the CodeSnippet class
 	if (this.snippetVarClassName != null) {
-		buffer.append(" extends "); //$NON-NLS-1$
-		buffer.append(this.snippetVarClassName);
+		buffer.append(" extends "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(this.snippetVarClassName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	} else {
-		buffer.append(" extends "); //$NON-NLS-1$
-		buffer.append(PACKAGE_NAME);
-		buffer.append("."); //$NON-NLS-1$
-		buffer.append(ROOT_CLASS_NAME);
+		buffer.append(" extends "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(PACKAGE_NAME); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("."); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(ROOT_CLASS_NAME); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	buffer.append(" {").append(lineSeparator); //$NON-NLS-1$
+	buffer.append(" {").append(lineSeparator); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	this.lineNumberOffset++;
 
 	if (this.snippetDeclaringTypeName != null){
-		buffer.append("  "); //$NON-NLS-1$
-		buffer.append(this.snippetDeclaringTypeName);
-		buffer.append(" "); //$NON-NLS-1$
-		buffer.append(DELEGATE_THIS); // val$this
-		buffer.append(';').append(lineSeparator);
+		buffer.append("  "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(this.snippetDeclaringTypeName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(" "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(DELEGATE_THIS); // val$this //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(';').append(lineSeparator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		this.lineNumberOffset++;
 	}
 	// add some storage location for local variable persisted state
 	if (this.localVarNames != null) {
-		for (int i = 0, max = this.localVarNames.length; i < max; i++) {
-			buffer.append("    "); //$NON-NLS-1$
-			buffer.append(this.localVarTypeNames[i]);
-			buffer.append(" "); //$NON-NLS-1$
-			buffer.append(LOCAL_VAR_PREFIX); // val$...
-			buffer.append(this.localVarNames[i]);
-			buffer.append(';').append(lineSeparator);
+		for (int i = 0, max = this.localVarNames.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append("    "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(this.localVarTypeNames[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(" "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(LOCAL_VAR_PREFIX); // val$... //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(this.localVarNames[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(';').append(lineSeparator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			this.lineNumberOffset++;
 		}
 	}
 	// run() method declaration
-	buffer.append("@Override "); //$NON-NLS-1$
-	buffer.append("public void run() throws Throwable {").append(lineSeparator); //$NON-NLS-1$
+	buffer.append("@Override "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append("public void run() throws Throwable {").append(lineSeparator); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	this.lineNumberOffset++;
 	this.startPosOffset = buffer.length();
-	buffer.append(this.codeSnippet);
+	buffer.append(this.codeSnippet); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	// a line separator is required after the code snippet source code
 	// in case the code snippet source code ends with a line comment
 	// http://dev.eclipse.org/bugs/show_bug.cgi?id=14838
-	buffer.append(lineSeparator).append('}').append(lineSeparator);
+	buffer.append(lineSeparator).append('}').append(lineSeparator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 	// end of class declaration
-	buffer.append('}').append(lineSeparator);
+	buffer.append('}').append(lineSeparator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 	// store result
 	int length = buffer.length();
@@ -169,9 +169,9 @@ private void buildCUSource(String lineSeparator) {
  * Returns a completion requestor that wraps the given requestor and shift the results
  * according to the start offset and line number offset of the code snippet in the generated compilation unit.
  */
-public CompletionRequestor getCompletionRequestor(final CompletionRequestor originalRequestor) {
+public CompletionRequestor getCompletionRequestor(final CompletionRequestor originalRequestor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	return new CompletionRequestor() {
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public void accept(CompletionProposal proposal) {
 			switch(proposal.getKind()) {
 				case CompletionProposal.TYPE_REF:
@@ -259,7 +259,7 @@ public char[] getCUSource(String lineSeparator) {
 /**
  * Returns the type of evaluation that corresponds to the given line number in the generated compilation unit.
  */
-public int getEvaluationType(int lineNumber) {
+public int getEvaluationType(int lineNumber) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int currentLine = 1;
 
 	// check package declaration
@@ -305,7 +305,7 @@ public char[] getImport(int lineNumber) {
  * Returns a selection requestor that wraps the given requestor and shift the problems
  * according to the start offset and line number offset of the code snippet in the generated compilation unit.
  */
-public ISelectionRequestor getSelectionRequestor(final ISelectionRequestor originalRequestor) {
+public ISelectionRequestor getSelectionRequestor(final ISelectionRequestor originalRequestor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	return new ISelectionRequestor() {
 		@Override
 		public void acceptType(char[] packageName, char[] typeName, int modifiers, boolean isDeclaration, char[] uniqueKey, int start, int end) {

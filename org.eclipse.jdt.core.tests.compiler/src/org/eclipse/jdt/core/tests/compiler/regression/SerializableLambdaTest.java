@@ -112,7 +112,7 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 	/**
 	 * Verifies that after deserializing it is usable, also that the bootstrap methods attribute indicates use of altMetafactory
 	 */
-	public void test001_simple() throws Exception {
+	public void test001_simple() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"X.java",
@@ -141,14 +141,14 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				"    invokestatic X.lambda$0:()I\n"+
 				"    ()I\n"+
 				"    1\n";
-		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class");
+		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		checkExpected(expectedOutput,data);
 	}
 
 	/**
 	 * Sanity test, non serializable should have bootstrap methods attribute reference to metafactory.
 	 */
-	public void test002_simpleNonSerializable() throws Exception {
+	public void test002_simpleNonSerializable() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"X.java",
@@ -171,14 +171,14 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				"    ()I\n"+
 				"    invokestatic X.lambda$0:()I\n"+
 				"    ()I\n";
-		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class");
+		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		checkExpected(expectedOutput,data);
 	}
 
 	/**
 	 * Basic test that deserializeLambda can cope with two lambda expressions.
 	 */
-	public void test003_twoSerializedLambdas() throws Exception {
+	public void test003_twoSerializedLambdas() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"X.java",
@@ -217,11 +217,11 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				"    invokestatic X.lambda$1:()I\n"+
 				"    ()I\n"+
 				"    1\n";
-		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class");
+		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		checkExpected(expectedOutput,data);
 	}
 
-	public void test004_lambdaWithParameterInPackage() throws Exception {
+	public void test004_lambdaWithParameterInPackage() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"Y.java",
@@ -257,11 +257,11 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				"    invokestatic com/foo/X.lambda$0:(I)I\n"+
 				"    (I)I\n"+
 				"    1\n";
-		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "com"+File.separator+"foo"+File.separator+"X.class");
+		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "com"+File.separator+"foo"+File.separator+"X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		checkExpected(expectedOutput,data);
 	}
 
-	public void test005_capturingVariableLambdaWithParameterInPackage() throws Exception {
+	public void test005_capturingVariableLambdaWithParameterInPackage() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"Y.java",
@@ -298,12 +298,12 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				"    invokestatic com/foo/X.lambda$0:(II)I\n"+
 				"    (I)I\n"+
 				"    1\n";
-		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "com"+File.separator+"foo"+File.separator+"X.class");
+		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "com"+File.separator+"foo"+File.separator+"X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		checkExpected(expectedOutput,data);
 	}
 
 	// differing types, not just int
-	public void test006_capturingVariableLambdaWithParameterInPackage() throws Exception {
+	public void test006_capturingVariableLambdaWithParameterInPackage() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"Y.java",
@@ -340,12 +340,12 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				"    invokestatic com/foo/X.lambda$0:(ILjava/lang/String;)I\n"+
 				"    (Ljava/lang/String;)I\n"+
 				"    1\n";
-		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "com"+File.separator+"foo"+File.separator+"X.class");
+		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "com"+File.separator+"foo"+File.separator+"X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		checkExpected(expectedOutput,data);
 	}
 
 	// Fails the same way as javac right now... with NPE (b120)
-	public void xtest007_capturingFieldLambdaWithParameterInPackage() throws Exception {
+	public void xtest007_capturingFieldLambdaWithParameterInPackage() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"Y.java",
@@ -385,11 +385,11 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				"    invokestatic com/foo/X.lambda$0:(II)I\n"+
 				"    (I)I\n"+
 				"    1\n";
-		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "com"+File.separator+"foo"+File.separator+"X.class");
+		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "com"+File.separator+"foo"+File.separator+"X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		checkExpected(expectedOutput,data);
 	}
 
-	public void test008_capturingTwoVariableLambdaWithParameterInPackage() throws Exception {
+	public void test008_capturingTwoVariableLambdaWithParameterInPackage() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"Y.java",
@@ -428,11 +428,11 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				"    invokestatic com/foo/X.lambda$0:(IF)F\n"+
 				"    (IF)F\n"+
 				"    1\n";
-		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "com"+File.separator+"foo"+File.separator+"X.class");
+		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "com"+File.separator+"foo"+File.separator+"X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		checkExpected(expectedOutput,data);
 	}
 
-	public void test009_capturingTwoSlotVariablesLambdaWithParameterInPackage() throws Exception {
+	public void test009_capturingTwoSlotVariablesLambdaWithParameterInPackage() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"Y.java",RUNNER_CLASS,
@@ -466,11 +466,11 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				"    invokestatic com/foo/X.lambda$0:(IJ)D\n"+
 				"    (IJ)D\n"+
 				"    1\n";
-		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "com"+File.separator+"foo"+File.separator+"X.class");
+		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "com"+File.separator+"foo"+File.separator+"X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		checkExpected(expectedOutput,data);
 	}
 
-	public void test010_VarargsLambdaExpression() throws Exception {
+	public void test010_VarargsLambdaExpression() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"Y.java",RUNNER_CLASS,
@@ -504,12 +504,12 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				"    invokestatic com/foo/X.lambda$0:([Ljava/lang/String;)Ljava/lang/String;\n"+
 				"    ([Ljava/lang/String;)Ljava/lang/String;\n"+
 				"    1\n";
-		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "com"+File.separator+"foo"+File.separator+"X.class");
+		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "com"+File.separator+"foo"+File.separator+"X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		checkExpected(expectedOutput,data);
 	}
 
 	// Fails same way as javac right now... with an NPE (b120)
-	public void xtest011_CapturingInstance() throws Exception {
+	public void xtest011_CapturingInstance() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"Y.java",RUNNER_CLASS,
@@ -544,11 +544,11 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				"    invokestatic com/foo/X.lambda$0:([Ljava/lang/String;)Ljava/lang/String;\n"+
 				"    ([Ljava/lang/String;)Ljava/lang/String;\n"+
 				"    1\n";
-		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "com"+File.separator+"foo"+File.separator+"X.class");
+		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "com"+File.separator+"foo"+File.separator+"X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		checkExpected(expectedOutput,data);
 	}
 
-	public void test012_intersectionCast() throws Exception {
+	public void test012_intersectionCast() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"X.java",
@@ -582,11 +582,11 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				"    3\n"+ // BitFlags: 0x01 = FLAG_SERIALIZABLE 0x02 = FLAG_MARKER
 				"    1\n"+ // Marker interface count
 				"    X$Marker\n";
-		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class");
+		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		checkExpected(expectedOutput,data);
 	}
 
-	public void test013_intersectionCast() throws Exception {
+	public void test013_intersectionCast() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"X.java",
@@ -626,11 +626,11 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				"    2\n"+ // Marker interface count
 				"    Goo\n"+
 				"    X$Marker\n";
-		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class");
+		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		checkExpected(expectedOutput,data);
 	}
 
-	public void test014_intersectionCastAndNotSerializable() throws Exception {
+	public void test014_intersectionCastAndNotSerializable() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"X.java",
@@ -665,11 +665,11 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				"    2\n"+ // Marker interface count
 				"    Goo\n"+
 				"    X$Marker\n";
-		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class");
+		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		checkExpected(expectedOutput,data);
 	}
 
-	public void test015_serializableViaIntersectionCast() throws Exception {
+	public void test015_serializableViaIntersectionCast() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"X.java",
@@ -709,12 +709,12 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				"    2\n"+ // Marker interface count
 				"    Goo\n"+
 				"    X$Marker\n";
-		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class");
+		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		checkExpected(expectedOutput,data);
 	}
 
 	// SAM type not first in intersection cast
-	public void test016_bug424211() throws Exception {
+	public void test016_bug424211() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"X.java",
@@ -737,12 +737,12 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				"    invokestatic X.lambda$0:()V\n"+
 				"    ()V\n"+
 				"    1\n";
-		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class");
+		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		checkExpected(expectedOutput,data);
 	}
 
 	// Now SAM type first
-	public void test017_bug424211() throws Exception {
+	public void test017_bug424211() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"X.java",
@@ -765,12 +765,12 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				"    invokestatic X.lambda$0:()V\n"+
 				"    ()V\n"+
 				"    1\n";
-		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class");
+		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		checkExpected(expectedOutput,data);
 	}
 
 	// Not Serializable but a regular marker interface
-	public void test018_bug424211() throws Exception {
+	public void test018_bug424211() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"X.java",
@@ -796,12 +796,12 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				"    2\n"+
 				"    1\n"+
 				"    Marker\n";
-		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class");
+		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		checkExpected(expectedOutput,data);
 	}
 
 	// Now SAM type not first and serialization occurring
-	public void test019_bug424211() throws Exception {
+	public void test019_bug424211() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"X.java",
@@ -829,11 +829,11 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				"    invokestatic X.lambda$0:()I\n"+
 				"    ()I\n"+
 				"    1\n";
-		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class");
+		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		checkExpected(expectedOutput,data);
 	}
 
-	public void test020_lambdaNames() throws Exception {
+	public void test020_lambdaNames() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"X.java",
@@ -856,13 +856,13 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 					new String [] { "-Ddummy" }); // Not sure, unless we force the VM to not be reused by passing dummy vm argument, the generated program aborts midway through its execution.
 		String expectedOutput =
 			"  private static synthetic void lambda$0() throws java.lang.Exception;\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		expectedOutput =
 			"  private static synthetic int lambda$1();\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
-	public void test021_lambdaNamesVariants() throws Exception {
+	public void test021_lambdaNamesVariants() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"X.java",
@@ -912,14 +912,14 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				"static lambda$11(I)I\n"+
 				"static lambda$12(II)I\n"+
 				"static lambda$13(II)I\n";
-		String actualOutput = printLambdaMethods(OUTPUT_DIR + File.separator + "X.class");
+		String actualOutput = printLambdaMethods(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (!actualOutput.equals(expectedOutput)) {
 			printIt(actualOutput);
 			assertEquals(expectedOutput,actualOutput);
 		}
 	}
 
-	public void test022_nestedLambdas() throws Exception {
+	public void test022_nestedLambdas() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"X.java",
@@ -953,11 +953,11 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				"    invokestatic X.lambda$1:()I\n"+
 				"    ()I\n"+
 				"    1\n";
-		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class");
+		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		checkExpected(expectedOutput,data);
 	}
 
-	public void test023_lambdasInOtherPlaces_Field() throws Exception {
+	public void test023_lambdasInOtherPlaces_Field() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"X.java",
@@ -988,11 +988,11 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				"    invokestatic X.lambda$0:()I\n"+
 				"    ()I\n"+
 				"    1\n";
-		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class");
+		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		checkExpected(expectedOutput,data);
 	}
 
-	public void test024_lambdasInOtherPlaces_MethodParameter() throws Exception {
+	public void test024_lambdasInOtherPlaces_MethodParameter() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"X.java",
@@ -1022,11 +1022,11 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				"    invokestatic X.lambda$0:()I\n"+
 				"    ()I\n"+
 				"    1\n";
-		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class");
+		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		checkExpected(expectedOutput,data);
 	}
 
-	public void test025_lambdasWithGenericInferencing() throws Exception {
+	public void test025_lambdasWithGenericInferencing() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"X.java",
@@ -1057,10 +1057,10 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				"    invokestatic X.lambda$0:(I)Ljava/lang/Integer;\n"+
 				"    (I)Ljava/lang/Integer;\n"+
 				"    1\n";
-		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class");
+		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		checkExpected(expectedOutput,data);
 	}
-	public void test026_lambdasInOtherPlaces_Clinit() throws Exception {
+	public void test026_lambdasInOtherPlaces_Clinit() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"X.java",
@@ -1100,12 +1100,12 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				"    invokestatic X.lambda$1:()I\n"+
 				"    ()I\n"+
 				"    1\n";
-		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class");
+		String data = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		checkExpected(expectedOutput,data);
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=449467 - [1.8][compiler] Invalid lambda deserialization with anonymous class
-	public void test449467() throws Exception {
+	public void test449467() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"TestClass.java",
@@ -1164,7 +1164,7 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 					new String [] { "-Ddummy" }); // Not sure, unless we force the VM to not be reused by passing dummy vm argument, the generated program aborts midway through its execution.
 	}
 
-	public void test449467_2() throws Exception {
+	public void test449467_2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"com/foo/TestClass.java",
@@ -1224,7 +1224,7 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=428552,  [1.8][compiler][codegen] Serialization does not work for method references
-	public void test428552() throws Exception {
+	public void test428552() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"X.java",
@@ -1252,7 +1252,7 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=428642
-	public void test428642() throws Exception {
+	public void test428642() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"QuickSerializedLambdaTest.java",
@@ -1288,7 +1288,7 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				new String[]{"-Ddummy"}); // Not sure, unless we force the VM to not be reused by passing dummy vm argument, the generated program aborts midway through its execution.
 	}
 
-	public void test428642_2() throws Exception {
+	public void test428642_2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"Helper.java",
@@ -1333,7 +1333,7 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=429112, [1.8][compiler] Exception when compiling Serializable array constructor reference
-	public void test429112() throws Exception {
+	public void test429112() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"X.java",
@@ -1367,7 +1367,7 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=439889 - [1.8][compiler] [lambda] Deserializing lambda fails with IllegalArgumentException: "Invalid lambda deserialization"
-	public void test439889() throws Exception {
+	public void test439889() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"SerializationTest.java",
@@ -1406,7 +1406,7 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 					new String[]{"-Ddummy"}); // Not sure, unless we force the VM to not be reused by passing dummy vm argument, the generated program aborts midway through its execution.
 	}
 
-	public void test439889_2() throws Exception {
+	public void test439889_2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"SerializationTest.java",
@@ -1445,7 +1445,7 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 					new String[]{"-Ddummy"}); // Not sure, unless we force the VM to not be reused by passing dummy vm argument, the generated program aborts midway through its execution.
 	}
 
-	public void testNestedLambdas_442416() throws Exception {
+	public void testNestedLambdas_442416() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"Foo.java",
@@ -1494,7 +1494,7 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				new String[]{"-Ddummy"}); // Not sure, unless we force the VM to not be reused by passing dummy vm argument, the generated program aborts midway through its execution.
 	}
 
-	public void testBindingThis_442418() throws Exception {
+	public void testBindingThis_442418() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[]{
 					"Foo.java",
@@ -1536,7 +1536,7 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 				new String[]{"-Ddummy"}); // Not sure, unless we force the VM to not be reused by passing dummy vm argument, the generated program aborts midway through its execution.
 	}
 
-	public void testbug479119() {
+	public void testbug479119() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[]{
 				"Testbed.java",
@@ -1582,7 +1582,7 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 		);
 
 
-		String bootstrapEntries = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "Testbed.class");
+		String bootstrapEntries = printBootstrapMethodsAttribute(OUTPUT_DIR + File.separator + "Testbed.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String expectedOutput =
 				"0: invokestatic java/lang/invoke/LambdaMetafactory.altMetafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;\n"+
 				"  Method arguments:\n"+
@@ -1604,7 +1604,7 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 		checkExpected(expectedOutput, bootstrapEntries);
 	}
 
-	public void testbug479119a() {
+	public void testbug479119a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[]{
 				"Testbed.java",
@@ -1671,7 +1671,7 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 	}
 
 	// Serializable reference expressions that share the same name
-	public void testbug479119b() {
+	public void testbug479119b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[]{
 				"X.java",
@@ -1723,7 +1723,7 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 		null,true,
 		new String[]{"-Ddummy"});
 	}
-	public void testbug479119_comment20() {
+	public void testbug479119_comment20() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[]{
 				"Testbed.java",
@@ -1790,7 +1790,7 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 		null,true,
 		new String[]{"-Ddummy"});
 	}
-	public void testbug485333() {
+	public void testbug485333() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[]{
 				"Test.java",
@@ -1842,7 +1842,7 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 		null,true,
 		new String[]{"-Ddummy"});
 	}
-	public void testbug494487() {
+	public void testbug494487() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = getCompilerOptions();
 		options.put(CompilerOptions.OPTION_LocalVariableAttribute, CompilerOptions.DO_NOT_GENERATE);
 		this.runConformTest(
@@ -2021,7 +2021,7 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 		},
 		options);
 	}
-	public void testbug497879() {
+	public void testbug497879() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[]{
 				"LambdaSerializationTest.java",
@@ -2068,7 +2068,7 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 		null,true,
 		new String[]{"-Ddummy"});
 	}
-	public void testbug497879a() {
+	public void testbug497879a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[]{
 				"LambdaSerializationTest.java",
@@ -2118,7 +2118,7 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 		null,true,
 		new String[]{"-Ddummy"});
 	}
-	public void testbug497879b() {
+	public void testbug497879b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[]{
 				"LambdaSerializationTest.java",
@@ -2167,7 +2167,7 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 		null,true,
 		new String[]{"-Ddummy"});
 	}
-	public void testbug503118() {
+	public void testbug503118() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[]{
 				"lambdabug/App.java",
@@ -2208,7 +2208,7 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 		null,true,
 		new String[]{"-Ddummy"});
 	}
-	public void testbug507011() {
+	public void testbug507011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[]{
 				"VerifyErrorDerived.java",
@@ -2235,7 +2235,7 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 		null,true,
 		new String[]{"-Ddummy"});
 	}
-	public void testbug509782() {
+	public void testbug509782() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[]{
 				"compilertest/BaseType.java",
@@ -2273,7 +2273,7 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 		null,true,
 		new String[]{"-Ddummy"});
 	}
-	public void testbug566155() {
+	public void testbug566155() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// method reference must be compiled as an implicit lambda expression
 		// else it cannot be serialized correctly
 		this.runConformTest(new String[] {
@@ -2301,10 +2301,10 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 		}, "");
 		String expectedOutput =
 			"lambda$1()LOuterClass$InnerClass;\n";
-		String data = printLambdaMethods(OUTPUT_DIR + File.separator + "OuterClass.class");
+		String data = printLambdaMethods(OUTPUT_DIR + File.separator + "OuterClass.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		checkExpected(expectedOutput,data);
 	}
-	public void testbugGH155() {
+	public void testbugGH155() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// before resolution, $deserializeLambda$ expects java.lang.Object return type
 		// while SerializedLambda advertises java.lang.Comparable return type
 		// deserialization fails as $deserializeLambda$ cannot find appropriate deserializer.
@@ -2369,7 +2369,7 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 	private void printIt(String text) {
 		String quotedText = text;
 		if (!quotedText.startsWith("\"")) {
-			quotedText = "\""+quotedText.replaceAll("\n", "\\\\n\"+\n\"");
+			quotedText = "\""+quotedText.replaceAll("\n", "\\\\n\"+\n\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			quotedText = quotedText.substring(0,quotedText.length()-3);
 		}
 		System.out.println(quotedText);
@@ -2380,11 +2380,11 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 	 * Unlike javap the constant pool indexes are not included, to make the test a little less
 	 * fragile.
 	 */
-	private String printBootstrapMethodsAttribute(String filepath) {
+	private String printBootstrapMethodsAttribute(String filepath) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IClassFileReader cfr = ToolFactory.createDefaultClassFileReader(filepath, IClassFileReader.CLASSFILE_ATTRIBUTES);
 		BootstrapMethodsAttribute bootstrapMethodsAttribute = null;
 		IClassFileAttribute[] attrs = cfr.getAttributes();
-		for (int i=0,max=attrs.length;i<max;i++) {
+		for (int i=0,max=attrs.length;i<max;i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (new String(attrs[i].getAttributeName()).equals("BootstrapMethods")) {
 				bootstrapMethodsAttribute = (BootstrapMethodsAttribute)attrs[i];
 			}
@@ -2393,40 +2393,40 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 			return "";
 		}
 		IConstantPool cp = cfr.getConstantPool();
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		int bmaLength = bootstrapMethodsAttribute.getBootstrapMethodsLength();
-		for (int i=0;i<bmaLength;i++) {
+		for (int i=0;i<bmaLength;i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IBootstrapMethodsEntry entry = bootstrapMethodsAttribute.getBootstrapMethods()[i];
 			int mr = entry.getBootstrapMethodReference();
 			IConstantPoolEntry2 icpe = (IConstantPoolEntry2)cfr.getConstantPool().decodeEntry(mr);
 
-			sb.append(i).append(": ").append(formatReferenceKind(icpe.getReferenceKind()));
-			sb.append(" ").append(format(cp,icpe.getReferenceIndex()));
-			sb.append("\n");
+			sb.append(i).append(": ").append(formatReferenceKind(icpe.getReferenceKind())); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			sb.append(" ").append(format(cp,icpe.getReferenceIndex())); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			sb.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			int[] args = entry.getBootstrapArguments();
-			sb.append("  Method arguments:\n");
-			for (int a=0;a<args.length;a++) {
-				sb.append("    ").append(format(cp,args[a])).append("\n");
+			sb.append("  Method arguments:\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (int a=0;a<args.length;a++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				sb.append("    ").append(format(cp,args[a])).append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		return sb.toString();
 	}
 
-	private String printLambdaMethods(String filepath) {
+	private String printLambdaMethods(String filepath) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IClassFileReader cfr = ToolFactory.createDefaultClassFileReader(filepath, IClassFileReader.METHOD_INFOS);
 		IMethodInfo[] methodInfos = cfr.getMethodInfos();
-		StringBuilder buf = new StringBuilder();
-		for (int i = 0, max = methodInfos.length; i < max; i++) {
+		StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0, max = methodInfos.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IMethodInfo methodInfo = methodInfos[i];
 			if (!new String(methodInfo.getName()).startsWith("lambda"))
 				continue;
 			int accessFlags = methodInfo.getAccessFlags();
 			if (Modifier.isStatic(accessFlags)) {
-				buf.append("static ");
+				buf.append("static "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buf.append(methodInfo.getName());
-			buf.append(methodInfo.getDescriptor());
-			buf.append("\n");
+			buf.append(methodInfo.getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append(methodInfo.getDescriptor()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return buf.toString();
 	}
@@ -2436,11 +2436,11 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 			case IConstantPoolConstant.METHOD_TYPE_REF_InvokeStatic:
 				return "invokestatic";
 			default:
-				throw new IllegalStateException("nyi for "+kind);
+				throw new IllegalStateException("nyi for "+kind); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
-	String format(IConstantPool cp, int entryNumber) {
+	String format(IConstantPool cp, int entryNumber) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IConstantPoolEntry entry = cp.decodeEntry(entryNumber);
 		if (entry == null) {
 			return "null";
@@ -2451,16 +2451,16 @@ public class SerializableLambdaTest extends AbstractRegressionTest {
 			case IConstantPoolConstant.CONSTANT_Utf8:
 				return new String(entry.getUtf8Value());
 			case IConstantPoolConstant.CONSTANT_Methodref:
-				return new String(entry.getClassName())+"."+new String(entry.getMethodName())+":"+new String(entry.getMethodDescriptor());
+				return new String(entry.getClassName())+"."+new String(entry.getMethodName())+":"+new String(entry.getMethodDescriptor()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			case IConstantPoolConstant.CONSTANT_MethodHandle:
 				IConstantPoolEntry2 entry2 = (IConstantPoolEntry2)entry;
-				return formatReferenceKind(entry2.getReferenceKind())+" "+format(cp,entry2.getReferenceIndex());
+				return formatReferenceKind(entry2.getReferenceKind())+" "+format(cp,entry2.getReferenceIndex()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			case IConstantPoolConstant.CONSTANT_MethodType:
 				return format(cp,((IConstantPoolEntry2)entry).getDescriptorIndex());
 			case IConstantPoolConstant.CONSTANT_Class:
 				return new String(entry.getClassInfoName());
 			default:
-					throw new IllegalStateException("nyi for "+entry.getKind());
+					throw new IllegalStateException("nyi for "+entry.getKind()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 

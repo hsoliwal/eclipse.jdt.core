@@ -390,7 +390,7 @@ public class UnderscoresInLiteralsTest extends AbstractRegressionTest {
 			"Underscores have to be located within digits\n" +
 			"----------\n");
 	}
-	public void test022() {
+	public void test022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customedOptions = getCompilerOptions();
 		customedOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 		customedOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());

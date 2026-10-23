@@ -300,7 +300,7 @@ public final class ListRewrite {
 			return;
 		}
 		if (!this.childListProperty.getElementType().isAssignableFrom(node.getClass())) {
-			String message = node.getClass().getName() + " is not a valid type for " + this.childListProperty.getNodeClass().getName() //$NON-NLS-1$
+			String message = node.getClass().getName() + " is not a valid type for " + this.childListProperty.getNodeClass().getName() //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ " property '" + this.childListProperty.getId() + "'. Must be " + this.childListProperty.getElementType().getName(); //$NON-NLS-1$ //$NON-NLS-2$
 			throw new IllegalArgumentException(message);
 		}
@@ -315,7 +315,7 @@ public final class ListRewrite {
 		NodeInfoStore nodeStore= this.rewriter.getNodeStore();
 		ASTNode placeholder= nodeStore.newPlaceholderNode(first.getNodeType()); // revisit: could use list type
 		if (placeholder == null) {
-			throw new IllegalArgumentException("Creating a target node is not supported for nodes of type" + first.getClass().getName()); //$NON-NLS-1$
+			throw new IllegalArgumentException("Creating a target node is not supported for nodes of type" + first.getClass().getName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		Block internalPlaceHolder= nodeStore.createCollapsePlaceholder();

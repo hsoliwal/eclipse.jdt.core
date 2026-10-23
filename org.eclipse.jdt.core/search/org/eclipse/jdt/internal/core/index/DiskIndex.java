@@ -64,7 +64,7 @@ private int streamEnd; // used when writing data from the streamBuffer to the fi
 char separator = Index.DEFAULT_SEPARATOR;
 
 public static final String INDEX_VERSION = "1.134"; //$NON-NLS-1$
-public static final String SIGNATURE = "INDEX VERSION " + INDEX_VERSION; //$NON-NLS-1$
+public static final String SIGNATURE = "INDEX VERSION " + INDEX_VERSION; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 private static final char[] SIGNATURE_CHARS = SIGNATURE.toCharArray();
 public static boolean DEBUG = false;
 
@@ -121,29 +121,29 @@ DiskIndex(IndexLocation location) throws IOException {
 	}
 	this.indexLocation = location;
 }
-SimpleSet addDocumentNames(String substring, MemoryIndex memoryIndex) throws IOException {
+SimpleSet addDocumentNames(String substring, MemoryIndex memoryIndex) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// must skip over documents which have been added/changed/deleted in the memory index
 	String[] docNames = readAllDocumentNames();
 	SimpleSet results = new SimpleSet(docNames.length);
 	if (substring == null) {
 		if (memoryIndex == null) {
-			for (String docName : docNames)
+			for (String docName : docNames) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				results.add(docName);
 		} else {
 			SimpleLookupTable docsToRefs = memoryIndex.docsToReferences;
-			for (String docName : docNames) {
+			for (String docName : docNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (!docsToRefs.containsKey(docName))
 					results.add(docName);
 			}
 		}
 	} else {
 		if (memoryIndex == null) {
-			for (String docName : docNames)
+			for (String docName : docNames) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (docName.startsWith(substring, 0))
 					results.add(docName);
 		} else {
 			SimpleLookupTable docsToRefs = memoryIndex.docsToReferences;
-			for (String docName : docNames) {
+			for (String docName : docNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (docName.startsWith(substring, 0) && !docsToRefs.containsKey(docName))
 					results.add(docName);
 			}
@@ -151,7 +151,7 @@ SimpleSet addDocumentNames(String substring, MemoryIndex memoryIndex) throws IOE
 	}
 	return results;
 }
-private HashtableOfObject addQueryResult(HashtableOfObject results, char[] word, Object docs, MemoryIndex memoryIndex, boolean prevResults) throws IOException {
+private HashtableOfObject addQueryResult(HashtableOfObject results, char[] word, Object docs, MemoryIndex memoryIndex, boolean prevResults) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// must skip over documents which have been added/changed/deleted in the memory index
 	if (results == null)
 		results = new HashtableOfObject(13);
@@ -165,7 +165,7 @@ private HashtableOfObject addQueryResult(HashtableOfObject results, char[] word,
 		SimpleLookupTable docsToRefs = memoryIndex.docsToReferences;
 		if (result == null) result = new EntryResult(word, null);
 		int[] docNumbers = readDocumentNumbers(docs);
-		for (int docNumber : docNumbers) {
+		for (int docNumber : docNumbers) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String docName = readDocumentName(docNumber);
 			if (!docsToRefs.containsKey(docName))
 				result.addDocumentName(docName);
@@ -175,7 +175,7 @@ private HashtableOfObject addQueryResult(HashtableOfObject results, char[] word,
 	}
 	return results;
 }
-HashtableOfObject addQueryResults(char[][] categories, char[] key, int matchRule, MemoryIndex memoryIndex) throws IOException {
+HashtableOfObject addQueryResults(char[][] categories, char[] key, int matchRule, MemoryIndex memoryIndex) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// assumes sender has called startQuery() & will call stopQuery() when finished
 	if (this.categoryOffsets == null) return null; // file is empty
 
@@ -185,14 +185,14 @@ HashtableOfObject addQueryResults(char[][] categories, char[] key, int matchRule
 	// first category table or if the first category tables doesn't have any results.
 	boolean prevResults = false;
 	if (key == null) {
-		for (char[] category : categories) {
+		for (char[] category : categories) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			HashtableOfObject wordsToDocNumbers = readCategoryTable(category, true); // cache if key is null since its a definite match
 			if (wordsToDocNumbers != null) {
 				char[][] words = wordsToDocNumbers.keyTable;
 				Object[] values = wordsToDocNumbers.valueTable;
 				if (results == null)
 					results = new HashtableOfObject(wordsToDocNumbers.elementSize);
-				for (int j = 0, m = words.length; j < m; j++)
+				for (int j = 0, m = words.length; j < m; j++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (words[j] != null)
 						results = addQueryResult(results, words[j], values[j], memoryIndex, prevResults);
 			}
@@ -203,7 +203,7 @@ HashtableOfObject addQueryResults(char[][] categories, char[] key, int matchRule
 	} else {
 		switch (matchRule) {
 			case SearchPattern.R_EXACT_MATCH | SearchPattern.R_CASE_SENSITIVE:
-				for (char[] category : categories) {
+				for (char[] category : categories) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					HashtableOfObject wordsToDocNumbers = readCategoryTable(category, false);
 					Object value;
 					if (wordsToDocNumbers != null && (value = wordsToDocNumbers.get(key)) != null)
@@ -212,12 +212,12 @@ HashtableOfObject addQueryResults(char[][] categories, char[] key, int matchRule
 				}
 				break;
 			case SearchPattern.R_PREFIX_MATCH | SearchPattern.R_CASE_SENSITIVE:
-				for (char[] category : categories) {
+				for (char[] category : categories) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					HashtableOfObject wordsToDocNumbers = readCategoryTable(category, false);
 					if (wordsToDocNumbers != null) {
 						char[][] words = wordsToDocNumbers.keyTable;
 						Object[] values = wordsToDocNumbers.valueTable;
-						for (int j = 0, m = words.length; j < m; j++) {
+						for (int j = 0, m = words.length; j < m; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							char[] word = words[j];
 							if (word != null && key[0] == word[0] && CharOperation.prefixEquals(key, word))
 								results = addQueryResult(results, word, values[j], memoryIndex, prevResults);
@@ -229,12 +229,12 @@ HashtableOfObject addQueryResults(char[][] categories, char[] key, int matchRule
 			case SearchPattern.R_REGEXP_MATCH:
 				Pattern pattern = Index.compileRegexp(key);
 				if (pattern != null) { // skip entirely when the user supplied an invalid regex
-					for (char[] category : categories) {
+					for (char[] category : categories) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						HashtableOfObject wordsToDocNumbers = readCategoryTable(category, false);
 						if (wordsToDocNumbers != null) {
 							char[][] words = wordsToDocNumbers.keyTable;
 							Object[] values = wordsToDocNumbers.valueTable;
-							for (int j = 0, m = words.length; j < m; j++) {
+							for (int j = 0, m = words.length; j < m; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								char[] word = words[j];
 								if (word != null && Index.regexpMatch(pattern, word))
 									results = addQueryResult(results, word, values[j], memoryIndex, prevResults);
@@ -245,12 +245,12 @@ HashtableOfObject addQueryResults(char[][] categories, char[] key, int matchRule
 				}
 				break;
 			default:
-				for (char[] category : categories) {
+				for (char[] category : categories) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					HashtableOfObject wordsToDocNumbers = readCategoryTable(category, false);
 					if (wordsToDocNumbers != null) {
 						char[][] words = wordsToDocNumbers.keyTable;
 						Object[] values = wordsToDocNumbers.valueTable;
-						for (int j = 0, m = words.length; j < m; j++) {
+						for (int j = 0, m = words.length; j < m; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							char[] word = words[j];
 							if (word != null && Index.isMatch(key, word, matchRule))
 								results = addQueryResult(results, word, values[j], memoryIndex, prevResults);
@@ -263,7 +263,7 @@ HashtableOfObject addQueryResults(char[][] categories, char[] key, int matchRule
 
 	return results;
 }
-private synchronized void cacheDocumentNames() throws IOException {
+private synchronized void cacheDocumentNames() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// will need all document names so get them now
 	this.cachedChunks = new String[this.numberOfChunks][];
 	try (InputStream stream = this.indexLocation.getInputStream()) {
@@ -273,7 +273,7 @@ private synchronized void cacheDocumentNames() throws IOException {
 		this.streamBuffer = new byte[BUFFER_READ_SIZE];
 		this.bufferIndex = 0;
 		this.bufferEnd = stream.read(this.streamBuffer, 0, this.streamBuffer.length);
-		for (int i = 0; i < this.numberOfChunks; i++) {
+		for (int i = 0; i < this.numberOfChunks; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int size = i == this.numberOfChunks - 1 ? this.sizeOfLastChunk : CHUNK_SIZE;
 			readChunk(this.cachedChunks[i] = new String[size], stream, 0, size);
 		}
@@ -286,38 +286,38 @@ private synchronized void cacheDocumentNames() throws IOException {
 		BUFFER_READ_SIZE = DEFAULT_BUFFER_SIZE;
 	}
 }
-private String[] computeDocumentNames(String[] onDiskNames, int[] positions, SimpleLookupTable indexedDocuments, MemoryIndex memoryIndex) {
+private String[] computeDocumentNames(String[] onDiskNames, int[] positions, SimpleLookupTable indexedDocuments, MemoryIndex memoryIndex) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int onDiskLength = onDiskNames.length;
 	Object[] docNames = memoryIndex.docsToReferences.keyTable;
 	Object[] referenceTables = memoryIndex.docsToReferences.valueTable;
 	if (onDiskLength == 0) {
 		// disk index was empty, so add every indexed document
-		for (int i = 0, l = referenceTables.length; i < l; i++)
+		for (int i = 0, l = referenceTables.length; i < l; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (referenceTables[i] != null)
 				indexedDocuments.put(docNames[i], null); // remember each new document
 
 		String[] newDocNames = new String[indexedDocuments.elementSize];
 		int count = 0;
 		Object[] added = indexedDocuments.keyTable;
-		for (Object newDocName : added)
+		for (Object newDocName : added) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (newDocName != null)
 				newDocNames[count++] = (String) newDocName;
 		Util.sort(newDocNames);
-		for (int i = 0, l = newDocNames.length; i < l; i++)
+		for (int i = 0, l = newDocNames.length; i < l; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			indexedDocuments.put(newDocNames[i], Integer.valueOf(i));
 		return newDocNames;
 	}
 
 	// initialize positions as if each document will remain in the same position
-	for (int i = 0; i < onDiskLength; i++)
+	for (int i = 0; i < onDiskLength; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		positions[i] = i;
 
 	// find out if the memory index has any new or deleted documents, if not then the names & positions are the same
 	int numDeletedDocNames = 0;
-	nextPath : for (int i = 0, l = docNames.length; i < l; i++) {
+	nextPath : for (int i = 0, l = docNames.length; i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String docName = (String) docNames[i];
 		if (docName != null) {
-			for (int j = 0; j < onDiskLength; j++) {
+			for (int j = 0; j < onDiskLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (docName.equals(onDiskNames[j])) {
 					if (referenceTables[i] == null) {
 						positions[j] = DELETED;
@@ -338,15 +338,15 @@ private String[] computeDocumentNames(String[] onDiskNames, int[] positions, Sim
 		// some new documents have been added or some old ones deleted
 		newDocNames = new String[onDiskLength + indexedDocuments.elementSize - numDeletedDocNames];
 		int count = 0;
-		for (int i = 0; i < onDiskLength; i++)
+		for (int i = 0; i < onDiskLength; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (positions[i] >= RE_INDEXED)
 				newDocNames[count++] = onDiskNames[i]; // keep each unchanged document
 		Object[] added = indexedDocuments.keyTable;
-		for (Object newDocName : added)
+		for (Object newDocName : added) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (newDocName != null)
 				newDocNames[count++] = (String) newDocName; // add each new document
 		Util.sort(newDocNames);
-		for (int i = 0, l = newDocNames.length; i < l; i++)
+		for (int i = 0, l = newDocNames.length; i < l; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (indexedDocuments.containsKey(newDocNames[i]))
 				indexedDocuments.put(newDocNames[i], Integer.valueOf(i)); // remember the position for each new document
 	}
@@ -355,7 +355,7 @@ private String[] computeDocumentNames(String[] onDiskNames, int[] positions, Sim
 	// if its old position == DELETED then its forgotton
 	// if its old position == ReINDEXED then its also forgotten but its new position is needed to map references
 	int count = -1;
-	for (int i = 0; i < onDiskLength;) {
+	for (int i = 0; i < onDiskLength;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		switch(positions[i]) {
 			case DELETED :
 				i++; // skip over deleted... references are forgotten
@@ -374,10 +374,10 @@ private String[] computeDocumentNames(String[] onDiskNames, int[] positions, Sim
 	}
 	return newDocNames;
 }
-private void copyQueryResults(HashtableOfObject categoryToWords, int newPosition) {
+private void copyQueryResults(HashtableOfObject categoryToWords, int newPosition) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[][] categoryNames = categoryToWords.keyTable;
 	Object[] wordSets = categoryToWords.valueTable;
-	for (int i = 0, l = categoryNames.length; i < l; i++) {
+	for (int i = 0, l = categoryNames.length; i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		char[] categoryName = categoryNames[i];
 		if (categoryName != null) {
 			SimpleWordSet wordSet = (SimpleWordSet) wordSets[i];
@@ -386,7 +386,7 @@ private void copyQueryResults(HashtableOfObject categoryToWords, int newPosition
 				this.categoryTables.put(categoryName, wordsToDocs = new HashtableOfObject(wordSet.elementSize));
 
 			char[][] words = wordSet.words;
-			for (char[] word : words) {
+			for (char[] word : words) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (word != null) {
 					Object o = wordsToDocs.get(word);
 					if (o == null) {
@@ -403,7 +403,7 @@ private void copyQueryResults(HashtableOfObject categoryToWords, int newPosition
 		}
 	}
 }
-void initialize(boolean reuseExistingFile) throws IOException {
+void initialize(boolean reuseExistingFile) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.indexLocation.exists()) {
 		if (reuseExistingFile) {
 			try (InputStream stream = this.indexLocation.getInputStream()) {
@@ -431,8 +431,8 @@ void initialize(boolean reuseExistingFile) throws IOException {
 		}
 		if (!this.indexLocation.delete()) {
 			if (DEBUG)
-				System.out.println("initialize - Failed to delete index " + this.indexLocation); //$NON-NLS-1$
-			throw new IOException("Failed to delete index " + this.indexLocation); //$NON-NLS-1$
+				System.out.println("initialize - Failed to delete index " + this.indexLocation); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			throw new IOException("Failed to delete index " + this.indexLocation); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	if (this.indexLocation.createNewFile()) {
@@ -449,18 +449,18 @@ void initialize(boolean reuseExistingFile) throws IOException {
 		}
 	} else {
 		if (DEBUG)
-			System.out.println("initialize - Failed to create new index " + this.indexLocation); //$NON-NLS-1$
-		throw new IOException("Failed to create new index " + this.indexLocation); //$NON-NLS-1$
+			System.out.println("initialize - Failed to create new index " + this.indexLocation); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		throw new IOException("Failed to create new index " + this.indexLocation); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }
 private void initializeFrom(DiskIndex diskIndex, File newIndexFile) throws IOException {
 	if (newIndexFile.exists() && !newIndexFile.delete()) { // delete the temporary index file
 		if (DEBUG)
-			System.out.println("initializeFrom - Failed to delete temp index " + this.indexLocation); //$NON-NLS-1$
+			System.out.println("initializeFrom - Failed to delete temp index " + this.indexLocation); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} else if (!newIndexFile.createNewFile()) {
 		if (DEBUG)
-			System.out.println("initializeFrom - Failed to create temp index " + this.indexLocation); //$NON-NLS-1$
-		throw new IOException("Failed to create temp index " + this.indexLocation); //$NON-NLS-1$
+			System.out.println("initializeFrom - Failed to create temp index " + this.indexLocation); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		throw new IOException("Failed to create temp index " + this.indexLocation); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	int size = diskIndex.categoryOffsets == null ? 8 : diskIndex.categoryOffsets.elementSize;
@@ -472,18 +472,18 @@ private void initializeFrom(DiskIndex diskIndex, File newIndexFile) throws IOExc
 private void mergeCategories(DiskIndex onDisk, int[] positions, OutputStream stream) throws IOException {
 	// at this point, this.categoryTables contains the names -> wordsToDocs added in copyQueryResults()
 	char[][] oldNames = onDisk.categoryOffsets.keyTable;
-	for (char[] oldName : oldNames) {
+	for (char[] oldName : oldNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (oldName != null && !this.categoryTables.containsKey(oldName))
 			this.categoryTables.put(oldName, null);
 	}
 
 	char[][] categoryNames = this.categoryTables.keyTable;
-	for (char[] categoryName : categoryNames)
+	for (char[] categoryName : categoryNames) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (categoryName != null)
 			mergeCategory(categoryName, onDisk, positions, stream);
 	this.categoryTables = null;
 }
-private void mergeCategory(char[] categoryName, DiskIndex onDisk, int[] positions, OutputStream stream) throws IOException {
+private void mergeCategory(char[] categoryName, DiskIndex onDisk, int[] positions, OutputStream stream) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	HashtableOfObject wordsToDocs = (HashtableOfObject) this.categoryTables.get(categoryName);
 	if (wordsToDocs == null)
 		wordsToDocs = new HashtableOfObject(3);
@@ -492,14 +492,14 @@ private void mergeCategory(char[] categoryName, DiskIndex onDisk, int[] position
 	if (oldWordsToDocs != null) {
 		char[][] oldWords = oldWordsToDocs.keyTable;
 		Object[] oldArrayOffsets = oldWordsToDocs.valueTable;
-		nextWord: for (int i = 0, l = oldWords.length; i < l; i++) {
+		nextWord: for (int i = 0, l = oldWords.length; i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[] oldWord = oldWords[i];
 			if (oldWord != null) {
 				int[] oldDocNumbers = (int[]) oldArrayOffsets[i];
 				int length = oldDocNumbers.length;
 				int[] mappedNumbers = new int[length];
 				int count = 0;
-				for (int j = 0; j < length; j++) {
+				for (int j = 0; j < length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					int pos = positions[oldDocNumbers[j]];
 					if (pos > RE_INDEXED) // forget any reference to a document which was deleted or re_indexed
 						mappedNumbers[count++] = pos;
@@ -520,7 +520,7 @@ private void mergeCategory(char[] categoryName, DiskIndex onDisk, int[] position
 						list = new IntList((int[]) o);
 						wordsToDocs.put(oldWord, list);
 					}
-					for (int j = 0; j < count; j++)
+					for (int j = 0; j < count; j++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						list.add(mappedNumbers[j]);
 				}
 			}
@@ -529,7 +529,7 @@ private void mergeCategory(char[] categoryName, DiskIndex onDisk, int[] position
 	}
 	writeCategoryTable(categoryName, wordsToDocs, stream);
 }
-DiskIndex mergeWith(MemoryIndex memoryIndex) throws IOException {
+DiskIndex mergeWith(MemoryIndex memoryIndex) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
  	// assume write lock is held
 	// compute & write out new docNames
 	if (this.indexLocation == null) {
@@ -570,7 +570,7 @@ DiskIndex mergeWith(MemoryIndex memoryIndex) throws IOException {
 			if (indexedDocuments.elementSize > 0) {
 				Object[] names = indexedDocuments.keyTable;
 				Object[] integerPositions = indexedDocuments.valueTable;
-				for (int i = 0, l = names.length; i < l; i++)
+				for (int i = 0, l = names.length; i < l; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (names[i] != null)
 						newDiskIndex.copyQueryResults(
 							(HashtableOfObject) memoryIndex.docsToReferences.get(names[i]), ((Integer) integerPositions[i]).intValue());
@@ -594,7 +594,7 @@ DiskIndex mergeWith(MemoryIndex memoryIndex) throws IOException {
 		try {
 			Files.deleteIfExists(oldIndexFile.toPath());
 		} catch (Exception e2) {
-			throw new IOException("Failed to delete index file " + this.indexLocation, e2); //$NON-NLS-1$
+			throw new IOException("Failed to delete index file " + this.indexLocation, e2); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		if (!usingTmp) {
 			try {
@@ -609,7 +609,7 @@ DiskIndex mergeWith(MemoryIndex memoryIndex) throws IOException {
 				try {
 					Files.move(newIndexFile.toPath(), oldIndexFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
 				} catch (IOException e) {
-					Util.log(ioe, "mergeWith - Failed to rename index " + this.indexLocation); //$NON-NLS-1$
+					Util.log(ioe, "mergeWith - Failed to rename index " + this.indexLocation); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					usingTmp = true;
 				}
 			}
@@ -618,7 +618,7 @@ DiskIndex mergeWith(MemoryIndex memoryIndex) throws IOException {
 		try {
 			Files.deleteIfExists(newIndexFile.toPath());
 		} catch (Exception e2) {
-			Util.log(e2, "mergeWith - Failed to delete temp index " + newDiskIndex.indexLocation); //$NON-NLS-1$
+			Util.log(e2, "mergeWith - Failed to delete temp index " + newDiskIndex.indexLocation); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		throw e;
 	}
@@ -627,7 +627,7 @@ DiskIndex mergeWith(MemoryIndex memoryIndex) throws IOException {
 		newDiskIndex.indexLocation = this.indexLocation;
 	return newDiskIndex;
 }
-private synchronized String[] readAllDocumentNames() throws IOException {
+private synchronized String[] readAllDocumentNames() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.numberOfChunks <= 0)
 		return CharOperation.NO_STRINGS;
 
@@ -640,7 +640,7 @@ private synchronized String[] readAllDocumentNames() throws IOException {
 			this.bufferEnd = stream.read(this.streamBuffer, 0, this.streamBuffer.length);
 			int lastIndex = this.numberOfChunks - 1;
 			String[] docNames = new String[lastIndex * CHUNK_SIZE + this.sizeOfLastChunk];
-			for (int i = 0; i < this.numberOfChunks; i++)
+			for (int i = 0; i < this.numberOfChunks; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				readChunk(docNames, stream, i * CHUNK_SIZE, i < lastIndex ? CHUNK_SIZE : this.sizeOfLastChunk);
 			return docNames;
 		} finally {
@@ -648,14 +648,14 @@ private synchronized String[] readAllDocumentNames() throws IOException {
 			this.streamBuffer = null;
 		}
 	} catch (UTFDataFormatException ue) {
-		ILog.get().warn("Java Index broken - will be automatically deleted to repair: " + this.indexLocation, ue); //$NON-NLS-1$
+		ILog.get().warn("Java Index broken - will be automatically deleted to repair: " + this.indexLocation, ue); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		// index is broken. automatically delete it
 		// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/460
 		this.indexLocation.delete();
 		return CharOperation.NO_STRINGS;
 	}
 }
-private synchronized HashtableOfObject readCategoryTable(char[] categoryName, boolean readDocNumbers) throws IOException {
+private synchronized HashtableOfObject readCategoryTable(char[] categoryName, boolean readDocNumbers) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// result will be null if categoryName is unknown
 	int offset = this.categoryOffsets.get(categoryName);
 	if (offset == HashtableOfIntValues.NO_VALUE) {
@@ -669,7 +669,7 @@ private synchronized HashtableOfObject readCategoryTable(char[] categoryName, bo
 		if (cachedTable != null) {
 			if (readDocNumbers) { // must cache remaining document number arrays
 				Object[] arrayOffsets = cachedTable.valueTable;
-				for (int i = 0, l = arrayOffsets.length; i < l; i++)
+				for (int i = 0, l = arrayOffsets.length; i < l; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (arrayOffsets[i] instanceof Integer)
 						arrayOffsets[i] = readDocumentNumbers(arrayOffsets[i]);
 			}
@@ -691,14 +691,14 @@ private synchronized HashtableOfObject readCategoryTable(char[] categoryName, bo
 			try {
 				categoryTable = new HashtableOfObject(size);
 			} catch (NegativeArraySizeException | OutOfMemoryError e) {
-				String message = "Failed to read index data from " + this.indexLocation + " at offset " + offset //$NON-NLS-1$ //$NON-NLS-2$
+				String message = "Failed to read index data from " + this.indexLocation + " at offset " + offset //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						+ " and size " + size; //$NON-NLS-1$
 				UTFDataFormatException ue = new UTFDataFormatException(message);
 				ue.initCause(e);
 				throw ue;
 			}
 			int largeArraySize = 256;
-			for (int i = 0; i < size; i++) {
+			for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				char[] word = readStreamChars(stream);
 				int arrayOffset = readStreamInt(stream);
 				// if arrayOffset is:
@@ -732,7 +732,7 @@ private synchronized HashtableOfObject readCategoryTable(char[] categoryName, bo
 			this.indexLocation.close();
 		}
 	} catch (UTFDataFormatException ue) {
-		ILog.get().warn("Java Index broken - will be automatically deleted to repair: " + this.indexLocation, ue); //$NON-NLS-1$
+		ILog.get().warn("Java Index broken - will be automatically deleted to repair: " + this.indexLocation, ue); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		// index is broken. automatically delete it
 		// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/460
 		this.indexLocation.delete();
@@ -743,7 +743,7 @@ private synchronized HashtableOfObject readCategoryTable(char[] categoryName, bo
 			stream.skip(firstOffset);
 			this.bufferIndex = 0;
 			this.bufferEnd = stream.read(this.streamBuffer, 0, this.streamBuffer.length);
-			for (int i = 0; i < count; i++) { // each array follows the previous one
+			for (int i = 0; i < count; i++) { // each array follows the previous one //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				categoryTable.put(matchingWords[i], readStreamDocumentArray(stream, readStreamInt(stream)));
 			}
 		} catch (IOException ioe) {
@@ -756,10 +756,10 @@ private synchronized HashtableOfObject readCategoryTable(char[] categoryName, bo
 	this.streamBuffer = null;
 	return categoryTable;
 }
-private void readChunk(String[] docNames, InputStream stream, int index, int size) throws IOException {
+private void readChunk(String[] docNames, InputStream stream, int index, int size) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String current = new String(readStreamChars(stream));
 	docNames[index++] = current;
-	for (int i = 1; i < size; i++) {
+	for (int i = 1; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (stream != null && this.bufferIndex + 2 >= this.bufferEnd)
 			readStreamBuffer(stream);
 		// bug 566262: check if the index file was deleted in parallel, if so throw an IOException instead of risking to run into index OOB exceptions
@@ -772,19 +772,19 @@ private void readChunk(String[] docNames, InputStream stream, int index, int siz
 		if (start > 0) {
 			if (end > 0) {
 				int length = current.length();
-				next = current.substring(0, start) + next + current.substring(length - end, length);
+				next = current.substring(0, start) + next + current.substring(length - end, length); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			} else {
-				next = current.substring(0, start) + next;
+				next = current.substring(0, start) + next; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} else if (end > 0) {
 			int length = current.length();
-			next = next + current.substring(length - end, length);
+			next = next + current.substring(length - end, length); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		docNames[index++] = next;
 		current = next;
 	}
 }
-synchronized String readDocumentName(int docNumber) throws IOException {
+synchronized String readDocumentName(int docNumber) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.cachedChunks == null)
 		this.cachedChunks = new String[this.numberOfChunks][];
 
@@ -822,7 +822,7 @@ synchronized String readDocumentName(int docNumber) throws IOException {
 	this.streamBuffer = null;
 	return chunk[docNumber - (chunkNumber * CHUNK_SIZE)];
 }
-synchronized int[] readDocumentNumbers(Object arrayOffset) throws IOException {
+synchronized int[] readDocumentNumbers(Object arrayOffset) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// arrayOffset is either a cached array of docNumbers or an Integer offset in the file
 	if (arrayOffset instanceof int[])
 		return (int[]) arrayOffset;
@@ -840,7 +840,7 @@ synchronized int[] readDocumentNumbers(Object arrayOffset) throws IOException {
 		this.streamBuffer = null;
 	}
 }
-private void readHeaderInfo(InputStream stream) throws IOException {
+private void readHeaderInfo(InputStream stream) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// must be same order as writeHeaderInfo()
 	this.numberOfChunks = readStreamInt(stream);
@@ -851,11 +851,11 @@ private void readHeaderInfo(InputStream stream) throws IOException {
 	if (length != -1 && this.numberOfChunks > length) {
 		// not an accurate check, but good enough https://bugs.eclipse.org/bugs/show_bug.cgi?id=350612
 		if (DEBUG)
-			System.out.println("Index file is corrupted " + this.indexLocation); //$NON-NLS-1$
-		throw new IOException("Index file is corrupted " + this.indexLocation); //$NON-NLS-1$
+			System.out.println("Index file is corrupted " + this.indexLocation); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		throw new IOException("Index file is corrupted " + this.indexLocation); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	this.chunkOffsets = new int[this.numberOfChunks];
-	for (int i = 0; i < this.numberOfChunks; i++)
+	for (int i = 0; i < this.numberOfChunks; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		this.chunkOffsets[i] = readStreamInt(stream);
 
 	this.startOfCategoryTables = readStreamInt(stream);
@@ -866,12 +866,12 @@ private void readHeaderInfo(InputStream stream) throws IOException {
 	if (length != -1 && size > length) {
 		//  not an accurate check, but good enough  https://bugs.eclipse.org/bugs/show_bug.cgi?id=350612
 		if (DEBUG)
-			System.out.println("Index file is corrupted " + this.indexLocation); //$NON-NLS-1$
-		throw new IOException("Index file is corrupted " + this.indexLocation); //$NON-NLS-1$
+			System.out.println("Index file is corrupted " + this.indexLocation); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		throw new IOException("Index file is corrupted " + this.indexLocation); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	char[] previousCategory = null;
 	int offset = -1;
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		char[] categoryName = INTERNED_CATEGORY_NAMES.get(readStreamChars(stream));
 		offset = readStreamInt(stream);
 		this.categoryOffsets.put(categoryName, offset); // cache offset to category table
@@ -938,7 +938,7 @@ private void readStreamBuffer(InputStream stream) throws IOException {
  * @exception  UTFDataFormatException  if the bytes do not represent a
  *               valid UTF-8 encoding of a Unicode string.
  */
-private char[] readStreamChars(InputStream stream) throws IOException {
+private char[] readStreamChars(InputStream stream) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// read chars array length
 	if (stream != null && this.bufferIndex + 2 >= this.bufferEnd)
 		readStreamBuffer(stream);
@@ -948,7 +948,7 @@ private char[] readStreamChars(InputStream stream) throws IOException {
 	// fill the chars from bytes buffer
 	char[] word = new char[length];
 	int i = 0;
-	while (i < length) {
+	while (i < length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		// how many characters can be decoded without refilling the buffer?
 		int charsInBuffer = i + ((this.bufferEnd - this.bufferIndex) / 3);
 		// all the characters must already be in the buffer if we're at the end of the stream
@@ -956,12 +956,12 @@ private char[] readStreamChars(InputStream stream) throws IOException {
 			charsInBuffer = length;
 		{ // optimization for the typical case of pure ASCII chars:
 			byte b;
-			while (i < charsInBuffer && (b = this.streamBuffer[this.bufferIndex]) >= 0) {
+			while (i < charsInBuffer && (b = this.streamBuffer[this.bufferIndex]) >= 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				word[i++] = (char) b;
 				this.bufferIndex++;
 			}
 		}
-		while (i < charsInBuffer) {
+		while (i < charsInBuffer) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			byte b = this.streamBuffer[this.bufferIndex++];
 			switch (b & 0xF0) {
 				case 0x00 :
@@ -1004,19 +1004,19 @@ private char[] readStreamChars(InputStream stream) throws IOException {
 	}
 	return word;
 }
-private int[] readStreamDocumentArray(InputStream stream, int arraySize) throws IOException {
+private int[] readStreamDocumentArray(InputStream stream, int arraySize) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int[] indexes = new int[arraySize];
 	if (arraySize == 0) return indexes;
 
 	int i = 0;
 	switch (this.documentReferenceSize) {
 		case 1 :
-			while (i < arraySize) {
+			while (i < arraySize) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				// how many bytes without refilling the buffer?
 				int bytesInBuffer = i + this.bufferEnd - this.bufferIndex;
 				if (bytesInBuffer > arraySize)
 					bytesInBuffer = arraySize;
-				while (i < bytesInBuffer) {
+				while (i < bytesInBuffer) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					indexes[i++] = this.streamBuffer[this.bufferIndex++] & 0xFF;
 				}
 				if (i < arraySize && stream != null)
@@ -1024,12 +1024,12 @@ private int[] readStreamDocumentArray(InputStream stream, int arraySize) throws 
 			}
 			break;
 		case 2 :
-			while (i < arraySize) {
+			while (i < arraySize) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				// how many shorts without refilling the buffer?
 				int shortsInBuffer = i + ((this.bufferEnd - this.bufferIndex) / 2);
 				if (shortsInBuffer > arraySize)
 					shortsInBuffer = arraySize;
-				while (i < shortsInBuffer) {
+				while (i < shortsInBuffer) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					int val = (this.streamBuffer[this.bufferIndex++] & 0xFF) << 8;
 					indexes[i++] = val + (this.streamBuffer[this.bufferIndex++] & 0xFF);
 				}
@@ -1038,7 +1038,7 @@ private int[] readStreamDocumentArray(InputStream stream, int arraySize) throws 
 			}
 			break;
 		default :
-			while (i < arraySize) {
+			while (i < arraySize) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				indexes[i++] = readStreamInt(stream);
 			}
 			break;
@@ -1054,7 +1054,7 @@ private int readStreamInt(InputStream stream) throws IOException {
 	val += (this.streamBuffer[this.bufferIndex++] & 0xFF) << 8;
 	return val + (this.streamBuffer[this.bufferIndex++] & 0xFF);
 }
-private void writeAllDocumentNames(String[] sortedDocNames, OutputStream stream) throws IOException {
+private void writeAllDocumentNames(String[] sortedDocNames, OutputStream stream) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (sortedDocNames.length == 0)
 		throw new IllegalArgumentException();
 
@@ -1079,27 +1079,27 @@ private void writeAllDocumentNames(String[] sortedDocNames, OutputStream stream)
 
 	this.chunkOffsets = new int[this.numberOfChunks];
 	int lastIndex = this.numberOfChunks - 1;
-	for (int i = 0; i < this.numberOfChunks; i++) {
+	for (int i = 0; i < this.numberOfChunks; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		this.chunkOffsets[i] = this.streamEnd;
 
 		int chunkSize = i == lastIndex ? this.sizeOfLastChunk : CHUNK_SIZE;
 		int chunkIndex = i * CHUNK_SIZE;
 		String current = sortedDocNames[chunkIndex];
 		writeStreamChars(stream, current.toCharArray());
-		for (int j = 1; j < chunkSize; j++) {
+		for (int j = 1; j < chunkSize; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String next = sortedDocNames[chunkIndex + j];
 			int len1 = current.length();
 			int len2 = next.length();
 			int max = len1 < len2 ? len1 : len2;
 			int start = 0; // number of identical characters at the beginning (also the index of first character that is different)
-			while (current.charAt(start) == next.charAt(start)) {
+			while (current.charAt(start) == next.charAt(start)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				start++;
 				if (max == start) break; // current is 'abba', next is 'abbab'
 			}
 			if (start > 255) start = 255;
 
 			int end = 0; // number of identical characters at the end
-			while (current.charAt(--len1) == next.charAt(--len2)) {
+			while (current.charAt(--len1) == next.charAt(--len2)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				end++;
 				if (len2 == start) break; // current is 'abbba', next is 'abba'
 				if (len1 == 0) break; // current is 'xabc', next is 'xyabc'
@@ -1123,12 +1123,12 @@ private void writeAllDocumentNames(String[] sortedDocNames, OutputStream stream)
 private void writeCategories(OutputStream stream) throws IOException {
 	char[][] categoryNames = this.categoryTables.keyTable;
 	Object[] tables = this.categoryTables.valueTable;
-	for (int i = 0, l = categoryNames.length; i < l; i++)
+	for (int i = 0, l = categoryNames.length; i < l; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (categoryNames[i] != null)
 			writeCategoryTable(categoryNames[i], (HashtableOfObject) tables[i], stream);
 	this.categoryTables = null;
 }
-private void writeCategoryTable(char[] categoryName, HashtableOfObject wordsToDocs, OutputStream stream) throws IOException {
+private void writeCategoryTable(char[] categoryName, HashtableOfObject wordsToDocs, OutputStream stream) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// the format of a category table is as follows:
 	// any document number arrays with >= 256 elements are written before the table (the offset to each array is remembered)
 	// then the number of word->int[] pairs in the table is written
@@ -1139,7 +1139,7 @@ private void writeCategoryTable(char[] categoryName, HashtableOfObject wordsToDo
 
 	int largeArraySize = 256;
 	Object[] values = wordsToDocs.valueTable;
-	for (int i = 0, l = values.length; i < l; i++) {
+	for (int i = 0, l = values.length; i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		Object o = values[i];
 		if (o != null) {
 			if (o instanceof IntList)
@@ -1156,7 +1156,7 @@ private void writeCategoryTable(char[] categoryName, HashtableOfObject wordsToDo
 	this.categoryTables.put(categoryName, null); // flush cached table
 	writeStreamInt(stream, wordsToDocs.elementSize);
 	char[][] words = wordsToDocs.keyTable;
-	for (int i = 0, l = words.length; i < l; i++) {
+	for (int i = 0, l = words.length; i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		Object o = values[i];
 		if (o != null) {
 			writeStreamChars(stream, words[i]);
@@ -1173,7 +1173,7 @@ private void writeCategoryTable(char[] categoryName, HashtableOfObject wordsToDo
 		}
 	}
 }
-private void writeDocumentNumbers(int[] documentNumbers, OutputStream stream) throws IOException {
+private void writeDocumentNumbers(int[] documentNumbers, OutputStream stream) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// must store length as a positive int to detect in-lined array of 1 element
 	int length = documentNumbers.length;
 	writeStreamInt(stream, length);
@@ -1181,45 +1181,45 @@ private void writeDocumentNumbers(int[] documentNumbers, OutputStream stream) th
 	int start = 0;
 	switch (this.documentReferenceSize) {
 		case 1 :
-			while ((this.bufferIndex + length - start) >= BUFFER_WRITE_SIZE) {
+			while ((this.bufferIndex + length - start) >= BUFFER_WRITE_SIZE) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				// when documentNumbers is large, write BUFFER_WRITE_SIZE parts & fall thru to write the last part
 				int bytesLeft = BUFFER_WRITE_SIZE - this.bufferIndex;
-				for (int i=0; i < bytesLeft; i++) {
+				for (int i=0; i < bytesLeft; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					this.streamBuffer[this.bufferIndex++] = (byte) documentNumbers[start++];
 				}
 				stream.write(this.streamBuffer, 0, this.bufferIndex);
 				this.bufferIndex = 0;
 			}
-			while (start < length) {
+			while (start < length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.streamBuffer[this.bufferIndex++] = (byte) documentNumbers[start++];
 			}
 			this.streamEnd += length;
 			break;
 		case 2 :
-			while ((this.bufferIndex + ((length - start) * 2)) >= BUFFER_WRITE_SIZE) {
+			while ((this.bufferIndex + ((length - start) * 2)) >= BUFFER_WRITE_SIZE) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				// when documentNumbers is large, write BUFFER_WRITE_SIZE parts & fall thru to write the last part
 				int shortsLeft = (BUFFER_WRITE_SIZE - this.bufferIndex) / 2;
-				for (int i=0; i < shortsLeft; i++) {
+				for (int i=0; i < shortsLeft; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					this.streamBuffer[this.bufferIndex++] = (byte) (documentNumbers[start] >> 8);
 					this.streamBuffer[this.bufferIndex++] = (byte) documentNumbers[start++];
 				}
 				stream.write(this.streamBuffer, 0, this.bufferIndex);
 				this.bufferIndex = 0;
 			}
-			while (start < length) {
+			while (start < length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.streamBuffer[this.bufferIndex++] = (byte) (documentNumbers[start] >> 8);
 				this.streamBuffer[this.bufferIndex++] = (byte) documentNumbers[start++];
 			}
 			this.streamEnd += length * 2;
 			break;
 		default :
-			while (start < length) {
+			while (start < length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				writeStreamInt(stream, documentNumbers[start++]);
 			}
 			break;
 	}
 }
-private void writeHeaderInfo(OutputStream stream) throws IOException {
+private void writeHeaderInfo(OutputStream stream) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	writeStreamInt(stream, this.numberOfChunks);
 	if ((this.bufferIndex + 3) >= BUFFER_WRITE_SIZE)  {
 		stream.write(this.streamBuffer, 0, this.bufferIndex);
@@ -1231,7 +1231,7 @@ private void writeHeaderInfo(OutputStream stream) throws IOException {
 	this.streamEnd += 3;
 
 	// apend the file with chunk offsets
-	for (int i = 0; i < this.numberOfChunks; i++) {
+	for (int i = 0; i < this.numberOfChunks; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		writeStreamInt(stream, this.chunkOffsets[i]);
 	}
 
@@ -1241,7 +1241,7 @@ private void writeHeaderInfo(OutputStream stream) throws IOException {
 	writeStreamInt(stream, this.categoryOffsets.elementSize);
 	char[][] categoryNames = this.categoryOffsets.keyTable;
 	int[] offsets = this.categoryOffsets.valueTable;
-	for (int i = 0, l = categoryNames.length; i < l; i++) {
+	for (int i = 0, l = categoryNames.length; i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (categoryNames[i] != null) {
 			writeStreamChars(stream, categoryNames[i]);
 			writeStreamInt(stream, offsets[i]);
@@ -1281,7 +1281,7 @@ private void writeOffsetToHeader(int offsetToHeader) throws IOException {
  * @exception  IOException  if an I/O error occurs while writting
  * 	the bytes array to the stream.
  */
-private void writeStreamChars(OutputStream stream, char[] array) throws IOException {
+private void writeStreamChars(OutputStream stream, char[] array) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if ((this.bufferIndex + 2) >= BUFFER_WRITE_SIZE)  {
 		stream.write(this.streamBuffer, 0, this.bufferIndex);
 		this.bufferIndex = 0;
@@ -1303,7 +1303,7 @@ private void writeStreamChars(OutputStream stream, char[] array) throws IOExcept
 	} else {
 		int charsPerWrite = BUFFER_WRITE_SIZE / 3;
 		int start = 0;
-		while (start < length) {
+		while (start < length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			stream.write(this.streamBuffer, 0, this.bufferIndex);
 			this.bufferIndex = 0;
 			int charsLeftToWrite = length - start;
@@ -1313,12 +1313,12 @@ private void writeStreamChars(OutputStream stream, char[] array) throws IOExcept
 		}
 	}
 }
-private void writeStreamChars(OutputStream stream, char[] array, int start, int end) throws IOException {
+private void writeStreamChars(OutputStream stream, char[] array, int start, int end) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// start can NOT be == end
 	// must have checked that there is enough room for end - start * 3 bytes in the buffer
 
 	int oldIndex = this.bufferIndex;
-	while (start < end) {
+	while (start < end) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int ch = array[start++];
 		if ((ch & 0x007F) == ch) {
 			this.streamBuffer[this.bufferIndex++] = (byte) ch;

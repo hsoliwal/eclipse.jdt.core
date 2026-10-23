@@ -86,7 +86,7 @@ public class SelectionJavadocParser extends JavadocParser {
 			this.selectedNode = expression;
 			this.abort = true;
 			if (SelectionEngine.DEBUG) {
-				System.out.println("	selected argument="+this.selectedNode); //$NON-NLS-1$
+				System.out.println("	selected argument="+this.selectedNode); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		return expression;
@@ -105,7 +105,7 @@ public class SelectionJavadocParser extends JavadocParser {
 			this.selectedNode = (ASTNode) super.createFieldReference(receiver);
 			this.abort = true;
 			if (SelectionEngine.DEBUG) {
-				System.out.println("	selected field="+this.selectedNode); //$NON-NLS-1$
+				System.out.println("	selected field="+this.selectedNode); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		return null;
@@ -125,7 +125,7 @@ public class SelectionJavadocParser extends JavadocParser {
 			this.selectedNode = (ASTNode) super.createMethodReference(receiver, arguments);
 			this.abort = true;
 			if (SelectionEngine.DEBUG) {
-				System.out.println("	selected method="+this.selectedNode); //$NON-NLS-1$
+				System.out.println("	selected method="+this.selectedNode); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		return null;
@@ -136,7 +136,7 @@ public class SelectionJavadocParser extends JavadocParser {
 	 * If so, store it and abort comment parse.
 	 * Otherwise return null as we do not need this reference.
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected Object createTypeReference(TerminalToken primitiveToken, boolean canBeModule) {
 		// Need to create type ref in case it was needed by members
 		TypeReference typeRef = (TypeReference) super.createTypeReference(primitiveToken, canBeModule);
@@ -147,7 +147,7 @@ public class SelectionJavadocParser extends JavadocParser {
 			if (typeRef instanceof JavadocQualifiedTypeReference) {
 				JavadocQualifiedTypeReference qualifiedTypeRef = (JavadocQualifiedTypeReference) typeRef;
 				int size = qualifiedTypeRef.tokens.length - 1;
-				for (int i=0; i<size; i++) {
+				for (int i=0; i<size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					int start = (int) (qualifiedTypeRef.sourcePositions[i] >>> 32);
 					int end = (int) qualifiedTypeRef.sourcePositions[i];
 					if (start <= this.selectionStart && this.selectionEnd <= end) {
@@ -160,7 +160,7 @@ public class SelectionJavadocParser extends JavadocParser {
 						this.selectedNode = new JavadocQualifiedTypeReference(tokens, positions, this.tagSourceStart, this.tagSourceEnd);
 						this.abort = true; // we got selected node => cancel parse
 						if (SelectionEngine.DEBUG) {
-							System.out.println("	selected partial qualified type="+this.selectedNode); //$NON-NLS-1$
+							System.out.println("	selected partial qualified type="+this.selectedNode); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
 						return typeRef;
 					}
@@ -171,7 +171,7 @@ public class SelectionJavadocParser extends JavadocParser {
 			this.selectedNode = typeRef;
 			this.abort = true; // we got selected node => cancel parse
 			if (SelectionEngine.DEBUG) {
-				System.out.println("	selected type="+this.selectedNode); //$NON-NLS-1$
+				System.out.println("	selected type="+this.selectedNode); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		return typeRef;
@@ -190,7 +190,7 @@ public class SelectionJavadocParser extends JavadocParser {
 				this.selectedNode = expression;
 				this.abort = true; // we got selected node => cancel parse
 				if (SelectionEngine.DEBUG) {
-					System.out.println("	selected param="+this.selectedNode); //$NON-NLS-1$
+					System.out.println("	selected param="+this.selectedNode); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}

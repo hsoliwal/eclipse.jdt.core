@@ -152,7 +152,7 @@ class MethodBinding implements IMethodBinding {
 		return null;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public IAnnotationBinding[] getParameterAnnotations(int index) {
 		if (getParameterTypes() == NO_TYPE_BINDINGS) {
 			return AnnotationBinding.NoAnnotations;
@@ -165,11 +165,11 @@ class MethodBinding implements IMethodBinding {
 
 		int length = bindingAnnotations.length;
 		IAnnotationBinding[][] domAnnotations = new IAnnotationBinding[length][];
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			org.eclipse.jdt.internal.compiler.lookup.AnnotationBinding[] paramBindingAnnotations = bindingAnnotations[i];
 			int pLength = paramBindingAnnotations.length;
 			domAnnotations[i] = new AnnotationBinding[pLength];
-			for (int j=0; j<pLength; j++) {
+			for (int j=0; j<pLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IAnnotationBinding domAnnotation = this.resolver.getAnnotationInstance(paramBindingAnnotations[j]);
 				if (domAnnotation == null) {
 					domAnnotations[i] = AnnotationBinding.NoAnnotations;
@@ -186,7 +186,7 @@ class MethodBinding implements IMethodBinding {
 	/**
 	 * @see IMethodBinding#getParameterTypes()
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public ITypeBinding[] getParameterTypes() {
 		if (this.parameterTypes != null) {
 			return this.parameterTypes;
@@ -197,7 +197,7 @@ class MethodBinding implements IMethodBinding {
 			return this.parameterTypes = NO_TYPE_BINDINGS;
 		} else {
 			ITypeBinding[] paramTypes = new ITypeBinding[length];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				final TypeBinding parameterBinding = parameters[i];
 				if (parameterBinding != null) {
 					ITypeBinding typeBinding = this.resolver.getTypeBinding(parameterBinding);
@@ -207,8 +207,8 @@ class MethodBinding implements IMethodBinding {
 					paramTypes[i] = typeBinding;
 				} else {
 					// log error
-					StringBuilder message = new StringBuilder("Report method binding where a parameter is null:\n");  //$NON-NLS-1$
-					message.append(toString());
+					StringBuilder message = new StringBuilder("Report method binding where a parameter is null:\n");  //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+					message.append(toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					Util.log(new IllegalArgumentException(), message.toString());
 					// report no binding since one or more parameter has no binding
 					return this.parameterTypes = NO_TYPE_BINDINGS;
@@ -236,13 +236,13 @@ class MethodBinding implements IMethodBinding {
 		return this.returnType;
 	}
 
-	protected IAnnotationBinding[] filterTypeAnnotations(org.eclipse.jdt.internal.compiler.lookup.AnnotationBinding[] internalAnnotations) {
+	protected IAnnotationBinding[] filterTypeAnnotations(org.eclipse.jdt.internal.compiler.lookup.AnnotationBinding[] internalAnnotations) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int length = internalAnnotations == null ? 0 : internalAnnotations.length;
 		if (length != 0) {
 			IAnnotationBinding[] tempAnnotations = new IAnnotationBinding[length];
 			int convertedAnnotationCount = 0;
 			final boolean isConstructor = this.isConstructor();
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				org.eclipse.jdt.internal.compiler.lookup.AnnotationBinding internalAnnotation = internalAnnotations[i];
 				if(internalAnnotation == null) {
 					continue;
@@ -281,7 +281,7 @@ class MethodBinding implements IMethodBinding {
 	/**
 	 * @see IMethodBinding#getExceptionTypes()
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public ITypeBinding[] getExceptionTypes() {
 		if (this.exceptionTypes != null) {
 			return this.exceptionTypes;
@@ -292,7 +292,7 @@ class MethodBinding implements IMethodBinding {
 			return this.exceptionTypes = NO_TYPE_BINDINGS;
 		}
 		ITypeBinding[] exTypes = new ITypeBinding[length];
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ITypeBinding typeBinding = this.resolver.getTypeBinding(exceptions[i]);
 			if (typeBinding == null) {
 				return this.exceptionTypes = NO_TYPE_BINDINGS;
@@ -408,7 +408,7 @@ class MethodBinding implements IMethodBinding {
 	/**
 	 * @see org.eclipse.jdt.core.dom.IMethodBinding#getTypeParameters()
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public ITypeBinding[] getTypeParameters() {
 		if (this.typeParameters != null) {
 			return this.typeParameters;
@@ -419,7 +419,7 @@ class MethodBinding implements IMethodBinding {
 			return this.typeParameters = NO_TYPE_BINDINGS;
 		}
 		ITypeBinding[] tParameters = new ITypeBinding[typeVariableBindingsLength];
-		for (int i = 0; i < typeVariableBindingsLength; i++) {
+		for (int i = 0; i < typeVariableBindingsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ITypeBinding typeBinding = this.resolver.getTypeBinding(typeVariableBindings[i]);
 			if (typeBinding == null) {
 				return this.typeParameters = NO_TYPE_BINDINGS;
@@ -446,7 +446,7 @@ class MethodBinding implements IMethodBinding {
 	/**
 	 * @see org.eclipse.jdt.core.dom.IMethodBinding#getTypeArguments()
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public ITypeBinding[] getTypeArguments() {
 		if (this.typeArguments != null) {
 			return this.typeArguments;
@@ -458,7 +458,7 @@ class MethodBinding implements IMethodBinding {
 			int typeArgumentsLength = typeArgumentsBindings == null ? 0 : typeArgumentsBindings.length;
 			if (typeArgumentsLength != 0) {
 				ITypeBinding[] tArguments = new ITypeBinding[typeArgumentsLength];
-				for (int i = 0; i < typeArgumentsLength; i++) {
+				for (int i = 0; i < typeArgumentsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					ITypeBinding typeBinding = this.resolver.getTypeBinding(typeArgumentsBindings[i]);
 					if (typeBinding == null) {
 						return this.typeArguments = NO_TYPE_BINDINGS;
@@ -609,7 +609,7 @@ class MethodBinding implements IMethodBinding {
 			this.syntheticOuterLocalVariables = syntheticOuterLocalVariables;
 		}
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		protected JavaElement getUnresolvedJavaElement() {
 			if (JavaCore.getPlugin() == null) {
 				return null;
@@ -622,7 +622,7 @@ class MethodBinding implements IMethodBinding {
 			// resolving all parent lambdas is necessary for proper resolution
 			// as it populates newAstToOldAst.
 			ASTNode current = domNode;
-			while (current != null) {
+			while (current != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (current instanceof org.eclipse.jdt.core.dom.LambdaExpression domLambda) {
 					defaultBindingResolver.resolveMethod(domLambda);
 				}

@@ -68,7 +68,7 @@ public class BatchImageBuilder extends AbstractImageBuilder {
 		return executor;
 	}
 	private static final long MAX_CLASS_CONTENTS_BYTES_QUEUED = 100_000_000; // 100MB
-	private final Map<IFile, byte[]> classContents = new HashMap<>();
+	private final Map<IFile, byte[]> classContents = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	private long classContentsBytesQueued;
 	private boolean batchMode;
 
@@ -92,7 +92,7 @@ protected BatchImageBuilder(BatchImageBuilder batchImageBuilder, boolean buildSt
 }
 
 
-public void build() {
+public void build() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (JavaBuilder.DEBUG)
 		System.out.println("FULL build"); //$NON-NLS-1$
 
@@ -141,7 +141,7 @@ protected void acceptSecondaryType(ClassFile classFile) {
 		this.secondaryTypes.add(classFile.fileName());
 }
 
-protected void cleanOutputFolders(boolean copyBack) throws CoreException {
+protected void cleanOutputFolders(boolean copyBack) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	boolean deleteAll = JavaCore.CLEAN.equals(
 		this.javaBuilder.javaProject.getOption(JavaCore.CORE_JAVA_BUILD_CLEAN_OUTPUT_FOLDER, true));
 	if (deleteAll) {
@@ -149,12 +149,12 @@ protected void cleanOutputFolders(boolean copyBack) throws CoreException {
 			// CompilationGroup.MAIN is done first, so this notifies the participants only once
 			// calling this for CompilationGroup.TEST could cases generated files for CompilationGroup.MAIN to be deleted.
 			if (this.javaBuilder.participants != null)
-				for (CompilationParticipant participant : this.javaBuilder.participants)
+				for (CompilationParticipant participant : this.javaBuilder.participants) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					participant.cleanStarting(this.javaBuilder.javaProject);
 		}
 
 		Set<IContainer> visited = new LinkedHashSet<>(this.sourceLocations.length);
-		for (ClasspathMultiDirectory sourceLocation : this.sourceLocations) {
+		for (ClasspathMultiDirectory sourceLocation : this.sourceLocations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.notifier.subTask(Messages.bind(Messages.build_cleaningOutput, this.javaBuilder.currentProject.getName()));
 			if (sourceLocation.hasIndependentOutputFolder) {
 				IContainer outputFolder = sourceLocation.binaryFolder;
@@ -163,7 +163,7 @@ protected void cleanOutputFolders(boolean copyBack) throws CoreException {
 							// (reasons include: deleted already by an overlapping output folder, or another process deleted it)
 							// without this check the Eclipse resource API would bail out...
 						IResource[] members = outputFolder.members();
-						for (IResource member : members) {
+						for (IResource member : members) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (!member.isDerived()) {
 								member.accept(
 									new IResourceVisitor() {
@@ -178,7 +178,7 @@ protected void cleanOutputFolders(boolean copyBack) throws CoreException {
 							try {
 								member.delete(IResource.FORCE, null);
 							} catch(CoreException e) {
-								Util.log(e, "Error occurred while deleting: " + member.getFullPath()); //$NON-NLS-1$
+								Util.log(e, "Error occurred while deleting: " + member.getFullPath()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							}
 						}
 					}
@@ -197,8 +197,8 @@ protected void cleanOutputFolders(boolean copyBack) throws CoreException {
 						? sourceLocation.inclusionPatterns
 						: null; // ignore inclusionPatterns if output folder == another source folder... not this one
 				sourceLocation.binaryFolder.accept(
-					new IResourceProxyVisitor() {
-						@Override
+					new IResourceProxyVisitor() { //FLLDCIM: MARK — T07  ANONYMOUS
+						@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 						public boolean visit(IResourceProxy proxy) throws CoreException {
 							if (proxy.getType() == IResource.FILE) {
 								if (org.eclipse.jdt.internal.compiler.util.Util.isClassFileName(proxy.getName())) {
@@ -211,7 +211,7 @@ protected void cleanOutputFolders(boolean copyBack) throws CoreException {
 									try {
 										resource.delete(IResource.FORCE, null);
 									} catch(CoreException e) {
-										Util.log(e, "Error occurred while deleting: " + resource.getFullPath()); //$NON-NLS-1$
+										Util.log(e, "Error occurred while deleting: " + resource.getFullPath()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 									}
 								}
 								return false;
@@ -230,7 +230,7 @@ protected void cleanOutputFolders(boolean copyBack) throws CoreException {
 			this.notifier.checkCancel();
 		}
 	} else if (copyBack) {
-		for (ClasspathMultiDirectory sourceLocation : this.sourceLocations) {
+		for (ClasspathMultiDirectory sourceLocation : this.sourceLocations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (sourceLocation.hasIndependentOutputFolder)
 				copyExtraResourcesBack(sourceLocation, false);
 			this.notifier.checkCancel();
@@ -249,11 +249,11 @@ protected void cleanUp() {
 @Override
 protected void compile(SourceFile[] units, SourceFile[] additionalUnits, boolean compilingFirstGroup) {
 	if (additionalUnits != null && this.secondaryTypes == null)
-		this.secondaryTypes = new ArrayList(7);
+		this.secondaryTypes = new ArrayList(7); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	super.compile(units, additionalUnits, compilingFirstGroup);
 }
 
-protected void copyExtraResourcesBack(ClasspathMultiDirectory sourceLocation, final boolean deletedAll) throws CoreException {
+protected void copyExtraResourcesBack(ClasspathMultiDirectory sourceLocation, final boolean deletedAll) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// When, if ever, does a builder need to copy resources files (not .java or .class) into the output folder?
 	// If we wipe the output folder at the beginning of the build then all 'extra' resources must be copied to the output folder.
 
@@ -264,8 +264,8 @@ protected void copyExtraResourcesBack(ClasspathMultiDirectory sourceLocation, fi
 	final IContainer outputFolder = sourceLocation.binaryFolder;
 	final boolean isAlsoProject = sourceLocation.sourceFolder.equals(this.javaBuilder.currentProject);
 	sourceLocation.sourceFolder.accept(
-		new IResourceProxyVisitor() {
-			@Override
+		new IResourceProxyVisitor() { //FLLDCIM: MARK — T07  ANONYMOUS
+			@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			public boolean visit(IResourceProxy proxy) throws CoreException {
 				IResource resource = null;
 				switch(proxy.getType()) {
@@ -314,7 +314,7 @@ protected void copyExtraResourcesBack(ClasspathMultiDirectory sourceLocation, fi
 }
 
 protected IResource findOriginalResource(IPath partialPath) {
-	for (ClasspathMultiDirectory sourceLocation : this.sourceLocations) {
+	for (ClasspathMultiDirectory sourceLocation : this.sourceLocations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (sourceLocation.hasIndependentOutputFolder) {
 			IResource originalResource = sourceLocation.sourceFolder.getFile(partialPath);
 			if (originalResource.exists()) return originalResource;
@@ -329,12 +329,12 @@ private void printStats() {
 	long time = compilerStats.elapsedTime();
 	long lineCount = compilerStats.lineCount;
 	double speed = ((int) (lineCount * 10000.0 / time)) / 10.0;
-	System.out.println("\n>FULL BUILD STATS for: "+this.javaBuilder.javaProject.getElementName()); //$NON-NLS-1$
-	System.out.println(">   compiled " + lineCount + " lines in " + time + " ms: " + speed + " lines/s"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-	System.out.print(">   parse: " + compilerStats.parseTime + " ms (" + ((int) (compilerStats.parseTime * 1000.0 / time)) / 10.0 + "%)"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-	System.out.print(", resolve: " + compilerStats.resolveTime + " ms (" + ((int) (compilerStats.resolveTime * 1000.0 / time)) / 10.0 + "%)"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-	System.out.print(", analyze: " + compilerStats.analyzeTime + " ms (" + ((int) (compilerStats.analyzeTime * 1000.0 / time)) / 10.0 + "%)"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-	System.out.println(", generate: " + compilerStats.generateTime + " ms (" + ((int) (compilerStats.generateTime * 1000.0 / time)) / 10.0 + "%)"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+	System.out.println("\n>FULL BUILD STATS for: "+this.javaBuilder.javaProject.getElementName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	System.out.println(">   compiled " + lineCount + " lines in " + time + " ms: " + speed + " lines/s"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	System.out.print(">   parse: " + compilerStats.parseTime + " ms (" + ((int) (compilerStats.parseTime * 1000.0 / time)) / 10.0 + "%)"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	System.out.print(", resolve: " + compilerStats.resolveTime + " ms (" + ((int) (compilerStats.resolveTime * 1000.0 / time)) / 10.0 + "%)"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	System.out.print(", analyze: " + compilerStats.analyzeTime + " ms (" + ((int) (compilerStats.analyzeTime * 1000.0 / time)) / 10.0 + "%)"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	System.out.println(", generate: " + compilerStats.generateTime + " ms (" + ((int) (compilerStats.generateTime * 1000.0 / time)) / 10.0 + "%)"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 @Override
@@ -346,7 +346,7 @@ protected void processAnnotationResults(CompilationParticipantResult[] results) 
 	this.incrementalBuilder.processAnnotationResults(results);
 }
 
-protected void rebuildTypesAffectedBySecondaryTypes() {
+protected void rebuildTypesAffectedBySecondaryTypes() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// to compile types that could not find 'missing' secondary types because of multiple
 	// compile groups, we need to incrementally recompile all affected types as if the missing
 	// secondary types have just been added, see bug 146324
@@ -354,10 +354,10 @@ protected void rebuildTypesAffectedBySecondaryTypes() {
 		this.incrementalBuilder = new IncrementalImageBuilder(this, this.compilationGroup);
 
 	int count = this.secondaryTypes.size();
-	Set<String> qualifiedNames = new HashSet<>(count * 2);
-	Set<String> simpleNames = new HashSet<>(count);
-	Set<String> rootNames = new HashSet<>(3);
-	while (--count >=0) {
+	Set<String> qualifiedNames = new HashSet<>(count * 2); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+	Set<String> simpleNames = new HashSet<>(count); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+	Set<String> rootNames = new HashSet<>(3); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+	while (--count >=0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		char[] secondaryTypeName = (char[]) this.secondaryTypes.get(count);
 		IPath path = new Path(null, new String(secondaryTypeName));
 		this.incrementalBuilder.addDependentsOf(path, false, qualifiedNames, simpleNames, rootNames);
@@ -373,11 +373,11 @@ protected void rebuildTypesAffectedBySecondaryTypes() {
 protected void storeProblemsFor(SourceFile sourceFile, CategorizedProblem[] problems) throws CoreException {
 	if (sourceFile == null || problems == null || problems.length == 0) return;
 
-	for (int i = problems.length; --i >= 0;) {
+	for (int i = problems.length; --i >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		CategorizedProblem problem = problems[i];
 		if (problem != null && problem.getID() == IProblem.UndefinedType) {
 			if (this.typeLocatorsWithUndefinedTypes == null)
-				this.typeLocatorsWithUndefinedTypes = new HashSet<>(3);
+				this.typeLocatorsWithUndefinedTypes = new HashSet<>(3); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			this.typeLocatorsWithUndefinedTypes.add(sourceFile.typeLocator());
 			break;
 		}
@@ -388,7 +388,7 @@ protected void storeProblemsFor(SourceFile sourceFile, CategorizedProblem[] prob
 
 @Override
 public String toString() {
-	return "batch image builder for:\n\tnew state: " + this.newState; //$NON-NLS-1$
+	return "batch image builder for:\n\tnew state: " + this.newState; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 @Override
@@ -396,13 +396,13 @@ public void startBatch() {
 	this.batchMode = true;
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void writeClassFileContents(ClassFile classFile, IFile file, String qualifiedFileName, boolean isTopLevelType,
 		SourceFile compilationUnit) throws CoreException {
 	byte[] content = classFile.getBytes();
 	if (this.batchMode) {
 		if (JavaBuilder.DEBUG) {
-			trace("Batching changed class file " + file.getName());//$NON-NLS-1$
+			trace("Batching changed class file " + file.getName());//$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		// flush before limit to avoid OOME:
 		if (!this.classContents.isEmpty() && this.classContentsBytesQueued + content.length >= MAX_CLASS_CONTENTS_BYTES_QUEUED) {
@@ -412,7 +412,7 @@ protected void writeClassFileContents(ClassFile classFile, IFile file, String qu
 		this.classContentsBytesQueued += content.length;
 	} else {
 		if (JavaBuilder.DEBUG) {
-			trace("Writing changed class file " + file.getName());//$NON-NLS-1$
+			trace("Writing changed class file " + file.getName());//$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		file.write(content, true, true, false, null);
 	}
@@ -431,13 +431,13 @@ public void endBatch() {
 public void flushBatch() {
 	try {
 		if (JavaBuilder.DEBUG) {
-			this.classContents.keySet().forEach(file -> trace("Writing changed class file " + file.getName()));//$NON-NLS-1$
+			this.classContents.keySet().forEach(file -> trace("Writing changed class file " + file.getName()));//$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		ResourcesPlugin.getWorkspace().write(this.classContents, true, true, false, null, WRITER_SERVICE);
 	} catch (CoreException e) {
 		// Already existing class files should not happen:
 		// Duplicate classes get marked earlier with a "The type {} is already defined"
-		Util.log(e, "Failed to write some of the class files: " + this.classContents.keySet().stream() //$NON-NLS-1$
+		Util.log(e, "Failed to write some of the class files: " + this.classContents.keySet().stream() //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				.map(f -> f.getFullPath().toString()).collect(Collectors.joining(", "))); //$NON-NLS-1$
 		createProblemFor(this.javaBuilder.currentProject, null, Messages.build_inconsistentClassFile, JavaCore.ERROR);
 	} finally {

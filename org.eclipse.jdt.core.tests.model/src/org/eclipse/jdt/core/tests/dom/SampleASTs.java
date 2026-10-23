@@ -44,7 +44,7 @@ public class SampleASTs {
      * which cannot be connected directly to a CompilationUnit),
      * but otherwise does not make sense.
 	 */
-	public static ASTNode oneOfEach(AST target) {
+	public static ASTNode oneOfEach(AST target) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		CompilationUnit cu = target.newCompilationUnit();
 		PackageDeclaration pd = target.newPackageDeclaration();
 		cu.setPackage(pd);
@@ -259,8 +259,8 @@ public class SampleASTs {
 	 * BlockComment and LineComment.
 	 */
 	public static List oneOfEachList(AST target) {
-		List result = new ArrayList(100);
-		for (int nodeType = 0; nodeType < 100; nodeType++) {
+		List result = new ArrayList(100); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (int nodeType = 0; nodeType < 100; nodeType++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Class nodeClass = null;
 			try {
 				nodeClass = ASTNode.nodeClassForType(nodeType);

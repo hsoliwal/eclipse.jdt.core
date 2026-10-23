@@ -65,7 +65,7 @@ public class EvaluationContextWrapperTest extends EvaluationTest {
 	}
 
 	public static Test setupSuite(Class clazz) {
-		List<Class<?>> testClasses = new ArrayList<>();
+		List<Class<?>> testClasses = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		testClasses.add(clazz);
 		return buildAllCompliancesTestSuite(clazz, DebugEvaluationSetup.class, testClasses);
 	}
@@ -89,18 +89,18 @@ public class EvaluationContextWrapperTest extends EvaluationTest {
 		super.tearDown();
 	}
 
-	public void testBug573589_StaticImport() throws Exception {
+	public void testBug573589_StaticImport() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
-			StringBuilder source = new StringBuilder();
-			source.append("import static java.lang.Math.max;\n");
-			source.append("class Bug573589 {\n");
-			source.append("		public int fooMax() {\n");
-			source.append("			return max(10, 11);\n");
-			source.append("		}\n");
-			source.append("		public static void call() {\n");
-			source.append("			new Bug573589().fooMax();\n");
-			source.append("		}\n");
-			source.append("}\n");
+			StringBuilder source = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			source.append("import static java.lang.Math.max;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			source.append("class Bug573589 {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			source.append("		public int fooMax() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			source.append("			return max(10, 11);\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			source.append("		}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			source.append("		public static void call() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			source.append("			new Bug573589().fooMax();\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			source.append("		}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			source.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 			compileAndDeploy15(source.toString(), "Bug573589");
 			refreshProject();
@@ -114,18 +114,18 @@ public class EvaluationContextWrapperTest extends EvaluationTest {
 		}
 	}
 
-	public void testBug573589_StaticImport_AttachedSource() throws Exception {
+	public void testBug573589_StaticImport_AttachedSource() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
-			StringBuilder source = new StringBuilder();
-			source.append("import static java.lang.Math.max;\n");
-			source.append("class Bug573589 {\n");
-			source.append("		public int fooMax() {\n");
-			source.append("			return max(10, 11);\n");
-			source.append("		}\n");
-			source.append("		public static void call() {\n");
-			source.append("			new Bug573589().fooMax();\n");
-			source.append("		}\n");
-			source.append("}\n");
+			StringBuilder source = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			source.append("import static java.lang.Math.max;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			source.append("class Bug573589 {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			source.append("		public int fooMax() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			source.append("			return max(10, 11);\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			source.append("		}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			source.append("		public static void call() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			source.append("			new Bug573589().fooMax();\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			source.append("		}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			source.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 			Map<String, String> result = compileAndDeploy15(source.toString(), "Bug573589", "attached");
 			addLibrary(this.project, result.get(BIN_DIR), result.get(SOURCE_DIRECTORY));
@@ -144,11 +144,11 @@ public class EvaluationContextWrapperTest extends EvaluationTest {
 		compileAndDeploy15(source, className, "");
 	}
 
-	private Map<String, String> compileAndDeploy15(String source, String className, String locationPrefix) throws Exception {
+	private Map<String, String> compileAndDeploy15(String source, String className, String locationPrefix) throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		resetEnv(); // needed to reinitialize the caches
-		String srcDir = this.project.getProject().getLocation().toFile().getAbsolutePath() + File.separator + SOURCE_DIRECTORY.concat(locationPrefix);
-		String binDir = this.project.getProject().getLocation().toFile().getAbsolutePath() + File.separator + BIN_DIR.concat(locationPrefix);
-		Map<String, String> result = new HashMap<>();
+		String srcDir = this.project.getProject().getLocation().toFile().getAbsolutePath() + File.separator + SOURCE_DIRECTORY.concat(locationPrefix); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String binDir = this.project.getProject().getLocation().toFile().getAbsolutePath() + File.separator + BIN_DIR.concat(locationPrefix); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		Map<String, String> result = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		result.put(SOURCE_DIRECTORY, srcDir);
 		result.put(BIN_DIR, binDir);
 
@@ -157,10 +157,10 @@ public class EvaluationContextWrapperTest extends EvaluationTest {
 			Files.createDirectories(directory.toPath());
 		}
 
-		String fileName = srcDir + File.separator + className + ".java";
+		String fileName = srcDir + File.separator + className + ".java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Files.write(Paths.get(fileName), source.getBytes());
-		StringBuilder buffer = new StringBuilder();
-		buffer
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append("\"")
 			.append(fileName)
 			.append("\" -d \"")
@@ -175,7 +175,7 @@ public class EvaluationContextWrapperTest extends EvaluationTest {
 		PrintWriter outWriter = new PrintWriter(err);
 		boolean compiled = BatchCompiler.compile(buffer.toString(), outWriter, errWriter, null/*progress*/);
 		if (!compiled) {
-			fail("Failed to compile '" + className + "', system error: '" + err.toString() + "', system out: '" + out.toString()+ "'");
+			fail("Failed to compile '" + className + "', system error: '" + err.toString() + "', system out: '" + out.toString()+ "'"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return result;
 	}
@@ -191,14 +191,14 @@ public class EvaluationContextWrapperTest extends EvaluationTest {
 
 	private void removeTempClass(String className, String locationPrefix) {
 		resetEnv();
-		String srcDir = this.project.getProject().getLocation().toFile().getAbsolutePath() + File.separator + SOURCE_DIRECTORY.concat(locationPrefix);
-		String binDir = this.project.getProject().getLocation().toFile().getAbsolutePath() + File.separator + BIN_DIR.concat(locationPrefix);
+		String srcDir = this.project.getProject().getLocation().toFile().getAbsolutePath() + File.separator + SOURCE_DIRECTORY.concat(locationPrefix); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String binDir = this.project.getProject().getLocation().toFile().getAbsolutePath() + File.separator + BIN_DIR.concat(locationPrefix); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		Util.delete(srcDir + File.separator + className + ".java");
-		Util.delete(binDir + File.separator + className + ".class");
+		Util.delete(srcDir + File.separator + className + ".java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		Util.delete(binDir + File.separator + className + ".class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
-	private Optional<IMarker> evaluate(String declaringTypeName, String snippet) throws InstallException, JavaModelException {
+	private Optional<IMarker> evaluate(String declaringTypeName, String snippet) throws InstallException, JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IType type = this.project.findType(declaringTypeName);
 		assertNotNull("declaringType is not compiled", type);
 
@@ -248,7 +248,7 @@ public class EvaluationContextWrapperTest extends EvaluationTest {
 		return options;
 	}
 
-	private IJavaProject createProject(String name) throws Exception {
+	private IJavaProject createProject(String name) throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 		IProject proj = root.getProject(name);
 		if (proj.exists()) {
@@ -282,7 +282,7 @@ public class EvaluationContextWrapperTest extends EvaluationTest {
 
 
         addSourceContainer(jproject, SOURCE_DIRECTORY);
-        for (String path : Util.getJavaClassLibs()) {
+        for (String path : Util.getJavaClassLibs()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
             addLibrary(jproject, path, null);
         }
         return jproject;

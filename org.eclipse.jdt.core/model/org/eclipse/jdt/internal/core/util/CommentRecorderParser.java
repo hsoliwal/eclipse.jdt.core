@@ -41,7 +41,7 @@ public class CommentRecorderParser extends Parser {
 
 	// old javadoc style check which doesn't include all leading comments into declaration
 	// for backward compatibility with 2.1 DOM
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void checkComment() {
 
 		// discard obsolete comments while inside methods or fields initializer (see bug 74369)
@@ -53,7 +53,7 @@ public class CommentRecorderParser extends Parser {
 		int lastCommentIndex = -1;
 
 		//since jdk1.2 look only in the last java doc comment...
-		nextComment : for (lastCommentIndex = this.scanner.commentPtr; lastCommentIndex >= 0; lastCommentIndex--){
+		nextComment : for (lastCommentIndex = this.scanner.commentPtr; lastCommentIndex >= 0; lastCommentIndex--){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			//look for @deprecated into the first javadoc comment preceeding the declaration
 			int commentSourceStart = this.scanner.commentStarts[lastCommentIndex];
 			// javadoc only (non javadoc comment have negative start and/or end positions.)
@@ -139,7 +139,7 @@ public class CommentRecorderParser extends Parser {
 	 * Save all source comments currently stored before flushing them.
 	 * @see org.eclipse.jdt.internal.compiler.parser.Parser#flushCommentsDefinedPriorTo(int)
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public int flushCommentsDefinedPriorTo(int position) {
 
 		int lastCommentIndex = getCommentPtr();
@@ -148,7 +148,7 @@ public class CommentRecorderParser extends Parser {
 		// compute the index of the first obsolete comment
 		int index = lastCommentIndex;
 		int validCount = 0;
-		while (index >= 0){
+		while (index >= 0){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int commentEnd = this.scanner.commentStops[index];
 			if (commentEnd < 0) commentEnd = -commentEnd; // negative end position for non-javadoc comments
 			if (commentEnd <= position){
@@ -161,7 +161,7 @@ public class CommentRecorderParser extends Parser {
 		// flush this comment and shift <position> to the comment end.
 		if (validCount > 0){
 			int immediateCommentEnd = 0;
-			while (index<lastCommentIndex && (immediateCommentEnd = -this.scanner.commentStops[index+1])  > 0){ // only tolerating non-javadoc comments (non-javadoc comment end positions are negative)
+			while (index<lastCommentIndex && (immediateCommentEnd = -this.scanner.commentStops[index+1])  > 0){ // only tolerating non-javadoc comments (non-javadoc comment end positions are negative) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				// is there any line break until the end of the immediate comment ? (thus only tolerating line comment)
 				immediateCommentEnd--; // comment end in one char too far
 				if (org.eclipse.jdt.internal.compiler.util.Util.getLineNumber(position, this.scanner.lineEnds, 0, this.scanner.linePtr)
@@ -200,7 +200,7 @@ public class CommentRecorderParser extends Parser {
 		super.consumeExitTryBlock();
 	}
 
-	protected int getCommentPtr() {
+	protected int getCommentPtr() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int lastComment = this.scanner.commentPtr;
 		if (lastComment == -1 && this.currentElement != null) {
 			// during recovery reuse comments from initial scan ...
@@ -234,7 +234,7 @@ public class CommentRecorderParser extends Parser {
 	 */
 	public int[][] getCommentsPositions() {
 		int[][] positions = new int[this.commentPtr+1][2];
-		for (int i = 0, max = this.commentPtr; i <= max; i++){
+		for (int i = 0, max = this.commentPtr; i <= max; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			positions[i][0] = this.commentStarts[i];
 			positions[i][1] = this.commentStops[i];
 		}
@@ -273,9 +273,9 @@ public class CommentRecorderParser extends Parser {
 	/*
 	 * Push all stored comments in stack.
 	 */
-	private void pushOnCommentsStack(int start, int end) {
+	private void pushOnCommentsStack(int start, int end) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
-		for (int i=start; i<=end; i++) {
+		for (int i=start; i<=end; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (this.scanner.commentPtr < i) break;
 			// First see if comment hasn't been already stored
 			int scannerStart = this.scanner.commentStarts[i]<0 ? -this.scanner.commentStarts[i] : this.scanner.commentStarts[i];

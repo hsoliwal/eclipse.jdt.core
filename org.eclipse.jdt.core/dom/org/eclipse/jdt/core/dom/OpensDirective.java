@@ -49,7 +49,7 @@ public class OpensDirective extends ModulePackageAccess {
 	private static final List PROPERTY_DESCRIPTORS_9_0;
 
 	static {
-		List properyList = new ArrayList(3);
+		List properyList = new ArrayList(3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(OpensDirective.class, properyList);
 		addProperty(NAME_PROPERTY, properyList);
 		addProperty(MODULES_PROPERTY, properyList);

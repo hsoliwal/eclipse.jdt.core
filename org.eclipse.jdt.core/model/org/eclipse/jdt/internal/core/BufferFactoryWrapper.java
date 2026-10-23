@@ -54,6 +54,6 @@ public class BufferFactoryWrapper extends WorkingCopyOwner {
 	}
 	@Override
 	public String toString() {
-		return "FactoryWrapper for " + this.factory; //$NON-NLS-1$
+		return "FactoryWrapper for " + this.factory; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }

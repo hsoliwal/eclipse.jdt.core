@@ -82,9 +82,9 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 		@Override
 		String normalized(String originalValue) {
 			String result;
-			StringBuilder normalizedValueBuffer = new StringBuilder(originalValue);
+			StringBuilder normalizedValueBuffer = new StringBuilder(originalValue); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			int nextOccurrenceIndex;
-			while ((nextOccurrenceIndex = normalizedValueBuffer.indexOf(this.match)) != -1)
+			while ((nextOccurrenceIndex = normalizedValueBuffer.indexOf(this.match)) != -1) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				normalizedValueBuffer.replace(nextOccurrenceIndex,
 						nextOccurrenceIndex + this.matchLength, this.placeholder);
 			result = super.normalized(normalizedValueBuffer.toString());
@@ -95,25 +95,25 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 	protected static class TestCompilationProgress extends CompilationProgress {
 		boolean isCanceled = false;
 		int workedSoFar = 0;
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		public void begin(int remainingWork) {
-			this.buffer.append("----------\n[worked: 0 - remaining: ").append(remainingWork).append("]\n");
+			this.buffer.append("----------\n[worked: 0 - remaining: ").append(remainingWork).append("]\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		public void done() {
-			this.buffer.append("----------\n");
+			this.buffer.append("----------\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		public boolean isCanceled() {
 			return this.isCanceled;
 		}
 		public void setTaskName(String name) {
-			this.buffer.append(name).append('\n');
+			this.buffer.append(name).append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		public String toString() {
 			return this.buffer.toString();
 		}
 		public void worked(int workIncrement, int remainingWork) {
 			this.workedSoFar += workIncrement;
-			this.buffer.append("[worked: ").append(this.workedSoFar).append(" - remaining: ").append(remainingWork).append("]\n");
+			this.buffer.append("[worked: ").append(this.workedSoFar).append(" - remaining: ").append(remainingWork).append("]\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
@@ -159,7 +159,7 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 		CASCADED_JARS_CREATED = false; // initialization needed for each subclass individually
 	}
 
-	protected void createCascadedJars() throws IOException {
+	protected void createCascadedJars() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (CASCADED_JARS_CREATED) {
 			return;
 		}
@@ -183,7 +183,7 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 				"public class S1 {\n" +
 				"}",
 			},
-			LIB_DIR + "/lib1.jar",
+			LIB_DIR + "/lib1.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			CompilerOptions.getFirstSupportedJavaVersion());
 		Util.createJar(
 			new String[] {
@@ -203,7 +203,7 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 				"public class S2 {\n" +
 				"}",
 			},
-			LIB_DIR + "/lib2.jar",
+			LIB_DIR + "/lib2.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			CompilerOptions.getFirstSupportedJavaVersion());
 		Util.createJar(
 			new String[] {
@@ -223,7 +223,7 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 				"Created-By: Eclipse JDT Test Harness\n" +
 				"Class-Path: lib4.jar\n",
 			},
-			LIB_DIR + "/lib3.jar",
+			LIB_DIR + "/lib3.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			CompilerOptions.getFirstSupportedJavaVersion());
 		Util.createJar(
 			new String[] {
@@ -238,7 +238,7 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 				"Created-By: Eclipse JDT Test Harness\n" +
 				"Class-Path: lib1.jar lib3.jar\n",
 			},
-			LIB_DIR + "/lib4.jar",
+			LIB_DIR + "/lib4.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			CompilerOptions.getFirstSupportedJavaVersion());
 		Util.createJar(
 			new String[] {
@@ -258,9 +258,9 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 				"Created-By: Eclipse JDT Test Harness\n" +
 				"Class-Path: s/lib6.jar\n",
 			},
-			LIB_DIR + "/lib5.jar",
+			LIB_DIR + "/lib5.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			CompilerOptions.getFirstSupportedJavaVersion());
-		new File(LIB_DIR + "/s").mkdir();
+		new File(LIB_DIR + "/s").mkdir(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Util.createJar(
 			new String[] {
 				"p/D.java",
@@ -274,7 +274,7 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 				"Created-By: Eclipse JDT Test Harness\n" +
 				"Class-Path: ../lib7.jar\n",
 			},
-			LIB_DIR + "/s/lib6.jar",
+			LIB_DIR + "/s/lib6.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			CompilerOptions.getFirstSupportedJavaVersion());
 		Util.createJar(
 			new String[] {
@@ -289,7 +289,7 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 				"Created-By: Eclipse JDT Test Harness\n" +
 				"Class-Path: lib2.jar\n",
 			},
-			LIB_DIR + "/lib7.jar",
+			LIB_DIR + "/lib7.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			CompilerOptions.getFirstSupportedJavaVersion());
 		Util.createJar(
 			new String[] {
@@ -300,11 +300,11 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 			},
 			new String[] {
 				"META-INF/MANIFEST.MF",
-				"Manifest-Version: 1.0\n" +
+				"Manifest-Version: 1.0\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"Created-By: Eclipse JDT Test Harness\n" +
 				"Class-Path: " + LIB_DIR + "/lib3.jar lib1.jar\n",
 			},
-			LIB_DIR + "/lib8.jar",
+			LIB_DIR + "/lib8.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			CompilerOptions.getFirstSupportedJavaVersion());
 		Util.createJar(
 			new String[] {
@@ -320,7 +320,7 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 				"Class-Path: lib1.jar\n" +
 				"Class-Path: lib3.jar\n",
 			},
-			LIB_DIR + "/lib9.jar",
+			LIB_DIR + "/lib9.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			CompilerOptions.getFirstSupportedJavaVersion());
 		Util.createJar(
 			new String[] {
@@ -336,7 +336,7 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 				"Created-By: Eclipse JDT Test Harness\n" +
 				"Class-Path: lib2.jar\n",
 			},
-			LIB_DIR + "/lib10.jar",
+			LIB_DIR + "/lib10.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			CompilerOptions.getFirstSupportedJavaVersion());
 		Util.createJar(
 			new String[] {
@@ -351,7 +351,7 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 				"Created-By: Eclipse JDT Test Harness\n" +
 				"Class-Path:\n",
 			},
-			LIB_DIR + "/lib11.jar",
+			LIB_DIR + "/lib11.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			CompilerOptions.getFirstSupportedJavaVersion());
 		Util.createJar(
 			null,
@@ -361,7 +361,7 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 				"Created-By: Eclipse JDT Test Harness\n" +
 				"Class-Path:lib1.jar\n", // missing space
 			},
-			LIB_DIR + "/lib12.jar",
+			LIB_DIR + "/lib12.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			CompilerOptions.getFirstSupportedJavaVersion());
 		Util.createJar(
 			null,
@@ -371,7 +371,7 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 				"Created-By: Eclipse JDT Test Harness\n" +
 				"Class-Path:lib1.jar lib1.jar\n", // missing space
 			},
-			LIB_DIR + "/lib13.jar",
+			LIB_DIR + "/lib13.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			CompilerOptions.getFirstSupportedJavaVersion());
 		Util.createJar(
 			null,
@@ -381,7 +381,7 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 				"Created-By: Eclipse JDT Test Harness\n" +
 				" Class-Path: lib1.jar\n", // extra space at line start
 			},
-			LIB_DIR + "/lib14.jar",
+			LIB_DIR + "/lib14.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			CompilerOptions.getFirstSupportedJavaVersion());
 		Util.createJar(
 			null,
@@ -391,7 +391,7 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 				"Created-By: Eclipse JDT Test Harness\n" +
 				"Class-Path: lib1.jar", // missing newline at end
 			},
-			LIB_DIR + "/lib15.jar",
+			LIB_DIR + "/lib15.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			CompilerOptions.getFirstSupportedJavaVersion());
 		Util.createJar(
 			new String[] {
@@ -411,9 +411,9 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 				"public class S1 {\n" +
 				"}",
 			},
-			LIB_DIR + "/lib16.jar",
+			LIB_DIR + "/lib16.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			CompilerOptions.getFirstSupportedJavaVersion());
-		new File(LIB_DIR + "/dir").mkdir();
+		new File(LIB_DIR + "/dir").mkdir(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Util.createJar(
 			new String[] {
 				"p/A.java",
@@ -427,27 +427,27 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 				"Created-By: Eclipse JDT Test Harness\n" +
 				"Class-Path: ../lib2.jar\n",
 			},
-			LIB_DIR + "/dir/lib17.jar",
+			LIB_DIR + "/dir/lib17.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			CompilerOptions.getFirstSupportedJavaVersion());
 		CASCADED_JARS_CREATED = true;
 	}
 
 	protected String getLibraryClassesAsQuotedString() {
 		String[] paths = Util.getJavaClassLibs();
-		StringBuilder buffer = new StringBuilder();
-		buffer.append('"');
-		for (int i = 0, max = paths.length; i < max; i++) {
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append('"'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (int i = 0, max = paths.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (i != 0) {
-				buffer.append(File.pathSeparatorChar);
+				buffer.append(File.pathSeparatorChar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buffer.append(paths[i]);
+			buffer.append(paths[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		buffer.append('"');
+		buffer.append('"'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return String.valueOf(buffer);
 	}
 
 	protected String getExtDirectory() {
-		return JRE_HOME_DIR + "/lib/ext";
+		return JRE_HOME_DIR + "/lib/ext"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/**
@@ -541,7 +541,7 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 	 *            pass true to get the output directory flushed before the test
 	 *            runs
 	 */
-	protected void runTest(boolean shouldCompileOK, String[] testFiles, Object extraArguments, String expectedOutOutputString, String expectedErrOutputString, boolean shouldFlushOutputDirectory, TestCompilationProgress progress) {
+	protected void runTest(boolean shouldCompileOK, String[] testFiles, Object extraArguments, String expectedOutOutputString, String expectedErrOutputString, boolean shouldFlushOutputDirectory, TestCompilationProgress progress) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		if (shouldFlushOutputDirectory)
 			Util.flushDirectoryContent(outputDirectory);
@@ -551,8 +551,8 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 			}
 			if (testFiles != null) {
 				PrintWriter sourceFileWriter;
-				for (int i = 0; i < testFiles.length; i += 2) {
-					String fileName = OUTPUT_DIR + File.separator + testFiles[i];
+				for (int i = 0; i < testFiles.length; i += 2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					String fileName = OUTPUT_DIR + File.separator + testFiles[i]; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					File file = new File(fileName), innerOutputDirectory = file
 							.getParentFile();
 					if (!innerOutputDirectory.isDirectory()) {
@@ -570,9 +570,9 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
-		String printerWritersNameRoot = OUTPUT_DIR + File.separator + testName();
-		String outFileName = printerWritersNameRoot + "out.txt",
-			   errFileName = printerWritersNameRoot + "err.txt";
+		String printerWritersNameRoot = OUTPUT_DIR + File.separator + testName(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String outFileName = printerWritersNameRoot + "out.txt", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			   errFileName = printerWritersNameRoot + "err.txt"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		PrintWriter out = null;
 		PrintWriter err = null;
 		boolean compileOK;
@@ -612,7 +612,7 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 		if (compileOK != shouldCompileOK || !compareOK) {
 			System.out.println(getClass().getName() + '#' + getName());
 			if (testFiles != null) {
-				for (int i = 0; i < testFiles.length; i += 2) {
+				for (int i = 0; i < testFiles.length; i += 2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					System.out.print(testFiles[i]);
 					System.out.println(" [");
 					System.out.println(testFiles[i + 1]);
@@ -624,7 +624,7 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 			System.out.println(errOutputString);
 		if (compileOK == shouldCompileOK && !compareOK) {
 			System.out.println(
-					    "------------ [START OUT] ------------\n"
+					    "------------ [START OUT] ------------\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+   "------------- Expected: -------------\n"
 					+ expectedOutOutputString
 					+ "\n------------- but was:  -------------\n"
@@ -644,21 +644,21 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 					+ "\n------------- [END ERR] -------------\n");
 		}
 		if (shouldCompileOK)
-			assertTrue("Unexpected problems [out: " + outOutputString + "][err: " + errOutputString + "]", compileOK);
+			assertTrue("Unexpected problems [out: " + outOutputString + "][err: " + errOutputString + "]", compileOK); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		else
-			assertFalse("Unexpected success: [out: " + outOutputString + "][err: " + errOutputString + "]", compileOK);
+			assertFalse("Unexpected success: [out: " + outOutputString + "][err: " + errOutputString + "]", compileOK); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (!outCompareOK) {
 			// calling assertEquals to benefit from the comparison UI
 			// (need appropriate exception)
 			assertEquals(
-					"Unexpected standard output for invocation with arguments ["
+					"Unexpected standard output for invocation with arguments [" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						+ extraArguments + "]",
 					expectedOutOutputString,
 					outOutputString);
 		}
 		if (!errCompareOK) {
 			assertEquals(
-					"Unexpected error output for invocation with arguments ["
+					"Unexpected error output for invocation with arguments [" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						+ extraArguments + "]",
 					expectedErrOutputString,
 					errOutputString);
@@ -676,7 +676,7 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 		}
 	}
 
-	protected void runTest(boolean shouldCompileOK, String[] testFiles, String commandLine, Matcher outOutputStringMatcher, Matcher errOutputStringMatcher, boolean shouldFlushOutputDirectory) {
+	protected void runTest(boolean shouldCompileOK, String[] testFiles, String commandLine, Matcher outOutputStringMatcher, Matcher errOutputStringMatcher, boolean shouldFlushOutputDirectory) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		if (shouldFlushOutputDirectory)
 			Util.flushDirectoryContent(outputDirectory);
@@ -685,8 +685,8 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 				outputDirectory.mkdirs();
 			}
 			PrintWriter sourceFileWriter;
-			for (int i = 0; i < testFiles.length; i += 2) {
-				String fileName = OUTPUT_DIR + File.separator + testFiles[i];
+			for (int i = 0; i < testFiles.length; i += 2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				String fileName = OUTPUT_DIR + File.separator + testFiles[i]; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				File file = new File(fileName), innerOutputDirectory = file
 						.getParentFile();
 				if (!innerOutputDirectory.isDirectory()) {
@@ -703,9 +703,9 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
-		String printerWritersNameRoot = OUTPUT_DIR + File.separator + testName();
-		String outFileName = printerWritersNameRoot + "out.txt",
-			   errFileName = printerWritersNameRoot + "err.txt";
+		String printerWritersNameRoot = OUTPUT_DIR + File.separator + testName(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String outFileName = printerWritersNameRoot + "out.txt", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			   errFileName = printerWritersNameRoot + "err.txt"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Main batchCompiler;
 		PrintWriter out = null;
 		PrintWriter err = null;
@@ -756,7 +756,7 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 		}
 		if (compileOK != shouldCompileOK || !compareOK) {
 			System.out.println(getClass().getName() + '#' + getName());
-			for (int i = 0; i < testFiles.length; i += 2) {
+			for (int i = 0; i < testFiles.length; i += 2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				System.out.print(testFiles[i]);
 				System.out.println(" [");
 				System.out.println(testFiles[i + 1]);
@@ -767,7 +767,7 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 			System.out.println(errOutputString);
 		if (compileOK == shouldCompileOK && !compareOK) {
 			System.out.println(
-					    "------------ [START OUT] ------------\n"
+					    "------------ [START OUT] ------------\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+   "------------- Expected: -------------\n"
 					+ expectedOutOutputString
 					+ "\n------------- but was:  -------------\n"
@@ -787,42 +787,42 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 					+ "\n------------- [END ERR] -------------\n");
 		}
 		if (shouldCompileOK)
-			assertTrue("Unexpected problems: " + errOutputString, compileOK);
+			assertTrue("Unexpected problems: " + errOutputString, compileOK); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		else
-			assertTrue("Unexpected success: " + errOutputString, !compileOK);
+			assertTrue("Unexpected success: " + errOutputString, !compileOK); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (!outCompareOK) {
 			// calling assertEquals to benefit from the comparison UI
 			// (need appropriate exception)
 			assertEquals(
-					"Unexpected standard output for invocation with arguments ["
+					"Unexpected standard output for invocation with arguments [" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						+ commandLine + "]",
 					expectedOutOutputString,
 					outOutputString);
 		}
 		if (!errCompareOK) {
 			assertEquals(
-					"Unexpected error output for invocation with arguments ["
+					"Unexpected error output for invocation with arguments [" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						+ commandLine + "]",
 					expectedErrOutputString,
 					errOutputString);
 		}
 	}
 
-	protected void runClasspathTest(String classpathInput, String[] expectedClasspathEntries, String expectedError) {
+	protected void runClasspathTest(String classpathInput, String[] expectedClasspathEntries, String expectedError) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		if (!outputDirectory.isDirectory()) {
 			outputDirectory.mkdirs();
 		}
-		ArrayList<FileSystem.Classpath> paths = new ArrayList<>(Main.DEFAULT_SIZE_CLASSPATH);
+		ArrayList<FileSystem.Classpath> paths = new ArrayList<>(Main.DEFAULT_SIZE_CLASSPATH); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		try {
 			(new Main(new PrintWriter(System.out), new PrintWriter(System.err), true/*systemExit*/, null/*options*/, null/*progress*/)).
 				processPathEntries(Main.DEFAULT_SIZE_CLASSPATH, paths, classpathInput, null /* customEncoding */, true /* isSourceOnly */, false /* rejectDestinationPathOnJars*/);
 		} catch (IllegalArgumentException e) {
 			// e.printStackTrace();
 			if (expectedError == null) {
-				fail("unexpected invalid input exception: " + e.getMessage());
+				fail("unexpected invalid input exception: " + e.getMessage()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			} else if (! expectedError.equals(e.getMessage())) {
-				System.out.println("\"" + e.getMessage() + "\"");
+				System.out.println("\"" + e.getMessage() + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				assertEquals(expectedError, e.getMessage());
 			}
 			return;
@@ -831,21 +831,21 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 			int l = paths.size();
 			assertEquals("unexpected classpaths entries number: ",
 					expectedClasspathEntries == null ? 0 : expectedClasspathEntries.length / 3, l);
-			for (int i = 0, j = 0; i < l ; i++) {
+			for (int i = 0, j = 0; i < l ; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ClasspathLocation result = (ClasspathLocation) paths.get(i);
 				String expected = expectedClasspathEntries[j++];
 				String actual = result.toString();
-				if (! actual.equals("ClasspathDirectory " + expected + File.separator) &&
-						! actual.equals("Classpath for jar file " + expected)) {
-					assertEquals("dir/jar " + expected, actual);
+				if (! actual.equals("ClasspathDirectory " + expected + File.separator) && //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+						! actual.equals("Classpath for jar file " + expected)) { //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+					assertEquals("dir/jar " + expected, actual); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				expected = expectedClasspathEntries[j++];
 				if (result.accessRuleSet == null) {
-					assertNull("actual access rule is null instead of <" + expected +">", expected);
+					assertNull("actual access rule is null instead of <" + expected +">", expected); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				} else if (! result.accessRuleSet.toString(false).
-						startsWith("AccessRuleSet " + expected)) {
-					System.out.println("\"" + result.accessRuleSet.toString(false) + "\"");
-					fail("inappropriate rules (expected " + expected +
+						startsWith("AccessRuleSet " + expected)) { //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+					System.out.println("\"" + result.accessRuleSet.toString(false) + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+					fail("inappropriate rules (expected " + expected + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						", got " + result.accessRuleSet.toString(false));
 				}
 				expected = expectedClasspathEntries[j++];
@@ -855,12 +855,12 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 						result.destinationPath != Main.NONE) {
 					fail("expected 'none' output directory");
 				} else if (! expected.equals(result.destinationPath)) {
-					System.out.println("\"" + result.destinationPath + "\"");
+					System.out.println("\"" + result.destinationPath + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					assertEquals(expected, result.destinationPath);
 				}
 			}
 		} else {
-			fail("missing error: " + expectedError);
+			fail("missing error: " + expectedError); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -875,8 +875,8 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 				new StringReader(message.replaceAll("\t", "    ")));
 		String line;
 		try {
-			while ((line = reader.readLine()) != null) {
-				assertTrue("line exceeds " + width + "characters: " + line,
+			while ((line = reader.readLine()) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				assertTrue("line exceeds " + width + "characters: " + line, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					line.length() <= width);
 			}
 		} catch (IOException e) {
@@ -884,8 +884,8 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 		}
 	}
 
-	private static boolean equals(String a, String b) {
-		StringBuilder aBuffer = new StringBuilder(a), bBuffer = new StringBuilder(b);
+	private static boolean equals(String a, String b) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder aBuffer = new StringBuilder(a), bBuffer = new StringBuilder(b); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		int length = aBuffer.length(), bLength;
 		boolean result = true;
 		if (length != (bLength = bBuffer.length())) {
@@ -895,7 +895,7 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 			}
 			result = false;
 		}
-		for (int i = 0; i < length; i++)
+		for (int i = 0; i < length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (aBuffer.charAt(i) != bBuffer.charAt(i)) {
 				int beforeStart = i - 5, beforeEnd = i - 1, afterStart = i + 1, afterEnd = i + 5;
 				if (beforeStart < 0) {
@@ -908,7 +908,7 @@ public abstract class AbstractBatchCompilerTest extends AbstractRegressionTest {
 					if (afterStart >= length)
 						afterStart = length - 1;
 				}
-				System.err.println("a and b differ at rank: " + i
+				System.err.println("a and b differ at rank: " + i //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						+ "\na: ..." + aBuffer.substring(beforeStart, beforeEnd)
 							+ "<" + aBuffer.charAt(i) + ">"
 							+ aBuffer.substring(afterStart, afterEnd) + "..."

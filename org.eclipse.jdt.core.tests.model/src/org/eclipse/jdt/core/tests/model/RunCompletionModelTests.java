@@ -29,7 +29,7 @@ public class RunCompletionModelTests extends junit.framework.TestCase {
 
 	protected static final boolean ONLY_JAVADOC = "true".equals(System.getProperty("onlyJavadoc", "false"));
 
-	public final static List COMPLETION_SUITES = new ArrayList();
+	public final static List COMPLETION_SUITES = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	static {
 		if (!ONLY_JAVADOC) {
 			COMPLETION_SUITES.add(CompletionTests.class);
@@ -87,11 +87,11 @@ public class RunCompletionModelTests extends junit.framework.TestCase {
 		super(name);
 	}
 
-	public static Test suite() {
+	public static Test suite() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TestSuite ts = new TestSuite(RunCompletionModelTests.class.getName());
 
 		// Store test classes with same "Completion"project
-		AbstractJavaModelCompletionTests.COMPLETION_SUITES = new ArrayList(COMPLETION_SUITES);
+		AbstractJavaModelCompletionTests.COMPLETION_SUITES = new ArrayList(COMPLETION_SUITES); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		// Get all classes
 		Class[] allClasses = getTestClasses();
@@ -104,7 +104,7 @@ public class RunCompletionModelTests extends junit.framework.TestCase {
 		TestCase.RUN_ONLY_ID = null;
 
 		// Add all tests suite of tests
-		for (int i = 0, length = allClasses.length; i < length; i++) {
+		for (int i = 0, length = allClasses.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Class testClass = allClasses[i];
 
 			// call the suite() method and add the resulting suite to the suite

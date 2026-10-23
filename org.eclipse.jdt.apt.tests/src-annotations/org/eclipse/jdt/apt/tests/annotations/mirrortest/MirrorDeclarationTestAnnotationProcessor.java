@@ -44,13 +44,13 @@ public class MirrorDeclarationTestAnnotationProcessor extends BaseProcessor {
 		super(env);
 	}
 
-	public void process() {
+	public void process() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ProcessorTestStatus.setProcessorRan();
 		try {
 			Collection<TypeDeclaration> decls = _env.getSpecifiedTypeDeclarations();
 			TypeDeclaration testClass = null;
 			ClassDeclaration testClassDec = null;
-			for(TypeDeclaration decl : decls) {
+			for(TypeDeclaration decl : decls) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	            if(decl.toString().endsWith("DeclarationTestClass")) { //$NON-NLS-1$
 	            	testClass = decl;
 	            }
@@ -83,7 +83,7 @@ public class MirrorDeclarationTestAnnotationProcessor extends BaseProcessor {
 	 *
 	 * @param testClass TypeDeclaration
 	 */
-	private void testAnnotationImplementations(TypeDeclaration testClass) {
+	private void testAnnotationImplementations(TypeDeclaration testClass) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		//AnnotationMirror tests
 		Collection<AnnotationMirror> annoMirrors = testClass.getAnnotationMirrors();
@@ -107,7 +107,7 @@ public class MirrorDeclarationTestAnnotationProcessor extends BaseProcessor {
 
         AnnotationTypeElementDeclaration elementString = null;
         AnnotationTypeElementDeclaration elementInt = null;
-        for(AnnotationTypeElementDeclaration ated : elementDeclarations) {
+        for(AnnotationTypeElementDeclaration ated : elementDeclarations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
         	if(ated.toString().startsWith("S")) {
         		elementString = ated;
                 SourcePosition posAted = ated.getPosition();
@@ -134,7 +134,7 @@ public class MirrorDeclarationTestAnnotationProcessor extends BaseProcessor {
 	 * ClassDeclaration
 	 * ConstructorDeclaration
 	 */
-	private void testClassDeclaration(ClassDeclaration testClassDec) {
+	private void testClassDeclaration(ClassDeclaration testClassDec) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		//ClassDeclaration tests
 		Collection<ConstructorDeclaration> constructDecls = testClassDec.getConstructors();
@@ -142,7 +142,7 @@ public class MirrorDeclarationTestAnnotationProcessor extends BaseProcessor {
 
 		ConstructorDeclaration constructNoArg = null;
 		ConstructorDeclaration constructIntArg = null;
-		for(ConstructorDeclaration construct : constructDecls) {
+		for(ConstructorDeclaration construct : constructDecls) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(construct.toString().endsWith("()"))
 				constructNoArg = construct;
 			if(construct.toString().endsWith("(int j)"))
@@ -154,8 +154,8 @@ public class MirrorDeclarationTestAnnotationProcessor extends BaseProcessor {
 		Collection<MethodDeclaration> methodDecls = testClassDec.getMethods();
 		ProcessorTestStatus.assertEquals("Number of methods", 5, methodDecls.size());
 
-		ArrayList<AnnotationMirror> annotationMirrors = new ArrayList<>();
-		for (MethodDeclaration methodDeclaration : methodDecls) {
+		ArrayList<AnnotationMirror> annotationMirrors = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (MethodDeclaration methodDeclaration : methodDecls) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Collection<AnnotationMirror> mirrors = methodDeclaration.getAnnotationMirrors();
 			annotationMirrors.addAll(mirrors);
 		}
@@ -173,11 +173,11 @@ public class MirrorDeclarationTestAnnotationProcessor extends BaseProcessor {
 	 * EnumConstantDeclaration
 	 * EnumDeclaration
 	 */
-	private void testEnumImplementations(TypeDeclaration testClass) {
+	private void testEnumImplementations(TypeDeclaration testClass) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		//EnumDeclaration tests
 		Collection<TypeDeclaration> nestedTypes = testClass.getNestedTypes();
 		EnumDeclaration enumDecl = null;
-		for(TypeDeclaration decl : nestedTypes) {
+		for(TypeDeclaration decl : nestedTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(decl.toString().endsWith("EnumDec"))
 				enumDecl = (EnumDeclaration)decl;
 		}
@@ -187,7 +187,7 @@ public class MirrorDeclarationTestAnnotationProcessor extends BaseProcessor {
 		ProcessorTestStatus.assertEquals("Number of enum constants", 2, enumConstDecls.size());
 		EnumConstantDeclaration enumConstAardvark = null;
 		EnumConstantDeclaration enumConstAnteater = null;
-		for(EnumConstantDeclaration enumConst : enumConstDecls) {
+		for(EnumConstantDeclaration enumConst : enumConstDecls) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(enumConst.toString().equals("aardvark"))
 				enumConstAardvark = enumConst;
 			if(enumConst.toString().equals("anteater"))
@@ -225,7 +225,7 @@ public class MirrorDeclarationTestAnnotationProcessor extends BaseProcessor {
 	 * Tests for:
 	 * FieldDeclaration
 	 */
-	private void testFieldDeclaration(ClassDeclaration testClassDec) {
+	private void testFieldDeclaration(ClassDeclaration testClassDec) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		//FieldDeclaration tests
 		Collection<FieldDeclaration> fieldDecls = testClassDec.getFields();
 		ProcessorTestStatus.assertEquals("Number of fields", 4, fieldDecls.size());
@@ -233,7 +233,7 @@ public class MirrorDeclarationTestAnnotationProcessor extends BaseProcessor {
 		FieldDeclaration fieldF = null;
 		FieldDeclaration fieldS = null;
 		FieldDeclaration fieldGC = null;
-		for(FieldDeclaration field : fieldDecls) {
+		for(FieldDeclaration field : fieldDecls) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(field.toString().equals("i"))
 				fieldI = field;
 			if(field.toString().equals("f"))
@@ -266,12 +266,12 @@ public class MirrorDeclarationTestAnnotationProcessor extends BaseProcessor {
 	 * MethodDeclaration
 	 * ParameterDeclaration
 	 */
-	private void testMethodDeclaration(ClassDeclaration testClassDec) {
+	private void testMethodDeclaration(ClassDeclaration testClassDec) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		//Tests for MethodDeclaration
 		Collection<MethodDeclaration> methodDecls = testClassDec.getMethods();
 		MethodDeclaration methodDec = null;
 		MethodDeclaration methodDecNoArg = null;
-		for(MethodDeclaration method : methodDecls) {
+		for(MethodDeclaration method : methodDecls) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(method.toString().endsWith("methodDec(int k, String... t)"))
 				methodDec = method;
 			if(method.toString().endsWith("methodDecNoArg()"))
@@ -294,7 +294,7 @@ public class MirrorDeclarationTestAnnotationProcessor extends BaseProcessor {
 		Collection<ParameterDeclaration> paramDecls = methodDec.getParameters();
 		ParameterDeclaration paramDeclInt = null;
 		ParameterDeclaration paramDeclString = null;
-		for(ParameterDeclaration param : paramDecls) {
+		for(ParameterDeclaration param : paramDecls) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(param.toString().startsWith("int"))
 				paramDeclInt = param;
 			if(param.toString().startsWith("String..."))

@@ -111,7 +111,7 @@ public GlobalVariable[] allVariables() {
  *  @param monitor
  *  	the progress monitor used to report progress
  */
-public void complete(
+public void complete( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] codeSnippet,
 		int completionPosition,
 		SearchableEnvironment environment,
@@ -188,7 +188,7 @@ public void complete(
 		}
 
 		ClassFile[] classFiles = this.installedVars.classFiles;
-		for (ClassFile classFile : classFiles) {
+		for (ClassFile classFile : classFiles) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IBinaryType binary = null;
 			try {
 				binary = new ClassFileReader(classFile.getBytes(), null);
@@ -208,10 +208,10 @@ public void complete(
  * Deletes the given variable from this evaluation context. This will take effect in the target VM only
  * the next time global variables are installed.
  */
-public void deleteVariable(GlobalVariable variable) {
+public void deleteVariable(GlobalVariable variable) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	GlobalVariable[] vars = this.variables;
 	int index = -1;
-	for (int i = 0; i < this.variableCount; i++) {
+	for (int i = 0; i < this.variableCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (vars[i].equals(variable)) {
 			index = i;
 			break;
@@ -228,7 +228,7 @@ public void deleteVariable(GlobalVariable variable) {
 	vars[elementCount - 1] = null;
 	this.varsChanged = true;
 }
-private void deployCodeSnippetClassIfNeeded(IRequestor requestor) throws InstallException {
+private void deployCodeSnippetClassIfNeeded(IRequestor requestor) throws InstallException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.codeSnippetBinary == null) {
 		// Deploy CodeSnippet class (only once)
 		if (!requestor.acceptClassFiles(
@@ -252,7 +252,7 @@ private void deployCodeSnippetClassIfNeeded(IRequestor requestor) throws Install
  * @see org.eclipse.jdt.core.eval.IEvaluationContext
  * @exception org.eclipse.jdt.internal.eval.InstallException if the code snippet class files could not be deployed.
  */
-public void evaluate(
+public void evaluate( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[] codeSnippet,
 	char[][] contextLocalVariableTypeNames,
 	char[][] contextLocalVariableNames,
@@ -351,8 +351,8 @@ public void evaluate(char[] codeSnippet, INameEnvironment environment, Map<Strin
 /**
  * @see org.eclipse.jdt.core.eval.IEvaluationContext
  */
-public void evaluateImports(INameEnvironment environment, IRequestor requestor, IProblemFactory problemFactory) {
-	for (int i = 0; i < this.imports.length; i++) {
+public void evaluateImports(INameEnvironment environment, IRequestor requestor, IProblemFactory problemFactory) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	for (int i = 0; i < this.imports.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		CategorizedProblem[] problems = new CategorizedProblem[] {null};
 		char[] importDeclaration = this.imports[i];
 		char[][] splitDeclaration = CharOperation.splitOn('.', importDeclaration);
@@ -404,7 +404,7 @@ public void evaluateVariable(GlobalVariable variable, INameEnvironment environme
  * @see org.eclipse.jdt.core.eval.IEvaluationContext
  * @exception org.eclipse.jdt.internal.eval.InstallException if the code snippet class files could not be deployed.
  */
-public void evaluateVariables(INameEnvironment environment, Map<String, String> options, IRequestor requestor, IProblemFactory problemFactory) throws InstallException {
+public void evaluateVariables(INameEnvironment environment, Map<String, String> options, IRequestor requestor, IProblemFactory problemFactory) throws InstallException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	deployCodeSnippetClassIfNeeded(requestor);
 	VariablesEvaluator evaluator = new VariablesEvaluator(this, environment, options, requestor, problemFactory);
 	ClassFile[] classes = evaluator.getClasses();
@@ -418,7 +418,7 @@ public void evaluateVariables(INameEnvironment environment, Map<String, String> 
 				public int compare(Object a, Object b) {
 					if (a == b) return 0;
 					ClassFile enclosing = ((ClassFile) a).enclosingClassFile;
-					while (enclosing != null) {
+					while (enclosing != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (enclosing == b)
 							return 1;
 						enclosing = enclosing.enclosingClassFile;
@@ -479,7 +479,7 @@ byte[] getCodeSnippetBytes() {
  * Returns the source of the CodeSnippet class.
  * This is used to generate the binary of the CodeSnippetClass
  */
-public static String getCodeSnippetSource() {
+public static String getCodeSnippetSource() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	return
 		"package org.eclipse.jdt.internal.eval.target;\n" + //$NON-NLS-1$
 		"\n" + //$NON-NLS-1$
@@ -591,7 +591,7 @@ public GlobalVariable newVariable(char[] typeName, char[] name, char[] initializ
  *  @param options java.util.Map
  *		set of options used to configure the code assist engine.
  */
-public void select(
+public void select( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[] codeSnippet,
 	int selectionSourceStart,
 	int selectionSourceEnd,

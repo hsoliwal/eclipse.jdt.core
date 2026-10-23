@@ -31,7 +31,7 @@ import org.eclipse.jdt.core.dom.Modifier;
 
 public class DeclarationsUtil implements Declarations
 {
-    @Override
+    @Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean hides(MemberDeclaration sub, MemberDeclaration sup) {
 
 		// A declaration cannot hide itself
@@ -95,7 +95,7 @@ public class DeclarationsUtil implements Declarations
 	 * its use in hides() already determines that the declaringTarget
 	 * must be a subclass of the declaringViewer.
 	 */
-	private static boolean isVisibleForHiding(
+	private static boolean isVisibleForHiding( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			final ITypeBinding declaringTarget,
 			final ITypeBinding declaringViewer,
 			final int modifiers) {
@@ -139,7 +139,7 @@ public class DeclarationsUtil implements Declarations
         	else
         		return null;
         }
-        throw new NonEclipseImplementationException("only applicable to eclipse type system objects." + //$NON-NLS-1$
+        throw new NonEclipseImplementationException("only applicable to eclipse type system objects." + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
                                                     " Found " + memberDecl.getClass().getName()); //$NON-NLS-1$
     }
 

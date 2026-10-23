@@ -37,7 +37,7 @@ import org.eclipse.jdt.internal.core.util.Messages;
  *      performed.
  * </ul>
  */
-@SuppressWarnings("rawtypes")
+@SuppressWarnings("rawtypes") //FLLDCIM: MARK — T09  IMPLEMENTS
 public class CreateFieldOperation extends CreateTypeMemberOperation {
 /**
  * When executed, this operation will create a field with the given name
@@ -76,7 +76,7 @@ private VariableDeclarationFragment getFragment(ASTNode node) {
 	if (this.anchorElement != null) {
 		VariableDeclarationFragment fragment = null;
 		String fragmentName = this.anchorElement.getElementName();
-		while (fragments.hasNext()) {
+		while (fragments.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			fragment = (VariableDeclarationFragment) fragments.next();
 			if (fragment.getName().getIdentifier().equals(fragmentName)) {
 				return fragment;
@@ -92,7 +92,7 @@ private VariableDeclarationFragment getFragment(ASTNode node) {
  * declaration, or as the first member in the type if there are no
  * field declarations.
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void initializeDefaultPosition() {
 	IType parentElement = getType();
 	try {

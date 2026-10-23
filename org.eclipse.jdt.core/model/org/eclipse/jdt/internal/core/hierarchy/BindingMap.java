@@ -32,9 +32,9 @@ import org.eclipse.jdt.internal.compiler.lookup.TypeIds;
  * exhaustive search.)
  */
 public class BindingMap<V> {
-	private final Map<TypeBinding, V> identityMap = new IdentityHashMap<>();
+	private final Map<TypeBinding, V> identityMap = new IdentityHashMap<>(); //FLLDCIM: MARK — M06 M3_IDENTITY_WEAK_LANES NEW
 	private Object[] mapIdToValue = new Object[0];
-	private final Set<TypeBinding> bindingsWithoutAnId = new HashSet<>();
+	private final Set<TypeBinding> bindingsWithoutAnId = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 
 	public void put(TypeBinding key, V value) {
 		this.identityMap.put(key, value);
@@ -46,7 +46,7 @@ public class BindingMap<V> {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public V get(TypeBinding key) {
 		// Check if we can find this binding by identity
 		V value = this.identityMap.get(key);
@@ -65,7 +65,7 @@ public class BindingMap<V> {
 
 			// Check if there are any bindings that previously had no ID that have
 			// subsequently been assigned one.
-			for (Iterator<TypeBinding> bindingIter = this.bindingsWithoutAnId.iterator(); bindingIter.hasNext();) {
+			for (Iterator<TypeBinding> bindingIter = this.bindingsWithoutAnId.iterator(); bindingIter.hasNext();) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				TypeBinding nextBinding = bindingIter.next();
 
 				if (nextBinding.id != TypeIds.NoId) {

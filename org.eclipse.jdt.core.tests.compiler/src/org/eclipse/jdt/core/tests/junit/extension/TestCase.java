@@ -102,23 +102,23 @@ public class TestCase extends PerformanceTestCase {
 						try {
 							// https://bugs.eclipse.org/bugs/show_bug.cgi?id=384531
 							// compiler.version is a timestamp since the the above fix (of the format: v20120725-181921)
-							StringBuilder buffer = new StringBuilder();
-							for (int i = 0; i < version.length(); i++) {
+							StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+							for (int i = 0; i < version.length(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								if (Character.isDigit(version.charAt(i))) {
-									buffer.append(version.charAt(i));
+									buffer.append(version.charAt(i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 								}
 							}
 							ordering = Long.parseLong(buffer.toString());
-							System.err.println("Note that tests will be run in random order using seed="+ordering+" (ie. JDT/Core version)");
+							System.err.println("Note that tests will be run in random order using seed="+ordering+" (ie. JDT/Core version)"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
 						catch (NumberFormatException nfe) {
-							System.err.println("Cannot extract valid JDT/Core version number from 'compiler.version': "+version+" => no order will be finally used...");
+							System.err.println("Cannot extract valid JDT/Core version number from 'compiler.version': "+version+" => no order will be finally used..."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							ordering = NO_ORDER;
 						}
 						break;
 					case RANDOM_ORDER_TIME:
 						ordering = System.currentTimeMillis();
-						System.err.println("Note that tests will be run in random order using seed="+ordering+" (ie. current time)");
+						System.err.println("Note that tests will be run in random order using seed="+ordering+" (ie. current time)"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						break;
 					case BYTECODE_DECLARATION_ORDER:
 						ordering = kind;
@@ -126,17 +126,17 @@ public class TestCase extends PerformanceTestCase {
 						break;
 					default:
 						ordering = seed;
-						System.err.println("Note that tests will be run in random order using seed="+seed+" (ie. given value)");
+						System.err.println("Note that tests will be run in random order using seed="+seed+" (ie. given value)"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						break;
 				}
 			} catch (NumberFormatException nfe) {
 				// ordering value is over int range but is a valid long => keep the value
 				ordering = seed;
-				System.err.println("Note that tests will be run in random order using seed="+seed+" (ie. given value)");
+				System.err.println("Note that tests will be run in random order using seed="+seed+" (ie. given value)"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		catch (NumberFormatException nfe) {
-			System.err.println("Only integer or long values are allowed for 'ordering' system property: "+System.getProperty("ordering", "0")+" is not valid ! => no order will be finally used...");
+			System.err.println("Only integer or long values are allowed for 'ordering' system property: "+System.getProperty("ordering", "0")+" is not valid ! => no order will be finally used..."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			ordering = NO_ORDER;
 		}
 		ORDERING = ordering;
@@ -183,7 +183,7 @@ public class TestCase extends PerformanceTestCase {
 			int index = storeMemory.indexOf(',');
 			if (index>0) {
 				StringTokenizer parameters = new StringTokenizer(storeMemory.substring(storeMemory.indexOf(',')+1), ",");
-				while (parameters.hasMoreTokens()) {
+				while (parameters.hasMoreTokens()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String param = parameters.nextToken();
 					if ("all".equals(param)) {
 						allTestsLog = true;
@@ -206,9 +206,9 @@ public class TestCase extends PerformanceTestCase {
 		MEM_LOG_FILE = createMemLogFile();
 		if (STORE_MEMORY != null && MEM_LOG_FILE != null) {
 			System.out.println("Memory storage activated:");
-			System.out.println("	data stored in file "+MEM_LOG_FILE);
-			System.out.println("	all tests log: "+ALL_TESTS_LOG);
-			System.out.println("	gc activated: "+RUN_GC);
+			System.out.println("	data stored in file "+MEM_LOG_FILE); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			System.out.println("	all tests log: "+ALL_TESTS_LOG); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			System.out.println("	gc activated: "+RUN_GC); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		DIGIT_FORMAT.setMinimumIntegerDigits(3);
 	}
@@ -242,26 +242,26 @@ public static void assertEquals(String message, String expected, String actual) 
 public static void assertStringEquals(String expected, String actual, boolean showLineSeparators) {
 	assertStringEquals(null, expected, actual, showLineSeparators);
 }
-public static void assertStringEquals(String message, String expected, String actual, boolean showLineSeparators) {
+public static void assertStringEquals(String message, String expected, String actual, boolean showLineSeparators) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (expected == null && actual == null)
 		return;
 	if (expected != null && expected.equals(actual))
 		return;
 	final StringBuilder formatted;
 	if (message != null) {
-		formatted = new StringBuilder(message).append('.');
+		formatted = new StringBuilder(message).append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	} else {
-		formatted = new StringBuilder();
+		formatted = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	}
 	if (showLineSeparators) {
 		expected = showLineSeparators(expected);
 		actual = showLineSeparators(actual);
 	}
-	formatted.append("\n----------- Expected ------------\n"); //$NON-NLS-1$
-	formatted.append(expected);
-	formatted.append("\n------------ but was ------------\n"); //$NON-NLS-1$
-	formatted.append(actual);
-	formatted.append("\n---------------------- ----------\n"); //$NON-NLS-1$
+	formatted.append("\n----------- Expected ------------\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	formatted.append(expected); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	formatted.append("\n------------ but was ------------\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	formatted.append(actual); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	formatted.append("\n---------------------- ----------\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	throw new ComparisonFailure(formatted.toString(), expected, actual);
 }
 
@@ -280,7 +280,7 @@ protected void assumeEquals(String expected, String actual) {
  * Otherwise, the thrown exception {@link AssertionFailedError} is caught
  * and its message is only displayed in the console hence producing no JUnit failure.
  */
-protected void assumeEquals(String msg, String expected, String actual) {
+protected void assumeEquals(String msg, String expected, String actual) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		assertStringEquals(msg, expected, actual, false);
 	} catch (ComparisonFailure cf) {
@@ -356,7 +356,7 @@ protected void assumeTrue(String msg, boolean cond) {
 private void printAssertionFailure(AssertionFailedError afe) {
 	System.out.println("\n!---!!---!!---!!---!!---!!---!!---!!---!!---!!---!!---!!---!!---!!---!!---!!---!");
 	System.out.println("Caught assertion failure while running test "+getName()+":");
-	System.out.println("	"+afe.getMessage());
+	System.out.println("	"+afe.getMessage()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	System.out.println("--------------------------------------------------------------------------------\n");
 }
 
@@ -499,10 +499,10 @@ public static List buildTestsList(Class evaluationTestClass, int inheritedDepth)
  * @param ordering kind of sort use for the list (see {@link #ORDERING} for possible values)
  * @return a {@link List list } of {@link Test tests}
  */
-public static List buildTestsList(Class evaluationTestClass, int inheritedDepth, long ordering) {
-	List tests = new ArrayList();
-	List testNames = new ArrayList();
-	List onlyNames = new ArrayList();
+public static List buildTestsList(Class evaluationTestClass, int inheritedDepth, long ordering) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	List tests = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	List testNames = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	List onlyNames = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	Constructor constructor = null;
 	try {
 		// Get class constructor
@@ -517,7 +517,7 @@ public static List buildTestsList(Class evaluationTestClass, int inheritedDepth,
 	// Get all tests from "test%" methods
 	Method[] methods = evaluationTestClass.getDeclaredMethods();
 	Class evaluationTestSuperclass = evaluationTestClass.getSuperclass();
-	for (int i=0; i<inheritedDepth && !Flags.isAbstract(evaluationTestSuperclass.getModifiers()); i++) {
+	for (int i=0; i<inheritedDepth && !Flags.isAbstract(evaluationTestSuperclass.getModifiers()); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		Method[] superMethods = evaluationTestSuperclass.getDeclaredMethods();
 		Method[] mergedMethods = new Method[methods.length+superMethods.length];
 		System.arraycopy(superMethods, 0, mergedMethods, 0, superMethods.length);
@@ -528,7 +528,7 @@ public static List buildTestsList(Class evaluationTestClass, int inheritedDepth,
 
 	// Build test names list
 	final int methodPrefixLength = METHOD_PREFIX.length();
-	nextMethod: for (int m = 0, max = methods.length; m < max; m++) {
+	nextMethod: for (int m = 0, max = methods.length; m < max; m++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int modifiers = methods[m].getModifiers();
 		if (Flags.isPublic(modifiers) && !Flags.isStatic(modifiers)) {
 			String methName = methods[m].getName();
@@ -556,7 +556,7 @@ public static List buildTestsList(Class evaluationTestClass, int inheritedDepth,
 					int numStart = TESTS_PREFIX==null ? methodPrefixLength : TESTS_PREFIX.length();
 					// tests names subset
 					if (TESTS_NAMES != null) {
-						for (int i = 0, imax= TESTS_NAMES.length; i<imax; i++) {
+						for (int i = 0, imax= TESTS_NAMES.length; i<imax; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (methName.indexOf(TESTS_NAMES[i]) >= 0) {
 								if (!testNames.contains(methName)) {
 									testNames.add(methName);
@@ -569,16 +569,16 @@ public static List buildTestsList(Class evaluationTestClass, int inheritedDepth,
 					int length = methName.length();
 					if (numStart < length) {
 						// get test number
-						while (numStart<length && !Character.isDigit(methName.charAt(numStart))) numStart++; // skip to first digit
-						while (numStart<length && methName.charAt(numStart) == '0') numStart++; // skip to first non-nul digit
+						while (numStart<length && !Character.isDigit(methName.charAt(numStart))) numStart++; // skip to first digit //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+						while (numStart<length && methName.charAt(numStart) == '0') numStart++; // skip to first non-nul digit //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						int n = numStart;
-						while (n<length && Character.isDigit(methName.charAt(n))) n++; // skip to next non-digit
+						while (n<length && Character.isDigit(methName.charAt(n))) n++; // skip to next non-digit //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (n>numStart && n <= length) {
 							try {
 								int num = Integer.parseInt(methName.substring(numStart, n));
 								// tests numbers subset
 								if (TESTS_NUMBERS != null && !testNames.contains(methName)) {
-									for (int i = 0; i < TESTS_NUMBERS.length; i++) {
+									for (int i = 0; i < TESTS_NUMBERS.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 										if (TESTS_NUMBERS[i] == num) {
 											testNames.add(methName);
 											continue nextMethod;
@@ -593,7 +593,7 @@ public static List buildTestsList(Class evaluationTestClass, int inheritedDepth,
 									}
 								}
 							} catch (NumberFormatException e) {
-								System.out.println("Method "+methods[m]+" has an invalid number format: "+e.getMessage());
+								System.out.println("Method "+methods[m]+" has an invalid number format: "+e.getMessage()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							}
 						}
 					}
@@ -612,19 +612,19 @@ public static List buildTestsList(Class evaluationTestClass, int inheritedDepth,
 	// Order tests
 	List names = onlyNames.size() > 0 ? onlyNames : testNames;
 	if (ordering == ALPHA_REVERSE_SORT) {
-		Collections.sort(names, Collections.reverseOrder());
+		Collections.sort(names, Collections.reverseOrder()); //FLLDCIM: MARK — M16 SORT_LANE CALL
 	} else if (ordering == ALPHABETICAL_SORT) {
-		Collections.sort(names);
+		Collections.sort(names); //FLLDCIM: MARK — M16 SORT_LANE CALL
 	} else if (ordering == BYTECODE_DECLARATION_ORDER) {
 		try {
 			List bytecodeOrderedTestNames = OrderedTestSuite.getBytecodeOrderedTestNames(evaluationTestClass);
 			bytecodeOrderedTestNames.retainAll(names);
 			if (bytecodeOrderedTestNames.size() != names.size()) {
-				System.err.println("not all test names found in bytecode: " + evaluationTestClass.getName());
+				System.err.println("not all test names found in bytecode: " + evaluationTestClass.getName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			names = bytecodeOrderedTestNames;
 		} catch (IOException e) {
-			System.err.println("suite failed to detect test order: " + evaluationTestClass.getName());
+			System.err.println("suite failed to detect test order: " + evaluationTestClass.getName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	} else if (ordering != NO_ORDER) {
 		Collections.shuffle(names, new Random(ordering));
@@ -632,13 +632,13 @@ public static List buildTestsList(Class evaluationTestClass, int inheritedDepth,
 
 	// Add corresponding tests
 	Iterator iterator = names.iterator();
-	while (iterator.hasNext()) {
+	while (iterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String testName = (String) iterator.next();
 		try {
 			tests.add(constructor.newInstance(new Object[] { testName } ));
 		}
 		catch (Exception e) {
-			System.err.println("Method "+testName+" removed from suite due to exception: "+e.getMessage());
+			System.err.println("Method "+testName+" removed from suite due to exception: "+e.getMessage()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	return tests;
@@ -669,18 +669,18 @@ public static Test buildTestSuite(Class evaluationTestClass) {
 public static Test buildTestSuite(Class evaluationTestClass, String suiteName) {
 	TestSuite suite = new TestSuite(suiteName==null?evaluationTestClass.getName():suiteName);
 	List tests = buildTestsList(evaluationTestClass);
-	for (int index=0, size=tests.size(); index<size; index++) {
+	for (int index=0, size=tests.size(); index<size; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		suite.addTest((Test)tests.get(index));
 	}
 	return suite;
 }
 
-private static File createMemLogFile() {
+private static File createMemLogFile() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (STORE_MEMORY == null || MEM_LOG_DIR == null) {
 		return null;
 	}
 	// Get file (create if necessary)
-	File logFile = new File(MEM_LOG_DIR, STORE_MEMORY+".log");
+	File logFile = new File(MEM_LOG_DIR, STORE_MEMORY+".log"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	PrintStream stream = null;
 	try {
 		boolean fileExist = logFile.exists();
@@ -690,19 +690,19 @@ private static File createMemLogFile() {
 		}
 		// Log date and time
 		Date date = new Date(System.currentTimeMillis());
-		stream.println("Tests:\t" + STORE_MEMORY);
-		stream.println("Date:\t" + DateFormat.getDateInstance(3).format(date));
-		stream.println("Time:\t" + DateFormat.getTimeInstance(3).format(date));
+		stream.println("Tests:\t" + STORE_MEMORY); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		stream.println("Date:\t" + DateFormat.getDateInstance(3).format(date)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		stream.println("Time:\t" + DateFormat.getTimeInstance(3).format(date)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		// Log columns title
 		stream.print("Class");
 		if (ALL_TESTS_LOG) stream.print("\tTest");
 		stream.print("\tUsed\tTotal\tMax");
 		stream.println();
-		System.out.println("Log file " + logFile.getPath() + " opened.");
+		System.out.println("Log file " + logFile.getPath() + " opened."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		return logFile;
 	} catch (FileNotFoundException e) {
 		// no log available for this statistic
-		System.err.println("Cannot open file " + logFile.getPath());
+		System.err.println("Cannot open file " + logFile.getPath()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} finally {
 		if (stream != null) {
 			stream.close();
@@ -714,26 +714,26 @@ private static File createMemLogFile() {
 /*
  * Shows the line separators in the given String.
  */
-protected static String showLineSeparators(String string) {
+protected static String showLineSeparators(String string) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (string == null) return null;
-	StringBuilder buffer = new StringBuilder();
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	int length = string.length();
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		char car = string.charAt(i);
 		switch (car) {
 			case '\n':
-				buffer.append("\\n\n"); //$NON-NLS-1$
+				buffer.append("\\n\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case '\r':
 				if (i < length-1 && string.charAt(i+1) == '\n') {
-					buffer.append("\\r\\n\n"); //$NON-NLS-1$
+					buffer.append("\\r\\n\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					i++;
 				} else {
-					buffer.append("\\r\n"); //$NON-NLS-1$
+					buffer.append("\\r\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				break;
 			default:
-				buffer.append(car);
+				buffer.append(car); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 		}
 	}
@@ -748,13 +748,13 @@ private static boolean verifyLogDir(File logDir) {
 		if (logDir.isDirectory()) {
 			return true;
 		} else {
-			System.err.println(logDir+" is not a valid directory. Log files will NOT be written!");
+			System.err.println(logDir+" is not a valid directory. Log files will NOT be written!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	} else {
 		if (logDir.mkdir()) {
 			return true;
 		} else {
-			System.err.println("Cannot create "+logDir+" as its parent does not exist. Log files will NOT be written!");
+			System.err.println("Cannot create "+logDir+" as its parent does not exist. Log files will NOT be written!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	return false;
@@ -765,10 +765,10 @@ public void assertPerformance() {
 	super.assertPerformance();
 }
 
-protected void runGarbageCollection() {
+protected void runGarbageCollection() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int iterations = 0;
 	long delta=0, free=0;
-	for (int i=0; i<MAX_GC; i++) {
+	for (int i=0; i<MAX_GC; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		free = Runtime.getRuntime().freeMemory();
 		System.gc();
 		delta = Runtime.getRuntime().freeMemory() - free;
@@ -810,7 +810,7 @@ public boolean isIndexDisabledForTest() {
 	return this.indexDisabledForTest;
 }
 
-protected void setUp() throws Exception {
+protected void setUp() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (JavaCore.getPlugin() != null && isIndexDisabledForTest()) {
 		disableIndexer();
 	}
@@ -847,26 +847,26 @@ protected void setUp() throws Exception {
 			stream.println();
 			stream.close();
 			if (isFirstTestRun) {
-				System.out.println("	"+format(used));
+				System.out.println("	"+format(used)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} else {
 			if (isFirstTestRun) {
 				long total = Runtime.getRuntime().totalMemory();
 				long used = total - Runtime.getRuntime().freeMemory();
-				System.out.println("	already used while starting: "+format(used));
+				System.out.println("	already used while starting: "+format(used)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
 }
 
 protected void disableIndexer() {
-	while(JavaModelManager.getIndexManager().isEnabled()) {
+	while(JavaModelManager.getIndexManager().isEnabled()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		JavaModelManager.getIndexManager().disable();
 	}
 }
 
 protected void enableIndexer() {
-	while(!JavaModelManager.getIndexManager().isEnabled()) {
+	while(!JavaModelManager.getIndexManager().isEnabled()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		JavaModelManager.getIndexManager().enable();
 	}
 }
@@ -876,14 +876,14 @@ private String format(long number) {
 	long q = n;
 	int[] values = new int[10];
 	int m = -1;
-	while ((n=q) > 0) {
+	while ((n=q) > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		q = n / 1000L;
 		values[++m] = (int) (n - q*1000);
 	}
-	StringBuilder buffer = new StringBuilder();
-	buffer.append(values[m]);
-	for (int i=m-1; i>=0; i--) {
-		buffer.append(',').append(DIGIT_FORMAT.format(values[i]));
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	buffer.append(values[m]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	for (int i=m-1; i>=0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		buffer.append(',').append(DIGIT_FORMAT.format(values[i])); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	return buffer.toString();
 }
@@ -912,7 +912,7 @@ public void stopMeasuring() {
 	super.stopMeasuring();
 }
 
-protected void tearDown() throws Exception {
+protected void tearDown() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	super.tearDown();
 
 	if (JavaCore.getPlugin() != null && isIndexDisabledForTest()) {
@@ -929,7 +929,7 @@ protected void tearDown() throws Exception {
 				String testName = getName();
 				String str = "";
 				int length = testName.length()-4;
-				for (int i=0; i<length; i++) {
+				for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					str += '.';
 				}
 				stream.print(str);
@@ -958,11 +958,11 @@ static public void assertSame(String message, int expected, int actual) {
 	failNotSame(message, expected, actual);
 }
 static public void failNotSame(String message, int expected, int actual) {
-	StringBuilder formatted= new StringBuilder();
+	StringBuilder formatted= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	if (message != null) {
-		formatted.append(message).append(' ');
+		formatted.append(message).append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	formatted.append("expected same:<").append(expected).append("> was not:<").append(actual).append(">");
+	formatted.append("expected same:<").append(expected).append("> was not:<").append(actual).append(">"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	fail(String.valueOf(formatted));
 }
 protected void runTest() throws Throwable {
@@ -975,7 +975,7 @@ protected void runTest() throws Throwable {
 }
 
 public static void resetForgottenFilters(List<Class<?>> testClasses) {
-	for (Class<?> clazz : testClasses) {
+	for (Class<?> clazz : testClasses) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		try {
 			Class.forName(clazz.getName(), true, clazz.getClassLoader()); // force initialization
 		} catch (ClassNotFoundException e) {

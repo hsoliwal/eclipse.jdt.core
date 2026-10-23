@@ -17,11 +17,11 @@ import java.io.PrintWriter;
 import java.util.Collection;
 
 public class AnnotationReader {
-    public void createClassFilesForAnnotatedDeclarations(
+    public void createClassFilesForAnnotatedDeclarations( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
             Collection<Declaration> declarations,
             AnnotationProcessorEnvironment env) throws IOException {
         assert declarations.size() == 1;
-        for (Declaration dec : declarations) {
+        for (Declaration dec : declarations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
             PrintWriter writer = null;
             try {
@@ -29,10 +29,10 @@ public class AnnotationReader {
                         .getAnnotation(SimpleAnnotation.class);
                 String value = annotation.value().name();
                 //Class annotationType = annotation.annotationType();
-                String className = value + "Gen";
-                writer = env.getFiler().createSourceFile("test." + className);
+                String className = value + "Gen"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+                writer = env.getFiler().createSourceFile("test." + className); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
                 writer.println("package test;");
-                writer.println("public class " + className);
+                writer.println("public class " + className); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
                 writer.println("{}");
             } finally {
                 if (writer != null) {

@@ -128,7 +128,7 @@ public class RecordDeclaration extends AbstractTypeDeclaration {
 
 	static {
 
-		ArrayList propertyList = new ArrayList(8);
+		ArrayList propertyList = new ArrayList(8); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(RecordDeclaration.class, propertyList);
 		addProperty(JAVADOC_PROPERTY, propertyList);
 		addProperty(MODIFIERS2_PROPERTY, propertyList);
@@ -203,7 +203,7 @@ public class RecordDeclaration extends AbstractTypeDeclaration {
 		return propertyDescriptors(apiLevel);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final ASTNode internalGetSetChildProperty(ChildPropertyDescriptor property, boolean get, ASTNode child) {
 		if (property == JAVADOC_PROPERTY) {
 			if (get) {
@@ -225,7 +225,7 @@ public class RecordDeclaration extends AbstractTypeDeclaration {
 		return super.internalGetSetChildProperty(property, get, child);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final List internalGetChildListProperty(ChildListPropertyDescriptor property) {
 		if (property == MODIFIERS2_PROPERTY) {
 			return modifiers();
@@ -271,7 +271,7 @@ public class RecordDeclaration extends AbstractTypeDeclaration {
 		return RECORD_DECLARATION;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ASTNode clone0(AST target) {
 		RecordDeclaration result = new RecordDeclaration(target);
 		result.restrictedIdentifierStartPosition = getRestrictedIdentifierStartPosition();
@@ -365,17 +365,17 @@ public class RecordDeclaration extends AbstractTypeDeclaration {
 	 * @return the (possibly empty) list of field declarations
 	 * @since 3.26
 	 */
-	public FieldDeclaration[] getFields() {
+	public FieldDeclaration[] getFields() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		List bd = bodyDeclarations();
 		int fieldCount = 0;
-		for (Iterator it = bd.listIterator(); it.hasNext(); ) {
+		for (Iterator it = bd.listIterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (it.next() instanceof FieldDeclaration) {
 				fieldCount++;
 			}
 		}
 		FieldDeclaration[] fields = new FieldDeclaration[fieldCount];
 		int next = 0;
-		for (Iterator it = bd.listIterator(); it.hasNext(); ) {
+		for (Iterator it = bd.listIterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Object decl = it.next();
 			if (decl instanceof FieldDeclaration) {
 				fields[next++] = (FieldDeclaration) decl;
@@ -397,17 +397,17 @@ public class RecordDeclaration extends AbstractTypeDeclaration {
 	 *    declarations
 	 * @since 3.26
 	 */
-	public MethodDeclaration[] getMethods() {
+	public MethodDeclaration[] getMethods() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		List bd = bodyDeclarations();
 		int methodCount = 0;
-		for (Iterator it = bd.listIterator(); it.hasNext(); ) {
+		for (Iterator it = bd.listIterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (it.next() instanceof MethodDeclaration) {
 				methodCount++;
 			}
 		}
 		MethodDeclaration[] methods = new MethodDeclaration[methodCount];
 		int next = 0;
-		for (Iterator it = bd.listIterator(); it.hasNext(); ) {
+		for (Iterator it = bd.listIterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Object decl = it.next();
 			if (decl instanceof MethodDeclaration) {
 				methods[next++] = (MethodDeclaration) decl;

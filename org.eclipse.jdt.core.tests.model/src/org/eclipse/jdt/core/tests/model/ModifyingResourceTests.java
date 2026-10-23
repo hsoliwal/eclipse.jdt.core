@@ -68,11 +68,11 @@ public class ModifyingResourceTests extends AbstractJavaModelTests {
 
 		public TestContainerInitializer(int containerKind) { this.containerKind = containerKind; }
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public void initialize(IPath containerPath, IJavaProject project) throws CoreException {
 			String[] jars = Util.getJavaClassLibs();
 			IClasspathEntry[] entries = new IClasspathEntry[jars.length];
-			for (int i = 0; i < jars.length; i++) {
+			for (int i = 0; i < jars.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IClasspathAttribute[] extraAttributes;
 				if (RT_JAR_ANNOTATION_PATH != null && jars[i].endsWith("rt.jar"))
 					extraAttributes = externalAnnotationExtraAttributes(RT_JAR_ANNOTATION_PATH);
@@ -135,18 +135,18 @@ protected void assertStatus(String message, String expected, IStatus status) {
  *   "}")
  * }</pre>
  */
-public static void generateClassFile(String className, String javaSource) throws IOException {
-	String cu = "d:/temp/" + className + ".java";
+public static void generateClassFile(String className, String javaSource) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String cu = "d:/temp/" + className + ".java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	Util.createFile(cu, javaSource);
-	BatchCompiler.compile(cu + " -d d:/temp -classpath " + System.getProperty("java.home") + "/lib/rt.jar", new PrintWriter(System.out), new PrintWriter(System.err), null/*progress*/);
-	try (FileInputStream input = new FileInputStream("d:/temp/" + className + ".class")) {
+	BatchCompiler.compile(cu + " -d d:/temp -classpath " + System.getProperty("java.home") + "/lib/rt.jar", new PrintWriter(System.out), new PrintWriter(System.err), null/*progress*/); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	try (FileInputStream input = new FileInputStream("d:/temp/" + className + ".class")) { //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		System.out.println("{");
 		byte[] buffer = new byte[80];
 		int read = 0;
-		while (read != -1) {
+		while (read != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			read = input.read(buffer);
 			if (read != -1) System.out.print("\t");
-			for (int i = 0; i < read; i++) {
+			for (int i = 0; i < read; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				System.out.print(buffer[i]);
 				System.out.print(", ");
 			}
@@ -161,7 +161,7 @@ protected boolean createExternalFolder(String relativePath) {
 }
 
 protected void createExternalFile(String relativePath, String contents) {
-	Util.writeToFile(contents, getExternalPath() + relativePath);
+	Util.writeToFile(contents, getExternalPath() + relativePath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 @Override
@@ -198,7 +198,7 @@ protected IFolder createFolder(String path) throws CoreException {
 	return createFolder(new Path(path));
 }
 protected void deleteExternalResource(String relativePath) {
-	deleteResource(new File(getExternalPath() + relativePath));
+	deleteResource(new File(getExternalPath() + relativePath)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 protected void deleteFile(String filePath) throws CoreException {
 	deleteResource(getFile(filePath));
@@ -216,7 +216,7 @@ protected IFile editFile(String path, String content) throws CoreException {
  * of the tree.
  */
 protected String expandAll(IJavaElement element) throws CoreException {
-	StringBuilder buffer = new StringBuilder();
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	this.expandAll(element, 0, buffer);
 	return buffer.toString();
 }
@@ -229,8 +229,8 @@ private void expandAll(IJavaElement element, int tab, StringBuilder buffer) thro
 	}
 	((JavaElement)element).toStringInfo(tab, buffer);
 	if (children != null) {
-		for (int i = 0, length = children.length; i < length; i++) {
-			buffer.append("\n");
+		for (int i = 0, length = children.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			this.expandAll(children[i], tab+1, buffer);
 		}
 	}
@@ -274,7 +274,7 @@ protected void moveFolder(String sourcePath, String destPath) throws CoreExcepti
 protected void swapFiles(String firstPath, String secondPath) throws CoreException {
 	final IFile first = getFile(firstPath);
 	final IFile second = getFile(secondPath);
-	IWorkspaceRunnable runnable = new IWorkspaceRunnable(	) {
+	IWorkspaceRunnable runnable = new IWorkspaceRunnable(	) { //FLLDCIM: MARK — T09  ANONYMOUS
 		public void run(IProgressMonitor monitor) throws CoreException {
 			IPath tempPath = first.getParent().getFullPath().append("swappingFile.temp");
 			first.move(tempPath, false, monitor);
@@ -285,12 +285,12 @@ protected void swapFiles(String firstPath, String secondPath) throws CoreExcepti
 	getWorkspace().run(runnable, null);
 }
 protected IClassFile createClassFile(String libPath, String classFileRelativePath, String contents) throws CoreException {
-	IOrdinaryClassFile classFile = getClassFile(libPath + "/" + classFileRelativePath);
+	IOrdinaryClassFile classFile = getClassFile(libPath + "/" + classFileRelativePath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 //	classFile.getResource().delete(false, null);
 	Util.delete(classFile.getResource());
 	IJavaProject javaProject = classFile.getJavaProject();
 	IProject project = javaProject.getProject();
-	String sourcePath = project.getLocation().toOSString() + File.separatorChar + classFile.getType().getElementName() + ".java";
+	String sourcePath = project.getLocation().toOSString() + File.separatorChar + classFile.getType().getElementName() + ".java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String libOSPath = new Path(libPath).segmentCount() > 1 ? getFolder(libPath).getLocation().toOSString() : getProject(libPath).getLocation().toOSString();
 	Util.compile(new String[] {sourcePath, contents}, javaProject.getOptions(true), libOSPath);
 	project.refreshLocal(IResource.DEPTH_INFINITE, null);
@@ -306,13 +306,13 @@ protected IClassFile createClassFile(String libPath, String classFileRelativePat
  *   "/P", "*.txt|com.tests/**"
  * }
  */
-protected IClasspathEntry[] createClasspath(String[] foldersAndPatterns, boolean hasInclusionPatterns, boolean hasExclusionPatterns) {
+protected IClasspathEntry[] createClasspath(String[] foldersAndPatterns, boolean hasInclusionPatterns, boolean hasExclusionPatterns) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int length = foldersAndPatterns.length;
 	int increment = 1;
 	if (hasInclusionPatterns) increment++;
 	if (hasExclusionPatterns) increment++;
 	IClasspathEntry[] classpath = new IClasspathEntry[length/increment];
-	for (int i = 0; i < length; i+=increment) {
+	for (int i = 0; i < length; i+=increment) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String src = foldersAndPatterns[i];
 		IPath[] accessibleFiles = new IPath[0];
 		if (hasInclusionPatterns) {
@@ -320,7 +320,7 @@ protected IClasspathEntry[] createClasspath(String[] foldersAndPatterns, boolean
 			StringTokenizer tokenizer = new StringTokenizer(patterns, "|");
 			int patternsCount =  tokenizer.countTokens();
 			accessibleFiles = new IPath[patternsCount];
-			for (int j = 0; j < patternsCount; j++) {
+			for (int j = 0; j < patternsCount; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				accessibleFiles[j] = new Path(tokenizer.nextToken());
 			}
 		}
@@ -330,7 +330,7 @@ protected IClasspathEntry[] createClasspath(String[] foldersAndPatterns, boolean
 			StringTokenizer tokenizer = new StringTokenizer(patterns, "|");
 			int patternsCount =  tokenizer.countTokens();
 			nonAccessibleFiles = new IPath[patternsCount];
-			for (int j = 0; j < patternsCount; j++) {
+			for (int j = 0; j < patternsCount; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				nonAccessibleFiles[j] = new Path(tokenizer.nextToken());
 			}
 		}
@@ -353,19 +353,19 @@ protected IClasspathEntry[] createClasspath(String[] foldersAndPatterns, boolean
 protected IClasspathEntry[] createClasspath(String projectName, String[] foldersAndPatterns) {
 	int length = foldersAndPatterns.length;
 	IClasspathEntry[] classpath = new IClasspathEntry[length/2];
-	for (int i = 0; i < length; i+=2) {
+	for (int i = 0; i < length; i+=2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String src = foldersAndPatterns[i];
 		String patterns = foldersAndPatterns[i+1];
 		classpath[i/2] = createSourceEntry(projectName, src, patterns);
 	}
 	return classpath;
 }
-public IClasspathEntry createSourceEntry(String referingProjectName, String src, String patterns) {
+public IClasspathEntry createSourceEntry(String referingProjectName, String src, String patterns) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	StringTokenizer tokenizer = new StringTokenizer(patterns, "|");
 	int ruleCount =  tokenizer.countTokens();
 	IAccessRule[] accessRules = new IAccessRule[ruleCount];
 	int nonAccessibleRules = 0;
-	for (int j = 0; j < ruleCount; j++) {
+	for (int j = 0; j < ruleCount; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String rule = tokenizer.nextToken();
 		int kind;
 		boolean ignoreIfBetter = false;
@@ -398,7 +398,7 @@ public IClasspathEntry createSourceEntry(String referingProjectName, String src,
 		int accessibleIndex = 0;
 		IPath[] nonAccessibleFiles = new IPath[nonAccessibleRules];
 		int nonAccessibleIndex = 0;
-		for (int j = 0; j < ruleCount; j++) {
+		for (int j = 0; j < ruleCount; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IAccessRule accessRule = accessRules[j];
 			if (accessRule.getKind() == IAccessRule.K_ACCESSIBLE)
 				accessibleFiles[accessibleIndex++] = accessRule.getPattern();

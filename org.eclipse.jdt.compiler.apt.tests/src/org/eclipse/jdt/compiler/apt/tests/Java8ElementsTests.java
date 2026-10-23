@@ -344,12 +344,12 @@ public class Java8ElementsTests extends TestCase {
 		JavaCompiler compiler = BatchTestUtils.getEclipseCompiler();
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "bug520540");
 		BatchTestUtils.copyResources("targets/bug520540", targetFolder);
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		options.add("-cp");
-		options.add(BatchTestUtils._tmpGenFolderName + File.pathSeparatorChar + BatchTestUtils._jls8ProcessorJarPath);
+		options.add(BatchTestUtils._tmpGenFolderName + File.pathSeparatorChar + BatchTestUtils._jls8ProcessorJarPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		options.add("-processor");
 		options.add(JAVA8_ANNOTATION_PROC);
-		options.add("-A" + JAVA8_ANNOTATION_PROC);
+		options.add("-A" + JAVA8_ANNOTATION_PROC); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		options.add("-AtestBug520540");
 		options.add("-1.8");
 		boolean success = BatchTestUtils.compileTreeWithErrors(compiler, options, targetFolder, null, true, false);
@@ -360,14 +360,14 @@ public class Java8ElementsTests extends TestCase {
 		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "bug520540");
 		BatchTestUtils.copyResources("targets/bug520540", targetFolder);
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		options.add("-cp");
-		options.add(BatchTestUtils._tmpGenFolderName + File.pathSeparatorChar + BatchTestUtils._jls8ProcessorJarPath);
+		options.add(BatchTestUtils._tmpGenFolderName + File.pathSeparatorChar + BatchTestUtils._jls8ProcessorJarPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		options.add("-processorpath");
 		options.add(" ");
 		options.add("-processor");
 		options.add(JAVA8_ANNOTATION_PROC);
-		options.add("-A" + JAVA8_ANNOTATION_PROC);
+		options.add("-A" + JAVA8_ANNOTATION_PROC); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		options.add("-AtestBug520540");
 		boolean success = BatchTestUtils.compileTreeWithErrors(compiler, options, targetFolder, null, true, false);
 		assertEquals(true, success);
@@ -437,25 +437,25 @@ public class Java8ElementsTests extends TestCase {
 	private void internalTest(JavaCompiler compiler, String processor, String testMethod, String testClass) throws IOException {
 		internalTest(compiler, processor, testMethod, testClass, "model8", "8");
 	}
-	private void internalTest(JavaCompiler compiler, String processor, String testMethod, String testClass, String resourceArea, String compliance) throws IOException {
+	private void internalTest(JavaCompiler compiler, String processor, String testMethod, String testClass, String resourceArea, String compliance) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!canRunJava8()) {
 			return;
 		}
 		System.clearProperty(processor);
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", resourceArea);
 		if (testClass == null || testClass.equals("")) {
-			BatchTestUtils.copyResources("targets/" + resourceArea, targetFolder);
+			BatchTestUtils.copyResources("targets/" + resourceArea, targetFolder); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
-			BatchTestUtils.copyResource("targets/" + resourceArea + "/" + testClass, targetFolder);
+			BatchTestUtils.copyResource("targets/" + resourceArea + "/" + testClass, targetFolder); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 
-		List<String> options = new ArrayList<>();
-		options.add("-A" + processor);
-		options.add("-A" + testMethod);
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		options.add("-A" + processor); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		options.add("-A" + testMethod); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		// Javac 1.8 doesn't (yet?) support the -1.8 option
 		if (compiler instanceof EclipseCompiler) {
-			options.add("-" + compliance);
+			options.add("-" + compliance); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
 			options.add("-source");
 			options.add(compliance);
@@ -466,27 +466,27 @@ public class Java8ElementsTests extends TestCase {
 		// if not, it will set it to an error value.
 		assertEquals("succeeded", System.getProperty(processor));
 	}
-	private void internalTestWithBinary(JavaCompiler compiler, String processor, String testMethod, String testClass, String resourceArea, String compliance) throws IOException {
+	private void internalTestWithBinary(JavaCompiler compiler, String processor, String testMethod, String testClass, String resourceArea, String compliance) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!canRunJava8()) {
 			return;
 		}
 		System.clearProperty(processor);
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", resourceArea);
 		if (testClass == null || testClass.equals("")) {
-			BatchTestUtils.copyResources("targets/" + resourceArea, targetFolder);
+			BatchTestUtils.copyResources("targets/" + resourceArea, targetFolder); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
-			BatchTestUtils.copyResource("targets/" + resourceArea + "/" + testClass, targetFolder);
+			BatchTestUtils.copyResource("targets/" + resourceArea + "/" + testClass, targetFolder); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 
-		List<String> options = new ArrayList<>();
-		options.add("-A" + processor);
-		options.add("-A" + testMethod);
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		options.add("-A" + processor); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		options.add("-A" + testMethod); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		options.add("-processor");
 		options.add(processor);
 		// Javac 1.8 doesn't (yet?) support the -1.8 option
 		if (compiler instanceof EclipseCompiler) {
-			options.add("-" + compliance);
+			options.add("-" + compliance); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
 			options.add("-source");
 			options.add(compliance);

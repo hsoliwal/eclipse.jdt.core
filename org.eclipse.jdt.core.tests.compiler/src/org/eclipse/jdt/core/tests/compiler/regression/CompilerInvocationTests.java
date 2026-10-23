@@ -105,10 +105,10 @@ public class CompilerInvocationTests extends AbstractRegressionTest {
 	}
 
 // irritant vs warning token - check To/From symmetry
-	public void test001_irritant_warning_token() {
-		Map matcher = new HashMap();
-		for (int group = 0; group < IrritantSet.GROUP_MAX; group++) {
-			for (int i = 0; i < 29; i++) {
+	public void test001_irritant_warning_token() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		Map matcher = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		for (int group = 0; group < IrritantSet.GROUP_MAX; group++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (int i = 0; i < 29; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int irritant = (group << IrritantSet.GROUP_SHIFT) + (1 << i);
 				String token = CompilerOptions.warningTokenFromIrritant(irritant);
 				if (token != null) {
@@ -123,7 +123,7 @@ public class CompilerInvocationTests extends AbstractRegressionTest {
 		int length = allTokens.length;
 		matcher.put("all", "all"); // all gets undetected in the From/To loop
 		assertEquals(allTokens.length, matcher.size());
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Object object = matcher.get(allTokens[i]);
 			assertNotNull(object);
 		}
@@ -131,11 +131,11 @@ public class CompilerInvocationTests extends AbstractRegressionTest {
 
 // problem categories - check that none is left unspecified
 // see also discussion in https://bugs.eclipse.org/bugs/show_bug.cgi?id=208383
-	public void test002_problem_categories() {
+	public void test002_problem_categories() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			Class iProblemClass;
 			Field[] fields = (iProblemClass = IProblem.class).getFields();
-			for (int i = 0, length = fields.length; i < length; i++) {
+			for (int i = 0, length = fields.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Field field = fields[i];
 				if (field.getType() == Integer.TYPE) {
 					int problemId = field.getInt(iProblemClass),
@@ -143,7 +143,7 @@ public class CompilerInvocationTests extends AbstractRegressionTest {
 					if (maskedProblemId != 0 && maskedProblemId != IProblem.IgnoreCategoriesMask
 							&& ProblemReporter.getProblemCategory(ProblemSeverities.Error,
 									problemId) == CategorizedProblem.CAT_UNSPECIFIED) {
-						fail("unspecified category for problem " + field.getName());
+						fail("unspecified category for problem " + field.getName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 				}
 			}
@@ -160,13 +160,13 @@ public class CompilerInvocationTests extends AbstractRegressionTest {
 		}
 	}
 
-	static String taskTagsAsCutAndPaste(CategorizedProblem tasks[]) {
+	static String taskTagsAsCutAndPaste(CategorizedProblem tasks[]) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (tasks == null) {
 			return "";
 		}
-		StringBuilder result = new StringBuilder();
+		StringBuilder result = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		String arguments[];
-		for (int i = 0; i < tasks.length - 1; i++) {
+		for (int i = 0; i < tasks.length - 1; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			arguments = tasks[i].getArguments();
 			System.out.print("\t\t\"[");
 			System.out.print(arguments[0]);
@@ -187,26 +187,26 @@ public class CompilerInvocationTests extends AbstractRegressionTest {
 		return result.toString();
 	}
 
-	static String taskTagsAsStrings(CategorizedProblem tasks[]) {
-		StringBuilder result = new StringBuilder();
+	static String taskTagsAsStrings(CategorizedProblem tasks[]) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder result = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		String arguments[];
 		if (tasks != null) {
-			for (int i = 0; i < tasks.length; i++) {
+			for (int i = 0; i < tasks.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				arguments = tasks[i].getArguments();
-				result.append('[');
-				result.append(arguments[0]);
-				result.append(',');
-				result.append(arguments[1]);
-				result.append(',');
-				result.append(arguments[2]);
-				result.append(']');
-				result.append("\n");
+				result.append('['); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				result.append(arguments[0]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				result.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				result.append(arguments[1]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				result.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				result.append(arguments[2]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				result.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				result.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		return result.toString();
 	}
 
-	public void runTaskTagsOptionsTest(String[] testFiles, Map customOptions, String expectedTags) {
+	public void runTaskTagsOptionsTest(String[] testFiles, Map customOptions, String expectedTags) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TasksReader reader = new TasksReader();
 		Map options = JavaCore.getDefaultOptions();
 		if (customOptions != null) {
@@ -239,7 +239,7 @@ public class CompilerInvocationTests extends AbstractRegressionTest {
 // effect of cancelling priorities
 // reactivate when bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=143402 is fixed
 	public void _test004_task_tags_options() {
-		Map customOptions = new HashMap();
+		Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		customOptions.put(JavaCore.COMPILER_TASK_PRIORITIES, "");
 		runTaskTagsOptionsTest(
 				new String[] { "X.java",
@@ -252,7 +252,7 @@ public class CompilerInvocationTests extends AbstractRegressionTest {
 // effect of cancelling priorities
 // reactivate when bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=143402 is fixed
 	public void _test005_task_tags_options() {
-		Map customOptions = new HashMap();
+		Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		customOptions.put(JavaCore.COMPILER_TASK_PRIORITIES, ",,");
 		runTaskTagsOptionsTest(
 				new String[] { "X.java",
@@ -266,7 +266,7 @@ public class CompilerInvocationTests extends AbstractRegressionTest {
 // effect of changing priorities
 // reactivate when bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=143402 is fixed
 	public void _test006_task_tags_options() {
-		Map customOptions = new HashMap();
+		Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		customOptions.put(JavaCore.COMPILER_TASK_PRIORITIES, "A,B,C,D,E");
 		runTaskTagsOptionsTest(
 				new String[] { "X.java",
@@ -279,7 +279,7 @@ public class CompilerInvocationTests extends AbstractRegressionTest {
 
 // effect of changing priorities
 	public void test007_task_tags_options() {
-		Map customOptions = new HashMap();
+		Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		customOptions.put(JavaCore.COMPILER_TASK_PRIORITIES, "NORMAL,NORMAL,NORMAL");
 		runTaskTagsOptionsTest(
 				new String[] { "X.java",
@@ -292,7 +292,7 @@ public class CompilerInvocationTests extends AbstractRegressionTest {
 // effect of changing priorities
 // reactivate when bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=143402 is fixed
 	public void _test008_task_tags_options() {
-		Map customOptions = new HashMap();
+		Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		customOptions.put(JavaCore.COMPILER_TASK_PRIORITIES, "NORMAL,NORMAL"); // one less than the number of tags
 		runTaskTagsOptionsTest(
 				new String[] { "X.java",
@@ -320,7 +320,7 @@ public class CompilerInvocationTests extends AbstractRegressionTest {
 
 // problem categories - check that categories match expected ones
 // see also discussion in https://bugs.eclipse.org/bugs/show_bug.cgi?id=208383
-public void test011_problem_categories() {
+public void test011_problem_categories() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		Class iProblemClass;
 		class ProblemAttributes {
@@ -334,7 +334,7 @@ public void test011_problem_categories() {
 			}
 		}
 		ProblemAttributes DEPRECATED = new ProblemAttributes(true);
-		Map expectedProblemAttributes = new HashMap();
+		Map expectedProblemAttributes = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		expectedProblemAttributes.put("AbstractMethodCannotBeOverridden", new ProblemAttributes(CategorizedProblem.CAT_MEMBER));
 		expectedProblemAttributes.put("AbstractMethodInAbstractClass", new ProblemAttributes(CategorizedProblem.CAT_MEMBER));
 		expectedProblemAttributes.put("AbstractMethodInEnum", new ProblemAttributes(CategorizedProblem.CAT_MEMBER));
@@ -1392,8 +1392,8 @@ public void test011_problem_categories() {
 	    expectedProblemAttributes.put("ResourceLocalMustBeEffectivelyFinal", new ProblemAttributes(CategorizedProblem.CAT_INTERNAL));
 	    expectedProblemAttributes.put("RecordAccessorMissingOverrideAnnotation", new ProblemAttributes(CategorizedProblem.CAT_TYPE));
 
-	    StringBuilder failures = new StringBuilder();
-		StringBuilder correctResult = new StringBuilder(70000);
+	    StringBuilder failures = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		StringBuilder correctResult = new StringBuilder(70000); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		Field[] fields = (iProblemClass = IProblem.class).getFields();
 		Arrays.sort(fields, new Comparator() {
 			@Override
@@ -1404,7 +1404,7 @@ public void test011_problem_categories() {
 				}
 			});
 			boolean watchInternalCategory = false, printHeader = true;
-			for (int i = 0, length = fields.length; i < length; i++) {
+			for (int i = 0, length = fields.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Field field = fields[i];
 				if (field.getType() == Integer.TYPE) {
 					int problemId = field.getInt(iProblemClass);
@@ -1413,18 +1413,18 @@ public void test011_problem_categories() {
 						String name = field.getName();
 						ProblemAttributes expectedAttributes = (ProblemAttributes) expectedProblemAttributes.get(name);
 						if (expectedAttributes == null) {
-							failures.append("missing expected problem attributes for problem " + name + "\n");
+							failures.append("missing expected problem attributes for problem " + name + "\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							int actualCategory = ProblemReporter.getProblemCategory(ProblemSeverities.Error, problemId);
-							correctResult.append("\t\texpectedProblemAttributes.put(\"" + name
+							correctResult.append("\t\texpectedProblemAttributes.put(\"" + name //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 									+ "\", new ProblemAttributes(CategorizedProblem." + categoryName(actualCategory)
 									+ "));\n");
 						} else if (!expectedAttributes.deprecated) {
 							int actualCategory = ProblemReporter.getProblemCategory(ProblemSeverities.Error, problemId);
-							correctResult.append("\t\texpectedProblemAttributes.put(\"" + name
+							correctResult.append("\t\texpectedProblemAttributes.put(\"" + name //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 									+ "\", new ProblemAttributes(CategorizedProblem." + categoryName(actualCategory)
 									+ "));\n");
 							if (expectedAttributes.category != actualCategory) {
-								failures.append("category mismatch for problem " + name + " (expected "
+								failures.append("category mismatch for problem " + name + " (expected " //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 										+ categoryName(expectedAttributes.category) + ", got "
 										+ categoryName(actualCategory) + ")\n");
 							}
@@ -1433,10 +1433,10 @@ public void test011_problem_categories() {
 									printHeader = false;
 									System.err.println("CAT_INTERNAL for problems:");
 								}
-								System.err.println("\t" + name);
+								System.err.println("\t" + name); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							}
 						} else {
-							correctResult.append("\t\texpectedProblemAttributes.put(\"" + name + "\", DEPRECATED);\n");
+							correctResult.append("\t\texpectedProblemAttributes.put(\"" + name + "\", DEPRECATED);\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
 					}
 				}
@@ -1453,11 +1453,11 @@ public void test011_problem_categories() {
 
 	private static Map categoryNames;
 
-	private String categoryName(int category) {
+	private String categoryName(int category) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (categoryNames == null) {
-			categoryNames = new HashMap();
+			categoryNames = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			Field[] fields = CategorizedProblem.class.getFields();
-			for (int i = 0, length = fields.length; i < length; i++) {
+			for (int i = 0, length = fields.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Field field = fields[i];
 				if (field.getType() == Integer.TYPE) {
 					String name = field.getName();
@@ -1476,7 +1476,7 @@ public void test011_problem_categories() {
 
 // compiler problems tuning
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=218603
-public void test012_compiler_problems_tuning() {
+public void test012_compiler_problems_tuning() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		class ProblemAttributes {
 			boolean skip;
@@ -1489,7 +1489,7 @@ public void test012_compiler_problems_tuning() {
 			}
 		}
 		ProblemAttributes SKIP = new ProblemAttributes(true);
-		Map expectedProblemAttributes = new HashMap();
+		Map expectedProblemAttributes = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		expectedProblemAttributes.put("AbstractMethodCannotBeOverridden", SKIP);
 		expectedProblemAttributes.put("AbstractMethodInAbstractClass", SKIP);
 		expectedProblemAttributes.put("AbstractMethodInEnum", SKIP);
@@ -2550,9 +2550,9 @@ public void test012_compiler_problems_tuning() {
 	    expectedProblemAttributes.put("RecordAccessorMissingOverrideAnnotation", SKIP);
 
 
-	    Map constantNamesIndex = new HashMap();
+	    Map constantNamesIndex = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		Field[] fields = JavaCore.class.getFields();
-		for (int i = 0, length = fields.length; i < length; i++) {
+		for (int i = 0, length = fields.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Field field = fields[i];
 			String fieldName;
 			if (field.getType() == String.class && (fieldName = field.getName()).startsWith("COMPILER_PB_")) {
@@ -2560,8 +2560,8 @@ public void test012_compiler_problems_tuning() {
 				}
 			}
 			fields = IProblem.class.getFields();
-			StringBuilder failures = new StringBuilder();
-			StringBuilder correctResult = new StringBuilder(70000);
+			StringBuilder failures = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			StringBuilder correctResult = new StringBuilder(70000); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			Arrays.sort(fields, new Comparator() {
 				@Override
 				public int compare(Object o1, Object o2) {
@@ -2570,7 +2570,7 @@ public void test012_compiler_problems_tuning() {
 					return field1.getName().compareTo(field2.getName());
 				}
 			});
-			for (int i = 0, length = fields.length; i < length; i++) {
+			for (int i = 0, length = fields.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Field field = fields[i];
 				if (field.getType() == Integer.TYPE) {
 					int problemId = field.getInt(null), maskedProblemId = problemId & IProblem.IgnoreCategoriesMask;
@@ -2579,14 +2579,14 @@ public void test012_compiler_problems_tuning() {
 						ProblemAttributes expectedAttributes = (ProblemAttributes) expectedProblemAttributes.get(name);
 						String actualTuningOption = JavaCore.getOptionForConfigurableSeverity(problemId);
 						if (expectedAttributes == null) {
-							failures.append("missing expected problem attributes for problem " + name + "\n");
+							failures.append("missing expected problem attributes for problem " + name + "\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						} else if (!expectedAttributes.skip && !expectedAttributes.option.equals(actualTuningOption)) {
-							failures.append("tuning option mismatch for problem " + name + " (expected "
+							failures.append("tuning option mismatch for problem " + name + " (expected " //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 									+ expectedAttributes.option + ", got " + actualTuningOption + ")\n");
 						}
 						String optionFieldName = (String) constantNamesIndex.get(actualTuningOption);
-						correctResult.append("\t\texpectedProblemAttributes.put(\"" + name + "\", "
-								+ (optionFieldName != null ? "new ProblemAttributes(JavaCore." + optionFieldName + ")"
+						correctResult.append("\t\texpectedProblemAttributes.put(\"" + name + "\", " //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+								+ (optionFieldName != null ? "new ProblemAttributes(JavaCore." + optionFieldName + ")" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 										: "SKIP")
 								+ ");\n");
 					}
@@ -2601,36 +2601,36 @@ public void test012_compiler_problems_tuning() {
 			fail("could not access members");
 		}
 	}
-	@SuppressWarnings("unused")
+	@SuppressWarnings("unused") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testuniqueIDs() throws IllegalArgumentException, IllegalAccessException {
 		Field[] fields = IProblem.class.getFields();
-		Map<Integer,List<String>> id2names = new HashMap<>();
-		for (int i = 0, length = fields.length; i < length; i++) {
+		Map<Integer,List<String>> id2names = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		for (int i = 0, length = fields.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Field field = fields[i];
 			if (field.getType() == Integer.TYPE && !isDeprecated(field)) {
 				int problemId = field.getInt(null);
-				List<String> names = id2names.computeIfAbsent(problemId, k -> new ArrayList<>());
+				List<String> names = id2names.computeIfAbsent(problemId, k -> new ArrayList<>()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				names.add(field.getName());
 			}
 		}
 		String duplicates = id2names.entrySet().stream()
 			.filter(e -> e.getValue().size() > 1)
-			.map(e -> e.getKey().toString()+": "+e.getValue().toString())
+			.map(e -> e.getKey().toString()+": "+e.getValue().toString()) //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.collect(Collectors.joining(", "));
 		if (!duplicates.isEmpty())
-			fail("The following problem IDs are used more than once: "+duplicates);
+			fail("The following problem IDs are used more than once: "+duplicates); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	private boolean isDeprecated(Field field) {
-		for (Annotation annotation : field.getAnnotations()) {
+		for (Annotation annotation : field.getAnnotations()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (annotation.annotationType() == Deprecated.class)
 				return true;
 		}
 		return false;
 	}
 
-	public void testTooNewJavaVersionRequested() {
-		Map<String, String> options = new HashMap<>(JavaCore.getDefaultOptions());
+	public void testTooNewJavaVersionRequested() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		Map<String, String> options = new HashMap<>(JavaCore.getDefaultOptions()); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		String latestJavaVersionSupportedByECJ = CompilerOptions.versionFromJdkLevel(ClassFileConstants.getLatestJDKLevel());
 		String message = """
 			----------
@@ -2640,7 +2640,7 @@ public void test012_compiler_problems_tuning() {
 			Compiling for Java version 'XXX0' is not supported yet. Using 'XXX' instead
 			----------
 			""".replaceAll("XXX", latestJavaVersionSupportedByECJ);
-		options.put(CompilerOptions.OPTION_Source, latestJavaVersionSupportedByECJ + "0");
+		options.put(CompilerOptions.OPTION_Source, latestJavaVersionSupportedByECJ + "0"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runNegativeTest(new String[] {"A.java", "class A{}"},
 				message,
 				null,

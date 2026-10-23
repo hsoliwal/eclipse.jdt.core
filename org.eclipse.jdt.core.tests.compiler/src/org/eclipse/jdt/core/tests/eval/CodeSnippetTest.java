@@ -672,7 +672,7 @@ public void testReturnTypeVoid() {
  * Tests that the run() method defined in an anonymous class doesn't interfer with the
  * code snippet support (see PR #1G1C0HR).
  */
-public void testRunMethodInAnonymous() {
+public void testRunMethodInAnonymous() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	evaluateWithExpectedDisplayString(buildCharArray(new String[] {
 		"class X {",
 		"	public int i = 0;",
@@ -699,7 +699,7 @@ public void testRunMethodInAnonymous() {
  * Tests that the run() method defined in an anonymous class doesn't interfer with the
  * code snippet support (see PR #1G1C0HR).
  */
-public void testRunMethodInAnonymous2() {
+public void testRunMethodInAnonymous2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	evaluateWithExpectedDisplayString(buildCharArray(new String[] {
 		"class X {",
 		"	public int i = 0;",
@@ -726,7 +726,7 @@ public void testRunMethodInAnonymous2() {
  * Tests that the run() method defined in an anonymous class doesn't interfer with the
  * code snippet support (see PR #1G1C0HR).
  */
-public void testRunMethodInAnonymous3() {
+public void testRunMethodInAnonymous3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	evaluateWithExpectedDisplayString(buildCharArray(new String[] {
 		"class X {",
 		"	public int i = 0;",
@@ -753,7 +753,7 @@ public void testRunMethodInAnonymous3() {
  * Tests that the run() method defined in an anonymous class doesn't interfer with the
  * code snippet support (see PR #1G1C0HR).
  */
-public void testRunMethodInAnonymous4() {
+public void testRunMethodInAnonymous4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	evaluateWithExpectedDisplayString(buildCharArray(new String[] {
 		"class X {",
 		"	public int i = 0;",
@@ -780,7 +780,7 @@ public void testRunMethodInAnonymous4() {
  * Tests that the run() method defined in an anonymous class doesn't interfer with the
  * code snippet support (see PR #1G1C0HR).
  */
-public void testRunMethodInAnonymous5() {
+public void testRunMethodInAnonymous5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	evaluateWithExpectedDisplayString(buildCharArray(new String[] {
 		"class X {",
 		"	public int i = 0;",
@@ -808,7 +808,7 @@ public void testRunMethodInAnonymous5() {
  * Tests that the run() method defined in an anonymous class doesn't interfer with the
  * code snippet support (see PR #1G1C0HR).
  */
-public void testRunMethodInAnonymous6() {
+public void testRunMethodInAnonymous6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	evaluateWithExpectedDisplayString(buildCharArray(new String[] {
 		"class X {",
 		"	public int i = 0;",
@@ -836,7 +836,7 @@ public void testRunMethodInAnonymous6() {
  * Tests that the run() method defined in an anonymous class doesn't interfer with the
  * code snippet support (see PR #1G1C0HR).
  */
-public void testRunMethodInAnonymous7() {
+public void testRunMethodInAnonymous7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	evaluateWithExpectedDisplayString(buildCharArray(new String[] {
 		"class X {",
 		"	public int i = 0;",
@@ -864,7 +864,7 @@ public void testRunMethodInAnonymous7() {
  * Tests that the run() method defined in an anonymous class doesn't interfer with the
  * code snippet support (see PR #1G1C0HR).
  */
-public void testRunMethodInAnonymous8() {
+public void testRunMethodInAnonymous8() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	evaluateWithExpectedDisplayString(buildCharArray(new String[] {
 		"class X {",
 		"	public int i = 0;",
@@ -891,7 +891,7 @@ public void testRunMethodInAnonymous8() {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=89632
  */
-public void testFor89632() {
+public void testFor89632() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.context.setImports(new char[][] {"java.util.*".toCharArray()});
 		evaluateWithExpectedDisplayString(
@@ -985,7 +985,7 @@ public void testBug571310_LocalVarReciever() {
 			"15".toCharArray());
 }
 
-public void testBug571310_QualifiedReciever() {
+public void testBug571310_QualifiedReciever() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	evaluateWithExpectedDisplayString(buildCharArray(new String[] {
 			"class Outer {",
 			"	public int outerFoo(){",
