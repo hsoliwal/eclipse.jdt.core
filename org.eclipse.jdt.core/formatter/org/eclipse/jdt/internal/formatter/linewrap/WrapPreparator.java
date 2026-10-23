@@ -83,11 +83,11 @@ public class WrapPreparator extends ASTVisitor {
 		}
 	}
 
-	private static final Map<Operator, Integer> OPERATOR_PRECEDENCE;
+	private static final Map<Operator, Integer> OPERATOR_PRECEDENCE; //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 	private static final Map<Operator, ToIntFunction<DefaultCodeFormatterOptions>> OPERATOR_WRAPPING_OPTION;
 	private static final Map<Operator, Predicate<DefaultCodeFormatterOptions>> OPERATOR_WRAP_BEFORE_OPTION;
 	static {
-		HashMap<Operator, Integer> precedence = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		HashMap<Operator, Integer> precedence = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 		HashMap<Operator, ToIntFunction<DefaultCodeFormatterOptions>> wrappingOption = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		HashMap<Operator, Predicate<DefaultCodeFormatterOptions>> wrapBeforeOption = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		for (Operator op : Arrays.asList(Operator.TIMES, Operator.DIVIDE, Operator.REMAINDER)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
@@ -152,10 +152,10 @@ public class WrapPreparator extends ASTVisitor {
 	 * temporary values used when calling {@link #handleWrap(int)} to avoid ArrayList initialization and long lists of
 	 * parameters
 	 */
-	private final List<Integer> wrapIndexes = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	private final List<Integer> wrapIndexes = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 	/** Indexes for wraps that shouldn't happen but should be indented if cannot be removed */
-	private final List<Integer> secondaryWrapIndexes = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
-	private final List<Float> wrapPenalties = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	private final List<Integer> secondaryWrapIndexes = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
+	private final List<Float> wrapPenalties = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 	private int wrapParentIndex = -1;
 	private int wrapGroupEnd = -1;
 
@@ -664,8 +664,8 @@ public class WrapPreparator extends ASTVisitor {
 				&& node == ((ConditionalExpression) node.getParent()).getElseExpression();
 		boolean isFirstInChain = node.getElseExpression() instanceof ConditionalExpression && !isNextInChain;
 		boolean wrapBefore = this.options.wrap_before_conditional_operator;
-		List<Integer> before = wrapBefore ? this.wrapIndexes : this.secondaryWrapIndexes;
-		List<Integer> after = wrapBefore ? this.secondaryWrapIndexes : this.wrapIndexes;
+		List<Integer> before = wrapBefore ? this.wrapIndexes : this.secondaryWrapIndexes; //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
+		List<Integer> after = wrapBefore ? this.secondaryWrapIndexes : this.wrapIndexes; //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 		if (!chainsMatter || (!isFirstInChain && !isNextInChain)) {
 			before.add(this.tm.firstIndexAfter(node.getExpression(), TokenNameQUESTION));
 			before.add(this.tm.firstIndexAfter(node.getThenExpression(), TokenNameCOLON));

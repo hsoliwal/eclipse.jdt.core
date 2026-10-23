@@ -1373,7 +1373,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 		public void rememberExternalLibTimestamps() {
 			IClasspathEntry[] classpath = this.resolvedClasspath;
 			if (classpath == null) return;
-			Map<IPath, Long> externalTimeStamps = JavaModelManager.getJavaModelManager().deltaState.getExternalLibTimeStamps();
+			Map<IPath, Long> externalTimeStamps = JavaModelManager.getJavaModelManager().deltaState.getExternalLibTimeStamps(); //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 			for (IClasspathEntry entry : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (entry.getEntryKind() == IClasspathEntry.CPE_LIBRARY) {
 					IPath path = entry.getPath();
@@ -1696,7 +1696,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 * Paths that are known to exists or not exists on the FileSystem (unrelated to the eclipse workspace).
 	 * Need not be referenced by the classpath.
 	 */
-	private Map<IPath, Boolean> externalFiles;
+	private Map<IPath, Boolean> externalFiles; //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 
 	/*
 	 * A set of IPaths for files that do not exist on the file system but are assumed to be

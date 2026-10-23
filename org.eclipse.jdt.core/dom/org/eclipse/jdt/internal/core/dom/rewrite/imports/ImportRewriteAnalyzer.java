@@ -296,7 +296,7 @@ public final class ImportRewriteAnalyzer {
 	 * whitespace.
 	 */
 	private static IRegion determineSurroundingRegion(CompilationUnit compilationUnit, IRegion importsRegion) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		NavigableMap<Integer, ASTNode> nodesTreeMap = mapTopLevelNodes(compilationUnit);
+		NavigableMap<Integer, ASTNode> nodesTreeMap = mapTopLevelNodes(compilationUnit); //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 
 		int surroundingStart;
 		int positionAfterImports;
@@ -351,7 +351,7 @@ public final class ImportRewriteAnalyzer {
 	 * keyed by start position.
 	 */
 	private static NavigableMap<Integer, ASTNode> mapTopLevelNodes(CompilationUnit compilationUnit) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		NavigableMap<Integer, ASTNode> map = new TreeMap<>(); //FLLDCIM: MARK — M05 M3_SORTED_LANES NEW
+		NavigableMap<Integer, ASTNode> map = new TreeMap<>(); //FLLDCIM: MARK — M05 M3_SORTED_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 
 		Collection<ASTNode> nodes = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		if (compilationUnit.getPackage() != null) {

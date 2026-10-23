@@ -55,7 +55,7 @@ public class TypeLocators {
 		}
 	}
 
-	void write(CompressedWriter out, Map<String, Integer> internedTypeLocators) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	void write(CompressedWriter out, Map<String, Integer> internedTypeLocators) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES PARAMETER
 		if (this.defaultMap.isEmpty()) {
 			out.writeInt(0);
 		} else {
@@ -75,7 +75,7 @@ public class TypeLocators {
 			for (var entry : this.releaseMap.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String key = entry.getKey();
 				out.writeStringUsingLast(key);
-				Map<Integer, String> map = entry.getValue();
+				Map<Integer, String> map = entry.getValue(); //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 				out.writeInt(map.size());
 				for (var releaseEntry : map.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					out.writeInt(releaseEntry.getKey());
@@ -129,7 +129,7 @@ public class TypeLocators {
 				for (Iterator<Entry<String, Map<Integer, String>>> iterator = this.releaseMap.entrySet() //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						.iterator(); iterator.hasNext();) {
 					Entry<String, Map<Integer, String>> entry = iterator.next();
-					Map<Integer, String> map = entry.getValue();
+					Map<Integer, String> map = entry.getValue(); //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 					map.values().removeIf(v -> typeLocatorToRemove.equals(v));
 					if (map.isEmpty()) {
 						iterator.remove();
@@ -212,7 +212,7 @@ public class TypeLocators {
 			}
 		}
 		if (this.releaseMap != null) {
-			for (Map<Integer, String> map : this.releaseMap.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (Map<Integer, String> map : this.releaseMap.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 				for (String value : map.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (value.startsWith(sourceFolderName)) {
 						return false;
@@ -229,7 +229,7 @@ public class TypeLocators {
 			if (this.releaseMap == null) {
 				return false;
 			}
-			Map<Integer, String> existing = this.releaseMap.get(qualifiedTypeName);
+			Map<Integer, String> existing = this.releaseMap.get(qualifiedTypeName); //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 			if (existing == null) {
 				return false;
 			}
@@ -259,7 +259,7 @@ public class TypeLocators {
 		if (this.releaseMap == null) {
 			return Stream.empty();
 		} else {
-			Map<Integer, String> map = this.releaseMap.get(typeName);
+			Map<Integer, String> map = this.releaseMap.get(typeName); //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 			if (map == null) {
 				return Stream.empty();
 			}

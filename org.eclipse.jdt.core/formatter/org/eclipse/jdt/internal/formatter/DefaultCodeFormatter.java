@@ -82,7 +82,7 @@ public class DefaultCodeFormatter extends CodeFormatter {
 		| K_MODULE_INFO
 		| K_COMMENTS_MASK;
 
-	private static final Map<Integer, Integer> FORMAT_TO_PARSER_KIND = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	private static final Map<Integer, Integer> FORMAT_TO_PARSER_KIND = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 	static {
 		FORMAT_TO_PARSER_KIND.put(K_COMPILATION_UNIT, ASTParser.K_COMPILATION_UNIT);
 		FORMAT_TO_PARSER_KIND.put(K_MODULE_INFO, ASTParser.K_COMPILATION_UNIT);

@@ -665,7 +665,7 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 	 * keyed by start position.
 	 */
 	private static NavigableMap<Integer, ASTNode> mapTopLevelNodes(CompilationUnit compilationUnit) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		NavigableMap<Integer, ASTNode> map = new TreeMap<>(); //FLLDCIM: MARK — M05 M3_SORTED_LANES NEW
+		NavigableMap<Integer, ASTNode> map = new TreeMap<>(); //FLLDCIM: MARK — M05 M3_SORTED_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 
 		Collection<ASTNode> nodes = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		if (compilationUnit.getPackage() != null) {
@@ -720,7 +720,7 @@ public class CopyResourceElementsOperation extends MultiOperation implements Suf
 				rewriter.set(pkg, PackageDeclaration.NAME_PROPERTY, name, null);
 			} else {
 				// create new package statement
-				NavigableMap<Integer, ASTNode> nodesTreeMap = mapTopLevelNodes(astCU);
+				NavigableMap<Integer, ASTNode> nodesTreeMap = mapTopLevelNodes(astCU); //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 				ASTNode topNode = nodesTreeMap.firstEntry().getValue();
 				if (topNode instanceof Comment) {
 					TextEditGroup group = new TextEditGroup("comment deletes"); //$NON-NLS-1$

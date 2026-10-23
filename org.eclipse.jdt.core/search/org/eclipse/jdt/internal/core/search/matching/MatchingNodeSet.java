@@ -34,7 +34,7 @@ public class MatchingNodeSet {
  * Map of matching ast nodes that don't need to be resolved to their accuracy level.
  * Each node is removed as it is reported.
  */
-Map<ASTNode, Integer> matchingNodes = new HashMap<>(); // node -> accuracy //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+Map<ASTNode, Integer> matchingNodes = new HashMap<>(); // node -> accuracy //FLLDCIM: MARK — M01 M3_HASH_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 private final HashtableOfLong matchingNodesKeys = new HashtableOfLong(3); // sourceRange -> node
 static Integer EXACT_MATCH = Integer.valueOf(SearchMatch.A_ACCURATE);
 static Integer POTENTIAL_MATCH = Integer.valueOf(SearchMatch.A_INACCURATE);

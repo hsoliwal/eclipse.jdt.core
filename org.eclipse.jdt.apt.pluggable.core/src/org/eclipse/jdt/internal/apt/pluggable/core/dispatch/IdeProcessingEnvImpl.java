@@ -85,7 +85,7 @@ public abstract class IdeProcessingEnvImpl extends BaseProcessingEnvImpl {
 
 			// But we make them available as variables in processor options configured by users
 			// (e.g. %classpath% in an option value is replaced with the value of -classpath):
-			Map<Boolean, List<Entry<String, String>>> isCommandLineOption = allOptions.entrySet().stream()
+			Map<Boolean, List<Entry<String, String>>> isCommandLineOption = allOptions.entrySet().stream() //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 					.collect(partitioningBy(option -> option.getKey().startsWith("-")));
 
 			Map<String, String> commandLineOptions = isCommandLineOption.get(true).stream()

@@ -22,7 +22,7 @@ public class CompressedWriter {
 	private final DataOutputStream out;
 	// --- context state: ---
 	private char[] lastName;
-	private final HashMap<String, Integer> lastWords;
+	private final HashMap<String, Integer> lastWords; //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 
 	public CompressedWriter(DataOutputStream out) {
 		this.out = out;

@@ -111,8 +111,8 @@ public class WrapExecutor {
 		int extraLines;
 		int lineWidthExtent;
 		boolean isNextLineWrapped;
-		final List<Integer> extraLinesPerComment = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
-		final List<Integer> topPriorityGroupStarts = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		final List<Integer> extraLinesPerComment = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
+		final List<Integer> topPriorityGroupStarts = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 		private int currentTopPriorityGroupEnd;
 		private boolean isNLSTagInLine;
 
@@ -715,7 +715,7 @@ public class WrapExecutor {
 		return lineStartPolicy != null && lineStartPolicy.wrapMode != WrapMode.BLOCK_INDENT;
 	}
 
-	private int[] toArray(List<Integer> list) {
+	private int[] toArray(List<Integer> list) { //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES PARAMETER
 		if (list.isEmpty())
 			return EMPTY_ARRAY;
 		int[] result = new int[list.size()];

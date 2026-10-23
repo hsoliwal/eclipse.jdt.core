@@ -47,7 +47,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 	private final Stack<JavaElement> elements = new Stack<>();
 	private final Stack<JavaElementInfo> infos = new Stack<>();
 	private final Set<String> currentTypeParameters = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
-	private final Map<SourceType, Integer> nestedTypesCount = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	private final Map<SourceType, Integer> nestedTypesCount = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 	private final CompilationUnitElementInfo unitInfo;
 	private ImportContainer importContainer;
 	private ImportContainerInfo importContainerInfo;
@@ -792,7 +792,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 		}
 		if (dom instanceof ArrayInitializer arrayInitializer) {
 			var values = ((List<Expression>)arrayInitializer.expressions()).stream().map(this::memberValue).toList();
-			var types = values.stream().map(Entry::getValue).distinct().toList();
+			var types = values.stream().map(Entry::getValue).distinct().toList(); //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 			return new SimpleEntry<>(values.stream().map(Entry::getKey).toArray(), types.size() == 1 ? types.get(0) : IMemberValuePair.K_UNKNOWN);
 		}
 		if (dom instanceof NumberLiteral number) {

@@ -98,12 +98,12 @@ final class ImportGroupComparator implements Comparator<ImportName>{
 			return memoizedIndexedImportGroups;
 		}
 
-		Map<String, Integer> typeGroupsAndIndices = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
-		Map<String, Integer> staticGroupsAndIndices = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		Map<String, Integer> typeGroupsAndIndices = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
+		Map<String, Integer> staticGroupsAndIndices = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 		for (int i = 0; i < importOrder.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String importGroupString = importOrder.get(i);
 
-			final Map<String, Integer> groupsAndIndices;
+			final Map<String, Integer> groupsAndIndices; //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 			if (importGroupString.startsWith(STATIC_PREFIX)) {
 				groupsAndIndices = staticGroupsAndIndices;
 				importGroupString = importGroupString.substring(1);
@@ -123,7 +123,7 @@ final class ImportGroupComparator implements Comparator<ImportName>{
 		return memoizedIndexedImportGroups;
 	}
 
-	private static NavigableMap<String, ImportGroup> mapImportGroups(Map<String, Integer> importGroupNamesAndIndices) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	private static NavigableMap<String, ImportGroup> mapImportGroups(Map<String, Integer> importGroupNamesAndIndices) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES PARAMETER
 		if (importGroupNamesAndIndices.isEmpty()) {
 			importGroupNamesAndIndices = Collections.singletonMap(MATCH_ALL, 0);
 		}

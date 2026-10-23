@@ -248,11 +248,11 @@ public class CharArrayMapperTest extends TestCase {
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		int N = 100000000;
-		HashMap<Integer, List<Integer>> hashCollisions_ = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		HashMap<Integer, List<Integer>> hashCollisions_ = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 		for (int i = 0; i < N; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[] key = ("" + i).toCharArray(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			Integer hashCode = Arrays.hashCode(key);
-			List<Integer> l = hashCollisions_.computeIfAbsent(hashCode, h -> new ArrayList<>()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			List<Integer> l = hashCollisions_.computeIfAbsent(hashCode, h -> new ArrayList<>()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 			l.add(i);
 			if (l.size() > 1) {
 				System.out.println(l.size() + " collissions:" + hashCode + "->" + l); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT

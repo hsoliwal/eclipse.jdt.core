@@ -229,7 +229,7 @@ public class SourceMapper
 	 * imports references (keyed by binaryTypeOrModule)
 	 */
 	private HashMap<Member, char[][]> importsTable;
-	private HashMap<NamedMember, Integer> importsCounterTable;
+	private HashMap<NamedMember, Integer> importsCounterTable; //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 
 	/**
 	 * Enclosing type information
@@ -250,7 +250,7 @@ public class SourceMapper
 	int[] elementKindStack;
 	int elementKindPtr;
 	int anonymousCountPtr = -1;
-	private HashMap<String, Integer> localTypeCounter;
+	private HashMap<String, Integer> localTypeCounter; //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 	/**
 	 *  Anonymous counter in case we want to map the source of an anonymous class.
 	 */

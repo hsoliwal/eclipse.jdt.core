@@ -83,7 +83,7 @@ public class CharDeduplicationTest extends TestCase {
 		CharDeduplication deduplication = CharDeduplication.getThreadLocalInstance();
 		deduplication.reset();// to test the overflow we need to start empty
 		for (int overload = 0; overload < 3; overload++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
-			HashMap<Integer, char[]> expecteds = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+			HashMap<Integer, char[]> expecteds = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 			for (int i = 0; i < CharDeduplication.SEARCH_SIZE + overload; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int numberWithFixedLength = 10000 + i;
 				String string = "" + numberWithFixedLength; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT

@@ -96,7 +96,7 @@ public class TypeHierarchy implements ITypeHierarchy, IElementChangedListener { 
 	protected Map<IType, IType> classToSuperclass;
 	protected Map<IType, IType[]> typeToSuperInterfaces;
 	protected Map<IType, Set<IType>> typeToSubtypes;
-	protected Map<IType, Integer> typeFlags;
+	protected Map<IType, Integer> typeFlags; //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 	protected Set<IType> rootClasses = new LinkedHashSet<>();
 	protected Set<IType> interfaces = new LinkedHashSet<>();
 	public Set<String> missingTypes = new LinkedHashSet<>();

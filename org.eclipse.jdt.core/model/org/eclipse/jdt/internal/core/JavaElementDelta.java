@@ -84,7 +84,7 @@ public class JavaElementDelta extends SimpleDelta implements IJavaElementDelta {
 	/**
 	 * On-demand index into affectedChildren
 	 */
-	Map<Key, Integer> childIndex;
+	Map<Key, Integer> childIndex; //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 
 	public boolean ignoreFromTests = false;
 

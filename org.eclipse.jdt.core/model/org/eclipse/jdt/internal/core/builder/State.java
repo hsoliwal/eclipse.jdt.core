@@ -74,7 +74,7 @@ public TypeLocators typeLocators;
 
 int buildNumber;
 long lastStructuralBuildTime;
-HashMap<String, Long> structuralBuildTimes;
+HashMap<String, Long> structuralBuildTimes; //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 
 private long previousStructuralBuildTime;
 private StringSet structurallyChangedTypes;
@@ -548,7 +548,7 @@ void write(DataOutputStream output) throws IOException { //FLLDCIM: MARK — ML 
  * String[]	Interned type locators
  */
 	out.writeInt(this.references.size());
-	Map<String, Integer> internedTypeLocators = new HashMap<>(this.references.size()); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	Map<String, Integer> internedTypeLocators = new HashMap<>(this.references.size()); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 	for (String key : this.references.keySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		out.writeStringUsingLast(key);
 		internedTypeLocators.put(key, internedTypeLocators.size());
@@ -561,9 +561,9 @@ void write(DataOutputStream output) throws IOException { //FLLDCIM: MARK — ML 
  * char[][][]	Interned qualified names
  * char[][]	Interned simple names
  */
-	Map<CharArray, Integer> internedRootNames = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
-	Map<CharCharArray, Integer> internedQualifiedNames = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
-	Map<CharArray, Integer> internedSimpleNames = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	Map<CharArray, Integer> internedRootNames = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
+	Map<CharCharArray, Integer> internedQualifiedNames = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
+	Map<CharArray, Integer> internedSimpleNames = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 	for (ReferenceCollection collection : this.references.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		for (char[] rName : collection.rootReferences) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// remember the names have been interned

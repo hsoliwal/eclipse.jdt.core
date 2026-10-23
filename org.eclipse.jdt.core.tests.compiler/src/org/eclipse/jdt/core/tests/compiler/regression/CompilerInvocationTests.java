@@ -2604,7 +2604,7 @@ public void test012_compiler_problems_tuning() { //FLLDCIM: MARK — ML METHOD_S
 	@SuppressWarnings("unused") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testuniqueIDs() throws IllegalArgumentException, IllegalAccessException {
 		Field[] fields = IProblem.class.getFields();
-		Map<Integer,List<String>> id2names = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		Map<Integer,List<String>> id2names = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 		for (int i = 0, length = fields.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Field field = fields[i];
 			if (field.getType() == Integer.TYPE && !isDeprecated(field)) {

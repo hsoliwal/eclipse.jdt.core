@@ -59,7 +59,7 @@ private char[][][] samePkgSuperDeclaringTypeNames;
 
 protected MatchLocator matchLocator;
 //method declarations which parameters verification fail
-private Map<ASTNode, Boolean> methodDeclarationsWithInvalidParam = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+private Map<ASTNode, Boolean> methodDeclarationsWithInvalidParam = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 
 
 public MethodLocator(MethodPattern pattern) {

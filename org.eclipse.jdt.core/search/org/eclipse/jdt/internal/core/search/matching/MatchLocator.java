@@ -1041,7 +1041,7 @@ private List<String> getInverseFullName(char[] qualifier, char[] simpleName) {
 private int  getMaxResult(int[][] resultsMap) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int rows = resultsMap.length;
 	int cols = resultsMap[0].length;
-	List <Integer> candidates = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	List <Integer> candidates = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 	candidates.add(0); //default row
 
 	for (int j = 0; j < cols; ++j) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
@@ -1077,7 +1077,7 @@ private int mapParameter(List <String> patternParameterFullName, List <String> m
  * returns an array of integers whose elements are matching indices.
  * As a special case, full match would have max value as the index.
  */
-private int[] getResultMap(Map<Integer, List<String>> patternMap, Map<Integer, List<String>> methodMap) {
+private int[] getResultMap(Map<Integer, List<String>> patternMap, Map<Integer, List<String>> methodMap) { //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES PARAMETER
 	int paramLength = methodMap.size();
 	int[] result = new int[paramLength];
 	for (int p = 0; p < paramLength; p++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
@@ -1088,7 +1088,7 @@ private int[] getResultMap(Map<Integer, List<String>> patternMap, Map<Integer, L
 
 private Map<Integer, List<String>> getSplitNames(char[][] qualifiedNames, char[][] simpleNames) {
 	int paramLength = simpleNames.length;
-	Map <Integer, List<String>> result = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	Map <Integer, List<String>> result = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 	for (int p = 0; p < paramLength; p++) result.put(p, getInverseFullName(qualifiedNames[p], simpleNames[p])); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	return result;
 }
@@ -1096,7 +1096,7 @@ private Map<Integer, List<String>> getSplitNames(char[][] qualifiedNames, char[]
 private Map<Integer, List<String>> getSplitNames(MethodBinding method) {
 	TypeBinding[] methodParameters = method.parameters;
 	int paramLength = methodParameters == null ? 0 : methodParameters.length;
-	Map <Integer, List<String>> result = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	Map <Integer, List<String>> result = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 	for (int p = 0; p < paramLength; p++) result.put(p, getInverseFullName(methodParameters[p].qualifiedSourceName(), null)); // source is part of qualifiedSourceName here); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	return result;
 }
@@ -1110,7 +1110,7 @@ private MethodBinding getMostApplicableMethod(List<MethodBinding> possibleMethod
 	MethodBinding result = size != 0 ? possibleMethods.get(0) : null;
 	if (size > 1) {
 		// can cache but may not be worth since this is not a common case
-		Map<Integer, List<String>> methodPatternReverseNames = getSplitNames(methodPattern.parameterQualifications, methodPattern.parameterSimpleNames);
+		Map<Integer, List<String>> methodPatternReverseNames = getSplitNames(methodPattern.parameterQualifications, methodPattern.parameterSimpleNames); //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 		int len = possibleMethods.size();
 		int[][] resultMaps = new int[len][];
 		for (int i = 0; i < len; ++i) resultMaps[i] = getResultMap(methodPatternReverseNames, getSplitNames(possibleMethods.get(i))); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP

@@ -40,11 +40,11 @@ import org.eclipse.jdt.internal.core.util.PublicScanner;
 @SuppressWarnings({ "rawtypes" })
 public class PublicScannerTest extends AbstractRegressionTest {
 
-	private Map<Integer, String> ttValueToName;
+	private Map<Integer, String> ttValueToName; //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 	private Map<String, TerminalToken> ttNameToValue;
 	private TerminalToken[] ttFields;
-	private Map<Integer, String> tsValueToName;
-	private Map<String, Integer> tsNameToValue;
+	private Map<Integer, String> tsValueToName; //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
+	private Map<String, Integer> tsNameToValue; //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 	private Field[] tsFields;
 	private MyPublicScanner ps;
 
@@ -300,8 +300,8 @@ public class PublicScannerTest extends AbstractRegressionTest {
 	}
 
 	private static void printGeneratedSwitchForPublicScanner() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		Map<Integer, String> valueToName = new TreeMap<>(); //FLLDCIM: MARK — M05 M3_SORTED_LANES NEW
-		Map<String, Integer> nameToValue = new TreeMap<>(); //FLLDCIM: MARK — M05 M3_SORTED_LANES NEW
+		Map<Integer, String> valueToName = new TreeMap<>(); //FLLDCIM: MARK — M05 M3_SORTED_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
+		Map<String, Integer> nameToValue = new TreeMap<>(); //FLLDCIM: MARK — M05 M3_SORTED_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 		TerminalToken[] ttValues = TerminalToken.values();
 		for (TerminalToken field : ttValues) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			valueToName.put(field.tokenNumber(), field.name());

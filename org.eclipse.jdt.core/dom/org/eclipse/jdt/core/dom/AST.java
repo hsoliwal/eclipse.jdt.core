@@ -638,11 +638,11 @@ public final class AST {
 	@Deprecated
 	public static final int JLS_Latest = JLS_INTERNAL_Latest;
 
-	private static final List<Integer> ALL_VERSIONS = List.of(JLS2, JLS3, JLS4, JLS8, JLS9, JLS10, JLS11, JLS12, JLS13, JLS14, JLS15, JLS16, JLS17, JLS18, JLS19, JLS20, JLS21, JLS22, JLS23, JLS24, JLS25, JLS26, JLS27);
-	private static final List<Integer> UNSUPPORTED_VERSIONS = List.of(JLS2, JLS3, JLS4);
-	private static final List<Integer> SUPPORTED_VERSIONS;
+	private static final List<Integer> ALL_VERSIONS = List.of(JLS2, JLS3, JLS4, JLS8, JLS9, JLS10, JLS11, JLS12, JLS13, JLS14, JLS15, JLS16, JLS17, JLS18, JLS19, JLS20, JLS21, JLS22, JLS23, JLS24, JLS25, JLS26, JLS27); //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
+	private static final List<Integer> UNSUPPORTED_VERSIONS = List.of(JLS2, JLS3, JLS4); //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
+	private static final List<Integer> SUPPORTED_VERSIONS; //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 	static {
-		List<Integer> temp = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		List<Integer> temp = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 		temp.addAll(ALL_VERSIONS);
 		temp.removeAll(UNSUPPORTED_VERSIONS);
 		SUPPORTED_VERSIONS = Collections.unmodifiableList(temp);
@@ -654,9 +654,9 @@ public final class AST {
 	 */
 	static final int RESOLVED_BINDINGS = 0x80000000;
 
-	private static Map<String, Long> jdkLevelMap = getLevelMapTable();
+	private static Map<String, Long> jdkLevelMap = getLevelMapTable(); //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 
-	private static Map<String, Integer> apiLevelMap = getApiLevelMapTable();
+	private static Map<String, Integer> apiLevelMap = getApiLevelMapTable(); //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 
 	/**
 	 * Internal method.
@@ -1321,7 +1321,7 @@ public final class AST {
 	}
 
 	private static Map<String, Long> getLevelMapTable() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-        Map<String, Long> t = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+        Map<String, Long> t = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
         t.put(null, CompilerOptions.getFirstSupportedJdkLevel());
         t.put(JavaCore.VERSION_1_2, CompilerOptions.getFirstSupportedJdkLevel());
         t.put(JavaCore.VERSION_1_3, CompilerOptions.getFirstSupportedJdkLevel());
@@ -1352,7 +1352,7 @@ public final class AST {
         return Collections.unmodifiableMap(t);
 	}
 	private static Map<String, Integer> getApiLevelMapTable() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-        Map<String, Integer> t = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+        Map<String, Integer> t = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
         t.put(null, JLS8_INTERNAL);
         t.put(JavaCore.VERSION_1_2, JLS8_INTERNAL);
         t.put(JavaCore.VERSION_1_3, JLS8_INTERNAL);

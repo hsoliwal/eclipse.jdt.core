@@ -57,7 +57,7 @@ public class TokenManager implements Iterable<Token> {
 
 	final CommentWrapExecutor commentWrapper;
 
-	private HashMap<Integer, Integer> tokenIndexToNLSAlign;
+	private HashMap<Integer, Integer> tokenIndexToNLSAlign; //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 	private final List<Token[]> formatOffTagPairs = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	private int headerEndIndex = 0;
 

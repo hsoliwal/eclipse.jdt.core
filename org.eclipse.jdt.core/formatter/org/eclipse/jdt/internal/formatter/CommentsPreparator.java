@@ -131,7 +131,7 @@ public class CommentsPreparator extends ASTVisitor {
 	private int noFormatOpenTagStartIndex = -1;
 	private int formatCodeOpenTagEndIndex = -1;
 	private int lastFormatCodeClosingTagIndex = -1;
-	private final ArrayList<Integer> commonAttributeAnnotations = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	private final ArrayList<Integer> commonAttributeAnnotations = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 	private DefaultCodeFormatter preTagCodeFormatter;
 	private DefaultCodeFormatter snippetCodeFormatter;
 
@@ -750,7 +750,7 @@ public class CommentsPreparator extends ASTVisitor {
 
 	private void handleJavadocBlankLines(Javadoc node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		List<TagElement> tagElements = node.tags();
-		List<Integer> tagIndexes = tagElements.stream()
+		List<Integer> tagIndexes = tagElements.stream() //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 				.filter(t -> !t.isNested() && t.getTagName() != null && t.getTagName().length() > 1)
 				.map(t -> tokenStartingAt(t.getStartPosition()))
 				.collect(Collectors.toList());

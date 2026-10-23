@@ -753,7 +753,7 @@ private int initializeBuilder(int kind, boolean forBuild) throws CoreException {
 		}
 	}
 	return kind;
-}
+} //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 
 private Map<Integer, INameEnvironment> releaseSpecificEnvironments;
 

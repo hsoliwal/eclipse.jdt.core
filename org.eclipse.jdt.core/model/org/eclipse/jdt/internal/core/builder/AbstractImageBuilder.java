@@ -436,7 +436,7 @@ protected void compile(SourceFile[] units, SourceFile[] additionalUnits, boolean
 	boolean hasWarnedAboutMissingReleaseFlag = false;
 	try {
 		this.inCompiler = true;
-		Map<Integer, List<SourceFile>> releaseToSourceFolderMap = Arrays.stream(units)
+		Map<Integer, List<SourceFile>> releaseToSourceFolderMap = Arrays.stream(units) //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 				.collect(Collectors.groupingBy(sf -> sf.sourceLocation.release, TreeMap::new, Collectors.toList()));
 		for (Entry<Integer, List<SourceFile>> sourceFolderReleaseMapping : releaseToSourceFolderMap.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			long oldTarget = this.compiler.options.targetJDK;

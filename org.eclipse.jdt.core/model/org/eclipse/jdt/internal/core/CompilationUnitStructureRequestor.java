@@ -72,13 +72,13 @@ public class CompilationUnitStructureRequestor extends ReferenceInfoAdapter impl
 	/*
 	 * A table from a handle (with occurenceCount == 1) to the current occurence count for this handle
 	 */
-	private final HashMap<Object, Integer> occurenceCounts;
+	private final HashMap<Object, Integer> occurenceCounts; //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 
 	/*
 	 * A table to store the occurrence count of anonymous types. The key will be the handle to the
 	 * enclosing type of the anonymous.
 	 */
-	private final HashMap<Object, Integer> localOccurrenceCounts;
+	private final HashMap<Object, Integer> localOccurrenceCounts; //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 
 	/**
 	 * Stack of parent scope info objects. The info on the

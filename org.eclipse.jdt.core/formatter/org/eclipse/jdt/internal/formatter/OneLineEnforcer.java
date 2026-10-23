@@ -193,7 +193,7 @@ public class OneLineEnforcer extends ASTVisitor {
 				&& this.tm.countLineBreaksBetween(this.tm.get(openBraceIndex), this.tm.get(lastIndex)) > 0)
 			return;
 
-		Set<Integer> breakIndexes = items.stream().map(n -> this.tm.firstIndexIn(n, ANY)).collect(Collectors.toSet());
+		Set<Integer> breakIndexes = items.stream().map(n -> this.tm.firstIndexIn(n, ANY)).collect(Collectors.toSet()); //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 		breakIndexes.add(openBraceIndex + 1);
 		breakIndexes.add(closeBraceIndex);
 		Token prev = this.tm.get(openBraceIndex);

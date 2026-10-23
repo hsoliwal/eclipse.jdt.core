@@ -552,7 +552,7 @@ public class JavaProject
 	 */
 	private void computeExpandedClasspath( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ClasspathEntry referringEntry,
-		HashMap<String, Boolean> rootIDs,
+		HashMap<String, Boolean> rootIDs, //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES PARAMETER
 		ArrayList<ClasspathEntry> accumulatedEntries, boolean excludeTestCode) throws JavaModelException {
 
 		IClasspathEntry[] resolvedClasspath = getResolvedClasspath();
@@ -1996,7 +1996,7 @@ public class JavaProject
 	public IClasspathEntry[] getExpandedClasspath(boolean excludeTestCode)	throws JavaModelException {
 
 			ArrayList<ClasspathEntry> accumulatedEntries = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
-			HashMap<String,Boolean> rootIDs = new HashMap<>(5); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+			HashMap<String,Boolean> rootIDs = new HashMap<>(5); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 			rootIDs.put(this.rootID(), excludeTestCode);
 			computeExpandedClasspath(null, rootIDs, accumulatedEntries, excludeTestCode);
 

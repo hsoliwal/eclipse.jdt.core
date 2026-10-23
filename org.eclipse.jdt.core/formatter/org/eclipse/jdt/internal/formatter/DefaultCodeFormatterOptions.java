@@ -2835,7 +2835,7 @@ public class DefaultCodeFormatterOptions {
 		}
 
 		// insert new line between empty braces -> keep braced code on one line
-		HashMap<Boolean, String> insertToOneLine = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		HashMap<Boolean, String> insertToOneLine = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 		insertToOneLine.put(true, DefaultCodeFormatterConstants.ONE_LINE_NEVER);
 		insertToOneLine.put(false, DefaultCodeFormatterConstants.ONE_LINE_IF_EMPTY);
 		if (settings.get(DefaultCodeFormatterConstants.FORMATTER_KEEP_ANNOTATION_DECLARATION_ON_ONE_LINE) == null) {
