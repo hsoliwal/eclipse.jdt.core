@@ -34,6 +34,7 @@ import java.util.*;
 import java.util.Map.Entry;
 import java.util.function.Function;
 import java.util.jar.Manifest;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.ParserConfigurationException;
@@ -111,6 +112,8 @@ import org.xml.sax.SAXException;
 public class JavaProject
 	extends Openable
 	implements IJavaProject, SuffixConstants {
+	private static final Pattern GET_PATCHED_MODULES_PATTERN = Pattern.compile("::"); //$NON-NLS-1$
+
 
 	/**
 	 * Marker value used in cases where a release is passed or used as an argument but no specific release is selected.
@@ -3912,7 +3915,7 @@ public class JavaProject
 		if (patchModules != null) {
 			List<String> result = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			IPath prjPath = getPath();
-			for (String patchModule : patchModules.split("::")) { //$NON-NLS-1$ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+			for (String patchModule : GET_PATCHED_MODULES_PATTERN.split(patchModules)) { //$NON-NLS-1$ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 				int equalsIdx = patchModule.indexOf('=');
 				if (equalsIdx != -1) {
 					if (equalsIdx < patchModule.length()-1) { // otherwise malformed?
