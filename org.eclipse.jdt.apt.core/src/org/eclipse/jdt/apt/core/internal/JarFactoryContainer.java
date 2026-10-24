@@ -24,6 +24,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+import java.util.regex.Pattern;
 import org.eclipse.jdt.apt.core.internal.util.FactoryContainer;
 
 /**
@@ -33,6 +34,8 @@ import org.eclipse.jdt.apt.core.internal.util.FactoryContainer;
  */
 public abstract class JarFactoryContainer extends FactoryContainer
 {
+    private static final Pattern TOKENS_PATTERN = Pattern.compile("\\s"); //$NON-NLS-1$
+
 
 	/**
 	 * @return a java.io.File.  The file is not guaranteed to exist.
@@ -113,7 +116,7 @@ public abstract class JarFactoryContainer extends FactoryContainer
 	                line = line.substring(0, iComment);
 	            }
 	            // add the first non-whitespace token to the list
-	            final String[] tokens = line.split("\\s", 2); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+	            final String[] tokens = TOKENS_PATTERN.split(line, 2); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 	            if (tokens[0].length() > 0) {
 	                classNames.put(tokens[0], serviceName);
 	            }

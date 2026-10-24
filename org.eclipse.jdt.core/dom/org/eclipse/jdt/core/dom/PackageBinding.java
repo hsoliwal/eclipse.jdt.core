@@ -16,6 +16,7 @@ package org.eclipse.jdt.core.dom;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Pattern;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jdt.core.ICompilationUnit;
@@ -42,6 +43,8 @@ import org.eclipse.jdt.internal.core.SearchableEnvironment;
  */
 @SuppressWarnings("rawtypes")
 class PackageBinding implements IPackageBinding {
+    private static final Pattern SEGMENTS_PATTERN = Pattern.compile("[.]"); //$NON-NLS-1$
+
 
 	private static final String[] NO_NAME_COMPONENTS = CharOperation.NO_STRINGS;
 	private static final String UNNAMED = Util.EMPTY_STRING;
@@ -270,7 +273,7 @@ class PackageBinding implements IPackageBinding {
 		if (nameString == null || nameString.isEmpty()) {
 			return null;
 		}
-		String[] segments = nameString.split("[.]"); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+		String[] segments = SEGMENTS_PATTERN.split(nameString); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		int i = 0;
 		org.eclipse.jdt.internal.compiler.lookup.PackageBinding pkgBinding = this.binding;
 		Binding foundBinding = null;

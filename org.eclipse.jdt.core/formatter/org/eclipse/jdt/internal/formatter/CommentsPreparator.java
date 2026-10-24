@@ -47,6 +47,10 @@ import org.eclipse.jdt.internal.formatter.Token.WrapMode;
 import org.eclipse.jdt.internal.formatter.Token.WrapPolicy;
 
 public class CommentsPreparator extends ASTVisitor {
+	private static final Pattern IS_BULLET_PATTERN = Pattern.compile("[-+*]"); //$NON-NLS-1$
+	private static final Pattern HANDLE_MARKDOWN_LIST_PATTERN = Pattern.compile("\\d+[.)]"); //$NON-NLS-1$
+	private static final Pattern HANDLE_SNIPPET_PATTERN = Pattern.compile("['\"]?java['\"]?"); //$NON-NLS-1$
+
 
 	public static final int COMMENT_LINE_SEPARATOR_LENGTH = 3;
 
@@ -855,10 +859,10 @@ public class CommentsPreparator extends ASTVisitor {
 			boolean isBullet = false;
 			if (fragment instanceof TextElement && (firstTokenIndex < 2
 					|| this.ctm.countLineBreaksBetween(this.ctm.get(firstTokenIndex - 1), firstToken) > 0)) {
-				isBullet = firstString.matches("[-+*]"); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+				isBullet = IS_BULLET_PATTERN.matcher(firstString).matches(); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 				if (isBullet) {
 					thisItemType = firstString.charAt(0);
-				} else if (firstString.matches("\\d+[.)]")) { //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+				} else if (HANDLE_MARKDOWN_LIST_PATTERN.matcher(firstString).matches()) { //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 					thisItemType = firstString.charAt(firstString.length() - 1);
 				}
 			}
@@ -1330,7 +1334,7 @@ public class CommentsPreparator extends ASTVisitor {
 			int openingIndex = this.ctm.firstIndexBefore(fragments.get(0), ANY);
 			int closingIndex = tokenStartingAt(endToken.originalEnd);
 			this.ctm.get(closingIndex).breakBefore();
-			boolean formatted = (lang == null || lang.matches("['\"]?java['\"]?")) //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+			boolean formatted = (lang == null || HANDLE_SNIPPET_PATTERN.matcher(lang).matches()) //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 					&& formatCode(openingIndex, closingIndex, true, false);
 			if (!formatted)
 				disableFormattingExclusively(openingIndex, closingIndex, true);
