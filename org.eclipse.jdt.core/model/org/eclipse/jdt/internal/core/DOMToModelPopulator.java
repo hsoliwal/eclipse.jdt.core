@@ -11,6 +11,7 @@
 package org.eclipse.jdt.internal.core;
 
 import java.util.*;
+import java.util.regex.Pattern;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
@@ -42,6 +43,8 @@ import org.eclipse.jdt.internal.core.util.Util;
  * DOM-first approach to what legacy implements through ECJ parser and CompilationUnitStructureRequestor
  */
 public class DOMToModelPopulator extends ASTVisitor {
+	private static final Pattern GET_CATEGORIES_PATTERN = Pattern.compile("\\s+"); //$NON-NLS-1$
+
 
 	private final Map<IJavaElement, IElementInfo> toPopulate;
 	private final Stack<JavaElement> elements = new Stack<>();
@@ -1233,7 +1236,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 						int firstAsterix = fragmentString.indexOf('*');
 						return fragmentString.substring(0, firstAsterix != -1 ? firstAsterix : fragmentString.length());
 					}) //
-					.flatMap(fragment -> (Stream<String>)Stream.of(fragment.split("\\s+"))) // //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+					.flatMap(fragment -> (Stream<String>)Stream.of(GET_CATEGORIES_PATTERN.split(fragment))) // //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 					.filter(category -> category.length() > 0) //
 					.map(category -> (category).toCharArray()) //
 					.toArray(char[][]::new);
