@@ -364,19 +364,11 @@ public void acceptMatch(String relativePath, String containerPath, char separato
 		// Note that requestor has to verify if needed whether the document violates the access restriction or not
 		AccessRuleSet access = javaSearchScope.getAccessRuleSet(relativePath, containerPath);
 		if (access != JavaSearchScope.NOT_ENCLOSED) { // scope encloses the document path
-			StringBuilder documentPath = new StringBuilder(containerPath.length() + 1 + relativePath.length());
-			documentPath.append(containerPath);
-			documentPath.append(separator);
-			documentPath.append(relativePath);
-			if (!requestor.acceptIndexMatch(documentPath.toString(), pattern, participant, access))
+			if (!requestor.acceptIndexMatch(containerPath + separator + relativePath, pattern, participant, access))
 				throw new OperationCanceledException();
 		}
 	} else {
-		StringBuilder buffer = new StringBuilder(containerPath.length() + 1 + relativePath.length());
-		buffer.append(containerPath);
-		buffer.append(separator);
-		buffer.append(relativePath);
-		String documentPath = buffer.toString();
+		String documentPath = containerPath + separator + relativePath;
 		boolean encloses = (scope instanceof HierarchyScope) ? ((HierarchyScope)scope).encloses(documentPath, monitor)
 							: scope.encloses(documentPath);
 		if (encloses)

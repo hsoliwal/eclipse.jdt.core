@@ -139,13 +139,7 @@ public final class BindingKey {
 	 */
 	public static String createTypeVariableBindingKey(String typeVariableName, String declaringKey) {
 		// Note this implementation is heavily dependent on TypeVariableBinding#computeUniqueKey()
-		StringBuilder buffer = new StringBuilder();
-		buffer.append(declaringKey);
-		buffer.append(':');
-		buffer.append('T');
-		buffer.append(typeVariableName);
-		buffer.append(';');
-		return buffer.toString();
+		return declaringKey + ':' + 'T' + typeVariableName + ';';
 	}
 
 	/**

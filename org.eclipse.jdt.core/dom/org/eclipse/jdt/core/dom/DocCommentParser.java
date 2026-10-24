@@ -90,10 +90,7 @@ class DocCommentParser extends AbstractCommentParser {
 
 	@Override
 	public String toString() {
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("javadoc: ").append(this.docComment).append("\n");	//$NON-NLS-1$ //$NON-NLS-2$
-		buffer.append(super.toString());
-		return buffer.toString();
+		return "javadoc: " + this.docComment + "\n" + super.toString(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	@Override

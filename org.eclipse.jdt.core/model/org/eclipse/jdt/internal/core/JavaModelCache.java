@@ -319,23 +319,6 @@ public String toString() {
 	return toStringFillingRation(""); //$NON-NLS-1$
 }
 public String toStringFillingRation(String prefix) {
-	StringBuilder buffer = new StringBuilder();
-	buffer.append(prefix);
-	buffer.append("Project cache: "); //$NON-NLS-1$
-	buffer.append(this.projectCache.size());
-	buffer.append(" projects\n"); //$NON-NLS-1$
-	buffer.append(prefix);
-	buffer.append(this.rootCache.toStringFillingRation("Root cache")); //$NON-NLS-1$
-	buffer.append('\n');
-	buffer.append(prefix);
-	buffer.append(this.pkgCache.toStringFillingRation("Package cache")); //$NON-NLS-1$
-	buffer.append('\n');
-	buffer.append(prefix);
-	buffer.append(this.openableCache.toStringFillingRation("Openable cache")); //$NON-NLS-1$
-	buffer.append('\n');
-	buffer.append(prefix);
-	buffer.append(this.jarTypeCache.toStringFillingRation("Jar type cache")); //$NON-NLS-1$
-	buffer.append('\n');
-	return buffer.toString();
+	return prefix + "Project cache: " + this.projectCache.size() + " projects\n" + prefix + this.rootCache.toStringFillingRation("Root cache") + '\n' + prefix + this.pkgCache.toStringFillingRation("Package cache") + '\n' + prefix + this.openableCache.toStringFillingRation("Openable cache") + '\n' + prefix + this.jarTypeCache.toStringFillingRation("Jar type cache") + '\n'; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$
 }
 }

@@ -1901,10 +1901,7 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		if (constantPoolEntry2.getReferenceKind() != 6)
 			return null;
 		ConstantPoolEntry constantPoolEntry = (ConstantPoolEntry) constantPool.decodeEntry(constantPoolEntry2.getReferenceIndex());
-		StringBuilder builder = new StringBuilder();
-		//String[] methodMsg = methodDescription(constantPoolEntry);
-		builder.append(Messages.bind("invokestatic {0}.{1}:{2}", methodDescription(constantPoolEntry))); //$NON-NLS-1$
-		return builder.toString();
+		return Messages.bind("invokestatic {0}.{1}:{2}", methodDescription(constantPoolEntry)); //$NON-NLS-1$
 	}
 
 	private String[] bootstrapArgumentsDescription(IBootstrapMethodsEntry entry, IConstantPool constantPool) {

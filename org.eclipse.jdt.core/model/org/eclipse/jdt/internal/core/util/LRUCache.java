@@ -686,13 +686,7 @@ public class LRUCache<K, V> implements Cloneable {
 	}
 
 	public String toStringFillingRation(String cacheName) {
-		StringBuilder buffer = new StringBuilder(cacheName);
-		buffer.append('[');
-		buffer.append(getSpaceLimit());
-		buffer.append("]: "); //$NON-NLS-1$
-		buffer.append(NumberFormat.getInstance().format(fillingRatio()));
-		buffer.append("% full"); //$NON-NLS-1$
-		return buffer.toString();
+		return cacheName + '[' + getSpaceLimit() + "]: " + NumberFormat.getInstance().format(fillingRatio()) + "% full"; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
