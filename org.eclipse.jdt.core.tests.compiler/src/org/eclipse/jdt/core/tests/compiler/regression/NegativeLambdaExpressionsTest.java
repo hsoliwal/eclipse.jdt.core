@@ -65,7 +65,7 @@ protected Map getCompilerOptions() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382818, ArrayStoreException while compiling lambda
-public void test001() {
+public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -95,7 +95,7 @@ public void test001() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382841, ClassCastException while compiling lambda
-public void test002() {
+public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -120,7 +120,7 @@ public void test002() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382841, ClassCastException while compiling lambda
-public void test003() {
+public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -145,7 +145,7 @@ public void test003() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=383046, syntax error reported incorrectly on syntactically valid lambda expression
-public void test004() {
+public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -170,7 +170,7 @@ public void test004() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=383085 super::identifier not accepted.
-public void test005() {
+public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -190,7 +190,7 @@ public void test005() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=383046, syntax error reported incorrectly on *syntactically* valid reference expression
-public void test006() {
+public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -232,7 +232,7 @@ public void test006() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=383096, NullPointerException with a wrong lambda code snippet
-public void _test007() {
+public void _test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -254,7 +254,7 @@ public void _test007() {
 			true /* perform statement recovery */);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=383949,  Explicit this parameter illegal in lambda expressions
-public void test008() {
+public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -275,7 +275,7 @@ public void test008() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=383949,  Explicit this parameter illegal in lambda expressions
-public void test009() {
+public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -308,7 +308,7 @@ public void test009() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=381121,  [] should be accepted in reference expressions.
-public void test010() {
+public void test010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -331,7 +331,7 @@ public void test010() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382701, [1.8][compiler] Implement semantic analysis of Lambda expressions & Reference expressions.
-public void test011() {
+public void test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// This test checks that common semantic checks are indeed
 	this.runNegativeTest(
 			new String[] {
@@ -401,7 +401,7 @@ public void test011() {
 );
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384600, [1.8] 'this' should not be allowed in lambda expressions in contexts that don't allow it
-public void test012() {
+public void test012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// This test checks that common semantic checks are indeed
 	this.runNegativeTest(
 			new String[] {
@@ -442,7 +442,7 @@ public void test012() {
 				);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384600, [1.8] 'this' should not be allowed in lambda expressions in contexts that don't allow it
-public void test013() {
+public void test013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -472,7 +472,7 @@ public void test013() {
 				);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384595, Reject illegal modifiers on lambda arguments.
-public void test014() {
+public void test014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String extra = this.complianceLevel < ClassFileConstants.JDK17 ? "" :
 		"----------\n" +
 		"2. WARNING in X.java (at line 5)\n" +
@@ -492,7 +492,7 @@ public void test014() {
 					"@interface Marker {\n" +
 					"}\n",
 				},
-				"----------\n" +
+				"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in X.java (at line 5)\n" +
 				"	I i = (final @Marker int x, @Undefined static strictfp public Object o, static volatile int p) -> x;\n" +
 				"	                             ^^^^^^^^^\n" +
@@ -521,7 +521,7 @@ public void test014() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=399534, [1.8][compiler] Lambda parameters must be checked for compatibility with the single abstract method of the functional interface.
-public void test015() {
+public void test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -602,7 +602,7 @@ public void test015() {
 				"----------\n");
 }
 // Bug 398734 - [1.8][compiler] Lambda expression type or return type should be checked against the target functional interface method's result type
-public void test016() {
+public void test016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -632,7 +632,7 @@ public void test016() {
 				"----------\n");
 }
 // Bug 398734 - [1.8][compiler] Lambda expression type or return type should be checked against the target functional interface method's result type
-public void test017() {
+public void test017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -662,7 +662,7 @@ public void test017() {
 				"----------\n");
 }
 // Bug 398734 - [1.8][compiler] Lambda expression type or return type should be checked against the target functional interface method's result type
-public void test018() {
+public void test018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -705,7 +705,7 @@ public void test018() {
 				"----------\n");
 }
 // Bug 398734 - [1.8][compiler] Lambda expression type or return type should be checked against the target functional interface method's result type
-public void test019() {
+public void test019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -732,7 +732,7 @@ public void test019() {
 				"----------\n");
 }
 // Bug 398734 - [1.8][compiler] Lambda expression type or return type should be checked against the target functional interface method's result type
-public void test020() {
+public void test020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -751,7 +751,7 @@ public void test020() {
 				"----------\n");
 }
 // Bug 398734 - [1.8][compiler] Lambda expression type or return type should be checked against the target functional interface method's result type
-public void test021() {
+public void test021() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -771,7 +771,7 @@ public void test021() {
 				"----------\n");
 }
 // Bug 398734 - [1.8][compiler] Lambda expression type or return type should be checked against the target functional interface method's result type
-public void test022() {
+public void test022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -794,7 +794,7 @@ public void test022() {
 				"----------\n");
 }
 // Bug 398734 - [1.8][compiler] Lambda expression type or return type should be checked against the target functional interface method's result type
-public void test023() {
+public void test023() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -824,7 +824,7 @@ public void test023() {
 				"----------\n");
 }
 // Bug 398734 - [1.8][compiler] Lambda expression type or return type should be checked against the target functional interface method's result type
-public void test024() {
+public void test024() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -848,7 +848,7 @@ public void test024() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=398734 - [1.8][compiler] Lambda expression type or return type should be checked against the target functional interface method's result type
-public void test025() {
+public void test025() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 			"X.java",
@@ -869,7 +869,7 @@ public void test025() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=398734 - [1.8][compiler] Lambda expression type or return type should be checked against the target functional interface method's result type
-public void test026() {
+public void test026() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 			"X.java",
@@ -894,7 +894,7 @@ public void test026() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=398734 - [1.8][compiler] Lambda expression type or return type should be checked against the target functional interface method's result type
-public void test027() {
+public void test027() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 			"X.java",
@@ -943,7 +943,7 @@ public void test027() {
 			"----------\n");
 }
 // Bug 399979 - [1.8][compiler] Statement expressions should be allowed in non-block lambda body when return type is void (edit)
-public void test028() {
+public void test028() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 			"X.java",
@@ -980,7 +980,7 @@ public void test028() {
 			"----------\n");
 }
 // Bug 384600 - [1.8] 'this' should not be allowed in lambda/Reference expressions in contexts that don't allow it
-public void test029() {
+public void test029() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 			"X.java",
@@ -1033,7 +1033,7 @@ public void test029() {
 			"----------\n");
 }
 // Bug 382713 - [1.8][compiler] Compiler should reject lambda expressions when target type is not a functional interface
-public void test030() {
+public void test030() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 			"X.java",
@@ -1061,7 +1061,7 @@ public void test030() {
 			"----------\n");
 }
 // Bug 398267 - [1.8][compiler] Variables in the body of the lambda expression should be valid
-public void test031() {
+public void test031() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 			"X.java",
@@ -1107,7 +1107,7 @@ public void test031() {
 			"----------\n");
 }
 // Bug 399537 - [1.8][compiler] Exceptions thrown from lambda body must match specification per function descriptor
-public void test032() {
+public void test032() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 			"X.java",
@@ -1135,7 +1135,7 @@ public void test032() {
 			"----------\n");
 }
 // Bug 399537 - [1.8][compiler] Exceptions thrown from lambda body must match specification per function descriptor
-public void test033() {
+public void test033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 			"X.java",
@@ -1163,7 +1163,7 @@ public void test033() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=398734 - [1.8][compiler] Lambda expression type or return type should be checked against the target functional interface method's result type
-public void test034() {
+public void test034() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 			"X.java",
@@ -1187,7 +1187,7 @@ public void test034() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=381121,  [] should be accepted in reference expressions.
-public void test035() {
+public void test035() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -1209,7 +1209,7 @@ public void test035() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727,  Lambda expression parameters and locals cannot shadow variables from context
-public void test036() {
+public void test036() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 			"X.java",
@@ -1242,7 +1242,7 @@ public void test036() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382702 - [1.8][compiler] Lambda expressions should be rejected in disallowed contexts
-public void test037() {
+public void test037() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 			"X.java",
@@ -1290,7 +1290,7 @@ public void test037() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=399537 - [1.8][compiler] Exceptions thrown from lambda body must match specification per function descriptor
-public void test038() {
+public void test038() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 			"X.java",
@@ -1327,7 +1327,7 @@ public void test038() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=399537 - [1.8][compiler] Exceptions thrown from lambda body must match specification per function descriptor
-public void test039() {
+public void test039() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 			"X.java",
@@ -1420,7 +1420,7 @@ public void test039() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=399537 - [1.8][compiler] Exceptions thrown from lambda body must match specification per function descriptor
-public void test040() {
+public void test040() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 			"X.java",
@@ -1446,7 +1446,7 @@ public void test040() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=399537 - [1.8][compiler] Exceptions thrown from lambda body must match specification per function descriptor
-public void test041() {
+public void test041() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 			"X.java",
@@ -1495,7 +1495,7 @@ public void test041() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=399537 - [1.8][compiler] Exceptions thrown from lambda body must match specification per function descriptor
-public void test042() {
+public void test042() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 			"X.java",
@@ -1535,7 +1535,7 @@ public void test042() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=399224 - [1.8][compiler][internal] Implement TypeBinding.getSingleAbstractMethod
-public void test043() {
+public void test043() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnusedWarningToken, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUncheckedTypeOperation, CompilerOptions.IGNORE);
@@ -1666,7 +1666,7 @@ public void test043() {
 			options);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=399224 - [1.8][compiler][internal] Implement TypeBinding.getSingleAbstractMethod
-public void test044() {
+public void test044() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnusedWarningToken, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUncheckedTypeOperation, CompilerOptions.IGNORE);
@@ -1727,7 +1727,7 @@ public void test044() {
 			options);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=400386 - [1.8][spec] Broken example in 9.8, discussion box - bullet 2 ?
-public void test045() {
+public void test045() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 			"X.java",
@@ -1769,7 +1769,7 @@ public void test046() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382721, [1.8][compiler] Effectively final variables needs special treatment
-public void test047() {
+public void test047() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// This test checks that the simple cases are OK
 	this.runNegativeTest(
 			new String[] {
@@ -1799,7 +1799,7 @@ public void test047() {
 				);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382721, [1.8][compiler] Effectively final variables needs special treatment
-public void test048() {
+public void test048() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// This test checks that the simple cases are OK
 	this.runNegativeTest(
 			new String[] {
@@ -1825,7 +1825,7 @@ public void test048() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382721, [1.8][compiler] Effectively final variables needs special treatment
-public void test049() {
+public void test049() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// This test checks that the simple cases are OK
 	this.runNegativeTest(
 			new String[] {
@@ -1846,7 +1846,7 @@ public void test049() {
 				"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382721, [1.8][compiler] Effectively final variables needs special treatment
-public void test050() {
+public void test050() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// This test checks that common semantic checks are indeed run
 	this.runNegativeTest(
 			new String[] {
@@ -1869,7 +1869,7 @@ public void test050() {
 				"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382721, [1.8][compiler] Effectively final variables needs special treatment
-public void test051() {
+public void test051() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// This test checks that common semantic checks are indeed run
 	this.runNegativeTest(
 			new String[] {
@@ -1892,7 +1892,7 @@ public void test051() {
 				"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382721, [1.8][compiler] Effectively final variables needs special treatment
-public void test052() {
+public void test052() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// This test checks that common semantic checks are indeed run
 	this.runNegativeTest(
 			new String[] {
@@ -1926,7 +1926,7 @@ public void test052() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382721, [1.8][compiler] Effectively final variables needs special treatment
-public void test053() {
+public void test053() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// This test checks that common semantic checks are indeed run
 	this.runNegativeTest(
 			new String[] {
@@ -1949,7 +1949,7 @@ public void test053() {
 				"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382721, [1.8][compiler] Effectively final variables needs special treatment
-public void test054() {
+public void test054() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// This test checks that common semantic checks are indeed run
 	this.runNegativeTest(
 			new String[] {
@@ -1981,7 +1981,7 @@ public void test054() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382721, [1.8][compiler] Effectively final variables needs special treatment
-public void test055() {
+public void test055() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// This test checks that common semantic checks are indeed run
 	this.runNegativeTest(
 			new String[] {
@@ -2005,7 +2005,7 @@ public void test055() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382721, [1.8][compiler] Effectively final variables needs special treatment
-public void test056() {
+public void test056() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// This test checks that common semantic checks are indeed run
 	this.runNegativeTest(
 			new String[] {
@@ -2029,7 +2029,7 @@ public void test056() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382721, [1.8][compiler] Effectively final variables needs special treatment
-public void test057() {
+public void test057() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// This test checks that common semantic checks are indeed run
 	this.runNegativeTest(
 			new String[] {
@@ -2053,7 +2053,7 @@ public void test057() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382721, [1.8][compiler] Effectively final variables needs special treatment
-public void test058() {
+public void test058() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// This test checks that common semantic checks are indeed run
 	this.runNegativeTest(
 			new String[] {
@@ -2077,7 +2077,7 @@ public void test058() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382721, [1.8][compiler] Effectively final variables needs special treatment
-public void test059() {
+public void test059() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// This test checks that common semantic checks are indeed run
 	this.runNegativeTest(
 			new String[] {
@@ -2100,7 +2100,7 @@ public void test059() {
 				"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382721, [1.8][compiler] Effectively final variables needs special treatment
-public void test060() {
+public void test060() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// This test checks that common semantic checks are indeed run
 	this.runNegativeTest(
 			new String[] {
@@ -2121,7 +2121,7 @@ public void test060() {
 				"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382721, [1.8][compiler] Effectively final variables needs special treatment
-public void test061() {
+public void test061() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// This test checks that common semantic checks are indeed run
 	this.runNegativeTest(
 			new String[] {
@@ -2151,7 +2151,7 @@ public void test061() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382721, [1.8][compiler] Effectively final variables needs special treatment
-public void test062() {
+public void test062() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// This test checks that common semantic checks are indeed run
 	this.runNegativeTest(
 			new String[] {
@@ -2178,7 +2178,7 @@ public void test062() {
 				"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382721, [1.8][compiler] Effectively final variables needs special treatment
-public void test063() {
+public void test063() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// This test checks that common semantic checks are indeed run
 	this.runNegativeTest(
 			new String[] {
@@ -2218,7 +2218,7 @@ public void test063() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382721, [1.8][compiler] Effectively final variables needs special treatment
-public void test064() {
+public void test064() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// This test checks that common semantic checks are indeed run
 	this.runNegativeTest(
 			new String[] {
@@ -2243,7 +2243,7 @@ public void test064() {
 				"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382721, [1.8][compiler] Effectively final variables needs special treatment
-public void test065() {
+public void test065() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// This test checks that common semantic checks are indeed run
 	this.runNegativeTest(
 			new String[] {
@@ -2268,7 +2268,7 @@ public void test065() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382721, [1.8][compiler] Effectively final variables needs special treatment
-public void test066() {
+public void test066() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// This test checks that common semantic checks are indeed run
 	this.runNegativeTest(
 			new String[] {
@@ -2303,7 +2303,7 @@ public void test066() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382721, [1.8][compiler] Effectively final variables needs special treatment
-public void test067() {
+public void test067() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// This test checks that common semantic checks are indeed run
 	this.runNegativeTest(
 			new String[] {
@@ -2346,7 +2346,7 @@ public void test067() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382721, [1.8][compiler] Effectively final variables needs special treatment
-public void test068() {
+public void test068() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// This test checks that common semantic checks are indeed run
 	this.runNegativeTest(
 			new String[] {
@@ -2384,7 +2384,7 @@ public void test068() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test069() {
+public void test069() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Lambda argument hides a field.
 	this.runNegativeTest(
 			false /* skipJavac */,
@@ -2412,7 +2412,7 @@ public void test069() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test070() {
+public void test070() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Lambda argument redeclares outer method argument.
 	this.runNegativeTest(
 			new String[] {
@@ -2435,7 +2435,7 @@ public void test070() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test071() {
+public void test071() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Lambda argument redeclares outer method local.
 	this.runNegativeTest(
 			new String[] {
@@ -2459,7 +2459,7 @@ public void test071() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test072() {
+public void test072() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Lambda redeclares its own argument
 	this.runNegativeTest(
 			new String[] {
@@ -2483,7 +2483,7 @@ public void test072() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test073() {
+public void test073() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Lambda local hides a field
 	this.runNegativeTest(
 			false /* skipJavac */,
@@ -2510,7 +2510,7 @@ public void test073() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test074() {
+public void test074() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Lambda local redeclares the enclosing method's argument
 	this.runNegativeTest(
 			new String[] {
@@ -2535,7 +2535,7 @@ public void test074() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test075() {
+public void test075() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Lambda local redeclares the enclosing method's local
 	this.runNegativeTest(
 			new String[] {
@@ -2561,7 +2561,7 @@ public void test075() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test076() {
+public void test076() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Lambda local redeclares its own parameter
 	this.runNegativeTest(
 			new String[] {
@@ -2587,7 +2587,7 @@ public void test076() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test077() {
+public void test077() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Lambda local redeclares its own self
 	this.runNegativeTest(
 			new String[] {
@@ -2613,7 +2613,7 @@ public void test077() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test078() {
+public void test078() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Nested Lambda argument redeclares a field.
 	this.runNegativeTest(
 			false /* skipJavac */,
@@ -2641,7 +2641,7 @@ public void test078() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test079() {
+public void test079() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Nested Lambda argument redeclares outer method's argument.
 	this.runNegativeTest(
 			new String[] {
@@ -2672,7 +2672,7 @@ public void test079() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test080() {
+public void test080() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Nested Lambda argument redeclares outer method's local.
 	this.runNegativeTest(
 			new String[] {
@@ -2703,7 +2703,7 @@ public void test080() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test081() {
+public void test081() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Nested Lambda argument redeclares outer lambda's argument.
 	this.runNegativeTest(
 			new String[] {
@@ -2734,7 +2734,7 @@ public void test081() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test082() {
+public void test082() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Nested Lambda argument redeclares outer lambda's local.
 	this.runNegativeTest(
 			new String[] {
@@ -2766,7 +2766,7 @@ public void test082() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test083() {
+public void test083() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Nested Lambda local redeclares a field.
 	this.runNegativeTest(
 			new String[] {
@@ -2803,7 +2803,7 @@ public void test083() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test084() {
+public void test084() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Nested Lambda local redeclares outer methods local.
 	this.runNegativeTest(
 			new String[] {
@@ -2840,7 +2840,7 @@ public void test084() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test085() {
+public void test085() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Nested Lambda local redeclares outer lambda's argument & local
 	this.runNegativeTest(
 			new String[] {
@@ -2877,7 +2877,7 @@ public void test085() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test086() {
+public void test086() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Nested Lambda local redeclares its own argument & local
 	this.runNegativeTest(
 			new String[] {
@@ -2909,7 +2909,7 @@ public void test086() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test087() {
+public void test087() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Inner class (!) inside Lambda hides field
 	this.runNegativeTest(
 			new String[] {
@@ -2941,7 +2941,7 @@ public void test087() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test088() {
+public void test088() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// class inside lambda (!) redeclares a field.
 	this.runNegativeTest(
 			false /* skipJavac */,
@@ -2969,7 +2969,7 @@ public void test088() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test089() {
+public void test089() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// class inside lambda redeclares outer method's argument.
 	this.runNegativeTest(
 			false /* skipJavac */,
@@ -3002,7 +3002,7 @@ public void test089() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test090() {
+public void test090() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// class inside lambda redeclares outer method's local.
 	this.runNegativeTest(
 			false /* skipJavac */,
@@ -3035,7 +3035,7 @@ public void test090() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test091() {
+public void test091() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// class inside lambda redeclares outer lambda's argument.
 	this.runNegativeTest(
 			false /* skipJavac */,
@@ -3068,7 +3068,7 @@ public void test091() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test092() {
+public void test092() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// class inside lambda redeclares outer lambda's local.
 	this.runNegativeTest(
 			false /* skipJavac */,
@@ -3102,7 +3102,7 @@ public void test092() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test093() {
+public void test093() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// local of class inside lambda redeclares a field.
 	this.runNegativeTest(
 			false /* skipJavac */,
@@ -3141,7 +3141,7 @@ public void test093() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test094() {
+public void test094() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// local of class under lambda redeclares outer methods local.
 	this.runNegativeTest(
 			false /* skipJavac */,
@@ -3180,7 +3180,7 @@ public void test094() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test095() {
+public void test095() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// local of class under lambda redeclares outer lambda's argument & local
 	this.runNegativeTest(
 			false /* skipJavac */,
@@ -3219,7 +3219,7 @@ public void test095() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=382727, [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
-public void test096() {
+public void test096() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// local of class under lambda redeclares its own argument & local
 	this.runNegativeTest(
 			new String[] {
@@ -3251,7 +3251,7 @@ public void test096() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384687 [1.8] Wildcard type arguments should be rejected for lambda and reference expressions
-public void test097() {
+public void test097() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 			"X.java",
@@ -3275,7 +3275,7 @@ public void test097() {
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=384687 [1.8] Wildcard type arguments should be rejected for lambda and reference expressions
-public void test098() {
+public void test098() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 			"X.java",
@@ -3317,7 +3317,7 @@ public void test_bug399770_1() {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=399770: [1.8][compiler] Implement support for @FunctionalInterface
-public void test_bug399770_2() {
+public void test_bug399770_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"YYY.java",
@@ -3361,7 +3361,7 @@ public void test_bug399770_2() {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=400745, [1.8][compiler] Compiler incorrectly allows shadowing of local class names.
-public void test400745() {
+public void test400745() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Lambda redeclares a local class from its outer scope.
 	this.runNegativeTest(
 			new String[] {
@@ -3386,7 +3386,7 @@ public void test400745() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=400745, [1.8][compiler] Compiler incorrectly allows shadowing of local class names.
-public void test400745a() {
+public void test400745a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// local type hiding scenario
 	this.runNegativeTest(
 			false /* skipJavac */,
@@ -3462,7 +3462,7 @@ public void test400745a() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=400556, [1.8][compiler] Visibility checks are missing for lambda/reference expressions
-public void test400556() {
+public void test400556() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"p/I.java",
@@ -3515,7 +3515,7 @@ public void test400556() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=400556, [1.8][compiler] Visibility checks are missing for lambda/reference expressions
-public void test400556a() {
+public void test400556a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"p/I.java",
@@ -3559,7 +3559,7 @@ public void test400556a() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=400556, [1.8][compiler] Visibility checks are missing for lambda/reference expressions
-public void test400556b() {
+public void test400556b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"p/I.java",
@@ -3607,7 +3607,7 @@ public void test400556b() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=400556, [1.8][compiler] Visibility checks are missing for lambda/reference expressions
-public void test400556c() {
+public void test400556c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"p/I.java",
@@ -3652,7 +3652,7 @@ public void test400556c() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=400556, [1.8][compiler] Visibility checks are missing for lambda/reference expressions
-public void test400556d() {
+public void test400556d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"p/I.java",
@@ -3687,7 +3687,7 @@ public void test400556d() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=400556, [1.8][compiler] Visibility checks are missing for lambda/reference expressions
-public void test400556e() {
+public void test400556e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"p/I.java",
@@ -3728,7 +3728,7 @@ public void test400556e() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=400556, [1.8][compiler] Visibility checks are missing for lambda/reference expressions
-public void test400556f() {
+public void test400556f() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"p/I.java",
@@ -3769,7 +3769,7 @@ public void test400556f() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=400556, [1.8][compiler] Visibility checks are missing for lambda/reference expressions
-public void test400556g() {
+public void test400556g() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"p/I.java",
@@ -3818,7 +3818,7 @@ public void test400556g() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=400556, [1.8][compiler] Visibility checks are missing for lambda/reference expressions
-public void test400556h() {
+public void test400556h() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"p/I.java",
@@ -3882,7 +3882,7 @@ public void test400556h() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=400556, [1.8][compiler] Visibility checks are missing for lambda/reference expressions
-public void test400556i() {
+public void test400556i() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"p/I.java",
@@ -3931,7 +3931,7 @@ public void test400556i() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=400556, [1.8][compiler] Visibility checks are missing for lambda/reference expressions
-public void test400556j() {
+public void test400556j() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"p/I.java",
@@ -3986,7 +3986,7 @@ public void test400556j() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=400556, [1.8][compiler] Visibility checks are missing for lambda/reference expressions
-public void test400556k() {
+public void test400556k() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"p/I.java",
@@ -4032,7 +4032,7 @@ public void test400556k() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750() {
+public void test384750() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -4052,7 +4052,7 @@ public void test384750() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750a() {
+public void test384750a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -4072,7 +4072,7 @@ public void test384750a() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750b() {
+public void test384750b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -4092,7 +4092,7 @@ public void test384750b() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750c() {
+public void test384750c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -4113,7 +4113,7 @@ public void test384750c() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750d() {
+public void test384750d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -4133,7 +4133,7 @@ public void test384750d() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750e() {
+public void test384750e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -4153,7 +4153,7 @@ public void test384750e() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750f() {
+public void test384750f() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -4174,7 +4174,7 @@ public void test384750f() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750g() {
+public void test384750g() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -4213,7 +4213,7 @@ public void test384750h() {
 			"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750i() {
+public void test384750i() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -4237,7 +4237,7 @@ public void test384750i() {
 					"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750j() {
+public void test384750j() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			false /* skipJavac */,
 			JavacTestOptions.Excuse.EclipseHasSomeMoreWarnings,
@@ -4261,7 +4261,7 @@ public void test384750j() {
 					"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750k() {
+public void test384750k() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -4285,7 +4285,7 @@ public void test384750k() {
 					"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750l() {
+public void test384750l() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			false /* skipJavac */,
 			JavacTestOptions.Excuse.EclipseHasSomeMoreWarnings,
@@ -4311,7 +4311,7 @@ public void test384750l() {
 					"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750m() {
+public void test384750m() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -4357,7 +4357,7 @@ public void test384750m() {
 					"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750n() {
+public void test384750n() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -4385,7 +4385,7 @@ public void test384750n() {
 					"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750o() {
+public void test384750o() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -4462,7 +4462,7 @@ public void test384750o() {
 					"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750p() {
+public void test384750p() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -4498,7 +4498,7 @@ public void test384750p() {
 					"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750q() {
+public void test384750q() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -4534,7 +4534,7 @@ public void test384750q() {
 					"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750r() {
+public void test384750r() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -4558,7 +4558,7 @@ public void test384750r() {
 					"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750s() {
+public void test384750s() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -4582,7 +4582,7 @@ public void test384750s() {
 					"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750t() {
+public void test384750t() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -4606,7 +4606,7 @@ public void test384750t() {
 					"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750u() {
+public void test384750u() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -4630,7 +4630,7 @@ public void test384750u() {
 					"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750v() {
+public void test384750v() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -4655,7 +4655,7 @@ public void test384750v() {
 					"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750w() {
+public void test384750w() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -4706,7 +4706,7 @@ public void test384750w() {
 					"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750x() {
+public void test384750x() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -4758,7 +4758,7 @@ public void test384750x() {
 					"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750y() {
+public void test384750y() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -4782,7 +4782,7 @@ public void test384750y() {
 					"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750z() {
+public void test384750z() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportIndirectStaticAccess, CompilerOptions.WARNING);
 	this.runNegativeTest(
@@ -4809,7 +4809,7 @@ public void test384750z() {
 					null, false, customOptions);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750z1() {
+public void test384750z1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.WARNING);
 	this.runNegativeTest(
@@ -4840,7 +4840,7 @@ public void test384750z1() {
 					null, false, customOptions);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750z2() {
+public void test384750z2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedTypeArgumentsForMethodInvocation, CompilerOptions.WARNING);
 	this.runNegativeTest(
@@ -4891,7 +4891,7 @@ public void test384750z3() {
 					"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750z4() {
+public void test384750z4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -4912,7 +4912,7 @@ public void test384750z4() {
 					"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750z5() {
+public void test384750z5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -4934,7 +4934,7 @@ public void test384750z5() {
 					"----------\n");
 }
 //  https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750z6() {
+public void test384750z6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			false /* skipJavac */,
 			JavacTestOptions.DEFAULT,
@@ -4953,7 +4953,7 @@ public void test384750z6() {
 					"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750z7() {
+public void test384750z7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 this.runNegativeTest(
 		false /* skipJavac */,
 		new JavacTestOptions("-Xlint:rawtypes"),
@@ -4991,7 +4991,7 @@ this.runNegativeTest(
 				"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=384750, [1.8] Compiler should reject invalid method reference expressions
-public void test384750z9() {
+public void test384750z9() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -5022,7 +5022,7 @@ this.runNegativeTest(
 				"----------\n");
 }
 // reference to missing type occurs during type inference involving a reference expression:
-public void testGH3501() {
+public void testGH3501() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(new String[] {
 			"X.java",
 			"""
@@ -5056,7 +5056,7 @@ public void testGH3501() {
 		""");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401610, [1.8][compiler] Allow lambda/reference expressions in non-overloaded method invocation contexts
-public void test401610() {
+public void test401610() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 this.runConformTest(
 		new String[] {
 				"X.java",
@@ -5075,7 +5075,7 @@ this.runConformTest(
 				"foo");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401610, [1.8][compiler] Allow lambda/reference expressions in non-overloaded method invocation contexts
-public void test401610a() {
+public void test401610a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 this.runConformTest(
 		new String[] {
 				"X.java",
@@ -5110,7 +5110,7 @@ this.runConformTest(
 				"foo(K)");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401610, [1.8][compiler] Allow lambda/reference expressions in non-overloaded method invocation contexts
-public void test401610b() {
+public void test401610b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -5150,7 +5150,7 @@ this.runNegativeTest(
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401610, [1.8][compiler] Allow lambda/reference expressions in non-overloaded method invocation contexts
-public void test401610c() {
+public void test401610c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -5234,7 +5234,7 @@ this.runNegativeTest(
 				"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401610, [1.8][compiler] Allow lambda/reference expressions in non-overloaded method invocation contexts
-public void test401610e() {
+public void test401610e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -5272,7 +5272,7 @@ this.runNegativeTest(
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=401610, [1.8][compiler] Allow lambda/reference expressions in non-overloaded method invocation contexts
 // demonstrate that the bound problem is the only real issue in test401610e()
-public void test401610ee() {
+public void test401610ee() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 this.runNegativeTest(
 		false /* skipJavac */,
 		JavacTestOptions.Excuse.EclipseHasSomeMoreWarnings,
@@ -5318,7 +5318,7 @@ this.runNegativeTest(
 				"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401610, [1.8][compiler] Allow lambda/reference expressions in non-overloaded method invocation contexts
-public void test401610g() {
+public void test401610g() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 this.runConformTest(
 		new String[] {
 				"X.java",
@@ -5339,7 +5339,7 @@ this.runConformTest(
 				"foo(I)");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401610, [1.8][compiler] Allow lambda/reference expressions in non-overloaded method invocation contexts
-public void test401610h() {
+public void test401610h() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -5370,7 +5370,7 @@ this.runNegativeTest(
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401610, [1.8][compiler] Allow lambda/reference expressions in non-overloaded method invocation contexts
-public void test401610i() {
+public void test401610i() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 this.runConformTest(
 		new String[] {
 				"X.java",
@@ -5392,7 +5392,7 @@ this.runConformTest(
 				"foo(J)");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401610, [1.8][compiler] Allow lambda/reference expressions in non-overloaded method invocation contexts
-public void test401610j() {
+public void test401610j() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -5425,7 +5425,7 @@ this.runNegativeTest(
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401789, [1.8][compiler] Enable support for method/constructor references in non-overloaded method calls.
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401790, Follow up of bug 401610, explicit constructor calls and allocation expressions needs updates too.
-public void test401789_401790() {
+public void test401789_401790() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -5471,7 +5471,7 @@ this.runNegativeTest(
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401789, [1.8][compiler] Enable support for method/constructor references in non-overloaded method calls.
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401790, Follow up of bug 401610, explicit constructor calls and allocation expressions needs updates too.
-public void test401789_401790a() {
+public void test401789_401790a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -5576,7 +5576,7 @@ this.runNegativeTest(
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401845, [1.8][compiler] Bad interaction between varargs and lambas/references
-public void test401845() {
+public void test401845() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -5600,7 +5600,7 @@ public void test401845() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401845, [1.8][compiler] Bad interaction between varargs and lambas/references
-public void test401845a() {
+public void test401845a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -5639,7 +5639,7 @@ public void test401845a() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401845, [1.8][compiler] Bad interaction between varargs and lambas/references
-public void test401845b() {
+public void test401845b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -5663,7 +5663,7 @@ public void test401845b() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401845, [1.8][compiler] Bad interaction between varargs and lambas/references
-public void test401845c() {
+public void test401845c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -5690,7 +5690,7 @@ public void test401845c() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401845, [1.8][compiler] Bad interaction between varargs and lambas/references
-public void test401845d() {
+public void test401845d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -5716,7 +5716,7 @@ public void test401845d() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401845, [1.8][compiler] Bad interaction between varargs and lambas/references
-public void test401845e() {
+public void test401845e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -5743,7 +5743,7 @@ public void test401845e() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401847, [1.8][compiler] Polyconditionals not accepted in method invocation contexts.
-public void test401847() {
+public void test401847() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			false /* skipJavac */,
 			JavacTestOptions.Excuse.EclipseHasSomeMoreWarnings,
@@ -5774,7 +5774,7 @@ public void test401847() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401847, [1.8][compiler] Polyconditionals not accepted in method invocation contexts.
-public void test401847a() {
+public void test401847a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -5818,7 +5818,7 @@ public void test401847a() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401939, [1.8][compiler] Incorrect shape analysis leads to method resolution failure .
-public void test401939() {
+public void test401939() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			false /* skipJavac */,
 			JavacTestOptions.Excuse.EclipseHasSomeMoreWarnings,
@@ -5842,7 +5842,7 @@ public void test401939() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401939, [1.8][compiler] Incorrect shape analysis leads to method resolution failure .
-public void test401939a() {
+public void test401939a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -5869,7 +5869,7 @@ public void test401939a() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401939, [1.8][compiler] Incorrect shape analysis leads to method resolution failure .
-public void test401939b() {
+public void test401939b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -5920,7 +5920,7 @@ public void test401939b() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401939, [1.8][compiler] Incorrect shape analysis leads to method resolution failure .
-public void test401939c() {
+public void test401939c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -5948,7 +5948,7 @@ public void test401939c() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401939, [1.8][compiler] Incorrect shape analysis leads to method resolution failure .
-public void test401939ca() {
+public void test401939ca() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -5970,7 +5970,7 @@ public void test401939ca() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401939, [1.8][compiler] Incorrect shape analysis leads to method resolution failure .
-public void test401939d() {
+public void test401939d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -5992,7 +5992,7 @@ public void test401939d() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401939, [1.8][compiler] Incorrect shape analysis leads to method resolution failure .
-public void test401939e() {
+public void test401939e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -6036,7 +6036,7 @@ public void test401939f() {
 				"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=402219, [1.8][compiler] Compile time errors in lambda during hypothetical type check should render candidate method inapplicable.
-public void test402219() {
+public void test402219() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -6067,7 +6067,7 @@ public void test402219() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=402219, [1.8][compiler] Compile time errors in lambda during hypothetical type check should render candidate method inapplicable.
-public void test402219a() {
+public void test402219a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUndocumentedEmptyBlock, CompilerOptions.ERROR);
 	this.runNegativeTest(
@@ -6099,7 +6099,7 @@ public void test402219a() {
 			options);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=402219, [1.8][compiler] Compile time errors in lambda during hypothetical type check should render candidate method inapplicable.
-public void test402219b() {
+public void test402219b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -6130,7 +6130,7 @@ public void test402219b() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=402259, [1.8][compiler] NPE during overload resolution when there are syntax errors.
-public void test402259() {
+public void test402259() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -6154,7 +6154,7 @@ public void test402259() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=402261, [1.8][compiler] Shape analysis confused by returns from inner classes..
-public void test402261() {
+public void test402261() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -6180,7 +6180,7 @@ public void test402261() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=402261, [1.8][compiler] Shape analysis confused by returns from inner classes..
-public void test402261a() {
+public void test402261a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -6206,7 +6206,7 @@ public void test402261a() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=402261, [1.8][compiler] Shape analysis confused by returns from inner classes..
-public void test402261b() {
+public void test402261b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -6232,7 +6232,7 @@ public void test402261b() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=402261, [1.8][compiler] Shape analysis confused by returns from inner classes..
-public void test402261c() {
+public void test402261c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -6258,7 +6258,7 @@ public void test402261c() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401769, [1.8][compiler] Explore solutions with better performance characteristics than LambdaExpression#copy()
-public void test401769() {
+public void test401769() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -6285,7 +6285,7 @@ public void test401769() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=402609, [1.8][compiler] AIOOB exception with a program using method references.
-public void test402609() {
+public void test402609() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -6318,7 +6318,7 @@ public void test402609() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=402609, [1.8][compiler] AIOOB exception with a program using method references.
-public void test402609a() {
+public void test402609a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -6356,7 +6356,7 @@ public void test402609a() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=402609, [1.8][compiler] AIOOB exception with a program using method references.
-public void test402609b() {
+public void test402609b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -6394,7 +6394,7 @@ public void test402609b() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=402609, [1.8][compiler] AIOOB exception with a program using method references.
-public void test402609c() {
+public void test402609c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -6429,7 +6429,7 @@ public void test402609c() {
 
 // 15.28:
 // https://bugs.eclipse.org/382350 - [1.8][compiler] Unable to invoke inherited default method via I.super.m() syntax
-public void testSuperReference01() {
+public void testSuperReference01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -6470,7 +6470,7 @@ public void testSuperReference01() {
 
 // 15.28.1:
 // https://bugs.eclipse.org/382350 - [1.8][compiler] Unable to invoke inherited default method via I.super.m() syntax
-public void testSuperReference02() {
+public void testSuperReference02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -6513,7 +6513,7 @@ public void testSuperReference02() {
 	);
 }
 
-public void testSuperReference03() {
+public void testSuperReference03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"XY.java",
@@ -6552,7 +6552,7 @@ public void testSuperReference03() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=406614, [1.8][compiler] Missing and incorrect errors for lambda in explicit constructor call.
-public void test406614() {
+public void test406614() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -6650,7 +6650,7 @@ public void test406614() {
 			));
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=406588, [1.8][compiler][codegen] java.lang.invoke.LambdaConversionException: Incorrect number of parameters for static method newinvokespecial
-public void test406588() {
+public void test406588() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			false /* skipJavac */,
 			null,
@@ -6683,7 +6683,7 @@ public void test406588() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=406586, [1.8][compiler] Missing error about unavailable enclosing instance
-public void test406586() {
+public void test406586() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -6706,7 +6706,7 @@ public void test406586() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=401989, [1.8][compiler] hook lambda expressions into "can be static" analysis
-public void test401989() {
+public void test401989() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map compilerOptions = getCompilerOptions();
 		compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
 		compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBePotentiallyStatic, CompilerOptions.ERROR);
@@ -6741,7 +6741,7 @@ public void test401989() {
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=406773, [1.8][compiler][codegen] "java.lang.IncompatibleClassChangeError" caused by attempted invocation of private constructor
-public void test406773() {
+public void test406773() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map compilerOptions = getCompilerOptions();
 		compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
 		compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBePotentiallyStatic, CompilerOptions.ERROR);
@@ -6812,7 +6812,7 @@ public void test406773() {
 			compilerOptions /* custom options */
 		);
 }
-public void test406773_positive() {
+public void test406773_positive() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// demonstrate that access to 'local' works in ctors for Y and Z
 	this.runConformTest(
 		new String[] {
@@ -6861,7 +6861,7 @@ public void test406773_positive() {
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=406859,  [1.8][compiler] Bad hint that method could be declared static
-public void test406859a() {
+public void test406859a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map compilerOptions = getCompilerOptions();
 		compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
 		compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBePotentiallyStatic, CompilerOptions.ERROR);
@@ -6889,7 +6889,7 @@ public void test406859a() {
 		);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=406859,  [1.8][compiler] Bad hint that method could be declared static
-public void test406859b() {
+public void test406859b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map compilerOptions = getCompilerOptions();
 		compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
 		compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBePotentiallyStatic, CompilerOptions.ERROR);
@@ -6921,7 +6921,7 @@ public void test406859b() {
 		);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=406859,  [1.8][compiler] Bad hint that method could be declared static
-public void test406859c() {
+public void test406859c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map compilerOptions = getCompilerOptions();
 		compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
 		compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBePotentiallyStatic, CompilerOptions.ERROR);
@@ -6953,7 +6953,7 @@ public void test406859c() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=406859,  [1.8][compiler] Bad hint that method could be declared static
 // A case where we can't help but report the wrong hint due to separate compilation.
-public void test406859d() {
+public void test406859d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBeStatic, CompilerOptions.ERROR);
 	compilerOptions.put(CompilerOptions.OPTION_ReportMethodCanBePotentiallyStatic, CompilerOptions.WARNING);
@@ -6991,7 +6991,7 @@ public void test406859d() {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=410114, [1.8] CCE when trying to parse method reference expression with inappropriate type arguments
-public void test410114() throws IOException {
+public void test410114() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source = "interface I {\n" +
 					"    void foo(Y<String> y);\n" +
 					"}\n" +
@@ -7029,7 +7029,7 @@ public void test410114() throws IOException {
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=412453,
 //[1.8][compiler] Stackoverflow when compiling LazySeq
-public void test412453() {
+public void test412453() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -7068,7 +7068,7 @@ public void test412453() {
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=412284,
 //[1.8][compiler] [1.8][compiler] Inspect all casts to/instanceof AbstractMethodDeclaration to eliminate potential CCEs
-public void test412284a() {
+public void test412284a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -7101,7 +7101,7 @@ public void test412284a() {
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=412284,
 //[1.8][compiler] [1.8][compiler] Inspect all casts to/instanceof AbstractMethodDeclaration to eliminate potential CCEs
-public void test412284b() {
+public void test412284b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -7143,7 +7143,7 @@ public void test412284b() {
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=412284,
 //[1.8][compiler] [1.8][compiler] Inspect all casts to/instanceof AbstractMethodDeclaration to eliminate potential CCEs
-public void test412284c() {
+public void test412284c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -7194,7 +7194,7 @@ public void test412284c() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=412650
 // [1.8][compiler]Incongruent Lambda Exception thrown
-public void test412650() {
+public void test412650() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -7233,7 +7233,7 @@ public void test412650() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=409544
 // Bug 409544 - [1.8][compiler] Any local variable used but not declared in a lambda body must be definitely assigned before the lambda body.
-public void test409544() {
+public void test409544() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"Sample.java",
@@ -7260,7 +7260,7 @@ public void test409544() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=409544
 // Bug 409544 - [1.8][compiler] Any local variable used but not declared in a lambda body must be definitely assigned before the lambda body.
-public void test409544b() {
+public void test409544b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -7298,7 +7298,7 @@ public void test409544b() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=415844
 // Bug 415844 - [1.8][compiler] Blank final initialized in a lambda expression should not pass
-public void test415844a() {
+public void test415844a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"Sample.java",
@@ -7325,7 +7325,7 @@ public void test415844a() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=415844
 // Bug 415844 - [1.8][compiler] Blank final initialized in a lambda expression should not pass
-public void test415844b() {
+public void test415844b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -7361,7 +7361,7 @@ public void test415844b() {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=404657 [1.8][compiler] Analysis for effectively final variables fails to consider loops
-public void test404657_final() {
+public void test404657_final() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -7391,7 +7391,7 @@ public void test404657_final() {
 		);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=404657 [1.8][compiler] Analysis for effectively final variables fails to consider loops
-public void test404657_loop() {
+public void test404657_loop() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -7418,7 +7418,7 @@ public void test404657_loop() {
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=420580, [1.8][compiler] ReferenceExpression drops explicit type arguments
-public void testExplicitTypeArgument() {
+public void testExplicitTypeArgument() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -7444,7 +7444,7 @@ public void testExplicitTypeArgument() {
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=420582,  [1.8][compiler] Compiler should allow creation of generic array creation with unbounded wildcard type arguments
-public void testGenericArrayCreation() {
+public void testGenericArrayCreation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -7477,7 +7477,7 @@ public void testGenericArrayCreation() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=420598, [1.8][compiler] Incorrect error about intersection cast type not being a functional interface.
-public void testIntersectionCast() {
+public void testIntersectionCast() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 					"X.java",
@@ -7507,7 +7507,7 @@ public void testIntersectionCast() {
 			"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=421711, [1.8][compiler] '_' as identifier for a lambda parameter should be rejected.
-public void testUnderScoreParameter() {
+public void testUnderScoreParameter() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel >= ClassFileConstants.JDK22)
 			return;
 		String level = this.complianceLevel >= ClassFileConstants.JDK9 ? "ERROR" : "WARNING";
@@ -7530,7 +7530,7 @@ public void testUnderScoreParameter() {
 					"	}\n" +
 					"}\n"
 			},
-			"----------\n" +
+			"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"1. ERROR in X.java (at line 6)\n" +
 			"	F f = (int _) -> {\n" +
 			"	           ^\n" +
@@ -7549,7 +7549,7 @@ public void testUnderScoreParameter() {
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=383096, [1.8][compiler]NullPointerException with a wrong lambda code snippet.
-public void test383096() {
+public void test383096() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -7581,7 +7581,7 @@ public void test383096() {
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422516,  [1.8][compiler] NPE in ArrayReference.analyseAssignment.
-public void test422516() {
+public void test422516() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -7608,7 +7608,7 @@ public void test422516() {
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422516,  [1.8][compiler] NPE in ArrayReference.analyseAssignment.
-public void test422516a() {
+public void test422516a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -7634,7 +7634,7 @@ public void test422516a() {
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422489, [1.8][compiler] NPE in CompoundAssignment.analyseCode when creating AST for java.util.stream.Collectors
-public void test422489() {
+public void test422489() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -7663,7 +7663,7 @@ public void test422489() {
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422489, [1.8][compiler] NPE in CompoundAssignment.analyseCode when creating AST for java.util.stream.Collectors
-public void test422489a() { // interfaces and methods order changed, triggers NPE.
+public void test422489a() { // interfaces and methods order changed, triggers NPE. //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -7698,7 +7698,7 @@ public void test422489a() { // interfaces and methods order changed, triggers NP
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422489, [1.8][compiler] NPE in CompoundAssignment.analyseCode when creating AST for java.util.stream.Collectors
-public void test422489b() { // interfaces and methods order changed, triggers NPE.
+public void test422489b() { // interfaces and methods order changed, triggers NPE. //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			false /* skipJavac */,
 			JavacTestOptions.Excuse.JavacHasWarningsEclipseNotConfigured,
@@ -7724,7 +7724,7 @@ public void test422489b() { // interfaces and methods order changed, triggers NP
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422489, [1.8][compiler] NPE in CompoundAssignment.analyseCode when creating AST for java.util.stream.Collectors
-public void test422489c() { // interfaces and methods order changed, triggers NPE.
+public void test422489c() { // interfaces and methods order changed, triggers NPE. //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -7759,7 +7759,7 @@ public void test422489c() { // interfaces and methods order changed, triggers NP
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422489, [1.8][compiler] NPE in CompoundAssignment.analyseCode when creating AST for java.util.stream.Collectors
-public void test422489d() { // interfaces and methods order changed, triggers NPE.
+public void test422489d() { // interfaces and methods order changed, triggers NPE. //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -7794,7 +7794,7 @@ public void test422489d() { // interfaces and methods order changed, triggers NP
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422801, [1.8][compiler] NPE in MessageSend.analyseCode in lambda body with missing import
-public void test422801() {
+public void test422801() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -7815,7 +7815,7 @@ public void test422801() {
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422801, [1.8][compiler] NPE in MessageSend.analyseCode in lambda body with missing import
-public void test422801a() {
+public void test422801a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -7842,7 +7842,7 @@ public void test422801a() {
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=405134, [1.8][code assist + compiler] compiler and code assist problem in multilevel lambda with curly bracketed body
-public void test405134a() {
+public void test405134a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -7883,7 +7883,7 @@ public void test421927() {
 			true);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=421927, [1.8][compiler] Bad diagnostic: Unnecessary cast from I to I for lambdas.
-public void test421927a() {
+public void test421927a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			false,
 			Excuse.EclipseHasSomeMoreWarnings,
@@ -7913,7 +7913,7 @@ public void test421927a() {
 			true);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=423429, [1.8][compiler] NPE in LambdaExpression.analyzeCode
-public void test423429() {
+public void test423429() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -7943,7 +7943,7 @@ public void test423429() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=423129,  [1.8][compiler] Hook up lambda expressions into statement recovery
-public void test423129() {
+public void test423129() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -7977,7 +7977,7 @@ public void test423129() {
 			true);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=423129,  [1.8][compiler] Hook up lambda expressions into statement recovery
-public void test423129b() {
+public void test423129b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -8003,7 +8003,7 @@ public void test423129b() {
 			true);
 }
 // modified the previous example to craft a result requiring constant narrowing (13 -> byte)
-public void test423129c() {
+public void test423129c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"X.java",
@@ -8022,7 +8022,7 @@ public void test423129c() {
 			});
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=424400, [1.8] Interfaces in the same hierarchy are allowed in an intersection cast with different type argument
-public void test424400() {
+public void test424400() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -8054,7 +8054,7 @@ public void test424400() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=424400, [1.8] Interfaces in the same hierarchy are allowed in an intersection cast with different type argument
-public void _test424400() {
+public void _test424400() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -8088,7 +8088,7 @@ public void _test424400() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=424444, [1.8] VerifyError when constructor reference used with array
-public void test424444() throws Exception {
+public void test424444() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -8114,7 +8114,7 @@ public void test424444() throws Exception {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=425512, [1.8][compiler] Arrays should be allowed in intersection casts
-public void test425512() throws Exception {
+public void test425512() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -8135,7 +8135,7 @@ public void test425512() throws Exception {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=425512, [1.8][compiler] Arrays should be allowed in intersection casts
-public void test425512a() throws Exception {
+public void test425512a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -8157,7 +8157,7 @@ public void test425512a() throws Exception {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=425512, [1.8][compiler] Arrays should be allowed in intersection casts
-public void test425512b() throws Exception {
+public void test425512b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -8179,7 +8179,7 @@ public void test425512b() throws Exception {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=425512, [1.8][compiler] Arrays should be allowed in intersection casts
-public void test425512c() throws Exception {
+public void test425512c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -8201,7 +8201,7 @@ public void test425512c() throws Exception {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=425512, [1.8][compiler] Arrays should be allowed in intersection casts
-public void test425512cd() throws Exception {
+public void test425512cd() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -8228,7 +8228,7 @@ public void test425512cd() throws Exception {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=425512, [1.8][compiler] Arrays should be allowed in intersection casts
-public void test425512ce() throws Exception {
+public void test425512ce() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -8255,7 +8255,7 @@ public void test425512ce() throws Exception {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=425621, [1.8][compiler] Missing error for raw type in constructor reference with explicit type arguments
-public void test425621() throws Exception {
+public void test425621() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -8282,7 +8282,7 @@ public void test425621() throws Exception {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=423803, [1.8][compiler] No error shown for ambiguous reference to the method
-public void test423803() throws Exception {
+public void test423803() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -8320,7 +8320,7 @@ public void test423803() throws Exception {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=423803, [1.8][compiler] No error shown for ambiguous reference to the method
-public void test423803b() throws Exception {
+public void test423803b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -8348,7 +8348,7 @@ public void test423803b() throws Exception {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=425712, [1.8][compiler] Valid program rejected by the compiler.
-public void test425712() throws Exception {
+public void test425712() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -8374,7 +8374,7 @@ public void test425712() throws Exception {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=421926, [1.8][compiler] Compiler tolerates illegal forward reference from lambda in initializer
-public void test421926() throws Exception {
+public void test421926() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -8406,7 +8406,7 @@ public void test421926() throws Exception {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=421926, [1.8][compiler] Compiler tolerates illegal forward reference from lambda in initializer
-public void test421926b() throws Exception {
+public void test421926b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -8441,7 +8441,7 @@ public void test421926c() throws Exception {
 		"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=426206, [1.8][compiler] Compiler tolerates illegal code.
-public void test426206() throws Exception {
+public void test426206() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -8464,7 +8464,7 @@ public void test426206() throws Exception {
 		"Type mismatch: cannot convert from Comparator<Long> to Comparator<? extends String>\n" +
 		"----------\n");
 }
-public void testBug426563() {
+public void testBug426563() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -8518,7 +8518,7 @@ public void test426965() {
 		"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=427207, - [1.8][bytecode] Runtime type problem: Instruction type does not match stack map
-public void test427207() {
+public void test427207() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -8545,7 +8545,7 @@ public void test427207() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=425278, [1.8][compiler] Suspect error: The target type of this expression is not a well formed parameterized type due to bound(s) mismatch
 // NOTE: javac 8b127 incorrectly accepts this program due to https://bugs.openjdk.java.net/browse/JDK-8033810
-public void test425278() {
+public void test425278() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		false /*skipJavac */,
 		JavacTestOptions.JavacHasABug.JavacBug8033810,
@@ -8584,7 +8584,7 @@ public void test427265() {
 		"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=427749, - [1.8][compiler]NullPointerException in ReferenceExpression.resolveType
-public void test427749() {
+public void test427749() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -8666,7 +8666,7 @@ public void test428300a() {
 		"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428177, - [1.8][compiler] Insistent capture issues
-public void test428177() {
+public void test428177() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -8745,7 +8745,7 @@ public void test428177() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428795, - [1.8]Internal compiler error: java.lang.NullPointerException at org.eclipse.jdt.internal.compiler.ast.MessageSend.analyseCode
-public void test428795() {
+public void test428795() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -8769,7 +8769,7 @@ public void test428795() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428857, - [1.8] Method reference to instance method of generic class incorrectly gives raw type warning
-public void test428857() {
+public void test428857() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportRawTypeReference, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -8794,7 +8794,7 @@ public void test428857() {
 		"----------\n", null, false, customOptions);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428857, - [1.8] Method reference to instance method of generic class incorrectly gives raw type warning
-public void test428857a() {
+public void test428857a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportRawTypeReference, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -8824,7 +8824,7 @@ public void test428857a() {
 		"----------\n", null, false, customOptions);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428857, - [1.8] Method reference to instance method of generic class incorrectly gives raw type warning
-public void test428857b() {
+public void test428857b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportRawTypeReference, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -8854,7 +8854,7 @@ public void test428857b() {
 		"----------\n", null, false, customOptions);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428857, - [1.8] Method reference to instance method of generic class incorrectly gives raw type warning
-public void test428857c() {
+public void test428857c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportRawTypeReference, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -8889,7 +8889,7 @@ public void test428857c() {
 		"----------\n", null, false, customOptions);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428857, - [1.8] Method reference to instance method of generic class incorrectly gives raw type warning
-public void test428857d() {
+public void test428857d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportRawTypeReference, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -8924,7 +8924,7 @@ public void test428857d() {
 		"----------\n", null, false, customOptions);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428857, - [1.8] Method reference to instance method of generic class incorrectly gives raw type warning
-public void test428857e() {
+public void test428857e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportRawTypeReference, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -8964,7 +8964,7 @@ public void test428857e() {
 		"----------\n", null, false, customOptions);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428857, - [1.8] Method reference to instance method of generic class incorrectly gives raw type warning
-public void test428857f() {
+public void test428857f() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportRawTypeReference, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -8999,7 +8999,7 @@ public void test428857f() {
 		"----------\n", null, false, customOptions);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428857, - [1.8] Method reference to instance method of generic class incorrectly gives raw type warning
-public void test428857g() {
+public void test428857g() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportRawTypeReference, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -9029,7 +9029,7 @@ public void test428857g() {
 		"----------\n", null, false, customOptions);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=429833, - [1.8][compiler] Missing types cause NPE in lambda analysis.
-public void test429833() {
+public void test429833() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9053,7 +9053,7 @@ public void test429833() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=429934, - [1.8][search] for references to type of lambda with 'this' parameter throws AIIOBE/NPE
-public void test429934() {
+public void test429934() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9107,7 +9107,7 @@ public void test429934() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=429969, [1.8][compiler] Possible RuntimeException in Lambda tangles ECJ
-public void test429969() {
+public void test429969() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -9143,7 +9143,7 @@ public void test429969() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=429969, [1.8][compiler] Possible RuntimeException in Lambda tangles ECJ
-public void test429969a() {
+public void test429969a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -9167,7 +9167,7 @@ public void test429969a() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=430310, [1.8][compiler] Functional interface incorrectly rejected as not being.
-public void test430310() {
+public void test430310() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -9192,7 +9192,7 @@ public void test430310() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=424154, [1.8][compiler] PolyTypeBinding must not render the full lambda body in error messages
 //Example copied from bug report.
-public void test424154a() throws Exception {
+public void test424154a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9222,7 +9222,7 @@ public void test424154a() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=424154,  [1.8][compiler] PolyTypeBinding must not render the full lambda body in error messages
 //Variations where return types or arguments mismatch or both.
-public void test424154b() throws Exception {
+public void test424154b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9265,7 +9265,7 @@ public void test424154b() throws Exception {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=431514 [1.8] Incorrect compilation error in lambda expression
-public void test431514() {
+public void test431514() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9291,7 +9291,7 @@ public void test431514() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=439707 [1.8][compiler] Lambda can be passed illegally to invisible method argument
-public void test439707() {
+public void test439707() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9317,7 +9317,7 @@ public void test439707() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=442983, [1.8] NPE in Scope.findDefaultAbstractMethod
-public void test442983() {
+public void test442983() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9346,7 +9346,7 @@ public void test442983() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=438945, [1.8] NullPointerException InferenceContext18.checkExpression in java 8 with generics, primitives, and overloading
-public void test438945() {
+public void test438945() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		false /* skipJavac */,
 		JavacTestOptions.Excuse.JavacHasWarningsEclipseNotConfigured,
@@ -9369,7 +9369,7 @@ public void test438945() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=440643, Eclipse compiler doesn't like method references with overloaded varargs method
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=439515, [1.8] ECJ reports error at method reference to overloaded instance method
-public void test440643() {
+public void test440643() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnusedPrivateMember, CompilerOptions.ERROR);
 
@@ -9407,7 +9407,7 @@ public void test440643() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=440643, Eclipse compiler doesn't like method references with overloaded varargs method
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=439515, [1.8] ECJ reports error at method reference to overloaded instance method
-public void test440643a() {
+public void test440643a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9439,7 +9439,7 @@ public void test440643a() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=440643, Eclipse compiler doesn't like method references with overloaded varargs method
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=439515, [1.8] ECJ reports error at method reference to overloaded instance method
-public void test440643b() {
+public void test440643b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9467,7 +9467,7 @@ public void test440643b() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=435397, [1.8][compiler] Ambiguous method while using Lambdas
-public void test435397() {
+public void test435397() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9516,7 +9516,7 @@ public void test435397() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=433458, [1.8][compiler] Eclipse accepts lambda expression with potentially uninitialized arguments
-public void test433458() {
+public void test433458() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9551,7 +9551,7 @@ public void test433458() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=433458, [1.8][compiler] Eclipse accepts lambda expression with potentially uninitialized arguments
-public void test433458a() {
+public void test433458a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9580,7 +9580,7 @@ public void test433458a() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=433588, [1.8][compiler] ECJ compiles an ambiguous call in the presence of an unrelated unused method.
-public void test433588() {
+public void test433588() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String errMessage = isMinimumCompliant(ClassFileConstants.JDK11) ?
 			"----------\n" +
 			"1. WARNING in X.java (at line 15)\n" +
@@ -9667,7 +9667,7 @@ public void test433588() {
 		errMessage);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=433588, [1.8][compiler] ECJ compiles an ambiguous call in the presence of an unrelated unused method.
-public void test433588a() {
+public void test433588a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String errMessage = isMinimumCompliant(ClassFileConstants.JDK11) ?
 			"----------\n" +
 			"1. ERROR in X.java (at line 29)\n" +
@@ -9744,7 +9744,7 @@ public void test433588a() {
 		errMessage);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=433735, [1.8] Discrepancy with javac when dealing with local classes in lambda expressions
-public void test433735() {
+public void test433735() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -9788,7 +9788,7 @@ public void test433735() {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=432531 [1.8] VerifyError with anonymous subclass inside of lambda expression in the superclass constructor call
-public void test432531a() {
+public void test432531a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -9827,7 +9827,7 @@ public void test432531a() {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=432605, [1.8] Incorrect error "The type ArrayList<T> does not define add(ArrayList<T>, Object) that is applicable here"
-public void _test432605() {
+public void _test432605() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9907,7 +9907,7 @@ public void test444665() {
 	"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=442446, [1.8][compiler] compiler unable to infer lambda's generic argument types
-public void test442446() {
+public void test442446() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9931,7 +9931,7 @@ public void test442446() {
 	"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=432759,  [1.8][compiler] Some differences between Javac and ECJ regarding wildcards and static methods
-public void test432759() {
+public void test432759() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		false /* skipJavac */,
 		JavacTestOptions.Excuse.JavacDoesNotCompileCorrectSource,
@@ -9976,7 +9976,7 @@ public void test432759() {
 	"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=437444#c36,  NPE in broken code
-public void test437444() {
+public void test437444() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -10012,7 +10012,7 @@ public void test437444() {
 	"----------\n");
 }
 // test ground target type with wildcards left in non parameter positions.
-public void testGroundTargetTypeWithWithWildcards() {
+public void testGroundTargetTypeWithWithWildcards() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -10037,7 +10037,7 @@ public void testGroundTargetTypeWithWithWildcards() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=474522, [1.8][compiler] ecj doesn't handle captured final fields correctly in lambdas
-public void test474522() {
+public void test474522() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"Bug.java",
@@ -10073,7 +10073,7 @@ public void test474522() {
 		"The blank final field s may not have been initialized\n" +
 		"----------\n");
 }
-public void testBug487390() {
+public void testBug487390() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -10105,7 +10105,7 @@ public void testBug487390() {
 		"Lambda expression\'s signature does not match the signature of the functional interface method consume()\n" +
 		"----------\n");
 }
-public void testBug487390b() {
+public void testBug487390b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -10133,7 +10133,7 @@ public void testBug487390b() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=458332, [1.8][compiler] only 409 method references/lambda expressions per class possible
-public void testBug458332() {
+public void testBug458332() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		false,
 		null,
@@ -10236,7 +10236,7 @@ public void testBug458332() {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/125
 // Java parser/compiler accepts invalid source code with lambdas
-public void testGH125() {
+public void testGH125() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"ParserBug.java",
@@ -10303,7 +10303,7 @@ public void testGH125() {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/367
 // ECJ accepts invalid syntax without error
-public void testGH367() {
+public void testGH367() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"EclipseParserBug.java",
@@ -10325,7 +10325,7 @@ public void testGH367() {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/859
 // Invalid code not rejected by compiler
-public void testGH859() {
+public void testGH859() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"CFSXXX.java",
@@ -10363,7 +10363,7 @@ public void testGH859() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=553601
 // Compile without errors invalid source code
-public void test553601() {
+public void test553601() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"TestOptional3.java",
@@ -10612,7 +10612,7 @@ public void test553601() {
 		"----------\n");
 }
 
-public void testIssue810() {
+public void testIssue810() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -10646,7 +10646,7 @@ public void testIssue810() {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3792
 // Silent Acceptance of Non-Final Variable in Unreachable Lambda Expression
-public void testIssue3792() {
+public void testIssue3792() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -10688,7 +10688,7 @@ public void testIssue3792() {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3792
 // Silent Acceptance of Non-Final Variable in Unreachable Lambda Expression
-public void testIssue3792_full() {
+public void testIssue3792_full() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"Test.java",
@@ -10743,7 +10743,7 @@ public void testIssue3792_full() {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3956
 // NPE in TypeBinding.getSingleAbstractMethod()
-public void testIssue3956() {
+public void testIssue3956() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"TestMe.java",
@@ -10816,7 +10816,7 @@ public void testIssue3956() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=568332
 //  Internal compiler error: NPE in QualifiedNameReference.optimizedBooleanConstant(QualifiedNameReference.java:931) because "this.binding" is null
-public void testBug568332() {
+public void testBug568332() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -10847,7 +10847,7 @@ public void testBug568332() {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4202
 // java.lang.NullPointerException: Cannot invoke "org.eclipse.jdt.internal.compiler.lookup.TypeBinding.isLocalType()" because "originalType" is null
-public void testIssue4202() {
+public void testIssue4202() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -10953,7 +10953,7 @@ this.runNegativeTest(
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/903
 // Internal/synthetic token name ElidedSemicolonAndRightBrace shows up in compile error messages
-public void testIssue903() {
+public void testIssue903() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 this.runNegativeTest(
 		new String[] {
 			"X.java",

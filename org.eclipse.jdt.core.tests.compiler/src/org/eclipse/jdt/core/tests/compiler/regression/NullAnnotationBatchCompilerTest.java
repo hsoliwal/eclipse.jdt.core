@@ -140,7 +140,7 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=325342
 	// -err option - regression tests to check option nullAnnot
 	// Null warnings because of annotations, null spec violations plus one specific problem configured as errors
-	public void test314_warn_options() {
+	public void test314_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 					"p/X.java",
@@ -188,7 +188,7 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 
 	// -warn option - regression tests to check option nullAnnot and missingNullDefault
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=372012
-	public void test315_warn_options() {
+	public void test315_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 					"p/package-info.java",
@@ -227,7 +227,7 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 
 	// -warn option - regression tests to check option nullAnnot and missingNullDefault
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=372012
-	public void test315_warn_options_a() {
+	public void test315_warn_options_a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 					"p1/X1.java",
@@ -259,7 +259,7 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 
 	// -warn option - regression tests to check option nullAnnot and missingNullDefault
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=372012
-	public void test315_warn_options_b() {
+	public void test315_warn_options_b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 					"X1.java",
@@ -296,7 +296,7 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=325342
 	// -warn option - regression tests to check option nullAnnot
 	// option syntax error
-	public void test316_warn_options() {
+	public void test316_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 					"p/X.java",
@@ -323,7 +323,7 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=408815
 	// -warn option - regression tests to check option syntacticAnalysis
 	// Null warnings because of annotations, null spec violations, suppressed by null-check
-	public void test316b_warn_options() {
+	public void test316b_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 					"p/X.java",
@@ -356,7 +356,7 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=325342
 	// -warn option - regression tests to check option nullAnnot (no args)
 	// Null warnings because of annotations, null spec violations
-	public void test313_warn_options() {
+	public void test313_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 					"p/X.java",
@@ -404,7 +404,7 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 
 	// Bug 388281 - [compiler][null] inheritance of null annotations as an option
 	// -warn option - regression tests to check option inheritNullAnnot
-	public void test320_warn_options() {
+	public void test320_warn_options() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 					"p/Super.java",
@@ -444,7 +444,7 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 	}
 
 	// -warn option - test multiple sets of null annotations
-	public void testBug466291() {
+	public void testBug466291() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 					"p/X.java",
@@ -485,7 +485,7 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 			true);
 
 		// test twice: 1. against SourceTypeBinding(p.X), 2. against BinaryTypeBinding(p.X):
-		for (int i=0; i<2; i++) {
+		for (int i=0; i<2; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.runNegativeTest(
 					new String[] {
 							"p2/X2.java",
@@ -520,13 +520,13 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 					"1 problem (1 error)\n",
 					false);
 			// force reading of BinaryTypeBinding(p.X):
-			String xPath = OUTPUT_DIR + File.separator + "p" + File.separator + "X.java";
-			new File(xPath).delete();
+			String xPath = OUTPUT_DIR + File.separator + "p" + File.separator + "X.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			new File(xPath).delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 
 	//-warn option - test multiple sets of null annotations, three (partial) sets of secondary annotations
-	public void testBug466291b() {
+	public void testBug466291b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 					"p/X.java",
@@ -567,8 +567,8 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 			true);
 
 		// force reading of BinaryTypeBinding(p.X):
-		String xPath = OUTPUT_DIR + File.separator + "p" + File.separator + "X.java";
-		new File(xPath).delete();
+		String xPath = OUTPUT_DIR + File.separator + "p" + File.separator + "X.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		new File(xPath).delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		this.runNegativeTest(
 				new String[] {
@@ -612,9 +612,9 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 
 	// Bug 375366 - ECJ ignores unusedParameterIncludeDocCommentReference unless enableJavadoc option is set
 	// property file enables null annotation support
-	public void testBug375366c() throws IOException {
+	public void testBug375366c() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		createOutputTestDirectory("regression/.settings");
-		Util.createFile(OUTPUT_DIR+"/.settings/org.eclipse.jdt.core.prefs",
+		Util.createFile(OUTPUT_DIR+"/.settings/org.eclipse.jdt.core.prefs", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"eclipse.preferences.version=1\n" +
 				"org.eclipse.jdt.core.compiler.annotation.nullanalysis=enabled\n");
 		this.runNegativeTest(
@@ -665,9 +665,9 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 
 	// Bug 375366 - ECJ ignores unusedParameterIncludeDocCommentReference unless enableJavadoc option is set
 	// property file enables null annotation support, one optional warning disabled
-	public void testBug375366d() throws IOException {
+	public void testBug375366d() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		createOutputTestDirectory("regression/.settings");
-		Util.createFile(OUTPUT_DIR+"/.settings/org.eclipse.jdt.core.prefs",
+		Util.createFile(OUTPUT_DIR+"/.settings/org.eclipse.jdt.core.prefs", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"eclipse.preferences.version=1\n" +
 				"org.eclipse.jdt.core.compiler.annotation.nullanalysis=enabled\n" +
 				"org.eclipse.jdt.core.compiler.problem.nonnullParameterAnnotationDropped=ignore\n");
@@ -714,17 +714,17 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 
 	// Bug 440477 - [null] Infrastructure for feeding external annotations into compilation
 	// - single external annotation directory
-	public void test440477() throws IOException {
-		String annots_dir = Util.getOutputDirectory() + File.separator + "annots";
-		String annots_java_util = annots_dir + File.separator + "java/util";
-		new File(annots_java_util).mkdirs();
+	public void test440477() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		String annots_dir = Util.getOutputDirectory() + File.separator + "annots"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String annots_java_util = annots_dir + File.separator + "java/util"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		new File(annots_java_util).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		Util.createFile(
-				annots_java_util + File.separator + "Map.eea",
+				annots_java_util + File.separator + "Map.eea", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				TEST_440687_MAP_EEA_CONTENT);
 
-		String o_e_j_annotation_dir = OUTPUT_DIR + File.separator +
+		String o_e_j_annotation_dir = OUTPUT_DIR + File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"org" + File.separator + "eclipse" + File.separator + "jdt" + File.separator + "annotation";
-		String j_l_annotation_dir = OUTPUT_DIR +  File.separator +
+		String j_l_annotation_dir = OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"java" + File.separator + "lang" + File.separator + "annotation";
 		this.runConformTest(
 			new String[] {
@@ -753,7 +753,7 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 				"	}\n" +
 				"}\n"
 				},
-				" -1.8 -proc:none -d none -warn:+nullAnnot -annotationpath " + annots_dir +
+				" -1.8 -proc:none -d none -warn:+nullAnnot -annotationpath " + annots_dir + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				" -sourcepath \"" + OUTPUT_DIR + "\" " +
 				// explicitly mention all files to ensure a good order, cannot pull in source of NNBD on demand
 				"\"" + j_l_annotation_dir   +  File.separator + "ElementType.java\" " +
@@ -787,7 +787,7 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 				" (L0java/lang/Object;)Z\n";
 	// Bug 440687 - [compiler][batch][null] improve command line option for external annotations
 	// work horse for tests below
-	void runTest440687(String compilerPathArgs, String extraSourcePaths, String expectedCompilerMessage, boolean isSuccess) {
+	void runTest440687(String compilerPathArgs, String extraSourcePaths, String expectedCompilerMessage, boolean isSuccess) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		String[] testFiles = new String[] {
 					"java/lang/annotation/ElementType.java",
@@ -817,12 +817,12 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 					"}\n"
 				};
 
-		String o_e_j_annotation_dir = OUTPUT_DIR + File.separator +
+		String o_e_j_annotation_dir = OUTPUT_DIR + File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"org" + File.separator + "eclipse" + File.separator + "jdt" + File.separator + "annotation";
-		String j_l_annotation_dir = OUTPUT_DIR +  File.separator +
+		String j_l_annotation_dir = OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"java" + File.separator + "lang" + File.separator + "annotation";
 
-		String commandLine = " -1.8 -proc:none -d none -warn:+nullAnnot " + compilerPathArgs +
+		String commandLine = " -1.8 -proc:none -d none -warn:+nullAnnot " + compilerPathArgs + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				" -sourcepath \"" + OUTPUT_DIR + extraSourcePaths + "\" " +
 				// explicitly mention all files to ensure a good order, cannot pull in source of NNBD on demand
 				"\"" + j_l_annotation_dir   +  File.separator + "ElementType.java\" " +
@@ -856,55 +856,55 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 	}
 	// Bug 440687 - [compiler][batch][null] improve command line option for external annotations
 	// - two external annotation directories as part of the sourcepath/classpath
-	public void test440687a() throws IOException {
+	public void test440687a() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
-		String annots_dir1 = Util.getOutputDirectory() + File.separator + "annots1";
-		String annots_java_util = annots_dir1 + File.separator + "java/util";
-		new File(annots_java_util).mkdirs();
-		Util.createFile(annots_java_util + File.separator + "Map.eea",
+		String annots_dir1 = Util.getOutputDirectory() + File.separator + "annots1"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String annots_java_util = annots_dir1 + File.separator + "java/util"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		new File(annots_java_util).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		Util.createFile(annots_java_util + File.separator + "Map.eea", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				TEST_440687_MAP_EEA_CONTENT);
 
-		String annots_dir2 = Util.getOutputDirectory() + File.separator + "annots2";
-		String annots_java_lang = annots_dir2 + File.separator + "java/lang";
-		new File(annots_java_lang).mkdirs();
-		Util.createFile(annots_java_lang + File.separator + "Object.eea",
+		String annots_dir2 = Util.getOutputDirectory() + File.separator + "annots2"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String annots_java_lang = annots_dir2 + File.separator + "java/lang"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		new File(annots_java_lang).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		Util.createFile(annots_java_lang + File.separator + "Object.eea", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				TEST_440687_OBJECT_EEA_CONTENT);
 
-		runTest440687("-annotationpath CLASSPATH -classpath \"" + annots_dir2 + "\"",
-				File.pathSeparator + annots_dir1, // extra source path
+		runTest440687("-annotationpath CLASSPATH -classpath \"" + annots_dir2 + "\"", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				File.pathSeparator + annots_dir1, // extra source path //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				null, // expect normal error
 				true);
 	}
 	// Bug 440687 - [compiler][batch][null] improve command line option for external annotations
 	// - two external annotation directories specifically configured.
-	public void test440687b() throws IOException {
+	public void test440687b() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
-		String annots_dir = Util.getOutputDirectory() + File.separator + "annots1";
-		String annots_java_util = annots_dir + File.separator + "java/util";
-		new File(annots_java_util).mkdirs();
+		String annots_dir = Util.getOutputDirectory() + File.separator + "annots1"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String annots_java_util = annots_dir + File.separator + "java/util"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		new File(annots_java_util).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		Util.createFile(
-				annots_java_util + File.separator + "Map.eea",
+				annots_java_util + File.separator + "Map.eea", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				TEST_440687_MAP_EEA_CONTENT);
 
-		String annots_dir2 = Util.getOutputDirectory() + File.separator + "annots2";
-		String annots_java_lang = annots_dir2 + File.separator + "java/lang";
-		new File(annots_java_lang).mkdirs();
+		String annots_dir2 = Util.getOutputDirectory() + File.separator + "annots2"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String annots_java_lang = annots_dir2 + File.separator + "java/lang"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		new File(annots_java_lang).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		Util.createFile(
-				annots_java_lang + File.separator + "Object.eea",
+				annots_java_lang + File.separator + "Object.eea", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				TEST_440687_OBJECT_EEA_CONTENT);
 
-		runTest440687("-annotationpath \"" + annots_dir + File.pathSeparator + annots_dir2 + "\" ",
+		runTest440687("-annotationpath \"" + annots_dir + File.pathSeparator + annots_dir2 + "\" ", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"", // no extra source path
 					null, // expect normal error
 					true);
 	}
 	// Bug 440687 - [compiler][batch][null] improve command line option for external annotations
 	// - single external annotation zip with 2 entries
-	public void test440687c() throws IOException {
+	public void test440687c() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
-		String annots_dir = Util.getOutputDirectory() + File.separator + "annots";
-		new File(annots_dir).mkdirs();
-		String annotsZipFile = annots_dir+ File.separator + "jre-annots.zip";
+		String annots_dir = Util.getOutputDirectory() + File.separator + "annots"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		new File(annots_dir).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		String annotsZipFile = annots_dir+ File.separator + "jre-annots.zip"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Util.createSourceZip(
 			new String[] {
 				"java/util/Map.eea",
@@ -914,7 +914,7 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 			},
 			annotsZipFile);
 
-		runTest440687("-annotationpath CLASSPATH -classpath \"" + annotsZipFile + "\"",
+		runTest440687("-annotationpath CLASSPATH -classpath \"" + annotsZipFile + "\"", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"", // no extra source path
 						null, // expect normal error
 						true);
@@ -929,19 +929,19 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 	}
 
 	// project is configured for eea (directory on classpath), but no specific file for Map found
-	public void test490010NoEeaFile1() throws IOException {
+	public void test490010NoEeaFile1() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
-		String annots_dir1 = Util.getOutputDirectory() + File.separator + "annots1";
-		new File(annots_dir1).mkdirs();
+		String annots_dir1 = Util.getOutputDirectory() + File.separator + "annots1"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		new File(annots_dir1).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
-		String annots_dir2 = Util.getOutputDirectory() + File.separator + "annots2";
-		String annots_java_lang = annots_dir2 + File.separator + "java/lang";
-		new File(annots_java_lang).mkdirs();
-		Util.createFile(annots_java_lang + File.separator + "Object.eea",
+		String annots_dir2 = Util.getOutputDirectory() + File.separator + "annots2"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String annots_java_lang = annots_dir2 + File.separator + "java/lang"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		new File(annots_java_lang).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		Util.createFile(annots_java_lang + File.separator + "Object.eea", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				TEST_440687_OBJECT_EEA_CONTENT);
 
-		runTest440687("-annotationpath CLASSPATH -classpath \"" + annots_dir2 + "\"",
-				File.pathSeparator + annots_dir1, // extra source path
+		runTest440687("-annotationpath CLASSPATH -classpath \"" + annots_dir2 + "\"", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				File.pathSeparator + annots_dir1, // extra source path //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"----------\n" +
 				"1. WARNING in ---OUTPUT_DIR_PLACEHOLDER---/test1/Test1.java (at line 9)\n" +
 				"	Test1 v = map.get(key);\n" +
@@ -968,22 +968,22 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 	}
 
 	// project is configured for eea (jar on classpath), but no specific file for Map found
-	public void test490010NoEeaFile2() throws IOException {
+	public void test490010NoEeaFile2() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
-		String annots_dir1 = Util.getOutputDirectory() + File.separator + "annots1";
-		new File(annots_dir1).mkdirs();
+		String annots_dir1 = Util.getOutputDirectory() + File.separator + "annots1"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		new File(annots_dir1).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
-		String annots_dir2 = Util.getOutputDirectory() + File.separator + "annots2";
-		String annots_java_lang = annots_dir2 + File.separator + "java/lang";
-		new File(annots_java_lang).mkdirs();
-		Util.createFile(annots_java_lang + File.separator + "Object.eea",
+		String annots_dir2 = Util.getOutputDirectory() + File.separator + "annots2"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String annots_java_lang = annots_dir2 + File.separator + "java/lang"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		new File(annots_java_lang).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		Util.createFile(annots_java_lang + File.separator + "Object.eea", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				TEST_440687_OBJECT_EEA_CONTENT);
-		String zipName = Util.getOutputDirectory() + File.separator + "annots2.zip";
+		String zipName = Util.getOutputDirectory() + File.separator + "annots2.zip"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Util.zip(new File(annots_dir2), zipName);
 		Util.delete(annots_dir2);
 
-		runTest440687("-annotationpath CLASSPATH -classpath \"" + zipName + "\"",
-				File.pathSeparator + annots_dir1, // extra source path
+		runTest440687("-annotationpath CLASSPATH -classpath \"" + zipName + "\"", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				File.pathSeparator + annots_dir1, // extra source path //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"----------\n" +
 				"1. WARNING in ---OUTPUT_DIR_PLACEHOLDER---/test1/Test1.java (at line 9)\n" +
 				"	Test1 v = map.get(key);\n" +
@@ -1010,22 +1010,22 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 	}
 
 	// project is configured for eea (dedicated annotation zip), but no specific file for Map found
-	public void test490010NoEeaFile3() throws IOException {
+	public void test490010NoEeaFile3() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
-		String annots_dir1 = Util.getOutputDirectory() + File.separator + "annots1";
-		new File(annots_dir1).mkdirs();
+		String annots_dir1 = Util.getOutputDirectory() + File.separator + "annots1"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		new File(annots_dir1).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
-		String annots_dir2 = Util.getOutputDirectory() + File.separator + "annots2";
-		String annots_java_lang = annots_dir2 + File.separator + "java/lang";
-		new File(annots_java_lang).mkdirs();
-		Util.createFile(annots_java_lang + File.separator + "Object.eea",
+		String annots_dir2 = Util.getOutputDirectory() + File.separator + "annots2"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String annots_java_lang = annots_dir2 + File.separator + "java/lang"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		new File(annots_java_lang).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		Util.createFile(annots_java_lang + File.separator + "Object.eea", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				TEST_440687_OBJECT_EEA_CONTENT);
-		String zipName = Util.getOutputDirectory() + File.separator + "annots2.zip";
+		String zipName = Util.getOutputDirectory() + File.separator + "annots2.zip"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Util.zip(new File(annots_dir2), zipName);
 		Util.delete(annots_dir2);
 
-		runTest440687("-annotationpath \"" + zipName + "\"",
-				File.pathSeparator + annots_dir1, // extra source path
+		runTest440687("-annotationpath \"" + zipName + "\"", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				File.pathSeparator + annots_dir1, // extra source path //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"----------\n" +
 				"1. WARNING in ---OUTPUT_DIR_PLACEHOLDER---/test1/Test1.java (at line 9)\n" +
 				"	Test1 v = map.get(key);\n" +
@@ -1059,22 +1059,22 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 	public void testBug571055_dedicatedAnnotationPath() throws IOException {
 		runTestBug571055(false, true);
 	}
-	private void runTestBug571055(boolean inheritAnnotations, boolean dedicatedAnnotationPath) throws IOException {
-		String annots_dir = Util.getOutputDirectory() + File.separator + "annots";
-		String annots_api = annots_dir + File.separator + "api";
-		new File(annots_api).mkdirs();
+	private void runTestBug571055(boolean inheritAnnotations, boolean dedicatedAnnotationPath) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		String annots_dir = Util.getOutputDirectory() + File.separator + "annots"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String annots_api = annots_dir + File.separator + "api"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		new File(annots_api).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		Util.createFile(
-				annots_api + File.separator + "Foo.eea",
+				annots_api + File.separator + "Foo.eea", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"class api/Foo\n" +
 				"m\n" +
 				" (Ljava/lang/String;)Ljava/lang/String;\n" +
 				" (L1java/lang/String;)L0java/lang/String;\n");
 		if (!inheritAnnotations) {
 			// 'manually' establish consistency:
-			String annots_impl = annots_dir + File.separator + "impl";
-			new File(annots_impl).mkdirs();
+			String annots_impl = annots_dir + File.separator + "impl"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			new File(annots_impl).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			Util.createFile(
-					annots_impl + File.separator + "FooImpl.eea",
+					annots_impl + File.separator + "FooImpl.eea", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"class impl/FooImpl\n" +
 					"m\n" +
 					" (Ljava/lang/String;)Ljava/lang/String;\n" +
@@ -1116,12 +1116,12 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 
 		String commandLine;
 		if (dedicatedAnnotationPath) {
-			commandLine = "-annotationpath \"" + annots_dir + "\" " +
+			commandLine = "-annotationpath \"" + annots_dir + "\" " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				" -1.8 -proc:none  -err:+nullAnnot -warn:+null " +
 				(inheritAnnotations ? " -warn:+inheritNullAnnot ": "") +
 				" \"" + OUTPUT_DIR + "\"";
 		} else {
-			commandLine = "-annotationpath CLASSPATH " +
+			commandLine = "-annotationpath CLASSPATH " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				" -1.8 -proc:none  -err:+nullAnnot -warn:+null " +
 				(inheritAnnotations ? " -warn:+inheritNullAnnot ": "") +
 				" -classpath \"" + annots_dir + "\" " +
@@ -1145,13 +1145,13 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 		this.runNegativeTest(testFiles, commandLine, "", expectedCompilerMessage, false);
 	}
 
-	public void testGHTycho1641() throws IOException {
+	public void testGHTycho1641() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			// tests external annotations with --release option
-			String annotDir = OUTPUT_DIR + File.separator + "eea";
-			String annotJavaUtilDir = annotDir + "/java/util".replace('/', File.separatorChar);
-			new File(annotJavaUtilDir).mkdirs();
-			Util.createFile(annotJavaUtilDir + File.separatorChar + "Objects.eea",
+			String annotDir = OUTPUT_DIR + File.separator + "eea"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			String annotJavaUtilDir = annotDir + "/java/util".replace('/', File.separatorChar); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			new File(annotJavaUtilDir).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			Util.createFile(annotJavaUtilDir + File.separatorChar + "Objects.eea", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"class java/util/Objects\n" +
 					"requireNonNull\n" +
 					" <T:Ljava/lang/Object;>(TT;)TT;\n" +
@@ -1175,7 +1175,7 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 					"    }\n" +
 					"}\n"
 				},
-				"--release 11 "+
+				"--release 11 "+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				" -sourcepath \"" + OUTPUT_DIR + "\"" +
 				" -annotationpath \""+annotDir+ "\"" +
 				" -err:+nullAnnot -err:+null -proc:none -d \"" + OUTPUT_DIR + "\"" +
@@ -1188,7 +1188,7 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 		}
 	}
 
-	public void testGH703() {
+	public void testGH703() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// replicates NullTypeAnnotationTest.testBug456584() but with --release option
 		runConformTest(
 			new String[] {
@@ -1221,10 +1221,10 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 					"",
 					true);
 	}
-	public void testGH1452_src() throws IOException {
+	public void testGH1452_src() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String annotationPath = "/annotations";
-		new File(OUTPUT_DIR+annotationPath+"/some/sillyPackage").mkdirs();
-		Util.createFile(OUTPUT_DIR+annotationPath+"/some/sillyPackage/Foo.eea",
+		new File(OUTPUT_DIR+annotationPath+"/some/sillyPackage").mkdirs(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		Util.createFile(OUTPUT_DIR+annotationPath+"/some/sillyPackage/Foo.eea", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"class some/sillyPackage/Foo\n" +
 				"get\n" +
 				" (Ljava/lang/String;)Ljava/lang/String;\n" +
@@ -1260,12 +1260,12 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 				"}\n"
 			};
 
-		String o_e_j_annotation_dir = OUTPUT_DIR + File.separator +
+		String o_e_j_annotation_dir = OUTPUT_DIR + File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"org" + File.separator + "eclipse" + File.separator + "jdt" + File.separator + "annotation";
-		String j_l_annotation_dir = OUTPUT_DIR +  File.separator +
+		String j_l_annotation_dir = OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"java" + File.separator + "lang" + File.separator + "annotation";
 
-		String commandLine = " -1.8 -proc:none -d none -err:+nullAnnot,null -annotationpath CLASSPATH " +
+		String commandLine = " -1.8 -proc:none -d none -err:+nullAnnot,null -annotationpath CLASSPATH " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				" -classpath \"" + OUTPUT_DIR + annotationPath +"\" " +
 				// explicitly mention all files to ensure a good order, cannot pull in source of NNBD on demand
 				"\"" + j_l_annotation_dir   +  File.separator + "ElementType.java\" " +
@@ -1295,9 +1295,9 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 			Util.delete(Util.getOutputDirectory());
 		}
 	}
-	public void testGH1452_bin() throws IOException {
-		String jarPath = OUTPUT_DIR+"/lib.jar";
-		String annotationZip = OUTPUT_DIR+"/annotations.zip";
+	public void testGH1452_bin() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		String jarPath = OUTPUT_DIR+"/lib.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String annotationZip = OUTPUT_DIR+"/annotations.zip"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Util.createJar(new String[] {
 				"some/sillyPackage/Foo.java",
 				"package some.sillyPackage;\n" +
@@ -1342,12 +1342,12 @@ public class NullAnnotationBatchCompilerTest extends AbstractBatchCompilerTest {
 					"}\n"
 				};
 
-		String o_e_j_annotation_dir = OUTPUT_DIR + File.separator +
+		String o_e_j_annotation_dir = OUTPUT_DIR + File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"org" + File.separator + "eclipse" + File.separator + "jdt" + File.separator + "annotation";
-		String j_l_annotation_dir = OUTPUT_DIR +  File.separator +
+		String j_l_annotation_dir = OUTPUT_DIR +  File.separator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"java" + File.separator + "lang" + File.separator + "annotation";
 
-		String commandLine = " -1.8 -proc:none -d none -err:+nullAnnot,null  -annotationpath CLASSPATH " +
+		String commandLine = " -1.8 -proc:none -d none -err:+nullAnnot,null  -annotationpath CLASSPATH " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				" -classpath \"" + annotationZip +"\""+ File.pathSeparator + "\"" + jarPath + "\" " +
 				// explicitly mention all files to ensure a good order, cannot pull in source of NNBD on demand
 				"\"" + j_l_annotation_dir   +  File.separator + "ElementType.java\" " +

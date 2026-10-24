@@ -106,7 +106,7 @@ import org.eclipse.jdt.core.dom.CompilationUnit;
  * @see ElementChangedEvent
  * @noimplement This interface is not intended to be implemented by clients.
  */
-public interface IJavaElementDelta {
+public interface IJavaElementDelta { //FLLDCIM: MARK — T31  IMPLEMENTS
 
 	/**
 	 * Status constant indicating that the element has been added.

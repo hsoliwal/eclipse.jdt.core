@@ -62,12 +62,12 @@ public static Test suite() {
 private void createTypePlus(String folder, String pack, String typeName, String plus, boolean isClass, boolean createFolder) throws CoreException {
 	String filePath;
 	String fileContent;
-	fileContent = "package " + pack + ";\n" + "public " + (isClass ? "class " : "interface ") + typeName + ' ';
-	if (plus != null) fileContent = fileContent + plus;
-	fileContent = fileContent + " {}\n";
+	fileContent = "package " + pack + ";\n" + "public " + (isClass ? "class " : "interface ") + typeName + ' '; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	if (plus != null) fileContent = fileContent + plus; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	fileContent = fileContent + " {}\n"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	pack = pack.replace('.', '/');
-	if (createFolder)  createFolder(folder + pack);
-	filePath = folder + pack + "/" + typeName + ".java";
+	if (createFolder)  createFolder(folder + pack); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	filePath = folder + pack + "/" + typeName + ".java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	createFile(filePath, fileContent);
 }
 
@@ -75,13 +75,13 @@ private void createType(String folder, String pack, String typeName) throws Core
 	createTypePlus(folder, pack, typeName, null, true /* isClass */, true /*createFolder */);
 }
 
-public void test486988_0001() throws Exception {
+public void test486988_0001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	try {
 		project.open(null);
-		String projName = "/" + project.getElementName();
+		String projName = "/" + project.getElementName(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String packageName = "/src/";
-		String fullFilePath = projName + packageName + "module-info.java";
+		String fullFilePath = projName + packageName + "module-info.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String fileContent =  "module my.mod { }\n";
 		createFile(fullFilePath, fileContent);
 		String completeBehind = "{";
@@ -103,7 +103,7 @@ public void test486988_0001() throws Exception {
 	}
 }
 
-public void test486988_0002() throws JavaModelException {
+public void test486988_0002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	String fileContent =  "module my.mod { }\n";
 
@@ -139,7 +139,7 @@ public void test486988_0003() throws JavaModelException {
 	assertResults(expected,	requestor.getResults());
 }
 
-public void test486988_0004() throws JavaModelException {
+public void test486988_0004() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	String fileContent =  "module my.mod { p }\n";
 
@@ -162,7 +162,7 @@ public void test486988_0004() throws JavaModelException {
 }
 
 // run locally until th
-public void _test486988_0005() throws JavaModelException {
+public void _test486988_0005() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	String fileContent =  "module my.mod { p }\n";
 
@@ -184,7 +184,7 @@ public void _test486988_0005() throws JavaModelException {
 	assertResults(expected,	requestor.getResults());
 }
 
-public void _test486988_0006() throws JavaModelException {
+public void _test486988_0006() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	String fileContent =  "module my.mod { u }\n";
 
@@ -208,7 +208,7 @@ public void _test486988_0006() throws JavaModelException {
 	assertResults(expected, requestor.getResults());
 }
 
-public void test486988_0007() throws JavaModelException {
+public void test486988_0007() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[4];
 	String fileContent =  "module my.mod {"
 			+ "exports mypa"
@@ -252,7 +252,7 @@ public void test486988_0007() throws JavaModelException {
 	System.setProperty(AssistOptions.PROPERTY_SubstringMatch, oldValue);
 }
 
-public void test486988_0008() throws JavaModelException {
+public void test486988_0008() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[4];
 	String fileContent =  "module my.mod {"
 			+ "exports mypack1 t"
@@ -294,7 +294,7 @@ public void test486988_0008() throws JavaModelException {
 	System.setProperty(AssistOptions.PROPERTY_SubstringMatch, oldValue);
 
 }
-public void test486988_0009() throws Exception {
+public void test486988_0009() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	IJavaProject project2 = createJavaProject("Completion9_2", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	try {
@@ -322,7 +322,7 @@ public void test486988_0009() throws Exception {
 	}
 }
 
-public void test522604_0001() throws Exception {
+public void test522604_0001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	IJavaProject project2 = createJavaProject("Completion9_2", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	IJavaProject project3 = createJavaProject("Completion9_3", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
@@ -358,7 +358,7 @@ public void test522604_0001() throws Exception {
 }
 
 
-public void test486988_0010() throws Exception {
+public void test486988_0010() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	IJavaProject project2 = createJavaProject("Completion9_2", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	try {
@@ -374,7 +374,7 @@ public void test486988_0010() throws Exception {
 		project2.open(null);
 		String pack = "/Completion9_2/src/mypack1";
 		createFolder(pack);
-		filePath = pack + "/Y.java";
+		filePath = pack + "/Y.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		fileContent = "package pack1;\n" +
 		"public class Y {}\n";
 		createFile(filePath, fileContent);
@@ -399,7 +399,7 @@ public void test486988_0010() throws Exception {
 		deleteProject(project2);
 	}
 }
-public void test486988_0011() throws Exception {
+public void test486988_0011() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	IJavaProject project2 = createJavaProject("Completion9_2", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	try {
@@ -408,7 +408,7 @@ public void test486988_0011() throws Exception {
 		createType("/Completion9_1/src/", "pack12", "X12");
 		String filePath1 = "/Completion9_1/src/module-info.java";
 		String completeBehind = "pack";
-		String fileContent1 =  "module first {\n"
+		String fileContent1 =  "module first {\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "requires second;\n"
 				+ "uses " + completeBehind
 				+ "}\n";
@@ -443,7 +443,7 @@ public void test486988_0011() throws Exception {
 		deleteProject(project2);
 	}
 }
-public void test486988_0012() throws Exception {
+public void test486988_0012() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	IJavaProject project2 = createJavaProject("Completion9_2", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	try {
@@ -452,7 +452,7 @@ public void test486988_0012() throws Exception {
 		createType("/Completion9_1/src/", "pack12", "X12");
 		String filePath1 = "/Completion9_1/src/module-info.java";
 		String completeBehind = "X1";
-		String fileContent1 =  "module first {\n"
+		String fileContent1 =  "module first {\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "requires second;\n"
 				+ "uses " + completeBehind
 				+ "}\n";
@@ -487,7 +487,7 @@ public void test486988_0012() throws Exception {
 		deleteProject(project2);
 	}
 }
-public void test486988_0013() throws Exception {
+public void test486988_0013() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	IJavaProject project2 = createJavaProject("Completion9_2", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	try {
@@ -496,7 +496,7 @@ public void test486988_0013() throws Exception {
 		createType("/Completion9_1/src/", "pack12", "X12");
 		String filePath1 = "/Completion9_1/src/module-info.java";
 		String completeBehind = "X1";
-		String fileContent1 =  "module first {\n"
+		String fileContent1 =  "module first {\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "requires second;\n"
 				+ "provides " + completeBehind
 				+ "}\n";
@@ -531,7 +531,7 @@ public void test486988_0013() throws Exception {
 		deleteProject(project2);
 	}
 }
-public void test486988_0014() throws Exception {
+public void test486988_0014() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	IJavaProject project2 = createJavaProject("Completion9_2", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	try {
@@ -540,7 +540,7 @@ public void test486988_0014() throws Exception {
 		createType("/Completion9_1/src/", "pack12", "X12");
 		String filePath1 = "/Completion9_1/src/module-info.java";
 		String completeBehind = "w";
-		String fileContent1 =  "module first {\n"
+		String fileContent1 =  "module first {\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "requires second;\n"
 				+ "provides pack11.X11 " + completeBehind
 				+ "}\n";
@@ -574,7 +574,7 @@ public void test486988_0014() throws Exception {
 		deleteProject(project2);
 	}
 }
-public void test486988_0015() throws Exception {
+public void test486988_0015() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	IJavaProject project2 = createJavaProject("Completion9_2", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	try {
@@ -586,7 +586,7 @@ public void test486988_0015() throws Exception {
 		createTypePlus("/Completion9_1/src/", "pack12", "Y12", "implements pack22.I22", true /* isClass */, false /* createFolder */);
 		String filePath1 = "/Completion9_1/src/module-info.java";
 		String completeBehind = "with p";
-		String fileContent1 =  "module first {\n"
+		String fileContent1 =  "module first {\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "requires second;\n"
 				+ "provides pack22.I22 " + completeBehind
 				+ "}\n";
@@ -631,7 +631,7 @@ public void test486988_0015() throws Exception {
 		deleteProject(project2);
 	}
 }
-public void testBug518618_001() throws Exception {
+public void testBug518618_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	IJavaProject project2 = createJavaProject("Completion9_2", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	try {
@@ -643,7 +643,7 @@ public void testBug518618_001() throws Exception {
 		createTypePlus("/Completion9_1/src/", "pack12", "Y12", "implements pack22.I22", true /* isClass */, false /* createFolder */);
 		String filePath1 = "/Completion9_1/src/module-info.java";
 		String completeBehind = "with pack12.Y12;";
-		String fileContent1 =  "module first {\n"
+		String fileContent1 =  "module first {\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "requires second;\n"
 				+ "provides pack22.I22 " + completeBehind
 				+ "}\n";
@@ -686,7 +686,7 @@ public void testBug518618_001() throws Exception {
 	}
 }
 // test that types in a module can be correctly resolved including their super types when seen from the unnamed module during completion
-public void testBug522164_src() throws Exception {
+public void testBug522164_src() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 	IJavaProject project2 = createJavaProject("Completion9_2", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 	try {
@@ -714,7 +714,7 @@ public void testBug522164_src() throws Exception {
 		String filePath = "/Completion9_2/src/x/X.java";
 		String completeBehind = "ifc.te";
 		String content =
-					"package x;\n" +
+					"package x;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"public class X {\n" +
 					"	void test(p.a.Ifc ifc) {\n" +
 					"		" + completeBehind + "\n" +
@@ -738,7 +738,7 @@ public void testBug522164_src() throws Exception {
 	}
 }
 // test that types in a module can be correctly resolved including their super types when seen from the unnamed module during completion
-public void testBug522164_jar() throws Exception {
+public void testBug522164_jar() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 	try {
 		project1.open(null);
@@ -773,7 +773,7 @@ public void testBug522164_jar() throws Exception {
 		String filePath = "/Completion9_1/src/x/X.java";
 		String completeBehind = "ifc.te";
 		String content =
-					"package x;\n" +
+					"package x;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"public class X {\n" +
 					"	void test(p.a.Ifc ifc) {\n" +
 					"		" + completeBehind + "\n" +
@@ -795,7 +795,7 @@ public void testBug522164_jar() throws Exception {
 		deleteProject(project1);
 	}
 }
-public void test522613_001() throws Exception {
+public void test522613_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	try {
 		project1.open(null);
@@ -803,7 +803,7 @@ public void test522613_001() throws Exception {
 		createTypePlus("/Completion9_1/src/", "pack11", "CCC", "implements pack11.Driver", true /* isClass */, false /* createFolder */);
 		String filePath1 = "/Completion9_1/src/module-info.java";
 		String completeBehind = "with C";
-		String fileContent1 =  "module first {\n"
+		String fileContent1 =  "module first {\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "provides pack11.Driver " + completeBehind
 				+ "}\n";
 		createFile(filePath1, fileContent1);
@@ -825,7 +825,7 @@ public void test522613_001() throws Exception {
 		deleteProject(project1);
 	}
 }
-public void test540591() throws Exception {
+public void test540591() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	try {
 		project1.open(null);
@@ -837,7 +837,7 @@ public void test540591() throws Exception {
 
 		String filePath1 = "/Completion9_1/src/module-info.java";
 		String completeBehind = "CC";
-		String fileContent1 =  "module first {\n"
+		String fileContent1 =  "module first {\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "provides pack11.IService with " + completeBehind
 				+ "}\n";
 		createFile(filePath1, fileContent1);
@@ -863,7 +863,7 @@ public void test540591() throws Exception {
 }
 
 
-public void test540591_mismatchedCase() throws Exception {
+public void test540591_mismatchedCase() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	try {
 		project1.open(null);
@@ -875,7 +875,7 @@ public void test540591_mismatchedCase() throws Exception {
 
 		String filePath1 = "/Completion9_1/src/module-info.java";
 		String completeBehind = "cc";
-		String fileContent1 =  "module first {\n"
+		String fileContent1 =  "module first {\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "provides pack11.IService with " + completeBehind
 				+ "}\n";
 		createFile(filePath1, fileContent1);
@@ -900,7 +900,7 @@ public void test540591_mismatchedCase() throws Exception {
 	}
 }
 
-public void test540591_withoutPrefix() throws Exception {
+public void test540591_withoutPrefix() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	try {
 		project1.open(null);
@@ -912,7 +912,7 @@ public void test540591_withoutPrefix() throws Exception {
 
 		String filePath1 = "/Completion9_1/src/module-info.java";
 		String completeBehind = "with ";
-		String fileContent1 =  "module first {\n"
+		String fileContent1 =  "module first {\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "provides pack11.IService " + completeBehind
 				+ "}\n";
 		createFile(filePath1, fileContent1);
@@ -941,7 +941,7 @@ public void test540591_withoutPrefix() throws Exception {
 	}
 }
 
-public void test527099_001() throws Exception {
+public void test527099_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	IJavaProject project2 = createJavaProject("Completion9_2", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	try {
@@ -953,7 +953,7 @@ public void test527099_001() throws Exception {
 		createTypePlus("/Completion9_1/src/", "pack12", "Y12", "implements pack22.I22", true /* isClass */, false /* createFolder */);
 		String filePath1 = "/Completion9_1/src/module-info.java";
 		String completeBehind = "exports ";
-		String fileContent1 =  "module first {\n"
+		String fileContent1 =  "module first {\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "requires second;\n"
 				+ completeBehind
 				+ "}\n";
@@ -994,7 +994,7 @@ public void test527099_001() throws Exception {
 	}
 }
 
-public void test527873_001() throws Exception {
+public void test527873_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	IJavaProject project2 = createJavaProject("Completion9_2", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	try {
@@ -1006,7 +1006,7 @@ public void test527873_001() throws Exception {
 		createTypePlus("/Completion9_1/src/", "pack12", "Y12", "implements pack22.I22", true /* isClass */, false /* createFolder */);
 		String filePath1 = "/Completion9_1/src/module-info.java";
 		String completeBehind = "with ";
-		String fileContent1 =  "module first {\n"
+		String fileContent1 =  "module first {\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "requires second;\n"
 				+ "provides pack22.I22 " + completeBehind
 				+ "}\n";
@@ -1050,7 +1050,7 @@ public void test527873_001() throws Exception {
 		deleteProject(project2);
 	}
 }
-public void test527873_002() throws Exception {
+public void test527873_002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	IJavaProject project2 = createJavaProject("Completion9_2", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	try {
@@ -1063,7 +1063,7 @@ public void test527873_002() throws Exception {
 		createTypePlus("/Completion9_1/src/", "", "X", "implements pack22.I22", true /* isClass */, false /* createFolder */);
 		String filePath1 = "/Completion9_1/src/module-info.java";
 		String completeBehind = "with ";
-		String fileContent1 =  "module first {\n"
+		String fileContent1 =  "module first {\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "requires second;\n"
 				+ "provides pack22.I22 " + completeBehind
 				+ "}\n";
@@ -1109,7 +1109,7 @@ public void test527873_002() throws Exception {
 		deleteProject(project2);
 	}
 }
-public void testBug525203_001() throws Exception {
+public void testBug525203_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL19_LIB"}, "bin", "9");
 	try  {
 		project1.open(null);
@@ -1142,7 +1142,7 @@ public void testBug525203_001() throws Exception {
 		deleteProject(project1);
 	}
 }
-public void testBug529123_001() throws Exception {
+public void testBug529123_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	try {
 		project1.open(null);
@@ -1162,12 +1162,12 @@ public void testBug529123_001() throws Exception {
 		deleteProject(project1);
 	}
 }
-public void testBug529123_002() throws Exception {
+public void testBug529123_002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String pName = "Completion9-1"; // with a -,
 	IJavaProject project1 = createJavaProject(pName, new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	try {
 		project1.open(null);
-		String filePath = "/" + pName +"/src/module-info.java";
+		String filePath = "/" + pName +"/src/module-info.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String fileContent =  "module Com";
 		createFile(filePath, fileContent);
 		String completeBehind = "Com";
@@ -1183,12 +1183,12 @@ public void testBug529123_002() throws Exception {
 		deleteProject(project1);
 	}
 }
-public void testBug529123_003() throws Exception {
+public void testBug529123_003() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String pName = "529123"; // a number - invalid module name but a valid project name
 	IJavaProject project1 = createJavaProject(pName, new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	try {
 		project1.open(null);
-		String filePath = "/" + pName +"/src/module-info.java";
+		String filePath = "/" + pName +"/src/module-info.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String fileContent =  "module Com";
 		createFile(filePath, fileContent);
 		String completeBehind = "Com";
@@ -1204,12 +1204,12 @@ public void testBug529123_003() throws Exception {
 		deleteProject(project1);
 	}
 }
-public void testBug529123_004() throws Exception {
+public void testBug529123_004() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String pName = "module.name.test"; // with dots
 	IJavaProject project1 = createJavaProject(pName, new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	try {
 		project1.open(null);
-		String filePath = "/" + pName +"/src/module-info.java";
+		String filePath = "/" + pName +"/src/module-info.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String fileContent =  "module Com";
 		createFile(filePath, fileContent);
 		String completeBehind = "Com";
@@ -1225,7 +1225,7 @@ public void testBug529123_004() throws Exception {
 		deleteProject(project1);
 	}
 }
-public void testBug529123_005() throws Exception {
+public void testBug529123_005() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	try {
 		project1.open(null);
@@ -1248,7 +1248,7 @@ public void testBug529123_005() throws Exception {
 		deleteProject(project1);
 	}
 }
-public void testBug528948_001() throws Exception {
+public void testBug528948_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	IJavaProject project2 = createJavaProject("Completion9_2", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	try {
@@ -1257,7 +1257,7 @@ public void testBug528948_001() throws Exception {
 		createType("/Completion9_1/src/", "pack12", "X12");
 		String filePath1 = "/Completion9_1/src/module-info.java";
 		String completeBehind = "uses ";
-		String fileContent1 =  "module first {\n"
+		String fileContent1 =  "module first {\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "requires second;\n"
 				+  completeBehind
 				+ "}\n";
@@ -1288,7 +1288,7 @@ public void testBug528948_001() throws Exception {
 		CompletionProposal[] proposals = requestor.getProposals();
 		assertTrue(proposals != null);
 		int count = 0;
-		for (CompletionProposal proposal : proposals) {
+		for (CompletionProposal proposal : proposals) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (proposal == null) break;
 			++count;
 			int start = proposal.getReplaceStart();
@@ -1305,7 +1305,7 @@ public void testBug528948_001() throws Exception {
 		deleteProject(project2);
 	}
 }
-public void testBug528948_002() throws Exception {
+public void testBug528948_002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	IJavaProject project2 = createJavaProject("Completion9_2", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "9");
 	try {
@@ -1314,7 +1314,7 @@ public void testBug528948_002() throws Exception {
 		createType("/Completion9_1/src/", "pack12", "X12");
 		String filePath1 = "/Completion9_1/src/module-info.java";
 		String completeBehind = "provides ";
-		String fileContent1 =  "module first {\n"
+		String fileContent1 =  "module first {\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "requires second;\n"
 				+  completeBehind
 				+ "}\n";
@@ -1345,7 +1345,7 @@ public void testBug528948_002() throws Exception {
 		CompletionProposal[] proposals = requestor.getProposals();
 		assertTrue(proposals != null);
 		int count = 0;
-		for (CompletionProposal proposal : proposals) {
+		for (CompletionProposal proposal : proposals) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (proposal == null) break;
 			++count;
 			int start = proposal.getReplaceStart();
@@ -1362,7 +1362,7 @@ public void testBug528948_002() throws Exception {
 		deleteProject(project2);
 	}
 }
-public void testBug530142() throws Exception {
+public void testBug530142() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ContainerInitializer.setInitializer(new DefaultContainerInitializer(new String[] {"Completion9_1", "/Completion/test.second.jar,/Completion/test.third.jar,/Completion/test.some.api.jar"}));
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL19_LIB", "org.eclipse.jdt.core.tests.model.TEST_CONTAINER"}, "bin", "9");
 	try  {
@@ -1392,7 +1392,7 @@ public void testBug530142() throws Exception {
 		deleteProject(project1);
 	}
 }
-public void testBug517417_001() throws Exception {
+public void testBug517417_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL9_LIB"}, "bin", "9");
 	IJavaProject project2 = createJavaProject("Completion9_2", new String[] {"src"}, new String[] {"JCL9_LIB"}, "bin", "9");
 	IJavaProject project3 = createJavaProject("Completion9_3", new String[] {"src"}, new String[] {"JCL9_LIB"}, "bin", "9");
@@ -1462,7 +1462,7 @@ public void testBug517417_001() throws Exception {
 }
 
 // testing only packages from transitive requires modules available for completion
-public void testBug517417_002() throws Exception {
+public void testBug517417_002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL9_LIB"}, "bin", "9");
 	IJavaProject project2 = createJavaProject("Completion9_2", new String[] {"src"}, new String[] {"JCL9_LIB"}, "bin", "9");
 	IJavaProject project3 = createJavaProject("Completion9_3", new String[] {"src"}, new String[] {"JCL9_LIB"}, "bin", "9");
@@ -1544,7 +1544,7 @@ public void testBug517417_002() throws Exception {
 		deleteProject(project4);
 	}
 }
-public void testBug530911() throws Exception {
+public void testBug530911() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL19_LIB", "org.eclipse.jdt.core.tests.model.TEST_CONTAINER"}, "bin", "9");
 	try  {
 		project1.open(null);
@@ -1591,7 +1591,7 @@ public void testBug530911() throws Exception {
 		deleteProject(project1);
 	}
 }
-public void testBug548888() throws Exception {
+public void testBug548888() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL19_LIB", "org.eclipse.jdt.core.tests.model.TEST_CONTAINER"}, "bin", "9");
 	try  {
 		project1.open(null);
@@ -1619,7 +1619,7 @@ public void testBug548888() throws Exception {
 		deleteProject(project1);
 	}
 }
-public void testBug560606() throws CoreException {
+public void testBug560606() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL19_LIB", "org.eclipse.jdt.core.tests.model.TEST_CONTAINER"}, "bin", "9");
 	try  {
 		project1.open(null);
@@ -1635,13 +1635,13 @@ public void testBug560606() throws CoreException {
 	            "import java.util.Coll");
 
 	    assertResults(
-	            "Collection[TYPE_REF]{Collection, java.util, Ljava.util.Collection;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED)+"}",
+	            "Collection[TYPE_REF]{Collection, java.util, Ljava.util.Collection;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED)+"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	            result.proposals);
 	} finally {
 		deleteProject(project1);
 	}
 }
-public void testBug573632d() throws Exception {
+public void testBug573632d() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJavaProject("Completion9_1", new String[] {"src"}, new String[] {"JCL19_LIB", "org.eclipse.jdt.core.tests.model.TEST_CONTAINER"}, "bin", "9");
 	try {
 		project1.open(null);
@@ -1679,7 +1679,7 @@ public void testBug573632d() throws Exception {
 		deleteProject(project1);
 	}
 }
-public void testGH2169() throws CoreException {
+public void testGH2169() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project1 = createJava9Project("Completion9_1");
 	IJavaProject project2 = createJava9Project("Completion9_2");
 	IJavaProject project3 = createJava9Project("Completion9_3");

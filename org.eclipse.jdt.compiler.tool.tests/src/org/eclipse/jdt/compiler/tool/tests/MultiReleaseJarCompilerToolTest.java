@@ -55,13 +55,13 @@ public class MultiReleaseJarCompilerToolTest extends TestCase {
 		}
 	}
 
-	public void testMissingMultiReleaseManifestHeaderMatchesJavac() throws Exception {
+	public void testMissingMultiReleaseManifestHeaderMatchesJavac() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		JavaCompiler javac = ToolProvider.getSystemJavaCompiler();
 		assertNotNull("No system Java compiler available", javac);
 
 		Path jar = createJarWithoutMultiReleaseHeader(javac);
 		Path source = this.testDirectory.resolve("consumer-src/X.java");
-		Files.createDirectories(source.getParent());
+		Files.createDirectories(source.getParent()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		Files.writeString(source,
 				"public class X {\n" +
 				"    public static String value() {\n" +
@@ -78,16 +78,16 @@ public class MultiReleaseJarCompilerToolTest extends TestCase {
 		String javacValue = readValue(javacOutput);
 		assertEquals("Unexpected javac output", "root", javacValue);
 		assertEquals(
-				"Compiler outputs differ for a JAR without Multi-Release: true\n" +
+				"Compiler outputs differ for a JAR without Multi-Release: true\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"javac output: " + javacValue + "\n" +
 				"ECJ output: " + ecjValue,
 				javacValue,
 				ecjValue);
 	}
 
-	private Path createJarWithoutMultiReleaseHeader(JavaCompiler javac) throws IOException {
+	private Path createJarWithoutMultiReleaseHeader(JavaCompiler javac) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Path rootSource = this.testDirectory.resolve("root-src/dep/Value.java");
-		Files.createDirectories(rootSource.getParent());
+		Files.createDirectories(rootSource.getParent()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		Files.writeString(rootSource,
 				"package dep;\n" +
 				"public class Value {\n" +
@@ -97,7 +97,7 @@ public class MultiReleaseJarCompilerToolTest extends TestCase {
 		compile(javac, rootSource, rootOutput, "8", null, "javac");
 
 		Path versionedSource = this.testDirectory.resolve("versioned-src/dep/Value.java");
-		Files.createDirectories(versionedSource.getParent());
+		Files.createDirectories(versionedSource.getParent()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		Files.writeString(versionedSource,
 				"package dep;\n" +
 				"public class Value {\n" +
@@ -109,19 +109,19 @@ public class MultiReleaseJarCompilerToolTest extends TestCase {
 		Path jar = this.testDirectory.resolve("missing-multi-release-header.jar");
 		Manifest manifest = new Manifest();
 		manifest.getMainAttributes().put(Attributes.Name.MANIFEST_VERSION, "1.0");
-		try (JarOutputStream output = new JarOutputStream(Files.newOutputStream(jar), manifest)) {
+		try (JarOutputStream output = new JarOutputStream(Files.newOutputStream(jar), manifest)) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			addEntry(output, "dep/Value.class", rootOutput.resolve("dep/Value.class"));
 			addEntry(output, "META-INF/versions/9/dep/Value.class", versionedOutput.resolve("dep/Value.class"));
 		}
 		return jar;
 	}
 
-	private void compile(JavaCompiler compiler, Path source, Path output, String release, Path classpath,
+	private void compile(JavaCompiler compiler, Path source, Path output, String release, Path classpath, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String compilerName) throws IOException {
-		Files.createDirectories(output);
+		Files.createDirectories(output); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		DiagnosticCollector<JavaFileObject> diagnostics = new DiagnosticCollector<>();
 		try (StandardJavaFileManager fileManager = compiler.getStandardFileManager(diagnostics, null, null)) {
-			List<String> options = new ArrayList<>();
+			List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			options.add("--release");
 			options.add(release);
 			options.add("-d");
@@ -132,14 +132,14 @@ public class MultiReleaseJarCompilerToolTest extends TestCase {
 			}
 			Iterable<? extends JavaFileObject> units = fileManager.getJavaFileObjects(source.toFile());
 			boolean success = compiler.getTask(null, fileManager, diagnostics, options, null, units).call();
-			assertTrue(compilerName + " compilation failed:\n" + diagnosticsToString(diagnostics), success);
+			assertTrue(compilerName + " compilation failed:\n" + diagnosticsToString(diagnostics), success); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
 	private String diagnosticsToString(DiagnosticCollector<JavaFileObject> diagnostics) {
 		StringWriter output = new StringWriter();
 		try (PrintWriter writer = new PrintWriter(output)) {
-			for (Diagnostic<? extends JavaFileObject> diagnostic : diagnostics.getDiagnostics()) {
+			for (Diagnostic<? extends JavaFileObject> diagnostic : diagnostics.getDiagnostics()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				writer.println(diagnostic);
 			}
 		}
@@ -148,7 +148,7 @@ public class MultiReleaseJarCompilerToolTest extends TestCase {
 
 	private void addEntry(JarOutputStream output, String name, Path contents) throws IOException {
 		output.putNextEntry(new JarEntry(name));
-		Files.copy(contents, output);
+		Files.copy(contents, output); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		output.closeEntry();
 	}
 

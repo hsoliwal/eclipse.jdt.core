@@ -44,9 +44,9 @@ public class SelectionOnLambdaExpression extends LambdaExpression {
 
 	@Override
 	public StringBuilder printExpression(int indent, StringBuilder output) {
-		output.append("<SelectOnLambdaExpression:"); //$NON-NLS-1$
+		output.append("<SelectOnLambdaExpression:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		super.printExpression(indent, output);
-		return output.append(")>"); //$NON-NLS-1$
+		return output.append(")>"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 }

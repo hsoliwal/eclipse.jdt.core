@@ -26,7 +26,7 @@ class J9VirtualMachine extends LocalVirtualMachine {
  * Creates a new J9VirtualMachine from the Processes that runs this VM
  * and its J9 Proxy and with the given info.
  */
-public J9VirtualMachine(Process vmProcess, int debugPort, String evalTargetPath, Process proxyProcess, String proxyOutputFile) {
+public J9VirtualMachine(Process vmProcess, int debugPort, String evalTargetPath, Process proxyProcess, String proxyOutputFile) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	super(vmProcess, debugPort, evalTargetPath);
 	this.proxyProcess = proxyProcess;
 	this.proxyOutputFile = proxyOutputFile;

@@ -69,7 +69,7 @@ protected static final Map<String, PackageCacheEntry> packageCache = new Concurr
 
 protected static void addToPackageSet(Set<String> packageSet, String fileName, boolean endsWithSep) {
 	int last = endsWithSep ? fileName.length() : fileName.lastIndexOf('/');
-	while (last > 0) {
+	while (last > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		// extract the package name
 		String packageName = fileName.substring(0, last);
 		if (!packageSet.add(packageName)) {
@@ -97,9 +97,9 @@ private Set<String> getCachedPackageNames() {
 }
 /** overloaded */
 protected Set<String> readPackageNames() {
-	final Set<String> packageSet = new HashSet<>();
+	final Set<String> packageSet = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 	packageSet.add(""); //$NON-NLS-1$
-	for (Enumeration<? extends ZipEntry> e = this.zipFile.entries(); e.hasMoreElements(); ) {
+	for (Enumeration<? extends ZipEntry> e = this.zipFile.entries(); e.hasMoreElements(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 		String fileName = e.nextElement().getName();
 		if (fileName.startsWith("META-INF/")) //$NON-NLS-1$
 			continue;
@@ -107,10 +107,10 @@ protected Set<String> readPackageNames() {
 	}
 	return packageSet;
 }
-IModule initializeModule() {
+IModule initializeModule() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IModule mod = null;
-	try (ZipFile file = new ZipFile(this.zipFilename)) {
-		String releasePath = Util.METAINF_VERSIONS + this.compliance + '/' + IModule.MODULE_INFO_CLASS;
+	try (ZipFile file = new ZipFile(this.zipFilename)) { //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM NEW
+		String releasePath = Util.METAINF_VERSIONS + this.compliance + '/' + IModule.MODULE_INFO_CLASS; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		ClassFileReader classfile = null;
 		try {
 			classfile = ClassFileReader.read(file, releasePath);
@@ -143,7 +143,7 @@ private volatile Set<String> knownPackageNames;
 // Meant for ClasspathMultiReleaseJar, not used in here
 String compliance;
 
-ClasspathJar(IFile resource, AccessRuleSet accessRuleSet, IPath externalAnnotationPath, boolean isOnModulePath) {
+ClasspathJar(IFile resource, AccessRuleSet accessRuleSet, IPath externalAnnotationPath, boolean isOnModulePath) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.resource = resource;
 	String filename;
 	try {
@@ -184,16 +184,16 @@ public ClasspathJar(ZipFile zipFile, AccessRuleSet accessRuleSet, boolean isOnMo
 	this.zipFile = zipFile;
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void cleanup() {
 	if (this.zipFile != null) {
 		try {
 			this.zipFile.close();
 			if (JavaModelManager.ZIP_ACCESS_VERBOSE) {
-				trace("(" + Thread.currentThread() + ") [ClasspathJar.cleanup()] Closed ZipFile on " + this.zipFilename); //$NON-NLS-1$	//$NON-NLS-2$
+				trace("(" + Thread.currentThread() + ") [ClasspathJar.cleanup()] Closed ZipFile on " + this.zipFilename); //$NON-NLS-1$	//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} catch(IOException e) { // ignore it
-			JavaCore.getPlugin().getLog().log(new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, "Error closing " + this.zipFile.getName(), e)); //$NON-NLS-1$
+			JavaCore.getPlugin().getLog().log(new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, "Error closing " + this.zipFile.getName(), e)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		this.zipFile = null;
 	}
@@ -201,10 +201,10 @@ public void cleanup() {
 		try {
 			this.annotationZipFile.close();
 			if (JavaModelManager.ZIP_ACCESS_VERBOSE) {
-				trace("(" + Thread.currentThread() + ") [ClasspathJar.cleanup()] Closed Annotation ZipFile on " + this.zipFilename); //$NON-NLS-1$	//$NON-NLS-2$
+				trace("(" + Thread.currentThread() + ") [ClasspathJar.cleanup()] Closed Annotation ZipFile on " + this.zipFilename); //$NON-NLS-1$	//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} catch(IOException e) { // ignore it
-			JavaCore.getPlugin().getLog().log(new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, "Error closing " + this.annotationZipFile.getName(), e)); //$NON-NLS-1$
+			JavaCore.getPlugin().getLog().log(new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, "Error closing " + this.annotationZipFile.getName(), e)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		this.annotationZipFile = null;
 	}
@@ -229,7 +229,7 @@ public boolean equals(Object o) {
 			&& areAllModuleOptionsEqual(jar);
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public NameEnvironmentAnswer findClass(String binaryFileName, String qualifiedPackageName, String moduleName, String qualifiedBinaryFileName, boolean asBinaryOnly, Predicate<String> moduleNameFilter) {
 	if (!isPackage(qualifiedPackageName, moduleName)) return null; // most common case
 
@@ -273,7 +273,7 @@ public boolean isPackage(String qualifiedPackageName, String moduleName) {
 		readKnownPackageNames();
 	return this.knownPackageNames.contains(qualifiedPackageName);
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public boolean hasCompilationUnit(String pkgName, String moduleName) {
 	if (readKnownPackageNames()) {
 		if (!this.knownPackageNames.contains(pkgName)) {
@@ -285,7 +285,7 @@ public boolean hasCompilationUnit(String pkgName, String moduleName) {
 		// Even if knownPackageNames contained the pkg we're looking for, we still need to verify
 		// that the package in this jar actually contains at least one .class file (since
 		// knownPackageNames includes empty packages)
-		for (Enumeration<? extends ZipEntry> e = this.zipFile.entries(); e.hasMoreElements(); ) {
+		for (Enumeration<? extends ZipEntry> e = this.zipFile.entries(); e.hasMoreElements(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 			String fileName = e.nextElement().getName();
 			if (fileName.startsWith(pkgName)
 					&& fileName.toLowerCase().endsWith(SuffixConstants.SUFFIX_STRING_class)
@@ -302,9 +302,9 @@ private boolean readKnownPackageNames() {
 	try {
 		if (this.zipFile == null) {
 			if (JavaModelManager.ZIP_ACCESS_VERBOSE) {
-				trace("(" + Thread.currentThread() + ") [ClasspathJar.isPackage(String)] Creating ZipFile on " + this.zipFilename); //$NON-NLS-1$	//$NON-NLS-2$
+				trace("(" + Thread.currentThread() + ") [ClasspathJar.isPackage(String)] Creating ZipFile on " + this.zipFilename); //$NON-NLS-1$	//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
-			this.zipFile = new ZipFile(this.zipFilename);
+			this.zipFile = new ZipFile(this.zipFilename); //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM NEW
 		}
 		this.knownPackageNames = getCachedPackageNames();
 		return true;
@@ -319,7 +319,7 @@ public long lastModified() {
 		long lastMod=-1;
 		long size=-1;
 		try {
-			BasicFileAttributes attributes = Files.readAttributes(Path.of(this.zipFilename), BasicFileAttributes.class);
+			BasicFileAttributes attributes = Files.readAttributes(Path.of(this.zipFilename), BasicFileAttributes.class); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			lastMod = attributes.lastModifiedTime().toMillis();
 			size = attributes.size();
 		} catch (IOException e) {
@@ -333,10 +333,10 @@ public long lastModified() {
 
 @Override
 public String toString() {
-	String start = "Classpath jar file " + this.zipFilename; //$NON-NLS-1$
+	String start = "Classpath jar file " + this.zipFilename; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	if (this.accessRuleSet == null)
 		return start;
-	return start + " with " + this.accessRuleSet; //$NON-NLS-1$
+	return start + " with " + this.accessRuleSet; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 @Override
@@ -344,7 +344,7 @@ public String debugPathString() {
 	long time = lastModified();
 	if (time == 0)
 		return this.zipFilename;
-	return this.zipFilename + '(' + (new Date(time)) + " : " + time + ')'; //$NON-NLS-1$
+	return this.zipFilename + '(' + (new Date(time)) + " : " + time + ')'; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 @Override
@@ -366,7 +366,7 @@ public Manifest getManifest() {
 	if (entry == null) {
 		return null;
 	}
-	try(InputStream is = this.zipFile.getInputStream(entry)) {
+	try(InputStream is = this.zipFile.getInputStream(entry)) { //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 		return new Manifest(is);
 	} catch (IOException e) {
 		// cannot use manifest
@@ -380,7 +380,7 @@ public char[][] listPackages() {
 	// -1 because it always contains empty string:
 	char[][] result = new char[this.knownPackageNames.size() - 1][];
 	int count = 0;
-	for (String string : this.knownPackageNames) {
+	for (String string : this.knownPackageNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (string != null &&!string.isEmpty()) {
 			result[count++] = string.replace('/', '.').toCharArray();
 		}
@@ -393,10 +393,10 @@ public char[][] listPackages() {
 @Override
 protected IBinaryType decorateWithExternalAnnotations(IBinaryType reader, String fileNameWithoutExtension) {
 	if (readKnownPackageNames()) { // ensure zipFile is initialized
-		String qualifiedBinaryFileName = fileNameWithoutExtension + ExternalAnnotationProvider.ANNOTATION_FILE_SUFFIX;
+		String qualifiedBinaryFileName = fileNameWithoutExtension + ExternalAnnotationProvider.ANNOTATION_FILE_SUFFIX; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		ZipEntry entry = this.zipFile.getEntry(qualifiedBinaryFileName);
 		if (entry != null) {
-			try(InputStream is = this.zipFile.getInputStream(entry)) {
+			try(InputStream is = this.zipFile.getInputStream(entry)) { //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 				return new ExternalAnnotationDecorator(reader, new ExternalAnnotationProvider(is, fileNameWithoutExtension));
 			} catch (IOException e) {
 				// ignore

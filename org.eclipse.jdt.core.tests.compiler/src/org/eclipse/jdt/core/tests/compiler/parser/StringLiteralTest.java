@@ -8,7 +8,7 @@ import org.eclipse.jdt.internal.compiler.ast.StringLiteral;
 import org.eclipse.jdt.internal.compiler.ast.StringLiteralConcatenation;
 
 public class StringLiteralTest extends TestCase {
-	public void testAppend() {
+	public void testAppend() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		StringLiteral l1 = new StringLiteral(new char[] { 'a' }, 2, 3, 4);
 		StringLiteral l2 = new StringLiteral(new char[] { 'b' }, 5, 6, 7);
 		StringLiteral l3 = new StringLiteral(new char[] { 'c' }, 8, 9, 10);
@@ -20,7 +20,7 @@ public class StringLiteralTest extends TestCase {
 		ExtendedStringLiteral extendWithChar = l1.extendWith(new CharLiteral("'\\n'".toCharArray(), 5, 6))
 				.extendWith(new CharLiteral("'\\t'".toCharArray(), 8, 9));
 		List<StringLiteral> allLiterals = List.of(extendWithString, extendWithString2, extendsWithString, extendsWithString3);
-		for (StringLiteral l : allLiterals) {
+		for (StringLiteral l : allLiterals) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String expected = (l == extendWithChar) ? "a\n\t" : "abc";
 			assertEquals(expected, new String(l.source()));
 			assertEquals(2, l.sourceStart);

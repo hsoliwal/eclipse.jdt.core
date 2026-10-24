@@ -211,7 +211,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			},
 			"100");
 	}
-	public void testBug562715_005() {
+	public void testBug562715_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -233,7 +233,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"Sealed type X lacks a permits clause and no type from the same compilation unit declares X as its direct supertype\n" +
 			"----------\n");
 	}
-	public void testBug562715_006() {
+	public void testBug562715_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -298,7 +298,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			},
 			"100");
 	}
-	public void testBug562715_010() {
+	public void testBug562715_010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -326,7 +326,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 	// TODO : Enable after error flag code implemented
-	public void testBug562715_011() {
+	public void testBug562715_011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -354,7 +354,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"Syntax error on token \"sealed\", static expected\n" +
 			"----------\n");
 	}
-	public void testBug562715_xxx() {
+	public void testBug562715_xxx() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -382,7 +382,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"Syntax error on token \"sealed\", static expected\n" +
 			"----------\n");
 	}
-	public void testBug563806_001() {
+	public void testBug563806_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -403,7 +403,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"Permitted type Z does not declare X as a direct supertype\n" +
 			"----------\n");
 	}
-	public void testBug563806_002() {
+	public void testBug563806_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p1/X.java",
@@ -444,7 +444,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"The class A cannot extend the class X as it is not a permitted subtype of X\n" +
 			"----------\n");
 	}
-	public void testBug563806_003() {
+	public void testBug563806_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -465,7 +465,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"The class Y with a sealed direct supertype X should be declared either final, sealed, or non-sealed\n" +
 			"----------\n");
 	}
-	public void testBug563806_004() {
+	public void testBug563806_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p1/X.java",
@@ -492,7 +492,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"The class Y with a sealed direct supertype X should be declared either final, sealed, or non-sealed\n" +
 			"----------\n");
 	}
-	public void testBug563806_005() {
+	public void testBug563806_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -512,7 +512,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"The class Y with a sealed direct supertype X should be declared either final, sealed, or non-sealed\n" +
 			"----------\n");
 	}
-	public void testBug563806_006() {
+	public void testBug563806_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p1/X.java",
@@ -548,7 +548,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"The non-sealed class Y must have a sealed direct supertype\n" +
 			"----------\n");
 	}
-	public void testBug563806_008() {
+	public void testBug563806_008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p1/X.java",
@@ -586,7 +586,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			},
 			"100");
 	}
-	public void testBug563806_010() {
+	public void testBug563806_010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p1/X.java",
@@ -620,7 +620,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			},
 			"0");
 	}
-	public void testBug563806_012() {
+	public void testBug563806_012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p1/X.java",
@@ -654,7 +654,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"The interface Y with a sealed direct superinterface X should be declared either sealed or non-sealed\n" +
 			"----------\n");
 	}
-	public void testBug563806_014() {
+	public void testBug563806_014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p1/X.java",
@@ -746,7 +746,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"A type declaration X that has a permits clause should have a sealed modifier\n" +
 			"----------\n");
 	}
-	public void testBug563806_019() {
+	public void testBug563806_019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p1/X.java",
@@ -765,7 +765,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"Permitted type Y in an unnamed module should be declared in the same package p1 of declaring type X\n" +
 			"----------\n");
 	}
-	public void testBug563806_020() {
+	public void testBug563806_020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p1/X.java",
@@ -784,7 +784,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"Permitted type Y in an unnamed module should be declared in the same package p1 of declaring type X\n" +
 			"----------\n");
 	}
-	public void testBug563806_021() {
+	public void testBug563806_021() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p1/X.java",
@@ -803,7 +803,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"Permitted type Y in an unnamed module should be declared in the same package p1 of declaring type X\n" +
 			"----------\n");
 	}
-	public void testBug563806_022() {
+	public void testBug563806_022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		associateToModule("mod.one", "p1/X.java");
 		associateToModule("mod.two", "p2/Y.java");
 		Runner runner = new Runner();
@@ -839,7 +839,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n";
 		runner.runNegativeTest();
 	}
-	public void testBug563806_023() {
+	public void testBug563806_023() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		associateToModule("mod.one", "p1/X.java");
 		associateToModule("mod.two", "p2/Y.java");
 		Runner runner = new Runner();
@@ -875,7 +875,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n";
 		runner.runNegativeTest();
 	}
-	public void testBug563806_024() {
+	public void testBug563806_024() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		associateToModule("mod.one", "p1/X.java");
 		associateToModule("mod.two", "p2/Y.java");
 		Runner runner = new Runner();
@@ -911,7 +911,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n";
 		runner.runNegativeTest();
 	}
-	public void testBug563806_025() {
+	public void testBug563806_025() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		associateToModule("mod.one", "p1/X.java");
 		associateToModule("mod.one", "p2/Y.java");
 		Runner runner = new Runner();
@@ -930,7 +930,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			};
 		runner.runConformTest();
 	}
-	public void testBug563806_026() {
+	public void testBug563806_026() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		associateToModule("mod.one", "p1/X.java", "p2/Y.java");
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
@@ -948,7 +948,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			};
 		runner.runConformTest();
 	}
-	public void testBug563806_027() {
+	public void testBug563806_027() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		associateToModule("mod.one", "p1/X.java");
 		associateToModule("mod.one", "p2/Y.java");
 		Runner runner = new Runner();
@@ -1029,7 +1029,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"Illegal modifier for the member enum Y; only public, protected, private & static are permitted\n" +
 			"----------\n");
 	}
-	public void testBug563806_032() {
+	public void testBug563806_032() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p1/X.java",
@@ -1064,7 +1064,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"Syntax error on token \"sealed\", static expected\n" +
 			"----------\n");
 	}
-	public void testBug563806_034() {
+	public void testBug563806_034() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p1/X.java",
@@ -1099,7 +1099,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"The non-sealed interface X must have a sealed direct superinterface\n" +
 			"----------\n");
 	}
-	public void testBug563806_036() {
+	public void testBug563806_036() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p1/X.java",
@@ -1117,7 +1117,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"Illegal modifier for the local class Y; only abstract or final is permitted\n" +
 			"----------\n");
 	}
-	public void testBug563806_037() {
+	public void testBug563806_037() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p1/X.java",
@@ -1135,7 +1135,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"Illegal modifier for the local class Y; only abstract or final is permitted\n" +
 			"----------\n");
 	}
-	public void testBug563806_038() {
+	public void testBug563806_038() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p1/X.java",
@@ -1158,7 +1158,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"Illegal modifier for the local class Y; only abstract or final is permitted\n" +
 			"----------\n");
 	}
-	public void testBug563806_039() {
+	public void testBug563806_039() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p1/X.java",
@@ -1182,7 +1182,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"The local type Y may not have a sealed supertype A\n" +
 			"----------\n");
 	}
-	public void testBug564191_001() throws IOException, ClassFormatException {
+	public void testBug564191_001() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"p1/X.java",
@@ -1204,7 +1204,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 		verifyClassFile(expectedOutput, "p1/X.class", ClassFileBytesDisassembler.SYSTEM);
 	}
 	// Test that implicit permitted (top-level) types make it to the .class file
-	public void testBug564190_1() throws IOException, ClassFormatException {
+	public void testBug564190_1() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"p1/X.java",
@@ -1226,7 +1226,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			verifyClassFile(expectedOutput, "p1/X.class", ClassFileBytesDisassembler.SYSTEM);
 	}
 	// Test that implicit permitted final (member) types make it to the .class file
-	public void testBug564190_2() throws IOException, ClassFormatException {
+	public void testBug564190_2() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"p1/X.java",
@@ -1248,7 +1248,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			verifyClassFile(expectedOutput, "p1/X.class", ClassFileBytesDisassembler.SYSTEM);
 	}
 	// Test that implicit permitted non-sealed (member) types make it to the .class file
-	public void testBug564190_3() throws IOException, ClassFormatException {
+	public void testBug564190_3() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"p1/X.java",
@@ -1341,7 +1341,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 				"Sealed type SI lacks a permits clause and no type from the same compilation unit declares SI as its direct supertype\n" +
 				"----------\n");
 	}
-	public void testBug564450_001() throws IOException, ClassFormatException {
+	public void testBug564450_001() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"p1/X.java",
@@ -1360,9 +1360,9 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 				"The class Y with a sealed direct supertype X should be declared either final, sealed, or non-sealed\n" +
 				"----------\n");
 	}
-	public void testBug564047_001() throws CoreException, IOException {
+	public void testBug564047_001() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String outputDirectory = Util.getOutputDirectory();
-		String lib1Path = outputDirectory + File.separator + "lib1.jar";
+		String lib1Path = outputDirectory + File.separator + "lib1.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try {
 		Util.createJar(
 				new String[] {
@@ -1406,11 +1406,11 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 		} catch (IOException e) {
 			System.err.println("could not write to current working directory ");
 		} finally {
-			new File(lib1Path).delete();
+			new File(lib1Path).delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 
 	}
-	public void testBug564492_001() {
+	public void testBug564492_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1430,7 +1430,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"An anonymous class cannot subclass a sealed type Y\n" +
 			"----------\n");
 	}
-	public void testBug564492_002() {
+	public void testBug564492_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1450,7 +1450,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"An anonymous class cannot subclass a sealed type IY\n" +
 			"----------\n");
 	}
-	public void testBug564492_003() {
+	public void testBug564492_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1472,7 +1472,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"An anonymous class cannot subclass a sealed type A.Y\n" +
 			"----------\n");
 	}
-	public void testBug564492_004() {
+	public void testBug564492_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1495,7 +1495,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"An anonymous class cannot subclass a sealed type A.IY\n" +
 			"----------\n");
 	}
-	public void testBug564498_1() throws IOException, ClassFormatException {
+	public void testBug564498_1() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"p1/X.java",
@@ -1522,7 +1522,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 					"   #21 p1/A$Y\n";
 			verifyClassFile(expectedOutput, "p1/X.class", ClassFileBytesDisassembler.SYSTEM);
 	}
-	public void testBug564498_2() throws IOException, ClassFormatException {
+	public void testBug564498_2() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"p1/X.java",
@@ -1548,7 +1548,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 					"   #21 p1/A$Y\n";
 			verifyClassFile(expectedOutput, "p1/X.class", ClassFileBytesDisassembler.SYSTEM);
 	}
-	public void testBug564498_3() throws IOException, ClassFormatException {
+	public void testBug564498_3() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"p1/X.java",
@@ -1572,7 +1572,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 					"   #28 p1/A$Z\n";
 			verifyClassFile(expectedOutput, "p1/A$Y.class", ClassFileBytesDisassembler.SYSTEM);
 	}
-	public void testBug564498_4() throws IOException, ClassFormatException {
+	public void testBug564498_4() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"p1/X.java",
@@ -1593,7 +1593,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			verifyClassFile(expectedOutput, "p1/A$Y.class", ClassFileBytesDisassembler.SYSTEM);
 	}
 	// Reject references of membertype without qualifier of enclosing type in permits clause
-	public void testBug564498_5() throws IOException, ClassFormatException {
+	public void testBug564498_5() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"p1/X.java",
@@ -1668,7 +1668,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"Syntax error on token \"permits\", delete this token\n" +
 			"----------\n");
 	}
-	public void testBug564638_001() {
+	public void testBug564638_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1692,7 +1692,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638_002() {
+	public void testBug564638_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1714,7 +1714,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type permits\n" +
 			"----------\n");
 	}
-	public void testBug564638_003() {
+	public void testBug564638_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1749,7 +1749,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638_004() {
+	public void testBug564638_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1781,7 +1781,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"\'permits\' is not a valid type name; it is a restricted identifier and not allowed as a type identifier in Java 17\n" +
 			"----------\n");
 	}
-	public void testBug564638_005() {
+	public void testBug564638_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1805,7 +1805,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638_006() {
+	public void testBug564638_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1827,7 +1827,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X<permits>\n" +
 			"----------\n");
 	}
-	public void testBug564638_007() {
+	public void testBug564638_007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1856,7 +1856,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"\'permits\' is not a valid type name; it is a restricted identifier and not allowed as a type identifier in Java 17\n" +
 			"----------\n");
 	}
-	public void testBug564638_008() {
+	public void testBug564638_008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1887,7 +1887,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638_009() {
+	public void testBug564638_009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1916,7 +1916,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"\'permits\' is not a valid type name; it is a restricted identifier and not allowed as a type identifier in Java 17\n" +
 			"----------\n");
 	}
-	public void testBug564638_010() {
+	public void testBug564638_010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1947,7 +1947,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638_011() {
+	public void testBug564638_011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1976,7 +1976,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"\'permits\' is not a valid type name; it is a restricted identifier and not allowed as a type identifier in Java 17\n" +
 			"----------\n");
 	}
-	public void testBug564638_012() {
+	public void testBug564638_012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2007,7 +2007,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638_013() {
+	public void testBug564638_013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2035,7 +2035,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void testBug564638_014() {
+	public void testBug564638_014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2060,7 +2060,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638_015() {
+	public void testBug564638_015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2082,7 +2082,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void testBug564638_016() {
+	public void testBug564638_016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2106,7 +2106,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638_017() {
+	public void testBug564638_017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2143,7 +2143,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"Syntax error on token \"}\", delete this token\n" +
 			"----------\n");
 	}
-	public void testBug564638_018() {
+	public void testBug564638_018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2182,7 +2182,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638_019() {
+	public void testBug564638_019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2206,7 +2206,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void testBug564638_020() {
+	public void testBug564638_020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2232,7 +2232,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638_021() {
+	public void testBug564638_021() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2258,7 +2258,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"\'permits\' is not a valid type name; it is a restricted identifier and not allowed as a type identifier in Java 17\n" +
 			"----------\n");
 	}
-	public void testBug564638_022() {
+	public void testBug564638_022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2355,7 +2355,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638_027() {
+	public void testBug564638_027() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2377,7 +2377,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"\'permits\' is not a valid type name; it is a restricted identifier and not allowed as a type identifier in Java 17\n" +
 			"----------\n");
 	}
-	public void testBug564638_028() {
+	public void testBug564638_028() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2401,7 +2401,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638_029() {
+	public void testBug564638_029() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2424,7 +2424,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void testBug564638_030() {
+	public void testBug564638_030() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2449,7 +2449,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638_031() {
+	public void testBug564638_031() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2474,7 +2474,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void testBug564638_032() {
+	public void testBug564638_032() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2501,7 +2501,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638_033() {
+	public void testBug564638_033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2523,7 +2523,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"\'permits\' is not a valid type name; it is a restricted identifier and not allowed as a type identifier in Java 17\n" +
 			"----------\n");
 	}
-	public void testBug564638_034() {
+	public void testBug564638_034() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2547,7 +2547,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638_035() {
+	public void testBug564638_035() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2574,7 +2574,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"\'permits\' is not a valid type name; it is a restricted identifier and not allowed as a type identifier in Java 17\n" +
 			"----------\n");
 	}
-	public void testBug564638_036() {
+	public void testBug564638_036() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2603,7 +2603,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638_037() {
+	public void testBug564638_037() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2630,7 +2630,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"\'permits\' is not a valid type name; it is a restricted identifier and not allowed as a type identifier in Java 17\n" +
 			"----------\n");
 	}
-	public void testBug564638_038() {
+	public void testBug564638_038() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2689,7 +2689,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638_041() {
+	public void testBug564638_041() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2713,7 +2713,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"The constructor X(permits) refers to the missing type permits\n" +
 			"----------\n");
 	}
-	public void testBug564638_042() {
+	public void testBug564638_042() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2739,7 +2739,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638_043() {
+	public void testBug564638_043() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2764,7 +2764,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"\'permits\' is not a valid type name; it is a restricted identifier and not allowed as a type identifier in Java 17\n" +
 			"----------\n");
 	}
-	public void testBug564638_044() {
+	public void testBug564638_044() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2791,7 +2791,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638_045() {
+	public void testBug564638_045() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2816,7 +2816,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"The method foo(permits) from the type X refers to the missing type permits\n" +
 			"----------\n");
 	}
-	public void testBug564638_046() {
+	public void testBug564638_046() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2843,7 +2843,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638_047() {
+	public void testBug564638_047() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2862,7 +2862,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"\'permits\' is not a valid type name; it is a restricted identifier and not allowed as a type identifier in Java 17\n" +
 			"----------\n");
 	}
-	public void testBug564638_048() {
+	public void testBug564638_048() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2883,7 +2883,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638_049() {
+	public void testBug564638_049() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2911,7 +2911,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"\'permits\' is not a valid type name; it is a restricted identifier and not allowed as a type identifier in Java 17\n" +
 			"----------\n");
 	}
-	public void testBug564638_050() {
+	public void testBug564638_050() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2965,7 +2965,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"\'permits\' is not a valid type name; it is a restricted identifier and not allowed as a type identifier in Java 17\n" +
 			"----------\n");
 	}
-	public void testBug564638_052() {
+	public void testBug564638_052() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2984,7 +2984,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638_053() {
+	public void testBug564638_053() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3012,7 +3012,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"\'permits\' is not a valid type name; it is a restricted identifier and not allowed as a type identifier in Java 17\n" +
 			"----------\n");
 	}
-	public void testBug564638_054() {
+	public void testBug564638_054() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3059,7 +3059,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"\'permits\' is not a valid type name; it is a restricted identifier and not allowed as a type identifier in Java 17\n" +
 			"----------\n");
 	}
-	public void testBug564638_056() {
+	public void testBug564638_056() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3078,7 +3078,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638_057() {
+	public void testBug564638_057() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3106,7 +3106,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"\'permits\' is not a valid type name; it is a restricted identifier and not allowed as a type identifier in Java 17\n" +
 			"----------\n");
 	}
-	public void testBug564638_058() {
+	public void testBug564638_058() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3136,7 +3136,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638b_001() {
+	public void testBug564638b_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3160,7 +3160,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638b_002() {
+	public void testBug564638b_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3183,7 +3183,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testBug564638b_003() {
+	public void testBug564638b_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3218,7 +3218,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638b_004() {
+	public void testBug564638b_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3251,7 +3251,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testBug564638b_005() {
+	public void testBug564638b_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3275,7 +3275,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638b_006() {
+	public void testBug564638b_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3297,7 +3297,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X<sealed>\n" +
 			"----------\n");
 	}
-	public void testBug564638b_007() {
+	public void testBug564638b_007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3326,7 +3326,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"\'sealed\' is not a valid type name; it is a restricted identifier and not allowed as a type identifier in Java 17\n" +
 			"----------\n");
 	}
-	public void testBug564638b_008() {
+	public void testBug564638b_008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3357,7 +3357,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638b_009() {
+	public void testBug564638b_009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3386,7 +3386,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"\'sealed\' is not a valid type name; it is a restricted identifier and not allowed as a type identifier in Java 17\n" +
 			"----------\n");
 	}
-	public void testBug564638b_010() {
+	public void testBug564638b_010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3417,7 +3417,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638b_011() {
+	public void testBug564638b_011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3447,7 +3447,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testBug564638b_012() {
+	public void testBug564638b_012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3478,7 +3478,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638b_013() {
+	public void testBug564638b_013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3507,7 +3507,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testBug564638b_014() {
+	public void testBug564638b_014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3532,7 +3532,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638b_015() {
+	public void testBug564638b_015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3555,7 +3555,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testBug564638b_016() {
+	public void testBug564638b_016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3579,7 +3579,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638b_017() {
+	public void testBug564638b_017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3617,7 +3617,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testBug564638b_018() {
+	public void testBug564638b_018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3656,7 +3656,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638b_019() {
+	public void testBug564638b_019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3681,7 +3681,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testBug564638b_020() {
+	public void testBug564638b_020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3707,7 +3707,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			null,
 			true);
 	}
-	public void testBug564638b_021() {
+	public void testBug564638b_021() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3734,7 +3734,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testBug564638b_022() {
+	public void testBug564638b_022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3783,7 +3783,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testBug564638b_024() {
+	public void testBug564638b_024() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3817,7 +3817,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testBug564638b_026() {
+	public void testBug564638b_026() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3835,7 +3835,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			true
 		);
 	}
-	public void testBug564638b_027() {
+	public void testBug564638b_027() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3858,7 +3858,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testBug564638b_028() {
+	public void testBug564638b_028() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3883,7 +3883,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			true
 		);
 	}
-	public void testBug564638b_029() {
+	public void testBug564638b_029() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3907,7 +3907,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testBug564638b_030() {
+	public void testBug564638b_030() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3933,7 +3933,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			true
 		);
 	}
-	public void testBug564638b_031() {
+	public void testBug564638b_031() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3959,7 +3959,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testBug564638b_032() {
+	public void testBug564638b_032() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3987,7 +3987,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			true
 		);
 	}
-	public void testBug564638b_033() {
+	public void testBug564638b_033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4010,7 +4010,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testBug564638b_034() {
+	public void testBug564638b_034() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4035,7 +4035,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			true
 		);
 	}
-	public void testBug564638b_035() {
+	public void testBug564638b_035() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4063,7 +4063,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testBug564638b_036() {
+	public void testBug564638b_036() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4093,7 +4093,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			true
 		);
 	}
-	public void testBug564638b_037() {
+	public void testBug564638b_037() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4121,7 +4121,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testBug564638b_038() {
+	public void testBug564638b_038() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4183,7 +4183,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			true
 		);
 	}
-	public void testBug564638b_041() {
+	public void testBug564638b_041() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4208,7 +4208,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testBug564638b_042() {
+	public void testBug564638b_042() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4235,7 +4235,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			true
 		);
 	}
-	public void testBug564638b_043() {
+	public void testBug564638b_043() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4261,7 +4261,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testBug564638b_044() {
+	public void testBug564638b_044() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4289,7 +4289,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			true
 		);
 	}
-	public void testBug564638b_045() {
+	public void testBug564638b_045() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4315,7 +4315,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testBug564638b_046() {
+	public void testBug564638b_046() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4343,7 +4343,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			true
 		);
 	}
-	public void testBug564638b_047() {
+	public void testBug564638b_047() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4363,7 +4363,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testBug564638b_048() {
+	public void testBug564638b_048() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4385,7 +4385,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			true
 		);
 	}
-	public void testBug564638b_049() {
+	public void testBug564638b_049() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4414,7 +4414,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testBug564638b_050() {
+	public void testBug564638b_050() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4470,7 +4470,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testBug564638b_052() {
+	public void testBug564638b_052() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4490,7 +4490,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			true
 		);
 	}
-	public void testBug564638b_053() {
+	public void testBug564638b_053() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4519,7 +4519,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testBug564638b_054() {
+	public void testBug564638b_054() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4568,7 +4568,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testBug564638b_056() {
+	public void testBug564638b_056() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4588,7 +4588,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			true
 		);
 	}
-	public void testBug564638b_057() {
+	public void testBug564638b_057() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4617,7 +4617,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testBug564638b_058() {
+	public void testBug564638b_058() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4648,7 +4648,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			true
 		);
 	}
-	public void testBug565561_001() throws IOException, ClassFormatException {
+	public void testBug565561_001() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -4701,7 +4701,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			},
 			"0");
 	}
-	public void testBug565782_001() throws IOException, ClassFormatException {
+	public void testBug565782_001() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -4736,7 +4736,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 		String expectedOutput =	"public final enum X implements I {\n";
 		verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 	}
-	public void testBug565782_003() throws IOException, ClassFormatException {
+	public void testBug565782_003() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -4755,7 +4755,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 				"}";
 		verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 	}
-	public void testBug565782_004() throws IOException, ClassFormatException {
+	public void testBug565782_004() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -4776,7 +4776,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 				"}";
 		verifyClassFile(expectedOutput, "X$E.class", ClassFileBytesDisassembler.SYSTEM);
 	}
-	public void testBug565782_005() throws IOException, ClassFormatException {
+	public void testBug565782_005() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -4799,7 +4799,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 				"}";
 		verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 	}
-	public void testBug565847_001() {
+	public void testBug565847_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4825,7 +4825,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			true
 		);
 	}
-	public void testBug566979_001() {
+	public void testBug566979_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4844,7 +4844,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 		);
 	}
 
-	public void testBug566979_002() {
+	public void testBug566979_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4862,7 +4862,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			true
 		);
 	}
-	public void testBug566980_001() {
+	public void testBug566980_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4881,7 +4881,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 		);
 	}
 
-	@SuppressWarnings({ "rawtypes" })
+	@SuppressWarnings({ "rawtypes" }) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testBug566980_002() {
 		Map options = getCompilerOptions();
 		this.runNegativeTest(
@@ -4902,7 +4902,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			options
 		);
 	}
-	@SuppressWarnings({ "rawtypes" })
+	@SuppressWarnings({ "rawtypes" }) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testBug566846_001() {
 		Map options = getCompilerOptions();
 		String error = 	this.complianceLevel >= ClassFileConstants.JDK25 ?
@@ -4945,7 +4945,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			options
 		);
 	}
-	public void testBug568428_001() {
+	public void testBug568428_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4963,7 +4963,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n"
 		);
 	}
-	public void testBug568428_002() {
+	public void testBug568428_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4981,7 +4981,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n"
 		);
 	}
-	public void testBug568514_001() {
+	public void testBug568514_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4999,7 +4999,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n"
 		);
 	}
-	public void testBug568514_002() {
+	public void testBug568514_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -5017,7 +5017,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"----------\n"
 		);
 	}
-	public void testBug568758_001() {
+	public void testBug568758_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -5066,7 +5066,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			},
 			"");
 	}
-	public void testBug570359_001() throws IOException, ClassFormatException {
+	public void testBug570359_001() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -5155,7 +5155,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"The type B that implements the sealed interface Foo should be a permitted subtype of Foo\n" +
 			"----------\n");
 	}
-	public void testBug568854_004() {
+	public void testBug568854_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -5177,7 +5177,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"The type B that implements the sealed interface X.Foo should be a permitted subtype of X.Foo\n" +
 			"----------\n");
 	}
-	public void testBug568854_005() {
+	public void testBug568854_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -5199,7 +5199,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"The type B that implements the sealed interface Foo should be a permitted subtype of Foo\n" +
 			"----------\n");
 	}
-	public void testBug568854_006() {
+	public void testBug568854_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -5221,7 +5221,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"The type B that implements the sealed interface Foo should be a permitted subtype of Foo\n" +
 			"----------\n");
 	}
-	public void testBug568854_007() {
+	public void testBug568854_007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -5250,7 +5250,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"The local type Z may not have a sealed supertype I\n" +
 			"----------\n");
 	}
-	public void testBug568854_008() {
+	public void testBug568854_008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -5279,7 +5279,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"The local type Z may not have a sealed supertype I\n" +
 			"----------\n");
 	}
-	public void testBug571332_001() {
+	public void testBug571332_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -5300,7 +5300,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			"The target type of this expression must be a functional interface\n" +
 			"----------\n");
 	}
-	public void testBug570605_001() {
+	public void testBug570605_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -5349,7 +5349,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 			},
 			"0");
 	}
-	public void testBug572205_001() {
+	public void testBug572205_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -5405,7 +5405,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 				},
 				"0");
 	}
-	public void testBug573450_003() {
+	public void testBug573450_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -5444,7 +5444,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 				},
 				"0");
 	}
-	public void testBug573450_005() {
+	public void testBug573450_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -5479,7 +5479,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 				},
 				"Hola");
 	}
-	public void testBug578619_2() {
+	public void testBug578619_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"Bug578619.java",
@@ -5506,7 +5506,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=576378
 	// [compiler] Wrong rawtype warning and wrong compilation of generic type reference in permits clause
-	public void testBug576378() {
+	public void testBug576378() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -5548,7 +5548,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=576378
 	// [compiler] Wrong rawtype warning and wrong compilation of generic type reference in permits clause
-	public void testBug576378_3() {
+	public void testBug576378_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -5589,7 +5589,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2093
 	// [sealed types] ECJ complains of cycles in hierarchy where none exists
-	public void testIssue2093() {
+	public void testIssue2093() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -5622,7 +5622,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=576471
 	// Sealed type hierarchy doesn't compile if there are redundant type references
-	public void testBug576471() {
+	public void testBug576471() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -5644,7 +5644,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1808
 	// [sealed-classes] Incorrect unused import warning
-	public void testIssue1808() {
+	public void testIssue1808() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -5666,7 +5666,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1808
 	// [sealed-classes] Incorrect unused import warning
-	public void testIssue1808_1() {
+	public void testIssue1808_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -5712,7 +5712,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1808
 	// [sealed-classes] Incorrect unused import warning
-	public void testIssue1808_3() {
+	public void testIssue1808_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runWarningTest(
 				new String[] {
 						"foo/X.java",
@@ -5733,7 +5733,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1808
 	// [sealed-classes] Incorrect unused import warning
-	public void testIssue1808_4() {
+	public void testIssue1808_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles =
 				new String[] {
@@ -5764,7 +5764,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2595
 	// [sealed types] ECJ accepts a cast from a disjoint interface to a sealed interface
-	public void testIssue2595_0() {
+	public void testIssue2595_0() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -5802,7 +5802,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2595
 	// [sealed types] ECJ accepts a cast from a disjoint interface to a sealed interface
-	public void testIssue2595_1() {
+	public void testIssue2595_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -5844,7 +5844,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2595
 	// [sealed types] ECJ accepts a cast from a disjoint interface to a sealed interface
-	public void testIssue2595_2() {
+	public void testIssue2595_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -5878,7 +5878,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2595
 	// [sealed types] ECJ accepts a cast from a disjoint interface to a sealed interface
-	public void testIssue2595_3() {
+	public void testIssue2595_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -5903,7 +5903,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2667
 	// [Sealed Types] Failure to cast an Object to a generic sealed interface type
-	public void testIssue2667() {
+	public void testIssue2667() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runWarningTest(
 				new String[] {
 						"Either.java",
@@ -5956,7 +5956,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2672
 	// [Sealed Types] Strange error from ECJ: Syntax error on token "permits", permits expected
-	public void testIssue2672() {
+	public void testIssue2672() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"test/IShape.java",
@@ -5984,7 +5984,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2654
 	// [Sealed Types] Compiler does not handle non-sealed contextual keyword correctly
-	public void testIssue2654() {
+	public void testIssue2654() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -6026,7 +6026,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2707
 	// [Sealed types] ECJ allows a class to be declared as both sealed and non-sealed
-	public void testIssue2707() {
+	public void testIssue2707() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -6049,7 +6049,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2707
 	// [Sealed types] ECJ allows a class to be declared as both sealed and non-sealed
-	public void testIssue2707_2() {
+	public void testIssue2707_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -6070,7 +6070,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2707
 	// [Sealed types] ECJ allows a class to be declared as both sealed and non-sealed
-	public void testIssue2707_3() {
+	public void testIssue2707_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -6135,7 +6135,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3039
 	// [Sealed types] Broken program crashes the compiler
-	public void testIssue3039() {
+	public void testIssue3039() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -6165,7 +6165,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3121
 	// [Sealed types] Regression in instanceof check for sealed generic classes
-	public void testIssue3121() {
+	public void testIssue3121() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -6209,7 +6209,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3121
 	// [Sealed types] Regression in instanceof check for sealed generic classes
-	public void testIssue3121_2() {
+	public void testIssue3121_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -6246,7 +6246,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3121
 	// [Sealed types] Regression in instanceof check for sealed generic classes
-	public void testIssue3121_2_1() {
+	public void testIssue3121_2_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -6278,7 +6278,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3121
 	// [Sealed types] Regression in instanceof check for sealed generic classes
-	public void testIssue3121_3() {
+	public void testIssue3121_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -6310,7 +6310,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3121
 	// [Sealed types] Regression in instanceof check for sealed generic classes
-	public void testIssue3121_4() {
+	public void testIssue3121_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -6344,7 +6344,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3121
 	// [Sealed types] Regression in instanceof check for sealed generic classes
 	// NOTE: javac does not report error#1 but that looks like a defect
-	public void testIssue3121_5() {
+	public void testIssue3121_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -6382,7 +6382,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3007
 	// [Sealed types] Extra and spurious error messages with faulty type sealing
-	public void testIssue3007() {
+	public void testIssue3007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -6420,7 +6420,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3007
 	// [Sealed types] Extra and spurious error messages with faulty type sealing
-	public void testIssue3007_2() {
+	public void testIssue3007_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -6461,7 +6461,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 	/* A class named C is disjoint from an interface named I if (i) it is not the case that C <: I, and (ii) one of the following cases applies:
 	– C is freely extensible (§8.1.1.2), and I is sealed, and C is disjoint from all of the permitted direct subclasses and subinterfaces of I.
 	*/
-	public void testIssue2709() {
+	public void testIssue2709() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -6500,7 +6500,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 				"----------\n");
 	}
 
-	public void testJDK8343306() {
+	public void testJDK8343306() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"X1.java",
@@ -6531,7 +6531,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 		runner.runNegativeTest();
 	}
 
-	public void testNonSealedGenericLocalClassInRecord() {
+	public void testNonSealedGenericLocalClassInRecord() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -6555,7 +6555,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 		runner.runNegativeTest();
 	}
 
-	public void testNonSealedGenericMemberClassOfLocalInRecord() {
+	public void testNonSealedGenericMemberClassOfLocalInRecord() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -6583,7 +6583,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 
 
 	// record + non-generic + direct-local
-	public void testNonSealedLocalClassInRecord() {
+	public void testNonSealedLocalClassInRecord() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -6608,7 +6608,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 	}
 
 	// record + non-generic + member-of-local
-	public void testNonSealedMemberClassOfLocalInRecord() {
+	public void testNonSealedMemberClassOfLocalInRecord() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -6635,7 +6635,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 	}
 
 	// class + generic + direct-local
-	public void testNonSealedGenericLocalClassInClass() {
+	public void testNonSealedGenericLocalClassInClass() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -6659,7 +6659,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 	}
 
 	// class + non-generic + direct-local
-	public void testNonSealedLocalClassInClass() {
+	public void testNonSealedLocalClassInClass() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -6683,7 +6683,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 	}
 
 	// class + generic + member-of-local
-	public void testNonSealedGenericMemberClassOfLocalInClass() {
+	public void testNonSealedGenericMemberClassOfLocalInClass() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -6709,7 +6709,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 	}
 
 	// class + non-generic + member-of-local
-	public void testNonSealedMemberClassOfLocalInClass() {
+	public void testNonSealedMemberClassOfLocalInClass() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -6735,7 +6735,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 	}
 
 	// enum + generic + direct-local
-	public void testNonSealedGenericLocalClassInEnum() {
+	public void testNonSealedGenericLocalClassInEnum() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -6761,7 +6761,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 	}
 
 	// enum + non-generic + direct-local
-	public void testNonSealedLocalClassInEnum() {
+	public void testNonSealedLocalClassInEnum() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -6787,7 +6787,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 	}
 
 	// enum + generic + member-of-local
-	public void testNonSealedGenericMemberClassOfLocalInEnum() {
+	public void testNonSealedGenericMemberClassOfLocalInEnum() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -6815,7 +6815,7 @@ public class SealedTypesTests extends AbstractRegressionTest9 {
 	}
 
 	// enum + non-generic + member-of-local
-	public void testNonSealedMemberClassOfLocalInEnum() {
+	public void testNonSealedMemberClassOfLocalInEnum() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"X.java",

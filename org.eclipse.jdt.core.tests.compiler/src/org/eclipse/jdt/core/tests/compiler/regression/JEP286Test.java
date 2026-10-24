@@ -56,7 +56,7 @@ protected Map getCompilerOptions() {
 	options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_10);
 	return options;
 }
-private static final Map<String, String> simpleTypeNames = new HashMap<>();
+private static final Map<String, String> simpleTypeNames = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 static {
 	// Below call forces the init when the test is run independently.
 	AbstractCompilerTest.getPossibleComplianceLevels();
@@ -85,12 +85,12 @@ static void assertInferredType(LocalDeclaration varDecl) {
 	int underscoreIndex = varName.indexOf('_');
 	Assert.assertNotEquals(-1, underscoreIndex);
 	String typeNamePart = varName.substring(underscoreIndex+1);
-	typeNamePart = typeNamePart.replaceAll("ARRAY", "[]"); // So that we assume that x_intARRAY is of type int[]
+	typeNamePart = typeNamePart.replaceAll("ARRAY", "[]"); // So that we assume that x_intARRAY is of type int[] //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 	String expectedTypeName = simpleTypeNames.getOrDefault(typeNamePart, typeNamePart);
 	String actualTypeName = varDecl.binding.type.debugName();
 	// System.out.println("For " + varName + ", we expect " + expectedTypeName + ", the type was: "
 	// + actualTypeName + " - " + (expectedTypeName.equals(actualTypeName) ? "❤️" : "🤡"));
-	Assert.assertEquals("Type of variable " + varName, expectedTypeName, actualTypeName);
+	Assert.assertEquals("Type of variable " + varName, expectedTypeName, actualTypeName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // This visitor visits the 'testXxx' method in the visited classes, checking for expected types of local variables (using the debug name)
@@ -162,7 +162,7 @@ public void test0003_inferred_enhanced_for() throws IOException {
 			},
 			"SUCCESS 3");
 }
-public void test0004_try_with_resources() throws IOException {
+public void test0004_try_with_resources() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try(java.io.Writer w = new java.io.StringWriter()) {
 		w.write("SUCCESS!\n");
 		System.out.println(w.toString());
@@ -182,7 +182,7 @@ public void test0004_try_with_resources() throws IOException {
 			},
 			"SUCCESS");
 }
-public void test0005_no_initializer() throws IOException {
+public void test0005_no_initializer() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -205,7 +205,7 @@ public void test0005_no_initializer() throws IOException {
 			"Cannot use 'var' on variable without initializer\n" +
 			"----------\n");
 }
-public void test0006_multiple_declarators() throws IOException {
+public void test0006_multiple_declarators() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -228,7 +228,7 @@ public void test0006_multiple_declarators() throws IOException {
 			"'var' is not allowed in a compound declaration\n" +
 			"----------\n");
 }
-public void test0007_var_in_wrong_place() throws IOException {
+public void test0007_var_in_wrong_place() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -275,7 +275,7 @@ public void test0008_null_initializer() throws IOException {
 			"Cannot infer type for local variable initialized to 'null'\n" +
 			"----------\n");
 }
-public void test0008_void_initializer() throws IOException {
+public void test0008_void_initializer() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -327,7 +327,7 @@ public void test0010_array_initializer() throws IOException {
 			"Array initializer needs an explicit target-type\n" +
 			"----------\n");
 }
-public void test0011_array_type() throws IOException {
+public void test0011_array_type() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -350,7 +350,7 @@ public void test0011_array_type() throws IOException {
 			"'var' is not allowed as an element type of an array\n" +
 			"----------\n");
 }
-public void test0012_self_reference() throws IOException {
+public void test0012_self_reference() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// BTW: This will give a VerifyError: int a = ((java.util.concurrent.Callable<Integer>)(() -> true ? 1 : a)).call();
 	// The cases are tested. a is a simple case, with plain usage in the same scope. b is used in a nested scope.
@@ -432,7 +432,7 @@ public void test0014_method_reference() throws IOException {
 			"The target type of this expression must be a functional interface\n" +
 			"----------\n");
 }
-public void test0015_complain_over_all_poly_encountered() throws Exception {
+public void test0015_complain_over_all_poly_encountered() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.runNegativeTest(
 			new String[] {
@@ -473,7 +473,7 @@ public void test0016_dont_capture_deep_poly_expressions() throws IOException {
 //	e[0] = null;
 //}
 
-public void test0017_simple_variable_types() throws Exception {
+public void test0017_simple_variable_types() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	InferredTypeVerifier typeVerifier = new InferredTypeVerifier();
 	this.runConformTest(
 			new String[] {
@@ -503,7 +503,7 @@ public void test0017_simple_variable_types() throws Exception {
 			typeVerifier);
 	Assert.assertEquals(7, typeVerifier.localsChecked);
 }
-public void test0018_primitive_variable_types() throws Exception {
+public void test0018_primitive_variable_types() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	InferredTypeVerifier typeVerifier = new InferredTypeVerifier();
 	this.runConformTest(
 			new String[] {
@@ -555,7 +555,7 @@ public void test0018_primitive_variable_types() throws Exception {
 			typeVerifier);
 	Assert.assertEquals(24, typeVerifier.localsChecked);
 }
-public void test0018_project_variable_types() throws Exception {
+public void test0018_project_variable_types() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	InferredTypeVerifier typeVerifier = new InferredTypeVerifier();
 	this.runConformTest(
 			new String[] {
@@ -682,7 +682,7 @@ public void testBug531832() throws IOException {
 			"'var' is not allowed as an element type of an array\n" +
 			"----------\n");
 }
-public void testBug530879() throws IOException {
+public void testBug530879() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -732,7 +732,7 @@ public void testBug532349() throws IOException {
 			"}"
 		});
 }
-public void testBug532349a() throws IOException {
+public void testBug532349a() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -750,7 +750,7 @@ public void testBug532349a() throws IOException {
 			"class Y<T extends Boolean> {}"
 		});
 }
-public void testBug532349b() throws IOException {
+public void testBug532349b() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -768,7 +768,7 @@ public void testBug532349b() throws IOException {
 			"}"
 		});
 }
-public void testBug532351() throws IOException {
+public void testBug532351() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -789,7 +789,7 @@ public void testBug532351() throws IOException {
 		"No enclosing instance of type X is accessible. Must qualify the allocation with an enclosing instance of type X (e.g. x.new A() where x is an instance of X).\n" +
 		"----------\n");
 }
-public void testBug531025() {
+public void testBug531025() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"a/Ann.java",
@@ -897,7 +897,7 @@ public void testBug532349_003() throws IOException {
 			"}"
 		});
 }
-public void testBug532349_004() throws IOException {
+public void testBug532349_004() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -915,7 +915,7 @@ public void testBug532349_004() throws IOException {
 			"}"
 		});
 }
-public void testBug532349_005() throws IOException {
+public void testBug532349_005() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -934,7 +934,7 @@ public void testBug532349_005() throws IOException {
 			"}"
 		});
 }
-public void testBug532349_006() throws IOException {
+public void testBug532349_006() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -953,7 +953,7 @@ public void testBug532349_006() throws IOException {
 			"}",
 		});
 }
-public void testBug532349_007() throws IOException {
+public void testBug532349_007() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -974,7 +974,7 @@ public void testBug532349_007() throws IOException {
 			"}",
 		});
 }
-public void testBug532349_008() throws IOException {
+public void testBug532349_008() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -996,7 +996,7 @@ public void testBug532349_008() throws IOException {
 			"}",
 		});
 }
-public void testBug532349_009() throws IOException {
+public void testBug532349_009() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1039,7 +1039,7 @@ public void testBug532349_010() throws IOException {
 			"class D implements I, Serializable { public void doSomething() {} }\n"
 		});
 }
-public void testBug532349_11() throws IOException {
+public void testBug532349_11() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1088,7 +1088,7 @@ public void testBug532349_13() throws IOException {
 			"class D<R extends Y<? extends Number>>{ R r;}\n"
 		});
 }
-public void testBug532349_14() throws IOException {
+public void testBug532349_14() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1113,7 +1113,7 @@ public void testBug532349_14() throws IOException {
 			"}"
 		});
 }
-public void testBug532349_15() throws IOException {
+public void testBug532349_15() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1158,7 +1158,7 @@ public void testBug532349_15() throws IOException {
 			"}"
 		}, "");
 }
-public void testBug532349_0016() throws IOException {
+public void testBug532349_0016() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1182,7 +1182,7 @@ public void testBug532349_0016() throws IOException {
 		"Type mismatch: cannot convert from Integer to Number & I\n" +
 		"----------\n");
 }
-public void testBug532349_0017() throws IOException {
+public void testBug532349_0017() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1205,7 +1205,7 @@ public void testBug532349_0017() throws IOException {
 		"Type mismatch: cannot convert from Y<Integer> to Y<? super Q>\n" +
 		"----------\n");
 }
-public void testBug532920() throws IOException {
+public void testBug532920() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1233,7 +1233,7 @@ public void testBug532920() throws IOException {
 		"Can only iterate over an array or an instance of java.lang.Iterable\n" +
 		"----------\n");
 }
-public void testBug567183_1() {
+public void testBug567183_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"p/Item.java",
@@ -1275,7 +1275,7 @@ public void testBug567183_1() {
 			"The type Item is not visible\n" +
 			"----------\n");
 }
-public void testBug567183_2() {
+public void testBug567183_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"p/Item.java",
@@ -1320,7 +1320,7 @@ public void testBug567183_2() {
 			"The type Item is not visible\n" +
 			"----------\n");
 }
-public void testBug567183_3() {
+public void testBug567183_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"p/Item.java",
@@ -1352,7 +1352,7 @@ public void testBug567183_3() {
 			},
 			"");
 }
-public void testBug567183_4() {
+public void testBug567183_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"p/Item.java",
@@ -1388,7 +1388,7 @@ public void testBug567183_4() {
 			"The type Item is not visible\n" +
 			"----------\n");
 }
-public void testIssue600_1() {
+public void testIssue600_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1406,7 +1406,7 @@ public void testIssue600_1() {
 			"\'var\' cannot be used with type arguments\n" +
 			"----------\n");
 }
-public void testIssue600_2() {
+public void testIssue600_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1425,7 +1425,7 @@ public void testIssue600_2() {
 			+ "'var' cannot be used with type arguments\n"
 			+ "----------\n");
 }
-public void testIssue600_3() {
+public void testIssue600_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -1445,7 +1445,7 @@ public void testIssue600_3() {
 			+ "'var' cannot be used with type arguments\n"
 			+ "----------\n");
 }
-public void testIssue600_4() {
+public void testIssue600_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -1465,7 +1465,7 @@ public void testIssue600_4() {
 			+ "'var' cannot be used with type arguments\n"
 			+ "----------\n");
 }
-public void testIssue5202ArrayDownwardsProjection() {
+public void testIssue5202ArrayDownwardsProjection() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"ProjectedArrayType.java",

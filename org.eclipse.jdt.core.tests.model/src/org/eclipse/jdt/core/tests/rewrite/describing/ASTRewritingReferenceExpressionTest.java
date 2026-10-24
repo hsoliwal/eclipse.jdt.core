@@ -40,7 +40,7 @@ public class ASTRewritingReferenceExpressionTest extends ASTRewritingTest {
 	/**
 	 * tests various aspects of CreationReference (Constructor Method Reference) with ClassType as lhs
 	 */
-	public void testReferenceExpressions_test001_since_8() throws Exception {
+	public void testReferenceExpressions_test001_since_8() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test407131", false, null);
 		String contents = "package test407131;\n" +
 				"\n" +
@@ -75,7 +75,7 @@ public class ASTRewritingReferenceExpressionTest extends ASTRewritingTest {
 				"	}\n" +
 				"}\n" +
 				"\n" ;
-		StringBuilder buf= new StringBuilder(contents);
+		StringBuilder buf= new StringBuilder(contents); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 		CompilationUnit astRoot= createAST(cu);
 		ASTRewrite rewrite= ASTRewrite.create(astRoot.getAST());
@@ -115,7 +115,7 @@ public class ASTRewritingReferenceExpressionTest extends ASTRewritingTest {
 			variableDeclarationFragment = (VariableDeclarationFragment) variableDeclarationStatement.fragments().get(0);
 			creationReference = (CreationReference) variableDeclarationFragment.getInitializer();
 			listRewrite = rewrite.getListRewrite(creationReference, CreationReference.TYPE_ARGUMENTS_PROPERTY);
-			for (Iterator iter= listRewrite.getOriginalList().iterator(); iter.hasNext(); ) {//loop added for general case - iterates once here.
+			for (Iterator iter= listRewrite.getOriginalList().iterator(); iter.hasNext(); ) {//loop added for general case - iterates once here. //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ASTNode typeArgument= (ASTNode) iter.next();
 				listRewrite.remove(typeArgument, null);
 			}
@@ -171,14 +171,14 @@ public class ASTRewritingReferenceExpressionTest extends ASTRewritingTest {
 				"	}\n" +
 				"}\n" +
 				"\n" ;
-		buf= new StringBuilder(contents);
+		buf= new StringBuilder(contents); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		assertEqualString(preview, buf.toString());
 	}
 
 	/**
 	 * tests various aspects of CreationReference (Constructor Method Reference) with ArrayType as lhs
 	 */
-	public void testReferenceExpressions_test002_since_8() throws Exception {
+	public void testReferenceExpressions_test002_since_8() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test407131", false, null);
 		String contents = "package test407131;\n" +
 				"interface I {\n" +
@@ -191,7 +191,7 @@ public class ASTRewritingReferenceExpressionTest extends ASTRewritingTest {
 				"	}\n" +
 				"}\n" +
 				"\n" ;
-		StringBuilder buf= new StringBuilder(contents);
+		StringBuilder buf= new StringBuilder(contents); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 		CompilationUnit astRoot= createAST(cu);
 		ASTRewrite rewrite= ASTRewrite.create(astRoot.getAST());
@@ -220,14 +220,14 @@ public class ASTRewritingReferenceExpressionTest extends ASTRewritingTest {
 				"	}\n" +
 				"}\n" +
 				"\n" ;
-		buf= new StringBuilder(contents);
+		buf= new StringBuilder(contents); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		assertEqualString(preview, buf.toString());
 	}
 
 	/**
 	 * tests various aspects of {@link ExpressionMethodReference}
 	 */
-	public void testReferenceExpressions_test003_since_8() throws Exception {
+	public void testReferenceExpressions_test003_since_8() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test407131", false, null);
 		String contents = "package test407131;\n" +
 				"interface J {\n" +
@@ -250,7 +250,7 @@ public class ASTRewritingReferenceExpressionTest extends ASTRewritingTest {
 				"	}\n" +
 				"}\n" +
 				"\n" ;
-		StringBuilder buf= new StringBuilder(contents);
+		StringBuilder buf= new StringBuilder(contents); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 		CompilationUnit astRoot= createAST(cu);
 		ASTRewrite rewrite= ASTRewrite.create(astRoot.getAST());
@@ -300,14 +300,14 @@ public class ASTRewritingReferenceExpressionTest extends ASTRewritingTest {
 				"	}\n" +
 				"}\n" +
 				"\n" ;
-		buf= new StringBuilder(contents);
+		buf= new StringBuilder(contents); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		assertEqualString(preview, buf.toString());
 	}
 
 	/**
 	 * tests various aspects of {@link TypeMethodReference}
 	 */
-	public void testReferenceExpressions_test004_since_8() throws Exception {
+	public void testReferenceExpressions_test004_since_8() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test407131", false, null);
 		String contents = "package test407131;\n" +
 				"package test407131;\n" +
@@ -334,7 +334,7 @@ public class ASTRewritingReferenceExpressionTest extends ASTRewritingTest {
 				"@Target (ElementType.TYPE_USE)\n" +
 				"@interface @Marker {}\n" +
 				"}\n" ;
-		StringBuilder buf= new StringBuilder(contents);
+		StringBuilder buf= new StringBuilder(contents); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 		CompilationUnit astRoot= createAST(cu);
 		ASTRewrite rewrite= ASTRewrite.create(astRoot.getAST());
@@ -389,14 +389,14 @@ public class ASTRewritingReferenceExpressionTest extends ASTRewritingTest {
 				"@Target (ElementType.TYPE_USE)\n" +
 				"@interface @Marker {}\n" +
 				"}\n" ;
-		buf= new StringBuilder(contents);
+		buf= new StringBuilder(contents); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		assertEqualString(preview, buf.toString());
 	}
 
 	/**
 	 * tests various aspects of SuperMethodReference
 	 */
-	public void testReferenceExpressions_test005_since_8() throws Exception {
+	public void testReferenceExpressions_test005_since_8() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test407131", false, null);
 		String contents = "package test407131;\n" +
 				"interface J {\n" +
@@ -417,7 +417,7 @@ public class ASTRewritingReferenceExpressionTest extends ASTRewritingTest {
 				"       public static void main (String [] args) {}\n" +
 				"}\n" +
 				"\n" ;
-		StringBuilder buf= new StringBuilder(contents);
+		StringBuilder buf= new StringBuilder(contents); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 		CompilationUnit astRoot= createAST(cu);
 		ASTRewrite rewrite= ASTRewrite.create(astRoot.getAST());
@@ -465,13 +465,13 @@ public class ASTRewritingReferenceExpressionTest extends ASTRewritingTest {
 				"       public static void main (String [] args) {}\n" +
 				"}\n" +
 				"\n" ;
-		buf = new StringBuilder(contents);
+		buf = new StringBuilder(contents); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		assertEqualString(preview, buf.toString());
 	}
 	/**
 	 * tests cross rewriting - changing from one member of reference expressions to another type.
 	 */
-	public void testReferenceExpressions_test006_since_8() throws Exception {
+	public void testReferenceExpressions_test006_since_8() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test407131", false, null);
 		this.project1.setOption(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_1_8);
 		String contents = "package test407131;\n" +
@@ -509,7 +509,7 @@ public class ASTRewritingReferenceExpressionTest extends ASTRewritingTest {
 				"@Target (ElementType.TYPE_USE)\n" +
 				"@interface Marker {}\n" +
 				"}\n";
-		StringBuilder buf= new StringBuilder(contents);
+		StringBuilder buf= new StringBuilder(contents); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 		CompilationUnit astRoot= createAST(cu);
 		ASTRewrite rewrite= ASTRewrite.create(astRoot.getAST());
@@ -607,7 +607,7 @@ public class ASTRewritingReferenceExpressionTest extends ASTRewritingTest {
 				"@Target (ElementType.TYPE_USE)\n" +
 				"@interface Marker {}\n" +
 				"}\n";
-		buf= new StringBuilder(contents);
+		buf= new StringBuilder(contents); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		assertEqualString(preview, buf.toString());
 	}
 }

@@ -54,7 +54,7 @@ public class RunOnlyJava8Tests extends TestCase {
 	public RunOnlyJava8Tests(String name) {
 		super(name);
 	}
-	public static Class[] getAllTestClasses() {
+	public static Class[] getAllTestClasses() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		return new Class[] {
 			LambdaExpressionSyntaxTest.class,
 			NegativeLambdaExpressionsTest.class,
@@ -114,13 +114,13 @@ public class RunOnlyJava8Tests extends TestCase {
 		Class[] testClasses = getAllTestClasses();
 		addTestsToSuite(ts, testClasses);
 		testClasses = getConverterTestClasses();
-		ConverterTestSetup.TEST_SUITES = new ArrayList(Arrays.asList(testClasses));
+		ConverterTestSetup.TEST_SUITES = new ArrayList(Arrays.asList(testClasses)); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		addTestsToSuite(ts, testClasses);
 		return ts;
 	}
-	public static void addTestsToSuite(TestSuite suite, Class[] testClasses) {
+	public static void addTestsToSuite(TestSuite suite, Class[] testClasses) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
-		for (int i = 0; i < testClasses.length; i++) {
+		for (int i = 0; i < testClasses.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Class testClass = testClasses[i];
 			// call the suite() method and add the resulting suite to the suite
 			try {

@@ -37,7 +37,7 @@ public class MethodHandleTest extends AbstractRegressionTest {
 //		TESTS_NAMES = new String [] { "test009" };
 	}
 
-	public void test001() {
+	public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -95,7 +95,7 @@ public class MethodHandleTest extends AbstractRegressionTest {
 			"foo:3\n" +
 			"bar");
 	}
-	public void test002() {
+	public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -125,7 +125,7 @@ public class MethodHandleTest extends AbstractRegressionTest {
 			},
 			"This is ok");
 	}
-	public void test003() {
+	public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -154,7 +154,7 @@ public class MethodHandleTest extends AbstractRegressionTest {
 			},
 			"");
 	}
-	public void test004() {
+	public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -183,7 +183,7 @@ public class MethodHandleTest extends AbstractRegressionTest {
 			},
 			"");
 	}
-	public void test005() {
+	public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -212,7 +212,7 @@ public class MethodHandleTest extends AbstractRegressionTest {
 			},
 			"");
 	}
-	public void test006() {
+	public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -245,7 +245,7 @@ public class MethodHandleTest extends AbstractRegressionTest {
 			"follow\n" +
 			"Expected exception");
 	}
-	public void test007() {
+	public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -271,7 +271,7 @@ public class MethodHandleTest extends AbstractRegressionTest {
 			"Inside foo");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=386259, wrong unnecessary cast warning.
-	public void test009() {
+	public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customOptions = getCompilerOptions();
 		customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 		runNegativeTest(
@@ -307,7 +307,7 @@ public class MethodHandleTest extends AbstractRegressionTest {
 				JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=386259 variation.
-	public void test010() {
+	public void test010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customOptions = getCompilerOptions();
 		customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 		runNegativeTest(
@@ -348,7 +348,7 @@ public class MethodHandleTest extends AbstractRegressionTest {
 				JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=466748
-	public void test011() {
+	public void test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",

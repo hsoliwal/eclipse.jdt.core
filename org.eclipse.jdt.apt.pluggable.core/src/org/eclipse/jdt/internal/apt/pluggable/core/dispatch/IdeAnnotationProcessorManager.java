@@ -56,7 +56,7 @@ public class IdeAnnotationProcessorManager extends BaseAnnotationProcessorManage
 	 * prototyped that way because the abstract base class must compile without
 	 * Eclipse platform code.)
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void configureFromPlatform(Compiler compiler, Object compilationUnitLocator, Object javaProject, boolean isTestCode) {
 		_javaProject = (IJavaProject) javaProject;
 		_cuLocator = (ICompilationUnitLocator) compilationUnitLocator;
@@ -71,7 +71,7 @@ public class IdeAnnotationProcessorManager extends BaseAnnotationProcessorManage
 			_processingEnv = new IdeBuildProcessingEnvImpl(this, _javaProject, compiler, isTestCode);
 		}
 		if (Apt6Plugin.DEBUG) {
-			Apt6Plugin.trace("Java 6 annotation processor manager initialized for compiler " +
+			Apt6Plugin.trace("Java 6 annotation processor manager initialized for compiler " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					compiler.toString() + " on project " + _javaProject.getElementName());
 		}
 	}
@@ -80,7 +80,7 @@ public class IdeAnnotationProcessorManager extends BaseAnnotationProcessorManage
 	 * If this project has a ProcessorPath defined, use it.  Else, construct
 	 * one from the classpath.
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public ProcessorInfo discoverNextProcessor() {
 		// _processorIter gets initialized the first time through processAnnotations()
 		if (_processorIter.hasNext()) {
@@ -91,12 +91,12 @@ public class IdeAnnotationProcessorManager extends BaseAnnotationProcessorManage
 				p.init(_processingEnv);
 				ProcessorInfo pi = new ProcessorInfo(p);
 				if (Apt6Plugin.DEBUG) {
-					Apt6Plugin.trace("Discovered processor " + p.toString());
+					Apt6Plugin.trace("Discovered processor " + p.toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				_processors.add(pi);
 				return pi;
 			} catch (CoreException | NoClassDefFoundError e) {
-				Apt6Plugin.log(e, "Unable to create instance of annotation processor " + entry.getKey()); //$NON-NLS-1$
+				Apt6Plugin.log(e, "Unable to create instance of annotation processor " + entry.getKey()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		return null;
@@ -104,7 +104,7 @@ public class IdeAnnotationProcessorManager extends BaseAnnotationProcessorManage
 
 	@Override
 	public void reportProcessorException(Processor p, Exception e) {
-		Apt6Plugin.log(e, "Exception thrown by Java annotation processor " + p); //$NON-NLS-1$
+		Apt6Plugin.log(e, "Exception thrown by Java annotation processor " + p); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/**

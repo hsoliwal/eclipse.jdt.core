@@ -30,7 +30,7 @@ public DocumentElementParserTest(String testName) {
 }
 public void reset() {
 }
-public void test01() {
+public void test01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"public class X {\n" +

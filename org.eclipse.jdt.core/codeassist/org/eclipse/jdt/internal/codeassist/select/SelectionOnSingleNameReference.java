@@ -45,7 +45,7 @@ public class SelectionOnSingleNameReference extends SingleNameReference {
 public SelectionOnSingleNameReference(char[] source, long pos) {
 	super(source, pos);
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public TypeBinding resolveType(BlockScope scope) {
 	if (this.actualReceiverType != null) {
 		this.binding = scope.getField(this.actualReceiverType, this.token, this);
@@ -81,7 +81,7 @@ public TypeBinding resolveType(BlockScope scope) {
 }
 @Override
 public StringBuilder printExpression(int indent, StringBuilder output) {
-	output.append("<SelectOnName:"); //$NON-NLS-1$
+	output.append("<SelectOnName:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return super.printExpression(0, output).append('>');
 }
 }

@@ -73,7 +73,7 @@ public class AdvancedFactoryPathOptionsDialog extends StatusDialog {
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(shell, IAptHelpContextIds.ADVANCED_FACTORYPATH_OPTIONS_DIALOG);
     }
 
-	protected Control createDialogArea(Composite parent) {
+	protected Control createDialogArea(Composite parent) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Composite dlgArea= (Composite) super.createDialogArea(parent);
 
 		// Set up "batch mode" checkbox.
@@ -104,14 +104,14 @@ public class AdvancedFactoryPathOptionsDialog extends StatusDialog {
         _contentsField.getList().setLayoutData(data);
         _contentsField.getList().setFont(parent.getFont());
         try {
-	        for (Entry<String, String> entry : _fc.getFactoryNames().entrySet()) {
+	        for (Entry<String, String> entry : _fc.getFactoryNames().entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	        	String name = entry.getKey();
 	        	_contentsField.add(name);
 	        	//TODO: display the processor type (i.e., entry.getValue())
 	        }
         }
         catch (IOException e) {
-			final String message = "Unable to load factory names from container [" + _fc.getId() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
+			final String message = "Unable to load factory names from container [" + _fc.getId() + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			ExceptionHandler.log(e, message);
         }
         _contentsField.setSelection(null, false);

@@ -37,8 +37,8 @@ import java.util.Map;
  */
 final class RemovedImportCommentReassigner {
 	private static Collection<OriginalImportEntry> retainImportsWithComments(Collection<OriginalImportEntry> imports) {
-		Collection<OriginalImportEntry> importsWithComments = new ArrayList<>(imports.size());
-		for (OriginalImportEntry currentImport : imports) {
+		Collection<OriginalImportEntry> importsWithComments = new ArrayList<>(imports.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (OriginalImportEntry currentImport : imports) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!currentImport.comments.isEmpty()) {
 				importsWithComments.add(currentImport);
 			}
@@ -48,7 +48,7 @@ final class RemovedImportCommentReassigner {
 	}
 
 	private static boolean hasFloatingComment(OriginalImportEntry nextAssignedImport) {
-		for (ImportComment importComment : nextAssignedImport.comments) {
+		for (ImportComment importComment : nextAssignedImport.comments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (importComment.succeedingLineDelimiters > 1) {
 				return true;
 			}
@@ -71,16 +71,16 @@ final class RemovedImportCommentReassigner {
 	 * {@code resultantImports} and each value is a collection of comments reassigned to that
 	 * resultant import.
 	 */
-	Map<ImportEntry, Collection<ImportComment>> reassignComments(Collection<ImportEntry> resultantImports) {
+	Map<ImportEntry, Collection<ImportComment>> reassignComments(Collection<ImportEntry> resultantImports) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<ImportEntry, Collection<OriginalImportEntry>> importAssignments = assignRemovedImports(resultantImports);
 
 		Map<ImportEntry, Collection<ImportComment>> commentAssignments =
-				new HashMap<>();
+				new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
-		for (Map.Entry<ImportEntry, Collection<OriginalImportEntry>> importAssignment : importAssignments.entrySet()) {
+		for (Map.Entry<ImportEntry, Collection<OriginalImportEntry>> importAssignment : importAssignments.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ImportEntry targetImport = importAssignment.getKey();
 			if (targetImport != null) {
-				Deque<ImportComment> assignedComments = new ArrayDeque<>();
+				Deque<ImportComment> assignedComments = new ArrayDeque<>(); //FLLDCIM: MARK — M08 M3_DEQUE_LANES NEW
 
 				Collection<OriginalImportEntry> assignedImports = importAssignment.getValue();
 
@@ -89,7 +89,7 @@ final class RemovedImportCommentReassigner {
 					nextAssignedImportIterator.next();
 				}
 
-				for (OriginalImportEntry currentAssignedImport : assignedImports) {
+				for (OriginalImportEntry currentAssignedImport : assignedImports) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					OriginalImportEntry nextAssignedImport =
 							nextAssignedImportIterator.hasNext() ? nextAssignedImportIterator.next() : null;
 
@@ -111,7 +111,7 @@ final class RemovedImportCommentReassigner {
 		return commentAssignments;
 	}
 
-	private Map<ImportEntry, Collection<OriginalImportEntry>> assignRemovedImports(Collection<ImportEntry> imports) {
+	private Map<ImportEntry, Collection<OriginalImportEntry>> assignRemovedImports(Collection<ImportEntry> imports) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Collection<OriginalImportEntry> removedImportsWithComments = identifyRemovedImportsWithComments(imports);
 		if (removedImportsWithComments.isEmpty()) {
 			return Collections.emptyMap();
@@ -121,14 +121,14 @@ final class RemovedImportCommentReassigner {
 		Map<ImportName, ImportEntry> firstOccurrences = identifyFirstOccurrenceOfEachImportName(imports);
 
 		Map<ImportEntry, Collection<OriginalImportEntry>> removedImportsForRetainedImport =
-				new HashMap<>();
-		for (ImportEntry retainedImport : imports) {
-			removedImportsForRetainedImport.put(retainedImport, new ArrayList<>());
+				new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		for (ImportEntry retainedImport : imports) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			removedImportsForRetainedImport.put(retainedImport, new ArrayList<>()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		}
 		// The null key will map to the removed imports not assigned to any import.
-		removedImportsForRetainedImport.put(null, new ArrayList<>());
+		removedImportsForRetainedImport.put(null, new ArrayList<>()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
-		for (OriginalImportEntry removedImport : removedImportsWithComments) {
+		for (OriginalImportEntry removedImport : removedImportsWithComments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ImportName removedImportName = removedImport.importName;
 
 			final ImportEntry retainedImport;
@@ -147,7 +147,7 @@ final class RemovedImportCommentReassigner {
 
 	private Collection<OriginalImportEntry> identifyRemovedImportsWithComments(Collection<ImportEntry> imports) {
 		Collection<OriginalImportEntry> removedImports =
-				new ArrayList<>(this.originalImportsWithComments);
+				new ArrayList<>(this.originalImportsWithComments); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		removedImports.removeAll(imports);
 		return removedImports;
 	}
@@ -163,8 +163,8 @@ final class RemovedImportCommentReassigner {
 	 * corresponding single imports in {@code imports}.
 	 */
 	private Map<ImportName, ImportEntry> identifyFirstSingleForEachOnDemand(Iterable<ImportEntry> imports) {
-		Map<ImportName, ImportEntry> firstSingleImportForContainer = new HashMap<>();
-		for (ImportEntry currentImport : imports) {
+		Map<ImportName, ImportEntry> firstSingleImportForContainer = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		for (ImportEntry currentImport : imports) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!currentImport.importName.isOnDemand()) {
 				ImportName containerOnDemand = currentImport.importName.getContainerOnDemand();
 				if (!firstSingleImportForContainer.containsKey(containerOnDemand)) {
@@ -176,8 +176,8 @@ final class RemovedImportCommentReassigner {
 	}
 
 	private Map<ImportName, ImportEntry> identifyFirstOccurrenceOfEachImportName(Iterable<ImportEntry> imports) {
-		Map<ImportName, ImportEntry> firstOccurrenceOfImport = new HashMap<>();
-		for (ImportEntry resultantImport : imports) {
+		Map<ImportName, ImportEntry> firstOccurrenceOfImport = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		for (ImportEntry resultantImport : imports) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!firstOccurrenceOfImport.containsKey(resultantImport.importName)) {
 				firstOccurrenceOfImport.put(resultantImport.importName, resultantImport);
 			}

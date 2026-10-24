@@ -74,7 +74,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=234609 BindingKey#toSignature() fails with key from createWilcardTypeBindingKey(..)
-	public void test234609() throws JavaModelException {
+	public void test234609() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		String newContents = 	"package p;\n" +
 		"import java.util.HashMap;\n" +
@@ -142,7 +142,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
 	// Similar test as above - variation in wildcard type being unbounded.
-	public void test234609b() throws JavaModelException {
+	public void test234609b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		String newContents = 	"package p;\n" +
 		"import java.util.ArrayList;\n" +
@@ -192,7 +192,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertTrue("Equals", bindingFromKey[0].isEqualTo(bindingFromAST));
 	}
 
-	public void test0001() throws JavaModelException {
+	public void test0001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0001", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		char[] source = sourceUnit.getSource().toCharArray();
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
@@ -257,7 +257,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertProblemsSize(compilationUnit, 0);
 	}
 
-	public void test0003() throws JavaModelException {
+	public void test0003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0003", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		char[] source = sourceUnit.getSource().toCharArray();
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
@@ -294,7 +294,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		checkSourceRange(modifier, "public", source);
 	}
 
-	public void test0004() throws JavaModelException {
+	public void test0004() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0004", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		char[] source = sourceUnit.getSource().toCharArray();
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
@@ -331,7 +331,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		checkSourceRange(modifier, "public", source);
 	}
 
-	public void test0005() throws JavaModelException {
+	public void test0005() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0005", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		char[] source = sourceUnit.getSource().toCharArray();
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
@@ -397,7 +397,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertNull("Got a default", expression);
 	}
 
-	public void test0006() throws JavaModelException {
+	public void test0006() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0006", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		char[] source = sourceUnit.getSource().toCharArray();
 		ASTNode result = runConversion(sourceUnit, true);
@@ -434,7 +434,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertTrue("not static", importDeclaration.isStatic());
 	}
 
-	public void test0009() throws JavaModelException {
+	public void test0009() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0009", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runConversion(sourceUnit, true);
 		char[] source = sourceUnit.getSource().toCharArray();
@@ -458,7 +458,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		checkSourceRange(body, "{System.out.println(s);}", source);
 	}
 
-	public void test0010() throws JavaModelException {
+	public void test0010() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0010", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runConversion(sourceUnit, true);
 		char[] source = sourceUnit.getSource().toCharArray();
@@ -488,7 +488,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		checkSourceRange(body, "{System.out.println(s);}", source);
 	}
 
-	public void test0011() throws JavaModelException {
+	public void test0011() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0011", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runConversion(sourceUnit, true);
 		char[] source = sourceUnit.getSource().toCharArray();
@@ -519,7 +519,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		checkSourceRange(body, "{System.out.println(s);}", source);
 	}
 
-	public void test0012() throws JavaModelException {
+	public void test0012() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0012", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runConversion(sourceUnit, true);
 		char[] source = sourceUnit.getSource().toCharArray();
@@ -543,7 +543,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertTrue("Not a variable argument", parameter.isVarargs());
 	}
 
-	public void test0013() throws JavaModelException {
+	public void test0013() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0013", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		char[] source = sourceUnit.getSource().toCharArray();
@@ -587,7 +587,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		checkSourceRange(typeArgument, "A", source);
 	}
 
-	public void test0014() throws JavaModelException {
+	public void test0014() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0014", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		char[] source = sourceUnit.getSource().toCharArray();
@@ -623,7 +623,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		checkSourceRange(typeArgument, "A", source);
 	}
 
-	public void test0015() throws JavaModelException {
+	public void test0015() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0015", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		char[] source = sourceUnit.getSource().toCharArray();
@@ -663,7 +663,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertEquals("Wrong first character", '<', source[node.getStartPosition()]);
 	}
 
-	public void test0017() throws JavaModelException {
+	public void test0017() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0017", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		char[] source = sourceUnit.getSource().toCharArray();
@@ -710,7 +710,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		checkSourceRange(qualifiedName.getName(), "A", source);
 	}
 
-	public void test0018() throws JavaModelException {
+	public void test0018() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0018", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		char[] source = sourceUnit.getSource().toCharArray();
@@ -755,7 +755,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		checkSourceRange(qualifiedName.getName(), "A", source);
 	}
 
-	public void test0019() throws JavaModelException {
+	public void test0019() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0019", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		char[] source = sourceUnit.getSource().toCharArray();
@@ -800,7 +800,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		checkSourceRange(qualifiedName.getName(), "A", source);
 	}
 
-	public void test0020() throws JavaModelException {
+	public void test0020() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0020", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		char[] source = sourceUnit.getSource().toCharArray();
@@ -822,7 +822,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		checkSourceRange(typeArgument, "?", source);
 	}
 
-	public void test0021() throws JavaModelException {
+	public void test0021() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0021", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		char[] source = sourceUnit.getSource().toCharArray();
@@ -849,7 +849,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertTrue("Not an upper bound", wildcardType.isUpperBound());
 	}
 
-	public void test0022() throws JavaModelException {
+	public void test0022() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0022", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		char[] source = sourceUnit.getSource().toCharArray();
@@ -876,7 +876,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertFalse("Is an upper bound", wildcardType.isUpperBound());
 	}
 
-	public void test0023() throws JavaModelException {
+	public void test0023() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0023", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		char[] source = sourceUnit.getSource().toCharArray();
@@ -895,7 +895,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		checkSourceRange(typeParameter, "T", source);
 	}
 
-	public void test0024() throws JavaModelException {
+	public void test0024() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0024", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		char[] source = sourceUnit.getSource().toCharArray();
@@ -933,7 +933,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		checkSourceRange(type, "E", source);
 	}
 
-	public void test0026() throws JavaModelException {
+	public void test0026() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0026", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertTrue("Not a compilation unit", result.getNodeType() == ASTNode.COMPILATION_UNIT);
@@ -1066,7 +1066,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertEquals("wrong size", 0, enumConstantDeclaration.arguments().size());
 	}
 
-	public void test0027() throws JavaModelException {
+	public void test0027() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0027", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertTrue("Not a compilation unit", result.getNodeType() == ASTNode.COMPILATION_UNIT);
@@ -1148,7 +1148,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertEquals("Wrong name", "QUARTER", binding.getName());
 	}
 
-	public void test0028() throws JavaModelException {
+	public void test0028() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0028", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertTrue("Not a compilation unit", result.getNodeType() == ASTNode.COMPILATION_UNIT);
@@ -1208,7 +1208,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertProblemsSize(compilationUnit, 0);
 	}
 
-	public void test0032() throws JavaModelException {
+	public void test0032() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0032", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		char[] source = sourceUnit.getSource().toCharArray();
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
@@ -1260,7 +1260,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * Test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=67790
 	 */
-	public void test0036() throws JavaModelException {
+	public void test0036() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0036", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		char[] source = sourceUnit.getSource().toCharArray();
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
@@ -1283,7 +1283,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * Test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=68838
 	 */
-	public void test0037() throws JavaModelException {
+	public void test0037() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0037", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertNotNull(result);
@@ -1341,7 +1341,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * Test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=69066
 	 */
-	public void test0038() throws JavaModelException {
+	public void test0038() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0038", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		char[] source = sourceUnit.getSource().toCharArray();
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
@@ -1422,7 +1422,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * Test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=72248
 	 */
-	public void test0040() throws JavaModelException {
+	public void test0040() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0040", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertNotNull(result);
@@ -1461,7 +1461,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * Test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=73048
 	 */
-	public void test0042() throws JavaModelException {
+	public void test0042() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0042", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertNotNull(result);
@@ -1488,7 +1488,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * Test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=72882
 	 */
-	public void test0043() throws JavaModelException {
+	public void test0043() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0043", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertNotNull(result);
@@ -1511,7 +1511,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * Test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=72891
 	 */
-	public void test0044() throws JavaModelException {
+	public void test0044() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0044", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertNotNull(result);
@@ -1550,7 +1550,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * Test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=72891
 	 */
-	public void test0045() throws JavaModelException {
+	public void test0045() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0045", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertNotNull(result);
@@ -1577,7 +1577,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * Test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=72889
 	 */
-	public void test0046() throws JavaModelException {
+	public void test0046() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0046", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertNotNull(result);
@@ -1616,7 +1616,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * Test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=73561
 	 */
-	public void test0048() throws JavaModelException {
+	public void test0048() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0048", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		char[] source = sourceUnit.getSource().toCharArray();
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
@@ -1646,7 +1646,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * Test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=73561
 	 */
-	public void test0049() throws JavaModelException {
+	public void test0049() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0049", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		char[] source = sourceUnit.getSource().toCharArray();
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
@@ -1676,7 +1676,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * Ellipsis
 	 */
-	public void test0050() throws JavaModelException {
+	public void test0050() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0050", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		char[] source = sourceUnit.getSource().toCharArray();
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
@@ -1703,7 +1703,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * Ellipsis
 	 */
-	public void test0051() throws JavaModelException {
+	public void test0051() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0051", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		char[] source = sourceUnit.getSource().toCharArray();
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
@@ -1848,7 +1848,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	 * Ensures that the type parameters of a method are included in its binding key.
 	 * (regression test for 73970 [1.5][dom] overloaded parameterized methods have same method binding key)
 	 */
-	public void test0060() throws JavaModelException {
+	public void test0060() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/p/X.java", true/*resolve*/);
 		ASTNode node = buildAST(
 			"package p;\n" +
@@ -1867,7 +1867,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		MethodDeclaration[] methods = ((TypeDeclaration) node).getMethods();
 		int length = methods.length;
 		String[] keys = new String[length];
-		for (int i = 0; i < length; i++)
+		for (int i = 0; i < length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			keys[i] = methods[i].resolveBinding().getKey();
 		assertBindingKeysEqual(
 			"Lp/X;.foo<T:Ljava/lang/Object;>(TT;)V\n" +
@@ -1914,7 +1914,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=78183
 	 */
-	public void test0063() throws JavaModelException {
+	public void test0063() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0063", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertNotNull(result);
@@ -1948,7 +1948,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=78183
 	 */
-	public void test0064() throws JavaModelException {
+	public void test0064() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0064", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertNotNull(result);
@@ -1982,7 +1982,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=78183
 	 */
-	public void test0065() throws JavaModelException {
+	public void test0065() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0065", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertNotNull(result);
@@ -2037,7 +2037,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=78649
 	 */
-	public void test0067() throws JavaModelException {
+	public void test0067() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0067", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertNotNull(result);
@@ -2066,7 +2066,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=78649
 	 */
-	public void test0068() throws JavaModelException {
+	public void test0068() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0068", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertNotNull(result);
@@ -2095,7 +2095,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=78934
 	 */
-	public void test0069() throws JavaModelException {
+	public void test0069() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0069", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertNotNull(result);
@@ -2146,7 +2146,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=78934
 	 */
-	public void test0070() throws JavaModelException {
+	public void test0070() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0070", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertNotNull(result);
@@ -2193,7 +2193,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=78930
 	 */
-	public void test0071() throws JavaModelException {
+	public void test0071() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0071", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertNotNull(result);
@@ -2216,7 +2216,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=77645
 	 */
-	public void test0072() throws JavaModelException {
+	public void test0072() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15", "src", "test0072", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runConversion(sourceUnit, true);
 		assertEquals("not a compilation unit", ASTNode.COMPILATION_UNIT, result.getNodeType()); //$NON-NLS-1$
@@ -2234,7 +2234,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 			/* (non-Javadoc)
 			 * @see org.eclipse.jdt.core.dom.ASTVisitor#visit(org.eclipse.jdt.core.dom.VariableDeclarationFragment)
 			 */
-			public boolean visit(VariableDeclarationFragment node) {
+			public boolean visit(VariableDeclarationFragment node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				IVariableBinding binding = node.resolveBinding();
 				ASTNode parent = node.getParent();
 				if (parent != null && binding != null) {
@@ -2295,7 +2295,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=77806
 	 */
-	public void test0073() throws JavaModelException {
+	public void test0073() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0073", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertNotNull(result);
@@ -2328,7 +2328,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=78934
 	 */
-	public void test0074() throws JavaModelException {
+	public void test0074() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0074", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertNotNull(result);
@@ -2396,7 +2396,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=79362
 	 */
-	public void test0076() throws JavaModelException {
+	public void test0076() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0076", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		char[] source = sourceUnit.getSource().toCharArray();
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
@@ -2420,7 +2420,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=79362
 	 */
-	public void test0077() throws JavaModelException {
+	public void test0077() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0077", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		char[] source = sourceUnit.getSource().toCharArray();
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
@@ -2461,7 +2461,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=79460
 	 */
-	public void test0079() throws JavaModelException {
+	public void test0079() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/p/X.java", true/*resolve*/);
 		ASTNode node = buildAST(
 			"package p;\n" +
@@ -2490,7 +2490,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=79460
 	 */
-	public void test0080() throws JavaModelException {
+	public void test0080() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/p/X.java", true/*resolve*/);
 		ASTNode node = buildAST(
 			"package p;\n" +
@@ -2519,7 +2519,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=79460
 	 */
-	public void test0081() throws JavaModelException {
+	public void test0081() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0081", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertNotNull(result);
@@ -2548,7 +2548,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=78183
 	 */
-	public void test0082() throws JavaModelException {
+	public void test0082() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0082", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertNotNull(result);
@@ -2622,7 +2622,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=79544
 	 */
-	public void test0083() throws JavaModelException {
+	public void test0083() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0083", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertNotNull(result);
@@ -2660,7 +2660,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=79612
 	 */
-	public void test0084() throws JavaModelException {
+	public void test0084() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0084", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertNotNull(result);
@@ -2683,7 +2683,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=79609
 	 */
-	public void test0085() throws JavaModelException {
+	public void test0085() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0085", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertNotNull(result);
@@ -2715,7 +2715,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=79512
 	 */
-	public void test0086() throws JavaModelException {
+	public void test0086() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/p/X.java", true/*resolve*/);
 		ASTNode node = buildAST(
 			"package p;\n" +
@@ -2759,7 +2759,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=79690
 	 */
-	public void test0088() throws JavaModelException {
+	public void test0088() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0088", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertNotNull(result);
@@ -2814,7 +2814,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=80021
 	 */
-	public void test0090() throws JavaModelException {
+	public void test0090() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/p/X.java", true/*resolve*/);
 		ASTNode result = buildAST(
 			"package p;\n" +
@@ -2875,7 +2875,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * Check bindings for annotation type declaration
 	 */
-	public void test0091() throws JavaModelException {
+	public void test0091() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/p/X.java", true/*resolve*/);
 		ASTNode node = buildAST(
 			"package p;\n" +
@@ -2903,7 +2903,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=80960
 	 */
-	public void test0092() throws JavaModelException {
+	public void test0092() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/p/X.java", true/*resolve*/);
 		ASTNode node = buildAST(
 			"import java.util.*;\n" +
@@ -2931,7 +2931,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=81023
 	 */
-	public void test0093() throws JavaModelException {
+	public void test0093() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class Test {\n" +
 			"    public <U> Test(U u) {\n" +
@@ -2958,7 +2958,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
 
-	public void test0094() throws JavaModelException {
+	public void test0094() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"import java.lang.annotation.Target;\n" +
 			"import java.lang.annotation.Retention;\n" +
@@ -3012,7 +3012,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=82140
 	 */
-	public void test0096() throws JavaModelException {
+	public void test0096() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public @interface An1 {\n" +
 			"	String value();\n" +
@@ -3043,7 +3043,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=82140
 	 */
-	public void test0097() throws JavaModelException {
+	public void test0097() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"@interface An1 {}\n" +
 			"@interface An2 {}\n" +
@@ -3113,7 +3113,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=82141
 	 */
-	public void test0099() throws JavaModelException {
+	public void test0099() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X {\n" +
 			"	@Override @Annot(value=\"Hello\") public String toString() {\n" +
@@ -3174,7 +3174,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=82216
 	 */
-	public void test0100() throws JavaModelException {
+	public void test0100() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public enum E {\n" +
 			"	A, B, C;\n" +
@@ -3228,7 +3228,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=68823
 	 */
-	public void test0101() throws JavaModelException {
+	public void test0101() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X{\n" +
 			"	public void foo() {\n" +
@@ -3255,7 +3255,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=82670
 	 */
-	public void test0102() throws JavaModelException {
+	public void test0102() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"import java.util.HashMap;\n" +
 			"\n" +
@@ -3281,7 +3281,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=82985
 	 */
-	public void test0103() throws JavaModelException {
+	public void test0103() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0103", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertNotNull(result);
@@ -3380,7 +3380,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=83011
 	 */
-	public void test0105() throws JavaModelException {
+	public void test0105() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"@interface Ann {}\n" +
 			"\n" +
@@ -3410,7 +3410,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=83011
 	 */
-	public void test0106() throws JavaModelException {
+	public void test0106() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"package p;\n" +
 			"@interface Ann {}\n" +
@@ -3453,7 +3453,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=83013
 	 */
-	public void test0107() throws JavaModelException {
+	public void test0107() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"@interface A {\n" +
 			"    String value() default \"\";\n" +
@@ -3477,7 +3477,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=83228
 	 */
-	public void test0108() throws JavaModelException {
+	public void test0108() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"class X<E> {\n" +
 			"    enum Numbers {\n" +
@@ -3530,7 +3530,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=883297
 	 */
-	public void test0109() throws JavaModelException {
+	public void test0109() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"@Annot(value=\"Hello\", count=-1)\n" +
 			"@interface Annot {\n" +
@@ -3833,7 +3833,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=83817
-    public void test0127() throws CoreException {
+    public void test0127() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
         ASTNode node = buildAST(
             "class X<T> {\n" +
@@ -3870,7 +3870,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     }
 
    // https://bugs.eclipse.org/bugs/show_bug.cgi?id=84064
-    public void test0128() throws CoreException {
+    public void test0128() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
         final String contents =
         	"class X {\n" +
@@ -3910,7 +3910,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     }
 
    // https://bugs.eclipse.org/bugs/show_bug.cgi?id=84064
-    public void test0129() throws CoreException {
+    public void test0129() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
         final String contents =
         	"class X {\n" +
@@ -3951,7 +3951,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     }
 
    // https://bugs.eclipse.org/bugs/show_bug.cgi?id=78934
-    public void test0130() throws CoreException {
+    public void test0130() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
         final String contents =
         	"class Outer<A> {\n" +
@@ -4023,7 +4023,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
    }
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=84140
-    public void test0131() throws CoreException {
+    public void test0131() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
     		"public class X {\n" +
@@ -4060,7 +4060,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     }
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=84140
-    public void test0132() throws CoreException {
+    public void test0132() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
     		"public class X {\n" +
@@ -4110,7 +4110,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
      }
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=84181
-    public void test0133() throws CoreException {
+    public void test0133() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
     		"import java.util.Vector;\n" +
@@ -4138,7 +4138,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     }
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=84181
-    public void test0134() throws CoreException {
+    public void test0134() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
     		"import java.util.Vector;\n" +
@@ -4164,7 +4164,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     }
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=78934
-    public void test0135() throws CoreException {
+    public void test0135() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
     		"class X {\n" +
@@ -4194,7 +4194,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     }
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=78934
-    public void test0136() throws CoreException {
+    public void test0136() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
     		"class X {\n" +
@@ -4225,7 +4225,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=79696
 	 */
-	public void test0137() throws JavaModelException {
+	public void test0137() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0137", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertNotNull(result);
@@ -4251,7 +4251,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=81544
-	public void test0138() throws CoreException {
+	public void test0138() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	final String contents =
     		"class X {\n" +
@@ -4288,7 +4288,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=84358
 	 */
-	public void test0139() throws JavaModelException {
+	public void test0139() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0139", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true, true);
 		assertNotNull(result);
@@ -4332,7 +4332,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=85115
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=85215
 	 */
-	public void test0140() throws JavaModelException {
+	public void test0140() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0140", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertNotNull(result);
@@ -4370,7 +4370,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=83100
-	public void test0141() throws CoreException {
+	public void test0141() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	final String contents =
     		"public class X<T> {\n" +
@@ -4415,7 +4415,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     }
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=83100
-	public void test0142() throws CoreException {
+	public void test0142() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	final String contents =
     		"public class X<T> {\n" +
@@ -4446,7 +4446,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     }
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=84140
-    public void test0143() throws CoreException {
+    public void test0143() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
     		"public class X {\n" +
@@ -4488,7 +4488,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     }
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=87171
-    public void test0144() throws CoreException {
+    public void test0144() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
     		"public class X<T> {\n" +
@@ -4522,7 +4522,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     }
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=87350
-    public void test0145() throws CoreException {
+    public void test0145() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
     		"public enum X {\n" +
@@ -4544,7 +4544,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     }
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=87481
-    public void test0146() throws CoreException {
+    public void test0146() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
     		"import java.util.Iterator;\n" +
@@ -4591,7 +4591,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     }
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=87350
-    public void test0148() throws CoreException {
+    public void test0148() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
     		"public enum X {\n" +
@@ -4612,7 +4612,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     }
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=88252
-    public void test0149() throws CoreException {
+    public void test0149() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
     		" interface Jpf {\n" +
@@ -4695,7 +4695,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
    }
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=88224
-    public void test0150() throws CoreException {
+    public void test0150() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
     		"public class X {\n" +
@@ -4736,7 +4736,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
    }
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=88548
-    public void test0151() throws CoreException {
+    public void test0151() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
 	   		"public enum X {\n" +
@@ -4800,7 +4800,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
    }
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=88548
-    @SuppressWarnings("deprecation")
+    @SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void test0152() throws CoreException {
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
@@ -4875,7 +4875,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     }
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=87173
-    public void test0154() throws CoreException {
+    public void test0154() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
 				"public class X {\n" +
@@ -4895,7 +4895,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     }
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=87173
-    public void test0155() throws CoreException {
+    public void test0155() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
 				"public class X {\n" +
@@ -4916,7 +4916,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     }
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=87173
-    public void test0156() throws CoreException {
+    public void test0156() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
 				"public class X {\n" +
@@ -4974,7 +4974,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     }
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=87173
-    public void test0159() throws CoreException {
+    public void test0159() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
 				"public class X {\n" +
@@ -4994,7 +4994,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     }
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=87173
-    public void test0160() throws CoreException {
+    public void test0160() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
 				"public class X {\n" +
@@ -5032,7 +5032,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     }
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=87173
-    public void test0161() throws CoreException {
+    public void test0161() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
 				"public class X {\n" +
@@ -5083,7 +5083,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     }
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=87173
-    public void test0162() throws CoreException {
+    public void test0162() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
    		String contents =
 				"public class X {\n" +
@@ -5114,7 +5114,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     }
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=86580
-    public void test0163() throws CoreException {
+    public void test0163() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
    		String contents =
 				"public class X<T>{\n" +
@@ -5144,7 +5144,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     }
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=86580
-    public void test0164() throws CoreException {
+    public void test0164() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
    		String contents =
 				"class X {\n" +
@@ -5174,7 +5174,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     }
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=86580
-    public void test0165() throws CoreException {
+    public void test0165() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
    		String contents =
 				"class X {\n" +
@@ -5203,7 +5203,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     }
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=86580
-    public void test0166() throws CoreException {
+    public void test0166() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
    		String contents =
 				"class X {\n" +
@@ -5232,7 +5232,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     }
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=88841
-    public void test0167() throws CoreException {
+    public void test0167() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0167", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runJLS4Conversion(sourceUnit, true);
 		assertTrue("Not a compilation unit", result.getNodeType() == ASTNode.COMPILATION_UNIT);
@@ -5259,7 +5259,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertEquals("Wrong part 2", "Object", typesNames[1]);
     }
 
-	public void test0168() throws CoreException {
+	public void test0168() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		final String contents =
 				"import java.util.List;\n" +
@@ -5296,7 +5296,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertNotNull("No wildcard", typeBinding2.getWildcard());
 	}
 
-	public void test0169() throws CoreException {
+	public void test0169() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 				"public class X {\n" +
@@ -5337,7 +5337,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertTrue("Not a wildcard", wildcardBinding.isWildcardType());
 	}
 
-	public void test0170() throws CoreException {
+	public void test0170() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 				"public class X {\n" +
@@ -5389,7 +5389,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	 * Ensures that 2 different capture bindings are not "isEqualTo(...)".
 	 * (regression test for bug 92888 ITypeBinding#isEqualTo(..) is wrong for capture bindings)
 	 */
-	public void test0172() throws JavaModelException {
+	public void test0172() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
 			"public class X<T> {\n" +
@@ -5411,7 +5411,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=93093
 	 */
-	public void test0173() throws JavaModelException {
+	public void test0173() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
 				"import java.util.Vector;\n" +
@@ -5435,7 +5435,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=92982
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=88202
 	 */
-	public void test0174() throws JavaModelException {
+	public void test0174() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
 				"import java.util.*;\n" +
@@ -5458,7 +5458,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=88202
 	 */
-	public void test0175() throws JavaModelException {
+	public void test0175() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
 				"import java.util.*;\n" +
@@ -5480,7 +5480,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=92982
 	 */
-	public void test0176() throws JavaModelException {
+	public void test0176() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
 				"import java.util.*;\n" +
@@ -5504,7 +5504,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	 * Ensure that the declaring class of a capture binding is correct
 	 * (https://bugs.eclipse.org/bugs/show_bug.cgi?id=93275)
 	 */
-    public void test0177() throws CoreException {
+    public void test0177() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
    		String contents =
 				"public class X<T> {\n" +
@@ -5527,7 +5527,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
    	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=93075
 	 */
-    public void test0178() throws CoreException {
+    public void test0178() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
    		String contents =
 				"import java.util.Vector;\n" +
@@ -5570,7 +5570,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=93075
 	 */
-    public void test0179() throws CoreException {
+    public void test0179() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
    		String contents =
 				"@interface Test {}\n" +
@@ -5631,7 +5631,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=95911
 	 */
-	public void test0182() throws JavaModelException {
+	public void test0182() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	final String contents =
 			"import java.util.Map;\n" +
@@ -5662,7 +5662,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=95911
 	 */
-	public void test0183() throws JavaModelException {
+	public void test0183() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	final String contents =
 			"import java.util.Map;\n" +
@@ -5691,7 +5691,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=97841
 	 */
-	public void test0184() throws JavaModelException {
+	public void test0184() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	final String contents =
 			"public class X {\n" +
@@ -5744,7 +5744,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	 * Ensures that the binding key of a parameterized type can be computed when it contains a reference to a type variable.
 	 * (regression test for bug 98259 NPE computing ITypeBinding#getKey())
 	 */
-	public void test0187() throws JavaModelException {
+	public void test0187() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	final String contents =
 			"public class X {\n" +
@@ -5767,7 +5767,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=98473
 	 */
-	public void test0188() throws JavaModelException {
+	public void test0188() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	final String contents =
 			"import java.util.List;\n" +
@@ -5791,7 +5791,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertTrue("Not from source", typeBinding.isFromSource());
 	}
 
-	public void test0189() throws CoreException, IOException {
+	public void test0189() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("P1", new String[] {""}, new String[] {"CONVERTER_JCL18_LIB"}, "", CompilerOptions.getFirstSupportedJavaVersion());
 			addLibrary(project, "lib.jar", "src.zip", new String[] {
@@ -5838,7 +5838,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=99355
-	public void test0190() throws CoreException, IOException {
+	public void test0190() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	final String contents =
 			"class Container<T> {\n" +
@@ -5892,7 +5892,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=99510
-	public void test0191() throws CoreException, IOException {
+	public void test0191() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0191", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode node = runConversion(sourceUnit, true);
 		assertNotNull("No node", node);
@@ -5921,7 +5921,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 
 	// Wrong ParameterizedTypeBinding yields null type declaration result
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=100584
-	public void test0192() throws JavaModelException {
+	public void test0192() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
 			"public class X<E> {\n" +
@@ -5946,7 +5946,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=104492
-	public void test0193() throws JavaModelException {
+	public void test0193() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
 			"public class X {\n" +
@@ -5974,7 +5974,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     }
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=104492
-	public void test0194() throws JavaModelException {
+	public void test0194() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
 			"public class X {\n" +
@@ -6002,7 +6002,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=106834
-	public void test0195() throws JavaModelException {
+	public void test0195() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
 			"public class X {\n" +
@@ -6045,7 +6045,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	 * Ensures that the signature of and IBinding representing a local type ends with the local type's simple name.
 	 * (regression test for bug 104879 BindingKey#internalToSignature() returns invalid signature for local type
 	 */
-	public void test0196() throws JavaModelException {
+	public void test0196() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	   	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		ASTNode node = buildAST(
 			"public class X {\n" +
@@ -6070,12 +6070,12 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	 * doesn't throw an NPE
 	 * (regression test for bug 100606 NPE during reconcile)
 	 */
-	public void test0197() throws CoreException {
+	public void test0197() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createJavaProject("P", new String[] {"src" }, new String[] {"CONVERTER_JCL18_LIB", "/P/lib"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 			IFolder folder = createFolder("/P/lib");
 			String classesPath = folder.getLocation().toOSString();
-			Map options = new HashMap();
+			Map options = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			String[] pathsAndContents = new String[] {
 				"p/Bin.java",
 				"package p;\n" +
@@ -6109,7 +6109,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=110773
 	 */
-	public void test0198() throws CoreException {
+	public void test0198() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	   	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		ASTNode node = buildAST(
 			"public class X<E> {\n" +
@@ -6150,7 +6150,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=110657
 	 */
-	public void test0199() throws CoreException {
+	public void test0199() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	   	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		final String source = "public class X {\n" +
 			"    public static void main(String[] args) {\n" +
@@ -6184,7 +6184,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=110657
 	 */
-	public void test0200() throws CoreException {
+	public void test0200() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	   	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		final String source = "public class X {\n" +
 			"    public static void main(String[] args) {\n" +
@@ -6214,7 +6214,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=110657
 	 */
-	public void test0201() throws CoreException {
+	public void test0201() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	   	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		final String source = "public class X {\n" +
 			"    public static void main(String[] args) {\n" +
@@ -6246,7 +6246,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=110657
 	 */
-	public void test0202() throws CoreException {
+	public void test0202() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	   	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		final String source = "public class X {\n" +
 			"    public static void main(String[] args) {\n" +
@@ -6286,7 +6286,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=80472
 	 */
-	public void test0203() throws CoreException {
+	public void test0203() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	   	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		final String source = "class X<T> {\n" +
 				"        X<T> list= this;\n" +
@@ -6360,7 +6360,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	 * Ensures that the key of non-static member with a raw enclosing type is correct
 	 * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=83064)
 	 */
-	public void test0204c() throws JavaModelException {
+	public void test0204c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
     		"public class X<T> {\n" +
@@ -6402,7 +6402,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=120263
 	 */
-	public void test0206() throws JavaModelException {
+	public void test0206() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
     		"public class X {\n" +
@@ -6441,7 +6441,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=124716
 	 */
-	public void test0207() throws JavaModelException {
+	public void test0207() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"public class X {\n" +
@@ -6471,7 +6471,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=125807
 	 */
-	public void test0208() throws JavaModelException {
+	public void test0208() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"/*start*/@Override(x= 1)/*end*/\n" +
@@ -6491,7 +6491,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertNotNull("no value", pair.getValue());
 	}
 
-	public void test0209() throws JavaModelException {
+	public void test0209() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/test/V.java", true/*resolve*/);
 		String contents =
 			"package test;\n" +
@@ -6536,7 +6536,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertNotNull("No binding", binding);
 		assertEquals("Wrong type", IBinding.PACKAGE, binding.getKind());
 	}
-	public void test0210() throws JavaModelException {
+	public void test0210() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", false);
 		String contents =
 			"public class X {\n" +
@@ -6569,7 +6569,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * http://dev.eclipse.org/bugs/show_bug.cgi?id=129096
 	 */
-	public void test0211() throws JavaModelException {
+	public void test0211() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X {\n" +
 			"	void foo(java.util.List<?> tab[]) {\n" +
@@ -6597,7 +6597,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * http://dev.eclipse.org/bugs/show_bug.cgi?id=129096
 	 */
-	public void test0212() throws JavaModelException {
+	public void test0212() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X {\n" +
 			"	void foo(java.util.List<?> tab[][]) {\n" +
@@ -6626,7 +6626,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * http://dev.eclipse.org/bugs/show_bug.cgi?id=130528
 	 */
-	public void test0213() throws JavaModelException {
+	public void test0213() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X {\n" +
 			"    int test(String[] strings) {\n" +
@@ -6660,7 +6660,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	 * Check unique instance of generic method bindings
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=104293
 	 */
-	public void test0214() throws JavaModelException {
+	public void test0214() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
 			"public class X {\n" +
@@ -6714,7 +6714,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	 * Check unique instance of generic method bindings
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=104293
 	 */
-	public void test0215() throws JavaModelException {
+	public void test0215() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
 			"public class X {\n" +
@@ -6911,7 +6911,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	 * Check unique instance of generic method bindings
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=104293
 	 */
-	public void test0216() throws JavaModelException {
+	public void test0216() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
 			"class Y<T> {\n" +
@@ -6967,7 +6967,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=110799
 	 */
-	public void test0217() throws JavaModelException {
+	public void test0217() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
 			"class Generic<E> {\n" +
@@ -7014,7 +7014,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=140318
 	 */
-	public void test0218() throws JavaModelException {
+	public void test0218() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
 			"import java.util.List;\n" +
@@ -7056,7 +7056,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=140318
 	 */
-	public void test0219() throws JavaModelException {
+	public void test0219() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"import java.util.List;\n" +
@@ -7096,7 +7096,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=142793
 	 * updated for https://bugs.eclipse.org/bugs/show_bug.cgi?id=143001
 	 */
-	public void test0220() throws JavaModelException {
+	public void test0220() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
     		"public class X {\n" +
@@ -7147,7 +7147,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=147875
 	 */
-	public void test0221() throws JavaModelException {
+	public void test0221() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
     		"import p1.p2.MyEnum;\n" +
@@ -7169,7 +7169,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=148797
 	 */
-	public void test0222() throws JavaModelException {
+	public void test0222() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
     		"public class X {\n" +
@@ -7205,7 +7205,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=153303
 	 */
-	public void test0223() throws JavaModelException {
+	public void test0223() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"public class X {\n" +
@@ -7236,7 +7236,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=153303
 	 */
-	public void test0224() throws JavaModelException {
+	public void test0224() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
     		"@Zork\n" +
@@ -7265,7 +7265,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=153303
 	 */
-	public void test0225() throws JavaModelException {
+	public void test0225() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
     		"public class X {\n" +
@@ -7316,7 +7316,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=155115
-	public void test0227() throws JavaModelException {
+	public void test0227() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
     		"import anno.Anno;\n" +
@@ -7331,7 +7331,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
     		"   IFoo.IBar m;\n" +
     		"}";
     	class TestASTRequestor extends ASTRequestor {
-    		public ArrayList asts = new ArrayList();
+    		public ArrayList asts = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
     		public void acceptAST(ICompilationUnit source, CompilationUnit compilationUnit) {
     			this.asts.add(compilationUnit);
     		}
@@ -7359,7 +7359,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertNotNull("No methods", methods);
 		assertEquals("Wrong size", 2, methods.length);
 		IMethodBinding methodBinding = null;
-		for(int i = 0; i < 2; i++) {
+		for(int i = 0; i < 2; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			methodBinding = methods[i];
 			if (methodBinding.getName().equals("f")) {
 				break;
@@ -7388,7 +7388,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=157403
 	 */
-	public void test0228() throws JavaModelException {
+	public void test0228() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
     		"@interface Ann {\n" +
@@ -7433,7 +7433,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=160089
 	 */
-	public void test0229() throws JavaModelException {
+	public void test0229() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	String contents =
      		"import java.util.List;\n" +
@@ -7492,7 +7492,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=156352
 	 */
-	public void test0230() throws JavaModelException {
+	public void test0230() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0230", "Test3.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		IType type = sourceUnit.getType("Test3");//$NON-NLS-1$
 
@@ -7502,9 +7502,9 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		IBinding[] bindings= parser.createBindings(new IJavaElement[] { type }, null);
 		if (bindings.length == 1 && bindings[0] instanceof ITypeBinding) {
 			ITypeBinding typeBinding= (ITypeBinding) bindings[0];
-			StringBuilder buffer = new StringBuilder();
-			while (typeBinding != null) {
-				buffer.append(typeBinding.getAnnotations().length);
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			while (typeBinding != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append(typeBinding.getAnnotations().length); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				typeBinding= typeBinding.getSuperclass();
 			}
 			// while "020" is the right outcome, this test did oscillate between this and "000"
@@ -7516,7 +7516,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=156352
 	 */
-	public void test0231() throws JavaModelException {
+	public void test0231() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0231", "Test3.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		IType type = sourceUnit.getType("Test3");//$NON-NLS-1$
 
@@ -7529,9 +7529,9 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		List types = unit.types();
 		TypeDeclaration typeDeclaration = (TypeDeclaration) types.get(0);
 		ITypeBinding typeBinding = typeDeclaration.resolveBinding();
-		StringBuilder buffer = new StringBuilder();
-		while (typeBinding != null) {
-			buffer.append(typeBinding.getAnnotations().length);
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		while (typeBinding != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(typeBinding.getAnnotations().length); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			typeBinding= typeBinding.getSuperclass();
 		}
 		assertEquals("Wrong number of annotations", "020", String.valueOf(buffer));
@@ -7540,7 +7540,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=167958
 	 */
-	public void test0232() throws JavaModelException {
+	public void test0232() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		/*
 			package test0232;
 			import static java.lang.annotation.ElementType.*;
@@ -7590,7 +7590,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=167958
 	 */
-	public void test0233() throws JavaModelException {
+	public void test0233() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		/*
 			package test0233;
 
@@ -7649,7 +7649,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=169744
 	 */
-	public void test0234() throws JavaModelException {
+	public void test0234() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"class B {\n" +
@@ -7680,7 +7680,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=172633
 	 */
-	public void test0235() throws JavaModelException {
+	public void test0235() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/test0235/X.java", true/*resolve*/);
 		String contents =
 			"package test0235;\n" +
@@ -7718,7 +7718,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=172633
 	 */
-	public void test0236() throws JavaModelException {
+	public void test0236() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"public class X implements Runnable, Zork {\n" +
@@ -7751,7 +7751,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=173338
 	 */
-	public void test0237() throws JavaModelException {
+	public void test0237() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/test0237/X.java", true/*resolve*/);
 		String contents =
 			"package test0237;\n" +
@@ -7785,7 +7785,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=173338
 	 */
-	public void test0238() throws JavaModelException {
+	public void test0238() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/test0238/X.java", true/*resolve*/);
 		String contents =
 			"package test0238;\n" +
@@ -7812,7 +7812,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=173338
 	 */
-	public void test0238_2() throws JavaModelException {
+	public void test0238_2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/test0238/X.java", true/*resolve*/);
 		String contents =
 			"package test0238;\n" +
@@ -7841,7 +7841,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=173338
 	 */
-	public void test0239() throws JavaModelException {
+	public void test0239() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/test0239/X.java", true/*resolve*/);
 		String contents =
 			"package test0239;\n" +
@@ -7868,7 +7868,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=173338
 	 */
-	public void test0239_2() throws JavaModelException {
+	public void test0239_2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/test0239/X.java", true/*resolve*/);
 		String contents =
 			"package test0239;\n" +
@@ -7897,7 +7897,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=107001
 	 */
-	public void test0240() throws JavaModelException {
+	public void test0240() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"public class X<T> {}";
@@ -7923,7 +7923,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=107001
 	 */
-	public void test0241() throws JavaModelException {
+	public void test0241() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"public class X {\n" +
@@ -7951,7 +7951,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=107001
 	 */
-	public void test0242() throws JavaModelException {
+	public void test0242() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"public class X {\n" +
@@ -7979,7 +7979,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=107001
 	 */
-	public void test0243() throws JavaModelException {
+	public void test0243() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/p/X.java", true/*resolve*/);
 		String contents =
 			"package p;\n" +
@@ -8006,7 +8006,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=173849
-	public void test0244() throws JavaModelException {
+	public void test0244() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/xy/X.java", true/*resolve*/);
 		String contents =
 			"package xy;\n" +
@@ -8037,7 +8037,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=173849
-	public void test0245() throws JavaModelException {
+	public void test0245() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/xy/X.java", true/*resolve*/);
 		String contents =
 			"package xy;\n" +
@@ -8068,7 +8068,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=173849
-	public void test0246() throws JavaModelException {
+	public void test0246() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/xy/X.java", true/*resolve*/);
 		String contents =
 			"package xy;\n" +
@@ -8108,7 +8108,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=175409
-	public void test0248() throws JavaModelException {
+	public void test0248() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"import java.util.Arrays;\n" +
@@ -8140,7 +8140,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=174436
-	public void test0249() throws JavaModelException {
+	public void test0249() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"import java.util.Collections;\n" +
@@ -8188,7 +8188,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=174436
-	public void test0250() throws JavaModelException {
+	public void test0250() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"import java.util.Map;\n" +
@@ -8240,7 +8240,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=174436
-	public void test0251() throws JavaModelException {
+	public void test0251() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0251", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode node = runConversion(sourceUnit, false);
 		assertEquals("Not a compilation unit", ASTNode.COMPILATION_UNIT, node.getNodeType());
@@ -8270,7 +8270,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=174436
-	public void test0252() throws JavaModelException {
+	public void test0252() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0252", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode node = runConversion(sourceUnit, false);
 		assertEquals("Not a compilation unit", ASTNode.COMPILATION_UNIT, node.getNodeType());
@@ -8302,7 +8302,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * http://dev.eclipse.org/bugs/show_bug.cgi?id=149567
 	 */
-	public void test0253() throws JavaModelException {
+	public void test0253() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X {\n" +
 			"	protected Object foo() {\n" +
@@ -8338,7 +8338,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * http://dev.eclipse.org/bugs/show_bug.cgi?id=149567
 	 */
-	public void test0254() throws JavaModelException {
+	public void test0254() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"import java.util.List;\n" +
 			"\n" +
@@ -8428,7 +8428,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=179042
 	 */
-	public void test0258() throws JavaModelException {
+	public void test0258() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"@interface Annot {\n" +
@@ -8467,7 +8467,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=179042
 	 */
-	public void test0259() throws JavaModelException {
+	public void test0259() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"@Deprecated\n" +
@@ -8541,7 +8541,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=179042
 	 */
-	public void test0260() throws JavaModelException {
+	public void test0260() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"@interface Annot {\n" +
@@ -8587,7 +8587,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=179065
 	 */
-	public void test0261() throws JavaModelException {
+	public void test0261() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"@interface Annot {\n" +
@@ -8854,7 +8854,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=166963
 	 */
-	public void test0262() throws JavaModelException {
+	public void test0262() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"public class X {\n" +
@@ -8895,7 +8895,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=183468
 	 */
-	public void test0263() throws JavaModelException {
+	public void test0263() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"@interface Annot {\n" +
@@ -8928,7 +8928,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=175409
-	public void test0264() throws JavaModelException {
+	public void test0264() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"import java.util.*;\n" +
@@ -8975,7 +8975,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=175409
-	public void test0265() throws JavaModelException {
+	public void test0265() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"import java.util.*;\n" +
@@ -9022,7 +9022,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=175409
-	public void test0266() throws JavaModelException {
+	public void test0266() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"import java.util.*;\n" +
@@ -9069,7 +9069,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertTrue("Not a raw method", methodBinding.isRawMethod());
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=175409
-	public void test0267() throws JavaModelException {
+	public void test0267() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"import java.util.*;\n" +
@@ -9119,7 +9119,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=175409
-	public void test0268() throws JavaModelException {
+	public void test0268() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"import java.util.*;\n" +
@@ -9164,7 +9164,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=175409
-	public void test0269() throws JavaModelException {
+	public void test0269() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"import java.util.*;\n" +
@@ -9197,7 +9197,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=180966
-	public void _test0270() throws JavaModelException {
+	public void _test0270() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/foo/X.java", true/*resolve*/);
 		String contents =
 			"package foo;\n" +
@@ -9227,7 +9227,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertTrue("Doesn't override", methodBinding2.overrides(methodBinding));
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=180966
-	public void _test0271() throws JavaModelException {
+	public void _test0271() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/foo/X.java", true/*resolve*/);
 		String contents =
 			"package foo;\n" +
@@ -9256,7 +9256,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		IMethodBinding methodBinding2 = declaration.resolveBinding();
 		IMethodBinding[] declaredMethods = methodBinding.getDeclaringClass().getSuperclass().getDeclaredMethods();
 		IMethodBinding methodBinding3 = null;
-		loop: for (int i = 0, max = declaredMethods.length; i < max; i++) {
+		loop: for (int i = 0, max = declaredMethods.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (declaredMethods[i].getName().equals(methodBinding.getName())) {
 				methodBinding3 = declaredMethods[i];
 				break loop;
@@ -9268,7 +9268,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=186189
-	public void test0272() throws JavaModelException {
+	public void test0272() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"import java.util.List;\n" +
@@ -9320,7 +9320,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertNull("No binary type", typeBinding.getBinaryName());
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=185129
-	public void test0273() throws JavaModelException {
+	public void test0273() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"import test0273.B;\n" +
@@ -9342,7 +9342,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertProblemsSize(unit, 0);
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=191908
-	public void test0274() throws JavaModelException {
+	public void test0274() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"public class X {\n" +
@@ -9369,7 +9369,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertTrue("Not deprecated", binding.isDeprecated());
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=191908
-	public void test0275() throws JavaModelException {
+	public void test0275() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"public class X {\n" +
@@ -9402,7 +9402,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=192774
 	//Test ability to distinguish AST nodes of multiple similar annotations.
-	public void test0276() throws JavaModelException {
+	public void test0276() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"@interface Annot {\n" +
@@ -9440,7 +9440,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		parser.createASTs(new ICompilationUnit[]{this.workingCopy}, new String[0], requestor, null);
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=191908
-	public void test0277() throws JavaModelException {
+	public void test0277() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"public class X {\n" +
@@ -9471,7 +9471,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertFalse("Overrides", methodBinding2.overrides(methodBinding1));
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=191908
-	public void test0278() throws JavaModelException {
+	public void test0278() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"public class X {\n" +
@@ -9502,7 +9502,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertFalse("Overrides", methodBinding2.overrides(methodBinding1));
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=191908
-	public void test0279() throws JavaModelException {
+	public void test0279() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"public class X {\n" +
@@ -9534,7 +9534,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=191908
-	public void test0280() throws JavaModelException {
+	public void test0280() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"public class X {\n" +
@@ -9567,7 +9567,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=198085
-	public void test0281() throws JavaModelException {
+	public void test0281() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 		String contents =
 			"@Invalid\n" +
@@ -9595,7 +9595,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=190622
-	public void test0282() throws JavaModelException {
+	public void test0282() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X {\n" +
 			"	public @interface Moo {\n" +
@@ -9649,7 +9649,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=201104
-	public void test0283() throws JavaModelException {
+	public void test0283() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X {\n" +
 			"	public @interface Moo {\n" +
@@ -9703,7 +9703,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=203342
 	 */
-	public void test0284() throws JavaModelException {
+	public void test0284() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X {\n" +
 			"	public static final double VAR = 0x0.0000000000001P-1022;\n" +
@@ -9752,7 +9752,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	 * test That the qualified name of the default value does not contain any '$' character
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=187430"
 	 */
-	public void testBug187430() throws JavaModelException {
+	public void testBug187430() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/b187430/Test.java", true/*resolve*/);
     	String contents =
     		"package b187430;\n" +
@@ -9783,7 +9783,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=228691
 	 */
-	public void test0286() throws JavaModelException {
+	public void test0286() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/test0286/X.java", true/*resolve*/);
 		String contents =
 			"package test0286;\n" +
@@ -10148,7 +10148,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=230127
 	 */
-	public void test0306() throws JavaModelException {
+	public void test0306() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/test0306/X.java", true/*resolve*/);
 		VariableDeclarationStatement statement= (VariableDeclarationStatement) buildAST(
 			"package test0306;\n" +
@@ -10169,7 +10169,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=230127
 	 */
-	public void test0307() throws JavaModelException {
+	public void test0307() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/test0307/X.java", true/*resolve*/);
 		VariableDeclarationStatement statement= (VariableDeclarationStatement) buildAST(
 			"package test0307;\n" +
@@ -10303,7 +10303,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=120082
 	 */
-	public void test0315() throws JavaModelException {
+	public void test0315() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/pack1/E.java", true/*resolve*/);
 		ASTNode node = buildAST(
 				"package pack1;\n" +
@@ -10325,7 +10325,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=239439
 	 */
-	public void test0316() throws JavaModelException {
+	public void test0316() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/test0316/X.java", true/*resolve*/);
 		ClassInstanceCreation expression = (ClassInstanceCreation) buildAST(
 				"package test0316;\n" +
@@ -10349,7 +10349,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=239439
 	 */
-	public void test0317() throws JavaModelException {
+	public void test0317() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/test0317/X.java", true/*resolve*/);
 		ClassInstanceCreation expression = (ClassInstanceCreation) buildAST(
 				"package test0317;\n" +
@@ -10372,7 +10372,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=218500
 	 */
-	public void test0318() throws JavaModelException {
+	public void test0318() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/test0317/X.java", true/*resolve*/);
 		SimpleType type = (SimpleType) buildAST(
 				"class X {\n" +
@@ -10395,7 +10395,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=212034
 	 */
-	public void test0319() throws JavaModelException {
+	public void test0319() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"package test0319;\n" +
 			"public class Test {\n" +
@@ -10416,7 +10416,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=212034
 	 */
-	public void test0320() throws JavaModelException {
+	public void test0320() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"package test0320;\n" +
 			"public class Test {\n" +
@@ -10439,7 +10439,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=103643
 	 */
-	public void _test0321() throws JavaModelException {
+	public void _test0321() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"package test0321;\n" +
 			"import java.util.*;\n" +
@@ -10463,7 +10463,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=242933
 	 */
-	public void test0322() throws JavaModelException {
+	public void test0322() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"package test0322;\n" +
 			"@interface Range {\n" +
@@ -10492,7 +10492,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=245563
 	 */
-	public void test0323() throws JavaModelException {
+	public void test0323() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"class X {\n" +
 			"	{\n" +
@@ -10517,7 +10517,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertNotNull("No node", buildAST(contents, this.workingCopy, false, true, true));
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=270367
-	public void test0324() throws JavaModelException {
+	public void test0324() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents = "package test0324;\n"
 			+ "public class X {\n"
 			+ "  public void someMethod() {\n"
@@ -10556,7 +10556,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		}
 		else {
 			List l = (List) node.getParent().getStructuralProperty(loc);
-			for (int i = 0; i < l.size(); i++) {
+			for (int i = 0; i < l.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (node.equals(l.get(i))) {
 					l.set(i, replacement);
 					break;
@@ -10629,7 +10629,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=271561
 	 */
-	public void test0329() throws JavaModelException {
+	public void test0329() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"package test0329;\n" +
 			"@JoinTable(\n" +
@@ -10716,7 +10716,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertAnnotationsEqual("@test0333.JoinTable(name=\"EMP_PROJ\", joinColumns=@test0333.JoinColumn(name=\"EMP_ID\", referencedColumnClass=java.lang.Class.class), inverseJoinColumns=@test0333.JoinColumn(name=\"PROJ_ID\", referencedColumnClass=java.lang.Class.class), getLocalClass=java.lang.String.class)\n", annotations);
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=286407
-	public void test0334() throws CoreException, IOException {
+	public void test0334() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"package test0334;\n" +
 			"public class Y {}";
@@ -10751,7 +10751,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertEquals("Wrong number", 1, allMemberValuePairs.length);
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=286407
-	public void test0335() throws CoreException, IOException {
+	public void test0335() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"package test0335;\n" +
 			"public class Y {}";
@@ -10789,7 +10789,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertEquals("Wrong field", "RUNTIME", variableBinding.getName());
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=286407
-	public void test0336() throws CoreException, IOException {
+	public void test0336() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"package test0336;\n" +
 			"public class Y {}";
@@ -10829,7 +10829,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=287701
 	 */
-	public void test0337() throws JavaModelException {
+	public void test0337() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X {\n" +
 			"        void m() {\n" +
@@ -10870,7 +10870,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=290877
 	 */
-	public void test0338() throws JavaModelException {
+	public void test0338() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"/**\n" +
 			" * The first enum value for my enum.\n" +
@@ -10894,7 +10894,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=290877
 	 */
-	public void test0339() throws JavaModelException {
+	public void test0339() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"/**\n" +
 			" * Use const as a tag element name.\n" +
@@ -10918,7 +10918,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=290877
 	 */
-	public void test0340() throws JavaModelException {
+	public void test0340() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"/**\n" +
 			" * Use the goto as a tag element name.\n" +
@@ -10940,7 +10940,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		checkSourceRange((TagElement) tags.get(1), "@goto new position", contents);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=300734
-	public void test341() throws JavaModelException {
+	public void test341() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class Bug300734 {\n" +
 			"	public void foo(String x) {\n" +
@@ -10961,7 +10961,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertTrue("Bindings differ", methodBinding1 == methodBinding2);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=304122
-	public void test342() throws JavaModelException {
+	public void test342() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"@Deprecated\n" +
 			"public class X<T> {\n" +
@@ -10984,7 +10984,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertEquals("Wrong size", 1, annotations.length);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=304122
-	public void test343() throws JavaModelException {
+	public void test343() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X {\n" +
 			"	@Deprecated\n" +
@@ -11017,7 +11017,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertEquals("Wrong size", 1, annotations.length);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=223225
-	public void test344() throws JavaModelException {
+	public void test344() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X {\n" +
 			"    private @interface Strings {\n" +
@@ -11078,7 +11078,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 			true,
 			true);
 		class MyVisitor extends ASTVisitor {
-			List memberPairBindings = new ArrayList();
+			List memberPairBindings = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			private boolean checkAnnotationBinding(Annotation annotation) {
 				final IAnnotationBinding annotationBinding = annotation.resolveAnnotationBinding();
 				final IMemberValuePairBinding[] allMemberValuePairs = annotationBinding.getAllMemberValuePairs();
@@ -11124,15 +11124,15 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		final int size = allMemberValuePairsBindings.size();
 		assertEquals("Wrong size", 10, size);
 		assertEquals("Wrong size", 10, allMemberValuePairsBindings2.size());
-		StringBuilder buffer = new StringBuilder();
-		StringBuilder buffer2 = new StringBuilder();
-		for (int i = 0; i < size; i++) {
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		StringBuilder buffer2 = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final IMemberValuePairBinding firstMemberValuePairBinding = (IMemberValuePairBinding) allMemberValuePairsBindings.get(i);
 			final IMemberValuePairBinding secondMemberValuePairBinding = (IMemberValuePairBinding) allMemberValuePairsBindings2.get(i);
 			final boolean isEqualTo = firstMemberValuePairBinding.isEqualTo(secondMemberValuePairBinding);
-			assertTrue("not equals: " + i, isEqualTo);
-			buffer.append(firstMemberValuePairBinding);
-			buffer2.append(secondMemberValuePairBinding);
+			assertTrue("not equals: " + i, isEqualTo); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			buffer.append(firstMemberValuePairBinding); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer2.append(secondMemberValuePairBinding); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		assertTrue("Different output", buffer.toString().equals(buffer2.toString()));
 		annotationTypeDeclaration = (AnnotationTypeDeclaration) ((AbstractTypeDeclaration) unit.types().get(0)).bodyDeclarations().get(1);
@@ -11185,7 +11185,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=333360
 	 */
-	public void test0347() throws JavaModelException {
+	public void test0347() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter15/src/test0347/X.java", true/*resolve*/);
 		String contents =
 				"package test0347;\n" +
@@ -11227,7 +11227,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		assertEquals("Wrong qualified name", "test0347.Outer<java.lang.Integer>", binding.getQualifiedName());
 	}
 	// issues with annotation default values
-	public void _test0348() throws JavaModelException {
+	public void _test0348() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter15" , "src", "test0348", "AnnotatedInterfaceWithStringDefault.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		IType type = sourceUnit.getType("AnnotatedInterfaceWithStringDefault");//$NON-NLS-1$
 		//ICompilationUnit sourceUnit2 = getCompilationUnit("Converter15" , "src", "test0348", "TestAnnotationWithStringDefault.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
@@ -11240,10 +11240,10 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 		if (bindings.length == 1 && bindings[0] instanceof ITypeBinding) {
 			ITypeBinding typeBinding= (ITypeBinding) bindings[0];
 			IAnnotationBinding[] annotations = typeBinding.getAnnotations();
-			for (int i = 0, max = annotations.length; i < max; i++) {
+			for (int i = 0, max = annotations.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IAnnotationBinding annotation = annotations[i];
 				IMemberValuePairBinding[] allMemberValuePairs = annotation.getAllMemberValuePairs();
-				for (int j = 0, max2 = allMemberValuePairs.length; j < max2; j++) {
+				for (int j = 0, max2 = allMemberValuePairs.length; j < max2; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IMemberValuePairBinding memberValuePair = allMemberValuePairs[j];
 					Object defaultValue = memberValuePair.getValue();
 					System.out.println(defaultValue);
@@ -11305,7 +11305,7 @@ public class ASTConverter15JLS4Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=420458
 	 */
-	public void testBug420458() throws JavaModelException {
+	public void testBug420458() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"/**\n" +
 				" * Hello\n" +

@@ -130,7 +130,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		System.out.println(standardLocation.getName());
 		Iterable<? extends File> location = manager.getLocation(standardLocation);
 		if (location == null) return;
-		for (File f : location) {
+		for (File f : location) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			System.out.println(f.getAbsolutePath());
 		}
 	}
@@ -139,7 +139,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 	protected void setUp() throws Exception {
 		ServiceLoader<JavaCompiler> javaCompilerLoader = ServiceLoader.load(JavaCompiler.class, EclipseCompiler.class.getClassLoader());
 //		int compilerCounter = 0;
-		for (JavaCompiler javaCompiler : javaCompilerLoader) {
+		for (JavaCompiler javaCompiler : javaCompilerLoader) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 //			compilerCounter++;
 			if (javaCompiler instanceof EclipseCompiler) {
 				compiler = javaCompiler;
@@ -155,18 +155,18 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 
 	public void testCheckOptions() {
 		assertNotNull("No compiler found", compiler);
-		for (String option : ONE_ARG_OPTIONS) {
-			assertEquals(option + " requires 1 argument", 1, compiler.isSupportedOption(option));
+		for (String option : ONE_ARG_OPTIONS) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			assertEquals(option + " requires 1 argument", 1, compiler.isSupportedOption(option)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		for (String option : ZERO_ARG_OPTIONS) {
-			assertEquals(option + " requires no argument", 0, compiler.isSupportedOption(option));
+		for (String option : ZERO_ARG_OPTIONS) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			assertEquals(option + " requires no argument", 0, compiler.isSupportedOption(option)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		for (String option : FAKE_ZERO_ARG_OPTIONS) {
-			assertEquals(option + " requires no argument", 0, compiler.isSupportedOption(option));
+		for (String option : FAKE_ZERO_ARG_OPTIONS) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			assertEquals(option + " requires no argument", 0, compiler.isSupportedOption(option)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
-	public void testCompilerOneClassWithSystemCompiler() {
+	public void testCompilerOneClassWithSystemCompiler() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		JavaCompiler systemCompiler = ToolProvider.getSystemJavaCompiler();
 		if (systemCompiler == null) {
 			System.out.println("No system java compiler available");
@@ -176,7 +176,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		File inputFile = new File(tmpFolder, "X.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(
 				"package p;\n" +
 				"public class X {}");
@@ -201,7 +201,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			public FileObject getFileForInput(Location location, String packageName, String relativeName)
 					throws IOException {
 				if (DEBUG) {
-					System.out.println("Create file for input : " + packageName + " " + relativeName + " in location " + location);
+					System.out.println("Create file for input : " + packageName + " " + relativeName + " in location " + location); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				return super.getFileForInput(location, packageName, relativeName);
 			}
@@ -209,7 +209,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			public JavaFileObject getJavaFileForInput(Location location, String className, Kind kind)
 					throws IOException {
 				if (DEBUG) {
-					System.out.println("Create java file for input : " + className + " in location " + location);
+					System.out.println("Create java file for input : " + className + " in location " + location); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				return super.getJavaFileForInput(location, className, kind);
 			}
@@ -220,7 +220,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 					FileObject sibling) throws IOException {
 
 				if (DEBUG) {
-					System.out.println("Create .class file for " + className + " in location " + location + " with sibling " + sibling.toUri());
+					System.out.println("Create .class file for " + className + " in location " + location + " with sibling " + sibling.toUri()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				JavaFileObject javaFileForOutput = super.getJavaFileForOutput(location, className, kind, sibling);
 				if (DEBUG) {
@@ -230,13 +230,13 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			}
 		};
 		// create new list containing inputfile
-		List<File> files = new ArrayList<>();
+		List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		files.add(inputFile);
 		Iterable<? extends JavaFileObject> units = manager.getJavaFileObjectsFromFiles(files);
 		StringWriter stringWriter = new StringWriter();
 		PrintWriter printWriter = new PrintWriter(stringWriter);
 
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		options.add("-d");
 		options.add(tmpFolder);
  		CompilationTask task = systemCompiler.getTask(printWriter, forwardingJavaFileManager, null, options, null, units);
@@ -244,18 +244,18 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		Boolean result = task.call();
 
  		if (!result.booleanValue()) {
- 			System.err.println("Compilation failed: " + stringWriter.getBuffer().toString());
+ 			System.err.println("Compilation failed: " + stringWriter.getBuffer().toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
  	 		assertTrue("Compilation failed ", false);
  		}
 		// check that the .class file exist for X
-		assertTrue("delete failed", inputFile.delete());
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	/*
 	 * Run the system compiler using the Eclipse java file manager
 	 * TODO need to investigate why rt.jar gets removed from the PLATFORM_CLASSPATH location
 	 */
-	public void testCompilerOneClassWithSystemCompiler2() {
+	public void testCompilerOneClassWithSystemCompiler2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// System compiler
 		JavaCompiler systemCompiler = ToolProvider.getSystemJavaCompiler();
 		if (systemCompiler == null) {
@@ -266,7 +266,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		File inputFile = new File(tmpFolder, "X.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(
 				"package p;\n" +
 				"public class X {}");
@@ -290,7 +290,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			public FileObject getFileForInput(Location location, String packageName, String relativeName)
 					throws IOException {
 				if (DEBUG) {
-					System.out.println("Create file for input : " + packageName + " " + relativeName + " in location " + location);
+					System.out.println("Create file for input : " + packageName + " " + relativeName + " in location " + location); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				return super.getFileForInput(location, packageName, relativeName);
 			}
@@ -298,7 +298,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			public JavaFileObject getJavaFileForInput(Location location, String className, Kind kind)
 					throws IOException {
 				if (DEBUG) {
-					System.out.println("Create java file for input : " + className + " in location " + location);
+					System.out.println("Create java file for input : " + className + " in location " + location); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				return super.getJavaFileForInput(location, className, kind);
 			}
@@ -309,7 +309,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 					FileObject sibling) throws IOException {
 
 				if (DEBUG) {
-					System.out.println("Create .class file for " + className + " in location " + location + " with sibling " + sibling.toUri());
+					System.out.println("Create .class file for " + className + " in location " + location + " with sibling " + sibling.toUri()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				JavaFileObject javaFileForOutput = super.getJavaFileForOutput(location, className, kind, sibling);
 				if (DEBUG) {
@@ -321,7 +321,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			public String inferBinaryName(Location location, JavaFileObject file) {
 				String binaryName = super.inferBinaryName(location, file);
 				if (DEBUG) {
-					System.out.println("binary name: " + binaryName);
+					System.out.println("binary name: " + binaryName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				return binaryName;
 			}
@@ -331,7 +331,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 				Iterable<JavaFileObject> list = super.list(location, packageName, kinds, recurse);
 				if (DEBUG) {
 					System.out.println("start list: ");
-					for (JavaFileObject fileObject : list) {
+					for (JavaFileObject fileObject : list) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						System.out.println(fileObject.getName());
 					}
 					System.out.println("end   list: ");
@@ -340,19 +340,19 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			}
 		};
 		// create new list containing input file
-		List<File> files = new ArrayList<>();
+		List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		files.add(inputFile);
 		Iterable<? extends JavaFileObject> units = manager.getJavaFileObjectsFromFiles(files);
 		StringWriter stringWriter = new StringWriter();
 		PrintWriter printWriter = new PrintWriter(stringWriter);
 
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		options.add("-d");
 		options.add(tmpFolder);
 		CompilationTask task = systemCompiler.getTask(printWriter, forwardingJavaFileManager, null, options, null, units);
 
 		if (DEBUG) {
-			System.out.println("Has location CLASS_OUPUT : " + forwardingJavaFileManager.hasLocation(StandardLocation.CLASS_OUTPUT));
+			System.out.println("Has location CLASS_OUPUT : " + forwardingJavaFileManager.hasLocation(StandardLocation.CLASS_OUTPUT)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		Boolean result = task.call();
@@ -360,19 +360,19 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		displayLocation(manager, StandardLocation.PLATFORM_CLASS_PATH);
 
 		if (!result.booleanValue()) {
-			System.err.println("Compilation failed: " + stringWriter.getBuffer().toString());
+			System.err.println("Compilation failed: " + stringWriter.getBuffer().toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertTrue("Compilation failed ", false);
 		}
 		// check that the .class file exist for X
-		assertTrue("delete failed", inputFile.delete());
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
-	public void testCompilerOneClassWithEclipseCompiler() {
+	public void testCompilerOneClassWithEclipseCompiler() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String tmpFolder = System.getProperty("java.io.tmpdir");
 		File inputFile = new File(tmpFolder, "X.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(
 				"package p;\n" +
 				"public class X {}");
@@ -397,7 +397,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			public FileObject getFileForInput(Location location, String packageName, String relativeName)
 					throws IOException {
 				if (DEBUG) {
-					System.out.println("Create file for input : " + packageName + " " + relativeName + " in location " + location);
+					System.out.println("Create file for input : " + packageName + " " + relativeName + " in location " + location); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				return super.getFileForInput(location, packageName, relativeName);
 			}
@@ -405,7 +405,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			public JavaFileObject getJavaFileForInput(Location location, String className, Kind kind)
 					throws IOException {
 				if (DEBUG) {
-					System.out.println("Create java file for input : " + className + " in location " + location);
+					System.out.println("Create java file for input : " + className + " in location " + location); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				return super.getJavaFileForInput(location, className, kind);
 			}
@@ -416,7 +416,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 					FileObject sibling) throws IOException {
 
 				if (DEBUG) {
-					System.out.println("Create .class file for " + className + " in location " + location + " with sibling " + sibling.toUri());
+					System.out.println("Create .class file for " + className + " in location " + location + " with sibling " + sibling.toUri()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				JavaFileObject javaFileForOutput = super.getJavaFileForOutput(location, className, kind, sibling);
 				if (DEBUG) {
@@ -426,13 +426,13 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			}
 		};
 		// create new list containing input file
-		List<File> files = new ArrayList<>();
+		List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		files.add(inputFile);
 		Iterable<? extends JavaFileObject> units = manager.getJavaFileObjectsFromFiles(files);
 		StringWriter stringWriter = new StringWriter();
 		PrintWriter printWriter = new PrintWriter(stringWriter);
 
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		options.add("-d");
 		options.add(tmpFolder);
  		CompilationTask task = compiler.getTask(printWriter, forwardingJavaFileManager, null, options, null, units);
@@ -442,7 +442,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		printWriter.flush();
 		printWriter.close();
  		if (!result.booleanValue()) {
- 			System.err.println("Compilation failed: " + stringWriter.getBuffer().toString());
+ 			System.err.println("Compilation failed: " + stringWriter.getBuffer().toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
  	 		assertTrue("Compilation failed ", false);
  		}
  		ClassFileReader reader = null;
@@ -457,15 +457,15 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		// This needs fix. This test case by design will produce different output every compiler version.
  		assertEquals("Wrong value", ClassFileConstants.getLatestJDKLevel(), reader.getVersion()); // TODO: Fix this for JDK11
 		// check that the .class file exist for X
-		assertTrue("delete failed", inputFile.delete());
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
-	public void testCompilerOneClassWithEclipseCompiler2() {
+	public void testCompilerOneClassWithEclipseCompiler2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String tmpFolder = System.getProperty("java.io.tmpdir");
 		File inputFile = new File(tmpFolder, "X.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(
 				"package p;\n" +
 				"public class X {}");
@@ -493,7 +493,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 					FileObject sibling) throws IOException {
 
 				if (DEBUG) {
-					System.out.println("EC: Create .class file for " + className + " in location " + location + " with sibling " + sibling.toUri());
+					System.out.println("EC: Create .class file for " + className + " in location " + location + " with sibling " + sibling.toUri()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				JavaFileObject javaFileForOutput = super.getJavaFileForOutput(location, className, kind, sibling);
 				if (DEBUG) {
@@ -503,13 +503,13 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			}
 		};
 		// create new list containing inputfile
-		List<File> files = new ArrayList<>();
+		List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		files.add(inputFile);
 		Iterable<? extends JavaFileObject> units = manager.getJavaFileObjectsFromFiles(files);
 		StringWriter stringWriter = new StringWriter();
 		PrintWriter printWriter = new PrintWriter(stringWriter);
 
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		options.add("-d");
 		options.add(tmpFolder);
 		options.add("-" + CompilerOptions.getFirstSupportedJavaVersion());
@@ -520,11 +520,11 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		printWriter.flush();
 		printWriter.close();
 		if (!result.booleanValue()) {
-			System.err.println("Compilation failed: " + stringWriter.getBuffer().toString());
+			System.err.println("Compilation failed: " + stringWriter.getBuffer().toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertTrue("Compilation failed ", false);
 		}
 		File outputFile = new File(tmpFolder, "p/X.class");
-		assertTrue(outputFile.exists());
+		assertTrue(outputFile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		ClassFileReader reader = null;
 		try {
 			reader = ClassFileReader.read(outputFile);
@@ -545,19 +545,19 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		printWriter.flush();
 		printWriter.close();
 		if (!result.booleanValue()) {
-			System.err.println("Compilation failed: " + stringWriter.getBuffer().toString());
+			System.err.println("Compilation failed: " + stringWriter.getBuffer().toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertTrue("Compilation failed ", false);
 		}
 		// check that the .class file exist for X
-		assertTrue("delete failed", inputFile.delete());
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
-	public void testCompilerOneClassWithEclipseCompiler3() {
+	public void testCompilerOneClassWithEclipseCompiler3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String tmpFolder = System.getProperty("java.io.tmpdir");
 		File inputFile = new File(tmpFolder, "X.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(
 				"package p;\n" +
 				"public class X {}");
@@ -586,7 +586,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 					FileObject sibling) throws IOException {
 
 				if (DEBUG) {
-					System.out.println("Create .class file for " + className + " in location " + location + " with sibling " + sibling.toUri());
+					System.out.println("Create .class file for " + className + " in location " + location + " with sibling " + sibling.toUri()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				JavaFileObject javaFileForOutput = super.getJavaFileForOutput(location, className, kind, sibling);
 				if (DEBUG) {
@@ -596,13 +596,13 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			}
 		};
 		// create new list containing inputfile
-		List<File> files = new ArrayList<>();
+		List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		files.add(inputFile);
 		Iterable<? extends JavaFileObject> units = manager.getJavaFileObjectsFromFiles(files);
 		StringWriter stringWriter = new StringWriter();
 		PrintWriter printWriter = new PrintWriter(stringWriter);
 
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		options.add("-d");
 		options.add(tmpFolder);
  		CompilationTask task = compiler.getTask(printWriter, manager, null, options, null, units);
@@ -612,7 +612,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		printWriter.flush();
 		printWriter.close();
  		if (!result.booleanValue()) {
- 			System.err.println("Compilation failed: " + stringWriter.getBuffer().toString());
+ 			System.err.println("Compilation failed: " + stringWriter.getBuffer().toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
  	 		assertTrue("Compilation failed ", false);
  		}
 
@@ -624,10 +624,10 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		}
 
 		// check that the .class file exist for X
-		assertTrue("delete failed", inputFile.delete());
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
-	public void testCompilerOneClassWithEclipseCompiler4() throws IOException {
+	public void testCompilerOneClassWithEclipseCompiler4() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		JavaCompiler systemCompiler = ToolProvider.getSystemJavaCompiler();
 		if (systemCompiler == null) {
 			System.out.println("No system java compiler available");
@@ -637,7 +637,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		File inputFile = new File(tmpFolder, "X.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(
 				"package p;\n" +
 				"public class X {}");
@@ -655,14 +655,14 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			}
 		}
 		// create new list containing inputfile
-		List<File> files = new ArrayList<>();
+		List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		files.add(inputFile);
 		StandardJavaFileManager manager = systemCompiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
 		Iterable<? extends JavaFileObject> units = manager.getJavaFileObjectsFromFiles(files);
 		StringWriter stringWriter = new StringWriter();
 		PrintWriter printWriter = new PrintWriter(stringWriter);
 
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		options.add("-d");
 		options.add(tmpFolder);
 		CompilationTask task = compiler.getTask(null, null, null, options, null, units);
@@ -671,20 +671,20 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		printWriter.flush();
 		printWriter.close();
 		if (!result.booleanValue()) {
-			System.err.println("Compilation failed: " + stringWriter.getBuffer().toString());
+			System.err.println("Compilation failed: " + stringWriter.getBuffer().toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertTrue("Compilation failed ", false);
 		}
 		// check that the .class file exist for X
-		assertTrue("delete failed", inputFile.delete());
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		manager.close();
 	}
 
-	public void testCompilerOneClassWithEclipseCompiler5() {
+	public void testCompilerOneClassWithEclipseCompiler5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String tmpFolder = System.getProperty("java.io.tmpdir");
 		File inputFile = new File(tmpFolder, "X.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(
 				"package p;\n" +
 				"public class X extends File {}");
@@ -703,11 +703,11 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		}
 		// System compiler
 		StandardJavaFileManager manager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
-		List<File> files = new ArrayList<>();
+		List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		files.add(inputFile);
 		Iterable<? extends JavaFileObject> units = manager.getJavaFileObjectsFromFiles(files);
 
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		options.add("-d");
 		options.add(tmpFolder);
 		ByteArrayOutputStream errBuffer = new ByteArrayOutputStream();
@@ -724,19 +724,19 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			assertFalse("Compilation did not fail", false);
 		}
 		// check that the .class file exist for X
-		assertTrue("delete failed", inputFile.delete());
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
-	public void testCompilerOneClassWithEclipseCompiler6() {
+	public void testCompilerOneClassWithEclipseCompiler6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String tmpFolder = System.getProperty("java.io.tmpdir");
 		File packageFolder = new File(tmpFolder, "p");
-		if (!packageFolder.mkdirs()) {
+		if (!packageFolder.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			return;
 		}
 		File inputFile = new File(packageFolder, "X.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(
 				"package p;\n" +
 				"public class X extends File {}");
@@ -755,11 +755,11 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		}
 		// System compiler
 		StandardJavaFileManager manager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
-		List<File> files = new ArrayList<>();
+		List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		files.add(inputFile);
 		Iterable<? extends JavaFileObject> units = manager.getJavaFileObjectsFromFiles(files);
 
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		options.add("-d");
 		options.add(tmpFolder);
 		options.add("-sourcepath");
@@ -785,16 +785,16 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			assertFalse("Compilation did not fail", false);
 		}
 		// check that the .class file exist for X
-		assertTrue("delete failed", inputFile.delete());
-		assertTrue("delete failed", packageFolder.delete());
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue("delete failed", packageFolder.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
-	public void testCompilerOneClassWithEclipseCompiler7() {
+	public void testCompilerOneClassWithEclipseCompiler7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String tmpFolder = System.getProperty("java.io.tmpdir");
 		File inputFile = new File(tmpFolder, "X.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(
 				"package p;\n" +
 				"public class X extends File {}");
@@ -813,11 +813,11 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		}
 		// System compiler
 		StandardJavaFileManager manager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
-		List<File> files = new ArrayList<>();
+		List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		files.add(inputFile);
 		Iterable<? extends JavaFileObject> units = manager.getJavaFileObjectsFromFiles(files);
 
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		options.add("-d");
 		options.add(tmpFolder);
 		options.add("-sourcepath");
@@ -843,21 +843,21 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			assertFalse("Compilation did not fail", false);
 		}
 		// check that the .class file exist for X
-		assertTrue("delete failed", inputFile.delete());
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	private PrintWriter ignoreOutput() {
 		return new PrintWriter(new StringWriter());
 	}
 
-	public void testCompilerOneModuleWithEclipseCompiler() {
-		String tmpFolder = System.getProperty("java.io.tmpdir") + "/src/java";
-		File tempDir= new File(tmpFolder + "/bar");
-		tempDir.mkdirs();
+	public void testCompilerOneModuleWithEclipseCompiler() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		String tmpFolder = System.getProperty("java.io.tmpdir") + "/src/java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		File tempDir= new File(tmpFolder + "/bar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		tempDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File inputFile1 = new File(tmpFolder, "module-info.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile1));
+			writer = new BufferedWriter(new FileWriter(inputFile1)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(
 				"module bar {\n" + 
 				"    exports bar;\n" + 
@@ -875,10 +875,10 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 				}
 			}
 		}
-		File inputFile2 = new File(tmpFolder + "/bar", "Library.java");
+		File inputFile2 = new File(tmpFolder + "/bar", "Library.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile2));
+			writer = new BufferedWriter(new FileWriter(inputFile2)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(
 				"package bar;\n" + 
 				"public class Library { /**/ }\n");
@@ -902,7 +902,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			public FileObject getFileForInput(Location location, String packageName, String relativeName)
 					throws IOException {
 				if (DEBUG) {
-					System.out.println("Create file for input : " + packageName + " " + relativeName + " in location " + location);
+					System.out.println("Create file for input : " + packageName + " " + relativeName + " in location " + location); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				return super.getFileForInput(location, packageName, relativeName);
 			}
@@ -910,7 +910,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			public JavaFileObject getJavaFileForInput(Location location, String className, Kind kind)
 					throws IOException {
 				if (DEBUG) {
-					System.out.println("Create java file for input : " + className + " in location " + location);
+					System.out.println("Create java file for input : " + className + " in location " + location); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				return super.getJavaFileForInput(location, className, kind);
 			}
@@ -921,7 +921,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 					FileObject sibling) throws IOException {
 
 				if (DEBUG) {
-					System.out.println("Create .class file for " + className + " in location " + location + " with sibling " + sibling.toUri());
+					System.out.println("Create .class file for " + className + " in location " + location + " with sibling " + sibling.toUri()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				JavaFileObject javaFileForOutput = super.getJavaFileForOutput(location, className, kind, sibling);
 				if (DEBUG) {
@@ -931,16 +931,16 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			}
 		};
 		// create new list containing input file
-		List<File> files = new ArrayList<>();
+		List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		files.add(inputFile1);
 		files.add(inputFile2);
 		Iterable<? extends JavaFileObject> units = manager.getJavaFileObjectsFromFiles(files);
 		StringWriter stringWriter = new StringWriter();
 		PrintWriter printWriter = new PrintWriter(stringWriter);
 
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		options.add("-d");
-		options.add(tmpFolder + "/target/classes");
+		options.add(tmpFolder + "/target/classes"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
  		CompilationTask task = compiler.getTask(printWriter, forwardingJavaFileManager, null, options, null, units);
  		// check the classpath location
  		assertTrue("Has no location CLASS_OUPUT", forwardingJavaFileManager.hasLocation(StandardLocation.CLASS_OUTPUT));
@@ -948,37 +948,37 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		printWriter.flush();
 		printWriter.close();
  		if (!result.booleanValue()) {
- 			System.err.println("Compilation failed: " + stringWriter.getBuffer().toString());
+ 			System.err.println("Compilation failed: " + stringWriter.getBuffer().toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
  	 		assertTrue("Compilation failed ", false);
  		}
  		try {
-			ClassFileReader.read(new File(tmpFolder + "/target/classes", "module-info.class"), true);
+			ClassFileReader.read(new File(tmpFolder + "/target/classes", "module-info.class"), true); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} catch (ClassFormatException e) {
 			assertTrue("Should not happen", false);
 		} catch (IOException e) {
 			assertTrue("Should not happen", false);
 		}
  		try {
-			ClassFileReader.read(new File(tmpFolder + "/target/classes", "bar/Library.class"), true);
+			ClassFileReader.read(new File(tmpFolder + "/target/classes", "bar/Library.class"), true); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} catch (ClassFormatException e) {
 			assertTrue("Should not happen", false);
 		} catch (IOException e) {
 			assertTrue("Should not happen", false);
 		}
 		// check that the .class file exist for module-info.class and library.class
-		assertTrue("delete failed", inputFile1.delete());
-		assertTrue("delete failed", inputFile2.delete());
+		assertTrue("delete failed", inputFile1.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue("delete failed", inputFile2.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	// Test that JavaFileManager#inferBinaryName returns null for invalid file
-	public void testInferBinaryName() {
+	public void testInferBinaryName() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String tmpFolder = System.getProperty("java.io.tmpdir");
-		File dir = new File(tmpFolder, "src" + System.currentTimeMillis());
-		dir.mkdirs();
+		File dir = new File(tmpFolder, "src" + System.currentTimeMillis()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		dir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File inputFile = new File(dir, "test.txt");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write("This is not a valid Java file");
 			writer.flush();
 			writer.close();
@@ -994,17 +994,17 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		try {
 			StandardJavaFileManager fileManager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
 
-			List<File> fins = new ArrayList<>();
+			List<File> fins = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			fins.add(dir);
 			JavaFileManager.Location sourceLoc = javax.tools.StandardLocation.SOURCE_PATH;
 			fileManager.setLocation(sourceLoc, fins);
 
-			Set<JavaFileObject.Kind> fileTypes = new HashSet<>();
+			Set<JavaFileObject.Kind> fileTypes = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			fileTypes.add(JavaFileObject.Kind.OTHER);
 
 			Iterable<? extends JavaFileObject> compilationUnits = fileManager.list(sourceLoc, "", fileTypes, true);
 			JavaFileObject invalid = null;
-			for (JavaFileObject javaFileObject : compilationUnits) {
+			for (JavaFileObject javaFileObject : compilationUnits) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				invalid = javaFileObject;
 				break;
 			}
@@ -1014,17 +1014,17 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		assertTrue("delete failed", inputFile.delete());
-		assertTrue("delete failed", dir.delete());
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue("delete failed", dir.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
-	public void testFileManager() {
+	public void testFileManager() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String tmpFolder = System.getProperty("java.io.tmpdir");
-		File dir = new File(tmpFolder, "src" + System.currentTimeMillis());
-		dir.mkdirs();
+		File dir = new File(tmpFolder, "src" + System.currentTimeMillis()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		dir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File inputFile = new File(dir, "X.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write("public class X {}");
 			writer.flush();
 			writer.close();
@@ -1043,29 +1043,29 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			//JavaCompiler systemCompiler = ToolProvider.getSystemJavaCompiler();
 			StandardJavaFileManager fileManager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
 
-			List<File> fins = new ArrayList<>();
+			List<File> fins = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			fins.add(dir);
 
 			JavaFileManager.Location sourceLoc = javax.tools.StandardLocation.SOURCE_PATH;
 				fileManager.setLocation(sourceLoc, fins);
 
-			Set<JavaFileObject.Kind> fileTypes = new HashSet<>();
+			Set<JavaFileObject.Kind> fileTypes = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			fileTypes.add(JavaFileObject.Kind.SOURCE);
 
 			Iterable<? extends JavaFileObject> compilationUnits = fileManager.list(sourceLoc, "", fileTypes, true);
 
 			Iterator<? extends JavaFileObject> it = compilationUnits.iterator();
-			StringBuilder builder = new StringBuilder();
-			while (it.hasNext()) {
+			StringBuilder builder = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			while (it.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				JavaFileObject next = it.next();
 				String name = next.getName();
 				name = name.replace('\\', '/');
 				int lastIndexOf = name.lastIndexOf('/');
-				builder.append(name.substring(lastIndexOf + 1));
+				builder.append(name.substring(lastIndexOf + 1)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			assertEquals("Wrong contents", "X.java", String.valueOf(builder));
 
-			List<File> files = new ArrayList<>();
+			List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			files.add(dir);
 			try {
 				fileManager.getJavaFileObjectsFromFiles(files);
@@ -1079,19 +1079,19 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			e.printStackTrace();
 		}
 		// check that the .class file exist for X
-		assertTrue("delete failed", inputFile.delete());
-		assertTrue("delete failed", dir.delete());
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue("delete failed", dir.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
-	public void testFileManager2() {
+	public void testFileManager2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String tmpFolder = System.getProperty("java.io.tmpdir");
-		File dir = new File(tmpFolder, "src" + System.currentTimeMillis());
-		dir.mkdirs();
+		File dir = new File(tmpFolder, "src" + System.currentTimeMillis()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		dir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File dir2 = new File(dir, "src2");
-		dir2.mkdirs();
+		dir2.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File inputFile = new File(dir, "X.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write("public class X {}");
 			writer.flush();
 			writer.close();
@@ -1109,7 +1109,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		File inputFile2 = new File(dir2, "X2.java");
 		writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile2));
+			writer = new BufferedWriter(new FileWriter(inputFile2)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write("public class X2 {}");
 			writer.flush();
 			writer.close();
@@ -1128,46 +1128,46 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 			//JavaCompiler systemCompiler = ToolProvider.getSystemJavaCompiler();
 			StandardJavaFileManager fileManager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
 
-			List<File> fins = new ArrayList<>();
+			List<File> fins = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			fins.add(dir);
 
 			JavaFileManager.Location sourceLoc = javax.tools.StandardLocation.SOURCE_PATH;
 				fileManager.setLocation(sourceLoc, fins);
 
-			Set<JavaFileObject.Kind> fileTypes = new HashSet<>();
+			Set<JavaFileObject.Kind> fileTypes = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			fileTypes.add(JavaFileObject.Kind.SOURCE);
 
 			Iterable<? extends JavaFileObject> compilationUnits = fileManager.list(sourceLoc, "", fileTypes, true);
 
 			Iterator<? extends JavaFileObject> it = compilationUnits.iterator();
-			List<String> names = new ArrayList<>();
-			while (it.hasNext()) {
+			List<String> names = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			while (it.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				JavaFileObject next = it.next();
 				String name = next.getName();
 				name = name.replace('\\', '/');
 				int lastIndexOf = name.lastIndexOf('/');
 				names.add(name.substring(lastIndexOf + 1));
 			}
-			Collections.sort(names);
+			Collections.sort(names); //FLLDCIM: MARK — M16 SORT_LANE CALL
 			assertEquals("Wrong contents", "[X.java, X2.java]", names.toString());
 			fileManager.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		// check that the .class file exist for X
-		assertTrue("delete failed", inputFile2.delete());
-		assertTrue("delete failed", dir2.delete());
-		assertTrue("delete failed", inputFile.delete());
-		assertTrue("delete failed", dir.delete());
+		assertTrue("delete failed", inputFile2.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue("delete failed", dir2.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue("delete failed", dir.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 
-	public void testCompilerUnusedVariable() throws Exception {
+	public void testCompilerUnusedVariable() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String tmpFolder = new File(System.getProperty("java.io.tmpdir")).toPath().normalize().toAbsolutePath().toString();
 		File inputFile = new File(tmpFolder, "NoWarn.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(
 				"package p;\n" +
 				"public class NoWarn {"
@@ -1190,20 +1190,20 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		StandardJavaFileManager manager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
 
 		// create new list containing inputfile
-		List<File> files = new ArrayList<>();
+		List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		files.add(inputFile);
 		Iterable<? extends JavaFileObject> units = manager.getJavaFileObjectsFromFiles(files);
 		StringWriter stringWriter = new StringWriter();
 		PrintWriter printWriter = new PrintWriter(stringWriter);
 
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		options.add("-d");
 		options.add(tmpFolder);
 
 		//Add warnings to the compiler
 		options.add("-warn:+unused");
 		//Add nowarn to prevent warnings in the created directory
-		options.add("-nowarn:["+ inputFile.getParent() + "]");
+		options.add("-nowarn:["+ inputFile.getParent() + "]"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
  		CompilationTask task = compiler.getTask(printWriter, manager, null, options, null, units);
 		task.call();
@@ -1213,12 +1213,12 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		//passing in the directory to no warn should ignore the path - resulting in no warnings.
 		assertEquals("Expected no warnings to be generated.", "", stringWriter.toString());
 	}
-	public void testCompilerUnusedVariable2() throws Exception {
+	public void testCompilerUnusedVariable2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String tmpFolder = new File(System.getProperty("java.io.tmpdir")).toPath().normalize().toAbsolutePath().toString();
 		File inputFile = new File(tmpFolder, "NoWarn.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(
 				"package p;\n" +
 				"public class NoWarn {\n" +
@@ -1242,16 +1242,16 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		StandardJavaFileManager manager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
 
 		// create new list containing inputfile
-		List<File> files = new ArrayList<>();
+		List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		files.add(inputFile);
 		Iterable<? extends JavaFileObject> units = manager.getJavaFileObjectsFromFiles(files);
 		StringWriter stringWriter = new StringWriter();
 		PrintWriter printWriter = new PrintWriter(stringWriter);
 
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		options.add("-d");
 		options.add(tmpFolder);
-		final List<Diagnostic<JavaFileObject>> errors = new ArrayList<>();
+		final List<Diagnostic<JavaFileObject>> errors = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
  		CompilationTask task = compiler.getTask(printWriter, manager, new DiagnosticListener<JavaFileObject>() {
 
 			@SuppressWarnings("unchecked")
@@ -1269,12 +1269,12 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		assertEquals("No error should be reported", 0, errors.size());
 	}
 
-	private void suppressTest(String fileName, String source, String expectedDiagnostics, String expectedOutput) throws Exception {
+	private void suppressTest(String fileName, String source, String expectedDiagnostics, String expectedOutput) throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String tmpFolder = new File(System.getProperty("java.io.tmpdir")).toPath().normalize().toAbsolutePath().toString();
 		File inputFile = new File(tmpFolder, fileName);
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(source);
 			writer.flush();
 			writer.close();
@@ -1294,17 +1294,17 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		StandardJavaFileManager manager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
 
 		// create new list containing inputfile
-		List<File> files = new ArrayList<>();
+		List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		files.add(inputFile);
 		Iterable<? extends JavaFileObject> units = manager.getJavaFileObjectsFromFiles(files);
 		StringWriter stringWriter = new StringWriter();
 		PrintWriter printWriter = new PrintWriter(stringWriter);
 
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		options.add("-d");
 		options.add(tmpFolder);
 		options.add("-warn:+unused,boxing");
-		final List<Diagnostic<JavaFileObject>> errors = new ArrayList<>();
+		final List<Diagnostic<JavaFileObject>> errors = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
  		CompilationTask task = compiler.getTask(printWriter, manager, new DiagnosticListener<JavaFileObject>() {
 
 			@SuppressWarnings("unchecked")
@@ -1320,12 +1320,12 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 
 		assertEquals("Unexpected diagnostics:", expectedDiagnostics,
 				errors.stream()
-				.map(d -> d.getKind().toString() + ' ' + 
+				.map(d -> d.getKind().toString() + ' ' +  //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						d.getLineNumber() + ": " + d.getMessage(Locale.getDefault()))
 				.collect(Collectors.joining("\n")));
 
 		
-		String expected = expectedOutput.replaceAll(OUTPUT_DIR_PLACEHOLDER, normalized(tmpFolder));
+		String expected = expectedOutput.replaceAll(OUTPUT_DIR_PLACEHOLDER, normalized(tmpFolder)); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		String actual = normalized(stringWriter.toString());
 		
 		assertEquals("Unexpected output:", expected, actual);
@@ -1342,16 +1342,16 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 	public static String convertToIndependantLineDelimiter(String source) {
 		if (source == null) return "";
 	    if (source.indexOf('\n') == -1 && source.indexOf('\r') == -1) return source;
-	    StringBuilder buffer = new StringBuilder();
-	    for (int i = 0, length = source.length(); i < length; i++) {
+	    StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	    for (int i = 0, length = source.length(); i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	        char car = source.charAt(i);
 	        if (car == '\r') {
-	            buffer.append('\n');
+	            buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	            if (i < length-1 && source.charAt(i+1) == '\n') {
 	                i++; // skip \n after \r
 	            }
 	        } else {
-	            buffer.append(car);
+	            buffer.append(car); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	        }
 	    }
 	    return buffer.toString();
@@ -1383,7 +1383,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 				"", "");
 	}
 
-	public void testCompilerUnrelatedSuppressWarnings() throws Exception {
+	public void testCompilerUnrelatedSuppressWarnings() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		suppressTest("p/SuppressTest.java", 
 				"package p;\n" +
 				"@SuppressWarnings(\"unused\")\n" +
@@ -1407,7 +1407,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 	/**
 	 * See: https://github.com/eclipse-jdt/eclipse.jdt.core/issues/954
 	 */
-	public void testModuleCannotBeResolvedErrorMessageGh955() throws Exception {
+	public void testModuleCannotBeResolvedErrorMessageGh955() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		suppressTest(
 				"module-info.java",
 				"""
@@ -1431,8 +1431,8 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 	public void testSupportedCompilerVersions() throws IOException {
 		Set<SourceVersion> sourceVersions = compiler.getSourceVersions();
 		SourceVersion[] values = SourceVersion.values();
-		for (SourceVersion sourceVersion : values) {
-			assertTrue("source version " + sourceVersion + " should be supported"
+		for (SourceVersion sourceVersion : values) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			assertTrue("source version " + sourceVersion + " should be supported" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ "by compiler " + compiler.getClass().getName(), sourceVersions.contains(sourceVersion));
 		}
 	}
@@ -1442,13 +1442,13 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 	 * happen on case insensitive file systems.
 	 * @throws IOException  If I/O failure
 	 */
-	public void testCompilerOneClassWithPackageCollision() throws IOException {
+	public void testCompilerOneClassWithPackageCollision() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		final String tempDir = System.getProperty("java.io.tmpdir");
 		final String sep = File.separator;
 		final String classes = "clazzes";
 		Path targetDir = Paths.get(tempDir, sep, classes, sep, "de", sep, "tk", sep, "foo");
-		Files.createDirectories(targetDir);
+		Files.createDirectories(targetDir); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		// ********************************************************************************
 		// 							Compile first source file
@@ -1505,7 +1505,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		sourceFiles = Collections.singletonList(sourceFile2.toFile());
 		compilationUnits = fileManager.getJavaFileObjectsFromFiles(sourceFiles);
 
-		optionList = new ArrayList<>(optionList); // Create a mutable list
+		optionList = new ArrayList<>(optionList); // Create a mutable list //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		optionList.add("-classpath");
 		optionList.add(clsDir.toString());
 
@@ -1525,14 +1525,14 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 		// 										Cleanup
 		// ********************************************************************************
 
-		Files.walk(clsDir)
+		Files.walk(clsDir) //FLLDCIM: MARK — M24 M3FILE_STREAMS CALL
 			.sorted(Comparator.reverseOrder())
 			.map(Path::toFile)
 			.forEach(File::delete);
 
-		assertTrue("Delete failed", Files.deleteIfExists(tempPath.resolve("Foo.class")));
-		assertFalse("Delete failed", Files.exists(sourceFile1));
-		assertTrue("Delete failed", Files.deleteIfExists(sourceFile2));
+		assertTrue("Delete failed", Files.deleteIfExists(tempPath.resolve("Foo.class"))); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertFalse("Delete failed", Files.exists(sourceFile1)); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue("Delete failed", Files.deleteIfExists(sourceFile2)); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	/**
@@ -1546,7 +1546,7 @@ static final String[] FAKE_ZERO_ARG_OPTIONS = new String[] {
 	private Path createSourceFile(Path dir, String fileName, String content) throws IOException {
 		Path file = dir.resolve(fileName);
 
-		try (BufferedWriter writer = Files.newBufferedWriter(file, StandardCharsets.UTF_8)) {
+		try (BufferedWriter writer = Files.newBufferedWriter(file, StandardCharsets.UTF_8)) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			writer.write(content);
 			writer.flush();
 		}

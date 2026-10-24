@@ -48,7 +48,7 @@ public class AttachedJavadocTests21 extends ModifyingResourceTests {
 	/**
 	 * Imports existing project with external library and attached javadoc
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void setUpSuite() throws Exception {
 		super.setUpSuite();
 
@@ -58,7 +58,7 @@ public class AttachedJavadocTests21 extends ModifyingResourceTests {
 		this.project.setOptions(options);
 
 		IPackageFragmentRoot[] roots = this.project.getAllPackageFragmentRoots();
-		for (final IPackageFragmentRoot packageFragmentRoot : roots) {
+		for (final IPackageFragmentRoot packageFragmentRoot : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch (packageFragmentRoot.getKind()) {
 			case IPackageFragmentRoot.K_BINARY:
 				if (!packageFragmentRoot.isExternal()) {
@@ -74,16 +74,16 @@ public class AttachedJavadocTests21 extends ModifyingResourceTests {
 		IPackageFragment packageFragment = this.root.getPackageFragment("package1");
 		assertNotNull("Should not be null", packageFragment);
 		IClassFile[] classFiles = packageFragment.getAllClassFiles();
-		assertTrue("Should find at least one class in " + packageFragment, classFiles.length > 0);
-		for (IClassFile classFile : classFiles) {
+		assertTrue("Should find at least one class in " + packageFragment, classFiles.length > 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		for (IClassFile classFile : classFiles) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			inspectJavadoc(classFile);
 		}
 	}
 
 	private void inspectJavadoc(IClassFile classFile) throws JavaModelException {
 		IJavaElement[] children = classFile.getChildren();
-		assertTrue("Should find at least one element in " + classFile, children.length > 0);
-		for (IJavaElement child : children) {
+		assertTrue("Should find at least one element in " + classFile, children.length > 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		for (IJavaElement child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			inspectJavadoc(child);
 		}
 	}
@@ -92,7 +92,7 @@ public class AttachedJavadocTests21 extends ModifyingResourceTests {
 		assertAttachedjavadoc(child);
 		if (child instanceof IParent parent) {
 			IJavaElement[] children = parent.getChildren();
-			for (IJavaElement elt : children) {
+			for (IJavaElement elt : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				inspectJavadoc(elt);
 			}
 		}
@@ -101,7 +101,7 @@ public class AttachedJavadocTests21 extends ModifyingResourceTests {
 	// Set to true for debugging new javadoc versions
 	private static final boolean PRINT_INSTEAD_OF_FAIL = false;
 
-	private void assertAttachedjavadoc(IJavaElement elt) throws JavaModelException {
+	private void assertAttachedjavadoc(IJavaElement elt) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (elt instanceof IMember member) {
 			int flags = member.getFlags();
 			if (Flags.isPackageDefault(flags) || Flags.isPrivate(flags)) {
@@ -111,26 +111,26 @@ public class AttachedJavadocTests21 extends ModifyingResourceTests {
 		String javadoc = elt.getAttachedJavadoc(new NullProgressMonitor());
 		if (javadoc == null || javadoc.isBlank()) {
 			if (PRINT_INSTEAD_OF_FAIL) {
-				System.err.println("No javadoc found for " + elt + "\n");
+				System.err.println("No javadoc found for " + elt + "\n"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			} else {
-				fail("Should have javadoc: " + elt);
+				fail("Should have javadoc: " + elt); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} else {
 			if (PRINT_INSTEAD_OF_FAIL) {
-				System.out.println("Some javadoc found for " + elt);
+				System.out.println("Some javadoc found for " + elt); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		String elementName = elt.getElementName();
-		String message = "Should match name: '" + elementName + "' but was: " + javadoc + " for " + elt;
+		String message = "Should match name: '" + elementName + "' but was: " + javadoc + " for " + elt; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (javadoc == null || !javadoc.contains(elementName)) {
 			if (PRINT_INSTEAD_OF_FAIL) {
-				System.err.println("\n" + message + "\n");
+				System.err.println("\n" + message + "\n"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			} else {
 				fail(message);
 			}
 		} else {
 			if (PRINT_INSTEAD_OF_FAIL) {
-				System.out.println("Matching javadoc for " + elementName + " found");
+				System.out.println("Matching javadoc for " + elementName + " found"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}

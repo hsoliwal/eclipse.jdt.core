@@ -41,12 +41,12 @@ public class Semaphore {
 			e.printStackTrace();
 		}
 	}
-	public synchronized void acquire(long timeoutMs) throws TimeOutException {
+	public synchronized void acquire(long timeoutMs) throws TimeOutException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long timeoutNanos = timeoutMs == Long.MAX_VALUE ? Long.MAX_VALUE : (timeoutMs * 1_000_000L);
 		long startNanos = System.nanoTime();
-		while (this.permissions <= 0 && timeoutNanos > 0) {
+		while (this.permissions <= 0 && timeoutNanos > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
-				if (this.name != null) System.out.println(Thread.currentThread() + " - waiting to acquire: " + this.name); //$NON-NLS-1$
+				if (this.name != null) System.out.println(Thread.currentThread() + " - waiting to acquire: " + this.name); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				if (timeoutNanos == Long.MAX_VALUE) {
 					wait();
 				} else {
@@ -60,13 +60,13 @@ public class Semaphore {
 			throw new TimeOutException();
 		}
 		this.permissions--;
-		if (this.name != null) System.out.println(Thread.currentThread() + " - acquired: " + this.name); //$NON-NLS-1$
+		if (this.name != null) System.out.println(Thread.currentThread() + " - acquired: " + this.name); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public int getCurrentPemissions() {
 		return this.permissions;
 	}
 	public synchronized void release() {
-		if (this.name != null) System.out.println(Thread.currentThread() + " - releasing: " + this.name); //$NON-NLS-1$
+		if (this.name != null) System.out.println(Thread.currentThread() + " - releasing: " + this.name); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (++this.permissions > 0) notifyAll();
 	}
 }

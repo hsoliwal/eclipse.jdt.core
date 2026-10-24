@@ -49,10 +49,10 @@ public class RegressionTests extends APTTestBase {
 	/**
 	 * Bugzilla 104032: NPE when deleting project that has APT settings.
 	 */
-	public void testBugzilla104032() throws Exception
+	public void testBugzilla104032() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		// set up project with unique name
-		final String projName = RegressionTests.class.getName() + "104032.Project"; //$NON-NLS-1$
+		final String projName = RegressionTests.class.getName() + "104032.Project"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IPath projectPath = env.addProject( projName, CompilerOptions.getFirstSupportedJavaVersion());
 		env.addExternalJars( projectPath, Util.getJavaClassLibs() );
 
@@ -96,9 +96,9 @@ public class RegressionTests extends APTTestBase {
 	/**
 	 * Tests annotation proxies
 	 */
-    public void testBugzilla106541() throws Exception
+    public void testBugzilla106541() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     {
-        final String projName = RegressionTests.class.getName() + "104032.Project"; //$NON-NLS-1$
+        final String projName = RegressionTests.class.getName() + "104032.Project"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         IPath projectPath = env.addProject( projName, CompilerOptions.getFirstSupportedJavaVersion());
         env.addExternalJars( projectPath, Util.getJavaClassLibs() );
 
@@ -129,8 +129,8 @@ public class RegressionTests extends APTTestBase {
     }
 
     // doesn't work because of a jdt.core type system universe problem.
-    public void testBugzilla120255() throws Exception{
-    	final String projName = RegressionTests.class.getName() + "120255.Project"; //$NON-NLS-1$
+    public void testBugzilla120255() throws Exception{ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+    	final String projName = RegressionTests.class.getName() + "120255.Project"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IPath projectPath = env.addProject( projName, CompilerOptions.getFirstSupportedJavaVersion());
 		env.addExternalJars( projectPath, Util.getJavaClassLibs() );
 
@@ -173,8 +173,8 @@ public class RegressionTests extends APTTestBase {
     /**
      * Test the Types.isSubtype() API, in various inheritance scenarios
      */
-    public void testBugzilla206591A() throws Exception {
-    	final String projName = RegressionTests.class.getName() + "206591.Project"; //$NON-NLS-1$
+    public void testBugzilla206591A() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+    	final String projName = RegressionTests.class.getName() + "206591.Project"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IPath projectPath = env.addProject( projName, CompilerOptions.getFirstSupportedJavaVersion());
 		env.addExternalJars( projectPath, Util.getJavaClassLibs() );
 
@@ -242,8 +242,8 @@ public class RegressionTests extends APTTestBase {
     /**
      * Test the Types.isAssignable() API, in various inheritance scenarios
      */
-    public void testBugzilla206591B() throws Exception {
-    	final String projName = RegressionTests.class.getName() + "206591.Project"; //$NON-NLS-1$
+    public void testBugzilla206591B() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+    	final String projName = RegressionTests.class.getName() + "206591.Project"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IPath projectPath = env.addProject( projName, CompilerOptions.getFirstSupportedJavaVersion());
 		env.addExternalJars( projectPath, Util.getJavaClassLibs() );
 
@@ -295,8 +295,8 @@ public class RegressionTests extends APTTestBase {
 	 * the project's factory path is equivalent to the default factory path, not
 	 * just that it has created a factory path.
 	 */
-	public void testBugzilla423254() throws Exception {
-		final String projName = RegressionTests.class.getName()
+	public void testBugzilla423254() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		final String projName = RegressionTests.class.getName() //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "423254.Project"; //$NON-NLS-1$
 		IPath projectPath = env.addProject(projName, CompilerOptions.getFirstSupportedJavaVersion()); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());

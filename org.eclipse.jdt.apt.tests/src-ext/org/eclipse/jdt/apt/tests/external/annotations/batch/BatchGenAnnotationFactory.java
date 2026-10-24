@@ -30,7 +30,7 @@ public class BatchGenAnnotationFactory implements AnnotationProcessorFactory {
 	private static final List<String> SUPPORTED_TYPES =
 		Collections.singletonList(BatchGen.class.getName());
 
-	public AnnotationProcessor getProcessorFor(
+	public AnnotationProcessor getProcessorFor( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			Set<AnnotationTypeDeclaration> decls,
 			AnnotationProcessorEnvironment env) {
 		if( ROUND == 0 ){
@@ -40,7 +40,7 @@ public class BatchGenAnnotationFactory implements AnnotationProcessorFactory {
 		else if( ROUND == 1){
 			ROUND ++;
 			if( !decls.isEmpty() )
-				env.getMessager().printError("Expecting empty set but got " + decls );
+				env.getMessager().printError("Expecting empty set but got " + decls ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 			return new BatchGen1AnnotationProcessor(env);
 		}
@@ -50,7 +50,7 @@ public class BatchGenAnnotationFactory implements AnnotationProcessorFactory {
 		}
 		// This is to make sure we aren't bouncing the class loader without a full build.
 		else
-			env.getMessager().printError("Calling BatchGenAnnotionFactory too many times. Round=" + ROUND );
+			env.getMessager().printError("Calling BatchGenAnnotionFactory too many times. Round=" + ROUND ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		return null;
 	}
 

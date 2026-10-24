@@ -32,43 +32,43 @@ public class BatchProcessor implements AnnotationProcessor {
 	BatchProcessor(AnnotationProcessorEnvironment env){
 		_env = env;
 	}
-	public void process() {
+	public void process() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		final Messager msger = _env.getMessager();
 		if( TIMES_CALLED == 0 ){
 
-			final Collection<String> expectedList = new HashSet<>();
+			final Collection<String> expectedList = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			expectedList.add("p1.A");
 			expectedList.add("p1.B");
 			expectedList.add("p1.C");
 			expectedList.add("p1.D");
 			final Collection<TypeDeclaration> allTypes = _env.getSpecifiedTypeDeclarations();
-			for( TypeDeclaration type : allTypes ){
+			for( TypeDeclaration type : allTypes ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				expectedList.remove(type.getQualifiedName());
 			}
 
 			if( !expectedList.isEmpty() ){
-				msger.printError("failed to find type " + expectedList);
+				msger.printError("failed to find type " + expectedList); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 
-			final Collection<String> expectedAnnotated = new HashSet<>();
+			final Collection<String> expectedAnnotated = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			expectedList.add("p1.A");
 			expectedList.add("p1.C");
 			final AnnotationTypeDeclaration batchAnnoDecl =
 				(AnnotationTypeDeclaration)_env.getTypeDeclaration(Batch.class.getName());
 			final Collection<Declaration> decls = _env.getDeclarationsAnnotatedWith(batchAnnoDecl);
-			for( Declaration decl : decls  ){
+			for( Declaration decl : decls  ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if( decl instanceof TypeDeclaration )
 					expectedAnnotated.remove( ((TypeDeclaration)decl).getQualifiedName() );
 			}
 			if( !expectedAnnotated.isEmpty() ){
-				msger.printError("failed to find annotated type " + expectedAnnotated );
+				msger.printError("failed to find annotated type " + expectedAnnotated ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 
 			msger.printWarning("CompletedSuccessfully");
 		}
 		else{
-			msger.printWarning("Called " + (TIMES_CALLED + 1) + " times.");
+			msger.printWarning("Called " + (TIMES_CALLED + 1) + " times."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		TIMES_CALLED++;

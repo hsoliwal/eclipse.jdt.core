@@ -29,7 +29,7 @@ public class AptCorePreferenceInitializer extends AbstractPreferenceInitializer 
 	@Override
 	public void initializeDefaultPreferences() {
 	 	IEclipsePreferences defaultPreferences = DefaultScope.INSTANCE.getNode(AptPlugin.PLUGIN_ID);
-	 	for (Map.Entry<String,String> entry : AptPreferenceConstants.DEFAULT_OPTIONS_MAP.entrySet()) {
+	 	for (Map.Entry<String,String> entry : AptPreferenceConstants.DEFAULT_OPTIONS_MAP.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	 		defaultPreferences.put(entry.getKey(), entry.getValue());
 	 	}
 	}

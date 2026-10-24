@@ -65,42 +65,42 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 			ReferenceMatch refMatch = (ReferenceMatch) this.match;
 			IJavaElement localElement = refMatch.getLocalElement();
 			if (localElement != null) {
-				this.line.append("+[");
+				this.line.append("+["); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (localElement.getElementType() == IJavaElement.ANNOTATION) {
-					this.line.append('@');
-					this.line.append(localElement.getElementName());
-					this.line.append(" on ");
-					this.line.append(localElement.getParent().getElementName());
+					this.line.append('@'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.line.append(localElement.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.line.append(" on "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.line.append(localElement.getParent().getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else {
-					this.line.append(localElement.getElementName());
+					this.line.append(localElement.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				this.line.append(']');
+				this.line.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 	}
 
 	class TypeReferenceCollector extends ReferenceCollector {
-		protected void writeLine() throws CoreException {
+		protected void writeLine() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			super.writeLine();
 			TypeReferenceMatch typeRefMatch = (TypeReferenceMatch) this.match;
 			IJavaElement[] others = typeRefMatch.getOtherElements();
 			int length = others == null ? 0 : others.length;
 			if (length > 0) {
-				this.line.append("+[");
-				for (int i = 0; i < length; i++) {
+				this.line.append("+["); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IJavaElement other = others[i];
 					if (i > 0)
-						this.line.append(',');
+						this.line.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					if (other.getElementType() == IJavaElement.ANNOTATION) {
-						this.line.append('@');
-						this.line.append(other.getElementName());
-						this.line.append(" on ");
-						this.line.append(other.getParent().getElementName());
+						this.line.append('@'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						this.line.append(other.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						this.line.append(" on "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						this.line.append(other.getParent().getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					} else {
-						this.line.append(other.getElementName());
+						this.line.append(other.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
-				this.line.append(']');
+				this.line.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 	}
@@ -148,7 +148,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 	}
 
 	// switch pattern search - test reference of an object in case statement
-	public void testBug573943_001() throws CoreException {
+	public void testBug573943_001() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"public class X {\n" +
@@ -185,7 +185,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 	}
 	// find reference on a field in switch pattern
-	public void testBug573943_002() throws CoreException {
+	public void testBug573943_002() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"public class X {\n" +
@@ -222,7 +222,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 	}
 	// find all occurrence of a field in switch pattern
-	public void testBug573943_003() throws CoreException {
+	public void testBug573943_003() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"public class X {\n" +
@@ -261,7 +261,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 	}
 
 	// find all reference of a local variable in switch pattern
-	public void testBug573943_004() throws CoreException {
+	public void testBug573943_004() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"public class X {\n" +
@@ -299,7 +299,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 	}
 	// find all reference of a local variable in switch pattern
-	public void testBug573943_005() throws CoreException {
+	public void testBug573943_005() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"public class X {\n" +
@@ -339,7 +339,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 	}
 	// find all occurrence of a field in switch case statement and switch expression
-	public void testBug573943_006() throws CoreException {
+	public void testBug573943_006() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"public class X {\n" +
@@ -378,7 +378,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 	}
 	// find all reference of a local variable in switch pattern amd case statements
-	public void testBug573943_007() throws CoreException {
+	public void testBug573943_007() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"public class X {\n" +
@@ -419,7 +419,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 	}
 	// switch pattern search - test reference of an object in case statement as well as switch expression
-	public void testBug573943_008() throws CoreException {
+	public void testBug573943_008() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"public class X {\n" +
@@ -456,7 +456,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 	}
 
 	// switch pattern search - test reference of an custom class object in case statement
-	public void testBug573943_009() throws CoreException {
+	public void testBug573943_009() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"sealed interface I permits A, B {}\n" +
@@ -495,7 +495,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 	}
 	// switch pattern search - test reference of an custom class object in case statement amd switch statement
-	public void testBug573943_010() throws CoreException {
+	public void testBug573943_010() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"sealed interface I permits A, B {}\n" +
@@ -535,7 +535,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 	}
 	// switch pattern search - test reference of an custom record object in case statement
-	public void testBug573943_011() throws CoreException {
+	public void testBug573943_011() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"sealed interface I permits A, B {}\n" +
@@ -574,7 +574,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 	}
 	// switch pattern search - test reference of an custom record object in case statement and switch statement
-	public void testBug573943_012() throws CoreException {
+	public void testBug573943_012() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"sealed interface I permits A, B {}\n" +
@@ -614,7 +614,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 	}
 	// switch pattern search - test reference of an custom class object in case statement and switch expression
-	public void testBug573943_013() throws CoreException {
+	public void testBug573943_013() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"sealed interface I permits A, B {}\n" +
@@ -652,7 +652,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 	}
 	// switch pattern search - test reference of an object in case statement as well as switch pattern
-	public void testBug573943_014() throws CoreException {
+	public void testBug573943_014() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"public class X {\n" +
@@ -690,7 +690,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 	}
 	// switch pattern search - test reference of an object in case statement as well as switch pattern
-	public void testBug573943_015() throws CoreException {
+	public void testBug573943_015() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"public class X {\n" +
@@ -727,7 +727,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 	}
 	// type reference with a switch expression pattern
 	// see testBug573943_012 for switch pattern and type reference
-	public void testBug573943_016() throws CoreException {
+	public void testBug573943_016() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"sealed interface I permits A, B {}\n" +
@@ -767,7 +767,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 	}
 
 	// type reference with a switch expression pattern
-	public void testBug573943_017() throws CoreException {
+	public void testBug573943_017() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"sealed interface I permits A, B {}\n" +
@@ -807,7 +807,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 	}
 	// selection of pattern variable in case statement and verify that it is local variable
-	public void testBug573943_018() throws CoreException {
+	public void testBug573943_018() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"public class X {\n" +
@@ -842,7 +842,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 	}
 	// selection of pattern variable in case statement and search for declaration
-	public void testBug573943_019() throws CoreException {
+	public void testBug573943_019() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"public class X {\n" +
@@ -879,7 +879,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 	}
 	// selection of guarded pattern variable in case statement and verify that it is local variable
-	public void testBug573943_020() throws CoreException {
+	public void testBug573943_020() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"public class X {\n" +
@@ -916,7 +916,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 	}
 	// selection of pattern variable in case statement and search for declaration
-	public void testBug573943_021() throws CoreException {
+	public void testBug573943_021() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"public class X {\n" +
@@ -954,7 +954,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 	}
 	//not a working copy test
-	public void testBug573943_022() throws Exception {
+	public void testBug573943_022() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("first", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "21");
 			project.setOption(JavaCore.COMPILER_PB_ENABLE_PREVIEW_FEATURES, JavaCore.DISABLED);
@@ -998,7 +998,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 	}
 	// find reference on a field in switch pattern - without select
-	public void testBug573943_023() throws CoreException {
+	public void testBug573943_023() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"public class X {\n" +
@@ -1030,7 +1030,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 	}
 	// find all occurrence on a field in switch pattern - without select
-	public void testBug573943_024() throws CoreException {
+	public void testBug573943_024() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"public class X {\n" +
@@ -1063,7 +1063,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 	}
 	// find all occurrence on a class in switch pattern - without select ( switch statement)
-	public void testBug573943_026() throws CoreException {
+	public void testBug573943_026() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"sealed interface I permits A17, B {}\n" +
@@ -1095,7 +1095,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 	}
 	// find all reference on a class in switch pattern - without select ( Switch Statement)
-	public void testBug573943_027() throws CoreException {
+	public void testBug573943_027() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"sealed interface I permits A17, B {}\n" +
@@ -1126,7 +1126,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 	}
 	// find all reference on a class in switch pattern - without select
-	public void testBug573943_028() throws CoreException {
+	public void testBug573943_028() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"sealed interface I permits A17, B {}\n" +
@@ -1157,7 +1157,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 	}
 	// find all occurrence on a class in switch pattern - without select
-	public void testBug573943_029() throws Exception {
+	public void testBug573943_029() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("first", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "21");
 			project.setOption(JavaCore.COMPILER_PB_ENABLE_PREVIEW_FEATURES, JavaCore.DISABLED);
@@ -1203,7 +1203,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 	}
 	// find all references on a class in switch pattern - without select
-	public void testBug573943_030() throws Exception {
+	public void testBug573943_030() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("first", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "21");
 			project.setOption(JavaCore.COMPILER_PB_ENABLE_PREVIEW_FEATURES, JavaCore.DISABLED);
@@ -1247,7 +1247,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 			deleteProject("first");
 		}
 	}
-	public void testBug573943_031() throws CoreException {
+	public void testBug573943_031() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"public class X {\n" +
@@ -1282,7 +1282,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 			javaProject.setOption(JavaCore.COMPILER_PB_ENABLE_PREVIEW_FEATURES, old);
 		}
 	}
-	public void testBug573943_032() throws CoreException {
+	public void testBug573943_032() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"public class X {\n" +
@@ -1323,7 +1323,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 	}
 
-	public void testBug573943_033() throws CoreException {
+	public void testBug573943_033() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"public class X {\n" +
@@ -1364,7 +1364,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 	}
 
-	public void testBug573943_034() throws CoreException {
+	public void testBug573943_034() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"public class X {\n" +
@@ -1404,7 +1404,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 	}
 
 	// selection of guarded pattern variable along with instance of expression in case statement and verify that it is local variable
-	public void testBug575718_035() throws CoreException {
+	public void testBug575718_035() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"public class X {\n" +
@@ -1440,7 +1440,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 	}
 
 	// selection of guarded pattern variable in case statement along with instanceof expression and verify it gets all references
-	public void testBug575718_036() throws CoreException {
+	public void testBug575718_036() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 				"public class X {\n" +
@@ -1478,7 +1478,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 	}
 	// selection of guarded pattern variable in case statement along with instanceof expression and verify that it gets all occurences
-		public void testBug575718_037() throws CoreException {
+		public void testBug575718_037() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 					"public class X {\n" +
@@ -1519,7 +1519,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 
 		// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/968
 		// JavaElementHyperlinkDetector: Parser runs into NegativeArraySizeException in some cases
-		public void testGH968() throws CoreException {
+		public void testGH968() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			try {
 				IJavaProject project = createJavaProject("p", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "17");
 				project.open(null);
@@ -1596,7 +1596,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 			}
 		}
 
-		public void testGH968_2() throws CoreException {
+		public void testGH968_2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			try {
 				this.workingCopies = new ICompilationUnit[1];
 				this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/OptionActions.java",
@@ -1652,7 +1652,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 		// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/968
 		// JavaElementHyperlinkDetector: Parser runs into NegativeArraySizeException in some cases
-		public void testGH968_3() throws CoreException {
+		public void testGH968_3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/TestEcl.java",
 					"import java.lang.StackWalker.Option;\n" +
@@ -1726,7 +1726,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 
 		// check for permit reference
-		public void test564049_001() throws CoreException {
+		public void test564049_001() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 					"public sealed class X permits Y{ \n" +
@@ -1745,7 +1745,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 			}
 		}
 		// select a class and check its permit reference
-		public void test564049_002() throws CoreException {
+		public void test564049_002() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 					"public sealed class X permits Y{ \n" +
@@ -1767,7 +1767,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 
 		// select a class ( at permit location) and check its reference
-		public void test564049_003() throws CoreException {
+		public void test564049_003() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 					"public sealed class X permits /*here*/Y{ \n" +
@@ -1788,7 +1788,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 					"src/X.java X [Y] EXACT_MATCH");
 		}
 		// check for permit reference if it is the nth permitted item
-		public void test564049_004() throws CoreException {
+		public void test564049_004() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 					"public sealed class X permits Y,Q{ \n" +
@@ -1809,7 +1809,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 
 		// select a class and check its nth permit reference
-		public void test564049_005() throws CoreException {
+		public void test564049_005() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 					"public sealed class X permits Y,Q{ \n" +
@@ -1832,7 +1832,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 
 		// check for permit reference with supertype finegrain
-		public void test564049_006() throws CoreException {
+		public void test564049_006() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 					"public sealed class X permits Y{ \n" +
@@ -1852,7 +1852,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 
 		// check for permit reference with permittype finegrain
-		public void test564049_007() throws CoreException {
+		public void test564049_007() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 					"public sealed class X permits Y{ \n" +
@@ -1871,7 +1871,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 			}
 		}
 		// check for permit reference with permittype or supertype finegrain
-		public void test564049_008() throws CoreException {
+		public void test564049_008() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 					"public sealed class X permits Y{ \n" +
@@ -1891,7 +1891,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 		}
 
 		// check for permit reference for qualified type
-		public void test564049_009() throws CoreException {
+		public void test564049_009() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/p1/X.java",
 					"package p1;\n"+
@@ -1924,7 +1924,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 
 
 		// check for permit reference with permittype finegrain - negative test case
-		public void test564049_010() throws CoreException {
+		public void test564049_010() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/X.java",
 					"public sealed class X extends Y{ \n" +
@@ -1943,7 +1943,7 @@ public class JavaSearchBugs17Tests extends AbstractJavaSearchTests {
 			}
 		}
 		// permit reference in another file
-		public void test564049_011() throws CoreException {
+		public void test564049_011() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			IJavaProject project1 = createJavaProject("JavaSearchBugs15", new String[] {"src"}, new String[] {"JCL15_LIB"}, "bin", "17");
 			try {
 				Map<String, String> options = project1.getOptions(false);

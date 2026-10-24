@@ -100,7 +100,7 @@ public class FactoryPath implements IFactoryPath {
 	 * The factory path. Stored in reverse order.
 	 */
 	private final Map<FactoryContainer, Attributes> _path = Collections.synchronizedMap(
-			new LinkedHashMap<FactoryContainer, Attributes>());
+			new LinkedHashMap<FactoryContainer, Attributes>()); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
 
 	@Override
 	public void addExternalJar(File jar) {
@@ -147,7 +147,7 @@ public class FactoryPath implements IFactoryPath {
 		Attributes a = _path.get(fc);
 		if (a == null) {
 			Status status = AptPlugin.createWarningStatus(new IllegalArgumentException(),
-					"Specified plugin was not found, so it could not be added to the annotation processor factory path: " + pluginId);  //$NON-NLS-1$
+					"Specified plugin was not found, so it could not be added to the annotation processor factory path: " + pluginId);  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			throw new CoreException(status);
 		}
 		a.setEnabled(true);
@@ -184,7 +184,7 @@ public class FactoryPath implements IFactoryPath {
 	public void setContainers(Map<FactoryContainer, Attributes> map) {
 		synchronized(_path) {
 			_path.clear();
-			for (Entry<FactoryContainer, Attributes> entry : getReversed(map.entrySet())) {
+			for (Entry<FactoryContainer, Attributes> entry : getReversed(map.entrySet())) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				_path.put(entry.getKey(), entry.getValue());
 			}
 		}
@@ -206,9 +206,9 @@ public class FactoryPath implements IFactoryPath {
 	}
 
 	public Map<FactoryContainer, Attributes> getEnabledContainers() {
-		Map<FactoryContainer, Attributes> map = new LinkedHashMap<>();
+		Map<FactoryContainer, Attributes> map = new LinkedHashMap<>(); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
 		synchronized(_path) {
-			for (Map.Entry<FactoryContainer, Attributes> entry : getReversed(_path.entrySet())) {
+			for (Map.Entry<FactoryContainer, Attributes> entry : getReversed(_path.entrySet())) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Attributes attr = entry.getValue();
 				if (attr.isEnabled()) {
 					Attributes attrClone = new Attributes(attr);
@@ -220,7 +220,7 @@ public class FactoryPath implements IFactoryPath {
 	}
 
 	private static <T> List<T> getReversed(Collection<T> collection) {
-		ArrayList<T> result = new ArrayList<>(collection);
+		ArrayList<T> result = new ArrayList<>(collection); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		Collections.reverse(result);
 		return result;
 	}
@@ -229,9 +229,9 @@ public class FactoryPath implements IFactoryPath {
 	 * @return a copy of the path
 	 */
 	public Map<FactoryContainer, Attributes> getAllContainers() {
-		Map<FactoryContainer, Attributes> map = new LinkedHashMap<>(_path.size());
+		Map<FactoryContainer, Attributes> map = new LinkedHashMap<>(_path.size()); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
 		synchronized (_path) {
-			for (Map.Entry<FactoryContainer, Attributes> entry : getReversed(_path.entrySet())) {
+			for (Map.Entry<FactoryContainer, Attributes> entry : getReversed(_path.entrySet())) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				map.put(entry.getKey(), new Attributes(entry.getValue()));
 			}
 		}

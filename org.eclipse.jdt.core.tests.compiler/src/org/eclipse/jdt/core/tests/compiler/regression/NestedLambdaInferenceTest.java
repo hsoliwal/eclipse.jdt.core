@@ -61,7 +61,7 @@ public class NestedLambdaInferenceTest extends AbstractRegressionTest {
 	}
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5206
-	public void testIssue5206InterleavedParameterizedLambdas() {
+	public void testIssue5206InterleavedParameterizedLambdas() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(new String[] {
 			"InterleavedLambdas.java",
 			"""
@@ -94,9 +94,9 @@ public class NestedLambdaInferenceTest extends AbstractRegressionTest {
 		"left7!");
 	}
 
-	private void runNestedLambdaTest(String className, String overloads) {
+	private void runNestedLambdaTest(String className, String overloads) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(new String[] {
-			className + ".java",
+			className + ".java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"""
 			class %s {
 			    interface Work<V> {
@@ -119,9 +119,9 @@ public class NestedLambdaInferenceTest extends AbstractRegressionTest {
 
 	private static String createNestedInvocation() {
 		String invocation = "route(null, TERMINAL)";
-		for (int level = 1; level < NESTING_DEPTH; level++) {
+		for (int level = 1; level < NESTING_DEPTH; level++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String selector = level % 2 == 0 ? "route" : "select";
-			invocation = selector + "(null, () -> " + invocation + ")";
+			invocation = selector + "(null, () -> " + invocation + ")"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return invocation;
 	}

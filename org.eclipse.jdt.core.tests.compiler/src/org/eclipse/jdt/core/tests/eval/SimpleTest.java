@@ -41,7 +41,7 @@ public class SimpleTest {
 	static final String JRE_PATH = Util.getJREDirectory();
 	static final String[] COMPILATION_CLASSPATH = Util.concatWithClassLibs(Util.getOutputDirectory(), false);
 	static final String[] RUNTIME_CLASSPATH =  new String[] {Util.getOutputDirectory()};
-	static final String TARGET_PATH = Util.getOutputDirectory() + File.separator + "evaluation";
+	static final String TARGET_PATH = Util.getOutputDirectory() + File.separator + "evaluation"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	protected EvaluationContext context;
 	protected LocalVirtualMachine launchedVM;
 	protected TargetInterface target;
@@ -49,7 +49,7 @@ public class SimpleTest {
 
 	class Requestor implements IRequestor {
 		int globalProblemCount = 0;
-		public boolean acceptClassFiles(ClassFile[] classFiles, char[] codeSnippetClassName) {
+		public boolean acceptClassFiles(ClassFile[] classFiles, char[] codeSnippetClassName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			try {
 				SimpleTest.this.target.sendClasses(codeSnippetClassName != null, classFiles);
 			} catch (TargetException e) {
@@ -66,13 +66,13 @@ public class SimpleTest {
 					System.out.println(result.displayString);
 				}
 			} else {
-				for (int i = 0, length = classFiles.length; i < length; i++) {
+				for (int i = 0, length = classFiles.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					char[][] compoundName = classFiles[i].getCompoundName();
 					if (new String(compoundName[compoundName.length-1]).startsWith("GlobalVariable")) {
 						try {
 							IBinaryField[] fields = new ClassFileReader(classFiles[i].getBytes(), null).getFields();
 							if (fields != null) {
-								for (int j = 0; j < fields.length; j++) {
+								for (int j = 0; j < fields.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 									TargetInterface.Result result = SimpleTest.this.target.getResult();
 									if (result.displayString == null) {
 										System.out.println("(No explicit return value)");
@@ -92,17 +92,17 @@ public class SimpleTest {
 			}
 			return true;
 		}
-		public void acceptProblem(CategorizedProblem problem, char[] fragmentSource, int fragmentKind) {
+		public void acceptProblem(CategorizedProblem problem, char[] fragmentSource, int fragmentKind) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			int localErrorCount = 0;
 			this.globalProblemCount++;
 			char[] source = fragmentSource;
 			if (localErrorCount == 0)
 				System.out.println("----------");
 			if (fragmentKind == EvaluationResult.T_INTERNAL) {
-				System.out.print(this.globalProblemCount + (problem.isError() ? ". INTERNAL ERROR" : ". INTERNAL WARNING"));
+				System.out.print(this.globalProblemCount + (problem.isError() ? ". INTERNAL ERROR" : ". INTERNAL WARNING")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				System.out.print(" in generated compilation unit");
 			} else {
-				System.out.print(this.globalProblemCount + (problem.isError() ? ". ERROR" : ". WARNING"));
+				System.out.print(this.globalProblemCount + (problem.isError() ? ". ERROR" : ". WARNING")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				System.out.print(" in ");
 				switch (fragmentKind) {
 					case EvaluationResult.T_PACKAGE:
@@ -146,7 +146,7 @@ protected char[] buildCharArray(String[] lines) {
 	buffer.getChars(0, length, result, 0);
 	return result;
 }
-protected String errorReportSource(DefaultProblem problem, char[] source) {
+protected String errorReportSource(DefaultProblem problem, char[] source) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	//extra from the source the innacurate     token
 	//and "highlight" it using some underneath ^^^^^
 	//put some context around too.
@@ -171,14 +171,14 @@ protected String errorReportSource(DefaultProblem problem, char[] source) {
 	int begin = problem.getSourceStart() >= source.length ? source.length - 1 : problem.getSourceStart();
 	int relativeStart = 0;
 	int end = problem.getSourceEnd() >= source.length ? source.length - 1 : problem.getSourceEnd();
-	label : for (relativeStart = 0;; relativeStart++) {
+	label : for (relativeStart = 0;; relativeStart++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (begin == 0)
 			break label;
 		if ((source[begin - 1] == '\n') || (source[begin - 1] == '\r'))
 			break label;
 		begin--;
 	}
-	label : for (;;) {
+	label : for (;;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if ((end + 1) >= source.length)
 			break label;
 		if ((source[end + 1] == '\r') || (source[end + 1] == '\n')) {
@@ -192,14 +192,14 @@ protected String errorReportSource(DefaultProblem problem, char[] source) {
 	char c;
 	//remove all SPACE and TAB that begin the error message...
 	int trimLeftIndex = 0;
-	while (((c = extract[trimLeftIndex++]) == TAB) || (c == SPACE)) {
+	while (((c = extract[trimLeftIndex++]) == TAB) || (c == SPACE)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	}
 	System.arraycopy(extract, trimLeftIndex - 1, extract = new char[extract.length - trimLeftIndex + 1], 0, extract.length);
 	relativeStart -= trimLeftIndex;
 	//buffer spaces and tabs in order to reach the error position
 	int pos = 0;
 	char[] underneath = new char[extract.length]; // can't be bigger
-	for (int i = 0; i <= relativeStart; i++) {
+	for (int i = 0; i <= relativeStart; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (extract[i] == TAB) {
 			underneath[pos++] = TAB;
 		} else {
@@ -207,20 +207,20 @@ protected String errorReportSource(DefaultProblem problem, char[] source) {
 		}
 	}
 	//mark the error position
-	for (int i = problem.getSourceStart(); i <= (problem.getSourceEnd() >= source.length ? source.length - 1 : problem.getSourceEnd()); i++)
+	for (int i = problem.getSourceStart(); i <= (problem.getSourceEnd() >= source.length ? source.length - 1 : problem.getSourceEnd()); i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		underneath[pos++] = MARK;
 	//resize underneathto remove 'null' chars
 	System.arraycopy(underneath, 0, underneath = new char[pos], 0, pos);
 	return
-		((problem.getSourceLineNumber() > 0) ?
-			(" (at line " + String.valueOf(problem.getSourceLineNumber()) + ")") :
+		((problem.getSourceLineNumber() > 0) ? //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			(" (at line " + String.valueOf(problem.getSourceLineNumber()) + ")") : //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			""
 		) +
 		"\n\t" + new String(extract) + "\n\t" + new String(underneath);
 }
 protected GlobalVariable findVar(char[] varName) {
 	GlobalVariable[] vars = this.context.allVariables();
-	for (int i = 0; i < vars.length; i++) {
+	for (int i = 0; i < vars.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		GlobalVariable var = vars[i];
 		if (CharOperation.equals(var.getName(), varName)) {
 			return var;
@@ -235,7 +235,7 @@ protected INameEnvironment getEnv() {
 protected IProblemFactory getProblemFactory() {
 	return new DefaultProblemFactory(java.util.Locale.getDefault());
 }
-protected void startEvaluationContext() throws TargetException {
+protected void startEvaluationContext() throws TargetException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try (ServerSocket server = new ServerSocket(0)) {
 		LocalVMLauncher launcher = LocalVMLauncher.getLauncher();
 		launcher.setVMPath(JRE_PATH);
@@ -251,7 +251,7 @@ protected void startEvaluationContext() throws TargetException {
 				try {
 					java.io.InputStream in = SimpleTest.this.launchedVM.getInputStream();
 					int read = 0;
-					while (read != -1) {
+					while (read != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						try {
 							read = in.read();
 						} catch (java.io.IOException e) {
@@ -272,7 +272,7 @@ protected void startEvaluationContext() throws TargetException {
 				try {
 					java.io.InputStream in = SimpleTest.this.launchedVM.getErrorStream();
 					int read = 0;
-					while (read != -1) {
+					while (read != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						try {
 							read = in.read();
 						} catch (java.io.IOException e) {
@@ -295,11 +295,11 @@ protected void startEvaluationContext() throws TargetException {
 		throw new Error("Failed to open socket", e);
 	}
 }
-protected void stopEvaluationContext() {
+protected void stopEvaluationContext() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.target.disconnect(); // Close the socket first so that the OS resource has a chance to be freed.
 		int retry = 0;
-		while (this.launchedVM.isRunning() && (++retry < 20)) {
+		while (this.launchedVM.isRunning() && (++retry < 20)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				Thread.sleep(retry * 100);
 			} catch (InterruptedException e) {

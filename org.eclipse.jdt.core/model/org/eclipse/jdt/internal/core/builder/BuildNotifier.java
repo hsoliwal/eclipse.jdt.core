@@ -88,7 +88,7 @@ public void begin() {
 /**
  * Check whether the build has been canceled. Throws OperationCanceledException when canceled.
  */
-public void checkCancel() throws OperationCanceledException{
+public void checkCancel() throws OperationCanceledException{ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.cancelling) {
 		throw new OperationCanceledException();
 	}
@@ -166,61 +166,61 @@ public void done() {
 /**
  * Returns a string describing the problems.
  */
-protected String problemsMessage() {
+protected String problemsMessage() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int numNew = this.newErrorCount + this.newWarningCount;
 	int numFixed = this.fixedErrorCount + this.fixedWarningCount;
 	if (numNew == 0 && numFixed == 0) return ""; //$NON-NLS-1$
 
 	boolean displayBoth = numNew > 0 && numFixed > 0;
-	StringBuilder buffer = new StringBuilder();
-	buffer.append('(');
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	buffer.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (numNew > 0) {
 		// (Found x errors + y warnings)
-		buffer.append(Messages.build_foundHeader);
-		buffer.append(' ');
+		buffer.append(Messages.build_foundHeader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (displayBoth || this.newErrorCount > 0) {
 			if (this.newErrorCount == 1)
-				buffer.append(Messages.build_oneError);
+				buffer.append(Messages.build_oneError); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			else
-				buffer.append(Messages.bind(Messages.build_multipleErrors, String.valueOf(this.newErrorCount)));
+				buffer.append(Messages.bind(Messages.build_multipleErrors, String.valueOf(this.newErrorCount))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (displayBoth || this.newWarningCount > 0)
-				buffer.append(" + "); //$NON-NLS-1$
+				buffer.append(" + "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (displayBoth || this.newWarningCount > 0) {
 			if (this.newWarningCount == 1)
-				buffer.append(Messages.build_oneWarning);
+				buffer.append(Messages.build_oneWarning); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			else
-				buffer.append(Messages.bind(Messages.build_multipleWarnings, String.valueOf(this.newWarningCount)));
+				buffer.append(Messages.bind(Messages.build_multipleWarnings, String.valueOf(this.newWarningCount))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (numFixed > 0)
-			buffer.append(", "); //$NON-NLS-1$
+			buffer.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	if (numFixed > 0) {
 		// (Fixed x errors + y warnings) or (Found x errors + y warnings, Fixed x + y)
-		buffer.append(Messages.build_fixedHeader);
-		buffer.append(' ');
+		buffer.append(Messages.build_fixedHeader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (displayBoth) {
-			buffer.append(String.valueOf(this.fixedErrorCount));
-			buffer.append(" + "); //$NON-NLS-1$
-			buffer.append(String.valueOf(this.fixedWarningCount));
+			buffer.append(String.valueOf(this.fixedErrorCount)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(" + "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(String.valueOf(this.fixedWarningCount)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
 			if (this.fixedErrorCount > 0) {
 				if (this.fixedErrorCount == 1)
-					buffer.append(Messages.build_oneError);
+					buffer.append(Messages.build_oneError); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				else
-					buffer.append(Messages.bind(Messages.build_multipleErrors, String.valueOf(this.fixedErrorCount)));
+					buffer.append(Messages.bind(Messages.build_multipleErrors, String.valueOf(this.fixedErrorCount))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (this.fixedWarningCount > 0)
-					buffer.append(" + "); //$NON-NLS-1$
+					buffer.append(" + "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			if (this.fixedWarningCount > 0) {
 				if (this.fixedWarningCount == 1)
-					buffer.append(Messages.build_oneWarning);
+					buffer.append(Messages.build_oneWarning); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				else
-					buffer.append(Messages.bind(Messages.build_multipleWarnings, String.valueOf(this.fixedWarningCount)));
+					buffer.append(Messages.bind(Messages.build_multipleWarnings, String.valueOf(this.fixedWarningCount))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 	}
-	buffer.append(')');
+	buffer.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return buffer.toString();
 }
 
@@ -243,7 +243,7 @@ public void setProgressPerCompilationUnit(float progress) {
 
 public void subTask(String message) {
 	String pm = problemsMessage();
-	String msg = pm.length() == 0 ? message : pm + " " + message; //$NON-NLS-1$
+	String msg = pm.length() == 0 ? message : pm + " " + message; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	if (msg.equals(this.previousSubtask)) return; // avoid refreshing with same one
 	//if (JavaBuilder.DEBUG) System.out.println(msg);
@@ -254,7 +254,7 @@ public void subTask(String message) {
 }
 
 protected void updateProblemCounts(CategorizedProblem[] newProblems) {
-	for (CategorizedProblem newProblem : newProblems)
+	for (CategorizedProblem newProblem : newProblems) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (newProblem.isError()) this.newErrorCount++; else this.newWarningCount++;
 }
 
@@ -262,15 +262,15 @@ protected void updateProblemCounts(CategorizedProblem[] newProblems) {
  * Update the problem counts from one compilation result given the old and new problems,
  * either of which may be null.
  */
-protected void updateProblemCounts(IMarker[] oldProblems, CategorizedProblem[] newProblems) {
+protected void updateProblemCounts(IMarker[] oldProblems, CategorizedProblem[] newProblems) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (newProblems != null) {
-		next : for (CategorizedProblem newProblem : newProblems) {
+		next : for (CategorizedProblem newProblem : newProblems) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (newProblem.getID() == IProblem.Task) continue; // skip task
 			boolean isError = newProblem.isError();
 			String message = newProblem.getMessage();
 
 			if (oldProblems != null) {
-				for (int j = 0, m = oldProblems.length; j < m; j++) {
+				for (int j = 0, m = oldProblems.length; j < m; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IMarker pb = oldProblems[j];
 					if (pb == null) continue; // already matched up with a new problem
 					boolean wasError = IMarker.SEVERITY_ERROR
@@ -285,14 +285,14 @@ protected void updateProblemCounts(IMarker[] oldProblems, CategorizedProblem[] n
 		}
 	}
 	if (oldProblems != null) {
-		next : for (IMarker oldProblem : oldProblems) {
+		next : for (IMarker oldProblem : oldProblems) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (oldProblem == null) continue next; // already matched up with a new problem
 			boolean wasError = IMarker.SEVERITY_ERROR
 				== oldProblem.getAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
 			String message = oldProblem.getAttribute(IMarker.MESSAGE, ""); //$NON-NLS-1$
 
 			if (newProblems != null) {
-				for (CategorizedProblem pb : newProblems) {
+				for (CategorizedProblem pb : newProblems) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (pb.getID() == IProblem.Task) continue; // skip task
 					if (wasError == pb.isError() && message.equals(pb.getMessage()))
 						continue next;

@@ -40,17 +40,17 @@ public class ClassFileComparatorTest extends AbstractRegressionTest {
 	}
 
 
-	private void compileAndDeploy(String source, String className) {
+	private void compileAndDeploy(String source, String className) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File directory = new File(SOURCE_DIRECTORY);
-		if (!directory.exists()) {
-			if (!directory.mkdirs()) {
-				System.out.println("Could not create " + SOURCE_DIRECTORY);
+		if (!directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			if (!directory.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				System.out.println("Could not create " + SOURCE_DIRECTORY); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return;
 			}
 		}
-		String fileName = SOURCE_DIRECTORY + File.separator + className + ".java";
+		String fileName = SOURCE_DIRECTORY + File.separator + className + ".java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(source);
 			writer.flush();
 			writer.close();
@@ -58,8 +58,8 @@ public class ClassFileComparatorTest extends AbstractRegressionTest {
 			e.printStackTrace();
 			return;
 		}
-		StringBuilder buffer = new StringBuilder();
-		buffer
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append("\"")
 			.append(fileName)
 			.append("\" -d \"")
@@ -71,17 +71,17 @@ public class ClassFileComparatorTest extends AbstractRegressionTest {
 		BatchCompiler.compile(buffer.toString(), new PrintWriter(System.out), new PrintWriter(System.err), null/*progress*/);
 	}
 
-	private boolean areStructurallyDifferent(String classFile1, String classFile2, boolean orderRequired, boolean excludeSynthetic) {
+	private boolean areStructurallyDifferent(String classFile1, String classFile2, boolean orderRequired, boolean excludeSynthetic) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		FileInputStream stream = null;
 		try {
-			ClassFileReader reader = ClassFileReader.read(EVAL_DIRECTORY + File.separator + classFile1 + ".class");
+			ClassFileReader reader = ClassFileReader.read(EVAL_DIRECTORY + File.separator + classFile1 + ".class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			int fileLength;
-			File file = new File(EVAL_DIRECTORY + File.separator + classFile2 + ".class");
-			byte classFileBytes[] = new byte[fileLength = (int) file.length()];
-			stream = new java.io.FileInputStream(file);
+			File file = new File(EVAL_DIRECTORY + File.separator + classFile2 + ".class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			byte classFileBytes[] = new byte[fileLength = (int) file.length()]; //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			stream = new java.io.FileInputStream(file); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			int bytesRead = 0;
 			int lastReadSize = 0;
-			while ((lastReadSize != -1) && (bytesRead != fileLength)) {
+			while ((lastReadSize != -1) && (bytesRead != fileLength)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				lastReadSize = stream.read(classFileBytes, bytesRead, fileLength - bytesRead);
 				bytesRead += lastReadSize;
 			}
@@ -101,7 +101,7 @@ public class ClassFileComparatorTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void test001() {
+	public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String sourceA001 =
 				"public class A001 {\n" +
@@ -129,7 +129,7 @@ public class ClassFileComparatorTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void test002() {
+	public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String sourceA002 =
 				"public class A002 {\n" +
@@ -171,7 +171,7 @@ public class ClassFileComparatorTest extends AbstractRegressionTest {
 			removeTempClass("A003");
 		}
 	}
-	public void test004() {
+	public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String sourceA004 =
 				"public class A004 {\n" +
@@ -198,7 +198,7 @@ public class ClassFileComparatorTest extends AbstractRegressionTest {
 			removeTempClass("A004");
 		}
 	}
-	public void test005() {
+	public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String sourceA005 =
 				"public class A005 {\n" +
@@ -240,7 +240,7 @@ public class ClassFileComparatorTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void test007() {
+	public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String sourceA007 =
 				"public class A007 {\n" +
@@ -263,7 +263,7 @@ public class ClassFileComparatorTest extends AbstractRegressionTest {
 			removeTempClass("A007");
 		}
 	}
-	public void test008() {
+	public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String sourceA008 =
 				"public class A008 {\n" +
@@ -287,7 +287,7 @@ public class ClassFileComparatorTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void test009() {
+	public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String sourceA009 =
 				"public class A009 {\n" +
@@ -315,7 +315,7 @@ public class ClassFileComparatorTest extends AbstractRegressionTest {
 			removeTempClass("A009");
 		}
 	}
-	public void test010() {
+	public void test010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String sourceA010 =
 				"public class A010 {\n" +
@@ -344,7 +344,7 @@ public class ClassFileComparatorTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void test011() {
+	public void test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String sourceA011 =
 				"public class A011 {\n" +
@@ -372,7 +372,7 @@ public class ClassFileComparatorTest extends AbstractRegressionTest {
 			removeTempClass("A011");
 		}
 	}
-	public void test013() {
+	public void test013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String sourceA013 =
 				"public class A013 {\n" +
@@ -393,7 +393,7 @@ public class ClassFileComparatorTest extends AbstractRegressionTest {
 			removeTempClass("A013");
 		}
 	}
-	public void test014() {
+	public void test014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String sourceA014 =
 				"public class A014 {\n" +
@@ -415,7 +415,7 @@ public class ClassFileComparatorTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void test015() {
+	public void test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String sourceA015 =
 				"public class A015 {\n" +
@@ -435,7 +435,7 @@ public class ClassFileComparatorTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void test016() {
+	public void test016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String sourceA016 =
 				"public class A016 {\n" +

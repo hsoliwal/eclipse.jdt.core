@@ -41,17 +41,17 @@ public class CompletionJavadocParser extends JavadocParser {
 
 	static {
 		int length = 0;
-		for (int i=0; i<INLINE_TAGS_LENGTH; i++) {
+		for (int i=0; i<INLINE_TAGS_LENGTH; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			length += INLINE_TAGS[i].length;
 		}
 		INLINE_ALL_TAGS_LENGTH  = length;
 		length = 0;
-		for (int i=0; i<BLOCK_TAGS_LENGTH; i++) {
+		for (int i=0; i<BLOCK_TAGS_LENGTH; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			length += BLOCK_TAGS[i].length;
 		}
 		BLOCK_ALL_TAGS_LENGTH = length;
 		length = 0;
-		for (int i=0; i<SNIPPET_TAGS_LENGTH; i++) {
+		for (int i=0; i<SNIPPET_TAGS_LENGTH; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			length += IN_SNIPPET_TAGS[i].length;
 		}
 		SNIPPET_ALL_TAGS_LENGTH = length;
@@ -79,7 +79,7 @@ public class CompletionJavadocParser extends JavadocParser {
 	/*
 	 * Do not parse comment if completion location is not included.
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean checkDeprecation(int commentPtr) {
 		boolean isDeprecated = false;
 
@@ -121,7 +121,7 @@ public class CompletionJavadocParser extends JavadocParser {
 	/*
 	 * Create argument expression. If it includes completion location, create and store completion node.
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected Object createArgumentReference(char[] name, int dim, boolean isVarargs, Object typeRef, long[] dimPositions, long argNamePos) throws InvalidInputException {
 		// Create argument as we may need it after
 		char[] argName = name==null ? CharOperation.NO_CHAR : name;
@@ -140,7 +140,7 @@ public class CompletionJavadocParser extends JavadocParser {
 				this.completionNode = new CompletionOnJavadocQualifiedTypeReference((JavadocQualifiedTypeReference) expressionType);
 			}
 			if (CompletionEngine.DEBUG) {
-				System.out.println("	completion argument="+this.completionNode); //$NON-NLS-1$
+				System.out.println("	completion argument="+this.completionNode); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			return this.completionNode;
 		}
@@ -150,7 +150,7 @@ public class CompletionJavadocParser extends JavadocParser {
 	/*
 	 * Create field reference. If it includes completion location, create and store completion node.
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected Object createFieldReference(Object receiver) throws InvalidInputException {
 		int refStart = (int) (this.identifierPositionStack[0] >>> 32);
 		int refEnd = (int) this.identifierPositionStack[0];
@@ -166,7 +166,7 @@ public class CompletionJavadocParser extends JavadocParser {
 			}
 			this.completionNode = new CompletionOnJavadocFieldReference(fieldRef, this.memberStart, name);
 			if (CompletionEngine.DEBUG) {
-				System.out.println("	completion field="+this.completionNode); //$NON-NLS-1$
+				System.out.println("	completion field="+this.completionNode); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			return this.completionNode;
 		}
@@ -178,7 +178,7 @@ public class CompletionJavadocParser extends JavadocParser {
 	 * If so, create method reference and store it.
 	 * Otherwise return null as we do not need this reference.
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected Object createMethodReference(Object receiver, List arguments) throws InvalidInputException {
 		int memberPtr = this.identifierLengthStack[0] - 1; // may be > 0 for inner class constructor reference
 		int refStart = (int) (this.identifierPositionStack[memberPtr] >>> 32);
@@ -201,7 +201,7 @@ public class CompletionJavadocParser extends JavadocParser {
 				this.completionNode = new CompletionOnJavadocAllocationExpression((JavadocAllocationExpression)node, this.memberStart);
 			}
 			if (CompletionEngine.DEBUG) {
-				System.out.println("	completion method="+this.completionNode); //$NON-NLS-1$
+				System.out.println("	completion method="+this.completionNode); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			return this.completionNode;
 		}
@@ -211,7 +211,7 @@ public class CompletionJavadocParser extends JavadocParser {
 	/*
 	 * Create type reference. If it includes completion location, create and store completion node.
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected Object createTypeReference(TerminalToken primitiveToken, boolean canBeModule) {
 		// Need to create type ref in case it was needed by members
 		int nbIdentifiers = this.identifierLengthStack[this.identifierLengthPtr];
@@ -231,7 +231,7 @@ public class CompletionJavadocParser extends JavadocParser {
 						this.tagSourceStart,
 						this.tagSourceEnd);
 		} else if (nbIdentifiers > 1) { // Qualified Type ref
-			for (int i=startPtr; i<this.identifierPtr; i++) {
+			for (int i=startPtr; i<this.identifierPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int start = (int) (this.identifierPositionStack[i] >>> 32);
 				int end = (int) this.identifierPositionStack[i];
 				if (start <= this.cursorLocation && this.cursorLocation <= end) {
@@ -261,12 +261,12 @@ public class CompletionJavadocParser extends JavadocParser {
 		}
 
 		if (CompletionEngine.DEBUG) {
-			System.out.println("	completion partial qualified type="+this.completionNode); //$NON-NLS-1$
+			System.out.println("	completion partial qualified type="+this.completionNode); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return this.completionNode;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected Object createModuleTypeReference(TerminalToken primitiveToken, int moduleRefTokenCount) {
 
 		// Need to create type ref in case it was needed by members
@@ -292,7 +292,7 @@ public class CompletionJavadocParser extends JavadocParser {
 					this.tagSourceStart,
 					this.tagSourceEnd);
 		} else if (newSize > 1) { // Qualified Type ref
-			for (int i=moduleRefTokenCount+1; i<this.identifierPtr; i++) {
+			for (int i=moduleRefTokenCount+1; i<this.identifierPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int start = (int) (this.identifierPositionStack[i] >>> 32);
 				int end = (int) this.identifierPositionStack[i];
 				if (start <= this.cursorLocation && this.cursorLocation <= end) {
@@ -341,7 +341,7 @@ public class CompletionJavadocParser extends JavadocParser {
 	/*
 	 * Get possible tags for a given prefix.
 	 */
-	private char[][][] possibleTags(char[] prefix, boolean newLine, boolean inSnippet) {
+	private char[][][] possibleTags(char[] prefix, boolean newLine, boolean inSnippet) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[][][] possibleTags = new char[3][][];
 		if (newLine && inSnippet == false) {
 			System.arraycopy(this.levelTags[BLOCK_IDX], 0, possibleTags[BLOCK_IDX] = new char[this.levelTagsLength[BLOCK_IDX]][], 0, this.levelTagsLength[BLOCK_IDX]);
@@ -364,16 +364,16 @@ public class CompletionJavadocParser extends JavadocParser {
 		}
 		if (prefix == null || prefix.length == 0) return possibleTags;
 		int kinds = this.levelTags.length;
-		for (int k=0; k<kinds; k++) {
+		for (int k=0; k<kinds; k++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int length = possibleTags[k].length, size = 0;
 			int indexes[] = new int[length];
-			for (int i=0; i<length; i++) {
+			for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (CharOperation.prefixEquals(prefix, possibleTags[k][i], false)) {
 					indexes[size++] = i;
 				}
 			}
 			char[][] tags = new char[size][];
-			for (int i=0; i<size; i++) {
+			for (int i=0; i<size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				tags[i] = possibleTags[k][indexes[i]];
 			}
 			possibleTags[k] = tags;
@@ -392,14 +392,14 @@ public class CompletionJavadocParser extends JavadocParser {
 	/*
 	 * Init tags arrays for current source level.
 	 */
-	private void initLevelTags() {
+	private void initLevelTags() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int level = ((int)(this.complianceLevel >>> 16)) - ClassFileConstants.MAJOR_VERSION_1_1 + 1;
 		if ( level >= BLOCK_TAGS_LENGTH)
 			return; // To support future JDKs
 		// Init block tags
 		this.levelTags[BLOCK_IDX] = new char[BLOCK_ALL_TAGS_LENGTH][];
 		this.levelTagsLength[BLOCK_IDX] = 0;
-		for (int i=0; i<=level; i++) {
+		for (int i=0; i<=level; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int length = BLOCK_TAGS[i].length;
 			System.arraycopy(BLOCK_TAGS[i], 0, this.levelTags[BLOCK_IDX], this.levelTagsLength[BLOCK_IDX], length);
 			this.levelTagsLength[BLOCK_IDX] += length;
@@ -410,7 +410,7 @@ public class CompletionJavadocParser extends JavadocParser {
 		// Init inline tags
 		this.levelTags[INLINE_IDX] = new char[INLINE_ALL_TAGS_LENGTH][];
 		this.levelTagsLength[INLINE_IDX]= 0;
-		for (int i=0; i<=level; i++) {
+		for (int i=0; i<=level; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int length = INLINE_TAGS[i].length;
 			System.arraycopy(INLINE_TAGS[i], 0, this.levelTags[INLINE_IDX], this.levelTagsLength[INLINE_IDX], length);
 			this.levelTagsLength[INLINE_IDX] += length;
@@ -421,7 +421,7 @@ public class CompletionJavadocParser extends JavadocParser {
 		// Init inline tags
 		this.levelTags[SNIPPET_IDX] = new char[SNIPPET_ALL_TAGS_LENGTH][];
 		this.levelTagsLength[SNIPPET_IDX]= 0;
-		for (int i=0; i< 1; i++) {// since only in java 18
+		for (int i=0; i< 1; i++) {// since only in java 18 //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int length = IN_SNIPPET_TAGS[i].length;
 			System.arraycopy(IN_SNIPPET_TAGS[i], 0, this.levelTags[SNIPPET_IDX], this.levelTagsLength[SNIPPET_IDX], length);
 			this.levelTagsLength[SNIPPET_IDX] += length;
@@ -437,7 +437,7 @@ public class CompletionJavadocParser extends JavadocParser {
 	/*
 	 * Parse argument in @see tag method reference
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected Object parseArguments(Object receiver, boolean verifySpaceOrEndComment) throws InvalidInputException {
 
 		if (this.tagSourceStart>this.cursorLocation) {
@@ -448,7 +448,7 @@ public class CompletionJavadocParser extends JavadocParser {
 		int modulo = 0; // should be 2 for (Type,Type,...) or 3 for (Type arg,Type arg,...)
 		int iToken = 0;
 		char[] argName = null;
-		List arguments = new ArrayList(10);
+		List arguments = new ArrayList(10); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		Object typeRef = null;
 		int dim = 0;
 		boolean isVarargs = false;
@@ -460,7 +460,7 @@ public class CompletionJavadocParser extends JavadocParser {
 
 		try {
 			// Parse arguments declaration if method reference
-			nextArg : while (this.index < this.scanner.eofPosition) {
+			nextArg : while (this.index < this.scanner.eofPosition) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 				// Read argument type reference
 				try {
@@ -513,7 +513,7 @@ public class CompletionJavadocParser extends JavadocParser {
 				if (readToken() == TerminalToken.TokenNameLBRACKET) {
 					// array declaration
 					int dimStart = this.scanner.getCurrentTokenStartPosition();
-					while (readToken() == TerminalToken.TokenNameLBRACKET) {
+					while (readToken() == TerminalToken.TokenNameLBRACKET) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						consumeToken();
 						if (readToken() != TerminalToken.TokenNameRBRACKET) {
 							break nextArg;
@@ -591,7 +591,7 @@ public class CompletionJavadocParser extends JavadocParser {
 		}
 	}
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		protected boolean parseParam() throws InvalidInputException {
 			int startPosition = this.index;
 			int endPosition = this.index;
@@ -638,7 +638,7 @@ public class CompletionJavadocParser extends JavadocParser {
 						this.completionNode = new CompletionOnJavadocParamNameReference(name, namePosition, startPosition, endPosition);
 					}
 					if (CompletionEngine.DEBUG) {
-						System.out.println("	completion param="+this.completionNode); //$NON-NLS-1$
+						System.out.println("	completion param="+this.completionNode); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 				} else if (this.completionNode instanceof CompletionOnJavadocParamNameReference) {
 					CompletionOnJavadocParamNameReference paramNameRef = (CompletionOnJavadocParamNameReference)this.completionNode;
@@ -684,7 +684,7 @@ public class CompletionJavadocParser extends JavadocParser {
 			return valid;
 		}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected boolean parseTag(int previousPosition) throws InvalidInputException {
 		int startPosition = this.inlineTagStarted ? this.inlineTagStart : previousPosition;
 		boolean newLine = !this.lineStarted;
@@ -747,7 +747,7 @@ public class CompletionJavadocParser extends JavadocParser {
 	/*
 	 * Push param name reference. If it includes completion location, create and store completion node.
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected boolean pushParamName(boolean isTypeParam) {
 		if (super.pushParamName(isTypeParam)) {
 			Expression expression = (Expression) this.astStack[this.astPtr];
@@ -759,7 +759,7 @@ public class CompletionJavadocParser extends JavadocParser {
 					this.completionNode = new CompletionOnJavadocParamNameReference((JavadocSingleNameReference)expression);
 				}
 				if (CompletionEngine.DEBUG) {
-					System.out.println("	completion param="+this.completionNode); //$NON-NLS-1$
+					System.out.println("	completion param="+this.completionNode); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 			return true;
@@ -773,7 +773,7 @@ public class CompletionJavadocParser extends JavadocParser {
 	 *
 	 * @see org.eclipse.jdt.internal.compiler.parser.AbstractCommentParser#pushText(int, int)
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void pushText(int start, int end) {
 		if (start <= this.cursorLocation && this.cursorLocation <= end) {
 			this.scanner.resetTo(start, end);
@@ -785,7 +785,7 @@ public class CompletionJavadocParser extends JavadocParser {
 
 				// Get reference tokens
 				TerminalToken previousToken = TerminalToken.TokenNameWHITESPACE;
-				while (!this.scanner.atEnd() && this.completionNode == null && !this.abort) {
+				while (!this.scanner.atEnd() && this.completionNode == null && !this.abort) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					TerminalToken token = readTokenSafely();
 					switch (token) {
 						case TokenNameStringLiteral :
@@ -814,13 +814,13 @@ public class CompletionJavadocParser extends JavadocParser {
 										JavadocMessageSend msgSend = (JavadocMessageSend) member;
 										this.completionNode = new CompletionOnJavadocMessageSend(msgSend, this.memberStart, flags);
 										if (CompletionEngine.DEBUG) {
-											System.out.println("	new completion method="+this.completionNode); //$NON-NLS-1$
+											System.out.println("	new completion method="+this.completionNode); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 										}
 									} else if (member instanceof JavadocAllocationExpression) {
 										JavadocAllocationExpression alloc = (JavadocAllocationExpression) member;
 										this.completionNode = new CompletionOnJavadocAllocationExpression(alloc, this.memberStart, flags);
 										if (CompletionEngine.DEBUG) {
-											System.out.println("	new completion method="+this.completionNode); //$NON-NLS-1$
+											System.out.println("	new completion method="+this.completionNode); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 										}
 									} else {
 										this.completionNode.addCompletionFlags(flags);
@@ -952,7 +952,7 @@ public class CompletionJavadocParser extends JavadocParser {
 	/*
 	 * Recover syntax on invalid qualified name.
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected Object syntaxRecoverQualifiedName(TerminalToken primitiveToken) throws InvalidInputException {
 		if (this.cursorLocation == ((int)this.identifierPositionStack[this.identifierPtr])) {
 			// special case of completion just before the dot.
@@ -968,7 +968,7 @@ public class CompletionJavadocParser extends JavadocParser {
 		this.completionNode = new CompletionOnJavadocQualifiedTypeReference(tokens, CharOperation.NO_CHAR, positions, this.tagSourceStart, this.tagSourceEnd);
 
 		if (CompletionEngine.DEBUG) {
-			System.out.println("	completion partial qualified type="+this.completionNode); //$NON-NLS-1$
+			System.out.println("	completion partial qualified type="+this.completionNode); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return this.completionNode;
 	}
@@ -976,7 +976,7 @@ public class CompletionJavadocParser extends JavadocParser {
 	/*
 	 * Recover syntax on type argument in invalid method/constructor reference
 	 */
-	protected Object syntaxRecoverArgumentType(Object receiver, List arguments, Object argument) throws InvalidInputException {
+	protected Object syntaxRecoverArgumentType(Object receiver, List arguments, Object argument) throws InvalidInputException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.completionNode != null && !this.pushText) {
 			this.completionNode.addCompletionFlags(CompletionOnJavadoc.BASE_TYPES);
 			if (this.completionNode instanceof CompletionOnJavadocSingleTypeReference) {
@@ -1023,7 +1023,7 @@ public class CompletionJavadocParser extends JavadocParser {
 			this.completionNode = new CompletionOnJavadocAllocationExpression(allocExp, this.memberStart);
 		}
 		if (CompletionEngine.DEBUG) {
-			System.out.println("	completion method="+this.completionNode); //$NON-NLS-1$
+			System.out.println("	completion method="+this.completionNode); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return this.completionNode;
 	}
@@ -1031,7 +1031,7 @@ public class CompletionJavadocParser extends JavadocParser {
 	/*
 	 * Recover syntax on empty type argument in invalid method/constructor reference
 	 */
-	protected Object syntaxRecoverEmptyArgumentType(Object methodRef) throws InvalidInputException {
+	protected Object syntaxRecoverEmptyArgumentType(Object methodRef) throws InvalidInputException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (methodRef instanceof JavadocMessageSend) {
 			JavadocMessageSend msgSend = (JavadocMessageSend) methodRef;
 			if (this.index > this.cursorLocation) {
@@ -1046,7 +1046,7 @@ public class CompletionJavadocParser extends JavadocParser {
 			this.completionNode = new CompletionOnJavadocAllocationExpression(allocExp, this.memberStart);
 		}
 		if (CompletionEngine.DEBUG) {
-			System.out.println("	completion method="+this.completionNode); //$NON-NLS-1$
+			System.out.println("	completion method="+this.completionNode); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return this.completionNode;
 	}

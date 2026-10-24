@@ -78,7 +78,7 @@ public class ASTConverter_RecordPattern_Test extends ConverterTestSetup {
 		System.err.println("Test "+getName()+" requires a JRE 21");
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testTypePattern() throws CoreException {
 		if (!isJRE21) {
 			printJREError();
@@ -122,7 +122,7 @@ public class ASTConverter_RecordPattern_Test extends ConverterTestSetup {
 
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testGuardedPattern() throws CoreException {
 		if (!isJRE21) {
 			printJREError();
@@ -174,7 +174,7 @@ public class ASTConverter_RecordPattern_Test extends ConverterTestSetup {
 
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testNullPattern() throws CoreException {
 		if (!isJRE21) {
 			printJREError();
@@ -207,7 +207,7 @@ public class ASTConverter_RecordPattern_Test extends ConverterTestSetup {
 		assertEquals("Null Expression", nullExpression.getNodeType(), ASTNode.NULL_LITERAL);
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testCaseDefaultExpressionPattern() throws CoreException {
 		if (!isJRE21) {
 			printJREError();
@@ -240,7 +240,7 @@ public class ASTConverter_RecordPattern_Test extends ConverterTestSetup {
 		assertEquals("Case Default Expression",exp.getNodeType() , ASTNode.CASE_DEFAULT_EXPRESSION);
 	}
 
-	public void testBug575250() throws CoreException {
+	public void testBug575250() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE21) {
 			System.err.println("Test "+getName()+" requires a JRE 21");
 			return;
@@ -265,7 +265,7 @@ public class ASTConverter_RecordPattern_Test extends ConverterTestSetup {
 		AbstractTypeDeclaration type = types.get(0);
 		assertTrue("should be a type", type instanceof TypeDeclaration);
 		TypeDeclaration typeDecl = (TypeDeclaration)type;
-		final List<TypePattern> result = new ArrayList<>();
+		final List<TypePattern> result = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		typeDecl.accept(new ASTVisitor() {
 			public boolean visit(TypePattern n) {
 				result.add(n);
@@ -294,7 +294,7 @@ public class ASTConverter_RecordPattern_Test extends ConverterTestSetup {
 		assertEquals("wrong source range", name.getLength(), "i_1".length());
 	}
 
-	public void testRecordPattern001() throws CoreException {
+	public void testRecordPattern001() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE21) {
 			printJREError();
 			return;
@@ -350,7 +350,7 @@ public class ASTConverter_RecordPattern_Test extends ConverterTestSetup {
 		assertEquals("Incorrect pattern variable name", "lr", tPattern.getPatternVariable().getName().toString());
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testRecordPattern002() throws CoreException {
 		if (!isJRE21) {
 			System.err.println("Test "+getName()+" requires a JRE 21");
@@ -407,7 +407,7 @@ public class ASTConverter_RecordPattern_Test extends ConverterTestSetup {
 		assertEquals("Type of Nested pattern in RecordPattern is not TypePattern",ASTNode.TYPE_PATTERN , recordPattern.patterns().get(0).getNodeType());
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testRecordPattern003() throws CoreException {
 		if (!isJRE21) {
 			System.err.println("Test "+getName()+" requires a JRE 21");
@@ -479,7 +479,7 @@ public class ASTConverter_RecordPattern_Test extends ConverterTestSetup {
 
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testRecordPattern004() throws CoreException {
 		if (!isJRE21) {
 			System.err.println("Test "+getName()+" requires a JRE 21");
@@ -536,7 +536,7 @@ public class ASTConverter_RecordPattern_Test extends ConverterTestSetup {
 		GuardedPattern guardedPattern = (GuardedPattern)caseStmt.expressions().get(0);
 		assertEquals("There should be 1 Record Pattern", ASTNode.RECORD_PATTERN , guardedPattern.getPattern().getNodeType());
 	}
-	public void testVisitPattern() {
+	public void testVisitPattern() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         class NodeFinder extends ASTVisitor {
             PatternInstanceofExpression patternInstanceofExpression;
             public boolean visit(PatternInstanceofExpression node) {

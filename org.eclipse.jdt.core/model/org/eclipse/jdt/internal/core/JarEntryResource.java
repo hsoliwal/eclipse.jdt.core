@@ -46,13 +46,13 @@ public abstract class JarEntryResource  extends PlatformObject implements IJarEn
 		String parentEntryName;
 		if (this.parent instanceof IPackageFragment) {
 			String elementName = ((IPackageFragment) this.parent).getElementName();
-			parentEntryName = elementName.length() == 0 ? "" : elementName .replace('.', '/') + '/'; //$NON-NLS-1$
+			parentEntryName = elementName.length() == 0 ? "" : elementName .replace('.', '/') + '/'; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else if (this.parent instanceof IPackageFragmentRoot) {
 			parentEntryName = ""; //$NON-NLS-1$
 		} else {
-			parentEntryName = ((JarEntryDirectory) this.parent).getEntryName() + '/';
+			parentEntryName = ((JarEntryDirectory) this.parent).getEntryName() + '/'; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		return parentEntryName + this.simpleName;
+		return parentEntryName + this.simpleName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	@Override

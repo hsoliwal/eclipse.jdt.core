@@ -356,7 +356,7 @@ public void acceptMatch(String relativePath, String containerPath, char separato
  * @noreference This method is not intended to be referenced by clients.
  * @nooverride This method is not intended to be re-implemented or extended by clients.
  */
-public void acceptMatch(String relativePath, String containerPath, char separator, SearchPattern pattern, IndexQueryRequestor requestor, SearchParticipant participant, IJavaSearchScope scope, IProgressMonitor monitor) {
+public void acceptMatch(String relativePath, String containerPath, char separator, SearchPattern pattern, IndexQueryRequestor requestor, SearchParticipant participant, IJavaSearchScope scope, IProgressMonitor monitor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	if (scope instanceof JavaSearchScope) {
 		JavaSearchScope javaSearchScope = (JavaSearchScope) scope;
@@ -364,18 +364,18 @@ public void acceptMatch(String relativePath, String containerPath, char separato
 		// Note that requestor has to verify if needed whether the document violates the access restriction or not
 		AccessRuleSet access = javaSearchScope.getAccessRuleSet(relativePath, containerPath);
 		if (access != JavaSearchScope.NOT_ENCLOSED) { // scope encloses the document path
-			StringBuilder documentPath = new StringBuilder(containerPath.length() + 1 + relativePath.length());
-			documentPath.append(containerPath);
-			documentPath.append(separator);
-			documentPath.append(relativePath);
+			StringBuilder documentPath = new StringBuilder(containerPath.length() + 1 + relativePath.length()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			documentPath.append(containerPath); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			documentPath.append(separator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			documentPath.append(relativePath); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (!requestor.acceptIndexMatch(documentPath.toString(), pattern, participant, access))
 				throw new OperationCanceledException();
 		}
 	} else {
-		StringBuilder buffer = new StringBuilder(containerPath.length() + 1 + relativePath.length());
-		buffer.append(containerPath);
-		buffer.append(separator);
-		buffer.append(relativePath);
+		StringBuilder buffer = new StringBuilder(containerPath.length() + 1 + relativePath.length()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append(containerPath); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(separator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(relativePath); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		String documentPath = buffer.toString();
 		boolean encloses = (scope instanceof HierarchyScope) ? ((HierarchyScope)scope).encloses(documentPath, monitor)
 							: scope.encloses(documentPath);
@@ -860,7 +860,7 @@ public static final boolean camelCaseMatch(String pattern, int patternStart, int
  *
  * @since 3.5
  */
-public static final int[] getMatchingRegions(String pattern, String name, int matchRule) {
+public static final int[] getMatchingRegions(String pattern, String name, int matchRule) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (name == null) return null;
 	final int nameLength = name.length();
 	if (pattern == null) {
@@ -941,7 +941,7 @@ public static SearchPattern createAndPattern(SearchPattern leftPattern, SearchPa
 	return new AndPattern(leftPattern, rightPattern);
 }
 
-private static SearchPattern createFieldPattern(String patternString, int limitTo, int matchRule) {
+private static SearchPattern createFieldPattern(String patternString, int limitTo, int matchRule) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// use ClassFileConstants.getLatestJDKLevel() as the source level as there are more valid tokens in latest JLS mode
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=376673
 	Scanner scanner = new Scanner(false /*comment*/, true /*whitespace*/, false /*nls*/, ClassFileConstants.getLatestJDKLevel()/*sourceLevel*/, null /*taskTags*/, null/*taskPriorities*/, true/*taskCaseSensitive*/);
@@ -959,7 +959,7 @@ private static SearchPattern createFieldPattern(String patternString, int limitT
 	} catch (InvalidInputException e) {
 		return null;
 	}
-	while (token != TerminalToken.TokenNameEOF) {
+	while (token != TerminalToken.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		switch(mode) {
 			// read declaring type and fieldName
 			case InsideDeclaringPart :
@@ -970,7 +970,7 @@ private static SearchPattern createFieldPattern(String patternString, int limitT
 							declaringType = fieldName;
 						} else {
 							String tokenSource = scanner.getCurrentTokenString();
-							declaringType += tokenSource + fieldName;
+							declaringType += tokenSource + fieldName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
 						fieldName = null;
 						break;
@@ -1058,7 +1058,7 @@ private static SearchPattern createFieldPattern(String patternString, int limitT
 			matchRule);
 }
 
-private static SearchPattern createMethodOrConstructorPattern(String patternString, int limitTo, int matchRule, boolean isConstructor) {
+private static SearchPattern createMethodOrConstructorPattern(String patternString, int limitTo, int matchRule, boolean isConstructor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// use ClassFileConstants.getLatestJDKLevel() as the source level as there are more valid tokens in latest JLS mode
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=376673
 	Scanner scanner = new Scanner(false /*comment*/, true /*whitespace*/, false /*nls*/, ClassFileConstants.getLatestJDKLevel()/*sourceLevel*/, null /*taskTags*/, null/*taskPriorities*/, true/*taskCaseSensitive*/);
@@ -1084,7 +1084,7 @@ private static SearchPattern createMethodOrConstructorPattern(String patternStri
 	} catch (InvalidInputException e) {
 		return null;
 	}
-	while (token != TerminalToken.TokenNameEOF) {
+	while (token != TerminalToken.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		switch(mode) {
 			// read declaring type and selector
 			case InsideSelector :
@@ -1100,7 +1100,7 @@ private static SearchPattern createMethodOrConstructorPattern(String patternStri
 							if (declaringType == null) {
 								declaringType = selector;
 							} else {
-								declaringType += '.' + selector;
+								declaringType += '.' + selector; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							}
 							declaringType += scanner.getCurrentTokenString();
 							selector = null;
@@ -1111,7 +1111,7 @@ private static SearchPattern createMethodOrConstructorPattern(String patternStri
 								if (selector == null) return null; // invalid syntax
 								declaringType = selector;
 							} else if (selector != null) {
-								declaringType += scanner.getCurrentTokenString() + selector;
+								declaringType += scanner.getCurrentTokenString() + selector; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							}
 							selector = null;
 							break;
@@ -1167,7 +1167,7 @@ private static SearchPattern createMethodOrConstructorPattern(String patternStri
 					case TokenNameUNSIGNED_RIGHT_SHIFT:
 						argCount--;
 						if (argCount == 0) {
-							String pseudoType = "Type"+typeArgumentsString; //$NON-NLS-1$
+							String pseudoType = "Type"+typeArgumentsString; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							typeArguments = Signature.getTypeArguments(Signature.createTypeSignature(pseudoType, false).toCharArray());
 							mode = InsideSelector;
 						}
@@ -1287,7 +1287,7 @@ private static SearchPattern createMethodOrConstructorPattern(String patternStri
 		if (declaringType == null)
 			declaringType = selector;
 		else if (selector != null)
-			declaringType += '.' + selector;
+			declaringType += '.' + selector; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} else {
 		// get selector chars
 		if (selector == null) return null;
@@ -1337,7 +1337,7 @@ private static SearchPattern createMethodOrConstructorPattern(String patternStri
 		parameterTypeQualifications = new char[parameterCount][];
 		parameterTypeSimpleNames = new char[parameterCount][];
 		parameterTypeSignatures = new String[parameterCount];
-		for (int i = 0; i < parameterCount; i++) {
+		for (int i = 0; i < parameterCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// get parameter type part and signature
 			char[] parameterTypePart = null;
 			try {
@@ -1700,7 +1700,7 @@ private static SearchPattern createPackagePattern(String patternString, int limi
  * 	Note also that the default behavior for generic types/methods search is to find exact matches.</p>
  * @return a search pattern on the given string pattern, or <code>null</code> if the string pattern is ill-formed
  */
-public static SearchPattern createPattern(String stringPattern, int searchFor, int limitTo, int matchRule) {
+public static SearchPattern createPattern(String stringPattern, int searchFor, int limitTo, int matchRule) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (stringPattern == null || stringPattern.length() == 0) return null;
 
 	if ((matchRule = validateMatchRule(stringPattern, searchFor, limitTo, matchRule)) == -1) {
@@ -1998,7 +1998,7 @@ public static SearchPattern createPattern(IJavaElement element, int limitTo) {
  * @return a search pattern for a Java element or <code>null</code> if the given element is ill-formed
  * @since 3.1
  */
-public static SearchPattern createPattern(IJavaElement element, int limitTo, int matchRule) {
+public static SearchPattern createPattern(IJavaElement element, int limitTo, int matchRule) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	SearchPattern searchPattern = null;
 	int lastDot;
 	boolean ignoreDeclaringType = false;
@@ -2173,7 +2173,7 @@ public static SearchPattern createPattern(IJavaElement element, int limitTo, int
 			char[][] parameterSimpleNames = new char[paramCount][];
 			char[][] parameterQualifications = new char[paramCount][];
 			String[] parameterSignatures = new String[paramCount];
-			for (int i = 0; i < paramCount; i++) {
+			for (int i = 0; i < paramCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				parameterSignatures[i] = parameterTypes[i];
 				char[] signature = parameterSignatures[i].toCharArray();
 				char[] paramErasure = Signature.toCharArray(Signature.getTypeErasure(signature));
@@ -2253,7 +2253,7 @@ public static SearchPattern createPattern(IJavaElement element, int limitTo, int
 	return searchPattern;
 }
 
-private static SearchPattern createTypePattern(char[] simpleName, char[] packageName, char[][] enclosingTypeNames, String typeSignature, IType type, int limitTo, int matchRule) {
+private static SearchPattern createTypePattern(char[] simpleName, char[] packageName, char[][] enclosingTypeNames, String typeSignature, IType type, int limitTo, int matchRule) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	switch (limitTo) {
 		case IJavaSearchConstants.DECLARATIONS :
 			return new TypeDeclarationPattern(
@@ -2313,8 +2313,8 @@ private static SearchPattern createTypePattern(char[] simpleName, char[] package
 	}
 	return null;
 }
-private static SearchPattern createTypePattern(String patternString, int limitTo, int matchRule, char indexSuffix) {
-	String[] arr = patternString.split(String.valueOf(IIndexConstants.SEPARATOR));
+private static SearchPattern createTypePattern(String patternString, int limitTo, int matchRule, char indexSuffix) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String[] arr = patternString.split(String.valueOf(IIndexConstants.SEPARATOR)); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 	String moduleName = null;
 	if (arr.length == 2) {
 		moduleName = arr[0];
@@ -2333,7 +2333,7 @@ private static SearchPattern createTypePattern(String patternString, int limitTo
 		return null;
 	}
 	int argCount = 0;
-	while (token != TerminalToken.TokenNameEOF) {
+	while (token != TerminalToken.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (argCount == 0) {
 			switch (token) {
 				case TokenNameWHITESPACE:
@@ -2425,7 +2425,7 @@ private static SearchPattern createTypePattern(String patternString, int limitTo
 /**
  * Returns the enclosing type names of the given type.
  */
-private static char[][] enclosingTypeNames(IType type) {
+private static char[][] enclosingTypeNames(IType type) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaElement parent = type.getParent();
 	switch (parent.getElementType()) {
 		case IJavaElement.CLASS_FILE:
@@ -2447,7 +2447,7 @@ private static char[][] enclosingTypeNames(IType type) {
 			try {
 				String superclassName = type.getSuperclassName();
 				if (superclassName != null) {
-					typeName = (type.getOccurrenceCount() + ".new " + superclassName + "(){}").toCharArray(); //$NON-NLS-1$ //$NON-NLS-2$
+					typeName = (type.getOccurrenceCount() + ".new " + superclassName + "(){}").toCharArray(); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			} catch (JavaModelException e) {
 				// fall back to using '*'
@@ -2508,7 +2508,7 @@ public void findIndexMatches(Index index, IndexQueryRequestor requestor, SearchP
  * @noreference This method is not intended to be referenced by clients.
  * @nooverride This method is not intended to be re-implemented or extended by clients.
  */
-public void findIndexMatches(Index index, IndexQueryRequestor requestor, SearchParticipant participant, IJavaSearchScope scope, boolean resolveDocumentName, IProgressMonitor monitor) throws IOException {
+public void findIndexMatches(Index index, IndexQueryRequestor requestor, SearchParticipant participant, IJavaSearchScope scope, boolean resolveDocumentName, IProgressMonitor monitor) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (monitor != null && monitor.isCanceled()) throw new OperationCanceledException();
 	try {
 		index.startQuery();
@@ -2518,7 +2518,7 @@ public void findIndexMatches(Index index, IndexQueryRequestor requestor, SearchP
 
 		String containerPath = index.containerPath;
 		char separator = index.separator;
-		for (EntryResult entry : entries) {
+		for (EntryResult entry : entries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (monitor != null && monitor.isCanceled()) throw new OperationCanceledException();
 
 			SearchPattern decodedResult = pattern.getBlankPattern();
@@ -2528,7 +2528,7 @@ public void findIndexMatches(Index index, IndexQueryRequestor requestor, SearchP
 				// to decide whether to do so.
 				if (resolveDocumentName) {
 					String[] names = entry.getDocumentNames(index);
-					for (String name : names)
+					for (String name : names) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						acceptMatch(name, containerPath, separator, decodedResult, requestor, participant, scope, monitor);
 				} else {
 					acceptMatch("", containerPath, separator, decodedResult, requestor, participant, scope, monitor); //$NON-NLS-1$
@@ -2623,7 +2623,7 @@ public boolean matchesDecodedKey(SearchPattern decodedPattern) {
  * @param name the given name
  * @return whether the given name matches the given pattern
  */
-public boolean matchesName(char[] pattern, char[] name) {
+public boolean matchesName(char[] pattern, char[] name) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (pattern == null) return true; // null is as if it was "*"
 	if (name != null) {
 		boolean isCaseSensitive = (this.matchRule & R_CASE_SENSITIVE) != 0;
@@ -2677,7 +2677,7 @@ public boolean matchesName(char[] pattern, char[] name) {
 				return matchFirstChar && CharOperation.camelCaseMatch(pattern, name, true);
 
 			case R_REGEXP_MATCH :
-				return Pattern.matches(new String(pattern), new String(name));
+				return Pattern.matches(new String(pattern), new String(name)); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		}
 	}
 	return false;
@@ -2731,7 +2731,7 @@ public boolean matchesName(char[] pattern, char[] name) {
  * @return Optimized valid match rule or -1 if an incompatibility was detected.
  * @since 3.2
  */
-public static int validateMatchRule(String stringPattern, int matchRule) {
+public static int validateMatchRule(String stringPattern, int matchRule) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Verify Regexp match rule
 	if ((matchRule & R_REGEXP_MATCH) != 0) {
@@ -2801,14 +2801,14 @@ private static int validateMatchRule(String stringPattern, int searchFor, int li
 /*
  * Validate pattern for a camel case match rule
  */
-private static boolean validateCamelCasePattern(String stringPattern) {
+private static boolean validateCamelCasePattern(String stringPattern) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (stringPattern == null) return true;
 	// verify sting pattern validity
 	int length = stringPattern.length();
 	boolean validCamelCase = true;
 	boolean lowerCamelCase = false;
 	int uppercase = 0;
-	for (int i=0; i<length && validCamelCase; i++) {
+	for (int i=0; i<length && validCamelCase; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		char ch = stringPattern.charAt(i);
 		validCamelCase = i==0 ? ScannerHelper.isJavaIdentifierStart(ch) : ScannerHelper.isJavaIdentifierPart(ch);
 		// at least one uppercase character is need in CamelCase pattern

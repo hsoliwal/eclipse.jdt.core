@@ -71,7 +71,7 @@ public class AnnotationMirrorImpl implements AnnotationMirror, EclipseMirrorObje
         	return (AnnotationType)Factory.createReferenceType(binding, _env);
     }
 
-    @Override
+    @Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public Map<AnnotationTypeElementDeclaration, AnnotationValue> getElementValues()
     {
 		final IMemberValuePairBinding[] pairs = _domAnnotation.getDeclaredMemberValuePairs();
@@ -80,8 +80,8 @@ public class AnnotationMirrorImpl implements AnnotationMirror, EclipseMirrorObje
 		}
 
 		final Map<AnnotationTypeElementDeclaration, AnnotationValue> result =
-			new LinkedHashMap<>(pairs.length * 4 / 3 + 1 );
-		for( IMemberValuePairBinding pair : pairs ){
+			new LinkedHashMap<>(pairs.length * 4 / 3 + 1 ); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
+		for( IMemberValuePairBinding pair : pairs ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			 final String name = pair.getName();
              if( name == null ) continue;
              IMethodBinding elementMethod = pair.getMethodBinding();
@@ -101,7 +101,7 @@ public class AnnotationMirrorImpl implements AnnotationMirror, EclipseMirrorObje
         return result;
     }
 
-    @Override
+    @Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public SourcePosition getPosition()
     {
 		if( isFromSource() ){
@@ -122,27 +122,27 @@ public class AnnotationMirrorImpl implements AnnotationMirror, EclipseMirrorObje
 		return null;
     }
 
-    @Override
+    @Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public String toString()
     {
     	AnnotationTypeDeclaration decl = getAnnotationType().getDeclaration();
-    	StringBuilder sb = new StringBuilder();
-    	sb.append('@');
-    	sb.append(decl.getQualifiedName());
+    	StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+    	sb.append('@'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+    	sb.append(decl.getQualifiedName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
     	Map<AnnotationTypeElementDeclaration, AnnotationValue> values = getElementValues();
 		if (!values.isEmpty()) {
-			sb.append('(');
+			sb.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			boolean first = true;
-			for (Entry<AnnotationTypeElementDeclaration, AnnotationValue> e : values.entrySet()) {
+			for (Entry<AnnotationTypeElementDeclaration, AnnotationValue> e : values.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (!first) {
-					sb.append(", "); //$NON-NLS-1$
+					sb.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				first = false;
-				sb.append(e.getKey().getSimpleName());
-				sb.append(" = "); //$NON-NLS-1$
-				sb.append(e.getValue().toString());
+				sb.append(e.getKey().getSimpleName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				sb.append(" = "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				sb.append(e.getValue().toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			sb.append(')');
+			sb.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return sb.toString();
     }
@@ -154,11 +154,11 @@ public class AnnotationMirrorImpl implements AnnotationMirror, EclipseMirrorObje
      * If the value is an array initialization, then the type of each of the initialization expresion will
      * be returned. Return null if no match is found.
      */
-    public ITypeBinding[] getMemberValueTypeBinding(String membername)
+    public ITypeBinding[] getMemberValueTypeBinding(String membername) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     {
         if( membername == null ) return null;
 		final IMemberValuePairBinding[] declaredPairs = _domAnnotation.getDeclaredMemberValuePairs();
-		for( IMemberValuePairBinding pair : declaredPairs ){
+		for( IMemberValuePairBinding pair : declaredPairs ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if( membername.equals(pair.getName()) ){
 				final Object value = pair.getValue();
 				return getValueTypeBinding(value, pair.getMethodBinding().getReturnType());
@@ -175,7 +175,7 @@ public class AnnotationMirrorImpl implements AnnotationMirror, EclipseMirrorObje
 			return null;
     }
 
-	private ITypeBinding[] getValueTypeBinding(Object value, final ITypeBinding resolvedType)
+	private ITypeBinding[] getValueTypeBinding(Object value, final ITypeBinding resolvedType) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		if( value == null ) return null;
 		if( resolvedType.isPrimitive() ||  resolvedType.isAnnotation() || value instanceof String )
@@ -184,7 +184,7 @@ public class AnnotationMirrorImpl implements AnnotationMirror, EclipseMirrorObje
 			final Object[] elements = (Object[])value;
 			final ITypeBinding[] result = new ITypeBinding[elements.length];
 			final ITypeBinding leafType = resolvedType.getElementType();
-			for(int i=0, len = elements.length; i<len; i++ ){
+			for(int i=0, len = elements.length; i<len; i++ ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				final ITypeBinding[] t = getValueTypeBinding(elements[i], leafType);
 				result[i] = t == null ? null : t[0];
 			}
@@ -195,7 +195,7 @@ public class AnnotationMirrorImpl implements AnnotationMirror, EclipseMirrorObje
 		else if( value instanceof ITypeBinding )
 			return new ITypeBinding[]{ (ITypeBinding)value };
 		else
-			throw new IllegalStateException("value = " + value + " resolvedType = " + resolvedType ); //$NON-NLS-1$ //$NON-NLS-2$
+			throw new IllegalStateException("value = " + value + " resolvedType = " + resolvedType ); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	}
 
@@ -207,7 +207,7 @@ public class AnnotationMirrorImpl implements AnnotationMirror, EclipseMirrorObje
     {
 		if( memberName == null ) return null;
 		final IMemberValuePairBinding[] declaredPairs = _domAnnotation.getDeclaredMemberValuePairs();
-		for( IMemberValuePairBinding pair : declaredPairs ){
+		for( IMemberValuePairBinding pair : declaredPairs ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if( memberName.equals(pair.getName()) ){
 				return pair.getValue();
 			}
@@ -229,7 +229,7 @@ public class AnnotationMirrorImpl implements AnnotationMirror, EclipseMirrorObje
         final ITypeBinding typeBinding = _domAnnotation.getAnnotationType();
 		if( typeBinding == null ) return null;
         final IMethodBinding[] methods  = typeBinding.getDeclaredMethods();
-        for( IMethodBinding method : methods ){
+        for( IMethodBinding method : methods ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
             if( memberName.equals(method.getName()) )
                 return method;
         }
@@ -259,7 +259,7 @@ public class AnnotationMirrorImpl implements AnnotationMirror, EclipseMirrorObje
 		return null;
     }
 
-	ASTNode getASTNodeForElement(String name)
+	ASTNode getASTNodeForElement(String name) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		if( name == null ) return null;
 		final org.eclipse.jdt.core.dom.Annotation anno = getAstNode();
@@ -270,7 +270,7 @@ public class AnnotationMirrorImpl implements AnnotationMirror, EclipseMirrorObje
 			}
 			else if( anno.isNormalAnnotation() ){
 				final List<MemberValuePair> pairs = ((NormalAnnotation)anno).values();
-				for( MemberValuePair pair : pairs )
+				for( MemberValuePair pair : pairs ) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				{
 					final String pairName = pair.getName() == null ? null : pair.getName().toString();
 					if( name.equals(pairName) )

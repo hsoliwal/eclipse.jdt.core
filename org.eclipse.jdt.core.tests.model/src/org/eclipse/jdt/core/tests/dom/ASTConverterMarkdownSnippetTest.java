@@ -81,9 +81,9 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 		static final String DOC_COMMENT_SUPPORT = System.getProperty("doc.support");
 		final String docCommentSupport;
 
-		List comments = new ArrayList();
+		List comments = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		// List of tags contained in each comment read from test source.
-		List allTags = new ArrayList();
+		List allTags = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		// tags inhibiting inline tags
 		static final String TAG_CODE = "code";
 		static final String TAG_LITERAL = "literal";
@@ -104,7 +104,7 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 		protected List<String> failures;
 		Map savedOptions = null;
 
-		private static String SNIPPET_TAG = '@' + new String(JavadocTagConstants.TAG_SNIPPET);
+		private static String SNIPPET_TAG = '@' + new String(JavadocTagConstants.TAG_SNIPPET); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		protected String newline = System.lineSeparator();
 
@@ -155,14 +155,14 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 		public static void buildSuite(TestSuite suite, String support) {
 			Class c = ASTConverterMarkdownSnippetTest.class;
 			Method[] methods = c.getMethods();
-			for (int i = 0, max = methods.length; i < max; i++) {
+			for (int i = 0, max = methods.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (methods[i].getName().startsWith("test")) { //$NON-NLS-1$
 					suite.addTest(new ASTConverterMarkdownSnippetTest(methods[i].getName(), support, UNIX_SUPPORT));
 				}
 			}
 			// when unix support not specified, also run using unix format
 			if (UNIX_SUPPORT == null && JavaCore.ENABLED.equals(support)) {
-				for (int i = 0, max = methods.length; i < max; i++) {
+				for (int i = 0, max = methods.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (methods[i].getName().startsWith("test")) { //$NON-NLS-1$
 						suite.addTest(new ASTConverterMarkdownSnippetTest(methods[i].getName(), support, "true"));
 					}
@@ -178,14 +178,14 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 			if (COPY_DIR) {
 				super.copyDirectory(sourceDir, targetDir);
 			} else {
-				targetDir.mkdirs();
+				targetDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				File sourceFile = new File(sourceDir, ".project");
 				File targetFile = new File(targetDir, ".project");
-				targetFile.createNewFile();
+				targetFile.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				copy(sourceFile, targetFile);
 				sourceFile = new File(sourceDir, ".classpath");
 				targetFile = new File(targetDir, ".classpath");
-				targetFile.createNewFile();
+				targetFile.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				copy(sourceFile, targetFile);
 			}
 		}
@@ -197,15 +197,15 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 			super.setUp();
 			TEST_COUNTERS[0]++;
 			setCompliancesLevel();
-			this.failures = new ArrayList();
-			this.problems = new StringBuilder();
+			this.failures = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			this.problems = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			this.workingCopies = null;
 			this.savedLevel = this.astLevel;
 		}
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		protected void tearDown() throws Exception {
 			int size = this.failures.size();
-			String title = size+" positions/bindings were incorrect in "+getName();
+			String title = size+" positions/bindings were incorrect in "+getName(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			if (size == 0) {
 				TEST_COUNTERS[1]++;
 			} else if (this.problems.length() > 0) {
@@ -216,9 +216,9 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 				TEST_COUNTERS[2]++;
 			} else {
 				TEST_COUNTERS[3]++;
-				System.out.println(title+":");
-				for (int i=0; i<size; i++) {
-					System.out.println("	- "+this.failures.get(i));
+				System.out.println(title+":"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				for (int i=0; i<size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					System.out.println("	- "+this.failures.get(i)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 			assertTrue(title, size==0 || this.problems.length() > 0);
@@ -240,10 +240,10 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 				intFormat.setMinimumIntegerDigits(3);
 				intFormat.setMaximumIntegerDigits(3);
 				System.out.println("=====================================");
-				System.out.println(intFormat.format(TEST_COUNTERS[0])+" tests have been executed:");
-				System.out.println("  - "+intFormat.format(TEST_COUNTERS[1])+" tests have been actually executed.");
-				System.out.println("  - "+intFormat.format(TEST_COUNTERS[2])+" tests were skipped due to compilation errors.");
-				System.out.println("  - "+intFormat.format(TEST_COUNTERS[3])+" tests failed.");
+				System.out.println(intFormat.format(TEST_COUNTERS[0])+" tests have been executed:"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				System.out.println("  - "+intFormat.format(TEST_COUNTERS[1])+" tests have been actually executed."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				System.out.println("  - "+intFormat.format(TEST_COUNTERS[2])+" tests were skipped due to compilation errors."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				System.out.println("  - "+intFormat.format(TEST_COUNTERS[3])+" tests failed."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		@Override
@@ -277,12 +277,12 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 	 * Store converted comments and their corresponding tags respectively
 	 * in comments and allTags fields
 	 */
-	char[] getUnicodeSource(char[] source) {
+	char[] getUnicodeSource(char[] source) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int length = source.length;
 		int unicodeLength = length*6;
 		char[] unicodeSource = new char[unicodeLength];
 		int u=0;
-		for (int i=0; i<length; i++) {
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// get next char
 			if (source[i] == '\\' && source[i+1] == 'u') {
 				//-------------unicode traitement ------------
@@ -293,9 +293,9 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 					|| ((c2 = ScannerHelper.getHexadecimalValue(source[i+2])) > 15 || c2 < 0)
 					|| ((c3 = ScannerHelper.getHexadecimalValue(source[i+3])) > 15 || c3 < 0)
 					|| ((c4 = ScannerHelper.getHexadecimalValue(source[i+4])) > 15 || c4 < 0)) {
-					throw new RuntimeException("Invalid unicode in source at "+i);
+					throw new RuntimeException("Invalid unicode in source at "+i); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
-				for (int j=0; j<4; j++) unicodeSource[u++] = source[++i];
+				for (int j=0; j<4; j++) unicodeSource[u++] = source[++i]; //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			} else {
 				unicodeSource[u++] = '\\';
 				unicodeSource[u++] = 'u';
@@ -321,12 +321,12 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 	 * Store converted comments and their corresponding tags respectively
 	 * in comments and allTags fields
 	 */
-	char[] getUnixSource(char[] source) {
+	char[] getUnixSource(char[] source) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int length = source.length;
 		int unixLength = length;
 		char[] unixSource = new char[unixLength];
 		int u=0;
-		for (int i=0; i<length; i++) {
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// get next char
 			if (source[i] == '\r' && source[i+1] == '\n') {
 				i++;
@@ -345,17 +345,17 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 	/*
 	 * Return all tags number for a given Javadoc
 	 */
-	int allTags(Javadoc docComment) {
+	int allTags(Javadoc docComment) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int all = 0;
 		// Count main tags
 		Iterator tags = docComment.tags().listIterator();
-		while (tags.hasNext()) {
+		while (tags.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TagElement tagElement = (TagElement) tags.next();
 			if (tagElement.getTagName() != null) {
 				all++;
 			}
 			Iterator fragments = tagElement.fragments().listIterator();
-			while (fragments.hasNext()) {
+			while (fragments.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ASTNode node = (ASTNode) fragments.next();
 				if (node.getNodeType() == ASTNode.TAG_ELEMENT) {
 					all++;
@@ -387,7 +387,7 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 
 	protected void assumeEquals(String msg, int expected, int actual) {
 		if (expected != actual) {
-			addFailure(msg+", expected="+expected+" actual="+actual);
+			addFailure(msg+", expected="+expected+" actual="+actual); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -396,7 +396,7 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 			return;
 		if (expected != null && expected.equals(actual))
 			return;
-		addFailure(msg+", expected:<"+expected+"> actual:<"+actual+'>');
+		addFailure(msg+", expected:<"+expected+"> actual:<"+actual+'>'); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 
@@ -404,8 +404,8 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 	 * @see junit.framework.TestCase#setUp()
 	 */
 	protected void verifyComments(String test) throws JavaModelException {
-		ICompilationUnit[] units = getCompilationUnits("Converter_26" , "src", "markdown."+test); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		for (int i=0; i<units.length; i++) {
+		ICompilationUnit[] units = getCompilationUnits("Converter_26" , "src", "markdown."+test); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		for (int i=0; i<units.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			verifyComments(units[i]);
 		}
 	}
@@ -417,7 +417,7 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 		assumeNotNull("No working copies to verify!", this.workingCopies);
 		int length = this.workingCopies.length;
 		assumeTrue("We need to have at least one working copy to verify!", length>0);
-		for (int i=0; i<length; i++) {
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			verifyComments(this.workingCopies[i]);
 		}
 	}
@@ -428,7 +428,7 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 	protected CompilationUnit verifyComments(ICompilationUnit unit) throws JavaModelException {
 		// Get test file
 		this.sourceUnit = unit;
-		this.prefix = unit.getElementName()+": ";
+		this.prefix = unit.getElementName()+": "; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String sourceStr = this.sourceUnit.getSource();
 		// Verify source regardings converted comments
 		char[] source = sourceStr.toCharArray();
@@ -458,7 +458,7 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 		this.currentProject.setOption(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_26);
 		this.astLevel = AST.JLS23;
 	}
-	protected CompilationUnit verifyComments(String fileName, char[] source, Map options) {
+	protected CompilationUnit verifyComments(String fileName, char[] source, Map options) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Verify comments either in unicode or not
 		char[] testedSource = source;
@@ -476,35 +476,35 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 		setCompliancesLevel();
 		CompilationUnit compilUnit = (CompilationUnit) runConversion(testedSource, fileName, this.currentProject, options);
 		if (this.compilerOption.equals(JavaCore.ERROR)) {
-			assumeEquals(this.prefix+"Unexpected problems", 0, compilUnit.getProblems().length); //$NON-NLS-1$
+			assumeEquals(this.prefix+"Unexpected problems", 0, compilUnit.getProblems().length); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else if (this.compilerOption.equals(JavaCore.WARNING)) {
 			IProblem[] problemsList = compilUnit.getProblems();
 			int length = problemsList.length;
 			if (length > 0) {
-				this.problems.append("  - "+this.prefix+length+" problems:"); //$NON-NLS-1$
-				for (int i = 0; i < problemsList.length; i++) {
-					this.problems.append("	+ ");
-					this.problems.append(problemsList[i]);
-					this.problems.append("\n");
+				this.problems.append("  - "+this.prefix+length+" problems:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (int i = 0; i < problemsList.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					this.problems.append("	+ "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.problems.append(problemsList[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					this.problems.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
 		}
 		unitComments = compilUnit.getCommentList();
-		assumeNotNull(this.prefix+"Unexpected problems", unitComments);
+		assumeNotNull(this.prefix+"Unexpected problems", unitComments); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		return compilUnit;
 	}
-	private TagElement getSnippetTag(Javadoc docComment) {
+	private TagElement getSnippetTag(Javadoc docComment) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TagElement snippet = null;
 		if (docComment != null) {
-			for (Object tag : docComment.tags()) {
+			for (Object tag : docComment.tags()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (tag instanceof TagElement) {
 					TagElement tagElement = (TagElement) tag;
 					if (SNIPPET_TAG.equals(tagElement.getTagName())) {
 						return tagElement;
 					}
 					List fragments = tagElement.fragments();
-					for (Object fragment : fragments) {
+					for (Object fragment : fragments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (fragment instanceof TagElement) {
 							TagElement tagElem = (TagElement) fragment;
 							if (SNIPPET_TAG.equals(tagElem.getTagName())) {
@@ -520,7 +520,7 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 	}
 
 	// empty body
-	public void testSnippetTagforMarkdown_01() throws JavaModelException {
+	public void testSnippetTagforMarkdown_01() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = """
 					/// {@snippet :
 					/// }
@@ -541,7 +541,7 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 	}
 
 	// Single element
-	public void testSnippetMarkdownTest_02() throws JavaModelException {
+	public void testSnippetMarkdownTest_02() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = """
 				/// {@snippet:
 				/// 	int x = 2;
@@ -559,12 +559,12 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 			TagElement snippetTag = getSnippetTag(javadoc);
 			List<TextElement> frags = snippetTag.fragments();
 			assertEquals("Fragments should be 1", 1, frags.size());
-			assertEquals("Incorrect text content", " 	int x = 2;" + this.newline, frags.get(0).getText());
+			assertEquals("Incorrect text content", " 	int x = 2;" + this.newline, frags.get(0).getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
 	// Blank line inside the body
-	public void testSnippetMarkdownTest_03() throws JavaModelException {
+	public void testSnippetMarkdownTest_03() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = """
 		/// {@snippet:
 		///
@@ -585,13 +585,13 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 			TagElement snippetTag = getSnippetTag(javadoc);
 			List<TextElement> frags = snippetTag.fragments();
 			assertEquals("Fragments should be 2", 2, frags.size());
-			assertEquals("Incorrect text content", " 	int a = 1;" + this.newline, frags.get(0).getText());
-			assertEquals("Incorrect text content", "		int b = 2;" + this.newline, frags.get(1).getText());
+			assertEquals("Incorrect text content", " 	int a = 1;" + this.newline, frags.get(0).getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertEquals("Incorrect text content", "		int b = 2;" + this.newline, frags.get(1).getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
 	// {@code} tag inside the snippet
-	public void testSnippetMarkdownTest_04() throws JavaModelException {
+	public void testSnippetMarkdownTest_04() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = """
 					/// {@snippet :
 					///   {@code int a = 0;}
@@ -609,11 +609,11 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 			TagElement snippetTag = getSnippetTag(javadoc);
 			List<TextElement> frags = snippetTag.fragments();
 			assertEquals("Fragments should be 1", 1, frags.size());
-			assertEquals("Incorrect text content", "   {@code int a = 0;}" + this.newline, frags.get(0).getText());
+			assertEquals("Incorrect text content", "   {@code int a = 0;}" + this.newline, frags.get(0).getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
-	public void testJavadocIncorrectlyParsingAnnotationInlineTag5055() throws JavaModelException {
+	public void testJavadocIncorrectlyParsingAnnotationInlineTag5055() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = """
 				/// Example showing formatter bug with {@code @} in snippet blocks.
 				/// {@snippet :
@@ -635,15 +635,15 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 			TagElement snippetTag = getSnippetTag(javadoc);
 			List<TextElement> frags = snippetTag.fragments();
 			assertEquals("Wrong number of elements", 5, frags.size());
-			assertEquals("Incorrect first fragment", " \t@MyAnnotation" + this.newline, frags.get(0).getText());
-			assertEquals("Incorrect second fragment", "\t\tpublic class Example {" + this.newline, frags.get(1).getText());
-			assertEquals("Incorrect third fragment", "\t\t\t@AnotherAnnotation" + this.newline, frags.get(2).getText());
-			assertEquals("Incorrect fourth fragment", "\t\t\tprivate String field;" + this.newline, frags.get(3).getText());
-			assertEquals("Incorrect fifth fragment", "\t\t}" + this.newline, frags.get(4).getText());
+			assertEquals("Incorrect first fragment", " \t@MyAnnotation" + this.newline, frags.get(0).getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertEquals("Incorrect second fragment", "\t\tpublic class Example {" + this.newline, frags.get(1).getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertEquals("Incorrect third fragment", "\t\t\t@AnotherAnnotation" + this.newline, frags.get(2).getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertEquals("Incorrect fourth fragment", "\t\t\tprivate String field;" + this.newline, frags.get(3).getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertEquals("Incorrect fifth fragment", "\t\t}" + this.newline, frags.get(4).getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
-	public void testMarkdownSupportInlineTags5010_01() throws JavaModelException {
+	public void testMarkdownSupportInlineTags5010_01() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = """
 				/// {@snippet :
 				///   	System.out.println("Hello"); // @highlight substring="println"
@@ -685,7 +685,7 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 			TextElement highlighSubstringChild = (TextElement) (highlighSubstring.fragments()).get(0);
 			List<TagProperty> highlighSubstringTagProperty = highlighSubstring.tagProperties();
 			assertEquals("Incorrect optional Tag", "@highlight", highlighSubstring.getTagName());
-			assertEquals("Incorrect Child TextElement", "   	System.out.println(\"Hello\");" + this.newline, highlighSubstringChild.getText());
+			assertEquals("Incorrect Child TextElement", "   	System.out.println(\"Hello\");" + this.newline, highlighSubstringChild.getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertEquals("Incorrect TagProperty name", "substring", highlighSubstringTagProperty.get(0).getName());
 			assertEquals("Incorrect TagProperty string_value", "println", highlighSubstringTagProperty.get(0).getStringValue());
 
@@ -693,7 +693,7 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 			TextElement highlightSubstringTypeHighlightedChild = (TextElement) (highlightSubstringTypeHighlighted.fragments()).get(0);
 			List<TagProperty> highlightSubstringTypeHighlightedTagProperty = highlightSubstringTypeHighlighted.tagProperties();
 			assertEquals("Incorrect optional Tag", "@highlight", highlightSubstringTypeHighlighted.getTagName());
-			assertEquals("Incorrect Child TextElement", "   	items.add(\"Java 18\");" + this.newline, highlightSubstringTypeHighlightedChild.getText());
+			assertEquals("Incorrect Child TextElement", "   	items.add(\"Java 18\");" + this.newline, highlightSubstringTypeHighlightedChild.getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertEquals("Incorrect number of TagProperties", 2, highlightSubstringTypeHighlightedTagProperty.size());
 			assertEquals("Incorrect TagProperty name", "type", highlightSubstringTypeHighlightedTagProperty.get(0).getName());
 			assertEquals("Incorrect TagProperty string_value", "highlighted", highlightSubstringTypeHighlightedTagProperty.get(0).getStringValue());
@@ -704,7 +704,7 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 			TextElement highlightRegexChild = (TextElement) (highlightRegex.fragments()).get(0);
 			List<TagProperty> highlightRegexTagProperty = highlightRegex.tagProperties();
 			assertEquals("Incorrect optional Tag", "@highlight", highlightRegex.getTagName());
-			assertEquals("Incorrect Child TextElement", "   	System.out.println(\"Item: \" + items.get(0));" + this.newline, highlightRegexChild.getText());
+			assertEquals("Incorrect Child TextElement", "   	System.out.println(\"Item: \" + items.get(0));" + this.newline, highlightRegexChild.getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertEquals("Incorrect TagProperty name", "regex", highlightRegexTagProperty.get(0).getName());
 			assertEquals("Incorrect TagProperty string_value", "\"\"", highlightRegexTagProperty.get(0).getStringValue());
 
@@ -712,7 +712,7 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 			TextElement highlightRegexTypeHighlightedChild = (TextElement) (highlightRegexTypeHighlighted.fragments()).get(0);
 			List<TagProperty> highlightRegexTypeHighlightedTagProperty = highlightRegexTypeHighlighted.tagProperties();
 			assertEquals("Incorrect optional Tag", "@highlight", highlightRegexTypeHighlighted.getTagName());
-			assertEquals("Incorrect Child TextElement", "   	System.out.println(\"Item: \" + items.get(0));" + this.newline, highlightRegexTypeHighlightedChild.getText());
+			assertEquals("Incorrect Child TextElement", "   	System.out.println(\"Item: \" + items.get(0));" + this.newline, highlightRegexTypeHighlightedChild.getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertEquals("Incorrect TagProperty name", "regex", highlightRegexTypeHighlightedTagProperty.get(0).getName());
 			assertEquals("Incorrect TagProperty string_value", "\"\"", highlightRegexTypeHighlightedTagProperty.get(0).getStringValue());
 
@@ -721,7 +721,7 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 			List<TagProperty> linkSubstringTagProperty = linkSubstring.tagProperties();
 			QualifiedName qualifiedName = (QualifiedName) linkSubstringTagProperty.get(1).getNodeValue();
 			assertEquals("Incorrect optional Tag", "@link", linkSubstring.getTagName());
-			assertEquals("Incorrect Child TextElement", "   	List<String> list = new ArrayList<>();" + this.newline, linkSubstringChild.getText());
+			assertEquals("Incorrect Child TextElement", "   	List<String> list = new ArrayList<>();" + this.newline, linkSubstringChild.getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertEquals("Incorrect number of TagProperties", 2, linkSubstringTagProperty.size());
 			assertEquals("Incorrect TagProperty name", "substring", linkSubstringTagProperty.get(0).getName());
 			assertEquals("Incorrect TagProperty string_value", "ArrayList", linkSubstringTagProperty.get(0).getStringValue());
@@ -735,7 +735,7 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 			List<TagProperty> linkRegexTagProperty = linkRegex.tagProperties();
 			qualifiedName = (QualifiedName) linkRegexTagProperty.get(1).getNodeValue();
 			assertEquals("Incorrect optional Tag", "@link", linkRegex.getTagName());
-			assertEquals("Incorrect Child TextElement", "   	List<String> list = new ArrayList<>();" + this.newline, linkRegexChild.getText());
+			assertEquals("Incorrect Child TextElement", "   	List<String> list = new ArrayList<>();" + this.newline, linkRegexChild.getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertEquals("Incorrect number of TagProperties", 2, linkRegexTagProperty.size());
 			assertEquals("Incorrect TagProperty name", "regex", linkRegexTagProperty.get(0).getName());
 			assertEquals("Incorrect TagProperty string_value", "ArrayList", linkRegexTagProperty.get(0).getStringValue());
@@ -747,7 +747,7 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 			// Object obj = new Object(); // @replace substring="Object" replacement="MyClass"
 			TextElement replaceSubstringChild = (TextElement) (replaceSubstring.fragments()).get(0);
 			List<TagProperty> replaceSubstringTagProperty = replaceSubstring.tagProperties();
-			assertEquals("Incorrect TextElement", "   	Object obj = new Object();" + this.newline, replaceSubstringChild.getText());
+			assertEquals("Incorrect TextElement", "   	Object obj = new Object();" + this.newline, replaceSubstringChild.getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertEquals("Incorrect number of TagProperties", 2, replaceSubstringTagProperty.size());
 			assertEquals("Incorrect TagProperty name", "replacement", replaceSubstringTagProperty.get(0).getName());
 			assertEquals("Incorrect TagProperty string_value", "MyClass", replaceSubstringTagProperty.get(0).getStringValue());
@@ -757,7 +757,7 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 			// String s = "foo bar"; // @replace regex="foo" replacement="baz"
 			TextElement replaceRegexChild = (TextElement) (replaceRegex.fragments()).get(0);
 			List<TagProperty> replaceRegexTagProperty = replaceRegex.tagProperties();
-			assertEquals("Incorrect TextElement", "   	String s = \"foo bar\";" + this.newline, replaceRegexChild.getText());
+			assertEquals("Incorrect TextElement", "   	String s = \"foo bar\";" + this.newline, replaceRegexChild.getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertEquals("Incorrect number of TagProperties", 2, replaceRegexTagProperty.size());
 			assertEquals("Incorrect TagProperty name", "regex", replaceRegexTagProperty.get(0).getName());
 			assertEquals("Incorrect TagProperty string_value", "foo", replaceRegexTagProperty.get(0).getStringValue());
@@ -766,7 +766,7 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 		}
 	}
 
-	public void testSnippetMarkdownNestedBraces5075_01() throws JavaModelException {
+	public void testSnippetMarkdownNestedBraces5075_01() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = """
 				/// {@snippet :
 				///\t\tpublic class Example {
@@ -787,14 +787,14 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 			assertNotNull("Snippet tag should not be null", snippetTag);
 			List<TextElement> frags = snippetTag.fragments();
 			assertEquals("Wrong number of fragments", 4, frags.size());
-			assertEquals("Incorrect first fragment", "\t\tpublic class Example {" + this.newline, frags.get(0).getText());
-			assertEquals("Incorrect second fragment", "\t\t\tprivate String field;" + this.newline, frags.get(1).getText());
-			assertEquals("Incorrect third fragment", "\t\t}" + this.newline, frags.get(2).getText());
-			assertEquals("Incorrect fourth fragment", " \tvoid foo();" + this.newline, frags.get(3).getText());
+			assertEquals("Incorrect first fragment", "\t\tpublic class Example {" + this.newline, frags.get(0).getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertEquals("Incorrect second fragment", "\t\t\tprivate String field;" + this.newline, frags.get(1).getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertEquals("Incorrect third fragment", "\t\t}" + this.newline, frags.get(2).getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertEquals("Incorrect fourth fragment", " \tvoid foo();" + this.newline, frags.get(3).getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
-	public void testSnippetMarkdownNestedBraces5075_02() throws JavaModelException {
+	public void testSnippetMarkdownNestedBraces5075_02() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = """
 				/// {@snippet :
 				/// \tSystem.out.println("{");
@@ -817,7 +817,7 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 		}
 	}
 
-	public void testSnippetMarkdownNestedBraces5075_03() throws JavaModelException {
+	public void testSnippetMarkdownNestedBraces5075_03() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = """
 				/// {@snippet :
 				///\t\tpublic class Example {
@@ -838,8 +838,8 @@ public class ASTConverterMarkdownSnippetTest extends ConverterTestSetup {
 			assertNotNull("Snippet tag should not be null", snippetTag);
 			List<TextElement> frags = snippetTag.fragments();
 			assertEquals("Wrong number of fragments", 3, frags.size());
-			assertEquals("Incorrect first fragment", "\t\tpublic class Example {" + this.newline, frags.get(0).getText());
-			assertEquals("Incorrect second fragment", "\t\t\tprivate String field;" + this.newline, frags.get(1).getText());
+			assertEquals("Incorrect first fragment", "\t\tpublic class Example {" + this.newline, frags.get(0).getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertEquals("Incorrect second fragment", "\t\t\tprivate String field;" + this.newline, frags.get(1).getText()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertEquals("Incorrect third fragment", "\t\t}        <-- stray '", frags.get(2).getText().stripTrailing());
 		}
 	}

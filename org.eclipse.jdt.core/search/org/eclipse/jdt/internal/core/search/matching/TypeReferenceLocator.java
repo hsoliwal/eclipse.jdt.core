@@ -40,7 +40,7 @@ protected final TypeReferencePattern pattern;
 protected final boolean isDeclarationOfReferencedTypesPattern;
 
 private final int fineGrain;
-private final Map<QualifiedTypeReference, List<TypeBinding>> recordedResolutions = new HashMap<>();
+private final Map<QualifiedTypeReference, List<TypeBinding>> recordedResolutions = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 public TypeReferenceLocator(TypeReferencePattern pattern) {
 
@@ -60,7 +60,7 @@ protected IJavaElement findElement(IJavaElement element, int accuracy) {
 
 	// element that references the type must be included in the enclosing element
 	DeclarationOfReferencedTypesPattern declPattern = (DeclarationOfReferencedTypesPattern) this.pattern;
-	while (element != null && !declPattern.enclosingElement.equals(element))
+	while (element != null && !declPattern.enclosingElement.equals(element)) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		element = element.getParent();
 	return element;
 }
@@ -83,7 +83,7 @@ public int match(ASTNode node, MatchingNodeSet nodeSet) { // interested in Impor
 //public int match(FieldDeclaration node, MatchingNodeSet nodeSet) - SKIP IT
 //public int match(MethodDeclaration node, MatchingNodeSet nodeSet) - SKIP IT
 //public int match(MessageSend node, MatchingNodeSet nodeSet) - SKIP IT
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public int match(Reference node, MatchingNodeSet nodeSet) { // interested in NameReference & its subtypes
 	if (!(node instanceof NameReference)) return IMPOSSIBLE_MATCH;
 
@@ -95,7 +95,7 @@ public int match(Reference node, MatchingNodeSet nodeSet) { // interested in Nam
 			return nodeSet.addMatch(node, POSSIBLE_MATCH); // resolution is needed to find out if it is a type ref
 	} else {
 		char[][] tokens = ((QualifiedNameReference) node).tokens;
-		for (char[] token : tokens)
+		for (char[] token : tokens) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (matchesName(this.pattern.simpleName, token))
 				return nodeSet.addMatch(node, POSSIBLE_MATCH); // resolution is needed to find out if it is a type ref
 	}
@@ -113,7 +113,7 @@ public int match(TypeReference node, MatchingNodeSet nodeSet) {
 			return nodeSet.addMatch(node, this.pattern.mustResolve ? POSSIBLE_MATCH : ACCURATE_MATCH);
 	} else {
 		char[][] tokens = ((QualifiedTypeReference) node).tokens;
-		for (char[] token : tokens)
+		for (char[] token : tokens) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (matchesName(this.pattern.simpleName, token))
 				return nodeSet.addMatch(node, POSSIBLE_MATCH); // resolution is needed to find out if it is a type ref
 	}
@@ -121,7 +121,7 @@ public int match(TypeReference node, MatchingNodeSet nodeSet) {
 	return IMPOSSIBLE_MATCH;
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected int matchLevel(ImportReference importRef) {
 	if (this.pattern.qualification == null) {
 		if (this.pattern.simpleName == null) return ACCURATE_MATCH;
@@ -191,7 +191,7 @@ protected int matchLevel(ImportReference importRef) {
 	return IMPOSSIBLE_MATCH;
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void matchLevelAndReportImportRef(ImportReference importRef, Binding binding, MatchLocator locator) throws CoreException {
 	Binding refBinding = binding;
 	if (importRef.isStatic()) {
@@ -225,12 +225,12 @@ protected void matchLevelAndReportImportRef(ImportReference importRef, Binding b
 	}
 	super.matchLevelAndReportImportRef(importRef, refBinding, locator);
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void matchReportImportRef(ImportReference importRef, Binding binding, IJavaElement element, int accuracy, MatchLocator locator) throws CoreException {
 	if (this.isDeclarationOfReferencedTypesPattern) {
 		if ((element = findElement(element, accuracy)) != null) {
 			SimpleSet knownTypes = ((DeclarationOfReferencedTypesPattern) this.pattern).knownTypes;
-			while (binding instanceof ReferenceBinding) {
+			while (binding instanceof ReferenceBinding) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ReferenceBinding typeBinding = (ReferenceBinding) binding;
 				reportDeclaration(typeBinding, 1, locator, knownTypes);
 				binding = typeBinding.enclosingType();
@@ -283,7 +283,7 @@ protected void matchReportImportRef(ImportReference importRef, Binding binding, 
 			lastIndex = pbBinding.compoundName.length - 1;
 		}
 		// try to match all enclosing types for which the token matches as well.
-		while (typeBinding != null && lastIndex >= 0) {
+		while (typeBinding != null && lastIndex >= 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (resolveLevelForType(typeBinding) != IMPOSSIBLE_MATCH) {
 				if (locator.encloses(element)) {
 					long[] positions = importRef.sourcePositions;
@@ -308,7 +308,7 @@ protected void matchReportImportRef(ImportReference importRef, Binding binding, 
 	}
 	locator.reportAccurateTypeReference(this.match, importRef, this.pattern.simpleName);
 }
-protected void matchReportReference(ArrayTypeReference arrayRef, IJavaElement element, Binding elementBinding, int accuracy, MatchLocator locator) throws CoreException {
+protected void matchReportReference(ArrayTypeReference arrayRef, IJavaElement element, Binding elementBinding, int accuracy, MatchLocator locator) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.pattern.simpleName == null) {
 		// TODO (frederic) need to add a test for this case while searching generic types...
 		if (locator.encloses(element)) {
@@ -341,7 +341,7 @@ protected void matchReportReference(ASTNode reference, IJavaElement element, Bin
 /**
  * Reports the match of the given reference. Also provide a local and other elements to eventually report in match.
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void matchReportReference(ASTNode reference, IJavaElement element, IJavaElement localElement, IJavaElement[] otherElements, Binding elementBinding, int accuracy, MatchLocator locator) throws CoreException {
 	if (this.isDeclarationOfReferencedTypesPattern) {
 		if ((element = findElement(element, accuracy)) != null)
@@ -373,7 +373,7 @@ protected void matchReportReference(ASTNode reference, IJavaElement element, IJa
 		locator.report(this.match);
 	}
 }
-protected void matchReportReference(QualifiedNameReference qNameRef, IJavaElement element, Binding elementBinding, int accuracy, MatchLocator locator) throws CoreException {
+protected void matchReportReference(QualifiedNameReference qNameRef, IJavaElement element, Binding elementBinding, int accuracy, MatchLocator locator) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Binding binding = qNameRef.binding;
 	TypeBinding typeBinding = null;
 	int lastIndex = qNameRef.tokens.length - 1;
@@ -412,7 +412,7 @@ protected void matchReportReference(QualifiedNameReference qNameRef, IJavaElemen
 	// try to match all enclosing types for which the token matches as well.
 	if (typeBinding instanceof ReferenceBinding) {
 		ReferenceBinding refBinding = (ReferenceBinding) typeBinding;
-		while (refBinding != null && lastIndex >= 0) {
+		while (refBinding != null && lastIndex >= 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (resolveLevelForType(refBinding) == ACCURATE_MATCH) {
 				if (locator.encloses(element)) {
 					long[] positions = qNameRef.sourcePositions;
@@ -438,7 +438,7 @@ protected void matchReportReference(QualifiedNameReference qNameRef, IJavaElemen
 	}
 	locator.reportAccurateTypeReference(this.match, qNameRef, this.pattern.simpleName);
 }
-protected void matchReportReference(QualifiedTypeReference qTypeRef, IJavaElement element, Binding elementBinding, int accuracy, MatchLocator locator) throws CoreException {
+protected void matchReportReference(QualifiedTypeReference qTypeRef, IJavaElement element, Binding elementBinding, int accuracy, MatchLocator locator) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	TypeBinding typeBinding = qTypeRef.resolvedType;
 	int lastIndex = qTypeRef.tokens.length - 1;
 	if (typeBinding instanceof ArrayBinding)
@@ -457,7 +457,7 @@ protected void matchReportReference(QualifiedTypeReference qTypeRef, IJavaElemen
 	// try to match all enclosing types for which the token matches as well
 	if (typeBinding instanceof ReferenceBinding) {
 		ReferenceBinding refBinding = (ReferenceBinding) typeBinding;
-		while (refBinding != null && lastIndex >= 0) {
+		while (refBinding != null && lastIndex >= 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (resolveLevelForType(refBinding) != IMPOSSIBLE_MATCH) {
 				if (locator.encloses(element)) {
 					long[] positions = qTypeRef.sourcePositions;
@@ -483,7 +483,7 @@ protected void matchReportReference(QualifiedTypeReference qTypeRef, IJavaElemen
 	}
 	locator.reportAccurateTypeReference(this.match, qTypeRef, this.pattern.simpleName);
 }
-void matchReportReference(Expression expr, int lastIndex, TypeBinding refBinding, MatchLocator locator) throws CoreException {
+void matchReportReference(Expression expr, int lastIndex, TypeBinding refBinding, MatchLocator locator) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Look if there's a need to special report for parameterized type
 	if (refBinding.isParameterizedType() || refBinding.isRawType()) {
@@ -544,7 +544,7 @@ void matchReportReference(Expression expr, int lastIndex, TypeBinding refBinding
 protected int referenceType() {
 	return IJavaElement.TYPE;
 }
-protected void reportDeclaration(ASTNode reference, IJavaElement element, MatchLocator locator, SimpleSet knownTypes) throws CoreException {
+protected void reportDeclaration(ASTNode reference, IJavaElement element, MatchLocator locator, SimpleSet knownTypes) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int maxType = -1;
 	TypeBinding typeBinding = null;
 	if (reference instanceof TypeReference) {
@@ -593,7 +593,7 @@ protected void reportDeclaration(ASTNode reference, IJavaElement element, MatchL
 	typeBinding = typeBinding.erasure();
 	reportDeclaration((ReferenceBinding) typeBinding, maxType, locator, knownTypes);
 }
-protected void reportDeclaration(ReferenceBinding typeBinding, int maxType, MatchLocator locator, SimpleSet knownTypes) throws CoreException {
+protected void reportDeclaration(ReferenceBinding typeBinding, int maxType, MatchLocator locator, SimpleSet knownTypes) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IType type = locator.lookupType(typeBinding);
 	if (type == null) return; // case of a secondary type
 
@@ -605,7 +605,7 @@ protected void reportDeclaration(ReferenceBinding typeBinding, int maxType, Matc
 			resource = type.getJavaProject().getProject();
 		info = locator.getBinaryInfo((org.eclipse.jdt.internal.core.ClassFile) type.getClassFile(), resource);
 	}
-	while (maxType >= 0 && type != null) {
+	while (maxType >= 0 && type != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (!knownTypes.includes(type)) {
 			if (isBinary) {
 				locator.reportBinaryMemberDeclaration(resource, type, typeBinding, info, SearchMatch.A_ACCURATE);
@@ -641,7 +641,7 @@ public int resolveLevel(ASTNode node) {
 //	if (node instanceof ImportReference) - Not called when resolve is true, see MatchingNodeSet.reportMatching(unit)
 	return IMPOSSIBLE_MATCH;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public int resolveLevel(Binding binding) {
 	if (binding == null) return INACCURATE_MATCH;
 
@@ -660,14 +660,14 @@ public int resolveLevel(Binding binding) {
 
 	return resolveLevelForTypeOrEnclosingTypes(this.pattern.simpleName, this.pattern.qualification, typeBinding);
 }
-private int resolveLevel(MethodBinding binding) {
+private int resolveLevel(MethodBinding binding) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int level = resolveLevelForTypes(binding.parameters);
 	if(level != IMPOSSIBLE_MATCH) {
 		return level;
 	}
 
 	if(binding.typeVariables != null) {
-		for (TypeVariableBinding tv : binding.typeVariables) {
+		for (TypeVariableBinding tv : binding.typeVariables) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(tv.superclass != null) {
 				level = resolveLevelForType(tv.superclass);
 				if(level != IMPOSSIBLE_MATCH) {
@@ -696,7 +696,7 @@ private int resolveLevel(VariableBinding binding) {
 }
 private int resolveLevelForTypes(TypeBinding[] types) {
 	if(types != null) {
-		for (TypeBinding t : types) {
+		for (TypeBinding t : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int levelForType = resolveLevelForType(t);
 			if(levelForType != IMPOSSIBLE_MATCH) {
 				return levelForType;
@@ -705,7 +705,7 @@ private int resolveLevelForTypes(TypeBinding[] types) {
 	}
 	return IMPOSSIBLE_MATCH;
 }
-protected int resolveLevel(NameReference nameRef) {
+protected int resolveLevel(NameReference nameRef) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Binding binding = nameRef.binding;
 
 	if (nameRef instanceof SingleNameReference) {
@@ -771,7 +771,7 @@ protected int resolveLevel(TypeReference typeRef) {
  * Resolve level for type with a given binding.
  * This is just an helper to avoid call of method with all parameters...
  */
-protected int resolveLevelForType(TypeBinding typeBinding) {
+protected int resolveLevelForType(TypeBinding typeBinding) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (typeBinding == null || !typeBinding.isValidBinding()) {
 		if (this.pattern.typeSuffix != TYPE_SUFFIX) return INACCURATE_MATCH;
 	} else {
@@ -818,7 +818,7 @@ protected int resolveLevelForTypeOrEnclosingTypes(char[] simpleNamePattern, char
 
 	if (binding instanceof ReferenceBinding) {
 		ReferenceBinding type = (ReferenceBinding) binding;
-		while (type != null) {
+		while (type != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int level = resolveLevelForType(type);
 			if (level != IMPOSSIBLE_MATCH) return level;
 
@@ -832,7 +832,7 @@ int resolveLevelForTypeOrQualifyingTypes(TypeReference typeRef, TypeBinding type
 	if (typeBinding == null || !typeBinding.isValidBinding()) return INACCURATE_MATCH;
 	List<TypeBinding> resolutionsList = this.recordedResolutions.get(typeRef);
 	if (resolutionsList != null) {
-		for (TypeBinding resolution : resolutionsList) {
+		for (TypeBinding resolution : resolutionsList) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int level = resolveLevelForType(resolution);
 			if (level != IMPOSSIBLE_MATCH) return level;
 		}
@@ -843,13 +843,13 @@ int resolveLevelForTypeOrQualifyingTypes(TypeReference typeRef, TypeBinding type
 public void recordResolution(QualifiedTypeReference typeReference, TypeBinding resolution) {
 	List<TypeBinding> resolutionsForTypeReference = this.recordedResolutions.get(typeReference);
 	if (resolutionsForTypeReference == null) {
-		resolutionsForTypeReference = new ArrayList<>();
+		resolutionsForTypeReference = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	}
 	resolutionsForTypeReference.add(resolution);
 	this.recordedResolutions.put(typeReference, resolutionsForTypeReference);
 }
 @Override
 public String toString() {
-	return "Locator for " + this.pattern.toString(); //$NON-NLS-1$
+	return "Locator for " + this.pattern.toString(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 }

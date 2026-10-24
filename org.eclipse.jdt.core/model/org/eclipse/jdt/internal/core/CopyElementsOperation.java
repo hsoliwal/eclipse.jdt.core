@@ -60,11 +60,11 @@ import org.eclipse.jdt.internal.core.util.Messages;
  *    <li>This operation only copies elements contained within compilation units.
  * </ul>
  */
-@SuppressWarnings({"rawtypes", "unchecked"})
+@SuppressWarnings({"rawtypes", "unchecked"}) //FLLDCIM: MARK — T09  IMPLEMENTS
 public class CopyElementsOperation extends MultiOperation implements SuffixConstants {
 
 
-	private final Map sources = new HashMap();
+	private final Map sources = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 /**
  * When executed, this operation will copy the given elements to the
  * given containers.  The elements and destination containers must be in
@@ -92,7 +92,7 @@ protected String getMainTaskName() {
 /**
  * Returns the nested operation to use for processing this element
  */
-protected JavaModelOperation getNestedOperation(IJavaElement element) {
+protected JavaModelOperation getNestedOperation(IJavaElement element) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaElement dest = getDestinationParent(element);
 		switch (element.getElementType()) {
@@ -105,24 +105,24 @@ protected JavaModelOperation getNestedOperation(IJavaElement element) {
 				if (isRenamingMainType(element, dest)) {
 					IPath path = element.getPath();
 					String extension = path.getFileExtension();
-					return new RenameResourceElementsOperation(new IJavaElement[] {dest}, new IJavaElement[] {dest.getParent()}, new String[]{getNewNameFor(element) + '.' + extension}, this.force);
+					return new RenameResourceElementsOperation(new IJavaElement[] {dest}, new IJavaElement[] {dest.getParent()}, new String[]{getNewNameFor(element) + '.' + extension}, this.force); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				} else {
 					String source = getSourceFor(element);
 					String lineSeparator = org.eclipse.jdt.internal.core.util.Util.getLineSeparator(source, element.getJavaProject());
-					return new CreateTypeOperation(dest, source + lineSeparator, this.force);
+					return new CreateTypeOperation(dest, source + lineSeparator, this.force); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			case IJavaElement.METHOD :
 				String source = getSourceFor(element);
 				String lineSeparator = org.eclipse.jdt.internal.core.util.Util.getLineSeparator(source, element.getJavaProject());
-				return new CreateMethodOperation((IType) dest, source + lineSeparator, this.force);
+				return new CreateMethodOperation((IType) dest, source + lineSeparator, this.force); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			case IJavaElement.FIELD :
 				source = getSourceFor(element);
 				lineSeparator = org.eclipse.jdt.internal.core.util.Util.getLineSeparator(source, element.getJavaProject());
-				return new CreateFieldOperation((IType) dest, source + lineSeparator, this.force);
+				return new CreateFieldOperation((IType) dest, source + lineSeparator, this.force); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			case IJavaElement.INITIALIZER :
 				source = getSourceFor(element);
 				lineSeparator = org.eclipse.jdt.internal.core.util.Util.getLineSeparator(source, element.getJavaProject());
-				return new CreateInitializerOperation((IType) dest, source + lineSeparator);
+				return new CreateInitializerOperation((IType) dest, source + lineSeparator); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			default :
 				return null;
 		}
@@ -160,7 +160,7 @@ protected boolean isRenamingMainType(IJavaElement element, IJavaElement dest) th
  * @exception JavaModelException if the operation is unable to
  * be completed
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void processElement(IJavaElement element) throws JavaModelException {
 	JavaModelOperation op = getNestedOperation(element);
 	boolean createElementInCUOperation =op instanceof CreateElementInCUOperation;
@@ -204,7 +204,7 @@ protected void processElement(IJavaElement element) throws JavaModelException {
 private IJavaElement resolveRenameAnchor(IJavaElement element) throws JavaModelException {
 	IParent parent = (IParent) element.getParent();
 	IJavaElement[] children = parent.getChildren();
-	for (IJavaElement child : children) {
+	for (IJavaElement child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (child.equals(element)) {
 			return child;
 		}

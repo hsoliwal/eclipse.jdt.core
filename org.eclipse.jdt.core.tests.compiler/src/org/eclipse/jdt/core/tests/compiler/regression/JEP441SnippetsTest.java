@@ -46,10 +46,10 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 	private String withMissingPatterns(String message, String missingPatterns) {
 		if (this.complianceLevel < ClassFileConstants.JDK27)
 			return message;
-		return message + ", or add the missing case patterns: " + missingPatterns;
+		return message + ", or add the missing case patterns: " + missingPatterns; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
-	public void test01() {
+	public void test01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -89,7 +89,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 				"X X");
 	}
 
-	public void test02() {
+	public void test02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -120,7 +120,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 				"Great");
 	}
 
-	public void test03() {
+	public void test03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -221,7 +221,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 				"Sorry?");
 	}
 
-	public void test04() {
+	public void test04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -274,7 +274,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 			"It's a tarot");
 	}
 
-	public void test05() {
+	public void test05() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -319,7 +319,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 			"It's a tarot");
 	}
 
-	public void test06() {
+	public void test06() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -368,7 +368,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 			"Tails");
 	}
 
-	public void test07() {
+	public void test07() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -402,7 +402,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void test08() {
+	public void test08() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -430,7 +430,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 			"Bad word!");
 	}
 
-	public void test09() {
+	public void test09() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -469,7 +469,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 			"Something else");
 	}
 
-	public void test10() {
+	public void test10() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -499,7 +499,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 			"A sequence of length 5");
 	}
 
-	public void test11() {
+	public void test11() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -533,7 +533,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void test12() {
+	public void test12() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -567,7 +567,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void test13() {
+	public void test13() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -596,7 +596,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 			"A guarded string: Hello");
 	}
 
-	public void test14() {
+	public void test14() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -637,7 +637,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void test15() {
+	public void test15() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -670,7 +670,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void test16() {
+	public void test16() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -718,7 +718,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void test17() {
+	public void test17() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -789,7 +789,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void test18() {
+	public void test18() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -818,7 +818,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 			"All the remaining integers");
 	}
 
-	public void test19() {
+	public void test19() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -860,7 +860,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void test20() {
+	public void test20() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -920,7 +920,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void test21() {
+	public void test21() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -960,7 +960,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void test22() {
+	public void test22() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -991,7 +991,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 			"1\n2\n3");
 	}
 
-	public void test23() {
+	public void test23() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1018,7 +1018,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 				}
 				"""
 			},
-			"----------\n" +
+			"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"1. ERROR in X.java (at line 8)\r\n" +
 			"	return switch (s) {\r\n" +
 			"	               ^\n" +
@@ -1026,7 +1026,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void test24() {
+	public void test24() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1066,7 +1066,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void test25() {
+	public void test25() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1092,7 +1092,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 				}
 				"""
 			},
-			"----------\n" +
+			"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"1. ERROR in X.java (at line 9)\n" +
 			"	switch (s) {                   // Error - not exhaustive;\n" +
 			"	        ^\n" +
@@ -1100,7 +1100,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void test26() {
+	public void test26() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK22) // multi pattern case labels used
 			return;
 		runNegativeTest(
@@ -1229,7 +1229,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void test27() {
+	public void test27() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -1293,7 +1293,7 @@ public class JEP441SnippetsTest extends AbstractRegressionTest9 {
 			"null!\nnull|default\nOK!");
 	}
 
-	public void test28() {
+	public void test28() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",

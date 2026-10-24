@@ -37,7 +37,7 @@ public class JavaSearchDocument extends SearchDocument {
 		super(documentPath, participant);
 	}
 	public JavaSearchDocument(java.util.zip.ZipEntry zipEntry, IPath zipFilePath, byte[] contents, SearchParticipant participant) {
-		this(zipFilePath + IJavaSearchScope.JAR_FILE_ENTRY_SEPARATOR + zipEntry.getName(), contents, participant);
+		this(zipFilePath + IJavaSearchScope.JAR_FILE_ENTRY_SEPARATOR + zipEntry.getName(), contents, participant); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public JavaSearchDocument(String documentPath, byte[] contents, SearchParticipant participant) {
@@ -94,6 +94,6 @@ public class JavaSearchDocument extends SearchDocument {
 	}
 	@Override
 	public String toString() {
-		return "SearchDocument for " + getPath(); //$NON-NLS-1$
+		return "SearchDocument for " + getPath(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }

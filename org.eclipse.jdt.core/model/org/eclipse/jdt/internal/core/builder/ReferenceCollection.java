@@ -46,11 +46,11 @@ protected ReferenceCollection(char[][][] qualifiedNameReferences, char[][] simpl
  *
  * @see CompilationUnitScope#recordQualifiedReference
  */
-public void addDependencies(String[] typeNameDependencies) {
+public void addDependencies(String[] typeNameDependencies) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// if each qualified type name is already known then all of its subNames can be skipped
 	// and its expected that very few qualified names in typeNameDependencies need to be added
 	// but could always take 'p1.p2.p3.X' and make all qualified names 'p1' 'p1.p2' 'p1.p2.p3' 'p1.p2.p3.X', then intern
-	next: for(String typeNameDependency: typeNameDependencies) {
+	next: for(String typeNameDependency: typeNameDependencies) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		char[][] qualifiedTypeName = CharOperation.splitOn('.', typeNameDependency.toCharArray());
 		if (!isWellKnownQualifiedName(qualifiedTypeName)) {
 			int qLength = qualifiedTypeName.length;
@@ -58,7 +58,7 @@ public void addDependencies(String[] typeNameDependencies) {
 			qualifiedTypeName = internSimpleNames(qualifiedTypeName, false, false);
 			qualifiedTypeName = internedNames.add(qualifiedTypeName);
 			int idx;
-			while ((idx = Arrays.binarySearch(this.qualifiedNameReferences, qualifiedTypeName, SortedCharArrays.CHAR_CHAR_ARR_COMPARATOR)) < 0) {
+			while ((idx = Arrays.binarySearch(this.qualifiedNameReferences, qualifiedTypeName, SortedCharArrays.CHAR_CHAR_ARR_COMPARATOR)) < 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.simpleNameReferences = ensureContainedInSortedOrder(this.simpleNameReferences, qualifiedTypeName[qualifiedTypeName.length - 1]);
 				this.rootReferences = ensureContainedInSortedOrder(this.rootReferences, qualifiedTypeName[0]);
 
@@ -113,7 +113,7 @@ public boolean includes(char[][][] qualifiedNames, char[][] simpleNames, char[][
 	return result;
 }
 
-private boolean doIncludes(char[][][] qualifiedNames, char[][] simpleNames, char[][] rootNames) {
+private boolean doIncludes(char[][][] qualifiedNames, char[][] simpleNames, char[][] rootNames) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (rootNames != null) {
 		if (!includesRootName(rootNames))
 			return false;
@@ -141,7 +141,7 @@ public boolean insideRoot(char[] rootName) {
 	boolean result = sortedArrayContains(this.rootReferences, rootName, SortedCharArrays.CHAR_ARR_COMPARATOR);
 	if (REFERENCE_COLLECTION_DEBUG) {
 		if (result != debugIncludes(rootName)) {
-			String message = "Mismatch: " + String.valueOf(rootName) + (result ? " should not " : " should ") + " be included in "  //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+			String message = "Mismatch: " + String.valueOf(rootName) + (result ? " should not " : " should ") + " be included in "  //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ Arrays.asList(CharOperation.toStrings(this.rootReferences));
 			throw new IllegalStateException(message);
 		}
@@ -152,7 +152,7 @@ public boolean insideRoot(char[] rootName) {
 private static <T> boolean sortedArrayContains(T[] array, T element, Comparator<? super T> comparator) {
 	int l = array.length;
 	if (l < SortedCharArrays.BINARY_SEARCH_THRESHOLD) {
-		for (int i = 0; i < l; i++)
+		for (int i = 0; i < l; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (element == array[i]) return true;
 		return false;
 	}
@@ -168,7 +168,7 @@ private boolean includesQualifiedName(char[][][] qualifiedNames) {
 		return true;
 	}
 	char[][] maybeSimpleName;
-	for(int i = qualifiedNames.length - 1; i >= 0 && (maybeSimpleName = qualifiedNames[i]).length == 1; i--) {
+	for(int i = qualifiedNames.length - 1; i >= 0 && (maybeSimpleName = qualifiedNames[i]).length == 1; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (includes(maybeSimpleName[0])) {
 			return true;
 		}
@@ -180,14 +180,14 @@ private boolean includesRootName(char[][] rootNames) {
 	return intersects(rootNames, this.rootReferences, SortedCharArrays.CHAR_ARR_COMPARATOR);
 }
 
-private static <T> boolean intersects(T[] firstSortedArr, T[] secondSortedArr, Comparator<? super T> comparator) {
+private static <T> boolean intersects(T[] firstSortedArr, T[] secondSortedArr, Comparator<? super T> comparator) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	/*
 	 * Both arrays are sorted, so we can walk them in pairs.
 	 * Using binary search for the remaining array elements to figure the next
 	 * interesting index can greatly reduce the runtime cost for arrays that do
 	 * have more than a few elements.
 	 */
-	for(int i = 0, l = firstSortedArr.length, j = 0, k = secondSortedArr.length; i < l && j < k;) {
+	for(int i = 0, l = firstSortedArr.length, j = 0, k = secondSortedArr.length; i < l && j < k;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		T firstElement = firstSortedArr[i];
 		T secondElement = secondSortedArr[j];
 		int compare = comparator.compare(firstElement, secondElement);
@@ -237,7 +237,7 @@ private static char[][] ensureContainedInSortedOrder(char[][] sortedArray, char[
 }
 
 private static boolean isWellKnownQualifiedName(char[][] qualifiedName) {
-	for (int i = 0, m = WellKnownQualifiedNames.length, qLength = qualifiedName.length; i < m; i++) {
+	for (int i = 0, m = WellKnownQualifiedNames.length, qLength = qualifiedName.length; i < m; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		char[][] wellKnownName = WellKnownQualifiedNames[i];
 		if (qLength > wellKnownName.length)
 			break; // all remaining well known names are shorter
@@ -280,9 +280,9 @@ static QualifiedNameSet[] InternedQualifiedNames = new QualifiedNameSet[MaxQuali
 static final int MaxSimpleNames = 30;
 static NameSet[] InternedSimpleNames = new NameSet[MaxSimpleNames];
 static {
-	for (int i = 0; i < MaxQualifiedNames; i++)
+	for (int i = 0; i < MaxQualifiedNames; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		InternedQualifiedNames[i] = new QualifiedNameSet(37);
-	for (int i = 0; i < MaxSimpleNames; i++)
+	for (int i = 0; i < MaxSimpleNames; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		InternedSimpleNames[i] = new NameSet(37);
 }
 
@@ -293,7 +293,7 @@ public static char[][][] internQualifiedNames(Set<String> qualifiedStrings) {
 	if (length == 0) return EmptyQualifiedNames;
 
 	char[][][] result = new char[length][][];
-	for (String qualifiedString : qualifiedStrings)
+	for (String qualifiedString : qualifiedStrings) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (qualifiedString != null)
 			result[--length] = CharOperation.splitOn('/', qualifiedString.toCharArray());
 	return internQualifiedNames(result, false);
@@ -307,7 +307,7 @@ public static char[][][] internQualifiedNames(StringSet qualifiedStrings) {
 
 	char[][][] result = new char[length][][];
 	String[] strings = qualifiedStrings.values;
-	for (String string : strings)
+	for (String string : strings) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (string != null)
 			result[--length] = CharOperation.splitOn('/', string.toCharArray());
 	return internQualifiedNames(result, false);
@@ -335,7 +335,7 @@ public static char[][][] internQualifiedNames(char[][][] qualifiedNames, boolean
 	return internQualifiedNames(qualifiedNames, keepWellKnown, true);
 }
 
-static char[][][] internQualifiedNames(char[][][] qualifiedNames, boolean keepWellKnown, boolean doSort) {
+static char[][][] internQualifiedNames(char[][][] qualifiedNames, boolean keepWellKnown, boolean doSort) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (qualifiedNames == null) return EmptyQualifiedNames;
 	int length = qualifiedNames.length;
 	if (length == 0) return EmptyQualifiedNames;
@@ -345,10 +345,10 @@ static char[][][] internQualifiedNames(char[][][] qualifiedNames, boolean keepWe
 	boolean isSorted = true;
 	int index = 0;
 
-	next : for (int i = 0; i < length; i++) {
+	next : for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		char[][] qualifiedName = qualifiedNames[i];
 		int qLength = qualifiedName.length;
-		for (char[][] wellKnownName : WellKnownQualifiedNames) {
+		for (char[][] wellKnownName : WellKnownQualifiedNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (qLength > wellKnownName.length)
 				break; // all remaining well known names are shorter
 			if (CharOperation.equals(qualifiedName, wellKnownName)) {
@@ -404,7 +404,7 @@ public static char[][] internSimpleNames(Set<String> simpleStrings, boolean remo
 	if (length == 0) return EmptySimpleNames;
 
 	char[][] result = new char[length][];
-	for (String simpleString : simpleStrings)
+	for (String simpleString : simpleStrings) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (simpleString != null)
 			result[--length] = simpleString.toCharArray();
 	return internSimpleNames(result, removeWellKnown);
@@ -418,7 +418,7 @@ public static char[][] internSimpleNames(StringSet simpleStrings, boolean remove
 
 	char[][] result = new char[length][];
 	String[] strings = simpleStrings.values;
-	for (String string : strings)
+	for (String string : strings) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (string != null)
 			result[--length] = string.toCharArray();
 	return internSimpleNames(result, removeWellKnown);
@@ -437,7 +437,7 @@ public static char[][] internSimpleNames(StringSet simpleStrings, boolean remove
 public static char[][] internSimpleNames(char[][] simpleNames, boolean removeWellKnown) {
 	return internSimpleNames(simpleNames, removeWellKnown, true);
 }
-static char[][] internSimpleNames(char[][] simpleNames, boolean removeWellKnown, boolean doSort) {
+static char[][] internSimpleNames(char[][] simpleNames, boolean removeWellKnown, boolean doSort) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (simpleNames == null) return EmptySimpleNames;
 	int length = simpleNames.length;
 	if (length == 0) return EmptySimpleNames;
@@ -446,10 +446,10 @@ static char[][] internSimpleNames(char[][] simpleNames, boolean removeWellKnown,
 	char[] prev = null;
 	boolean isSorted = true;
 	int index = 0;
-	next : for (int i = 0; i < length; i++) {
+	next : for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		char[] name = simpleNames[i];
 		int sLength = name.length;
-		for (char[] wellKnownName : WellKnownSimpleNames) {
+		for (char[] wellKnownName : WellKnownSimpleNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (sLength > wellKnownName.length)
 				break; // all remaining well known names are shorter
 			if (CharOperation.equals(name, wellKnownName)) {
@@ -495,7 +495,7 @@ public static boolean REFERENCE_COLLECTION_DEBUG = false;
 
 private void assertIncludes(boolean expectation, char[] simpleName) {
 	if (expectation != debugIncludes(simpleName)) {
-		String message = "Mismatch: " + String.valueOf(simpleName) + (expectation ? " should not " : " should ") + " be included in "  //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+		String message = "Mismatch: " + String.valueOf(simpleName) + (expectation ? " should not " : " should ") + " be included in "  //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ Arrays.asList(CharOperation.toStrings(this.simpleNameReferences));
 		throw new IllegalStateException(message);
 	}
@@ -503,7 +503,7 @@ private void assertIncludes(boolean expectation, char[] simpleName) {
 
 private void assertIncludes(boolean expectation, char[][] qualifiedName) {
 	if (expectation != debugIncludes(qualifiedName)) {
-		String message = "Mismatch: " + CharOperation.toString(qualifiedName) + (expectation ? " should not " : " should ") + " be included in "  //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+		String message = "Mismatch: " + CharOperation.toString(qualifiedName) + (expectation ? " should not " : " should ") + " be included in "  //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ qualifiedNamesToString(this.qualifiedNameReferences);
 		throw new IllegalStateException(message);
 	}
@@ -511,7 +511,7 @@ private void assertIncludes(boolean expectation, char[][] qualifiedName) {
 
 private void assertIncludes(boolean expectation, char[][][] qualifiedNames, char[][] simpleNames, char[][] rootNames) {
 	if (expectation != debugIncludes(qualifiedNames, simpleNames, rootNames)) {
-		String message = String.format("Mismatched includes(..): ReferenceCollection([%s], %s, %s).includes([%s], %s, %s)", //$NON-NLS-1$
+		String message = String.format("Mismatched includes(..): ReferenceCollection([%s], %s, %s).includes([%s], %s, %s)", //$NON-NLS-1$ //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
 				qualifiedNamesToString(this.qualifiedNameReferences),
 				Arrays.toString(CharOperation.toStrings(this.simpleNameReferences)),
 				Arrays.toString(CharOperation.toStrings(this.rootReferences)),
@@ -523,11 +523,11 @@ private void assertIncludes(boolean expectation, char[][][] qualifiedNames, char
 	}
 }
 
-private boolean debugIncludes(char[][][] qualifiedNames, char[][] simpleNames, char[][] rootNames) {
+private boolean debugIncludes(char[][][] qualifiedNames, char[][] simpleNames, char[][] rootNames) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// if either collection of names is null, it means it contained a well known name so we know it already has a match
 	if (rootNames != null) {
 		boolean foundRoot = false;
-		for (int i = 0, l = rootNames.length; !foundRoot && i < l; i++)
+		for (int i = 0, l = rootNames.length; !foundRoot && i < l; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			foundRoot = debugInsideRoot(rootNames[i]);
 		if (!foundRoot)
 			return false;
@@ -538,18 +538,18 @@ private boolean debugIncludes(char[][][] qualifiedNames, char[][] simpleNames, c
 				System.out.println("Found well known match"); //$NON-NLS-1$
 			return true;
 		} else if (qualifiedNames == null) {
-			for (char[] simpleName : simpleNames) {
+			for (char[] simpleName : simpleNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (debugIncludes(simpleName)) {
 					if (JavaBuilder.DEBUG)
-						System.out.println("Found match in well known package to " + new String(simpleName)); //$NON-NLS-1$
+						System.out.println("Found match in well known package to " + new String(simpleName)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					return true;
 				}
 			}
 		} else {
-			for (char[][] qualifiedName : qualifiedNames) {
+			for (char[][] qualifiedName : qualifiedNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (qualifiedName.length == 1 ? debugIncludes(qualifiedName[0]) : debugIncludes(qualifiedName)) {
 					if (JavaBuilder.DEBUG)
-						System.out.println("Found well known match in " + CharOperation.toString(qualifiedName)); //$NON-NLS-1$
+						System.out.println("Found well known match in " + CharOperation.toString(qualifiedName)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					return true;
 				}
 			}
@@ -560,13 +560,13 @@ private boolean debugIncludes(char[][][] qualifiedNames, char[][] simpleNames, c
 	int sLength = simpleNames.length;
 	int qLength = qualifiedNames.length;
 	if (sLength <= qLength) {
-		for (int i = 0; i < sLength; i++) {
+		for (int i = 0; i < sLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (debugIncludes(simpleNames[i])) {
-				for (int j = 0; j < qLength; j++) {
+				for (int j = 0; j < qLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					char[][] qualifiedName = qualifiedNames[j];
 					if (qualifiedName.length == 1 ? debugIncludes(qualifiedName[0]) : debugIncludes(qualifiedName)) {
 						if (JavaBuilder.DEBUG)
-							System.out.println("Found match in " + CharOperation.toString(qualifiedName) //$NON-NLS-1$
+							System.out.println("Found match in " + CharOperation.toString(qualifiedName) //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								+ " to " + new String(simpleNames[i])); //$NON-NLS-1$
 						return true;
 					}
@@ -575,13 +575,13 @@ private boolean debugIncludes(char[][][] qualifiedNames, char[][] simpleNames, c
 			}
 		}
 	} else {
-		for (int i = 0; i < qLength; i++) {
+		for (int i = 0; i < qLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[][] qualifiedName = qualifiedNames[i];
 			if (qualifiedName.length == 1 ? debugIncludes(qualifiedName[0]) : debugIncludes(qualifiedName)) {
-				for (int j = 0; j < sLength; j++) {
+				for (int j = 0; j < sLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (debugIncludes(simpleNames[j])) {
 						if (JavaBuilder.DEBUG)
-							System.out.println("Found match in " + CharOperation.toString(qualifiedName) //$NON-NLS-1$
+							System.out.println("Found match in " + CharOperation.toString(qualifiedName) //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								+ " to " + new String(simpleNames[j])); //$NON-NLS-1$
 						return true;
 					}
@@ -594,19 +594,19 @@ private boolean debugIncludes(char[][][] qualifiedNames, char[][] simpleNames, c
 }
 
 private boolean debugInsideRoot(char[] rootName) {
-	for (char[] name : this.rootReferences)
+	for (char[] name : this.rootReferences) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (rootName == name) return true;
 	return false;
 }
 
 private boolean debugIncludes(char[] simpleName) {
-	for (char[] name : this.simpleNameReferences)
+	for (char[] name : this.simpleNameReferences) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (simpleName == name) return true;
 	return false;
 }
 
 private boolean debugIncludes(char[][] qualifiedName) {
-	for (char[][] name : this.qualifiedNameReferences)
+	for (char[][] name : this.qualifiedNameReferences) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (qualifiedName == name) return true;
 	return false;
 }

@@ -40,7 +40,7 @@ protected Member(JavaElement parent) {
 protected Member(JavaElement parent, int occurrenceCount) {
 	super(parent, occurrenceCount);
 }
-protected static boolean areSimilarMethods(
+protected static boolean areSimilarMethods( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String name1, String[] params1,
 	String name2, String[] params2,
 	String[] simpleNames1) {
@@ -48,7 +48,7 @@ protected static boolean areSimilarMethods(
 	if (name1.equals(name2)) {
 		int params1Length = params1.length;
 		if (params1Length == params2.length) {
-			for (int i = 0; i < params1Length; i++) {
+			for (int i = 0; i < params1Length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String typeErasureParam1Signature = Signature.getTypeErasure(params1[i]);
 				String typeErasureParam2Signature = Signature.getTypeErasure(params2[i]);
 				String simpleName1 =
@@ -70,7 +70,7 @@ protected static boolean areSimilarMethods(
 				// * Outer.Inner.Innest (if Outer is is imported)
 				// * Inner.Innest (if Inner is imported)
 				// so we compare the suffix
-				if (!(param1Qualifier.endsWith('.' + param2Qualifier) || param2Qualifier.endsWith('.' + param1Qualifier))) {
+				if (!(param1Qualifier.endsWith('.' + param2Qualifier) || param2Qualifier.endsWith('.' + param1Qualifier))) { //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					return false;
 				}
 			}
@@ -84,7 +84,7 @@ protected static boolean areSimilarMethods(
  * Converts a field constant from the compiler's representation
  * to the Java Model constant representation (Number or String).
  */
-protected static Object convertConstant(Constant constant) {
+protected static Object convertConstant(Constant constant) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (constant == null)
 		return null;
 	if (constant == Constant.NotAConstant) {
@@ -116,17 +116,17 @@ protected static Object convertConstant(Constant constant) {
 /*
  * Helper method for SourceType.findMethods and BinaryType.findMethods
  */
-public static IMethod[] findMethods(IMethod method, IMethod[] methods) {
+public static IMethod[] findMethods(IMethod method, IMethod[] methods) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String elementName = method.getElementName();
 	String[] parameters = method.getParameterTypes();
 	int paramLength = parameters.length;
 	String[] simpleNames = new String[paramLength];
-	for (int i = 0; i < paramLength; i++) {
+	for (int i = 0; i < paramLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String erasure = Signature.getTypeErasure(parameters[i]);
 		simpleNames[i] = Signature.getSimpleName(Signature.toString(erasure));
 	}
-	ArrayList list = new ArrayList();
-	for (IMethod existingMethod : methods) {
+	ArrayList list = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	for (IMethod existingMethod : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (areSimilarMethods(
 				elementName,
 				parameters,
@@ -166,7 +166,7 @@ public String[] getCategories() throws JavaModelException {
 @Override
 public IClassFile getClassFile() {
 	JavaElement element = getParent();
-	while (element instanceof Member) {
+	while (element instanceof Member) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		element= element.getParent();
 	}
 	if (element instanceof IClassFile) {
@@ -196,7 +196,7 @@ public int getFlags() throws JavaModelException {
 /*
  * @see JavaElement
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public IJavaElement getHandleFromMemento(String token, MementoTokenizer memento, WorkingCopyOwner workingCopyOwner) {
 	switch (token.charAt(0)) {
 		case JEM_COUNT:
@@ -295,10 +295,10 @@ protected char getHandleMementoDelimiter() {
  * method/field/initializarer member; thus, returns null if this member is already a top-level type or member type.
  * e.g for X.java/X/Y/foo()/Z/bar()/T, it will return X.java/X/Y/foo()
  */
-public Member getOuterMostLocalContext() {
+public Member getOuterMostLocalContext() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaElement current = this;
 	Member lastLocalContext = null;
-	parentLoop: while (true) {
+	parentLoop: while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		switch (current.getElementType()) {
 			case CLASS_FILE:
 			case COMPILATION_UNIT:
@@ -317,7 +317,7 @@ public Member getOuterMostLocalContext() {
 	}
 	return lastLocalContext;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public ISourceRange getJavadocRange() throws JavaModelException {
 	ISourceRange range= getSourceRange();
 	if (range == null) return null;
@@ -349,7 +349,7 @@ public ISourceRange getJavadocRange() throws JavaModelException {
 			int docEnd= -1;
 
 			int terminal= scanner.getNextToken();
-			loop: while (true) {
+			loop: while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				switch(terminal) {
 					case ITerminalSymbols.TokenNameCOMMENT_MARKDOWN :
 					case ITerminalSymbols.TokenNameCOMMENT_JAVADOC :
@@ -389,7 +389,7 @@ public ISourceRange getNameRange() throws JavaModelException {
 @Override
 public SourceType getType(String typeName, int count) {
 	if (isBinary()) {
-		throw new IllegalArgumentException("Not a source member " + toStringWithAncestors()); //$NON-NLS-1$
+		throw new IllegalArgumentException("Not a source member " + toStringWithAncestors()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} else {
 		return new SourceType(this, typeName, count);
 	}
@@ -400,7 +400,7 @@ public SourceType getType(String typeName, int count) {
 @Override
 public ITypeRoot getTypeRoot() {
 	IJavaElement element = getParent();
-	while (element instanceof IMember) {
+	while (element instanceof IMember) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		element= element.getParent();
 	}
 	return (ITypeRoot) element;
@@ -428,7 +428,7 @@ protected boolean isMainMethod(IMethod method) throws JavaModelException {
 	return false;
 }
 
-protected boolean isMainMethodCandidate(IMethod method) throws JavaModelException {
+protected boolean isMainMethodCandidate(IMethod method) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = method.getJavaProject().getOptions(true);
 	if (JavaFeature.COMPACT_SOURCE_AND_INSTANCE_MAIN_METHODS.isSupported(
 				options.get(JavaCore.COMPILER_CODEGEN_TARGET_PLATFORM),
@@ -468,9 +468,9 @@ public String readableName() {
 	IJavaElement declaringType = getDeclaringType();
 	if (declaringType != null) {
 		String declaringName = ((JavaElement) getDeclaringType()).readableName();
-		StringBuilder buffer = new StringBuilder(declaringName);
-		buffer.append('.');
-		buffer.append(getElementName());
+		StringBuilder buffer = new StringBuilder(declaringName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return buffer.toString();
 	} else {
 		return super.readableName();

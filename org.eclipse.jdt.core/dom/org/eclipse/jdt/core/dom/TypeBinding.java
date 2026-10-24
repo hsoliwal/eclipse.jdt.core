@@ -90,7 +90,7 @@ class TypeBinding implements ITypeBinding {
 		return this.resolver.resolveArrayType(this, dimension);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public IAnnotationBinding[] getAnnotations() {
 		if (this.prototype != null) {
 			return this.prototype.getAnnotations();
@@ -109,12 +109,12 @@ class TypeBinding implements ITypeBinding {
 		}
 		return this.annotations = AnnotationBinding.NoAnnotations;
 	}
-	private IAnnotationBinding[] resolveAnnotationBindings(org.eclipse.jdt.internal.compiler.lookup.AnnotationBinding[] internalAnnotations, boolean isTypeUse) {
+	private IAnnotationBinding[] resolveAnnotationBindings(org.eclipse.jdt.internal.compiler.lookup.AnnotationBinding[] internalAnnotations, boolean isTypeUse) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int length = internalAnnotations == null ? 0 : internalAnnotations.length;
 		if (length != 0) {
 			IAnnotationBinding[] tempAnnotations = new IAnnotationBinding[length];
 			int convertedAnnotationCount = 0;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				org.eclipse.jdt.internal.compiler.lookup.AnnotationBinding internalAnnotation = internalAnnotations[i];
 				if (isTypeUse && internalAnnotation == null) {
 					break;
@@ -136,20 +136,20 @@ class TypeBinding implements ITypeBinding {
 		return AnnotationBinding.NoAnnotations;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public String getBinaryName() {
 		if (this.binding.isCapture()) {
 			return null; // no binary name for capture binding
 		} else if (this.binding.isTypeVariable()) {
 			TypeVariableBinding typeVariableBinding = (TypeVariableBinding) this.binding;
 			org.eclipse.jdt.internal.compiler.lookup.Binding declaring = typeVariableBinding.declaringElement;
-			StringBuilder binaryName = new StringBuilder();
+			StringBuilder binaryName = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			switch(declaring.kind()) {
 				case org.eclipse.jdt.internal.compiler.lookup.Binding.METHOD :
 					MethodBinding methodBinding = (MethodBinding) declaring;
 					char[] constantPoolName = methodBinding.declaringClass.constantPoolName();
 					if (constantPoolName == null) return null;
-					binaryName
+					binaryName //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						.append(CharOperation.replaceOnCopy(constantPoolName, '/', '.'))
 						.append('$')
 						.append(methodBinding.signature())
@@ -160,7 +160,7 @@ class TypeBinding implements ITypeBinding {
 					org.eclipse.jdt.internal.compiler.lookup.TypeBinding typeBinding = (org.eclipse.jdt.internal.compiler.lookup.TypeBinding) declaring;
 					constantPoolName = typeBinding.constantPoolName();
 					if (constantPoolName == null) return null;
-					binaryName
+					binaryName //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						.append(CharOperation.replaceOnCopy(constantPoolName, '/', '.'))
 						.append('$')
 						.append(typeVariableBinding.sourceName);
@@ -221,7 +221,7 @@ class TypeBinding implements ITypeBinding {
 		return this.resolver.getTypeBinding(arrayBinding.elementsType());
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public synchronized IVariableBinding[] getDeclaredFields() {
 		if (this.prototype != null) {
 			return this.prototype.getDeclaredFields();
@@ -237,7 +237,7 @@ class TypeBinding implements ITypeBinding {
 				if (length != 0) {
 					int convertedFieldCount = 0;
 					IVariableBinding[] newFields = new IVariableBinding[length];
-					for (int i = 0; i < length; i++) {
+					for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						FieldBinding fieldBinding = fieldBindings[i];
 						IVariableBinding variableBinding = this.resolver.getVariableBinding(fieldBinding);
 						if (variableBinding != null) {
@@ -265,7 +265,7 @@ class TypeBinding implements ITypeBinding {
 		return this.fields = NO_VARIABLE_BINDINGS;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public synchronized IMethodBinding[] getDeclaredMethods() {
 		if (this.prototype != null) {
 			return this.prototype.getDeclaredMethods();
@@ -281,7 +281,7 @@ class TypeBinding implements ITypeBinding {
 				if (length != 0) {
 					int convertedMethodCount = 0;
 					IMethodBinding[] newMethods = new IMethodBinding[length];
-					for (int i = 0; i < length; i++) {
+					for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						org.eclipse.jdt.internal.compiler.lookup.MethodBinding methodBinding = internalMethods[i];
 						if (methodBinding.isDefaultAbstract() || methodBinding.isSynthetic() || (methodBinding.isConstructor() && isInterface())) {
 							continue;
@@ -320,7 +320,7 @@ class TypeBinding implements ITypeBinding {
 		return getModifiers();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public synchronized ITypeBinding[] getDeclaredTypes() { // should not deflect to prototype.
 		if (this.members != null) {
 			return this.members;
@@ -332,7 +332,7 @@ class TypeBinding implements ITypeBinding {
 				int length = internalMembers.length;
 				if (length != 0) {
 					ITypeBinding[] newMembers = new ITypeBinding[length];
-					for (int i = 0; i < length; i++) {
+					for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ITypeBinding typeBinding = this.resolver.getTypeBinding(internalMembers[i]);
 						if (typeBinding == null) {
 							return this.members = NO_TYPE_BINDINGS;
@@ -353,7 +353,7 @@ class TypeBinding implements ITypeBinding {
 		return this.members = NO_TYPE_BINDINGS;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public synchronized IMethodBinding getDeclaringMethod() {
 		if (this.binding instanceof org.eclipse.jdt.internal.compiler.lookup.LocalTypeBinding) {
 			org.eclipse.jdt.internal.compiler.lookup.LocalTypeBinding localTypeBinding = (org.eclipse.jdt.internal.compiler.lookup.LocalTypeBinding) this.binding;
@@ -389,7 +389,7 @@ class TypeBinding implements ITypeBinding {
 		return null;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public synchronized ITypeBinding getDeclaringClass() {
 		if (isClass() || isInterface() || isEnum()) {
 			ReferenceBinding referenceBinding = (ReferenceBinding) this.binding;
@@ -477,7 +477,7 @@ class TypeBinding implements ITypeBinding {
 		return this.resolver.getMethodBinding(sam);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public synchronized ITypeBinding[] getInterfaces() {
 		if (this.prototype != null) {
 			return this.prototype.getInterfaces();
@@ -508,7 +508,7 @@ class TypeBinding implements ITypeBinding {
 		if (length != 0) {
 			ITypeBinding[] newInterfaces = new ITypeBinding[length];
 			int interfacesCounter = 0;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ITypeBinding typeBinding = this.resolver.getTypeBinding(internalInterfaces[i]);
 				if (typeBinding == null) {
 					continue;
@@ -528,7 +528,7 @@ class TypeBinding implements ITypeBinding {
 		ReferenceBinding[] intersectingTypes = this.binding.getIntersectingTypes();
 		int l = intersectingTypes.length;
 		intersectionBindings = new ITypeBinding[l];
-		for (int i = 0; i < l; ++i) {
+		for (int i = 0; i < l; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			intersectionBindings[i] = this.resolver.getTypeBinding(intersectingTypes[i]);
 		}
 		return intersectionBindings;
@@ -545,7 +545,7 @@ class TypeBinding implements ITypeBinding {
 				final IJavaElement javaElement = packageBinding.getJavaElement();
 				if (javaElement != null && javaElement.getElementType() == IJavaElement.PACKAGE_FRAGMENT) {
 					// best effort: we don't know if the recovered binding is a binary or source binding, so go with a simple source type
-					return ((PackageFragment) javaElement).getCompilationUnit(new String(this.binding.sourceName()) + SuffixConstants.SUFFIX_STRING_java).getType(this.getName());
+					return ((PackageFragment) javaElement).getCompilationUnit(new String(this.binding.sourceName()) + SuffixConstants.SUFFIX_STRING_java).getType(this.getName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 			return null;
@@ -584,7 +584,7 @@ class TypeBinding implements ITypeBinding {
 		return IBinding.TYPE;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public int getModifiers() {
 		if (isClass()) {
 			ReferenceBinding referenceBinding = (ReferenceBinding) this.binding;
@@ -628,7 +628,7 @@ class TypeBinding implements ITypeBinding {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public String getName() {
 		StringBuilder buffer;
 		switch (this.binding.kind()) {
@@ -636,17 +636,17 @@ class TypeBinding implements ITypeBinding {
 			case Binding.WILDCARD_TYPE :
 			case Binding.INTERSECTION_TYPE:
 				WildcardBinding wildcardBinding = (WildcardBinding) this.binding;
-				buffer = new StringBuilder();
-				buffer.append(TypeConstants.WILDCARD_NAME);
+				buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				buffer.append(TypeConstants.WILDCARD_NAME); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (wildcardBinding.bound != null) {
 					switch(wildcardBinding.boundKind) {
 				        case Wildcard.SUPER :
-				        	buffer.append(TypeConstants.WILDCARD_SUPER);
+				        	buffer.append(TypeConstants.WILDCARD_SUPER); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				            break;
 				        case Wildcard.EXTENDS :
-				        	buffer.append(TypeConstants.WILDCARD_EXTENDS);
+				        	buffer.append(TypeConstants.WILDCARD_EXTENDS); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
-					buffer.append(getBound().getName());
+					buffer.append(getBound().getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				return String.valueOf(buffer);
 
@@ -659,19 +659,19 @@ class TypeBinding implements ITypeBinding {
 
 			case Binding.PARAMETERIZED_TYPE :
 				ParameterizedTypeBinding parameterizedTypeBinding = (ParameterizedTypeBinding) this.binding;
-				buffer = new StringBuilder();
-				buffer.append(parameterizedTypeBinding.sourceName());
+				buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				buffer.append(parameterizedTypeBinding.sourceName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				ITypeBinding[] tArguments = getTypeArguments();
 				final int typeArgumentsLength = tArguments.length;
 				if (typeArgumentsLength != 0) {
-					buffer.append('<');
-					for (int i = 0; i < typeArgumentsLength; i++) {
+					buffer.append('<'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					for (int i = 0; i < typeArgumentsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (i > 0) {
-							buffer.append(',');
+							buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
-						buffer.append(tArguments[i].getName());
+						buffer.append(tArguments[i].getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
-					buffer.append('>');
+					buffer.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				return String.valueOf(buffer);
 
@@ -685,12 +685,12 @@ class TypeBinding implements ITypeBinding {
 				}
 				int dimensions = getDimensions();
 				char[] brackets = new char[dimensions * 2];
-				for (int i = dimensions * 2 - 1; i >= 0; i -= 2) {
+				for (int i = dimensions * 2 - 1; i >= 0; i -= 2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					brackets[i] = ']';
 					brackets[i - 1] = '[';
 				}
-				buffer = new StringBuilder(elementType.getName());
-				buffer.append(brackets);
+				buffer = new StringBuilder(elementType.getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				buffer.append(brackets); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				return String.valueOf(buffer);
 
 			case Binding.INTERSECTION_TYPE18 :
@@ -727,7 +727,7 @@ class TypeBinding implements ITypeBinding {
 	/**
 	 * @see org.eclipse.jdt.core.dom.ITypeBinding#getQualifiedName()
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public String getQualifiedName() {
 		StringBuilder buffer;
 		switch (this.binding.kind()) {
@@ -735,18 +735,18 @@ class TypeBinding implements ITypeBinding {
 			case Binding.WILDCARD_TYPE :
 			case Binding.INTERSECTION_TYPE:
 				WildcardBinding wildcardBinding = (WildcardBinding) this.binding;
-				buffer = new StringBuilder();
-				buffer.append(TypeConstants.WILDCARD_NAME);
+				buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				buffer.append(TypeConstants.WILDCARD_NAME); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				final ITypeBinding bound = getBound();
 				if (bound != null) {
 					switch(wildcardBinding.boundKind) {
 						case Wildcard.SUPER :
-							buffer.append(TypeConstants.WILDCARD_SUPER);
+							buffer.append(TypeConstants.WILDCARD_SUPER); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							break;
 						case Wildcard.EXTENDS :
-							buffer.append(TypeConstants.WILDCARD_EXTENDS);
+							buffer.append(TypeConstants.WILDCARD_EXTENDS); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
-					buffer.append(bound.getQualifiedName());
+					buffer.append(bound.getQualifiedName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				return String.valueOf(buffer);
 
@@ -760,12 +760,12 @@ class TypeBinding implements ITypeBinding {
 				}
 				final int dimensions = getDimensions();
 				char[] brackets = new char[dimensions * 2];
-				for (int i = dimensions * 2 - 1; i >= 0; i -= 2) {
+				for (int i = dimensions * 2 - 1; i >= 0; i -= 2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					brackets[i] = ']';
 					brackets[i - 1] = '[';
 				}
-				buffer = new StringBuilder(elementType.getQualifiedName());
-				buffer.append(brackets);
+				buffer = new StringBuilder(elementType.getQualifiedName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				buffer.append(brackets); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				return String.valueOf(buffer);
 
 			case Binding.TYPE_PARAMETER :
@@ -779,39 +779,39 @@ class TypeBinding implements ITypeBinding {
 				if (this.binding.isLocalType()) {
 					return NO_NAME;
 				}
-				buffer = new StringBuilder();
+				buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 				if (isMember()) {
-					buffer
+					buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						.append(getDeclaringClass().getQualifiedName())
 						.append('.');
 					ParameterizedTypeBinding parameterizedTypeBinding = (ParameterizedTypeBinding) this.binding;
-					buffer.append(parameterizedTypeBinding.sourceName());
+					buffer.append(parameterizedTypeBinding.sourceName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					ITypeBinding[] tArguments = getTypeArguments();
 					final int typeArgumentsLength = tArguments.length;
 					if (typeArgumentsLength != 0) {
-						buffer.append('<');
-						for (int i = 0; i < typeArgumentsLength; i++) {
+						buffer.append('<'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						for (int i = 0; i < typeArgumentsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (i > 0) {
-								buffer.append(',');
+								buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							}
-							buffer.append(tArguments[i].getQualifiedName());
+							buffer.append(tArguments[i].getQualifiedName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
-						buffer.append('>');
+						buffer.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 					return String.valueOf(buffer);
 				}
-				buffer.append(getTypeDeclaration().getQualifiedName());
+				buffer.append(getTypeDeclaration().getQualifiedName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				ITypeBinding[] tArguments = getTypeArguments();
 				final int typeArgumentsLength = tArguments.length;
 				if (typeArgumentsLength != 0) {
-					buffer.append('<');
-					for (int i = 0; i < typeArgumentsLength; i++) {
+					buffer.append('<'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					for (int i = 0; i < typeArgumentsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (i > 0) {
-							buffer.append(',');
+							buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
-						buffer.append(tArguments[i].getQualifiedName());
+						buffer.append(tArguments[i].getQualifiedName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
-					buffer.append('>');
+					buffer.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				return String.valueOf(buffer);
 			default :
@@ -823,24 +823,24 @@ class TypeBinding implements ITypeBinding {
 					return new String(baseTypeBinding.simpleName);
 				}
 				if (isMember()) {
-					buffer = new StringBuilder();
-					buffer
+					buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+					buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						.append(getDeclaringClass().getQualifiedName())
 						.append('.');
-					buffer.append(getName());
+					buffer.append(getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					return String.valueOf(buffer);
 				}
 				PackageBinding packageBinding = this.binding.getPackage();
-				buffer = new StringBuilder();
+				buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 				if (packageBinding != null && packageBinding.compoundName != CharOperation.NO_CHAR_CHAR) {
-					buffer.append(CharOperation.concatWith(packageBinding.compoundName, '.')).append('.');
+					buffer.append(CharOperation.concatWith(packageBinding.compoundName, '.')).append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				buffer.append(getName());
+				buffer.append(getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				return String.valueOf(buffer);
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public synchronized ITypeBinding getSuperclass() {
 		if (this.binding == null)
 			return null;
@@ -873,7 +873,7 @@ class TypeBinding implements ITypeBinding {
 		return this.resolver.getTypeBinding(superclass);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public ITypeBinding[] getTypeArguments() {
 		if (this.prototype != null) {
 			return this.prototype.getTypeArguments();
@@ -886,7 +886,7 @@ class TypeBinding implements ITypeBinding {
 			final org.eclipse.jdt.internal.compiler.lookup.TypeBinding[] arguments = parameterizedTypeBinding.arguments;
 			int argumentsLength = arguments.length;
 			ITypeBinding[] newTypeArguments = new ITypeBinding[argumentsLength];
-			for (int i = 0; i < argumentsLength; i++) {
+			for (int i = 0; i < argumentsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ITypeBinding typeBinding = this.resolver.getTypeBinding(arguments[i]);
 				if (typeBinding == null) {
 					return this.typeArguments = NO_TYPE_BINDINGS;
@@ -898,7 +898,7 @@ class TypeBinding implements ITypeBinding {
 		return this.typeArguments = NO_TYPE_BINDINGS;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public ITypeBinding[] getTypeBounds() {
 		if (this.prototype != null) {
 			return this.prototype.getTypeBounds();
@@ -959,7 +959,7 @@ class TypeBinding implements ITypeBinding {
 					typeBounds[boundsIndex++] = typeBinding;
 				}
 				if (superinterfaces != null) {
-					for (int i = 0; i < superinterfacesLength; i++, boundsIndex++) {
+					for (int i = 0; i < superinterfacesLength; i++, boundsIndex++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ITypeBinding typeBinding = this.resolver.getTypeBinding(superinterfaces[i]);
 						if (typeBinding == null) {
 							return this.bounds = NO_TYPE_BINDINGS;
@@ -973,7 +973,7 @@ class TypeBinding implements ITypeBinding {
 		return this.bounds = NO_TYPE_BINDINGS;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public ITypeBinding[] getTypeParameters() {
 		if (this.prototype != null) {
 			return this.prototype.getTypeParameters();
@@ -990,7 +990,7 @@ class TypeBinding implements ITypeBinding {
 		int typeVariableBindingsLength = typeVariableBindings == null ? 0 : typeVariableBindings.length;
 		if (typeVariableBindingsLength != 0) {
 			ITypeBinding[] newTypeParameters = new ITypeBinding[typeVariableBindingsLength];
-			for (int i = 0; i < typeVariableBindingsLength; i++) {
+			for (int i = 0; i < typeVariableBindingsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ITypeBinding typeBinding = this.resolver.getTypeBinding(typeVariableBindings[i]);
 				if (typeBinding == null) {
 					return this.typeParameters = NO_TYPE_BINDINGS;
@@ -1108,7 +1108,7 @@ class TypeBinding implements ITypeBinding {
 		return this.binding.isRecord();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean isEqualTo(IBinding other) {
 		if (other == this) {
 			// identical binding - equal (key or no key)
@@ -1129,7 +1129,7 @@ class TypeBinding implements ITypeBinding {
 		return BindingComparator.isEqual(this.binding, otherBinding);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean isFromSource() {
 		if (isClass() || isInterface() || isEnum()) {
 			ReferenceBinding referenceBinding = (ReferenceBinding) this.binding;
@@ -1281,7 +1281,7 @@ class TypeBinding implements ITypeBinding {
 		return this.binding.isTypeVariable() && !this.binding.isCapture();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean isUpperbound() {
 		switch (this.binding.kind()) {
 			case Binding.WILDCARD_TYPE :

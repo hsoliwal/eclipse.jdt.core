@@ -18,7 +18,7 @@ public EnumSelectionTest(String testName) {
 	super(testName);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=85379
-public void test0001() {
+public void test0001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		\n" +

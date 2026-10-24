@@ -90,7 +90,7 @@ public abstract class BaseConfigurationBlock {
 
 		public int getSelection(String value) {
 			if (value != null) {
-				for (int i= 0; i < fValues.length; i++) {
+				for (int i= 0; i < fValues.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (value.equals(fValues[i])) {
 						return i;
 					}
@@ -140,7 +140,7 @@ public abstract class BaseConfigurationBlock {
 		}
 
 		public String getStoredValue(IScopeContext[] lookupOrder, boolean ignoreTopScope, IWorkingCopyManager manager) {
-			for (int i= ignoreTopScope ? 1 : 0; i < lookupOrder.length; i++) {
+			for (int i= ignoreTopScope ? 1 : 0; i < lookupOrder.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String value= getStoredValue(lookupOrder[i], manager);
 				if (value != null) {
 					return value;
@@ -162,7 +162,7 @@ public abstract class BaseConfigurationBlock {
 		 */
 		@Override
 		public String toString() {
-			return fQualifier + '/' + fKey;
+			return fQualifier + '/' + fKey; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 	}
@@ -204,7 +204,7 @@ public abstract class BaseConfigurationBlock {
 		return new Key(plugin, name);
 	}
 
-	public BaseConfigurationBlock(IStatusChangeListener context, IProject project, Key[] keys, IWorkbenchPreferenceContainer container) {
+	public BaseConfigurationBlock(IStatusChangeListener context, IProject project, Key[] keys, IWorkbenchPreferenceContainer container) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		fContext= context;
 		fProject= project;
 		fAllKeys= keys;
@@ -238,8 +238,8 @@ public abstract class BaseConfigurationBlock {
 		if (fProject == null || hasProjectSpecificOptionsNoCache(fProject)) {
 			fDisabledProjectSettings= null;
 		} else {
-			fDisabledProjectSettings= new IdentityHashMap<>();
-			for (int i= 0; i < keys.length; i++) {
+			fDisabledProjectSettings= new IdentityHashMap<>(); //FLLDCIM: MARK — M06 M3_IDENTITY_WEAK_LANES NEW
+			for (int i= 0; i < keys.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Key curr= keys[i];
 				fDisabledProjectSettings.put(curr, curr.getStoredValue(fLookupOrder, false, fManager));
 			}
@@ -247,14 +247,14 @@ public abstract class BaseConfigurationBlock {
 
 		settingsUpdated();
 
-		fCheckBoxes= new ArrayList<>();
-		fComboBoxes= new ArrayList<>();
-		fTextBoxes= new ArrayList<>(2);
-		fLabels= new HashMap<>();
-		fExpandedComposites= new ArrayList<>();
+		fCheckBoxes= new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		fComboBoxes= new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		fTextBoxes= new ArrayList<>(2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		fLabels= new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		fExpandedComposites= new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	}
 
-	protected Button addCheckBox(Composite parent, String label, Key key, String[] values, int indent) {
+	protected Button addCheckBox(Composite parent, String label, Key key, String[] values, int indent) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ControlData data= new ControlData(key, values);
 
 		GridData gd= new GridData(GridData.HORIZONTAL_ALIGN_FILL);
@@ -266,7 +266,7 @@ public abstract class BaseConfigurationBlock {
 		checkBox.setText(label);
 		checkBox.setData(data);
 		checkBox.setLayoutData(gd);
-		checkBox.addSelectionListener(getSelectionListener());
+		checkBox.addSelectionListener(getSelectionListener()); //FLLDCIM: MARK — T03 SELECTION_LANE CALL
 
 		makeScrollableCompositeAware(checkBox);
 
@@ -295,7 +295,7 @@ public abstract class BaseConfigurationBlock {
 		return comboBox;
 	}
 
-	protected Combo addInversedComboBox(Composite parent, String label, Key key, String[] values, String[] valueLabels, int indent) {
+	protected Combo addInversedComboBox(Composite parent, String label, Key key, String[] values, String[] valueLabels, int indent) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		GridData gd= new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING);
 		gd.horizontalIndent= indent;
 		gd.horizontalSpan= 3;
@@ -320,7 +320,7 @@ public abstract class BaseConfigurationBlock {
 		return comboBox;
 	}
 
-	protected Text addTextField(Composite parent, String label, Key key, int indent, int widthHint) {
+	protected Text addTextField(Composite parent, String label, Key key, int indent, int widthHint) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Label labelControl= new Label(parent, SWT.WRAP);
 		labelControl.setText(label);
 		labelControl.setFont(JFaceResources.getDialogFont());
@@ -338,7 +338,7 @@ public abstract class BaseConfigurationBlock {
 		if (currValue != null) {
 			textBox.setText(currValue);
 		}
-		textBox.addModifyListener(getTextModifyListener());
+		textBox.addModifyListener(getTextModifyListener()); //FLLDCIM: MARK — T02 TEXT_INPUT_DEBOUNCE CALL
 
 		GridData data= new GridData(GridData.HORIZONTAL_ALIGN_FILL);
 		if (widthHint != 0) {
@@ -461,7 +461,7 @@ public abstract class BaseConfigurationBlock {
 	}
 
 	protected Button getCheckBox(Key key) {
-		for (int i= fCheckBoxes.size() - 1; i >= 0; i--) {
+		for (int i= fCheckBoxes.size() - 1; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Button curr= fCheckBoxes.get(i);
 			ControlData data= (ControlData) curr.getData();
 			if (key.equals(data.getKey())) {
@@ -472,7 +472,7 @@ public abstract class BaseConfigurationBlock {
 	}
 
 	protected Combo getComboBox(Key key) {
-		for (int i= fComboBoxes.size() - 1; i >= 0; i--) {
+		for (int i= fComboBoxes.size() - 1; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Combo curr= fComboBoxes.get(i);
 			ControlData data= (ControlData) curr.getData();
 			if (key.equals(data.getKey())) {
@@ -506,7 +506,7 @@ public abstract class BaseConfigurationBlock {
 
 	protected ExpandableComposite getParentExpandableComposite(Control control) {
 		Control parent= control.getParent();
-		while (!(parent instanceof ExpandableComposite) && parent != null) {
+		while (!(parent instanceof ExpandableComposite) && parent != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			parent= parent.getParent();
 		}
 		if (parent instanceof ExpandableComposite) {
@@ -517,7 +517,7 @@ public abstract class BaseConfigurationBlock {
 
 	protected ScrolledPageContent getParentScrolledComposite(Control control) {
 		Control parent= control.getParent();
-		while (!(parent instanceof ScrolledPageContent) && parent != null) {
+		while (!(parent instanceof ScrolledPageContent) && parent != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			parent= parent.getParent();
 		}
 		if (parent instanceof ScrolledPageContent) {
@@ -556,7 +556,7 @@ public abstract class BaseConfigurationBlock {
 	}
 
 	protected Text getTextControl(Key key) {
-		for (int i= fTextBoxes.size() - 1; i >= 0; i--) {
+		for (int i= fTextBoxes.size() - 1; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Text curr= fTextBoxes.get(i);
 			ControlData data= (ControlData) curr.getData();
 			if (key.equals(data.getKey())) {
@@ -568,7 +568,7 @@ public abstract class BaseConfigurationBlock {
 
 	protected ModifyListener getTextModifyListener() {
 		if (fTextModifyListener == null) {
-			fTextModifyListener= new ModifyListener() {
+			fTextModifyListener= new ModifyListener() { //FLLDCIM: MARK — T02  ANONYMOUS
 				public void modifyText(ModifyEvent e) {
 					textChanged((Text) e.widget);
 				}
@@ -581,7 +581,7 @@ public abstract class BaseConfigurationBlock {
 		StringTokenizer tok= new StringTokenizer(text, separator);
 		int nTokens= tok.countTokens();
 		String[] res= new String[nTokens];
-		for (int i= 0; i < res.length; i++) {
+		for (int i= 0; i < res.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			res[i]= tok.nextToken().trim();
 		}
 		return res;
@@ -605,7 +605,7 @@ public abstract class BaseConfigurationBlock {
 		if (project != null) {
 			IScopeContext projectContext= new ProjectScope(project);
 			Key[] allKeys= fAllKeys;
-			for (int i= 0; i < allKeys.length; i++) {
+			for (int i= 0; i < allKeys.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (allKeys[i].getStoredValue(projectContext, null) != null) {
 					return true;
 				}
@@ -627,7 +627,7 @@ public abstract class BaseConfigurationBlock {
 		Combo comboBox= new Combo(composite, SWT.READ_ONLY);
 		comboBox.setItems(valueLabels);
 		comboBox.setData(data);
-		comboBox.addSelectionListener(getSelectionListener());
+		comboBox.addSelectionListener(getSelectionListener()); //FLLDCIM: MARK — T03 SELECTION_LANE CALL
 		comboBox.setFont(JFaceResources.getDialogFont());
 
 		makeScrollableCompositeAware(comboBox);
@@ -644,7 +644,7 @@ public abstract class BaseConfigurationBlock {
 	}
 
 
-	public void performDefaults() {
+	public void performDefaults() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IScopeContext[] lookupOrder; // not same as fLookupOrder!  Starts one layer deeper.
 		if (fProject != null) {
 			lookupOrder= new IScopeContext[] {
@@ -657,7 +657,7 @@ public abstract class BaseConfigurationBlock {
 			};
 		}
 
-		for (int i= 0; i < fAllKeys.length; i++) {
+		for (int i= 0; i < fAllKeys.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Key curr= fAllKeys[i];
 			String defValue= curr.getStoredValue(lookupOrder, false, null);
 			setValue(curr, defValue);
@@ -676,7 +676,7 @@ public abstract class BaseConfigurationBlock {
 	 * @since 3.1
 	 */
 	public void performRevert() {
-		for (int i= 0; i < fAllKeys.length; i++) {
+		for (int i= 0; i < fAllKeys.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Key curr= fAllKeys[i];
 			String origValue= curr.getStoredValue(fLookupOrder, false, null);
 			setValue(curr, origValue);
@@ -693,7 +693,7 @@ public abstract class BaseConfigurationBlock {
 	 * @param container null when called from performApply().
 	 * @return false to abort exiting the preference pane.
 	 */
-	protected boolean processChanges(IWorkbenchPreferenceContainer container) {
+	protected boolean processChanges(IWorkbenchPreferenceContainer container) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		boolean projectSpecificnessChanged = false;
 		boolean isProjectSpecific= (fProject != null) && fBlockControl.getEnabled();
@@ -762,12 +762,12 @@ public abstract class BaseConfigurationBlock {
 	}
 
 	protected void restoreSectionExpansionStates(IDialogSettings settings) {
-		for (int i= 0; i < fExpandedComposites.size(); i++) {
+		for (int i= 0; i < fExpandedComposites.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ExpandableComposite excomposite= fExpandedComposites.get(i);
 			if (settings == null) {
 				excomposite.setExpanded(i == 0); // only expand the first node by default
 			} else {
-				excomposite.setExpanded(settings.getBoolean(SETTINGS_EXPANDED + String.valueOf(i)));
+				excomposite.setExpanded(settings.getBoolean(SETTINGS_EXPANDED + String.valueOf(i))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
@@ -778,7 +778,7 @@ public abstract class BaseConfigurationBlock {
 			if (!fExpandedComposites.isEmpty()) {
 				ExpandableComposite expandable= getParentExpandableComposite(control);
 				if (expandable != null) {
-					for (int i= 0; i < fExpandedComposites.size(); i++) {
+					for (int i= 0; i < fExpandedComposites.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ExpandableComposite curr= fExpandedComposites.get(i);
 						curr.setExpanded(curr == expandable);
 					}
@@ -790,7 +790,7 @@ public abstract class BaseConfigurationBlock {
 	}
 
 	public void selectOption(String key, String qualifier) {
-		for (int i= 0; i < fAllKeys.length; i++) {
+		for (int i= 0; i < fAllKeys.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Key curr= fAllKeys[i];
 			if (curr.getName().equals(key) && curr.getQualifier().equals(qualifier)) {
 				selectOption(curr);
@@ -817,7 +817,7 @@ public abstract class BaseConfigurationBlock {
 	 */
 	protected boolean settingsChanged(IScopeContext currContext) {
 		boolean needsBuild= false;
-		for (int i= 0; i < fAllKeys.length; i++) {
+		for (int i= 0; i < fAllKeys.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Key key= fAllKeys[i];
 			String oldVal= key.getStoredValue(currContext, null);
 			String val= key.getStoredValue(currContext, fManager);
@@ -849,16 +849,16 @@ public abstract class BaseConfigurationBlock {
 	}
 
 	protected void storeSectionExpansionStates(IDialogSettings settings) {
-		for (int i= 0; i < fExpandedComposites.size(); i++) {
+		for (int i= 0; i < fExpandedComposites.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ExpandableComposite curr= fExpandedComposites.get(i);
-			settings.put(SETTINGS_EXPANDED + String.valueOf(i), curr.isExpanded());
+			settings.put(SETTINGS_EXPANDED + String.valueOf(i), curr.isExpanded()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
 	private void testIfOptionsComplete(Key[] allKeys) {
-		for (int i= 0; i < allKeys.length; i++) {
+		for (int i= 0; i < allKeys.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (allKeys[i].getStoredValue(fLookupOrder, false, fManager) == null) {
-				JavaPlugin.logErrorMessage("preference option missing: " + allKeys[i] + " (" + this.getClass().getName() +')');  //$NON-NLS-1$//$NON-NLS-2$
+				JavaPlugin.logErrorMessage("preference option missing: " + allKeys[i] + " (" + this.getClass().getName() +')');  //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
@@ -886,13 +886,13 @@ public abstract class BaseConfigurationBlock {
 
 	protected void updateControls() {
 		// update the UI
-		for (int i= fCheckBoxes.size() - 1; i >= 0; i--) {
+		for (int i= fCheckBoxes.size() - 1; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			updateCheckBox(fCheckBoxes.get(i));
 		}
-		for (int i= fComboBoxes.size() - 1; i >= 0; i--) {
+		for (int i= fComboBoxes.size() - 1; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			updateCombo(fComboBoxes.get(i));
 		}
-		for (int i= fTextBoxes.size() - 1; i >= 0; i--) {
+		for (int i= fTextBoxes.size() - 1; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			updateText(fTextBoxes.get(i));
 		}
 	}
@@ -908,11 +908,11 @@ public abstract class BaseConfigurationBlock {
 		}
 	}
 
-	public void useProjectSpecificSettings(boolean enable) {
+	public void useProjectSpecificSettings(boolean enable) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		boolean hasProjectSpecificOption= fDisabledProjectSettings == null;
 		if (enable != hasProjectSpecificOption && fProject != null) {
 			if (enable) {
-				for (int i= 0; i < fAllKeys.length; i++) {
+				for (int i= 0; i < fAllKeys.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Key curr= fAllKeys[i];
 					String val= fDisabledProjectSettings.get(curr);
 					curr.setStoredValue(fLookupOrder[0], val, fManager);
@@ -920,8 +920,8 @@ public abstract class BaseConfigurationBlock {
 				fDisabledProjectSettings= null;
 				updateControls();
 			} else {
-				fDisabledProjectSettings= new IdentityHashMap<>();
-				for (int i= 0; i < fAllKeys.length; i++) {
+				fDisabledProjectSettings= new IdentityHashMap<>(); //FLLDCIM: MARK — M06 M3_IDENTITY_WEAK_LANES NEW
+				for (int i= 0; i < fAllKeys.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Key curr= fAllKeys[i];
 					String oldSetting= curr.getStoredValue(fLookupOrder, false, fManager);
 					fDisabledProjectSettings.put(curr, oldSetting);

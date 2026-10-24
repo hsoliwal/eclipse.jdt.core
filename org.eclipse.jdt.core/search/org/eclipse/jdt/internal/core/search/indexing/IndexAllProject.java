@@ -55,7 +55,7 @@ public class IndexAllProject extends IndexRequest {
 	 * and discover resources which have either been changed, added or deleted
 	 * since the index was produced.
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean execute(IProgressMonitor progressMonitor) {
 
 		if (this.isCancelled || progressMonitor != null && progressMonitor.isCanceled()) return true;
@@ -70,14 +70,14 @@ public class IndexAllProject extends IndexRequest {
 			int length = entries.length;
 			IClasspathEntry[] sourceEntries = new IClasspathEntry[length];
 			int sourceEntriesNumber = 0;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IClasspathEntry entry = entries[i];
 				if (entry.getEntryKind() == IClasspathEntry.CPE_SOURCE)
 					sourceEntries[sourceEntriesNumber++] = entry;
 			}
 			if (sourceEntriesNumber == 0) {
 				IPath projectPath = javaProject.getPath();
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IClasspathEntry entry = entries[i];
 					if (entry.getEntryKind() == IClasspathEntry.CPE_LIBRARY && entry.getPath().equals(projectPath)) {
 						// the project is also a library folder (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=89815)
@@ -110,13 +110,13 @@ public class IndexAllProject extends IndexRequest {
 			final String OK = "OK"; //$NON-NLS-1$
 			final String DELETED = "DELETED"; //$NON-NLS-1$
 			if (paths != null) {
-				for (int i = 0; i < max; i++)
+				for (int i = 0; i < max; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					indexedFileNames.put(paths[i], DELETED);
 			}
 			final long indexLastModified = max == 0 ? 0L : index.getIndexLastModified();
 
 			IWorkspaceRoot root = this.project.getWorkspace().getRoot();
-			for (int i = 0; i < sourceEntriesNumber; i++) {
+			for (int i = 0; i < sourceEntriesNumber; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (this.isCancelled) return false;
 
 				IClasspathEntry entry = sourceEntries[i];
@@ -124,11 +124,11 @@ public class IndexAllProject extends IndexRequest {
 				if (sourceFolder != null) {
 
 					// collect output locations if source is project (see http://bugs.eclipse.org/bugs/show_bug.cgi?id=32041)
-					final Set<IPath> outputs = new HashSet<>();
+					final Set<IPath> outputs = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 					if (sourceFolder.getType() == IResource.PROJECT) {
 						// Do not create marker while getting output location (see bug 41859)
 						outputs.add(javaProject.getOutputLocation());
-						for (int j = 0; j < sourceEntriesNumber; j++) {
+						for (int j = 0; j < sourceEntriesNumber; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							IPath output = sourceEntries[j].getOutputLocation();
 							if (output != null) {
 								outputs.add(output);
@@ -141,8 +141,8 @@ public class IndexAllProject extends IndexRequest {
 					final char[][] exclusionPatterns = ((ClasspathEntry) entry).fullExclusionPatternChars();
 					if (max == 0) {
 						sourceFolder.accept(
-							new IResourceProxyVisitor() {
-								@Override
+							new IResourceProxyVisitor() { //FLLDCIM: MARK — T07  ANONYMOUS
+								@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 								public boolean visit(IResourceProxy proxy) {
 									if (IndexAllProject.this.isCancelled) return false;
 									switch(proxy.getType()) {
@@ -178,8 +178,8 @@ public class IndexAllProject extends IndexRequest {
 						);
 					} else {
 						sourceFolder.accept(
-							new IResourceProxyVisitor() {
-								@Override
+							new IResourceProxyVisitor() { //FLLDCIM: MARK — T07  ANONYMOUS
+								@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 								public boolean visit(IResourceProxy proxy) throws CoreException {
 									if (IndexAllProject.this.isCancelled) return false;
 									switch(proxy.getType()) {
@@ -232,7 +232,7 @@ public class IndexAllProject extends IndexRequest {
 			SourceElementParser parser = this.manager.getSourceElementParser(javaProject, null/*requestor will be set by indexer*/);
 			Object[] names = indexedFileNames.keyTable;
 			Object[] values = indexedFileNames.valueTable;
-			for (int i = 0, namesLength = names.length; i < namesLength; i++) {
+			for (int i = 0, namesLength = names.length; i < namesLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String name = (String) names[i];
 				if (name != null) {
 					if (this.isCancelled) return false;
@@ -250,7 +250,7 @@ public class IndexAllProject extends IndexRequest {
 			// index derived source files via their registered search participants
 			names = derivedFileNames.keyTable;
 			values = derivedFileNames.valueTable;
-			for (int i = 0, namesLength = names.length; i < namesLength; i++) {
+			for (int i = 0, namesLength = names.length; i < namesLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String name = (String) names[i];
 				if (name != null) {
 					if (this.isCancelled) return false;
@@ -267,7 +267,7 @@ public class IndexAllProject extends IndexRequest {
 			// request to save index when all cus have been indexed... also sets state to SAVED_STATE
 			this.manager.request(new SaveIndex(this.containerPath, this.manager));
 		} catch (CoreException | IOException e) {
-			Util.log(e, "Failed to index " + this.project + ": " + e.getMessage()); //$NON-NLS-1$ //$NON-NLS-2$
+			Util.log(e, "Failed to index " + this.project + ": " + e.getMessage()); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			this.manager.removeIndex(this.containerPath);
 			return false;
 		} finally {
@@ -286,6 +286,6 @@ public class IndexAllProject extends IndexRequest {
 	}
 	@Override
 	public String toString() {
-		return "indexing project " + this.project.getFullPath(); //$NON-NLS-1$
+		return "indexing project " + this.project.getFullPath(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }

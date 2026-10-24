@@ -92,13 +92,13 @@ public class UtilTests extends AbstractJavaModelTests {
 		assertStringsEqual("Wrong arguments", arguments, result);
 	}
 
-	public void testLogWithStackTrace() {
+	public void testLogWithStackTrace() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		startLogListening();
 		try {
 			Util.log(new JavaModelException(new JavaModelStatus(IJavaModelStatusConstants.ELEMENT_DOES_NOT_EXIST,
 					JavaModelManager.getJavaModelManager().getJavaModel())));
 			List<IStatus> logs = this.logListener.getLogs();
-			while (logs.isEmpty()) {
+			while (logs.isEmpty()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					Thread.sleep(50);
 				} catch (InterruptedException e) {
@@ -168,7 +168,7 @@ public class UtilTests extends AbstractJavaModelTests {
 		String zipfileName = "any";
 		try {
 			String n = Util.getEntryName(zipfileName, new java.util.zip.ZipEntry(entryName));
-			assertFalse("Expected Exception but got " + n, true);
+			assertFalse("Expected Exception but got " + n, true); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} catch (ZipException expected) {
 			// expected
 		}

@@ -27,7 +27,7 @@ public class JavaElementFinder extends BindingKeyParser {
 	private final WorkingCopyOwner owner;
 	public IJavaElement element;
 	public JavaModelException exception;
-	private final ArrayList types = new ArrayList();
+	private final ArrayList types = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 	public JavaElementFinder(String key, JavaProject project, WorkingCopyOwner owner) {
 		super(key);
@@ -65,7 +65,7 @@ public class JavaElementFinder extends BindingKeyParser {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void consumeLocalType(char[] uniqueKey) {
 		if (this.element == null) return;
 		if (this.element instanceof BinaryType) {
@@ -73,7 +73,7 @@ public class JavaElementFinder extends BindingKeyParser {
 			int end = CharOperation.indexOf(';', uniqueKey, lastSlash+1);
 			char[] localName = CharOperation.subarray(uniqueKey, lastSlash+1, end);
 			IPackageFragment pkg = (IPackageFragment) this.element.getAncestor(IJavaElement.PACKAGE_FRAGMENT);
-			this.element = pkg.getClassFile(new String(localName) + SuffixConstants.SUFFIX_STRING_class);
+			this.element = pkg.getClassFile(new String(localName) + SuffixConstants.SUFFIX_STRING_class); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
 			int firstDollar = CharOperation.indexOf('$', uniqueKey);
 			int end = CharOperation.indexOf('$', uniqueKey, firstDollar+1);

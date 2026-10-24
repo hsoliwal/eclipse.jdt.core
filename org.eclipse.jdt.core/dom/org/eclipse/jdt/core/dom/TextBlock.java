@@ -47,7 +47,7 @@ public class TextBlock extends Expression {
 	private static final List PROPERTY_DESCRIPTORS;
 
 	static {
-		List propertyList = new ArrayList(2);
+		List propertyList = new ArrayList(2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(TextBlock.class, propertyList);
 		addProperty(ESCAPED_VALUE_PROPERTY, propertyList);
 		PROPERTY_DESCRIPTORS = reapPropertyList(propertyList);
@@ -169,7 +169,7 @@ public class TextBlock extends Expression {
 	 * @exception IllegalArgumentException if the argument is incorrect
 	 * @since 3.24
 	 */
-	public void setEscapedValue(String token) {
+	public void setEscapedValue(String token) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// update internalSetEscapedValue(String) if this is changed
 		if (token == null) {
 			throw new IllegalArgumentException("Token cannot be null"); //$NON-NLS-1$
@@ -184,10 +184,10 @@ public class TextBlock extends Expression {
 				case TokenNameTextBlock:
 					break;
 				default:
-					throw new IllegalArgumentException("Invalid Text Block : >" + token + "<"); //$NON-NLS-1$//$NON-NLS-2$
+					throw new IllegalArgumentException("Invalid Text Block : >" + token + "<"); //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} catch(InvalidInputException e) {
-			throw new IllegalArgumentException("Invalid Text Block : >" + token + "<");//$NON-NLS-1$//$NON-NLS-2$
+			throw new IllegalArgumentException("Invalid Text Block : >" + token + "<");//$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		preValueChange(ESCAPED_VALUE_PROPERTY);
 		this.escapedValue = token;
@@ -222,7 +222,7 @@ public class TextBlock extends Expression {
 	 * @exception IllegalArgumentException if the literal value cannot be converted
 	 * @since 3.24
 	 */
-	public String getLiteralValue() {
+	public String getLiteralValue() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!this.literalValue.isEmpty()) {
 			return this.literalValue;
 		}
@@ -233,7 +233,7 @@ public class TextBlock extends Expression {
 		}
 
 		int start = -1;
-		loop: for (int i = 3; i < len; i++) {
+		loop: for (int i = 3; i < len; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char c = escaped[i];
 			if (ScannerHelper.isWhitespace(c)) {
 				switch (c) {

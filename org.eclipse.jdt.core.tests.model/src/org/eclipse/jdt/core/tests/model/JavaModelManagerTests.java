@@ -57,20 +57,20 @@ public class JavaModelManagerTests extends AbstractJavaModelTests {
 	public void testBug548456_concurrentElementInfoAccess() throws Exception {
 		int iterations = 20;
 		int numberOfThreads = 10;
-		for (int i = 0; i < iterations; ++i) {
+		for (int i = 0; i < iterations; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			doTestBug548456_concurrentCallBinaryTypeExists(numberOfThreads);
 		}
 	}
 
-	private void doTestBug548456_concurrentCallBinaryTypeExists(int numberOfThreads) throws Exception {
+	private void doTestBug548456_concurrentCallBinaryTypeExists(int numberOfThreads) throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final IJavaProject project = setUpJavaProject(PROJECT_NAME);
 		try {
 			buildProject(project);
 			assertHasNoBuildProblems(project);
 
 			CountDownLatch latch = new CountDownLatch(numberOfThreads);
-			List<CheckIfTypeExists> runnables = new ArrayList<>(numberOfThreads);
-			for (int i = 0; i < numberOfThreads; ++i) {
+			List<CheckIfTypeExists> runnables = new ArrayList<>(numberOfThreads); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			for (int i = 0; i < numberOfThreads; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				CheckIfTypeExists runnable = new CheckIfTypeExists(project, latch);
 				runnables.add(runnable);
 			}
@@ -78,7 +78,7 @@ public class JavaModelManagerTests extends AbstractJavaModelTests {
 			List<Thread> threads = startThreads(runnables);
 
 			boolean interrupted = false;
-			for (Thread thread : threads) {
+			for (Thread thread : threads) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					thread.join();
 				} catch (InterruptedException e) {
@@ -88,7 +88,7 @@ public class JavaModelManagerTests extends AbstractJavaModelTests {
 			}
 			assertFalse("waiting on test threads to finish must not be interrupted", interrupted);
 
-			for (CheckIfTypeExists runnable : runnables) {
+			for (CheckIfTypeExists runnable : runnables) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				assertTrue("expected type for test source to exist, despite concurrent access to JavaModelManager", runnable.typeExists);
 			}
 		} finally {
@@ -97,8 +97,8 @@ public class JavaModelManagerTests extends AbstractJavaModelTests {
 	}
 
 	private static List<Thread> startThreads(List<CheckIfTypeExists> runnables) {
-		List<Thread> threads = new ArrayList<>(runnables.size());
-		for (CheckIfTypeExists runnable : runnables) {
+		List<Thread> threads = new ArrayList<>(runnables.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (CheckIfTypeExists runnable : runnables) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Thread thread = new Thread(runnable);
 			threads.add(thread);
 			thread.start();
@@ -156,14 +156,14 @@ public class JavaModelManagerTests extends AbstractJavaModelTests {
 	private static void assertHasNoBuildProblems(IJavaProject javaProject) throws Exception {
 		IProject project = javaProject.getProject();
 		List<IMarker> modelProblems = getTestProjectErrorMarkers(project);
-		assertTrue("expected no problems when building, but got:" + System.lineSeparator() + toString(modelProblems),
+		assertTrue("expected no problems when building, but got:" + System.lineSeparator() + toString(modelProblems), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				modelProblems.isEmpty());
 	}
 
 	private static List<IMarker> getTestProjectErrorMarkers(IProject project) throws Exception {
 		IMarker[] problemMarkers = project.findMarkers(null, true, IResource.DEPTH_ZERO);
-		List<IMarker> errorMarkers = new ArrayList<>();
-		for (IMarker problemMarker : problemMarkers) {
+		List<IMarker> errorMarkers = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (IMarker problemMarker : problemMarkers) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int severity = problemMarker.getAttribute(IMarker.SEVERITY, IMarker.SEVERITY_INFO);
 			if (severity == IMarker.SEVERITY_ERROR) {
 				errorMarkers.add(problemMarker);
@@ -173,17 +173,17 @@ public class JavaModelManagerTests extends AbstractJavaModelTests {
 	}
 
 	private static String toString(List<IMarker> markers) throws Exception {
-		StringBuilder sb = new StringBuilder();
-		for (IMarker marker : markers) {
-			sb.append("Message: ");
-			sb.append((marker.getAttribute(IMarker.MESSAGE)));
-			sb.append(System.lineSeparator());
-			sb.append("Location: ");
-			sb.append(marker.getAttribute(IMarker.LOCATION));
-			sb.append(System.lineSeparator());
-			sb.append("Line: ");
-			sb.append(marker.getAttribute(IMarker.LINE_NUMBER));
-			sb.append(System.lineSeparator());
+		StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (IMarker marker : markers) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			sb.append("Message: "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			sb.append((marker.getAttribute(IMarker.MESSAGE))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			sb.append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			sb.append("Location: "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			sb.append(marker.getAttribute(IMarker.LOCATION)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			sb.append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			sb.append("Line: "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			sb.append(marker.getAttribute(IMarker.LINE_NUMBER)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			sb.append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		String fatalProblemsAsText = sb.toString();
 		return fatalProblemsAsText;
@@ -214,7 +214,7 @@ public class JavaModelManagerTests extends AbstractJavaModelTests {
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
 			byte[] buf = new byte[1024];
 			int n;
-			while ((n = stream.read(buf)) != -1) {
+			while ((n = stream.read(buf)) != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				out.write(buf, 0, n);
 			}
 			return out.toByteArray();
@@ -226,13 +226,13 @@ public class JavaModelManagerTests extends AbstractJavaModelTests {
 		File file = File.createTempFile("jmm-gzip", ".tmp");
 		try {
 			byte[] content = "HELLO GZIP CONTENT".getBytes(StandardCharsets.UTF_8);
-			try (OutputStream out = new GZIPOutputStream(new FileOutputStream(file))) {
+			try (OutputStream out = new GZIPOutputStream(new FileOutputStream(file))) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				out.write(content);
 			}
 			byte[] read = readAll(invokeCreateInputStream(file));
 			assertEquals("gzip content mismatch", new String(content, StandardCharsets.UTF_8), new String(read, StandardCharsets.UTF_8));
 		} finally {
-			assertTrue("temp file should be deletable (no leaked handle)", file.delete() || !file.exists());
+			assertTrue("temp file should be deletable (no leaked handle)", file.delete() || !file.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 
@@ -241,19 +241,19 @@ public class JavaModelManagerTests extends AbstractJavaModelTests {
 		File file = File.createTempFile("jmm-plain", ".tmp");
 		try {
 			byte[] content = "PLAINDATA-not-gzip".getBytes(StandardCharsets.UTF_8);
-			Files.write(file.toPath(), content);
+			Files.write(file.toPath(), content); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			byte[] read = readAll(invokeCreateInputStream(file));
 			assertEquals("plain content mismatch", new String(content, StandardCharsets.UTF_8), new String(read, StandardCharsets.UTF_8));
 		} finally {
-			assertTrue("temp file should be deletable (no leaked handle)", file.delete() || !file.exists());
+			assertTrue("temp file should be deletable (no leaked handle)", file.delete() || !file.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 
-	public void testCreateInputStream_truncatedGzip_doesNotLeak() throws Exception {
+	public void testCreateInputStream_truncatedGzip_doesNotLeak() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File file = File.createTempFile("jmm-trunc", ".tmp");
 		try {
 			// 0x1f 0x8b = gzip magic, then EOF before the rest of the 10-byte header.
-			Files.write(file.toPath(), new byte[] { (byte) 0x1f, (byte) 0x8b });
+			Files.write(file.toPath(), new byte[] { (byte) 0x1f, (byte) 0x8b }); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			try {
 				InputStream in = invokeCreateInputStream(file);
 				in.close();
@@ -262,10 +262,10 @@ public class JavaModelManagerTests extends AbstractJavaModelTests {
 				// expected: truncated header
 			}
 			// Best-effort FD-leak check: on Windows a leaked handle would prevent deletion.
-			assertTrue("truncated file must be deletable -> underlying stream was closed (no FD leak)", file.delete());
+			assertTrue("truncated file must be deletable -> underlying stream was closed (no FD leak)", file.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		} finally {
-			if (file.exists()) {
-				file.delete();
+			if (file.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				file.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			}
 		}
 	}

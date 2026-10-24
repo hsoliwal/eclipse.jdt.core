@@ -74,7 +74,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	 * Type Annotations on Variable Arguments
 	 */
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=391898
-	public void test0001() throws JavaModelException {
+	public void test0001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"    @java.lang.annotation.Target (java.lang.annotation.ElementType.TYPE_USE)\n" +
 			"    @interface Marker {\n" +
@@ -116,7 +116,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	 * Type Annotations on Variable Argument of ArrayType
 	 */
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=413569
-	public void test413569() throws JavaModelException {
+	public void test413569() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"import java.lang.annotation.*;\n" +
 			"public class X {\n" +
@@ -166,7 +166,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=395886 tests annotations on
 	 * QTR in multiple scenarios of occurrence.
 	 */
-	public void test0002() throws JavaModelException {
+	public void test0002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter18/src/test0002/X.java",
 				true/* resolve */);
 		String contents = "package test0002;\n"
@@ -266,7 +266,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=395886 tests the
 	 * representation of type annotations on a possible JAVA 7 and 8 place.
 	 */
-	public void test0003() throws JavaModelException {
+	public void test0003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter18/src/test0003/X.java",
 				true/* resolve */);
 		String contents = "package test0003;\n"
@@ -302,7 +302,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=395886 tests QTR with
 	 * annotations
 	 */
-	public void test0004() throws JavaModelException {
+	public void test0004() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter18/src/test0004/X.java",
 				true/* resolve */);
 		String contents = "package test0004;"
@@ -349,7 +349,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=395886 tests QTR with
 	 * annotations
 	 */
-	public void test0005() throws JavaModelException {
+	public void test0005() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter18/src/test0005/X.java",
 				true/* resolve */);
 		String contents = "package test0005;"
@@ -447,7 +447,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=395886 tests PQTR with
 	 * annotations part
 	 */
-	public void test0006() throws JavaModelException {
+	public void test0006() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter18/src/test0006/X.java",
 				true);
 		String contents = "package test0006;"
@@ -1012,7 +1012,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 		assertEquals("Outer3", simpleType.toString());
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=391893
-	public void test0007() throws JavaModelException {
+	public void test0007() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X {\n" +
 			"	public void foo(@Marker @Marker2 X this, @Marker2 @Marker int i){}\n" +
@@ -1035,7 +1035,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 		assertNull("Incorrect receiver qualfier", method.getReceiverQualifier());
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=391893
-	public void test0008() throws JavaModelException {
+	public void test0008() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X {\n" +
 			"	class Y {\n" +
@@ -1064,7 +1064,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 		assertEquals("Incorrect receiver qualfier", "X", method.getReceiverQualifier().getFullyQualifiedName());
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=391895
-	public void test0009() throws JavaModelException {
+	public void test0009() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"import java.lang.annotation.ElementType;\n" +
 						"public class X {\n" +
@@ -1117,7 +1117,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 		assertExtraDimensionsEqual("Incorrect extra dimensions", method.extraDimensions(), "@Annot1 @Annot2 [] []");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=399600
-	public void test0010() throws JavaModelException {
+	public void test0010() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"import java.lang.annotation.ElementType;\n" +
 						"public class X {\n" +
@@ -1139,7 +1139,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 		assertExtraDimensionsEqual("Incorrect extra dimensions", method.extraDimensions(), "@Marker [] @Marker []");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=391894
-	public void test0011() throws JavaModelException {
+	public void test0011() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"import java.lang.annotation.ElementType;\n" +
 				"public class X {\n" +
@@ -1210,7 +1210,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 		assertEquals("Incorrect expressions", "X.bar2(2)", dimensions.get(1).toString());
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=391894
-	public void test0012() throws JavaModelException {
+	public void test0012() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"import java.lang.annotation.ElementType;\n" +
 				"public class X {\n" +
@@ -1247,7 +1247,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=399768
 	 */
-	public void test0013() throws JavaModelException {
+	public void test0013() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter18/src/test0010/X.java",
 				true/* resolve */);
 		String contents = "package test0010;"
@@ -1291,7 +1291,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=399768
 	 */
-	public void test0014() throws JavaModelException {
+	public void test0014() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter18/src/test0011/X.java",
 				true/* resolve */);
 		String contents = "package test0011;"
@@ -1345,7 +1345,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=399768
 	 */
-	public void test0015() throws JavaModelException {
+	public void test0015() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter18/src/test0012/X.java",
 				true/* resolve */);
 		String contents = "package test0012;"
@@ -1518,7 +1518,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=399793
 	 */
-	public void test399793a() throws JavaModelException {
+	public void test399793a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter18/src/test399793/X.java",
 				true/* resolve */);
 		String contents = "package test399793;"
@@ -1553,7 +1553,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=399793
 	 */
-	public void test399793b() throws JavaModelException {
+	public void test399793b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter18/src/test399793/X.java",
 				true/* resolve */);
 		String contents = "package test399793;"
@@ -1584,7 +1584,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=399793
 	 */
-	public void test399793c() throws JavaModelException {
+	public void test399793c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter18/src/test399793/X.java",
 				true/* resolve */);
 		String contents = "package test399793;"
@@ -1617,7 +1617,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=399793
 	 */
-	public void test399793d() throws JavaModelException {
+	public void test399793d() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter18/src/test399793/X.java",
 				true/* resolve */);
 		String contents = "package test399793;" +
@@ -1655,7 +1655,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=399794
 	 * ReferenceExpression Family Tests
 	 */
-	public void test399794() throws JavaModelException {
+	public void test399794() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter18/src/test399794/X.java",
 				true/* resolve */);
 		String contents = "package test399794;" +
@@ -1873,7 +1873,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=399793
 	 */
-	public void test399793e() throws JavaModelException {
+	public void test399793e() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter18/src/test399793/X.java",
 				true/* resolve */);
 		String contents = "package test399793;" +
@@ -1904,7 +1904,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=402665
 	 */
-	public void test402665a() throws JavaModelException {
+	public void test402665a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter18/src/test402665/X.java",
 				true/* resolve */);
 		String contents = "package test402665;" +
@@ -1966,7 +1966,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 		singleVarDecl = (SingleVariableDeclaration)lambdaExpression.parameters().get(1);
 		checkSourceRange(singleVarDecl, "int y", contents);
 	}
-	public void testBug403132() throws JavaModelException {
+	public void testBug403132() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"import java.lang.annotation.*;\n" +
 			"public class X {\n" +
@@ -2004,7 +2004,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 		assertEquals("Incorrect receiver", "@A X.@B Y.@C Z", receiver.toString());
 		assertEquals("Incorrect method signature", "public void foo(@A X.@B Y.@C Z this,String str){\n}\n", method.toString());
 	}
-	public void testParameterizedReceiverType() throws JavaModelException {
+	public void testParameterizedReceiverType() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"import java.lang.annotation.*;\n" +
 						"public class X<T extends Exception> {\n" +
@@ -2057,7 +2057,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 		assertEquals("Incorrect method signature", "public void foo(Y<K,V>.@C Z this){\n}\n", method.toString());
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=403410
-	public void testBug403410() throws JavaModelException {
+	public void testBug403410() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"import java.lang.annotation.*;\n" +
 			"public class X {\n" +
@@ -2089,7 +2089,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=402674
 	 */
-	public void test402674() throws JavaModelException {
+	public void test402674() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter18/src/test402674/X.java",
 				true/* resolve */);
 		String contents = "package test402674;" +
@@ -2153,7 +2153,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 		assertEquals("ReduceInt", binding.getName());
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=399791
-	public void testBug399791() throws JavaModelException {
+	public void testBug399791() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public interface X {\n" +
 			"	static void foo(){}\n" +
@@ -2193,7 +2193,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=404489
-	public void testBug404489a() throws JavaModelException {
+	public void testBug404489a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 		"package test404489.bug;\n" +
 		"public class X { \n" +
@@ -2259,7 +2259,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=404489
-	public void testBug404489b() throws JavaModelException {
+	public void testBug404489b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit sourceUnit = getCompilationUnit("Converter18" , "src", "test404489.bug", "X.java"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		ASTNode result = runConversion(this.ast.apiLevel(), sourceUnit, true);
 		char[] source = sourceUnit.getSource().toCharArray();
@@ -2511,7 +2511,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=399792
-	public void testBug399792() throws JavaModelException {
+	public void testBug399792() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String content =
 				"import java.lang.annotation.ElementType;\n" +
 				"import java.io.Serializable;\n" +
@@ -2642,7 +2642,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=412726
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=428526
-	public void testBug412726() throws JavaModelException {
+	public void testBug412726() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public interface X {\n" +
 			"	abstract void foo();\n" +
@@ -2692,7 +2692,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=417017
 	 */
-	public void test417017a() throws JavaModelException {
+	public void test417017a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter18/src/test417017/X.java",
 				true/* resolve */);
 		String contents = "package test417017;"
@@ -2722,7 +2722,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=417017
 	 */
-	public void test417017b() throws JavaModelException {
+	public void test417017b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter18/src/test417017/X.java",
 				true/* resolve */);
 		String contents = "package test417017;" +
@@ -2752,7 +2752,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=417017
 	 */
-	public void test417017c() throws JavaModelException {
+	public void test417017c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter18/src/test417017/X.java",
 				true/* resolve */);
 		String contents = "package test417017;" +
@@ -2782,7 +2782,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=417017
 	 */
-	public void test417017d() throws JavaModelException {
+	public void test417017d() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter18/src/test399794/X.java",
 				true/* resolve */);
 		String contents = "package test399794;" +
@@ -2812,7 +2812,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=417017
 	 */
-	public void test417017e() throws JavaModelException {
+	public void test417017e() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter18/src/test399794/X.java",
 				true/* resolve */);
 		String contents = "package test399794;" +
@@ -2837,7 +2837,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=417017
 	 */
-	public void test417017f() throws JavaModelException {
+	public void test417017f() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/Converter18/src/test399794/X.java",
 				true/* resolve */);
 		String contents = "package test399794;" +
@@ -2869,7 +2869,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=413942
 	// also refer https://bugs.eclipse.org/bugs/show_bug.cgi?id=413569
-	public void testBug413942() throws JavaModelException {
+	public void testBug413942() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 		"public class X extends @NonNull(int[].class) Object {\n" +
 		"    Object field = new ArrayList< @NonEmpty(0) int @NonNull(value1 = 1) [] @NonEmpty(1) [ ]>() ;\n" +
@@ -3095,7 +3095,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 
 	}
 	// 	https://bugs.eclipse.org/bugs/show_bug.cgi?id=409586
-	public void testBug409586() throws JavaModelException {
+	public void testBug409586() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"@java.lang.annotation.Target (java.lang.annotation.ElementType.TYPE_USE)\n" +
 				"@interface Marker {\n" +
@@ -3223,7 +3223,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 		assertTrue("Unannotated bindings should be same", tBinding1.isEqualTo(tBinding2));
 	}
 
-	public void testExtendedDimensions() throws JavaModelException {
+	public void testExtendedDimensions() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"@java.lang.annotation.Target (java.lang.annotation.ElementType.TYPE_USE)\n" +
 				"@interface Marker {\n" +
@@ -3276,7 +3276,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 		assertEquals("Unexpected type", "String @Marker(\"i0\") @Marker2 [][] @Marker(\"i1\") []", field.getType().toString());
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=417669
-	public void testBug417669() throws JavaModelException {
+	public void testBug417669() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"@java.lang.annotation.Target (java.lang.annotation.ElementType.TYPE_USE)\n" +
 				"@interface Marker {}\n" +
@@ -3309,7 +3309,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 
 	// Bug 414113 - [1.8] Method Binding for default method has abstract modifier instead of default
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=414113
-	public void testBug414113() throws JavaModelException {
+	public void testBug414113() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public interface X {\n" +
 			"	int i = foo();\n" +
@@ -3332,7 +3332,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=420660
 	 */
-	public void testBug420660() throws JavaModelException {
+	public void testBug420660() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"package java.lang;\n" +
 			"public class X {\n" +
@@ -3411,7 +3411,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=420660
 	 */
-	public void testBug420660a() throws JavaModelException {
+	public void testBug420660a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"interface I {\nvoid foo();\n}\n" +
 			"interface J {}\n" +
@@ -3445,7 +3445,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=423872
 	 */
-	public void testBug423872() throws JavaModelException {
+	public void testBug423872() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public interface X {\n" +
 			"	void foo(Y.Z<?>... events);\n" +
@@ -3479,7 +3479,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=424138
 	 */
-	public void testBug424138_001() throws JavaModelException {
+	public void testBug424138_001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"package jsr308.myex;\n" +
 				"\n" +
@@ -3531,7 +3531,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=424138
 	 */
-	public void testBug424138_002() throws JavaModelException {
+	public void testBug424138_002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"package jsr308.myex;\n" +
 				"\n" +
@@ -3559,7 +3559,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=424138
 	 */
-	public void testBug424138_003() throws JavaModelException {
+	public void testBug424138_003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"package jsr308.myex;\n" +
 				"\n" +
@@ -3590,7 +3590,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=423584, [1.8][dom ast] NPE in LambdaExpression#getMethodBinding() for lambda with unresolved type
 	 */
-	public void test423584() throws JavaModelException {
+	public void test423584() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"interface I { }\n" +
 				"public class X {\n" +
@@ -3620,7 +3620,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=418979
 	 */
-	public void testBug418979_001() throws JavaModelException {
+	public void testBug418979_001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"import java.lang.annotation.*;\n" +
 				"public class X {\n" +
@@ -3667,7 +3667,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=418979
 	 */
-	public void testBug418979_002() throws JavaModelException {
+	public void testBug418979_002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"package test;\n" +
 				"import java.lang.annotation.*;\n" +
@@ -3700,7 +3700,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=418979
 	 */
-	public void testBug418979_003() throws JavaModelException {
+	public void testBug418979_003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"package test;\n" +
 				"import java.lang.annotation.*;\n" +
@@ -3731,7 +3731,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/*
 	 * [1.8][dom ast] variable binding for LambdaExpression parameter has non-unique key (https://bugs.eclipse.org/bugs/show_bug.cgi?id=416559)
 	 */
-	public void test416559() throws JavaModelException {
+	public void test416559() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"interface I {\n" +
 				"	int f (int x);\n" +
@@ -3767,12 +3767,12 @@ public class ASTConverter18Test extends ConverterTestSetup {
 		variableDeclaration = (VariableDeclaration) lambdaExpression.parameters().get(0);
 		variableBinding = variableDeclaration.resolveBinding();
 
-		assertNotSame(variableKey.intern(), variableBinding.getKey().intern());
+		assertNotSame(variableKey.intern(), variableBinding.getKey().intern()); //FLLDCIM: MARK — M13 TOKEN_INTERNER CALL
 	}
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=420458
 	 */
-	public void testBug420458() throws JavaModelException {
+	public void testBug420458() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"/**\n" +
 				" * Hello\n" +
@@ -3797,7 +3797,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=420458
 	 */
-	public void testBug425741() throws JavaModelException {
+	public void testBug425741() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"@java.lang.annotation.Target (java.lang.annotation.ElementType.TYPE_USE)\n" +
 				"@interface Annot { String value(); }\n" +
@@ -3838,7 +3838,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=416560, [1.8] Incorrect source range for lambda expression's parameter after reconciliation
 	 */
-	public void testBug416560_001() throws JavaModelException {
+	public void testBug416560_001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"import java.lang.annotation.ElementType;\n" +
 				"@Target (ElementType.FIELD)\n" +
@@ -3865,7 +3865,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=416560, [1.8] Incorrect source range for lambda expression's parameter after reconciliation
 	 */
-	public void testBug416560_002() throws JavaModelException {
+	public void testBug416560_002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"import java.lang.annotation.ElementType;\n" +
 				"@Target (ElementType.FIELD)\n" +
@@ -3893,7 +3893,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=416560, [1.8] Incorrect source range for lambda expression's parameter after reconciliation
 	 */
-	public void testBug416560_003() throws JavaModelException {
+	public void testBug416560_003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X{\n" +
 				"    void f() {\n" +
@@ -3926,7 +3926,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=425743, [1.8][api] CompilationUnit#findDeclaringNode(IBinding binding) returns null for type inferred lambda parameter
 	 */
-	public void testBug425743() throws JavaModelException {
+	public void testBug425743() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X{\n" +
 				"    FI fi = (x2) -> x2;\n" +
@@ -3949,7 +3949,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 		assertEquals("Not a variable declaration fragment", ASTNode.VARIABLE_DECLARATION_FRAGMENT, astNode.getNodeType());
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=427357
-	public void testBug427357() throws JavaModelException {
+	public void testBug427357() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"public class X {\n" +
 			"	public static void foo(X this, int i){}\n" +
@@ -3994,7 +3994,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 		assertNotNull("Receiver should not be null", receiver);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=426459
-	public void testBug426459() throws JavaModelException {
+	public void testBug426459() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"import java.lang.annotation.*;\n" +
 			"@Target(ElementType.TYPE_USE) @interface A {}\n" +
@@ -4076,7 +4076,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 		assertEquals("Incorrect no of dimensions", 1, dims);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=426459
-	public void testBug426459a() throws JavaModelException {
+	public void testBug426459a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 			"import java.lang.annotation.*;\n" +
 			"@Target(ElementType.TYPE_USE) @interface A {}\n" +
@@ -4150,7 +4150,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=428526, [1.8] API to get the single abstract method in a functional interface
-	public void test428526() throws JavaModelException {
+	public void test428526() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"interface Foo<T, N extends Number> {\n" +
 				"    void m(T arg);\n" +
@@ -4181,7 +4181,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 		assertEquals("Foo<Integer,Integer>", declaringClass.getName());
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=428526, [1.8] API to get the single abstract method in a functional interface
-	public void test428526a() throws JavaModelException {
+	public void test428526a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"interface I { X foo(); }\n" +
 				"interface J { Y foo(); }\n" +
@@ -4220,7 +4220,7 @@ public class ASTConverter18Test extends ConverterTestSetup {
 	}
 
 // round-trip for binding keys of CaptureBinding18:
-public void testBug425183a() throws JavaModelException {
+public void testBug425183a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents =
 			"interface Comparator<T> {\n" +
 			"    public static <T extends Comparable<? super T>> Comparator<T> naturalOrder() { return null; }\n" +
@@ -4267,7 +4267,7 @@ public void testBug425183a() throws JavaModelException {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=432051
  */
-public void testBug432051() throws JavaModelException {
+public void testBug432051() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents =
 			"public class X {\n" +
 			"     * Delete line '/**' above.\n" +
@@ -4301,7 +4301,7 @@ public void testBug432051() throws JavaModelException {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=426977
  */
-public void testBug426977() throws JavaModelException {
+public void testBug426977() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents =
 			"package com.test.todo;\r\n"+
 			"import java.lang.annotation.ElementType;\r\n"+
@@ -4324,7 +4324,7 @@ public void testBug426977() throws JavaModelException {
 
 //Bug 406805 - [1.8] Parameter names for enum constructor not available
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=406805
-public void test406805() throws CoreException, IOException {
+public void test406805() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents1 =
 			"package test406805;\n" +
 			"public class X {\n" +
@@ -4368,7 +4368,7 @@ public void test406805() throws CoreException, IOException {
 	ITypeBinding typeBinding = (ITypeBinding) bindings[0];
 	IMethodBinding[] methods = typeBinding.getDeclaredMethods();
 
-	for (int i = 0, length = methods.length; i < length; i++) {
+	for (int i = 0, length = methods.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IMethodBinding method = methods[i];
 		if (method.isConstructor()) {
 			ResolvedBinaryMethod bm = (ResolvedBinaryMethod) method.getJavaElement();
@@ -4385,7 +4385,7 @@ public void test406805() throws CoreException, IOException {
 //Bug 406805 - [1.8] Parameter names for enum constructor not available
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=406805
 //Nested Enum Constructor
-public void test406805a() throws CoreException, IOException {
+public void test406805a() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents1 =
 			"package test406805;\n" +
 			"public class X {\n" +
@@ -4433,7 +4433,7 @@ public void test406805a() throws CoreException, IOException {
 	typeBinding = typeBinding.getDeclaredTypes()[0];
 	IMethodBinding[] methods = typeBinding.getDeclaredMethods();
 
-	for (int i = 0, length = methods.length; i < length; i++) {
+	for (int i = 0, length = methods.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IMethodBinding method = methods[i];
 		if (method.isConstructor()) {
 			ResolvedBinaryMethod bm = (ResolvedBinaryMethod) method.getJavaElement();
@@ -4448,7 +4448,7 @@ public void test406805a() throws CoreException, IOException {
 //Bug 406805 - [1.8] Parameter names for enum constructor not available
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=406805
 //Parameterized enum constructor.
-public void test406805b() throws CoreException, IOException {
+public void test406805b() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents1 =
 			"package test406805b;\n" +
 			"public class X {\n" +
@@ -4492,7 +4492,7 @@ public void test406805b() throws CoreException, IOException {
 	ITypeBinding typeBinding = (ITypeBinding) bindings[0];
 	IMethodBinding[] methods = typeBinding.getDeclaredMethods();
 
-	for (int i = 0, length = methods.length; i < length; i++) {
+	for (int i = 0, length = methods.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IMethodBinding method = methods[i];
 		if (method.isConstructor()) {
 			ResolvedBinaryMethod bm = (ResolvedBinaryMethod) method.getJavaElement();
@@ -4506,7 +4506,7 @@ public void test406805b() throws CoreException, IOException {
 //Bug 406805 - [1.8] Parameter names for enum constructor not available
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=406805
 //Testing types and names of parameters.
-public void test406805d() throws CoreException, IOException {
+public void test406805d() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents1 =
 			"package test406805;\n" +
 			"public class X {\n" +
@@ -4556,7 +4556,7 @@ public void test406805d() throws CoreException, IOException {
 	typeBinding = typeBinding.getDeclaredTypes()[0];
 	IMethodBinding[] methods = typeBinding.getDeclaredMethods();
 
-	for (int i = 0, length = methods.length; i < length; i++) {
+	for (int i = 0, length = methods.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IMethodBinding method = methods[i];
 		if (method.isConstructor()) {
 			ResolvedBinaryMethod bm = (ResolvedBinaryMethod) method.getJavaElement();
@@ -4577,7 +4577,7 @@ public void test406805d() throws CoreException, IOException {
 //Bug 436347 - Regression: NegativeArraySizeException at org.eclipse.jdt.internal.core.ClassFileInfo.generateMethodInfos
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=436347
 //Enum constructor with no parameters.
-public void test436347() throws CoreException, IOException {
+public void test436347() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents1 =
 			"package test436347;\n" +
 			"public class X {\n" +
@@ -4620,7 +4620,7 @@ public void test436347() throws CoreException, IOException {
 	ITypeBinding typeBinding = (ITypeBinding) bindings[0];
 	IMethodBinding[] methods = typeBinding.getDeclaredMethods();
 
-	for (int i = 0, length = methods.length; i < length; i++) {
+	for (int i = 0, length = methods.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IMethodBinding method = methods[i];
 		if (method.isConstructor()) {
 			ResolvedBinaryMethod bm = (ResolvedBinaryMethod) method.getJavaElement();
@@ -4637,7 +4637,7 @@ public void test436347() throws CoreException, IOException {
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=433879, org.eclipse.jdt.internal.compiler.lookup.ArrayBinding cannot be cast to org.eclipse.jdt.internal.compiler.lookup.ReferenceBinding
 //@throws ClassCastException without the fix
 //Array type access in catch block. Test case picked up from the bug.
-public void testBug433879() throws JavaModelException {
+public void testBug433879() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents =
 			"package Bug433879;\r\n"+
 			"public class X {\n" +
@@ -4660,7 +4660,7 @@ public void testBug433879() throws JavaModelException {
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=433879, org.eclipse.jdt.internal.compiler.lookup.ArrayBinding cannot be cast to org.eclipse.jdt.internal.compiler.lookup.ReferenceBinding
 //@throws ClassCastException without the fix
 //Simplified version of the test case picked up from the bug report.
-public void testBug433879a() throws JavaModelException {
+public void testBug433879a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents =
 			"package Bug433879a;\n"+
 			"public class X {\n" +
@@ -4681,7 +4681,7 @@ public void testBug433879a() throws JavaModelException {
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=433879, org.eclipse.jdt.internal.compiler.lookup.ArrayBinding cannot be cast to org.eclipse.jdt.internal.compiler.lookup.ReferenceBinding
 //Catch parameters Union Type
-public void testBug433879b() throws JavaModelException {
+public void testBug433879b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents =
 			"package Bug433879c;\n"+
 			"public class X {\n" +
@@ -4703,7 +4703,7 @@ public void testBug433879b() throws JavaModelException {
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=433879, org.eclipse.jdt.internal.compiler.lookup.ArrayBinding cannot be cast to org.eclipse.jdt.internal.compiler.lookup.ReferenceBinding
 //@throws ClassCastException without the fix
 //Catch parameters union type. Multiple Catch handlers.
-public void testBug433879c() throws JavaModelException {
+public void testBug433879c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents =
 			"package Bug433879d;\n"+
 			"class E1 extends Exception {private static final long serialVersionUID = 1L;}\n" +
@@ -4730,7 +4730,7 @@ public void testBug433879c() throws JavaModelException {
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=433879, org.eclipse.jdt.internal.compiler.lookup.ArrayBinding cannot be cast to org.eclipse.jdt.internal.compiler.lookup.ReferenceBinding
 //@throws ClassCastException without the fix
 //Multiple Catch handlers.
-public void testBug433879d() throws JavaModelException {
+public void testBug433879d() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents =
 			"package Bug433879e;\n"+
 			"class E1 extends Exception {private static final long serialVersionUID = 1L;}\n" +
@@ -4756,7 +4756,7 @@ public void testBug433879d() throws JavaModelException {
 		fail(e.getMessage());
 	}
 }
-public void testBug432175() throws JavaModelException {
+public void testBug432175() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopy = getWorkingCopy("/Converter18/src/testBug432175/X.java",
 			true/* resolve */);
 	String contents = "package testBug432175;\n" +
@@ -4805,7 +4805,7 @@ public void testBug435348() throws JavaModelException {
 	buildAST(contents, this.workingCopy, false);
 }
 
-public void testBug432614() throws JavaModelException {
+public void testBug432614() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopy = getWorkingCopy("/Converter18/src/testBug432614/X.java", true);
 	String contents = "package testBug432614;\n" +
 			"import java.lang.annotation.ElementType;\n" +
@@ -4836,7 +4836,7 @@ public void testBug432614() throws JavaModelException {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=447062
  */
-public void testBug447062() throws JavaModelException {
+public void testBug447062() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents =
 			"public class X {\n" +
 			"    Runnable foo = () -> {\n" +
@@ -4866,7 +4866,7 @@ public void testBug447062() throws JavaModelException {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=399793
  */
-public void testBug425601_001() throws JavaModelException {
+public void testBug425601_001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopy = getWorkingCopy("/Converter18/src/testBug425601_001/Outer.java",
 			true/* resolve */);
 	String contents = "package testBug425601_001;\n" +
@@ -4909,7 +4909,7 @@ public void testBug425601_001() throws JavaModelException {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=399793
  */
-public void testBug425601_002() throws JavaModelException {
+public void testBug425601_002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopy = getWorkingCopy("/Converter18/src/testBug425601_002/Outer.java",
 			true/* resolve */);
 	String contents = "package testBug425601_002;\n" +
@@ -4954,7 +4954,7 @@ public void testBug425601_002() throws JavaModelException {
  *
  * bug Bug 440000 [1.8][dom] MethodReference#resolveMethodBinding() API should return null for CreationReference of an ArrayType
  */
-public void testBug440000_001() throws JavaModelException {
+public void testBug440000_001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents =
 			"interface I<T, R> {\n" +
 			"    R apply(T t);\n" +
@@ -4977,7 +4977,7 @@ public void testBug440000_001() throws JavaModelException {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=459344
  */
-public void testBug459344_001() throws JavaModelException {
+public void testBug459344_001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopy = getWorkingCopy("/Converter18/src/test459344/X.java",
 			true/* resolve */);
 	String contents = "package test459344;" +
@@ -5005,7 +5005,7 @@ public void testBug459344_001() throws JavaModelException {
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=460186
  * bug Bug 460186 IAE in ASTNode.setSourceRange with broken code case 2
  */
-public void testBug460186() throws JavaModelException {
+public void testBug460186() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents =
 			"class Foo {\n" +
 			"	void foo()\n {" +
@@ -5027,7 +5027,7 @@ public void testBug460186() throws JavaModelException {
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=443232
  * bug Bug 443232 IAE in ASTNode.setSourceRange with broken code
  */
-public void testBug443232() throws JavaModelException {
+public void testBug443232() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents =
 			"package test443232;\n" +
 			"public class E21 {\n" +
@@ -5053,7 +5053,7 @@ public void testBug443232() throws JavaModelException {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=429813
  */
-public void test429813() throws JavaModelException {
+public void test429813() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopy = getWorkingCopy("/Converter18/src/test429813/Snippet.java",
 			true/* resolve */);
 	String contents = "package test429813;"
@@ -5076,7 +5076,7 @@ public void test429813() throws JavaModelException {
 	assertFalse("Should not be a synthetic", binding.isSynthetic());
 }
 
-public void test429813a() throws JavaModelException {
+public void test429813a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopy = getWorkingCopy("/Converter18/src/test429813/Snippet.java",
 			true/* resolve */);
 	String contents = "package test429813;"
@@ -5098,7 +5098,7 @@ public void test429813a() throws JavaModelException {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=399792
-public void testBug470794_001() throws JavaModelException {
+public void testBug470794_001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String content =
 			"public class X {\n" +
 			"      Object o = (I & J) () -> {};" +
@@ -5144,7 +5144,7 @@ public void testBug470794_001() throws JavaModelException {
 		ITypeBinding [] intersectionBindings = binding.getTypeBounds();
 		String[] expectedTypes = new String[]{"I", "J"};
 		assertTrue("Incorrect number of intersection bindings", intersectionBindings.length == expectedTypes.length);
-		for (int i = 0, l = intersectionBindings.length; i < l; ++i) {
+		for (int i = 0, l = intersectionBindings.length; i < l; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			assertTrue("Unexpected Intersection Type", expectedTypes[i].equals(intersectionBindings[i].getName()));
 		}
 	}
@@ -5166,12 +5166,12 @@ public void testBug470794_001() throws JavaModelException {
 		ITypeBinding [] intersectionBindings = binding.getTypeBounds();
 		String[] expectedTypes = new String[]{"I", "J", "K"};
 		assertTrue("Incorrect number of intersection bindings", intersectionBindings.length == expectedTypes.length);
-		for (int i = 0, l = intersectionBindings.length; i < l; ++i) {
+		for (int i = 0, l = intersectionBindings.length; i < l; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			assertTrue("Unexpected Intersection Type", expectedTypes[i].equals(intersectionBindings[i].getName()));
 		}
 	}
 }
-@SuppressWarnings("deprecation")
+@SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void testBug500503() throws JavaModelException {
 	String contents =
 			"package test432051;\n" +
@@ -5206,7 +5206,7 @@ public void testBug500503() throws JavaModelException {
 	parser.createASTs(new ICompilationUnit[] {this.workingCopy}, new String[0], requestor, null);
 }
 
-public void testBug497719_0001() throws JavaModelException {
+public void testBug497719_0001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents =
 			"import java.io.IOException;\n" +
 			"\n" +
@@ -5245,7 +5245,7 @@ public void testBug497719_0001() throws JavaModelException {
 		TryStatement tryStatement = (TryStatement)methodDeclaration.getBody().statements().get(2);
 		assertEquals("Try Statement should be malformed", ASTNode.MALFORMED, (tryStatement.getFlags() & ASTNode.MALFORMED));
 }
-public void testBug490698_001() throws JavaModelException {
+public void testBug490698_001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents =
 			"package jsr308.myex;\n" +
 			"\n" +
@@ -5263,7 +5263,7 @@ public void testBug490698_001() throws JavaModelException {
 	ASTNode node = buildAST(contents, this.workingCopy, false);
 	assertEquals("Not a compilation unit", ASTNode.COMPILATION_UNIT, node.getNodeType());
 }
-public void testBug526449_001() throws JavaModelException {
+public void testBug526449_001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents =
 			"class com.google.android.gms.common.X {\n" +
 			"    class zzc {\n" +
@@ -5283,7 +5283,7 @@ public void testBug526449_001() throws JavaModelException {
 	ASTNode node = buildAST(contents, this.workingCopy, false);
 	assertEquals("Not a compilation unit", ASTNode.COMPILATION_UNIT, node.getNodeType());
 }
-public void testLambdaSynthetic() throws JavaModelException {
+public void testLambdaSynthetic() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopy = getWorkingCopy("/Converter18/src/xyz/X.java",
 			true/* resolve */);
 	String contents =
@@ -5329,24 +5329,24 @@ public void testLambdaSynthetic() throws JavaModelException {
 	assertEquals("val$outerArg",synVars[0].getName());
 	assertEquals("val$outerLocal",synVars[1].getName());
 }
-public void testCaptureBinding18() throws CoreException {
+public void testCaptureBinding18() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopy = getWorkingCopy("/Converter18/src/xyz/X.java", true/* resolve */);
-	StringBuilder buf= new StringBuilder();
-	buf.append("package xyz;\n");
-	buf.append("\n");
-	buf.append("import java.util.List;\n");
-	buf.append("\n");
-	buf.append("public class X {\n");
-	buf.append("\n");
-	buf.append("	protected <E extends Comparable<E>> List<E> createEmptySet() {\n");
-	buf.append("		return null;\n");
-	buf.append("	}\n");
-	buf.append("\n");
-	buf.append("	public void emptySet() {\n");
-	buf.append("		s = createEmptySet();\n");
-	buf.append("	}\n");
-	buf.append("\n");
-	buf.append("}");
+	StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	buf.append("package xyz;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buf.append("import java.util.List;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buf.append("	protected <E extends Comparable<E>> List<E> createEmptySet() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buf.append("		return null;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buf.append("	public void emptySet() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buf.append("		s = createEmptySet();\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buf.append("}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	String content= buf.toString();
 	CompilationUnit cu = (CompilationUnit) buildAST(content, this.workingCopy, false /*i.e. ignore errors*/);
 	MethodDeclaration method= ((TypeDeclaration)cu.types().get(0)).getMethods()[1];
@@ -5382,7 +5382,7 @@ public void testLambdaParameterSourcePosition() throws JavaModelException {
 	assertEquals(1, variableElement.getSourceRange().getLength());
 }
 
-public void testSVDStartPositionIssue_1() throws JavaModelException {
+public void testSVDStartPositionIssue_1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents = """
 				public class X {
 					public static void example() {
@@ -5414,7 +5414,7 @@ public void testSVDStartPositionIssue_1() throws JavaModelException {
 	assertEquals("Single Variable Declaration startPosition is not correct", svd.getStartPosition(), contents.indexOf("RuntimeException"));
 }
 
-public void testSVDStartPositionIssue_2() throws JavaModelException {
+public void testSVDStartPositionIssue_2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents = """
 			public class X {
 				public static void example() {
@@ -5445,7 +5445,7 @@ public void testSVDStartPositionIssue_2() throws JavaModelException {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4458
 // ArrayIndexOutOfBoundsException in PolyTypeBinding
-@SuppressWarnings("deprecation")
+@SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void testIssue4458() throws JavaModelException {
 	String contents =
 			"""

@@ -54,7 +54,7 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 		return ModuleCompilationTests.class;
 	}
 
-	public void test001() {
+	public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeModuleTest(
 			new String[] {
 				"p/X.java",
@@ -69,7 +69,7 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"	requires java.base;\n" +
 				"}"
 	        },
-			" -9 \"" + getSourceDir() +  File.separator + "module-info.java\" "
+			" -9 \"" + getSourceDir() +  File.separator + "module-info.java\" " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        + "\"" + getSourceDir() +  File.separator + "p/X.java\"",
 	        "",
 	        "----------\n" +
@@ -82,7 +82,7 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 	        true,
 	        "package java.sql" /* match for javac error */);
 	}
-	public void test002() {
+	public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformModuleTest(
 			new String[] {
 				"p/X.java",
@@ -99,7 +99,7 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"	requires java.sql;\n" +
 				"}"
 	        },
-			" -9 \"" + OUTPUT_DIR +  File.separator + "module-info.java\" "
+			" -9 \"" + OUTPUT_DIR +  File.separator + "module-info.java\" " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        + "\"" + OUTPUT_DIR +  File.separator + "p/X.java\"",
 	        "",
 	        "",
@@ -117,7 +117,7 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"	}\n" +
 				"}",
 	        },
-	        "\"" + OUTPUT_DIR +  File.separator + "p/X.java\"",
+	        "\"" + OUTPUT_DIR +  File.separator + "p/X.java\"", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        "",
 	        "",
 	        true);
@@ -131,14 +131,14 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"	requires java.sql;\n" +
 				"}"
 	        },
-			" -9 \"" + OUTPUT_DIR +  File.separator + "module-info.java\"",
+			" -9 \"" + OUTPUT_DIR +  File.separator + "module-info.java\"", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        "",
 	        "",
 	        true);
-		String fileName = getEcjOutputDir() + File.separator + "module-info.class";
-		assertClassFile("Missing modul-info.class: " + fileName, fileName, classFiles);
+		String fileName = getEcjOutputDir() + File.separator + "module-info.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertClassFile("Missing modul-info.class: " + fileName, fileName, classFiles); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test005() {
+	public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Set<String> classFiles = runConformModuleTest(
 			new String[] {
 				"p/X.java",
@@ -158,86 +158,86 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"   java.awt.Image image;\n" +
 				"}"
 	        },
-			" -9 \"" + OUTPUT_DIR + File.separator + "module-info.java\" "
+			" -9 \"" + OUTPUT_DIR + File.separator + "module-info.java\" " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ "\"" + OUTPUT_DIR + File.separator + "q/Y.java\" "
 	        + "\"" + OUTPUT_DIR + File.separator + "p/X.java\"",
 	        "",
 	        "",
 	        true);
-		String fileName = getEcjOutputDir()  + File.separator + "module-info.class";
-		assertClassFile("Missing modul-info.class: " + fileName, fileName, classFiles);
+		String fileName = getEcjOutputDir()  + File.separator + "module-info.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertClassFile("Missing modul-info.class: " + fileName, fileName, classFiles); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test006() {
+	public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	requires java.base;\n" +
 						"	requires java.sql;\n" +
 						"	requires java.desktop;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p;\n" +
 						"public class X {\n" +
 						"	java.sql.Connection con;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "q", "Y.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "q", "Y.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package q;\n" +
 						"public class Y {\n" +
 						"   java.awt.Image image;\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runConformModuleTest(files, buffer, "", "");
 	}
-	public void test007() {
+	public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	requires java.base;\n" +
 						"	requires transitive java.sql;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p;\n" +
 						"public class X {\n" +
 						"	public static java.sql.Connection getConnection() {\n" +
 						"		return null;\n" +
 						"	}\n" +
 						"}");
-		moduleLoc = directory + File.separator + "mod.two";
+		moduleLoc = directory + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.two { \n" +
 						"	requires java.base;\n" +
 						"	requires mod.one;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "q", "Y.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "q", "Y.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package q;\n" +
 						"public class Y {\n" +
 						"   java.sql.Connection con = p.X.getConnection();\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runNegativeModuleTest(files,
 				buffer,
 				"",
@@ -250,20 +250,20 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"1 problem (1 error)\n",
 				"p.X");
 	}
-	public void test008() {
+	public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	exports p;\n" +
 						"	requires mod.two;\n" +
 						"	requires transitive java.sql;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p;\n" +
 						"import q.Y;\n" +
 						"public class X {\n" +
@@ -271,75 +271,75 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 						"		return Y.con;\n" +
 						"	}\n" +
 						"}");
-		moduleLoc = directory + File.separator + "mod.two";
+		moduleLoc = directory + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.two { \n" +
 						"	exports q;\n" +
 						"	requires java.sql;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "q", "Y.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "q", "Y.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package q;\n" +
 						"public class Y {\n" +
 						"   public static java.sql.Connection con = null;\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
 			.append(" -warn:-exports") // Y.con unreliably refers to Connection (missing requires transitive)
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runConformModuleTest(files,
 				buffer,
 				"",
 				"");
 	}
-	public void test008a() {
+	public void test008a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	exports p.q;\n" +
 						"	requires java.base;\n" +
 						"	requires transitive java.sql;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "q", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "q", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p.q;\n" +
 						"public class X {\n" +
 						"	public static java.sql.Connection getConnection() {\n" +
 						"		return null;\n" +
 						"	}\n" +
 						"}");
-		moduleLoc = directory + File.separator + "mod.two";
+		moduleLoc = directory + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.two { \n" +
 						"	requires java.base;\n" +
 						"	requires mod.one;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "q" + File.separator + "r", "Y.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "q" + File.separator + "r", "Y.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package q.r;\n" +
 						"public class Y {\n" +
 						"   java.sql.Connection con = p.q.X.getConnection();\n" +
 						"}");
 
-		String systemDirectory = OUTPUT_DIR+File.separator+"system";
+		String systemDirectory = OUTPUT_DIR+File.separator+"system"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFile(systemDirectory, "readme.txt", "Not a valid system");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append("--system ").append(systemDirectory)
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(files,
 				buffer,
@@ -347,62 +347,62 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"invalid location for system libraries: ---OUTPUT_DIR_PLACEHOLDER---/system\n",
 				"system");
 	}
-	public void test009() {
+	public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	exports p;\n" +
 						"	requires java.base;\n" +
 						"	requires transitive java.sql;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p;\n" +
 						"public class X {\n" +
 						"	public static java.sql.Connection getConnection() {\n" +
 						"		return null;\n" +
 						"	}\n" +
 						"}");
-		moduleLoc = directory + File.separator + "mod.two";
+		moduleLoc = directory + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.two { \n" +
 						"	requires java.base;\n" +
 						"	requires mod.one;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "q", "Y.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "q", "Y.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package q;\n" +
 						"public class Y {\n" +
 						"   java.sql.Connection con = p.X.getConnection();\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runConformModuleTest(files,
 				buffer,
 				"",
 				"");
 	}
-	private void createUnnamedLibrary(String unnamedLoc, String unnamedBin) {
-		writeFile(unnamedLoc + File.separator + "s" + File.separator + "t", "Tester.java",
+	private void createUnnamedLibrary(String unnamedLoc, String unnamedBin) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		writeFile(unnamedLoc + File.separator + "s" + File.separator + "t", "Tester.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package s.t;\n" +
 				"public class Tester {\n" +
 				"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + unnamedBin)
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + unnamedBin) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\"")
-			.append(" -sourcepath \"" + unnamedLoc + "\" ")
-			.append(unnamedLoc + File.separator + "s" + File.separator + "t" + File.separator + "Tester.java");
+			.append(" -sourcepath \"" + unnamedLoc + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(unnamedLoc + File.separator + "s" + File.separator + "t" + File.separator + "Tester.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runConformTest(new String[]{},
 				buffer.toString(),
@@ -410,16 +410,16 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"",
 				false);
 	}
-	private void createReusableModules(String srcDir, String outDir, File modDir) {
-		String moduleLoc = srcDir + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+	private void createReusableModules(String srcDir, String outDir, File modDir) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		String moduleLoc = srcDir + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	exports p;\n" +
 						"	requires java.base;\n" +
 						"	requires transitive java.sql;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p;\n" +
 						"public class X {\n" +
 						"	public static java.sql.Connection getConnection() {\n" +
@@ -427,7 +427,7 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 						"	}\n" +
 						"}");
 		// This one is not exported (i.e. internal to this module)
-		writeFileCollecting(files, moduleLoc + File.separator + "p1", "X1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p1", "X1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p1;\n" +
 				"public class X1 {\n" +
 				"	public static java.sql.Connection getConnection() {\n" +
@@ -435,28 +435,28 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"	}\n" +
 				"}");
 
-		moduleLoc = srcDir + File.separator + "mod.two";
+		moduleLoc = srcDir + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.two { \n" +
 						"	exports q;\n" +
 						"	requires java.base;\n" +
 						"	requires mod.one;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "q", "Y.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "q", "Y.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package q;\n" +
 						"public class Y {\n" +
 						"   java.sql.Connection con = p.X.getConnection();\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-			buffer.append("-d " + outDir )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buffer.append("-d " + outDir ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" --module-path \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + srcDir + "\"");
-		for (String fileName : files)
-			buffer.append(" \"").append(fileName).append("\"");
+			.append(" --module-source-path " + "\"" + srcDir + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		for (String fileName : files) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(" \"").append(fileName).append("\""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		runConformTest(new String[]{},
 				buffer.toString(),
@@ -464,55 +464,55 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"",
 				false);
 
-		String fileName = modDir + File.separator + "mod.one.jar";
+		String fileName = modDir + File.separator + "mod.one.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try {
-			Util.zip(new File(outDir + File.separator + "mod.one"),
+			Util.zip(new File(outDir + File.separator + "mod.one"), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								fileName);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		if (!modDir.exists()) {
-			if (!modDir.mkdirs()) {
-				fail("Coult not create folder " + modDir);
+		if (!modDir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			if (!modDir.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				fail("Coult not create folder " + modDir); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		File mod2 = new File(modDir, "mod.two");
-		if (!mod2.mkdir()) {
-			fail("Coult not create folder " + mod2);
+		if (!mod2.mkdir()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			fail("Coult not create folder " + mod2); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		Util.copy(outDir + File.separator + "mod.two", mod2.getAbsolutePath());
+		Util.copy(outDir + File.separator + "mod.two", mod2.getAbsolutePath()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		Util.flushDirectoryContent(new File(outDir));
 		Util.flushDirectoryContent(new File(srcDir));
 	}
-	public void test010() {
+	public void test010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Util.flushDirectoryContent(new File(OUTPUT_DIR));
-		String outDir = OUTPUT_DIR + File.separator + "bin";
-		String srcDir = OUTPUT_DIR + File.separator + "src";
-		File modDir = new File(OUTPUT_DIR + File.separator + "mod");
+		String outDir = OUTPUT_DIR + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String srcDir = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		File modDir = new File(OUTPUT_DIR + File.separator + "mod"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createReusableModules(srcDir, outDir, modDir);
-		String moduleLoc = srcDir + File.separator + "mod.three";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = srcDir + File.separator + "mod.three"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.three { \n" +
 						"	requires mod.one;\n" +
 						"	requires mod.two;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "r", "Z.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "r", "Z.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package r;\n" +
 						"public class Z extends Object {\n" +
 						"	p.X x = null;\n" +
 						"	q.Y y = null;\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-			buffer.append("-d " + outDir )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buffer.append("-d " + outDir ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -p \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append(modDir.getAbsolutePath())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + srcDir + "\"");
+			.append(" --module-source-path " + "\"" + srcDir + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runConformModuleTest(files,
 				buffer,
@@ -520,7 +520,7 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=487421
-	public void test011() {
+	public void test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformModuleTest(
 			new String[] {
 				"p/X.java",
@@ -533,7 +533,7 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"	requires java.base;\n" +
 				"}"
 	        },
-			" -9 \"" + OUTPUT_DIR +  File.separator + "module-info.java\" "
+			" -9 \"" + OUTPUT_DIR +  File.separator + "module-info.java\" " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        + "\"" + OUTPUT_DIR +  File.separator + "p/X.java\"",
 	        "",
 	        "",
@@ -541,33 +541,33 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 	}
 	// Modules used as regular -classpath (as opposed to --module-path) and module-info referencing
 	// those modules are reported as missing.
-	public void test012() {
+	public void test012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Util.flushDirectoryContent(new File(OUTPUT_DIR));
-		String outDir = OUTPUT_DIR + File.separator + "bin";
-		String srcDir = OUTPUT_DIR + File.separator + "src";
-		File modDir = new File(OUTPUT_DIR + File.separator + "mod");
+		String outDir = OUTPUT_DIR + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String srcDir = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		File modDir = new File(OUTPUT_DIR + File.separator + "mod"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createReusableModules(srcDir, outDir, modDir);
-		String moduleLoc = srcDir + File.separator + "mod.three";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = srcDir + File.separator + "mod.three"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.three { \n" +
 						"	requires mod.one;\n" +
 						"	requires mod.two;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "r", "Z.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "r", "Z.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package r;\n" +
 						"public class Z extends Object {\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-			buffer.append("-d " + outDir )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buffer.append("-d " + outDir ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
-			.append(modDir + File.separator + "mod.one.jar").append(File.pathSeparator)
-			.append(modDir + File.separator + "mod.two").append(File.pathSeparator)
+			.append(modDir + File.separator + "mod.one.jar").append(File.pathSeparator) //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(modDir + File.separator + "mod.two").append(File.pathSeparator) //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + srcDir + "\"");
+			.append(" --module-source-path " + "\"" + srcDir + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(files,
 				buffer,
@@ -589,28 +589,28 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 	// Modules used as regular -classpath as opposed to --module-path. The files being compiled
 	// aren't part of any modules (i.e. module-info is missing). The files should be able to
 	// reference the types from referenced classpath.
-	public void test013() {
+	public void test013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Util.flushDirectoryContent(new File(OUTPUT_DIR));
-		String outDir = OUTPUT_DIR + File.separator + "bin";
-		String srcDir = OUTPUT_DIR + File.separator + "src";
-		File modDir = new File(OUTPUT_DIR + File.separator + "mod");
+		String outDir = OUTPUT_DIR + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String srcDir = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		File modDir = new File(OUTPUT_DIR + File.separator + "mod"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createReusableModules(srcDir, outDir, modDir);
-		String moduleLoc = srcDir + File.separator + "mod.three";
-		List<String> files = new ArrayList<>();
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "Z.java",
+		String moduleLoc = srcDir + File.separator + "mod.three"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "Z.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package r;\n" +
 						"public class Z extends Object {\n" +
 						"	p.X x = null;\n" +
 						"	q.Y y = null;\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-			buffer.append("-d " + outDir )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buffer.append("-d " + outDir ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
-			.append(modDir + File.separator + "mod.one.jar").append(File.pathSeparator)
-			.append(modDir + File.separator + "mod.two").append(File.pathSeparator)
+			.append(modDir + File.separator + "mod.one.jar").append(File.pathSeparator) //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(modDir + File.separator + "mod.two").append(File.pathSeparator) //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.append("\" ");
 		runConformModuleTest(files,
 				buffer,
@@ -627,13 +627,13 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"public class X {\n" +
 				"}",
 			},
-	  "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+	  "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	  + " -9 -d \"" + OUTPUT_DIR + "\"",
 	  "",
 	  "",
 	  true);
 		String expectedOutput = "// Compiled from X.java (version 9 : 53.0, super bit)";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	//-source 8 -target 9
 	public void testBug495500b() throws Exception {
@@ -644,13 +644,13 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"public class X {\n" +
 				"}",
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -9 -source 8 -target 9 -d \"" + OUTPUT_DIR + "\"",
 			"",
 			"",
 			true);
 		String expectedOutput = "// Compiled from X.java (version 9 : 53.0, super bit)";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	// compliance 9 -source 9 -target 9
 	public void testBug495500c() throws Exception {
@@ -661,55 +661,55 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"public class X {\n" +
 				"}",
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "X.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -9 -source 9 -target 9 -d \"" + OUTPUT_DIR + "\"",
 			"",
 			"",
 			true);
 		String expectedOutput = "// Compiled from X.java (version 9 : 53.0, super bit)";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	/*
 	 * Test add-exports grants visibility to another module
 	 */
-	public void test014() {
+	public void test014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	requires java.base;\n" +
 						"	requires transitive java.sql;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p;\n" +
 						"public class X {\n" +
 						"	public static java.sql.Connection getConnection() {\n" +
 						"		return null;\n" +
 						"	}\n" +
 						"}");
-		moduleLoc = directory + File.separator + "mod.two";
+		moduleLoc = directory + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.two { \n" +
 						"	requires java.base;\n" +
 						"	requires mod.one;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "q", "Y.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "q", "Y.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package q;\n" +
 						"public class Y {\n" +
 						"   java.sql.Connection con = p.X.getConnection();\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"")
+			.append(" --module-source-path " + "\"" + directory + "\"") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.append(" --add-exports mod.one/p=mod.two");
 
 		runConformModuleTest(files,
@@ -717,44 +717,44 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"",
 				"");
 	}
-	public void test015() {
+	public void test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	requires java.base;\n" +
 						"	requires transitive java.sql;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p;\n" +
 						"public class X {\n" +
 						"	public static java.sql.Connection getConnection() {\n" +
 						"		return null;\n" +
 						"	}\n" +
 						"}");
-		moduleLoc = directory + File.separator + "mod.two";
+		moduleLoc = directory + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.two { \n" +
 						"	requires java.base;\n" +
 						"	requires java.sql;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "q", "Y.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "q", "Y.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package q;\n" +
 						"public class Y {\n" +
 						"   java.sql.Connection con = p.X.getConnection();\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"")
+			.append(" --module-source-path " + "\"" + directory + "\"") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.append(" --add-exports mod.one/p=mod.two");
 		runNegativeModuleTest(files,
 				buffer,
@@ -769,43 +769,43 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"does not read it",
 				JavacTestOptions.JavacHasABug.JavacBug8207032);
 	}
-	public void test016() {
+	public void test016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	requires java.base;\n" +
 						"	requires transitive java.sql;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p;\n" +
 						"public class X {\n" +
 						"	public static java.sql.Connection getConnection() {\n" +
 						"		return null;\n" +
 						"	}\n" +
 						"}");
-		moduleLoc = directory + File.separator + "mod.two";
+		moduleLoc = directory + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.two { \n" +
 						"	requires java.base;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "q", "Y.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "q", "Y.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package q;\n" +
 						"public class Y {\n" +
 						"   java.sql.Connection con = p.X.getConnection();\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"")
+			.append(" --module-source-path " + "\"" + directory + "\"") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.append(" --add-exports mod.one/p=mod.two")
 			.append(" --add-reads mod.two=mod.one");
 
@@ -814,43 +814,43 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"",
 				"");
 	}
-	public void test017() {
+	public void test017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	requires java.base;\n" +
 						"	requires transitive java.sql;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p;\n" +
 						"public class X {\n" +
 						"	public static java.sql.Connection getConnection() {\n" +
 						"		return null;\n" +
 						"	}\n" +
 						"}");
-		moduleLoc = directory + File.separator + "mod.two";
+		moduleLoc = directory + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.two { \n" +
 						"	requires java.base;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "q", "Y.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "q", "Y.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package q;\n" +
 						"public class Y {\n" +
 						"   java.sql.Connection con = p.X.getConnection();\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"")
+			.append(" --module-source-path " + "\"" + directory + "\"") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.append(" --add-exports mod.one/p=mod.three")
 			.append(" --add-reads mod.two=mod.one");
 
@@ -866,54 +866,54 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"1 problem (1 error)\n",
 				"visible");
 	}
-	public void test018() {
+	public void test018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	requires java.base;\n" +
 						"	requires transitive java.sql;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p;\n" +
 						"public class X {\n" +
 						"	public static java.sql.Connection getConnection() {\n" +
 						"		return null;\n" +
 						"	}\n" +
 						"}");
-		moduleLoc = directory + File.separator + "mod.two";
+		moduleLoc = directory + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.two { \n" +
 						"	requires java.base;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "q", "Y.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "q", "Y.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package q;\n" +
 						"public class Y {\n" +
 						"   java.sql.Connection con = p.X.getConnection();\n" +
 						"}");
-		moduleLoc = directory + File.separator + "mod.three";
+		moduleLoc = directory + File.separator + "mod.three"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.three { \n" +
 						"	requires java.base;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "r", "Z.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "r", "Z.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package r;\n" +
 						"public class Z {\n" +
 						"   java.sql.Connection con = p.X.getConnection();\n" +
 						"}");
 
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"")
+			.append(" --module-source-path " + "\"" + directory + "\"") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.append(" --add-exports mod.one/p=mod.two,mod.three")
 			.append(" --add-reads mod.two=mod.one")
 			.append(" --add-reads mod.three=mod.one");
@@ -926,14 +926,14 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 	/*
 	 * Unnamed module tries to access a type from an unexported package successfully due to --add-exports
 	 */
-	public void test019() {
+	public void test019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		runner.createFile(moduleLoc + File.separator + "p", "X.java",
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		runner.createFile(moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p;\n" +
 						"public abstract class X extends com.sun.security.ntlm.Server {\n" +
 						"	//public X() {}\n" +
@@ -942,12 +942,12 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 						"	}\n" +
 						"}");
 
-		runner.commandLine.append("-d " + OUTPUT_DIR + File.separator + out )
+		runner.commandLine.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" -sourcepath " + "\"" + moduleLoc + "\" ")
+			.append(" -sourcepath " + "\"" + moduleLoc + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.append(" --add-exports java.base/com.sun.security.ntlm=ALL-UNNAMED ");
 
 		runner.javacVersionOptions = JAVAC_SOURCE_9_OPTIONS; // otherwise javac: error: exporting a package from system module java.base is not allowed with --release
@@ -956,36 +956,36 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 	/*
 	 * Named module tries to access a type from an unnamed module successfully due to --add-reads
 	 */
-	public void test019b() {
+	public void test019b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String unnamedLoc = directory + File.separator + "nomodule";
-		String unnamedBin = OUTPUT_DIR + File.separator + "un_bin";
-		String moduleLoc = directory + File.separator + "mod" + File.separator + "mod.one";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String unnamedLoc = directory + File.separator + "nomodule"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String unnamedBin = OUTPUT_DIR + File.separator + "un_bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod" + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		createUnnamedLibrary(unnamedLoc, unnamedBin);
 
-		List<String> files = new ArrayList<>();
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one {\n" +
 						"	exports p.q;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "q", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "q", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p.q;\n" +
 						"public abstract class X {\n" +
 						"	s.t.Tester t;\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
-			.append(unnamedBin + File.pathSeparator)
+			.append(unnamedBin + File.pathSeparator) //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.append("\"")
-			.append(" --module-source-path \"" + directory + File.separator + "mod" + "\" ")
+			.append(" --module-source-path \"" + directory + File.separator + "mod" + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.append(" --add-reads mod.one=ALL-UNNAMED ");
 
 		runConformModuleTest(files,
@@ -997,37 +997,37 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 	/*
 	 * Can only import from a package that contains compilation units (from the unnamed module)
 	 */
-	public void test019c() {
+	public void test019c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String unnamedLoc = directory + File.separator + "nomodule";
-		String unnamedBin = OUTPUT_DIR + File.separator + "un_bin";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String unnamedLoc = directory + File.separator + "nomodule"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String unnamedBin = OUTPUT_DIR + File.separator + "un_bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		createUnnamedLibrary(unnamedLoc, unnamedBin);
 
-		List<String> files = new ArrayList<>();
-		String moduleLoc = directory + File.separator + "mod.one";
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one {\n" +
 						"	exports p.q;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "q", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "q", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p.q;\n" +
 						"import s.*;\n" +
 						"import s.t.*;\n" +
 						"public abstract class X {\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
-			.append(unnamedBin + File.pathSeparator)
+			.append(unnamedBin + File.pathSeparator) //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.append("\"")
-			.append(" --module-source-path \"" + directory + "\" ")
+			.append(" --module-source-path \"" + directory + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.append(" --add-reads mod.one=ALL-UNNAMED ");
 
 		runNegativeModuleTest(files,
@@ -1046,14 +1046,14 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 	/*
 	 * Unnamed module tries to access a type from an unexported package, fail
 	 */
-	public void test019fail() {
+	public void test019fail() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java",
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p;\n" +
 						"public abstract class X extends com.sun.security.ntlm.Server {\n" +
 						"	//public X() {}\n" +
@@ -1062,13 +1062,13 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 						"	}\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" -sourcepath " + "\"" + moduleLoc + "\" ");
+			.append(" -sourcepath " + "\"" + moduleLoc + "\" "); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(files,
 				buffer,
@@ -1105,19 +1105,19 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				 *                                                                ^
 				 */
 	}
-	public void test020() {
+	public void test020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	requires java.base;\n" +
 						"	requires transitive java.sql;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p;\n" +
 						"public class X {\n" +
 						"	public static java.sql.Connection getConnection() {\n" +
@@ -1125,13 +1125,13 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 						"	}\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"")
+			.append(" --module-source-path " + "\"" + directory + "\"") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.append(" --add-exports mod.one=mod.two,mod.three");
 
 		runNegativeModuleTest(files,
@@ -1140,19 +1140,19 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"incorrectly formatted option: --add-exports mod.one=mod.two,mod.three\n",
 				"option");
 	}
-	public void test021() {
+	public void test021() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	requires java.base;\n" +
 						"	requires transitive java.sql;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p;\n" +
 						"public class X {\n" +
 						"	public static java.sql.Connection getConnection() {\n" +
@@ -1160,13 +1160,13 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 						"	}\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"")
+			.append(" --module-source-path " + "\"" + directory + "\"") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.append(" --add-reads mod.one/mod.two");
 
 		runNegativeModuleTest(files,
@@ -1175,19 +1175,19 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"incorrectly formatted option: --add-reads mod.one/mod.two\n",
 				"option");
 	}
-	public void test022() {
+	public void test022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	requires java.base;\n" +
 						"	requires transitive java.sql;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p;\n" +
 						"public class X {\n" +
 						"	public static java.sql.Connection getConnection() {\n" +
@@ -1195,13 +1195,13 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 						"	}\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"")
+			.append(" --module-source-path " + "\"" + directory + "\"") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.append(" --add-exports mod.one/p=mod.three")
 			.append(" --add-exports mod.one/p=mod.three");
 
@@ -1211,27 +1211,27 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"can specify a package in a module only once with --add-export\n",
 				"export");
 	}
-	public void test023() {
+	public void test023() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	requires java.base;\n" +
 						"	requires transitive java.sql;\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append("\"" + moduleLoc +  File.separator + "module-info.java\" ")
-			.append(" -extdirs " + OUTPUT_DIR + File.separator + "src");
+			.append("\"" + moduleLoc +  File.separator + "module-info.java\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(" -extdirs " + OUTPUT_DIR + File.separator + "src"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(files,
 				buffer,
@@ -1239,27 +1239,27 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"option -extdirs not supported at compliance level 9 and above\n",
 				"extdirs");
 	}
-	public void test024() {
+	public void test024() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	requires java.base;\n" +
 						"	requires transitive java.sql;\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" \"" + moduleLoc +  File.separator + "module-info.java\" ")
-			.append(" -bootclasspath " + OUTPUT_DIR + File.separator + "src");
+			.append(" \"" + moduleLoc +  File.separator + "module-info.java\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(" -bootclasspath " + OUTPUT_DIR + File.separator + "src"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(files,
 				buffer,
@@ -1267,27 +1267,27 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"option -bootclasspath not supported at compliance level 9 and above\n",
 				"option --boot-class-path cannot be used together with --release"); // error message has changed between versions, name of option plus reason for illegality can be questioned
 	}
-	public void test025() {
+	public void test025() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	requires java.base;\n" +
 						"	requires transitive java.sql;\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append("\"" + moduleLoc +  File.separator + "module-info.java\" ")
-			.append(" -endorseddirs " + OUTPUT_DIR + File.separator + "src");
+			.append("\"" + moduleLoc +  File.separator + "module-info.java\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(" -endorseddirs " + OUTPUT_DIR + File.separator + "src"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(files,
 				buffer,
@@ -1295,13 +1295,13 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"option -endorseddirs not supported at compliance level 9 and above\n",
 				"endorseddirs");
 	}
-	public void test026() {
+	public void test026() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runner.createFile(
 						moduleLoc, "module-info.java",
 						"module mod.one { \n" +
@@ -1309,7 +1309,7 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 						"	requires transitive java.sql;\n" +
 						"}");
 		String javaHome = System.getProperty("java.home");
-		runner.commandLine.append("-d " + OUTPUT_DIR + File.separator + out )
+		runner.commandLine.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" --system \"").append(javaHome).append("\"");
 
@@ -1319,34 +1319,34 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 	/**
 	 * Mixed case of exported and non exported packages being referred to in another module
 	 */
-	public void test028() {
+	public void test028() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Util.flushDirectoryContent(new File(OUTPUT_DIR));
-		String outDir = OUTPUT_DIR + File.separator + "bin";
-		String srcDir = OUTPUT_DIR + File.separator + "src";
-		File modDir = new File(OUTPUT_DIR + File.separator + "mod");
+		String outDir = OUTPUT_DIR + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String srcDir = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		File modDir = new File(OUTPUT_DIR + File.separator + "mod"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createReusableModules(srcDir, outDir, modDir);
-		String moduleLoc = srcDir + File.separator + "mod.three";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = srcDir + File.separator + "mod.three"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.three { \n" +
 						"	requires mod.one;\n" +
 						"	requires mod.two;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "r", "Z.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "r", "Z.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package r;\n" +
 						"public class Z extends Object {\n" +
 						"	p.X x = null;\n" +
 						"	p1.X1 x1 = null;\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + outDir )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + outDir ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		.append(" -9 ")
 		.append(" -p \"")
 		.append(Util.getJavaClassLibsAsString())
 		.append(modDir.getAbsolutePath())
 		.append("\" ")
-		.append(" --module-source-path " + "\"" + srcDir + "\"");
+		.append(" --module-source-path " + "\"" + srcDir + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(files,
 				buffer,
@@ -1360,43 +1360,43 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"1 problem (1 error)\n",
 				"visible");
 	}
-	public void test029() {
+	public void test029() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	requires java.base;\n" +
 						"	requires java.sql;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p;\n" +
 						"public class X {\n" +
 						"	public static java.sql.Connection getConnection() {\n" +
 						"		return null;\n" +
 						"	}\n" +
 						"}");
-		moduleLoc = directory + File.separator + "mod.two";
+		moduleLoc = directory + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.two { \n" +
 						"	requires java.base;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "q", "Y.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "q", "Y.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package q;\n" +
 						"public class Y {\n" +
 						"   java.sql.Connection con = p.X.getConnection();\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"")
+			.append(" --module-source-path " + "\"" + directory + "\"") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.append(" --add-exports mod.one/p=mod.two,mod.three")
 			.append(" --add-reads mod.two=mod.one");
 
@@ -1418,45 +1418,45 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 			"2 problems (1 error, 1 warning)\n",
 			"visible");
 	}
-	public void test030() {
+	public void test030() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	requires java.base;\n" +
 						"	requires java.sql;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p;\n" +
 						"public class X {\n" +
 						"	public static java.sql.Connection getConnection() {\n" +
 						"		return null;\n" +
 						"	}\n" +
 						"}");
-		moduleLoc = directory + File.separator + "mod.two";
+		moduleLoc = directory + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.two { \n" +
 						"	requires java.base;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "q", "Y.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "q", "Y.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package q;\n" +
 						"import java.sql.*;\n" +
 						"public class Y {\n" +
 						"   Connection con = null;\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
 			.append(" -warn:-exports") // getConnection() leaks non-transitively required type
-			.append(" --module-source-path " + "\"" + directory + "\"")
+			.append(" --module-source-path " + "\"" + directory + "\"") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.append(" --add-exports mod.one/p=mod.two,mod.three")
 			.append(" --add-reads mod.two=mod.one");
 
@@ -1477,44 +1477,44 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 			"2 problems (2 errors)\n",
 			"visible");
 	}
-	public void test031() {
+	public void test031() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	requires java.base;\n" +
 						"	requires java.sql;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p;\n" +
 						"public class X {\n" +
 						"	static java.sql.Connection getConnection() {\n" +
 						"		return null;\n" +
 						"	}\n" +
 						"}");
-		moduleLoc = directory + File.separator + "mod.two";
+		moduleLoc = directory + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.two { \n" +
 						"	requires java.base;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "q", "Y.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "q", "Y.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package q;\n" +
 						"import java.sql.Connection;\n" +
 						"public class Y {\n" +
 						"   Connection con = null;\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"")
+			.append(" --module-source-path " + "\"" + directory + "\"") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.append(" --add-exports mod.one/p=mod.two,mod.three")
 			.append(" --add-reads mod.two=mod.one");
 
@@ -1535,31 +1535,31 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 			"2 problems (2 errors)\n",
 			"visible");
 	}
-	public void test032() {
+	public void test032() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	requires java.base;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc+"/p", "X.java",
+		writeFileCollecting(files, moduleLoc+"/p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p;\n" +
 						"public class X {\n" +
 						"	public static class Inner {\n" +
 						"	}\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runConformModuleTest(files,
 			buffer,
@@ -1569,10 +1569,10 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 	/**
 	 * Test that a module can't access types/packages in a plain Jar put in classpath
 	 */
-	public void test033() {
+	public void test033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File libDir = new File(LIB_DIR);
 		Util.delete(libDir); // make sure we recycle the libs
- 		libDir.mkdirs();
+ 		libDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		try {
 			Util.createJar(
 				new String[] {
@@ -1581,7 +1581,7 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 					"public class A {\n" +
 					"}"
 				},
-				LIB_DIR + "/lib1.jar",
+				LIB_DIR + "/lib1.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				JavaCore.VERSION_9);
 		} catch (IOException e) {
 			// ignore
@@ -1589,26 +1589,26 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	requires java.base;\n" +
 						"	requires java.sql;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p;\n" +
 						"public class X extends a.A {\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append(LIB_DIR).append(File.separator).append("lib1.jar").append(File.pathSeparator).append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runNegativeModuleTest(files,
 				buffer,
 				"",
@@ -1625,10 +1625,10 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 	 * Test that a module can't access types/packages in a plain Jar put in modulepath
 	 * but not explicitly added to the "requires" clause
 	 */
-	public void test034() {
+	public void test034() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File libDir = new File(LIB_DIR);
 		Util.delete(libDir); // make sure we recycle the libs
- 		libDir.mkdirs();
+ 		libDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		try {
 			Util.createJar(
 				new String[] {
@@ -1637,7 +1637,7 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 					"public class A {\n" +
 					"}"
 				},
-				LIB_DIR + "/lib1.jar",
+				LIB_DIR + "/lib1.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				JavaCore.VERSION_9);
 		} catch (IOException e) {
 			// ignore
@@ -1645,27 +1645,27 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	requires java.base;\n" +
 						"	requires java.sql;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p;\n" +
 						"public class X extends a.A {\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString()).append("\" ")
 			.append("-p \"")
 			.append(LIB_DIR).append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runNegativeModuleTest(files,
 				buffer,
 				"",
@@ -1682,10 +1682,10 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 	 * Test that a module can access types/packages in a plain Jar put in modulepath
 	 * and explicitly added to the "requires" clause
 	 */
-	public void test035() {
+	public void test035() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File libDir = new File(LIB_DIR);
 		Util.delete(libDir); // make sure we recycle the libs
- 		libDir.mkdirs();
+ 		libDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		try {
 			Util.createJar(
 				new String[] {
@@ -1694,7 +1694,7 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 					"public class A {\n" +
 					"}"
 				},
-				LIB_DIR + "/lib1.jar",
+				LIB_DIR + "/lib1.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				JavaCore.VERSION_9);
 		} catch (IOException e) {
 			// ignore
@@ -1702,63 +1702,63 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	requires java.base;\n" +
 						"	requires java.sql;\n" +
 						"	requires lib1;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p;\n" +
 						"public class X extends a.A {\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString()).append("\" ")
 			.append("-p \"")
 			.append(LIB_DIR).append("\" ")
 			.append(" -warn:-module ")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runConformModuleTest(files,
 				buffer,
 				"",
 				"");
 	}
-	public void testBug515985() {
+	public void testBug515985() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	exports pm;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "impl", "Other.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "impl", "Other.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package impl;\n" +
 						"public class Other {\n" +
 						"    public void privateMethod() {}" +
 						"}\n");
-		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package pm;\n" +
 						"import impl.Other;\n" +
 						"public class C1 extends Other {\n" +
 						"}\n");
 
-		moduleLoc = directory + File.separator + "mod.two";
+		moduleLoc = directory + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.two { \n" +
 						"	requires mod.one;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "po", "Client.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "po", "Client.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package po;\n" +
 						"import pm.C1;\n" +
 						"public class Client {\n" +
@@ -1767,13 +1767,13 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 						"    }\n" +
 						"}\n");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runConformModuleTest(files,
 				buffer,
@@ -1781,39 +1781,39 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"");
 	}
 
-	public void testApiLeak1() {
+	public void testApiLeak1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	exports pm;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "impl", "Other.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "impl", "Other.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package impl;\n" +
 						"public class Other {\n" +
 						"}\n");
-		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package pm;\n" +
 						"import impl.Other;\n" +
 						"public class C1 extends Other {\n" +
 						"	public void m1(Other o) {}\n" +
 						"}\n");
 
-		moduleLoc = directory + File.separator + "mod.two";
+		moduleLoc = directory + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.two { \n" +
 						"	requires mod.one;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "impl", "Other.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "impl", "Other.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package impl;\n" +
 						"public class Other {\n" +
 						"}\n");
-		writeFileCollecting(files, moduleLoc + File.separator + "po", "Client.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "po", "Client.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package po;\n" +
 						"import pm.C1;\n" +
 						"public class Client {\n" +
@@ -1822,13 +1822,13 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 						"    }\n" +
 						"}\n");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runConformModuleTest(files,
 				buffer,
@@ -1846,44 +1846,44 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 	 * Same-named classes should not conflict, since one is not accessible.
 	 * Still a sub class of the inaccessible class can be accessed and used for a method argument.
 	 */
-	public void testApiLeak2() {
+	public void testApiLeak2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	exports pm;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "impl", "SomeImpl.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "impl", "SomeImpl.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package impl;\n" +
 						"public class SomeImpl {\n" +
 						"}\n");
-		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package pm;\n" +
 						"import impl.SomeImpl;\n" +
 						"public class C1 {\n" +
 						"	public void m1(SomeImpl o) {}\n" +
 						"}\n");
-		writeFileCollecting(files, moduleLoc + File.separator + "pm", "Other.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pm", "Other.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package pm;\n" +
 						"import impl.SomeImpl;\n" +
 						"public class Other extends SomeImpl {\n" +
 						"}\n");
 
-		moduleLoc = directory + File.separator + "mod.two";
+		moduleLoc = directory + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.two { \n" +
 						"	requires mod.one;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "impl", "SomeImpl.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "impl", "SomeImpl.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package impl;\n" +
 						"public class SomeImpl {\n" + // pseudo-conflict to same named, but inaccessible class from mod.one
 						"}\n");
-		writeFileCollecting(files, moduleLoc + File.separator + "po", "Client.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "po", "Client.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package po;\n" +
 						"import pm.C1;\n" +
 						"import pm.Other;\n" +
@@ -1896,14 +1896,14 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 						"    }\n" +
 						"}\n");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
 			.append(" -info:+exports")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(files,
 				buffer,
@@ -1926,60 +1926,60 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 
 	// conflict even without any reference to the conflicting package
 	// - three-way conflict between two direct and one indirect dependency
-	public void testPackageConflict0() {
+	public void testPackageConflict0() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		String moduleLoc = directory + File.separator + "mod.x";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = directory + File.separator + "mod.x"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.x { \n" +
 						"	exports pm;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1x.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1x.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package pm;\n" +
 						"public class C1x {\n" +
 						"}\n");
 
-		moduleLoc = directory + File.separator + "mod.y";
+		moduleLoc = directory + File.separator + "mod.y"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.y { \n" +
 						"	requires transitive mod.x;\n" +
 						"}");
 
-		moduleLoc = directory + File.separator + "mod.one";
+		moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	exports pm;\n" +
 						"	exports p2;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package pm;\n" +
 						"public class C1 {\n" +
 						"}\n");
-		writeFileCollecting(files, moduleLoc + File.separator + "p2", "C2.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p2", "C2.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p2;\n" +
 						"public class C2 {\n" +
 						"}\n");
 
-		moduleLoc = directory + File.separator + "mod.two";
+		moduleLoc = directory + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.two { \n" +
 						"	exports pm;\n" +
 						"	exports p2.sub;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C3.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C3.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package pm;\n" +
 						"public class C3 {\n" +
 						"}\n");
-		writeFileCollecting(files, moduleLoc + File.separator + "p2" + File.separator + "sub", "C4.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p2" + File.separator + "sub", "C4.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p2.sub;\n" +
 						"public class C4 {\n" +
 						"}\n");
 
-		moduleLoc = directory + File.separator + "mod.three";
+		moduleLoc = directory + File.separator + "mod.three"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.three { \n" +
 						"	requires mod.one;\n" +
@@ -1987,13 +1987,13 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 						"	requires transitive mod.y;\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(files,
 				buffer,
@@ -2018,50 +2018,50 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"reads package pm");
 	}
 
-	public void testPackageConflict1() {
+	public void testPackageConflict1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	exports pm;\n" +
 						"	exports p2;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package pm;\n" +
 						"public class C1 {\n" +
 						"}\n");
-		writeFileCollecting(files, moduleLoc + File.separator + "p2", "C2.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p2", "C2.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p2;\n" +
 						"public class C2 {\n" +
 						"}\n");
 
-		moduleLoc = directory + File.separator + "mod.two";
+		moduleLoc = directory + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.two { \n" +
 						"	exports pm;\n" +
 						"	exports p2.sub;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C3.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C3.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package pm;\n" +
 						"public class C3 {\n" +
 						"}\n");
-		writeFileCollecting(files, moduleLoc + File.separator + "p2" + File.separator + "sub", "C4.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p2" + File.separator + "sub", "C4.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p2.sub;\n" +
 						"public class C4 {\n" +
 						"}\n");
 
-		moduleLoc = directory + File.separator + "mod.three";
+		moduleLoc = directory + File.separator + "mod.three"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.three { \n" +
 						"	requires mod.one;\n" +
 						"	requires mod.two;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "po", "Client.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "po", "Client.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package po;\n" +
 						"import pm.*;\n" +
 						"import pm.C3;\n" +
@@ -2073,13 +2073,13 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 						"	 p2.sub.C4 f4;\n" + // no conflict mod.one/p2 <-> mod.two/p2.sub
 						"}\n");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(files,
 				buffer,
@@ -2115,40 +2115,40 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"reads package pm");
 	}
 	// conflict foreign<->local package
-	public void testPackageConflict3() {
+	public void testPackageConflict3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		List<String> files = new ArrayList<>();
-		String moduleLoc = directory + File.separator + "mod.one";
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	exports pm;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package pm;\n" +
 						"public class C1 {\n" +
 						"}\n");
 
-		moduleLoc = directory + File.separator + "mod.two";
+		moduleLoc = directory + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.two { \n" +
 						"	requires mod.one;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C3.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C3.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package pm;\n" +
 						"public class C3 {\n" +
 						"}\n");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(files,
 				buffer,
@@ -2162,41 +2162,41 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"1 problem (1 error)\n",
 				"");
 	}
-	public void testPackageConflict4() {
+	public void testPackageConflict4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		File srcDir = new File(directory);
 
-		String moduleLoc = directory + File.separator + "mod.x";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = directory + File.separator + "mod.x"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.x { \n" +
 						"	exports pm;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package pm;\n" +
 						"public class C1 {\n" +
 						"}\n");
 
-		moduleLoc = directory + File.separator + "mod.y";
+		moduleLoc = directory + File.separator + "mod.y"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.y { \n" +
 						"	exports pm;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package pm;\n" +
 						"public class C1 {\n" +
 						"}\n");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runConformModuleTest(files,
 				buffer,
@@ -2204,16 +2204,16 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"");
 		Util.flushDirectoryContent(srcDir);
 		files.clear();
-		writeFileCollecting(files, directory + File.separator + "p", "X.java",
+		writeFileCollecting(files, directory + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"public class X extends pm.C1 { \n" +
 						"}");
-		buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-path " + "\"" + OUTPUT_DIR + File.separator + out + "\"");
+			.append(" --module-path " + "\"" + OUTPUT_DIR + File.separator + out + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runNegativeModuleTest(files,
 				buffer,
 				"",
@@ -2230,31 +2230,31 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 	 * currently disabled because ECJ allows unnamed modules to read from other modules from
 	 * module-path even if they are not part of root modules.
 	 */
-	public void _testPackageConflict4a() {
+	public void _testPackageConflict4a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		File srcDir = new File(directory);
 
-		String moduleLoc = directory + File.separator + "mod.x";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = directory + File.separator + "mod.x"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.x { \n" +
 						"	exports pm;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package pm;\n" +
 						"public class C1 {\n" +
 						"}\n");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runConformModuleTest(files,
 				buffer,
@@ -2262,16 +2262,16 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"");
 		Util.flushDirectoryContent(srcDir);
 		files.clear();
-		writeFileCollecting(files, directory + File.separator + "p", "X.java",
+		writeFileCollecting(files, directory + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"public class X extends pm.C1 { \n" +
 						"}");
-		buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-path " + "\"" + OUTPUT_DIR + File.separator + out + "\"");
+			.append(" --module-path " + "\"" + OUTPUT_DIR + File.separator + out + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runNegativeModuleTest(files,
 				buffer,
 				"",
@@ -2284,41 +2284,41 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"1 problem (1 error)\n",
 				"package conflict");
 	}
-	public void testPackageConflict5() {
+	public void testPackageConflict5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		File srcDir = new File(directory);
 
-		String moduleLoc = directory + File.separator + "mod.x";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = directory + File.separator + "mod.x"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.x { \n" +
 						"	exports pm;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package pm;\n" +
 						"public class C1 {\n" +
 						"}\n");
 
-		moduleLoc = directory + File.separator + "mod.y";
+		moduleLoc = directory + File.separator + "mod.y"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.y { \n" +
 						"	exports pm;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package pm;\n" +
 						"public class C1 {\n" +
 						"}\n");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runConformModuleTest(files,
 				buffer,
@@ -2326,29 +2326,29 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"");
 		Util.flushDirectoryContent(srcDir);
 		files.clear();
-		writeFileCollecting(files, directory + File.separator + "p", "X.java",
+		writeFileCollecting(files, directory + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"public class X extends pm.C1 { \n" +
 						"}");
-		buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-path " + "\"" + OUTPUT_DIR + File.separator + out + "\"")
+			.append(" --module-path " + "\"" + OUTPUT_DIR + File.separator + out + "\"") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.append(" --add-modules mod.x,mod.y");
 		runNegativeModuleTest(files,
 				buffer,
 				"",
 				"The package pm is accessible from more than one module: mod.y, mod.x\n",
 				"reads package pm from both");
-		buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-path " + "\"" + OUTPUT_DIR + File.separator + out + "\"")
+			.append(" --module-path " + "\"" + OUTPUT_DIR + File.separator + out + "\"") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.append(" --add-modules mod.x,mod.z");
 		runNegativeModuleTest(files,
 				buffer,
@@ -2356,41 +2356,41 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"invalid module name: mod.z\n",
 				"module not found");
 	}
-	public void testPackageConflict6() {
+	public void testPackageConflict6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		File srcDir = new File(directory);
 
-		String moduleLoc = directory + File.separator + "mod.x";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = directory + File.separator + "mod.x"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.x { \n" +
 						"	exports pm;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package pm;\n" +
 						"public class C1 {\n" +
 						"}\n");
 
-		moduleLoc = directory + File.separator + "mod.y";
+		moduleLoc = directory + File.separator + "mod.y"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.y { \n" +
 						"	exports pm;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package pm;\n" +
 						"public class C1 {\n" +
 						"}\n");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runConformModuleTest(files,
 				buffer,
@@ -2398,16 +2398,16 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"");
 		Util.flushDirectoryContent(srcDir);
 		files.clear();
-		writeFileCollecting(files, directory + File.separator + "p", "X.java",
+		writeFileCollecting(files, directory + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"public class X extends pm.C1 { \n" +
 						"}");
-		buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-path " + "\"" + OUTPUT_DIR + File.separator + out + "\"")
+			.append(" --module-path " + "\"" + OUTPUT_DIR + File.separator + out + "\"") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.append(" --add-modules mod.x,");
 		runNegativeModuleTest(files,
 				buffer,
@@ -2421,41 +2421,41 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"1 problem (1 error)\n",
 				"package conflict");
 	}
-	public void testPackageConflict7() {
+	public void testPackageConflict7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		File srcDir = new File(directory);
 
-		String moduleLoc = directory + File.separator + "mod.x";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = directory + File.separator + "mod.x"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.x { \n" +
 						"	exports pm;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package pm;\n" +
 						"public class C1 {\n" +
 						"}\n");
 
-		moduleLoc = directory + File.separator + "mod.y";
+		moduleLoc = directory + File.separator + "mod.y"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.y { \n" +
 						"	exports pm;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package pm;\n" +
 						"public class C1 {\n" +
 						"}\n");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runConformModuleTest(files,
 				buffer,
@@ -2463,16 +2463,16 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"");
 		Util.flushDirectoryContent(srcDir);
 		files.clear();
-		writeFileCollecting(files, directory + File.separator + "p", "X.java",
+		writeFileCollecting(files, directory + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"public class X { \n" +
 						"}");
-		buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-path " + "\"" + OUTPUT_DIR + File.separator + out + "\"")
+			.append(" --module-path " + "\"" + OUTPUT_DIR + File.separator + out + "\"") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.append(" --add-modules mod.x,mod.y");
 		runNegativeModuleTest(files,
 				buffer,
@@ -2480,51 +2480,51 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"The package pm is accessible from more than one module: mod.y, mod.x\n",
 				"reads package pm from both");
 	}
-	public void testPackageTypeConflict1() {
+	public void testPackageTypeConflict1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p1" + File.separator + "p2", "t3.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p1" + File.separator + "p2", "t3.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p1.p2;\n" +
 						"public class t3 {\n" +
 						"}\n");
 
-		moduleLoc = directory + File.separator + "mod.two";
+		moduleLoc = directory + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.two { \n" +
 						"	exports p1.p2.t3;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p1" + File.separator + "p2" + File.separator + "t3", "t4.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p1" + File.separator + "p2" + File.separator + "t3", "t4.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p1.p2.t3;\n" +
 						"public class t4 {\n" +
 						"}\n");
 
-		moduleLoc = directory + File.separator + "mod.three";
+		moduleLoc = directory + File.separator + "mod.three"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.three { \n" +
 						"	requires mod.one;\n" +
 						"	requires mod.two;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "po", "Client.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "po", "Client.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package po;\n" +
 						"public class Client {\n" +
 						"	 p1.p2.t3.t4 f;\n" + // no conflict mod.one/p1.p2.t3 <-> mod.two/p1.p2.t3
 						"}\n");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runConformModuleTest(files,
 				buffer,
@@ -2532,21 +2532,21 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"");
 	}
 
-	public void testBug519922() {
+	public void testBug519922() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		List<String> files = new ArrayList<>();
-		writeFileCollecting(files, directory + File.separator + "test", "Test.java",
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		writeFileCollecting(files, directory + File.separator + "test", "Test.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package test;\n" +
 						"\n" +
 						"public class Test implements org.eclipse.SomeInterface {\n" +
 						"}\n");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
@@ -2564,27 +2564,27 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"1 problem (1 error)\n",
 				"does not exist");
 	}
-	public void testMixedSourcepath() {
+	public void testMixedSourcepath() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod" + File.separator + "mod.one";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod" + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		List<String> files = new ArrayList<>();
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one {\n" +
 						"	exports p.q;\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\"")
-			.append(" -sourcepath \"" + directory + "\" ")
-			.append(" --module-source-path \"" + directory + File.separator + "mod" + "\" ")
+			.append(" -sourcepath \"" + directory + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(" --module-source-path \"" + directory + File.separator + "mod" + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.append(" --add-reads mod.one=ALL-UNNAMED ");
 
 		runNegativeModuleTest(files,
@@ -2596,19 +2596,19 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 
 	// causes: non-public type (C0), non-exported package (p.priv)
 	// locations: field, method parameter, method return
-	public void testAPILeakDetection1() {
+	public void testAPILeakDetection1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	exports p.exp;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "exp", "C1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "exp", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p.exp;\n" +
 						"import p.priv.*;\n" +
 						"class C0 {\n" +
@@ -2623,19 +2623,19 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 						"	public p.priv.C2 test5() { return null; }\n" +
 						"}\n");
 
-		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "priv", "C2.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "priv", "C2.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p.priv;\n" +
 						"public class C2 {\n" +
 						"}\n");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
 			.append(" -err:exports")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(files, buffer,
 				"",
@@ -2665,19 +2665,19 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 	}
 
 	// details: in array, parameterized type
-	public void testAPILeakDetection2() {
+	public void testAPILeakDetection2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	exports p.exp;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "exp", "C1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "exp", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p.exp;\n" +
 						"import java.util.*;\n" +
 						"class C0 {\n" +
@@ -2688,14 +2688,14 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 						"	public C0[] f2;\n" +
 						"}\n");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
 			.append(" -err:+exports")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(files, buffer,
 				"",
@@ -2715,19 +2715,19 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 	}
 
 	// suppress
-	public void testAPILeakDetection3() {
+	public void testAPILeakDetection3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	exports p.exp;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "exp", "C1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "exp", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p.exp;\n" +
 						"import java.util.*;\n" +
 						"class C0 {\n" +
@@ -2740,14 +2740,14 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 						"	public C0[] f2;\n" +
 						"}\n");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
 			.append(" -warn:+exports,+suppress")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runConformModuleTest(files,
 				buffer,
@@ -2756,19 +2756,19 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 	}
 
 	// details: nested types
-	public void testAPILeakDetection4() {
+	public void testAPILeakDetection4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	exports p.exp;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "exp", "C1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "exp", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p.exp;\n" +
 						"public class C1 {\n" +
 						"	static class C3 {\n" +
@@ -2778,14 +2778,14 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 						"	public C3.C4 f2;\n" +
 						"}\n");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
 			.append(" -err:+exports")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(files, buffer,
 				"",
@@ -2805,55 +2805,55 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 	}
 
 	// type from non-transitive required module
-	public void testAPILeakDetection5() {
+	public void testAPILeakDetection5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	exports p.exp1;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "exp1", "C1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "exp1", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p.exp1;\n" +
 						"public class C1 {\n" +
 						"}\n");
 
-		moduleLoc = directory + File.separator + "mod.two";
+		moduleLoc = directory + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.two { \n" +
 						"	exports p.exp2;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "exp2", "C2.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "exp2", "C2.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p.exp2;\n" +
 						"public class C2 {\n" +
 						"}\n");
 
-		moduleLoc = directory + File.separator + "mod.three";
+		moduleLoc = directory + File.separator + "mod.three"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.three { \n" +
 						"	requires mod.one; // missing transitive\n" +
 						"	requires transitive mod.two;\n" +
 						"	exports p.exp3;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "exp3", "C3.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "exp3", "C3.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p.exp3;\n" +
 						"public class C3 {\n" +
 						"	public void m1(p.exp1.C1 arg) {}\n" +
 						"	public void m2(p.exp2.C2 arg) {}\n" +
 						"}\n");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
 			.append(" -err:+exports")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(files, buffer,
 				"",
@@ -2868,19 +2868,19 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 	}
 
 	// annotated types in API
-	public void testAPILeakDetection6() {
+	public void testAPILeakDetection6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	exports p.exp;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "exp", "C1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "exp", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p.exp;\n" +
 						"import java.lang.annotation.*;\n" +
 						"@Target(ElementType.TYPE_USE)\n" +
@@ -2892,14 +2892,14 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 						"	public @ANN String test(@ANN String arg, @ANN C0 c) { return \"\"; }\n" +
 						"}\n");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
 			.append(" -err:exports")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(files, buffer,
 				"",
@@ -2919,55 +2919,55 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 	}
 
 	// enum API
-	public void testAPILeakDetection7() {
+	public void testAPILeakDetection7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	exports p.exp;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "exp", "C1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "exp", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p.exp;\n" +
 						"public enum C1 {\n" +
 						"	X, Y, Z;\n" +
 						"}\n");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
 			.append(" -err:exports")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runConformModuleTest(files, buffer,
 				"",
 				"");
 	}
 
-	public void testBug486013_comment27() {
+	public void testBug486013_comment27() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		String projLoc = directory + File.separator + "Proj";
-		List<String> files = new ArrayList<>();
-		writeFileCollecting(files, projLoc + File.separator + "p" + File.separator + "exp", "C1.java",
+		String projLoc = directory + File.separator + "Proj"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		writeFileCollecting(files, projLoc + File.separator + "p" + File.separator + "exp", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p.exp;\n" +
 						"import java.util.*;\n" +
 						"public class C1 {\n" +
 						"	List<?> l;\n" +
 						"}\n");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
@@ -2978,104 +2978,104 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"",
 				"");
 	}
-	public void testBug518295a() {
+	public void testBug518295a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Util.flushDirectoryContent(new File(OUTPUT_DIR));
-		String outDir = OUTPUT_DIR + File.separator + "bin";
-		String srcDir = OUTPUT_DIR + File.separator + "src";
-		File modDir = new File(OUTPUT_DIR + File.separator + "mod");
+		String outDir = OUTPUT_DIR + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String srcDir = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		File modDir = new File(OUTPUT_DIR + File.separator + "mod"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createReusableModules(srcDir, outDir, modDir);
-		String moduleLoc = srcDir + File.separator + "mod.three";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = srcDir + File.separator + "mod.three"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.three { \n" +
 						"	requires mod.one;\n" +
 						"	requires mod.two;\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + outDir )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + outDir ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		.append(" -9 ")
 		.append(" -p \"")
 		.append(Util.getJavaClassLibsAsString())
 		.append(modDir.getAbsolutePath())
 		.append("\" ")
 		.append("-classNames mod.one/p.XYZ")
-		.append(" --module-source-path " + "\"" + srcDir + "\"");
+		.append(" --module-source-path " + "\"" + srcDir + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		files.forEach(name -> buffer.append(" \"" + name + "\""));
+		files.forEach(name -> buffer.append(" \"" + name + "\"")); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		runNegativeTest(new String[0],
 				buffer.toString(),
 				"",
 				"invalid class name: mod.one/p.XYZ\n",
 				false);
 	}
-	public void testBug518295b() {
+	public void testBug518295b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Util.flushDirectoryContent(new File(OUTPUT_DIR));
-		String outDir = OUTPUT_DIR + File.separator + "bin";
-		String srcDir = OUTPUT_DIR + File.separator + "src";
-		File modDir = new File(OUTPUT_DIR + File.separator + "mod");
+		String outDir = OUTPUT_DIR + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String srcDir = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		File modDir = new File(OUTPUT_DIR + File.separator + "mod"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createReusableModules(srcDir, outDir, modDir);
-		String moduleLoc = srcDir + File.separator + "mod.three";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = srcDir + File.separator + "mod.three"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.three { \n" +
 						"	requires mod.one;\n" +
 						"	requires mod.two;\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + outDir )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + outDir ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		.append(" -9 ")
 		.append(" -p \"")
 		.append(Util.getJavaClassLibsAsString())
 		.append(modDir.getAbsolutePath())
 		.append("\" ")
 		.append("-classNames mod.xyz/p.X")
-		.append(" --module-source-path " + "\"" + srcDir + "\"");
+		.append(" --module-source-path " + "\"" + srcDir + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		files.forEach(name -> buffer.append(" \"" + name + "\""));
+		files.forEach(name -> buffer.append(" \"" + name + "\"")); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		runNegativeTest(new String[0],
 				buffer.toString(),
 				"",
 				"invalid module name: mod.xyz\n",
 				false);
 	}
-	public void testBug518295c() {
+	public void testBug518295c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Util.flushDirectoryContent(new File(OUTPUT_DIR));
-		String outDir = OUTPUT_DIR + File.separator + "bin";
-		String srcDir = OUTPUT_DIR + File.separator + "src";
-		File modDir = new File(OUTPUT_DIR + File.separator + "mod");
+		String outDir = OUTPUT_DIR + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String srcDir = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		File modDir = new File(OUTPUT_DIR + File.separator + "mod"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createReusableModules(srcDir, outDir, modDir);
-		String moduleLoc = srcDir + File.separator + "mod.three";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = srcDir + File.separator + "mod.three"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.three { \n" +
 						"	requires mod.one;\n" +
 						"	requires mod.two;\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + outDir )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + outDir ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		.append(" -9 ")
 		.append(" -p \"")
 		.append(Util.getJavaClassLibsAsString())
 		.append(modDir.getAbsolutePath())
 		.append("\" ")
 		.append("-classNames mod.one/p.X")
-		.append(" --module-source-path " + "\"" + srcDir + "\"");
+		.append(" --module-source-path " + "\"" + srcDir + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runConformModuleTest(files,
 				buffer,
 				"",
 				"");
 	}
-	public void testUnnamedPackage_Bug520839() {
+	public void testUnnamedPackage_Bug520839() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	requires java.base;\n" +
@@ -3084,13 +3084,13 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 						"public class X {\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(files,
 			buffer,
@@ -3104,7 +3104,7 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 			"1 problem (1 error)\n",
 			"unnamed package is not allowed in named modules");
 	}
-	public void testAutoModule1() throws Exception {
+	public void testAutoModule1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 
@@ -3113,31 +3113,31 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 			"package p.a;\n" +
 			"public class X {}\n;"
 		};
-		String jarPath = OUTPUT_DIR + File.separator + "lib-x.jar";
+		String jarPath = OUTPUT_DIR + File.separator + "lib-x.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Util.createJar(sources, jarPath, "1.8");
 
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	requires lib.x;\n" + // lib.x is derived from lib-x.jar
 						"}");
-		writeFileCollecting(files, moduleLoc+File.separator+"q", "X.java",
+		writeFileCollecting(files, moduleLoc+File.separator+"q", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package q;\n" +
 						"public class X {\n" +
 						"	p.a.X f;\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
 			.append(" -info:+module ")
-			.append(" --module-path " + "\"" + jarPath + "\"");
+			.append(" --module-path " + "\"" + jarPath + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runConformModuleTest(files,
 			buffer,
@@ -3150,29 +3150,29 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 			"----------\n" +
 			"1 problem (1 info)\n");
 	}
-	public void testBug521458a() {
+	public void testBug521458a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Util.flushDirectoryContent(new File(OUTPUT_DIR));
-		String outDir = OUTPUT_DIR + File.separator + "bin";
-		String srcDir = OUTPUT_DIR + File.separator + "src";
-		File modDir = new File(OUTPUT_DIR + File.separator + "mod");
+		String outDir = OUTPUT_DIR + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String srcDir = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		File modDir = new File(OUTPUT_DIR + File.separator + "mod"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createReusableModules(srcDir, outDir, modDir);
-		String moduleLoc = srcDir + File.separator + "mod.three";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = srcDir + File.separator + "mod.three"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod._3_ { \n" +
 						"	requires mod.one;\n" +
 						"	requires mod.two;\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + outDir )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + outDir ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		.append(" -9 ")
 		.append(" -p \"")
 		.append(Util.getJavaClassLibsAsString())
 		.append(modDir.getAbsolutePath())
 		.append("\" ")
 		.append("-classNames mod.one/p.X")
-		.append(" --module-source-path " + "\"" + srcDir + "\"");
+		.append(" --module-source-path " + "\"" + srcDir + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(files,
 				buffer,
@@ -3183,29 +3183,29 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 	/*
 	 * Disabled because the parser seem to take the module path as mod and not mod.e
 	 */
-	public void _testBug521458b() {
+	public void _testBug521458b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Util.flushDirectoryContent(new File(OUTPUT_DIR));
-		String outDir = OUTPUT_DIR + File.separator + "bin";
-		String srcDir = OUTPUT_DIR + File.separator + "src";
-		File modDir = new File(OUTPUT_DIR + File.separator + "mod");
+		String outDir = OUTPUT_DIR + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String srcDir = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		File modDir = new File(OUTPUT_DIR + File.separator + "mod"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createReusableModules(srcDir, outDir, modDir);
-		String moduleLoc = srcDir + File.separator + "mod.three";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = srcDir + File.separator + "mod.three"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.3 { \n" +
 						"	requires mod.one;\n" +
 						"	requires mod.two;\n" +
 						"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + outDir )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + outDir ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		.append(" -9 ")
 		.append(" -p \"")
 		.append(Util.getJavaClassLibsAsString())
 		.append(modDir.getAbsolutePath())
 		.append("\" ")
 		.append("-classNames mod.one/p.X")
-		.append(" --module-source-path " + "\"" + srcDir + "\"");
+		.append(" --module-source-path " + "\"" + srcDir + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(files,
 				buffer,
@@ -3213,27 +3213,27 @@ public class ModuleCompilationTests extends AbstractModuleCompilationTest {
 				"module name mod.3 does not match expected name mod.three\r\n",
 				outDir);
 	}
-public void testBug521362_emptyFile() {
+public void testBug521362_emptyFile() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	exports p1;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p1", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p1", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(files,
 			buffer,
@@ -3247,27 +3247,27 @@ public void testBug521362_emptyFile() {
 			"1 problem (1 error)\n",
 			"empty");
 	}
-	public void testBug521362_mismatchingdeclaration() {
+	public void testBug521362_mismatchingdeclaration() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	exports p1;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p1", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p1", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package q;\n");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(files,
 			buffer,
@@ -3281,32 +3281,32 @@ public void testBug521362_emptyFile() {
 			"1 problem (1 error)\n",
 			"package is empty");
 	}
-	public void testBug521362_multiplePackages() {
+	public void testBug521362_multiplePackages() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	exports p1;\n" +
 						"	exports p2;\n" +
 						"	exports p3;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p1", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p1", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package q;\n");
-		writeFileCollecting(files, moduleLoc + File.separator + "p2", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p2", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package q2;\n");
-		writeFileCollecting(files, moduleLoc + File.separator + "p3", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p3", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p3;\n");
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(files,
 			buffer,
@@ -3325,32 +3325,32 @@ public void testBug521362_emptyFile() {
 			"2 problems (2 errors)\n",
 			"package is empty");
 	}
-	public void testBug521362_multiplePackages2() {
+	public void testBug521362_multiplePackages2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	exports p1;\n" +
 						"	exports p2;\n" +
 						"	exports p3.p4.p5;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p1", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p1", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package q;\n");
-		writeFileCollecting(files, moduleLoc + File.separator + "p2", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p2", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package q2;\n");
-		writeFileCollecting(files, moduleLoc + File.separator + "p3" + File.separator + "p4" + File.separator + "p5", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p3" + File.separator + "p4" + File.separator + "p5", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p3.p4.p5;\n");
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(files,
 			buffer,
@@ -3373,24 +3373,24 @@ public void testBug521362_emptyFile() {
 	 * Test that when module-info is the only file being compiled, the class is still
 	 * generated inside the module's sub folder.
 	 */
-	public void testBug500170a() {
+	public void testBug500170a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String directory = getSourceDir();
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	requires java.sql;\n" +
 						"}");
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + getEcjOutputDir() )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + getEcjOutputDir() ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\" ")
-			.append(moduleLoc + File.separator + "module-info.java");
+			.append(" --module-source-path " + "\"" + directory + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "module-info.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		Set<String> classFiles = runConformModuleTest(
 				new String[0],
@@ -3398,25 +3398,25 @@ public void testBug521362_emptyFile() {
 				"",
 				"",
 				false);
-		String fileName = getEcjOutputDir() + File.separator + "mod.one" + File.separator + "module-info.class";
-		assertClassFile("Missing modul-info.class: " + fileName, fileName, classFiles);
+		String fileName = getEcjOutputDir() + File.separator + "mod.one" + File.separator + "module-info.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertClassFile("Missing modul-info.class: " + fileName, fileName, classFiles); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	/*
 	 * Test that no NPE is thrown when the module-info is compiled at a level below 9
 	 */
-	public void testBug500170b() {
+	public void testBug500170b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	requires java.sql;\n" +
 						"}");
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -8")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
@@ -3451,45 +3451,45 @@ public void testBug521362_emptyFile() {
 				""",
 				"modules are not supported");
 	}
-	public void testBug522472c() {
+	public void testBug522472c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		File srcDir = new File(directory);
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc,
 				"module-info.java",
 				"module mod.one { \n" +
 				"	exports x.y.z;\n" +
 				"	exports a.b.c;\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "x" + File.separator + "y" + File.separator + "z",
+		writeFileCollecting(files, moduleLoc + File.separator + "x" + File.separator + "y" + File.separator + "z", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"X.java",
 				"package x.y.z;\n");
-		writeFileCollecting(files, moduleLoc + File.separator + "a" + File.separator + "b" + File.separator + "c",
+		writeFileCollecting(files, moduleLoc + File.separator + "a" + File.separator + "b" + File.separator + "c", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"A.java",
 				"package a.b.c;\n" +
 				"public class A {}");
 
-		moduleLoc = directory + File.separator + "mod.one.a";
+		moduleLoc = directory + File.separator + "mod.one.a"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc,
 				"module-info.java",
 				"module mod.one.a { \n" +
 				"	exports x.y.z;\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "x" + File.separator + "y" + File.separator + "z",
+		writeFileCollecting(files, moduleLoc + File.separator + "x" + File.separator + "y" + File.separator + "z", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"X.java",
 				"package x.y.z;\n" +
 				"public class X {}\n");
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\" ");
+			.append(" --module-source-path " + "\"" + directory + "\" "); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runConformModuleTest(files,
 				buffer,
@@ -3498,14 +3498,14 @@ public void testBug521362_emptyFile() {
 
 		Util.flushDirectoryContent(srcDir);
 		files.clear();
-		moduleLoc = directory + File.separator + "mod.two";
+		moduleLoc = directory + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc,
 				"module-info.java",
 				"module mod.two { \n" +
 					"	requires mod.one;\n" +
 					"	requires mod.one.a;\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "q" + File.separator + "r",
+		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "q" + File.separator + "r", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"Main.java",
 				"package p.q.r;\n" +
 				"import a.b.c.*;\n" +
@@ -3513,14 +3513,14 @@ public void testBug521362_emptyFile() {
 				"@SuppressWarnings(\"unused\")\n" +
 				"public class Main {"
 				+ "}");
-		buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-path " + "\"" + OUTPUT_DIR + File.separator + out + "\" ")
-			.append(" --module-source-path " + "\"" + directory + "\" ");
+			.append(" --module-path " + "\"" + OUTPUT_DIR + File.separator + out + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(" --module-source-path " + "\"" + directory + "\" "); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runNegativeModuleTest(files,
 				buffer,
 				"",
@@ -3546,13 +3546,13 @@ public void testBug521362_emptyFile() {
 					"public class X {\n" +
 					"}",
 				},
-		     "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		     "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		     + " --release 8 -d \"" + OUTPUT_DIR + "\"",
 		     "",
 		     "",
 		     true);
 		String expectedOutput = "// Compiled from X.java (version 1.8 : 52.0, super bit)";
-			checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+			checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testReleaseOption2() throws Exception {
 		if (!isJRE17Plus) return;
@@ -3563,13 +3563,13 @@ public void testBug521362_emptyFile() {
 					"public class X {\n" +
 					"}",
 				},
-		     "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		     "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		     + " --release 10 -d \"" + OUTPUT_DIR + "\"",
 		     "",
 		     "",
 		     true);
 		String expectedOutput = "// Compiled from X.java (version 10 : 54.0, super bit)";
-			checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+			checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testReleaseOption3() throws Exception {
 		if (!isJRE17Plus) return;
@@ -3580,13 +3580,13 @@ public void testBug521362_emptyFile() {
 					"public class X {\n" +
 					"}",
 				},
-		     "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		     "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		     + " --release 10 -d \"" + OUTPUT_DIR + "\"",
 		     "",
 		     "",
 		     true);
 		String expectedOutput = "// Compiled from X.java (version 10 : 54.0, super bit)";
-			checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+			checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testReleaseOption4() throws Exception {
 		this.runNegativeTest(
@@ -3596,7 +3596,7 @@ public void testBug521362_emptyFile() {
 					"public class X {\n" +
 					"}",
 				},
-		     "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		     "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		     + " --release 8 -source 1.6 -d \"" + OUTPUT_DIR + "\"",
 		     "",
 		     "option -source is not supported when --release is used\n",
@@ -3610,7 +3610,7 @@ public void testBug521362_emptyFile() {
 					"public class X {\n" +
 					"}",
 				},
-		     "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		     "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		     + " --release 8 -target 1.8 -d \"" + OUTPUT_DIR + "\"",
 		     "",
 		     "option -target is not supported when --release is used\n",
@@ -3624,13 +3624,13 @@ public void testBug521362_emptyFile() {
 					"public class X {\n" +
 					"}",
 				},
-		     "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		     "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		     + " --release 5 -d \"" + OUTPUT_DIR + "\"",
 		     "",
 		     "release 5 is not found in the system\n",
 		     true);
 	}
-	public void testReleaseOption7() throws Exception {
+	public void testReleaseOption7() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -3643,13 +3643,13 @@ public void testBug521362_emptyFile() {
 					"	}\n" +
 					"}",
 				},
-		     "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		     "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		     + " --release 8 -d \"" + OUTPUT_DIR + "\"",
 		     "",
 		     "",
 		     true);
 	}
-	public void testReleaseOption8() throws Exception {
+	public void testReleaseOption8() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (isJRE20Plus) return;
 		String output =
 						"	public java.util.SequencedCollection<String> emptyCollection() {\n" +
@@ -3666,17 +3666,17 @@ public void testBug521362_emptyFile() {
 					"	}\n" +
 					"}",
 				},
-		     "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		     "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		     + " --release 8 -d \"" + OUTPUT_DIR + "\"",
 		     "",
-		     "----------\n" +
+		     "----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     		 "1. ERROR in ---OUTPUT_DIR_PLACEHOLDER---/X.java (at line 3)\n" +
     		 output +
     		 "----------\n" +
     		 "1 problem (1 error)\n",
 		     true);
 	}
-	public void testReleaseOption9() throws Exception {
+	public void testReleaseOption9() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (isJRE20Plus) return;
 		this.runNegativeTest(
 				new String[] {
@@ -3691,7 +3691,7 @@ public void testBug521362_emptyFile() {
 					"  }\n" +
 					"}\n",
 				},
-		     "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		     "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		     + " --release 8 -d \"" + OUTPUT_DIR + "\"",
 		     "",
 		     "----------\n" +
@@ -3706,7 +3706,7 @@ public void testBug521362_emptyFile() {
     		 "1 problem (1 error)\n",
 		     true);
 	}
-	public void testReleaseOption10() throws Exception {
+	public void testReleaseOption10() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (isJRE12Plus) return;
 		this.runNegativeTest(
 				new String[] {
@@ -3725,7 +3725,7 @@ public void testBug521362_emptyFile() {
 					"	}\n" +
 					"}",
 				},
-		     "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		     "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		     + " --release 8 -d \"" + OUTPUT_DIR + "\"",
 		     "",
 		     "----------\n" +
@@ -3751,14 +3751,14 @@ public void testBug521362_emptyFile() {
 					"	}\n" +
 					"}",
 				},
-		     "\"" + OUTPUT_DIR +  File.separator + "X.java\"" +
+		     "\"" + OUTPUT_DIR +  File.separator + "X.java\"" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		     " -bootclasspath " + OUTPUT_DIR + File.separator + "src " +
 		     " --release 9 -d \"" + OUTPUT_DIR + "\"",
 		     "",
     		 "option -bootclasspath not supported at compliance level 9 and above\n",
 		     true);
 	}
-	public void _testReleaseOption12() throws Exception {
+	public void _testReleaseOption12() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String javaHome = System.getProperty("java.home");
 		this.runNegativeTest(
 				new String[] {
@@ -3768,7 +3768,7 @@ public void testBug521362_emptyFile() {
 					"	}\n" +
 					"}",
 				},
-		     "\"" + OUTPUT_DIR +  File.separator + "X.java\"" +
+		     "\"" + OUTPUT_DIR +  File.separator + "X.java\"" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		      " --system \"" + javaHome + "\"" +
 		     " --release 8 -d \"" + OUTPUT_DIR + "\"",
 		     "",
@@ -3776,7 +3776,7 @@ public void testBug521362_emptyFile() {
     		 "option --system not supported below compliance level 9",
 		     true);
 	}
-	public void testReleaseOption13() {
+	public void testReleaseOption13() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformModuleTest(
 			new String[] {
 				"p/X.java",
@@ -3790,16 +3790,16 @@ public void testBug521362_emptyFile() {
 				"	requires java.base;\n" +
 				"}"
 	        },
-			" --release 9 \"" + OUTPUT_DIR +  File.separator + "module-info.java\" "
+			" --release 9 \"" + OUTPUT_DIR +  File.separator + "module-info.java\" " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        + "\"" + OUTPUT_DIR +  File.separator + "p/X.java\"",
 	        "",
 	        "",
 	        true);
 	}
-	public void testReleaseOption13a() {
+	public void testReleaseOption13a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.createFile(
-				OUTPUT_DIR +File.separator+"p", "X.java",
+				OUTPUT_DIR +File.separator+"p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p;\n" +
 				"public class X {\n" +
 				"	public static void main(String[] args) {\n" +
@@ -3810,18 +3810,18 @@ public void testBug521362_emptyFile() {
 				"module mod.one { \n" +
 				"	requires java.base;\n" +
 				"}");
-		runner.commandLine.append(" --release 10");
+		runner.commandLine.append(" --release 10"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		runner.javacTestOptions = new JavacTestOptions(ClassFileConstants.JDK10);
 		runner.runConformModuleTest();
 	}
-	public void testReleaseOption14() {
+	public void testReleaseOption14() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeModuleTest(
 			new String[] {
 				"module-info.java",
 				"module mod.one { \n" +
 				"}"
 			},
-			" --release 8 \"" + getSourceDir() +  File.separator + "module-info.java\" ",
+			" --release 8 \"" + getSourceDir() +  File.separator + "module-info.java\" ", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"",
 			"""
 			----------
@@ -3846,9 +3846,9 @@ public void testBug521362_emptyFile() {
 			/*not tested with javac*/"");
 	}
 	// Test from https://bugs.eclipse.org/bugs/show_bug.cgi?id=526997
-	public void testReleaseOption15() {
+	public void testReleaseOption15() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
-		String fooDir = OUTPUT_DIR + File.separator + "foo";
+		String fooDir = OUTPUT_DIR + File.separator + "foo"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runner.createFile(
 				fooDir, "Module.java",
 				"package foo;\n" +
@@ -3861,7 +3861,7 @@ public void testBug521362_emptyFile() {
 				"		return null;\n" +
 				"	}\n" +
 				"}");
-		runner.commandLine.append(" --release 8 ");
+		runner.commandLine.append(" --release 8 "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		// javac:
 		// warning: [options] source value 8 is obsolete and will be removed in a future release
 		// warning: [options] target value 8 is obsolete and will be removed in a future release
@@ -3870,7 +3870,7 @@ public void testBug521362_emptyFile() {
 	    runner.runConformModuleTest();
 	}
 	// Test from https://bugs.eclipse.org/bugs/show_bug.cgi?id=526997
-	public void testReleaseOption16() {
+	public void testReleaseOption16() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeModuleTest(
 			new String[] {
 				"foo/Module.java",
@@ -3885,7 +3885,7 @@ public void testBug521362_emptyFile() {
 				"	}\n" +
 				"}"
 	        },
-			" -source 9 \"" + getSourceDir() +  File.separator + "foo" + File.separator + "Module.java\" " +
+			" -source 9 \"" + getSourceDir() +  File.separator + "foo" + File.separator + "Module.java\" " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"\"" +  getSourceDir() +  File.separator + "bar" + File.separator + "X.java\" ",
 	        "",
 	        "----------\n" +
@@ -3898,7 +3898,7 @@ public void testBug521362_emptyFile() {
 	        true,
 	        /*not tested with javac*/"");
 	}
-	public void testReleaseOption17() {
+	public void testReleaseOption17() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeModuleTest(
 			new String[] {
 				"foo/Module.java",
@@ -3912,7 +3912,7 @@ public void testBug521362_emptyFile() {
 				"	}\n" +
 				"}"
 	        },
-			" --release 60 \"" + OUTPUT_DIR +  File.separator + "foo" + File.separator + "Module.java\" " +
+			" --release 60 \"" + OUTPUT_DIR +  File.separator + "foo" + File.separator + "Module.java\" " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"\"" +  OUTPUT_DIR +  File.separator + "foo" + File.separator + "X.java\" ",
 	        "",
 	        "release version 60 is not supported\n",
@@ -3927,7 +3927,7 @@ public void testBug521362_emptyFile() {
 				"public class X {\n" +
 				"}",
 				},
-			" --release 6 -1.8 \"" + OUTPUT_DIR +  File.separator + "foo" + File.separator + "Module.java\" " +
+			" --release 6 -1.8 \"" + OUTPUT_DIR +  File.separator + "foo" + File.separator + "Module.java\" " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"\"" +  OUTPUT_DIR +  File.separator + "foo" + File.separator + "X.java\" ",
 	        "",
     		"option 1.8 is not supported when --release is used\n",
@@ -3942,14 +3942,14 @@ public void testBug521362_emptyFile() {
 			"public class X {\n" +
 			"}",
 			},
-			" -9 --release 9 \"" + OUTPUT_DIR +  File.separator + "foo" + File.separator + "Module.java\" " +
+			" -9 --release 9 \"" + OUTPUT_DIR +  File.separator + "foo" + File.separator + "Module.java\" " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"\"" +  OUTPUT_DIR +  File.separator + "foo" + File.separator + "X.java\" ",
 	        "",
     		"option 9 is not supported when --release is used\n",
 	        true,
 	        /*not tested with javac*/"");
 	}
-	public void testReleaseOption20() throws Exception {
+	public void testReleaseOption20() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE12Plus || isJRE20Plus) return;
 		this.runNegativeTest(
 				new String[] {
@@ -3962,7 +3962,7 @@ public void testBug521362_emptyFile() {
 					"	}\n" +
 					"}",
 				},
-		     "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		     "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		     + " --release 8 -d \"" + OUTPUT_DIR + "\"",
 		     "",
 		     "----------\n" +
@@ -3987,13 +3987,13 @@ public void testBug521362_emptyFile() {
 					"	}\n" +
 					"}",
 				},
-		     "\"" + OUTPUT_DIR +  File.separator + "X.java\""
+		     "\"" + OUTPUT_DIR +  File.separator + "X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		     + " --release 8 -d \"" + OUTPUT_DIR + "\"",
 		     "",
     		 "",
 		     true);
 	}
-	public void testReleaseOption22() {
+	public void testReleaseOption22() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (isJRE11Plus || isJRE12Plus) return;
 		runConformTest(
 			new String[] {
@@ -4009,7 +4009,7 @@ public void testBug521362_emptyFile() {
 				"	requires java.xml.ws.annotation;\n" +
 				"}"
 	        },
-			" --limit-modules java.base,java.xml.ws.annotation " +
+			" --limit-modules java.base,java.xml.ws.annotation " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			" --release 10 \"" + OUTPUT_DIR +  File.separator + "module-info.java\" "
 	        + "\"" + OUTPUT_DIR +  File.separator + "p/X.java\"",
 	        "",
@@ -4022,7 +4022,7 @@ public void testBug521362_emptyFile() {
     		"1 problem (1 warning)\n",
 	        true);
 	}
-	public void testReleaseOption23() {
+	public void testReleaseOption23() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE11Plus) return;
 		runNegativeTest(
 			new String[] {
@@ -4037,14 +4037,14 @@ public void testBug521362_emptyFile() {
 				"	requires java.xml.ws.annotation;\n" +
 				"}"
 	        },
-			" --limit-modules java.base,java.xml.ws.annotation " +
+			" --limit-modules java.base,java.xml.ws.annotation " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			" --release 11 \"" + OUTPUT_DIR +  File.separator + "module-info.java\" "
 	        + "\"" + OUTPUT_DIR +  File.separator + "p/X.java\"",
 	        "",
 	        "invalid module name: java.xml.ws.annotation\n",
 	        true);
 	}
-	public void testReleaseOption24() {
+	public void testReleaseOption24() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE11Plus) return;
 		runNegativeTest(
 			new String[] {
@@ -4059,40 +4059,40 @@ public void testBug521362_emptyFile() {
 				"	requires java.xml.ws.annotation;\n" +
 				"}"
 	        },
-			" --limit-modules java.base,java.xml.ws.annotation " +
+			" --limit-modules java.base,java.xml.ws.annotation " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			" --release 12 \"" + OUTPUT_DIR +  File.separator + "module-info.java\" "
 	        + "\"" + OUTPUT_DIR +  File.separator + "p/X.java\"",
 	        "",
 	        "invalid module name: java.xml.ws.annotation\n",
 	        true);
 	}
-	public void testLimitModules1() {
+	public void testLimitModules1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		String moduleLoc = directory + File.separator + "mod.x";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = directory + File.separator + "mod.x"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.x { \n" +
 						"	exports pm;\n" +
 						"	requires java.sql;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package pm;\n" +
 						"public class C1 {\n" +
 						"}\n");
 
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
 			.append(" --limit-modules java.base")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runNegativeModuleTest(files, buffer,
 				"",
 				"----------\n" +
@@ -4104,33 +4104,33 @@ public void testBug521362_emptyFile() {
 				"1 problem (1 error)\n",
 				"module not found");
 	}
-	public void testLimitModules2() {
+	public void testLimitModules2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		String moduleLoc = directory + File.separator + "mod.x";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = directory + File.separator + "mod.x"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.x { \n" +
 						"	exports pm;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package pm;\n" +
 						"import java.sql.Connection;\n" +
 						"public class C1 {\n" +
 						"}\n");
 
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
 			.append(" --limit-modules java.base")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runNegativeModuleTest(files, buffer,
 				"",
 				"----------\n" +
@@ -4142,44 +4142,44 @@ public void testBug521362_emptyFile() {
 				"1 problem (1 error)\n",
 				"is not visible");
 	}
-	public void testLimitModules3() {
+	public void testLimitModules3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		String moduleLoc = directory + File.separator + "mod.x";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = directory + File.separator + "mod.x"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.x { \n" +
 						"	exports pm;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pm", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package pm;\n" +
 						"public class C1 {\n" +
 						"}\n");
 
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
 			.append(" --limit-modules java.sql")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runConformModuleTest(files, buffer,
 				"",
 				"");
 	}
-	public void testLimitModules4() {
+	public void testLimitModules4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Util.flushDirectoryContent(new File(OUTPUT_DIR));
-		String outDir = OUTPUT_DIR + File.separator + "bin";
-		String srcDir = OUTPUT_DIR + File.separator + "src";
-		File modDir = new File(OUTPUT_DIR + File.separator + "mod");
+		String outDir = OUTPUT_DIR + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String srcDir = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		File modDir = new File(OUTPUT_DIR + File.separator + "mod"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createReusableModules(srcDir, outDir, modDir);
-		String moduleLoc = srcDir + File.separator + "mod.three";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = srcDir + File.separator + "mod.three"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.three { \n" +
 						"	requires mod.one;\n" +
@@ -4187,27 +4187,27 @@ public void testBug521362_emptyFile() {
 						"}");
 
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + outDir )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + outDir ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" --module-path \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append(modDir.getAbsolutePath())
 			.append("\" ")
 			.append(" --limit-modules mod.one,mod.two ")
-			.append(" --module-source-path " + "\"" + srcDir + "\" ");
+			.append(" --module-source-path " + "\"" + srcDir + "\" "); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runConformModuleTest(files, buffer,
 				"",
 				"");
 	}
-	public void testLimitModules5() {
+	public void testLimitModules5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Util.flushDirectoryContent(new File(OUTPUT_DIR));
-		String outDir = OUTPUT_DIR + File.separator + "bin";
-		String srcDir = OUTPUT_DIR + File.separator + "src";
-		File modDir = new File(OUTPUT_DIR + File.separator + "mod");
+		String outDir = OUTPUT_DIR + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String srcDir = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		File modDir = new File(OUTPUT_DIR + File.separator + "mod"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createReusableModules(srcDir, outDir, modDir);
-		String moduleLoc = srcDir + File.separator + "mod.three";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = srcDir + File.separator + "mod.three"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.three { \n" +
 						"	requires mod.one;\n" +
@@ -4215,15 +4215,15 @@ public void testBug521362_emptyFile() {
 						"}");
 
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + outDir )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + outDir ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" --module-path \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append(modDir.getAbsolutePath())
 			.append("\" ")
 			.append(" --limit-modules mod.one ")
-			.append(" --module-source-path " + "\"" + srcDir + "\" ");
+			.append(" --module-source-path " + "\"" + srcDir + "\" "); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runNegativeModuleTest(files, buffer,
 				"",
 				"----------\n" +
@@ -4235,15 +4235,15 @@ public void testBug521362_emptyFile() {
 				"1 problem (1 error)\n",
 				"");
 	}
-	public void testBug519600() {
+	public void testBug519600() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Util.flushDirectoryContent(new File(OUTPUT_DIR));
-		String outDir = OUTPUT_DIR + File.separator + "bin";
-		String srcDir = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = srcDir + File.separator + "test";
+		String outDir = OUTPUT_DIR + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String srcDir = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = srcDir + File.separator + "test"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Runner runner = new Runner();
 		runner.createFile(moduleLoc, "module-info.java",
 						"module test {}");
-		runner.createFile(moduleLoc + File.separator + "test", "Thing.java",
+		runner.createFile(moduleLoc + File.separator + "test", "Thing.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package test;\n" +
 				"import java.util.Comparator;\n" +
 				"import java.util.Iterator;\n" +
@@ -4255,20 +4255,20 @@ public void testBug521362_emptyFile() {
 				"    }\n" +
 				"}\n");
 
-		runner.commandLine.append("-d " + outDir )
+		runner.commandLine.append("-d " + outDir ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -source 9 ")
-			.append(" --module-source-path " + "\"" + srcDir + "\" ");
+			.append(" --module-source-path " + "\"" + srcDir + "\" "); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runner.javacVersionOptions = "-Xlint:-options"; // -source 9 already provided
 		runner.runConformModuleTest();
 	}
-	public void testBug508889_001() throws Exception {
+	public void testBug508889_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"module-info.java",
 				"module mymodule {\n" +
 				"}",
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "module-info.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "module-info.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -9 -source 9 -target 9 -d \"" + OUTPUT_DIR + "\"",
 			"",
 			"",
@@ -4280,25 +4280,25 @@ public void testBug521362_emptyFile() {
 				"  requires java.base;\n" +
 				"\n" +
 				"}";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "module-info.class", "module-info", expectedOutput);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "module-info.class", "module-info", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void testBug508889_002() throws Exception {
+	public void testBug508889_002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 								"    exports pack1;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pack1", "X11.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pack1", "X11.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package pack1;\n" +
 						"public class X11 {\n" +
 						"}");
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
@@ -4317,15 +4317,15 @@ public void testBug521362_emptyFile() {
 				"  exports pack1;\n" +
 				"\n" +
 				"}";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + out + File.separator + "module-info.class", "module-info", expectedOutput);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + out + File.separator + "module-info.class", "module-info", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void testBug508889_003() throws Exception {
+	public void testBug508889_003() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 								"    exports pack1;\n" +
@@ -4336,37 +4336,37 @@ public void testBug521362_emptyFile() {
 								"    provides pack1.I11 with pack1.X11;\n" +
 								"    requires transitive java.sql;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pack1", "I11.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pack1", "I11.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package pack1;\n" +
 						"public interface I11 {\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pack1", "X11.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pack1", "X11.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package pack1;\n" +
 						"public class X11 implements I11{\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pack2", "X21.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pack2", "X21.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package pack2;\n" +
 				"public class X21 {\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pack3", "X31.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pack3", "X31.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package pack3;\n" +
 				"public class X31 {\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pack4", "X41.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pack4", "X41.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package pack4;\n" +
 				"public class X41 {\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pack5", "X51.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pack5", "X51.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package pack5;\n" +
 				"public class X51 {\n" +
 				"}");
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ");
-		files.forEach(name -> buffer.append(" \"" + name + "\""));
+		files.forEach(name -> buffer.append(" \"" + name + "\"")); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		runConformTest(new String[0],
 				buffer.toString(),
 				"",
@@ -4390,47 +4390,47 @@ public void testBug521362_emptyFile() {
 				"  provides pack1.I11 with pack1.X11;\n" +
 				"\n" +
 				"}";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + out + File.separator + "module-info.class", "module-info", expectedOutput);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + out + File.separator + "module-info.class", "module-info", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void testBug520858() {
+	public void testBug520858() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Util.flushDirectoryContent(new File(OUTPUT_DIR));
-		String outDir = OUTPUT_DIR + File.separator + "bin";
-		String srcDir = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = srcDir + File.separator + "test";
+		String outDir = OUTPUT_DIR + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String srcDir = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = srcDir + File.separator + "test"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Runner runner = new Runner();
 		runner.createFile(moduleLoc, "module-info.java",
 						"module test {\n" +
 						"	requires org.astro;\n" +
 						"}");
-		runner.createFile(moduleLoc + File.separator + "p", "Test.java",
+		runner.createFile(moduleLoc + File.separator + "p", "Test.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"package p;\n" +
 			"import org.astro.World;\n" +
 			"public class Test {\n" +
 			"	World w = null;\n" +
 			"}");
-		moduleLoc = srcDir + File.separator + "org.astro";
+		moduleLoc = srcDir + File.separator + "org.astro"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runner.createFile(moduleLoc, "module-info.java",
 				"module org.astro {\n" +
 				"	exports org.astro;\n" +
 				"}");
-		runner.createFile(moduleLoc + File.separator + "org" + File.separator + "astro", "World.java",
+		runner.createFile(moduleLoc + File.separator + "org" + File.separator + "astro", "World.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"package org.astro;\n" +
 			"public interface World {\n" +
 			"	public static String name() {\n" +
 			"		return \"\";\n" +
 			"	}\n" +
 			"}");
-		runner.commandLine.append("-d " + outDir )
+		runner.commandLine.append("-d " + outDir ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -source 9 ")
-			.append(" --module-source-path " + "\"" + srcDir + "\" ");
+			.append(" --module-source-path " + "\"" + srcDir + "\" "); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runner.javacVersionOptions = " -Xlint:-options";
 		runner.runConformModuleTest();
 	}
-	public void testBug520858a() {
+	public void testBug520858a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Util.flushDirectoryContent(new File(OUTPUT_DIR));
-		String outDir = OUTPUT_DIR + File.separator + "bin";
-		String srcDir = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = srcDir + File.separator + "test";
+		String outDir = OUTPUT_DIR + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String srcDir = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = srcDir + File.separator + "test"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Runner runner = new Runner();
 		// not adding some files to the command line
 		writeFile(moduleLoc, "module-info.java",
@@ -4438,209 +4438,209 @@ public void testBug521362_emptyFile() {
 						"	requires org.astro;\n" +
 						"}");
 		// the only file added:
-		runner.createFile(moduleLoc + File.separator + "p", "Test.java",
+		runner.createFile(moduleLoc + File.separator + "p", "Test.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"package p;\n" +
 			"import org.astro.World;\n" +
 			"public class Test {\n" +
 			"	World w = null;\n" +
 			"}");
-		moduleLoc = srcDir + File.separator + "org.astro";
+		moduleLoc = srcDir + File.separator + "org.astro"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFile(moduleLoc, "module-info.java",
 				"module org.astro {\n" +
 				"	exports org.astro;\n" +
 				"}");
-		writeFile(moduleLoc + File.separator + "org" + File.separator + "astro", "World.java",
+		writeFile(moduleLoc + File.separator + "org" + File.separator + "astro", "World.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"package org.astro;\n" +
 			"public interface World {\n" +
 			"	public static String name() {\n" +
 			"		return \"\";\n" +
 			"	}\n" +
 			"}");
-		runner.commandLine.append("-d " + outDir )
+		runner.commandLine.append("-d " + outDir ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -source 9 ")
-			.append(" --module-source-path " + "\"" + srcDir + "\" ");
+			.append(" --module-source-path " + "\"" + srcDir + "\" "); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runner.javacVersionOptions = " -Xlint:-options";
 		runner.runConformModuleTest();
 	}
-	public void testBug520858b() {
+	public void testBug520858b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Util.flushDirectoryContent(new File(OUTPUT_DIR));
-		String outDir = OUTPUT_DIR + File.separator + "bin";
-		String srcDir = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = srcDir + File.separator + "test";
+		String outDir = OUTPUT_DIR + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String srcDir = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = srcDir + File.separator + "test"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Runner runner = new Runner();
 		runner.createFile(moduleLoc, "module-info.java",
 						"module test {\n" +
 						"	requires org.astro;\n" +
 						"}");
-		runner.createFile(moduleLoc + File.separator + "p", "Test.java",
+		runner.createFile(moduleLoc + File.separator + "p", "Test.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"package p;\n" +
 			"import org.astro.World;\n" +
 			"public class Test {\n" +
 			"	World w = null;\n" +
 			"}");
-		moduleLoc = srcDir + File.separator + "org.astro";
+		moduleLoc = srcDir + File.separator + "org.astro"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		// not adding this file to the command line (intentional?):
 		writeFile(moduleLoc, "module-info.java",
 				"module org.astro {\n" +
 				"	exports org.astro;\n" +
 				"}");
-		runner.createFile(moduleLoc + File.separator + "org" + File.separator + "astro", "World.java",
+		runner.createFile(moduleLoc + File.separator + "org" + File.separator + "astro", "World.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"package org.astro;\n" +
 			"public interface World {\n" +
 			"	public static String name() {\n" +
 			"		return \"\";\n" +
 			"	}\n" +
 			"}");
-		runner.commandLine.append("-d " + outDir )
+		runner.commandLine.append("-d " + outDir ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -source 9 ")
-			.append(" --module-source-path " + "\"" + srcDir + "\" ");
+			.append(" --module-source-path " + "\"" + srcDir + "\" "); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runner.javacVersionOptions = " -Xlint:-options";
 		runner.runConformModuleTest();
 	}
-	public void testBug520858c() {
+	public void testBug520858c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Util.flushDirectoryContent(new File(OUTPUT_DIR));
-		String outDir = OUTPUT_DIR + File.separator + "bin";
-		String srcDir = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = srcDir + File.separator + "test";
-		List<String> files = new ArrayList<>();
+		String outDir = OUTPUT_DIR + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String srcDir = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = srcDir + File.separator + "test"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "Test.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "Test.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"package p;\n" +
 			"import org.astro.World;\n" +
 			"public class Test {\n" +
 			"	World w = null;\n" +
 			"}");
-		moduleLoc = srcDir + File.separator + "org.astro";
+		moduleLoc = srcDir + File.separator + "org.astro"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 				"module org.astro {\n" +
 				"	exports org.astro;\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "org" + File.separator + "astro", "World.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "org" + File.separator + "astro", "World.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"package org.astro;\n" +
 			"public interface World {\n" +
 			"	public static String name() {\n" +
 			"		return \"\";\n" +
 			"	}\n" +
 			"}");
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + outDir )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + outDir ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -source 9 ")
-			.append(" --module-source-path " + "\"" + srcDir + "\" ");
+			.append(" --module-source-path " + "\"" + srcDir + "\" "); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runNegativeModuleTest(files, buffer,
 				"",
 				"\'---OUTPUT_DIR_PLACEHOLDER---/src/test/p/Test.java\' does not belong to a module on the module source path\n",
 				"not in a module on the module source path");
 	}
-	public void testBug520858d() {
+	public void testBug520858d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Util.flushDirectoryContent(new File(OUTPUT_DIR));
-		String outDir = OUTPUT_DIR + File.separator + "bin";
-		String srcDir = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = srcDir + File.separator + "test";
-		List<String> files = new ArrayList<>();
+		String outDir = OUTPUT_DIR + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String srcDir = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = srcDir + File.separator + "test"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "Test.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "Test.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"package p;\n" +
 			"import org.astro.World;\n" +
 			"public class Test {\n" +
 			"	World w = null;\n" +
 			"}");
-		moduleLoc = srcDir + File.separator + "org.astro";
+		moduleLoc = srcDir + File.separator + "org.astro"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 				"module org.astro {\n" +
 				"	exports org.astro;\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "org" + File.separator + "astro", "World.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "org" + File.separator + "astro", "World.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"package org.astro;\n" +
 			"public interface World {\n" +
 			"	public static String name() {\n" +
 			"		return \"\";\n" +
 			"	}\n" +
 			"}");
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + outDir )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + outDir ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -source 9 ")
-			.append(" --module-source-path " + "\"" + srcDir + "\" ")
-			.append(srcDir + File.separator + "org.astro" + File.separator + "org" + File.separator + "astro" + File.separator + "World.java ")
-			.append(srcDir + File.separator + "test" + File.separator + "p" + File.separator + "Test.java");
+			.append(" --module-source-path " + "\"" + srcDir + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(srcDir + File.separator + "org.astro" + File.separator + "org" + File.separator + "astro" + File.separator + "World.java ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(srcDir + File.separator + "test" + File.separator + "p" + File.separator + "Test.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runNegativeModuleTest(Collections.emptyList(), buffer,
 			"",
 			"\'---OUTPUT_DIR_PLACEHOLDER---/src/test/p/Test.java\' does not belong to a module on the module source path\n",
 			"not in a module on the module source path");
 	}
-	public void testBug520858e() {
+	public void testBug520858e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Util.flushDirectoryContent(new File(OUTPUT_DIR));
-		String outDir = OUTPUT_DIR + File.separator + "bin";
-		String srcDir = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = srcDir + File.separator + "test";
-		List<String> files = new ArrayList<>();
+		String outDir = OUTPUT_DIR + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String srcDir = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = srcDir + File.separator + "test"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "Test.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "Test.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"package p;\n" +
 			"import org.astro.World;\n" +
 			"public class Test {\n" +
 			"	World w = null;\n" +
 			"}");
-		moduleLoc = srcDir + File.separator + "org.astro";
+		moduleLoc = srcDir + File.separator + "org.astro"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 				"module org.astro {\n" +
 				"	exports org.astro;\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "org" + File.separator + "astro", "World.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "org" + File.separator + "astro", "World.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"package org.astro;\n" +
 			"public interface World {\n" +
 			"	public static String name() {\n" +
 			"		return \"\";\n" +
 			"	}\n" +
 			"}");
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + outDir )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + outDir ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -source 9 ")
-			.append(" --module-source-path " + "\"" + srcDir + "\" ")
-			.append(srcDir + File.separator + "org.astro" + File.separator + "org" + File.separator + "astro" + File.separator + "World.java ")
-			.append(srcDir + File.separator + "org.astro" + File.separator + "module-info.java ")
-			.append(srcDir + File.separator + "test" + File.separator + "p" + File.separator + "Test.java");
+			.append(" --module-source-path " + "\"" + srcDir + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(srcDir + File.separator + "org.astro" + File.separator + "org" + File.separator + "astro" + File.separator + "World.java ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(srcDir + File.separator + "org.astro" + File.separator + "module-info.java ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(srcDir + File.separator + "test" + File.separator + "p" + File.separator + "Test.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runNegativeModuleTest(Collections.emptyList(), buffer,
 			"",
 			"\'---OUTPUT_DIR_PLACEHOLDER---/src/test/p/Test.java\' does not belong to a module on the module source path\n",
 			"not in a module on the module source path");
 	}
-	public void testBug530575() {
+	public void testBug530575() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		File srcDir = new File(directory);
 
-		String moduleLoc = directory + File.separator + "mod.x";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = directory + File.separator + "mod.x"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.x { \n" +
 						"	exports px;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "px", "C1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "px", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package px;\n" +
 						"public class C1 {\n" +
 						"}\n");
 
-		moduleLoc = directory + File.separator + "mod.y";
+		moduleLoc = directory + File.separator + "mod.y"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.y { \n" +
 						"	exports py;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "py", "C1.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "py", "C1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package py;\n" +
 						"public class C1 {\n" +
 						"}\n");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"");
-		for (String fileName : files)
-			buffer.append(" \"").append(fileName).append("\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		for (String fileName : files) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(" \"").append(fileName).append("\""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		runConformTest(new String[0],
 				buffer.toString(),
 				"",
@@ -4653,18 +4653,18 @@ public void testBug521362_emptyFile() {
 				"	requires mod.x;\n" +
 				"	requires mod.y;\n" +
 				"}");
-		writeFileCollecting(files, directory + File.separator + "p", "X.java",
+		writeFileCollecting(files, directory + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p;\n" +
 						"public class X extends px.C1 { \n" +
 						"	py.C1 c = null;\n" +
 						"}");
-		buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-path " + "\"" + OUTPUT_DIR + File.separator + out + File.separator + "mod.x" + File.pathSeparator + OUTPUT_DIR + File.separator + out + File.separator + "mod.y" + "\"");
+			.append(" --module-path " + "\"" + OUTPUT_DIR + File.separator + out + File.separator + "mod.x" + File.pathSeparator + OUTPUT_DIR + File.separator + out + File.separator + "mod.y" + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runConformModuleTest(files,
 				buffer,
 				"",
@@ -4674,31 +4674,31 @@ public void testBug521362_emptyFile() {
 	 * Test that when module-info is not included in the command line, the class is still
 	 * generated inside the module's sub folder.
 	 */
-	public void testBug533411() {
+	public void testBug533411() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	requires java.sql;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "Test.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "Test.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p;\n" +
 				"public class Test {\n" +
 				"	java.sql.Connection conn = null;\n" +
 				"}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\" ")
-			.append(moduleLoc + File.separator + "p" + File.separator + "Test.java");
+			.append(" --module-source-path " + "\"" + directory + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "p" + File.separator + "Test.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		Set<String> classFiles = runConformModuleTest(
 				new String[0],
@@ -4706,10 +4706,10 @@ public void testBug521362_emptyFile() {
 				"",
 				"",
 				false);
-		String fileName = OUTPUT_DIR + File.separator + out + File.separator + "mod.one" + File.separator + "module-info.class";
-		assertClassFile("Missing modul-info.class: " + fileName, fileName, classFiles);
+		String fileName = OUTPUT_DIR + File.separator + out + File.separator + "mod.one" + File.separator + "module-info.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertClassFile("Missing modul-info.class: " + fileName, fileName, classFiles); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test_npe_bug535107() {
+	public void test_npe_bug535107() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformModuleTest(
 				new String[] {
 					"p/X.java",
@@ -4725,40 +4725,40 @@ public void testBug521362_emptyFile() {
 					"module mod.one { \n" +
 					"}"
 		        },
-				" -9 \"" + OUTPUT_DIR +  File.separator + "module-info.java\" "
+				" -9 \"" + OUTPUT_DIR +  File.separator + "module-info.java\" " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		        + "\"" + OUTPUT_DIR +  File.separator + "p/X.java\"",
 		        "",
 		        "",
 		        true);
 	}
-	public void testBug540067a() {
+	public void testBug540067a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						" exports p;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p;\n" +
 				"public class X {\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "q", "Test.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "q", "Test.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"/*nothing in it */");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\" ")
-			.append(moduleLoc + File.separator + "module-info.java ")
-			.append(moduleLoc + File.separator + "p" + File.separator + "X.java ")
-			.append(moduleLoc + File.separator + "p" + File.separator + "q" + File.separator + "Test.java");
+			.append(" --module-source-path " + "\"" + directory + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "module-info.java ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "p" + File.separator + "X.java ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "p" + File.separator + "q" + File.separator + "Test.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runConformModuleTest(
 				new String[0],
@@ -4767,34 +4767,34 @@ public void testBug521362_emptyFile() {
 				"",
 				false);
 	}
-	public void testBug540067b() {
+	public void testBug540067b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						" exports p;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p;\n" +
 				"public class X {\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "q", "Test.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "q", "Test.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p.q;");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\" ")
-			.append(moduleLoc + File.separator + "module-info.java ")
-			.append(moduleLoc + File.separator + "p" + File.separator + "X.java ")
-			.append(moduleLoc + File.separator + "p" + File.separator + "q" + File.separator + "Test.java");
+			.append(" --module-source-path " + "\"" + directory + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "module-info.java ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "p" + File.separator + "X.java ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "p" + File.separator + "q" + File.separator + "Test.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runConformModuleTest(
 				new String[0],
@@ -4803,35 +4803,35 @@ public void testBug521362_emptyFile() {
 				"",
 				false);
 	}
-	public void testBug540067c() {
+	public void testBug540067c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						" exports p;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p;\n" +
 				"public class X {\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "q", "Test.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "q", "Test.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p.q;\n"
 				+ "class Test {}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\" ")
-			.append(moduleLoc + File.separator + "module-info.java ")
-			.append(moduleLoc + File.separator + "p" + File.separator + "X.java ")
-			.append(moduleLoc + File.separator + "p" + File.separator + "q" + File.separator + "Test.java");
+			.append(" --module-source-path " + "\"" + directory + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "module-info.java ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "p" + File.separator + "X.java ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "p" + File.separator + "q" + File.separator + "Test.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runConformModuleTest(
 				new String[0],
@@ -4840,34 +4840,34 @@ public void testBug521362_emptyFile() {
 				"",
 				false);
 	}
-	public void testBug540067d() {
+	public void testBug540067d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						" exports p;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p;\n" +
 				"public class X {\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "q", "Test.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "q", "Test.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"class Test {}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\" ")
-			.append(moduleLoc + File.separator + "module-info.java ")
-			.append(moduleLoc + File.separator + "p" + File.separator + "X.java ")
-			.append(moduleLoc + File.separator + "p" + File.separator + "q" + File.separator + "Test.java");
+			.append(" --module-source-path " + "\"" + directory + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "module-info.java ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "p" + File.separator + "X.java ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "p" + File.separator + "q" + File.separator + "Test.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(
 				new String[0],
@@ -4883,35 +4883,35 @@ public void testBug521362_emptyFile() {
 				false,
 				"unnamed package is not allowed in named modules");
 	}
-	public void testBug540067e() {
+	public void testBug540067e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						" exports p;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p;\n" +
 				"public class X {\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "q", "Test.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "q", "Test.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"import java.lang.*;");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
 			.append(" -warn:-unused")
-			.append(" --module-source-path " + "\"" + directory + "\" ")
-			.append(moduleLoc + File.separator + "module-info.java ")
-			.append(moduleLoc + File.separator + "p" + File.separator + "X.java ")
-			.append(moduleLoc + File.separator + "p" + File.separator + "q" + File.separator + "Test.java");
+			.append(" --module-source-path " + "\"" + directory + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "module-info.java ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "p" + File.separator + "X.java ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(moduleLoc + File.separator + "p" + File.separator + "q" + File.separator + "Test.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(
 				new String[0],
@@ -4927,39 +4927,39 @@ public void testBug521362_emptyFile() {
 				false,
 				"unnamed package is not allowed in named modules");
 	}
-	public void testBug548195() {
+	public void testBug548195() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						" exports p;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p;\n" +
 				"public class X {\n" +
 				"}");
 
-		StringBuilder buffer = new StringBuilder();
-		String binDir = OUTPUT_DIR + File.separator + out;
-		buffer.append("-d " + binDir )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		String binDir = OUTPUT_DIR + File.separator + out; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		buffer.append("-d " + binDir ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
 			.append(" -warn:-unused")
-			.append(" --module-source-path " + "\"" + directory + "\" ")
+			.append(" --module-source-path " + "\"" + directory + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.append(" --module-version 47.11 ");
 		String outText = isJRE9Plus ? "" : "Could not invoke method java.lang.module.ModuleDescriptor.Version.parse(), cannot validate module version.\n";
 		runConformModuleTest(files, buffer, outText, "");
 
-		IClassFileReader cfr = ToolFactory.createDefaultClassFileReader(binDir + File.separator + "mod.one" + File.separator + "module-info.class", IClassFileReader.CLASSFILE_ATTRIBUTES);
+		IClassFileReader cfr = ToolFactory.createDefaultClassFileReader(binDir + File.separator + "mod.one" + File.separator + "module-info.class", IClassFileReader.CLASSFILE_ATTRIBUTES); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertNotNull("Error reading module-info.class", cfr);
 		IClassFileAttribute[] attrs = cfr.getAttributes();
-		for (IClassFileAttribute attr : attrs) {
+		for (IClassFileAttribute attr : attrs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[] name = attr.getAttributeName();
 			if (CharOperation.equals(name, AttributeNamesConstants.ModuleName)) {
 				IModuleAttribute modAttr = (IModuleAttribute) attr;
@@ -4970,31 +4970,31 @@ public void testBug521362_emptyFile() {
 		}
 		fail("module attribute not found");
 	}
-	public void testBug548195fail() {
+	public void testBug548195fail() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						" exports p;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package p;\n" +
 				"public class X {\n" +
 				"}");
 
-		StringBuilder buffer = new StringBuilder();
-		String binDir = OUTPUT_DIR + File.separator + out;
-		buffer.append("-d " + binDir )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		String binDir = OUTPUT_DIR + File.separator + out; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		buffer.append("-d " + binDir ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
 			.append(" -warn:-unused")
-			.append(" --module-source-path " + "\"" + directory + "\" ")
+			.append(" --module-source-path " + "\"" + directory + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.append(" --module-version fourtyseven.11 ");
 		if (isJRE9Plus) {
 			runNegativeModuleTest(files, buffer, "", "fourtyseven.11: Version string does not start with a number\n", "bad value");
@@ -5002,41 +5002,41 @@ public void testBug521362_emptyFile() {
 			runConformModuleTest(files, buffer, "Could not invoke method java.lang.module.ModuleDescriptor.Version.parse(), cannot validate module version.\n", "");
 		}
 	}
-	public void testPackageTypeConflict2() {
+	public void testPackageTypeConflict2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 								"	exports p1.p2;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p1" + File.separator + "p2", "t3.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p1" + File.separator + "p2", "t3.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p1.p2;\n" +
 						"public class t3 {\n" +
 						"}\n");
 
-		moduleLoc = directory + File.separator + "mod.two";
+		moduleLoc = directory + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.two { \n" +
 							"	exports p1.p2.t3;\n" +
 							"	requires mod.one;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p1" + File.separator + "p2" + File.separator + "t3", "t4.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p1" + File.separator + "p2" + File.separator + "t3", "t4.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p1.p2.t3;\n" +
 						"public class t4 {\n" +
 						"}\n");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\"");
+			.append(" --module-source-path " + "\"" + directory + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runNegativeModuleTest(
 				files,
@@ -5051,28 +5051,28 @@ public void testBug521362_emptyFile() {
 				"1 problem (1 error)\n",
 				"package p1.p2.t3 clashes with class of same name");
 	}
-	public void testBug550178() throws Exception {
+	public void testBug550178() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Util.flushDirectoryContent(new File(OUTPUT_DIR));
-		String outDir = OUTPUT_DIR + File.separator + "bin";
-		String srcDir = OUTPUT_DIR + File.separator + "src";
-		File modDir = new File(OUTPUT_DIR + File.separator + "mod");
+		String outDir = OUTPUT_DIR + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String srcDir = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		File modDir = new File(OUTPUT_DIR + File.separator + "mod"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createReusableModules(srcDir, outDir, modDir);
-		String moduleLoc = srcDir + File.separator + "mod.three";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = srcDir + File.separator + "mod.three"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.three { \n" +
 						"	exports pkg.invalid;\n" +
 						"}");
 
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + outDir )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + outDir ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" --module-path \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append(modDir.getAbsolutePath())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + srcDir + "\" ");
+			.append(" --module-source-path " + "\"" + srcDir + "\" "); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runNegativeModuleTest(files, buffer,
 				"",
 				"----------\n" +
@@ -5092,13 +5092,13 @@ public void testBug521362_emptyFile() {
 					+ "	boolean b = new String(\"a\").contains(\"b\");\n"
 					+ "}",
 				},
-		     "\"" + OUTPUT_DIR +  File.separator + "Dummy.java\""
+		     "\"" + OUTPUT_DIR +  File.separator + "Dummy.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		     + " --release 9 -d \"" + OUTPUT_DIR + "\"",
 		     "",
 		     "",
 		     true);
 	}
-	public void testRelease565930_2() throws Exception {
+	public void testRelease565930_2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"Main.java",
@@ -5108,7 +5108,7 @@ public void testBug521362_emptyFile() {
 					+ "    } \n"
 					+ "}",
 				},
-		     "\"" + OUTPUT_DIR +  File.separator + "Main.java\""
+		     "\"" + OUTPUT_DIR +  File.separator + "Main.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		     + " --release 9 -d \"" + OUTPUT_DIR + "\"",
 		     "",
 		     "----------\n" +
@@ -5129,26 +5129,26 @@ public void testBug521362_emptyFile() {
 				+ "    org.w3c.dom.Element list;\n"
 				+ "}",
 			},
-	     "\"" + OUTPUT_DIR +  File.separator + "A.java\""
+	     "\"" + OUTPUT_DIR +  File.separator + "A.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	     + " -classpath " + "\"" + this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "Test571363.jar\""
 	     + " --release 11 -d \"" + OUTPUT_DIR + "\"",
 	     "",
 	     "",
 	     true);
 	}
-	public void testBug574097() {
+	public void testBug574097() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Util.flushDirectoryContent(new File(OUTPUT_DIR));
-		String outDir = OUTPUT_DIR + File.separator + "bin";
-		String srcDir = OUTPUT_DIR + File.separator + "src";
-		File modDir = new File(OUTPUT_DIR + File.separator + "mod");
-		String moduleLoc = srcDir + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String outDir = OUTPUT_DIR + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String srcDir = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		File modDir = new File(OUTPUT_DIR + File.separator + "mod"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = srcDir + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 						"	exports p;\n" +
 						"	requires transitive java.compiler;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p", "TestProcessor.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "p", "TestProcessor.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package p;\n"
 						+ "import java.util.Set;\n"
 						+ "import javax.annotation.processing.AbstractProcessor;\n"
@@ -5161,57 +5161,57 @@ public void testBug521362_emptyFile() {
 						+ "	}\n"
 						+ "}");
 
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + outDir )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + outDir ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		.append(" -9 ")
 		.append(" --module-path \"")
 		.append(Util.getJavaClassLibsAsString())
 		.append("\" ")
-		.append(" --module-source-path " + "\"" + srcDir + "\"");
-		for (String fileName : files)
-			buffer.append(" \"").append(fileName).append("\"");
+		.append(" --module-source-path " + "\"" + srcDir + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		for (String fileName : files) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(" \"").append(fileName).append("\""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		runConformTest(new String[]{},
 			buffer.toString(),
 			"",
 			"",
 			false);
-		String jarName = modDir + File.separator + "mod.one.jar";
+		String jarName = modDir + File.separator + "mod.one.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try {
-			Util.zip(new File(outDir + File.separator + "mod.one"),
+			Util.zip(new File(outDir + File.separator + "mod.one"), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								jarName);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		if (!modDir.exists()) {
-			if (!modDir.mkdirs()) {
-				fail("Coult not create folder " + modDir);
+		if (!modDir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			if (!modDir.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				fail("Coult not create folder " + modDir); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		Util.flushDirectoryContent(new File(srcDir));
-		files = new ArrayList<>();
-		moduleLoc = srcDir + File.separator + "mod.two";
+		files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		moduleLoc = srcDir + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.two { \n" +
 						"	exports q;\n" +
 						"	requires java.base;\n" +
 						"	requires mod.one;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "q", "A.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "q", "A.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package q;\n" +
 						"public class A {\n" +
 						"   p.TestProcessor prc = null;\n" +
 						"}");
-		buffer = new StringBuilder();
-		buffer.append("-d " + outDir )
+		buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + outDir ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		.append(" -9 ")
 		.append(" --module-path \"")
 		.append(Util.getJavaClassLibsAsString())
 		.append("\" ")
-		.append(" --module-source-path " + "\"" + srcDir + "\"")
-		.append(" --processor-module-path " + "\"" + jarName + "\"");
-		for (String name : files)
-			buffer.append(" \"").append(name).append("\"");
+		.append(" --module-source-path " + "\"" + srcDir + "\"") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		.append(" --processor-module-path " + "\"" + jarName + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		for (String name : files) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(" \"").append(name).append("\""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		runNegativeTest(new String[]{},
 			buffer.toString(),
@@ -5235,34 +5235,34 @@ public void testBug521362_emptyFile() {
 	 * Test that reference to a binary package that is exported in a module
 	 * but doesn't have a corresponding resource or .class files is reported.
 	 */
-	public void testBug522472a() {
+	public void testBug522472a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		File srcDir = new File(directory);
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc,
 				"module-info.java",
 				"module mod.one { \n" +
 				"	exports x.y.z;\n" +
 				"	exports a.b.c;\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "x" + File.separator + "y" + File.separator + "z",
+		writeFileCollecting(files, moduleLoc + File.separator + "x" + File.separator + "y" + File.separator + "z", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"X.java",
 				"package x.y.z;\n");
-		writeFileCollecting(files, moduleLoc + File.separator + "a" + File.separator + "b" + File.separator + "c",
+		writeFileCollecting(files, moduleLoc + File.separator + "a" + File.separator + "b" + File.separator + "c", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"A.java",
 				"package a.b.c;\n" +
 				"public class A {}");
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\" ");
+			.append(" --module-source-path " + "\"" + directory + "\" "); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runConformModuleTest(files,
 				buffer,
@@ -5271,27 +5271,27 @@ public void testBug521362_emptyFile() {
 
 		Util.flushDirectoryContent(srcDir);
 		files.clear();
-		moduleLoc = directory + File.separator + "mod.two";
+		moduleLoc = directory + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc,
 				"module-info.java",
 				"module mod.two { \n" +
 					"	requires mod.one;\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "q" + File.separator + "r",
+		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "q" + File.separator + "r", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"Main.java",
 				"package p.q.r;\n" +
 				"import a.b.c.*;\n" +
 				"import x.y.z.*;\n" +
 				"public class Main {"
 				+ "}");
-		buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-path " + "\"" + OUTPUT_DIR + File.separator + out + "\" ")
-			.append(" --module-source-path " + "\"" + directory + "\" ");
+			.append(" --module-path " + "\"" + OUTPUT_DIR + File.separator + out + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(" --module-source-path " + "\"" + directory + "\" "); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runConformModuleTest(files,
 				buffer,
 				"",
@@ -5311,44 +5311,44 @@ public void testBug521362_emptyFile() {
 	/*
 	 * Same as above test case, but two binary modules export the package, without any .class files
 	 */
-	public void testBug522472b() {
+	public void testBug522472b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		File srcDir = new File(directory);
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc,
 				"module-info.java",
 				"module mod.one { \n" +
 				"	exports x.y.z;\n" +
 				"	exports a.b.c;\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "x" + File.separator + "y" + File.separator + "z",
+		writeFileCollecting(files, moduleLoc + File.separator + "x" + File.separator + "y" + File.separator + "z", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"X.java",
 				"package x.y.z;\n");
-		writeFileCollecting(files, moduleLoc + File.separator + "a" + File.separator + "b" + File.separator + "c",
+		writeFileCollecting(files, moduleLoc + File.separator + "a" + File.separator + "b" + File.separator + "c", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"A.java",
 				"package a.b.c;\n" +
 				"public class A {}");
 
-		moduleLoc = directory + File.separator + "mod.one.a";
+		moduleLoc = directory + File.separator + "mod.one.a"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc,
 				"module-info.java",
 				"module mod.one.a { \n" +
 				"	exports x.y.z;\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "x" + File.separator + "y" + File.separator + "z",
+		writeFileCollecting(files, moduleLoc + File.separator + "x" + File.separator + "y" + File.separator + "z", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"X.java",
 				"package x.y.z;\n");
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\" ");
+			.append(" --module-source-path " + "\"" + directory + "\" "); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runConformModuleTest(files,
 				buffer,
@@ -5357,28 +5357,28 @@ public void testBug521362_emptyFile() {
 
 		Util.flushDirectoryContent(srcDir);
 		files.clear();
-		moduleLoc = directory + File.separator + "mod.two";
+		moduleLoc = directory + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc,
 				"module-info.java",
 				"module mod.two { \n" +
 					"	requires mod.one;\n" +
 					"	requires mod.one.a;\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "q" + File.separator + "r",
+		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "q" + File.separator + "r", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"Main.java",
 				"package p.q.r;\n" +
 				"import a.b.c.*;\n" +
 				"import x.y.z.*;\n" +
 				"public class Main {"
 				+ "}");
-		buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-path " + "\"" + OUTPUT_DIR + File.separator + out + "\" ")
-			.append(" --module-source-path " + "\"" + directory + "\" ");
+			.append(" --module-path " + "\"" + OUTPUT_DIR + File.separator + out + "\" ") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			.append(" --module-source-path " + "\"" + directory + "\" "); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runNegativeModuleTest(files,
 				buffer,
 				"",
@@ -5402,52 +5402,52 @@ public void testBug521362_emptyFile() {
 				"3 problems (3 errors)\n",
 				"reads package x.y.z from both");
 	}
-	public void testBug522472d() {
+	public void testBug522472d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc,
 				"module-info.java",
 				"module mod.one { \n" +
 				"	exports x.y.z;\n" +
 				"	exports a.b.c;\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "x" + File.separator + "y" + File.separator + "z",
+		writeFileCollecting(files, moduleLoc + File.separator + "x" + File.separator + "y" + File.separator + "z", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"X.java",
 				"package x.y.z;\n");
-		writeFileCollecting(files, moduleLoc + File.separator + "a" + File.separator + "b" + File.separator + "c",
+		writeFileCollecting(files, moduleLoc + File.separator + "a" + File.separator + "b" + File.separator + "c", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"A.java",
 				"package a.b.c;\n" +
 				"public class A {}");
 
-		moduleLoc = directory + File.separator + "mod.one.a";
+		moduleLoc = directory + File.separator + "mod.one.a"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc,
 				"module-info.java",
 				"module mod.one.a { \n" +
 				"	exports x.y.z;\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "x" + File.separator + "y" + File.separator + "z",
+		writeFileCollecting(files, moduleLoc + File.separator + "x" + File.separator + "y" + File.separator + "z", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"X.java",
 				"package x.y.z;\n");
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ")
-			.append(" --module-source-path " + "\"" + directory + "\" ");
+			.append(" --module-source-path " + "\"" + directory + "\" "); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		moduleLoc = directory + File.separator + "mod.two";
+		moduleLoc = directory + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, moduleLoc,
 				"module-info.java",
 				"module mod.two { \n" +
 					"	requires mod.one;\n" +
 					"	requires mod.one.a;\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "q" + File.separator + "r",
+		writeFileCollecting(files, moduleLoc + File.separator + "p" + File.separator + "q" + File.separator + "r", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"Main.java",
 				"package p.q.r;\n" +
 				"import a.b.c.*;\n" +
@@ -5478,13 +5478,13 @@ public void testBug521362_emptyFile() {
 				"3 problems (3 errors)\n",
 				"reads package x.y.z from both");
 	}
-	public void testIssue2357_001() throws Exception {
+	public void testIssue2357_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 		String out = "bin";
-		String directory = OUTPUT_DIR + File.separator + "src";
-		String moduleLoc = directory + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String directory = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String moduleLoc = directory + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, moduleLoc, "module-info.java",
 						"module mod.one { \n" +
 								"    exports pack1;\n" +
@@ -5495,37 +5495,37 @@ public void testBug521362_emptyFile() {
 								"    provides pack1.I11 with pack1.X11;\n" +
 								"    requires static java.sql;\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pack1", "I11.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pack1", "I11.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package pack1;\n" +
 						"public interface I11 {\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pack1", "X11.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pack1", "X11.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"package pack1;\n" +
 						"public class X11 implements I11{\n" +
 						"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pack2", "X21.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pack2", "X21.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package pack2;\n" +
 				"public class X21 {\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pack3", "X31.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pack3", "X31.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package pack3;\n" +
 				"public class X31 {\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pack4", "X41.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pack4", "X41.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package pack4;\n" +
 				"public class X41 {\n" +
 				"}");
-		writeFileCollecting(files, moduleLoc + File.separator + "pack5", "X51.java",
+		writeFileCollecting(files, moduleLoc + File.separator + "pack5", "X51.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package pack5;\n" +
 				"public class X51 {\n" +
 				"}");
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append("\" ");
-		files.forEach(name -> buffer.append(" \"" + name + "\""));
+		files.forEach(name -> buffer.append(" \"" + name + "\"")); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		runConformTest(new String[0],
 				buffer.toString(),
 				"",
@@ -5549,25 +5549,25 @@ public void testBug521362_emptyFile() {
 				"  provides pack1.I11 with pack1.X11;\n" +
 				"\n" +
 				"}";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + out + File.separator + "module-info.class", "module-info", expectedOutput);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + out + File.separator + "module-info.class", "module-info", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
-	public void testPatchModuleSingle() {
+	public void testPatchModuleSingle() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
-		String out1 = OUTPUT_DIR + File.separator + "bin1";
-		String src1 = OUTPUT_DIR + File.separator + "src1";
-		List<String> files = new ArrayList<>();
+		String out1 = OUTPUT_DIR + File.separator + "bin1"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String src1 = OUTPUT_DIR + File.separator + "src1"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, src1,
 				"module-info.java",
 				"module mod.one { \n" + // no exports!
 				"}");
-		writeFileCollecting(files, src1 + File.separator + "test1",
+		writeFileCollecting(files, src1 + File.separator + "test1", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"A.java",
 				"package test1;\n" +
 				"public class A {}");
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + out1 )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + out1 ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -proc:none ")
 			.append(" -classpath \"")
@@ -5581,16 +5581,16 @@ public void testBug521362_emptyFile() {
 
 		files.clear();
 		String out2 = "bin2";
-		String src2 = OUTPUT_DIR + File.separator + "src2";
-		writeFileCollecting(files, src2 + File.separator + "test2",
+		String src2 = OUTPUT_DIR + File.separator + "src2"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		writeFileCollecting(files, src2 + File.separator + "test2", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"B.java",
 				"""
 				package test2;
 				import test1.A;
 				class B extends A {}
 				""");
-		buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out2 )
+		buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out2 ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -proc:none ")
 			.append(" --patch-module mod.one=\"").append(src2).append("\" ")
@@ -5606,18 +5606,18 @@ public void testBug521362_emptyFile() {
 				"");
 	}
 
-	public void testPatchModuleSingle_duplicateModule() {
+	public void testPatchModuleSingle_duplicateModule() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
-		String src1 = OUTPUT_DIR + File.separator + "src1";
-		String src2 = OUTPUT_DIR + File.separator + "src2";
-		List<String> files = new ArrayList<>();
-		writeFileCollecting(files, src1 + File.separator + "test1",
+		String src1 = OUTPUT_DIR + File.separator + "src1"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String src2 = OUTPUT_DIR + File.separator + "src2"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		writeFileCollecting(files, src1 + File.separator + "test1", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"A.java",
 				"package test1;\n" +
 				"public class A {}");
-		StringBuilder buffer = new StringBuilder();
-		buffer.append(" -9 ")
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append(" -9 ") //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -proc:none ")
 			.append(" --patch-module mod.one=\"").append(src1).append("\" ")
 			.append(" --patch-module mod.one=\"").append(src2).append("\" ")
@@ -5630,17 +5630,17 @@ public void testBug521362_emptyFile() {
 				"--patch-module specified more than once");
 	}
 
-	public void testPatchModuleSingle_duplicateLocation1() {
+	public void testPatchModuleSingle_duplicateLocation1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
-		String src1 = OUTPUT_DIR + File.separator + "src1";
-		List<String> files = new ArrayList<>();
-		writeFileCollecting(files, src1 + File.separator + "test1",
+		String src1 = OUTPUT_DIR + File.separator + "src1"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		writeFileCollecting(files, src1 + File.separator + "test1", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"A.java",
 				"package test1;\n" +
 				"public class A {}");
-		StringBuilder buffer = new StringBuilder();
-		buffer.append(" -9 ")
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append(" -9 ") //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -proc:none ")
 			.append(" --patch-module mod.one=\"").append(src1).append("\"")
 			.append(File.pathSeparatorChar).append("\"").append(src1).append("\" ")
@@ -5654,17 +5654,17 @@ public void testBug521362_emptyFile() {
 				JavacTestOptions.SKIP);
 	}
 
-	public void testPatchModuleSingle_duplicateLocation2() {
+	public void testPatchModuleSingle_duplicateLocation2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
-		String src1 = OUTPUT_DIR + File.separator + "src1";
-		List<String> files = new ArrayList<>();
-		writeFileCollecting(files, src1 + File.separator + "test1",
+		String src1 = OUTPUT_DIR + File.separator + "src1"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		writeFileCollecting(files, src1 + File.separator + "test1", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"A.java",
 				"package test1;\n" +
 				"public class A {}");
-		StringBuilder buffer = new StringBuilder();
-		buffer.append(" -9 ")
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append(" -9 ") //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -proc:none ")
 			.append(" --patch-module mod.one=\"").append(src1).append("\" ")
 			.append(" --patch-module mod.two=\"").append(src1).append("\" ")
@@ -5678,17 +5678,17 @@ public void testBug521362_emptyFile() {
 				JavacTestOptions.SKIP);
 	}
 
-	public void testPatchModuleSingle_syntaxErr() {
+	public void testPatchModuleSingle_syntaxErr() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
-		String src1 = OUTPUT_DIR + File.separator + "src1";
-		List<String> files = new ArrayList<>();
-		writeFileCollecting(files, src1 + File.separator + "test1",
+		String src1 = OUTPUT_DIR + File.separator + "src1"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		writeFileCollecting(files, src1 + File.separator + "test1", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"A.java",
 				"package test1;\n" +
 				"public class A {}");
-		StringBuilder buffer = new StringBuilder();
-		buffer.append(" -9 ")
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append(" -9 ") //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -proc:none ")
 			.append(" --patch-module mod.one \"").append(src1).append("\" ")
 			.append(" --module-path \"").append(Util.getJavaClassLibsAsString()).append("\" ");
@@ -5700,17 +5700,17 @@ public void testBug521362_emptyFile() {
 				"bad value for --patch-module option");
 	}
 
-	public void testPatchModuleSingle_noSuchModule() {
+	public void testPatchModuleSingle_noSuchModule() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
-		String src1 = OUTPUT_DIR + File.separator + "src1";
-		List<String> files = new ArrayList<>();
-		writeFileCollecting(files, src1 + File.separator + "test1",
+		String src1 = OUTPUT_DIR + File.separator + "src1"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		writeFileCollecting(files, src1 + File.separator + "test1", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"A.java",
 				"package test1;\n" +
 				"public class A {}");
-		StringBuilder buffer = new StringBuilder();
-		buffer.append(" -9 ")
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append(" -9 ") //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -proc:none ")
 			.append(" --patch-module mod.one=\"").append(src1).append("\" ")
 			.append(" --module-path \"").append(Util.getJavaClassLibsAsString()).append("\" ");
@@ -5730,25 +5730,25 @@ public void testBug521362_emptyFile() {
 				"module not found");
 	}
 
-	public void testPatchModuleMulti() {
+	public void testPatchModuleMulti() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// separately compile two modules, then patch them both in one go:
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 
 		// mod.one
-		String out1 = OUTPUT_DIR + File.separator + "bin1";
-		String src1 = OUTPUT_DIR + File.separator + "src1";
-		List<String> files = new ArrayList<>();
+		String out1 = OUTPUT_DIR + File.separator + "bin1"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String src1 = OUTPUT_DIR + File.separator + "src1"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, src1,
 				"module-info.java",
 				"module mod.one { \n" + // no exports!
 				"}");
-		writeFileCollecting(files, src1 + File.separator + "test1",
+		writeFileCollecting(files, src1 + File.separator + "test1", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"A.java",
 				"package test1;\n" +
 				"public class A {}");
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + out1 )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + out1 ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -proc:none ")
 			.append(" -classpath \"")
@@ -5761,19 +5761,19 @@ public void testBug521362_emptyFile() {
 				"");
 
 		// mod.two
-		String out2 = OUTPUT_DIR + File.separator + "bin2";
-		String src2 = OUTPUT_DIR + File.separator + "src2";
+		String out2 = OUTPUT_DIR + File.separator + "bin2"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String src2 = OUTPUT_DIR + File.separator + "src2"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		files.clear();
 		writeFileCollecting(files, src2,
 				"module-info.java",
 				"module mod.two { \n" + // no exports!
 				"}");
-		writeFileCollecting(files, src2 + File.separator + "test2",
+		writeFileCollecting(files, src2 + File.separator + "test2", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"B.java",
 				"package test2;\n" +
 				"public class B {}");
-		buffer = new StringBuilder();
-		buffer.append("-d " + out2 )
+		buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + out2 ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -proc:none ")
 			.append(" -classpath \"")
@@ -5788,24 +5788,24 @@ public void testBug521362_emptyFile() {
 		// two files to patch each of the above modules:
 		files.clear();
 		String out3 = "bin3";
-		String src3 = OUTPUT_DIR + File.separator + "src3";
-		writeFileCollecting(files, src3 + File.separator + "test3",
+		String src3 = OUTPUT_DIR + File.separator + "src3"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		writeFileCollecting(files, src3 + File.separator + "test3", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"C.java",
 				"""
 				package test2;
 				import test1.A;
 				class C extends A {}
 				""");
-		String src4 = OUTPUT_DIR + File.separator + "src4";
-		writeFileCollecting(files, src4 + File.separator + "test4",
+		String src4 = OUTPUT_DIR + File.separator + "src4"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		writeFileCollecting(files, src4 + File.separator + "test4", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"E.java",
 				"""
 				package test4;
 				import test2.B;
 				class E extends B {}
 				""");
-		buffer = new StringBuilder();
-		buffer.append("-d " + OUTPUT_DIR + File.separator + out3 )
+		buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + OUTPUT_DIR + File.separator + out3 ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -proc:none ")
 			.append(" --patch-module mod.one=\"").append(src3).append("\" ")
@@ -5824,52 +5824,52 @@ public void testBug521362_emptyFile() {
 				"");
 	}
 
-	public void testPatchModuleMulti2() {
+	public void testPatchModuleMulti2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 
-		String out = OUTPUT_DIR + File.separator + "bin";
+		String out = OUTPUT_DIR + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		// mod.one
-		String src = OUTPUT_DIR + File.separator + "src";
-		String m1src = src+ File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+		String src = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String m1src = src+ File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, m1src,
 				"module-info.java",
 				"module mod.one {}\n"); // no exports!
-		writeFileCollecting(files, m1src + File.separator + "test1",
+		writeFileCollecting(files, m1src + File.separator + "test1", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"A.java",
 				"package test1;\n" +
 				"public class A {}");
 
 		// mod.two
-		String m2src = src + File.separator + "mod.two";
+		String m2src = src + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, m2src,
 				"module-info.java",
 				"module mod.two {} \n"); // no exports!
-		writeFileCollecting(files, m2src + File.separator + "test2",
+		writeFileCollecting(files, m2src + File.separator + "test2", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"B.java",
 				"package test2;\n" +
 				"public class B {}\n");
 
 		// two files to patch each of the above modules:
-		String srcPatch1 = OUTPUT_DIR + File.separator + "src1";
-		writeFileCollecting(files, srcPatch1 + File.separator + "test3",
+		String srcPatch1 = OUTPUT_DIR + File.separator + "src1"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		writeFileCollecting(files, srcPatch1 + File.separator + "test3", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"C.java",
 				"""
 				package test2;
 				import test1.A;
 				class C extends A {}
 				""");
-		String srcPatch2 = OUTPUT_DIR + File.separator + "src2";
-		writeFileCollecting(files, srcPatch2 + File.separator + "test4",
+		String srcPatch2 = OUTPUT_DIR + File.separator + "src2"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		writeFileCollecting(files, srcPatch2 + File.separator + "test4", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"E.java",
 				"""
 				package test4;
 				import test2.B;
 				class E extends B {}
 				""");
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d ").append(out)
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d ").append(out) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -proc:none ")
 			.append(" --module-source-path \"").append(src).append("\"")
@@ -5884,7 +5884,7 @@ public void testBug521362_emptyFile() {
 				"",
 				"");
 	}
-	public void testGH2646() {
+	public void testGH2646() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			class Counter implements Consumer<SplitPackageBinding> {
 				int count;
@@ -5912,46 +5912,46 @@ public void testBug521362_emptyFile() {
 					"   java.awt.Image image;\n" +
 					"}"
 				},
-				" -9 \"" + OUTPUT_DIR + File.separator + "module-info.java\" "
+				" -9 \"" + OUTPUT_DIR + File.separator + "module-info.java\" " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "\"" + OUTPUT_DIR + File.separator + "q/Y.java\" "
 				+ "\"" + OUTPUT_DIR + File.separator + "p/X.java\" "
 				+ "-d " + OUTPUT_DIR ,
 				"",
 				"",
 				true);
-			assertTrue("Number of SplitPackageBinding created: "+counter.count, counter.count <= 20);
+			assertTrue("Number of SplitPackageBinding created: "+counter.count, counter.count <= 20); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} finally {
 			SplitPackageBinding.instanceListener = null;
 		}
 	}
 
-	public void testGH2748() throws IOException {
+	public void testGH2748() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File outputDirectory = new File(OUTPUT_DIR);
 		Util.flushDirectoryContent(outputDirectory);
 
-		List<String> modules = new ArrayList<>();
+		List<String> modules = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		// compile two explicit modules
-		for (String m : new String[] { "A", "B" }) {
-			String out = OUTPUT_DIR + File.separator + "module" + m + File.separator + "bin";
-			String src = OUTPUT_DIR + File.separator + "module" + m + File.separator + "src";
+		for (String m : new String[] { "A", "B" }) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			String out = OUTPUT_DIR + File.separator + "module" + m + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			String src = OUTPUT_DIR + File.separator + "module" + m + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			modules.add(out);
 
-			List<String> files = new ArrayList<>();
+			List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			writeFileCollecting(files, src,
 					"module-info.java",
-					"module split.module" + m + " {\n" +
+					"module split.module" + m + " {\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"	exports pkg.bug.split.sub" + m + ";\n" +
 					"}");
-			writeFileCollecting(files, Paths.get(src, "pkg", "bug", "split", "sub" + m).toString(),
-					"SubModule" + m + ".java",
-					"package pkg.bug.split.sub" + m + ";\n" +
+			writeFileCollecting(files, Paths.get(src, "pkg", "bug", "split", "sub" + m).toString(), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+					"SubModule" + m + ".java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+					"package pkg.bug.split.sub" + m + ";\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"\n" +
 					"public class SubModule" + m + " {\n" +
 					"	\n" +
 					"}");
 
-			StringBuilder buffer = new StringBuilder();
-			buffer.append("-d " + out )
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buffer.append("-d " + out ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				.append(" -9 ")
 				.append(" -proc:none ")
 				.append(" -classpath \"")
@@ -5974,15 +5974,15 @@ public void testBug521362_emptyFile() {
 
 				}""",
 		};
-		String jarPath = OUTPUT_DIR + File.separator + "autoModule.jar";
+		String jarPath = OUTPUT_DIR + File.separator + "autoModule.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Util.createJar(sources, jarPath, "1.8");
 		modules.add(jarPath);
 
 		// compile the main code which requires the other modules
-		String outFinal = OUTPUT_DIR + File.separator + "modularizedApp" + File.separator + "bin";
-		String srcFinal = OUTPUT_DIR + File.separator + "modularizedApp" + File.separator + "src";
+		String outFinal = OUTPUT_DIR + File.separator + "modularizedApp" + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String srcFinal = OUTPUT_DIR + File.separator + "modularizedApp" + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		List<String> files = new ArrayList<>();
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, srcFinal,
 				"module-info.java",
 				"""
@@ -6017,8 +6017,8 @@ public void testBug521362_emptyFile() {
 					}""");
 
 		String modulePath = String.join(File.pathSeparator, modules);
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("-d " + outFinal )
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("-d " + outFinal ) //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -9 ")
 			.append(" -proc:none ")
 			.append(" --module-path \"")

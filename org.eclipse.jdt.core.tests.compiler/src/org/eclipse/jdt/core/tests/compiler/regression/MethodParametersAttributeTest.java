@@ -92,10 +92,10 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 		"}\n" +
 		"";
 
-	public void test001() throws Exception {
+	public void test001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 			ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-			String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "ParameterNames.class";
+			String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "ParameterNames.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(path));
 			String actualOutput =
 				disassembler.disassemble(
@@ -173,10 +173,10 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 
 			assertSubstring(actualOutput, expectedOutput);
 	}
-	public void test002() throws Exception {
+	public void test002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-		String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "ParameterNames$1.class";
+		String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "ParameterNames$1.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(path));
 		String actualOutput =
 			disassembler.disassemble(
@@ -240,10 +240,10 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 		assertSubstring(actualOutput, expectedOutput);
 	}
 
-	public void test003() throws Exception {
+	public void test003() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-		String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "ParameterNames$1Local.class";
+		String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "ParameterNames$1Local.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(path));
 		String actualOutput =
 			disassembler.disassemble(
@@ -317,7 +317,7 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 	public void test004() throws Exception {
 
 		// Test the results of the ClassFileReader
-		String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "ParameterNames.class";
+		String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "ParameterNames.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		org.eclipse.jdt.internal.compiler.classfmt.ClassFileReader classFileReader = ClassFileReader.read(path);
 		IBinaryMethod[] methodInfos = classFileReader.getMethods();
@@ -330,7 +330,7 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 
 	public void test005() throws Exception {
 		// Test the results of the ClassFileReader where some of the paramers are synthetic and/or mandated
-		String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "ParameterNames$1Local.class";
+		String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "ParameterNames$1Local.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		org.eclipse.jdt.internal.compiler.classfmt.ClassFileReader classFileReader = ClassFileReader.read(path);
 		IBinaryMethod[] methodInfos = classFileReader.getMethods();
@@ -340,7 +340,7 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 		assertEquals("this$0", new String(methodInfos[0].getArgumentNames()[0]));
 		assertEquals("val$capturedB", new String(methodInfos[0].getArgumentNames()[1]));
 	}
-	public void test006() throws Exception {
+	public void test006() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Test that the code generator can emit the names, so the ClassFileReader may read them back
 
 		this.runParameterNameTest(
@@ -353,7 +353,7 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 			"}");
 
 		try {
-			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class");
+			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IBinaryMethod[] methods = classFileReader.getMethods();
 			assertNotNull("No methods", methods);
 			assertEquals("Wrong size", 2, methods.length);
@@ -371,7 +371,7 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void test007() throws Exception {
+	public void test007() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Test that the code generator can emit the names, so the disassembler may read them back (same source as was compiled with javac)
 
 		this.runParameterNameTest(
@@ -379,7 +379,7 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 			this.originalSource);
 
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-		String path = OUTPUT_DIR + File.separator + "ParameterNames.class";
+		String path = OUTPUT_DIR + File.separator + "ParameterNames.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(path));
 		String actualOutput =
 			disassembler.disassemble(
@@ -396,7 +396,7 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 					"   #29 ParameterNames$1Local\n";
 		}
 		String expectedOutput =
-				"// Compiled from ParameterNames.java (" + this.versionString + ", super bit)\n" +
+				"// Compiled from ParameterNames.java (" + this.versionString + ", super bit)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"public class ParameterNames {\n" +
 				"  \n" +
 				"  // Method descriptor #6 ()V\n" +
@@ -466,7 +466,7 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 		assertSubstring(actualOutput, expectedOutput);
 	}
 
-	public void test008() throws Exception {
+	public void test008() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Test that the code generator can emit synthetic and mandated names, just to match javac as closely as possibly
 
 		this.runParameterNameTest(
@@ -474,7 +474,7 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 			this.originalSource);
 
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-		String path = OUTPUT_DIR + File.separator + "ParameterNames$1.class";
+		String path = OUTPUT_DIR + File.separator + "ParameterNames$1.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(path));
 		String actualOutput =
 			disassembler.disassemble(
@@ -489,7 +489,7 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 		               "Nest Host: #36 ParameterNames\n";
 		}
 		String expectedOutput =
-			"// Compiled from ParameterNames.java (" + this.versionString + ", super bit)\n" +
+			"// Compiled from ParameterNames.java (" + this.versionString + ", super bit)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"// Signature: Ljava/lang/Object;Ljava/util/concurrent/Callable<Ljava/lang/String;>;\n" +
 			"class ParameterNames$1 implements java.util.concurrent.Callable {\n" +
 			"  \n" +
@@ -545,7 +545,7 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 		assertSubstring(actualOutput, expectedOutput);
 	}
 
-	public void test009() throws Exception {
+	public void test009() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Test that the code generator can emit synthetic and mandated names, just to match javac as closely as possibly
 
 		this.runParameterNameTest(
@@ -560,7 +560,7 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 			"");
 
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-		String path = OUTPUT_DIR + File.separator + "FancyEnum.class";
+		String path = OUTPUT_DIR + File.separator + "FancyEnum.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(path));
 		String actualOutput =
 			disassembler.disassemble(
@@ -569,7 +569,7 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 				ClassFileBytesDisassembler.DETAILED);
 
 		String expectedOutput =
-			"// Compiled from FancyEnum.java (" + this.versionString + ", super bit)\n" +
+			"// Compiled from FancyEnum.java (" + this.versionString + ", super bit)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"// Signature: Ljava/lang/Enum<LFancyEnum;>;\n" +
 			"public final enum FancyEnum {\n" +
 			"  \n" +
@@ -675,7 +675,7 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 		assertSubstring(actualOutput, expectedOutput);
 	}
 
-	public void test010() throws Exception {
+	public void test010() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Test that the non private inner class gets a mandated enclosing instance parameter.
 
 		this.runParameterNameTest(
@@ -686,7 +686,7 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 		);
 
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-		String path = OUTPUT_DIR + File.separator + "X$Y.class";
+		String path = OUTPUT_DIR + File.separator + "X$Y.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(path));
 		String actualOutput =
 			disassembler.disassemble(
@@ -711,7 +711,7 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 		assertSubstring(actualOutput, expectedOutput);
 	}
 
-	public void test011() throws Exception {
+	public void test011() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Test that a private inner class does not get a mandated enclosing instance parameter.
 
 		this.runParameterNameTest(
@@ -722,7 +722,7 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 		);
 
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-		String path = OUTPUT_DIR + File.separator + "X$Y.class";
+		String path = OUTPUT_DIR + File.separator + "X$Y.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(path));
 		String actualOutput =
 			disassembler.disassemble(
@@ -747,7 +747,7 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 		assertSubstring(actualOutput, expectedOutput);
 	}
 
-	public void test012() throws Exception {
+	public void test012() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		this.runParameterNameTest(
 			"X.java",
@@ -763,7 +763,7 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 		);
 
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-		String path = OUTPUT_DIR + File.separator + "X$1.class";
+		String path = OUTPUT_DIR + File.separator + "X$1.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(path));
 		String actualOutput =
 			disassembler.disassemble(
@@ -790,7 +790,7 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 		assertSubstring(actualOutput, expectedOutput);
 	}
 
-	public void test013() throws Exception {
+	public void test013() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Test that synthesized enum constructor arguments show up as synthetic
 
 		this.runParameterNameTest(
@@ -802,7 +802,7 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 			"");
 
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-		String path = OUTPUT_DIR + File.separator + "FancyEnum.class";
+		String path = OUTPUT_DIR + File.separator + "FancyEnum.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(path));
 		String actualOutput =
 			disassembler.disassemble(
@@ -827,7 +827,7 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 		assertSubstring(actualOutput, expectedOutput);
 	}
 
-	public void test014() throws Exception {
+	public void test014() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Test that the name argument of enum valueOf shows up as mandated
 
 		this.runParameterNameTest(
@@ -839,7 +839,7 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 			"");
 
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-		String path = OUTPUT_DIR + File.separator + "FancyEnum.class";
+		String path = OUTPUT_DIR + File.separator + "FancyEnum.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(path));
 		String actualOutput =
 			disassembler.disassemble(
@@ -861,7 +861,7 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 		assertSubstring(actualOutput, expectedOutput);
 	}
 
-	public void test015() throws Exception {
+	public void test015() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Test that the name argument of enum valueOf shows up as mandated
 
 		this.runParameterNameTest(
@@ -874,7 +874,7 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 			"}\n");
 
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-		String path = OUTPUT_DIR + File.separator + "InnerLocalClassTest$1.class";
+		String path = OUTPUT_DIR + File.separator + "InnerLocalClassTest$1.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(path));
 		String actualOutput =
 			disassembler.disassemble(
@@ -899,7 +899,7 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 		assertSubstring(actualOutput, expectedOutput);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=476528
-	public void test016() throws Exception {
+	public void test016() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Test that the name argument of enum valueOf shows up as mandated
 
 		this.runParameterNameTest(
@@ -915,7 +915,7 @@ public class MethodParametersAttributeTest extends AbstractRegressionTest {
 			"}\n");
 
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-		String path = OUTPUT_DIR + File.separator + "Foo.class";
+		String path = OUTPUT_DIR + File.separator + "Foo.class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(path));
 		String actualOutput =
 			disassembler.disassemble(

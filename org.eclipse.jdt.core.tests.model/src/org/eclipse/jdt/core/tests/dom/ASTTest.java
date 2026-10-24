@@ -761,7 +761,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 
 		Class c = ASTTest.class;
 		Method[] methods = c.getMethods();
-		for (int i = 0, max = methods.length; i < max; i++) {
+		for (int i = 0, max = methods.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (methods[i].getName().startsWith("test")) { //$NON-NLS-1$
 				suite.addTest(new ASTTest(methods[i].getName(), getJLS8()));
 				suite.addTest(new ASTTest(methods[i].getName(), AST_INTERNAL_JLS23));
@@ -810,7 +810,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	 * Snippets that show how to...
 	 * @deprecated using deprecated code
 	 */
-	public void testExampleSnippets() {
+	public void testExampleSnippets() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		{
 			AST localAst = AST.newAST(this.ast.apiLevel(), true);
 			CompilationUnit cu = localAst.newCompilationUnit();
@@ -1114,12 +1114,12 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		 * @param value the property value, or <code>null</code> if no value
 		 */
 		public void set(ASTNode value) {
-			throw new RuntimeException("get(" + value + ") not implemented"); //$NON-NLS-1$ //$NON-NLS-2$
+			throw new RuntimeException("get(" + value + ") not implemented"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		@Override
 		public String toString() {
-			return "Property(" + this.propertyName + ", " + this.compulsory + ", " + this.nodeType + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+			return "Property(" + this.propertyName + ", " + this.compulsory + ", " + this.nodeType + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -1129,7 +1129,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	 * @param node the node to test
 	 * @param prop the property descriptor
 	 */
-	void genericPropertyTest(ASTNode node, Property prop) {
+	void genericPropertyTest(ASTNode node, Property prop) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		ASTNode x1 = prop.sample(node.getAST(), false);
 		prop.set(x1);
@@ -1189,7 +1189,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 
 		// check that a child of the wrong type is detected
 		ASTNode b1[] = prop.counterExamples(node.getAST());
-		for (int i = 0; i < b1.length; i++) {
+		for (int i = 0; i < b1.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				prop.set(b1[i]); // bogus: wrong type
 				assertTrue(false);
@@ -1207,7 +1207,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	 * @param children the node to test
 	 * @param prop the property descriptor
 	 */
-	void genericPropertyListTest(ASTNode node, List children, Property prop) {
+	void genericPropertyListTest(ASTNode node, List children, Property prop) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// wipe the slate clean
 		children.clear();
@@ -1296,7 +1296,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 
 		// check that a child of the wrong type is detected
 		ASTNode b1[] = prop.counterExamples(node.getAST());
-		for (int i = 0; i < b1.length; i++) {
+		for (int i = 0; i < b1.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				children.add(b1[i]); // bogus: wrong type
 				assertTrue(false);
@@ -1318,18 +1318,18 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 				return apiLevel;
 			}
 		} catch (NumberFormatException e) {
-			fail("Invalid AST API level:" + e.getMessage());
+			fail("Invalid AST API level:" + e.getMessage()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return AST.getJLSLatest();
 
 	}
 	/** @deprecated using deprecated code */
-	public void testAST() {
+	public void testAST() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		AST a0 = new AST(); // deprecated, now 3 from JavaCore.defaultOptions
 		int apiLevelCal = getApiLevel(JavaCore.getDefaultOptions().get(JavaCore.COMPILER_SOURCE));
 		assertTrue(a0.apiLevel() == apiLevelCal);
-		AST a1 = new AST(new HashMap()); // deprecated, but still 2.0
+		AST a1 = new AST(new HashMap()); // deprecated, but still 2.0 //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		assertEquals(AST.JLS8,a1.apiLevel());
 		AST a2 = AST.newAST(AST.JLS2, false);
 		assertEquals(AST.JLS8, a2.apiLevel());
@@ -1377,7 +1377,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		assertTrue(this.ast.modificationCount() > previousCount);
 	}
 
-	public void testWellKnownBindings() {
+	public void testWellKnownBindings() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// well known bindings
 		String[] wkbs = {
@@ -1413,17 +1413,17 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		};
 
 		// none of the well known bindings resolve in a plain AST
-		for (int i = 0; i<wkbs.length; i++) {
+		for (int i = 0; i<wkbs.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			assertTrue(this.ast.resolveWellKnownType(wkbs[i]) == null);
 		}
 
 		// none of the no so well known bindings resolve either
-		for (int i = 0; i<nwkbs.length; i++) {
+		for (int i = 0; i<nwkbs.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			assertTrue(this.ast.resolveWellKnownType(nwkbs[i]) == null);
 		}
 	}
 
-	public void testSimpleName() {
+	public void testSimpleName() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		SimpleName x = this.ast.newSimpleName("foo"); //$NON-NLS-1$
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -1466,7 +1466,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 						"class", "float", "native", "super", "while", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
 						"const", "for", "new", "switch", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 						"continue", "goto", "package", "synchronized"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-		for (int i=0; i<reserved.length; i++) {
+		for (int i=0; i<reserved.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				x.setIdentifier(reserved[i]);
 				assertTrue(false);
@@ -1481,7 +1481,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 						"a b", "a ", " a", // literals //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 						"a-b", "a[]", "a<T>", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 						"", " ", "a.b"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		for (int i=0; i<bogus.length; i++) {
+		for (int i=0; i<bogus.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				x.setIdentifier(bogus[i]);
 				assertTrue(false);
@@ -1553,7 +1553,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 
 	}
 
-	public void testQualifiedName() {
+	public void testQualifiedName() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final QualifiedName x = this.ast.newQualifiedName(
 			this.ast.newSimpleName("q"), //$NON-NLS-1$
@@ -1627,7 +1627,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 
 	}
 
-	public void testNameFactories() {
+	public void testNameFactories() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		Name x = this.ast.newName("foo"); //$NON-NLS-1$
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -1654,7 +1654,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 				new String[] {
 						"a", "abcdef", "XYZZY", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 						"a.b", "java.lang.Object", "a.b.c.d.e"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		for (int i=0; i<legal.length; i++) {
+		for (int i=0; i<legal.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				x = this.ast.newName(legal[i]);
 				assertTrue(legal[i].equals(x.getFullyQualifiedName()));
@@ -1668,7 +1668,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 				new String[] {
 						"", ".", ".a", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 						"a.", "a..b", "..a"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		for (int i=0; i<bogus.length; i++) {
+		for (int i=0; i<bogus.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				x = this.ast.newName(bogus[i]);
 				assertTrue(false);
@@ -1692,7 +1692,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 
 	}
 
-	public void testBooleanLiteral() {
+	public void testBooleanLiteral() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		BooleanLiteral x = this.ast.newBooleanLiteral(true);
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -1716,7 +1716,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		assertTrue(x.booleanValue() == true);
 	}
 
-	public void testStringLiteral() {
+	public void testStringLiteral() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		// check 0-arg factory first
 		StringLiteral x = this.ast.newStringLiteral();
@@ -1787,7 +1787,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		assertEquals("", "\u00041", x.getLiteralValue());
 	}
 
-	public void testStringLiteralUnicode() {
+	public void testStringLiteralUnicode() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		AST localAst = AST.newAST(this.ast.apiLevel(), true);
 		StringLiteral literal = localAst.newStringLiteral();
 		literal.setEscapedValue("\"hello\\u0026\\u0050worl\\u0064\""); //$NON-NLS-1$
@@ -1830,7 +1830,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		assertTrue(literal.getEscapedValue().equals("\"\\\\u0001\"")); //$NON-NLS-1$
 	}
 
-	public void testCharacterLiteral() {
+	public void testCharacterLiteral() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		CharacterLiteral x = this.ast.newCharacterLiteral();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -1946,7 +1946,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		assertTrue(x.getEscapedValue().equals("\'!\'")); //$NON-NLS-1$
 	}
 
-	public void testNumberLiteral() {
+	public void testNumberLiteral() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		NumberLiteral x = this.ast.newNumberLiteral("1234"); //$NON-NLS-1$
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -1980,7 +1980,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 			  "1e1f", "2.f", ".3f", "0f", "3.14f", "6.022137e+23f", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$
 			  "1e1", "2.", ".3", "0.0", "3.14", "1e-9d", "1e137", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$
 			};
-		for (int i = 0; i < samples.length; i++) {
+		for (int i = 0; i < samples.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			previousCount = this.ast.modificationCount();
 			x.setToken(samples[i]);
 			assertTrue(this.ast.modificationCount() > previousCount);
@@ -1997,7 +1997,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 
 	}
 
-	public void testSimpleType() {
+	public void testSimpleType() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final SimpleType x = this.ast.newSimpleType(this.ast.newSimpleName("String")); //$NON-NLS-1$
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -2036,7 +2036,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		});
 	}
 
-	public void testPrimitiveType() {
+	public void testPrimitiveType() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		PrimitiveType x = this.ast.newPrimitiveType(PrimitiveType.INT);
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -2080,14 +2080,14 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		};
 
 		// check all primitive type codes are distinct
-		for (int i = 0; i < known.length; i++) {
-			for (int j = 0; j < known.length; j++) {
+		for (int i = 0; i < known.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (int j = 0; j < known.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				assertTrue(i == j || !known[i].equals(known[j]));
 			}
 		}
 
 		// check all primitive type codes work
-		for (int i = 0; i < known.length; i++) {
+		for (int i = 0; i < known.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			previousCount = this.ast.modificationCount();
 			x.setPrimitiveTypeCode(known[i]);
 			assertTrue(this.ast.modificationCount() > previousCount);
@@ -2102,7 +2102,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		}
 
 		// check toCode lookup of primitive type code by name
-		for (int i = 0; i < known.length; i++) {
+		for (int i = 0; i < known.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String name = known[i].toString();
 			assertTrue(PrimitiveType.toCode(name).equals(known[i]));
 		}
@@ -2121,7 +2121,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	void setArrayComponentType(ArrayType array, Type type) {
 		array.setComponentType(type);
 	}
-	public void testArrayType() {
+	public void testArrayType() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		SimpleName x1 = this.ast.newSimpleName("String"); //$NON-NLS-1$
 		SimpleType x2 = this.ast.newSimpleType(x1);
 		long previousCount = this.ast.modificationCount();
@@ -2240,7 +2240,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	}
 
 	/** @deprecated using deprecated code */
-	public void testParameterizedType() {
+	public void testParameterizedType() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.ast.apiLevel() == AST.JLS2) {
 			// node type introduced in 3.0 API
 			try {
@@ -2328,7 +2328,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	}
 
 	/** @deprecated using deprecated code */
-	public void testQualifiedType() {
+	public void testQualifiedType() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.ast.apiLevel() == AST.JLS2) {
 			// node type introduced in 3.0 API
 			try {
@@ -2415,7 +2415,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	}
 
 	/** @deprecated using deprecated code */
-	public void testWildcardType() {
+	public void testWildcardType() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.ast.apiLevel() == AST.JLS2) {
 			// node type introduced in 3.0 API
 			try {
@@ -2506,7 +2506,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 
 	}
 
-	public void testPackageDeclaration() {
+	public void testPackageDeclaration() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final PackageDeclaration x = this.ast.newPackageDeclaration();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -2576,7 +2576,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		});
 	}
 
-	public void testImportDeclaration() {
+	public void testImportDeclaration() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final ImportDeclaration x = this.ast.newImportDeclaration();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -2640,7 +2640,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		}
 	}
 
-	public void testCompilationUnit() {
+	public void testCompilationUnit() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final CompilationUnit x = this.ast.newCompilationUnit();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -2710,7 +2710,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 
 	}
 
-	public void testCompilationUnitLineNumberTable() {
+	public void testCompilationUnitLineNumberTable() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 //		TO RUN THIS TEST YOU MUST TEMPORARILY MAKE PUBLIC
 //		THE METHOD CompilationUnit.setLineEndTable
 
@@ -2768,7 +2768,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	}
 
 	/** @deprecated using deprecated code */
-	public void testTypeDeclaration() {
+	public void testTypeDeclaration() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final TypeDeclaration x = this.ast.newTypeDeclaration();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -3001,7 +3001,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	}
 
 	/** @deprecated using deprecated code */
-	public void testEnumDeclaration() {
+	public void testEnumDeclaration() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.ast.apiLevel() == AST.JLS2) {
 			// node type introduced in 3.0 API
 			try {
@@ -3147,7 +3147,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	}
 
 	/** @deprecated using deprecated code */
-	public void testEnumConstantDeclaration() {
+	public void testEnumConstantDeclaration() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.ast.apiLevel() == AST.JLS2) {
 			// node type introduced in 3.0 API
 			try {
@@ -3267,7 +3267,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	}
 
 	/** @deprecated using deprecated code */
-	public void testTypeParameter() {
+	public void testTypeParameter() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.ast.apiLevel() == AST.JLS2) {
 			// node type introduced in 3.0 API
 			try {
@@ -3323,7 +3323,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	}
 
 	/** @deprecated using deprecated code */
-	public void testSingleVariableDeclaration() {
+	public void testSingleVariableDeclaration() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final SingleVariableDeclaration x = this.ast.newSingleVariableDeclaration();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -3428,18 +3428,18 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 			assertTrue(x.getModifiers() == Modifier.NONE);
 			Modifier[] allMods = allModifiers();
 			// one at a time
-			for (int i = 0 ; i < allMods.length; i++) {
+			for (int i = 0 ; i < allMods.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				x.modifiers().add(allMods[i]);
 				assertTrue(x.getModifiers() == allMods[i].getKeyword().toFlagValue());
 				x.modifiers().remove(allMods[i]);
 				assertTrue(x.getModifiers() == Modifier.NONE);
 			}
 			// all at same time
-			for (int i = 0 ; i < allMods.length; i++) {
+			for (int i = 0 ; i < allMods.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				x.modifiers().add(allMods[i]);
 			}
 			int flags  = x.getModifiers();
-			for (int i = 0 ; i < allMods.length; i++) {
+			for (int i = 0 ; i < allMods.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				assertTrue((flags & allMods[i].getKeyword().toFlagValue()) != 0);
 			}
 		}
@@ -3529,7 +3529,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		});
 	}
 
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     public void testVariableDeclarationFragment() {
 		long previousCount = this.ast.modificationCount();
 		final VariableDeclarationFragment x = this.ast.newVariableDeclarationFragment();
@@ -3642,7 +3642,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	}
 
 	/** @deprecated using deprecated code */
-	public void testMethodDeclaration() {
+	public void testMethodDeclaration() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final MethodDeclaration x = this.ast.newMethodDeclaration();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -3943,7 +3943,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	}
 
 	/** @deprecated using deprecated code */
-	public void testInitializer() {
+	public void testInitializer() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final Initializer x = this.ast.newInitializer();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -4019,7 +4019,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	 * @deprecated (not really - its just that Javadoc.get/setComment
 	 * are deprecated, and this suppresses the extra warnings)
 	 */
-	public void testJavadoc() {
+	public void testJavadoc() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final Javadoc x = this.ast.newJavadoc();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -4067,7 +4067,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 				  "/**\n * Line 1\n * Line 2\n */", //$NON-NLS-1$
 				  "/***/", //$NON-NLS-1$
 				};
-			for (int i = 0; i < samples.length; i++) {
+			for (int i = 0; i < samples.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				previousCount = this.ast.modificationCount();
 				x.setComment(samples[i]);
 				assertTrue(this.ast.modificationCount() > previousCount);
@@ -4084,7 +4084,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 				};
 
 			// check that property cannot be set to clearly illegal things
-			for (int i = 0; i < badSamples.length; i++) {
+			for (int i = 0; i < badSamples.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					x.setComment(badSamples[i]);
 					assertTrue(false);
@@ -4121,7 +4121,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		});
 	}
 
-	public void testBlockComment() {
+	public void testBlockComment() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final BlockComment x = this.ast.newBlockComment();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -4141,7 +4141,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		tAlternateRoot(x);
 	}
 
-	public void testLineComment() {
+	public void testLineComment() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final LineComment x = this.ast.newLineComment();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -4161,7 +4161,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		tAlternateRoot(x);
 	}
 
-	public void testTagElement() {
+	public void testTagElement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final TagElement x = this.ast.newTagElement();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -4278,7 +4278,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		});
 	}
 
-	public void testTextElement() {
+	public void testTextElement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final TextElement x = this.ast.newTextElement();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -4323,7 +4323,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		assertTrue(this.ast.modificationCount() == previousCount);
 	}
 
-	public void testMemberRef() {
+	public void testMemberRef() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final MemberRef x = this.ast.newMemberRef();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -4379,7 +4379,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		});
 	}
 
-	public void testMethodRef() {
+	public void testMethodRef() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final MethodRef x = this.ast.newMethodRef();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -4449,7 +4449,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		});
 	}
 
-	public void testMethodRefParameter() {
+	public void testMethodRefParameter() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final MethodRefParameter x = this.ast.newMethodRefParameter();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -4519,7 +4519,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		});
 	}
 
-	public void testBlock() {
+	public void testBlock() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final Block x = this.ast.newBlock();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -4561,7 +4561,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		});
 	}
 
-	public void testMethodInvocation() {
+	public void testMethodInvocation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final MethodInvocation x = this.ast.newMethodInvocation();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -4669,7 +4669,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		});
 	}
 
-	public void testExpressionStatement() {
+	public void testExpressionStatement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		SimpleName x1 = this.ast.newSimpleName("foo"); //$NON-NLS-1$
 		final ExpressionStatement x = this.ast.newExpressionStatement(x1);
@@ -4727,7 +4727,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	}
 
 	/** @deprecated using deprecated code */
-	public void testVariableDeclarationStatement() {
+	public void testVariableDeclarationStatement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		VariableDeclarationFragment x1 = this.ast.newVariableDeclarationFragment();
 		long previousCount = this.ast.modificationCount();
 		final VariableDeclarationStatement x =
@@ -4807,18 +4807,18 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 			assertTrue(x.getModifiers() == Modifier.NONE);
 			Modifier[] allMods = allModifiers();
 			// one at a time
-			for (int i = 0 ; i < allMods.length; i++) {
+			for (int i = 0 ; i < allMods.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				x.modifiers().add(allMods[i]);
 				assertTrue(x.getModifiers() == allMods[i].getKeyword().toFlagValue());
 				x.modifiers().remove(allMods[i]);
 				assertTrue(x.getModifiers() == Modifier.NONE);
 			}
 			// all at same time
-			for (int i = 0 ; i < allMods.length; i++) {
+			for (int i = 0 ; i < allMods.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				x.modifiers().add(allMods[i]);
 			}
 			int flags  = x.getModifiers();
-			for (int i = 0 ; i < allMods.length; i++) {
+			for (int i = 0 ; i < allMods.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				assertTrue((flags & allMods[i].getKeyword().toFlagValue()) != 0);
 			}
 		}
@@ -4875,7 +4875,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	}
 
 	/** @deprecated using deprecated code */
-	public void testTypeDeclarationStatement() {
+	public void testTypeDeclarationStatement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		AbstractTypeDeclaration x1 = this.ast.newTypeDeclaration();
 		long previousCount = this.ast.modificationCount();
 		final TypeDeclarationStatement x =
@@ -4975,7 +4975,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	}
 
 	/** @deprecated using deprecated code */
-	public void testVariableDeclarationExpression() {
+	public void testVariableDeclarationExpression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		VariableDeclarationFragment x1 = this.ast.newVariableDeclarationFragment();
 		long previousCount = this.ast.modificationCount();
 		final VariableDeclarationExpression x =
@@ -5042,18 +5042,18 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 			assertTrue(x.getModifiers() == Modifier.NONE);
 			Modifier[] allMods = allModifiers();
 			// one at a time
-			for (int i = 0 ; i < allMods.length; i++) {
+			for (int i = 0 ; i < allMods.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				x.modifiers().add(allMods[i]);
 				assertTrue(x.getModifiers() == allMods[i].getKeyword().toFlagValue());
 				x.modifiers().remove(allMods[i]);
 				assertTrue(x.getModifiers() == Modifier.NONE);
 			}
 			// all at same time
-			for (int i = 0 ; i < allMods.length; i++) {
+			for (int i = 0 ; i < allMods.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				x.modifiers().add(allMods[i]);
 			}
 			int flags  = x.getModifiers();
-			for (int i = 0 ; i < allMods.length; i++) {
+			for (int i = 0 ; i < allMods.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				assertTrue((flags & allMods[i].getKeyword().toFlagValue()) != 0);
 			}
 		}
@@ -5112,7 +5112,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	}
 
 	/** @deprecated using deprecated code */
-	public void testFieldDeclaration() {
+	public void testFieldDeclaration() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		VariableDeclarationFragment x1 = this.ast.newVariableDeclarationFragment();
 		long previousCount = this.ast.modificationCount();
 		final FieldDeclaration x = this.ast.newFieldDeclaration(x1);
@@ -5205,7 +5205,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 
 	}
 
-	public void testAssignment() {
+	public void testAssignment() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final Assignment x = this.ast.newAssignment();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -5258,14 +5258,14 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		};
 
 		// check all operators are distinct
-		for (int i = 0; i < known.length; i++) {
-			for (int j = 0; j < known.length; j++) {
+		for (int i = 0; i < known.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (int j = 0; j < known.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				assertTrue(i == j || !known[i].equals(known[j]));
 			}
 		}
 
 		// check all operators work
-		for (int i = 0; i < known.length; i++) {
+		for (int i = 0; i < known.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			previousCount = this.ast.modificationCount();
 			x.setOperator(known[i]);
 			assertTrue(this.ast.modificationCount() > previousCount);
@@ -5280,7 +5280,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		}
 
 		// check toOperator lookup of operators by name
-		for (int i = 0; i < known.length; i++) {
+		for (int i = 0; i < known.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String name = known[i].toString();
 			assertTrue(Assignment.Operator.toOperator(name).equals(known[i]));
 		}
@@ -5352,7 +5352,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	/**
 	 * @deprecated (Uses getLeadingComment() which is deprecated)
 	 */
-	public void testBreakStatement() {
+	public void testBreakStatement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final BreakStatement x = this.ast.newBreakStatement();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -5392,7 +5392,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	/**
 	 * @deprecated (Uses getLeadingComment() which is deprecated)
 	 */
-	public void testContinueStatement() {
+	public void testContinueStatement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final ContinueStatement x = this.ast.newContinueStatement();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -5432,7 +5432,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	/**
 	 * @deprecated (Uses getLeadingComment() which is deprecated)
 	 */
-	public void testIfStatement() {
+	public void testIfStatement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final IfStatement x = this.ast.newIfStatement();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -5558,7 +5558,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	/**
 	 * @deprecated (Uses getLeadingComment() which is deprecated)
 	 */
-	public void testWhileStatement() {
+	public void testWhileStatement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final WhileStatement x = this.ast.newWhileStatement();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -5651,7 +5651,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	/**
 	 * @deprecated (Uses getLeadingComment() which is deprecated)
 	 */
-	public void testDoStatement() {
+	public void testDoStatement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final DoStatement x = this.ast.newDoStatement();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -5744,7 +5744,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	/**
 	 * @deprecated (Uses getLeadingComment() which is deprecated)
 	 */
-	public void testTryStatement() {
+	public void testTryStatement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.ast.apiLevel() <= JLS3_INTERNAL) {
 			// node type introduced in 4.0 API
 			try {
@@ -5866,7 +5866,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		});
 	}
 
-	public void testCatchClause() {
+	public void testCatchClause() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final CatchClause x = this.ast.newCatchClause();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -5985,7 +5985,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	 * @param x the statement to test
 	 * @deprecated (Uses get/setLeadingComment() which is deprecated)
 	 */
-	void tLeadingComment(Statement x) {
+	void tLeadingComment(Statement x) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// check that null is allowed
 		long previousCount = this.ast.modificationCount();
@@ -6033,7 +6033,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	 *
 	 * @param x the body declaration to test
 	 */
-	void tJavadocComment(final BodyDeclaration x) {
+	void tJavadocComment(final BodyDeclaration x) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		genericPropertyTest(x, new Property("Javadoc", false, Javadoc.class) { //$NON-NLS-1$
 			@Override
 			public ASTNode sample(AST targetAst, boolean parented) {
@@ -6081,7 +6081,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	 * @param x the body declaration to test
 	 * @deprecated using deprecated code
 	 */
-	void tModifiers(final BodyDeclaration x) {
+	void tModifiers(final BodyDeclaration x) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.ast.apiLevel() == AST.JLS2) {
 			return;
 		}
@@ -6119,18 +6119,18 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		assertTrue(x.getModifiers() == Modifier.NONE);
 		Modifier[] allMods = allModifiers();
 		// one at a time
-		for (int i = 0 ; i < allMods.length; i++) {
+		for (int i = 0 ; i < allMods.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			x.modifiers().add(allMods[i]);
 			assertTrue(x.getModifiers() == allMods[i].getKeyword().toFlagValue());
 			x.modifiers().remove(allMods[i]);
 			assertTrue(x.getModifiers() == Modifier.NONE);
 		}
 		// all at same time
-		for (int i = 0 ; i < allMods.length; i++) {
+		for (int i = 0 ; i < allMods.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			x.modifiers().add(allMods[i]);
 		}
 		int flags  = x.getModifiers();
-		for (int i = 0 ; i < allMods.length; i++) {
+		for (int i = 0 ; i < allMods.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			assertTrue((flags & allMods[i].getKeyword().toFlagValue()) != 0);
 		}
 	}
@@ -6158,7 +6158,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	 *
 	 * @param x the node to test
 	 */
-	void tClientProperties(ASTNode x) {
+	void tClientProperties(ASTNode x) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		long previousCount = this.ast.modificationCount();
 
@@ -6235,7 +6235,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		assertTrue(this.ast.modificationCount() == previousCount);
 	}
 
-	public void testReturnStatement() {
+	public void testReturnStatement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final ReturnStatement x = this.ast.newReturnStatement();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -6292,7 +6292,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	/**
 	 * @deprecated (Uses getLeadingComment() which is deprecated)
 	 */
-	public void testThrowStatement() {
+	public void testThrowStatement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final ThrowStatement x = this.ast.newThrowStatement();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -6350,7 +6350,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	/**
 	 * @deprecated (Uses getLeadingComment() which is deprecated)
 	 */
-	public void testAssertStatement() {
+	public void testAssertStatement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final AssertStatement x = this.ast.newAssertStatement();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -6446,7 +6446,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	/**
 	 * @deprecated (Uses getLeadingComment() which is deprecated)
 	 */
-	public void testSwitchStatement() {
+	public void testSwitchStatement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final SwitchStatement x = this.ast.newSwitchStatement();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -6530,7 +6530,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	/**
 	 * @deprecated (Uses getLeadingComment() which is deprecated)
 	 */
-	public void testSwitchCase() {
+	public void testSwitchCase() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final SwitchCase x = this.ast.newSwitchCase();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -6593,7 +6593,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	/**
 	 * @deprecated (Uses getLeadingComment() which is deprecated)
 	 */
-	public void testSynchronizedStatement() {
+	public void testSynchronizedStatement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final SynchronizedStatement x = this.ast.newSynchronizedStatement();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -6684,7 +6684,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	/**
 	 * @deprecated (Uses getLeadingComment() which is deprecated)
 	 */
-	public void testLabeledStatement() {
+	public void testLabeledStatement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final LabeledStatement x = this.ast.newLabeledStatement();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -6758,9 +6758,9 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	 * Walks the given AST and assigns properly-nested (but otherwise totally bogus)
 	 * source ranges to all nodes.
 	 */
-	void assignSourceRanges(ASTNode target) {
-		final StringBuilder buffer = new StringBuilder();
-		final List stack = new ArrayList();
+	void assignSourceRanges(ASTNode target) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		final StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		final List stack = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		// pretend that every construct begins with "(" and ends with ")"
 		class PositionAssigner extends ASTVisitor {
 			PositionAssigner() {
@@ -6769,14 +6769,14 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 			}
 			public void preVisit(ASTNode node) {
 				int start = buffer.length();
-				buffer.append("(");
+				buffer.append("("); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				// push start position - popped by postVisit for same node
 				stack.add(Integer.valueOf(start));
 			}
 			public void postVisit(ASTNode node) {
 				// pop start position placed there by preVisit
 				int start = ((Integer) stack.remove(stack.size() - 1)).intValue();
-				buffer.append(")");
+				buffer.append(")"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				int length = buffer.length() - start;
 				node.setSourceRange(start, length);
 			}
@@ -6801,7 +6801,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		assertTrue(z.subtreeMatch(new CheckPositionsMatcher(), x));
 	}
 
-	public void testNullResolve() {
+	public void testNullResolve() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ASTNode x = SampleASTs.oneOfEach(this.ast);
 
 		ASTVisitor v = new ASTVisitor(true) {
@@ -6911,7 +6911,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	/**
 	 * @deprecated (Uses getLeadingComment() which is deprecated)
 	 */
-	public void testForStatement() {
+	public void testForStatement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final ForStatement x = this.ast.newForStatement();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -7066,7 +7066,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	/**
 	 * @deprecated (Uses getLeadingComment() which is deprecated)
 	 */
-	public void testEnhancedForStatement() {
+	public void testEnhancedForStatement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.ast.apiLevel() == AST.JLS2) {
 			// node type introduced in 3.0 API
 			try {
@@ -7157,7 +7157,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
  		});
 	}
 
-	public void testConstructorInvocation() {
+	public void testConstructorInvocation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final ConstructorInvocation x = this.ast.newConstructorInvocation();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -7219,7 +7219,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		});
 	}
 
-	public void testSuperConstructorInvocation() {
+	public void testSuperConstructorInvocation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final SuperConstructorInvocation x = this.ast.newSuperConstructorInvocation();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -7319,7 +7319,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		});
 	}
 
-	public void testThisExpression() {
+	public void testThisExpression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final ThisExpression x = this.ast.newThisExpression();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -7355,7 +7355,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		});
 	}
 
-	public void testFieldAccess() {
+	public void testFieldAccess() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final FieldAccess x = this.ast.newFieldAccess();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -7421,7 +7421,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	}
 
 
-	public void testSuperFieldAccess() {
+	public void testSuperFieldAccess() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final SuperFieldAccess x = this.ast.newSuperFieldAccess();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -7477,7 +7477,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		});
 	}
 
-	public void testSuperMethodInvocation() {
+	public void testSuperMethodInvocation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final SuperMethodInvocation x = this.ast.newSuperMethodInvocation();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -7575,7 +7575,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		});
 	}
 
-	public void testTypeLiteral() {
+	public void testTypeLiteral() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final TypeLiteral x = this.ast.newTypeLiteral();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -7610,7 +7610,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		});
 	}
 
-	public void testCastExpression() {
+	public void testCastExpression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final CastExpression x = this.ast.newCastExpression();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -7676,7 +7676,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		});
 	}
 
-	public void testPrefixExpression() {
+	public void testPrefixExpression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final PrefixExpression x = this.ast.newPrefixExpression();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -7710,14 +7710,14 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		};
 
 		// check all operators are distinct
-		for (int i = 0; i < known.length; i++) {
-			for (int j = 0; j < known.length; j++) {
+		for (int i = 0; i < known.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (int j = 0; j < known.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				assertTrue(i == j || !known[i].equals(known[j]));
 			}
 		}
 
 		// check all operators work
-		for (int i = 0; i < known.length; i++) {
+		for (int i = 0; i < known.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			previousCount = this.ast.modificationCount();
 			x.setOperator(known[i]);
 			assertTrue(this.ast.modificationCount() > previousCount);
@@ -7732,7 +7732,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		}
 
 		// check toOperator lookup of operator by name
-		for (int i = 0; i < known.length; i++) {
+		for (int i = 0; i < known.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String name = known[i].toString();
 			assertTrue(PrefixExpression.Operator.toOperator(name).equals(known[i]));
 		}
@@ -7769,7 +7769,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		});
 	}
 
-	public void testPostfixExpression() {
+	public void testPostfixExpression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final PostfixExpression x = this.ast.newPostfixExpression();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -7795,14 +7795,14 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		};
 
 		// check all operators are distinct
-		for (int i = 0; i < known.length; i++) {
-			for (int j = 0; j < known.length; j++) {
+		for (int i = 0; i < known.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (int j = 0; j < known.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				assertTrue(i == j || !known[i].equals(known[j]));
 			}
 		}
 
 		// check all operators work
-		for (int i = 0; i < known.length; i++) {
+		for (int i = 0; i < known.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			previousCount = this.ast.modificationCount();
 			x.setOperator(known[i]);
 			assertTrue(this.ast.modificationCount() > previousCount);
@@ -7817,7 +7817,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		}
 
 		// check toOperator lookup of operator by name
-		for (int i = 0; i < known.length; i++) {
+		for (int i = 0; i < known.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String name = known[i].toString();
 			assertTrue(PostfixExpression.Operator.toOperator(name).equals(known[i]));
 		}
@@ -7854,7 +7854,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		});
 	}
 
-	public void testInfixExpression() {
+	public void testInfixExpression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final InfixExpression x = this.ast.newInfixExpression();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -7916,14 +7916,14 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		};
 
 		// check all operators are distinct
-		for (int i = 0; i < known.length; i++) {
-			for (int j = 0; j < known.length; j++) {
+		for (int i = 0; i < known.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (int j = 0; j < known.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				assertTrue(i == j || !known[i].equals(known[j]));
 			}
 		}
 
 		// check all operators work
-		for (int i = 0; i < known.length; i++) {
+		for (int i = 0; i < known.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			previousCount = this.ast.modificationCount();
 			x.setOperator(known[i]);
 			assertTrue(this.ast.modificationCount() > previousCount);
@@ -7938,7 +7938,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		}
 
 		// check toOperator lookup of operator by name
-		for (int i = 0; i < known.length; i++) {
+		for (int i = 0; i < known.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String name = known[i].toString();
 			assertTrue(InfixExpression.Operator.toOperator(name).equals(known[i]));
 		}
@@ -8029,7 +8029,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		});
 	}
 
-	public void testInstanceofExpression() {
+	public void testInstanceofExpression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final InstanceofExpression x = this.ast.newInstanceofExpression();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -8105,7 +8105,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		});
 	}
 
-	public void testConditionalExpression() {
+	public void testConditionalExpression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final ConditionalExpression x = this.ast.newConditionalExpression();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -8212,7 +8212,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		});
 	}
 
-	public void testArrayAccess() {
+	public void testArrayAccess() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final ArrayAccess x = this.ast.newArrayAccess();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -8288,7 +8288,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		});
 	}
 
-	public void testArrayInitializer() {
+	public void testArrayInitializer() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final ArrayInitializer x = this.ast.newArrayInitializer();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -8328,7 +8328,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	}
 
 	/** @deprecated using deprecated code */
-	public void testClassInstanceCreation() {
+	public void testClassInstanceCreation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final ClassInstanceCreation x = this.ast.newClassInstanceCreation();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -8497,7 +8497,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 
 	}
 
-	public void testAnonymousClassDeclaration() {
+	public void testAnonymousClassDeclaration() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final AnonymousClassDeclaration x = this.ast.newAnonymousClassDeclaration();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -8547,7 +8547,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		assertTrue(t1.isPackageMemberTypeDeclaration() == false);
 	}
 
-	public void testArrayCreation() {
+	public void testArrayCreation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final ArrayCreation x = this.ast.newArrayCreation();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -8639,7 +8639,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		});
 	}
 
-	public void testParenthesizedExpression() {
+	public void testParenthesizedExpression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long previousCount = this.ast.modificationCount();
 		final ParenthesizedExpression x = this.ast.newParenthesizedExpression();
 		assertTrue(this.ast.modificationCount() > previousCount);
@@ -8685,7 +8685,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	}
 
 	/** @deprecated using deprecated code */
-	public void testAnnotationTypeDeclaration() {
+	public void testAnnotationTypeDeclaration() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.ast.apiLevel() == AST.JLS2) {
 			// node type introduced in 3.0 API
 			try {
@@ -8788,7 +8788,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	}
 
 	/** @deprecated using deprecated code */
-	public void testAnnotationTypeMemberDeclaration() {
+	public void testAnnotationTypeMemberDeclaration() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.ast.apiLevel() == AST.JLS2) {
 			// node type introduced in 3.0 API
 			try {
@@ -8894,7 +8894,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	}
 
 	/** @deprecated using deprecated code */
-	public void testNormalAnnotation() {
+	public void testNormalAnnotation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.ast.apiLevel() == AST.JLS2) {
 			// node type introduced in 3.0 API
 			try {
@@ -8958,7 +8958,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	}
 
 	/** @deprecated using deprecated code */
-	public void testMarkerAnnotation() {
+	public void testMarkerAnnotation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.ast.apiLevel() == AST.JLS2) {
 			// node type introduced in 3.0 API
 			try {
@@ -8991,7 +8991,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	}
 
 	/** @deprecated using deprecated code */
-	public void testSingleMemberAnnotation() {
+	public void testSingleMemberAnnotation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.ast.apiLevel() == AST.JLS2) {
 			// node type introduced in 3.0 API
 			try {
@@ -9057,7 +9057,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	}
 
 	/** @deprecated using deprecated code */
-	public void testMemberValuePair() {
+	public void testMemberValuePair() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.ast.apiLevel() == AST.JLS2) {
 			// node type introduced in 3.0 API
 			try {
@@ -9145,7 +9145,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	 * @param x the annotation to test
      * @since 3.0
 	 */
-	void tAnnotationName(final Annotation x) {
+	void tAnnotationName(final Annotation x) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		genericPropertyTest(x, new Property("TypeName", true, Name.class) { //$NON-NLS-1$
 			@Override
 			public ASTNode sample(AST targetAst, boolean parented) {
@@ -9167,7 +9167,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 	}
 
 	/** @deprecated using deprecated code */
-	public void testModifiers() {
+	public void testModifiers() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// check all modifiers match their JVM spec values
 		assertSame(Modifier.ABSTRACT ,0x0400);
@@ -9203,7 +9203,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 				Modifier.NON_SEALED,
 				};
 
-		for (int i=0; i< mods.length; i++) {
+		for (int i=0; i< mods.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int m = mods[i];
 			assertTrue(Modifier.isAbstract(m) == (m == Modifier.ABSTRACT));
 			assertTrue(Modifier.isFinal(m) == (m == Modifier.FINAL));
@@ -9290,14 +9290,14 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		};
 
 		// check all modifiers are distinct
-		for (int i = 0; i < known.length; i++) {
-			for (int j = 0; j < known.length; j++) {
+		for (int i = 0; i < known.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (int j = 0; j < known.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				assertTrue(i == j || !known[i].equals(known[j]));
 			}
 		}
 
 		// check all modifiers work
-		for (int i = 0; i < known.length; i++) {
+		for (int i = 0; i < known.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			previousCount = this.ast.modificationCount();
 			x.setKeyword(known[i]);
 			assertTrue(this.ast.modificationCount() > previousCount);
@@ -9312,14 +9312,14 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		}
 
 		// check toKeyword lookup of modifier by name
-		for (int i = 0; i < known.length; i++) {
+		for (int i = 0; i < known.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String name = known[i].toString();
 			assertTrue(Modifier.ModifierKeyword.toKeyword(name).equals(known[i]));
 		}
 		assertTrue(Modifier.ModifierKeyword.toKeyword("huh") == null); //$NON-NLS-1$
 
 		// check AST.newModifiers(flags)
-		for (int i = 0; i < mods.length; i++) {
+		for (int i = 0; i < mods.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int m = mods[i];
 			List result = this.ast.newModifiers(m);
 			assertEquals(1, result.size());
@@ -9344,12 +9344,12 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 				Modifier.ModifierKeyword.NON_SEALED_KEYWORD,
 			};
 		int all = 0;
-		for (int i = 0; i < mods.length; i++) {
+		for (int i = 0; i < mods.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			all |= mods[i];
 		}
 		List result = this.ast.newModifiers(all);
 		assertEquals(expectedOrder.length, result.size());
-		for (int i = 0; i< expectedOrder.length; i++) {
+		for (int i = 0; i< expectedOrder.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final Modifier modifier = ((Modifier) result.get(i));
 			assertEquals(expectedOrder[i], modifier.getKeyword());
 			if (modifier.isAbstract()) {
@@ -9388,7 +9388,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		assertTrue(subtreeBytes > 0);
 	}
 
-	public void testNodeTypeConstants() throws Exception {
+	public void testNodeTypeConstants() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// it would be a breaking API change to change the numeric values of
 		// public static final ints
 		int[] nodeTypes = {
@@ -9510,12 +9510,12 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 		};
 
 		// assert that nodeType values are correct:
-		for (int i= 0; i < nodeTypes.length; i++) {
+		for (int i= 0; i < nodeTypes.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			assertSame(i + 1, nodeTypes[i]);
 		}
 
 		// test nodeClassForType:
-		for (int i= 0; i < nodeTypes.length; i++) {
+		for (int i= 0; i < nodeTypes.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int nodeType = nodeTypes[i];
 			ASTNode node;
 			try {
@@ -9524,7 +9524,7 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 				if (this.API_LEVEL < AST_INTERNAL_JLS9 && e.getCause() instanceof UnsupportedOperationException) {
 					continue;
 				} else {
-					throw new AssertionFailedError("missing node type: " + nodeType);
+					throw new AssertionFailedError("missing node type: " + nodeType); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 			assertEquals(nodeType, node.getNodeType());
@@ -9532,8 +9532,8 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 
 		// assert that test covers all nodeTypes:
 		Field[] fields = ASTNode.class.getDeclaredFields();
-		HashSet declaredNodeTypes = new HashSet();
-		for (int i= 0; i < fields.length; i++) {
+		HashSet declaredNodeTypes = new HashSet(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+		for (int i= 0; i < fields.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Field field= fields[i];
 			if (field.getType() != int.class)
 				continue;
@@ -9544,24 +9544,24 @@ public class ASTTest extends org.eclipse.jdt.core.tests.junit.extension.TestCase
 				continue;
 			declaredNodeTypes.add(Integer.valueOf(field.getInt(null)));
 		}
-		for (int i= 0; i < nodeTypes.length; i++) {
+		for (int i= 0; i < nodeTypes.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int nodeType= nodeTypes[i];
-			assertTrue("node type " + nodeType + " from test is missing in ASTNode", declaredNodeTypes.remove(Integer.valueOf(nodeType)));
+			assertTrue("node type " + nodeType + " from test is missing in ASTNode", declaredNodeTypes.remove(Integer.valueOf(nodeType))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			nodeTypes[i] = -1;
 		}
-		for (int i= 0; i < nodeTypes.length; i++) {
+		for (int i= 0; i < nodeTypes.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int nodeType= nodeTypes[i];
-			assertEquals("node type " + nodeType + " missing in ASTNode", -1, nodeType);
+			assertEquals("node type " + nodeType + " missing in ASTNode", -1, nodeType); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		assertEquals("node types missing in test", Collections.EMPTY_SET, declaredNodeTypes);
 	}
 
 	public void testASTLevels() throws Exception {
-		for (int level : AST.getAllVersions()) {
+		for (int level : AST.getAllVersions()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				DOMASTUtil.checkASTLevel(level);
 			} catch (IllegalArgumentException e) {
-				throw new AssertionFailedError("missing support for AST level: " + level);
+				throw new AssertionFailedError("missing support for AST level: " + level); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		Hashtable<String, String> options = JavaCore.getDefaultOptions();

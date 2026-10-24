@@ -65,7 +65,7 @@ protected void tearDown() throws Exception {
  * Ensure that adding an inclusion on a compilation unit
  * makes it appear in the children of its package and it is removed from the non-java resources.
  */
-public void testAddInclusionOnCompilationUnit() throws CoreException {
+public void testAddInclusionOnCompilationUnit() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createFolder("/P/src/p");
 	createFile(
 		"/P/src/p/A.java",
@@ -99,7 +99,7 @@ public void testAddInclusionOnCompilationUnit() throws CoreException {
  * Ensure that adding an inclusion on a folder directly under a project (and prj=src)
  * makes it disappear from the non-java resources.
  */
-public void testAddInclusionOnFolderUnderProject() throws CoreException {
+public void testAddInclusionOnFolderUnderProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject javaProject = createJavaProject("P1", new String[] {""}, "");
 		createFolder("/P1/doc");
@@ -135,7 +135,7 @@ public void testAddInclusionOnFolderUnderProject() throws CoreException {
  * makes it appear in the list of children of its package fragment root
  * and it is removed from the non-java resources.
  */
-public void testAddInclusionOnPackage() throws CoreException {
+public void testAddInclusionOnPackage() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createFolder("/P/src/p");
 
 	clearDeltas();
@@ -162,7 +162,7 @@ public void testAddInclusionOnPackage() throws CoreException {
 /*
  * Ensure that adding a file to a folder that is included reports the correct delta.
  */
-public void testAddToIncludedFolder() throws CoreException {
+public void testAddToIncludedFolder() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createFolder("/P/src/p");
 
 	// include folder and its contents
@@ -192,7 +192,7 @@ public void testAddToIncludedFolder() throws CoreException {
  * Ensure that creating an included compilation unit
  * doesn't make it appear as a non-java resource but it is a child of its package.
  */
-public void testCreateIncludedCompilationUnit() throws CoreException {
+public void testCreateIncludedCompilationUnit() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "**/A.java"});
 	createFolder("/P/src/p");
 	IPackageFragment pkg = getPackage("/P/src/p");
@@ -228,7 +228,7 @@ public void testCreateIncludedCompilationUnit() throws CoreException {
  * Ensure that creating an included package
  * makes it appear as a child of its package fragment root and not as a non-java resource.
  */
-public void testCreateIncludedPackage() throws CoreException {
+public void testCreateIncludedPackage() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "p/"});
 	IPackageFragmentRoot root = getPackageFragmentRoot("/P/src");
 
@@ -256,7 +256,7 @@ public void testCreateIncludedPackage() throws CoreException {
  * Ensure that creating a file that corresponds to an included compilation unit
  * makes it appear as a child of its package and not as a non-java resource.
  */
-public void testCreateResourceIncludedCompilationUnit() throws CoreException {
+public void testCreateResourceIncludedCompilationUnit() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "**/A.java"});
 	createFolder("/P/src/p");
 
@@ -292,7 +292,7 @@ public void testCreateResourceIncludedCompilationUnit() throws CoreException {
  * in a folder that is not included makes it appear as a child of its package and not as a non-java resource.
  * (regression test for bug 65234 Inclusion filter not working)
  */
-public void testCreateResourceIncludedCompilationUnit2() throws CoreException {
+public void testCreateResourceIncludedCompilationUnit2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "p1/p2/p3/A.java"});
 	createFolder("/P/src/p1/p2/p3");
 
@@ -328,7 +328,7 @@ public void testCreateResourceIncludedCompilationUnit2() throws CoreException {
  * Ensure that creating a folder that corresponds to an included package
  * makes it appear as a child of its package fragment root and not as a non-java resource.
  */
-public void testCreateResourceIncludedPackage() throws CoreException {
+public void testCreateResourceIncludedPackage() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "p/"});
 
 	clearDeltas();
@@ -357,7 +357,7 @@ public void testCreateResourceIncludedPackage() throws CoreException {
  * makes it appear as a child of its package fragment root and not as a non-java resource.
  * (regression test for bug 65234 Inclusion filter not working)
  */
-public void testCreateResourceIncludedPackage2() throws CoreException {
+public void testCreateResourceIncludedPackage2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "p1/p2/p3/"});
 	createFolder("/P/src/p1/p2");
 
@@ -406,7 +406,7 @@ public void testDefaultPackageProjectIsSource() throws CoreException {
  * (regression test for bug 119161 classes in "deep" packages not fully recognized when using tight inclusion filters)
  * @deprecated
  */
-public void testIncludeCUOnly01() throws CoreException {
+public void testIncludeCUOnly01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "p1/p2/*.java|q/*.java"});
 	addLibraryEntry(getJavaProject("P"), getExternalJCLPathString(), false);
 	createFolder("/P/src/p1/p2");
@@ -437,7 +437,7 @@ public void testIncludeCUOnly01() throws CoreException {
 			workingCopy.discardWorkingCopy();
 	}
 }
-public void testIncludeCUOnly01_new() throws CoreException {
+public void testIncludeCUOnly01_new() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "p1/p2/*.java|q/*.java"});
 	addLibraryEntry(getJavaProject("P"), getExternalJCLPathString(), false);
 	createFolder("/P/src/p1/p2");
@@ -480,7 +480,7 @@ public void testIncludeCUOnly01_new_modular() throws CoreException {
  * (regression test for bug 119161 classes in "deep" packages not fully recognized when using tight inclusion filters)
  * @deprecated
  */
-public void testIncludeCUOnly02() throws CoreException {
+public void testIncludeCUOnly02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "p1/p2/p3/*.java|q/*.java"});
 	addLibraryEntry(getJavaProject("P"), getExternalJCLPathString(), false);
 	createFolder("/P/src/p1/p2/p3");
@@ -511,7 +511,7 @@ public void testIncludeCUOnly02() throws CoreException {
 			workingCopy.discardWorkingCopy();
 	}
 }
-public void testIncludeCUOnly02_new() throws CoreException {
+public void testIncludeCUOnly02_new() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "p1/p2/p3/*.java|q/*.java"});
 	addLibraryEntry(getJavaProject("P"), getExternalJCLPathString(), false);
 	createFolder("/P/src/p1/p2/p3");
@@ -653,7 +653,7 @@ public void testNestedSourceFolder1() throws CoreException {
  * Ensures that adding a .java file in a nested source folder reports
  * a delta on the nested source folder and not on the outer one.
  */
-public void testNestedSourceFolder2() throws CoreException {
+public void testNestedSourceFolder2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src1", "**/X.java", "/P/src1/src2", ""});
 	createFolder("/P/src1/src2");
 
@@ -751,7 +751,7 @@ public void testNestedSourceFolder6() throws CoreException {
  * Ensure that removing the inclusion on a compilation unit
  * makes it disappears from the children of its package and it is added to the non-java resources.
  */
-public void testRemoveInclusionOnCompilationUnit() throws CoreException {
+public void testRemoveInclusionOnCompilationUnit() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "**/A.java"});
 	createFolder("/P/src/p");
 	createFile(
@@ -787,7 +787,7 @@ public void testRemoveInclusionOnCompilationUnit() throws CoreException {
  * makes it disappears from the children of its package fragment root
  * and it is added to the non-java resources.
  */
-public void testRemoveInclusionOnPackage() throws CoreException {
+public void testRemoveInclusionOnPackage() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "p"});
 	createFolder("/P/src/p");
 
@@ -816,7 +816,7 @@ public void testRemoveInclusionOnPackage() throws CoreException {
  * Ensure that renaming an included compilation unit so that it is not included any longer
  * makes it disappears from the children of its package and it is added to the non-java resources.
  */
-public void testRenameIncludedCompilationUnit() throws CoreException {
+public void testRenameIncludedCompilationUnit() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "**/A.java"});
 	createFolder("/P/src/p");
 	IFile file = createFile(
@@ -854,7 +854,7 @@ public void testRenameIncludedCompilationUnit() throws CoreException {
  * makes it disappears from the children of its package fragment root
  * and it is added to the non-java resources.
  */
-public void testRenameIncludedPackage1() throws CoreException {
+public void testRenameIncludedPackage1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "p/"});
 	IPackageFragmentRoot root = getPackageFragmentRoot("/P/src");
 	IPackageFragment pkg = root.createPackageFragment("p", false, null);
@@ -885,7 +885,7 @@ public void testRenameIncludedPackage1() throws CoreException {
  * so that it is not included any longer doesn't throw a JavaModelException.
  * (regression test for bug 67297 Renaming included package folder throws JME)
  */
-public void testRenameIncludedPackage2() throws CoreException {
+public void testRenameIncludedPackage2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "p/"});
 	IPackageFragmentRoot root = getPackageFragmentRoot("/P/src");
 	IPackageFragment pkg = root.createPackageFragment("p", false, null);
@@ -921,7 +921,7 @@ public void testRenameIncludedPackage2() throws CoreException {
  * Ensure that renaming a file that corresponds to an included compilation unit so that it is not included any longer
  * makes it disappears from the children of its package and it is added to the non-java resources.
  */
-public void testRenameResourceIncludedCompilationUnit() throws CoreException {
+public void testRenameResourceIncludedCompilationUnit() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "**/A.java"});
 	createFolder("/P/src/p");
 	IFile file = createFile(
@@ -960,7 +960,7 @@ public void testRenameResourceIncludedCompilationUnit() throws CoreException {
  * makes it disappears afrom the children of its package fragment root
  * and it is added to the non-java resources.
  */
-public void testRenameResourceIncludedPackage() throws CoreException {
+public void testRenameResourceIncludedPackage() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "p/"});
 	IFolder folder = createFolder("/P/src/p");
 
@@ -990,9 +990,9 @@ public void testRenameResourceIncludedPackage() throws CoreException {
  * Ensure that a potential match in the output folder is not indexed.
  * (regression test for bug 32041 Multiple output folders fooling Java Model)
  */
-public void testSearchPotentialMatchInOutput() throws CoreException {
+public void testSearchPotentialMatchInOutput() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
-		JavaCore.run(new IWorkspaceRunnable() {
+		JavaCore.run(new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 			public void run(IProgressMonitor monitor) throws CoreException {
 				IJavaProject javaProject = createJavaProject("P2", new String[] {}, "bin");
 				javaProject.setRawClasspath(createClasspath(new String[] {"/P2", "**/X.java", "/P2/src", ""}, true/*inclusion*/, false/*no exclusion*/), null);
@@ -1020,7 +1020,7 @@ public void testSearchPotentialMatchInOutput() throws CoreException {
 /*
  * Ensure search finds matches in an included compilation unit.
  */
-public void testSearchWithIncludedCompilationUnit1() throws CoreException {
+public void testSearchWithIncludedCompilationUnit1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "**/A.java"});
 	createFolder("/P/src/p");
 	createFile(
@@ -1045,7 +1045,7 @@ public void testSearchWithIncludedCompilationUnit1() throws CoreException {
 /*
  * Ensure search doesn't find matches in a compilation unit that was included but that is not any longer.
  */
-public void testSearchWithIncludedCompilationUnit2() throws CoreException {
+public void testSearchWithIncludedCompilationUnit2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "**/A.java"});
 	createFolder("/P/src/p");
 	createFile(
@@ -1072,7 +1072,7 @@ public void testSearchWithIncludedCompilationUnit2() throws CoreException {
  * Ensure search finds matches in an included package.
  * (case of setting the classpath)
  */
-public void testSearchWithIncludedPackage1() throws CoreException {
+public void testSearchWithIncludedPackage1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createFolder("/P/src/p");
 	createFile(
 		"/P/src/p/A.java",
@@ -1098,7 +1098,7 @@ public void testSearchWithIncludedPackage1() throws CoreException {
  * Ensure search finds matches in an included package.
  * (case of opening the project)
  */
-public void testSearchWithIncludedPackage2() throws CoreException {
+public void testSearchWithIncludedPackage2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "p/"});
 	createFolder("/P/src/p");
 	createFile(

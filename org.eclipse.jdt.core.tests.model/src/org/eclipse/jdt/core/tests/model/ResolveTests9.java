@@ -61,7 +61,7 @@ public class ResolveTests9 extends AbstractJavaModelTests {
 
 		IJavaProject project = setUpJavaProject("Resolve", "9", true);
 
-		String bootModPath = System.getProperty("java.home") + File.separator +"jrt-fs.jar";
+		String bootModPath = System.getProperty("java.home") + File.separator +"jrt-fs.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IClasspathEntry jrtEntry = JavaCore.newLibraryEntry(new Path(bootModPath), null, null, null, null, false);
 		IClasspathEntry[] old = project.getRawClasspath();
 		IClasspathEntry[] newPath = new IClasspathEntry[old.length +1];
@@ -97,7 +97,7 @@ public class ResolveTests9 extends AbstractJavaModelTests {
 				JavaCore.newProjectEntry(otherProject.getPath(), null, false, attributes(flags), false));
 	}
 	IClasspathAttribute[] attributes(int flags) {
-		List<IClasspathAttribute> attrs = new ArrayList<>();
+		List<IClasspathAttribute> attrs = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		if ((flags & MODULE) != 0)
 			attrs.add(JavaCore.newClasspathAttribute(IClasspathAttribute.MODULE, "true"));
 		if ((flags & WITHOUT_TEST) != 0)
@@ -112,10 +112,10 @@ public class ResolveTests9 extends AbstractJavaModelTests {
 				null, null, path.append(new Path("bin-test")),
 				new IClasspathAttribute[] {JavaCore.newClasspathAttribute(IClasspathAttribute.TEST, "true")});
 		addClasspathEntry(prj, testSrc);
-		createFolder(prj.getElementName() + "/src-test");
+		createFolder(prj.getElementName() + "/src-test"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
-	public void testModuleInfo_serviceImplementation_OK() throws CoreException {
+	public void testModuleInfo_serviceImplementation_OK() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IFile modInfo = null;
 		try {
 			getWorkingCopy(
@@ -147,7 +147,7 @@ public class ResolveTests9 extends AbstractJavaModelTests {
 				deleteResource(modInfo);
 		}
 	}
-	public void testModuleInfo_serviceInterface_OK() throws CoreException {
+	public void testModuleInfo_serviceInterface_OK() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IFile modInfo = null;
 		IFolder testFolder = null;
 		try {
@@ -184,7 +184,7 @@ public class ResolveTests9 extends AbstractJavaModelTests {
 				deleteResource(testFolder);
 		}
 	}
-	public void testModuleInfo_serviceInterface_almost_OK() throws CoreException {
+	public void testModuleInfo_serviceInterface_almost_OK() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IFile modInfo = null;
 		IFolder testFolder = null;
 		IndexManager indexManager = JavaModelManager.getIndexManager();
@@ -194,7 +194,7 @@ public class ResolveTests9 extends AbstractJavaModelTests {
 				@Override
 				public boolean execute(IProgressMonitor progress) {
 					try {
-						while (!this.isCancelled)
+						while (!this.isCancelled) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							Thread.sleep(1000);
 					} catch (InterruptedException e) { /* ignore */ }
 					return false;
@@ -236,7 +236,7 @@ public class ResolveTests9 extends AbstractJavaModelTests {
 			indexManager.discardJobs("blocker");
 		}
 	}
-	public void testModuleInfo_serviceInterface_NOK() throws CoreException {
+	public void testModuleInfo_serviceInterface_NOK() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IFile modInfo = null;
 		IFolder testFolder = null;
 		try {
@@ -274,7 +274,7 @@ public class ResolveTests9 extends AbstractJavaModelTests {
 				deleteResource(testFolder);
 		}
 	}
-	public void testModuleInfo_noReferenceAtKeyword() throws CoreException {
+	public void testModuleInfo_noReferenceAtKeyword() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IFile providesFile = createFile("/Resolve/src/provides.java", "public class provides {}");
 		IFile modInfo = null;
 		try {
@@ -308,7 +308,7 @@ public class ResolveTests9 extends AbstractJavaModelTests {
 				deleteResource(modInfo);
 		}
 	}
-	public void testModuleInfo_referenceAtKeywordInNonKWPosition() throws CoreException {
+	public void testModuleInfo_referenceAtKeywordInNonKWPosition() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IFile providesFile = createFile("/Resolve/src/provides.java", "public class provides implements p1.Y {}");
 		IFile modInfo = null;
 		try {
@@ -343,7 +343,7 @@ public class ResolveTests9 extends AbstractJavaModelTests {
 		}
 	}
 
-	public void testClassFileInModule1() throws CoreException, IOException {
+	public void testClassFileInModule1() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE9) {
 			System.err.println("Test "+getName()+" requires a JRE 9");
 			return;
@@ -364,7 +364,7 @@ public class ResolveTests9 extends AbstractJavaModelTests {
 		}
 	}
 
-	public void testUnnamedNamedConflict() throws CoreException, IOException {
+	public void testUnnamedNamedConflict() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE9) {
 			System.err.println("Test "+getName()+" requires a JRE 9");
 			return;
@@ -425,7 +425,7 @@ public class ResolveTests9 extends AbstractJavaModelTests {
 		}
 	}
 
-	public void testBug537934() throws Exception {
+	public void testBug537934() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE9) {
 			System.err.println("Test "+getName()+" requires a JRE 9");
 			return;
@@ -438,7 +438,7 @@ public class ResolveTests9 extends AbstractJavaModelTests {
 			// ---- module log:
 			//      - has log4j on the module path
 			logg = createJava9ProjectWithJREAttributes("com.igorion.log", new String[] {"src"}, attributes(MODULE));
-			String jarAbsPath = logg.getProject().getLocation()+"/log4j.jar";
+			String jarAbsPath = logg.getProject().getLocation()+"/log4j.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			createJar(new String[] {
 					"log4j/Dummy.java",
 					"package log4j;\n" +
@@ -551,7 +551,7 @@ public class ResolveTests9 extends AbstractJavaModelTests {
 			deleteProject(logg);
 		}
 	}
-	public void testModuleCaching() throws Exception {
+	public void testModuleCaching() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE9 || isJRE11) {
 			System.err.println("Test "+getName()+" requires a JRE [9,11)");
 			return;

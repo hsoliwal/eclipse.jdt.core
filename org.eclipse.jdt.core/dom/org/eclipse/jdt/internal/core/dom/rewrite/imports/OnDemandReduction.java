@@ -32,11 +32,11 @@ class OnDemandReduction {
 
 	OnDemandReduction(ImportName containerName, Collection<ImportName> reducibleImports) {
 		this.containerOnDemand = containerName;
-		this.reducibleImports = Collections.unmodifiableCollection(new ArrayList<>(reducibleImports));
+		this.reducibleImports = Collections.unmodifiableCollection(new ArrayList<>(reducibleImports)); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	}
 
 	@Override
 	public String toString() {
-		return String.format("{%s: %s}", this.containerOnDemand.containerName, this.reducibleImports); //$NON-NLS-1$
+		return String.format("{%s: %s}", this.containerOnDemand.containerName, this.reducibleImports); //$NON-NLS-1$ //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
 	}
 }

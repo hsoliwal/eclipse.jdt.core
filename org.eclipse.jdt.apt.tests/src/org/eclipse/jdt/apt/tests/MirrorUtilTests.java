@@ -58,7 +58,7 @@ public class MirrorUtilTests extends APTTestBase {
 	 * The options will be verified within the processor code.
 	 */
 	private void addEnvOptions(IJavaProject jproj) {
-		for (int i = 0; i < MirrorUtilTestAnnotationProcessor.ENV_KEYS.length; ++i) {
+		for (int i = 0; i < MirrorUtilTestAnnotationProcessor.ENV_KEYS.length; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			AptConfig.addProcessorOption(jproj,
 					MirrorUtilTestAnnotationProcessor.ENV_KEYS[i],
 					MirrorUtilTestAnnotationProcessor.ENV_VALUES[i]);
@@ -67,17 +67,17 @@ public class MirrorUtilTests extends APTTestBase {
 
 	private void assertNoUnexpectedProblems() {
 		Problem[] problems = env.getProblems();
-		for (Problem problem : problems) {
+		for (Problem problem : problems) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (problem.getMessage().startsWith("The field DeclarationsTestClass")) { //$NON-NLS-1$
 				continue;
 			}
-			fail("Found unexpected problem: " + problem); //$NON-NLS-1$
+			fail("Found unexpected problem: " + problem); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
 	public void testMirrorUtils() throws Exception
 	{
-		assertEquals("Unexpected errors: " + ProcessorTestStatus.getErrors(), ProcessorTestStatus.NO_ERRORS,
+		assertEquals("Unexpected errors: " + ProcessorTestStatus.getErrors(), ProcessorTestStatus.NO_ERRORS, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				ProcessorTestStatus.getErrors());
 	}
 }

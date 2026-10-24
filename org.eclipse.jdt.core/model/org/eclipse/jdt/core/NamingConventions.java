@@ -97,7 +97,7 @@ public final class NamingConventions {
 			this.otherResults[this.otherResultsCount++] = name;
 		}
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public void acceptNameWithPrefix(char[] name, boolean isFirstPrefix, int reusedCharacters) {
 			if(isFirstPrefix) {
 				int length = this.firstPrefixResults.length;
@@ -124,7 +124,7 @@ public final class NamingConventions {
 			}
 		}
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public void acceptNameWithPrefixAndSuffix(char[] name, boolean isFirstPrefix, boolean isFirstSuffix, int reusedCharacters) {
 			if(isFirstPrefix && isFirstSuffix) {
 				int length = this.firstPrefixAndFirstSuffixResults.length;
@@ -173,7 +173,7 @@ public final class NamingConventions {
 			}
 		}
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public void acceptNameWithSuffix(char[] name, boolean isFirstSuffix, int reusedCharacters) {
 			if(isFirstSuffix) {
 				int length = this.firstSuffixResults.length;
@@ -199,7 +199,7 @@ public final class NamingConventions {
 				this.suffixResults[this.suffixResultsCount++] = name;
 			}
 		}
-		public char[][] getResults(){
+		public char[][] getResults(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			int count =
 				this.firstPrefixAndFirstSuffixResultsCount
 				+ this.firstPrefixAndSuffixResultsCount
@@ -295,7 +295,7 @@ public final class NamingConventions {
 	private static String[] convertCharsToString(char[][] c) {
 		int length = c == null ? 0 : c.length;
 		String[] s = new String[length];
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			s[i] = String.valueOf(c[i]);
 		}
 		return s;
@@ -303,7 +303,7 @@ public final class NamingConventions {
 	private static char[][] convertStringToChars(String[] s) {
 		int length = s == null ? 0 : s.length;
 		char[][] c = new char[length][];
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(s[i] == null) {
 				c[i] = CharOperation.NO_CHAR;
 			} else {
@@ -587,7 +587,7 @@ public final class NamingConventions {
 	 *
 	 * @deprecated Use {@link #suggestVariableNames(int, int, String, IJavaProject, int, String[], boolean)} instead with {@link #VK_PARAMETER} as variable kind.
 	 */
-	public static char[][] suggestArgumentNames(IJavaProject javaProject, char[] packageName, char[] qualifiedTypeName, int dim, char[][] excludedNames) {
+	public static char[][] suggestArgumentNames(IJavaProject javaProject, char[] packageName, char[] qualifiedTypeName, int dim, char[][] excludedNames) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if(qualifiedTypeName == null || qualifiedTypeName.length == 0)
 			return CharOperation.NO_CHAR_CHAR;
 
@@ -683,7 +683,7 @@ public final class NamingConventions {
 	 * @deprecated Use {@link #suggestVariableNames(int, int, String, IJavaProject, int, String[], boolean)} instead
 	 * with {@link #VK_INSTANCE_FIELD} or  {@link #VK_STATIC_FIELD} as variable kind.
 	 */
-	public static char[][] suggestFieldNames(IJavaProject javaProject, char[] packageName, char[] qualifiedTypeName, int dim, int modifiers, char[][] excludedNames) {
+	public static char[][] suggestFieldNames(IJavaProject javaProject, char[] packageName, char[] qualifiedTypeName, int dim, int modifiers, char[][] excludedNames) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if(qualifiedTypeName == null || qualifiedTypeName.length == 0)
 			return CharOperation.NO_CHAR_CHAR;
 
@@ -781,7 +781,7 @@ public final class NamingConventions {
 	 * @see JavaCore#setOptions(java.util.Hashtable)
 	 * @see JavaCore#getDefaultOptions()
 	 */
-	public static char[] suggestGetterName(IJavaProject project, char[] fieldName, int modifiers, boolean isBoolean, char[][] excludedNames) {
+	public static char[] suggestGetterName(IJavaProject project, char[] fieldName, int modifiers, boolean isBoolean, char[][] excludedNames) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (isBoolean) {
 			char[] name = InternalNamingConventions.getBaseName(getFieldVariableKind(modifiers), project, fieldName, false);
 			int prefixLen =  GETTER_BOOL_NAME.length;
@@ -871,7 +871,7 @@ public final class NamingConventions {
 	 *
 	 * @deprecated Use {@link #suggestVariableNames(int, int, String, IJavaProject, int, String[], boolean)} instead with {@link #VK_LOCAL} as variable kind.
 	 */
-	public static char[][] suggestLocalVariableNames(IJavaProject javaProject, char[] packageName, char[] qualifiedTypeName, int dim, char[][] excludedNames) {
+	public static char[][] suggestLocalVariableNames(IJavaProject javaProject, char[] packageName, char[] qualifiedTypeName, int dim, char[][] excludedNames) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if(qualifiedTypeName == null || qualifiedTypeName.length == 0)
 			return CharOperation.NO_CHAR_CHAR;
 
@@ -931,7 +931,7 @@ public final class NamingConventions {
 				dim,
 				convertStringToChars(excludedNames)));
 	}
-	private static char[] suggestNewName(char[] name, char[][] excludedNames){
+	private static char[] suggestNewName(char[] name, char[][] excludedNames){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if(excludedNames == null) {
 			return name;
 		}
@@ -939,7 +939,7 @@ public final class NamingConventions {
 		char[] newName = name;
 		int count = 2;
 		int i = 0;
-		while (i < excludedNames.length) {
+		while (i < excludedNames.length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(CharOperation.equals(newName, excludedNames[i], false)) {
 				newName = CharOperation.concat(name, String.valueOf(count++).toCharArray());
 				i = 0;
@@ -980,7 +980,7 @@ public final class NamingConventions {
 	 * @see JavaCore#setOptions(java.util.Hashtable)
 	 * @see JavaCore#getDefaultOptions()
 	 */
-	public static char[] suggestSetterName(IJavaProject project, char[] fieldName, int modifiers, boolean isBoolean, char[][] excludedNames) {
+	public static char[] suggestSetterName(IJavaProject project, char[] fieldName, int modifiers, boolean isBoolean, char[][] excludedNames) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		if (isBoolean) {
 			char[] name = InternalNamingConventions.getBaseName(getFieldVariableKind(modifiers), project, fieldName, false);

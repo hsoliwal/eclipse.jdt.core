@@ -37,7 +37,7 @@ public class ClasspathSourceDirectory extends ClasspathLocation implements IModu
 
 	final IContainer sourceFolder;
 	final Map<String, Map<String, IResource>> directoryCache = new ConcurrentHashMap<>();
-	private static final Map<String, IResource> missingPackageHolder = new HashMap<>();
+	private static final Map<String, IResource> missingPackageHolder = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	final char[][] fullExclusionPatternChars;
 	final char[][] fulInclusionPatternChars;
 
@@ -52,7 +52,7 @@ public void cleanup() {
 	this.directoryCache.clear();
 }
 
-Map<String, IResource> directoryTable(String qualifiedPackageName) {
+Map<String, IResource> directoryTable(String qualifiedPackageName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, IResource> dirTable = this.directoryCache.get(qualifiedPackageName);
 	if (dirTable == missingPackageHolder) return null; // package exists in another classpath directory or jar
 	if (dirTable != null) return dirTable;
@@ -61,8 +61,8 @@ Map<String, IResource> directoryTable(String qualifiedPackageName) {
 		IResource container = this.sourceFolder.findMember(qualifiedPackageName); // this is a case-sensitive check
 		if (container instanceof IContainer) {
 			IResource[] members = ((IContainer) container).members();
-			dirTable = new HashMap<>();
-			for (IResource m : members) {
+			dirTable = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+			for (IResource m : members) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String name;
 				if (m.getType() == IResource.FILE) {
 					int index = Util.indexOfJavaLikeExtension(name = m.getName());
@@ -80,7 +80,7 @@ Map<String, IResource> directoryTable(String qualifiedPackageName) {
 			if (secondaryTypePaths.size() > 0) {
 				Map<String, IType> typesInPackage = secondaryTypePaths.get(qualifiedPackageName.replace('/', '.'));
 				if (typesInPackage != null && typesInPackage.size() > 0) {
-					for (String secondaryTypeName : typesInPackage.keySet()) {
+					for (String secondaryTypeName : typesInPackage.keySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						IType secondaryType = typesInPackage.get(secondaryTypeName);
 						IJavaElement parent = secondaryType.getParent();
 						String fullPath = parent.getResource().getFullPath().toString();
@@ -158,7 +158,7 @@ public void reset() {
 
 @Override
 public String toString() {
-	return "Source classpath directory " + this.sourceFolder.getFullPath().toString(); //$NON-NLS-1$
+	return "Source classpath directory " + this.sourceFolder.getFullPath().toString(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 @Override

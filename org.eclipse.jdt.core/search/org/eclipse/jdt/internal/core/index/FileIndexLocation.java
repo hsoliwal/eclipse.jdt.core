@@ -45,16 +45,16 @@ public class FileIndexLocation extends IndexLocation {
 	@Override
 	public boolean createNewFile() throws IOException {
 		File directory = this.indexFile.getParentFile();
-		if (directory != null && !directory.exists()) {
-			directory.mkdirs();
+		if (directory != null && !directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			directory.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 		// always call File#createNewFile() so that the IOException is thrown if there is a failure
-		return this.indexFile.createNewFile();
+		return this.indexFile.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	@Override
 	public boolean delete() {
-		return this.indexFile.delete();
+		return this.indexFile.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	@Override
@@ -65,7 +65,7 @@ public class FileIndexLocation extends IndexLocation {
 
 	@Override
 	public boolean exists() {
-		return this.indexFile.exists();
+		return this.indexFile.exists(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class FileIndexLocation extends IndexLocation {
 
 	@Override
 	InputStream getInputStream() throws IOException {
-		return new FileInputStream(this.indexFile);
+		return new FileInputStream(this.indexFile); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 	}
 
 	private static Path computeIndexPath(File indexFile) {
@@ -99,12 +99,12 @@ public class FileIndexLocation extends IndexLocation {
 
 	@Override
 	public long lastModified() {
-		return this.indexFile.lastModified();
+		return this.indexFile.lastModified(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	@Override
 	public long length() {
-		return this.indexFile.length();
+		return this.indexFile.length(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	@Override

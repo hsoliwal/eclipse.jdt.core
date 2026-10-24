@@ -30,9 +30,9 @@ class ASTSyntaxErrorPropagator extends ASTVisitor {
 		this.problems = problems;
 	}
 
-	private boolean checkAndTagAsMalformed(ASTNode node) {
+	private boolean checkAndTagAsMalformed(ASTNode node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		boolean tagWithErrors = false;
-		search: for (CategorizedProblem problem : this.problems) {
+		search: for (CategorizedProblem problem : this.problems) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch(problem.getID()) {
 				case IProblem.ParsingErrorOnKeywordNoSuggestion :
 				case IProblem.ParsingErrorOnKeyword :
@@ -74,7 +74,7 @@ class ASTSyntaxErrorPropagator extends ASTVisitor {
 				node.setFlags(node.getFlags() | ASTNode.MALFORMED);
 				// clear the bits on parent
 				ASTNode currentNode = node.getParent();
-				while (currentNode != null) {
+				while (currentNode != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					currentNode.setFlags(currentNode.getFlags() & ~ASTNode.MALFORMED);
 					currentNode = currentNode.getParent();
 				}

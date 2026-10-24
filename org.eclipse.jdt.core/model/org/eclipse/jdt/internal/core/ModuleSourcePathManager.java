@@ -70,14 +70,14 @@ public class ModuleSourcePathManager {
 	interface IPrefixMatcherCharArray {
 		boolean matches(char[] prefix, char[] name);
 	}
-	@SuppressWarnings("unused")
+	@SuppressWarnings("unused") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void seekModule(char[] name, boolean prefixMatch, IJavaElementRequestor requestor) throws JavaModelException {
 		if (name == null)
 			return;
 		IPrefixMatcherCharArray prefixMatcher = prefixMatch ? CharOperation.equals(name, CharOperation.ALL_PREFIX) ?
 				(x, y) -> true : CharOperation::prefixEquals : CharOperation :: equals;
 		IJavaProject[] projects = JavaModelManager.getJavaModelManager().getJavaModel().getJavaProjects();
-		for (IJavaProject project : projects) {
+		for (IJavaProject project : projects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!project.getProject().isAccessible())
 				continue;
 			if (project instanceof JavaProject) {
@@ -91,7 +91,7 @@ public class ModuleSourcePathManager {
 			}
 		}
 	}
-	public IModule getModule(char[] name) {
+	public IModule getModule(char[] name) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IModulePathEntry root = getModuleRoot0(CharOperation.charToString(name));
 		if (root != null)
 			try {

@@ -46,15 +46,15 @@ public void acceptResult(CompilationResult compilationResult) {
 		this.clientRequestor.acceptResult(compilationResult);
 	}
 }
-protected void outputClassFiles(CompilationResult unitResult) {
+protected void outputClassFiles(CompilationResult unitResult) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if ((unitResult != null) && (!unitResult.hasErrors() || this.forceOutputGeneration)) {
 		ClassFile[] classFiles = unitResult.getClassFiles();
 		if (this.outputPath != null) {
-			for (int i = 0, fileCount = classFiles.length; i < fileCount; i++) {
+			for (int i = 0, fileCount = classFiles.length; i < fileCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				// retrieve the key and the corresponding classfile
 				ClassFile classFile = classFiles[i];
 				String relativeName =
-					new String(classFile.fileName()).replace('/', File.separatorChar) + ".class";
+					new String(classFile.fileName()).replace('/', File.separatorChar) + ".class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				try {
 					org.eclipse.jdt.internal.compiler.util.Util.writeToDisk(true, this.outputPath, relativeName, classFile);
 				} catch(IOException e) {

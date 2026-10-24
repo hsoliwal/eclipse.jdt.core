@@ -70,7 +70,7 @@ class InternalASTRewrite extends NodeEventHandler {
 	 * @throws IllegalArgumentException if the rewrite fails
 	 * @return Returns the edit describing the text changes.
 	 */
-	public TextEdit rewriteAST(IDocument document, Map options) {
+	public TextEdit rewriteAST(IDocument document, Map options) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TextEdit result = new MultiTextEdit();
 
 		final CompilationUnit rootNode = getRootNode();
@@ -102,9 +102,9 @@ class InternalASTRewrite extends NodeEventHandler {
 		return result;
 	}
 
-	private  void markAsMoveOrCopyTarget(ASTNode node, ASTNode newChild) {
+	private  void markAsMoveOrCopyTarget(ASTNode node, ASTNode newChild) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.cloneDepth == 0) {
-			while (node != null && this.clonedNodes.containsKey(node)) {
+			while (node != null && this.clonedNodes.containsKey(node)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				/*
 				 * A modified node cannot be considered as cloned any more.
 				 * we can't copy the original formatting/comments and at the same time modify the node.
@@ -115,14 +115,14 @@ class InternalASTRewrite extends NodeEventHandler {
 				ASTNode orig = (ASTNode) this.clonedNodes.remove(node);
 				if (orig != null) {
 					List properties = node.structuralPropertiesForType();
-					for (Object p : properties) {
+					for (Object p : properties) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						StructuralPropertyDescriptor property = (StructuralPropertyDescriptor) p;
 						Object child = node.getStructuralProperty(property);
 						if (child instanceof ASTNode) {
 							markAsMoveOrCopyTarget(node, (ASTNode) child);
 						} else if (child instanceof List) {
 							List children = (List) child;
-							for (Object c : children) {
+							for (Object c : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								ASTNode clonedChild = (ASTNode) c;
 								markAsMoveOrCopyTarget(node, clonedChild);
 							}
@@ -164,9 +164,9 @@ class InternalASTRewrite extends NodeEventHandler {
 
 	@Override
 	public String toString() {
-		StringBuilder buf = new StringBuilder();
-		buf.append("Events:\n"); //$NON-NLS-1$
-		buf.append(this.eventStore.toString());
+		StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("Events:\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(this.eventStore.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return buf.toString();
 	}
 
@@ -196,7 +196,7 @@ class InternalASTRewrite extends NodeEventHandler {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	void postAddChildEvent(ASTNode node, ASTNode child,	StructuralPropertyDescriptor property) {
 		if(property.isChildListProperty()) {
 

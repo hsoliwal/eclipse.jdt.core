@@ -39,7 +39,7 @@ public class JavadocContents17 extends JavadocContents {
 		return new int[]{-1, -1};
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected Range computeChildRange(int sectionStart, char[] anchor, int indexOfBottom) {
 		Range range = null;
 
@@ -79,7 +79,7 @@ public class JavadocContents17 extends JavadocContents {
 	protected String createSignatureAnchor(BinaryMethod method, String methodName, IBinaryMethod info)
 			throws JavaModelException {
 		String anchor = super.createSignatureAnchor(method, methodName, info);
-		anchor = anchor.replaceAll(" ", "");  //$NON-NLS-1$//$NON-NLS-2$
+		anchor = anchor.replaceAll(" ", "");  //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		return anchor;
 	}
 

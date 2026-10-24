@@ -38,7 +38,7 @@ public abstract class BinaryContainer extends IndexRequest {
 				return false;
 		}
 	}
-	protected boolean isValidPackageNameForClassOrisModule(String className) {
+	protected boolean isValidPackageNameForClassOrisModule(String className) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (className.substring(0, className.length() - (SuffixConstants.SUFFIX_CLASS.length)).equals(new String(IIndexConstants.MODULE_INFO)))
 			return true;
 		char[] classNameArray = className.toCharArray();
@@ -52,7 +52,7 @@ public abstract class BinaryContainer extends IndexRequest {
 		this.scanner.eofPosition = classNameArray.length - SuffixConstants.SUFFIX_CLASS.length;
 		try {
 			if (isIdentifier()) {
-				while (this.scanner.eofPosition > this.scanner.currentPosition) {
+				while (this.scanner.eofPosition > this.scanner.currentPosition) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (this.scanner.getNextChar() != '/' || this.scanner.eofPosition <= this.scanner.currentPosition) {
 						return false;
 					}

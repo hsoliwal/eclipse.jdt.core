@@ -474,12 +474,12 @@ public final class Signature {
 	public static final int WILDCARD_TYPE_SIGNATURE = 5;
 
 // <x.y.z, a.b<c>.d<e.f>> --> <z,d<f>>
-private static void appendArgumentSimpleNames(char[] name, int start, int end, StringBuilder buffer) {
-	buffer.append('<');
+private static void appendArgumentSimpleNames(char[] name, int start, int end, StringBuilder buffer) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	buffer.append('<'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	int depth = 0;
 	int argumentStart = -1;
 	int argumentCount = 0;
-	for (int i = start; i <= end; i++) {
+	for (int i = start; i <= end; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		switch(name[i]) {
 			case '<' :
 				depth++;
@@ -489,7 +489,7 @@ private static void appendArgumentSimpleNames(char[] name, int start, int end, S
 				break;
 			case '>' :
 				if (depth == 1) {
-					if (argumentCount > 0) buffer.append(',');
+					if (argumentCount > 0) buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					appendSimpleName(name, argumentStart, i-1, buffer);
 					argumentCount++;
 				}
@@ -497,7 +497,7 @@ private static void appendArgumentSimpleNames(char[] name, int start, int end, S
 				break;
 			case ',' :
 				if (depth == 1) {
-					if (argumentCount > 0) buffer.append(',');
+					if (argumentCount > 0) buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					appendSimpleName(name, argumentStart, i-1, buffer);
 					argumentCount++;
 					argumentStart = i+1;
@@ -505,7 +505,7 @@ private static void appendArgumentSimpleNames(char[] name, int start, int end, S
 				break;
 		}
 	}
-	buffer.append('>');
+	buffer.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 }
 
 /**
@@ -540,7 +540,7 @@ private static int appendArrayTypeSignature(char[] string, int start, boolean fu
  * @exception IllegalArgumentException if this is not an array type signature
  * @see Util#scanArrayTypeSignature(char[], int)
  */
-private static int appendArrayTypeSignature(char[] string, int start, boolean fullyQualifyTypeNames, StringBuilder buffer, boolean isVarArgs) {
+private static int appendArrayTypeSignature(char[] string, int start, boolean fullyQualifyTypeNames, StringBuilder buffer, boolean isVarArgs) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int length = string.length;
 	// need a minimum 2 char
 	if (start >= length - 1) {
@@ -553,7 +553,7 @@ private static int appendArrayTypeSignature(char[] string, int start, boolean fu
 
 	int index = start;
 	c = string[++index];
-	while(c == C_ARRAY) {
+	while(c == C_ARRAY) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		// need a minimum 2 char
 		if (index >= length - 1) {
 			throw newIllegalArgumentException(string, start);
@@ -563,14 +563,14 @@ private static int appendArrayTypeSignature(char[] string, int start, boolean fu
 
 	int e = appendTypeSignature(string, index, fullyQualifyTypeNames, buffer);
 
-	for(int i = 1, dims = index - start; i < dims; i++) {
-		buffer.append('[').append(']');
+	for(int i = 1, dims = index - start; i < dims; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		buffer.append('[').append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	if (isVarArgs) {
-		buffer.append('.').append('.').append('.');
+		buffer.append('.').append('.').append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	} else {
-		buffer.append('[').append(']');
+		buffer.append('[').append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	return e;
 }
@@ -596,7 +596,7 @@ private static int appendCaptureTypeSignature(char[] string, int start, boolean 
 	if (c != C_CAPTURE) {
 		throw newIllegalArgumentException(string, start);
 	}
-	buffer.append(CAPTURE).append(' ');
+	buffer.append(CAPTURE).append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return appendTypeArgumentSignature(string, start + 1, fullyQualifyTypeNames, buffer);
 }
 /**
@@ -613,7 +613,7 @@ private static int appendCaptureTypeSignature(char[] string, int start, boolean 
  * @exception IllegalArgumentException if this is not a class type signature
  * @see Util#scanClassTypeSignature(char[], int)
  */
-private static int appendClassTypeSignature(char[] string, int start, boolean fullyQualifyTypeNames, StringBuilder buffer) {
+private static int appendClassTypeSignature(char[] string, int start, boolean fullyQualifyTypeNames, StringBuilder buffer) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// need a minimum 3 chars "Lx;"
 	if (start >= string.length - 2) {
 		throw newIllegalArgumentException(string, start);
@@ -633,7 +633,7 @@ private static int appendClassTypeSignature(char[] string, int start, boolean fu
 	int checkpoint = buffer.length();
 	int innerTypeStart = -1;
 	boolean inAnonymousType = false;
-	while (true) {
+	while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (p >= string.length) {
 			throw newIllegalArgumentException(string, start);
 		}
@@ -655,7 +655,7 @@ private static int appendClassTypeSignature(char[] string, int start, boolean fu
 					// erase package prefix
 					buffer.setLength(checkpoint);
 				} else {
-					buffer.append('.');
+					buffer.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				break;
 			 case '/' :
@@ -663,18 +663,18 @@ private static int appendClassTypeSignature(char[] string, int start, boolean fu
 					// erase package prefix
 					buffer.setLength(checkpoint);
 				} else {
-					buffer.append('/');
+					buffer.append('/'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				break;
 			 case C_DOLLAR :
 				 if (nextC == C_DOT) {
-					 buffer.append('$');
+					 buffer.append('$'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				 } else {
 					 boolean foundDotAfterDollar = false;
 					 if (prevC == C_DOT) {
 						 int i = p + 1;
 						 // check to see if we have dollar as part of package or class
-						 while (i < string.length) {
+						 while (i < string.length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							 if (string[i++] == C_DOT) {
 								 foundDotAfterDollar = true;
 								 break;
@@ -682,7 +682,7 @@ private static int appendClassTypeSignature(char[] string, int start, boolean fu
 						 }
 					 }
 					 if (foundDotAfterDollar) {
-						 buffer.append('$');
+						 buffer.append('$'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						 break;
 					 }
 					 innerTypeStart = buffer.length();
@@ -696,7 +696,7 @@ private static int appendClassTypeSignature(char[] string, int start, boolean fu
 						  * signature. This is true in most cases, but someone can define a
 						  * non-inner type name containing a '$'.
 						  */
-						 buffer.append('.');
+						 buffer.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					 }
 				 }
 				 break;
@@ -705,10 +705,10 @@ private static int appendClassTypeSignature(char[] string, int start, boolean fu
 					inAnonymousType = true;
 					buffer.setLength(innerTypeStart); // remove '.'
 					buffer.insert(checkpoint, "new "); //$NON-NLS-1$
-					buffer.append("(){}"); //$NON-NLS-1$
+					buffer.append("(){}"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			 	if (!inAnonymousType)
-					buffer.append(c);
+					buffer.append(c); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				innerTypeStart = -1;
 		}
 		p++;
@@ -727,7 +727,7 @@ private static int appendClassTypeSignature(char[] string, int start, boolean fu
  * @exception IllegalArgumentException if this is not an array type signature
  * @see Util#scanArrayTypeSignature(char[], int)
  */
-private static int appendIntersectionTypeSignature(char[] string, int start, boolean fullyQualifyTypeNames, StringBuilder buffer) {
+private static int appendIntersectionTypeSignature(char[] string, int start, boolean fullyQualifyTypeNames, StringBuilder buffer) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// need a minimum 2 char
 	if (start >= string.length - 1) {
 		throw newIllegalArgumentException(string, start);
@@ -742,8 +742,8 @@ private static int appendIntersectionTypeSignature(char[] string, int start, boo
 		if (string[start] != C_COLON) {
 			throw new IllegalArgumentException("should be a colon at this location"); //$NON-NLS-1$
 		}
-		while (string[start] == C_COLON) {
-			buffer.append(" | "); //$NON-NLS-1$
+		while (string[start] == C_COLON) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(" | "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			start = appendClassTypeSignature(string, start + 1, fullyQualifyTypeNames, buffer);
 			if (start == string.length - 1) {
 				return start;
@@ -755,38 +755,38 @@ private static int appendIntersectionTypeSignature(char[] string, int start, boo
 	}
 	return start;
 }
-private static void appendSimpleName(char[] name, int start, int end, StringBuilder buffer) {
+private static void appendSimpleName(char[] name, int start, int end, StringBuilder buffer) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int lastDot = -1, lastGenericStart = -1, lastGenericEnd = -1;
 	int depth = 0;
 	if (name[start] == '?') { // wildcard
-		buffer.append("?"); //$NON-NLS-1$
+		buffer.append("?"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		int index = consumeWhitespace(name, start+1, end+1);
 		switch (name[index]) {
 			case 'e' :
 				int checkPos = checkName(EXTENDS, name, index, end);
 			    if (checkPos > 0) {
-			        buffer.append(' ').append(EXTENDS).append(' ');
+			        buffer.append(' ').append(EXTENDS).append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			        index = consumeWhitespace(name, checkPos, end+1);
 				}
 				break;
 			case 's' :
 				checkPos = checkName(SUPER, name, index, end+1);
 			    if (checkPos > 0) {
-			        buffer.append(' ').append(SUPER).append(' ');
+			        buffer.append(' ').append(SUPER).append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			        index = consumeWhitespace(name, checkPos, end+1);
 				}
 				break;
 		}
 		start = index; // leading segment got processed
 	}
-	lastDotLookup: for (int i = end; i >= start; i--) {
+	lastDotLookup: for (int i = end; i >= start; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		switch (name[i]) {
 			case '.':
 				if (depth == 0) {
 					lastDot = i;
 					char c = name[start];
 					if (c == C_EXTENDS || c == C_SUPER) {
-						buffer.append(c);
+						buffer.append(c); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 					break lastDotLookup;
 				}
@@ -803,10 +803,10 @@ private static void appendSimpleName(char[] name, int start, int end, StringBuil
 	}
 	int nameStart = lastDot < 0 ? start : lastDot+1;
 	int nameEnd = lastGenericStart < 0 ? end+1 : lastGenericStart;
-	buffer.append(name, nameStart, nameEnd - nameStart);
+	buffer.append(name, nameStart, nameEnd - nameStart); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (lastGenericStart >= 0) {
 		appendArgumentSimpleNames(name, lastGenericStart, lastGenericEnd, buffer);
-		buffer.append(name, lastGenericEnd+1, end - lastGenericEnd); // copy trailing portion, may contain dimensions
+		buffer.append(name, lastGenericEnd+1, end - lastGenericEnd); // copy trailing portion, may contain dimensions //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 }
 
@@ -824,7 +824,7 @@ private static void appendSimpleName(char[] name, int start, int end, StringBuil
  * @exception IllegalArgumentException if this is not a type argument signature
  * @see Util#scanTypeArgumentSignature(char[], int)
  */
-private static int appendTypeArgumentSignature(char[] string, int start, boolean fullyQualifyTypeNames, StringBuilder buffer) {
+private static int appendTypeArgumentSignature(char[] string, int start, boolean fullyQualifyTypeNames, StringBuilder buffer) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// need a minimum 1 char
 	if (start >= string.length) {
 		throw newIllegalArgumentException(string, start);
@@ -832,13 +832,13 @@ private static int appendTypeArgumentSignature(char[] string, int start, boolean
 	char c = string[start];
 	switch(c) {
 		case C_STAR :
-			buffer.append('?');
+			buffer.append('?'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return start;
 		case C_EXTENDS :
-			buffer.append("? extends "); //$NON-NLS-1$
+			buffer.append("? extends "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return appendTypeSignature(string, start + 1, fullyQualifyTypeNames, buffer);
 		case C_SUPER :
-			buffer.append("? super "); //$NON-NLS-1$
+			buffer.append("? super "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return appendTypeSignature(string, start + 1, fullyQualifyTypeNames, buffer);
 		default :
 			return appendTypeSignature(string, start, fullyQualifyTypeNames, buffer);
@@ -860,7 +860,7 @@ private static int appendTypeArgumentSignature(char[] string, int start, boolean
  * signatures
  * @see Util#scanTypeArgumentSignatures(char[], int)
  */
-private static int appendTypeArgumentSignatures(char[] string, int start, boolean fullyQualifyTypeNames, StringBuilder buffer) {
+private static int appendTypeArgumentSignatures(char[] string, int start, boolean fullyQualifyTypeNames, StringBuilder buffer) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// need a minimum 2 char "<>"
 	if (start >= string.length - 1) {
 		throw newIllegalArgumentException(string, start);
@@ -869,20 +869,20 @@ private static int appendTypeArgumentSignatures(char[] string, int start, boolea
 	if (c != C_GENERIC_START) {
 		throw newIllegalArgumentException(string, start);
 	}
-	buffer.append('<');
+	buffer.append('<'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	int p = start + 1;
 	int count = 0;
-	while (true) {
+	while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (p >= string.length) {
 			throw newIllegalArgumentException(string, start);
 		}
 		c = string[p];
 		if (c == C_GENERIC_END) {
-			buffer.append('>');
+			buffer.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return p;
 		}
 		if (count != 0) {
-			buffer.append(',');
+			buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		int e = appendTypeArgumentSignature(string, p, fullyQualifyTypeNames, buffer);
 		count++;
@@ -924,7 +924,7 @@ private static int appendTypeSignature(char[] string, int start, boolean fullyQu
  * and the type is not an array type signature.
  * @see Util#scanTypeSignature(char[], int)
  */
-private static int appendTypeSignature(char[] string, int start, boolean fullyQualifyTypeNames, StringBuilder buffer, boolean isVarArgs) {
+private static int appendTypeSignature(char[] string, int start, boolean fullyQualifyTypeNames, StringBuilder buffer, boolean isVarArgs) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// need a minimum 1 char
 	if (start >= string.length) {
 		throw newIllegalArgumentException(string, start);
@@ -963,34 +963,34 @@ private static int appendTypeSignature(char[] string, int start, boolean fullyQu
 				return appendClassTypeSignature(string, start, fullyQualifyTypeNames, buffer);
 			case C_TYPE_VARIABLE :
 				int e = Util.scanTypeVariableSignature(string, start);
-				buffer.append(string, start + 1, e - start - 1);
+				buffer.append(string, start + 1, e - start - 1); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				return e;
 			case C_BOOLEAN :
-				buffer.append(BOOLEAN);
+				buffer.append(BOOLEAN); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				return start;
 			case C_BYTE :
-				buffer.append(BYTE);
+				buffer.append(BYTE); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				return start;
 			case C_CHAR :
-				buffer.append(CHAR);
+				buffer.append(CHAR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				return start;
 			case C_DOUBLE :
-				buffer.append(DOUBLE);
+				buffer.append(DOUBLE); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				return start;
 			case C_FLOAT :
-				buffer.append(FLOAT);
+				buffer.append(FLOAT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				return start;
 			case C_INT :
-				buffer.append(INT);
+				buffer.append(INT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				return start;
 			case C_LONG :
-				buffer.append(LONG);
+				buffer.append(LONG); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				return start;
 			case C_SHORT :
-				buffer.append(SHORT);
+				buffer.append(SHORT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				return start;
 			case C_VOID :
-				buffer.append(VOID);
+				buffer.append(VOID); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				return start;
 			case C_CAPTURE :
 				return appendCaptureTypeSignature(string, start, fullyQualifyTypeNames, buffer);
@@ -1006,9 +1006,9 @@ private static int appendTypeSignature(char[] string, int start, boolean fullyQu
 	}
 }
 
-private static int checkArrayDimension(char[] typeName, int pos, int length) {
+private static int checkArrayDimension(char[] typeName, int pos, int length) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     int genericBalance = 0;
-    while (pos < length) {
+    while (pos < length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		switch(typeName[pos]) {
 		    case '<' :
 		        genericBalance++;
@@ -1029,7 +1029,7 @@ private static int checkArrayDimension(char[] typeName, int pos, int length) {
     }
     return -1;
 }
-private static int checkName(char[] name, char[] typeName, int pos, int length) {
+private static int checkName(char[] name, char[] typeName, int pos, int length) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     if (CharOperation.fragmentEquals(name, typeName, pos, true)) {
         pos += name.length;
         if (pos == length) return pos;
@@ -1059,7 +1059,7 @@ private static int checkNextChar(char[] typeName, char expectedChar, int pos, in
 }
 
 private static int consumeWhitespace(char[] typeName, int pos, int length) {
-    while (pos < length) {
+    while (pos < length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
         char currentChar = typeName[pos];
         if (currentChar != ' ' && !ScannerHelper.isWhitespace(currentChar)) {
             break;
@@ -1082,7 +1082,7 @@ public static char[] createArraySignature(char[] typeSignature, int arrayCount) 
 	if (arrayCount == 0) return typeSignature;
 	int sigLength = typeSignature.length;
 	char[] result = new char[arrayCount + sigLength];
-	for (int i = 0; i < arrayCount; i++) {
+	for (int i = 0; i < arrayCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		result[i] = C_ARRAY;
 	}
 	System.arraycopy(typeSignature, 0, result, arrayCount, sigLength);
@@ -1123,7 +1123,7 @@ public static char[] createCharArrayTypeSignature(char[] typeName, boolean isRes
 	if (typeName == null) throw new IllegalArgumentException("null"); //$NON-NLS-1$
 	int length = typeName.length;
 	if (length == 0) throw new IllegalArgumentException(String.valueOf(typeName));
-	StringBuilder buffer = new StringBuilder(5);
+	StringBuilder buffer = new StringBuilder(5); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	int pos = encodeTypeSignature(typeName, 0, isResolved, length, buffer);
 	pos = consumeWhitespace(typeName, pos, length);
 	if (pos < length) throw new IllegalArgumentException(String.valueOf(typeName));
@@ -1142,13 +1142,13 @@ public static char[] createCharArrayTypeSignature(char[] typeName, boolean isRes
  * @since 3.7.1
  */
 public static String createIntersectionTypeSignature(char[][] typeSignatures) {
-	StringBuilder buffer = new StringBuilder();
-	buffer.append(Signature.C_INTERSECTION);
-	for (int i = 0, max = typeSignatures.length; i < max; i++) {
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	buffer.append(Signature.C_INTERSECTION); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	for (int i = 0, max = typeSignatures.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (i > 0) {
-			buffer.append(Signature.C_COLON);
+			buffer.append(Signature.C_COLON); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		buffer.append(typeSignatures[i]);
+		buffer.append(typeSignatures[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	return String.valueOf(buffer);
 }
@@ -1162,13 +1162,13 @@ public static String createIntersectionTypeSignature(char[][] typeSignatures) {
  * @since 3.7.1
  */
 private static String createUnionTypeSignature(char[][] typeSignatures) {
-	StringBuilder buffer = new StringBuilder();
-	buffer.append(Signature.C_UNION);
-	for (int i = 0, max = typeSignatures.length; i < max; i++) {
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	buffer.append(Signature.C_UNION); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	for (int i = 0, max = typeSignatures.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (i > 0) {
-			buffer.append(Signature.C_COLON);
+			buffer.append(Signature.C_COLON); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		buffer.append(typeSignatures[i]);
+		buffer.append(typeSignatures[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	return String.valueOf(buffer);
 }
@@ -1185,7 +1185,7 @@ private static String createUnionTypeSignature(char[][] typeSignatures) {
 public static String createIntersectionTypeSignature(String[] typeSignatures) {
 	int typeSignaturesLenth = typeSignatures.length;
 	char[][] signatures = new char[typeSignaturesLenth][];
-	for (int i = 0; i < typeSignaturesLenth; i++) {
+	for (int i = 0; i < typeSignaturesLenth; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		signatures[i] = typeSignatures[i].toCharArray();
 	}
 	return createIntersectionTypeSignature(signatures);
@@ -1202,7 +1202,7 @@ public static String createIntersectionTypeSignature(String[] typeSignatures) {
 public static String createUnionTypeSignature(String[] typeSignatures) {
 	int typeSignaturesLenth = typeSignatures.length;
 	char[][] signatures = new char[typeSignaturesLenth][];
-	for (int i = 0; i < typeSignaturesLenth; i++) {
+	for (int i = 0; i < typeSignaturesLenth; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		signatures[i] = typeSignatures[i].toCharArray();
 	}
 	return createUnionTypeSignature(signatures);
@@ -1217,10 +1217,10 @@ public static String createUnionTypeSignature(String[] typeSignatures) {
  *
  * @since 2.0
  */
-public static char[] createMethodSignature(char[][] parameterTypes, char[] returnType) {
+public static char[] createMethodSignature(char[][] parameterTypes, char[] returnType) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int parameterTypesLength = parameterTypes.length;
 	int parameterLength = 0;
-	for (int i = 0; i < parameterTypesLength; i++) {
+	for (int i = 0; i < parameterTypesLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		parameterLength += parameterTypes[i].length;
 
 	}
@@ -1228,7 +1228,7 @@ public static char[] createMethodSignature(char[][] parameterTypes, char[] retur
 	char[] result = new char[1 + parameterLength + 1 + returnTypeLength];
 	result[0] = C_PARAM_START;
 	int index = 1;
-	for (int i = 0; i < parameterTypesLength; i++) {
+	for (int i = 0; i < parameterTypesLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		char[] parameterType = parameterTypes[i];
 		int length = parameterType.length;
 		System.arraycopy(parameterType, 0, result, index, length);
@@ -1252,7 +1252,7 @@ public static char[] createMethodSignature(char[][] parameterTypes, char[] retur
 public static String createMethodSignature(String[] parameterTypes, String returnType) {
 	int parameterTypesLenth = parameterTypes.length;
 	char[][] parameters = new char[parameterTypesLenth][];
-	for (int i = 0; i < parameterTypesLenth; i++) {
+	for (int i = 0; i < parameterTypesLenth; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		parameters[i] = parameterTypes[i].toCharArray();
 	}
 	return new String(createMethodSignature(parameters, returnType.toCharArray()));
@@ -1266,20 +1266,20 @@ public static String createMethodSignature(String[] parameterTypes, String retur
  *
  * @since 3.1
  */
-public static char[] createTypeParameterSignature(char[] typeParameterName, char[][] boundSignatures) {
+public static char[] createTypeParameterSignature(char[] typeParameterName, char[][] boundSignatures) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int length = boundSignatures.length;
 	if (length == 0) {
 		return CharOperation.append(typeParameterName, C_COLON); // param signature with no bounds still gets trailing colon
 	}
 	int boundsSize = 0;
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		boundsSize += boundSignatures[i].length + 1;
 	}
 	int nameLength = typeParameterName.length;
 	char[] result = new char[nameLength + boundsSize];
 	System.arraycopy(typeParameterName, 0, result, 0, nameLength);
 	int index = nameLength;
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		result[index++] = C_COLON;
 		int boundLength = boundSignatures[i].length;
 		System.arraycopy(boundSignatures[i], 0, result, index, boundLength);
@@ -1299,7 +1299,7 @@ public static char[] createTypeParameterSignature(char[] typeParameterName, char
 public static String createTypeParameterSignature(String typeParameterName, String[] boundSignatures) {
 	int length = boundSignatures.length;
 	char[][] boundSignatureChars = new char[length][];
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		boundSignatureChars[i] = boundSignatures[i].toCharArray();
 	}
 	return new String(createTypeParameterSignature(typeParameterName.toCharArray(), boundSignatureChars));
@@ -1354,17 +1354,17 @@ public static String createTypeSignature(String typeName, boolean isResolved) {
 
 private static int encodeArrayDimension(char[] typeName, int pos, int length, StringBuilder buffer) {
     int checkPos;
-    while (pos < length && (checkPos = checkNextChar(typeName, '[', pos, length, true)) > 0) {
+    while (pos < length && (checkPos = checkNextChar(typeName, '[', pos, length, true)) > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
         pos = checkNextChar(typeName, ']', checkPos, length, false);
-        buffer.append(C_ARRAY);
+        buffer.append(C_ARRAY); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
     }
     return pos;
 }
 
-private static int encodeQualifiedName(char[] typeName, int pos, int length, StringBuilder buffer) {
+private static int encodeQualifiedName(char[] typeName, int pos, int length, StringBuilder buffer) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     int count = 0;
     char lastAppendedChar = 0;
-    nameLoop: while (pos < length) {
+    nameLoop: while (pos < length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    char currentChar = typeName[pos];
 		switch (currentChar) {
 		    case '<' :
@@ -1374,7 +1374,7 @@ private static int encodeQualifiedName(char[] typeName, int pos, int length, Str
 		    case '&' :
 		        break nameLoop;
 			case '.' :
-			    buffer.append(C_DOT);
+			    buffer.append(C_DOT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				lastAppendedChar = C_DOT;
 			    count++;
 			    break;
@@ -1387,7 +1387,7 @@ private static int encodeQualifiedName(char[] typeName, int pos, int length, Str
 			        // allow spaces before a dot
 				    int checkPos = checkNextChar(typeName, '.', pos, length, true);
 				    if (checkPos > 0) {
-				        buffer.append(C_DOT);			// process dot immediately to avoid one iteration
+				        buffer.append(C_DOT);			// process dot immediately to avoid one iteration //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				        lastAppendedChar = C_DOT;
 				        count++;
 				        pos = checkPos;
@@ -1395,7 +1395,7 @@ private static int encodeQualifiedName(char[] typeName, int pos, int length, Str
 				    }
 				    break nameLoop;
 			    }
-			    buffer.append(currentChar);
+			    buffer.append(currentChar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			    lastAppendedChar = currentChar;
 				count++;
 			    break;
@@ -1406,7 +1406,7 @@ private static int encodeQualifiedName(char[] typeName, int pos, int length, Str
 	return pos;
 }
 
-private static int encodeTypeSignature(char[] typeName, int start, boolean isResolved, int length, StringBuilder buffer) {
+private static int encodeTypeSignature(char[] typeName, int start, boolean isResolved, int length, StringBuilder buffer) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     int pos = start;
     pos = consumeWhitespace(typeName, pos, length);
     if (pos >= length) throw new IllegalArgumentException(String.valueOf(typeName));
@@ -1418,13 +1418,13 @@ private static int encodeTypeSignature(char[] typeName, int start, boolean isRes
 		    checkPos = checkName(BOOLEAN, typeName, pos, length);
 		    if (checkPos > 0) {
 		        pos = encodeArrayDimension(typeName, checkPos, length, buffer);
-			    buffer.append(C_BOOLEAN);
+			    buffer.append(C_BOOLEAN); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			    return pos;
 			}
 		    checkPos = checkName(BYTE, typeName, pos, length);
 		    if (checkPos > 0) {
 		        pos = encodeArrayDimension(typeName, checkPos, length, buffer);
-			    buffer.append(C_BYTE);
+			    buffer.append(C_BYTE); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			    return pos;
 			}
 		    break;
@@ -1432,7 +1432,7 @@ private static int encodeTypeSignature(char[] typeName, int start, boolean isRes
 		    checkPos = checkName(DOUBLE, typeName, pos, length);
 		    if (checkPos > 0) {
 		        pos = encodeArrayDimension(typeName, checkPos, length, buffer);
-			    buffer.append(C_DOUBLE);
+			    buffer.append(C_DOUBLE); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			    return pos;
 			}
 		    break;
@@ -1440,7 +1440,7 @@ private static int encodeTypeSignature(char[] typeName, int start, boolean isRes
 		    checkPos = checkName(FLOAT, typeName, pos, length);
 		    if (checkPos > 0) {
 		        pos = encodeArrayDimension(typeName, checkPos, length, buffer);
-			    buffer.append(C_FLOAT);
+			    buffer.append(C_FLOAT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			    return pos;
 			}
 		    break;
@@ -1448,7 +1448,7 @@ private static int encodeTypeSignature(char[] typeName, int start, boolean isRes
 		    checkPos = checkName(INT, typeName, pos, length);
 		    if (checkPos > 0) {
 		        pos = encodeArrayDimension(typeName, checkPos, length, buffer);
-			    buffer.append(C_INT);
+			    buffer.append(C_INT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			    return pos;
 			}
 		    break;
@@ -1456,7 +1456,7 @@ private static int encodeTypeSignature(char[] typeName, int start, boolean isRes
 		    checkPos = checkName(LONG, typeName, pos, length);
 		    if (checkPos > 0) {
 		        pos = encodeArrayDimension(typeName, checkPos, length, buffer);
-			    buffer.append(C_LONG);
+			    buffer.append(C_LONG); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			    return pos;
 			}
 		    break;
@@ -1464,7 +1464,7 @@ private static int encodeTypeSignature(char[] typeName, int start, boolean isRes
 		    checkPos = checkName(SHORT, typeName, pos, length);
 		    if (checkPos > 0) {
 		        pos = encodeArrayDimension(typeName, checkPos, length, buffer);
-			    buffer.append(C_SHORT);
+			    buffer.append(C_SHORT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			    return pos;
 			}
 		    break;
@@ -1472,7 +1472,7 @@ private static int encodeTypeSignature(char[] typeName, int start, boolean isRes
 		    checkPos = checkName(VOID, typeName, pos, length);
 		    if (checkPos > 0) {
 		        pos = encodeArrayDimension(typeName, checkPos, length, buffer);
-			    buffer.append(C_VOID);
+			    buffer.append(C_VOID); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			    return pos;
 			}
 		    break;
@@ -1480,7 +1480,7 @@ private static int encodeTypeSignature(char[] typeName, int start, boolean isRes
 		    checkPos = checkName(CHAR, typeName, pos, length);
 		    if (checkPos > 0) {
 		        pos = encodeArrayDimension(typeName, checkPos, length, buffer);
-			    buffer.append(C_CHAR);
+			    buffer.append(C_CHAR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			    return pos;
 			} else {
 				checkPos = checkName(CAPTURE, typeName, pos, length);
@@ -1493,24 +1493,24 @@ private static int encodeTypeSignature(char[] typeName, int start, boolean isRes
 					break;
 				}
 			}
-			buffer.append(C_CAPTURE);
+			buffer.append(C_CAPTURE); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			//$FALL-THROUGH$ for wildcard part of capture typecheckPos
 		case '?':
 			// wildcard
 			pos = consumeWhitespace(typeName, pos+1, length);
 			checkPos = checkName(EXTENDS, typeName, pos, length);
 			if (checkPos > 0) {
-				buffer.append(C_EXTENDS);
+				buffer.append(C_EXTENDS); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				pos = encodeTypeSignature(typeName, checkPos, isResolved, length, buffer);
 				return pos;
 			}
 			checkPos = checkName(SUPER, typeName, pos, length);
 			if (checkPos > 0) {
-				buffer.append(C_SUPER);
+				buffer.append(C_SUPER); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				pos = encodeTypeSignature(typeName, checkPos, isResolved, length, buffer);
 				return pos;
 			}
-			buffer.append(C_STAR);
+			buffer.append(C_STAR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return pos;
     }
     // non primitive type
@@ -1521,38 +1521,38 @@ private static int encodeTypeSignature(char[] typeName, int start, boolean isRes
 	} else {
 	    end = -1;
 	}
-	buffer.append(isResolved ? C_RESOLVED : C_UNRESOLVED);
+	buffer.append(isResolved ? C_RESOLVED : C_UNRESOLVED); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
-	while (true) { // loop on qualifiedName[<args>][.qualifiedName[<args>]*
+	while (true) { // loop on qualifiedName[<args>][.qualifiedName[<args>]* //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    pos = encodeQualifiedName(typeName, pos, length, buffer);
 		checkPos = checkNextChar(typeName, '<', pos, length, true);
 		if (checkPos > 0) {
-			buffer.append(C_GENERIC_START);
+			buffer.append(C_GENERIC_START); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			// Stop gap fix for <>.
 			if ((pos = checkNextChar(typeName, '>', checkPos, length, true)) > 0) {
-				buffer.append(C_GENERIC_END);
+				buffer.append(C_GENERIC_END); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
 				pos = encodeTypeSignature(typeName, checkPos, isResolved, length, buffer);
-				while ((checkPos = checkNextChar(typeName, ',', pos, length, true)) > 0) {
+				while ((checkPos = checkNextChar(typeName, ',', pos, length, true)) > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					pos = encodeTypeSignature(typeName, checkPos, isResolved, length, buffer);
 				}
 				pos = checkNextChar(typeName, '>', pos, length, false);
-				buffer.append(C_GENERIC_END);
+				buffer.append(C_GENERIC_END); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		checkPos = checkNextChar(typeName, '.', pos, length, true);
 		if (checkPos > 0) {
-			buffer.append(C_DOT);
+			buffer.append(C_DOT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			pos = checkPos;
 		} else {
 			break;
 		}
 	}
-	buffer.append(C_NAME_END);
-	while ((checkPos = checkNextChar(typeName, '&', pos, length, true)) > 0) {
+	buffer.append(C_NAME_END); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	while ((checkPos = checkNextChar(typeName, '&', pos, length, true)) > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (buffer.charAt(0) != C_UNION) // the constant name is wrong, its value is correct :-X
 			buffer.insert(0, C_UNION);
-		buffer.append(C_COLON);
+		buffer.append(C_COLON); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		pos = encodeTypeSignature(typeName, checkPos, isResolved, length, buffer);
 		if (pos == length) {
 			break;
@@ -1575,7 +1575,7 @@ private static int encodeTypeSignature(char[] typeName, int start, boolean isRes
 public static int getArrayCount(char[] typeSignature) throws IllegalArgumentException {
 	try {
 		int count = 0;
-		while (typeSignature[count] == C_ARRAY) {
+		while (typeSignature[count] == C_ARRAY) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			++count;
 		}
 		return count;
@@ -1652,14 +1652,14 @@ public static String getElementType(String typeSignature) throws IllegalArgument
  *
  * @since 3.7.1
  */
-public static char[][] getIntersectionTypeBounds(char[] intersectionTypeSignature) throws IllegalArgumentException {
+public static char[][] getIntersectionTypeBounds(char[] intersectionTypeSignature) throws IllegalArgumentException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (getTypeSignatureKind(intersectionTypeSignature) != INTERSECTION_TYPE_SIGNATURE) {
 		return CharOperation.NO_CHAR_CHAR;
 	}
-	ArrayList args = new ArrayList();
+	ArrayList args = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	int i = 1; // skip the '|'
 	int length = intersectionTypeSignature.length;
-	for (;;) {
+	for (;;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int e = Util.scanClassTypeSignature(intersectionTypeSignature, i);
 		if (e < 0) {
 			throw new IllegalArgumentException("Invalid format"); //$NON-NLS-1$
@@ -1676,14 +1676,14 @@ public static char[][] getIntersectionTypeBounds(char[] intersectionTypeSignatur
 		i = e + 2; // add one to skip C_COLON
 	}
 }
-private static char[][] getUnionTypeBounds(char[] unionTypeSignature) throws IllegalArgumentException {
+private static char[][] getUnionTypeBounds(char[] unionTypeSignature) throws IllegalArgumentException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (getTypeSignatureKind(unionTypeSignature) != UNION_TYPE_SIGNATURE) {
 		return CharOperation.NO_CHAR_CHAR;
 	}
-	ArrayList args = new ArrayList();
+	ArrayList args = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	int i = 1; // skip the '|'
 	int length = unionTypeSignature.length;
-	for (;;) {
+	for (;;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int e = Util.scanClassTypeSignature(unionTypeSignature, i);
 		if (e < 0) {
 			throw new IllegalArgumentException("Invalid format"); //$NON-NLS-1$
@@ -1737,7 +1737,7 @@ public static String[] getUnionTypeBounds(String unionSignature) throws IllegalA
  *   correct
  * @since 2.0
  */
-public static int getParameterCount(char[] methodSignature) throws IllegalArgumentException {
+public static int getParameterCount(char[] methodSignature) throws IllegalArgumentException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		int count = 0;
 		int i = CharOperation.indexOf(C_PARAM_START, methodSignature);
@@ -1746,7 +1746,7 @@ public static int getParameterCount(char[] methodSignature) throws IllegalArgume
 		} else {
 			i++;
 		}
-		for (;;) {
+		for (;;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (methodSignature[i] == C_PARAM_END) {
 				return count;
 			}
@@ -1786,7 +1786,7 @@ public static int getParameterCount(String methodSignature) throws IllegalArgume
  *
  * @since 2.0
  */
-public static char[][] getParameterTypes(char[] methodSignature) throws IllegalArgumentException {
+public static char[][] getParameterTypes(char[] methodSignature) throws IllegalArgumentException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		int count = getParameterCount(methodSignature);
 		char[][] result = new char[count][];
@@ -1800,7 +1800,7 @@ public static char[][] getParameterTypes(char[] methodSignature) throws IllegalA
 			i++;
 		}
 		int t = 0;
-		for (;;) {
+		for (;;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (methodSignature[i] == C_PARAM_END) {
 				return result;
 			}
@@ -1932,13 +1932,13 @@ public static String getReturnType(String methodSignature) throws IllegalArgumen
  * @return the package fragment (separators are '.')
  * @since 3.1
  */
-public static char[] getSignatureQualifier(char[] typeSignature) {
+public static char[] getSignatureQualifier(char[] typeSignature) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if(typeSignature == null) return CharOperation.NO_CHAR;
 
 	char[] qualifiedType = Signature.toCharArray(typeSignature);
 
 	int dotCount = 0;
-	indexFound: for(int i = 0; i < typeSignature.length; i++) {
+	indexFound: for(int i = 0; i < typeSignature.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		switch(typeSignature[i]) {
 			case C_DOT:
 				dotCount++;
@@ -1951,7 +1951,7 @@ public static char[] getSignatureQualifier(char[] typeSignature) {
 	}
 
 	if(dotCount > 0) {
-		for(int i = 0; i < qualifiedType.length; i++) {
+		for(int i = 0; i < qualifiedType.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(qualifiedType[i] == '.') {
 				dotCount--;
 			}
@@ -1995,13 +1995,13 @@ public static String getSignatureQualifier(String typeSignature) {
  * @return the type fragment (separators are '.')
  * @since 3.1
  */
-public static char[] getSignatureSimpleName(char[] typeSignature) {
+public static char[] getSignatureSimpleName(char[] typeSignature) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if(typeSignature == null) return CharOperation.NO_CHAR;
 
 	char[] qualifiedType = Signature.toCharArray(typeSignature);
 
 	int dotCount = 0;
-	indexFound: for(int i = 0; i < typeSignature.length; i++) {
+	indexFound: for(int i = 0; i < typeSignature.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		switch(typeSignature[i]) {
 			case C_DOT:
 				dotCount++;
@@ -2015,7 +2015,7 @@ public static char[] getSignatureSimpleName(char[] typeSignature) {
 
 	if(dotCount > 0) {
 		int typeStart = 0;
-		for(int i = 0; i < qualifiedType.length; i++) {
+		for(int i = 0; i < qualifiedType.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch (qualifiedType[i]) {
 				case '.':
 					dotCount--;
@@ -2068,12 +2068,12 @@ public static String getSignatureSimpleName(String typeSignature) {
  * @exception NullPointerException if name is null
  * @since 2.0
  */
-public static char[] getSimpleName(char[] name) {
+public static char[] getSimpleName(char[] name) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	int lastDot = -1, lastGenericStart = -1, lastGenericEnd = -1;
 	int depth = 0;
 	int length = name.length;
-	lastDotLookup: for (int i = length -1; i >= 0; i--) {
+	lastDotLookup: for (int i = length -1; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		switch (name[i]) {
 			case '.':
 				if (depth == 0) {
@@ -2097,11 +2097,11 @@ public static char[] getSimpleName(char[] name) {
 		}
 		return  CharOperation.subarray(name, lastDot + 1, length);
 	}
-	StringBuilder buffer = new StringBuilder(10);
+	StringBuilder buffer = new StringBuilder(10); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	int nameStart = lastDot < 0 ? 0 : lastDot+1;
-	buffer.append(name, nameStart, lastGenericStart - nameStart);
+	buffer.append(name, nameStart, lastGenericStart - nameStart); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	appendArgumentSimpleNames(name, lastGenericStart, lastGenericEnd, buffer);
-	buffer.append(name, lastGenericEnd+1, length-lastGenericEnd-1); // copy trailing portion, may contain dimensions
+	buffer.append(name, lastGenericEnd+1, length-lastGenericEnd-1); // copy trailing portion, may contain dimensions //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	char[] result = new char[length = buffer.length()];
 	buffer.getChars(0, length, result, 0);
 	return result;
@@ -2124,11 +2124,11 @@ public static char[] getSimpleName(char[] name) {
  * @return the last segment of the qualified name
  * @exception NullPointerException if name is null
  */
-public static String getSimpleName(String name) {
+public static String getSimpleName(String name) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int lastDot = -1, lastGenericStart = -1, lastGenericEnd = -1;
 	int depth = 0;
 	int length = name.length();
-	lastDotLookup: for (int i = length -1; i >= 0; i--) {
+	lastDotLookup: for (int i = length -1; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		switch (name.charAt(i)) {
 			case '.':
 				if (depth == 0) {
@@ -2152,12 +2152,12 @@ public static String getSimpleName(String name) {
 		}
 		return name.substring(lastDot + 1, length);
 	}
-	StringBuilder buffer = new StringBuilder(10);
+	StringBuilder buffer = new StringBuilder(10); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	char[] nameChars = name.toCharArray();
 	int nameStart = lastDot < 0 ? 0 : lastDot+1;
-	buffer.append(nameChars, nameStart, lastGenericStart - nameStart);
+	buffer.append(nameChars, nameStart, lastGenericStart - nameStart); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	appendArgumentSimpleNames(nameChars, lastGenericStart, lastGenericEnd, buffer);
-	buffer.append(nameChars, lastGenericEnd+1, length-lastGenericEnd-1); // copy trailing portion, may contain dimensions
+	buffer.append(nameChars, lastGenericEnd+1, length-lastGenericEnd-1); // copy trailing portion, may contain dimensions //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return buffer.toString();
 }
 /**
@@ -2180,13 +2180,13 @@ public static String getSimpleName(String name) {
  * @exception NullPointerException if name is null
  * @since 2.0
  */
-public static char[][] getSimpleNames(char[] name) {
+public static char[][] getSimpleNames(char[] name) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int length = name == null ? 0 : name.length;
 	if (length == 0)
 		return CharOperation.NO_CHAR_CHAR;
 
 	int wordCount = 1;
-	countingWords: for (int i = 0; i < length; i++)
+	countingWords: for (int i = 0; i < length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		switch(name[i]) {
 			case C_DOT:
 				wordCount++;
@@ -2196,7 +2196,7 @@ public static char[][] getSimpleNames(char[] name) {
 		}
 	char[][] split = new char[wordCount][];
 	int last = 0, currentWord = 0;
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (name[i] == C_GENERIC_START) break;
 		if (name[i] == C_DOT) {
 			split[currentWord] = new char[i - last];
@@ -2248,7 +2248,7 @@ public static String[] getSimpleNames(String name) {
  *
  * @since 3.1
  */
-public static char[][] getThrownExceptionTypes(char[] methodSignature) throws IllegalArgumentException {
+public static char[][] getThrownExceptionTypes(char[] methodSignature) throws IllegalArgumentException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// skip type parameters
 	int exceptionStart = CharOperation.indexOf(C_EXCEPTION_START, methodSignature);
 	if (exceptionStart == -1) {
@@ -2264,8 +2264,8 @@ public static char[][] getThrownExceptionTypes(char[] methodSignature) throws Il
 	}
 	int length = methodSignature.length;
 	int i = exceptionStart;
-	ArrayList exceptionList = new ArrayList(1);
-	while (i < length) {
+	ArrayList exceptionList = new ArrayList(1); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	while (i < length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (methodSignature[i] == C_EXCEPTION_START) {
 			exceptionStart++;
 			i++;
@@ -2305,14 +2305,14 @@ public static String[] getThrownExceptionTypes(String methodSignature) throws Il
  *
  * @since 3.1
  */
-public static char[][] getTypeArguments(char[] parameterizedTypeSignature) throws IllegalArgumentException {
+public static char[][] getTypeArguments(char[] parameterizedTypeSignature) throws IllegalArgumentException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int length = parameterizedTypeSignature.length;
 	if (length < 2 || parameterizedTypeSignature[length-2] != C_GENERIC_END)
 		// cannot have type arguments otherwise signature would end by ">;"
 		return CharOperation.NO_CHAR_CHAR;
 	int count = 1; // start to count generic end/start peers
 	int start = length - 2;
-	while (start >= 0 && count > 0) {
+	while (start >= 0 && count > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		switch (parameterizedTypeSignature[--start]) {
 			case C_GENERIC_START:
 				count--;
@@ -2324,9 +2324,9 @@ public static char[][] getTypeArguments(char[] parameterizedTypeSignature) throw
 	}
 	if (start < 0) // invalid number of generic start/end
 		throw new IllegalArgumentException(String.valueOf(parameterizedTypeSignature));
-	ArrayList args = new ArrayList();
+	ArrayList args = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	int p = start + 1;
-	while (true) {
+	while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (p >= parameterizedTypeSignature.length) {
 			throw new IllegalArgumentException(String.valueOf(parameterizedTypeSignature));
 		}
@@ -2367,7 +2367,7 @@ public static String[] getTypeArguments(String parameterizedTypeSignature) throw
  *
  * @since 3.1
  */
-public static char[] getTypeErasure(char[] parameterizedTypeSignature) throws IllegalArgumentException {
+public static char[] getTypeErasure(char[] parameterizedTypeSignature) throws IllegalArgumentException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int end = CharOperation.indexOf(C_GENERIC_START, parameterizedTypeSignature);
 	if (end == -1) return parameterizedTypeSignature;
 	int length = parameterizedTypeSignature.length;
@@ -2375,7 +2375,7 @@ public static char[] getTypeErasure(char[] parameterizedTypeSignature) throws Il
 	int pos = 0;
 	int start = 0;
 	int deep= 0;
-	for (int idx=end; idx<length; idx++) {
+	for (int idx=end; idx<length; idx++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		switch (parameterizedTypeSignature[idx]) {
 			case C_GENERIC_START:
 				if (deep == 0) {
@@ -2428,7 +2428,7 @@ public static String getTypeErasure(String parameterizedTypeSignature) throws Il
  *   incorrect
  * @since 3.0
  */
-public static char[][] getTypeParameterBounds(char[] formalTypeParameterSignature) throws IllegalArgumentException {
+public static char[][] getTypeParameterBounds(char[] formalTypeParameterSignature) throws IllegalArgumentException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int p1 = CharOperation.indexOf(C_COLON, formalTypeParameterSignature);
 	if (p1 < 0) {
 		// no ":" means can't be a formal type parameter signature
@@ -2489,15 +2489,15 @@ public static String[] getTypeParameterBounds(String formalTypeParameterSignatur
  *
  * @since 3.1
  */
-public static char[][] getTypeParameters(char[] methodOrTypeSignature) throws IllegalArgumentException {
+public static char[][] getTypeParameters(char[] methodOrTypeSignature) throws IllegalArgumentException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		int length = methodOrTypeSignature.length;
 		if (length == 0) return CharOperation.NO_CHAR_CHAR;
 		if (methodOrTypeSignature[0] != C_GENERIC_START) return CharOperation.NO_CHAR_CHAR;
 
-		ArrayList paramList = new ArrayList(1);
+		ArrayList paramList = new ArrayList(1); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		int paramStart = 1, i = 1;  // start after leading '<'
-		while (i < length) {
+		while (i < length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (methodOrTypeSignature[i] == C_GENERIC_END) {
 				int size = paramList.size();
 				if (size == 0) throw new IllegalArgumentException(String.valueOf(methodOrTypeSignature));
@@ -2509,7 +2509,7 @@ public static char[][] getTypeParameters(char[] methodOrTypeSignature) throws Il
 			if (i < 0 || i >= length)
 				throw new IllegalArgumentException(String.valueOf(methodOrTypeSignature));
 			// iterate over bounds
-			while (methodOrTypeSignature[i] == ':') {
+			while (methodOrTypeSignature[i] == ':') { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				i++; // skip colon
 				switch (methodOrTypeSignature[i]) {
 					case ':':
@@ -2587,7 +2587,7 @@ public static String[] getTypeParameters(String methodOrTypeSignature) throws Il
  * @exception IllegalArgumentException if this is not a type signature
  * @since 3.0
  */
-public static int getTypeSignatureKind(char[] typeSignature) {
+public static int getTypeSignatureKind(char[] typeSignature) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// need a minimum 1 char
 	if (typeSignature.length < 1) {
 		throw new IllegalArgumentException();
@@ -2595,7 +2595,7 @@ public static int getTypeSignatureKind(char[] typeSignature) {
 	char c = typeSignature[0];
 	if (c == C_GENERIC_START) {
 		int count = 1;
-		for (int i = 1, length = typeSignature.length; i < length; i++) {
+		for (int i = 1, length = typeSignature.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch (typeSignature[i]) {
 				case 	C_GENERIC_START:
 					count++;
@@ -2777,7 +2777,7 @@ public static char[] toCharArray(char[] signature) throws IllegalArgumentExcepti
 			return toCharArray(signature, CharOperation.NO_CHAR, null, true, true);
 		}
 
-		StringBuilder buffer = new StringBuilder(signature.length + 10);
+		StringBuilder buffer = new StringBuilder(signature.length + 10); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		appendTypeSignature(signature, 0, true, buffer);
 		char[] result = new char[buffer.length()];
 		buffer.getChars(0, buffer.length(), result, 0);
@@ -2840,54 +2840,54 @@ public static char[] toCharArray(char[] methodSignature, char[] methodName, char
  *
  * @since 3.1
  */
-public static char[] toCharArray(char[] methodSignature, char[] methodName, char[][] parameterNames, boolean fullyQualifyTypeNames, boolean includeReturnType, boolean isVargArgs) {
+public static char[] toCharArray(char[] methodSignature, char[] methodName, char[][] parameterNames, boolean fullyQualifyTypeNames, boolean includeReturnType, boolean isVargArgs) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int firstParen = CharOperation.indexOf(C_PARAM_START, methodSignature);
 	if (firstParen == -1) {
 		throw new IllegalArgumentException(String.valueOf(methodSignature));
 	}
 
-	StringBuilder buffer = new StringBuilder(methodSignature.length + 10);
+	StringBuilder buffer = new StringBuilder(methodSignature.length + 10); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
 	// return type
 	if (includeReturnType) {
 		char[] rts = getReturnType(methodSignature);
 		appendTypeSignature(rts, 0 , fullyQualifyTypeNames, buffer);
-		buffer.append(' ');
+		buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	// selector
 	if (methodName != null) {
-		buffer.append(methodName);
+		buffer.append(methodName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	// parameters
-	buffer.append('(');
+	buffer.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	char[][] pts = getParameterTypes(methodSignature);
 	// search for the last array in the signature
 	int max = pts.length;
 	int index = max - 1;
-	loop: for (int i = index; i >= 0; i--) {
+	loop: for (int i = index; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (pts[i][0] == Signature.C_ARRAY) {
 			break loop;
 		}
 		index--;
 	}
-	for (int i = 0; i < max; i++) {
+	for (int i = 0; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (i == index) {
 			appendTypeSignature(pts[i], 0 , fullyQualifyTypeNames, buffer, isVargArgs);
 		} else {
 			appendTypeSignature(pts[i], 0 , fullyQualifyTypeNames, buffer);
 		}
 		if (parameterNames != null) {
-			buffer.append(' ');
-			buffer.append(parameterNames[i]);
+			buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(parameterNames[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (i != pts.length - 1) {
-			buffer.append(',');
-			buffer.append(' ');
+			buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
-	buffer.append(')');
+	buffer.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	char[] result = new char[buffer.length()];
 	buffer.getChars(0, buffer.length(), result, 0);
 	return result;
@@ -2910,19 +2910,19 @@ public static char[] toCharArray(char[] methodSignature, char[] methodName, char
  *
  * @since 2.0
  */
-public static char[] toQualifiedName(char[][] segments) {
+public static char[] toQualifiedName(char[][] segments) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int length = segments.length;
 	if (length == 0) return CharOperation.NO_CHAR;
 	if (length == 1) return segments[0];
 
 	int resultLength = 0;
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		resultLength += segments[i].length+1;
 	}
 	resultLength--;
 	char[] result = new char[resultLength];
 	int index = 0;
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		char[] segment = segments[i];
 		int segmentLength = segment.length;
 		System.arraycopy(segment, 0, result, index, segmentLength);
@@ -2952,7 +2952,7 @@ public static char[] toQualifiedName(char[][] segments) {
 public static String toQualifiedName(String[] segments) {
 	int length = segments.length;
 	char[][] charArrays = new char[length][];
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		charArrays[i] = segments[i].toCharArray();
 	}
 	return new String(toQualifiedName(charArrays));
@@ -3034,7 +3034,7 @@ public static String toString(String methodSignature, String methodName, String[
 	} else {
 		int paramLength = parameterNames.length;
 		params = new char[paramLength][];
-		for (int i = 0; i < paramLength; i++) {
+		for (int i = 0; i < paramLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			params[i] = parameterNames[i].toCharArray();
 		}
 	}
@@ -3042,7 +3042,7 @@ public static String toString(String methodSignature, String methodName, String[
 }
 
 private static IllegalArgumentException newIllegalArgumentException(char[] string, int start) {
-	return new IllegalArgumentException("\"" + String.valueOf(string) + "\" at " + start); //$NON-NLS-1$ //$NON-NLS-2$
+	return new IllegalArgumentException("\"" + String.valueOf(string) + "\" at " + start); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 private Signature() {

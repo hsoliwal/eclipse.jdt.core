@@ -47,8 +47,8 @@ public class JavadocTest_15 extends JavadocTest {
 	String reportJavadocDeprecation = null;
 	String processAnnotations = null;
 
-	protected Map<String,IModule> moduleMap = new HashMap<>(); // by name
-	Map<String,String> file2module = new HashMap<>();
+	protected Map<String,IModule> moduleMap = new HashMap<>(); // by name //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	Map<String,String> file2module = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 public JavadocTest_15(String name) {
 	super(name);
@@ -68,7 +68,7 @@ public static Test suite() {
 	return buildMinimalComplianceTestSuite(javadocTestClass(), F_15);
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected Map getCompilerOptions() {
 	Map options = super.getCompilerOptions();
 	options.put(CompilerOptions.OPTION_DocCommentSupport, this.docCommentSupport);
@@ -112,13 +112,13 @@ protected Map getCompilerOptions() {
 protected INameEnvironment getNameEnvironment(final String[] testFiles, String[] classPaths, Map<String, String> options) {
 	this.classpaths = classPaths == null ? getDefaultClassPaths() : classPaths;
 	INameEnvironment[] classLibs = getClassLibs(classPaths == null, options);
-	for (INameEnvironment nameEnvironment : classLibs) {
+	for (INameEnvironment nameEnvironment : classLibs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		((FileSystem) nameEnvironment).scanForModules(createParser());
 	}
 	return new InMemoryNameEnvironment9(testFiles, this.moduleMap, classLibs);
 }
 Parser createParser() {
-	Map<String,String> opts = new HashMap<>();
+	Map<String,String> opts = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	opts.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_9);
 	return new Parser(
 			new ProblemReporter(getErrorHandlingPolicy(), new CompilerOptions(opts), getProblemFactory()),
@@ -138,7 +138,7 @@ IModule extractModuleDesc(String fileName, String fileContent) {
 	return null;
 }
 private void populateModuleMap(final String[] modFiles) {
-	for (int i = 0; i < modFiles.length; i+=2) {
+	for (int i = 0; i < modFiles.length; i+=2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IModule module = extractModuleDesc(modFiles[i], modFiles[i+1]);
 		if (module != null) {
 			this.moduleMap.put(String.valueOf(module.name()), module);
@@ -147,11 +147,11 @@ private void populateModuleMap(final String[] modFiles) {
 }
 //--- same as AbstractRegressionTest9, just in a different inheritance hierarchy:
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected CompilationUnit[] getCompilationUnits(String[] testFiles) {
-	Map<String,char[]> moduleFiles= new HashMap<>(); // filename -> modulename
+	Map<String,char[]> moduleFiles= new HashMap<>(); // filename -> modulename //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	// scan for all module-info.java:
-	for (int i = 0; i < testFiles.length; i+=2) {
+	for (int i = 0; i < testFiles.length; i+=2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IModule module = extractModuleDesc(testFiles[i], testFiles[i+1]);
 		if (module != null) {
 			this.moduleMap.put(String.valueOf(module.name()), module);
@@ -160,7 +160,7 @@ protected CompilationUnit[] getCompilationUnits(String[] testFiles) {
 	}
 	// record module information in CUs:
 	CompilationUnit[] compilationUnits = Util.compilationUnits(testFiles);
-	for (int i = 0; i < compilationUnits.length; i++) {
+	for (int i = 0; i < compilationUnits.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		char[] fileName = compilationUnits[i].getFileName();
 		String fileNameString = String.valueOf(compilationUnits[i].getFileName());
 		if (CharOperation.endsWith(fileName, TypeConstants.MODULE_INFO_FILE_NAME)) {
@@ -176,7 +176,7 @@ protected CompilationUnit[] getCompilationUnits(String[] testFiles) {
 }
 /** Use in tests to associate the CU in file 'fileName' to the module of the given name. */
 void associateToModule(String moduleName, String... fileNames) {
-	for (String fileName : fileNames)
+	for (String fileName : fileNames) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		this.file2module.put(fileName, moduleName);
 }
 @Override
@@ -200,7 +200,7 @@ protected void setUp() throws Exception {
 	this.reportDeprecation = CompilerOptions.ERROR;
 }
 
-public void test001() {
+public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File outputDirectory = new File(OUTPUT_DIR);
 	Util.flushDirectoryContent(outputDirectory);
 
@@ -242,7 +242,7 @@ public void test001() {
 	this.runConformTest( testFiles, modFiles, "" );
 }
 
-public void test002() {
+public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File outputDirectory = new File(OUTPUT_DIR);
 	Util.flushDirectoryContent(outputDirectory);
 
@@ -284,7 +284,7 @@ public void test002() {
 	this.runConformTest(testFiles , modFiles, "" );
 }
 
-public void test003() {
+public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File outputDirectory = new File(OUTPUT_DIR);
 	Util.flushDirectoryContent(outputDirectory);
 
@@ -328,7 +328,7 @@ public void test003() {
 	this.runConformTest(testFiles , modFiles, "" );
 }
 
-public void test004() {
+public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File outputDirectory = new File(OUTPUT_DIR);
 	Util.flushDirectoryContent(outputDirectory);
 
@@ -371,7 +371,7 @@ public void test004() {
 	this.runConformTest(testFiles , modFiles, "" );
 }
 
-public void test005() {
+public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File outputDirectory = new File(OUTPUT_DIR);
 	Util.flushDirectoryContent(outputDirectory);
 
@@ -415,7 +415,7 @@ public void test005() {
 	this.runConformTest(testFiles , modFiles, "" );
 }
 
-public void test006() {
+public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File outputDirectory = new File(OUTPUT_DIR);
 	Util.flushDirectoryContent(outputDirectory);
 
@@ -467,7 +467,7 @@ public void test006() {
 			            JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 }
 
-public void test007() {
+public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File outputDirectory = new File(OUTPUT_DIR);
 	Util.flushDirectoryContent(outputDirectory);
 
@@ -510,7 +510,7 @@ public void test007() {
 	this.runConformTest(testFiles , modFiles, "" );
 }
 
-public void test008() {
+public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File outputDirectory = new File(OUTPUT_DIR);
 	Util.flushDirectoryContent(outputDirectory);
 
@@ -553,7 +553,7 @@ public void test008() {
 	this.runConformTest(testFiles , modFiles, "" );
 }
 
-public void test009() {
+public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File outputDirectory = new File(OUTPUT_DIR);
 	Util.flushDirectoryContent(outputDirectory);
 
@@ -596,7 +596,7 @@ public void test009() {
 	this.runConformTest(testFiles , modFiles, "" );
 }
 
-public void test010() {
+public void test010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File outputDirectory = new File(OUTPUT_DIR);
 	Util.flushDirectoryContent(outputDirectory);
 
@@ -648,7 +648,7 @@ public void test010() {
 			            JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 }
 
-public void test011() {
+public void test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File outputDirectory = new File(OUTPUT_DIR);
 	Util.flushDirectoryContent(outputDirectory);
 
@@ -700,7 +700,7 @@ public void test011() {
 			            JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 }
 
-public void test012() {
+public void test012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File outputDirectory = new File(OUTPUT_DIR);
 	Util.flushDirectoryContent(outputDirectory);
 

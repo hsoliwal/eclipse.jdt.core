@@ -69,7 +69,7 @@ import org.eclipse.text.edits.UndoEdit;
  * @see ICompilationUnit
  */
 public class CompilationUnit extends Openable implements ICompilationUnit, org.eclipse.jdt.internal.compiler.env.ICompilationUnit, SuffixConstants {
-	public static boolean DOM_BASED_OPERATIONS = Boolean.getBoolean(CompilationUnit.class.getSimpleName() + ".DOM_BASED_OPERATIONS"); //$NON-NLS-1$
+	public static boolean DOM_BASED_OPERATIONS = Boolean.getBoolean(CompilationUnit.class.getSimpleName() + ".DOM_BASED_OPERATIONS"); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	private static final IImportDeclaration[] NO_IMPORTS = new IImportDeclaration[0];
 
 	protected final String name;
@@ -122,7 +122,7 @@ public void becomeWorkingCopy(IProgressMonitor monitor) throws JavaModelExceptio
 	IProblemRequestor requestor = this.owner == null ? null : this.owner.getProblemRequestor(this);
 	becomeWorkingCopy(requestor, monitor);
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected boolean buildStructure(OpenableElementInfo info, final IProgressMonitor pm, Map<IJavaElement, IElementInfo> newElements, IResource underlyingResource) throws JavaModelException {
 	CompilationUnitElementInfo unitInfo = (CompilationUnitElementInfo) info;
 
@@ -181,7 +181,7 @@ protected boolean buildStructure(OpenableElementInfo info, final IProgressMonito
 			var problem = e.problem;
 			if (problem == null && e.exception instanceof IOException ioEx) {
 				String path = source.getPath().toString();
-				String exceptionTrace = ioEx.getClass().getName() + ':' + ioEx.getMessage();
+				String exceptionTrace = ioEx.getClass().getName() + ':' + ioEx.getMessage(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				problem = new DefaultProblemFactory().createProblem(
 						path.toCharArray(),
 						IProblem.CannotReadSource,
@@ -210,7 +210,7 @@ protected boolean buildStructure(OpenableElementInfo info, final IProgressMonito
 				if (perWorkingCopyInfo != null && problems == null) {
 					try {
 						perWorkingCopyInfo.beginReporting();
-						for (IProblem problem : interestingProblems) {
+						for (IProblem problem : interestingProblems) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							perWorkingCopyInfo.acceptProblem(problem);
 						}
 					} finally {
@@ -228,7 +228,7 @@ protected boolean buildStructure(OpenableElementInfo info, final IProgressMonito
 			}
 			newAST.accept(new DOMToModelPopulator(newElements, this, unitInfo));
 			boolean structureKnown = true;
-			for (IProblem problem : newAST.getProblems()) {
+			for (IProblem problem : newAST.getProblems()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				structureKnown &= (IProblem.Syntax & problem.getID()) == 0;
 			}
 			unitInfo.setIsStructureKnown(structureKnown);
@@ -258,13 +258,13 @@ protected boolean buildStructure(OpenableElementInfo info, final IProgressMonito
 			if (computeProblems) {
 				if (problems == null) {
 					// report problems to the problem requestor
-					problems = new HashMap<>();
+					problems = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 					compilationUnitDeclaration = CompilationUnitProblemFinder.process(source, parser, this.owner, problems, createAST, reconcileFlags, pm);
 					try {
 						perWorkingCopyInfo.beginReporting();
-						for (CategorizedProblem[] categorizedProblems : problems.values()) {
+						for (CategorizedProblem[] categorizedProblems : problems.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (categorizedProblems == null) continue;
-							for (CategorizedProblem categorizedProblem : categorizedProblems) {
+							for (CategorizedProblem categorizedProblem : categorizedProblems) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								perWorkingCopyInfo.acceptProblem(categorizedProblem);
 							}
 						}
@@ -361,7 +361,7 @@ public void codeComplete(int offset, ICompletionRequestor requestor, WorkingCopy
  * @see ICodeAssist#codeComplete(int, ICodeCompletionRequestor)
  * @deprecated - use codeComplete(int, ICompletionRequestor)
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void codeComplete(int offset, final ICodeCompletionRequestor requestor) throws JavaModelException {
 
 	if (requestor == null){
@@ -477,7 +477,7 @@ public IJavaElement[] codeSelect(int offset, int length, WorkingCopyOwner workin
 	}
 }
 
-public org.eclipse.jdt.core.dom.CompilationUnit getOrBuildAST(WorkingCopyOwner workingCopyOwner, int focalPosition) throws JavaModelException {
+public org.eclipse.jdt.core.dom.CompilationUnit getOrBuildAST(WorkingCopyOwner workingCopyOwner, int focalPosition) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.ast != null) {
 		return this.ast;
 	}
@@ -583,7 +583,7 @@ public IPackageDeclaration createPackageDeclaration(String pkg, IProgressMonitor
 /**
  * @see ICompilationUnit#createType(String, IJavaElement, boolean, IProgressMonitor)
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public IType createType(String content, IJavaElement sibling, boolean force, IProgressMonitor monitor) throws JavaModelException {
 	if (!exists()) {
 		//autogenerate this compilation unit
@@ -592,7 +592,7 @@ public IType createType(String content, IJavaElement sibling, boolean force, IPr
 		if (!pkg.isDefaultPackage()) {
 			//not the default package...add the package declaration
 			String lineSeparator = Util.getLineSeparator(null/*no existing source*/, getJavaProject());
-			source = "package " + pkg.getElementName() + ";"  + lineSeparator + lineSeparator; //$NON-NLS-1$ //$NON-NLS-2$
+			source = "package " + pkg.getElementName() + ";"  + lineSeparator + lineSeparator; //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		CreateCompilationUnitOperation op = new CreateCompilationUnitOperation(pkg, this.name, source, force);
 		op.runOperation(monitor);
@@ -653,19 +653,19 @@ protected int calculateHashCode() {
 /**
  * @see ICompilationUnit#findElements(IJavaElement)
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public IJavaElement[] findElements(IJavaElement element) {
 	if (element instanceof IType && ((IType) element).isLambda()) {
 		return null;
 	}
-	ArrayList<IJavaElement> children = new ArrayList<>();
-	while (element != null && element.getElementType() != IJavaElement.COMPILATION_UNIT) {
+	ArrayList<IJavaElement> children = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	while (element != null && element.getElementType() != IJavaElement.COMPILATION_UNIT) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		children.add(element);
 		element = element.getParent();
 	}
 	if (element == null) return null;
 	IJavaElement currentElement = this;
-	for (int i = children.size()-1; i >= 0; i--) {
+	for (int i = children.size()-1; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		SourceRefElement child = (SourceRefElement)children.get(i);
 		switch (child.getElementType()) {
 			case IJavaElement.PACKAGE_DECLARATION:
@@ -760,10 +760,10 @@ public ICompilationUnit findWorkingCopy(WorkingCopyOwner workingCopyOwner) {
 @Override
 public IType[] getAllTypes() throws JavaModelException {
 	IType[] types = getTypes();
-	ArrayList<IType> allTypes = new ArrayList<>(types.length);
-	ArrayList<IType> typesToTraverse = new ArrayList<>(types.length);
+	ArrayList<IType> allTypes = new ArrayList<>(types.length); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	ArrayList<IType> typesToTraverse = new ArrayList<>(types.length); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	Collections.addAll(typesToTraverse, types);
-	while (!typesToTraverse.isEmpty()) {
+	while (!typesToTraverse.isEmpty()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IType type = typesToTraverse.get(0);
 		typesToTraverse.remove(type);
 		allTypes.add(type);
@@ -784,7 +784,7 @@ public CompilationUnit getCompilationUnit() {
 /**
  * @see org.eclipse.jdt.internal.compiler.env.ICompilationUnit#getContents()
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public char[] getContents() {
 	IBuffer buffer = getBufferManager().getBuffer(this);
 	char[] contents = null;
@@ -875,7 +875,7 @@ public char[] getFileName(){
 	return getPath().toString().toCharArray();
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public IJavaElement getHandleFromMemento(String token, MementoTokenizer memento, WorkingCopyOwner workingCopyOwner) {
 	switch (token.charAt(0)) {
 		case JEM_IMPORTDECLARATION:
@@ -926,7 +926,7 @@ public ImportContainer getImportContainer() {
 /**
  * @see ICompilationUnit#getImports()
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public IImportDeclaration[] getImports() throws JavaModelException {
 	IImportContainer container= getImportContainer();
 	JavaModelManager manager = JavaModelManager.getJavaModelManager();
@@ -1207,7 +1207,7 @@ public boolean isPrimary() {
 protected boolean isSourceElement() {
 	return true;
 }
-protected IStatus validateCompilationUnit(IResource resource) {
+protected IStatus validateCompilationUnit(IResource resource) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPackageFragmentRoot root = getPackageFragmentRoot();
 	// root never null as validation is not done for working copies
 	try {
@@ -1241,7 +1241,7 @@ public boolean isWorkingCopy() {
 public void makeConsistent(IProgressMonitor monitor) throws JavaModelException {
 	makeConsistent(NO_AST, false/*don't resolve bindings*/, 0 /* don't perform statements recovery */, null/*don't collect problems but report them*/, monitor);
 }
-public org.eclipse.jdt.core.dom.CompilationUnit makeConsistent(int astLevel, boolean resolveBindings, int reconcileFlags, Map<String, CategorizedProblem[]>  problems, IProgressMonitor monitor) throws JavaModelException {
+public org.eclipse.jdt.core.dom.CompilationUnit makeConsistent(int astLevel, boolean resolveBindings, int reconcileFlags, Map<String, CategorizedProblem[]>  problems, IProgressMonitor monitor) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (isConsistent()) return null;
 
 	try {
@@ -1286,7 +1286,7 @@ public void move(IJavaElement container, IJavaElement sibling, String rename, bo
 	getJavaModel().move(elements, containers, null, renamings, force, monitor);
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected IBuffer openBuffer(IProgressMonitor pm, IElementInfo info) throws JavaModelException {
 
 	// create buffer
@@ -1409,7 +1409,7 @@ public org.eclipse.jdt.core.dom.CompilationUnit reconcile(
 	return reconcile(astLevel, flags, workingCopyOwner, monitor);
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public org.eclipse.jdt.core.dom.CompilationUnit reconcile(
 		int astLevel,
 		int reconcileFlags,
@@ -1483,19 +1483,19 @@ public void save(IProgressMonitor pm, boolean force) throws JavaModelException {
 /**
  * Debugging purposes
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void toStringInfo(int tab, StringBuilder buffer, Object info, boolean showResolvedInfo) {
 	if (!isPrimary()) {
-		buffer.append(tabString(tab));
-		buffer.append("[Working copy] "); //$NON-NLS-1$
+		buffer.append(tabString(tab)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("[Working copy] "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		toStringName(buffer);
 	} else {
 		if (isWorkingCopy()) {
-			buffer.append(tabString(tab));
-			buffer.append("[Working copy] "); //$NON-NLS-1$
+			buffer.append(tabString(tab)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("[Working copy] "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			toStringName(buffer);
 			if (info == null) {
-				buffer.append(" (not open)"); //$NON-NLS-1$
+				buffer.append(" (not open)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		} else {
 			super.toStringInfo(tab, buffer, info, showResolvedInfo);
@@ -1578,7 +1578,7 @@ public void setOptions(Map<String, String> newOptions) {
 	}
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public Map<String, String> getCustomOptions() {
 	if (this.owner != null) {
 		Map<String, String> customOptions = null;

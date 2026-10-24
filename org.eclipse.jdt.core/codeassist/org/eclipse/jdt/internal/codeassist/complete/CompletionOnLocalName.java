@@ -38,20 +38,20 @@ public class CompletionOnLocalName extends LocalDeclaration implements Completio
 	@Override
 	public StringBuilder printAsExpression(int indent, StringBuilder output) {
 		printIndent(indent, output);
-		output.append("<CompleteOnLocalName:"); //$NON-NLS-1$
+		output.append("<CompleteOnLocalName:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (this.type != null)  this.type.print(0, output).append(' ');
-		output.append(this.realName);
+		output.append(this.realName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (this.initialization != null) {
-			output.append(" = "); //$NON-NLS-1$
+			output.append(" = "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			this.initialization.printExpression(0, output);
 		}
-		return output.append('>');
+		return output.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	@Override
 	public StringBuilder printStatement(int indent, StringBuilder output) {
 		printAsExpression(indent, output);
-		return output.append(';');
+		return output.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 }
 

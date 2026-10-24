@@ -56,23 +56,23 @@ public class FilerTests extends TestCase {
 	 * Test the createResource() by processing resources/targets/filer/FilerTarget1.java
 	 * and verifying the existence and content of the resulting files.
 	 */
-	private void internalTestCreateResource(JavaCompiler compiler, boolean isSystemCommpiler) throws IOException {
+	private void internalTestCreateResource(JavaCompiler compiler, boolean isSystemCommpiler) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "filer");
 		File inputFile = BatchTestUtils.copyResource("targets/filer/FilerTarget1.java", targetFolder);
 		assertNotNull("No input file", inputFile);
 
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		BatchTestUtils.compileOneClass(compiler, options, inputFile);
 
 		// check that the resource and class files were generated
  		File genTextFile = TestUtils.concatPath(BatchTestUtils.getGenFolderName(), "resources", "txt", "text.txt");
- 		assertTrue("generated text file does not exist", genTextFile.exists());
+ 		assertTrue("generated text file does not exist", genTextFile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
  		File genBinaryFile = TestUtils.concatPath(BatchTestUtils.getGenFolderName(), "resources", "dat", "binary.dat");
- 		assertTrue("generated binary file does not exist", genBinaryFile.exists());
+ 		assertTrue("generated binary file does not exist", genBinaryFile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
  		File classFile = TestUtils.concatPath(BatchTestUtils.getBinFolderName(), "targets", "filer", "FilerTarget1.class");
- 		assertTrue("ordinary src file was not compiled", classFile.exists());
+ 		assertTrue("ordinary src file was not compiled", classFile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
  		// See corresponding test data in FilerTarget1.java
  		assertTrue(BatchTestUtils.fileContentsEqualText(genTextFile, "A generated string"));

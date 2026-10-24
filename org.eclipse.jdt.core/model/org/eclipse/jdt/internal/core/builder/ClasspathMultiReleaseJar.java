@@ -45,21 +45,21 @@ public class ClasspathMultiReleaseJar extends ClasspathJar {
 		this.zipFile = zipFile;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IModule initializeModule() {
 		IModule mod = null;
-		try (ZipFile file = new ZipFile(this.zipFilename)){
+		try (ZipFile file = new ZipFile(this.zipFilename)){ //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM NEW
 			ClassFileReader classfile = null;
 			try {
-				for (String version : supportedVersions(file)) {
-					classfile = ClassFileReader.read(file, Util.METAINF_VERSIONS + version + '/' + IModule.MODULE_INFO_CLASS);
+				for (String version : supportedVersions(file)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					classfile = ClassFileReader.read(file, Util.METAINF_VERSIONS + version + '/' + IModule.MODULE_INFO_CLASS); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					if (classfile != null) {
 						break;
 					}
 				}
 
 			} catch (Exception e) {
-				Util.log(e, "Failed to initialize module for: " + this);  //$NON-NLS-1$
+				Util.log(e, "Failed to initialize module for: " + this);  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				// move on to the default
 			}
 			if (classfile == null) {
@@ -69,7 +69,7 @@ public class ClasspathMultiReleaseJar extends ClasspathJar {
 				mod = classfile.getModuleDeclaration();
 			}
 		} catch (ClassFormatException | IOException e) {
-			Util.log(e, "Failed to initialize module for: " + this);  //$NON-NLS-1$
+			Util.log(e, "Failed to initialize module for: " + this);  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return mod;
 	}
@@ -78,7 +78,7 @@ public class ClasspathMultiReleaseJar extends ClasspathJar {
 	 * Retrieve versions contained in a multi-release jar in descending order.
 	 * @param projectVersion this version sets the upper limit of versions to consider
 	 */
-	private List<String> scanMultiReleaseVersions(ZipFile jar, String projectVersion) {
+	private List<String> scanMultiReleaseVersions(ZipFile jar, String projectVersion) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int maxVersion = Util.parseIntOrElse(projectVersion, Integer.parseInt(JavaCore.latestSupportedJavaVersion()));
 		int prefixLength = Util.METAINF_VERSIONS.length();
 		List<String> versions = jar.stream()
@@ -113,9 +113,9 @@ public class ClasspathMultiReleaseJar extends ClasspathJar {
 
 	@Override
 	protected Set<String> readPackageNames() {
-		final Set<String> packageSet = new HashSet<>();
+		final Set<String> packageSet = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		packageSet.add(""); //$NON-NLS-1$
-		for (Enumeration<? extends ZipEntry> e = this.zipFile.entries(); e.hasMoreElements(); ) {
+		for (Enumeration<? extends ZipEntry> e = this.zipFile.entries(); e.hasMoreElements(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 			String fileName = e.nextElement().getName();
 			if (fileName.startsWith(META_INF_VERSIONS) && fileName.length() > META_INF_LENGTH) {
 				int i = fileName.indexOf('/', META_INF_LENGTH);
@@ -127,14 +127,14 @@ public class ClasspathMultiReleaseJar extends ClasspathJar {
 		return packageSet;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public NameEnvironmentAnswer findClass(String binaryFileName, String qualifiedPackageName, String moduleName,
 			String qualifiedBinaryFileName, boolean asBinaryOnly, Predicate<String> moduleNameFilter) {
 		if (!isPackage(qualifiedPackageName, moduleName)) {
 			return null; // most common case
 		}
-		for (String version : supportedVersions(this.zipFile)) {
-			String s = Util.METAINF_VERSIONS + version + '/' + qualifiedBinaryFileName;
+		for (String version : supportedVersions(this.zipFile)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			String s = Util.METAINF_VERSIONS + version + '/' + qualifiedBinaryFileName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			try {
 				ZipEntry entry = this.zipFile.getEntry(s);
 				if (entry == null)
@@ -155,7 +155,7 @@ public class ClasspathMultiReleaseJar extends ClasspathJar {
 					return createAnswer(fileNameWithoutExtension, reader, modName);
 				}
 			} catch (IOException | ClassFormatException e) {
-				Util.log(e, "Failed to find class for: " + s + " in: " + this);  //$NON-NLS-1$ //$NON-NLS-2$
+				Util.log(e, "Failed to find class for: " + s + " in: " + this);  //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				// treat as if class file is missing
 			}
 		}

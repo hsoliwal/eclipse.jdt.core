@@ -51,7 +51,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 		return AutoBoxingTest.class;
 	}
 
-	public void test001() { // constant cases of base type -> Number
+	public void test001() { // constant cases of base type -> Number //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// int -> Integer
 		this.runConformTest(
 			new String[] {
@@ -158,7 +158,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 		);
 	}
 
-	public void test002() { // non constant cases of base type -> Number
+	public void test002() { // non constant cases of base type -> Number //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// int -> Integer
 		this.runConformTest(
 			new String[] {
@@ -273,7 +273,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 		);
 	}
 
-	public void test003() { // Number -> base type
+	public void test003() { // Number -> base type //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Integer -> int
 		this.runConformTest(
 			new String[] {
@@ -393,7 +393,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 		);
 	}
 
-	public void test004() { // autoboxing method is chosen over private exact match & visible varargs method
+	public void test004() { // autoboxing method is chosen over private exact match & visible varargs method //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -446,7 +446,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 		);
 	}
 
-	public void test006() {
+	public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest( // Integers are not compatible with Longs, even though ints are compatible with longs
 			new String[] {
 				"X.java",
@@ -524,7 +524,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 		);
 	}
 
-	public void test009() {
+	public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest( // 2 of these sends are ambiguous
 			new String[] {
 				"X.java",
@@ -570,7 +570,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 		);
 	}
 
-	public void test010() { // local declaration assignment tests
+	public void test010() { // local declaration assignment tests //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -603,7 +603,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 		);
 	}
 
-	public void test011() { // field declaration assignment tests
+	public void test011() { // field declaration assignment tests //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -652,7 +652,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 		);
 	}
 
-	public void test013() { // foreach and autoboxing
+	public void test013() { // foreach and autoboxing //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -700,7 +700,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 		);
 	}
 
-	public void test015() { // return statement
+	public void test015() { // return statement //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -751,7 +751,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 		);
 	}
 
-	public void test018() { // cast expression
+	public void test018() { // cast expression //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -781,7 +781,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 			"----------\n");
 	}
 
-	public void test019() { // cast expression
+	public void test019() { // cast expression //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -916,7 +916,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 		);
 	}
 
-	public void test027() { // equal expression
+	public void test027() { // equal expression //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -954,7 +954,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 		);
 	}
 
-	public void test029() { // generic type case
+	public void test029() { // generic type case //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -981,7 +981,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 		);
 	}
 
-	public void test030() { // boolean expression
+	public void test030() { // boolean expression //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1002,7 +1002,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 		);
 	}
 
-	public void test031() { // boolean expression
+	public void test031() { // boolean expression //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1023,7 +1023,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 		);
 	}
 
-	public void test032() throws Exception { // boolean expression
+	public void test032() throws Exception { // boolean expression //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1040,7 +1040,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 		);
 
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String actualOutput =
 			disassembler.disassemble(
 				classFileBytes,
@@ -1178,7 +1178,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 		);
 	}
 
-	public void test039() { // equal expression
+	public void test039() { // equal expression //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1251,7 +1251,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 		);
 	}
 
-	public void test043() { // compound assignment
+	public void test043() { // compound assignment //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1275,7 +1275,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 			"----------\n");
 	}
 
-	public void test044() { // compound assignment
+	public void test044() { // compound assignment //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1299,7 +1299,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 			"----------\n");
 	}
 
-	public void test045() { // binary expression
+	public void test045() { // binary expression //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1372,7 +1372,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 			"SUCCESS2");
 	}
 
-	public void test049() { // postfix increment
+	public void test049() { // postfix increment //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1408,7 +1408,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 			"SUCCESS2");
 	}
 
-	public void test051() { // prefix increment
+	public void test051() { // prefix increment //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1427,7 +1427,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 			"SUCCESS2");
 	}
 
-	public void test052() { // boxing in var decl
+	public void test052() { // boxing in var decl //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1498,7 +1498,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 			"SUCCESS");
 	}
 
-	public void test055() { // boxing in foreach
+	public void test055() { // boxing in foreach //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1556,7 +1556,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 			"012");
 	}
 
-	public void test058() { // autoboxing and generics
+	public void test058() { // autoboxing and generics //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1582,7 +1582,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 			"10");
 	}
 
-	public void test059() { // autoboxing and generics
+	public void test059() { // autoboxing and generics //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1610,7 +1610,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 			"SUCCESS");
 	}
 
-	public void test060() { // autoboxing and boolean expr
+	public void test060() { // autoboxing and boolean expr //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1637,7 +1637,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 			"SUCCESS");
 	}
 
-	public void test061() { // autoboxing and boolean expr
+	public void test061() { // autoboxing and boolean expr //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1665,7 +1665,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 			"SUCCESS");
 	}
 
-	public void test062() { // autoboxing and generics
+	public void test062() { // autoboxing and generics //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1692,7 +1692,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 			"10");
 	}
 
-	public void test063() { // autoboxing and generics
+	public void test063() { // autoboxing and generics //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1719,7 +1719,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 			"-5");
 	}
 
-	public void test064() { // autoboxing and generics
+	public void test064() { // autoboxing and generics //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1746,7 +1746,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 			"10");
 	}
 
-	public void test065() { // generic type case + foreach statement
+	public void test065() { // generic type case + foreach statement //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1771,7 +1771,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 		);
 	}
 
-	public void test066() { // array case + foreach statement
+	public void test066() { // array case + foreach statement //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1793,7 +1793,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 		);
 	}
 
-	public void test067() { // array case + foreach statement
+	public void test067() { // array case + foreach statement //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1815,7 +1815,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 		);
 	}
 
-	public void test068() { // generic type case + foreach statement
+	public void test068() { // generic type case + foreach statement //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1855,7 +1855,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 			"SUCCESS");
 	}
 
-	public void test070() { // assert
+	public void test070() { // assert //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1874,7 +1874,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 			"SUCCESS");
 	}
 
-	public void test071() { // assert
+	public void test071() { // assert //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1894,7 +1894,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=81971
-	public void test072() {
+	public void test072() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1917,7 +1917,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=81571
-	public void test073() {
+	public void test073() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1958,7 +1958,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=82432 - variation
-	public void test075() {
+	public void test075() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1986,7 +1986,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=82432 - variation
-	public void test076() {
+	public void test076() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2088,7 +2088,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=82432 - variation
-	public void test077() {
+	public void test077() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2119,7 +2119,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=81923
-	public void test078() {
+	public void test078() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2140,7 +2140,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=82407
-	public void _test079() {
+	public void _test079() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2172,7 +2172,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=82407 - variation
-	public void test080() {
+	public void test080() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2193,7 +2193,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=82407 - variation
-	public void test081() {
+	public void test081() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2229,7 +2229,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 	}
 
 		// https://bugs.eclipse.org/bugs/show_bug.cgi?id=82647
-	public void test083() {
+	public void test083() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2306,7 +2306,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=82647 - variation
-	public void test084() {
+	public void test084() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2336,7 +2336,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=83965
-	public void test085() {
+	public void test085() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2460,7 +2460,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 		);
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=84055
-	public void test086() {
+	public void test086() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2490,7 +2490,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
         );
 	}
     // autoboxing and type argument inference
-    public void test087() {
+    public void test087() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         this.runNegativeTest(
             new String[] {
                 "X.java",
@@ -2525,7 +2525,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 	/*
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=84480 - variation with autoboxing diagnosis on
 	 */
-	public void test088() {
+	public void test088() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customOptions = getCompilerOptions();
 		customOptions.put(CompilerOptions.OPTION_ReportAutoboxing, CompilerOptions.WARNING);
 		this.runNegativeTest(
@@ -2563,7 +2563,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 			customOptions);
 	}
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=84345
-    public void test089() {
+    public void test089() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         this.runNegativeTest(
             new String[] {
                 "X.java",
@@ -2597,7 +2597,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
         );
     }
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=84345 - variation
-    public void test090() {
+    public void test090() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         this.runNegativeTest(
             new String[] {
                 "X.java",
@@ -2627,7 +2627,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
     }
 
     // type argument inference and autoboxing
-    public void test091() {
+    public void test091() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         this.runConformTest(
             new String[] {
                 "X.java",
@@ -2648,7 +2648,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
     }
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=84669
-    public void test092() {
+    public void test092() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         this.runConformTest(
             new String[] {
                 "X.java",
@@ -2693,7 +2693,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
         );
     }
 
-    public void test094() {
+    public void test094() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         this.runNegativeTest(
             new String[] {
                 "X.java",
@@ -2725,7 +2725,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
     }
 
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=80630
-    public void test095() {
+    public void test095() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         this.runConformTest(
             new String[] {
                 "X.java",
@@ -2747,7 +2747,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
         );
     }
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=80630 - variation
-    public void test096() {
+    public void test096() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         this.runNegativeTest(
             new String[] {
                 "X.java",
@@ -2786,7 +2786,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
     }
     // conditional operator: bool ? Integer : Integer --> Integer (identical operand types)
     // but   bool ? Integer : Short --> unboxed int
-    public void test097() {
+    public void test097() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         this.runConformTest(
             new String[] {
                 "X.java",
@@ -2812,7 +2812,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
     // conditional operator: bool ? Integer : Integer --> Integer (identical operand types)
     // but   bool ? Integer : Short --> unboxed int
     // check autoboxing warnings
-    public void test098() {
+    public void test098() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         this.runNegativeTest(
             new String[] {
                 "X.java",
@@ -2868,7 +2868,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
     }
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=84801
-	public void test099() {
+	public void test099() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2891,7 +2891,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 		);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=87267
-	public void test100() {
+	public void test100() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2918,7 +2918,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=85491
-	public void test101() {
+	public void test101() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3013,7 +3013,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 		);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=84801
-	public void test102() {
+	public void test102() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			// test directory preparation
 			true /* flush output directory */,
@@ -3065,7 +3065,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 			JavacTestOptions.JavacHasABug.JavacBugFixed_6_10 /* javac test options */);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=84801 - variation (check warnings)
-	public void test103() {
+	public void test103() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3155,7 +3155,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=95868
-	public void test104() {
+	public void test104() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			false /* skipJavac */,
 			JavacTestOptions.Excuse.JavacGeneratesIncorrectCode,
@@ -3178,7 +3178,7 @@ public class AutoBoxingTest extends AbstractComparableTest {
 			"SUCCESS");
 	}
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=101779
-public void test105() {
+public void test105() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		// test directory preparation
 		true /* flush output directory */,
@@ -3222,7 +3222,7 @@ public void test105() {
 		JavacTestOptions.JavacHasABug.JavacBugFixed_6_10 /* javac test options */);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=101779 - variation
-public void test106() {
+public void test106() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		// test directory preparation
 		true /* flush output directory */,
@@ -3256,7 +3256,7 @@ public void test106() {
 		JavacTestOptions.JavacHasABug.JavacBugFixed_6_10 /* javac test options */);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=101779 - variation
-public void test107() {
+public void test107() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		// test directory preparation
 		true /* flush output directory */,
@@ -3290,7 +3290,7 @@ public void test107() {
 		JavacTestOptions.JavacHasABug.JavacBugFixed_6_10 /* javac test options */);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=101779 - variation
-public void test108() {
+public void test108() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		// test directory preparation
 		true /* flush output directory */,
@@ -3356,7 +3356,7 @@ public void test110() {
 		"SUCCESS");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=105524
-public void test111() {
+public void test111() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		// test directory preparation
 		true /* flush output directory */,
@@ -3404,7 +3404,7 @@ public void test112() {
 		"7");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=105284 - variation
-public void test113() {
+public void test113() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3460,7 +3460,7 @@ public void test113() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=100182
-public void test114() {
+public void test114() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3507,7 +3507,7 @@ public void test115() {
 		"a97");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=106870
-public void test116() {
+public void test116() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3551,7 +3551,7 @@ public void test116() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=122987
-public void test117() {
+public void test117() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3582,7 +3582,7 @@ public void test117() {
 }
 
 // Integer array and method with T extends Integer bound
-public void test118() {
+public void test118() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		// test directory preparation
 		true /* flush output directory */,
@@ -3609,7 +3609,7 @@ public void test118() {
 }
 
 // Integer as member of a parametrized class
-public void test119() {
+public void test119() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		// test directory preparation
 		true /* flush output directory */,
@@ -3636,7 +3636,7 @@ public void test119() {
 		JavacTestOptions.JavacHasABug.JavacBugFixed_6_10 /* javac test options */);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=137918
-public void test120() {
+public void test120() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3667,7 +3667,7 @@ public void test120() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=156108
-public void test121() {
+public void test121() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3712,7 +3712,7 @@ public void test121() {
 );
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=156108 - variation
-public void test122() {
+public void test122() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3740,7 +3740,7 @@ public void test122() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=155255
-public void test123() {
+public void test123() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3773,7 +3773,7 @@ public void test123() {
 		"[1:true,java.lang.Boolean][2:true,java.lang.Boolean][3:false,java.lang.Boolean][4:false,java.lang.Boolean][done]");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=155255 - variation
-public void test124() {
+public void test124() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String specVersion = System.getProperty("java.specification.version");
 	isJRE15Plus =  Integer.valueOf(specVersion) >= Integer.valueOf(CompilerOptions.VERSION_15);
 	this.runNegativeTest(
@@ -3799,7 +3799,7 @@ public void test124() {
 		"----------\n");
 	}
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=155255 - variation
-public void test125() {
+public void test125() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3826,7 +3826,7 @@ public void test125() {
 		},
 		"[1:3.0,java.lang.Float][2:2,java.lang.Integer][3:false,java.lang.Boolean][done]");
 	}
-public void test126() {
+public void test126() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3861,7 +3861,7 @@ public void test126() {
 		"Zork cannot be resolved to a type\n" +
 		"----------\n");
 }
-public void test127() {
+public void test127() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3881,7 +3881,7 @@ public void test127() {
 		"SUCCESS:o1[java.lang.Long],o2:[class java.lang.Integer]");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=159987
-public void test128() {
+public void test128() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// check there is no unncessary cast warning when autoboxing, even in array initializer
 	this.runNegativeTest(
 		new String[] {
@@ -3926,7 +3926,7 @@ public void test128() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=155104
-public void test129() {
+public void test129() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3948,7 +3948,7 @@ public void test129() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=174879
-public void test130() {
+public void test130() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3970,7 +3970,7 @@ public void test130() {
 		"SUCCESS");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=174879
-public void test131() {
+public void test131() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3992,7 +3992,7 @@ public void test131() {
 		"SUCCESS");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=174879
-public void test132() {
+public void test132() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4014,7 +4014,7 @@ public void test132() {
 		"SUCCESS");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=174879
-public void test133() {
+public void test133() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4036,7 +4036,7 @@ public void test133() {
 		"SUCCESS");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=174879
-public void test134() {
+public void test134() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4058,7 +4058,7 @@ public void test134() {
 		"SUCCESS");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=177372
-public void test135() {
+public void test135() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map settings = getCompilerOptions();
 	settings.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
 	this.runConformTest(
@@ -4090,7 +4090,7 @@ public void test135() {
 		null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=177372 - variation
-public void test136() {
+public void test136() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map settings = getCompilerOptions();
 	settings.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
 	this.runConformTest(
@@ -4123,7 +4123,7 @@ public void test136() {
 		null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=177372 - variation
-public void test137() {
+public void test137() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map settings = getCompilerOptions();
 	settings.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
 	this.runConformTest(
@@ -4156,7 +4156,7 @@ public void test137() {
 		null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=177372 - variation
-public void test138() {
+public void test138() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map settings = getCompilerOptions();
 	settings.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
 	this.runConformTest(
@@ -4191,7 +4191,7 @@ public void test138() {
 		null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=177372 - variation
-public void test139() {
+public void test139() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map settings = getCompilerOptions();
 	settings.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
 	this.runConformTest(
@@ -4226,7 +4226,7 @@ public void test139() {
 		null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=177372 - variation
-public void test140() {
+public void test140() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map settings = getCompilerOptions();
 	settings.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
 	this.runConformTest(
@@ -4254,7 +4254,7 @@ public void test140() {
 		null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=177372 - variation
-public void test141() {
+public void test141() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map settings = getCompilerOptions();
 	settings.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
 	this.runConformTest(
@@ -4280,7 +4280,7 @@ public void test141() {
 		null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=177372 - variation
-public void test142() {
+public void test142() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map settings = getCompilerOptions();
 	settings.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
 	this.runConformTest(
@@ -4308,7 +4308,7 @@ public void test142() {
 		null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=177372 - variation
-public void test143() {
+public void test143() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map settings = getCompilerOptions();
 	settings.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
 	this.runConformTest(
@@ -4336,7 +4336,7 @@ public void test143() {
 		null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=177372 - variation
-public void test144() {
+public void test144() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map settings = getCompilerOptions();
 	settings.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
 	this.runConformTest(
@@ -4371,7 +4371,7 @@ public void test144() {
 		null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=177372 - variation
-public void test145() {
+public void test145() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map settings = getCompilerOptions();
 	settings.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
 	this.runConformTest(
@@ -4399,7 +4399,7 @@ public void test145() {
 		null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=177372 - variation
-public void test146() {
+public void test146() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map settings = getCompilerOptions();
 	settings.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
 	this.runConformTest(
@@ -4439,7 +4439,7 @@ public void test147() {
 		"SUCCESS");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=184957
-public void test148() {
+public void test148() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4461,7 +4461,7 @@ public void test148() {
 		"SUCCESS0");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=184957
-public void test149() {
+public void test149() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4528,7 +4528,7 @@ public void test152() {
 		"SUCCESS");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=223685
-public void test153() {
+public void test153() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4594,7 +4594,7 @@ public void test153() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=232565
-public void test154() {
+public void test154() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4626,7 +4626,7 @@ public void test154() {
 		"000");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=232565 - variation
-public void test155() {
+public void test155() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4658,7 +4658,7 @@ public void test155() {
 		"000");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=232565 - variation
-public void test156() {
+public void test156() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4677,7 +4677,7 @@ public void test156() {
 		"HIdone");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=232565 - variation
-public void test157() {
+public void test157() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4697,7 +4697,7 @@ public void test157() {
 		"HIdone");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=232565 - variation
-public void test158() {
+public void test158() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4719,7 +4719,7 @@ public void test158() {
 		"HIdone");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=236019
-public void test159() {
+public void test159() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4757,7 +4757,7 @@ public void test159() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=232565 - variation
-public void test160() {
+public void test160() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4789,7 +4789,7 @@ public void test160() {
 		"111");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=232565 - variation
-public void test161() {
+public void test161() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4821,7 +4821,7 @@ public void test161() {
 		"111");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=232565 - variation
-public void test162() {
+public void test162() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4840,7 +4840,7 @@ public void test162() {
 		"IJdone");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=232565 - variation
-public void test163() {
+public void test163() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4860,7 +4860,7 @@ public void test163() {
 		"IJdone");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=232565 - variation
-public void test164() {
+public void test164() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4882,7 +4882,7 @@ public void test164() {
 		"IJdone");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=231709
-public void test165() {
+public void test165() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4980,7 +4980,7 @@ public void test165() {
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=231709 - variation
-public void test166() {
+public void test166() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -5092,7 +5092,7 @@ public void test166() {
 		"The expression of type short is boxed into Character\n" +
 		"----------\n");
 }
-public void test167() {
+public void test167() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -5128,7 +5128,7 @@ public void test167() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=264843
-public void test168() {
+public void test168() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -5188,7 +5188,7 @@ public void test168() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=264843
-public void test169() {
+public void test169() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String expectedCompilerLog = this.complianceLevel >= ClassFileConstants.JDK21 ?
 			"----------\n" +
 			"1. WARNING in X.java (at line 1)\n" +

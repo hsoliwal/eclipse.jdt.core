@@ -116,14 +116,14 @@ public class CompilationUnit extends ASTNode {
 		new ChildListPropertyDescriptor(CompilationUnit.class, "types", AbstractTypeDeclaration.class, CYCLE_RISK); //$NON-NLS-1$
 
 	static {
-		List properyList = new ArrayList(4);
+		List properyList = new ArrayList(4); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(CompilationUnit.class, properyList);
 		addProperty(PACKAGE_PROPERTY, properyList);
 		addProperty(IMPORTS_PROPERTY, properyList);
 		addProperty(TYPES_PROPERTY, properyList);
 		PROPERTY_DESCRIPTORS = reapPropertyList(properyList);
 
-		properyList = new ArrayList(5);
+		properyList = new ArrayList(5); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(CompilationUnit.class, properyList);
 		addProperty(PACKAGE_PROPERTY, properyList);
 		addProperty(IMPORTS_PROPERTY, properyList);
@@ -290,7 +290,7 @@ public class CompilationUnit extends ASTNode {
 	 * @see ASTParser
 	 * @since 3.2
 	 */
-	public int getColumnNumber(final int position) {
+	public int getColumnNumber(final int position) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.lineEndTable == null) return -2;
 		final int line = getLineNumber(position);
 		if (line == -1) {
@@ -564,7 +564,7 @@ public class CompilationUnit extends ASTNode {
 				this.messages = EMPTY_MESSAGES;
 			} else {
 				this.messages = new Message[problemLength];
-				for (int i = 0; i < problemLength; i++) {
+				for (int i = 0; i < problemLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IProblem problem = this.problems[i];
 					int start = problem.getSourceStart();
 					int end = problem.getSourceEnd();
@@ -622,7 +622,7 @@ public class CompilationUnit extends ASTNode {
 	 * for this compilation unit or <code>-1</code> the inputs are not valid
 	 * @since 3.2
 	 */
-	 public int getPosition(int line, int column) {
+	 public int getPosition(int line, int column) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.lineEndTable == null) return -2;
 		if (line < 1 || column < 0) return -1;
 		int length;
@@ -767,7 +767,7 @@ public class CompilationUnit extends ASTNode {
 		return super.internalGetChildListProperty(property);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final ASTNode internalGetSetChildProperty(ChildPropertyDescriptor property, boolean get, ASTNode child) {
 		if (property == MODULE_PROPERTY) {
 			if (get) {
@@ -842,7 +842,7 @@ public class CompilationUnit extends ASTNode {
 	 * @see ASTParser
 	 * @since 3.2
 	 */
-	public int getLineNumber(int position) {
+	public int getLineNumber(int position) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.lineEndTable == null) return -2;
 		int length;
 		if ((length = this.lineEndTable.length) == 0) {
@@ -875,7 +875,7 @@ public class CompilationUnit extends ASTNode {
 		// && low == 0 && hi == length - 1 && low < hi
 
 		// binary search line end table
-		while (true) {
+		while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// invariant lineEndTable[low] < position <= lineEndTable[hi]
 			// && 0 <= low < hi <= length - 1
 			// reducing measure hi - low
@@ -998,7 +998,7 @@ public class CompilationUnit extends ASTNode {
 	 * @see ASTParser
 	 * @since 3.0
 	 */
-	void setCommentTable(Comment[] commentTable) {
+	void setCommentTable(Comment[] commentTable) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// double check table to ensure that all comments have
 		// source positions and are in strictly increasing order
 		if (commentTable == null) {
@@ -1006,7 +1006,7 @@ public class CompilationUnit extends ASTNode {
 			this.optionalCommentTable = null;
 		} else {
 			int nextAvailablePosition = 0;
-			for (Comment comment : commentTable) {
+			for (Comment comment : commentTable) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (comment == null) {
 					throw new IllegalArgumentException();
 				}
@@ -1128,7 +1128,7 @@ public class CompilationUnit extends ASTNode {
 		return matcher.match(this, other);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int treeSize() {
 		int size = memSize();
 		if (this.module != null) {
@@ -1141,7 +1141,7 @@ public class CompilationUnit extends ASTNode {
 		size += this.types.listSize();
 		// include disconnected comments
 		if (this.optionalCommentList != null) {
-			for (Object o : this.optionalCommentList) {
+			for (Object o : this.optionalCommentList) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Comment comment = (Comment) o;
 				if (comment != null && comment.getParent() == null) {
 					size += comment.treeSize();

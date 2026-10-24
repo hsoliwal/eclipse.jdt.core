@@ -40,7 +40,7 @@ public class DebugEvaluationTest extends EvaluationTest {
 //		TESTS_NAMES = new String[] { "test069" };
 	}
 	class DebugRequestor extends Requestor {
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public boolean acceptClassFiles(org.eclipse.jdt.internal.compiler.ClassFile[] classFiles, char[] codeSnippetClassName) {
 			if (DebugEvaluationTest.this.jdiStackFrame == null) {
 				return super.acceptClassFiles(classFiles, codeSnippetClassName);
@@ -65,7 +65,7 @@ public class DebugEvaluationTest extends EvaluationTest {
 		}
 	}
 
-	protected static final String SOURCE_DIRECTORY = Util.getOutputDirectory() + File.separator + "source";
+	protected static final String SOURCE_DIRECTORY = Util.getOutputDirectory() + File.separator + "source"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	public JDIStackFrame jdiStackFrame;
 	VirtualMachine jdiVM;
@@ -74,7 +74,7 @@ public class DebugEvaluationTest extends EvaluationTest {
 		super(name);
 	}
 	public static Test setupSuite(Class clazz) {
-		ArrayList testClasses = new ArrayList();
+		ArrayList testClasses = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		testClasses.add(clazz);
 		return buildAllCompliancesTestSuite(clazz, DebugEvaluationSetup.class, testClasses);
 	}
@@ -84,18 +84,18 @@ public class DebugEvaluationTest extends EvaluationTest {
 	public static Class testClass() {
 		return DebugEvaluationTest.class;
 	}
-	public void compileAndDeploy(String source, String className) {
+	public void compileAndDeploy(String source, String className) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		resetEnv(); // needed to reinitialize the caches
 		File directory = new File(SOURCE_DIRECTORY);
-		if (!directory.exists()) {
-			if (!directory.mkdir()) {
-				System.out.println("Could not create " + SOURCE_DIRECTORY);
+		if (!directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			if (!directory.mkdir()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				System.out.println("Could not create " + SOURCE_DIRECTORY); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return;
 			}
 		}
-		String fileName = SOURCE_DIRECTORY + File.separator + className + ".java";
+		String fileName = SOURCE_DIRECTORY + File.separator + className + ".java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(source);
 			writer.flush();
 			writer.close();
@@ -103,30 +103,30 @@ public class DebugEvaluationTest extends EvaluationTest {
 			e.printStackTrace();
 			return;
 		}
-		StringBuilder buffer = new StringBuilder();
-		buffer
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append("\"")
 			.append(fileName)
 			.append("\" -d \"")
-			.append(EvaluationSetup.EVAL_DIRECTORY + File.separator + LocalVMLauncher.REGULAR_CLASSPATH_DIRECTORY)
+			.append(EvaluationSetup.EVAL_DIRECTORY + File.separator + LocalVMLauncher.REGULAR_CLASSPATH_DIRECTORY) //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.append("\" -nowarn -g -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append(SOURCE_DIRECTORY)
 			.append("\"");
 		BatchCompiler.compile(buffer.toString(), new PrintWriter(System.out), new PrintWriter(System.err), null/*progress*/);
 	}
-	public void compileAndDeploy15(String source, String className) {
+	public void compileAndDeploy15(String source, String className) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		resetEnv(); // needed to reinitialize the caches
 		File directory = new File(SOURCE_DIRECTORY);
-		if (!directory.exists()) {
-			if (!directory.mkdir()) {
-				System.out.println("Could not create " + SOURCE_DIRECTORY);
+		if (!directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			if (!directory.mkdir()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				System.out.println("Could not create " + SOURCE_DIRECTORY); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return;
 			}
 		}
-		String fileName = SOURCE_DIRECTORY + File.separator + className + ".java";
+		String fileName = SOURCE_DIRECTORY + File.separator + className + ".java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(source);
 			writer.flush();
 			writer.close();
@@ -134,12 +134,12 @@ public class DebugEvaluationTest extends EvaluationTest {
 			e.printStackTrace();
 			return;
 		}
-		StringBuilder buffer = new StringBuilder();
-		buffer
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append("\"")
 			.append(fileName)
 			.append("\" -d \"")
-			.append(EvaluationSetup.EVAL_DIRECTORY + File.separator + LocalVMLauncher.REGULAR_CLASSPATH_DIRECTORY)
+			.append(EvaluationSetup.EVAL_DIRECTORY + File.separator + LocalVMLauncher.REGULAR_CLASSPATH_DIRECTORY) //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.append("\" -nowarn -" + CompilerOptions.getFirstSupportedJavaVersion() + " -g -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append(SOURCE_DIRECTORY)
@@ -186,8 +186,8 @@ public class DebugEvaluationTest extends EvaluationTest {
 
 	public void removeTempClass(String className) {
 		resetEnv(); // needed to reinitialize the caches
-		Util.delete(SOURCE_DIRECTORY + File.separator + className + ".java");
-		Util.delete(EvaluationSetup.EVAL_DIRECTORY + File.separator + LocalVMLauncher.REGULAR_CLASSPATH_DIRECTORY + File.separator + className + ".class");
+		Util.delete(SOURCE_DIRECTORY + File.separator + className + ".java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		Util.delete(EvaluationSetup.EVAL_DIRECTORY + File.separator + LocalVMLauncher.REGULAR_CLASSPATH_DIRECTORY + File.separator + className + ".class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	/*public static Test suite(Class evaluationTestClass) {
 		junit.framework.TestSuite suite = new junit.framework.TestSuite();
@@ -197,7 +197,7 @@ public class DebugEvaluationTest extends EvaluationTest {
 	/**
 	 * Sanity test of IEvaluationContext.evaluate(char[], char[][], char[][], int[], char[], boolean, boolean, IRunner, INameEnvironment, ConfigurableOption[], IRequestor , IProblemFactory)
 	 */
-	public void test001() throws Exception {
+	public void test001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String userCode =
 			"";
 		JDIStackFrame stackFrame = new JDIStackFrame(
@@ -208,7 +208,7 @@ public class DebugEvaluationTest extends EvaluationTest {
 		DebugRequestor requestor = new DebugRequestor();
 		char[] snippet = "return 1;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
-		assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0);
+		assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
 		assertTrue("Result should have a value", result.hasValue());
@@ -218,7 +218,7 @@ public class DebugEvaluationTest extends EvaluationTest {
 /**
  * Return 'this'.
  */
-public void test002() throws Exception {
+public void test002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA002 =
 			"public class A002 {\n" +
@@ -253,7 +253,7 @@ public void test002() throws Exception {
 			getCompilerOptions(),
 			requestor,
 			getProblemFactory());
-		assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0);
+		assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
 		assertTrue("Result should have a value", result.hasValue());
@@ -266,7 +266,7 @@ public void test002() throws Exception {
 /**
  * Return 'this'.
  */
-public void test003() throws Exception {
+public void test003() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA003 =
 			"public class A003 {\n" +
@@ -301,7 +301,7 @@ public void test003() throws Exception {
 			getCompilerOptions(),
 			requestor,
 			getProblemFactory());
-		assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0);
+		assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should have a problem", result.hasProblems()); // 'this' cannot be referenced since there is no declaring type
 		assertTrue("Result should not have a value", !result.hasValue());
@@ -312,7 +312,7 @@ public void test003() throws Exception {
 /**
  * Return 'thread'.
  */
-public void test004() throws Exception {
+public void test004() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String userCode =
 		"java.lang.Thread thread = new Thread() {\n" +
 		"  public String toString() {\n" +
@@ -327,7 +327,7 @@ public void test004() throws Exception {
 	DebugRequestor requestor = new DebugRequestor();
 	char[] snippet = "return thread;".toCharArray();
 	evaluate(stackFrame, requestor, snippet);
-	assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0);
+	assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	EvaluationResult result = requestor.results[0];
 	assertTrue("Code snippet should not have problems", !result.hasProblems());
 	assertTrue("Result should have a value", result.hasValue());
@@ -337,7 +337,7 @@ public void test004() throws Exception {
 /**
  * Return 'x'.
  */
-public void test005() throws Exception {
+public void test005() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA005 =
 			"public class A005 {\n" +
@@ -361,7 +361,7 @@ public void test005() throws Exception {
 		DebugRequestor requestor = new DebugRequestor();
 		char[] snippet = "return x;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
-		assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0);
+		assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
 		assertTrue("Result should have a value", result.hasValue());
@@ -374,7 +374,7 @@ public void test005() throws Exception {
 /**
  * Return 'x' + new Object(){ int foo(){ return 17; }}.foo();
  */
-public void test006() throws Exception {
+public void test006() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA006 =
 			"public class A006 {\n" +
@@ -398,7 +398,7 @@ public void test006() throws Exception {
 		DebugRequestor requestor = new DebugRequestor();
 		char[] snippet = "return x + new Object(){ int foo(){ return 17; }}.foo();".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
-		assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0);
+		assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
 		assertTrue("Result should have a value", result.hasValue());
@@ -411,7 +411,7 @@ public void test006() throws Exception {
 /**
  * Return a static field.
  */
-public void test007() throws Exception {
+public void test007() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA007 =
 			"public class A007 {\n" +
@@ -435,7 +435,7 @@ public void test007() throws Exception {
 		DebugRequestor requestor = new DebugRequestor();
 		char[] snippet = "return X;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
-		assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0);
+		assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
 		assertTrue("Result should have a value", result.hasValue());
@@ -448,7 +448,7 @@ public void test007() throws Exception {
 /**
  * Return x + new Object(){ int foo(int x){ return x; }}.foo(14);
  */
-public void test008() throws Exception {
+public void test008() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA008 =
 			"public class A008 {\n" +
@@ -472,7 +472,7 @@ public void test008() throws Exception {
 		DebugRequestor requestor = new DebugRequestor();
 		char[] snippet = "return x + new Object(){ int foo(int x){ return x; }}.foo(14);".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
-		assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0);
+		assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
 		assertTrue("Result should have a value", result.hasValue());
@@ -485,7 +485,7 @@ public void test008() throws Exception {
 /**
  * Free return of local variable 's'.
  */
-public void test009() throws Exception {
+public void test009() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String userCode =
 		"String s = \"test009\";\n";
 	JDIStackFrame stackFrame = new JDIStackFrame(
@@ -496,7 +496,7 @@ public void test009() throws Exception {
 	DebugRequestor requestor = new DebugRequestor();
 	char[] snippet = "s".toCharArray();
 	evaluate(stackFrame, requestor, snippet);
-	assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0);
+	assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	EvaluationResult result = requestor.results[0];
 	assertTrue("Code snippet should not have problems", !result.hasProblems());
 	assertTrue("Result should have a value", result.hasValue());
@@ -506,7 +506,7 @@ public void test009() throws Exception {
 /**
  * Return 'this'.
  */
-public void test010() throws Exception {
+public void test010() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA010 =
 			"public class A010 {\n" +
@@ -534,7 +534,7 @@ public void test010() throws Exception {
 		DebugRequestor requestor = new DebugRequestor();
 		char[] snippet = "return this;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
-		assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0);
+		assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
 		assertTrue("Result should have a value", result.hasValue());
@@ -547,7 +547,7 @@ public void test010() throws Exception {
 /**
  * Return local variable 'v'.
  */
-public void test011() throws Exception {
+public void test011() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String userCode =
 		"String s = \"s\";\n" +
 		"java.util.Vector v = new java.util.Vector();\n" +
@@ -560,7 +560,7 @@ public void test011() throws Exception {
 	DebugRequestor requestor = new DebugRequestor();
 	char[] snippet = "return v;".toCharArray();
 	evaluate(stackFrame, requestor, snippet);
-	assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0);
+	assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	EvaluationResult result = requestor.results[0];
 	assertTrue("Code snippet should not have problems", !result.hasProblems());
 	assertTrue("Result should have a value", result.hasValue());
@@ -570,7 +570,7 @@ public void test011() throws Exception {
 /**
  * Set local variable 'date'.
  */
-public void _test012() throws Exception {
+public void _test012() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String userCode =
 		"java.util.GregorianCalendar cal = new java.util.GregorianCalendar();\n" +
 		"java.util.Date date = cal.getGregorianChange();\n" +
@@ -589,7 +589,7 @@ public void _test012() throws Exception {
 				"return date.after(cal.getGregorianChange());";
 	snippet = userCode.toCharArray();
 	evaluate(stackFrame, requestor, snippet);
-	assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0);
+	assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	EvaluationResult result = requestor.results[0];
 	assertTrue("Code snippet should not have problems", !result.hasProblems());
 	assertTrue("Result should have a value", result.hasValue());
@@ -600,7 +600,7 @@ public void _test012() throws Exception {
  * Set local variable 'i'.
  */
 // disabled since result has problem: Pb(2) int cannot be resolved to a type
-public void _test013() throws Exception {
+public void _test013() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String userCode = "int i = 0;";
 	JDIStackFrame stackFrame = new JDIStackFrame(
 		this.jdiVM,
@@ -613,7 +613,7 @@ public void _test013() throws Exception {
 	requestor = new DebugRequestor();
 	snippet = "return i != 0;".toCharArray();
 	evaluate(stackFrame, requestor, snippet);
-	assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0);
+	assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	EvaluationResult result = requestor.results[0];
 	assertTrue("Code snippet should not have problems", !result.hasProblems());
 	assertTrue("Result should have a value", result.hasValue());
@@ -624,7 +624,7 @@ public void _test013() throws Exception {
  * Set local variable 'i'.
  */
 // disabled since result has problem: Pb(2) int cannot be resolved to a type
-public void _test014() throws Exception {
+public void _test014() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String userCode = "int i = 0;";
 	JDIStackFrame stackFrame = new JDIStackFrame(
 		this.jdiVM,
@@ -637,7 +637,7 @@ public void _test014() throws Exception {
 	requestor = new DebugRequestor();
 	snippet = "return i!= 0;".toCharArray();
 	evaluate(stackFrame, requestor, snippet);
-	assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0);
+	assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	EvaluationResult result = requestor.results[0];
 	assertTrue("Code snippet should not have problems", !result.hasProblems());
 	assertTrue("Result should have a value", result.hasValue());
@@ -648,7 +648,7 @@ public void _test014() throws Exception {
  * Check java.lang.System.out != null
  */
 // disabled since result has problem: Pb(2) int cannot be resolved to a type
-public void _test015() throws Exception {
+public void _test015() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String userCode = "int i = 0;";
 	JDIStackFrame stackFrame = new JDIStackFrame(
 		this.jdiVM,
@@ -662,7 +662,7 @@ public void _test015() throws Exception {
 	requestor = new DebugRequestor();
 	snippet = "return java.lang.System.out != null;".toCharArray();
 	evaluate(stackFrame, requestor, snippet);
-	assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0);
+	assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	EvaluationResult result = requestor.results[0];
 	assertTrue("Code snippet should not have problems", !result.hasProblems());
 	assertTrue("Result should have a value", result.hasValue());
@@ -672,7 +672,7 @@ public void _test015() throws Exception {
 /**
  * Check java.lang.System.out == null
  */
-public void test016() throws Exception {
+public void test016() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String userCode = "";
 	JDIStackFrame stackFrame = new JDIStackFrame(
 		this.jdiVM,
@@ -685,7 +685,7 @@ public void test016() throws Exception {
 	requestor = new DebugRequestor();
 	snippet = "return java.lang.System.out == null;".toCharArray();
 	evaluate(stackFrame, requestor, snippet);
-	assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0);
+	assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	EvaluationResult result = requestor.results[0];
 	assertTrue("Code snippet should not have problems", !result.hasProblems());
 	assertTrue("Result should have a value", result.hasValue());
@@ -695,7 +695,7 @@ public void test016() throws Exception {
 /**
  * Check the third prime number is 5
  */
-public void test017() throws Exception {
+public void test017() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String userCode = "";
 
 	JDIStackFrame stackFrame = new JDIStackFrame(this.jdiVM, this, userCode);
@@ -736,7 +736,7 @@ public void test017() throws Exception {
 			+ "return primes[i-1];").toCharArray();
 	evaluate(stackFrame, requestor, snippet);
 	assertTrue(
-		"Should get one result but got " + (requestor.resultIndex + 1),
+		"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.resultIndex == 0);
 	EvaluationResult result = requestor.results[0];
 	assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -747,7 +747,7 @@ public void test017() throws Exception {
 /**
  * changing the value of a public field
  */
-public void test018() throws Exception {
+public void test018() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA018 =
 			"public class A018 {\n" +
@@ -774,7 +774,7 @@ public void test018() throws Exception {
 		requestor = new DebugRequestor();
 		snippet = "return x;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
-		assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0);
+		assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
 		assertTrue("Result should have a value", result.hasValue());
@@ -788,7 +788,7 @@ public void test018() throws Exception {
  * Access to super reference
  */
 // disabled since result has problem: Pb(422) super cannot be used in the code snippet code
-public void test019() throws Exception {
+public void test019() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
   try {
 		String sourceA019 =
 			"public class A019 {\n" +
@@ -812,7 +812,7 @@ public void test019() throws Exception {
 		DebugRequestor requestor = new DebugRequestor();
 		char[] snippet = "return super.clone().equals(this);".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
-		assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0);
+		assertTrue("Should get one result but got " + requestor.resultIndex+1, requestor.resultIndex == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should have problems", result.hasProblems());
 		assertTrue("Code snippet should have problems", result.hasProblems());
@@ -825,7 +825,7 @@ public void test019() throws Exception {
 /**
  * Implicit message expression
  */
-public void test020() throws Exception {
+public void test020() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA =
 			"public class A {\n"
@@ -855,7 +855,7 @@ public void test020() throws Exception {
 		char[] snippet = "return foo();".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -869,7 +869,7 @@ public void test020() throws Exception {
 /**
  * Implicit message expression
  */
-public void test021() throws Exception {
+public void test021() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA21 =
 			"public class A21 {\n"
@@ -902,7 +902,7 @@ public void test021() throws Exception {
 		snippet = "return o;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -916,7 +916,7 @@ public void test021() throws Exception {
 /**
  * Qualified Name Reference: b.s
  */
-public void test022() throws Exception {
+public void test022() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceB22 =
 			"public class B22 {\n"
@@ -952,7 +952,7 @@ public void test022() throws Exception {
 		char[] snippet = "b.s = \"toto\"".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -961,7 +961,7 @@ public void test022() throws Exception {
 		snippet = "return b.s;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -976,7 +976,7 @@ public void test022() throws Exception {
 /**
  * Qualified Name Reference: b.c.c
  */
-public void test023() throws Exception {
+public void test023() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceC23 =
 			"public class C23 {\n"
@@ -1017,7 +1017,7 @@ public void test023() throws Exception {
 		char[] snippet = "b.c.c = \"toto\"".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -1026,7 +1026,7 @@ public void test023() throws Exception {
 		snippet = "return b.c.c;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -1042,7 +1042,7 @@ public void test023() throws Exception {
 /**
  * Array Reference
  */
-public void test024() throws Exception {
+public void test024() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceC24 =
 			"public class C24 {\n"
@@ -1085,7 +1085,7 @@ public void test024() throws Exception {
 		char[] snippet = "b.c.tab[3] = 8".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -1094,7 +1094,7 @@ public void test024() throws Exception {
 		snippet = "return b.c.tab[3];".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -1110,7 +1110,7 @@ public void test024() throws Exception {
 /**
  * Array Reference
  */
-public void test025() throws Exception {
+public void test025() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA25 =
 			"public class A25 {\n"
@@ -1140,7 +1140,7 @@ public void test025() throws Exception {
 		char[] snippet = "tabString[1] = \"toto\"".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -1149,7 +1149,7 @@ public void test025() throws Exception {
 		snippet = "return tabString[1];".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -1163,7 +1163,7 @@ public void test025() throws Exception {
 /**
  * Array Reference
  */
-public void test026() throws Exception {
+public void test026() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA26 =
 			"public class A26 {\n"
@@ -1192,7 +1192,7 @@ public void test026() throws Exception {
 			+ "tab[0]").toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -1206,7 +1206,7 @@ public void test026() throws Exception {
 /**
  * Array Reference
  */
-public void test027() throws Exception {
+public void test027() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA27 =
 			"public class A27 {\n"
@@ -1244,7 +1244,7 @@ public void test027() throws Exception {
 			+ "default: return -5;}").toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -1258,7 +1258,7 @@ public void test027() throws Exception {
 /**
  * Array Reference
  */
-public void test028() throws Exception {
+public void test028() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA28 =
 			"public class A28 {\n"
@@ -1298,7 +1298,7 @@ public void test028() throws Exception {
 			+ "return tab[i++];").toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -1312,7 +1312,7 @@ public void test028() throws Exception {
 /**
  * Array Reference
  */
-public void test029() throws Exception {
+public void test029() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA29 =
 			"public class A29 {\n"
@@ -1352,7 +1352,7 @@ public void test029() throws Exception {
 			+ "return tab[++i];").toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -1366,7 +1366,7 @@ public void test029() throws Exception {
 /**
  * Array Reference: ArrayIndexOutOfBoundException
  */
-public void test030() throws Exception {
+public void test030() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA30 =
 			"public class A30 {\n"
@@ -1410,7 +1410,7 @@ public void test030() throws Exception {
 			+ "}").toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -1424,7 +1424,7 @@ public void test030() throws Exception {
 /**
  * Read access to an instance private member of the enclosing class
  */
-public void test031() throws Exception {
+public void test031() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA31 =
 			"public class A31 {\n"
@@ -1448,7 +1448,7 @@ public void test031() throws Exception {
 		char[] snippet = "return i;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -1462,7 +1462,7 @@ public void test031() throws Exception {
 /**
  * Read access to a instance private member of the class different from the enclosing class
  */
-public void test032() throws Exception {
+public void test032() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA32 =
 			"public class A32 {\n"
@@ -1494,17 +1494,17 @@ public void test032() throws Exception {
 		char[] snippet = "return new B32().j;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", result.hasProblems());
 		CategorizedProblem[] problems = result.getProblems();
 		StringBuilder buffer = null;
-		for (int i = 0, max = problems.length; i < max; i++){
+		for (int i = 0, max = problems.length; i < max; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (problems[i].isError()){
-				if (buffer == null) buffer = new StringBuilder(10);
-				buffer.append(problems[i].getMessage());
-				buffer.append('|');
+				if (buffer == null) buffer = new StringBuilder(10); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				buffer.append(problems[i].getMessage()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append('|'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		assertEquals("Unexpected errors",
@@ -1518,7 +1518,7 @@ public void test032() throws Exception {
 /**
  * Read access to an instance private member of the enclosing class
  */
-public void test033() throws Exception {
+public void test033() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA33 =
 			"public class A33 {\n"
@@ -1565,7 +1565,7 @@ public void test033() throws Exception {
 			requestor,
 			getProblemFactory());
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -1579,7 +1579,7 @@ public void test033() throws Exception {
 /**
  * Write access to an instance private member of the enclosing class
  */
-public void test034() throws Exception {
+public void test034() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA34 =
 			"public class A34 {\n"
@@ -1599,7 +1599,7 @@ public void test034() throws Exception {
 			"return l;").toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -1613,7 +1613,7 @@ public void test034() throws Exception {
 /**
  * Read access to a static private member of the enclosing class
  */
-public void test035() throws Exception {
+public void test035() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA35 =
 			"public class A35 {\n"
@@ -1637,7 +1637,7 @@ public void test035() throws Exception {
 		char[] snippet = "return i;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -1651,7 +1651,7 @@ public void test035() throws Exception {
 /**
  * Coumpound assignement to an instance private member of the enclosing class
  */
-public void test036() throws Exception {
+public void test036() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA36 =
 			"public class A36 {\n"
@@ -1671,7 +1671,7 @@ public void test036() throws Exception {
 			"return l;").toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -1685,7 +1685,7 @@ public void test036() throws Exception {
 /**
  * Coumpound assignement to an instance private member of the enclosing class
  */
-public void test037() throws Exception {
+public void test037() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA37 =
 			"public class A37 {\n"
@@ -1705,7 +1705,7 @@ public void test037() throws Exception {
 			"return l;").toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -1719,7 +1719,7 @@ public void test037() throws Exception {
 /**
  * Coumpound assignement to an instance private member of the enclosing class
  */
-public void test038() throws Exception {
+public void test038() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA38 =
 			"public class A38 {\n"
@@ -1737,7 +1737,7 @@ public void test038() throws Exception {
 		char[] snippet = "return l++;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -1751,7 +1751,7 @@ public void test038() throws Exception {
 /**
  * Coumpound assignement to an static private member of the enclosing class
  */
-public void test039() throws Exception {
+public void test039() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA39 =
 			"public class A39 {\n"
@@ -1769,7 +1769,7 @@ public void test039() throws Exception {
 		char[] snippet = "return A39.i;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -1783,7 +1783,7 @@ public void test039() throws Exception {
 /**
  * Coumpound assignement to an static private member of the enclosing class
  */
-public void test040() throws Exception {
+public void test040() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA40 =
 			"public class A40 {\n"
@@ -1801,7 +1801,7 @@ public void test040() throws Exception {
 		char[] snippet = "return A40.tab.length;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -1815,7 +1815,7 @@ public void test040() throws Exception {
 /**
  * Coumpound assignement to an static private final member of the enclosing class
  */
-public void test041() throws Exception {
+public void test041() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA41 =
 			"public class A41 {\n"
@@ -1833,7 +1833,7 @@ public void test041() throws Exception {
 		char[] snippet = "return A41.tab.length;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -1847,7 +1847,7 @@ public void test041() throws Exception {
 /**
  * Coumpound assignement to an static private final member of the enclosing class
  */
-public void test042() throws Exception {
+public void test042() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA42 =
 			"public class A42 {\n"
@@ -1865,7 +1865,7 @@ public void test042() throws Exception {
 		char[] snippet = "return ++A42.Counter;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -1879,7 +1879,7 @@ public void test042() throws Exception {
 /**
  * Coumpound assignement to an static private final member of the enclosing class
  */
-public void test043() throws Exception {
+public void test043() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA43 =
 			"public class A43 {\n"
@@ -1897,7 +1897,7 @@ public void test043() throws Exception {
 		char[] snippet = "A43.Counter++; return A43.Counter;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -1911,7 +1911,7 @@ public void test043() throws Exception {
 /**
  * Coumpound assignement to an static private final member of the enclosing class
  */
-public void test044() throws Exception {
+public void test044() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA44 =
 			"public class A44 {\n"
@@ -1929,7 +1929,7 @@ public void test044() throws Exception {
 		char[] snippet = "int j = A44.Counter++; return A44.Counter + j;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -1943,7 +1943,7 @@ public void test044() throws Exception {
 /**
  * Coumpound assignement to an static private final member of the enclosing class
  */
-public void test045() throws Exception {
+public void test045() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA45 =
 			"public class A45 {\n"
@@ -1961,7 +1961,7 @@ public void test045() throws Exception {
 		char[] snippet = "int j = ++A45.Counter; return A45.Counter + j;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -1975,7 +1975,7 @@ public void test045() throws Exception {
 /**
  * Coumpound assignement to an static protected final member of the enclosing class
  */
-public void test046() throws Exception {
+public void test046() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA46 =
 			"public class A46 {\n"
@@ -1993,7 +1993,7 @@ public void test046() throws Exception {
 		char[] snippet = "int j = ++A46.Counter; return A46.Counter + j;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -2007,7 +2007,7 @@ public void test046() throws Exception {
 /**
  * Return the value of a private static field throught a private static field
  */
-public void test047() throws Exception {
+public void test047() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA47 =
 			"public class A47 {\n"
@@ -2026,7 +2026,7 @@ public void test047() throws Exception {
 		char[] snippet = "return A47.instance.Counter;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -2041,7 +2041,7 @@ public void test047() throws Exception {
  * Return the value of a private static field throught a private static field
  * Using private field emulation on a field reference.
  */
-public void test048() throws Exception {
+public void test048() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA48 =
 			"public class A48 {\n"
@@ -2060,7 +2060,7 @@ public void test048() throws Exception {
 		char[] snippet = "return new A48().instance.Counter;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -2075,7 +2075,7 @@ public void test048() throws Exception {
  * Compound assignment of a private field.
  * Using private field emulation on a field reference.
  */
-public void test049() throws Exception {
+public void test049() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA49 =
 			"public class A49 {\n"
@@ -2094,7 +2094,7 @@ public void test049() throws Exception {
 		char[] snippet = "return ++(new A49().Counter);".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -2109,7 +2109,7 @@ public void test049() throws Exception {
  * Compound assignment of a private field.
  * Using private field emulation on a field reference.
  */
-public void test050() throws Exception {
+public void test050() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA50 =
 			"public class A50 {\n"
@@ -2128,7 +2128,7 @@ public void test050() throws Exception {
 		char[] snippet = "A50 a = new A50(); a.Counter = 5; return a.Counter;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -2143,7 +2143,7 @@ public void test050() throws Exception {
  * Assignment of a private field.
  * Using private field emulation on a field reference.
  */
-public void test051() throws Exception {
+public void test051() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA51 =
 			"public class A51 {\n"
@@ -2162,7 +2162,7 @@ public void test051() throws Exception {
 		char[] snippet = "Counter = 5; return Counter;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -2177,7 +2177,7 @@ public void test051() throws Exception {
  * Assignment of a private field.
  * Using private field emulation on a field reference.
  */
-public void test052() throws Exception {
+public void test052() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA52 =
 			"public class A52 {\n"
@@ -2196,7 +2196,7 @@ public void test052() throws Exception {
 		char[] snippet = "this.Counter = 5; return this.Counter;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -2211,7 +2211,7 @@ public void test052() throws Exception {
  * Post assignement of a private field.
  * Using private field emulation on a field reference.
  */
-public void test053() throws Exception {
+public void test053() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA53 =
 			"public class A53 {\n"
@@ -2230,7 +2230,7 @@ public void test053() throws Exception {
 		char[] snippet = "this.Counter++; return this.Counter;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -2245,7 +2245,7 @@ public void test053() throws Exception {
  * Post assignement of a private field.
  * Using private field emulation on a field reference.
  */
-public void test054() throws Exception {
+public void test054() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA54 =
 			"public class A54 {\n"
@@ -2264,7 +2264,7 @@ public void test054() throws Exception {
 		char[] snippet = "this.Counter++; return this.Counter;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -2278,7 +2278,7 @@ public void test054() throws Exception {
 /**
  * Read access to a private method.
  */
-public void test055() throws Exception {
+public void test055() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA55 =
 			"public class A55 {\n"
@@ -2298,7 +2298,7 @@ public void test055() throws Exception {
 		char[] snippet = "return foo();".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -2312,7 +2312,7 @@ public void test055() throws Exception {
 /**
  * Read access to a private method.
  */
-public void test056() throws Exception {
+public void test056() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA56 =
 			"public class A56 {\n"
@@ -2332,7 +2332,7 @@ public void test056() throws Exception {
 		char[] snippet = "return foo().intValue();".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -2346,7 +2346,7 @@ public void test056() throws Exception {
 /**
  * Read access to a private method.
  */
-public void test057() throws Exception {
+public void test057() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA57 =
 			"public class A57 {\n"
@@ -2366,7 +2366,7 @@ public void test057() throws Exception {
 		char[] snippet = "return foo(3).intValue();".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -2380,7 +2380,7 @@ public void test057() throws Exception {
 /**
  * Read access to a private method.
  */
-public void test058() throws Exception {
+public void test058() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA58 =
 			"public class A58 {\n"
@@ -2400,7 +2400,7 @@ public void test058() throws Exception {
 		char[] snippet = "int[] tab = new int[] {1,2,3};return foo(0, tab).intValue();".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -2414,7 +2414,7 @@ public void test058() throws Exception {
 /**
  * Read access to a private method.
  */
-public void test059() throws Exception {
+public void test059() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA59 =
 			"public class A59 {\n"
@@ -2434,7 +2434,7 @@ public void test059() throws Exception {
 		char[] snippet = "Object[][] tab = new Object[0][0];return foo(3, tab).intValue();".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -2448,7 +2448,7 @@ public void test059() throws Exception {
 /**
  * Read access to a private method.
  */
-public void test060() throws Exception {
+public void test060() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA60 =
 			"public class A60 {\n"
@@ -2471,7 +2471,7 @@ public void test060() throws Exception {
 		char[] snippet = "return new A60(3).i;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -2485,7 +2485,7 @@ public void test060() throws Exception {
 /**
  * Read access to a private method.
  */
-public void test061() throws Exception {
+public void test061() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA61 =
 			"public class A61 {\n"
@@ -2508,7 +2508,7 @@ public void test061() throws Exception {
 		char[] snippet = "return new A61(new int[] {1,2,3}).i;".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -2522,7 +2522,7 @@ public void test061() throws Exception {
 /**
  * Static context with a declaring type.
  */
-public void test062() throws Exception {
+public void test062() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA62 =
 			"public class A62 {\n" +
@@ -2539,7 +2539,7 @@ public void test062() throws Exception {
 		char[] snippet = "1 + 1".toCharArray();
 		evaluate(stackFrame, requestor, snippet);
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -2553,7 +2553,7 @@ public void test062() throws Exception {
 /**
  * Return non-static field in static environment.
  */
-public void testNegative001() throws InstallException {
+public void testNegative001() throws InstallException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceANegative001 =
 			"public class ANegative001 {\n" +
@@ -2592,11 +2592,11 @@ public void testNegative001() throws InstallException {
 		EvaluationResult result = requestor.results[0];
 		CategorizedProblem[] problems = result.getProblems();
 		StringBuilder buffer = null;
-		for (int i = 0, max = problems.length; i < max; i++){
+		for (int i = 0, max = problems.length; i < max; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (problems[i].isError()){
-				if (buffer == null) buffer = new StringBuilder(10);
-				buffer.append(problems[i].getMessage());
-				buffer.append('|');
+				if (buffer == null) buffer = new StringBuilder(10); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				buffer.append(problems[i].getMessage()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append('|'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		assertEquals("Unexpected errors",
@@ -2609,7 +2609,7 @@ public void testNegative001() throws InstallException {
 /**
  * Return non-static field in static environment.
  */
-public void testNegative002() throws Exception {
+public void testNegative002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceANegative002 =
 			"public class ANegative002 {\n" +
@@ -2648,11 +2648,11 @@ public void testNegative002() throws Exception {
 		EvaluationResult result = requestor.results[0];
 		CategorizedProblem[] problems = result.getProblems();
 		StringBuilder buffer = null;
-		for (int i = 0, max = problems.length; i < max; i++){
+		for (int i = 0, max = problems.length; i < max; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (problems[i].isError()){
-				if (buffer == null) buffer = new StringBuilder(10);
-				buffer.append(problems[i].getMessage());
-				buffer.append('|');
+				if (buffer == null) buffer = new StringBuilder(10); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				buffer.append(problems[i].getMessage()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append('|'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		assertEquals("Unexpected errors",
@@ -2665,7 +2665,7 @@ public void testNegative002() throws Exception {
 /**
  * Return inexisting field in static environment.
  */
-public void testNegative003() throws InstallException {
+public void testNegative003() throws InstallException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceANegative003 =
 			"public class ANegative003 {\n" +
@@ -2704,11 +2704,11 @@ public void testNegative003() throws InstallException {
 		EvaluationResult result = requestor.results[0];
 		CategorizedProblem[] problems = result.getProblems();
 		StringBuilder buffer = null;
-		for (int i = 0, max = problems.length; i < max; i++){
+		for (int i = 0, max = problems.length; i < max; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (problems[i].isError()){
-				if (buffer == null) buffer = new StringBuilder(10);
-				buffer.append(problems[i].getMessage());
-				buffer.append('|');
+				if (buffer == null) buffer = new StringBuilder(10); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				buffer.append(problems[i].getMessage()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append('|'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		assertEquals("Unexpected errors",
@@ -2721,7 +2721,7 @@ public void testNegative003() throws InstallException {
 /**
  * Check java.lang.System.out = null returns an error
  */
-public void testNegative004() throws InstallException {
+public void testNegative004() throws InstallException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String userCode = "";
 	JDIStackFrame stackFrame = new JDIStackFrame(
 		this.jdiVM,
@@ -2735,11 +2735,11 @@ public void testNegative004() throws InstallException {
 	EvaluationResult result = requestor.results[0];
 	CategorizedProblem[] problems = result.getProblems();
 	StringBuilder buffer = null;
-	for (int i = 0, max = problems.length; i < max; i++){
+	for (int i = 0, max = problems.length; i < max; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (problems[i].isError()){
-			if (buffer == null) buffer = new StringBuilder(10);
-			buffer.append(problems[i].getMessage());
-			buffer.append('|');
+			if (buffer == null) buffer = new StringBuilder(10); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buffer.append(problems[i].getMessage()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append('|'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 	assertEquals("Unexpected errors",
@@ -2749,7 +2749,7 @@ public void testNegative004() throws InstallException {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=102778
  */
-public void test063() throws Exception {
+public void test063() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA63 =
 			"public class A63 {\n" +
@@ -2787,7 +2787,7 @@ public void test063() throws Exception {
 			requestor,
 			getProblemFactory());
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -2798,7 +2798,7 @@ public void test063() throws Exception {
 		removeTempClass("A62");
 	}
 }
-public void test065() {
+public void test065() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA65 =
 			"public class A65<T> {\n"
@@ -2833,10 +2833,10 @@ public void test065() {
 				requestor,
 				getProblemFactory());
 		} catch (InstallException e) {
-			assertTrue("No targetException " + e.getMessage(), false);
+			assertTrue("No targetException " + e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -2847,7 +2847,7 @@ public void test065() {
 		removeTempClass("A65");
 	}
 }
-public void test066() {
+public void test066() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA66 =
 			"public class A66 {\n"
@@ -2882,10 +2882,10 @@ public void test066() {
 				requestor,
 				getProblemFactory());
 		} catch (InstallException e) {
-			assertTrue("No targetException " + e.getMessage(), false);
+			assertTrue("No targetException " + e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -2896,7 +2896,7 @@ public void test066() {
 		removeTempClass("A66");
 	}
 }
-public void test067() {
+public void test067() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA67 =
 			"import java.util.List;\n" +
@@ -2938,10 +2938,10 @@ public void test067() {
 				requestor,
 				getProblemFactory());
 		} catch (InstallException e) {
-			assertTrue("No targetException " + e.getMessage(), false);
+			assertTrue("No targetException " + e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should not have problems", !result.hasProblems());
@@ -2952,7 +2952,7 @@ public void test067() {
 		removeTempClass("A67");
 	}
 }
-public void test068() {
+public void test068() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceSuperA68 =
 			"public class SuperA68 {\n"
@@ -2997,10 +2997,10 @@ public void test068() {
 				requestor,
 				getProblemFactory());
 		} catch (InstallException e) {
-			assertTrue("No targetException " + e.getMessage(), false);
+			assertTrue("No targetException " + e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		assertTrue(
-			"Should get one result but got " + (requestor.resultIndex + 1),
+			"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
 		assertTrue("Code snippet should have problems", result.hasProblems());
@@ -3011,7 +3011,7 @@ public void test068() {
 		removeTempClass("SuperA68");
 	}
 }
-public void test069() {
+public void test069() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		String sourceA69 =
 			"public enum A69 {\n"
@@ -3048,16 +3048,16 @@ public void test069() {
 				requestor,
 				getProblemFactory());
 		} catch (InstallException e) {
-			assertTrue("No targetException " + e.getMessage(), false);
+			assertTrue("No targetException " + e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		boolean is16Plus = 	this.complianceLevel >= ClassFileConstants.JDK16;
 		if (is16Plus) {
 			assertTrue(
-					"Should get one result but got " + (requestor.resultIndex + 1),
+					"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					requestor.resultIndex == 0);
 		} else {
 			assertTrue(
-					"Should get two results but got " + (requestor.resultIndex + 1),
+					"Should get two results but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					requestor.resultIndex == 1);
 		}
 		EvaluationResult result = requestor.results[0];
@@ -3077,7 +3077,7 @@ public void test069() {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=178861
  */
-public void testNegative005() throws InstallException {
+public void testNegative005() throws InstallException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String userCode = "";
 	JDIStackFrame stackFrame = new JDIStackFrame(
 		this.jdiVM,
@@ -3091,11 +3091,11 @@ public void testNegative005() throws InstallException {
 	EvaluationResult result = requestor.results[0];
 	CategorizedProblem[] problems = result.getProblems();
 	StringBuilder buffer = null;
-	for (int i = 0, max = problems.length; i < max; i++){
+	for (int i = 0, max = problems.length; i < max; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (problems[i].isError()){
-			if (buffer == null) buffer = new StringBuilder(10);
-			buffer.append(problems[i].getMessage());
-			buffer.append('|');
+			if (buffer == null) buffer = new StringBuilder(10); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buffer.append(problems[i].getMessage()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append('|'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 	assertEquals("Unexpected errors",

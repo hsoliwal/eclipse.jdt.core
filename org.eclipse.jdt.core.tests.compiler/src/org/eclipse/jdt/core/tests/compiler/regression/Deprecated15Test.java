@@ -32,7 +32,7 @@ public Deprecated15Test(String name) {
 public static Test suite() {
 	return buildMinimalComplianceTestSuite(testClass(), FIRST_SUPPORTED_JAVA_VERSION);
 }
-public void test001() {
+public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportRawTypeReference, CompilerOptions.WARNING);
 	boolean isJDK9 = this.complianceLevel >= ClassFileConstants.JDK9;
@@ -59,7 +59,7 @@ public void test001() {
 			"  }\n" +
 			"}\n",
 		},
-		(isJDK9 ? "" :
+		(isJDK9 ? "" : //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"----------\n" +
 		"1. WARNING in Y.java (at line 1)\n" +
 		"	import p.X;\n" +
@@ -118,8 +118,8 @@ public void test001() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=159709
 // guard variant for DeprecatedTest#test015 using an annotation
-public void test002() {
-	Map customOptions = new HashMap();
+public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.ERROR);
 	customOptions.put(CompilerOptions.OPTION_ReportNullReference, CompilerOptions.IGNORE);
 	this.runNegativeTest(
@@ -169,8 +169,8 @@ public void test002() {
 // shows that Member2 is properly tagged as deprecated (use the debugger, since
 // we do not report deprecation in the unit where the deprecated type is
 // declared anyway)
-public void test003() {
-	Map customOptions = new HashMap();
+public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.ERROR);
 	this.runConformTest(
 		new String[] {
@@ -198,8 +198,8 @@ public void test003() {
 		null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=191909
-public void test004() {
-	Map customOptions = new HashMap();
+public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.ERROR);
 	this.runNegativeTest(
 		true,
@@ -234,9 +234,9 @@ public void test004() {
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 }
 // Bug 354536 - compiling package-info.java still depends on the order of compilation units
-public void test005() {
+public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
-	runner.customOptions = new HashMap();
+	runner.customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	runner.customOptions.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.ERROR);
 	runner.testFiles =
 		new String[] {
@@ -261,8 +261,8 @@ public void test005() {
 	runner.runConformTest();
 }
 // https://bugs.eclipse.org/384870 - [compiler] @Deprecated annotation not detected if preceded by other annotation
-public void test006() {
-	Map customOptions = new HashMap();
+public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.ERROR);
 	this.runNegativeTest(
 		true,
@@ -290,7 +290,7 @@ public void test006() {
 		"----------\n",
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 }
-public void testGH4562() {
+public void testGH4562() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 		"c/OldClass.java",
@@ -370,7 +370,7 @@ public void testGH4562() {
 		""";
 	runner.runWarningTest();
 }
-public void testDeprecatedReferenceNestedInDeprecated() {
+public void testDeprecatedReferenceNestedInDeprecated() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.ERROR);
@@ -413,7 +413,7 @@ public void testDeprecatedReferenceNestedInDeprecated() {
 		}
 		"""};
 }
-public void testGH4563_cu() {
+public void testGH4563_cu() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 		"X.java",
@@ -483,7 +483,7 @@ public void testGH4563_cu() {
 		""";
 	runner.runWarningTest();
 }
-public void testGH4563_class() {
+public void testGH4563_class() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 		"X.java",
@@ -511,7 +511,7 @@ public void testGH4563_class() {
 	};
 	runner.runConformTest();
 }
-public void testMissingDeprecation() {
+public void testMissingDeprecation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 		"X.java",
@@ -556,7 +556,7 @@ public void testMissingDeprecation() {
 	runner.javacTestOptions = Excuse.EclipseHasSomeMoreWarnings;
 	runner.runWarningTest();
 }
-public void testMissingDeprecation_error() {
+public void testMissingDeprecation_error() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(JavaCore.COMPILER_PB_MEMBER_OF_DEPRECATED_TYPE, JavaCore.ERROR);
@@ -600,7 +600,7 @@ public void testMissingDeprecation_error() {
 	runner.javacTestOptions = Excuse.EclipseWarningConfiguredAsError;
 	runner.runNegativeTest();
 }
-public void testMissingDeprecation_ignore() {
+public void testMissingDeprecation_ignore() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(JavaCore.COMPILER_PB_MEMBER_OF_DEPRECATED_TYPE, JavaCore.IGNORE);
@@ -619,7 +619,7 @@ public void testMissingDeprecation_ignore() {
 	};
 	runner.runConformTest();
 }
-public void testAnnotationElement() {
+public void testAnnotationElement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"X.java",
@@ -668,7 +668,7 @@ public void testAnnotationElement() {
 		""";
 	runner.runWarningTest();
 }
-public void testAnnotationElement_repeatable() {
+public void testAnnotationElement_repeatable() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"X.java",

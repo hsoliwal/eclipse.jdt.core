@@ -45,7 +45,7 @@ public VariablesInfo(char[] packageName, char[] className, ClassFile[] classFile
  * Returns -1 if not found.
  */
 int indexOf(GlobalVariable var) {
-	for (int i = 0; i < this.variableCount; i++) {
+	for (int i = 0; i < this.variableCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (var.equals(this.variables[i])) {
 			return i;
 		}
@@ -58,7 +58,7 @@ int indexOf(GlobalVariable var) {
  */
 GlobalVariable varNamed(char[] name) {
 	GlobalVariable[] vars = this.variables;
-	for (int i = 0; i < this.variableCount; i++) {
+	for (int i = 0; i < this.variableCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		GlobalVariable var = vars[i];
 		if (CharOperation.equals(name, var.name)) {
 			return var;

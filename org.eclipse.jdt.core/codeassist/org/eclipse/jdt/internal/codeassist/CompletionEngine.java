@@ -142,12 +142,12 @@ public final class CompletionEngine
 
 		@Override
 		public String toString() {
-			StringBuilder buffer = new StringBuilder();
-			buffer.append('{');
-			buffer.append(this.packageName);
-			buffer.append(',');
-			buffer.append(this.simpleTypeName);
-			buffer.append('}');
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buffer.append('{'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(this.packageName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(this.simpleTypeName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return buffer.toString();
 		}
 	}
@@ -177,14 +177,14 @@ public final class CompletionEngine
 
 		@Override
 		public String toString() {
-			StringBuilder buffer = new StringBuilder();
-			buffer.append('{');
-			buffer.append(this.packageName);
-			buffer.append(',');
-			buffer.append(this.simpleTypeName);
-			buffer.append(',');
-			buffer.append(CharOperation.concatWith(this.enclosingTypeNames, '.'));
-			buffer.append('}');
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buffer.append('{'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(this.packageName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(this.simpleTypeName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(CharOperation.concatWith(this.enclosingTypeNames, '.')); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return buffer.toString();
 		}
 	}
@@ -200,7 +200,7 @@ public final class CompletionEngine
 			super(loc);
 		}
 
-		private CategorizedProblem checkProblem(CategorizedProblem pb,
+		private CategorizedProblem checkProblem(CategorizedProblem pb, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			char[] originatingFileName,	int severity, int start) {
 			int id = pb.getID();
 			if (CompletionEngine.this.actualCompletionPosition > start
@@ -311,7 +311,7 @@ public final class CompletionEngine
 		return signature;
 	}
 
-	public static char[][] createDefaultParameterNames(int length) {
+	public static char[][] createDefaultParameterNames(int length) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[][] parameters;
 		switch (length) {
 			case 0 :
@@ -331,7 +331,7 @@ public final class CompletionEngine
 				break;
 			default :
 				parameters = new char[length][];
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					parameters[i] = CharOperation.concat(ARG, String.valueOf(i).toCharArray());
 				}
 				break;
@@ -340,7 +340,7 @@ public final class CompletionEngine
 	}
 	public static char[] createMethodSignature(char[][] parameterPackageNames, char[][] parameterTypeNames, char[] returnTypeSignature) {
 		char[][] parameterTypeSignature = new char[parameterTypeNames.length][];
-		for (int i = 0; i < parameterTypeSignature.length; i++) {
+		for (int i = 0; i < parameterTypeSignature.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			parameterTypeSignature[i] =
 				Signature.createCharArrayTypeSignature(
 						CharOperation.concat(
@@ -374,13 +374,13 @@ public final class CompletionEngine
 						CharOperation.replaceOnCopy(qualifiedTypeName, '.', '$'), '.'), true);
 	}
 
-	public static char[] createTypeSignature(char[] qualifiedPackageName, char[] qualifiedTypeName) {
+	public static char[] createTypeSignature(char[] qualifiedPackageName, char[] qualifiedTypeName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] name = new char[qualifiedTypeName.length];
 		System.arraycopy(qualifiedTypeName, 0, name, 0, qualifiedTypeName.length);
 
 		int depth = 0;
 		int length = name.length;
-		for (int i = length -1; i >= 0; i--) {
+		for (int i = length -1; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch (name[i]) {
 				case '.':
 					if (depth == 0 && name[i - 1] != '>') {
@@ -403,9 +403,9 @@ public final class CompletionEngine
 
 	private static char[] getRequiredTypeSignature(TypeBinding typeBinding) {
 		char[] result = null;
-		StringBuilder sig = new StringBuilder(10);
+		StringBuilder sig = new StringBuilder(10); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
-		sig.append(typeBinding.signature());
+		sig.append(typeBinding.signature()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		int sigLength = sig.length();
 		result = new char[sigLength];
@@ -421,7 +421,7 @@ public final class CompletionEngine
 			int length = typeName.length;
 			int newLength = length + (dims*2);
 			System.arraycopy(typeName, 0, typeName = new char[newLength], 0, length);
-			for (int k = length; k < newLength; k += 2) {
+			for (int k = length; k < newLength; k += 2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				typeName[k] = '[';
 				typeName[k+1] = ']';
 			}
@@ -433,7 +433,7 @@ public final class CompletionEngine
 	private static boolean hasStaticMemberTypes(ReferenceBinding typeBinding, SourceTypeBinding invocationType, CompilationUnitScope unitScope) {
 		ReferenceBinding[] memberTypes = typeBinding.memberTypes();
 		int length = memberTypes == null ? 0 : memberTypes.length;
-		next : for (int i = 0; i < length; i++) {
+		next : for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ReferenceBinding memberType = memberTypes[i];
 			if (invocationType != null && !memberType.canBeSeenBy(typeBinding, invocationType)) {
 				continue next;
@@ -448,7 +448,7 @@ public final class CompletionEngine
 		return false;
 	}
 
-	private static boolean hasMemberTypesInEnclosingScope(SourceTypeBinding typeBinding, Scope scope) {
+	private static boolean hasMemberTypesInEnclosingScope(SourceTypeBinding typeBinding, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ReferenceBinding[] memberTypes = typeBinding.memberTypes();
 		int length = memberTypes == null ? 0 : memberTypes.length;
 
@@ -457,7 +457,7 @@ public final class CompletionEngine
 			if (methodScope != null && !methodScope.isStatic) {
 				ClassScope classScope = typeBinding.scope;
 				Scope currentScope = scope;
-				while (currentScope != null) {
+				while (currentScope != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (currentScope == classScope) {
 						return true;
 					}
@@ -630,10 +630,10 @@ public final class CompletionEngine
 	static final int BASE_TYPES_WITHOUT_VOID_LENGTH = BASE_TYPES.length - 1;
 	static final char[][] BASE_TYPE_NAMES_WITHOUT_VOID = new char[BASE_TYPES_WITHOUT_VOID_LENGTH][];
 	static {
- 		for (int i=0; i<BASE_TYPES_LENGTH; i++) {
+ 		for (int i=0; i<BASE_TYPES_LENGTH; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
  			BASE_TYPE_NAMES[i] = BASE_TYPES[i].simpleName;
  		}
-		for (int i=0; i<BASE_TYPES_WITHOUT_VOID_LENGTH; i++) {
+		for (int i=0; i<BASE_TYPES_WITHOUT_VOID_LENGTH; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			BASE_TYPE_NAMES_WITHOUT_VOID[i] = BASE_TYPES[i].simpleName;
 		}
  	}
@@ -708,7 +708,7 @@ public final class CompletionEngine
 	 *  @param settings java.util.Map
 	 *		set of options used to configure the code assist engine.
 	 */
-	public CompletionEngine(
+	public CompletionEngine( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			SearchableEnvironment nameEnvironment,
 			CompletionRequestor requestor,
 			Map settings,
@@ -749,7 +749,7 @@ public final class CompletionEngine
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void acceptConstructor(
 			int modifiers,
 			char[] simpleTypeName,
@@ -818,7 +818,7 @@ public final class CompletionEngine
 						accessibility));
 	}
 
-	private void acceptConstructors(Scope scope) {
+	private void acceptConstructors(Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final boolean DEFER_QUALIFIED_PROPOSALS = false;
 
 		this.checkCancel();
@@ -833,11 +833,11 @@ public final class CompletionEngine
 
 		ArrayList deferredProposals = null;
 		if (DEFER_QUALIFIED_PROPOSALS) {
-			deferredProposals = new ArrayList();
+			deferredProposals = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		}
 
 		try {
-			next : for (int i = 0; i < length; i++) {
+			next : for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 				// does not check cancellation for every types to avoid performance loss
 				if ((i % CHECK_CANCEL_FREQUENCY) == 0) checkCancel();
@@ -903,7 +903,7 @@ public final class CompletionEngine
 					initializeImportCaches();
 				}
 
-				for (int j = 0; j < this.importCacheCount; j++) {
+				for (int j = 0; j < this.importCacheCount; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					char[][] importName = this.importsCache[j];
 					if(CharOperation.equals(simpleTypeName, importName[0])) {
 						if (proposeType) {
@@ -986,7 +986,7 @@ public final class CompletionEngine
 
 					AcceptedConstructor foundConstructor = null;
 					if((foundConstructor = (AcceptedConstructor)onDemandFound.get(simpleTypeName)) == null) {
-						for (int j = 0; j < this.onDemandImportCacheCount; j++) {
+						for (int j = 0; j < this.onDemandImportCacheCount; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							ImportBinding importBinding = this.onDemandImportsCache[j];
 
 							char[][] importName = importBinding.compoundName;
@@ -1012,7 +1012,7 @@ public final class CompletionEngine
 							}
 						}
 					} else if(!foundConstructor.mustBeQualified){
-						done : for (int j = 0; j < this.onDemandImportCacheCount; j++) {
+						done : for (int j = 0; j < this.onDemandImportCacheCount; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							ImportBinding importBinding = this.onDemandImportsCache[j];
 
 							char[][] importName = importBinding.compoundName;
@@ -1060,7 +1060,7 @@ public final class CompletionEngine
 			char[][] keys = onDemandFound.keyTable;
 			Object[] values = onDemandFound.valueTable;
 			int max = keys.length;
-			for (int i = 0; i < max; i++) {
+			for (int i = 0; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 				// does not check cancellation for every types to avoid performance loss
 				if ((i % CHECK_CANCEL_FREQUENCY) == 0) checkCancel();
@@ -1069,7 +1069,7 @@ public final class CompletionEngine
 					AcceptedConstructor value = (AcceptedConstructor) values[i];
 					if(value != null) {
 						char[] fullyQualifiedEnclosingTypeOrPackageName = null;
-						done : for (int j = 0; j < this.onDemandImportCacheCount; j++) {
+						done : for (int j = 0; j < this.onDemandImportCacheCount; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							ImportBinding importBinding = this.onDemandImportsCache[j];
 
 							char[][] importName = importBinding.compoundName;
@@ -1133,7 +1133,7 @@ public final class CompletionEngine
 
 			if (DEFER_QUALIFIED_PROPOSALS) {
 				int size = deferredProposals.size();
-				for (int i = 0; i < size; i++) {
+				for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 					// does not check cancellation for every types to avoid performance loss
 					if ((i % CHECK_CANCEL_FREQUENCY) == 0) checkCancel();
@@ -1171,7 +1171,7 @@ public final class CompletionEngine
 	 *    Module names are in the form "a.b.c".
 	 *    The default module is represented by an empty array.
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void acceptModule(char[] moduleName) {
 		if (this.knownModules.containsKey(moduleName)) return;
 		if (this.assistNodeInJavadoc == 0 && this.moduleDeclaration != null && CharOperation.equals(moduleName, this.moduleDeclaration.moduleName)) return;
@@ -1183,7 +1183,7 @@ public final class CompletionEngine
 			isModuleRead = true;
 		} else {
 			isModuleRead = false; // in a modular project reduce relevance for modules that are not (yet) read
-			for (ModuleBinding requiredModule : this.currentModule.getAllRequiredModules()) {
+			for (ModuleBinding requiredModule : this.currentModule.getAllRequiredModules()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (CharOperation.equals(moduleName, requiredModule.moduleName)) {
 					isModuleRead = true;
 					break;
@@ -1227,7 +1227,7 @@ public final class CompletionEngine
 		acceptPackage(packageName, null);
 	}
 
-	private void acceptPackage(char[] packageName, char[] moduleName) {
+	private void acceptPackage(char[] packageName, char[] moduleName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		if (this.knownPkgs.containsKey(packageName)) return;
 
@@ -1283,7 +1283,7 @@ public final class CompletionEngine
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void acceptType(
 		char[] packageName,
 		char[] simpleTypeName,
@@ -1337,7 +1337,7 @@ public final class CompletionEngine
 		this.acceptedTypes.add(new AcceptedType(packageName, simpleTypeName, enclosingTypeNames, modifiers, accessibility));
 	}
 
-	private void acceptTypes(Scope scope) {
+	private void acceptTypes(Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.checkCancel();
 
 		if(this.acceptedTypes == null) return;
@@ -1349,7 +1349,7 @@ public final class CompletionEngine
 		HashtableOfObject onDemandFound = new HashtableOfObject();
 
 		try {
-			next : for (int i = 0; i < length; i++) {
+			next : for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 				// does not check cancellation for every types to avoid performance loss
 				if ((i % CHECK_CANCEL_FREQUENCY) == 0) checkCancel();
@@ -1409,7 +1409,7 @@ public final class CompletionEngine
 						initializeImportCaches();
 					}
 
-					for (int j = 0; j < this.importCacheCount; j++) {
+					for (int j = 0; j < this.importCacheCount; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						char[][] importName = this.importsCache[j];
 						if(CharOperation.equals(typeName, importName[0])) {
 							proposeType(
@@ -1442,7 +1442,7 @@ public final class CompletionEngine
 
 						AcceptedType foundType = null;
 						if((foundType = (AcceptedType)onDemandFound.get(simpleTypeName)) == null) {
-							for (int j = 0; j < this.onDemandImportCacheCount; j++) {
+							for (int j = 0; j < this.onDemandImportCacheCount; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								ImportBinding importBinding = this.onDemandImportsCache[j];
 
 								char[][] importName = importBinding.compoundName;
@@ -1481,7 +1481,7 @@ public final class CompletionEngine
 								}
 							}
 						} else if(!foundType.mustBeQualified){
-							done : for (int j = 0; j < this.onDemandImportCacheCount; j++) {
+							done : for (int j = 0; j < this.onDemandImportCacheCount; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								ImportBinding importBinding = this.onDemandImportsCache[j];
 
 								char[][] importName = importBinding.compoundName;
@@ -1528,7 +1528,7 @@ public final class CompletionEngine
 			char[][] keys = onDemandFound.keyTable;
 			Object[] values = onDemandFound.valueTable;
 			int max = keys.length;
-			for (int i = 0; i < max; i++) {
+			for (int i = 0; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if ((i % CHECK_CANCEL_FREQUENCY) == 0) checkCancel();
 				if(keys[i] != null) {
 					AcceptedType value = (AcceptedType) values[i];
@@ -1550,7 +1550,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private char[] appendUnlessNextToken(char[] completionName, char[] suffix, TerminalToken nextToken) {
+	private char[] appendUnlessNextToken(char[] completionName, char[] suffix, TerminalToken nextToken) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.source == null)
 			return CharOperation.concat(completionName, suffix);
 
@@ -1571,7 +1571,7 @@ public final class CompletionEngine
 		return completionName;
 	}
 
-	public void acceptUnresolvedName(char[] name) {
+	public void acceptUnresolvedName(char[] name) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int relevance = computeBaseRelevance();
 		relevance += computeRelevanceForResolution(false);
 		relevance += computeRelevanceForInterestingProposal();
@@ -1600,7 +1600,7 @@ public final class CompletionEngine
 		if (type == null || !type.isValidBinding() || type == TypeBinding.NULL || type == TypeBinding.VOID) return;
 
 		// do not add twice the same type
-		for (int i = 0; i <= this.expectedTypesPtr; i++) {
+		for (int i = 0; i <= this.expectedTypesPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (TypeBinding.equalsEquals(this.expectedTypes[i], type)) return;
 		}
 
@@ -1634,7 +1634,7 @@ public final class CompletionEngine
 
 	// Returns whether the arguments appearing before completion node are compatible
 	private boolean areParametersCompatibleWith(MethodBinding method, TypeBinding[] argTypes, int minArgLength) {
-		for (int a = minArgLength; --a >= 0;){
+		for (int a = minArgLength; --a >= 0;){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (argTypes[a] != null) { // can be null if it could not be resolved properly
 				TypeBinding argType = argTypes[a].erasure();
 				TypeBinding paramType = method.isVarargs()
@@ -1649,7 +1649,7 @@ public final class CompletionEngine
 		return false;
 	}
 	// this code is derived from MethodBinding#areParametersCompatibleWith(TypeBinding[])
-	private final boolean areParametersCompatibleWith(TypeBinding[] parameters, TypeBinding[] arguments, boolean isVarargs) {
+	private final boolean areParametersCompatibleWith(TypeBinding[] parameters, TypeBinding[] arguments, boolean isVarargs) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int paramLength = parameters.length;
 		int argLength = arguments.length;
 		int lastIndex = argLength;
@@ -1662,7 +1662,7 @@ public final class CompletionEngine
 					return false;
 			} else if (paramLength < argLength) { // all remaining argument types must be compatible with the elementsType of varArgType
 				TypeBinding varArgType = ((ArrayBinding) parameters[lastIndex]).elementsType();
-				for (int i = lastIndex; i < argLength; i++)
+				for (int i = lastIndex; i < argLength; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (TypeBinding.notEquals(varArgType, arguments[i]) && !arguments[i].isCompatibleWith(varArgType))
 						return false;
 			} else if (lastIndex != argLength) { // can call foo(int i, X ... x) with foo(1) but NOT foo();
@@ -1673,13 +1673,13 @@ public final class CompletionEngine
 			if(paramLength != argLength)
 				return false;
 		}
-		for (int i = 0; i < lastIndex; i++)
+		for (int i = 0; i < lastIndex; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (TypeBinding.notEquals(parameters[i], arguments[i]) && !arguments[i].isCompatibleWith(parameters[i]))
 				return false;
 		return true;
 	}
 
-	private void buildContext(
+	private void buildContext( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			ASTNode astNode,
 			ASTNode astNodeParent,
 			CompilationUnitDeclaration compilationUnitDeclaration,
@@ -1703,7 +1703,7 @@ public final class CompletionEngine
 			int length = this.expectedTypesPtr + 1;
 			char[][] expTypes = new char[length][];
 			char[][] expKeys = new char[length][];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				expTypes[i] = getSignature(this.expectedTypes[i]);
 				expKeys[i] = this.expectedTypes[i].computeUniqueKey();
 			}
@@ -1756,7 +1756,7 @@ public final class CompletionEngine
 		this.requestor.acceptContext(context);
 	}
 
-	private void buildTokenLocationContext(InternalCompletionContext context, Scope scope, ASTNode astNode, ASTNode astNodeParent) {
+	private void buildTokenLocationContext(InternalCompletionContext context, Scope scope, ASTNode astNode, ASTNode astNodeParent) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (scope == null || context.isInJavadoc()) return;
 
 		if (astNode instanceof CompletionOnFieldType) {
@@ -1818,7 +1818,7 @@ public final class CompletionEngine
 				TypeDeclaration typeDeclaration = (TypeDeclaration) referenceContext;
 				FieldDeclaration[] fields = typeDeclaration.fields;
 				if (fields != null) {
-					done : for (int i = 0; i < fields.length; i++) {
+					done : for (int i = 0; i < fields.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (fields[i] instanceof Initializer) {
 							Initializer initializer = (Initializer) fields[i];
 							if (initializer.block.sourceStart <= astNode.sourceStart &&
@@ -1844,7 +1844,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private boolean complete(
+	private boolean complete( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			ASTNode astNode,
 			ASTNode astNodeParent,
 			ASTNode enclosingNode,
@@ -1974,12 +1974,12 @@ public final class CompletionEngine
 	 *
 	 *  @param root the type root of the compilation unit being completed
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void complete(ICompilationUnit sourceUnit, int completionPosition, int adjustment, ITypeRoot root) {
 
 		if(DEBUG) {
-			trace("COMPLETION IN " + new String(sourceUnit.getFileName()) + " AT POSITION " + completionPosition);  //$NON-NLS-1$//$NON-NLS-2$
-			trace("COMPLETION - Source :" + new String(sourceUnit.getContents())); //$NON-NLS-1$
+			trace("COMPLETION IN " + new String(sourceUnit.getFileName()) + " AT POSITION " + completionPosition);  //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			trace("COMPLETION - Source :" + new String(sourceUnit.getContents())); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		if (this.monitor != null) this.monitor.beginTask(Messages.engine_completing, IProgressMonitor.UNKNOWN);
 		this.requestor.beginReporting();
@@ -2032,7 +2032,7 @@ public final class CompletionEngine
 					}
 					RequiresStatement[] moduleRefs = this.moduleDeclaration.requires;
 					if (moduleRefs != null) {
-						for (RequiresStatement moduleRef : moduleRefs) {
+						for (RequiresStatement moduleRef : moduleRefs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							ModuleReference reference = moduleRef.module;
 							if (reference instanceof CompletionOnModuleReference) {
 								contextAccepted = true;
@@ -2048,7 +2048,7 @@ public final class CompletionEngine
 					try {
 						UsesStatement[] uses = this.moduleDeclaration.uses;
 						if (uses != null) {
-							for (UsesStatement usesStatement : uses) {
+							for (UsesStatement usesStatement : uses) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								TypeReference usesReference = usesStatement.serviceInterface;
 								if (usesReference instanceof CompletionOnUsesSingleTypeReference ||
 										usesReference instanceof CompletionOnUsesQualifiedTypeReference) {
@@ -2058,7 +2058,7 @@ public final class CompletionEngine
 							}
 						}
 						ProvidesStatement[] providesStmts = this.moduleDeclaration.services;
-						for (int i = 0, l = providesStmts != null ? providesStmts.length : 0; i < l; ++i) {
+						for (int i = 0, l = providesStmts != null ? providesStmts.length : 0; i < l; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							ProvidesStatement providesStmt = providesStmts[i];
 							this.parser.enclosingNode = providesStmt;
 							TypeReference pInterface = providesStmt.serviceInterface;
@@ -2068,7 +2068,7 @@ public final class CompletionEngine
 								return;
 							}
 							TypeReference[] implementations = providesStmt.implementations;
-							for (TypeReference implementation : implementations) {
+							for (TypeReference implementation : implementations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								if (implementation instanceof CompletionOnProvidesImplementationsSingleTypeReference ||
 										implementation instanceof CompletionOnProvidesImplementationsQualifiedTypeReference) {
 									this.skipDefaultPackage = true;
@@ -2085,9 +2085,9 @@ public final class CompletionEngine
 						if (e.astNode != null) {
 							// if null then we found a problem in the completion node
 							if(DEBUG) {
-								trace("COMPLETION - Completion node : " + e.astNode.toString()); //$NON-NLS-1$
+								trace("COMPLETION - Completion node : " + e.astNode.toString()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								if(this.parser.assistNodeParent != null) {
-									trace("COMPLETION - Parent Node : " + this.parser.assistNodeParent); //$NON-NLS-1$
+									trace("COMPLETION - Parent Node : " + this.parser.assistNodeParent); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								}
 							}
 							this.lookupEnvironment.unitBeingCompleted = parsedUnit; // better resilient to further error reporting
@@ -2118,7 +2118,7 @@ public final class CompletionEngine
 
 				ImportReference[] imports = parsedUnit.imports;
 				if (imports != null) {
-					for (ImportReference importReference : imports) {
+					for (ImportReference importReference : imports) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (importReference instanceof CompletionOnImportReference) {
 							this.lookupEnvironment.buildTypeBindings(parsedUnit, null /*no access restriction*/);
 							if ((this.unitScope = parsedUnit.scope) != null) {
@@ -2217,9 +2217,9 @@ public final class CompletionEngine
 						if (e.astNode != null) {
 							// if null then we found a problem in the completion node
 							if(DEBUG) {
-								trace("COMPLETION - Completion node : " + e.astNode.toString()); //$NON-NLS-1$
+								trace("COMPLETION - Completion node : " + e.astNode.toString()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								if(this.parser.assistNodeParent != null) {
-									trace("COMPLETION - Parent Node : " + this.parser.assistNodeParent); //$NON-NLS-1$
+									trace("COMPLETION - Parent Node : " + this.parser.assistNodeParent); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								}
 							}
 							this.lookupEnvironment.unitBeingCompleted = parsedUnit; // better resilient to further error reporting
@@ -2281,7 +2281,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private boolean completeJavadocTagInModuleInfo(CompilationUnitDeclaration parsedUnit) {
+	private boolean completeJavadocTagInModuleInfo(CompilationUnitDeclaration parsedUnit) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		boolean contextAccepted = false;
 		if (this.parser.assistNodeParent instanceof CompletionJavadoc && parsedUnit.isModuleInfo() ) {
 			try {
@@ -2296,9 +2296,9 @@ public final class CompletionEngine
 				if (e.astNode != null) {
 					// if null then we found a problem in the completion node
 					if(DEBUG) {
-						trace("COMPLETION - Completion node : " + e.astNode.toString()); //$NON-NLS-1$
+						trace("COMPLETION - Completion node : " + e.astNode.toString()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						if(this.parser.assistNodeParent != null) {
-							trace("COMPLETION - Parent Node : " + this.parser.assistNodeParent); //$NON-NLS-1$
+							trace("COMPLETION - Parent Node : " + this.parser.assistNodeParent); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
 					}
 					this.lookupEnvironment.unitBeingCompleted = parsedUnit; // better resilient to further error reporting
@@ -2317,7 +2317,7 @@ public final class CompletionEngine
 		return contextAccepted;
 	}
 
-	private boolean checkForCNF(TypeReference ref, CompilationUnitDeclaration parsedUnit, boolean showAll) {
+	private boolean checkForCNF(TypeReference ref, CompilationUnitDeclaration parsedUnit, boolean showAll) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.lookupEnvironment.buildTypeBindings(parsedUnit, null);
 		this.lookupEnvironment.completeTypeBindings(parsedUnit, true);
 		parsedUnit.resolve();
@@ -2339,11 +2339,11 @@ public final class CompletionEngine
 		return false; // should not come here - will throw exception
 	}
 
-	private boolean completeOnPackageVisibilityStatements(boolean contextAccepted,
+	private boolean completeOnPackageVisibilityStatements(boolean contextAccepted, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			CompilationUnitDeclaration parsedUnit, PackageVisibilityStatement[] pvsStmts) {
 		try {
 			this.skipDefaultPackage = true;
-			for (PackageVisibilityStatement pvs : pvsStmts) {
+			for (PackageVisibilityStatement pvs : pvsStmts) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (pvs instanceof CompletionOnKeywordModuleInfo) { // dummy pvs statement
 					contextAccepted = true;
 					processModuleKeywordCompletion(parsedUnit, pvs, (CompletionOnKeyword) pvs);
@@ -2360,8 +2360,8 @@ public final class CompletionEngine
 				}
 				ModuleReference[] targets = pvs.targets;
 				if (targets == null) continue;
-				HashSet<String> skipSet = new HashSet<>();
-				for (ModuleReference target : targets) {
+				HashSet<String> skipSet = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+				for (ModuleReference target : targets) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (target == null) break;
 					if (target instanceof CompletionOnModuleReference) {
 						buildContext(target, null, parsedUnit, null, null);
@@ -2404,13 +2404,13 @@ public final class CompletionEngine
 		debugPrintf();
 	}
 
-	public void complete(IType type, char[] snippet, int position, char[][] localVariableTypeNames, char[][] localVariableNames, int[] localVariableModifiers, boolean isStatic){
+	public void complete(IType type, char[] snippet, int position, char[][] localVariableTypeNames, char[][] localVariableNames, int[] localVariableModifiers, boolean isStatic){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if(this.requestor != null){
 			this.requestor.beginReporting();
 		}
 		boolean contextAccepted = false;
 		IType topLevelType = type;
-		while(topLevelType.getDeclaringType() != null) {
+		while(topLevelType.getDeclaringType() != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			topLevelType = topLevelType.getDeclaringType();
 		}
 
@@ -2565,13 +2565,13 @@ public final class CompletionEngine
 		}
 	}
 
-	private void completionOnFieldName(ASTNode astNode, Scope scope) {
+	private void completionOnFieldName(ASTNode astNode, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!this.requestor.isIgnored(CompletionProposal.VARIABLE_DECLARATION)) {
 			CompletionOnFieldName field = (CompletionOnFieldName) astNode;
 
 			FieldBinding[] fields = scope.enclosingSourceType().fields();
 			char[][] excludeNames = new char[fields.length][];
-			for(int i = 0 ; i < fields.length ; i++){
+			for(int i = 0 ; i < fields.length ; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				excludeNames[i] = fields[i].name;
 			}
 
@@ -2595,7 +2595,7 @@ public final class CompletionEngine
 
 			FieldBinding[] fields = scope.enclosingSourceType().fields();
 			char[][] excludeNames = new char[fields.length][];
-			for (int i = 0; i < fields.length; i++) {
+			for (int i = 0; i < fields.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				excludeNames[i] = fields[i].name;
 			}
 			this.completionToken = component.realName;
@@ -2604,7 +2604,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private void completionOnFieldType(ASTNode astNode, Scope scope) {
+	private void completionOnFieldType(ASTNode astNode, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		CompletionOnFieldType field = (CompletionOnFieldType) astNode;
 		CompletionOnSingleTypeReference type = (CompletionOnSingleTypeReference) field.type;
 		this.completionToken = type.token;
@@ -2636,7 +2636,7 @@ public final class CompletionEngine
 		}
 	}
 	//TODO
-	private void completionOnJavadocAllocationExpression(ASTNode astNode, Binding qualifiedBinding, Scope scope) {
+	private void completionOnJavadocAllocationExpression(ASTNode astNode, Binding qualifiedBinding, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// setSourceRange(astNode.sourceStart, astNode.sourceEnd, false);
 
 		CompletionOnJavadocAllocationExpression allocExpression = (CompletionOnJavadocAllocationExpression) astNode;
@@ -2658,7 +2658,7 @@ public final class CompletionEngine
 		}
 	}
 	//TODO
-	private void completionOnJavadocFieldReference(ASTNode astNode, Scope scope) {
+	private void completionOnJavadocFieldReference(ASTNode astNode, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.insideQualifiedReference = true;
 		CompletionOnJavadocFieldReference fieldRef = (CompletionOnJavadocFieldReference) astNode;
 		this.completionToken = fieldRef.token;
@@ -2733,7 +2733,7 @@ public final class CompletionEngine
 		}
 	}
 	//TODO
-	private void completionOnJavadocMessageSend(ASTNode astNode, Binding qualifiedBinding, Scope scope) {
+	private void completionOnJavadocMessageSend(ASTNode astNode, Binding qualifiedBinding, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		CompletionOnJavadocMessageSend messageSend = (CompletionOnJavadocMessageSend) astNode;
 		TypeBinding[] argTypes = null; //computeTypes(messageSend.arguments);
 		this.completionToken = messageSend.selector;
@@ -2791,7 +2791,7 @@ public final class CompletionEngine
 		completionOnJavadocQualifiedTypeReference(astNode, qualifiedBinding, scope, true);
 	}
 	//TODO
-	private void completionOnJavadocQualifiedTypeReference(ASTNode astNode, Binding qualifiedBinding, Scope scope, boolean findModules) {
+	private void completionOnJavadocQualifiedTypeReference(ASTNode astNode, Binding qualifiedBinding, Scope scope, boolean findModules) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.insideQualifiedReference = true;
 
 		CompletionOnJavadocQualifiedTypeReference typeRef = (CompletionOnJavadocQualifiedTypeReference) astNode;
@@ -2845,7 +2845,7 @@ public final class CompletionEngine
 		findModules(typeRef.token, false);
 	}
 	//TODO
-	private void completionOnJavadocModuleReference(ASTNode astNode,  Binding qualifiedBinding, Scope scope) {
+	private void completionOnJavadocModuleReference(ASTNode astNode,  Binding qualifiedBinding, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		CompletionOnJavadocModuleReference modRef = (CompletionOnJavadocModuleReference) astNode;
 		this.completionToken = modRef.completionIdentifier;
 		this.javadocTagPosition = modRef.tagSourceStart;
@@ -2904,7 +2904,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private void completionOnLocalOrArgumentName(ASTNode astNode, Scope scope) {
+	private void completionOnLocalOrArgumentName(ASTNode astNode, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!this.requestor.isIgnored(CompletionProposal.VARIABLE_DECLARATION)) {
 			LocalDeclaration variable = (LocalDeclaration) astNode;
 
@@ -2929,7 +2929,7 @@ public final class CompletionEngine
 			LocalVariableBinding[] locals = ((BlockScope)scope).locals;
 			char[][] discouragedNames = new char[locals.length][];
 			int localCount = 0;
-			for (LocalVariableBinding local : locals) {
+			for (LocalVariableBinding local : locals) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (local != null) {
 					discouragedNames[localCount++] = local.name;
 				}
@@ -2941,7 +2941,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private void completionOnMarkerAnnotationName(ASTNode astNode, Binding qualifiedBinding, Scope scope) {
+	private void completionOnMarkerAnnotationName(ASTNode astNode, Binding qualifiedBinding, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		CompletionOnMarkerAnnotationName annot = (CompletionOnMarkerAnnotationName) astNode;
 
 		// When completion is inside lambda body, the fake type cannot be attached to the lambda.
@@ -3028,7 +3028,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private void completionOnMemberAccess(ASTNode astNode, ASTNode enclosingNode, Binding qualifiedBinding,
+	private void completionOnMemberAccess(ASTNode astNode, ASTNode enclosingNode, Binding qualifiedBinding, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			Scope scope, boolean insideTypeAnnotation) {
 		this.insideQualifiedReference = true;
 		CompletionOnMemberAccess access = (CompletionOnMemberAccess) astNode;
@@ -3119,7 +3119,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private void completionOnMemberValueName(ASTNode astNode, ASTNode astNodeParent, Scope scope,
+	private void completionOnMemberValueName(ASTNode astNode, ASTNode astNodeParent, Scope scope, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			boolean insideTypeAnnotation) {
 		CompletionOnMemberValueName memberValuePair = (CompletionOnMemberValueName) astNode;
 		Annotation annotation = (Annotation) astNodeParent;
@@ -3138,7 +3138,7 @@ public final class CompletionEngine
 				} else {
 					if (this.expectedTypesPtr > -1) {
 						this.assistNodeIsEnum = true;
-						done : for (int i = 0; i <= this.expectedTypesPtr; i++) {
+						done : for (int i = 0; i <= this.expectedTypesPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (!this.expectedTypes[i].isEnum()) {
 								this.assistNodeIsEnum = false;
 								break done;
@@ -3169,7 +3169,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private void completionOnMessageSend(ASTNode astNode, Binding qualifiedBinding, Scope scope) {
+	private void completionOnMessageSend(ASTNode astNode, Binding qualifiedBinding, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setSourceAndTokenRange(astNode.sourceStart, astNode.sourceEnd, false);
 
 		CompletionOnMessageSend messageSend = (CompletionOnMessageSend) astNode;
@@ -3223,7 +3223,7 @@ public final class CompletionEngine
 		if (arguments == null) {
 			return 0;
 		}
-		for (int index = 0; index < arguments.length; index++) {
+		for (int index = 0; index < arguments.length; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if ((arguments[index] instanceof CompletionNode)
 					// the following handles when the cursor is at the receiver in a completed expression like
 					// new PersonDetails(GH969.emptyList(), 0) here the cursor is after new PersonDetails(
@@ -3235,7 +3235,7 @@ public final class CompletionEngine
 		return arguments.length;
 	}
 
-	private void findCompletionsForArgumentPosition(ObjectVector methodsFound, int completedArgumentLength, Scope scope) {
+	private void findCompletionsForArgumentPosition(ObjectVector methodsFound, int completedArgumentLength, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (methodsFound.size() == 0) {
 			return;
 		}
@@ -3258,12 +3258,12 @@ public final class CompletionEngine
 		}
 	}
 
-	private void pushExpectedTypesForArgumentPosition(ObjectVector methodsToSearchOn, int completedArgumentLength,
+	private void pushExpectedTypesForArgumentPosition(ObjectVector methodsToSearchOn, int completedArgumentLength, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			Scope scope) {
 		if (methodsToSearchOn.size == 0) {
 			return;
 		}
-		for (int i = 0; i < methodsToSearchOn.size; i++) {
+		for (int i = 0; i < methodsToSearchOn.size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			MethodBinding method = (MethodBinding) ((Object[]) methodsToSearchOn.elementAt(i))[0];
 			boolean onOrAfterLastParam = method.parameters.length <= completedArgumentLength;
 			if (onOrAfterLastParam && !method.isVarargs()) {
@@ -3282,7 +3282,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private void completionOnMessageSendName(ASTNode astNode, Binding qualifiedBinding, Scope scope) {
+	private void completionOnMessageSendName(ASTNode astNode, Binding qualifiedBinding, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!this.requestor.isIgnored(CompletionProposal.METHOD_REF)) {
 			CompletionOnMessageSendName messageSend = (CompletionOnMessageSendName) astNode;
 
@@ -3331,7 +3331,7 @@ public final class CompletionEngine
 			}
 		}
 	}
-	private void completionOnReferenceExpressionName(ASTNode astNode, Binding qualifiedBinding, Scope scope) {
+	private void completionOnReferenceExpressionName(ASTNode astNode, Binding qualifiedBinding, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!this.requestor.isIgnored(CompletionProposal.METHOD_NAME_REFERENCE)) {
 			CompletionOnReferenceExpressionName referenceExpression = (CompletionOnReferenceExpressionName) astNode;
 			this.insideQualifiedReference = true;
@@ -3375,7 +3375,7 @@ public final class CompletionEngine
 	}
 
 
-	private void completionOnExpressionOfType(ASTNode astNode, Binding qualifiedBinding, Scope scope) {
+	private void completionOnExpressionOfType(ASTNode astNode, Binding qualifiedBinding, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		CompletionOnExpressionOfType completion = (CompletionOnExpressionOfType) astNode;
 
 		// Resolve the method call's return type
@@ -3404,7 +3404,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private void completionOnMethodName(ASTNode astNode, Scope scope) {
+	private void completionOnMethodName(ASTNode astNode, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!this.requestor.isIgnored(CompletionProposal.VARIABLE_DECLARATION)) {
 			CompletionOnMethodName method = (CompletionOnMethodName) astNode;
 
@@ -3412,7 +3412,7 @@ public final class CompletionEngine
 
 			FieldBinding[] fields = scope.enclosingSourceType().fields();
 			char[][] excludeNames = new char[fields.length][];
-			for(int i = 0 ; i < fields.length ; i++){
+			for(int i = 0 ; i < fields.length ; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				excludeNames[i] = fields[i].name;
 			}
 
@@ -3430,7 +3430,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private void completionOnMethodReturnType(ASTNode astNode, Scope scope) {
+	private void completionOnMethodReturnType(ASTNode astNode, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		CompletionOnMethodReturnType method = (CompletionOnMethodReturnType) astNode;
 		SingleTypeReference type = (CompletionOnSingleTypeReference) method.returnType;
 		this.completionToken = type.token;
@@ -3461,7 +3461,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private void completionOnParameterizedQualifiedTypeReference(ASTNode astNode, ASTNode astNodeParent, Binding qualifiedBinding, Scope scope) {
+	private void completionOnParameterizedQualifiedTypeReference(ASTNode astNode, ASTNode astNodeParent, Binding qualifiedBinding, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!this.requestor.isIgnored(CompletionProposal.TYPE_REF)) {
 			CompletionOnParameterizedQualifiedTypeReference ref = (CompletionOnParameterizedQualifiedTypeReference) astNode;
 
@@ -3543,7 +3543,7 @@ public final class CompletionEngine
 			TypeDeclaration typeDeclaration = (TypeDeclaration) astNodeParent;
 			TypeReference [] superInterfaces = typeDeclaration.superInterfaces;
 			int length = superInterfaces == null ? 0 : superInterfaces.length;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (superInterfaces[i] == astNode)
 					return true;
 			}
@@ -3556,7 +3556,7 @@ public final class CompletionEngine
 		// switch case construct (https://bugs.eclipse.org/bugs/show_bug.cgi?id=195346)
 		if (astNodeParent instanceof SwitchStatement) {
 			CaseStatement[] cases = ((SwitchStatement) astNodeParent).cases;
-			for (int i = 0, caseCount = ((SwitchStatement) astNodeParent).caseCount; i < caseCount; i++) {
+			for (int i = 0, caseCount = ((SwitchStatement) astNodeParent).caseCount; i < caseCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				CompletionNodeDetector detector = new CompletionNodeDetector(astNode, cases[i]);
 				if (detector.containsCompletionNode()) {
 					return true;
@@ -3566,7 +3566,7 @@ public final class CompletionEngine
 		return false;
 	}
 
-	private void completionOnQualifiedAllocationExpression(ASTNode astNode, Binding qualifiedBinding, Scope scope) {
+	private void completionOnQualifiedAllocationExpression(ASTNode astNode, Binding qualifiedBinding, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setSourceAndTokenRange(astNode.sourceStart, astNode.sourceEnd, false);
 
 		CompletionOnQualifiedAllocationExpression allocExpression =
@@ -3630,7 +3630,7 @@ public final class CompletionEngine
 	}
 
 	/** Unified handling for true QualifiedNameReference and misclassified QualifiedTypeReference. */
-	private void internalCompletionOnQualifiedReference(ASTNode ref, ASTNode enclosingNode, Binding qualifiedBinding, Scope scope,
+	private void internalCompletionOnQualifiedReference(ASTNode ref, ASTNode enclosingNode, Binding qualifiedBinding, Scope scope, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			boolean insideTypeAnnotation, boolean isInsideAnnotationAttribute, InvocationSite site, char[][] tokens, long[] sourcePositions)
 	{
 		long completionPosition = sourcePositions[sourcePositions.length - 1];
@@ -3764,7 +3764,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private void completionOnQualifiedTypeReference(ASTNode astNode, ASTNode astNodeParent, ASTNode enclosingNode, Binding qualifiedBinding,
+	private void completionOnQualifiedTypeReference(ASTNode astNode, ASTNode astNodeParent, ASTNode enclosingNode, Binding qualifiedBinding, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			Scope scope) {
 		this.insideQualifiedReference = true;
 
@@ -3860,7 +3860,7 @@ public final class CompletionEngine
 		findImplementations((ProvidesStatement) this.parser.enclosingNode, (TypeReference) astNode);
 	}
 
-	private void completionOnSingleNameReference(ASTNode astNode, ASTNode astNodeParent, Scope scope,
+	private void completionOnSingleNameReference(ASTNode astNode, ASTNode astNodeParent, Scope scope, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			boolean insideTypeAnnotation) {
 		CompletionOnSingleNameReference singleNameReference = (CompletionOnSingleNameReference) astNode;
 		this.completionToken = singleNameReference.token;
@@ -3912,7 +3912,7 @@ public final class CompletionEngine
 		} else {
 			if (this.expectedTypesPtr > -1) {
 				this.assistNodeIsEnum = true;
-				done : for (int i = 0; i <= this.expectedTypesPtr; i++) {
+				done : for (int i = 0; i <= this.expectedTypesPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (!this.expectedTypes[i].isEnum()) {
 						this.assistNodeIsEnum = false;
 						break done;
@@ -3970,7 +3970,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private void checkForVarargExpectedTypes(ASTNode astNodeParent, ASTNode astNode, Scope scope) {
+	private void checkForVarargExpectedTypes(ASTNode astNodeParent, ASTNode astNode, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (astNodeParent instanceof MessageSend m
 				&& m.arguments() != null
 				&& Stream.of(m.arguments()).anyMatch(astNode::equals)
@@ -3998,7 +3998,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private void completionOnSingleTypeReference(ASTNode astNode, ASTNode astNodeParent, Binding qualifiedBinding, Scope scope) {
+	private void completionOnSingleTypeReference(ASTNode astNode, ASTNode astNodeParent, Binding qualifiedBinding, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		CompletionOnSingleTypeReference singleRef = (CompletionOnSingleTypeReference) astNode;
 
 		this.completionToken = singleRef.token;
@@ -4084,16 +4084,16 @@ public final class CompletionEngine
 		// TODO : filter the results - remove packs without a type in impl.
 	}
 
-	private char[][] computeAlreadyDefinedName(
+	private char[][] computeAlreadyDefinedName( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			BlockScope scope,
 			InvocationSite invocationSite) {
-		ArrayList result = new ArrayList();
+		ArrayList result = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		boolean staticsOnly = false;
 
 		Scope currentScope = scope;
 
-		done1 : while (true) { // done when a COMPILATION_UNIT_SCOPE is found
+		done1 : while (true) { // done when a COMPILATION_UNIT_SCOPE is found //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 			switch (currentScope.kind) {
 
@@ -4106,7 +4106,7 @@ public final class CompletionEngine
 				case Scope.BLOCK_SCOPE :
 					BlockScope blockScope = (BlockScope) currentScope;
 
-					next : for (int i = 0, length = blockScope.locals.length; i < length; i++) {
+					next : for (int i = 0, length = blockScope.locals.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						LocalVariableBinding local = blockScope.locals[i];
 
 						if (local == null)
@@ -4150,7 +4150,7 @@ public final class CompletionEngine
 			InvocationSite invocationSite,
 			ArrayList result) {
 
-		next : for (int f = fields.length; --f >= 0;) {
+		next : for (int f = fields.length; --f >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			FieldBinding field = fields[f];
 
 			if (field.isSynthetic()) continue next;
@@ -4163,7 +4163,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private void computeAlreadyDefinedName(
+	private void computeAlreadyDefinedName( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			SourceTypeBinding receiverType,
 			ClassScope scope,
 			boolean onlyStaticFields,
@@ -4173,7 +4173,7 @@ public final class CompletionEngine
 		ReferenceBinding currentType = receiverType;
 		ReferenceBinding[] interfacesToVisit = null;
 		int nextPosition = 0;
-		do {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ReferenceBinding[] itsInterfaces = currentType.superInterfaces();
 			if (itsInterfaces != Binding.NO_SUPERINTERFACES) {
 				if (interfacesToVisit == null) {
@@ -4183,9 +4183,9 @@ public final class CompletionEngine
 					int itsLength = itsInterfaces.length;
 					if (nextPosition + itsLength >= interfacesToVisit.length)
 						System.arraycopy(interfacesToVisit, 0, interfacesToVisit = new ReferenceBinding[nextPosition + itsLength + 5], 0, nextPosition);
-					nextInterface : for (int a = 0; a < itsLength; a++) {
+					nextInterface : for (int a = 0; a < itsLength; a++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ReferenceBinding next = itsInterfaces[a];
-						for (int b = 0; b < nextPosition; b++)
+						for (int b = 0; b < nextPosition; b++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (TypeBinding.equalsEquals(next, interfacesToVisit[b])) continue nextInterface;
 						interfacesToVisit[nextPosition++] = next;
 					}
@@ -4206,7 +4206,7 @@ public final class CompletionEngine
 		} while ( currentType != null);
 
 		if (interfacesToVisit != null) {
-			for (int i = 0; i < nextPosition; i++) {
+			for (int i = 0; i < nextPosition; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ReferenceBinding anInterface = interfacesToVisit[i];
 				FieldBinding[] fields = anInterface.availableFields();
 				if(fields !=  null) {
@@ -4224,9 +4224,9 @@ public final class CompletionEngine
 					int itsLength = itsInterfaces.length;
 					if (nextPosition + itsLength >= interfacesToVisit.length)
 						System.arraycopy(interfacesToVisit, 0, interfacesToVisit = new ReferenceBinding[nextPosition + itsLength + 5], 0, nextPosition);
-					nextInterface : for (int a = 0; a < itsLength; a++) {
+					nextInterface : for (int a = 0; a < itsLength; a++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ReferenceBinding next = itsInterfaces[a];
-						for (int b = 0; b < nextPosition; b++)
+						for (int b = 0; b < nextPosition; b++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (TypeBinding.equalsEquals(next, interfacesToVisit[b])) continue nextInterface;
 						interfacesToVisit[nextPosition++] = next;
 					}
@@ -4239,7 +4239,7 @@ public final class CompletionEngine
 		return R_DEFAULT;
 	}
 
-	private void computeExpectedTypes(ASTNode parent, ASTNode node, Scope scope){
+	private void computeExpectedTypes(ASTNode parent, ASTNode node, Scope scope){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// default filter
 		this.expectedTypesFilter = SUBTYPE;
@@ -4302,7 +4302,7 @@ public final class CompletionEngine
 				ReferenceBinding binding = (ReferenceBinding)messageSend.actualReceiverType;
 				boolean isStatic = messageSend.receiver.isTypeReference();
 
-				while(binding != null) {
+				while(binding != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					computeExpectedTypesForMessageSend(
 						binding,
 						messageSend.selector,
@@ -4452,7 +4452,7 @@ public final class CompletionEngine
 				int length = ref.typeArguments == null ? 0 : ref.typeArguments.length;
 				if(typeVariables != null && typeVariables.length >= length) {
 					int index = length - 1;
-					while(index > -1 && ref.typeArguments[index] != node) index--;
+					while(index > -1 && ref.typeArguments[index] != node) index--; //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 					TypeBinding bound = typeVariables[index].firstBound;
 					addExpectedType(bound == null ? scope.getJavaLangObject() : bound, scope);
@@ -4479,9 +4479,9 @@ public final class CompletionEngine
 				TypeVariableBinding[] typeVariables = ref.resolvedType.typeVariables();
 				if(typeVariables != null) {
 					int iLength = arguments == null ? 0 : arguments.length;
-					done: for (int i = 0; i < iLength; i++) {
+					done: for (int i = 0; i < iLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						int jLength = arguments[i] == null ? 0 : arguments[i].length;
-						for (int j = 0; j < jLength; j++) {
+						for (int j = 0; j < jLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if(arguments[i][j] == node && typeVariables.length > j) {
 								TypeBinding bound = typeVariables[j].firstBound;
 								addExpectedType(bound == null ? scope.getJavaLangObject() : bound, scope);
@@ -4507,7 +4507,7 @@ public final class CompletionEngine
 							methodBindings.length > 0 &&
 							CharOperation.equals(methodBindings[0].selector, VALUE)) {
 						boolean canBeSingleMemberAnnotation = true;
-						done : for (int i = 1; i < methodBindings.length; i++) {
+						done : for (int i = 1; i < methodBindings.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if((methodBindings[i].modifiers & ClassFileConstants.AccAnnotationDefault) == 0) {
 								canBeSingleMemberAnnotation = false;
 								break done;
@@ -4526,7 +4526,7 @@ public final class CompletionEngine
 				MethodBinding[] methodBindings =
 					((ReferenceBinding)parent1.type.resolvedType).availableMethods();
 				if (methodBindings != null) {
-					for (MethodBinding methodBinding : methodBindings) {
+					for (MethodBinding methodBinding : methodBindings) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if(CharOperation.equals(methodBinding.selector, parent1.name)) {
 							addExpectedType(methodBinding.returnType.leafComponentType(), scope);
 							break;
@@ -4550,19 +4550,19 @@ public final class CompletionEngine
 				ReferenceBinding[] alreadyCaughtExceptions = thrownExceptionFinder.getAlreadyCaughtExceptions();
 				ReferenceBinding[] discouragedExceptions = thrownExceptionFinder.getDiscouragedExceptions();
 				if (bindings != null && bindings.length > 0) {
-					for (ReferenceBinding binding : bindings) {
+					for (ReferenceBinding binding : bindings) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						addExpectedType(binding, scope);
 					}
 					this.expectedTypesFilter = SUPERTYPE;
 				}
 				if (alreadyCaughtExceptions != null && alreadyCaughtExceptions.length > 0) {
-					for (ReferenceBinding alreadyCaughtException : alreadyCaughtExceptions) {
+					for (ReferenceBinding alreadyCaughtException : alreadyCaughtExceptions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						addForbiddenBindings(alreadyCaughtException);
 						this.knownTypes.put(CharOperation.concat(alreadyCaughtException.qualifiedPackageName(), alreadyCaughtException.qualifiedSourceName(), '.'), KNOWN_TYPE_WITH_KNOWN_CONSTRUCTORS);
 					}
 				}
 				if (discouragedExceptions != null && discouragedExceptions.length > 0) {
-					for (ReferenceBinding discouragedException : discouragedExceptions) {
+					for (ReferenceBinding discouragedException : discouragedExceptions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						addUninterestingBindings(discouragedException);
 						// do not insert into known types. We do need these types to come from
 						// searchAllTypes(..) albeit with lower relevance
@@ -4607,7 +4607,7 @@ public final class CompletionEngine
 				if (methodDecl != null && methodDecl.binding != null) {
 					ReferenceBinding[] exceptions = methodDecl.binding.thrownExceptions;
 					if (exceptions != null) {
-						for (ReferenceBinding exception : exceptions) {
+						for (ReferenceBinding exception : exceptions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							addExpectedType(exception, scope);
 						}
 					}
@@ -4621,7 +4621,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private void computeExpectedTypesForAllocationExpression(
+	private void computeExpectedTypesForAllocationExpression( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ReferenceBinding binding,
 		Expression[] arguments,
 		Scope scope,
@@ -4631,7 +4631,7 @@ public final class CompletionEngine
 			return;
 
 		MethodBinding[] methods = binding.availableMethods();
-		nextMethod : for (MethodBinding method : methods) {
+		nextMethod : for (MethodBinding method : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!method.isConstructor()) continue nextMethod;
 
 			if (method.isSynthetic()) continue nextMethod;
@@ -4644,7 +4644,7 @@ public final class CompletionEngine
 
 			int length = arguments.length - 1;
 
-			for (int j = 0; j < length; j++) {
+			for (int j = 0; j < length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Expression argument = arguments[j];
 				TypeBinding argType = argument.resolvedType;
 				if(argType != null && !argType.isCompatibleWith(parameters[j]))
@@ -4657,7 +4657,7 @@ public final class CompletionEngine
 			}
 		}
 	}
-	private void computeExpectedTypesForMessageSend(
+	private void computeExpectedTypesForMessageSend( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ReferenceBinding binding,
 		char[] selector,
 		Expression[] arguments,
@@ -4670,7 +4670,7 @@ public final class CompletionEngine
 			return;
 
 		MethodBinding[] methods = binding.availableMethods();
-		nextMethod : for (MethodBinding method : methods) {
+		nextMethod : for (MethodBinding method : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (method.isSynthetic()) continue nextMethod;
 
 			if (method.isDefaultAbstract())	continue nextMethod;
@@ -4690,7 +4690,7 @@ public final class CompletionEngine
 			int length = arguments.length - 1;
 			int completionArgIndex = arguments.length - 1;
 
-			for (int j = 0; j < length; j++) {
+			for (int j = 0; j < length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Expression argument = arguments[j];
 				TypeBinding argType = argument.resolvedType;
 				if(argType != null && !argType.erasure().isCompatibleWith(parameters[j].erasure()))
@@ -4708,7 +4708,7 @@ public final class CompletionEngine
 			}
 		}
 	}
-	private void computeExpectedTypesForMessageSendForInterface(
+	private void computeExpectedTypesForMessageSendForInterface( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ReferenceBinding binding,
 		char[] selector,
 		Expression[] arguments,
@@ -4722,7 +4722,7 @@ public final class CompletionEngine
 			ReferenceBinding[] interfacesToVisit = itsInterfaces;
 			int nextPosition = interfacesToVisit.length;
 
-			for (int i = 0; i < nextPosition; i++) {
+			for (int i = 0; i < nextPosition; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ReferenceBinding currentType = interfacesToVisit[i];
 				computeExpectedTypesForMessageSend(
 					currentType,
@@ -4737,9 +4737,9 @@ public final class CompletionEngine
 					int itsLength = itsInterfaces.length;
 					if (nextPosition + itsLength >= interfacesToVisit.length)
 						System.arraycopy(interfacesToVisit, 0, interfacesToVisit = new ReferenceBinding[nextPosition + itsLength + 5], 0, nextPosition);
-					nextInterface : for (int a = 0; a < itsLength; a++) {
+					nextInterface : for (int a = 0; a < itsLength; a++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ReferenceBinding next = itsInterfaces[a];
-						for (int b = 0; b < nextPosition; b++)
+						for (int b = 0; b < nextPosition; b++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (TypeBinding.equalsEquals(next, interfacesToVisit[b])) continue nextInterface;
 						interfacesToVisit[nextPosition++] = next;
 					}
@@ -4748,7 +4748,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private Scope computeForbiddenBindings(ASTNode astNode, ASTNode astNodeParent, Scope scope) {
+	private Scope computeForbiddenBindings(ASTNode astNode, ASTNode astNodeParent, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if(scope instanceof ClassScope) {
 			TypeDeclaration typeDeclaration = ((ClassScope)scope).referenceContext;
 			if(typeDeclaration.superclass == astNode) {
@@ -4759,7 +4759,7 @@ public final class CompletionEngine
 			TypeReference[] superInterfaces = typeDeclaration.superInterfaces;
 			int length = superInterfaces == null ? 0 : superInterfaces.length;
 			int astNodeIndex = -1;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(superInterfaces[i] == astNode) {
 					addForbiddenBindings(typeDeclaration.binding);
 					addForbiddenBindingsForMemberTypes(typeDeclaration);
@@ -4769,7 +4769,7 @@ public final class CompletionEngine
 			}
 			if (astNodeIndex >= 0) {
 				// Need to loop only up to astNodeIndex as the rest will be undefined.
-				for (int i = 0; i < astNodeIndex; i++) {
+				for (int i = 0; i < astNodeIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					addForbiddenBindings(superInterfaces[i].resolvedType);
 				}
 				return scope.parent;
@@ -4788,35 +4788,35 @@ public final class CompletionEngine
 	private void addForbiddenBindingsForMemberTypes(TypeDeclaration typeDeclaration) {
 		TypeDeclaration[] memberTypes = typeDeclaration.memberTypes;
 		int memberTypesLen = memberTypes == null ? 0 : memberTypes.length;
-		for (int i = 0; i < memberTypesLen; i++) {
+		for (int i = 0; i < memberTypesLen; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			addForbiddenBindings(memberTypes[i].binding);
 			addForbiddenBindingsForMemberTypes(memberTypes[i]);
 		}
 	}
 
-	private char[] computePrefix(SourceTypeBinding declarationType, SourceTypeBinding invocationType, boolean isStatic){
+	private char[] computePrefix(SourceTypeBinding declarationType, SourceTypeBinding invocationType, boolean isStatic){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
-		StringBuilder completion = new StringBuilder(10);
+		StringBuilder completion = new StringBuilder(10); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
 		if (isStatic) {
-			completion.append(declarationType.sourceName());
+			completion.append(declarationType.sourceName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		} else if (TypeBinding.equalsEquals(declarationType, invocationType)) {
-			completion.append(THIS);
+			completion.append(THIS); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		} else {
 
 			if (!declarationType.isNestedType()) {
 
-				completion.append(declarationType.sourceName());
-				completion.append('.');
-				completion.append(THIS);
+				completion.append(declarationType.sourceName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				completion.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				completion.append(THIS); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 			} else if (!declarationType.isAnonymousType()) {
 
-				completion.append(declarationType.sourceName());
-				completion.append('.');
-				completion.append(THIS);
+				completion.append(declarationType.sourceName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				completion.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				completion.append(THIS); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 			}
 		}
@@ -4844,7 +4844,7 @@ public final class CompletionEngine
 
 	int computeRelevanceForCaseMatching(char[][] tokens, char[] proposalName) {
 		int finalRelevance = 0;
-		for (char[] token : tokens) {
+		for (char[] token : tokens) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int relevance = computeRelevanceForCaseMatching(token, proposalName);
 			if (relevance > finalRelevance) {
 				finalRelevance = relevance;
@@ -4903,7 +4903,7 @@ public final class CompletionEngine
 		if(this.assistNodeIsEnum &&
 				proposalType != null &&
 				this.expectedTypes != null) {
-			for (int i = 0; i <= this.expectedTypesPtr; i++) {
+			for (int i = 0; i <= this.expectedTypesPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (proposalType.isEnum() &&
 						TypeBinding.equalsEquals(proposalType, this.expectedTypes[i])) {
 					return R_ENUM + R_ENUM_CONSTANT;
@@ -4933,7 +4933,7 @@ public final class CompletionEngine
 
 	private int computeRelevanceForExpectingType(char[] packageName, char[] typeName){
 		if(this.expectedTypes != null) {
-			for (int i = 0; i <= this.expectedTypesPtr; i++) {
+			for (int i = 0; i <= this.expectedTypesPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(CharOperation.equals(this.expectedTypes[i].qualifiedPackageName(), packageName) &&
 					CharOperation.equals(this.expectedTypes[i].qualifiedSourceName(), typeName)) {
 					return R_EXACT_EXPECTED_TYPE;
@@ -4946,7 +4946,7 @@ public final class CompletionEngine
 		return 0;
 	}
 
-	private int computeRelevanceForExpectingType(TypeBinding proposalType){
+	private int computeRelevanceForExpectingType(TypeBinding proposalType){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if(this.expectedTypes != null && proposalType != null) {
 			int relevance = 0;
 			// https://bugs.eclipse.org/bugs/show_bug.cgi?id=271296
@@ -4954,7 +4954,7 @@ public final class CompletionEngine
 			if (proposalType == TypeBinding.VOID && this.expectedTypesPtr >=0) {
 				return R_VOID;
 			}
-			for (int i = 0; i <= this.expectedTypesPtr; i++) {
+			for (int i = 0; i <= this.expectedTypesPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if((this.expectedTypesFilter & SUBTYPE) != 0
 						&& (proposalType.erasure().isCompatibleWith(this.expectedTypes[i].erasure()))) {
 
@@ -4999,9 +4999,9 @@ public final class CompletionEngine
 		return computeRelevanceForInterestingProposal(null);
 	}
 
-	private int computeRelevanceForInterestingProposal(Binding binding){
+	private int computeRelevanceForInterestingProposal(Binding binding){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if(this.uninterestingBindings != null) {
-			for (int i = 0; i <= this.uninterestingBindingsPtr; i++) {
+			for (int i = 0; i <= this.uninterestingBindingsPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(this.uninterestingBindings[i] == binding) {
 					return 0;
 				}
@@ -5025,7 +5025,7 @@ public final class CompletionEngine
 	}
 
 	private int computeRelevanceForInterestingProposal(char[] givenPkgName, char[] fullTypeName) {
-		for (int i = 0; i <= this.uninterestingBindingsPtr; i++) {
+		for (int i = 0; i <= this.uninterestingBindingsPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (this.uninterestingBindings[i] instanceof TypeBinding) {
 				TypeBinding typeBinding = (TypeBinding) this.uninterestingBindings[i];
 				char[] currPkgName = typeBinding.qualifiedPackageName();
@@ -5096,7 +5096,7 @@ public final class CompletionEngine
 		return 0;
 	}
 
-	private int computeRelevanceForSuper(MethodBinding method, Scope scope, InvocationSite site) {
+	private int computeRelevanceForSuper(MethodBinding method, Scope scope, InvocationSite site) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (site instanceof CompletionOnMemberAccess) {
 			CompletionOnMemberAccess access = (CompletionOnMemberAccess) site;
 			if (access.isSuperAccess() && this.parser.assistNodeParent == null) {
@@ -5117,7 +5117,7 @@ public final class CompletionEngine
 		return 0;
 	}
 
-	private long computeTargetedElement(CompletionOnAnnotationOfType fakeNode) {
+	private long computeTargetedElement(CompletionOnAnnotationOfType fakeNode) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ASTNode annotatedElement = fakeNode.potentialAnnotatedNode;
 
 		if (annotatedElement instanceof TypeDeclaration) {
@@ -5148,7 +5148,7 @@ public final class CompletionEngine
 		if (arguments == null) return null;
 		int argsLength = arguments.length;
 		TypeBinding[] argTypes = new TypeBinding[argsLength];
-		for (int a = argsLength; --a >= 0;) {
+		for (int a = argsLength; --a >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			argTypes[a] = arguments[a].resolvedType;
 		}
 		return argTypes;
@@ -5158,7 +5158,7 @@ public final class CompletionEngine
 		if (arguments == null) return Binding.NO_TYPES;
 		int argsLength = arguments.length;
 		TypeBinding[] argTypes = new TypeBinding[argsLength];
-		for (int a = argsLength; --a >= 0;) {
+		for (int a = argsLength; --a >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeBinding typeBinding = arguments[a].resolvedType;
 			if(typeBinding == null || !typeBinding.isValidBinding()) return null;
 			argTypes[a] = typeBinding;
@@ -5166,7 +5166,7 @@ public final class CompletionEngine
 		return argTypes;
 	}
 
-	private void computeUninterestingBindings(ASTNode astNode, ASTNode parent, Scope scope){
+	private void computeUninterestingBindings(ASTNode astNode, ASTNode parent, Scope scope){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.uninterestingBindingsFilter = NONE;
 		if(parent instanceof LocalDeclaration) {
 			addUninterestingBindings(((LocalDeclaration)parent).binding);
@@ -5185,7 +5185,7 @@ public final class CompletionEngine
 				this.uninterestingBindingsFilter |= SUBTYPE;
 				// super-types also need to be discouraged if we're in a union type (bug 350652)
 				Argument[] args = ((TryStatement)parent).catchArguments;
-				for (Argument arg : args) {
+				for (Argument arg : args) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (arg.type instanceof UnionTypeReference) {
 						CompletionNodeDetector detector = new CompletionNodeDetector(astNode, arg);
 						if (detector.containsCompletionNode()) {
@@ -5211,7 +5211,7 @@ public final class CompletionEngine
 		return CharOperation.concat(result, IMPORT_END);
 	}
 
-	private void createMethod(MethodBinding method, char[][] parameterPackageNames, char[][] parameterTypeNames, char[][] parameterNames, Scope scope, StringBuilder completion) {
+	private void createMethod(MethodBinding method, char[][] parameterPackageNames, char[][] parameterTypeNames, char[][] parameterNames, Scope scope, StringBuilder completion) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		//// Modifiers
 		// flush uninteresting modifiers
 		int insertedModifiers = method.modifiers & ~(ClassFileConstants.AccNative | ClassFileConstants.AccAbstract);
@@ -5223,57 +5223,57 @@ public final class CompletionEngine
 
 		TypeVariableBinding[] typeVariableBindings = method.typeVariables;
 		if(typeVariableBindings != null && typeVariableBindings.length != 0) {
-			completion.append('<');
-			for (int i = 0; i < typeVariableBindings.length; i++) {
+			completion.append('<'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (int i = 0; i < typeVariableBindings.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(i != 0) {
-					completion.append(',');
-					completion.append(' ');
+					completion.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					completion.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				createTypeVariable(typeVariableBindings[i], scope, completion);
 			}
-			completion.append('>');
-			completion.append(' ');
+			completion.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			completion.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		//// Return type
 		createType(method.returnType, scope, completion);
-		completion.append(' ');
+		completion.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		//// Selector
-		completion.append(method.selector);
+		completion.append(method.selector); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
-		completion.append('(');
+		completion.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		////Parameters
 		TypeBinding[] parameterTypes = method.parameters;
 		int length = parameterTypes.length;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(i != 0) {
-				completion.append(',');
-				completion.append(' ');
+				completion.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				completion.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			createType(parameterTypes[i], scope, completion);
-			completion.append(' ');
+			completion.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if(parameterNames != null){
-				completion.append(parameterNames[i]);
+				completion.append(parameterNames[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				completion.append('%');
+				completion.append('%'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 
-		completion.append(')');
+		completion.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		//// Exceptions
 		ReferenceBinding[] exceptions = method.thrownExceptions;
 
 		if (exceptions != null && exceptions.length > 0){
-			completion.append(' ');
-			completion.append(THROWS);
-			completion.append(' ');
-			for(int i = 0; i < exceptions.length ; i++){
+			completion.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			completion.append(THROWS); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			completion.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for(int i = 0; i < exceptions.length ; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(i != 0) {
-					completion.append(' ');
-					completion.append(',');
+					completion.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					completion.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				createType(exceptions[i], scope, completion);
 			}
@@ -5287,7 +5287,7 @@ public final class CompletionEngine
 		return proposal;
 	}
 
-	private CompletionProposal createRequiredTypeProposal(Binding binding, int start, int end, int relevance) {
+	private CompletionProposal createRequiredTypeProposal(Binding binding, int start, int end, int relevance) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		InternalCompletionProposal proposal = null;
 		if (binding instanceof ReferenceBinding) {
 			ReferenceBinding typeBinding = (ReferenceBinding) binding;
@@ -5324,36 +5324,36 @@ public final class CompletionEngine
 		return proposal;
 	}
 
-	private void createType(TypeBinding type, Scope scope, StringBuilder completion) {
+	private void createType(TypeBinding type, Scope scope, StringBuilder completion) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch (type.kind()) {
 			case Binding.BASE_TYPE :
-				completion.append(type.sourceName());
+				completion.append(type.sourceName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case Binding.WILDCARD_TYPE :
 			case Binding.INTERSECTION_TYPE : // TODO (david) need to handle intersection type specifically
 				WildcardBinding wildcardBinding = (WildcardBinding) type;
-				completion.append('?');
+				completion.append('?'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				switch (wildcardBinding.boundKind) {
 					case Wildcard.EXTENDS:
-						completion.append(' ');
-						completion.append(EXTENDS);
-						completion.append(' ');
+						completion.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						completion.append(EXTENDS); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						completion.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						createType(wildcardBinding.bound, scope, completion);
 						if(wildcardBinding.otherBounds != null) {
 
 							int length = wildcardBinding.otherBounds.length;
-							for (int i = 0; i < length; i++) {
-								completion.append(' ');
-								completion.append('&');
-								completion.append(' ');
+							for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+								completion.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+								completion.append('&'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+								completion.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 								createType(wildcardBinding.otherBounds[i], scope, completion);
 							}
 						}
 						break;
 					case Wildcard.SUPER:
-						completion.append(' ');
-						completion.append(SUPER);
-						completion.append(' ');
+						completion.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						completion.append(SUPER); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						completion.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						createType(wildcardBinding.bound, scope, completion);
 						break;
 				}
@@ -5361,27 +5361,27 @@ public final class CompletionEngine
 			case Binding.ARRAY_TYPE :
 				createType(type.leafComponentType(), scope, completion);
 				int dim = type.dimensions();
-				for (int i = 0; i < dim; i++) {
-					completion.append('[');
-					completion.append(']');
+				for (int i = 0; i < dim; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					completion.append('['); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					completion.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				break;
 			case Binding.PARAMETERIZED_TYPE :
 				ParameterizedTypeBinding parameterizedType = (ParameterizedTypeBinding) type;
 				if (type.isMemberType()) {
 					createType(parameterizedType.enclosingType(), scope, completion);
-					completion.append('.');
-					completion.append(parameterizedType.sourceName);
+					completion.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					completion.append(parameterizedType.sourceName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else {
-					completion.append(CharOperation.concatWith(parameterizedType.genericType().compoundName, '.'));
+					completion.append(CharOperation.concatWith(parameterizedType.genericType().compoundName, '.')); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				if (parameterizedType.arguments != null) {
-					completion.append('<');
-				    for (int i = 0, length = parameterizedType.arguments.length; i < length; i++) {
-				        if (i != 0) completion.append(',');
+					completion.append('<'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				    for (int i = 0, length = parameterizedType.arguments.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				        if (i != 0) completion.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				        createType(parameterizedType.arguments[i], scope, completion);
 				    }
-				    completion.append('>');
+				    completion.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				break;
 			default :
@@ -5391,9 +5391,9 @@ public final class CompletionEngine
 					(ReferenceBinding)type,
 					packageName,
 					scope)) {
-				completion.append(CharOperation.concat(packageName, typeName,'.'));
+				completion.append(CharOperation.concat(packageName, typeName,'.')); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				completion.append(type.sourceName());
+				completion.append(type.sourceName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			break;
 		}
@@ -5402,7 +5402,7 @@ public final class CompletionEngine
 	/*
 	 * Create a completion proposal for a member type.
 	 */
-	private void createTypeParameterProposal(TypeParameter typeParameter, int relevance) {
+	private void createTypeParameterProposal(TypeParameter typeParameter, int relevance) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] completionName = typeParameter.name;
 
 		// Create standard type proposal
@@ -5446,7 +5446,7 @@ public final class CompletionEngine
 	/*
 	 * Create a completion proposal for a type.
 	 */
-	private void createTypeProposal(char[] packageName, char[] typeName, int modifiers, int accessibility, char[] completionName, int relevance) {
+	private void createTypeProposal(char[] packageName, char[] typeName, int modifiers, int accessibility, char[] completionName, int relevance) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Create standard type proposal
 		if(!this.requestor.isIgnored(CompletionProposal.TYPE_REF) && (this.assistNodeInJavadoc & CompletionOnJavadoc.ONLY_INLINE_TAG) == 0) {
@@ -5496,7 +5496,7 @@ public final class CompletionEngine
 	/*
 	 * Create a completion proposal for a member type.
 	 */
-	private void createTypeProposal(
+	private void createTypeProposal( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			ReferenceBinding refBinding,
 			char[] typeName,
 			int accessibility,
@@ -5521,7 +5521,7 @@ public final class CompletionEngine
 			proposal.setTypeName(typeName);
 			if (missingElements != null) {
 				CompletionProposal[] subProposals = new CompletionProposal[missingElements.length];
-				for (int i = 0; i < missingElements.length; i++) {
+				for (int i = 0; i < missingElements.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					subProposals[i] =
 						createRequiredTypeProposal(
 								missingElements[i],
@@ -5567,26 +5567,26 @@ public final class CompletionEngine
 			}
 		}
 	}
-	private void createTypeVariable(TypeVariableBinding typeVariable, Scope scope, StringBuilder completion) {
-		completion.append(typeVariable.sourceName);
+	private void createTypeVariable(TypeVariableBinding typeVariable, Scope scope, StringBuilder completion) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		completion.append(typeVariable.sourceName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		if (typeVariable.superclass != null && TypeBinding.equalsEquals(typeVariable.firstBound, typeVariable.superclass)) {
-		    completion.append(' ');
-		    completion.append(EXTENDS);
-		    completion.append(' ');
+		    completion.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		    completion.append(EXTENDS); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		    completion.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		    createType(typeVariable.superclass, scope, completion);
 		}
 		if (typeVariable.superInterfaces != null && typeVariable.superInterfaces != Binding.NO_SUPERINTERFACES) {
 		   if (TypeBinding.notEquals(typeVariable.firstBound, typeVariable.superclass)) {
-			   completion.append(' ');
-			   completion.append(EXTENDS);
-			   completion.append(' ');
+			   completion.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			   completion.append(EXTENDS); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			   completion.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		   }
-		   for (int i = 0, length = typeVariable.superInterfaces.length; i < length; i++) {
+		   for (int i = 0, length = typeVariable.superInterfaces.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			   if (i > 0 || TypeBinding.equalsEquals(typeVariable.firstBound, typeVariable.superclass)) {
-				   completion.append(' ');
-				   completion.append(EXTENDS);
-				   completion.append(' ');
+				   completion.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				   completion.append(EXTENDS); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				   completion.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			   }
 			   createType(typeVariable.superInterfaces[i], scope, completion);
 		   }
@@ -5596,22 +5596,22 @@ public final class CompletionEngine
 		if (type.isArrayType()) {
 			createType(type.leafComponentType(), scope, completion);
 			int dim = type.dimensions() - 1;
-			for (int i = 0; i < dim; i++) {
-				completion.append('[');
-				completion.append(']');
+			for (int i = 0; i < dim; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				completion.append('['); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				completion.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			completion.append(VARARGS);
+			completion.append(VARARGS); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
 			createType(type, scope, completion);
 		}
 	}
-	private void findAnnotationAttributes(char[] token, MemberValuePair[] attributesFound, ReferenceBinding annotation) {
+	private void findAnnotationAttributes(char[] token, MemberValuePair[] attributesFound, ReferenceBinding annotation) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		MethodBinding[] methods = annotation.availableMethods();
-		nextAttribute: for (MethodBinding method : methods) {
+		nextAttribute: for (MethodBinding method : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(isFailedMatch(token, method.selector)) continue nextAttribute;
 
 			int length = attributesFound == null ? 0 : attributesFound.length;
-			for (int j = 0; j < length; j++) {
+			for (int j = 0; j < length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(CharOperation.equals(method.selector, attributesFound[j].name, false)) continue nextAttribute;
 			}
 
@@ -5649,7 +5649,7 @@ public final class CompletionEngine
 			}
 		}
 	}
-	void findAnonymousType(
+	void findAnonymousType( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			ReferenceBinding currentType,
 			TypeBinding[] argTypes,
 			Scope scope,
@@ -5681,7 +5681,7 @@ public final class CompletionEngine
 				false,
 				relevance);
 	}
-	private void findAnonymousType(
+	private void findAnonymousType( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ReferenceBinding currentType,
 		TypeBinding[] argTypes,
 		Scope scope,
@@ -5779,7 +5779,7 @@ public final class CompletionEngine
 					//proposal.setTypeName(null);
 					if (missingElements != null) {
 						CompletionProposal[] subProposals = new CompletionProposal[missingElements.length];
-						for (int i = 0; i < missingElements.length; i++) {
+						for (int i = 0; i < missingElements.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							subProposals[i] =
 								createRequiredTypeProposal(
 										missingElements[i],
@@ -5816,7 +5816,7 @@ public final class CompletionEngine
 				relevance);
 		}
 	}
-	private void findClassField(
+	private void findClassField( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			char[] token,
 			TypeBinding receiverType,
 			Scope scope,
@@ -5868,7 +5868,7 @@ public final class CompletionEngine
 				proposal.setName(classField);
 				if (missingElements != null) {
 					CompletionProposal[] subProposals = new CompletionProposal[missingElements.length];
-					for (int i = 0; i < missingElements.length; i++) {
+					for (int i = 0; i < missingElements.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						subProposals[i] =
 							createRequiredTypeProposal(
 									missingElements[i],
@@ -5898,7 +5898,7 @@ public final class CompletionEngine
 				missingElementsStarts, missingElementsEnds, missingElementsHaveProblems, new ObjectVector(), false);
 	}
 
-	void findConstructors(
+	void findConstructors( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ReferenceBinding currentType,
 		TypeBinding[] argTypes,
 		Scope scope,
@@ -5938,7 +5938,7 @@ public final class CompletionEngine
 	}
 
 
-	private void findConstructorsFromMissingType(
+	private void findConstructorsFromMissingType( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			TypeReference typeRef,
 			final TypeBinding[] argTypes,
 			final Scope scope,
@@ -5946,7 +5946,7 @@ public final class CompletionEngine
 		MissingTypesGuesser missingTypesConverter = new MissingTypesGuesser(this);
 		MissingTypesGuesser.GuessedTypeRequestor substitutionRequestor =
 			new MissingTypesGuesser.GuessedTypeRequestor() {
-				@Override
+				@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				public void accept(
 						TypeBinding guessedType,
 						Binding[] missingElements,
@@ -6000,7 +6000,7 @@ public final class CompletionEngine
 				relevance, new ObjectVector(), false);
 	}
 
-	private void findConstructors(
+	private void findConstructors( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ReferenceBinding currentType,
 		TypeBinding[] argTypes,
 		Scope scope,
@@ -6035,7 +6035,7 @@ public final class CompletionEngine
 		}
 		if(methods != null) {
 			int minArgLength = argTypes == null ? 0 : argTypes.length;
-			next : for (int f = methods.length; --f >= 0;) {
+			next : for (int f = methods.length; --f >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				MethodBinding constructor = methods[f];
 				if (constructor.isConstructor()) {
 
@@ -6067,7 +6067,7 @@ public final class CompletionEngine
 
 					char[][] parameterPackageNames = new char[paramLength][];
 					char[][] parameterTypeNames = new char[paramLength][];
-					for (int i = 0; i < paramLength; i++) {
+					for (int i = 0; i < paramLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						TypeBinding type = parameters[i];
 						parameterPackageNames[i] = type.qualifiedPackageName();
 						parameterTypeNames[i] = type.qualifiedSourceName();
@@ -6158,7 +6158,7 @@ public final class CompletionEngine
 								//proposal.setTypeName(null);
 								if (missingElements != null) {
 									CompletionProposal[] subProposals = new CompletionProposal[missingElements.length];
-									for (int i = 0; i < missingElements.length; i++) {
+									for (int i = 0; i < missingElements.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 										subProposals[i] =
 											createRequiredTypeProposal(
 													missingElements[i],
@@ -6198,34 +6198,34 @@ public final class CompletionEngine
 								receiver = modRef.typeReference;
 							}
 							if (receiver != null) {
-								StringBuilder javadocCompletion = new StringBuilder();
+								StringBuilder javadocCompletion = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 								if (receiver.isThis()) {
 									selector = (((JavadocImplicitTypeReference)receiver).token);
 									if ((this.assistNodeInJavadoc & CompletionOnJavadoc.TEXT) != 0) {
-										javadocCompletion.append('#');
+										javadocCompletion.append('#'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 									}
 								} else if (receiver instanceof JavadocSingleTypeReference) {
 									JavadocSingleTypeReference typeRef = (JavadocSingleTypeReference) receiver;
 									selector = typeRef.token;
 									if ((this.assistNodeInJavadoc & CompletionOnJavadoc.TEXT) != 0) {
-										javadocCompletion.append(typeRef.token);
-										javadocCompletion.append('#');
+										javadocCompletion.append(typeRef.token); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+										javadocCompletion.append('#'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 									}
 								} else if (receiver instanceof JavadocQualifiedTypeReference) {
 									JavadocQualifiedTypeReference typeRef = (JavadocQualifiedTypeReference) receiver;
 									selector = typeRef.tokens[typeRef.tokens.length-1];
 									if ((this.assistNodeInJavadoc & CompletionOnJavadoc.TEXT) != 0) {
-										javadocCompletion.append(CharOperation.concatWith(typeRef.tokens, '.'));
-										javadocCompletion.append('#');
+										javadocCompletion.append(CharOperation.concatWith(typeRef.tokens, '.')); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+										javadocCompletion.append('#'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 									}
 								}
 								// Append parameters types
-								javadocCompletion.append(selector);
-								javadocCompletion.append('(');
+								javadocCompletion.append(selector); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+								javadocCompletion.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 								if (constructor.parameters != null) {
 									boolean isVarargs = constructor.isVarargs();
-									for (int p=0, ln=constructor.parameters.length; p<ln; p++) {
-										if (p>0) javadocCompletion.append(", "); //$NON-NLS-1$
+									for (int p=0, ln=constructor.parameters.length; p<ln; p++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+										if (p>0) javadocCompletion.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 										TypeBinding argTypeBinding = constructor.parameters[p];
 										if (isVarargs && p == ln - 1)  {
 											createVargsType(argTypeBinding.erasure(), scope, javadocCompletion);
@@ -6234,7 +6234,7 @@ public final class CompletionEngine
 										}
 									}
 								}
-								javadocCompletion.append(')');
+								javadocCompletion.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 								completion = javadocCompletion.toString().toCharArray();
 							}
 						} else {
@@ -6320,7 +6320,7 @@ public final class CompletionEngine
 								proposal.setName(currentType.sourceName());
 								if (missingElements != null) {
 									CompletionProposal[] subProposals = new CompletionProposal[missingElements.length];
-									for (int i = 0; i < missingElements.length; i++) {
+									for (int i = 0; i < missingElements.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 										subProposals[i] =
 											createRequiredTypeProposal(
 													missingElements[i],
@@ -6384,13 +6384,13 @@ public final class CompletionEngine
 		int argumentsLength = arguments == null ? 0 : arguments.length;
 		if (parameterTypes.length != argumentsLength)
 			return true;
-		for (int j = 0; j < argumentsLength; j++)
+		for (int j = 0; j < argumentsLength; j++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!CharOperation.equals(getTypeName(arguments[j].type), parameterTypes[j]))
 				return true;
 		return false;
 	}
 
-	private char[] getResolvedSignature(char[][] parameterTypes, char[] fullyQualifiedTypeName, int parameterCount, Scope scope) {
+	private char[] getResolvedSignature(char[][] parameterTypes, char[] fullyQualifiedTypeName, int parameterCount, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[][] cn = CharOperation.splitOn('.', fullyQualifiedTypeName);
 
 		TypeReference ref;
@@ -6430,7 +6430,7 @@ public final class CompletionEngine
 					if (methods == null)
 						return null;
 
-					next : for (AbstractMethodDeclaration method : methods) {
+					next : for (AbstractMethodDeclaration method : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (!method.isConstructor() || argumentMismatch(method.arguments(true), parameterTypes))
 							continue next;
 						refBinding.resolveTypesFor(method.binding); // force resolution
@@ -6440,7 +6440,7 @@ public final class CompletionEngine
 					if (typeDeclaration.isRecord() && !argumentMismatch(typeDeclaration.recordComponents, parameterTypes)) {
 						MethodBinding [] constructors = refBinding.getMethods(TypeConstants.INIT, parameterTypes.length);
 						if (constructors != null) {
-							for (MethodBinding constructor : constructors)
+							for (MethodBinding constructor : constructors) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								if (constructor instanceof SyntheticMethodBinding)
 									return getSignature(constructor);
 						}
@@ -6454,7 +6454,7 @@ public final class CompletionEngine
 		return null;
 	}
 
-	private void findConstructorsOrAnonymousTypes(
+	private void findConstructorsOrAnonymousTypes( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			ReferenceBinding currentType,
 			Scope scope,
 			InvocationSite invocationSite,
@@ -6497,12 +6497,12 @@ public final class CompletionEngine
 				relevance);
 		}
 	}
-	private char[][] findEnclosingTypeNames(Scope scope){
+	private char[][] findEnclosingTypeNames(Scope scope){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[][] excludedNames = new char[10][];
 		int excludedNameCount = 0;
 
 		Scope currentScope = scope;
-		while(currentScope != null) {
+		while(currentScope != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch (currentScope.kind) {
 				case Scope.CLASS_SCOPE :
 					ClassScope classScope = (ClassScope) currentScope;
@@ -6516,7 +6516,7 @@ public final class CompletionEngine
 
 					TypeParameter[] classTypeParameters = typeDeclaration.typeParameters;
 					if(classTypeParameters != null) {
-						for (TypeParameter typeParameter : classTypeParameters) {
+						for (TypeParameter typeParameter : classTypeParameters) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if(excludedNameCount == excludedNames.length) {
 								System.arraycopy(excludedNames, 0, excludedNames = new char[excludedNameCount * 2][], 0, excludedNameCount);
 							}
@@ -6529,7 +6529,7 @@ public final class CompletionEngine
 					if(methodScope.referenceContext instanceof AbstractMethodDeclaration) {
 						TypeParameter[] methodTypeParameters = ((AbstractMethodDeclaration)methodScope.referenceContext).typeParameters();
 						if(methodTypeParameters != null) {
-							for (TypeParameter typeParameter : methodTypeParameters) {
+							for (TypeParameter typeParameter : methodTypeParameters) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								if(excludedNameCount == excludedNames.length) {
 									System.arraycopy(excludedNames, 0, excludedNames = new char[excludedNameCount * 2][], 0, excludedNameCount);
 								}
@@ -6549,7 +6549,7 @@ public final class CompletionEngine
 		System.arraycopy(excludedNames, 0, excludedNames = new char[excludedNameCount][], 0, excludedNameCount);
 		return excludedNames;
 	}
-	private void findEnumConstants(
+	private void findEnumConstants( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			char[] enumConstantName,
 			ReferenceBinding enumType,
 			Scope invocationScope,
@@ -6561,7 +6561,7 @@ public final class CompletionEngine
 		FieldBinding[] fields = enumType.fields();
 
 		int enumConstantLength = enumConstantName.length;
-		next : for (int f = fields.length; --f >= 0;) {
+		next : for (int f = fields.length; --f >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			FieldBinding field = fields[f];
 
 			if (field.isSynthetic()) continue next;
@@ -6574,7 +6574,7 @@ public final class CompletionEngine
 
 			char[] fieldName = field.name;
 
-			for (int i = 0; i < alreadyUsedConstantCount; i++) {
+			for (int i = 0; i < alreadyUsedConstantCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(CharOperation.equals(alreadyUsedConstants[i], fieldName)) continue next;
 			}
 
@@ -6700,7 +6700,7 @@ public final class CompletionEngine
 			Scope invocationScope,
 			ObjectVector fieldsFound) {
 		int length = this.expectedTypesPtr + 1;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (this.expectedTypes[i].isEnum()) {
 				findEnumConstants(
 						token,
@@ -6714,7 +6714,7 @@ public final class CompletionEngine
 		}
 
 	}
-	private void findEnumConstantsFromSwithStatement(char[] enumConstantName, SwitchStatement switchStatement) {
+	private void findEnumConstantsFromSwithStatement(char[] enumConstantName, SwitchStatement switchStatement) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TypeBinding expressionType = switchStatement.expression.resolvedType;
 		if(expressionType != null && expressionType.isEnum()) {
 			ReferenceBinding enumType = (ReferenceBinding) expressionType;
@@ -6723,7 +6723,7 @@ public final class CompletionEngine
 
 			char[][] alreadyUsedConstants = new char[switchStatement.caseCount][];
 			int alreadyUsedConstantCount = 0;
-			for (int i = 0; i < switchStatement.caseCount; i++) {
+			for (int i = 0; i < switchStatement.caseCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Expression[] caseExpressions = cases[i].constantExpressions;
 				Expression caseExpression = caseExpressions != null && caseExpressions.length > 0 ?
 						caseExpressions[0] : null;
@@ -6743,7 +6743,7 @@ public final class CompletionEngine
 					false);
 		}
 	}
-	private void findExceptionFromTryStatement(
+	private void findExceptionFromTryStatement( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			char[] typeName,
 			ReferenceBinding exceptionType,
 			ReferenceBinding receiverType,
@@ -6756,7 +6756,7 @@ public final class CompletionEngine
 			ReferenceBinding javaLangThrowable = scope.getJavaLangThrowable();
 			if (TypeBinding.notEquals(exceptionType, javaLangThrowable)) {
 				ReferenceBinding superClass = exceptionType.superclass();
-				while(superClass != null && TypeBinding.notEquals(superClass, javaLangThrowable)) {
+				while(superClass != null && TypeBinding.notEquals(superClass, javaLangThrowable)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					findExceptionFromTryStatement(typeName, superClass, receiverType, invocationType, scope, typesFound, false);
 					superClass = superClass.superclass();
 				}
@@ -6788,7 +6788,7 @@ public final class CompletionEngine
 
 		if (isForbidden(exceptionType)) return;
 
-		for (int j = typesFound.size; --j >= 0;) {
+		for (int j = typesFound.size; --j >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ReferenceBinding otherType = (ReferenceBinding) typesFound.elementAt(j);
 
 			if (TypeBinding.equalsEquals(exceptionType, otherType))
@@ -6830,7 +6830,7 @@ public final class CompletionEngine
 			}
 
 			Scope currentScope = scope;
-			done : while (currentScope != null) { // done when a COMPILATION_UNIT_SCOPE is found
+			done : while (currentScope != null) { // done when a COMPILATION_UNIT_SCOPE is found //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 				switch (currentScope.kind) {
 
@@ -6838,7 +6838,7 @@ public final class CompletionEngine
 					case Scope.BLOCK_SCOPE :
 						BlockScope blockScope = (BlockScope) currentScope;
 
-						for (int j = 0, length = blockScope.subscopeCount; j < length; j++) {
+						for (int j = 0, length = blockScope.subscopeCount; j < length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 							if (blockScope.subscopes[j] instanceof ClassScope) {
 								SourceTypeBinding localType =
@@ -6856,7 +6856,7 @@ public final class CompletionEngine
 						SourceTypeBinding type = ((ClassScope)currentScope).referenceContext.binding;
 						ReferenceBinding[] memberTypes = type.memberTypes();
 						if (memberTypes != null) {
-							for (int j = 0; j < memberTypes.length; j++) {
+							for (int j = 0; j < memberTypes.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								if (TypeBinding.equalsEquals(memberTypes[j], exceptionType)) {
 									isQualified = false;
 									break done;
@@ -6870,7 +6870,7 @@ public final class CompletionEngine
 					case Scope.COMPILATION_UNIT_SCOPE :
 						SourceTypeBinding[] types = ((CompilationUnitScope)currentScope).topLevelTypes;
 						if (types != null) {
-							for (int j = 0; j < types.length; j++) {
+							for (int j = 0; j < types.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								if (TypeBinding.equalsEquals(types[j], exceptionType)) {
 									isQualified = false;
 									break done;
@@ -6935,13 +6935,13 @@ public final class CompletionEngine
 			BlockScope scope,
 			ObjectVector typesFound) {
 
-		for (int i = 0; i <= this.expectedTypesPtr; i++) {
+		for (int i = 0; i <= this.expectedTypesPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ReferenceBinding exceptionType = (ReferenceBinding)this.expectedTypes[i];
 
 			findExceptionFromTryStatement(typeName, exceptionType, receiverType, invocationType, scope, typesFound, true);
 		}
 	}
-	private void findExplicitConstructors(
+	private void findExplicitConstructors( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] name,
 		ReferenceBinding currentType,
 		MethodScope scope,
@@ -6953,7 +6953,7 @@ public final class CompletionEngine
 		// No visibility checks can be performed without the scope & invocationSite
 		MethodBinding[] methods = currentType.availableMethods();
 		if(methods != null) {
-			next : for (int f = methods.length; --f >= 0;) {
+			next : for (int f = methods.length; --f >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				MethodBinding constructor = methods[f];
 				if (constructor != enclosingConstructor && constructor.isConstructor()) {
 
@@ -6972,7 +6972,7 @@ public final class CompletionEngine
 
 					char[][] parameterPackageNames = new char[paramLength][];
 					char[][] parameterTypeNames = new char[paramLength][];
-					for (int i = 0; i < paramLength; i++) {
+					for (int i = 0; i < paramLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						TypeBinding type = parameters[i];
 						parameterPackageNames[i] = type.qualifiedPackageName();
 						parameterTypeNames[i] = type.qualifiedSourceName();
@@ -7025,7 +7025,7 @@ public final class CompletionEngine
 		}
 	}
 	// Helper method for findFields(char[], ReferenceBinding, Scope, ObjectVector, boolean)
-	private void findFields(
+	private void findFields( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] fieldName,
 		FieldBinding[] fields,
 		Scope scope,
@@ -7049,7 +7049,7 @@ public final class CompletionEngine
 		// if the proposal is being asked inside a field's initialization, we'll record its id
 		int fieldBeingCompletedId = -1;
 		boolean isFieldBeingCompletedStatic = false;
-		for (int f = fields.length; --f >=0;) {
+		for (int f = fields.length; --f >=0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			FieldBinding field = fields[f];
 			FieldDeclaration fieldDeclaration = field.sourceField();
 			// We maybe asking for a proposal inside this field's initialization. So record its id
@@ -7080,7 +7080,7 @@ public final class CompletionEngine
 		// No visibility checks can be performed without the scope & invocationSite
 
 		int fieldLength = fieldName.length;
-		next : for (int f = fields.length; --f >= 0;) {
+		next : for (int f = fields.length; --f >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			FieldBinding field = fields[f];
 
 			// Content assist invoked inside some field's initialization.
@@ -7133,7 +7133,7 @@ public final class CompletionEngine
 
 			boolean prefixRequired = false;
 
-			for (int i = fieldsFound.size; --i >= 0;) {
+			for (int i = fieldsFound.size; --i >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Object[] other = (Object[])fieldsFound.elementAt(i);
 				FieldBinding otherField = (FieldBinding) other[0];
 				ReferenceBinding otherReceiverType = (ReferenceBinding) other[1];
@@ -7159,7 +7159,7 @@ public final class CompletionEngine
 				}
 			}
 
-			for (int l = localsFound.size; --l >= 0;) {
+			for (int l = localsFound.size; --l >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				LocalVariableBinding local = (LocalVariableBinding) localsFound.elementAt(l);
 
 				if (CharOperation.equals(field.name, local.name, true)) {
@@ -7253,7 +7253,7 @@ public final class CompletionEngine
 					proposal.setName(field.name);
 					if (missingElements != null) {
 						CompletionProposal[] subProposals = new CompletionProposal[missingElements.length];
-						for (int i = 0; i < missingElements.length; i++) {
+						for (int i = 0; i < missingElements.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							subProposals[i] =
 								createRequiredTypeProposal(
 										missingElements[i],
@@ -7332,7 +7332,7 @@ public final class CompletionEngine
 					proposal.setName(field.name);
 					if (missingElements != null) {
 						CompletionProposal[] subProposals = new CompletionProposal[missingElements.length];
-						for (int i = 0; i < missingElements.length; i++) {
+						for (int i = 0; i < missingElements.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							subProposals[i] =
 								createRequiredTypeProposal(
 										missingElements[i],
@@ -7358,7 +7358,7 @@ public final class CompletionEngine
 
 		fieldsFound.addAll(newFieldsFound);
 	}
-	private void findFields(
+	private void findFields( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] fieldName,
 		ReferenceBinding receiverType,
 		Scope scope,
@@ -7384,7 +7384,7 @@ public final class CompletionEngine
 		ReferenceBinding currentType = receiverType;
 		ReferenceBinding[] interfacesToVisit = null;
 		int nextPosition = 0;
-		do {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ReferenceBinding[] itsInterfaces = currentType.superInterfaces();
 			if (notInJavadoc && itsInterfaces != null && itsInterfaces != Binding.NO_SUPERINTERFACES) {
 				if (interfacesToVisit == null) {
@@ -7394,9 +7394,9 @@ public final class CompletionEngine
 					int itsLength = itsInterfaces.length;
 					if (nextPosition + itsLength >= interfacesToVisit.length)
 						System.arraycopy(interfacesToVisit, 0, interfacesToVisit = new ReferenceBinding[nextPosition + itsLength + 5], 0, nextPosition);
-					nextInterface : for (int a = 0; a < itsLength; a++) {
+					nextInterface : for (int a = 0; a < itsLength; a++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ReferenceBinding next = itsInterfaces[a];
-						for (int b = 0; b < nextPosition; b++)
+						for (int b = 0; b < nextPosition; b++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (TypeBinding.equalsEquals(next, interfacesToVisit[b])) continue nextInterface;
 						interfacesToVisit[nextPosition++] = next;
 					}
@@ -7429,7 +7429,7 @@ public final class CompletionEngine
 		} while (notInJavadoc && currentType != null);
 
 		if (notInJavadoc && interfacesToVisit != null) {
-			for (int i = 0; i < nextPosition; i++) {
+			for (int i = 0; i < nextPosition; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ReferenceBinding anInterface = interfacesToVisit[i];
 				FieldBinding[] fields = anInterface.availableFields();
 				if(fields !=  null) {
@@ -7459,9 +7459,9 @@ public final class CompletionEngine
 					int itsLength = itsInterfaces.length;
 					if (nextPosition + itsLength >= interfacesToVisit.length)
 						System.arraycopy(interfacesToVisit, 0, interfacesToVisit = new ReferenceBinding[nextPosition + itsLength + 5], 0, nextPosition);
-					nextInterface : for (int a = 0; a < itsLength; a++) {
+					nextInterface : for (int a = 0; a < itsLength; a++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ReferenceBinding next = itsInterfaces[a];
-						for (int b = 0; b < nextPosition; b++)
+						for (int b = 0; b < nextPosition; b++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (TypeBinding.equalsEquals(next, interfacesToVisit[b])) continue nextInterface;
 						interfacesToVisit[nextPosition++] = next;
 					}
@@ -7470,7 +7470,7 @@ public final class CompletionEngine
 		}
 	}
 
-	protected void findFieldsAndMethods(
+	protected void findFieldsAndMethods( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] token,
 		TypeBinding receiverType,
 		Scope scope,
@@ -7528,7 +7528,7 @@ public final class CompletionEngine
 						proposal.setName(lengthField);
 						if (missingElements != null) {
 							CompletionProposal[] subProposals = new CompletionProposal[missingElements.length];
-							for (int i = 0; i < missingElements.length; i++) {
+							for (int i = 0; i < missingElements.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								subProposals[i] =
 									createRequiredTypeProposal(
 											missingElements[i],
@@ -7560,7 +7560,7 @@ public final class CompletionEngine
 						proposal.setName(lengthField);
 						if (missingElements != null) {
 							CompletionProposal[] subProposals = new CompletionProposal[missingElements.length];
-							for (int i = 0; i < missingElements.length; i++) {
+							for (int i = 0; i < missingElements.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								subProposals[i] =
 									createRequiredTypeProposal(
 											missingElements[i],
@@ -7637,7 +7637,7 @@ public final class CompletionEngine
 						proposal.setName(cloneMethod);
 						if (missingElements != null) {
 							CompletionProposal[] subProposals = new CompletionProposal[missingElements.length];
-							for (int i = 0; i < missingElements.length; i++) {
+							for (int i = 0; i < missingElements.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								subProposals[i] =
 									createRequiredTypeProposal(
 											missingElements[i],
@@ -7679,7 +7679,7 @@ public final class CompletionEngine
 						proposal.setName(cloneMethod);
 						if (missingElements != null) {
 							CompletionProposal[] subProposals = new CompletionProposal[missingElements.length];
-							for (int i = 0; i < missingElements.length; i++) {
+							for (int i = 0; i < missingElements.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								subProposals[i] =
 									createRequiredTypeProposal(
 											missingElements[i],
@@ -7754,7 +7754,7 @@ public final class CompletionEngine
 		}
 	}
 
-	protected void findFieldsAndMethodsFromAnotherReceiver(
+	protected void findFieldsAndMethodsFromAnotherReceiver( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			char[] token,
 			TypeReference receiverType,
 			Scope scope,
@@ -7830,7 +7830,7 @@ public final class CompletionEngine
 
 		this.startPosition = oldStartPosition;
 	}
-	private void findFieldsAndMethodsFromCastedReceiver(
+	private void findFieldsAndMethodsFromCastedReceiver( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			ASTNode enclosingNode,
 			Binding qualifiedBinding,
 			Scope scope,
@@ -7843,7 +7843,7 @@ public final class CompletionEngine
 		if (enclosingNode == null) return;
 
 		ASTNode currentEnclosing = enclosingNode;
-		while (currentEnclosing != null) {
+		while (currentEnclosing != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			InstanceOfExpression instanceOfExpression = findGuardingInstanceOf(currentEnclosing);
 			if (instanceOfExpression == null) return;
 
@@ -8009,7 +8009,7 @@ public final class CompletionEngine
 		return null;
 	}
 
-	private void findFieldsAndMethodsFromFavorites(
+	private void findFieldsAndMethodsFromFavorites( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			char[] token,
 			Scope scope,
 			InvocationSite invocationSite,
@@ -8023,7 +8023,7 @@ public final class CompletionEngine
 		ImportBinding[] favoriteBindings = getFavoriteReferenceBindings(invocationScope);
 
 		if (favoriteBindings != null && favoriteBindings.length > 0) {
-			for (ImportBinding favoriteBinding : favoriteBindings) {
+			for (ImportBinding favoriteBinding : favoriteBindings) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				switch (favoriteBinding.getResolvedBindingKind()) {
 					case Binding.FIELD:
 						FieldBinding fieldBinding = (FieldBinding) favoriteBinding.getResolvedImport();
@@ -8089,7 +8089,7 @@ public final class CompletionEngine
 		methodsFound.addAll(methodsFoundFromFavorites);
 	}
 
-	private boolean findFieldsAndMethodsFromMissingFieldType(
+	private boolean findFieldsAndMethodsFromMissingFieldType( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] token,
 		Scope scope,
 		InvocationSite invocationSite,
@@ -8099,7 +8099,7 @@ public final class CompletionEngine
 
 		Scope currentScope = scope;
 
-		done : while (true) { // done when a COMPILATION_UNIT_SCOPE is found
+		done : while (true) { // done when a COMPILATION_UNIT_SCOPE is found //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 			switch (currentScope.kind) {
 
@@ -8110,7 +8110,7 @@ public final class CompletionEngine
 						FieldDeclaration[] fields = classScope.referenceContext.fields;
 
 						int fieldsCount = fields == null ? 0 : fields.length;
-						for (int i = 0; i < fieldsCount; i++) {
+						for (int i = 0; i < fieldsCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							FieldDeclaration fieldDeclaration = fields[i];
 							if (CharOperation.equals(fieldDeclaration.name, token)) {
 								FieldBinding fieldBinding = fieldDeclaration.binding;
@@ -8136,7 +8136,7 @@ public final class CompletionEngine
 		return foundSomeFields;
 	}
 
-	private void findFieldsAndMethodsFromMissingReturnType(
+	private void findFieldsAndMethodsFromMissingReturnType( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] token,
 		TypeBinding[] arguments,
 		Scope scope,
@@ -8145,7 +8145,7 @@ public final class CompletionEngine
 
 		Scope currentScope = scope;
 
-		done : while (true) { // done when a COMPILATION_UNIT_SCOPE is found
+		done : while (true) { // done when a COMPILATION_UNIT_SCOPE is found //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 			switch (currentScope.kind) {
 
@@ -8156,7 +8156,7 @@ public final class CompletionEngine
 						AbstractMethodDeclaration[] methods = classScope.referenceContext.methods;
 
 						int methodsCount = methods == null ? 0 : methods.length;
-						for (int i = 0; i < methodsCount; i++) {
+						for (int i = 0; i < methodsCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							AbstractMethodDeclaration methodDeclaration = methods[i];
 							if (methodDeclaration instanceof MethodDeclaration &&
 									CharOperation.equals(methodDeclaration.selector, token)) {
@@ -8180,7 +8180,7 @@ public final class CompletionEngine
 										TypeBinding[] parametersBindings;
 										if (methodBinding == null) { // since no binding, extra types from type references
 											parametersBindings = new TypeBinding[parametersLength];
-											for (int j = 0; j < parametersLength; j++) {
+											for (int j = 0; j < parametersLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 												TypeBinding parameterType = parameters[j].type.resolvedType;
 												if (!parameterType.isValidBinding() && parameterType.closestMatch() != null) {
 													parameterType = parameterType.closestMatch();
@@ -8213,7 +8213,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private void findFieldsAndMethodsFromMissingType(
+	private void findFieldsAndMethodsFromMissingType( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			TypeReference typeRef,
 			final Scope scope,
 			final InvocationSite invocationSite,
@@ -8221,7 +8221,7 @@ public final class CompletionEngine
 		MissingTypesGuesser missingTypesConverter = new MissingTypesGuesser(this);
 		MissingTypesGuesser.GuessedTypeRequestor substitutionRequestor =
 			new MissingTypesGuesser.GuessedTypeRequestor() {
-				@Override
+				@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				public void accept(
 						TypeBinding guessedType,
 						Binding[] missingElements,
@@ -8251,7 +8251,7 @@ public final class CompletionEngine
 		missingTypesConverter.guess(typeRef, scope, substitutionRequestor);
 	}
 
-	private void findFieldsAndMethodsFromStaticImports(
+	private void findFieldsAndMethodsFromStaticImports( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			char[] token,
 			Scope scope,
 			InvocationSite invocationSite,
@@ -8265,7 +8265,7 @@ public final class CompletionEngine
 			boolean proposeMethod) {
 		// search in static import
 		ImportBinding[] importBindings = scope.compilationUnitScope().imports;
-		for (ImportBinding importBinding : importBindings) {
+		for (ImportBinding importBinding : importBindings) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(importBinding.isValidBinding() && importBinding.isStatic()) {
 				Binding binding = importBinding.getResolvedImport();
 				if(binding != null && binding.isValidBinding()) {
@@ -8361,7 +8361,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private void findFieldsFromFavorites(
+	private void findFieldsFromFavorites( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			char[] fieldName,
 			FieldBinding[] fields,
 			Scope scope,
@@ -8374,7 +8374,7 @@ public final class CompletionEngine
 		char[] typeName = CharOperation.concatWith(receiverType.compoundName, '.');
 
 		int fieldLength = fieldName.length;
-		next : for (int f = fields.length; --f >= 0;) {
+		next : for (int f = fields.length; --f >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			FieldBinding field = fields[f];
 
 			if (field.isSynthetic())	continue next;
@@ -8394,7 +8394,7 @@ public final class CompletionEngine
 			if (this.options.checkVisibility
 				&& !field.canBeSeenBy(receiverType, invocationSite, scope))	continue next;
 
-			for (int i = fieldsFound.size; --i >= 0;) {
+			for (int i = fieldsFound.size; --i >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Object[] other = (Object[])fieldsFound.elementAt(i);
 				FieldBinding otherField = (FieldBinding) other[0];
 
@@ -8507,7 +8507,7 @@ public final class CompletionEngine
 			}
 		}
 	}
-	private void findImplicitMessageSends(
+	private void findImplicitMessageSends( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] token,
 		TypeBinding[] argTypes,
 		Scope scope,
@@ -8521,7 +8521,7 @@ public final class CompletionEngine
 		boolean staticsOnly = false;
 		// need to know if we're in a static context (or inside a constructor)
 
-		done : while (true) { // done when a COMPILATION_UNIT_SCOPE is found
+		done : while (true) { // done when a COMPILATION_UNIT_SCOPE is found //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 			switch (scope.kind) {
 
@@ -8564,7 +8564,7 @@ public final class CompletionEngine
 			scope = scope.parent;
 		}
 	}
-	private void findImports(CompletionOnImportReference importReference, boolean findMembers) {
+	private void findImports(CompletionOnImportReference importReference, boolean findMembers) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[][] tokens = importReference.tokens;
 
 		char[] importName = CharOperation.concatWith(tokens, '.');
@@ -8613,11 +8613,11 @@ public final class CompletionEngine
 		}
 	}
 
-	private void findImportsOfMemberTypes(char[] typeName,	ReferenceBinding ref, boolean onlyStatic) {
+	private void findImportsOfMemberTypes(char[] typeName,	ReferenceBinding ref, boolean onlyStatic) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ReferenceBinding[] memberTypes = ref.memberTypes();
 
 		int typeLength = typeName.length;
-		next : for (int m = memberTypes.length; --m >= 0;) {
+		next : for (int m = memberTypes.length; --m >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ReferenceBinding memberType = memberTypes[m];
 			//		if (!wantClasses && memberType.isClass()) continue next;
 			//		if (!wantInterfaces && memberType.isInterface()) continue next;
@@ -8668,11 +8668,11 @@ public final class CompletionEngine
 		}
 	}
 
-	private void findImportsOfStaticFields(char[] fieldName, ReferenceBinding ref) {
+	private void findImportsOfStaticFields(char[] fieldName, ReferenceBinding ref) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		FieldBinding[] fields = ref.availableFields();
 
 		int fieldLength = fieldName.length;
-		next : for (int m = fields.length; --m >= 0;) {
+		next : for (int m = fields.length; --m >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			FieldBinding field = fields[m];
 
 			if (fieldLength > field.name.length)
@@ -8725,11 +8725,11 @@ public final class CompletionEngine
 		}
 	}
 
-	private void findImportsOfStaticMethods(char[] methodName, ReferenceBinding ref) {
+	private void findImportsOfStaticMethods(char[] methodName, ReferenceBinding ref) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		MethodBinding[] methods = ref.availableMethods();
 
 		int methodLength = methodName.length;
-		next : for (int m = methods.length; --m >= 0;) {
+		next : for (int m = methods.length; --m >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			MethodBinding method = methods[m];
 
 			if (method.isSynthetic()) continue next;
@@ -8755,7 +8755,7 @@ public final class CompletionEngine
 			char[][] parameterPackageNames = new char[length][];
 			char[][] parameterTypeNames = new char[length][];
 
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				TypeBinding type = method.original().parameters[i];
 				parameterPackageNames[i] = type.qualifiedPackageName();
 				parameterTypeNames[i] = type.qualifiedSourceName();
@@ -8796,7 +8796,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private void findInterfacesMethodDeclarations(
+	private void findInterfacesMethodDeclarations( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] selector,
 		ReferenceBinding receiverType,
 		ReferenceBinding[] itsInterfaces,
@@ -8814,7 +8814,7 @@ public final class CompletionEngine
 			ReferenceBinding[] interfacesToVisit = itsInterfaces;
 			int nextPosition = interfacesToVisit.length;
 
-			for (int i = 0; i < nextPosition; i++) {
+			for (int i = 0; i < nextPosition; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ReferenceBinding currentType = interfacesToVisit[i];
 				MethodBinding[] methods = currentType.availableMethods();
 				if(methods != null) {
@@ -8832,9 +8832,9 @@ public final class CompletionEngine
 					int itsLength = itsInterfaces.length;
 					if (nextPosition + itsLength >= interfacesToVisit.length)
 						System.arraycopy(interfacesToVisit, 0, interfacesToVisit = new ReferenceBinding[nextPosition + itsLength + 5], 0, nextPosition);
-					nextInterface : for (int a = 0; a < itsLength; a++) {
+					nextInterface : for (int a = 0; a < itsLength; a++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ReferenceBinding next = itsInterfaces[a];
-						for (int b = 0; b < nextPosition; b++)
+						for (int b = 0; b < nextPosition; b++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (TypeBinding.equalsEquals(next, interfacesToVisit[b])) continue nextInterface;
 						interfacesToVisit[nextPosition++] = next;
 					}
@@ -8843,7 +8843,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private void findInterfacesMethods(
+	private void findInterfacesMethods( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] selector,
 		TypeBinding[] typeArgTypes,
 		TypeBinding[] argTypes,
@@ -8873,7 +8873,7 @@ public final class CompletionEngine
 			ReferenceBinding[] interfacesToVisit = itsInterfaces;
 			int nextPosition = interfacesToVisit.length;
 
-			for (int i = 0; i < nextPosition; i++) {
+			for (int i = 0; i < nextPosition; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ReferenceBinding currentType = interfacesToVisit[i];
 				MethodBinding[] methods = currentType.availableMethods();
 				if(methods != null) {
@@ -8906,9 +8906,9 @@ public final class CompletionEngine
 					int itsLength = itsInterfaces.length;
 					if (nextPosition + itsLength >= interfacesToVisit.length)
 						System.arraycopy(interfacesToVisit, 0, interfacesToVisit = new ReferenceBinding[nextPosition + itsLength + 5], 0, nextPosition);
-					nextInterface : for (int a = 0; a < itsLength; a++) {
+					nextInterface : for (int a = 0; a < itsLength; a++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ReferenceBinding next = itsInterfaces[a];
-						for (int b = 0; b < nextPosition; b++)
+						for (int b = 0; b < nextPosition; b++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (TypeBinding.equalsEquals(next, interfacesToVisit[b])) continue nextInterface;
 						interfacesToVisit[nextPosition++] = next;
 					}
@@ -8919,11 +8919,11 @@ public final class CompletionEngine
 	/*
 	 * Find javadoc block tags for a given completion javadoc tag node
 	 */
-	private void findJavadocBlockTags(CompletionOnJavadocTag javadocTag) {
+	private void findJavadocBlockTags(CompletionOnJavadocTag javadocTag) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[][] possibleTags = javadocTag.getPossibleBlockTags();
 		if (possibleTags == null) return;
 		int length = possibleTags.length;
-		for (int i=0; i<length; i++) {
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int relevance = computeBaseRelevance();
 			relevance += computeRelevanceForInterestingProposal();
 			relevance += computeRelevanceForRestrictions(IAccessRule.K_ACCESSIBLE); // no access restriction for keywors
@@ -8952,11 +8952,11 @@ public final class CompletionEngine
 	/*
 	 * Find javadoc inline tags for a given completion javadoc tag node
 	 */
-	private void findJavadocInlineTags(CompletionOnJavadocTag javadocTag) {
+	private void findJavadocInlineTags(CompletionOnJavadocTag javadocTag) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[][] possibleTags = javadocTag.getPossibleInlineTags();
 		if (possibleTags == null) return;
 		int length = possibleTags.length;
-		for (int i=0; i<length; i++) {
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int relevance = computeBaseRelevance();
 			relevance += computeRelevanceForInterestingProposal();
 			relevance += computeRelevanceForRestrictions(IAccessRule.K_ACCESSIBLE); // no access restriction for keywors
@@ -8987,11 +8987,11 @@ public final class CompletionEngine
 		}
 	}
 
-	private void findJavadocInSnippetTags(CompletionOnJavadocTag javadocTag) {
+	private void findJavadocInSnippetTags(CompletionOnJavadocTag javadocTag) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[][] possibleTags = javadocTag.getPossibleInSnippetTags();
 		if (possibleTags == null) return;
 		int length = possibleTags.length;
-		for (int i=0; i<length; i++) {
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int relevance = computeBaseRelevance();
 			relevance += computeRelevanceForInterestingProposal();
 			relevance += computeRelevanceForRestrictions(IAccessRule.K_ACCESSIBLE); // no access restriction for keywors
@@ -9020,7 +9020,7 @@ public final class CompletionEngine
 	/*
 	 * Find javadoc parameter names.
 	 */
-	private void findJavadocParamNames(char[] token, char[][] missingParams, boolean isTypeParam) {
+	private void findJavadocParamNames(char[] token, char[][] missingParams, boolean isTypeParam) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		if (missingParams == null) return;
 
@@ -9033,7 +9033,7 @@ public final class CompletionEngine
 		// Propose missing param
 		int length = missingParams.length;
 		relevance += length;
-		for (int i=0; i<length; i++) {
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[] argName = missingParams[i];
 			if (token == null || CharOperation.prefixEquals(token, argName)) {
 
@@ -9057,10 +9057,10 @@ public final class CompletionEngine
 
 	// what about onDemand types? Ignore them since it does not happen!
 	// import p1.p2.A.*;
-	private void findKeywords(char[] keyword, char[][] choices, boolean staticFieldsAndMethodOnly, boolean ignorePackageKeyword) {
+	private void findKeywords(char[] keyword, char[][] choices, boolean staticFieldsAndMethodOnly, boolean ignorePackageKeyword) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if(choices == null || choices.length == 0) return;
 		int length = keyword.length;
-		for (char[] choice : choices)
+		for (char[] choice : choices) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (length <= choice.length && (CharOperation.prefixEquals(keyword, choice, false /* ignore case */)
 					|| (this.options.substringMatch && CharOperation.substringMatch(keyword, choice)))) {
 				if (ignorePackageKeyword && CharOperation.equals(choice, Keywords.PACKAGE))
@@ -9101,7 +9101,7 @@ public final class CompletionEngine
 		return this.parser.assistNodeParent instanceof InstanceOfExpression ? R_FINAL + R_EXPECTED_TYPE : 0;
 	}
 
-	private void findKeywordsForMember(char[] token, int modifiers, ASTNode astNode) {
+	private void findKeywordsForMember(char[] token, int modifiers, ASTNode astNode) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[][] keywords = new char[Keywords.COUNT][];
 		int count = 0;
 
@@ -9200,11 +9200,11 @@ public final class CompletionEngine
 
 		findKeywords(token, keywords, false, false);
 	}
-	private void findLabels(char[] label, char[][] choices) {
+	private void findLabels(char[] label, char[][] choices) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if(choices == null || choices.length == 0) return;
 
 		int length = label.length;
-		for (char[] choice : choices) {
+		for (char[] choice : choices) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (length <= choice.length
 				&& CharOperation.prefixEquals(label, choice, false /* ignore case */
 			)){
@@ -9232,7 +9232,7 @@ public final class CompletionEngine
 	}
 
 	// Helper method for findMethods(char[], MethodBinding[], Scope, ObjectVector, boolean, boolean, boolean, TypeBinding)
-	private void findLocalMethodDeclarations(
+	private void findLocalMethodDeclarations( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] methodName,
 		MethodBinding[] methods,
 		Scope scope,
@@ -9245,7 +9245,7 @@ public final class CompletionEngine
 		// Inherited methods which are hidden by subclasses are filtered out
 		// No visibility checks can be performed without the scope & invocationSite
 		int methodLength = methodName.length;
-		next : for (int f = methods.length; --f >= 0;) {
+		next : for (int f = methods.length; --f >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 			MethodBinding method = methods[f];
 			if (method.isSynthetic())	continue next;
@@ -9283,7 +9283,7 @@ public final class CompletionEngine
 					continue next;
 			}
 
-			for (int i = methodsFound.size; --i >= 0;) {
+			for (int i = methodsFound.size; --i >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				MethodBinding otherMethod = (MethodBinding) methodsFound.elementAt(i);
 				if (method == otherMethod)
 					continue next;
@@ -9300,7 +9300,7 @@ public final class CompletionEngine
 			char[][] parameterPackageNames = new char[length][];
 			char[][] parameterFullTypeNames = new char[length][];
 
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				TypeBinding type = method.parameters[i];
 				parameterPackageNames[i] = type.qualifiedPackageName();
 				parameterFullTypeNames[i] = type.qualifiedSourceName();
@@ -9320,7 +9320,7 @@ public final class CompletionEngine
 				}
 			}
 
-			StringBuilder completion = new StringBuilder(10);
+			StringBuilder completion = new StringBuilder(10); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			if (!exactMatch) {
 				createMethod(method, parameterPackageNames, parameterFullTypeNames, parameterNames, scope, completion);
 			}
@@ -9368,7 +9368,7 @@ public final class CompletionEngine
 	}
 
 	// Helper method for findMethods(char[], TypeBinding[], ReferenceBinding, Scope, ObjectVector, boolean, boolean, boolean)
-	private void findLocalMethods(
+	private void findLocalMethods( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] methodName,
 		TypeBinding[] typeArgTypes,
 		TypeBinding[] argTypes,
@@ -9408,7 +9408,7 @@ public final class CompletionEngine
 					CharOperation.concat(IS, nameForMethods) };
 		}
 
-		next : for (int f = methods.length; --f >= 0;) {
+		next : for (int f = methods.length; --f >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			MethodBinding method = methods[f];
 
 			if (completingInPreamble(method))
@@ -9463,7 +9463,7 @@ public final class CompletionEngine
 
 			boolean prefixRequired = false;
 
-			for (int i = methodsFound.size; --i >= 0;) {
+			for (int i = methodsFound.size; --i >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Object[] other = (Object[]) methodsFound.elementAt(i);
 				MethodBinding otherMethod = (MethodBinding) other[0];
 				ReferenceBinding otherReceiverType = (ReferenceBinding) other[1];
@@ -9496,7 +9496,7 @@ public final class CompletionEngine
 			ReferenceBinding superTypeWithSameErasure = (ReferenceBinding)receiverType.findSuperTypeOriginatingFrom(method.declaringClass);
 			if (TypeBinding.notEquals(method.declaringClass, superTypeWithSameErasure)) {
 				MethodBinding[] otherMethods = superTypeWithSameErasure.getMethods(method.selector);
-				for (MethodBinding otherMethod : otherMethods) {
+				for (MethodBinding otherMethod : otherMethods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if(otherMethod.original() == method.original()) {
 						method = otherMethod;
 					}
@@ -9507,7 +9507,7 @@ public final class CompletionEngine
 			char[][] parameterPackageNames = new char[length][];
 			char[][] parameterTypeNames = new char[length][];
 
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					TypeBinding type = method.original().parameters[i];
 					parameterPackageNames[i] = type.qualifiedPackageName();
 					parameterTypeNames[i] = type.qualifiedSourceName();
@@ -9530,33 +9530,33 @@ public final class CompletionEngine
 					receiver = fieldRef.receiver;
 				}
 				if (receiver != null) {
-					StringBuilder javadocCompletion = new StringBuilder();
+					StringBuilder javadocCompletion = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 					if (receiver.isThis()) {
 						if ((this.assistNodeInJavadoc & CompletionOnJavadoc.TEXT) != 0) {
-							javadocCompletion.append('#');
+							javadocCompletion.append('#'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
 					} else if ((this.assistNodeInJavadoc & CompletionOnJavadoc.TEXT) != 0) {
 						if (receiver instanceof JavadocSingleTypeReference) {
 							JavadocSingleTypeReference typeRef = (JavadocSingleTypeReference) receiver;
-							javadocCompletion.append(typeRef.token);
-							javadocCompletion.append('#');
+							javadocCompletion.append(typeRef.token); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+							javadocCompletion.append('#'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						} else if (receiver instanceof JavadocQualifiedTypeReference) {
 							JavadocQualifiedTypeReference typeRef = (JavadocQualifiedTypeReference) receiver;
 							completion = CharOperation.concat(CharOperation.concatWith(typeRef.tokens, '.'), method.selector, '#');
-							for (int t=0,nt =typeRef.tokens.length; t<nt; t++) {
-								if (t>0) javadocCompletion.append('.');
-								javadocCompletion.append(typeRef.tokens[t]);
+							for (int t=0,nt =typeRef.tokens.length; t<nt; t++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+								if (t>0) javadocCompletion.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+								javadocCompletion.append(typeRef.tokens[t]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							}
-							javadocCompletion.append('#');
+							javadocCompletion.append('#'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
 					}
-					javadocCompletion.append(method.selector);
+					javadocCompletion.append(method.selector); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					// Append parameters types
-					javadocCompletion.append('(');
+					javadocCompletion.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					if (method.parameters != null) {
 						boolean isVarargs = method.isVarargs();
-						for (int p=0, ln=method.parameters.length; p<ln; p++) {
-							if (p>0) javadocCompletion.append(", "); //$NON-NLS-1$
+						for (int p=0, ln=method.parameters.length; p<ln; p++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+							if (p>0) javadocCompletion.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							TypeBinding argTypeBinding = method.parameters[p];
 							if (isVarargs && p == ln - 1)  {
 								createVargsType(argTypeBinding.erasure(), scope, javadocCompletion);
@@ -9565,7 +9565,7 @@ public final class CompletionEngine
 							}
 						}
 					}
-					javadocCompletion.append(')');
+					javadocCompletion.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					completion = javadocCompletion.toString().toCharArray();
 				}
 			} else {
@@ -9668,7 +9668,7 @@ public final class CompletionEngine
 					proposal.setName(method.selector);
 					if (missingElements != null) {
 						CompletionProposal[] subProposals = new CompletionProposal[missingElements.length];
-						for (int i = 0; i < missingElements.length; i++) {
+						for (int i = 0; i < missingElements.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							subProposals[i] =
 								createRequiredTypeProposal(
 										missingElements[i],
@@ -9746,7 +9746,7 @@ public final class CompletionEngine
 					proposal.setName(method.selector);
 					if (missingElements != null) {
 						CompletionProposal[] subProposals = new CompletionProposal[missingElements.length];
-						for (int i = 0; i < missingElements.length; i++) {
+						for (int i = 0; i < missingElements.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							subProposals[i] =
 								createRequiredTypeProposal(
 										missingElements[i],
@@ -9795,7 +9795,7 @@ public final class CompletionEngine
 
 	private char[] capitalize(char[] name) {
 		char[] result = new char[name.length];
-		for (int i = 0; i < name.length; i++) {
+		for (int i = 0; i < name.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (i == 0) {
 				result[i] = Character.toUpperCase(name[i]);
 			} else {
@@ -9805,7 +9805,7 @@ public final class CompletionEngine
 		return result;
 	}
 
-	private char[] findParameterNameAtLocationFromAssistParent(ObjectVector methodsFound, Scope scope) {
+	private char[] findParameterNameAtLocationFromAssistParent(ObjectVector methodsFound, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] parameterName = new char[0];
 		MethodBinding[] candidates;
 		final Expression[] arguments;
@@ -9837,9 +9837,9 @@ public final class CompletionEngine
 		}
 
 		final int argumentLength = (arguments != null) ? arguments.length : 1;
-		for (MethodBinding binding : candidates) {
+		for (MethodBinding binding : candidates) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (binding.parameterNames.length >= argumentLength) {
-				for (int i = 0; i < argumentLength; i++) {
+				for (int i = 0; i < argumentLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (arguments == null || arguments[i] == this.parser.assistNode) {
 						parameterName = binding.parameterNames[i];
 					}
@@ -9851,7 +9851,7 @@ public final class CompletionEngine
 		}
 		return parameterName;
 	}
-	private void findLocalMethodsFromFavorites(
+	private void findLocalMethodsFromFavorites( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			char[] methodName,
 			MethodBinding[] methods,
 			Scope scope,
@@ -9865,7 +9865,7 @@ public final class CompletionEngine
 
 			int methodLength = methodName.length;
 
-			next : for (int f = methods.length; --f >= 0;) {
+			next : for (int f = methods.length; --f >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				MethodBinding method = methods[f];
 
 				if (method.isSynthetic()) continue next;
@@ -9890,7 +9890,7 @@ public final class CompletionEngine
 					continue next;
 				}
 
-				for (int i = methodsFoundFromFavorites.size; --i >= 0;) {
+				for (int i = methodsFoundFromFavorites.size; --i >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Object[] other = (Object[]) methodsFoundFromFavorites.elementAt(i);
 					MethodBinding otherMethod = (MethodBinding) other[0];
 
@@ -9904,7 +9904,7 @@ public final class CompletionEngine
 					}
 				}
 
-				for (int i = methodsFound.size; --i >= 0;) {
+				for (int i = methodsFound.size; --i >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Object[] other = (Object[]) methodsFound.elementAt(i);
 					MethodBinding otherMethod = (MethodBinding) other[0];
 
@@ -9924,7 +9924,7 @@ public final class CompletionEngine
 					if(!this.importCachesInitialized) {
 						initializeImportCaches();
 					}
-					for (int j = 0; j < this.importCacheCount; j++) {
+					for (int j = 0; j < this.importCacheCount; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						char[][] importName = this.importsCache[j];
 						if(CharOperation.equals(receiverType.sourceName, importName[0])) {
 							if (!CharOperation.equals(typeName, importName[1])) {
@@ -9941,7 +9941,7 @@ public final class CompletionEngine
 				ReferenceBinding superTypeWithSameErasure = (ReferenceBinding)receiverType.findSuperTypeOriginatingFrom(method.declaringClass);
 				if (TypeBinding.notEquals(method.declaringClass, superTypeWithSameErasure)) {
 					MethodBinding[] otherMethods = superTypeWithSameErasure.getMethods(method.selector);
-					for (MethodBinding otherMethod : otherMethods) {
+					for (MethodBinding otherMethod : otherMethods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if(otherMethod.original() == method.original()) {
 							method = otherMethod;
 						}
@@ -9952,7 +9952,7 @@ public final class CompletionEngine
 				char[][] parameterPackageNames = new char[length][];
 				char[][] parameterTypeNames = new char[length][];
 
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					TypeBinding type = method.original().parameters[i];
 					parameterPackageNames[i] = type.qualifiedPackageName();
 					parameterTypeNames[i] = type.qualifiedSourceName();
@@ -10141,7 +10141,7 @@ public final class CompletionEngine
 	 * @methodName method as entered by the user, the one to completed
 	 * @param methods a resultant array of MethodBinding, whose names should match methodName. The calling client must ensure that this check is handled.
 	 */
-	private void findLocalMethodsFromStaticImports(
+	private void findLocalMethodsFromStaticImports( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] methodName,
 		MethodBinding[] methods,
 		Scope scope,
@@ -10152,7 +10152,7 @@ public final class CompletionEngine
 
 		ObjectVector newMethodsFound =  new ObjectVector();
 
-		next : for (int f = methods.length; --f >= 0;) {
+		next : for (int f = methods.length; --f >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			MethodBinding method = methods[f];
 
 			if (method.isSynthetic()) continue next;
@@ -10171,7 +10171,7 @@ public final class CompletionEngine
 			if (this.options.checkVisibility
 				&& !method.canBeSeenBy(receiverType, invocationSite, scope)) continue next;
 
-			for (int i = methodsFound.size; --i >= 0;) {
+			for (int i = methodsFound.size; --i >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Object[] other = (Object[]) methodsFound.elementAt(i);
 				MethodBinding otherMethod = (MethodBinding) other[0];
 				ReferenceBinding otherReceiverType = (ReferenceBinding) other[1];
@@ -10191,7 +10191,7 @@ public final class CompletionEngine
 			char[][] parameterPackageNames = new char[length][];
 			char[][] parameterTypeNames = new char[length][];
 
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				TypeBinding type = method.original().parameters[i];
 				parameterPackageNames[i] = type.qualifiedPackageName();
 				parameterTypeNames[i] = type.qualifiedSourceName();
@@ -10292,7 +10292,7 @@ public final class CompletionEngine
 				false,
 				proposeMethod);
 	}
-	protected void findMembers(
+	protected void findMembers( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			char[] token,
 			ReferenceBinding receiverType,
 			Scope scope,
@@ -10361,7 +10361,7 @@ public final class CompletionEngine
 							SourceTypeBinding src = scope.enclosingSourceType();
 							ReferenceBinding[] superInterfaces = src.superInterfaces();
 							boolean implemented = false;
-							for (ReferenceBinding referenceBinding : superInterfaces) {
+							for (ReferenceBinding referenceBinding : superInterfaces) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								if (Arrays.equals(referenceBinding.sourceName, receiverSourceName)) {
 									implemented = true;
 									break;
@@ -10424,7 +10424,7 @@ public final class CompletionEngine
 
 	private boolean hasCompatibleEnclosing(Scope scope, ReferenceBinding receiverType) {
 		ReferenceBinding enclosing = scope.enclosingSourceType();
-		while (enclosing != null) {
+		while (enclosing != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (enclosing.isCompatibleWith(receiverType, scope))
 				return true;
 			enclosing = enclosing.enclosingType();
@@ -10432,7 +10432,7 @@ public final class CompletionEngine
 		return false;
 	}
 
-	private void findMembersFromMissingType(
+	private void findMembersFromMissingType( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			final char[] token,
 			final long pos,
 			TypeBinding resolveType,
@@ -10468,7 +10468,7 @@ public final class CompletionEngine
 		missingTypesConverter.guess(typeRef, scope, substitutionRequestor);
 	}
 
-	private void findMemberTypes(
+	private void findMemberTypes( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] typeName,
 		ReferenceBinding receiverType,
 		Scope scope,
@@ -10513,7 +10513,7 @@ public final class CompletionEngine
 		ReferenceBinding[] interfacesToVisit = null;
 		int nextPosition = 0;
 
-		do {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ReferenceBinding[] itsInterfaces = currentType.superInterfaces();
 			if (itsInterfaces != null && itsInterfaces != Binding.NO_SUPERINTERFACES) {
 				if (interfacesToVisit == null) {
@@ -10523,9 +10523,9 @@ public final class CompletionEngine
 					int itsLength = itsInterfaces.length;
 					if (nextPosition + itsLength >= interfacesToVisit.length)
 						System.arraycopy(interfacesToVisit, 0, interfacesToVisit = new ReferenceBinding[nextPosition + itsLength + 5], 0, nextPosition);
-					nextInterface : for (int a = 0; a < itsLength; a++) {
+					nextInterface : for (int a = 0; a < itsLength; a++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ReferenceBinding next = itsInterfaces[a];
-						for (int b = 0; b < nextPosition; b++)
+						for (int b = 0; b < nextPosition; b++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (TypeBinding.equalsEquals(next, interfacesToVisit[b])) continue nextInterface;
 						interfacesToVisit[nextPosition++] = next;
 					}
@@ -10553,7 +10553,7 @@ public final class CompletionEngine
 
 		if(proposeAllMemberTypes) {
 			ReferenceBinding[] memberTypes = receiverType.memberTypes();
-			for (ReferenceBinding memberType : memberTypes) {
+			for (ReferenceBinding memberType : memberTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(TypeBinding.notEquals(memberType, typeToIgnore)) {
 					findSubMemberTypes(
 						typeName,
@@ -10569,7 +10569,7 @@ public final class CompletionEngine
 		}
 
 		if (interfacesToVisit != null) {
-			for (int i = 0; i < nextPosition; i++) {
+			for (int i = 0; i < nextPosition; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ReferenceBinding anInterface = interfacesToVisit[i];
 				findMemberTypes(
 					typeName,
@@ -10592,9 +10592,9 @@ public final class CompletionEngine
 					int itsLength = itsInterfaces.length;
 					if (nextPosition + itsLength >= interfacesToVisit.length)
 						System.arraycopy(interfacesToVisit, 0, interfacesToVisit = new ReferenceBinding[nextPosition + itsLength + 5], 0, nextPosition);
-					nextInterface : for (int a = 0; a < itsLength; a++) {
+					nextInterface : for (int a = 0; a < itsLength; a++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ReferenceBinding next = itsInterfaces[a];
-						for (int b = 0; b < nextPosition; b++)
+						for (int b = 0; b < nextPosition; b++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (TypeBinding.equalsEquals(next, interfacesToVisit[b])) continue nextInterface;
 						interfacesToVisit[nextPosition++] = next;
 					}
@@ -10603,7 +10603,7 @@ public final class CompletionEngine
 		}
 	}
 
-	protected void findMemberTypes(
+	protected void findMemberTypes( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] typeName,
 		ReferenceBinding receiverType,
 		Scope scope,
@@ -10633,7 +10633,7 @@ public final class CompletionEngine
 				missingElementsHaveProblems);
 	}
 		// Helper method for findMemberTypes(char[], ReferenceBinding, Scope)
-	private void findMemberTypes(
+	private void findMemberTypes( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] typeName,
 		ReferenceBinding[] memberTypes,
 		ObjectVector typesFound,
@@ -10652,7 +10652,7 @@ public final class CompletionEngine
 		// Inherited member types which are hidden by subclasses are filtered out
 		// No visibility checks can be performed without the scope & invocationSite
 		int typeLength = typeName.length;
-		next : for (int m = memberTypes.length; --m >= 0;) {
+		next : for (int m = memberTypes.length; --m >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ReferenceBinding memberType = memberTypes[m];
 			//		if (!wantClasses && memberType.isClass()) continue next;
 			//		if (!wantInterfaces && memberType.isInterface()) continue next;
@@ -10686,7 +10686,7 @@ public final class CompletionEngine
 				continue next;
 			}
 
-			for (int i = typesFound.size; --i >= 0;) {
+			for (int i = typesFound.size; --i >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ReferenceBinding otherType = (ReferenceBinding) typesFound.elementAt(i);
 
 				if (TypeBinding.equalsEquals(memberType, otherType))
@@ -10804,7 +10804,7 @@ public final class CompletionEngine
 			}
 		}
 	}
-	private void findMemberTypesFromMissingType(
+	private void findMemberTypesFromMissingType( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			char[] typeName,
 			final long pos,
 			final Scope scope)  {
@@ -10839,7 +10839,7 @@ public final class CompletionEngine
 		missingTypesConverter.guess(typeRef, scope, substitutionRequestor);
 	}
 
-	private void findMemberTypesFromMissingType(
+	private void findMemberTypesFromMissingType( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			TypeReference typeRef,
 			final long pos,
 			final Scope scope)  {
@@ -10872,7 +10872,7 @@ public final class CompletionEngine
 		missingTypesConverter.guess(typeRef, scope, substitutionRequestor);
 	}
 
-	private void findMethodDeclarations(
+	private void findMethodDeclarations( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] selector,
 		ReferenceBinding receiverType,
 		Scope scope,
@@ -10888,7 +10888,7 @@ public final class CompletionEngine
 
 		MethodBinding[] receiverTypeMethods = receiverType.availableMethods();
 		if (receiverTypeMethods != null){
-			for (MethodBinding receiverTypeMethod : receiverTypeMethods) {
+			for (MethodBinding receiverTypeMethod : receiverTypeMethods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (receiverType.isRecord() && receiverTypeMethod instanceof SyntheticMethodBinding smb) {
 					if (CharOperation.equals(smb.selector, TypeConstants.EQUALS) ||
 							CharOperation.equals(smb.selector, TypeConstants.HASHCODE) ||
@@ -10921,7 +10921,7 @@ public final class CompletionEngine
 		}
 
 		boolean hasPotentialDefaultAbstractMethods = true;
-		while (currentType != null) {
+		while (currentType != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 			MethodBinding[] methods = currentType.availableMethods();
 			if (methods != null) {
@@ -10955,7 +10955,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private char[][] findMethodParameterNames(MethodBinding method, char[][] parameterTypeNames){
+	private char[][] findMethodParameterNames(MethodBinding method, char[][] parameterTypeNames){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TypeBinding erasure =  method.declaringClass.erasure();
 		if(!(erasure instanceof ReferenceBinding)) return null;
 
@@ -10983,7 +10983,7 @@ public final class CompletionEngine
 						AbstractVariableDeclaration[] arguments = methodDecl.arguments(true);
 						parameterNames = new char[length][];
 
-						for(int i = 0 ; i < length ; i++){
+						for(int i = 0 ; i < length ; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							parameterNames[i] = arguments[i].name;
 						}
 					}
@@ -11015,7 +11015,7 @@ public final class CompletionEngine
 				IType typeHandle = ((SourceTypeElementInfo) sourceType).getHandle();
 
 				String[] parameterTypeSignatures = new String[length];
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					parameterTypeSignatures[i] = Signature.createTypeSignature(parameterTypeNames[i], false);
 				}
 				IMethod searchedMethod = typeHandle.getMethod(String.valueOf(method.selector), parameterTypeSignatures);
@@ -11037,7 +11037,7 @@ public final class CompletionEngine
 		return parameterNames;
 	}
 
-	private void findMethods(
+	private void findMethods( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] selector,
 		TypeBinding[] typeArgTypes,
 		TypeBinding[] argTypes,
@@ -11097,7 +11097,7 @@ public final class CompletionEngine
 			}
 		}
 		boolean hasPotentialDefaultAbstractMethods = true;
-		while (currentType != null) {
+		while (currentType != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 			MethodBinding[] methods = currentType.availableMethods();
 			if (methods != null) {
@@ -11133,7 +11133,7 @@ public final class CompletionEngine
 
 				ReferenceBinding[] superInterfaces = currentType.superInterfaces();
 				if (superInterfaces != null && currentType.isIntersectionType()) {
-					for (int i = 0; i < superInterfaces.length; i++) {
+					for (int i = 0; i < superInterfaces.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						superInterfaces[i] = (ReferenceBinding)superInterfaces[i].capture(invocationScope, invocationSite.sourceStart(), invocationSite.sourceEnd());
 					}
 				}
@@ -11165,7 +11165,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private void findNestedTypes(
+	private void findNestedTypes( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] typeName,
 		SourceTypeBinding currentType,
 		Scope scope,
@@ -11178,7 +11178,7 @@ public final class CompletionEngine
 		int typeLength = typeName.length;
 
 		SourceTypeBinding nextTypeToIgnore = null;
-		while (scope != null) { // done when a COMPILATION_UNIT_SCOPE is found
+		while (scope != null) { // done when a COMPILATION_UNIT_SCOPE is found //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 			switch (scope.kind) {
 
@@ -11186,7 +11186,7 @@ public final class CompletionEngine
 				case Scope.BLOCK_SCOPE :
 					BlockScope blockScope = (BlockScope) scope;
 
-					next : for (int i = 0, length = blockScope.subscopeCount; i < length; i++) {
+					next : for (int i = 0, length = blockScope.subscopeCount; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 						if (blockScope.subscopes[i] instanceof ClassScope) {
 							SourceTypeBinding localType =
@@ -11201,7 +11201,7 @@ public final class CompletionEngine
 								if (isFailedMatch(typeName, localType.sourceName))
 									continue next;
 
-								for (int j = typesFound.size; --j >= 0;) {
+								for (int j = typesFound.size; --j >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 									ReferenceBinding otherType = (ReferenceBinding) typesFound.elementAt(j);
 
 									if (TypeBinding.equalsEquals(localType, otherType))
@@ -11289,12 +11289,12 @@ public final class CompletionEngine
 		}
 	}
 
-	private void proposeModuleName(CompilationUnitDeclaration parsedUnit) {
+	private void proposeModuleName(CompilationUnitDeclaration parsedUnit) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String projectName = this.javaProject.getElementName();
 		char[] moduleName = projectName.toCharArray();
 		if (moduleName.length > 0) {// do not propose invalid names
 			if (!Character.isJavaIdentifierStart(moduleName[0])) return;
-			for (char c : moduleName) {
+			for (char c : moduleName) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (!Character.isJavaIdentifierPart(c) && c != '.') return;
 			}
 		}
@@ -11316,9 +11316,9 @@ public final class CompletionEngine
 	}
 
 	private HashSet<String> getAllJarModuleNames(IJavaProject javaProject2) {
-		HashSet<String> modules = new HashSet<>();
+		HashSet<String> modules = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		try {
-			for (IPackageFragmentRoot root : javaProject2.getAllPackageFragmentRoots()) {
+			for (IPackageFragmentRoot root : javaProject2.getAllPackageFragmentRoots()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (root instanceof JarPackageFragmentRoot) {
 					IModuleDescription desc = root.getModuleDescription();
 					desc = desc == null ? ((JarPackageFragmentRoot) root).getAutomaticModuleDescription() : desc;
@@ -11332,14 +11332,14 @@ public final class CompletionEngine
 		}
 		return modules;
 	}
-	private void findTargettedModules(char[] prefix, HashSet<String> skipSet) {
-		HashSet<String> probableModules = new HashSet<>();
+	private void findTargettedModules(char[] prefix, HashSet<String> skipSet) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		HashSet<String> probableModules = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		ModuleSourcePathManager mManager = JavaModelManager.getModulePathManager();
 		JavaElementRequestor javaElementRequestor = new JavaElementRequestor();
 		try {
 			mManager.seekModule(this.completionToken, true, javaElementRequestor);
 			IModuleDescription[] modules = javaElementRequestor.getModules();
-			for (IModuleDescription module : modules) {
+			for (IModuleDescription module : modules) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String name = module.getElementName();
 				if (name == null || name.equals("")) //$NON-NLS-1$
 					continue;
@@ -11352,7 +11352,7 @@ public final class CompletionEngine
 		if (prefix != CharOperation.ALL_PREFIX && prefix != null && prefix.length > 0) {
 			probableModules.removeIf(e -> isFailedMatch(prefix, e.toCharArray()));
 		}
-		for (String s : probableModules) {
+		for (String s : probableModules) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!skipSet.contains(s))
 				this.acceptModule(s.toCharArray());
 		}
@@ -11379,7 +11379,7 @@ public final class CompletionEngine
 	}
 	private void findModules(CompletionOnModuleReference moduleReference, boolean targetted) {
 		setCompletionToken(moduleReference.tokens, moduleReference.sourceStart, moduleReference.sourceEnd, moduleReference.sourcePositions);
-		findTargettedModules(moduleReference, new HashSet<>()); // empty skipSet passed
+		findTargettedModules(moduleReference, new HashSet<>()); // empty skipSet passed //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		this.nameEnvironment.findModules(CharOperation.toLowerCase(this.completionToken), this, targetted ? this.javaProject : null);
 	}
 	private void findModules(CompletionOnJavadocQualifiedTypeReference typeReference, boolean targetted) {
@@ -11391,7 +11391,7 @@ public final class CompletionEngine
 					isIgnoredModuleRef = true;
 				}
 				setCompletionToken(typeReference.tokens, typeReference.sourceStart, typeReference.sourceEnd, typeReference.sourcePositions);
-				findTargettedModules(typeReference, new HashSet<>()); // empty skipSet passed
+				findTargettedModules(typeReference, new HashSet<>()); // empty skipSet passed //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 				this.nameEnvironment.findModules(CharOperation.toLowerCase(this.completionToken), this, targetted ? this.javaProject : null);
 			} finally {
 				this.requestor.setIgnored(CompletionProposal.MODULE_REF, isIgnoredModuleRef);
@@ -11439,7 +11439,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private void findParameterizedType(TypeReference ref, Scope scope) {
+	private void findParameterizedType(TypeReference ref, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ReferenceBinding refBinding = (ReferenceBinding) ref.resolvedType;
 		if(refBinding != null) {
 			if (this.options.checkDeprecation &&
@@ -11491,7 +11491,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private void findSubMemberTypes(
+	private void findSubMemberTypes( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] typeName,
 		ReferenceBinding receiverType,
 		Scope scope,
@@ -11524,7 +11524,7 @@ public final class CompletionEngine
 				false);
 
 		ReferenceBinding[] memberTypes = receiverType.memberTypes();
-		next : for (ReferenceBinding memberType : memberTypes) {
+		next : for (ReferenceBinding memberType : memberTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (this.options.checkVisibility) {
 				if (typeInvocation != null && !memberType.canBeSeenBy(receiverType, typeInvocation)) {
 					continue next;
@@ -11544,12 +11544,12 @@ public final class CompletionEngine
 		}
 	}
 
-	private void findTrueOrFalseKeywords(char[][] choices) {
+	private void findTrueOrFalseKeywords(char[][] choices) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if(choices == null || choices.length == 0) return;
 
 		if(this.expectedTypesPtr != 0 || TypeBinding.notEquals(this.expectedTypes[0], TypeBinding.BOOLEAN)) return;
 
-		for (char[] choice : choices) {
+		for (char[] choice : choices) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (CharOperation.equals(choice, Keywords.TRUE) ||
 					CharOperation.equals(choice, Keywords.FALSE)
 			){
@@ -11579,10 +11579,10 @@ public final class CompletionEngine
 		}
 	}
 
-	private void findTypeParameters(char[] token, Scope scope) {
+	private void findTypeParameters(char[] token, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		TypeParameter[] typeParameters = null;
-		while (scope != null) { // done when a COMPILATION_UNIT_SCOPE is found
+		while (scope != null) { // done when a COMPILATION_UNIT_SCOPE is found //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			typeParameters = null;
 			switch (scope.kind) {
 				case Scope.METHOD_SCOPE :
@@ -11603,7 +11603,7 @@ public final class CompletionEngine
 					return;
 			}
 			if(typeParameters != null) {
-				for (TypeParameter typeParameter : typeParameters) {
+				for (TypeParameter typeParameter : typeParameters) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					int typeLength = token.length;
 					if(typeParameter.binding == null) continue;
 
@@ -11630,7 +11630,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private void findTypesAndPackages(char[] token, Scope scope, boolean proposeBaseTypes, boolean proposeVoidType, ObjectVector typesFound) {
+	private void findTypesAndPackages(char[] token, Scope scope, boolean proposeBaseTypes, boolean proposeVoidType, ObjectVector typesFound) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		if (token == null)
 			return;
@@ -11681,7 +11681,7 @@ public final class CompletionEngine
 			ReferenceBinding outerInvocationType = scope.enclosingSourceType();
 			if(outerInvocationType != null) {
 				ReferenceBinding temp = outerInvocationType.enclosingType();
-				while(temp != null) {
+				while(temp != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					outerInvocationType = temp;
 					temp = temp.enclosingType();
 				}
@@ -11690,7 +11690,7 @@ public final class CompletionEngine
 			int typeLength = token.length;
 			SourceTypeBinding[] types = this.unitScope.topLevelTypes;
 
-			next : for (SourceTypeBinding sourceType : types) {
+			next : for (SourceTypeBinding sourceType : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 				checkCancel();
 
@@ -11720,7 +11720,7 @@ public final class CompletionEngine
 					continue next;
 				}
 
-				for (int j = typesFound.size; --j >= 0;) {
+				for (int j = typesFound.size; --j >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					ReferenceBinding otherType = (ReferenceBinding) typesFound.elementAt(j);
 
 					if (TypeBinding.equalsEquals(sourceType, otherType)) continue next;
@@ -11828,7 +11828,7 @@ public final class CompletionEngine
 
 			if (proposeConstructor) {
 				int l = typesFound.size();
-				for (int i = 0; i < l; i++) {
+				for (int i = 0; i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					ReferenceBinding typeFound = (ReferenceBinding) typesFound.elementAt(i);
 					char[] fullyQualifiedTypeName =
 						CharOperation.concat(
@@ -11850,7 +11850,7 @@ public final class CompletionEngine
 				acceptConstructors(scope);
 			} else if (proposeType) {
 				int l = typesFound.size();
-				for (int i = 0; i < l; i++) {
+				for (int i = 0; i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					ReferenceBinding typeFound = (ReferenceBinding) typesFound.elementAt(i);
 					char[] fullyQualifiedTypeName =
 						CharOperation.concat(
@@ -11897,19 +11897,19 @@ public final class CompletionEngine
 	/**
 	 * Find all the constructors of the expected types' sub types.
 	 */
-	private void findConstructorsFromSubTypes(Scope scope, ObjectVector typesFound) {
+	private void findConstructorsFromSubTypes(Scope scope, ObjectVector typesFound) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		SearchPattern pattern = null;
-		for (TypeBinding typeBinding : this.expectedTypes) {
+		for (TypeBinding typeBinding : this.expectedTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (typeBinding == null || !typeBinding.isInterface()) {
 				continue;
 			}
 			if (pattern == null) {
-				pattern = SearchPattern.createPattern(String.valueOf(typeBinding.qualifiedPackageName()) +
+				pattern = SearchPattern.createPattern(String.valueOf(typeBinding.qualifiedPackageName()) + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"." + String.valueOf(typeBinding.qualifiedSourceName()), //$NON-NLS-1$
 						IJavaSearchConstants.CLASS, IJavaSearchConstants.IMPLEMENTORS,
 						SearchPattern.R_EXACT_MATCH);
 			} else {
-				pattern = SearchPattern.createOrPattern(pattern, SearchPattern.createPattern(String.valueOf(
+				pattern = SearchPattern.createOrPattern(pattern, SearchPattern.createPattern(String.valueOf( //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						typeBinding.qualifiedPackageName()) + "." + String.valueOf(typeBinding.qualifiedSourceName()), //$NON-NLS-1$
 						IJavaSearchConstants.CLASS, IJavaSearchConstants.IMPLEMENTORS,
 						SearchPattern.R_EXACT_MATCH));
@@ -11919,7 +11919,7 @@ public final class CompletionEngine
 			return;
 		}
 
-		List<IType> types = new ArrayList<>();
+		List<IType> types = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		IJavaSearchScope searchScope = SearchEngine.createJavaSearchScope(new IJavaElement[] {this.javaProject});
 		SearchRequestor searchRequstor = new SearchRequestor() {
 			@Override
@@ -11946,7 +11946,7 @@ public final class CompletionEngine
 
 		checkCancel();
 
-		for (IType type : types) {
+		for (IType type : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ReferenceBinding typeBinding = this.lookupEnvironment.getType(CharOperation.splitOn('.', type.getFullyQualifiedName().toCharArray()));
 			if (typeBinding == null) {
 				continue;
@@ -12042,7 +12042,7 @@ public final class CompletionEngine
 		return matchRule;
 	}
 
-	private void findTypesAndSubpackages(
+	private void findTypesAndSubpackages( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] token,
 		PackageBinding packageBinding,
 		Scope scope) {
@@ -12079,7 +12079,7 @@ public final class CompletionEngine
 			int typeLength = qualifiedName.length;
 			SourceTypeBinding[] types = this.unitScope.topLevelTypes;
 
-			for (SourceTypeBinding sourceType : types) {
+			for (SourceTypeBinding sourceType : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 				checkCancel();
 
@@ -12221,13 +12221,13 @@ public final class CompletionEngine
 		}
 	}
 
-	private void findTypesFromExpectedTypes(char[] token, Scope scope, ObjectVector typesFound, boolean proposeType, boolean proposeConstructor) {
+	private void findTypesFromExpectedTypes(char[] token, Scope scope, ObjectVector typesFound, boolean proposeType, boolean proposeConstructor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if(this.expectedTypesPtr > -1) {
 			boolean allowingLongComputationProposals = isAllowingLongComputationProposals();
 
 			int typeLength = token == null ? 0 : token.length;
 
-			next : for (int i = 0; i <= this.expectedTypesPtr; i++) {
+			next : for (int i = 0; i <= this.expectedTypesPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 				checkCancel();
 
@@ -12282,7 +12282,7 @@ public final class CompletionEngine
 					}
 					if(isForbidden(refBinding)) continue next;
 
-					for (int j = 0; j < typesFound.size(); j++) {
+					for (int j = 0; j < typesFound.size(); j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ReferenceBinding typeFound = (ReferenceBinding)typesFound.elementAt(j);
 						if (TypeBinding.equalsEquals(typeFound, refBinding.erasure())) {
 							continue next;
@@ -12414,9 +12414,9 @@ public final class CompletionEngine
 		}
 	}
 
-	private void findTypesFromImports(char[] token, Scope scope, boolean proposeType, ObjectVector typesFound) {
+	private void findTypesFromImports(char[] token, Scope scope, boolean proposeType, ObjectVector typesFound) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ImportBinding[] importBindings = scope.compilationUnitScope().imports;
-		next : for (ImportBinding importBinding : importBindings) {
+		next : for (ImportBinding importBinding : importBindings) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(importBinding.isValidBinding()) {
 				Binding binding = importBinding.getResolvedImport();
 				if(binding != null && binding.isValidBinding()) {
@@ -12539,10 +12539,10 @@ public final class CompletionEngine
 		}
 	}
 
-	private void findTypesFromStaticImports(char[] token, Scope scope, boolean proposeAllMemberTypes, ObjectVector typesFound) {
+	private void findTypesFromStaticImports(char[] token, Scope scope, boolean proposeAllMemberTypes, ObjectVector typesFound) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ImportBinding[] importBindings = scope.compilationUnitScope().imports;
 		if (importBindings == null) return;
-		for (ImportBinding importBinding : importBindings) {
+		for (ImportBinding importBinding : importBindings) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(importBinding.isValidBinding() && importBinding.isStatic()) {
 				Binding binding = importBinding.getResolvedImport();
 				if(binding != null && binding.isValidBinding()) {
@@ -12643,8 +12643,8 @@ public final class CompletionEngine
 		findUnresolvedReferenceAfter(completedNameEnd + 1, scope, discouragedNames);
 	}
 
-	private char[][] findUnresolvedReferenceAfter(int from, BlockScope scope, final char[][] discouragedNames) {
-		final ArrayList proposedNames = new ArrayList();
+	private char[][] findUnresolvedReferenceAfter(int from, BlockScope scope, final char[][] discouragedNames) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		final ArrayList proposedNames = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		UnresolvedReferenceNameFinder.UnresolvedReferenceNameRequestor nameRequestor =
 			new UnresolvedReferenceNameFinder.UnresolvedReferenceNameRequestor() {
@@ -12683,7 +12683,7 @@ public final class CompletionEngine
 			TypeDeclaration typeDeclaration = (TypeDeclaration) referenceContext;
 			FieldDeclaration[] fields = typeDeclaration.fields;
 			if (fields != null) {
-				done : for (int i = 0; i < fields.length; i++) {
+				done : for (int i = 0; i < fields.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (fields[i] instanceof Initializer) {
 						Initializer initializer = (Initializer) fields[i];
 						if (initializer.block.sourceStart <= from &&
@@ -12712,8 +12712,8 @@ public final class CompletionEngine
 		return null;
 	}
 
-	private char[][] findUnresolvedReferenceBefore(int recordTo, int parseTo, BlockScope scope, final char[][] discouragedNames) {
-		final ArrayList proposedNames = new ArrayList();
+	private char[][] findUnresolvedReferenceBefore(int recordTo, int parseTo, BlockScope scope, final char[][] discouragedNames) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		final ArrayList proposedNames = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		UnresolvedReferenceNameFinder.UnresolvedReferenceNameRequestor nameRequestor =
 			new UnresolvedReferenceNameFinder.UnresolvedReferenceNameRequestor() {
@@ -12725,7 +12725,7 @@ public final class CompletionEngine
 			};
 
 		BlockScope upperScope = scope;
-		while (upperScope.enclosingMethodScope() != null) {
+		while (upperScope.enclosingMethodScope() != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			upperScope = upperScope.enclosingMethodScope();
 		}
 
@@ -12750,7 +12750,7 @@ public final class CompletionEngine
 			done : {
 				FieldDeclaration[] fields = typeDeclaration.fields;
 				if (fields != null) {
-					for (int i = 0; i < fields.length; i++) {
+					for (int i = 0; i < fields.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (fields[i] instanceof Initializer) {
 							Initializer initializer = (Initializer) fields[i];
 							if (initializer.block.sourceStart <= recordTo &&
@@ -12782,7 +12782,7 @@ public final class CompletionEngine
 		return null;
 	}
 
-	private void findImplementations(ProvidesStatement providesStmt, TypeReference reference ) {
+	private void findImplementations(ProvidesStatement providesStmt, TypeReference reference ) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[][] tokens = reference.getTypeName();
 		char[] typeName = CharOperation.concatWithAll(tokens, '.');
 
@@ -12802,7 +12802,7 @@ public final class CompletionEngine
 		findImplementations(this.completionToken, this.unitScope, providesStmt, -1);
 	}
 
-	private void findImplementations(char[] token, Scope scope, ProvidesStatement providesStmt, int stmtIndex) {
+	private void findImplementations(char[] token, Scope scope, ProvidesStatement providesStmt, int stmtIndex) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TypeReference theInterface = providesStmt.serviceInterface;
 		if (token == null) return;
 		char[][] theInterfaceType = null;
@@ -12819,13 +12819,13 @@ public final class CompletionEngine
 			if (answer.isSourceType()) {
 				IType typeHandle = ((SourceTypeElementInfo) answer.getSourceTypes()[0]).getHandle();
 				try {
-					ArrayList<IType> allTypes = new ArrayList<>();
+					ArrayList<IType> allTypes = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 					ITypeHierarchy newTypeHierarchy = typeHandle.newTypeHierarchy(this.javaProject, null);
 					IType[] implementingClasses = newTypeHierarchy.getImplementingClasses(typeHandle);
-					for (IType iClass : implementingClasses) {
+					for (IType iClass : implementingClasses) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						getAllTypesInHierarchy(newTypeHierarchy,iClass,allTypes);
 					}
-					for (IType iType : allTypes) {
+					for (IType iType : allTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						String pkg = iType.getPackageFragment().getElementName();
 						String name = iType.getElementName();
 						if ( CharOperation.ALL_PREFIX != this.completionToken) {
@@ -12857,12 +12857,12 @@ public final class CompletionEngine
 		class ImplSearchRequestor extends SearchRequestor {
 			String prefix;
 			LinkedHashSet<String> filter;
-			public List<IType> types = new ArrayList<>();
+			public List<IType> types = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			public ImplSearchRequestor(char[] prefixToken, LinkedHashSet<String> filter) {
 				this.prefix = (prefixToken == CharOperation.ALL_PREFIX) ? null : new String(prefixToken);
 				this.filter = filter;
 			}
-			@Override
+			@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			public void acceptSearchMatch(SearchMatch match) throws CoreException {
 			//	checkCancel();
 				IJavaElement element = ((IJavaElement) match.getElement());
@@ -12887,12 +12887,12 @@ public final class CompletionEngine
 			LinkedHashSet<String> existingImpl = new LinkedHashSet<>();
 			char[][] theInterfaceName = theInterface.getTypeName();
 			// filter out existing implementations of the same interfaces
-			for (int i = 0, l = this.moduleDeclaration.servicesCount; i < l; ++i) {
+			for (int i = 0, l = this.moduleDeclaration.servicesCount; i < l; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (i == stmtIndex) continue;
 				ProvidesStatement prevProvides = this.moduleDeclaration.services[i];
 				if (!CharOperation.equals(theInterfaceName, prevProvides.serviceInterface.getTypeName())) continue;
 				TypeReference[] prevImpls = prevProvides.implementations;
-				for (TypeReference prevImpl : prevImpls) {
+				for (TypeReference prevImpl : prevImpls) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					char[][] typeName = prevImpl.getTypeName();
 					if (typeName == CharOperation.NO_CHAR_CHAR) continue;
 					existingImpl.add(CharOperation.toString(typeName));
@@ -12907,7 +12907,7 @@ public final class CompletionEngine
 					searchRequestor,
 					null
 					);
-			for (IType type : searchRequestor.types) {
+			for (IType type : searchRequestor.types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String pkg = type.getPackageFragment().getElementName();
 				String name = type.getElementName();
 				this.acceptType(pkg.toCharArray(), name.toCharArray(), CharOperation.NO_CHAR_CHAR, type.getFlags(), null);
@@ -12927,24 +12927,24 @@ public final class CompletionEngine
 	private void getAllTypesInHierarchy(ITypeHierarchy newTypeHierarchy, IType iClass, ArrayList<IType> allTypes) {
 			allTypes.add(iClass);
 			IType[] subclasses = newTypeHierarchy.getSubclasses(iClass);
-			for (IType iType2 : subclasses) {
+			for (IType iType2 : subclasses) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				getAllTypesInHierarchy(newTypeHierarchy,iType2,allTypes);
 
 			}
 
 	}
 
-	private char[][] findVariableFromUnresolvedReference(LocalDeclaration variable, BlockScope scope, final char[][] discouragedNames) {
+	private char[][] findVariableFromUnresolvedReference(LocalDeclaration variable, BlockScope scope, final char[][] discouragedNames) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final TypeReference type = variable.type;
 		if(type != null &&
 				type.resolvedType != null &&
 				type.resolvedType.problemId() == ProblemReasons.NoError){
 
-			final ArrayList proposedNames = new ArrayList();
+			final ArrayList proposedNames = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 			UnresolvedReferenceNameFinder.UnresolvedReferenceNameRequestor nameRequestor =
 				new UnresolvedReferenceNameFinder.UnresolvedReferenceNameRequestor() {
-					@Override
+					@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 					public void acceptName(char[] name) {
 						int relevance = computeBaseRelevance();
 						relevance += computeRelevanceForInterestingProposal();
@@ -12991,7 +12991,7 @@ public final class CompletionEngine
 				TypeDeclaration typeDeclaration = (TypeDeclaration) referenceContext;
 				FieldDeclaration[] fields = typeDeclaration.fields;
 				if (fields != null) {
-					done : for (int i = 0; i < fields.length; i++) {
+					done : for (int i = 0; i < fields.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (fields[i] instanceof Initializer) {
 							Initializer initializer = (Initializer) fields[i];
 							if (initializer.bodyStart <= variable.sourceStart &&
@@ -13020,7 +13020,7 @@ public final class CompletionEngine
 		return null;
 	}
 
-	private void findVariableName(
+	private void findVariableName( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			char[] token,
 			char[] qualifiedPackageName,
 			char[] qualifiedSourceName,
@@ -13042,7 +13042,7 @@ public final class CompletionEngine
 				int l = qualifiedSourceName.length;
 				displayName = new char[l+(2*dim)];
 				System.arraycopy(qualifiedSourceName, 0, displayName, 0, l);
-				for(int i = 0; i < dim; i++){
+				for(int i = 0; i < dim; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					displayName[l+(i*2)] = '[';
 					displayName[l+(i*2)+1] = ']';
 				}
@@ -13056,9 +13056,9 @@ public final class CompletionEngine
 		final char[] t = token;
 		final char[] q = qualifiedPackageName;
 		INamingRequestor namingRequestor = new INamingRequestor() {
-			void accept(char[] name, int prefixAndSuffixRelevance, int reusedCharacters){
+			void accept(char[] name, int prefixAndSuffixRelevance, int reusedCharacters){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				int l = forbiddenNames == null ? 0 : forbiddenNames.length;
-				for (int i = 0; i < l; i++) {
+				for (int i = 0; i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (CharOperation.equals(forbiddenNames[i], name, false)) return;
 				}
 
@@ -13171,7 +13171,7 @@ public final class CompletionEngine
 				1,
 				kind);
 	}
-	private void findVariableNames(char[] name, TypeReference type , char[][] discouragedNames, char[][] forbiddenNames, int kind){
+	private void findVariableNames(char[] name, TypeReference type , char[][] discouragedNames, char[][] forbiddenNames, int kind){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if(type != null &&
 			type.resolvedType != null) {
 			TypeBinding tb = type.resolvedType;
@@ -13219,7 +13219,7 @@ public final class CompletionEngine
 		boolean insideAnnotationAttribute) {
 		findVariablesAndMethods(token, scope, invocationSite, invocationScope, insideTypeAnnotation, insideAnnotationAttribute, true, new ObjectVector());
 	}
-	private void findVariablesAndMethods(
+	private void findVariablesAndMethods( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] token,
 		Scope scope,
 		InvocationSite invocationSite,
@@ -13247,7 +13247,7 @@ public final class CompletionEngine
 		char[]	boostMatches = findParameterNameAtLocationFromAssistParent(methodsFound, scope);
 
 		if (!this.requestor.isIgnored(CompletionProposal.LOCAL_VARIABLE_REF)) {
-			done1 : while (true) { // done when a COMPILATION_UNIT_SCOPE is found
+			done1 : while (true) { // done when a COMPILATION_UNIT_SCOPE is found //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 				switch (currentScope.kind) {
 
@@ -13260,7 +13260,7 @@ public final class CompletionEngine
 					case Scope.BLOCK_SCOPE :
 						BlockScope blockScope = (BlockScope) currentScope;
 
-						next : for (int i = 0, length = blockScope.locals.length; i < length; i++) {
+						next : for (int i = 0, length = blockScope.locals.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							LocalVariableBinding local = blockScope.locals[i];
 
 							if (local == null)
@@ -13299,14 +13299,14 @@ public final class CompletionEngine
 							int ptr = this.uninterestingBindingsPtr;
 							// Cases where the binding is uninteresting eg. for completion occurring inside a local var
 							// declaration, the local var binding is uninteresting and shouldn't be proposed.
-							while (ptr >= 0) {
+							while (ptr >= 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								if (this.uninterestingBindings[ptr] == local) {
 									continue next;
 								}
 								ptr--;
 							}
 
-							for (int f = 0; f < localsFound.size; f++) {
+							for (int f = 0; f < localsFound.size; f++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								LocalVariableBinding otherLocal =
 									(LocalVariableBinding) localsFound.elementAt(f);
 								if (CharOperation.equals(otherLocal.name, local.name, true))
@@ -13378,7 +13378,7 @@ public final class CompletionEngine
 		currentScope = scope;
 
 		if(proposeField || proposeMethod) {
-			done2 : while (true) { // done when a COMPILATION_UNIT_SCOPE is found
+			done2 : while (true) { // done when a COMPILATION_UNIT_SCOPE is found //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 				switch (currentScope.kind) {
 					case Scope.METHOD_SCOPE :
@@ -13491,60 +13491,60 @@ public final class CompletionEngine
 		}
 	}
 
-	private char[] getCompletedTypeSignature(ReferenceBinding referenceBinding) {
+	private char[] getCompletedTypeSignature(ReferenceBinding referenceBinding) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] result = null;
-		StringBuilder sig = new StringBuilder(10);
+		StringBuilder sig = new StringBuilder(10); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		if (!referenceBinding.isMemberType()) {
 			char[] typeSig = referenceBinding.genericTypeSignature();
-			sig.append(typeSig, 0, typeSig.length);
+			sig.append(typeSig, 0, typeSig.length); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else if (!this.insideQualifiedReference) {
 			if (referenceBinding.isStatic()) {
 				char[] typeSig = referenceBinding.signature();
-				sig.append(typeSig, 0, typeSig.length-1); // copy all but trailing semicolon
+				sig.append(typeSig, 0, typeSig.length-1); // copy all but trailing semicolon //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 				TypeVariableBinding[] typeVariables = referenceBinding.typeVariables();
 				if (typeVariables != Binding.NO_TYPE_VARIABLES) {
-				    sig.append(Signature.C_GENERIC_START);
-				    for (TypeVariableBinding typeVariable : typeVariables) {
-				        sig.append(typeVariable.genericTypeSignature());
+				    sig.append(Signature.C_GENERIC_START); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				    for (TypeVariableBinding typeVariable : typeVariables) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				        sig.append(typeVariable.genericTypeSignature()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				    }
-				    sig.append(Signature.C_GENERIC_END);
+				    sig.append(Signature.C_GENERIC_END); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				sig.append(Signature.C_SEMICOLON);
+				sig.append(Signature.C_SEMICOLON); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
 				char[] typeSig = referenceBinding.genericTypeSignature();
-				sig.append(typeSig, 0, typeSig.length);
+				sig.append(typeSig, 0, typeSig.length); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		} else {
 			ReferenceBinding enclosingType = referenceBinding.enclosingType();
 			if (enclosingType.isParameterizedType()) {
 				char[] typeSig = referenceBinding.genericTypeSignature();
-				sig.append(typeSig, 0, typeSig.length-1);
+				sig.append(typeSig, 0, typeSig.length-1); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 				TypeVariableBinding[] typeVariables = referenceBinding.typeVariables();
 				if (typeVariables != Binding.NO_TYPE_VARIABLES) {
-				    sig.append(Signature.C_GENERIC_START);
-				    for (TypeVariableBinding typeVariable : typeVariables) {
-				        sig.append(typeVariable.genericTypeSignature());
+				    sig.append(Signature.C_GENERIC_START); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				    for (TypeVariableBinding typeVariable : typeVariables) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				        sig.append(typeVariable.genericTypeSignature()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				    }
-				    sig.append(Signature.C_GENERIC_END);
+				    sig.append(Signature.C_GENERIC_END); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			} else {
 				char[] typeSig = referenceBinding.signature();
-				sig.append(typeSig, 0, typeSig.length-1); // copy all but trailing semicolon
+				sig.append(typeSig, 0, typeSig.length-1); // copy all but trailing semicolon //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 				if (referenceBinding.isStatic()) {
 					TypeVariableBinding[] typeVariables = referenceBinding.typeVariables();
 					if (typeVariables != Binding.NO_TYPE_VARIABLES) {
-					    sig.append(Signature.C_GENERIC_START);
-					    for (TypeVariableBinding typeVariable : typeVariables) {
-					        sig.append(typeVariable.genericTypeSignature());
+					    sig.append(Signature.C_GENERIC_START); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					    for (TypeVariableBinding typeVariable : typeVariables) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					        sig.append(typeVariable.genericTypeSignature()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					    }
-					    sig.append(Signature.C_GENERIC_END);
+					    sig.append(Signature.C_GENERIC_END); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
 			}
-			sig.append(Signature.C_SEMICOLON);
+			sig.append(Signature.C_SEMICOLON); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		int sigLength = sig.length();
 		result = new char[sigLength];
@@ -13556,7 +13556,7 @@ public final class CompletionEngine
 		return result;
 	}
 
-	private ImportBinding[] getFavoriteReferenceBindings(Scope scope) {
+	private ImportBinding[] getFavoriteReferenceBindings(Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.favoriteReferenceBindings != null) return this.favoriteReferenceBindings;
 
 		String[] favoriteReferences = this.requestor.getFavoriteReferences();
@@ -13566,7 +13566,7 @@ public final class CompletionEngine
 		ImportBinding[] resolvedImports = new ImportBinding[favoriteReferences.length];
 
 		int count = 0;
-		next : for (String favoriteReference : favoriteReferences) {
+		next : for (String favoriteReference : favoriteReferences) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int length;
 			if (favoriteReference == null || (length = favoriteReference.length()) == 0) continue next;
 
@@ -13578,7 +13578,7 @@ public final class CompletionEngine
 			}
 
 			// remove duplicate and conflicting
-			for (int j = 0; j < count; j++) {
+			for (int j = 0; j < count; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ImportReference f = resolvedImports[j].reference;
 
 				if (CharOperation.equals(f.tokens, compoundName)) continue next;
@@ -13631,12 +13631,12 @@ public final class CompletionEngine
 
 		return this.parser;
 	}
-	protected boolean hasArrayTypeAsExpectedSuperTypes() {
+	protected boolean hasArrayTypeAsExpectedSuperTypes() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if ((this.expectedTypesFilter & ~SUBTYPE) != 0) return false;
 
 		if (!this.hasComputedExpectedArrayTypes) {
 			if(this.expectedTypes != null) {
-				done : for (int i = 0; i <= this.expectedTypesPtr; i++) {
+				done : for (int i = 0; i <= this.expectedTypesPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if(this.expectedTypes[i].isArrayType()) {
 						this.hasExpectedArrayTypes = true;
 						break done;
@@ -13649,7 +13649,7 @@ public final class CompletionEngine
 
 		return this.hasExpectedArrayTypes;
 	}
-	protected boolean hasPossibleAnnotationTarget(TypeBinding typeBinding, Scope scope) {
+	protected boolean hasPossibleAnnotationTarget(TypeBinding typeBinding, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.targetedElement == TagBits.AnnotationForPackage) {
 			long target = typeBinding.getAnnotationTagBits() & TagBits.AnnotationTargetMASK;
 			if(target != 0 && (target & TagBits.AnnotationForPackage) == 0) {
@@ -13723,7 +13723,7 @@ public final class CompletionEngine
 		return true;
 	}
 	private boolean isForbidden(ReferenceBinding binding) {
-		for (int i = 0; i <= this.forbbidenBindingsPtr; i++) {
+		for (int i = 0; i <= this.forbbidenBindingsPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(this.forbbidenBindings[i] == binding) {
 				return true;
 			}
@@ -13734,10 +13734,10 @@ public final class CompletionEngine
 		return false;
 	}
 
-	private boolean isForbidden(char[] givenPkgName, char[] givenTypeName, char[][] enclosingTypeNames) {
+	private boolean isForbidden(char[] givenPkgName, char[] givenTypeName, char[][] enclosingTypeNames) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// CharOperation.concatWith() handles the cases where input args are null/empty
 		char[] fullTypeName = CharOperation.concatWith(enclosingTypeNames, givenTypeName, '.');
-		for (int i = 0; i <= this.forbbidenBindingsPtr; i++) {
+		for (int i = 0; i <= this.forbbidenBindingsPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (this.forbbidenBindings[i] instanceof TypeBinding) {
 				TypeBinding typeBinding = (TypeBinding) this.forbbidenBindings[i];
 				char[] currPkgName = typeBinding.qualifiedPackageName();
@@ -13770,7 +13770,7 @@ public final class CompletionEngine
 			!this.requestor.isAllowingRequiredProposals(kind, requiredProposalKind);
 	}
 
-	private boolean isValidPackageName(char[] packageName) {
+	private boolean isValidPackageName(char[] packageName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.validPackageNames.includes(packageName)) {
 			return true;
 		}
@@ -13780,7 +13780,7 @@ public final class CompletionEngine
 		}
 
 		char[][] names = CharOperation.splitOn('.', packageName);
-		for (char[] name : names) {
+		for (char[] name : names) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!Util.isValidFolderNameForPackage(new String(name), this.sourceLevel, this.complianceLevel)) {
 				this.invalidPackageNames.add(packageName);
 				return false;
@@ -13791,14 +13791,14 @@ public final class CompletionEngine
 		return true;
 	}
 
-	private boolean isValidParent(ASTNode parent, ASTNode node, Scope scope){
+	private boolean isValidParent(ASTNode parent, ASTNode node, Scope scope){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		if(parent instanceof ParameterizedSingleTypeReference) {
 			ParameterizedSingleTypeReference ref = (ParameterizedSingleTypeReference) parent;
 			TypeVariableBinding[] typeVariables = ref.resolvedType.typeVariables();
 			int length = ref.typeArguments == null ? 0 : ref.typeArguments.length;
 			int nodeIndex = -1;
-			for(int i = length - 1 ; i > -1 ; i--) {
+			for(int i = length - 1 ; i > -1 ; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(node == ref.typeArguments[i]) {
 					nodeIndex = i;
 					break;
@@ -13806,7 +13806,7 @@ public final class CompletionEngine
 			}
 			if(nodeIndex > -1 && (typeVariables == null || typeVariables.length < nodeIndex + 1)) {
 				TypeBinding[] typeBindings = new TypeBinding[nodeIndex + 1];
-				for(int i = 0; i < nodeIndex; i++) {
+				for(int i = 0; i < nodeIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					typeBindings[i] = ref.typeArguments[i].resolvedType;
 				}
 				typeBindings[nodeIndex] = scope.getJavaLangObject();
@@ -13822,12 +13822,12 @@ public final class CompletionEngine
 			TypeVariableBinding[] typeVariables = ref.resolvedType.typeVariables();
 			TypeReference[][] arguments = ref.typeArguments;
 			int iLength = arguments == null ? 0 : arguments.length;
-			for (int i = 0; i < iLength; i++) {
+			for (int i = 0; i < iLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int jLength = arguments[i] == null ? 0 : arguments[i].length;
-				for (int j = 0; j < jLength; j++) {
+				for (int j = 0; j < jLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if(arguments[i][j] == node && (typeVariables == null || typeVariables.length <= j)) {
 						TypeBinding[] typeBindings = new TypeBinding[j + 1];
-						for(int k = 0; k < j; k++) {
+						for(int k = 0; k < j; k++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							typeBindings[k] = ref.typeArguments[i][k].resolvedType;
 						}
 						typeBindings[j] = scope.getJavaLangObject();
@@ -13846,7 +13846,7 @@ public final class CompletionEngine
 				AllocationExpression enclosingAllocation = (AllocationExpression) enclosingInstance;
 				if (enclosingAllocation.type != null && (enclosingAllocation.type.bits & ASTNode.IsDiamond) != 0) {
 					if (enclosingAllocation.binding != null) {
-						for (TypeBinding param : enclosingAllocation.binding.original().parameters) {
+						for (TypeBinding param : enclosingAllocation.binding.original().parameters) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (param.kind() == Binding.TYPE_PARAMETER)
 								return true; // this could possible help type inference, let's assume the best
 						}
@@ -13861,7 +13861,7 @@ public final class CompletionEngine
 		}
 		return true;
 	}
-	private boolean mustQualifyType(ReferenceBinding type, char[] packageName, Scope scope) {
+	private boolean mustQualifyType(ReferenceBinding type, char[] packageName, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if(!mustQualifyType(
 				packageName,
 				type.sourceName(),
@@ -13870,12 +13870,12 @@ public final class CompletionEngine
 			return false;
 		}
 		ReferenceBinding enclosingType = scope.enclosingSourceType();
-		while (enclosingType != null) {
+		while (enclosingType != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ReferenceBinding currentType = enclosingType;
-			while (currentType != null) {
+			while (currentType != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ReferenceBinding[] memberTypes = currentType.memberTypes();
 				if(memberTypes != null) {
-					for (ReferenceBinding memberType : memberTypes) {
+					for (ReferenceBinding memberType : memberTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (CharOperation.equals(memberType.sourceName, type.sourceName()) &&
 								memberType.canBeSeenBy(scope)) {
 							return TypeBinding.notEquals(memberType, type);
@@ -13888,20 +13888,20 @@ public final class CompletionEngine
 		}
 		return true;
 	}
-	private Initializer parseSnippeInitializer(char[] snippet, int position, char[][] localVariableTypeNames, char[][] localVariableNames, int[] localVariableModifiers, boolean isStatic){
-		StringBuilder prefix = new StringBuilder();
-		prefix.append("public class FakeType {\n "); //$NON-NLS-1$
+	private Initializer parseSnippeInitializer(char[] snippet, int position, char[][] localVariableTypeNames, char[][] localVariableNames, int[] localVariableModifiers, boolean isStatic){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder prefix = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		prefix.append("public class FakeType {\n "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if(isStatic) {
-			prefix.append("static "); //$NON-NLS-1$
+			prefix.append("static "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		prefix.append("{\n"); //$NON-NLS-1$
-		for (int i = 0; i < localVariableTypeNames.length; i++) {
+		prefix.append("{\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (int i = 0; i < localVariableTypeNames.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ASTNode.printModifiers(localVariableModifiers[i], prefix);
-			prefix.append(' ');
-			prefix.append(localVariableTypeNames[i]);
-			prefix.append(' ');
-			prefix.append(localVariableNames[i]);
-			prefix.append(';');
+			prefix.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			prefix.append(localVariableTypeNames[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			prefix.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			prefix.append(localVariableNames[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			prefix.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		char[] fakeSource = CharOperation.concat(prefix.toString().toCharArray(), snippet, "}}".toCharArray());//$NON-NLS-1$
@@ -13926,157 +13926,157 @@ public final class CompletionEngine
 	}
 	protected void printDebug(CategorizedProblem error) {
 		if(CompletionEngine.DEBUG) {
-			trace("COMPLETION - completionFailure(" + error + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+			trace("COMPLETION - completionFailure(" + error + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	protected void printDebug(CompletionProposal proposal){
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		printDebug(proposal, 0, buffer);
 		trace(buffer.toString());
 	}
 
-	private void printDebug(CompletionProposal proposal, int tab, StringBuilder buffer){
+	private void printDebug(CompletionProposal proposal, int tab, StringBuilder buffer){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		printDebugTab(tab, buffer);
-		buffer.append("COMPLETION - "); //$NON-NLS-1$
+		buffer.append("COMPLETION - "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		switch(proposal.getKind()) {
 			case CompletionProposal.ANONYMOUS_CLASS_DECLARATION :
-				buffer.append("ANONYMOUS_CLASS_DECLARATION"); //$NON-NLS-1$
+				buffer.append("ANONYMOUS_CLASS_DECLARATION"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.FIELD_REF :
-				buffer.append("FIELD_REF"); //$NON-NLS-1$
+				buffer.append("FIELD_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.FIELD_REF_WITH_CASTED_RECEIVER :
-				buffer.append("FIELD_REF_WITH_CASTED_RECEIVER"); //$NON-NLS-1$
+				buffer.append("FIELD_REF_WITH_CASTED_RECEIVER"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.KEYWORD :
-				buffer.append("KEYWORD"); //$NON-NLS-1$
+				buffer.append("KEYWORD"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.LABEL_REF :
-				buffer.append("LABEL_REF"); //$NON-NLS-1$
+				buffer.append("LABEL_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.LOCAL_VARIABLE_REF :
-				buffer.append("LOCAL_VARIABLE_REF"); //$NON-NLS-1$
+				buffer.append("LOCAL_VARIABLE_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.METHOD_DECLARATION :
-				buffer.append("METHOD_DECLARATION"); //$NON-NLS-1$
+				buffer.append("METHOD_DECLARATION"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.METHOD_REF :
-				buffer.append("METHOD_REF"); //$NON-NLS-1$
+				buffer.append("METHOD_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.METHOD_REF_WITH_CASTED_RECEIVER :
-				buffer.append("METHOD_REF_WITH_CASTED_RECEIVER"); //$NON-NLS-1$
+				buffer.append("METHOD_REF_WITH_CASTED_RECEIVER"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.MODULE_DECLARATION :
-				buffer.append("MODULE_DECLARATION"); //$NON-NLS-1$
+				buffer.append("MODULE_DECLARATION"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.MODULE_REF :
-				buffer.append("MODULE_REF"); //$NON-NLS-1$
+				buffer.append("MODULE_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.PACKAGE_REF :
-				buffer.append("PACKAGE_REF"); //$NON-NLS-1$
+				buffer.append("PACKAGE_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.TYPE_REF :
-				buffer.append("TYPE_REF"); //$NON-NLS-1$
+				buffer.append("TYPE_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.VARIABLE_DECLARATION :
-				buffer.append("VARIABLE_DECLARATION"); //$NON-NLS-1$
+				buffer.append("VARIABLE_DECLARATION"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.POTENTIAL_METHOD_DECLARATION :
-				buffer.append("POTENTIAL_METHOD_DECLARATION"); //$NON-NLS-1$
+				buffer.append("POTENTIAL_METHOD_DECLARATION"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.METHOD_NAME_REFERENCE :
-				buffer.append("METHOD_NAME_REFERENCE"); //$NON-NLS-1$
+				buffer.append("METHOD_NAME_REFERENCE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.ANNOTATION_ATTRIBUTE_REF :
-				buffer.append("ANNOTATION_ATTRIBUT_REF"); //$NON-NLS-1$
+				buffer.append("ANNOTATION_ATTRIBUT_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.FIELD_IMPORT :
-				buffer.append("FIELD_IMPORT"); //$NON-NLS-1$
+				buffer.append("FIELD_IMPORT"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.METHOD_IMPORT :
-				buffer.append("METHOD_IMPORT"); //$NON-NLS-1$
+				buffer.append("METHOD_IMPORT"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.TYPE_IMPORT :
-				buffer.append("TYPE_IMPORT"); //$NON-NLS-1$
+				buffer.append("TYPE_IMPORT"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.CONSTRUCTOR_INVOCATION :
-				buffer.append("CONSTRUCTOR_INVOCATION"); //$NON-NLS-1$
+				buffer.append("CONSTRUCTOR_INVOCATION"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.ANONYMOUS_CLASS_CONSTRUCTOR_INVOCATION :
-				buffer.append("ANONYMOUS_CLASS_CONSTRUCTOR_INVOCATION"); //$NON-NLS-1$
+				buffer.append("ANONYMOUS_CLASS_CONSTRUCTOR_INVOCATION"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.LAMBDA_EXPRESSION :
-				buffer.append("LAMBDA_EXPRESSION"); //$NON-NLS-1$
+				buffer.append("LAMBDA_EXPRESSION"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			default :
-				buffer.append("PROPOSAL"); //$NON-NLS-1$
+				buffer.append("PROPOSAL"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 
 		}
 
-		buffer.append("{\n");//$NON-NLS-1$
+		buffer.append("{\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		printDebugTab(tab, buffer);
-		buffer.append("\tCompletion[").append(proposal.getCompletion() == null ? "null".toCharArray() : proposal.getCompletion()).append("]\n"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		buffer.append("\tCompletion[").append(proposal.getCompletion() == null ? "null".toCharArray() : proposal.getCompletion()).append("]\n"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		printDebugTab(tab, buffer);
-		buffer.append("\tDeclarationSignature[").append(proposal.getDeclarationSignature() == null ? "null".toCharArray() : proposal.getDeclarationSignature()).append("]\n"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		buffer.append("\tDeclarationSignature[").append(proposal.getDeclarationSignature() == null ? "null".toCharArray() : proposal.getDeclarationSignature()).append("]\n"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		printDebugTab(tab, buffer);
-		buffer.append("\tDeclarationKey[").append(proposal.getDeclarationKey() == null ? "null".toCharArray() : proposal.getDeclarationKey()).append("]\n"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		buffer.append("\tDeclarationKey[").append(proposal.getDeclarationKey() == null ? "null".toCharArray() : proposal.getDeclarationKey()).append("]\n"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		printDebugTab(tab, buffer);
-		buffer.append("\tSignature[").append(proposal.getSignature() == null ? "null".toCharArray() : proposal.getSignature()).append("]\n"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		buffer.append("\tSignature[").append(proposal.getSignature() == null ? "null".toCharArray() : proposal.getSignature()).append("]\n"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		printDebugTab(tab, buffer);
-		buffer.append("\tKey[").append(proposal.getKey() == null ? "null".toCharArray() : proposal.getKey()).append("]\n"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		buffer.append("\tKey[").append(proposal.getKey() == null ? "null".toCharArray() : proposal.getKey()).append("]\n"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		printDebugTab(tab, buffer);
-		buffer.append("\tName[").append(proposal.getName() == null ? "null".toCharArray() : proposal.getName()).append("]\n"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		buffer.append("\tName[").append(proposal.getName() == null ? "null".toCharArray() : proposal.getName()).append("]\n"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		printDebugTab(tab, buffer);
-		buffer.append("\tFlags[");//$NON-NLS-1$
+		buffer.append("\tFlags[");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		int flags = proposal.getFlags();
-		buffer.append(Flags.toString(flags));
-		if((flags & Flags.AccInterface) != 0) buffer.append("interface ");//$NON-NLS-1$
-		if((flags & Flags.AccEnum) != 0) buffer.append("enum ");//$NON-NLS-1$
-		buffer.append("]\n"); //$NON-NLS-1$
+		buffer.append(Flags.toString(flags)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		if((flags & Flags.AccInterface) != 0) buffer.append("interface ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		if((flags & Flags.AccEnum) != 0) buffer.append("enum ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("]\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		CompletionProposal[] proposals = proposal.getRequiredProposals();
 		if(proposals != null) {
 			printDebugTab(tab, buffer);
-			buffer.append("\tRequiredProposals[");//$NON-NLS-1$
-			for (CompletionProposal proposal2 : proposals) {
-				buffer.append("\n"); //$NON-NLS-1$
+			buffer.append("\tRequiredProposals[");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (CompletionProposal proposal2 : proposals) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append("\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				printDebug(proposal2, tab + 2, buffer);
 			}
 			printDebugTab(tab, buffer);
-			buffer.append("\n\t]\n"); //$NON-NLS-1$
+			buffer.append("\n\t]\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		printDebugTab(tab, buffer);
-		buffer.append("\tCompletionLocation[").append(proposal.getCompletionLocation()).append("]\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		buffer.append("\tCompletionLocation[").append(proposal.getCompletionLocation()).append("]\n"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		int start = proposal.getReplaceStart();
 		int end = proposal.getReplaceEnd();
 		printDebugTab(tab, buffer);
-		buffer.append("\tReplaceStart[").append(start).append("]"); //$NON-NLS-1$ //$NON-NLS-2$
-		buffer.append("-ReplaceEnd[").append(end).append("]\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		buffer.append("\tReplaceStart[").append(start).append("]"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("-ReplaceEnd[").append(end).append("]\n"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		start = proposal.getTokenStart();
 		end = proposal.getTokenEnd();
 		printDebugTab(tab, buffer);
-		buffer.append("\tTokenStart[").append(start).append("]"); //$NON-NLS-1$ //$NON-NLS-2$
-		buffer.append("-TokenEnd[").append(end).append("]\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		buffer.append("\tTokenStart[").append(start).append("]"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("-TokenEnd[").append(end).append("]\n"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (this.source != null) {
 			printDebugTab(tab, buffer);
-			buffer.append("\tReplacedText[").append(this.source, start, end-start).append("]\n"); //$NON-NLS-1$ //$NON-NLS-2$
+			buffer.append("\tReplacedText[").append(this.source, start, end-start).append("]\n"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		printDebugTab(tab, buffer);
-		buffer.append("\tTokenStart[").append(proposal.getTokenStart()).append("]"); //$NON-NLS-1$ //$NON-NLS-2$
-		buffer.append("-TokenEnd[").append(proposal.getTokenEnd()).append("]\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		buffer.append("\tTokenStart[").append(proposal.getTokenStart()).append("]"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("-TokenEnd[").append(proposal.getTokenEnd()).append("]\n"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		printDebugTab(tab, buffer);
-		buffer.append("\tRelevance[").append(proposal.getRelevance()).append("]\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		buffer.append("\tRelevance[").append(proposal.getRelevance()).append("]\n"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		printDebugTab(tab, buffer);
-		buffer.append("}\n");//$NON-NLS-1$
+		buffer.append("}\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	private void printDebugTab(int tab, StringBuilder buffer) {
-		for (int i = 0; i < tab; i++) {
-			buffer.append('\t');
+		for (int i = 0; i < tab; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append('\t'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 	private boolean omitParanthesis() {
@@ -14084,7 +14084,7 @@ public final class CompletionEngine
 				&& this.source.length > this.endPosition
 				&& (this.source[this.endPosition] == '(' || this.source[this.endPosition] == '<');
 	}
-	private void proposeConstructor(AcceptedConstructor deferredProposal, Scope scope) {
+	private void proposeConstructor(AcceptedConstructor deferredProposal, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (deferredProposal.proposeConstructor) {
 			proposeConstructor(
 					deferredProposal.simpleTypeName,
@@ -14104,7 +14104,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private void proposeConstructor(
+	private void proposeConstructor( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			char[] simpleTypeName,
 			int parameterCount,
 			char[] signature,
@@ -14149,7 +14149,7 @@ public final class CompletionEngine
 		if (typeBinding != null && typeBinding.typeVariables() != null) {
 			TypeVariableBinding[] variableBindings = typeBinding.erasure().typeVariables();
 			typeVariables = new char[variableBindings.length][];
-			for (int i = 0; i < typeVariables.length; i++) {
+			for (int i = 0; i < typeVariables.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				typeVariables[i] = variableBindings[i].sourceName;
 			}
 		}
@@ -14397,7 +14397,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private void proposeNewMethod(char[] token, ReferenceBinding reference) {
+	private void proposeNewMethod(char[] token, ReferenceBinding reference) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if(!this.requestor.isIgnored(CompletionProposal.POTENTIAL_METHOD_DECLARATION)) {
 			int relevance = computeBaseRelevance();
 			relevance += computeRelevanceForResolution();
@@ -14433,7 +14433,7 @@ public final class CompletionEngine
 		}
 	}
 
-	private void proposeType(
+	private void proposeType( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			char[] packageName,
 			char[] simpleTypeName,
 			int modifiers,
@@ -14568,10 +14568,10 @@ public final class CompletionEngine
 		}
 	}
 
-	private char[] substituteMethodTypeParameterName(char firstName, char startChar, char endChar, char[][] excludedNames, char[][] otherParameterNames) {
+	private char[] substituteMethodTypeParameterName(char firstName, char startChar, char endChar, char[][] excludedNames, char[][] otherParameterNames) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char name = firstName;
-		next : while (true) {
-			for (char[] excludedName : excludedNames) {
+		next : while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (char[] excludedName : excludedNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(excludedName.length == 1 && ScannerHelper.toLowerCase(excludedName[0]) == ScannerHelper.toLowerCase(name)) {
 					name++;
 					if(name > endChar)
@@ -14582,7 +14582,7 @@ public final class CompletionEngine
 				}
 			}
 
-			for (char[] otherParameterName : otherParameterNames) {
+			for (char[] otherParameterName : otherParameterNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(otherParameterName.length == 1 && ScannerHelper.toLowerCase(otherParameterName[0]) == ScannerHelper.toLowerCase(name)) {
 					name++;
 					if(name > endChar)
@@ -14597,17 +14597,17 @@ public final class CompletionEngine
 		return new char[]{name};
 	}
 
-	private char[] substituteMethodTypeParameterName(char[] firstName, char[][] excludedNames, char[][] otherParameterNames) {
+	private char[] substituteMethodTypeParameterName(char[] firstName, char[][] excludedNames, char[][] otherParameterNames) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] name = firstName;
 		int count = 2;
-		next : while(true) {
-			for (char[] excludedName : excludedNames) {
+		next : while(true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (char[] excludedName : excludedNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(CharOperation.equals(name, excludedName, false)) {
 					name = CharOperation.concat(firstName, String.valueOf(count++).toCharArray());
 					continue next;
 				}
 			}
-			for (char[] otherParameterName : otherParameterNames) {
+			for (char[] otherParameterName : otherParameterNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(CharOperation.equals(name, otherParameterName, false)) {
 					name = CharOperation.concat(firstName, String.valueOf(count++).toCharArray());
 					continue next;
@@ -14618,20 +14618,20 @@ public final class CompletionEngine
 		return name;
 	}
 
-	private char[][] substituteMethodTypeParameterNames(TypeVariableBinding[] typeVariables, char[][] excludedNames) {
+	private char[][] substituteMethodTypeParameterNames(TypeVariableBinding[] typeVariables, char[][] excludedNames) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[][] substituedParameterNames = new char[typeVariables.length][];
 
-		for (int i = 0; i < substituedParameterNames.length; i++) {
+		for (int i = 0; i < substituedParameterNames.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			substituedParameterNames[i] = typeVariables[i].sourceName;
 		}
 
 		boolean foundConflicts = false;
 
-		nextTypeParameter : for (int i = 0; i < typeVariables.length; i++) {
+		nextTypeParameter : for (int i = 0; i < typeVariables.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeVariableBinding typeVariableBinding = typeVariables[i];
 			char[] methodParameterName = typeVariableBinding.sourceName;
 
-			for (char[] typeParameterName : excludedNames) {
+			for (char[] typeParameterName : excludedNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(CharOperation.equals(typeParameterName, methodParameterName, false)) {
 					char[] substitution;
 					if(methodParameterName.length == 1) {
@@ -14655,13 +14655,13 @@ public final class CompletionEngine
 		return null;
 	}
 
-	private void findLambdaExpressions(Scope scope) {
+	private void findLambdaExpressions(Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.requestor.isIgnored(CompletionProposal.LAMBDA_EXPRESSION)) {
 			return;
 		}
 
 		if (this.expectedTypesPtr > -1) {
-			for (int i = 0; i <= this.expectedTypesPtr; i++) {
+			for (int i = 0; i <= this.expectedTypesPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				TypeBinding type = this.expectedTypes[i];
 
 				if (type.isFunctionalInterface(scope)) {
@@ -14677,7 +14677,7 @@ public final class CompletionEngine
 					int length = method.parameters.length;
 					char[][] parameterTypeNames = new char[length][];
 
-					for (int j = 0; j < length; j++) {
+					for (int j = 0; j < length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						TypeBinding p = method.parameters[j];
 						parameterTypeNames[j] = p.qualifiedSourceName();
 					}
@@ -14720,7 +14720,7 @@ public final class CompletionEngine
 			String name= new String(prefix);
 			String[] splittedName = Util.splitOn('.', new String(name), 0, name.length());
 			PackageBinding[] pkgBindings = module.getExports();
-			for (PackageBinding pkgBinding : pkgBindings) {
+			for (PackageBinding pkgBinding : pkgBindings) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String[] pkgName = CharOperation.toStrings(pkgBinding.compoundName);
 				if (pkgName != null &&
 						( name.isEmpty() ||

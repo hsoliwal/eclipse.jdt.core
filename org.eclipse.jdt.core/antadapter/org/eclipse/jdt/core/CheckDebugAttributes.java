@@ -44,7 +44,7 @@ public final class CheckDebugAttributes extends Task {
 	private String file;
 	private String property;
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void execute() throws BuildException {
 		if (this.file == null) {
 			throw new BuildException(AntAdapterMessages.getString("checkDebugAttributes.file.argument.cannot.be.null")); //$NON-NLS-1$
@@ -58,8 +58,8 @@ public final class CheckDebugAttributes extends Task {
 				IClassFileReader classFileReader = ToolFactory.createDefaultClassFileReader(this.file, IClassFileReader.ALL);
 				hasDebugAttributes = checkClassFile(classFileReader);
 			} else {
-				try (ZipFile jarFile = new ZipFile(this.file)) {
-					for (Enumeration<? extends ZipEntry> entries = jarFile.entries(); !hasDebugAttributes && entries.hasMoreElements(); ) {
+				try (ZipFile jarFile = new ZipFile(this.file)) { //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM NEW
+					for (Enumeration<? extends ZipEntry> entries = jarFile.entries(); !hasDebugAttributes && entries.hasMoreElements(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 						ZipEntry entry = entries.nextElement();
 						if (org.eclipse.jdt.internal.compiler.util.Util.isClassFileName(entry.getName())) {
 							IClassFileReader classFileReader = ToolFactory.createDefaultClassFileReader(this.file, entry.getName(), IClassFileReader.ALL);
@@ -74,13 +74,13 @@ public final class CheckDebugAttributes extends Task {
 				getProject().setUserProperty(this.property, "has debug"); //$NON-NLS-1$
 			}
 		} catch (IOException e) {
-			throw new BuildException(AntAdapterMessages.getString("checkDebugAttributes.ioexception.occured") + this.file, e); //$NON-NLS-1$
+			throw new BuildException(AntAdapterMessages.getString("checkDebugAttributes.ioexception.occured") + this.file, e); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
 	private boolean checkClassFile(IClassFileReader classFileReader) {
 		IMethodInfo[] methodInfos = classFileReader.getMethodInfos();
-		for (IMethodInfo methodInfo : methodInfos) {
+		for (IMethodInfo methodInfo : methodInfos) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ICodeAttribute codeAttribute = methodInfo.getCodeAttribute();
 			if (codeAttribute != null && codeAttribute.getLineNumberAttribute() != null) {
 				return true;

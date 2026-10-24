@@ -32,17 +32,17 @@ import org.eclipse.jdt.internal.core.search.JavaSearchDocument;
 public class DefaultJavaIndexer {
 	private static final char JAR_SEPARATOR = IJavaSearchScope.JAR_FILE_ENTRY_SEPARATOR.charAt(0);
 
-	public void generateIndexForJar(String pathToJar, String pathToIndexFile) throws IOException {
+	public void generateIndexForJar(String pathToJar, String pathToIndexFile) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File f = new File(pathToJar);
-		if (!f.exists()) {
-			throw new FileNotFoundException(pathToJar + " not found"); //$NON-NLS-1$
+		if (!f.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			throw new FileNotFoundException(pathToJar + " not found"); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		IndexLocation indexLocation = new FileIndexLocation(new File(pathToIndexFile));
 		Index index = new Index(indexLocation, pathToJar, false /*reuse index file*/);
 		SearchParticipant participant = SearchEngine.getDefaultSearchParticipant();
 		index.separator = JAR_SEPARATOR;
-		try (ZipFile zip = new ZipFile(pathToJar)) {
-			for (Enumeration<? extends ZipEntry> e = zip.entries(); e.hasMoreElements();) {
+		try (ZipFile zip = new ZipFile(pathToJar)) { //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM NEW
+			for (Enumeration<? extends ZipEntry> e = zip.entries(); e.hasMoreElements();) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 				// iterate each entry to index it
 				ZipEntry ze = e.nextElement();
 				String zipEntryName = ze.getName();

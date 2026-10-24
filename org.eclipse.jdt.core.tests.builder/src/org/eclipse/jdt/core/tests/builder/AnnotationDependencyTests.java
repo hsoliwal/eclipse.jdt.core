@@ -65,7 +65,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 		super.tearDown();
 	}
 
-	private void addAnnotationType() {
+	private void addAnnotationType() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String annoCode = "package p1;\n"
 			+ "@interface Anno {\n"
 			+ "String value();\n"
@@ -159,7 +159,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	 * This test makes sure that changing an annotation on type A causes type B
 	 * to be recompiled, if B references A.  See http://bugs.eclipse.org/149768
 	 */
-	public void testTypeAnnotationDependency() throws Exception
+	public void testTypeAnnotationDependency() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@Anno(\"A1\")" + "\n"
@@ -193,7 +193,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	 * causes type B to be recompiled, if B references A.
 	 * See http://bugs.eclipse.org/149768
 	 */
-	public void testFieldAnnotationDependency() throws Exception
+	public void testFieldAnnotationDependency() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "public class A {" + "\n"
@@ -231,7 +231,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	 * causes type B to be recompiled, if B references A.
 	 * See http://bugs.eclipse.org/149768
 	 */
-	public void testMethodAnnotationDependency() throws Exception
+	public void testMethodAnnotationDependency() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "public class A {" + "\n"
@@ -270,7 +270,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	 * Note that B does not directly reference A.X, only A.
 	 * See http://bugs.eclipse.org/149768
 	 */
-	public void testInnerTypeAnnotationDependency() throws Exception
+	public void testInnerTypeAnnotationDependency() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "public class A {" + "\n"
@@ -308,7 +308,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	 * does not cause type B to be recompiled, if B does not reference A.
 	 * See http://bugs.eclipse.org/149768
 	 */
-	public void testUnrelatedTypeAnnotationDependency() throws Exception
+	public void testUnrelatedTypeAnnotationDependency() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@Anno(\"A1\")" + "\n"
@@ -338,7 +338,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=214948
 	// Edit https://github.com/eclipse-jdt/eclipse.jdt.core/pull/4564: package deprecation has no effect
-	public void testPackageInfoDependency() throws Exception {
+	public void testPackageInfoDependency() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String notypes = "@question.SimpleAnnotation(\"foo\") package notypes;";
 		String question = "package question;";
 		String deprecatedQuestion = "@Deprecated package question;";
@@ -363,7 +363,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=317841
 	 */
-	public void testTypeAnnotationDependency2() throws Exception
+	public void testTypeAnnotationDependency2() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@Anno(\"A1\")" + "\n"
@@ -403,7 +403,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=317841
 	 */
-	public void testTypeAnnotationDependency3() throws Exception
+	public void testTypeAnnotationDependency3() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@AnnoInt(24)" + "\n"
@@ -443,7 +443,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=317841
 	 */
-	public void testTypeAnnotationDependency4() throws Exception
+	public void testTypeAnnotationDependency4() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@AnnoByte(3)" + "\n"
@@ -483,7 +483,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=317841
 	 */
-	public void testTypeAnnotationDependency5() throws Exception
+	public void testTypeAnnotationDependency5() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@AnnoBoolean(true)" + "\n"
@@ -523,7 +523,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=317841
 	 */
-	public void testTypeAnnotationDependency6() throws Exception
+	public void testTypeAnnotationDependency6() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@AnnoChar('c')" + "\n"
@@ -563,7 +563,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=317841
 	 */
-	public void testTypeAnnotationDependency7() throws Exception
+	public void testTypeAnnotationDependency7() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@AnnoDouble(1.0)" + "\n"
@@ -603,7 +603,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=317841
 	 */
-	public void testTypeAnnotationDependency8() throws Exception
+	public void testTypeAnnotationDependency8() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@AnnoFloat(1.0f)" + "\n"
@@ -643,7 +643,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=317841
 	 */
-	public void testTypeAnnotationDependency9() throws Exception
+	public void testTypeAnnotationDependency9() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@AnnoLong(1L)" + "\n"
@@ -683,7 +683,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=317841
 	 */
-	public void testTypeAnnotationDependency10() throws Exception
+	public void testTypeAnnotationDependency10() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@AnnoShort(3)" + "\n"
@@ -723,7 +723,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=317841
 	 */
-	public void testTypeAnnotationDependency11() throws Exception
+	public void testTypeAnnotationDependency11() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@AnnoStringArray({\"A1\",\"A2\"})" + "\n"
@@ -763,7 +763,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=317841
 	 */
-	public void testTypeAnnotationDependency12() throws Exception
+	public void testTypeAnnotationDependency12() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@AnnoAnnotation(@AnnoLong(3))" + "\n"
@@ -803,7 +803,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=317841
 	 */
-	public void testTypeAnnotationDependency13() throws Exception
+	public void testTypeAnnotationDependency13() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@AnnoEnum(E.A)\n"
@@ -843,7 +843,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=317841
 	 */
-	public void testTypeAnnotationDependency14() throws Exception
+	public void testTypeAnnotationDependency14() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@AnnoClass(Object.class)\n"
@@ -883,7 +883,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=317841
 	 */
-	public void testTypeAnnotationDependency15() throws Exception
+	public void testTypeAnnotationDependency15() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@Anno(\"A1\")" + "\n"
@@ -923,7 +923,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=317841
 	 */
-	public void testTypeAnnotationDependency16() throws Exception
+	public void testTypeAnnotationDependency16() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@AnnoInt(3)" + "\n"
@@ -963,7 +963,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=317841
 	 */
-	public void testTypeAnnotationDependency17() throws Exception
+	public void testTypeAnnotationDependency17() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@AnnoByte(3)" + "\n"
@@ -1003,7 +1003,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=317841
 	 */
-	public void testTypeAnnotationDependency18() throws Exception
+	public void testTypeAnnotationDependency18() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@AnnoBoolean(true)" + "\n"
@@ -1043,7 +1043,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=317841
 	 */
-	public void testTypeAnnotationDependency19() throws Exception
+	public void testTypeAnnotationDependency19() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@AnnoChar('c')" + "\n"
@@ -1083,7 +1083,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=317841
 	 */
-	public void testTypeAnnotationDependency20() throws Exception
+	public void testTypeAnnotationDependency20() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@AnnoDouble(1.0)" + "\n"
@@ -1123,7 +1123,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=317841
 	 */
-	public void testTypeAnnotationDependency21() throws Exception
+	public void testTypeAnnotationDependency21() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@AnnoFloat(1.0f)" + "\n"
@@ -1163,7 +1163,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=317841
 	 */
-	public void testTypeAnnotationDependency22() throws Exception
+	public void testTypeAnnotationDependency22() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@AnnoLong(1L)" + "\n"
@@ -1203,7 +1203,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=317841
 	 */
-	public void testTypeAnnotationDependency23() throws Exception
+	public void testTypeAnnotationDependency23() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@AnnoShort(3)" + "\n"
@@ -1243,7 +1243,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=317841
 	 */
-	public void testTypeAnnotationDependency24() throws Exception
+	public void testTypeAnnotationDependency24() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@AnnoStringArray({\"A1\",\"A2\"})" + "\n"
@@ -1283,7 +1283,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=317841
 	 */
-	public void testTypeAnnotationDependency25() throws Exception
+	public void testTypeAnnotationDependency25() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@AnnoAnnotation(@AnnoLong(3))" + "\n"
@@ -1323,7 +1323,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=317841
 	 */
-	public void testTypeAnnotationDependency26() throws Exception
+	public void testTypeAnnotationDependency26() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@AnnoEnum(E.A)\n"
@@ -1363,7 +1363,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=317841
 	 */
-	public void testTypeAnnotationDependency27() throws Exception
+	public void testTypeAnnotationDependency27() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String a1Code = "package p1; " + "\n"
 			+ "@AnnoClass(Object.class)\n"
@@ -1402,7 +1402,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	}
 
 	// Bug 365992 - [builder] [null] Change of nullness for a parameter doesn't trigger a build for the files that call the method
-	public void testParameterAnnotationDependency01() throws JavaModelException {
+	public void testParameterAnnotationDependency01() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// prepare the project:
 		setupProjectForNullAnnotations();
 
@@ -1453,7 +1453,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 
 	// Bug 365992 - [builder] [null] Change of nullness for a parameter doesn't trigger a build for the files that call the method
 	// Bug 366341 - Incremental compiler fails to detect right scope for annotation related code changes
-	public void testReturnAnnotationDependency01() throws JavaModelException {
+	public void testReturnAnnotationDependency01() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// prepare the project:
 		setupProjectForNullAnnotations();
 
@@ -1514,7 +1514,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=373571
 	// incremental build that uses binary type for Test1 should not report spurious null errors.
-	public void testReturnAnnotationDependency02() throws JavaModelException {
+	public void testReturnAnnotationDependency02() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// prepare the project:
 		setupProjectForNullAnnotations();
 
@@ -1566,7 +1566,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	 //[compiler][null] Enum constants not recognized as being NonNull.
 	 //This test case exposes the bug mentioned in the defect. The enum
 	 //definition comes from a file different from where it is accessed.
-	 public void test411771a() throws JavaModelException {
+	 public void test411771a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		 setupProjectForNullAnnotations();
 		 String testEnumCode = "package p1;\n" +
 				 "enum TestEnum {FOO };\n";
@@ -1593,7 +1593,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	 //[compiler][null] Enum constants not recognized as being NonNull.
 	 //Distinguish between enum constant and enum type. The enum type should not
 	 //be marked as NonNull.
-	 public void test411771b() throws JavaModelException {
+	 public void test411771b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		 setupProjectForNullAnnotations();
 		 String testEnumCode = "package p1;\n" +
 				 "enum TestEnum { FOO };\n";
@@ -1629,7 +1629,7 @@ public class AnnotationDependencyTests extends BuilderTests {
 	 //[compiler][null] Enum constants not recognized as being NonNull.
 	 //A enum may contain fields other than predefined constants. We
 	 //should not tag them as NonNull.
-	 public void test411771c() throws JavaModelException {
+	 public void test411771c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		 setupProjectForNullAnnotations();
 		 String testClass = "package p1;\n" +
 				 "public class A {}";

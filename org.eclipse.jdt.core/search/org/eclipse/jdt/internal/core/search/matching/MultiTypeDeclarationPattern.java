@@ -33,7 +33,7 @@ public char typeSuffix;
 
 protected static char[][] CATEGORIES = { TYPE_DECL };
 
-public MultiTypeDeclarationPattern(
+public MultiTypeDeclarationPattern( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[][] qualifications,
 	char[][] simpleNames,
 	char typeSuffix,
@@ -46,7 +46,7 @@ public MultiTypeDeclarationPattern(
 	} else {
 		int length = qualifications.length;
 		this.qualifications = new char[length][];
-		for (int i = 0; i < length; i++)
+		for (int i = 0; i < length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.qualifications[i] = CharOperation.toLowerCase(qualifications[i]);
 	}
 	// null simple names are allowed (should return all names)
@@ -56,7 +56,7 @@ public MultiTypeDeclarationPattern(
 		} else {
 			int length = simpleNames.length;
 			this.simpleNames = new char[length][];
-			for (int i = 0; i < length; i++)
+			for (int i = 0; i < length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.simpleNames[i] = CharOperation.toLowerCase(simpleNames[i]);
 		}
 	}
@@ -75,7 +75,7 @@ public SearchPattern getBlankPattern() {
 public char[][] getIndexCategories() {
 	return CATEGORIES;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public boolean matchesDecodedKey(SearchPattern decodedPattern) {
 	QualifiedTypeDeclarationPattern pattern = (QualifiedTypeDeclarationPattern) decodedPattern;
 
@@ -94,7 +94,7 @@ public boolean matchesDecodedKey(SearchPattern decodedPattern) {
 			return false;
 		}
 		if (max > 0) {
-			for (; count < max; count++)
+			for (; count < max; count++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (matchesName(this.qualifications[count], pattern.qualification))
 					break;
 			if (count == max) return false;
@@ -105,12 +105,12 @@ public boolean matchesDecodedKey(SearchPattern decodedPattern) {
 	if (this.simpleNames == null) return true;
 	int count = 0;
 	int max = this.simpleNames.length;
-	for (; count < max; count++)
+	for (; count < max; count++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (matchesName(this.simpleNames[count], pattern.simpleName))
 			break;
 	return count < max;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public EntryResult[] queryIn(Index index) throws IOException {
 	if (this.simpleNames == null) {
 		// if no simple names then return all possible ones from index
@@ -120,7 +120,7 @@ public EntryResult[] queryIn(Index index) throws IOException {
 	int count = -1;
 	int numOfNames = this.simpleNames.length;
 	EntryResult[][] allResults = numOfNames > 1 ? new EntryResult[numOfNames][] : null;
-	for (int i = 0; i < numOfNames; i++) {
+	for (int i = 0; i < numOfNames; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		char[] key = this.simpleNames[i];
 		int matchRule = getMatchRule();
 
@@ -156,62 +156,62 @@ public EntryResult[] queryIn(Index index) throws IOException {
 
 	if (count == -1) return null;
 	int total = 0;
-	for (int i = 0; i <= count; i++)
+	for (int i = 0; i <= count; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		total += allResults[i].length;
 	EntryResult[] allEntries = new EntryResult[total];
 	int next = 0;
-	for (int i = 0; i <= count; i++) {
+	for (int i = 0; i <= count; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		EntryResult[] entries = allResults[i];
 		System.arraycopy(entries, 0, allEntries, next, entries.length);
 		next += entries.length;
 	}
 	return allEntries;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected StringBuilder print(StringBuilder output) {
 	switch (this.typeSuffix){
 		case CLASS_SUFFIX :
-			output.append("MultiClassDeclarationPattern: "); //$NON-NLS-1$
+			output.append("MultiClassDeclarationPattern: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case CLASS_AND_INTERFACE_SUFFIX :
-			output.append("MultiClassAndInterfaceDeclarationPattern: "); //$NON-NLS-1$
+			output.append("MultiClassAndInterfaceDeclarationPattern: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case CLASS_AND_ENUM_SUFFIX :
-			output.append("MultiClassAndEnumDeclarationPattern: "); //$NON-NLS-1$
+			output.append("MultiClassAndEnumDeclarationPattern: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case INTERFACE_SUFFIX :
-			output.append("MultiInterfaceDeclarationPattern: "); //$NON-NLS-1$
+			output.append("MultiInterfaceDeclarationPattern: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case INTERFACE_AND_ANNOTATION_SUFFIX :
-			output.append("MultiInterfaceAndAnnotationDeclarationPattern: "); //$NON-NLS-1$
+			output.append("MultiInterfaceAndAnnotationDeclarationPattern: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case ENUM_SUFFIX :
-			output.append("MultiEnumDeclarationPattern: "); //$NON-NLS-1$
+			output.append("MultiEnumDeclarationPattern: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case ANNOTATION_TYPE_SUFFIX :
-			output.append("MultiAnnotationTypeDeclarationPattern: "); //$NON-NLS-1$
+			output.append("MultiAnnotationTypeDeclarationPattern: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		default :
-			output.append("MultiTypeDeclarationPattern: "); //$NON-NLS-1$
+			output.append("MultiTypeDeclarationPattern: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 	}
 	if (this.qualifications != null) {
-		output.append("qualifications: <"); //$NON-NLS-1$
-		for (int i = 0; i < this.qualifications.length; i++){
-			output.append(this.qualifications[i]);
+		output.append("qualifications: <"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (int i = 0; i < this.qualifications.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			output.append(this.qualifications[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (i < this.qualifications.length - 1)
-				output.append(", "); //$NON-NLS-1$
+				output.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		output.append("> "); //$NON-NLS-1$
+		output.append("> "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	if (this.simpleNames != null) {
-		output.append("simpleNames: <"); //$NON-NLS-1$
-		for (int i = 0; i < this.simpleNames.length; i++){
-			output.append(this.simpleNames[i]);
+		output.append("simpleNames: <"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (int i = 0; i < this.simpleNames.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			output.append(this.simpleNames[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (i < this.simpleNames.length - 1)
-				output.append(", "); //$NON-NLS-1$
+				output.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		output.append(">"); //$NON-NLS-1$
+		output.append(">"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	return super.print(output);
 }

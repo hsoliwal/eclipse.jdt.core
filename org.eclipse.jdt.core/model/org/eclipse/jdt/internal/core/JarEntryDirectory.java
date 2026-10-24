@@ -32,7 +32,7 @@ public class JarEntryDirectory extends JarEntryResource {
 		int length = this.children.length;
 		if (length > 0) {
 			IJarEntryResource[] newChildren = new IJarEntryResource[length];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				JarEntryResource child = (JarEntryResource) this.children[i];
 				newChildren[i] = child.clone(dir);
 			}
@@ -62,6 +62,6 @@ public class JarEntryDirectory extends JarEntryResource {
 
 	@Override
 	public String toString() {
-		return "JarEntryDirectory["+getEntryName()+"]"; //$NON-NLS-1$ //$NON-NLS-2$
+		return "JarEntryDirectory["+getEntryName()+"]"; //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }

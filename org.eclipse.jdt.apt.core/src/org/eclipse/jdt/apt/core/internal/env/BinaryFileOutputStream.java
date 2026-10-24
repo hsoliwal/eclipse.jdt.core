@@ -37,7 +37,7 @@ public class BinaryFileOutputStream extends ByteArrayOutputStream {
 		_env = env;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void close() throws IOException {
 		super.close();
 

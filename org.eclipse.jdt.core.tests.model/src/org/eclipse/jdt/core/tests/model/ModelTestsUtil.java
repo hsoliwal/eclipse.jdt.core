@@ -45,10 +45,10 @@ import org.eclipse.jdt.internal.core.JarPackageFragmentRoot;
 public class ModelTestsUtil {
 
 static private void collectAllFiles(File root, ArrayList collector, FileFilter fileFilter) {
-	File[] files = root.listFiles(fileFilter);
-	for (int i = 0; i < files.length; i++) {
+	File[] files = root.listFiles(fileFilter); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+	for (int i = 0; i < files.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		final File currentFile = files[i];
-		if (currentFile.isDirectory()) {
+		if (currentFile.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			collectAllFiles(currentFile, collector, fileFilter);
 		} else {
 			collector.add(currentFile);
@@ -74,7 +74,7 @@ static public void copy(File src, File dest) throws IOException {
 	}
 
 	// write bytes to dest
-	try (FileOutputStream out = new FileOutputStream(dest)) {
+	try (FileOutputStream out = new FileOutputStream(dest)) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		out.write(srcBytes);
 	}
 }
@@ -82,18 +82,18 @@ static public void copy(File src, File dest) throws IOException {
 /**
  * Copy the given source directory (and all its contents) to the given target directory.
  */
-static public void copyDirectory(File source, File target) throws IOException {
-	if (!target.exists()) {
-		target.mkdirs();
+static public void copyDirectory(File source, File target) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	if (!target.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		target.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
-	File[] files = source.listFiles();
+	File[] files = source.listFiles(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	if (files == null) return;
-	for (int i = 0; i < files.length; i++) {
+	for (int i = 0; i < files.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		File sourceChild = files[i];
 		String name =  sourceChild.getName();
 		if (name.equals("CVS") || name.equals(".svn")) continue;
 		File targetChild = new File(target, name);
-		if (sourceChild.isDirectory()) {
+		if (sourceChild.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			copyDirectory(sourceChild, targetChild);
 		} else {
 			copy(sourceChild, targetChild);
@@ -102,8 +102,8 @@ static public void copyDirectory(File source, File target) throws IOException {
 }
 
 public static File[] getAllFiles(File root, FileFilter fileFilter) {
-	ArrayList files = new ArrayList();
-	if (root.isDirectory()) {
+	ArrayList files = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	if (root.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		collectAllFiles(root, files, fileFilter);
 		File[] result = new File[files.size()];
 		files.toArray(result);
@@ -146,11 +146,11 @@ static public ICompilationUnit getCompilationUnit(IJavaProject javaProject, Stri
 static public List getCompilationUnits(IJavaProject javaProject) throws JavaModelException {
 	IPackageFragmentRoot[] fragmentRoots = javaProject.getPackageFragmentRoots();
 	int length = fragmentRoots.length;
-	List allUnits = new ArrayList();
-	for (int i=0; i<length; i++) {
+	List allUnits = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (fragmentRoots[i] instanceof JarPackageFragmentRoot) continue;
 		IJavaElement[] packages= fragmentRoots[i].getChildren();
-		for (int k= 0; k < packages.length; k++) {
+		for (int k= 0; k < packages.length; k++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IPackageFragment pack = (IPackageFragment) packages[k];
 			ICompilationUnit[] units = pack.getCompilationUnits();
 			allUnits.addAll(Arrays.asList(units));
@@ -165,10 +165,10 @@ static public List getCompilationUnits(IJavaProject javaProject) throws JavaMode
  * @return List of org.eclipse.jdt.core.ICompilationUnit
  */
 static public List getCompilationUnits(IPackageFragmentRoot root) throws JavaModelException {
-	List allUnits = new ArrayList();
+	List allUnits = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	if (!(root instanceof JarPackageFragmentRoot)) {
 		IJavaElement[] packages= root.getChildren();
-		for (int k= 0; k < packages.length; k++) {
+		for (int k= 0; k < packages.length; k++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IPackageFragment pack = (IPackageFragment) packages[k];
 			ICompilationUnit[] units = pack.getCompilationUnits();
 			allUnits.addAll(Arrays.asList(units));
@@ -182,7 +182,7 @@ static public IPackageFragmentRoot getExternalJarFile(IJavaProject project, Stri
 	if (roots == null || roots.length == 0) {
 		return null;
 	}
-	for (int i = 0; i < roots.length; i++) {
+	for (int i = 0; i < roots.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IPackageFragmentRoot root = roots[i];
 		if (root.isExternal() && root.getElementName().equals(jarSimpleName)) {
 			return root;
@@ -213,7 +213,7 @@ static public String getExternalJCLPathString() {
  * Returns the java.io path to the external java class library (e.g. jclMin.jar)
  */
 static public String getExternalJCLPathString(String compliance) {
-	return getExternalPath() + "jclMin" + compliance + ".jar";
+	return getExternalPath() + "jclMin" + compliance + ".jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 /**
  * Returns the IPath to the root source of the external java class library (e.g. "src")
@@ -243,7 +243,7 @@ static public String getExternalJCLSourcePathString() {
  * Returns the java.io path to the source of the external java class library (e.g. jclMinsrc.zip)
  */
 static public String getExternalJCLSourcePathString(String compliance) {
-	return getExternalPath() + "jclMin" + compliance + "src.zip";
+	return getExternalPath() + "jclMin" + compliance + "src.zip"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 /*
  * Returns the OS path to the external directory that contains external jar files.
@@ -279,7 +279,7 @@ static public IPackageFragment getPackageFragment(IJavaProject project, String r
  * If absolute, the rootPath refers to either an external jar, or a resource
  * internal to the workspace
  */
-static public IPackageFragmentRoot getPackageFragmentRoot(
+static public IPackageFragmentRoot getPackageFragmentRoot( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project,
 	String rootPath)
 	throws JavaModelException {
@@ -305,7 +305,7 @@ static public IPackageFragmentRoot getPackageFragmentRoot(
 		if (roots == null || roots.length == 0) {
 			return null;
 		}
-		for (int i = 0; i < roots.length; i++) {
+		for (int i = 0; i < roots.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IPackageFragmentRoot root = roots[i];
 			if (!root.isExternal()
 				&& root.getUnderlyingResource().getProjectRelativePath().equals(path)) {
@@ -325,10 +325,10 @@ static public String getPluginDirectoryPath() {
  */
 static public String getPluginDirectoryPath(String type) {
 	try {
-		StringBuilder bundleName = new StringBuilder("org.eclipse.jdt.core.tests");
+		StringBuilder bundleName = new StringBuilder("org.eclipse.jdt.core.tests"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		if (type != null) {
-			bundleName.append('.');
-			bundleName.append(type);
+			bundleName.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			bundleName.append(type); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		URL platformURL = Platform.getBundle(bundleName.toString()).getEntry("/");
 		return new File(FileLocator.toFileURL(platformURL).getFile()).getAbsolutePath();
@@ -339,7 +339,7 @@ static public String getPluginDirectoryPath(String type) {
 }
 
 static public String getSourceWorkspacePath(String workspace) {
-	return getPluginDirectoryPath() +  java.io.File.separator + workspace;
+	return getPluginDirectoryPath() +  java.io.File.separator + workspace; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 /**
@@ -355,12 +355,12 @@ static public IWorkspaceRoot getWorkspaceRoot() {
 
 static public byte[] read(java.io.File file) throws java.io.IOException {
 	int fileLength;
-	byte[] fileBytes = new byte[fileLength = (int) file.length()];
-	java.io.FileInputStream stream = new java.io.FileInputStream(file);
+	byte[] fileBytes = new byte[fileLength = (int) file.length()]; //FLLDCIM: MARK — M31 M3FILE_IO CALL
+	java.io.FileInputStream stream = new java.io.FileInputStream(file); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 	int bytesRead = 0;
 	int lastReadSize = 0;
 	try {
-		while ((lastReadSize != -1) && (bytesRead != fileLength)) {
+		while ((lastReadSize != -1) && (bytesRead != fileLength)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			lastReadSize = stream.read(fileBytes, bytesRead, fileLength - bytesRead);
 			bytesRead += lastReadSize;
 		}
@@ -378,9 +378,9 @@ static public byte[] read(java.io.File file) throws java.io.IOException {
  */
 public static String removeWhiteSpace(String input) {
 	StringTokenizer tokenizer = new StringTokenizer(input);
-	StringBuilder buffer = new StringBuilder();
-	while (tokenizer.hasMoreTokens()) {
-		buffer.append(tokenizer.nextToken());
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	while (tokenizer.hasMoreTokens()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		buffer.append(tokenizer.nextToken()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
     return buffer.toString();
 }
@@ -389,45 +389,45 @@ public static String removeWhiteSpace(String input) {
  * Check locally for the required JCL files, {@code <jclName>.jar and <jclName>src.zip}.
  * If not available, copy from the project resources.
  */
-static public void setupExternalJCL(String jclName) throws IOException {
+static public void setupExternalJCL(String jclName) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String externalPath = getExternalPath();
 	String separator = java.io.File.separator;
-	String resourceJCLDir = getPluginDirectoryPath() + separator + "JCL";
+	String resourceJCLDir = getPluginDirectoryPath() + separator + "JCL"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	java.io.File jclDir = new java.io.File(externalPath);
 	java.io.File jclMin =
-		new java.io.File(externalPath + jclName + ".jar");
-	java.io.File jclMinsrc = new java.io.File(externalPath + jclName + "src.zip");
-	if (!jclDir.exists()) {
-		if (!jclDir.mkdir()) {
+		new java.io.File(externalPath + jclName + ".jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	java.io.File jclMinsrc = new java.io.File(externalPath + jclName + "src.zip"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	if (!jclDir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		if (!jclDir.mkdir()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			//mkdir failed
-			throw new IOException("Could not create the directory " + jclDir);
+			throw new IOException("Could not create the directory " + jclDir); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		//copy the two files to the JCL directory
 		java.io.File resourceJCLMin =
-			new java.io.File(resourceJCLDir + separator + jclName + ".jar");
+			new java.io.File(resourceJCLDir + separator + jclName + ".jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		copy(resourceJCLMin, jclMin);
 		java.io.File resourceJCLMinsrc =
-			new java.io.File(resourceJCLDir + separator + jclName + "src.zip");
+			new java.io.File(resourceJCLDir + separator + jclName + "src.zip"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		copy(resourceJCLMinsrc, jclMinsrc);
 	} else {
 		//check that the two files, jclMin.jar and jclMinsrc.zip are present
 		//copy either file that is missing or less recent than the one in workspace
 		java.io.File resourceJCLMin =
-			new java.io.File(resourceJCLDir + separator + jclName + ".jar");
-		if ((jclMin.lastModified() < resourceJCLMin.lastModified())
-                || (jclMin.length() != resourceJCLMin.length())) {
+			new java.io.File(resourceJCLDir + separator + jclName + ".jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		if ((jclMin.lastModified() < resourceJCLMin.lastModified()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
+                || (jclMin.length() != resourceJCLMin.length())) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			copy(resourceJCLMin, jclMin);
 		}
 		java.io.File resourceJCLMinsrc =
-			new java.io.File(resourceJCLDir + separator + jclName + "src.zip");
-		if ((jclMinsrc.lastModified() < resourceJCLMinsrc.lastModified())
-                || (jclMinsrc.length() != resourceJCLMinsrc.length())) {
+			new java.io.File(resourceJCLDir + separator + jclName + "src.zip"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		if ((jclMinsrc.lastModified() < resourceJCLMinsrc.lastModified()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
+                || (jclMinsrc.length() != resourceJCLMinsrc.length())) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			copy(resourceJCLMinsrc, jclMinsrc);
 		}
 	}
 }
 
-static public void setUpJCLClasspathVariables(String compliance) throws JavaModelException, IOException {
+static public void setUpJCLClasspathVariables(String compliance) throws JavaModelException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if ("1.8".equals(compliance)) {
 		if (JavaCore.getClasspathVariable("JCL18_LIB") == null) {
 			setupExternalJCL("jclMin1.8");
@@ -453,16 +453,16 @@ static public void setUpJCLClasspathVariables(String compliance) throws JavaMode
  * @param input The input string
  * @return A new string without any whitespaces
  */
-public static String trimLinesLeadingWhitespaces(String input) {
+public static String trimLinesLeadingWhitespaces(String input) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	StringTokenizer tokenizer = new StringTokenizer(input, "\r\n\f");
-	StringBuilder buffer = new StringBuilder();
-	while (tokenizer.hasMoreTokens()) {
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	while (tokenizer.hasMoreTokens()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String line = tokenizer.nextToken();
 		int length = line.length();
 		int size = 0;
 		int idx = -1;
 		if (length > 0) {
-			loop: while ((idx+1) < length) {
+			loop: while ((idx+1) < length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				char ch = line.charAt(++idx);
 				switch (ch) {
 					case '\t':
@@ -481,19 +481,19 @@ public static String trimLinesLeadingWhitespaces(String input) {
 			if (splitLineIndex > 0) {
 				int commentStart = line.indexOf("/*", splitLineIndex);
 				if (commentStart >= 80-((size*3)/4)) {
-					StringBuilder newLine = new StringBuilder(line.substring(idx-1, splitLineIndex).trim());
-					newLine.append('\n');
-					newLine.append(line.substring(splitLineIndex).trim());
-					newLine.append('\n');
-					buffer.append(newLine);
+					StringBuilder newLine = new StringBuilder(line.substring(idx-1, splitLineIndex).trim()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+					newLine.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					newLine.append(line.substring(splitLineIndex).trim()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					newLine.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(newLine); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					continue;
 				}
 			}
-			buffer.append(line.substring(idx).trim());
+			buffer.append(line.substring(idx).trim()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
-			buffer.append(line);
+			buffer.append(line); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		buffer.append('\n');
+		buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
     return buffer.toString();
 }

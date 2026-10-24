@@ -35,7 +35,7 @@ public class ExternalFolderChange {
 	/*
 	 * Update external folders
 	 */
-	public void updateExternalFoldersIfNecessary(boolean refreshIfExistAlready, IProgressMonitor monitor) throws JavaModelException {
+	public void updateExternalFoldersIfNecessary(boolean refreshIfExistAlready, IProgressMonitor monitor) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Set<IPath> oldFolders = ExternalFoldersManager.getExternalFolders(this.oldResolvedClasspath);
 		IClasspathEntry[] newResolvedClasspath = this.project.getResolvedClasspath();
 		Set<IPath> newFolders = ExternalFoldersManager.getExternalFolders(newResolvedClasspath);
@@ -43,7 +43,7 @@ public class ExternalFolderChange {
 			return;
 		ExternalFoldersManager foldersManager = JavaModelManager.getExternalManager();
 		Iterator<IPath> iterator = newFolders.iterator();
-		while (iterator.hasNext()) {
+		while (iterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Object folderPath = iterator.next();
 			if (oldFolders == null || !oldFolders.remove(folderPath) || foldersManager.removePendingFolder(folderPath)) {
 				try {
@@ -57,6 +57,6 @@ public class ExternalFolderChange {
 	}
 	@Override
 	public String toString() {
-		return "ExternalFolderChange: " + this.project.getElementName(); //$NON-NLS-1$
+		return "ExternalFolderChange: " + this.project.getElementName(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }

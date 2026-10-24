@@ -33,7 +33,7 @@ public class ModulePackagesAttribute extends ClassFileAttribute implements IModu
 	/**
 	 * Constructor for ModulePackagesAttribute.
 	 */
-	public ModulePackagesAttribute(	byte[] classFileBytes,	IConstantPool constantPool,	int offset)	throws ClassFormatException {
+	public ModulePackagesAttribute(	byte[] classFileBytes,	IConstantPool constantPool,	int offset)	throws ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		super(classFileBytes, constantPool, offset);
 		int readOffset = 6;
 		final int length = u2At(classFileBytes, readOffset, offset);
@@ -42,7 +42,7 @@ public class ModulePackagesAttribute extends ClassFileAttribute implements IModu
 		if (length != 0) {
 			this.packageIndices = new int[length];
 			this.packageNames = new char[length][0];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.packageIndices[i] = u2At(classFileBytes, readOffset, offset);
 				readOffset += 2;
 				IConstantPoolEntry constantPoolEntry = constantPool.decodeEntry(this.packageIndices[i]);

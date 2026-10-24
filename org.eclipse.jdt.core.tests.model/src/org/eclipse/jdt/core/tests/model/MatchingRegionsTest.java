@@ -37,28 +37,28 @@ public static Test suite() {
 /*
  * Print regions in a string.
  */
-private String printRegions(String name, int[] regions) {
+private String printRegions(String name, int[] regions) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (regions == null) return null;
 	if (regions.length == 0) return name;
-	StringBuilder buffer = new StringBuilder();
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	int start = 0;
-	for (int i=0; i<regions.length; i+=2) {
+	for (int i=0; i<regions.length; i+=2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int segmentStart = regions[i];
 		int rLength = regions[i+1];
 		if (start != segmentStart) {
-			if (start > 0) buffer.append(']');
-			buffer.append(name.substring(start, segmentStart));
-			buffer.append('[');
+			if (start > 0) buffer.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(name.substring(start, segmentStart)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append('['); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else if (start == 0) {
-			buffer.append('[');
+			buffer.append('['); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		buffer.append(name.substring(segmentStart, segmentStart+rLength));
+		buffer.append(name.substring(segmentStart, segmentStart+rLength)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		start = segmentStart+rLength;
 	}
-	buffer.append(']');
+	buffer.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	int nLength= name.length();
 	if (nLength > start) {
-		buffer.append(name.substring(start, nLength));
+		buffer.append(name.substring(start, nLength)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	return buffer.toString();
 }

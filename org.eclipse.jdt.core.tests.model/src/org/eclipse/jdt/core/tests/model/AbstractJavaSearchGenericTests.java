@@ -45,8 +45,8 @@ public class AbstractJavaSearchGenericTests extends JavaSearchTests {
 	 * Add given line to given buffer.
 	 */
 	void addResultLine(StringBuilder buffer, char[] line) {
-		if (buffer.length() > 0) buffer.append('\n');
-		buffer.append(line);
+		if (buffer.length() > 0) buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(line); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	/*
@@ -54,8 +54,8 @@ public class AbstractJavaSearchGenericTests extends JavaSearchTests {
 	 */
 	final String cleanResults(String expected) {
 		char[][] lines = CharOperation.splitOn('\n', expected.toCharArray());
-		StringBuilder buffer = new StringBuilder(expected.length());
-		for (int i=0, n=lines.length; i<n; i++) {
+		StringBuilder buffer = new StringBuilder(expected.length()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i=0, n=lines.length; i<n; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			addResultLine(buffer, lines[i]);
 		}
 		return buffer.toString();

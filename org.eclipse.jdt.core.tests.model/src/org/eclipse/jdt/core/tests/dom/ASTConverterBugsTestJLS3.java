@@ -42,7 +42,7 @@ public ASTConverterBugsTestJLS3(String name) {
 public static Test suite() {
 	TestSuite suite = new Suite(ASTConverterBugsTestJLS3.class.getName());
 	List tests = buildTestsList(ASTConverterBugsTestJLS3.class, 1, 0/* do not sort*/);
-	for (int index=0, size=tests.size(); index<size; index++) {
+	for (int index=0, size=tests.size(); index<size; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		suite.addTest((Test)tests.get(index));
 	}
 	return suite;
@@ -52,7 +52,7 @@ public static Test suite() {
  * bug 130778: Invalid annotation elements cause no annotation to be in the AST
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=130778"
  */
-public void testBug130778a() throws JavaModelException {
+public void testBug130778a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -96,7 +96,7 @@ public void testBug130778a() throws JavaModelException {
 			"No problem",
 			result);
 }
-public void testBug130778b() throws JavaModelException {
+public void testBug130778b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -144,7 +144,7 @@ public void testBug130778b() throws JavaModelException {
 			"Syntax error on token \"Invalid Character\", delete this token\n",
 			result);
 }
-public void testBug130778c() throws JavaModelException {
+public void testBug130778c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -192,7 +192,7 @@ public void testBug130778c() throws JavaModelException {
 			"Syntax error on token \"Invalid Character\", delete this token\n",
 			result);
 }
-public void testBug130778d() throws JavaModelException {
+public void testBug130778d() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -240,7 +240,7 @@ public void testBug130778d() throws JavaModelException {
 			"Syntax error on token \"Invalid Character\", delete this token\n",
 			result);
 }
-public void testBug130778e() throws JavaModelException {
+public void testBug130778e() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -288,7 +288,7 @@ public void testBug130778e() throws JavaModelException {
 			"Syntax error on token \"Invalid Character\", delete this token\n",
 			result);
 }
-public void testBug130778f() throws JavaModelException {
+public void testBug130778f() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -336,7 +336,7 @@ public void testBug130778f() throws JavaModelException {
 			"Syntax error on token \"Invalid Character\", delete this token\n",
 			result);
 }
-public void testBug130778g() throws JavaModelException {
+public void testBug130778g() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -384,7 +384,7 @@ public void testBug130778g() throws JavaModelException {
 			"Syntax error on token \"Invalid Character\", delete this token\n",
 			result);
 }
-public void testBug130778h() throws JavaModelException {
+public void testBug130778h() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -425,7 +425,7 @@ public void testBug130778h() throws JavaModelException {
 			"No problem",
 			result);
 }
-public void testBug130778i() throws JavaModelException {
+public void testBug130778i() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -469,7 +469,7 @@ public void testBug130778i() throws JavaModelException {
 			"Syntax error on token \"=\", MemberValue expected after this token\n",
 			result);
 }
-public void testBug130778j() throws JavaModelException {
+public void testBug130778j() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -513,7 +513,7 @@ public void testBug130778j() throws JavaModelException {
 			"Syntax error on token \"=\", MemberValue expected after this token\n",
 			result);
 }
-public void testBug130778k() throws JavaModelException {
+public void testBug130778k() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -561,7 +561,7 @@ public void testBug130778k() throws JavaModelException {
 			"Syntax error on token \"=\", ) expected\n",
 			result);
 }
-public void testBug130778l() throws JavaModelException {
+public void testBug130778l() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -611,7 +611,7 @@ public void testBug130778l() throws JavaModelException {
 			"Syntax error on token \"=\", MemberValue expected after this token\n",
 			result);
 }
-public void testBug130778m() throws JavaModelException {
+public void testBug130778m() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -660,7 +660,7 @@ public void testBug130778m() throws JavaModelException {
 			"Syntax error on token \"=\", MemberValue expected after this token\n",
 			result);
 }
-public void testBug130778n() throws JavaModelException {
+public void testBug130778n() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -696,7 +696,7 @@ public void testBug130778n() throws JavaModelException {
 			"Syntax error on token \",\", . expected\n",
 			result);
 }
-public void testBug130778o() throws JavaModelException {
+public void testBug130778o() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -732,7 +732,7 @@ public void testBug130778o() throws JavaModelException {
 			"Syntax error on token \"=\", MemberValue expected after this token\n",
 			result);
 }
-public void testBug130778p() throws JavaModelException {
+public void testBug130778p() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -772,7 +772,7 @@ public void testBug130778p() throws JavaModelException {
 			"No problem",
 			result);
 }
-public void testBug130778q() throws JavaModelException {
+public void testBug130778q() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -815,7 +815,7 @@ public void testBug130778q() throws JavaModelException {
 			"Syntax error, insert \")\" to complete Modifiers\n",
 			result);
 }
-public void testBug130778r() throws JavaModelException {
+public void testBug130778r() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -858,7 +858,7 @@ public void testBug130778r() throws JavaModelException {
 			"Syntax error on token \"=\", MemberValue expected after this token\n",
 			result);
 }
-public void testBug130778s() throws JavaModelException {
+public void testBug130778s() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -904,7 +904,7 @@ public void testBug130778s() throws JavaModelException {
 			"Syntax error on token \"=\", MemberValue expected after this token\n",
 			result);
 }
-public void testBug130778t() throws JavaModelException {
+public void testBug130778t() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -934,7 +934,7 @@ public void testBug130778t() throws JavaModelException {
 			"No problem",
 			result);
 }
-public void testBug130778u() throws JavaModelException {
+public void testBug130778u() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -968,7 +968,7 @@ public void testBug130778u() throws JavaModelException {
 			"Syntax error, insert \")\" to complete Modifiers\n",
 			result);
 }
-public void testBug130778v() throws JavaModelException {
+public void testBug130778v() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -1013,7 +1013,7 @@ public void testBug130778v() throws JavaModelException {
 			"Syntax error, insert \")\" to complete Modifiers\n",
 			result);
 }
-public void testBug130778x() throws JavaModelException {
+public void testBug130778x() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -1050,7 +1050,7 @@ public void testBug130778x() throws JavaModelException {
 
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=388137
-public void testbug388137() throws Exception {
+public void testbug388137() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	IJavaProject project = createJavaProject("P1", new String[] {""}, new String[] {"CONVERTER_JCL18_LIB"}, "", CompilerOptions.getFirstSupportedJavaVersion());
 	try {
@@ -1099,7 +1099,7 @@ public void testbug388137() throws Exception {
 	}
 }
 
-public void testBug405908() throws CoreException, IOException {
+public void testBug405908() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] { "" }, new String[0], "", CompilerOptions.getFirstSupportedJavaVersion());
 			createFile("P/A.java",

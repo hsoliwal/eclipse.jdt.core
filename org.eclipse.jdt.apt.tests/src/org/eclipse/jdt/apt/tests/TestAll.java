@@ -37,7 +37,7 @@ public class TestAll extends TestCase {
 		super(testName);
 	}
 
-	public static Test suite()
+	public static Test suite() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		TestSuite suite = new TestSuite();
 

@@ -46,7 +46,7 @@ public class TypeParameter extends SourceRefElement implements ITypeParameter {
 		return CharOperation.toStrings(info.bounds);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public String[] getBoundsSignatures() throws JavaModelException {
 
 		String[] boundSignatures = null;
@@ -69,7 +69,7 @@ public class TypeParameter extends SourceRefElement implements ITypeParameter {
 
 		int boundsLength = bounds.length;
 		boundSignatures = new String[boundsLength];
-		for (int i = 0; i < boundsLength; i++) {
+		for (int i = 0; i < boundsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			boundSignatures[i] = new String(Signature.createCharArrayTypeSignature(bounds[i], false));
 		}
 		return boundSignatures;
@@ -95,22 +95,22 @@ public class TypeParameter extends SourceRefElement implements ITypeParameter {
 		return JavaElement.JEM_TYPE_PARAMETER;
 	}
 
-	public String getKey(boolean forceOpen) throws JavaModelException {
-		StringBuilder buf = new StringBuilder();
+	public String getKey(boolean forceOpen) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		if (this.getParent() instanceof IType) {
 			if (this.getParent() instanceof BinaryType)
-				buf.append(((BinaryType) this.getParent()).getKey(forceOpen));
+				buf.append(((BinaryType) this.getParent()).getKey(forceOpen)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			else
-				buf.append(((IType) this.getParent()).getKey());
+				buf.append(((IType) this.getParent()).getKey()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else if (this.getParent() instanceof IMember) {
 			if (this.getParent() instanceof BinaryMember)
-				buf.append(((BinaryMember) this.getParent()).getKey(forceOpen));
+				buf.append(((BinaryMember) this.getParent()).getKey(forceOpen)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			else
-				buf.append(((IMethod) this.getParent()).getKey());
+				buf.append(((IMethod) this.getParent()).getKey()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		buf.append(":T"); //$NON-NLS-1$
-		buf.append(this.name);
-		buf.append(';');
+		buf.append(":T"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(this.name); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return buf.toString();
 	}
 
@@ -162,8 +162,8 @@ public class TypeParameter extends SourceRefElement implements ITypeParameter {
 
 	@Override
 	protected void toStringName(StringBuilder buffer) {
-		buffer.append('<');
-		buffer.append(getElementName());
-		buffer.append('>');
+		buffer.append('<'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 }

@@ -190,7 +190,7 @@ public class AptConfigurationBlock extends BaseConfigurationBlock {
 		}
 	}
 
-	public AptConfigurationBlock(IStatusChangeListener context, IProject project, IWorkbenchPreferenceContainer container) {
+	public AptConfigurationBlock(IStatusChangeListener context, IProject project, IWorkbenchPreferenceContainer container) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		super(context, project, getAllKeys(), container);
 
 		fJProj = JavaCore.create(project);
@@ -289,7 +289,7 @@ public class AptConfigurationBlock extends BaseConfigurationBlock {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected Control createContents(Composite parent) {
 		setShell(parent.getShell());
 
@@ -350,7 +350,7 @@ public class AptConfigurationBlock extends BaseConfigurationBlock {
 		loadProcessorOptions(fJProj);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void saveSettings() {
 		List<ProcessorOption> elements;
 		boolean isProjSpecificDisabled = (fJProj != null) && !fBlockControl.isEnabled();
@@ -418,7 +418,7 @@ public class AptConfigurationBlock extends BaseConfigurationBlock {
 			node.flush();
 		}
 		catch (BackingStoreException e){
-			AptPlugin.log(e, "Failed to save preference: " + AptPreferenceConstants.APT_PROCESSANNOTATIONS); //$NON-NLS-1$
+			AptPlugin.log(e, "Failed to save preference: " + AptPreferenceConstants.APT_PROCESSANNOTATIONS); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -426,9 +426,9 @@ public class AptConfigurationBlock extends BaseConfigurationBlock {
 	 * Check whether any processor options have changed.
 	 * @return true if they did.
 	 */
-	private boolean procOptionsChanged() {
-		Map<String, String> savedProcOptions = new HashMap<>(fOriginalProcOptions);
-		for (ProcessorOption o : getListElements()) {
+	private boolean procOptionsChanged() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		Map<String, String> savedProcOptions = new HashMap<>(fOriginalProcOptions); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		for (ProcessorOption o : getListElements()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final String savedVal = savedProcOptions.get(o.key);
 			if (savedVal != null && savedVal.equals(o.value)) {
 				savedProcOptions.remove(o.key);
@@ -530,10 +530,10 @@ public class AptConfigurationBlock extends BaseConfigurationBlock {
 	 */
 	private IStatus validateProcessorOptions() {
 		List<ProcessorOption> elements = getListElements();
-		for (ProcessorOption o : elements) {
+		for (ProcessorOption o : elements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (AptConfig.isAutomaticProcessorOption(o.key)) {
 				return new StatusInfo(IStatus.WARNING,
-						Messages.AptConfigurationBlock_warningIgnoredOptions + ": " + o.key); //$NON-NLS-1$
+						Messages.AptConfigurationBlock_warningIgnoredOptions + ": " + o.key); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		return new StatusInfo();
@@ -594,8 +594,8 @@ public class AptConfigurationBlock extends BaseConfigurationBlock {
 	 * Save the contents of the options list.
 	 */
 	private void saveProcessorOptions(List<ProcessorOption> elements) {
-		Map<String, String> map = new LinkedHashMap<>(elements.size());
-		for (ProcessorOption o : elements) {
+		Map<String, String> map = new LinkedHashMap<>(elements.size()); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
+		for (ProcessorOption o : elements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			map.put(o.key, (o.value.length() > 0) ? o.value : null);
 		}
 		AptConfig.setProcessorOptions(map, fJProj);
@@ -605,9 +605,9 @@ public class AptConfigurationBlock extends BaseConfigurationBlock {
 	 * Set the processor options list contents
 	 */
 	private void loadProcessorOptions(IJavaProject jproj) {
-		List<ProcessorOption> options= new ArrayList<>();
+		List<ProcessorOption> options= new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		Map<String, String> parsedOptions = AptConfig.getRawProcessorOptions(jproj);
-		for (Map.Entry<String, String> entry : parsedOptions.entrySet()) {
+		for (Map.Entry<String, String> entry : parsedOptions.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ProcessorOption o = new ProcessorOption();
 			o.key = entry.getKey();
 			if (o.key == null || o.key.length() < 1) {

@@ -31,7 +31,7 @@ public class ASTMatcherTest extends org.eclipse.jdt.core.tests.junit.extension.T
 
 		Class c = ASTMatcherTest.class;
 		Method[] methods = c.getMethods();
-		for (int i = 0, max = methods.length; i < max; i++) {
+		for (int i = 0, max = methods.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (methods[i].getName().startsWith("test")) { //$NON-NLS-1$
 				// https://bugs.eclipse.org/bugs/show_bug.cgi?id=391898
 				suite.addTest(new ASTMatcherTest(methods[i].getName(), AST.JLS8));
@@ -98,7 +98,7 @@ public class ASTMatcherTest extends org.eclipse.jdt.core.tests.junit.extension.T
 	EnumConstantDeclaration EC2;
 	Type T3;
 	Type T4;
-	final StringBuilder b = new StringBuilder();
+	final StringBuilder b = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
 	int API_LEVEL;
 
@@ -111,7 +111,7 @@ public class ASTMatcherTest extends org.eclipse.jdt.core.tests.junit.extension.T
 	 * @deprecated (not really - just suppressing the warnings
 	 * that come from testing Javadoc.getComment())
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		super.setUp();
 
 		this.ast = AST.newAST(this.API_LEVEL, true);
@@ -240,13 +240,13 @@ public class ASTMatcherTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		String name = super.getName();
 		switch (this.API_LEVEL) {
 			case AST.JLS8:
-				name = "JLS8 - " + name;
+				name = "JLS8 - " + name; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				break;
 			case AST.JLS17:
-				name = "JLS17 - " + name;
+				name = "JLS17 - " + name; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				break;
 			case AST.JLS21:
-				name = "JLS21 - " + name;
+				name = "JLS21 - " + name; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				break;
 	}
 		return name;
@@ -605,12 +605,12 @@ public class ASTMatcherTest extends org.eclipse.jdt.core.tests.junit.extension.T
 	 * Checks that the ASTNode.subtreeMatch mechanism is working
 	 * for a node of a given type.
 	 */
-	void basicMatch(ASTNode node) {
+	void basicMatch(ASTNode node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TestMatcher[] m = {
 			new TestMatcher(),
 			new TestMatcher(true),
 			new TestMatcher(false)};
-		for (int i = 0; i < m.length; i++) {
+		for (int i = 0; i < m.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// check that matcher was called with right arguments
 			// and that matches succeed
 			TestMatcher m1 = m[i];
@@ -627,7 +627,7 @@ public class ASTMatcherTest extends org.eclipse.jdt.core.tests.junit.extension.T
 							new TestMatcher(),
 							new TestMatcher(true),
 							new TestMatcher(false)};
-		for (int i = 0; i < m.length; i++) {
+		for (int i = 0; i < m.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// check that matcher was called with right arguments
 			// and that non-matches fail
 			TestMatcher m1 = m[i];
@@ -1079,7 +1079,7 @@ public class ASTMatcherTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		basicMatch(x1);
 	}
 
-	@SuppressWarnings({ "deprecation", "removal" })
+	@SuppressWarnings({ "deprecation", "removal" }) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testPatternInstanceofExpression() {
 		if (this.ast.apiLevel() < AST.JLS17) {
 			return;
@@ -1222,7 +1222,7 @@ public class ASTMatcherTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		x1.setFinally(this.ast.newBlock());
 		basicMatch(x1);
 	}
-	public void testTryStatementWithResources() {
+	public void testTryStatementWithResources() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TryStatement x1 = this.ast.newTryStatement();
 		VariableDeclarationExpression var = this.ast.newVariableDeclarationExpression(this.W1);
 		var.setType(this.T1);
@@ -1241,7 +1241,7 @@ public class ASTMatcherTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		basicMatch(x1);
 	}
 	/** @deprecated using deprecated code */
-	public void testTypeDeclaration() {
+	public void testTypeDeclaration() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TypeDeclaration x1 = this.ast.newTypeDeclaration();
 		x1.setJavadoc(this.JD1);
 		x1.setName(this.N1);
@@ -1525,7 +1525,7 @@ public class ASTMatcherTest extends org.eclipse.jdt.core.tests.junit.extension.T
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=399768
-	public void testTypeAnnotations12() {
+	public void testTypeAnnotations12() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		VariableDeclarationFragment x1 = this.ast.newVariableDeclarationFragment();
 		x1.setName(this.N1);
 		Dimension x2 = this.ast.newDimension();

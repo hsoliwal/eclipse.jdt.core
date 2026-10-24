@@ -30,9 +30,9 @@ public class SelectionOnReferenceExpressionName extends ReferenceExpression {
 
 	@Override
 	public StringBuilder printExpression(int indent, StringBuilder output) {
-		output.append("<SelectionOnReferenceExpressionName:"); //$NON-NLS-1$
+		output.append("<SelectionOnReferenceExpressionName:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		super.printExpression(indent, output);
-		return output.append('>');
+		return output.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	// See SelectionScanner#scanIdentifierOrKeyword

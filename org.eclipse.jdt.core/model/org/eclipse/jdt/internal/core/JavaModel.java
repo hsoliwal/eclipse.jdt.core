@@ -61,7 +61,7 @@ public class JavaModel extends Openable implements IJavaModel {
 protected JavaModel() throws Error {
 	super(null);
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected boolean buildStructure(OpenableElementInfo info, IProgressMonitor pm, Map newElements, IResource underlyingResource)	/*throws JavaModelException*/ {
 
 	// determine my children
@@ -69,7 +69,7 @@ protected boolean buildStructure(OpenableElementInfo info, IProgressMonitor pm, 
 	int length = projects.length;
 	IJavaElement[] children = new IJavaElement[length];
 	int index = 0;
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IProject project = projects[i];
 		if (JavaProject.hasJavaNature(project)) {
 			children[index++] = getJavaProject(project);
@@ -86,7 +86,7 @@ protected boolean buildStructure(OpenableElementInfo info, IProgressMonitor pm, 
 /*
  * @see IJavaModel
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public boolean contains(IResource resource) {
 	switch (resource.getType()) {
 		case IResource.ROOT:
@@ -100,7 +100,7 @@ public boolean contains(IResource resource) {
 	} catch (JavaModelException e) {
 		return false;
 	}
-	for (IJavaProject p : projects) {
+	for (IJavaProject p : projects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		JavaProject project = (JavaProject)p;
 		if (!project.contains(resource)) {
 			return false;
@@ -170,7 +170,7 @@ public IJavaElement getHandleFromMemento(String token, MementoTokenizer memento,
  */
 @Override
 protected void getHandleMemento(StringBuilder buff) {
-	buff.append(getElementName());
+	buff.append(getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 }
 /**
  * Returns the <code>char</code> that marks the start of this handles
@@ -305,7 +305,7 @@ public void rename(IJavaElement[] elements, IJavaElement[] destinations, String[
 protected void runOperation(MultiOperation op, IJavaElement[] elements, IJavaElement[] siblings, String[] renamings, IProgressMonitor monitor) throws JavaModelException {
 	op.setRenamings(renamings);
 	if (siblings != null) {
-		for (int i = 0; i < elements.length; i++) {
+		for (int i = 0; i < elements.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			op.setInsertBefore(elements[i], siblings[i]);
 		}
 	}
@@ -316,10 +316,10 @@ protected void runOperation(MultiOperation op, IJavaElement[] elements, IJavaEle
  */
 @Override
 protected void toStringInfo(int tab, StringBuilder buffer, Object info, boolean showResolvedInfo) {
-	buffer.append(tabString(tab));
-	buffer.append("Java Model"); //$NON-NLS-1$
+	buffer.append(tabString(tab)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append("Java Model"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (info == null) {
-		buffer.append(" (not open)"); //$NON-NLS-1$
+		buffer.append(" (not open)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 }
 
@@ -370,7 +370,7 @@ public static IResource getWorkspaceTarget(IPath path) {
  * then the IFolder or File object is always returned, otherwise <code>null</code> is returned
  * if it does not exist on the file system.
  */
-public static Object getExternalTarget(IPath path, boolean checkResourceExistence) {
+public static Object getExternalTarget(IPath path, boolean checkResourceExistence) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (path == null)
 		return null;
 	ExternalFoldersManager externalFoldersManager = JavaModelManager.getExternalManager();
@@ -379,7 +379,7 @@ public static Object getExternalTarget(IPath path, boolean checkResourceExistenc
 		if (checkResourceExistence) {
 			// check if external folder is present
 			File externalFile = new File(path.toOSString());
-			if (!externalFile.isDirectory()) {
+			if (!externalFile.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				return null;
 			}
 		}
@@ -423,9 +423,9 @@ static private boolean isExternalFile(IPath path) {
 		return false;
 	}
 	if (JavaModelManager.ZIP_ACCESS_VERBOSE) {
-		JavaModelManager.trace("(" + Thread.currentThread() + ") [JavaModel.isExternalFile(...)] Checking existence of " + path.toString()); //$NON-NLS-1$ //$NON-NLS-2$
+		JavaModelManager.trace("(" + Thread.currentThread() + ") [JavaModel.isExternalFile(...)] Checking existence of " + path.toString()); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	boolean isFile = path.toFile().isFile();
+	boolean isFile = path.toFile().isFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	JavaModelManager.getJavaModelManager().addExternalFile(path, isFile);
 	return isFile;
 }

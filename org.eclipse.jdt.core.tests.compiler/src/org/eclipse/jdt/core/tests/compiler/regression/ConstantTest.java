@@ -42,7 +42,7 @@ static {
 public static Test suite() {
 	return buildAllCompliancesTestSuite(testClass());
 }
-public void test001() {
+public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"p/X.java",
 		"package p;\n" +
@@ -64,7 +64,7 @@ public void test001() {
 	});
 }
 
-public void test002() {
+public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"p/X.java",
 		"package p;\n" +
@@ -102,7 +102,7 @@ public void test003() {
 	});
 }
 
-public void test004() {
+public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"TempClassFormat.java",
@@ -257,7 +257,7 @@ public void test005() {
 		"83");
 }
 
-public void test006() {
+public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p1/X.java",
@@ -328,7 +328,7 @@ public void test008() {
  * null is not a constant
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26138
  */
-public void test009() throws Exception {
+public void test009() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -349,7 +349,7 @@ public void test009() throws Exception {
 		"12345");
 
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String actualOutput =
 		disassembler.disassemble(
 			classFileBytes,
@@ -357,7 +357,7 @@ public void test009() throws Exception {
 			ClassFileBytesDisassembler.DETAILED);
 	String substring1 = "StringBuilder";
 	String substring2 = this.complianceLevel < ClassFileConstants.JDK9 ?
-								"    21  new java.lang." + substring1 + " [32]\n"
+								"    21  new java.lang." + substring1 + " [32]\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								+ "    24  dup\n"
 								+ "    25  ldc <String \"[\"> [34]\n"
 								+ "    27  invokespecial java.lang." + substring1 + "(java.lang.String) [36]\n"
@@ -370,7 +370,7 @@ public void test009() throws Exception {
 									"    21  aconst_null\n" +
 									"    22  invokedynamic 0 makeConcatWithConstants(java.lang.String) : java.lang.String [32]\n";
 	String expectedOutput =
-			"  // Method descriptor #15 ([Ljava/lang/String;)V\n" +
+			"  // Method descriptor #15 ([Ljava/lang/String;)V\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"  // Stack: 3, Locals: 4\n" +
 			"  public static void main(java.lang.String[] args);\n" +
 			"     0  getstatic java.lang.System.out : java.io.PrintStream [16]\n" +
@@ -423,7 +423,7 @@ public void test009() throws Exception {
 			"        [pc: 78, pc: 87] local: s2 index: 3 type: java.lang.String\n";
 
 	String expectedOutput9OrLater =
-			"  // Method descriptor #15 ([Ljava/lang/String;)V\n" +
+			"  // Method descriptor #15 ([Ljava/lang/String;)V\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"  // Stack: 2, Locals: 4\n" +
 			"  public static void main(java.lang.String[] args);\n" +
 			"     0  getstatic java.lang.System.out : java.io.PrintStream [16]\n" +
@@ -497,7 +497,7 @@ public void test009() throws Exception {
  * null is not a constant
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26138
  */
-public void test010() throws Exception {
+public void test010() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -514,7 +514,7 @@ public void test010() throws Exception {
 		"SUCCESS");
 
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String actualOutput =
 		disassembler.disassemble(
 			classFileBytes,
@@ -581,7 +581,7 @@ public void test012() {
 		"3232");
 }
 //http://bugs.eclipse.org/bugs/show_bug.cgi?id=97190
-public void test013() {
+public void test013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -669,7 +669,7 @@ public void test019() {
 
 // http://bugs.eclipse.org/bugs/show_bug.cgi?id=154822
 // null is not a constant - again
-public void test020() {
+public void test020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel >= ClassFileConstants.JDK16) {
 		return;
 	}
@@ -690,7 +690,7 @@ public void test020() {
 		"The field notAConstant cannot be declared static in a non-static inner type, unless initialized with a constant expression\n" +
 		"----------\n");
 }
-public void testAllConstants() {
+public void testAllConstants() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Constant byteConstant = ByteConstant.fromValue((byte) 1);
 	Constant byteConstant2 = ByteConstant.fromValue((byte) 2);
 	Constant byteConstant3 = ByteConstant.fromValue((byte) 1);
@@ -748,7 +748,7 @@ public void testAllConstants() {
 	// check equals between to null string constants
 	assertTrue(stringConstant4.equals(stringConstant5));
 }
-private void verifyValues(
+private void verifyValues( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Constant byteConstant,
 		Constant charConstant,
 		Constant booleanConstant,
@@ -983,7 +983,7 @@ private void verifyConstantEqualsAndHashcode(
 	}
 }
 //test corner values (max, min, -1) for longs
-public void test021() {
+public void test021() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1042,7 +1042,7 @@ public void test021() {
 		"0");
 }
 //test corner values (max, min, -1) for ints
-public void test022() {
+public void test022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1110,7 +1110,7 @@ public void testBug566332_02() {
 			},
 			"");
 }
-public void testBug566332_03() {
+public void testBug566332_03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1133,7 +1133,7 @@ public void testBug566332_03() {
 			"----------\n");
 }
 // Same as testBug566332_01(), but without the variable being final
-public void testBug566332_04() {
+public void testBug566332_04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1154,7 +1154,7 @@ public void testBug566332_04() {
 			"case expressions must be constant expressions\n" +
 			"----------\n");
 }
-public void testBug569498() {
+public void testBug569498() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK11) {
 		return;
 	}
@@ -1188,7 +1188,7 @@ public void testGH1256() throws Exception {
 		 },
 	"2345");
 }
-public void testGH1382_singleName() throws Exception {
+public void testGH1382_singleName() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"api/Constants.java",
@@ -1225,7 +1225,7 @@ public void testGH1382_singleName() throws Exception {
 		},
 		"");
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.SYSTEM);
@@ -1235,7 +1235,7 @@ public void testGH1382_singleName() throws Exception {
 	assertContainsClassConstant(result, "api/Constants$C3");
 }
 
-public void testGH1382_qualifiedName() throws Exception {
+public void testGH1382_qualifiedName() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"api/Constants.java",
@@ -1280,7 +1280,7 @@ public void testGH1382_qualifiedName() throws Exception {
 		},
 		"");
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.SYSTEM);
@@ -1292,8 +1292,8 @@ public void testGH1382_qualifiedName() throws Exception {
 
 void assertContainsClassConstant(String disassembled, String className) {
 	className = className.replace("/", "\\/").replace("$", "\\$");
-	Pattern pattern = Pattern.compile(".*constant #[0-9]+ class: #[0-9]+ "+className+".*", Pattern.DOTALL);
-	assertTrue("Should contain class constant for "+className, pattern.matcher(disassembled).matches());
+	Pattern pattern = Pattern.compile(".*constant #[0-9]+ class: #[0-9]+ "+className+".*", Pattern.DOTALL); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+	assertTrue("Should contain class constant for "+className, pattern.matcher(disassembled).matches()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 }
 
 public static Class testClass() {

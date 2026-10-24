@@ -70,8 +70,8 @@ public interface AbstractModule extends IModuleDescription {
 		}
 		@Override
 		public void toStringContent(StringBuilder buffer, String lineDelimiter) throws JavaModelException {
-			buffer.append("automatic module "); //$NON-NLS-1$
-			buffer.append(this.name);
+			buffer.append("automatic module "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(this.name); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
@@ -85,8 +85,8 @@ public interface AbstractModule extends IModuleDescription {
 	default String[] getExportedPackageNames(IModuleDescription targetModule) throws JavaModelException {
 		IModule info = getModuleInfo();
 		if (info != null) {
-			List<String> result = new ArrayList<>();
-			for (IPackageExport packageExport : info.exports()) {
+			List<String> result = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			for (IPackageExport packageExport : info.exports()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (targetModule == null || !packageExport.isQualified()
 						|| CharOperation.containsEqual(packageExport.targets(), targetModule.getElementName().toCharArray()))
 				{
@@ -101,8 +101,8 @@ public interface AbstractModule extends IModuleDescription {
 	default String[] getOpenedPackageNames(IModuleDescription targetModule) throws JavaModelException {
 		IModule info = getModuleInfo();
 		if (info != null) {
-			List<String> result = new ArrayList<>();
-			for (IPackageExport packageOpen : info.opens()) {
+			List<String> result = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			for (IPackageExport packageOpen : info.opens()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (targetModule == null || !packageOpen.isQualified()
 						|| CharOperation.containsEqual(packageOpen.targets(), targetModule.getElementName().toCharArray()))
 				{
@@ -124,9 +124,9 @@ public interface AbstractModule extends IModuleDescription {
 	}
 	@Override
 	default String[] getProvidedServiceNames() throws JavaModelException {
-		ArrayList<String> results = new ArrayList<>();
+		ArrayList<String> results = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		IService[] services = getProvidedServices();
-		for (IService service : services) {
+		for (IService service : services) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			results.add(new String(service.name()));
 		}
 		return results.toArray(String[]::new);
@@ -137,9 +137,9 @@ public interface AbstractModule extends IModuleDescription {
 	}
 	@Override
 	default String[] getUsedServiceNames() throws JavaModelException {
-		ArrayList<String> results = new ArrayList<>();
+		ArrayList<String> results = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		char[][] services = getUsedServices();
-		for (char[] service : services) {
+		for (char[] service : services) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			results.add(new String(service));
 		}
 		return results.toArray(String[]::new);
@@ -154,7 +154,7 @@ public interface AbstractModule extends IModuleDescription {
 	}
 
 	default String toString(String lineDelimiter) {
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		try {
 			toStringContent(buffer, lineDelimiter);
 		} catch (JavaModelException e) {
@@ -164,31 +164,31 @@ public interface AbstractModule extends IModuleDescription {
 		}
 		return buffer.toString();
 	}
-	default void toStringContent(StringBuilder buffer, String lineDelimiter) throws JavaModelException {
+	default void toStringContent(StringBuilder buffer, String lineDelimiter) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageExport[] exports = getExportedPackages();
 		IModuleReference[] requires = getRequiredModules();
-		buffer.append("module "); //$NON-NLS-1$
-		buffer.append(getElementName()).append(' ');
-		buffer.append('{').append(lineDelimiter);
+		buffer.append("module "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(getElementName()).append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append('{').append(lineDelimiter); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (exports != null) {
-			for (IPackageExport export : exports) {
-				buffer.append("\texports "); //$NON-NLS-1$
-				buffer.append(export.toString());
-				buffer.append(lineDelimiter);
+			for (IPackageExport export : exports) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append("\texports "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(export.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(lineDelimiter); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		buffer.append(lineDelimiter);
+		buffer.append(lineDelimiter); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (requires != null) {
-			for (IModuleReference require : requires) {
-				buffer.append("\trequires "); //$NON-NLS-1$
+			for (IModuleReference require : requires) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append("\trequires "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (require.isTransitive()) {
-					buffer.append(" public "); //$NON-NLS-1$
+					buffer.append(" public "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				buffer.append(require.name());
-				buffer.append(';').append(lineDelimiter);
+				buffer.append(require.name()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(';').append(lineDelimiter); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		buffer.append(lineDelimiter).append('}').toString();
+		buffer.append(lineDelimiter).append('}').toString(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	@Override

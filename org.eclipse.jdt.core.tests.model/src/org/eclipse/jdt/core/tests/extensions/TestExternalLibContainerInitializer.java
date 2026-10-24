@@ -26,7 +26,7 @@ public class TestExternalLibContainerInitializer extends ClasspathContainerIniti
 
 	IClasspathEntry[] entries;
 
-	public void initialize(final IPath containerName, IJavaProject project)
+	public void initialize(final IPath containerName, IJavaProject project) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			throws CoreException {
 		IPath ws = ResourcesPlugin.getWorkspace().getRoot().getLocation();
 		final IPath containerPath = ws.append("../TestContainer/");

@@ -28,7 +28,7 @@ import org.eclipse.jdt.core.dom.CompilationUnit;
 /**
  * @see IJavaElementDelta
  */
-@SuppressWarnings({"rawtypes", "unchecked"})
+@SuppressWarnings({"rawtypes", "unchecked"}) //FLLDCIM: MARK — T31  IMPLEMENTS
 public class JavaElementDelta extends SimpleDelta implements IJavaElementDelta {
 	/**
 	 * @see #getAffectedChildren()
@@ -84,7 +84,7 @@ public class JavaElementDelta extends SimpleDelta implements IJavaElementDelta {
 	/**
 	 * On-demand index into affectedChildren
 	 */
-	Map<Key, Integer> childIndex;
+	Map<Key, Integer> childIndex; //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 
 	public boolean ignoreFromTests = false;
 
@@ -131,7 +131,7 @@ public JavaElementDelta(IJavaElement element) {
  * Adds the child delta to the collection of affected children.  If the
  * child is already in the collection, walk down the hierarchy.
  */
-protected void addAffectedChild(JavaElementDelta child) {
+protected void addAffectedChild(JavaElementDelta child) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	switch (this.kind) {
 		case ADDED:
 		case REMOVED:
@@ -187,7 +187,7 @@ protected void addAffectedChild(JavaElementDelta child) {
 						return;
 					case CHANGED: // child was changed then changed -> it is changed
 						IJavaElementDelta[] children = child.getAffectedChildren();
-						for (IJavaElementDelta c : children) {
+						for (IJavaElementDelta c : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							JavaElementDelta childsChild = (JavaElementDelta) c;
 							existingChild.addAffectedChild(childsChild);
 						}
@@ -249,7 +249,7 @@ protected void addNewChild(JavaElementDelta child) {
  * Adds the child delta to the collection of affected children.  If the
  * child is already in the collection, walk down the hierarchy.
  */
-protected void addResourceDelta(IResourceDelta child) {
+protected void addResourceDelta(IResourceDelta child) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	switch (this.kind) {
 		case ADDED:
 		case REMOVED:
@@ -318,7 +318,7 @@ public void closed(IJavaElement element) {
  * its delta, and the root of this delta tree. Returns the root
  * of the created delta tree.
  */
-protected JavaElementDelta createDeltaTree(IJavaElement element, JavaElementDelta delta) {
+protected JavaElementDelta createDeltaTree(IJavaElement element, JavaElementDelta delta) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	JavaElementDelta childDelta = delta;
 	ArrayList ancestors= getAncestors(element);
 	if (ancestors == null) {
@@ -330,7 +330,7 @@ protected JavaElementDelta createDeltaTree(IJavaElement element, JavaElementDelt
 			this.movedFromHandle = delta.movedFromHandle;
 		}
 	} else {
-		for (Object a : ancestors) {
+		for (Object a : ancestors) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IJavaElement ancestor = (IJavaElement) a;
 			JavaElementDelta ancestorDelta = new JavaElementDelta(ancestor);
 			ancestorDelta.addAffectedChild(childDelta);
@@ -365,7 +365,7 @@ protected JavaElementDelta findDescendant(Key key) {
 	Integer index = getChildIndex(key);
 	if (index != null)
 		return (JavaElementDelta) this.affectedChildren[index];
-	for (IJavaElementDelta child : this.affectedChildren) {
+	for (IJavaElementDelta child : this.affectedChildren) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		JavaElementDelta delta = ((JavaElementDelta) child).findDescendant(key);
 		if (delta != null)
 			return delta;
@@ -403,8 +403,8 @@ private ArrayList getAncestors(IJavaElement element) {
 	if (parent == null) {
 		return null;
 	}
-	ArrayList parents = new ArrayList();
-	while (!parent.equals(this.changedElement)) {
+	ArrayList parents = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	while (!parent.equals(this.changedElement)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		parents.add(parent);
 		parent = parent.getParent();
 		if (parent == null) {
@@ -433,10 +433,10 @@ public IJavaElementDelta[] getChangedChildren() {
  * Returns the index of the delta in the collection of affected children,
  * or <code>null</code> if the child delta for the given key is not found.
  */
-protected Integer getChildIndex(Key key) {
+protected Integer getChildIndex(Key key) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int length = this.affectedChildren.length;
 	if (length < NEED_CHILD_INDEX) {
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (equalsAndSameParent(key.element, this.affectedChildren[i].getElement())) {
 				return i;
 			}
@@ -444,8 +444,8 @@ protected Integer getChildIndex(Key key) {
 		return null;
 	}
 	if (this.childIndex == null) {
-		this.childIndex = new HashMap<>();
-		for (int i = 0; i < length; i++) {
+		this.childIndex = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.childIndex.put(new Key(this.affectedChildren[i].getElement()), i);
 		}
 	}
@@ -459,8 +459,8 @@ protected IJavaElementDelta[] getChildrenOfType(int type) {
 	if (length == 0) {
 		return new IJavaElementDelta[] {};
 	}
-	ArrayList children= new ArrayList(length);
-	for (int i = 0; i < length; i++) {
+	ArrayList children= new ArrayList(length); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (this.affectedChildren[i].getKind() == type) {
 			children.add(this.affectedChildren[i]);
 		}
@@ -627,7 +627,7 @@ protected void removeExistingChild(Key key, int index) {
 			this.childIndex = null;
 		else {
 			this.childIndex.remove(key);
-			for (int i = index; i < length; i++) {
+			for (int i = index; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.childIndex.put(new Key(this.affectedChildren[i].getElement()), i);
 			}
 		}
@@ -661,189 +661,189 @@ public void sourceDetached(IJavaElement element) {
  *
  * @see #toString()
  */
-public String toDebugString(int depth) {
-	StringBuilder buffer = new StringBuilder();
-	for (int i= 0; i < depth; i++) {
-		buffer.append('\t');
+public String toDebugString(int depth) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	for (int i= 0; i < depth; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		buffer.append('\t'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	buffer.append(((JavaElement)getElement()).toDebugString());
+	buffer.append(((JavaElement)getElement()).toDebugString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	toDebugString(buffer);
 	IJavaElementDelta[] children = getAffectedChildren();
 	if (children != null) {
-		for (IJavaElementDelta child : children) {
-			buffer.append("\n"); //$NON-NLS-1$
-			buffer.append(((JavaElementDelta) child).toDebugString(depth + 1));
+		for (IJavaElementDelta child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append("\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(((JavaElementDelta) child).toDebugString(depth + 1)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
-	for (int i = 0; i < this.resourceDeltasCounter; i++) {
-		buffer.append("\n");//$NON-NLS-1$
-		for (int j = 0; j < depth+1; j++) {
-			buffer.append('\t');
+	for (int i = 0; i < this.resourceDeltasCounter; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		buffer.append("\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (int j = 0; j < depth+1; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append('\t'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		IResourceDelta resourceDelta = this.resourceDeltas[i];
-		buffer.append(resourceDelta.toString());
-		buffer.append("["); //$NON-NLS-1$
+		buffer.append(resourceDelta.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("["); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		switch (resourceDelta.getKind()) {
 			case IResourceDelta.ADDED :
-				buffer.append('+');
+				buffer.append('+'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case IResourceDelta.REMOVED :
-				buffer.append('-');
+				buffer.append('-'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case IResourceDelta.CHANGED :
-				buffer.append('*');
+				buffer.append('*'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			default :
-				buffer.append('?');
+				buffer.append('?'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 		}
-		buffer.append("]"); //$NON-NLS-1$
+		buffer.append("]"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	IJavaElementDelta[] annotations = getAnnotationDeltas();
 	if (annotations != null) {
-		for (IJavaElementDelta annotation : annotations) {
-			buffer.append("\n"); //$NON-NLS-1$
-			buffer.append(((JavaElementDelta) annotation).toDebugString(depth + 1));
+		for (IJavaElementDelta annotation : annotations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append("\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(((JavaElementDelta) annotation).toDebugString(depth + 1)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 	IClasspathAttributeDelta[] attributes = getClasspathAttributeDeltas();
-	for (IClasspathAttributeDelta delta : attributes) {
-		buffer.append("\n");//$NON-NLS-1$
-		for (int j = 0; j < depth+1; j++) {
-			buffer.append('\t');
+	for (IClasspathAttributeDelta delta : attributes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		buffer.append("\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (int j = 0; j < depth+1; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append('\t'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		buffer.append(delta.toString());
+		buffer.append(delta.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	return buffer.toString();
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected boolean toDebugString(StringBuilder buffer, int flags) {
 	boolean prev = super.toDebugString(buffer, flags);
 
 	if ((flags & IJavaElementDelta.F_CHILDREN) != 0) {
 		if (prev)
-			buffer.append(" | "); //$NON-NLS-1$
-		buffer.append("CHILDREN"); //$NON-NLS-1$
+			buffer.append(" | "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("CHILDREN"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		prev = true;
 	}
 	if ((flags & IJavaElementDelta.F_CONTENT) != 0) {
 		if (prev)
-			buffer.append(" | "); //$NON-NLS-1$
-		buffer.append("CONTENT"); //$NON-NLS-1$
+			buffer.append(" | "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("CONTENT"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		prev = true;
 	}
 	if ((flags & IJavaElementDelta.F_MOVED_FROM) != 0) {
 		if (prev)
-			buffer.append(" | "); //$NON-NLS-1$
-		buffer.append("MOVED_FROM(" + ((JavaElement)getMovedFromElement()).toStringWithAncestors() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+			buffer.append(" | "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("MOVED_FROM(" + ((JavaElement)getMovedFromElement()).toStringWithAncestors() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		prev = true;
 	}
 	if ((flags & IJavaElementDelta.F_MOVED_TO) != 0) {
 		if (prev)
-			buffer.append(" | "); //$NON-NLS-1$
-		buffer.append("MOVED_TO(" + ((JavaElement)getMovedToElement()).toStringWithAncestors() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+			buffer.append(" | "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("MOVED_TO(" + ((JavaElement)getMovedToElement()).toStringWithAncestors() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		prev = true;
 	}
 	if ((flags & IJavaElementDelta.F_ADDED_TO_CLASSPATH) != 0) {
 		if (prev)
-			buffer.append(" | "); //$NON-NLS-1$
-		buffer.append("ADDED TO CLASSPATH"); //$NON-NLS-1$
+			buffer.append(" | "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("ADDED TO CLASSPATH"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		prev = true;
 	}
 	if ((flags & IJavaElementDelta.F_REMOVED_FROM_CLASSPATH) != 0) {
 		if (prev)
-			buffer.append(" | "); //$NON-NLS-1$
-		buffer.append("REMOVED FROM CLASSPATH"); //$NON-NLS-1$
+			buffer.append(" | "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("REMOVED FROM CLASSPATH"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		prev = true;
 	}
 	if ((flags & IJavaElementDelta.F_REORDER) != 0) {
 		if (prev)
-			buffer.append(" | "); //$NON-NLS-1$
-		buffer.append("REORDERED"); //$NON-NLS-1$
+			buffer.append(" | "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("REORDERED"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		prev = true;
 	}
 	if ((flags & IJavaElementDelta.F_ARCHIVE_CONTENT_CHANGED) != 0) {
 		if (prev)
-			buffer.append(" | "); //$NON-NLS-1$
-		buffer.append("ARCHIVE CONTENT CHANGED"); //$NON-NLS-1$
+			buffer.append(" | "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("ARCHIVE CONTENT CHANGED"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		prev = true;
 	}
 	if ((flags & IJavaElementDelta.F_SOURCEATTACHED) != 0) {
 		if (prev)
-			buffer.append(" | "); //$NON-NLS-1$
-		buffer.append("SOURCE ATTACHED"); //$NON-NLS-1$
+			buffer.append(" | "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("SOURCE ATTACHED"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		prev = true;
 	}
 	if ((flags & IJavaElementDelta.F_SOURCEDETACHED) != 0) {
 		if (prev)
-			buffer.append(" | "); //$NON-NLS-1$
-		buffer.append("SOURCE DETACHED"); //$NON-NLS-1$
+			buffer.append(" | "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("SOURCE DETACHED"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		prev = true;
 	}
 	if ((flags & IJavaElementDelta.F_FINE_GRAINED) != 0) {
 		if (prev)
-			buffer.append(" | "); //$NON-NLS-1$
-		buffer.append("FINE GRAINED"); //$NON-NLS-1$
+			buffer.append(" | "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("FINE GRAINED"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		prev = true;
 	}
 	if ((flags & IJavaElementDelta.F_PRIMARY_WORKING_COPY) != 0) {
 		if (prev)
-			buffer.append(" | "); //$NON-NLS-1$
-		buffer.append("PRIMARY WORKING COPY"); //$NON-NLS-1$
+			buffer.append(" | "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("PRIMARY WORKING COPY"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		prev = true;
 	}
 	if ((flags & IJavaElementDelta.F_CLASSPATH_CHANGED) != 0) {
 		if (prev)
-			buffer.append(" | "); //$NON-NLS-1$
-		buffer.append("RAW CLASSPATH CHANGED"); //$NON-NLS-1$
+			buffer.append(" | "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("RAW CLASSPATH CHANGED"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		prev = true;
 	}
 	if ((flags & IJavaElementDelta.F_RESOLVED_CLASSPATH_CHANGED) != 0) {
 		if (prev)
-			buffer.append(" | "); //$NON-NLS-1$
-		buffer.append("RESOLVED CLASSPATH CHANGED"); //$NON-NLS-1$
+			buffer.append(" | "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("RESOLVED CLASSPATH CHANGED"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		prev = true;
 	}
 	if ((flags & IJavaElementDelta.F_PRIMARY_RESOURCE) != 0) {
 		if (prev)
-			buffer.append(" | "); //$NON-NLS-1$
-		buffer.append("PRIMARY RESOURCE"); //$NON-NLS-1$
+			buffer.append(" | "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("PRIMARY RESOURCE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		prev = true;
 	}
 	if ((flags & IJavaElementDelta.F_OPENED) != 0) {
 		if (prev)
-			buffer.append(" | "); //$NON-NLS-1$
-		buffer.append("OPENED"); //$NON-NLS-1$
+			buffer.append(" | "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("OPENED"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		prev = true;
 	}
 	if ((flags & IJavaElementDelta.F_CLOSED) != 0) {
 		if (prev)
-			buffer.append(" | "); //$NON-NLS-1$
-		buffer.append("CLOSED"); //$NON-NLS-1$
+			buffer.append(" | "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("CLOSED"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		prev = true;
 	}
 	if ((flags & IJavaElementDelta.F_AST_AFFECTED) != 0) {
 		if (prev)
-			buffer.append(" | "); //$NON-NLS-1$
-		buffer.append("AST AFFECTED"); //$NON-NLS-1$
+			buffer.append(" | "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("AST AFFECTED"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		prev = true;
 	}
 	if ((flags & IJavaElementDelta.F_CATEGORIES) != 0) {
 		if (prev)
-			buffer.append(" | "); //$NON-NLS-1$
-		buffer.append("CATEGORIES"); //$NON-NLS-1$
+			buffer.append(" | "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("CATEGORIES"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		prev = true;
 	}
 	if ((flags & IJavaElementDelta.F_ANNOTATIONS) != 0) {
 		if (prev)
-			buffer.append(" | "); //$NON-NLS-1$
-		buffer.append("ANNOTATIONS"); //$NON-NLS-1$
+			buffer.append(" | "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("ANNOTATIONS"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		prev = true;
 	}
 	if ((flags & IJavaElementDelta.F_CLASSPATH_ATTRIBUTES) != 0) {
 		if (prev)
-			buffer.append(" | "); //$NON-NLS-1$
-		buffer.append("CLASSPATH ATTRIBUTES"); //$NON-NLS-1$
+			buffer.append(" | "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("CLASSPATH ATTRIBUTES"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		prev = true;
 	}
 	return prev;
@@ -859,7 +859,7 @@ public String toString() {
 
 void addAttributeDelta(IClasspathAttributeDelta attributeDelta) {
 	if (this.attributeDeltas == null) {
-		this.attributeDeltas = new ArrayList<>();
+		this.attributeDeltas = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	}
 	this.attributeDeltas.add(attributeDelta);
 }

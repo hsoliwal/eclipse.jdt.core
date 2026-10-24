@@ -60,7 +60,7 @@ public class ExternalAnnotations9Test extends ExternalAnnotations18Test {
 	@Override
 	public String getSourceWorkspacePath() {
 		// we read individual projects from within this folder:
-		return super.getSourceWorkspacePathBase()+"/ExternalAnnotations9";
+		return super.getSourceWorkspacePathBase()+"/ExternalAnnotations9"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	protected boolean hasJRE19() {
@@ -88,7 +88,7 @@ public class ExternalAnnotations9Test extends ExternalAnnotations18Test {
 		}
 	}
 
-	public void testBug525712() throws Exception {
+	public void testBug525712() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestLibs");
 		String lib1Content =
 				"package libs;\n" +
@@ -166,7 +166,7 @@ public class ExternalAnnotations9Test extends ExternalAnnotations18Test {
 		reconciled = cu.reconcile(getJSL9(), true, null, new NullProgressMonitor());
 		assertNoProblems(reconciled.getProblems());
 	}
-	public void testGH3623_withNullAnnoatations() throws CoreException, IOException {
+	public void testGH3623_withNullAnnoatations() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject annots = createJava23Project("external-null-annotations"); //$NON-NLS-1$
 		createSourceFiles(annots, new String[] {
 				"java/util/Set.eea",
@@ -197,7 +197,7 @@ public class ExternalAnnotations9Test extends ExternalAnnotations18Test {
 		IMarker[] markers = this.project.getProject().findMarkers(IJavaModelMarker.JAVA_MODEL_PROBLEM_MARKER, false, IResource.DEPTH_INFINITE);
 		assertNoMarkers(markers);
 	}
-	public void testGH3623_nullAnnotationsNotEnabled() throws CoreException, IOException {
+	public void testGH3623_nullAnnotationsNotEnabled() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject annots = createJava23Project("external-null-annotations"); //$NON-NLS-1$
 		createSourceFiles(annots, new String[] {
 				"java/util/Set.eea",

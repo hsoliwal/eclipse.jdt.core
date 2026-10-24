@@ -70,7 +70,7 @@ public SelectionRequestor(NameLookup nameLookup, Openable openable) {
 	this.nameLookup = nameLookup;
 	this.openable = openable;
 }
-private void acceptBinaryMethod(
+private void acceptBinaryMethod( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IType type,
 		IMethod method,
 		char[] uniqueKey,
@@ -87,7 +87,7 @@ private void acceptBinaryMethod(
 
 			addElement(method);
 			if(SelectionEngine.DEBUG){
-				trace("SELECTION - accept method(" + method.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+				trace("SELECTION - accept method(" + method.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} else {
 			ISourceRange range = method.getSourceRange();
@@ -101,13 +101,13 @@ private void acceptBinaryMethod(
 				}
 				addElement(method);
 				if(SelectionEngine.DEBUG){
-					trace("SELECTION - accept method(" + method.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+					trace("SELECTION - accept method(" + method.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			} else {
 				// no range was actually found, but a method was originally given -> default constructor
 				addElement(type);
 				if(SelectionEngine.DEBUG){
-					trace("SELECTION - accept type(" + type.toString()+ ")"); //$NON-NLS-1$ //$NON-NLS-2$
+					trace("SELECTION - accept type(" + type.toString()+ ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}
@@ -120,7 +120,7 @@ private void acceptBinaryMethod(
  *
  * fix for 1FWFT6Q
  */
-protected void acceptBinaryMethod(
+protected void acceptBinaryMethod( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IType type,
 		char[] selector,
 		char[][] parameterPackageNames,
@@ -136,7 +136,7 @@ protected void acceptBinaryMethod(
 		if (typeParameterNames != null && typeParameterNames.length != 0) {
 			IMethod[] methods = type.findMethods(method);
 			if (methods != null && methods.length > 1) {
-				for (IMethod m : methods) {
+				for (IMethod m : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (areTypeParametersCompatible(m, typeParameterNames, typeParameterBoundNames)) {
 						acceptBinaryMethod(type, method, uniqueKey, isConstructor);
 					}
@@ -155,7 +155,7 @@ public void acceptModule(char[] moduleName, char[] uniqueKey, int start, int end
 /**
  * Resolve the type.
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void acceptType(char[] packageName, char[] typeName, int modifiers, boolean isDeclaration, char[] uniqueKey, int start, int end) {
 	int acceptFlags = 0;
 	int kind = modifiers & (ClassFileConstants.AccInterface|ClassFileConstants.AccEnum|ClassFileConstants.AccAnnotation);
@@ -192,7 +192,7 @@ public void acceptType(char[] packageName, char[] typeName, int modifiers, boole
 	if (type != null) {
 		addElement(type);
 		if(SelectionEngine.DEBUG){
-			trace("SELECTION - accept type(" + type.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+			trace("SELECTION - accept type(" + type.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 }
@@ -209,7 +209,7 @@ public void acceptType(IType type) {
 
 	addElement(type);
 	if(SelectionEngine.DEBUG){
-		trace("SELECTION - accept type(" + type.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+		trace("SELECTION - accept type(" + type.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }
 /**
@@ -222,7 +222,7 @@ public void acceptError(CategorizedProblem error) {
 /**
  * Resolve the field.
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void acceptField(char[] declaringTypePackageName, char[] declaringTypeName, char[] name, boolean isDeclaration, char[] uniqueKey, int start, int end) {
 	if(isDeclaration) {
 		IType type= resolveTypeByLocation(declaringTypePackageName, declaringTypeName,
@@ -239,14 +239,14 @@ public void acceptField(char[] declaringTypePackageName, char[] declaringTypeNam
 						System.arraycopy(comps, 0, fields, f.length, comps.length);
 					}
 				}
-				for (IField field : fields) {
+				for (IField field : fields) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					ISourceRange range = field.getNameRange();
 					if(range.getOffset() <= start
 							&& range.getOffset() + range.getLength() >= end
 							&& field.getElementName().equals(new String(name))) {
 						addElement(field);
 						if(SelectionEngine.DEBUG){
-							trace("SELECTION - accept field(" + field.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+							trace("SELECTION - accept field(" + field.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
 						return; // only one method is possible
 					}
@@ -275,13 +275,13 @@ public void acceptField(char[] declaringTypePackageName, char[] declaringTypeNam
 				}
 				addElement(field);
 				if(SelectionEngine.DEBUG){
-					trace("SELECTION - accept field(" + field.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+					trace("SELECTION - accept field(" + field.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}
 	}
 }
-public void acceptLocalField(FieldBinding fieldBinding) {
+public void acceptLocalField(FieldBinding fieldBinding) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaElement res;
 	if(fieldBinding.declaringClass instanceof ParameterizedTypeBinding) {
 		LocalTypeBinding localTypeBinding = (LocalTypeBinding)((ParameterizedTypeBinding)fieldBinding.declaringClass).genericType();
@@ -308,12 +308,12 @@ public void acceptLocalField(FieldBinding fieldBinding) {
 			}
 			addElement(field);
 			if(SelectionEngine.DEBUG){
-				trace("SELECTION - accept field(" + field.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+				trace("SELECTION - accept field(" + field.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
 }
-public void acceptLocalMethod(MethodBinding methodBinding) {
+public void acceptLocalMethod(MethodBinding methodBinding) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaElement res = findLocalElement(methodBinding.original().sourceStart());
 	if(res != null) {
 		if(res.getElementType() == IJavaElement.METHOD) {
@@ -335,14 +335,14 @@ public void acceptLocalMethod(MethodBinding methodBinding) {
 			}
 			addElement(res);
 			if(SelectionEngine.DEBUG){
-				trace("SELECTION - accept method(" + res.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+				trace("SELECTION - accept method(" + res.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} else if(methodBinding.selector == TypeConstants.INIT && res.getElementType() == IJavaElement.TYPE) {
 			// it's a default constructor
 			res = ((JavaElement)res).resolved(methodBinding.declaringClass);
 			addElement(res);
 			if(SelectionEngine.DEBUG){
-				trace("SELECTION - accept type(" + res.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+				trace("SELECTION - accept type(" + res.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
@@ -359,11 +359,11 @@ public void acceptLocalType(TypeBinding typeBinding) {
 		res = ((JavaElement)res).resolved(typeBinding);
 		addElement(res);
 		if(SelectionEngine.DEBUG){
-			trace("SELECTION - accept type(" + res.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+			trace("SELECTION - accept type(" + res.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 }
-public void acceptLocalTypeParameter(TypeVariableBinding typeVariableBinding) {
+public void acceptLocalTypeParameter(TypeVariableBinding typeVariableBinding) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaElement res;
 	if(typeVariableBinding.declaringElement instanceof ParameterizedTypeBinding) {
 		LocalTypeBinding localTypeBinding = (LocalTypeBinding)((ParameterizedTypeBinding)typeVariableBinding.declaringElement).genericType();
@@ -378,7 +378,7 @@ public void acceptLocalTypeParameter(TypeVariableBinding typeVariableBinding) {
 		if (typeParameter.exists()) {
 			addElement(typeParameter);
 			if(SelectionEngine.DEBUG){
-				trace("SELECTION - accept type parameter(" + typeParameter.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+				trace("SELECTION - accept type parameter(" + typeParameter.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
@@ -393,17 +393,17 @@ public void acceptLocalMethodTypeParameter(TypeVariableBinding typeVariableBindi
 		if (typeParameter.exists()) {
 			addElement(typeParameter);
 			if(SelectionEngine.DEBUG){
-				trace("SELECTION - accept type parameter(" + typeParameter.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+				trace("SELECTION - accept type parameter(" + typeParameter.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
 }
-public void acceptLocalVariable(LocalVariableBinding binding, org.eclipse.jdt.internal.compiler.env.ICompilationUnit unit) {
+public void acceptLocalVariable(LocalVariableBinding binding, org.eclipse.jdt.internal.compiler.env.ICompilationUnit unit) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	AbstractVariableDeclaration local = binding.declaration;
 	IJavaElement parent;
 	if (binding.declaringScope.isLambdaSubscope() && unit instanceof ICompilationUnit) {
-		HashSet existingElements = new HashSet();
-		HashMap knownScopes = new HashMap();
+		HashSet existingElements = new HashSet(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+		HashMap knownScopes = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		parent = this.handleFactory.createElement(binding.declaringScope, local.sourceStart, (ICompilationUnit) unit, existingElements, knownScopes);
 	} else {
 		if (binding.isParameter() && binding.declaringScope.referenceContext() instanceof ConstructorDeclaration cd && cd.isCompactConstructor()) {
@@ -439,15 +439,15 @@ public void acceptLocalVariable(LocalVariableBinding binding, org.eclipse.jdt.in
 	if (localVar != null) {
 		addElement(localVar);
 		if(SelectionEngine.DEBUG){
-			trace("SELECTION - accept local variable(" + localVar.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+			trace("SELECTION - accept local variable(" + localVar.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 }
 
 public void acceptLambdaMethod(MethodBinding binding, org.eclipse.jdt.internal.compiler.env.ICompilationUnit unit) {
 	if(binding.sourceLambda() != null) {
-		HashSet existingElements = new HashSet();
-		HashMap knownScopes = new HashMap();
+		HashSet existingElements = new HashSet(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+		HashMap knownScopes = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		LambdaExpression lambdaExpression = binding.sourceLambda();
 		IJavaElement sourceMethod = this.handleFactory.createElement(lambdaExpression.getScope(), lambdaExpression.sourceStart, (ICompilationUnit) unit, existingElements, knownScopes);
 		addElement(sourceMethod);
@@ -457,7 +457,7 @@ public void acceptLambdaMethod(MethodBinding binding, org.eclipse.jdt.internal.c
 /**
  * Resolve the method
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void acceptMethod(
 		char[] declaringTypePackageName,
 		char[] declaringTypeName,
@@ -537,10 +537,10 @@ public void acceptMethod(
 public void acceptPackage(char[] packageName) {
 	IPackageFragment[] pkgs = this.nameLookup.findPackageFragments(new String(packageName), false);
 	if (pkgs != null) {
-		for (IPackageFragment pkg : pkgs) {
+		for (IPackageFragment pkg : pkgs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			addElement(pkg);
 			if(SelectionEngine.DEBUG){
-				trace("SELECTION - accept package(" + pkg.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+				trace("SELECTION - accept package(" + pkg.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
@@ -550,7 +550,7 @@ public void acceptPackage(char[] packageName) {
  *
  * fix for 1FWFT6Q
  */
-protected void acceptSourceMethod(
+protected void acceptSourceMethod( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IType type,
 		char[] selector,
 		char[][] parameterPackageNames,
@@ -564,7 +564,7 @@ protected void acceptSourceMethod(
 	IMethod[] methods = null;
 	try {
 		methods = type.getMethods();
-		for (IMethod m : methods) {
+		for (IMethod m : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (m.getElementName().equals(name)
 					&& m.getParameterTypes().length == parameterTypeNames.length) {
 				IMethod method = m;
@@ -597,7 +597,7 @@ protected void acceptSourceMethod(
 						// no match was actually found, but a method was originally given -> default accessor
 						 addElement(comp);
 						 if(SelectionEngine.DEBUG){
-								trace("SELECTION - accept field(" + comp.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+								trace("SELECTION - accept field(" + comp.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						 }
 					 }
 				}
@@ -609,7 +609,7 @@ protected void acceptSourceMethod(
 			// no match was actually found, but a method was originally given -> default constructor
 			addElement(type);
 			if(SelectionEngine.DEBUG){
-				trace("SELECTION - accept type(" + type.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+				trace("SELECTION - accept type(" + type.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		return;
@@ -618,7 +618,7 @@ protected void acceptSourceMethod(
 	// if there is only one match, we've got it
 	if (this.elementIndex == 0) {
 		if(SelectionEngine.DEBUG){
-			trace("SELECTION - accept method(" + this.elements[0].toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+			trace("SELECTION - accept method(" + this.elements[0].toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return;
 	}
@@ -628,11 +628,11 @@ protected void acceptSourceMethod(
 	int matchesIndex = this.elementIndex;
 	this.elements = JavaElement.NO_ELEMENTS;
 	this.elementIndex = -1;
-	for (int i = 0; i <= matchesIndex; i++) {
+	for (int i = 0; i <= matchesIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IMethod method= (IMethod)matches[i];
 		String[] signatures = method.getParameterTypes();
 		boolean match= true;
-		for (int p = 0; p < signatures.length; p++) {
+		for (int p = 0; p < signatures.length; p++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String simpleName= Signature.getSimpleName(Signature.toString(Signature.getTypeErasure(signatures[p])));
 			char[] simpleParameterName = CharOperation.lastSegment(parameterTypeNames[p], '.');
 			if (!simpleName.equals(new String(simpleParameterName))) {
@@ -648,25 +648,25 @@ protected void acceptSourceMethod(
 		if (match) {
 			addElement(method);
 			if(SelectionEngine.DEBUG){
-				trace("SELECTION - accept method(" + method.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+				trace("SELECTION - accept method(" + method.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
 
 }
-protected void acceptMethodDeclaration(IType type, char[] selector, int start, int end) {
+protected void acceptMethodDeclaration(IType type, char[] selector, int start, int end) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String name = new String(selector);
 	IMethod[] methods = null;
 	try {
 		methods = type.getMethods();
-		for (IMethod method : methods) {
+		for (IMethod method : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ISourceRange range = method.getNameRange();
 			if(range.getOffset() <= start
 					&& range.getOffset() + range.getLength() >= end
 					&& method.getElementName().equals(name)) {
 				addElement(method);
 				if(SelectionEngine.DEBUG){
-					trace("SELECTION - accept method(" + this.elements[0].toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+					trace("SELECTION - accept method(" + this.elements[0].toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				return; // only one method is possible
 			}
@@ -678,11 +678,11 @@ protected void acceptMethodDeclaration(IType type, char[] selector, int start, i
 	// no match was actually found
 	addElement(type);
 	if(SelectionEngine.DEBUG){
-		trace("SELECTION - accept type(" + type.toString()+ ")"); //$NON-NLS-1$ //$NON-NLS-2$
+		trace("SELECTION - accept type(" + type.toString()+ ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	return;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void acceptTypeParameter(char[] declaringTypePackageName, char[] declaringTypeName, char[] typeParameterName, boolean isDeclaration, int start, int end) {
 	IType type;
 	if(isDeclaration) {
@@ -699,17 +699,17 @@ public void acceptTypeParameter(char[] declaringTypePackageName, char[] declarin
 		if(typeParameter == null) {
 			addElement(type);
 			if(SelectionEngine.DEBUG){
-				trace("SELECTION - accept type(" + type.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+				trace("SELECTION - accept type(" + type.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} else {
 			addElement(typeParameter);
 			if(SelectionEngine.DEBUG){
-				trace("SELECTION - accept type parameter(" + typeParameter.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+				trace("SELECTION - accept type parameter(" + typeParameter.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void acceptMethodTypeParameter(char[] declaringTypePackageName, char[] declaringTypeName, char[] selector,int selectorStart, int selectorEnd, char[] typeParameterName, boolean isDeclaration, int start, int end) {
 	IType type = resolveTypeByLocation(declaringTypePackageName, declaringTypeName,
 			NameLookup.ACCEPT_ALL,
@@ -723,7 +723,7 @@ public void acceptMethodTypeParameter(char[] declaringTypePackageName, char[] de
 
 		try {
 			methods = type.getMethods();
-			done : for (int i = 0; i < methods.length; i++) {
+			done : for (int i = 0; i < methods.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ISourceRange range = methods[i].getNameRange();
 				if(range.getOffset() >= selectorStart
 						&& range.getOffset() + range.getLength() <= selectorEnd
@@ -739,19 +739,19 @@ public void acceptMethodTypeParameter(char[] declaringTypePackageName, char[] de
 		if(method == null) {
 			addElement(type);
 			if(SelectionEngine.DEBUG){
-				trace("SELECTION - accept type(" + type.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+				trace("SELECTION - accept type(" + type.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} else {
 			ITypeParameter typeParameter = method.getTypeParameter(new String(typeParameterName));
 			if(typeParameter == null) {
 				addElement(method);
 				if(SelectionEngine.DEBUG){
-					trace("SELECTION - accept method(" + method.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+					trace("SELECTION - accept method(" + method.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			} else {
 				addElement(typeParameter);
 				if(SelectionEngine.DEBUG){
-					trace("SELECTION - accept method type parameter(" + typeParameter.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+					trace("SELECTION - accept method type parameter(" + typeParameter.toString() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}
@@ -763,7 +763,7 @@ public void acceptMethodTypeParameter(char[] declaringTypePackageName, char[] de
 protected void addElement(IJavaElement element) {
 	int elementLength = this.elementIndex + 1;
 
-	for (int i = 0; i < elementLength; i++) {
+	for (int i = 0; i < elementLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (this.elements[i].equals(element)) {
 			return;
 		}
@@ -774,7 +774,7 @@ protected void addElement(IJavaElement element) {
 	}
 	this.elements[++this.elementIndex] = element;
 }
-private boolean areTypeParametersCompatible(IMethod method, char[][] typeParameterNames, char[][][] typeParameterBoundNames) {
+private boolean areTypeParametersCompatible(IMethod method, char[][] typeParameterNames, char[][][] typeParameterBoundNames) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		ITypeParameter[] typeParameters = method.getTypeParameters();
 		int length1 = typeParameters == null ? 0 : typeParameters.length;
@@ -782,7 +782,7 @@ private boolean areTypeParametersCompatible(IMethod method, char[][] typeParamet
 		if (length1 != length2) {
 			return false;
 		} else {
-			for (int j = 0; j < length1; j++) {
+			for (int j = 0; j < length1; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ITypeParameter typeParameter = typeParameters[j];
 				String typeParameterName = typeParameter.getElementName();
 				if (!typeParameterName.equals(new String(typeParameterNames[j]))) {
@@ -795,7 +795,7 @@ private boolean areTypeParametersCompatible(IMethod method, char[][] typeParamet
 				if (bounds.length != boundCount) {
 					return false;
 				} else {
-					for (int k = 0; k < boundCount; k++) {
+					for (int k = 0; k < boundCount; k++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						String simpleName = Signature.getSimpleName(bounds[k]);
 						int index = simpleName.indexOf('<');
 						if (index != -1) {
@@ -816,7 +816,7 @@ private boolean areTypeParametersCompatible(IMethod method, char[][] typeParamet
 /*
  * findLocalElement() cannot find local variable
  */
-protected IJavaElement findLocalElement(int pos) {
+protected IJavaElement findLocalElement(int pos) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaElement res = null;
 	if(this.openable instanceof ICompilationUnit) {
 		ICompilationUnit cu = (ICompilationUnit) this.openable;
@@ -895,7 +895,7 @@ protected IModuleDescription resolveModule(char[] moduleName) {
 /**
  * Resolve the type
  */
-protected IType resolveType(char[] packageName, char[] typeName, int acceptFlags) {
+protected IType resolveType(char[] packageName, char[] typeName, int acceptFlags) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IType type= null;
 
@@ -908,7 +908,7 @@ protected IType resolveType(char[] packageName, char[] typeName, int acceptFlags
 				char[][] compoundName = CharOperation.splitOn('.', typeName);
 				if(compoundName.length > 0) {
 					type = wc.getType(new String(compoundName[0]));
-					for (int i = 1, length = compoundName.length; i < length; i++) {
+					for (int i = 1, length = compoundName.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						type = type.getType(new String(compoundName[i]));
 					}
 				}
@@ -927,7 +927,7 @@ protected IType resolveType(char[] packageName, char[] typeName, int acceptFlags
 			(packageName == null || packageName.length == 0) ? IPackageFragment.DEFAULT_PACKAGE_NAME : new String(packageName),
 			false);
 		// iterate type lookup in each package fragment
-		for (int i = 0, length = pkgs == null ? 0 : pkgs.length; i < length; i++) {
+		for (int i = 0, length = pkgs == null ? 0 : pkgs.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			type= this.nameLookup.findType(new String(typeName), pkgs[i], false, acceptFlags, false, true/*consider secondary types*/);
 			if (type != null) break;
 		}
@@ -948,7 +948,7 @@ protected IType resolveType(char[] packageName, char[] typeName, int acceptFlags
 				} catch (JavaModelException e) {
 					return null;
 				}
-				for (IType t : allTypes) {
+				for (IType t : allTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (t.getTypeQualifiedName().equals(tName)) {
 						return t;
 					}
@@ -958,7 +958,7 @@ protected IType resolveType(char[] packageName, char[] typeName, int acceptFlags
 	}
 	return type;
 }
-protected IType resolveTypeByLocation(char[] packageName, char[] typeName, int acceptFlags, int start, int end) {
+protected IType resolveTypeByLocation(char[] packageName, char[] typeName, int acceptFlags, int start, int end) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IType type= null;
 
@@ -975,7 +975,7 @@ protected IType resolveTypeByLocation(char[] packageName, char[] typeName, int a
 					IType[] tTypes = wc.getTypes();
 					int i = 0;
 					int depth = 0;
-					done : while(i < tTypes.length) {
+					done : while(i < tTypes.length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ISourceRange range = tTypes[i].getSourceRange();
 						if(range.getOffset() <= start
 								&& range.getOffset() + range.getLength() >= end
@@ -1007,7 +1007,7 @@ protected IType resolveTypeByLocation(char[] packageName, char[] typeName, int a
 			(packageName == null || packageName.length == 0) ? IPackageFragment.DEFAULT_PACKAGE_NAME : new String(packageName),
 			false);
 		// iterate type lookup in each package fragment
-		for (int i = 0, length = pkgs == null ? 0 : pkgs.length; i < length; i++) {
+		for (int i = 0, length = pkgs == null ? 0 : pkgs.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			type= this.nameLookup.findType(new String(typeName), pkgs[i], false, acceptFlags, false, true/*consider secondary types*/);
 			if (type != null) break;
 		}
@@ -1028,7 +1028,7 @@ protected IType resolveTypeByLocation(char[] packageName, char[] typeName, int a
 				} catch (JavaModelException e) {
 					return null;
 				}
-				for (IType t : allTypes) {
+				for (IType t : allTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (t.getTypeQualifiedName().equals(tName)) {
 						return t;
 					}

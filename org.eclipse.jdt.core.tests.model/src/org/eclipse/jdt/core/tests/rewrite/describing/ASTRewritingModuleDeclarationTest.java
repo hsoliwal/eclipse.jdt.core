@@ -40,25 +40,25 @@ public class ASTRewritingModuleDeclarationTest extends ASTRewritingTest {
 		return createSuite(ASTRewritingModuleDeclarationTest.class);
 	}
 
-	public void testBug509961_0001_since_9() throws Exception {
+	public void testBug509961_0001_since_9() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject javaProject = null ;
 		try {
 			javaProject = createProject("P_9", JavaCore.VERSION_9);
 			IPackageFragmentRoot currentSourceFolder = getPackageFragmentRoot("P_9", "src");
 			IPackageFragment pack1= currentSourceFolder.getPackageFragment(Util.EMPTY_STRING);
-			StringBuilder buf= new StringBuilder();
-			buf.append("module first {\n");
-			buf.append("    requires second;\n");
-			buf.append("    requires removeme;\n");
-			buf.append("    exports pack11 to third, fourth;\n");
-			buf.append("    exports pack12 to fifth;\n");
-			buf.append("    exports pack12 to remove.mod1;\n");
-			buf.append("    exports pack13 to well.founded.module2;\n");
-			buf.append("    uses MyType;\n");
-			buf.append("    uses Type.Remove;\n");
-			buf.append("    provides pack22.I22 with pack11.packinternal.Z11;\n");
-			buf.append("    provides pack23.I23 with pack11.Z23, pack12.ZZ23;\n");
-			buf.append("}");
+			StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buf.append("module first {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires second;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires removeme;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    exports pack11 to third, fourth;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    exports pack12 to fifth;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    exports pack12 to remove.mod1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    exports pack13 to well.founded.module2;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    uses MyType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    uses Type.Remove;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    provides pack22.I22 with pack11.packinternal.Z11;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    provides pack23.I23 with pack11.Z23, pack12.ZZ23;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			ICompilationUnit cu= pack1.createCompilationUnit("module-info.java", buf.toString(), false, null);
 			CompilationUnit astRoot= createAST(cu);
 			ASTRewrite rewrite= ASTRewrite.create(astRoot.getAST());
@@ -139,35 +139,35 @@ public class ASTRewritingModuleDeclarationTest extends ASTRewritingTest {
 				pListRewrite.remove((ASTNode) providesStatement.implementations().get(0), null);
 			}
 			String preview= evaluateRewrite(cu, rewrite);
-			buf= new StringBuilder();
-			buf.append("module first {\n");
-			buf.append("    requires newSecond;\n");
-			buf.append("    requires addedme;\n");
-			buf.append("    exports newpack11 to third;\n");
-			buf.append("    exports pack12 to fifth, sixth;\n");
-			buf.append("    exports pack12;\n");
-			buf.append("    uses MyNewType;\n");
-			buf.append("    provides pack22.INew22 with pack11.packinternal.NewZ11, pack11.Y11;\n");
-			buf.append("    provides pack23.I23 with pack12.ZZ23;\n");
-			buf.append("    exports pack12 to well.founded.module3;\n");
-			buf.append("    uses MyNewFoundType;\n");
-			buf.append("}");
+			buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buf.append("module first {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires newSecond;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires addedme;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    exports newpack11 to third;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    exports pack12 to fifth, sixth;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    exports pack12;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    uses MyNewType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    provides pack22.INew22 with pack11.packinternal.NewZ11, pack11.Y11;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    provides pack23.I23 with pack12.ZZ23;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    exports pack12 to well.founded.module3;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    uses MyNewFoundType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			assertEqualString(preview, buf.toString());
 		} finally {
 			if (javaProject != null)
 				deleteProject(javaProject);
 		}
 	}
-	public void testBug509961_0002_since_9() throws Exception {
+	public void testBug509961_0002_since_9() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject javaProject = null;
 		try {
 			javaProject = createProject("P_9", JavaCore.VERSION_9);
 			IPackageFragmentRoot currentSourceFolder = getPackageFragmentRoot("P_9", "src");
 			IPackageFragment pack1= currentSourceFolder.getPackageFragment(Util.EMPTY_STRING);
-			StringBuilder buf= new StringBuilder();
-			buf.append("module first {\n");
-			buf.append("    requires existing;\n");
-			buf.append("}");
+			StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buf.append("module first {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires existing;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 			ICompilationUnit cu= pack1.createCompilationUnit("module-info.java", buf.toString(), false, null);
 			CompilationUnit astRoot= createAST(cu);
@@ -182,30 +182,30 @@ public class ASTRewritingModuleDeclarationTest extends ASTRewritingTest {
 				listRewrite.insertLast(newNode, null);
 			}
 			String preview= evaluateRewrite(cu, rewrite);
-			buf= new StringBuilder();
-			buf.append("module first {\n");
-			buf.append("    requires existing;\n");
-			buf.append("    requires addedme;\n");
-			buf.append("}");
+			buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buf.append("module first {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires existing;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires addedme;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			assertEqualString(preview, buf.toString());
 		} finally {
 			if (javaProject != null) deleteProject(javaProject);
 		}
 	}
 
-	public void testBug509961_0003_since_9() throws Exception {
+	public void testBug509961_0003_since_9() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject javaProject = null;
 		try {
 			javaProject = createProject("P_9", JavaCore.VERSION_9);
 			IPackageFragmentRoot currentSourceFolder = getPackageFragmentRoot("P_9", "src");
 			IPackageFragment pack1= currentSourceFolder.getPackageFragment(Util.EMPTY_STRING);
-			StringBuilder buf= new StringBuilder();
-			buf.append("module first {\n");
-			buf.append("    requires existing;\n");
-			buf.append("    requires static module1;\n");
-			buf.append("    requires static module2;\n");
-			buf.append("    requires static module3;\n");
-			buf.append("}");
+			StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buf.append("module first {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires existing;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires static module1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires static module2;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires static module3;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			ICompilationUnit cu= pack1.createCompilationUnit("module-info.java", buf.toString(), false, null);
 			CompilationUnit astRoot= createAST(cu);
 			ASTRewrite rewrite= ASTRewrite.create(astRoot.getAST());
@@ -235,83 +235,83 @@ public class ASTRewritingModuleDeclarationTest extends ASTRewritingTest {
 				listRewrite.insertLast(newNode, null);
 			}
 			String preview= evaluateRewrite(cu, rewrite);
-			buf= new StringBuilder();
-			buf.append("module first {\n");
-			buf.append("    requires static existing;\n");
-			buf.append("    requires module1;\n");
-			buf.append("    requires transitive module2;\n");
-			buf.append("    requires static transitive module3;\n");
-			buf.append("    requires transitive addedme;\n");
-		buf.append("}");
+			buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buf.append("module first {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires static existing;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires module1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires transitive module2;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires static transitive module3;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires transitive addedme;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			assertEqualString(preview, buf.toString());
 		} finally {
 			if (javaProject != null) deleteProject(javaProject);
 		}
 	}
-	public void testBug516731_0001_since_9() throws Exception {
+	public void testBug516731_0001_since_9() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject javaProject = null;
 		try {
 			javaProject = createProject("P_9", JavaCore.VERSION_9);
 			IPackageFragmentRoot currentSourceFolder = getPackageFragmentRoot("P_9", "src");
 			IPackageFragment pack1= currentSourceFolder.getPackageFragment(Util.EMPTY_STRING);
-			StringBuilder buf= new StringBuilder();
-			buf.append("module first {\n");
-			buf.append("    requires existing;\n");
-			buf.append("}");
+			StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buf.append("module first {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires existing;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			ICompilationUnit cu= pack1.createCompilationUnit("module-info.java", buf.toString(), false, null);
 			CompilationUnit astRoot= createAST(cu);
 			ASTRewrite rewrite= ASTRewrite.create(astRoot.getAST());
 			ModuleDeclaration moduleDecl = astRoot.getModule();
 			rewrite.set(moduleDecl, ModuleDeclaration.OPEN_PROPERTY, Boolean.TRUE, null);
 			String preview= evaluateRewrite(cu, rewrite);
-			buf= new StringBuilder();
-			buf.append("open module first {\n");
-			buf.append("    requires existing;\n");
-			buf.append("}");
+			buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buf.append("open module first {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires existing;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			assertEqualString(preview, buf.toString());
 		} finally {
 			if (javaProject != null) deleteProject(javaProject);
 		}
 	}
-	public void testBug516731_0002_since_9() throws Exception {
+	public void testBug516731_0002_since_9() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject javaProject = null;
 		try {
 			javaProject = createProject("P_9", JavaCore.VERSION_9);
 			IPackageFragmentRoot currentSourceFolder = getPackageFragmentRoot("P_9", "src");
 			IPackageFragment pack1= currentSourceFolder.getPackageFragment(Util.EMPTY_STRING);
-			StringBuilder buf= new StringBuilder();
-			buf.append("open module first {\n");
-			buf.append("    requires existing;\n");
-			buf.append("}");
+			StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buf.append("open module first {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires existing;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			ICompilationUnit cu= pack1.createCompilationUnit("module-info.java", buf.toString(), false, null);
 			CompilationUnit astRoot= createAST(cu);
 			ASTRewrite rewrite= ASTRewrite.create(astRoot.getAST());
 			ModuleDeclaration moduleDecl = astRoot.getModule();
 			rewrite.set(moduleDecl, ModuleDeclaration.OPEN_PROPERTY, Boolean.FALSE, null);
 			String preview= evaluateRewrite(cu, rewrite);
-			buf= new StringBuilder();
-			buf.append("module first {\n");
-			buf.append("    requires existing;\n");
-			buf.append("}");
+			buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buf.append("module first {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires existing;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			assertEqualString(preview, buf.toString());
 		} finally {
 			if (javaProject != null) deleteProject(javaProject);
 		}
 	}
-	public void testBug516731_0003_since_9() throws Exception {
+	public void testBug516731_0003_since_9() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject javaProject = null;
 		try {
 			javaProject = createProject("P_9", JavaCore.VERSION_9);
 			IPackageFragmentRoot currentSourceFolder = getPackageFragmentRoot("P_9", "src");
 			IPackageFragment pack1= currentSourceFolder.getPackageFragment(Util.EMPTY_STRING);
-			StringBuilder buf= new StringBuilder();
-			buf.append("module first {\n");
-			buf.append("    requires existing;\n");
-			buf.append("    requires static module1;\n");
-			buf.append("    requires static module2;\n");
-			buf.append("    requires static module3;\n");
-			buf.append("    requires static module4;\n");
-			buf.append("}");
+			StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buf.append("module first {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires existing;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires static module1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires static module2;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires static module3;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires static module4;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			ICompilationUnit cu= pack1.createCompilationUnit("module-info.java", buf.toString(), false, null);
 			CompilationUnit astRoot= createAST(cu);
 			ASTRewrite rewrite= ASTRewrite.create(astRoot.getAST());
@@ -348,22 +348,22 @@ public class ASTRewritingModuleDeclarationTest extends ASTRewritingTest {
 				listRewrite.insertLast(newNode, null);
 			}
 			String preview= evaluateRewrite(cu, rewrite);
-			buf= new StringBuilder();
-			buf.append("module first {\n");
-			buf.append("    requires static transitive existing;\n");
-			buf.append("    requires module1;\n");
-			buf.append("    requires transitive module2;\n");
-			buf.append("    requires static transitive module3;\n");
-			buf.append("    requires transitive static module4;\n");
-			buf.append("    requires transitive addedme;\n");
-		buf.append("}");
+			buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buf.append("module first {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires static transitive existing;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires module1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires transitive module2;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires static transitive module3;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires transitive static module4;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append("    requires transitive addedme;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			assertEqualString(preview, buf.toString());
 		} finally {
 			if (javaProject != null) deleteProject(javaProject);
 		}
 	}
 
-	public void testBug542106_since_9() throws Exception {
+	public void testBug542106_since_9() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject javaProject = null;
 		try {
 			javaProject = createProject("P_9", JavaCore.VERSION_9);

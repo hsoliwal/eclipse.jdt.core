@@ -98,7 +98,7 @@ public void acceptModule(IModuleDescription module) {
 /**
  * @see IJavaElementRequestor
  */
-@SuppressWarnings("unlikely-arg-type")
+@SuppressWarnings("unlikely-arg-type") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 @Override
 public void acceptType(IType type) {
 	try {

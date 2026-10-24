@@ -44,7 +44,7 @@ import org.eclipse.jdt.internal.core.util.Messages;
  *      compilation unit. For example: <code>"java.io.File"</code> or <code>"java.awt.*"</code>
  * </ul>
  */
-@SuppressWarnings("rawtypes")
+@SuppressWarnings("rawtypes") //FLLDCIM: MARK — T09  IMPLEMENTS
 public class CreateImportOperation extends CreateElementInCUOperation {
 
 	/*
@@ -69,7 +69,7 @@ public CreateImportOperation(String importName, ICompilationUnit parentElement, 
 protected StructuralPropertyDescriptor getChildPropertyDescriptor(ASTNode parent) {
 	return CompilationUnit.IMPORTS_PROPERTY;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected ASTNode generateElementAST(ASTRewrite rewriter, ICompilationUnit cu) throws JavaModelException {
 	// ensure no duplicate
 	Iterator imports = this.cuAST.imports().iterator();
@@ -78,7 +78,7 @@ protected ASTNode generateElementAST(ASTRewrite rewriter, ICompilationUnit cu) t
 	if (onDemand) {
 		importActualName = this.importName.substring(0, this.importName.length() - 2);
 	}
-	while (imports.hasNext()) {
+	while (imports.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		ImportDeclaration importDeclaration = (ImportDeclaration) imports.next();
 		if (importActualName.equals(importDeclaration.getName().getFullyQualifiedName())
 				&& (onDemand == importDeclaration.isOnDemand())
@@ -95,7 +95,7 @@ protected ASTNode generateElementAST(ASTRewrite rewriter, ICompilationUnit cu) t
 	char[][] charFragments = CharOperation.splitOn('.', importActualName.toCharArray(), 0, importActualName.length());
 	int length = charFragments.length;
 	String[] strFragments = new String[length];
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		strFragments[i] = String.valueOf(charFragments[i]);
 	}
 	Name name = ast.newName(strFragments);
@@ -125,7 +125,7 @@ public String getMainTaskName(){
  * <li> and if no package statement - first thing in the CU
  * </ul>
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void initializeDefaultPosition() {
 	try {
 		ICompilationUnit cu = getCompilationUnit();
@@ -141,7 +141,7 @@ protected void initializeDefaultPosition() {
 		}
 		IJavaElement[] children = cu.getChildren();
 		//look for the package declaration
-		for (IJavaElement child : children) {
+		for (IJavaElement child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (child.getElementType() == IJavaElement.PACKAGE_DECLARATION) {
 				createAfter(child);
 				return;

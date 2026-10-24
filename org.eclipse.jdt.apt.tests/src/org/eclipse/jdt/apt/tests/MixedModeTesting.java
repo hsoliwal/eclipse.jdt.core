@@ -56,7 +56,7 @@ public class MixedModeTesting extends APTTestBase{
 	 * This test the processor environment and that it returns the correct
 	 * set of declared types.
 	 */
-	public void testSimpleBatchProcessing() throws Exception
+	public void testSimpleBatchProcessing() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		IProject project = env.getProject( getProjectName() );
 		IPath srcRoot = getSourcePath();
@@ -94,7 +94,7 @@ public class MixedModeTesting extends APTTestBase{
 	 * What this tests test.
 	 * This makes sure the internal apt rounding occurs correctly in batch mode.
 	 */
-	public void testAPTRoundingInMixedMode0()
+	public void testAPTRoundingInMixedMode0() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		IProject project = env.getProject( getProjectName() );
 		IPath srcRoot = getSourcePath();
@@ -160,7 +160,7 @@ public class MixedModeTesting extends APTTestBase{
 	 *  This is a no-op round.
 	 */
 
-	public void testAPTRoundingInMixedMode1()
+	public void testAPTRoundingInMixedMode1() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		IProject project = env.getProject( getProjectName() );
 		IPath srcRoot = getSourcePath();

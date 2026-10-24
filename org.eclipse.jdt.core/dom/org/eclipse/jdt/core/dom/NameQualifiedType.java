@@ -69,7 +69,7 @@ public class NameQualifiedType extends AnnotatableType {
 	private static final List PROPERTY_DESCRIPTORS;
 
 	static {
-		List propertyList = new ArrayList(4);
+		List propertyList = new ArrayList(4); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(NameQualifiedType.class, propertyList);
 		addProperty(QUALIFIER_PROPERTY, propertyList);
 		addProperty(ANNOTATIONS_PROPERTY, propertyList);
@@ -135,7 +135,7 @@ public class NameQualifiedType extends AnnotatableType {
 		return super.internalGetChildListProperty(property);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final ASTNode internalGetSetChildProperty(ChildPropertyDescriptor property, boolean get, ASTNode child) {
 		if (property == QUALIFIER_PROPERTY) {
 			if (get) {

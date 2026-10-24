@@ -41,7 +41,7 @@ public class OpenableElementInfo extends JavaElementInfo {
 	 */
 	protected Object[] nonJavaResources;
 
-	public void addChild(final IJavaElement child) {
+	public void addChild(final IJavaElement child) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaElement[] oldChildren = this.children;
 		int length = oldChildren.length;
 		if (length == 0) {
@@ -54,7 +54,7 @@ public class OpenableElementInfo extends JavaElementInfo {
 				}
 			}
 		} else {
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (oldChildren[i].equals(child)) {
 					synchronized (this) {
 						if (oldChildren == this.children){
@@ -93,9 +93,9 @@ public class OpenableElementInfo extends JavaElementInfo {
 		return this.isStructureKnown;
 	}
 
-	public void removeChild(final IJavaElement child) {
+	public void removeChild(final IJavaElement child) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaElement[] oldChildren = this.children;
-		for (int i = 0, length = oldChildren.length; i < length; i++) {
+		for (int i = 0, length = oldChildren.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (oldChildren[i].equals(child)) {
 				if (length == 1) {
 					synchronized (this) {
@@ -136,29 +136,29 @@ public class OpenableElementInfo extends JavaElementInfo {
 	public void setModule(IModuleDescription module) {
 		this.module = module;
 	}
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append(getClass().getSimpleName());
-		sb.append(" ["); //$NON-NLS-1$
-		sb.append("isStructureKnown="); //$NON-NLS-1$
-		sb.append(this.isStructureKnown);
-		sb.append(", "); //$NON-NLS-1$
+		StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		sb.append(getClass().getSimpleName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		sb.append(" ["); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		sb.append("isStructureKnown="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		sb.append(this.isStructureKnown); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		sb.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (this.module != null) {
-			sb.append("module="); //$NON-NLS-1$
-			sb.append(this.module);
-			sb.append(", "); //$NON-NLS-1$
+			sb.append("module="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			sb.append(this.module); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			sb.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (this.children != null) {
-			sb.append("children="); //$NON-NLS-1$
-			sb.append(Arrays.toString(this.children));
-			sb.append(", "); //$NON-NLS-1$
+			sb.append("children="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			sb.append(Arrays.toString(this.children)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			sb.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (this.nonJavaResources != null) {
-			sb.append("nonJavaResources="); //$NON-NLS-1$
-			sb.append(Arrays.toString(this.nonJavaResources));
+			sb.append("nonJavaResources="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			sb.append(Arrays.toString(this.nonJavaResources)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		sb.append("]"); //$NON-NLS-1$
+		sb.append("]"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return sb.toString();
 	}
 

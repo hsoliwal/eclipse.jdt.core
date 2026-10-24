@@ -32,19 +32,19 @@ public class SourceModifierTest extends AbstractJavaModelTests {
 		return new TestSuite(SourceModifierTest.class);
 	}
 
-	public void testRemoveIndents() throws Exception {
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public class E {\n");
-		buf.append("    public void foo() {\n");
-		buf.append("        while (i == 0) {\n");
-		buf.append("            foo();\n");
-		buf.append("            i++; // comment\n");
-		buf.append("            i++;\n");
-		buf.append("        }\n");
-		buf.append("        return;\n");
-		buf.append("    }\n");
-		buf.append("}\n");
+	public void testRemoveIndents() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class E {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    public void foo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        while (i == 0) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("            foo();\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("            i++; // comment\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("            i++;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        return;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		Document buffer= new Document(buf.toString());
 
@@ -55,7 +55,7 @@ public class SourceModifierTest extends AbstractJavaModelTests {
 		SourceModifier modifier= new SourceModifier(2, "    ", 4, 4);
 		MultiTextEdit edit= new MultiTextEdit(0, content.length());
 		ReplaceEdit[] replaces= modifier.getModifications(content);
-		for (int i= 0; i < replaces.length; i++) {
+		for (int i= 0; i < replaces.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			edit.addChild(replaces[i]);
 		}
 
@@ -66,36 +66,36 @@ public class SourceModifierTest extends AbstractJavaModelTests {
 
 		String preview= buffer.get();
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public class E {\n");
-		buf.append("    public void foo() {\n");
-		buf.append("        while (i == 0) {\n");
-		buf.append("        foo();\n");
-		buf.append("        i++; // comment\n");
-		buf.append("        i++;\n");
-		buf.append("    }\n");
-		buf.append("    return;\n");
-		buf.append("    }\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class E {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    public void foo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        while (i == 0) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        foo();\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        i++; // comment\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        i++;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    return;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		String expected= buf.toString();
 
 		StringAsserts.assertEqualString(preview, expected);
 	}
 
-	public void testAddIndents() throws Exception {
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public class E {\n");
-		buf.append("    public void foo() {\n");
-		buf.append("        while (i == 0) {\n");
-		buf.append("            foo();\n");
-		buf.append("            i++; // comment\n");
-		buf.append("            i++;\n");
-		buf.append("        }\n");
-		buf.append("        return;\n");
-		buf.append("    }\n");
-		buf.append("}\n");
+	public void testAddIndents() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class E {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    public void foo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        while (i == 0) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("            foo();\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("            i++; // comment\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("            i++;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        return;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		Document buffer= new Document(buf.toString());
 
@@ -106,7 +106,7 @@ public class SourceModifierTest extends AbstractJavaModelTests {
 		SourceModifier modifier= new SourceModifier(2, "            ", 4, 4);
 		MultiTextEdit edit= new MultiTextEdit(0, content.length());
 		ReplaceEdit[] replaces= modifier.getModifications(content);
-		for (int i= 0; i < replaces.length; i++) {
+		for (int i= 0; i < replaces.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			edit.addChild(replaces[i]);
 		}
 
@@ -117,18 +117,18 @@ public class SourceModifierTest extends AbstractJavaModelTests {
 
 		String preview= buffer.get();
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public class E {\n");
-		buf.append("    public void foo() {\n");
-		buf.append("        while (i == 0) {\n");
-		buf.append("                foo();\n");
-		buf.append("                i++; // comment\n");
-		buf.append("                i++;\n");
-		buf.append("            }\n");
-		buf.append("            return;\n");
-		buf.append("    }\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class E {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    public void foo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        while (i == 0) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("                foo();\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("                i++; // comment\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("                i++;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("            }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("            return;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		String expected= buf.toString();
 
 		StringAsserts.assertEqualString(preview, expected);

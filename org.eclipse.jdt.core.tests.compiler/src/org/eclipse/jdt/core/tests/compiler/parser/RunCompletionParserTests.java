@@ -24,9 +24,9 @@ import org.eclipse.jdt.internal.compiler.classfmt.ClassFileConstants;
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class RunCompletionParserTests extends junit.framework.TestCase {
 
-	public final static List TEST_CLASSES = new ArrayList();
-	public final static List TEST_CLASSES_1_5 = new ArrayList();
-	public final static List TEST_CLASSES_23 = new ArrayList();
+	public final static List TEST_CLASSES = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	public final static List TEST_CLASSES_1_5 = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	public final static List TEST_CLASSES_23 = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	static {
 		TEST_CLASSES.add(AllocationExpressionCompletionTest.class);
 		TEST_CLASSES.add(ClassLiteralAccessCompletionTest.class);
@@ -55,8 +55,8 @@ public class RunCompletionParserTests extends junit.framework.TestCase {
 		super(name);
 	}
 
-	public static Test suite() {
-		ArrayList testClasses = new ArrayList();
+	public static Test suite() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		ArrayList testClasses = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		testClasses.addAll(RunCompletionParserTests.TEST_CLASSES);
 

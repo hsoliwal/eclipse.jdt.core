@@ -63,7 +63,7 @@ static final int MATCH_RULE_INDEX_MASK =
 	SearchPattern.R_SUBSTRING_MATCH |
 	SearchPattern.R_SUBWORD_MATCH;
 
-public static boolean isMatch(char[] pattern, char[] word, int matchRule) {
+public static boolean isMatch(char[] pattern, char[] word, int matchRule) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (pattern == null) return true;
 	int patternLength = pattern.length;
 	int wordLength = word.length;
@@ -158,7 +158,7 @@ private static boolean regexpMatch(char[] pattern, char[] word) {
  */
 static Pattern compileRegexp(char[] pattern) {
 	try {
-		return Pattern.compile(new String(pattern));
+		return Pattern.compile(new String(pattern)); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 	} catch (PatternSyntaxException e) {
 		return null;
 	}
@@ -177,7 +177,7 @@ static boolean regexpMatch(Pattern regexPattern, char[] word) {
 			? DeadlineCharSequence.withTimeout(new String(word), REGEXP_MATCH_TIMEOUT_MS)
 			: new String(word);
 	try {
-		return regexPattern.matcher(input).matches();
+		return regexPattern.matcher(input).matches(); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 	} catch (RegexpTimeoutException e) {
 		// A pathological pattern caused catastrophic backtracking beyond the allotted budget.
 		// Treat as a non-match to avoid a denial-of-service.
@@ -254,7 +254,7 @@ public String containerRelativePath(String documentPath) {
 	if (index == -1) {
 		index = this.containerPath.length();
 		if (documentPath.length() <= index)
-			throw new IllegalArgumentException("Document path " + documentPath + " must be relative to " + this.containerPath); //$NON-NLS-1$ //$NON-NLS-2$
+			throw new IllegalArgumentException("Document path " + documentPath + " must be relative to " + this.containerPath); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	return documentPath.substring(index + 1);
 }
@@ -275,7 +275,7 @@ public boolean hasChanged() {
  * The matchRule dictates whether its an exact, prefix or pattern match, as well as case sensitive or insensitive.
  * If the key is null then all entries in specified categories are returned.
  */
-public EntryResult[] query(char[][] categories, char[] key, int matchRule) throws IOException {
+public EntryResult[] query(char[][] categories, char[] key, int matchRule) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ReadWriteMonitor readWriteMonitor = this.monitor;
 	if(readWriteMonitor == null) {
 		// index got deleted since acquired
@@ -302,7 +302,7 @@ public EntryResult[] query(char[][] categories, char[] key, int matchRule) throw
 	EntryResult[] entryResults = new EntryResult[results.elementSize];
 	int count = 0;
 	Object[] values = results.valueTable;
-	for (Object value : values) {
+	for (Object value : values) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		EntryResult result = (EntryResult) value;
 		if (result != null)
 			entryResults[count++] = result;
@@ -312,7 +312,7 @@ public EntryResult[] query(char[][] categories, char[] key, int matchRule) throw
 /**
  * Returns the document names that contain the given substring, if null then returns all of them.
  */
-public String[] queryDocumentNames(String substring) throws IOException {
+public String[] queryDocumentNames(String substring) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	SimpleSet results;
 	if (this.memoryIndex.hasChanged()) {
 		results = this.diskIndex.addDocumentNames(substring, this.memoryIndex);
@@ -325,7 +325,7 @@ public String[] queryDocumentNames(String substring) throws IOException {
 	String[] documentNames = new String[results.elementSize];
 	int count = 0;
 	Object[] paths = results.values;
-	for (Object path : paths)
+	for (Object path : paths) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (path != null)
 			documentNames[count++] = (String) path;
 	return documentNames;
@@ -365,17 +365,17 @@ public void stopQuery() {
 }
 @Override
 public String toString() {
-	return "Index for " + this.containerPath; //$NON-NLS-1$
+	return "Index for " + this.containerPath; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 public boolean isIndexForJar()
 {
 	return this.separator == JAR_SEPARATOR;
 }
-public List<IndexQualifier> getMetaIndexQualifications() throws IOException {
+public List<IndexQualifier> getMetaIndexQualifications() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	startQuery();
 	try {
-		ArrayList<IndexQualifier> qualifiers = new ArrayList<>();
-		for(char[] category : IIndexConstants.META_INDEX_CATEGORIES) {
+		ArrayList<IndexQualifier> qualifiers = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for(char[] category : IIndexConstants.META_INDEX_CATEGORIES) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (this.monitor == null) {
 				// index got deleted since acquired
 				return Collections.emptyList();
@@ -384,7 +384,7 @@ public List<IndexQualifier> getMetaIndexQualifications() throws IOException {
 					SearchPattern.R_EXACT_MATCH | SearchPattern.R_CASE_SENSITIVE);
 			if(results != null) {
 				qualifiers.ensureCapacity(results.length); // minimize array resize
-				for (EntryResult result : results) {
+				for (EntryResult result : results) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					qualifiers.add(IndexQualifier.qualifier(category, result.getWord()));
 				}
 			}

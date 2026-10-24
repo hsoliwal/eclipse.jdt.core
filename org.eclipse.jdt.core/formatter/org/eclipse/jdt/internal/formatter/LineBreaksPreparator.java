@@ -42,16 +42,16 @@ public class LineBreaksPreparator extends ASTVisitor {
 		return !isMalformed;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(CompilationUnit node) {
 		List<ImportDeclaration> imports = node.imports();
 		if (!imports.isEmpty() && this.tm.firstIndexIn(imports.get(0), ANY) > 0)
 			putBlankLinesBefore(imports.get(0), this.options.blank_lines_before_imports);
 
-		for (int i = 1; i < imports.size(); i++) {
+		for (int i = 1; i < imports.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int from = this.tm.lastIndexIn(imports.get(i - 1), ANY);
 			int to = this.tm.firstIndexIn(imports.get(i), ANY);
-			for (int j = from; j < to; j++) {
+			for (int j = from; j < to; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Token token1 = this.tm.get(j);
 				Token token2 = this.tm.get(j + 1);
 				if (this.tm.countLineBreaksBetween(token1, token2) > 1)
@@ -63,7 +63,7 @@ public class LineBreaksPreparator extends ASTVisitor {
 		if (!types.isEmpty()) {
 			if (!imports.isEmpty())
 				putBlankLinesBefore(types.get(0), this.options.blank_lines_after_imports);
-			for (int i = 1; i < types.size(); i++)
+			for (int i = 1; i < types.size(); i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				putBlankLinesBefore(types.get(i), this.options.blank_lines_between_type_declarations);
 		}
 		return true;
@@ -102,9 +102,9 @@ public class LineBreaksPreparator extends ASTVisitor {
 		return true;
 	}
 
-	private void handleBodyDeclarations(List<BodyDeclaration> bodyDeclarations) {
+	private void handleBodyDeclarations(List<BodyDeclaration> bodyDeclarations) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		BodyDeclaration previous = null;
-		for (BodyDeclaration bodyDeclaration : bodyDeclarations) {
+		for (BodyDeclaration bodyDeclaration : bodyDeclarations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int blankLines = 0;
 			if (previous == null) {
 				blankLines = this.options.blank_lines_before_first_class_body_declaration;
@@ -145,7 +145,7 @@ public class LineBreaksPreparator extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(EnumDeclaration node) {
 		handleAnnotations(node.modifiers(), this.options.insert_new_line_after_annotation_on_type);
 		handleBracedCode(node, node.getName(), this.options.brace_position_for_enum_declaration,
@@ -155,13 +155,13 @@ public class LineBreaksPreparator extends ASTVisitor {
 		List<EnumConstantDeclaration> enumConstants = node.enumConstants();
 		if (!declarations.isEmpty()) {
 			if (!enumConstants.isEmpty()) {
-				declarations = new ArrayList<>(declarations);
+				declarations = new ArrayList<>(declarations); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				declarations.add(0, enumConstants.get(0));
 			}
 			handleBodyDeclarations(declarations);
 		}
 
-		for (int i = 0; i < enumConstants.size(); i++) {
+		for (int i = 0; i < enumConstants.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			EnumConstantDeclaration declaration = enumConstants.get(i);
 			if (declaration.getJavadoc() != null)
 				this.tm.firstTokenIn(declaration.getJavadoc(), ANY).breakBefore();
@@ -172,7 +172,7 @@ public class LineBreaksPreparator extends ASTVisitor {
 		// put breaks after semicolons
 		int index = enumConstants.isEmpty() ? this.tm.firstIndexAfter(node.getName(), TokenNameLBRACE) + 1
 				: this.tm.firstIndexAfter(enumConstants.get(enumConstants.size() - 1), ANY);
-		for (;; index++) {
+		for (;; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Token token = this.tm.get(index);
 			if (token.isComment())
 				continue;
@@ -233,10 +233,10 @@ public class LineBreaksPreparator extends ASTVisitor {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(Block node) {
 		List<Statement> statements = node.statements();
-		for (Statement statement : statements) {
+		for (Statement statement : statements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (this.options.put_empty_statement_on_new_line || !(statement instanceof EmptyStatement))
 				breakLineBefore(statement);
 		}
@@ -314,10 +314,10 @@ public class LineBreaksPreparator extends ASTVisitor {
 		return true;
 	}
 
-	private void doSwitchStatementsIndentation(ASTNode switchNode, List<Statement> statements) {
+	private void doSwitchStatementsIndentation(ASTNode switchNode, List<Statement> statements) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.options.indent_switchstatements_compare_to_cases) {
 			int nonBreakStatementEnd = -1;
-			for (Statement statement : statements) {
+			for (Statement statement : statements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				boolean isBreaking = isSwitchBreakingStatement(statement);
 				if (isBreaking && !(statement instanceof Block))
 					adjustEmptyLineAfter(this.tm.lastIndexIn(statement, ANY), -1);
@@ -340,7 +340,7 @@ public class LineBreaksPreparator extends ASTVisitor {
 			}
 		}
 		if (this.options.indent_breaks_compare_to_cases) {
-			for (Statement statement : statements) {
+			for (Statement statement : statements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (statement instanceof BreakStatement || statement instanceof YieldStatement)
 					indent(statement);
 			}
@@ -351,7 +351,7 @@ public class LineBreaksPreparator extends ASTVisitor {
 		boolean arrowMode = statements.stream()
 				.anyMatch(s -> s instanceof SwitchCase &&((SwitchCase) s).isSwitchLabeledRule());
 		Statement previous = null;
-		for (Statement statement : statements) {
+		for (Statement statement : statements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			boolean skip = statement instanceof Block // will add break in visit(Block) if necessary
 					|| (arrowMode && !(statement instanceof SwitchCase))
 					|| (statement instanceof EmptyStatement && !this.options.put_empty_statement_on_new_line);
@@ -391,7 +391,7 @@ public class LineBreaksPreparator extends ASTVisitor {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(ArrayInitializer node) {
 		int openBraceIndex = this.tm.firstIndexIn(node, TokenNameLBRACE);
 		int closeBraceIndex = this.tm.lastIndexIn(node, TokenNameRBRACE);
@@ -407,7 +407,7 @@ public class LineBreaksPreparator extends ASTVisitor {
 
 		if (!(node.getParent() instanceof ArrayInitializer)) {
 			Token afterOpenBraceToken = this.tm.get(openBraceIndex + 1);
-			for (int i = 0; i < this.options.continuation_indentation_for_array_initializer; i++) {
+			for (int i = 0; i < this.options.continuation_indentation_for_array_initializer; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				afterOpenBraceToken.indent();
 				closeBraceToken.unindent();
 			}
@@ -484,10 +484,10 @@ public class LineBreaksPreparator extends ASTVisitor {
 		handleAnnotations(modifiers, breakAfter, false);
 	}
 
-	private void handleAnnotations(List<? extends IExtendedModifier> modifiers, boolean breakAfter, boolean shouldAddNewLines) {
+	private void handleAnnotations(List<? extends IExtendedModifier> modifiers, boolean breakAfter, boolean shouldAddNewLines) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Annotation last = null;
 		int i;
-		for (i = 0; i < modifiers.size(); i++) {
+		for (i = 0; i < modifiers.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (modifiers.get(i).isModifier())
 				break;
 			last = (Annotation) modifiers.get(i);
@@ -541,7 +541,7 @@ public class LineBreaksPreparator extends ASTVisitor {
 		indent(body);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(IfStatement node) {
 		Statement elseNode = node.getElseStatement();
 		Statement thenNode = node.getThenStatement();
@@ -578,7 +578,7 @@ public class LineBreaksPreparator extends ASTVisitor {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(ModuleDeclaration node) {
 		// using settings for type declaration and fields for now, add new settings if necessary
 		breakLineBefore(node);
@@ -589,7 +589,7 @@ public class LineBreaksPreparator extends ASTVisitor {
 				statements.isEmpty() ? 0 : this.options.blank_lines_after_last_class_body_declaration);
 
 		ModuleDirective previous = null;
-		for (ModuleDirective statement : statements) {
+		for (ModuleDirective statement : statements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (previous != null) {
 				boolean cameChunk = previous.getClass().equals(statement.getClass());
 				putBlankLinesBefore(statement,
@@ -600,14 +600,14 @@ public class LineBreaksPreparator extends ASTVisitor {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(TextBlock node) {
 		int indentOption = this.options.text_block_indentation;
 		if (indentOption == Alignment.M_INDENT_PRESERVE && !this.options.put_text_block_quotes_on_new_line)
 			return true;
 		Token block = this.tm.firstTokenIn(node, TokenNameTextBlock);
 		int incidentalWhitespace = Integer.MAX_VALUE;
-		ArrayList<Token> lines = new ArrayList<>();
+		ArrayList<Token> lines = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		Token newLine = new Token(block.originalStart, block.originalStart + 2, TokenNameNotAToken); // first line; """
 		lines.add(newLine); // first line; """
 		if (this.options.put_text_block_quotes_on_new_line) {
@@ -615,11 +615,11 @@ public class LineBreaksPreparator extends ASTVisitor {
 		}
 		int blankLines = -1; // will go to 0 on line break after first line
 		int i = block.originalStart + 3;
-		while (i <= block.originalEnd) {
+		while (i <= block.originalEnd) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int lineStart = i;
 			int firstNonBlank = -1;
 			int lastNonBlank = -1;
-			while (i <= block.originalEnd) {
+			while (i <= block.originalEnd) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				char c = this.tm.charAt(i++);
 				if (c == '\r' || c == '\n') {
 					char c2 = this.tm.charAt(i);
@@ -644,7 +644,7 @@ public class LineBreaksPreparator extends ASTVisitor {
 			}
 		}
 		WrapPolicy wrapPolicy = new WrapPolicy(WrapMode.DISABLED, 0, -1, 0, 0, 1, false, false);
-		for (i = 1; i < lines.size(); i++) {
+		for (i = 1; i < lines.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Token t = lines.get(i);
 			Token line = new Token(t, t.originalStart + incidentalWhitespace, t.originalEnd, TokenNameTextBlock);
 			line.setWrapPolicy(wrapPolicy);
@@ -664,7 +664,7 @@ public class LineBreaksPreparator extends ASTVisitor {
 		boolean semicolonFound = false;
 		if (token instanceof TokenTextBlock) {
 			String source = this.tm.getSource();
-			for(int i=token.originalEnd+1; i < source.length(); i++) {
+			for(int i=token.originalEnd+1; i < source.length(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				char curChar = source.charAt(i);
 				if (curChar == ' ' || curChar == '\t') continue;
 				if (curChar == ';') semicolonFound = true;
@@ -684,7 +684,7 @@ public class LineBreaksPreparator extends ASTVisitor {
 
 	private void putBlankLinesBefore(ASTNode node, int linesCount) {
 		int index = this.tm.firstIndexIn(node, ANY);
-		while (index > 0 && this.tm.get(index - 1).tokenType == TokenNameCOMMENT_JAVADOC)
+		while (index > 0 && this.tm.get(index - 1).tokenType == TokenNameCOMMENT_JAVADOC) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			index--;
 		putBlankLinesBefore(this.tm.get(index), linesCount);
 	}
@@ -711,7 +711,7 @@ public class LineBreaksPreparator extends ASTVisitor {
 		handleBracedCode(node, nodeBeforeOpenBrace, bracePosition, indentBody, 0, 0);
 	}
 
-	private void handleBracedCode(ASTNode node, ASTNode nodeBeforeOpenBrace, String bracePosition, boolean indentBody,
+	private void handleBracedCode(ASTNode node, ASTNode nodeBeforeOpenBrace, String bracePosition, boolean indentBody, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			int blankLinesAfterOpeningBrace, int blankLinesBeforeClosingBrace) {
 		int openBraceIndex;
 
@@ -770,7 +770,7 @@ public class LineBreaksPreparator extends ASTVisitor {
 
 	private void indent(ASTNode node) {
 		int startIndex = this.tm.firstIndexIn(node, ANY);
-		while (startIndex > 0 && this.tm.get(startIndex - 1).isComment())
+		while (startIndex > 0 && this.tm.get(startIndex - 1).isComment()) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			startIndex--;
 		this.tm.get(startIndex).indent();
 		int lastIndex = this.tm.lastIndexIn(node, ANY);
@@ -782,7 +782,7 @@ public class LineBreaksPreparator extends ASTVisitor {
 		// the visits only noted where indents increase and decrease,
 		// now prepare actual indent values
 		int currentIndent = this.options.initial_indentation_level;
-		for (Token token : this.tm) {
+		for (Token token : this.tm) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			currentIndent += token.getIndent();
 			token.setIndent(currentIndent * this.options.indentation_size);
 		}

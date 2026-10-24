@@ -94,7 +94,7 @@ public class InternalExtendedCompletionContext {
 		this.parser = parser;
 	}
 
-	private void computeEnclosingJavaElements() {
+	private void computeEnclosingJavaElements() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.hasComputedEnclosingJavaElements = true;
 
 		if (this.typeRoot == null) return;
@@ -102,10 +102,10 @@ public class InternalExtendedCompletionContext {
 		if (this.typeRoot.getElementType() == IJavaElement.COMPILATION_UNIT) {
 	 		ICompilationUnit original = (org.eclipse.jdt.core.ICompilationUnit)this.typeRoot;
 
-			HashMap<JavaElement, Binding> handleToBinding = new HashMap<>();
-			HashMap<Binding, JavaElement> bindingToHandle = new HashMap<>();
-			HashMap<ASTNode, JavaElement> nodeWithProblemToHandle = new HashMap<>();
-			Map<IJavaElement, IElementInfo> handleToInfo = new HashMap<>();
+			HashMap<JavaElement, Binding> handleToBinding = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+			HashMap<Binding, JavaElement> bindingToHandle = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+			HashMap<ASTNode, JavaElement> nodeWithProblemToHandle = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+			Map<IJavaElement, IElementInfo> handleToInfo = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 			AssistCompilationUnit handle = new AssistCompilationUnit(original, this.owner, handleToBinding, handleToInfo);
 			CompilationUnitElementInfo info = new CompilationUnitElementInfo();
@@ -135,7 +135,7 @@ public class InternalExtendedCompletionContext {
 					this.compilationUnitDeclaration.sourceEnd,
 					false,
 					this.parser.sourceEnds,
-					new HashMap<>());
+					new HashMap<>()); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 			this.bindingsToHandles = bindingToHandle;
 			this.nodesWithProblemsToHandles = nodeWithProblemToHandle;
@@ -143,7 +143,7 @@ public class InternalExtendedCompletionContext {
 		}
 	}
 
-	private void computeVisibleElementBindings() {
+	private void computeVisibleElementBindings() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		CompilationUnitDeclaration previousUnitBeingCompleted = this.lookupEnvironment.unitBeingCompleted;
 		this.lookupEnvironment.unitBeingCompleted = this.compilationUnitDeclaration;
 		try {
@@ -165,7 +165,7 @@ public class InternalExtendedCompletionContext {
 				TypeDeclaration typeDeclaration = (TypeDeclaration) referenceContext;
 				FieldDeclaration[] fields = typeDeclaration.fields;
 				if (fields != null) {
-					done : for (int i = 0; i < fields.length; i++) {
+					done : for (int i = 0; i < fields.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (fields[i] instanceof Initializer) {
 							Initializer initializer = (Initializer) fields[i];
 							if (initializer.block.sourceStart <= astNode.sourceStart &&
@@ -199,7 +199,7 @@ public class InternalExtendedCompletionContext {
 										this.visibleFields.remove(fieldDeclaration.binding);
 									}
 									int count = 0;
-									while (count < this.visibleFields.size) {
+									while (count < this.visibleFields.size) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 										FieldBinding visibleField = (FieldBinding)this.visibleFields.elementAt(count);
 										if (visibleField.id > fieldDeclaration.binding.id) {
 											this.visibleFields.remove(visibleField);
@@ -233,7 +233,7 @@ public class InternalExtendedCompletionContext {
 		}
 	}
 
-	private JavaElement getJavaElement(LocalVariableBinding binding) {
+	private JavaElement getJavaElement(LocalVariableBinding binding) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		AbstractVariableDeclaration local = binding.declaration;
 
 		JavaElement parent = null;
@@ -291,7 +291,7 @@ public class InternalExtendedCompletionContext {
 		}
 	}
 
-	private TypeBinding getTypeFromSignature(String typeSignature, Scope scope) {
+	private TypeBinding getTypeFromSignature(String typeSignature, Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TypeBinding assignableTypeBinding = null;
 
 		TypeVariableBinding[] typeVariables = Binding.NO_TYPE_VARIABLES;
@@ -303,7 +303,7 @@ public class InternalExtendedCompletionContext {
 				int length = typeParameters.length;
 				int count = 0;
 				typeVariables = new TypeVariableBinding[length];
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (typeParameters[i].binding != null) {
 						typeVariables[count++] = typeParameters[i].binding;
 					}
@@ -331,10 +331,10 @@ public class InternalExtendedCompletionContext {
 		return assignableTypeBinding;
 	}
 
-	private char[] replacePackagesDot(char[] signature) {
+	private char[] replacePackagesDot(char[] signature) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		boolean replace = true;
 		int length = signature.length;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch (signature[i]) {
 				case '.':
 					if (replace) signature[i] = '/';
@@ -350,7 +350,7 @@ public class InternalExtendedCompletionContext {
 		return signature;
 	}
 
-	public IJavaElement[] getVisibleElements(String typeSignature) {
+	public IJavaElement[] getVisibleElements(String typeSignature) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.assistScope == null) return new IJavaElement[0];
 
 		if (!this.hasComputedVisibleElementBindings) {
@@ -372,7 +372,7 @@ public class InternalExtendedCompletionContext {
 
 		int size = this.visibleLocalVariables.size();
 		if (size > 0) {
-			next : for (int i = 0; i < size; i++) {
+			next : for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					LocalVariableBinding binding = (LocalVariableBinding) this.visibleLocalVariables.elementAt(i);
 					if (binding.type == null || (assignableTypeBinding != null && !binding.type.isCompatibleWith(assignableTypeBinding))) continue next;
@@ -387,7 +387,7 @@ public class InternalExtendedCompletionContext {
 		}
 		size = this.visibleFields.size();
 		if (size > 0) {
-			next : for (int i = 0; i < size; i++) {
+			next : for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					FieldBinding binding = (FieldBinding) this.visibleFields.elementAt(i);
 					if (assignableTypeBinding != null && !binding.type.isCompatibleWith(assignableTypeBinding)) continue next;
@@ -407,7 +407,7 @@ public class InternalExtendedCompletionContext {
 		}
 		size = this.visibleMethods.size();
 		if (size > 0) {
-			next : for (int i = 0; i < size; i++) {
+			next : for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					MethodBinding binding = (MethodBinding) this.visibleMethods.elementAt(i);
 					if (assignableTypeBinding != null && !binding.returnType.isCompatibleWith(assignableTypeBinding)) continue next;
@@ -432,7 +432,7 @@ public class InternalExtendedCompletionContext {
 		return result;
 	}
 
-	private void searchVisibleFields(
+	private void searchVisibleFields( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			FieldBinding[] fields,
 			ReferenceBinding receiverType,
 			Scope scope,
@@ -445,7 +445,7 @@ public class InternalExtendedCompletionContext {
 		// Inherited fields which are hidden by subclasses are filtered out
 		// No visibility checks can be performed without the scope & invocationSite
 
-		next : for (int f = fields.length; --f >= 0;) {
+		next : for (int f = fields.length; --f >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			FieldBinding field = fields[f];
 
 			if (field.isSynthetic()) continue next;
@@ -454,14 +454,14 @@ public class InternalExtendedCompletionContext {
 
 			if (!field.canBeSeenBy(receiverType, invocationSite, scope)) continue next;
 
-			for (int i = fieldsFound.size; --i >= 0;) {
+			for (int i = fieldsFound.size; --i >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				FieldBinding otherField = (FieldBinding) fieldsFound.elementAt(i);
 				if (CharOperation.equals(field.name, otherField.name, true)) {
 					continue next;
 				}
 			}
 
-			for (int l = localsFound.size; --l >= 0;) {
+			for (int l = localsFound.size; --l >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				LocalVariableBinding local = (LocalVariableBinding) localsFound.elementAt(l);
 
 				if (CharOperation.equals(field.name, local.name, true)) {
@@ -475,7 +475,7 @@ public class InternalExtendedCompletionContext {
 		fieldsFound.addAll(newFieldsFound);
 	}
 
-	private void searchVisibleFields(
+	private void searchVisibleFields( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			ReferenceBinding receiverType,
 			Scope scope,
 			InvocationSite invocationSite,
@@ -488,7 +488,7 @@ public class InternalExtendedCompletionContext {
 		ReferenceBinding currentType = receiverType;
 		ReferenceBinding[] interfacesToVisit = null;
 		int nextPosition = 0;
-		do {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ReferenceBinding[] itsInterfaces = currentType.superInterfaces();
 			if (notInJavadoc && itsInterfaces != Binding.NO_SUPERINTERFACES) {
 				if (interfacesToVisit == null) {
@@ -498,9 +498,9 @@ public class InternalExtendedCompletionContext {
 					int itsLength = itsInterfaces.length;
 					if (nextPosition + itsLength >= interfacesToVisit.length)
 						System.arraycopy(interfacesToVisit, 0, interfacesToVisit = new ReferenceBinding[nextPosition + itsLength + 5], 0, nextPosition);
-					nextInterface : for (int a = 0; a < itsLength; a++) {
+					nextInterface : for (int a = 0; a < itsLength; a++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ReferenceBinding next = itsInterfaces[a];
-						for (int b = 0; b < nextPosition; b++)
+						for (int b = 0; b < nextPosition; b++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (TypeBinding.equalsEquals(next, interfacesToVisit[b])) continue nextInterface;
 						interfacesToVisit[nextPosition++] = next;
 					}
@@ -524,7 +524,7 @@ public class InternalExtendedCompletionContext {
 		} while (notInJavadoc && currentType != null);
 
 		if (notInJavadoc && interfacesToVisit != null) {
-			for (int i = 0; i < nextPosition; i++) {
+			for (int i = 0; i < nextPosition; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ReferenceBinding anInterface = interfacesToVisit[i];
 				FieldBinding[] fields = anInterface.availableFields();
 				if(fields !=  null) {
@@ -544,9 +544,9 @@ public class InternalExtendedCompletionContext {
 					int itsLength = itsInterfaces.length;
 					if (nextPosition + itsLength >= interfacesToVisit.length)
 						System.arraycopy(interfacesToVisit, 0, interfacesToVisit = new ReferenceBinding[nextPosition + itsLength + 5], 0, nextPosition);
-					nextInterface : for (int a = 0; a < itsLength; a++) {
+					nextInterface : for (int a = 0; a < itsLength; a++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ReferenceBinding next = itsInterfaces[a];
-						for (int b = 0; b < nextPosition; b++)
+						for (int b = 0; b < nextPosition; b++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (TypeBinding.equalsEquals(next, interfacesToVisit[b])) continue nextInterface;
 						interfacesToVisit[nextPosition++] = next;
 					}
@@ -555,7 +555,7 @@ public class InternalExtendedCompletionContext {
 		}
 	}
 
-	private void searchVisibleInterfaceMethods(
+	private void searchVisibleInterfaceMethods( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			ReferenceBinding[] itsInterfaces,
 			ReferenceBinding receiverType,
 			Scope scope,
@@ -567,7 +567,7 @@ public class InternalExtendedCompletionContext {
 			ReferenceBinding[] interfacesToVisit = itsInterfaces;
 			int nextPosition = interfacesToVisit.length;
 
-			for (int i = 0; i < nextPosition; i++) {
+			for (int i = 0; i < nextPosition; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ReferenceBinding currentType = interfacesToVisit[i];
 				MethodBinding[] methods = currentType.availableMethods();
 				if(methods != null) {
@@ -586,9 +586,9 @@ public class InternalExtendedCompletionContext {
 					int itsLength = itsInterfaces.length;
 					if (nextPosition + itsLength >= interfacesToVisit.length)
 						System.arraycopy(interfacesToVisit, 0, interfacesToVisit = new ReferenceBinding[nextPosition + itsLength + 5], 0, nextPosition);
-					nextInterface : for (int a = 0; a < itsLength; a++) {
+					nextInterface : for (int a = 0; a < itsLength; a++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ReferenceBinding next = itsInterfaces[a];
-						for (int b = 0; b < nextPosition; b++)
+						for (int b = 0; b < nextPosition; b++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (TypeBinding.equalsEquals(next, interfacesToVisit[b])) continue nextInterface;
 						interfacesToVisit[nextPosition++] = next;
 					}
@@ -597,7 +597,7 @@ public class InternalExtendedCompletionContext {
 		}
 	}
 
-	private void searchVisibleLocalMethods(
+	private void searchVisibleLocalMethods( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			MethodBinding[] methods,
 			ReferenceBinding receiverType,
 			Scope scope,
@@ -609,7 +609,7 @@ public class InternalExtendedCompletionContext {
 		// Inherited methods which are hidden by subclasses are filtered out
 		// No visibility checks can be performed without the scope & invocationSite
 
-		next : for (int f = methods.length; --f >= 0;) {
+		next : for (int f = methods.length; --f >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			MethodBinding method = methods[f];
 
 			if (method.isSynthetic()) continue next;
@@ -622,7 +622,7 @@ public class InternalExtendedCompletionContext {
 
 			if (!method.canBeSeenBy(receiverType, invocationSite, scope)) continue next;
 
-			for (int i = methodsFound.size; --i >= 0;) {
+			for (int i = methodsFound.size; --i >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				MethodBinding otherMethod = (MethodBinding) methodsFound.elementAt(i);
 				if (method == otherMethod)
 					continue next;
@@ -640,7 +640,7 @@ public class InternalExtendedCompletionContext {
 		methodsFound.addAll(newMethodsFound);
 	}
 
-	private void searchVisibleMethods(
+	private void searchVisibleMethods( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			ReferenceBinding receiverType,
 			Scope scope,
 			InvocationSite invocationSite,
@@ -664,7 +664,7 @@ public class InternalExtendedCompletionContext {
 			}
 		}
 		boolean hasPotentialDefaultAbstractMethods = true;
-		while (currentType != null) {
+		while (currentType != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 			MethodBinding[] methods = currentType.availableMethods();
 			if (methods != null) {
@@ -687,7 +687,7 @@ public class InternalExtendedCompletionContext {
 
 				ReferenceBinding[] superInterfaces = currentType.superInterfaces();
 				if (superInterfaces != null && currentType.isIntersectionType()) {
-					for (int i = 0; i < superInterfaces.length; i++) {
+					for (int i = 0; i < superInterfaces.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						superInterfaces[i] = (ReferenceBinding)superInterfaces[i].capture(invocationScope, invocationSite.sourceStart(), invocationSite.sourceEnd());
 					}
 				}
@@ -710,7 +710,7 @@ public class InternalExtendedCompletionContext {
 			}
 		}
 	}
-	private void searchVisibleVariablesAndMethods(
+	private void searchVisibleVariablesAndMethods( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			Scope scope,
 			ObjectVector localsFound,
 			ObjectVector fieldsFound,
@@ -724,7 +724,7 @@ public class InternalExtendedCompletionContext {
 
 		Scope currentScope = scope;
 
-		done1 : while (true) { // done when a COMPILATION_UNIT_SCOPE is found
+		done1 : while (true) { // done when a COMPILATION_UNIT_SCOPE is found //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 			switch (currentScope.kind) {
 
@@ -736,7 +736,7 @@ public class InternalExtendedCompletionContext {
 				case Scope.BLOCK_SCOPE :
 					BlockScope blockScope = (BlockScope) currentScope;
 
-					next : for (int i = 0, length = blockScope.locals.length; i < length; i++) {
+					next : for (int i = 0, length = blockScope.locals.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						LocalVariableBinding local = blockScope.locals[i];
 
 						if (local == null)
@@ -768,7 +768,7 @@ public class InternalExtendedCompletionContext {
 								continue next;
 							}
 						}
-						for (int f = 0; f < localsFound.size; f++) {
+						for (int f = 0; f < localsFound.size; f++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							LocalVariableBinding otherLocal =
 								(LocalVariableBinding) localsFound.elementAt(f);
 							if (CharOperation.equals(otherLocal.name, local.name, true))
@@ -788,7 +788,7 @@ public class InternalExtendedCompletionContext {
 		staticsOnly = false;
 		currentScope = scope;
 
-		done2 : while (true) { // done when a COMPILATION_UNIT_SCOPE is found
+		done2 : while (true) { // done when a COMPILATION_UNIT_SCOPE is found //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 			switch (currentScope.kind) {
 				case Scope.METHOD_SCOPE :
@@ -830,7 +830,7 @@ public class InternalExtendedCompletionContext {
 
 		// search in static import
 		ImportBinding[] importBindings = scope.compilationUnitScope().imports;
-		for (ImportBinding importBinding : importBindings) {
+		for (ImportBinding importBinding : importBindings) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(importBinding.isValidBinding() && importBinding.isStatic()) {
 				Binding binding = importBinding.getResolvedImport();
 				if(binding != null && binding.isValidBinding()) {
@@ -884,7 +884,7 @@ public class InternalExtendedCompletionContext {
 		}
 	}
 
-	public boolean canUseDiamond(String[] parameterTypes, char[] fullyQualifiedTypeName) {
+	public boolean canUseDiamond(String[] parameterTypes, char[] fullyQualifiedTypeName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TypeBinding guessedType = null;
 		char[][] cn = CharOperation.splitOn('.', fullyQualifiedTypeName);
 		// If no LHS or return type expected, then we can safely use diamond
@@ -913,8 +913,8 @@ public class InternalExtendedCompletionContext {
 			// the erasure must be used because guessedType can be a RawTypeBinding
 			guessedType = guessedType.erasure();
 			TypeVariableBinding[] typeVars = guessedType.typeVariables();
-			for (String parameterType : parameterTypes) {
-				for (TypeVariableBinding typeVar : typeVars) {
+			for (String parameterType : parameterTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				for (TypeVariableBinding typeVar : typeVars) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (CharOperation.equals(parameterType.toCharArray(), typeVar.sourceName))
 						return false;
 				}
@@ -924,7 +924,7 @@ public class InternalExtendedCompletionContext {
 		return false;
 	}
 
-	public boolean canUseDiamond(String[] parameterTypes, char[][] typeVariables) {
+	public boolean canUseDiamond(String[] parameterTypes, char[][] typeVariables) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// If no LHS or return type expected, then we can safely use diamond
 		char[][] expectedTypekeys = this.completionContext.getExpectedTypesKeys();
 		if (expectedTypekeys == null || expectedTypekeys.length == 0)
@@ -932,8 +932,8 @@ public class InternalExtendedCompletionContext {
 		// Next, find out whether any of the constructor parameters are the same as one of the
 		// class type variables. If yes, diamond cannot be used.
 		if (typeVariables != null) {
-			for (String parameterType : parameterTypes) {
-				for (char[] typeVariable : typeVariables) {
+			for (String parameterType : parameterTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				for (char[] typeVariable : typeVariables) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (CharOperation.equals(parameterType.toCharArray(), typeVariable))
 						return false;
 				}

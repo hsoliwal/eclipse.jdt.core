@@ -32,22 +32,22 @@ public class AnnotationProcessorTests extends TestCase {
 	public final class DiagnosticReport<S> implements DiagnosticListener<S> {
 		public int count;
 		public StringBuilder buffer;
-		private final List<Diagnostic<? extends S>> warnings = new ArrayList<>();
+		private final List<Diagnostic<? extends S>> warnings = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		DiagnosticReport() {
 			this.count = 0;
-			this.buffer = new StringBuilder();
+			this.buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		}
 		@Override
 		public void report(Diagnostic<? extends S> diagnostic) {
 			if (diagnostic.getKind() ==  Diagnostic.Kind.WARNING) {
 				warnings.add(diagnostic);
 				count++;
-				buffer.append(diagnostic.getMessage(Locale.getDefault()));
-				buffer.append("\n");
+				buffer.append(diagnostic.getMessage(Locale.getDefault())); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else if (diagnostic.getKind() == Diagnostic.Kind.ERROR) {
 				count++;
-				buffer.append(diagnostic.getMessage(Locale.getDefault()));
-				buffer.append("\n");
+				buffer.append(diagnostic.getMessage(Locale.getDefault())); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				System.out.println(buffer.toString());
 			}
 		}
@@ -60,7 +60,7 @@ public class AnnotationProcessorTests extends TestCase {
 		}
 		public void clear() {
 			this.count = 0;
-			this.buffer = new StringBuilder();
+			this.buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		}
 	}
 
@@ -74,7 +74,7 @@ public class AnnotationProcessorTests extends TestCase {
 		JavaCompiler compiler = BatchTestUtils.getEclipseCompiler();
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "AnnotationProcessorTests", "bug443769");
 		BatchTestUtils.copyResources("targets/AnnotationProcessorTests/bug443769", targetFolder);
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		final String PROC = "org.eclipse.jdt.compiler.apt.tests.processors.AnnotationProcessorTests.Bug443769Proc";
 		options.add("-processorpath");
 		options.add(" ");
@@ -88,7 +88,7 @@ public class AnnotationProcessorTests extends TestCase {
 		JavaCompiler compiler = BatchTestUtils.getEclipseCompiler();
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "AnnotationProcessorTests", "bug456986");
 		BatchTestUtils.copyResources("targets/AnnotationProcessorTests/bug456986", targetFolder);
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		final String PROC = "org.eclipse.jdt.compiler.apt.tests.processors.AnnotationProcessorTests.Bug456986Proc";
 		options.add("-processorpath");
 		options.add(" ");
@@ -102,7 +102,7 @@ public class AnnotationProcessorTests extends TestCase {
 		JavaCompiler compiler = BatchTestUtils.getEclipseCompiler();
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "AnnotationProcessorTests", "bug540090");
 		BatchTestUtils.copyResources("targets/AnnotationProcessorTests/bug540090", targetFolder);
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		final String PROC = "org.eclipse.jdt.compiler.apt.tests.processors.AnnotationProcessorTests.Bug540090Proc";
 		options.add("-processorpath");
 		options.add(" ");
@@ -116,7 +116,7 @@ public class AnnotationProcessorTests extends TestCase {
 		JavaCompiler compiler = BatchTestUtils.getEclipseCompiler();
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "AnnotationProcessorTests", "bug415274");
 		BatchTestUtils.copyResources("targets/AnnotationProcessorTests/bug415274", targetFolder);
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		final String PROC = "org.eclipse.jdt.compiler.apt.tests.processors.AnnotationProcessorTests.Bug415274Proc";
 		options.add("-processorpath");
 		options.add(" ");
@@ -130,7 +130,7 @@ public class AnnotationProcessorTests extends TestCase {
 		JavaCompiler compiler = BatchTestUtils.getEclipseCompiler();
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "AnnotationProcessorTests", "bug463062");
 		BatchTestUtils.copyResources("targets/AnnotationProcessorTests/bug463062", targetFolder);
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		final String PROC = "org.eclipse.jdt.compiler.apt.tests.processors.AnnotationProcessorTests.Bug463062Proc";
 		options.add("-processorpath");
 		options.add(" ");
@@ -143,7 +143,7 @@ public class AnnotationProcessorTests extends TestCase {
 		JavaCompiler compiler = BatchTestUtils.getEclipseCompiler();
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "AnnotationProcessorTests", "bug493837");
 		BatchTestUtils.copyResources("targets/AnnotationProcessorTests/bug493837", targetFolder);
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		final String PROC = "org.eclipse.jdt.compiler.apt.tests.processors.AnnotationProcessorTests.Bug493837Proc";
 		options.add("-processorpath");
 		options.add(" ");
@@ -157,7 +157,7 @@ public class AnnotationProcessorTests extends TestCase {
 		JavaCompiler compiler = BatchTestUtils.getEclipseCompiler();
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "AnnotationProcessorTests", "bug340635");
 		BatchTestUtils.copyResources("targets/AnnotationProcessorTests/bug340635", targetFolder);
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		final String PROC = "org.eclipse.jdt.compiler.apt.tests.processors.AnnotationProcessorTests.Bug340635Proc";
 		options.add("-processorpath");
 		options.add(" ");
@@ -173,7 +173,7 @@ public class AnnotationProcessorTests extends TestCase {
 		JavaCompiler compiler = BatchTestUtils.getEclipseCompiler();
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "AnnotationProcessorTests", "bug471995");
 		BatchTestUtils.copyResources("targets/AnnotationProcessorTests/bug471995", targetFolder);
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		options.add("-proc:only");
 		BatchTestUtils.compileTree(compiler, options, targetFolder, null);
 	}
@@ -181,7 +181,7 @@ public class AnnotationProcessorTests extends TestCase {
 		JavaCompiler compiler = BatchTestUtils.getEclipseCompiler();
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "AnnotationProcessorTests", "bug317216");
 		BatchTestUtils.copyResources("targets/AnnotationProcessorTests/bug317216", targetFolder);
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		final String PROC = "org.eclipse.jdt.compiler.apt.tests.processors.AnnotationProcessorTests.Bug317216Proc";
 		options.add("-processorpath");
 		options.add(" ");
@@ -194,18 +194,18 @@ public class AnnotationProcessorTests extends TestCase {
 		assertNull(System.getProperty(PROC));
 	}
 
-	public void testBug530665() throws IOException {
+	public void testBug530665() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		JavaCompiler compiler = BatchTestUtils.getEclipseCompiler();
 		File srcFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "AnnotationProcessorTests", "bug317216");
 		BatchTestUtils.copyResources("targets/AnnotationProcessorTests/bug530665", srcFolder);
 		File binFolder = TestUtils.concatPath(BatchTestUtils.getBinFolderName(), "targets", "AnnotationProcessorTests", "bug530665");
-		binFolder.mkdirs();
+		binFolder.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File preexistsFile = new File(binFolder, "preexists.txt");
-		assertTrue(preexistsFile.createNewFile());
+		assertTrue(preexistsFile.createNewFile()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File nonexistsFile = new File(binFolder, "nonexists.txt");
-		assertTrue(!nonexistsFile.exists());
+		assertTrue(!nonexistsFile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		final String PROC = "org.eclipse.jdt.compiler.apt.tests.processors.AnnotationProcessorTests.Bug530665Proc";
 		options.add("-processorpath");
 		options.add(" ");
@@ -215,14 +215,14 @@ public class AnnotationProcessorTests extends TestCase {
 		BatchTestUtils.compileTree(compiler, options, srcFolder, false, diagnosticListener);
 		assertEquals("succeeded", System.getProperty(PROC));
 
-		assertTrue(!preexistsFile.exists()); // deleted
-		assertTrue(nonexistsFile.exists()); // rewritten
+		assertTrue(!preexistsFile.exists()); // deleted //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue(nonexistsFile.exists()); // rewritten //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
-	public void testGHIssue2347_1() throws IOException {
+	public void testGHIssue2347_1() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		JavaCompiler compiler = BatchTestUtils.getEclipseCompiler();
 		File folder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "AnnotationProcessorTests", "bug540090");
 		BatchTestUtils.copyResources("targets/AnnotationProcessorTests/bug540090", folder);
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		final String PROC = "org.eclipse.jdt.compiler.apt.tests.processors.AnnotationProcessorTests.Bug540090Proc";
 		options.add("-processorpath");
 		options.add(" ");
@@ -236,11 +236,11 @@ public class AnnotationProcessorTests extends TestCase {
 		String output = stringWriter.getBuffer().toString();
 		assertTrue("Files not generated as expected", output.contains("[3 .class files generated]"));
 	}
-	public void testGHIssue2347_2() throws IOException {
+	public void testGHIssue2347_2() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		JavaCompiler compiler = BatchTestUtils.getEclipseCompiler();
 		File folder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "AnnotationProcessorTests", "bug540090");
 		BatchTestUtils.copyResources("targets/AnnotationProcessorTests/bug540090", folder);
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		final String PROC = "org.eclipse.jdt.compiler.apt.tests.processors.AnnotationProcessorTests.Bug540090Proc";
 		options.add("-processorpath");
 		options.add(" ");
@@ -256,11 +256,11 @@ public class AnnotationProcessorTests extends TestCase {
 		assertTrue("Files not generated as expected", output.contains("[3 .class files generated]"));
 
 	}
-	public void testGHIssue2347_3() throws IOException {
+	public void testGHIssue2347_3() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		JavaCompiler compiler = BatchTestUtils.getEclipseCompiler();
 		File folder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "AnnotationProcessorTests", "bug540090");
 		BatchTestUtils.copyResources("targets/AnnotationProcessorTests/bug540090", folder);
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		final String PROC = "org.eclipse.jdt.compiler.apt.tests.processors.AnnotationProcessorTests.Bug540090Proc";
 		options.add("-processorpath");
 		options.add(" ");
@@ -275,11 +275,11 @@ public class AnnotationProcessorTests extends TestCase {
 		String output = stringWriter.getBuffer().toString();
 		assertTrue("Files not generated as expected", output.contains("[3 .class files generated]"));
 	}
-	public void testGHIssue2347_4() throws IOException {
+	public void testGHIssue2347_4() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		JavaCompiler compiler = BatchTestUtils.getEclipseCompiler();
 		File folder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "AnnotationProcessorTests", "bug540090");
 		BatchTestUtils.copyResources("targets/AnnotationProcessorTests/bug540090", folder);
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		final String PROC = "org.eclipse.jdt.compiler.apt.tests.processors.AnnotationProcessorTests.Bug540090Proc";
 		options.add("-processorpath");
 		options.add(" ");
@@ -290,9 +290,9 @@ public class AnnotationProcessorTests extends TestCase {
 		BatchTestUtils.compileTree(compiler, options, folder, null);
 		folder = TestUtils.concatPath(BatchTestUtils.getBinFolderName(), "targets", "AnnotationProcessorTests", "bug540090");
 		File classfile = new File(folder, "B.class");
-		assertFalse(classfile.exists());
+		assertFalse(classfile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		folder = TestUtils.concatPath(BatchTestUtils.getGenFolderName(), "gen");
 		classfile = new File(folder, "GenClass.java");
-		assertTrue(classfile.exists());
+		assertTrue(classfile.exists()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 }

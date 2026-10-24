@@ -125,7 +125,7 @@ public class ParticipantBuildTests extends BuilderTests {
 		return (CompilationUnit) p.createAST(null);
 	}
 
-	public void testBuildStarting() throws JavaModelException {
+	public void testBuildStarting() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
@@ -139,7 +139,7 @@ public class ParticipantBuildTests extends BuilderTests {
 		// install compilationParticipant
 		TestCompilationParticipant1.PARTICIPANT = new CompilationParticipant() {
 			int buildPass = 0;
-			public void buildStarting(BuildContext[] files, boolean isBatchBuild) {
+			public void buildStarting(BuildContext[] files, boolean isBatchBuild) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				// want to add a gen'ed source file that is referenced from the initial file to see if its recompiled
 				BuildContext result = files[0];
 				IFile genedType = result.getFile().getParent().getFile(new Path("GeneratedType.java")); //$NON-NLS-1$
@@ -179,7 +179,7 @@ public class ParticipantBuildTests extends BuilderTests {
 		expectingNoProblems();
 	}
 
-	public void testDefaultValue() throws JavaModelException {
+	public void testDefaultValue() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion()); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
@@ -207,29 +207,29 @@ public class ParticipantBuildTests extends BuilderTests {
 			public boolean isAnnotationProcessor() {
 				return true;
 			}
-			public void processAnnotations(BuildContext[] files) {
-				for (int i = 0, total = files.length; i < total; i++) {
+			public void processAnnotations(BuildContext[] files) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+				for (int i = 0, total = files.length; i < total; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IFile file = files[i].getFile();
 					// Traversing the members of test.ClassWithNestedAnnotation through a reference in EntryPoint.java
 					if (!"EntryPoint.java".equals(file.getName())) continue; //$NON-NLS-1$
 
-					List problems = new ArrayList();
+					List problems = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 					CompilationUnit unit = buildCompilationUnit(files[i]);
 					List types = unit.types();
-					for (int t = 0, l = types.size(); t < l; t++) {
+					for (int t = 0, l = types.size(); t < l; t++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						AbstractTypeDeclaration typeDecl = (AbstractTypeDeclaration) types.get(t);
 						ITypeBinding typeBinding = typeDecl.resolveBinding();
 						if (typeBinding == null) continue;
 						IVariableBinding[] fieldBindings = typeBinding.getDeclaredFields();
-						for (int f = 0, fLength = fieldBindings.length; f < fLength; f++) {
+						for (int f = 0, fLength = fieldBindings.length; f < fLength; f++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							IVariableBinding field = fieldBindings[f];
 							if ("nestedAnnotation".equals(field.getName())) {
 								ITypeBinding fieldType = field.getType();
 								ITypeBinding[] declaredTypes = fieldType.getDeclaredTypes();
-								for (int d = 0, dLength = declaredTypes.length; d < dLength; d++) {
+								for (int d = 0, dLength = declaredTypes.length; d < dLength; d++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 									if (!"NestedAnnotation".equals(declaredTypes[d].getName())) continue;
 									IMethodBinding[] annotationMethods = declaredTypes[d].getDeclaredMethods();
-									for (int m = 0, mLength = annotationMethods.length; m < mLength; m++) {
+									for (int m = 0, mLength = annotationMethods.length; m < mLength; m++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 										if (!"value".equals(annotationMethods[m].getName())) continue;
 										Object defaultValue = annotationMethods[m].getDefaultValue();
 										assertTrue("Wrong class", defaultValue instanceof IVariableBinding);
@@ -237,22 +237,22 @@ public class ParticipantBuildTests extends BuilderTests {
 										String defaultString = variableBinding.getName();
 										String expected = "Eore";
 										if (!expected.equals(defaultString)) {
-											IProblem problem = new ParticipantProblem("expecting default = " + expected + " not " + defaultString, file.getName());
+											IProblem problem = new ParticipantProblem("expecting default = " + expected + " not " + defaultString, file.getName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 											problems.add(problem);
 										}
 									}
 								}
 								IVariableBinding[] nestedFields = fieldType.getDeclaredFields();
-								for (int nf = 0, nfLength = nestedFields.length; nf < nfLength; nf++) {
+								for (int nf = 0, nfLength = nestedFields.length; nf < nfLength; nf++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 									if (!nestedFields[nf].getName().equals("FOUR")) continue;
 									Object constant = nestedFields[nf].getConstantValue();
 									String constantStr = constant == null ? "" : constant.toString();
 									String expected = "4";
 									if (!constantStr.equals(expected))
-										problems.add(new ParticipantProblem("expecting constant = " + expected + " not " + constantStr, file.getName()));
+										problems.add(new ParticipantProblem("expecting constant = " + expected + " not " + constantStr, file.getName())); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								}
 							} else {
-								problems.add(new ParticipantProblem("found unexpected field " + field, file.getName()));
+								problems.add(new ParticipantProblem("found unexpected field " + field, file.getName())); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							}
 						}
 					}
@@ -273,7 +273,7 @@ public class ParticipantBuildTests extends BuilderTests {
 	 * Ensure that participants problems are correctly managed by the Java builder
 	 * (regression test for bug 134345 Problems from CompilationParticipants do not get cleaned up unless there are Java errors)
 	 */
-	public void testParticipantProblems() throws JavaModelException {
+	public void testParticipantProblems() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion());
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.removePackageFragmentRoot(projectPath, "");
@@ -288,7 +288,7 @@ public class ParticipantBuildTests extends BuilderTests {
 		// install compilationParticipant
 		TestCompilationParticipant1.PARTICIPANT = new CompilationParticipant() {
 			public void buildStarting(BuildContext[] files, boolean isBatch) {
-				for (int i = 0, total = files.length; i < total; i++) {
+				for (int i = 0, total = files.length; i < total; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					BuildContext context = files[i];
 					if (CharOperation.indexOf("generate problem".toCharArray(), context.getContents(), true) != -1) {
 						context.recordNewProblems(new CategorizedProblem[] {new ParticipantProblem("Participant problem", context.getFile().getFullPath().toString())});
@@ -308,7 +308,7 @@ public class ParticipantBuildTests extends BuilderTests {
 		expectingParticipantProblems(projectPath, "");
 	}
 
-	public void testProcessAnnotationDeclarations() throws JavaModelException {
+	public void testProcessAnnotationDeclarations() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion()); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
@@ -330,7 +330,7 @@ public class ParticipantBuildTests extends BuilderTests {
 			public boolean isAnnotationProcessor() {
 				return true;
 			}
-			public void processAnnotations(BuildContext[] files) {
+			public void processAnnotations(BuildContext[] files) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				// want to add a gen'ed source file that is referenced from the initial file to see if its recompiled
 				if (this.count == 2) {
 					this.count--;
@@ -360,7 +360,7 @@ public class ParticipantBuildTests extends BuilderTests {
 		expectingNoProblems();
 	}
 
-	public void testProcessAnnotationQualifiedReferences() throws JavaModelException {
+	public void testProcessAnnotationQualifiedReferences() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion()); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
@@ -407,7 +407,7 @@ public class ParticipantBuildTests extends BuilderTests {
 	/**
 	 * Test that a build participant can inspect the declared annotations by name
 	 */
-	public void testProcessAnnotationHasAnnotation() throws JavaModelException {
+	public void testProcessAnnotationHasAnnotation() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion()); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
@@ -442,7 +442,7 @@ public class ParticipantBuildTests extends BuilderTests {
 		expectingNoProblems();
 	}
 
-	public void testProcessAnnotationReferences() throws JavaModelException {
+	public void testProcessAnnotationReferences() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion()); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
@@ -477,7 +477,7 @@ public class ParticipantBuildTests extends BuilderTests {
 		expectingNoProblems();
 	}
 
-	public void testPostProcessingReturnValues() throws JavaModelException {
+	public void testPostProcessingReturnValues() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String PROJECT_NAME = "Project";
 		IPath projectPath = env.addProject(PROJECT_NAME);
 		IProject testProject = env.getProject(PROJECT_NAME);
@@ -492,9 +492,9 @@ public class ParticipantBuildTests extends BuilderTests {
 		// from post-processing
 		// TestClass2 will return the unmodified class content from post-processing
 		String[] classNames = new String[3];
-		for (int i = 0; i < 3; i++) {
-			String className = "TestClass" + i;
-			env.addClass(root, "", className, "public class " + className + " {}\n");
+		for (int i = 0; i < 3; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			String className = "TestClass" + i; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			env.addClass(root, "", className, "public class " + className + " {}\n"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			classNames[i] = className;
 		}
 
@@ -502,10 +502,10 @@ public class ParticipantBuildTests extends BuilderTests {
 			Map<String, byte[]> postProcessedClasses;
 
 			public void buildStarting(BuildContext[] files, boolean isBatchBuild) {
-				this.postProcessedClasses = new HashMap<>();
+				this.postProcessedClasses = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			}
 
-			public Optional<byte[]> postProcess(BuildContext file, ByteArrayInputStream bytes) {
+			public Optional<byte[]> postProcess(BuildContext file, ByteArrayInputStream bytes) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				String fileName = file.getFile().getName();
 				String className = fileName.substring(0, fileName.indexOf("."));
 				byte[] originalBytes = bytes.readAllBytes();
@@ -533,11 +533,11 @@ public class ParticipantBuildTests extends BuilderTests {
 				// check that all classes were post-processed and that their content on disk
 				// matches the expectation after post-processing
 				assertEquals(classNames.length, this.postProcessedClasses.size());
-				for (String className : classNames) {
+				for (String className : classNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					byte[] expectedClassContent = this.postProcessedClasses.get(className);
 					assertNotNull(expectedClassContent);
 					assertArrayEquals(expectedClassContent,
-							getClassFileContent(testProject, "bin/" + className + ".class"));
+							getClassFileContent(testProject, "bin/" + className + ".class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		};
@@ -545,7 +545,7 @@ public class ParticipantBuildTests extends BuilderTests {
 		expectingNoProblems();
 	}
 
-	public void testPostProcessOrderingAndPropagation() throws JavaModelException {
+	public void testPostProcessOrderingAndPropagation() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String PROJECT_NAME = "Project";
 		IPath projectPath = env.addProject(PROJECT_NAME);
 		IProject testProject = env.getProject(PROJECT_NAME);
@@ -555,7 +555,7 @@ public class ParticipantBuildTests extends BuilderTests {
 		env.setOutputFolder(projectPath, "bin");
 
 		final String TEST_CLASS_NAME = "TestClass";
-		env.addClass(root, "", TEST_CLASS_NAME, "public class " + TEST_CLASS_NAME + " {}\n");
+		env.addClass(root, "", TEST_CLASS_NAME, "public class " + TEST_CLASS_NAME + " {}\n"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		// The set "requires" attribute enforces dependency order TestCompilationParticipant1 -->
 		// TestCompilationParticipant3 --> TestCompilationParticipant2
@@ -576,7 +576,7 @@ public class ParticipantBuildTests extends BuilderTests {
 				try {
 					combinedOutput.write(newBytes);
 				} catch (IOException e) {
-					fail("Could not write combined output byte array: " + e.getMessage());
+					fail("Could not write combined output byte array: " + e.getMessage()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				return Optional.of(newBytes);
 			}
@@ -596,7 +596,7 @@ public class ParticipantBuildTests extends BuilderTests {
 				try {
 					combinedOutput.write(toBeAppendedBytes);
 				} catch (IOException e) {
-					fail("Could not write combined output byte array: " + e.getMessage());
+					fail("Could not write combined output byte array: " + e.getMessage()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				return Optional.of(newBytes);
 			}
@@ -606,7 +606,7 @@ public class ParticipantBuildTests extends BuilderTests {
 				// Check that the modifications of all 3 post processors are visible in the
 				// modified class on disk
 				assertArrayEquals(combinedOutput.toByteArray(),
-						getClassFileContent(testProject, "bin/" + TEST_CLASS_NAME + ".class"));
+						getClassFileContent(testProject, "bin/" + TEST_CLASS_NAME + ".class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		};
 
@@ -624,7 +624,7 @@ public class ParticipantBuildTests extends BuilderTests {
 				try {
 					combinedOutput.write(toBeAppendedBytes);
 				} catch (IOException e) {
-					fail("Could not write combined output byte array: " + e.getMessage());
+					fail("Could not write combined output byte array: " + e.getMessage()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				return Optional.of(newBytes);
 			}
@@ -643,12 +643,12 @@ public class ParticipantBuildTests extends BuilderTests {
 		try {
 			classContent = classFile.getContents().readAllBytes();
 		} catch (IOException | CoreException e) {
-			fail("Could not read class file " + classFile.getFullPath());
+			fail("Could not read class file " + classFile.getFullPath()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return classContent;
 	}
 
-	public void testPostProcessDependenciesAndProblems() throws JavaModelException {
+	public void testPostProcessDependenciesAndProblems() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String PROJECT_NAME = "Project";
 		IPath projectPath = env.addProject(PROJECT_NAME);
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -658,9 +658,9 @@ public class ParticipantBuildTests extends BuilderTests {
 
 		// add two classes and compile
 		final String TEST_CLASS_NAME = "TestClass";
-		env.addClass(root, "", TEST_CLASS_NAME, "public class " + TEST_CLASS_NAME + " {}\n");
+		env.addClass(root, "", TEST_CLASS_NAME, "public class " + TEST_CLASS_NAME + " {}\n"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		final String TEST_CLASS_2_NAME = "TestClass2";
-		env.addClass(root, "", TEST_CLASS_2_NAME, "public class " + TEST_CLASS_2_NAME + " {}\n");
+		env.addClass(root, "", TEST_CLASS_2_NAME, "public class " + TEST_CLASS_2_NAME + " {}\n"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		TestCompilationParticipant1.PARTICIPANT = new PostProcessingParticipant() {
 			public Optional<byte[]> postProcess(BuildContext file, ByteArrayInputStream bytes) {
@@ -677,9 +677,9 @@ public class ParticipantBuildTests extends BuilderTests {
 
 		// modify TestClass and recompile --> should compile and post-process TestClass
 		// and dependent TestClass2
-		env.addClass(root, "", TEST_CLASS_NAME, "public class " + TEST_CLASS_NAME + " {public int testInt;}\n");
+		env.addClass(root, "", TEST_CLASS_NAME, "public class " + TEST_CLASS_NAME + " {public int testInt;}\n"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		ArrayList<String> postProcessedClasses = new ArrayList<>();
+		ArrayList<String> postProcessedClasses = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		TestCompilationParticipant1.PARTICIPANT = new PostProcessingParticipant() {
 			public Optional<byte[]> postProcess(BuildContext file, ByteArrayInputStream bytes) {
 				String fileName = file.getFile().getName();
@@ -695,7 +695,7 @@ public class ParticipantBuildTests extends BuilderTests {
 
 		// modify TestClass2 and recompile --> should only compile and post-process TestClass2
 		IPath testClass2Path = env.addClass(root, "", TEST_CLASS_2_NAME,
-				"public class " + TEST_CLASS_2_NAME + " {public int testInt;}\n");
+				"public class " + TEST_CLASS_2_NAME + " {public int testInt;}\n"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		final String PROBLEM_MSG = "TestProblem";
 		postProcessedClasses.clear();
@@ -720,7 +720,7 @@ public class ParticipantBuildTests extends BuilderTests {
 		assertEquals(PROBLEM_MSG, reportedProblems[0].getMessage());
 
 		// recompile TestClass2 --> error marker should be deleted
-		env.addClass(root, "", TEST_CLASS_2_NAME, "public class " + TEST_CLASS_2_NAME + " {}\n");
+		env.addClass(root, "", TEST_CLASS_2_NAME, "public class " + TEST_CLASS_2_NAME + " {}\n"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		TestCompilationParticipant1.PARTICIPANT = null;
 		incrementalBuild(projectPath);
 
@@ -728,7 +728,7 @@ public class ParticipantBuildTests extends BuilderTests {
 		assertEquals(0, reportedProblems.length);
 	}
 
-	public void testResolvedMethod() throws JavaModelException {
+	public void testResolvedMethod() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion()); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
@@ -745,23 +745,23 @@ public class ParticipantBuildTests extends BuilderTests {
 			public boolean isAnnotationProcessor() {
 				return true;
 			}
-			public void processAnnotations(BuildContext[] files) {
-				for (int i = 0, total = files.length; i < total; i++) {
+			public void processAnnotations(BuildContext[] files) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+				for (int i = 0, total = files.length; i < total; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IFile file = files[i].getFile();
 					// Traversing the members of test.ClassWithNestedAnnotation through a reference in EntryPoint.java
 					if (!"Try.java".equals(file.getName())) continue; //$NON-NLS-1$
 
-					List problems = new ArrayList();
+					List problems = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 					CompilationUnit unit = buildCompilationUnit(files[i]);
 					List types = unit.types();
-					for (int t = 0, l = types.size(); t < l; t++) {
+					for (int t = 0, l = types.size(); t < l; t++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						AbstractTypeDeclaration typeDecl = (AbstractTypeDeclaration) types.get(t);
 						ITypeBinding typeBinding = typeDecl.resolveBinding();
 						if (typeBinding == null) continue;
 						IAnnotationBinding[] annotations = typeBinding.getAnnotations();
 						if (annotations == null || annotations.length == 0) {
 							throw new IllegalStateException(
-									"Expected at least one annotation in binding " + typeBinding);
+									"Expected at least one annotation in binding " + typeBinding); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
 						IAnnotationBinding targetValue = annotations[0];
 						typeBinding = targetValue.getAnnotationType();
@@ -769,12 +769,12 @@ public class ParticipantBuildTests extends BuilderTests {
 						IMemberValuePairBinding[] pairs = targetValue.getAllMemberValuePairs();
 						if (pairs == null || pairs.length == 0) {
 							throw new IllegalStateException(
-									"Expected at least one member value pair in " + targetValue
+									"Expected at least one member value pair in " + targetValue //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 									+ ", binding was: " + typeBinding);
 						}
 						IMethodBinding method = pairs[0].getMethodBinding();
 						if (!"value".equals(method.getName()))
-							problems.add(new ParticipantProblem("method " + method.getName() + " not found", file.getName()));
+							problems.add(new ParticipantProblem("method " + method.getName() + " not found", file.getName())); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 					if (!problems.isEmpty()) {
 						CategorizedProblem[] problemArray = new CategorizedProblem[problems.size()];
@@ -791,7 +791,7 @@ public class ParticipantBuildTests extends BuilderTests {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=158611
 // Checking the GENERATED_BY attribute
-public void test1001() throws JavaModelException {
+public void test1001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion());
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
 	env.removePackageFragmentRoot(projectPath, "");
@@ -803,7 +803,7 @@ public void test1001() throws JavaModelException {
 		);
 		TestCompilationParticipant1.PARTICIPANT = new CompilationParticipant() {
 		public void buildStarting(BuildContext[] files, boolean isBatch) {
-			for (int i = 0, total = files.length; i < total; i++) {
+			for (int i = 0, total = files.length; i < total; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				BuildContext context = files[i];
 				if (CharOperation.indexOf("generate problem".toCharArray(),
 						context.getContents(), true) != -1) {
@@ -821,7 +821,7 @@ public void test1001() throws JavaModelException {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=158611
 // Checking the GENERATED_BY attribute
-public void test1002() throws JavaModelException {
+public void test1002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion());
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
 	env.removePackageFragmentRoot(projectPath, "");
@@ -834,7 +834,7 @@ public void test1002() throws JavaModelException {
 	final String specificGeneratedBy = "specific";
 	TestCompilationParticipant1.PARTICIPANT = new CompilationParticipant() {
 		public void buildStarting(BuildContext[] files, boolean isBatch) {
-			for (int i = 0, total = files.length; i < total; i++) {
+			for (int i = 0, total = files.length; i < total; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				BuildContext context = files[i];
 				if (CharOperation.indexOf("generate problem".toCharArray(),
 						context.getContents(), true) != -1) {

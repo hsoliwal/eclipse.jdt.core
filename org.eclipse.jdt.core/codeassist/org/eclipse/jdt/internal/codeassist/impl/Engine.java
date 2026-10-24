@@ -102,7 +102,7 @@ public abstract class Engine implements ITypeRequestor {
 	 * Add additional source types (the first one is the requested type, the rest is formed by the
 	 * secondary types defined in the same compilation unit).
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void accept(ISourceType[] sourceTypes, PackageBinding packageBinding, AccessRestriction accessRestriction) {
 		// https://bugs.eclipse.org/bugs/show_bug.cgi?id=479656
 		// In case of the requested type not being a member type (i.e. not being a top level type)
@@ -120,7 +120,7 @@ public abstract class Engine implements ITypeRequestor {
 				sourceTypes = new ISourceType[types.length];
 				sourceTypes[0] = sourceType;
 				int length = types.length;
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					ISourceType otherType =
 						(ISourceType) ((JavaElement) types[i]).getElementInfo();
 					sourceTypes[i] = otherType;
@@ -154,7 +154,7 @@ public abstract class Engine implements ITypeRequestor {
 
 	public abstract AssistParser getParser();
 
-	public void initializeImportCaches() {
+	public void initializeImportCaches() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.currentPackageName == null) {
 			initializePackageCache();
 		}
@@ -162,7 +162,7 @@ public abstract class Engine implements ITypeRequestor {
 		ImportBinding[] importBindings = this.unitScope.imports;
 		int length = importBindings == null ? 0 : importBindings.length;
 
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ImportBinding importBinding = importBindings[i];
 			if(importBinding.onDemand) {
 				if(this.onDemandImportsCache == null) {
@@ -198,7 +198,7 @@ public abstract class Engine implements ITypeRequestor {
 		}
 	}
 
-	protected boolean mustQualifyType(
+	protected boolean mustQualifyType( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] packageName,
 		char[] typeName,
 		char[] enclosingTypeNames,
@@ -212,7 +212,7 @@ public abstract class Engine implements ITypeRequestor {
 			initializeImportCaches();
 		}
 
-		for (int i = 0; i < this.importCacheCount; i++) {
+		for (int i = 0; i < this.importCacheCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[][] importName = this.importsCache[i];
 			if(CharOperation.equals(typeName, importName[0])) {
 				char[] fullyQualifiedTypeName =
@@ -237,7 +237,7 @@ public abstract class Engine implements ITypeRequestor {
 
 		char[] fullyQualifiedEnclosingTypeName = null;
 
-		for (int i = 0; i < this.onDemandImportCacheCount; i++) {
+		for (int i = 0; i < this.onDemandImportCacheCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ImportBinding importBinding = this.onDemandImportsCache[i];
 			Binding resolvedImport = importBinding.getResolvedImport();
 
@@ -277,7 +277,7 @@ public abstract class Engine implements ITypeRequestor {
 
 			// find potential conflict with another import
 			if(isFound) {
-				for (int j = 0; j < this.onDemandImportCacheCount; j++) {
+				for (int j = 0; j < this.onDemandImportCacheCount; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if(i != j) {
 						ImportBinding conflictingImportBinding = this.onDemandImportsCache[j];
 						if(conflictingImportBinding.getResolvedImport() instanceof ReferenceBinding refBinding) {
@@ -312,7 +312,7 @@ public abstract class Engine implements ITypeRequestor {
 	 */
 	protected ASTNode parseBlockStatements(CompilationUnitDeclaration unit, int position) {
 		int length = unit.types.length;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeDeclaration type = unit.types[i];
 			if (type.declarationSourceStart < position
 				&& type.declarationSourceEnd >= position) {
@@ -323,7 +323,7 @@ public abstract class Engine implements ITypeRequestor {
 		return null;
 	}
 
-	private ASTNode parseBlockStatements(
+	private ASTNode parseBlockStatements( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TypeDeclaration type,
 		CompilationUnitDeclaration unit,
 		int position) {
@@ -331,7 +331,7 @@ public abstract class Engine implements ITypeRequestor {
 		TypeDeclaration[] memberTypes = type.memberTypes;
 		if (memberTypes != null) {
 			int length = memberTypes.length;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				TypeDeclaration memberType = memberTypes[i];
 				if (memberType.bodyStart > position)
 					continue;
@@ -344,7 +344,7 @@ public abstract class Engine implements ITypeRequestor {
 		AbstractMethodDeclaration[] methods = type.methods;
 		if (methods != null) {
 			int length = methods.length;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				AbstractMethodDeclaration method = methods[i];
 				if (type.isImplicitType() && method.isClinit())
 					continue;
@@ -365,7 +365,7 @@ public abstract class Engine implements ITypeRequestor {
 		FieldDeclaration[] fields = type.fields;
 		if (fields != null) {
 			int length = fields.length;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				FieldDeclaration field = fields[i];
 				if (field.sourceStart > position)
 					continue;

@@ -30,7 +30,7 @@ import org.eclipse.jdt.internal.core.JavaElement;
 import org.eclipse.jdt.internal.core.Openable;
 import org.eclipse.jdt.internal.core.Region;
 
-public class RegionBasedTypeHierarchy extends TypeHierarchy {
+public class RegionBasedTypeHierarchy extends TypeHierarchy { //FLLDCIM: MARK — T31  IMPLEMENTS
 	/**
 	 * The region of types for which to build the hierarchy
 	 */
@@ -48,7 +48,7 @@ public RegionBasedTypeHierarchy(IRegion region, ICompilationUnit[] workingCopies
 
 	Region newRegion = new Region();
 	IJavaElement[] elements = region.getElements();
-	for (IJavaElement element : elements) {
+	for (IJavaElement element : elements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		newRegion.add(element);
 
 	}
@@ -63,13 +63,13 @@ public RegionBasedTypeHierarchy(IRegion region, ICompilationUnit[] workingCopies
 protected void initializeRegions() {
 	super.initializeRegions();
 	IJavaElement[] roots = this.region.getElements();
-	for (IJavaElement root : roots) {
+	for (IJavaElement root : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (root instanceof IOpenable) {
-			this.files.put((IOpenable) root, new ArrayList<>());
+			this.files.put((IOpenable) root, new ArrayList<>()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		} else {
 			Openable o = (Openable) ((JavaElement) root).getOpenableParent();
 			if (o != null) {
-				this.files.put(o, new ArrayList<>());
+				this.files.put(o, new ArrayList<>()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			}
 		}
 		checkCanceled();
@@ -119,7 +119,7 @@ private boolean pruneDeadBranches(IType type) {
 	return (subtypes == null || subtypes.size() == 0);
 }
 private void pruneDeadBranches(IType[] types) {
-	for (IType type : types) {
+	for (IType type : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (pruneDeadBranches(type) && !this.region.contains(type)) {
 			removeType(type);
 		}
@@ -129,11 +129,11 @@ private void pruneDeadBranches(IType[] types) {
  * Removes all the subtypes of the given type from the type hierarchy,
  * removes its superclass entry and removes the references from its super types.
  */
-protected void removeType(IType type) {
+protected void removeType(IType type) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IType[] subtypes = getSubtypes(type);
 	this.typeToSubtypes.remove(type);
 	if (subtypes != null) {
-		for (IType subtype : subtypes) {
+		for (IType subtype : subtypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			removeType(subtype);
 		}
 	}
@@ -144,7 +144,7 @@ protected void removeType(IType type) {
 	}
 	IType[] superinterfaces = this.typeToSuperInterfaces.remove(type);
 	if (superinterfaces != null) {
-		for (IType superinterface : superinterfaces) {
+		for (IType superinterface : superinterfaces) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Set<IType> types = this.typeToSubtypes.get(superinterface);
 			if (types != null) types.remove(type);
 		}

@@ -42,7 +42,7 @@ public class ReadAnnotationTests extends APTTestBase
 		addNoTypeSources();
 	}
 
-	private void addQuestionSources()
+	private void addQuestionSources() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		IPath srcRoot = getSourcePath();
 		// SimpleAnnotation.java

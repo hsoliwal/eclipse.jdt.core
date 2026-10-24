@@ -34,7 +34,7 @@ public class SyntaxErrorTest extends AbstractCompilerTest {
 public SyntaxErrorTest(String testName){
 	super(testName);
 }
-public void checkParse(
+public void checkParse( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[] source,
 	String expectedSyntaxErrorDiagnosis,
 	String testName) {
@@ -52,41 +52,41 @@ public void checkParse(
 
 	parser.parse(sourceUnit, compilationResult);
 
-	StringBuilder buffer = new StringBuilder(100);
+	StringBuilder buffer = new StringBuilder(100); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	if (compilationResult.hasProblems() || compilationResult.hasTasks()) {
 		CategorizedProblem[] problems = compilationResult.getAllProblems();
 		int count = problems.length;
 		int problemCount = 0;
 		char[] unitSource = compilationResult.compilationUnit.getContents();
-		for (int i = 0; i < count; i++) {
+		for (int i = 0; i < count; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (problems[i] != null) {
 				if (problemCount == 0)
-					buffer.append("----------\n");
+					buffer.append("----------\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				problemCount++;
-				buffer.append(problemCount + (problems[i].isError() ? ". ERROR" : ". WARNING"));
-				buffer.append(" in " + new String(problems[i].getOriginatingFileName()).replace('/', '\\'));
+				buffer.append(problemCount + (problems[i].isError() ? ". ERROR" : ". WARNING")); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(" in " + new String(problems[i].getOriginatingFileName()).replace('/', '\\')); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				try {
-					buffer.append(((DefaultProblem)problems[i]).errorReportSource(unitSource));
-					buffer.append("\n");
-					buffer.append(problems[i].getMessage());
-					buffer.append("\n");
+					buffer.append(((DefaultProblem)problems[i]).errorReportSource(unitSource)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(problems[i].getMessage()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} catch (Exception e) {
 				}
-				buffer.append("----------\n");
+				buffer.append("----------\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 	}
 	String computedSyntaxErrorDiagnosis = buffer.toString();
  	//System.out.println(Util.displayString(computedSyntaxErrorDiagnosis));
 	assertEquals(
-		"Invalid syntax error diagnosis" + testName,
+		"Invalid syntax error diagnosis" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Util.convertToIndependantLineDelimiter(expectedSyntaxErrorDiagnosis),
 		Util.convertToIndependantLineDelimiter(computedSyntaxErrorDiagnosis));
 }
 /*
  * Should diagnose parenthesis mismatch
  */
-public void test01() {
+public void test01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"public class X {								\n"+
@@ -124,7 +124,7 @@ public void test01() {
 /*
  * Should diagnose brace mismatch
  */
-public void test02() {
+public void test02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"class Bar {			\n"+
@@ -150,7 +150,7 @@ public void test02() {
 /*
  * Should diagnose parenthesis mismatch
  */
-public void test03() {
+public void test03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"public class X { // should complain	\n"+
@@ -194,7 +194,7 @@ public void test03() {
 /*
  * Should not diagnose parenthesis mismatch
  */
-public void test04() {
+public void test04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"public class X { // should not complain	\n"+
@@ -231,7 +231,7 @@ public void test04() {
 		testName);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=61189
-public void test05() {
+public void test05() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"public class X {							\n"+
@@ -260,7 +260,7 @@ public void test05() {
 		testName);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=61189
-public void test06() {
+public void test06() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"public class X { 							\n"+
@@ -284,7 +284,7 @@ public void test06() {
 		testName);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=133292
-public void test07() {
+public void test07() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"public class X { 											\n"+
@@ -306,7 +306,7 @@ public void test07() {
 		testName);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=133292
-public void test08() {
+public void test08() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"public class X { 											\n"+
@@ -328,7 +328,7 @@ public void test08() {
 		testName);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=133292
-public void test09() {
+public void test09() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"public class X { 												\n"+
@@ -352,7 +352,7 @@ public void test09() {
 		testName);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=133292
-public void test10() {
+public void test10() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"public class X { 												\n"+
@@ -376,7 +376,7 @@ public void test10() {
 		testName);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=80339
-public void test11() {
+public void test11() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"package a;										\n"+
@@ -399,7 +399,7 @@ public void test11() {
 		testName);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=80339
-public void test12() {
+public void test12() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"package a;										\n"+
@@ -428,7 +428,7 @@ public void test12() {
 		testName);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=221266
-public void test13() {
+public void test13() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"package a;										\n"+
@@ -453,7 +453,7 @@ public void test13() {
 		testName);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=212713
-public void test14() {
+public void test14() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"public interface Test {\n"+
@@ -481,7 +481,7 @@ public void test14() {
 		testName);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=210419
-public void test15() {
+public void test15() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"package bug;\n" +

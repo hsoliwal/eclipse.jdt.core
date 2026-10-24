@@ -58,16 +58,16 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 	 * Remove last type arguments from a line of an expected result.
 	 * This line contains one search match print out.
 	 */
-	int[] removeLastTypeArgument(char[] line) {
+	int[] removeLastTypeArgument(char[] line) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int idx=line.length-1;
-		while (line[idx] != ']') {
+		while (line[idx] != ']') { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			idx--;
 			if (idx == 0) return null;
 		}
 		if (line[--idx] != '>') return null;
 		int n = 1;
 		int end = idx+1;
-		while(idx>=0 && n!= 0) {
+		while(idx>=0 && n!= 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch (line[--idx]) {
 				case '<': n--; break;
 				case '>': n++; break;
@@ -78,7 +78,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			return null;
 		}
 		int start = idx;
-		while (idx>=0 && line[idx] != '[') idx--;
+		while (idx>=0 && line[idx] != '[') idx--; //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (idx > 0)
 			return new int[] { start, end };
 		// We should have opened a bracket!
@@ -88,14 +88,14 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 	@Override
 	void addResultLine(StringBuilder buffer, char[] line) {
 		int[] positions = removeLastTypeArgument(line);
-		if (buffer.length() > 0) buffer.append('\n');
+		if (buffer.length() > 0) buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (positions != null) {
 			int stop = positions[0];
 			int restart = positions[1];
-			buffer.append(line, 0, stop);
-			buffer.append(line, restart, line.length-restart);
+			buffer.append(line, 0, stop); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(line, restart, line.length-restart); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
-			buffer.append(line);
+			buffer.append(line); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
@@ -123,7 +123,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 	 * 		d) wildcard unbound
 	 */
 	// Source type pattern on single type argument
-	public void testTypeSingleArgument01() throws CoreException {
+	public void testTypeSingleArgument01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IType type = getCompilationUnit("JavaSearch15/src/g1/t/s/def/Generic.java").getType("Generic");
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
 		search(type, REFERENCES, scope, this.resultCollector);
@@ -169,7 +169,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/s/ref/R4.java g1.t.s.ref.R4.qgen_run [g1.t.s.def.Generic] ERASURE_MATCH",
 			this.resultCollector);
 	}
-	public void testTypeSingleArgument02() throws CoreException {
+	public void testTypeSingleArgument02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IType type = getCompilationUnit("JavaSearch15/src/g1/t/s/def/Generic.java").getType("Generic").getType("Member");
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
 		search(type, REFERENCES, scope, this.resultCollector);
@@ -188,7 +188,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/s/ref/R4.java g1.t.s.ref.R4.qgen_run [g1.t.s.def.Generic<? super RuntimeException>.Member] ERASURE_MATCH",
 			this.resultCollector);
 	}
-	public void testTypeSingleArgument03() throws CoreException {
+	public void testTypeSingleArgument03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IType type = getCompilationUnit("JavaSearch15/src/g1/t/s/def/Generic.java").getType("Generic").getType("MemberGeneric");
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
 		search(type, REFERENCES, scope, this.resultCollector);
@@ -207,7 +207,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/s/ref/R3.java g1.t.s.ref.R3.qgen_run [g1.t.s.def.Generic<? super RuntimeException>.MemberGeneric] ERASURE_MATCH",
 			this.resultCollector);
 	}
-	public void testTypeSingleArgument04() throws CoreException {
+	public void testTypeSingleArgument04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IType type = getCompilationUnit("JavaSearch15/src/g1/t/s/def/NonGeneric.java").getType("NonGeneric").getType("GenericMember");
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
 		search(type, REFERENCES, scope, this.resultCollector);
@@ -228,7 +228,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 	}
 
 	// Source type pattern on multiple type arguments
-	public void testTypeMultipleArguments01() throws CoreException {
+	public void testTypeMultipleArguments01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IType type = getCompilationUnit("JavaSearch15/src/g1/t/m/def/Generic.java").getType("Generic");
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
 		search(type, REFERENCES, scope, this.resultCollector);
@@ -274,7 +274,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/m/ref/R4.java g1.t.m.ref.R4.qgen_run [g1.t.m.def.Generic] ERASURE_MATCH",
 			this.resultCollector);
 	}
-	public void testTypeMultipleArguments02() throws CoreException {
+	public void testTypeMultipleArguments02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IType type = getCompilationUnit("JavaSearch15/src/g1/t/m/def/Generic.java").getType("Generic").getType("Member");
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
 		search(type, REFERENCES, scope, this.resultCollector);
@@ -293,7 +293,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/m/ref/R4.java g1.t.m.ref.R4.qgen_run [g1.t.m.def.Generic<? super RuntimeException, ? super IllegalMonitorStateException, ? super IllegalMonitorStateException>.Member] ERASURE_MATCH",
 			this.resultCollector);
 	}
-	public void testTypeMultipleArguments03() throws CoreException {
+	public void testTypeMultipleArguments03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IType type = getCompilationUnit("JavaSearch15/src/g1/t/m/def/Generic.java").getType("Generic").getType("MemberGeneric");
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
 		search(type, REFERENCES, scope, this.resultCollector);
@@ -312,7 +312,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/m/ref/R3.java g1.t.m.ref.R3.qgen_run [g1.t.m.def.Generic<? super RuntimeException, ? super IllegalMonitorStateException, ? super IllegalMonitorStateException>.MemberGeneric] ERASURE_MATCH",
 			this.resultCollector);
 	}
-	public void testTypeMultipleArguments04() throws CoreException {
+	public void testTypeMultipleArguments04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IType type = getCompilationUnit("JavaSearch15/src/g1/t/m/def/NonGeneric.java").getType("NonGeneric").getType("GenericMember");
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
 		search(type, REFERENCES, scope, this.resultCollector);
@@ -333,7 +333,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 	}
 
 	// Source type pattern on nested single type argument
-	public void testTypeNestedSingleArgument01() throws CoreException {
+	public void testTypeNestedSingleArgument01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IType type = getCompilationUnit("JavaSearch15/src/g3/t/def/GS.java").getType("GS");
 		ICompilationUnit ref = getCompilationUnit("JavaSearch15/src/g3/t/ref/R1.java");
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new ICompilationUnit[] {ref});
@@ -372,7 +372,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g3/t/ref/R1.java g3.t.ref.R1.qgms_obj [g3.t.def.GS] ERASURE_MATCH",
 			this.resultCollector);
 	}
-	public void testTypeNestedSingleArgument02() throws CoreException {
+	public void testTypeNestedSingleArgument02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IType type = getCompilationUnit("JavaSearch15/src/g3/t/def/GS.java").getType("GS").getType("Member");
 		IJavaSearchScope scope = getJavaSearchScope15("g3.t", true /* add all subpackages */);
 		search(type, REFERENCES, scope, this.resultCollector);
@@ -409,7 +409,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g3/t/ref/R2.java g3.t.ref.R2.qgms_obj [g3.t.def.GS<? super java.lang.RuntimeException>.Member] ERASURE_MATCH",
 			this.resultCollector);
 	}
-	public void testTypeNestedSingleArgument03() throws CoreException {
+	public void testTypeNestedSingleArgument03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IType type = getCompilationUnit("JavaSearch15/src/g3/t/def/GS.java").getType("GS").getType("Generic");
 		IJavaSearchScope scope = getJavaSearchScope15("g3.t", true /* add all subpackages */);
 		search(type, REFERENCES, scope, this.resultCollector);
@@ -446,7 +446,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g3/t/ref/R3.java g3.t.ref.R3.qgms_obj [g3.t.def.GS<? super RuntimeException>.Generic] ERASURE_MATCH",
 			this.resultCollector);
 	}
-	public void testTypeNestedSingleArgument04() throws CoreException {
+	public void testTypeNestedSingleArgument04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IType type = getCompilationUnit("JavaSearch15/src/g3/t/def/NGS.java").getType("NGS").getType("Generic");
 		IJavaSearchScope scope = getJavaSearchScope15("g3.t", true /* add all subpackages */);
 		search(type, REFERENCES, scope, this.resultCollector);
@@ -485,7 +485,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 	}
 
 	// Source type pattern on nested multiple type arguments
-	public void testTypeNestedMultipleArguments01() throws CoreException {
+	public void testTypeNestedMultipleArguments01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IType type = getCompilationUnit("JavaSearch15/src/g3/t/def/GM.java").getType("GM");
 		ICompilationUnit ref = getCompilationUnit("JavaSearch15/src/g3/t/ref/R1.java");
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new ICompilationUnit[] {ref});
@@ -512,7 +512,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g3/t/ref/R1.java g3.t.ref.R1.qgms_obj [g3.t.def.GM] ERASURE_MATCH",
 			this.resultCollector);
 	}
-	public void testTypeNestedMultipleArguments02() throws CoreException {
+	public void testTypeNestedMultipleArguments02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IType type = getCompilationUnit("JavaSearch15/src/g3/t/def/GM.java").getType("GM").getType("Member");
 		IJavaSearchScope scope = getJavaSearchScope15("g3.t", true /* add all subpackages */);
 		search(type, REFERENCES, scope, this.resultCollector);
@@ -537,7 +537,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g3/t/ref/R2.java g3.t.ref.R2.qgms_obj [g3.t.def.GM<g3.t.def.GS<java.lang.Object>.Member, g3.t.def.GS<? extends java.lang.Throwable>.Member, g3.t.def.GS<? super java.lang.RuntimeException>.Member>.Member] ERASURE_MATCH",
 			this.resultCollector);
 	}
-	public void testTypeNestedMultipleArguments03() throws CoreException {
+	public void testTypeNestedMultipleArguments03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IType type = getCompilationUnit("JavaSearch15/src/g3/t/def/GM.java").getType("GM").getType("Generic");
 		IJavaSearchScope scope = getJavaSearchScope15("g3.t", true /* add all subpackages */);
 		search(type, REFERENCES, scope, this.resultCollector);
@@ -562,7 +562,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g3/t/ref/R3.java g3.t.ref.R3.qgms_obj [g3.t.def.GM<g3.t.def.GS<Object>.Generic<?>, g3.t.def.GS<? extends Throwable>.Generic<?>, g3.t.def.GS<? super RuntimeException>.Generic<?>>.Generic] ERASURE_MATCH",
 			this.resultCollector);
 	}
-	public void testTypeNestedMultipleArguments04() throws CoreException {
+	public void testTypeNestedMultipleArguments04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IType type = getCompilationUnit("JavaSearch15/src/g3/t/def/NGM.java").getType("NGM").getType("Generic");
 		IJavaSearchScope scope = getJavaSearchScope15("g3.t", true /* add all subpackages */);
 		search(type, REFERENCES, scope, this.resultCollector);
@@ -589,7 +589,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 	}
 
 	// String pattern with no type argument
-	public void testStringNoArgument01() throws CoreException {
+	public void testStringNoArgument01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t.s.ref", false /* only this package */);
 		search("Generic", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -634,7 +634,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/s/ref/R4.java g1.t.s.ref.R4.qgen_run [Generic] EQUIVALENT_MATCH",
 			this.resultCollector);
 	}
-	public void testStringNoArgument02() throws CoreException {
+	public void testStringNoArgument02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t.m.ref", false /* only this package */);
 		search("Generic", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -679,7 +679,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/m/ref/R4.java g1.t.m.ref.R4.qgen_run [Generic] EQUIVALENT_MATCH",
 			this.resultCollector);
 	}
-	public void testStringNoArgument03() throws CoreException {
+	public void testStringNoArgument03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
 		search("Member", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -709,7 +709,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/s/ref/R4.java g1.t.s.ref.R4.qgen_run [Member] EXACT_MATCH",
 			this.resultCollector);
 	}
-	public void testStringNoArgument04() throws CoreException {
+	public void testStringNoArgument04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
 		search("MemberGeneric", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -739,7 +739,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/s/ref/R3.java g1.t.s.ref.R3.qgen_run [MemberGeneric] EQUIVALENT_MATCH",
 			this.resultCollector);
 	}
-	public void testStringNoArgument05() throws CoreException {
+	public void testStringNoArgument05() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
 		search("GenericMember", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -769,7 +769,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/s/ref/R2.java g1.t.s.ref.R2.qgen_run [GenericMember] EQUIVALENT_MATCH",
 			this.resultCollector);
 	}
-	public void testStringNoArgument06() throws CoreException {
+	public void testStringNoArgument06() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
 		search("Generic.Member", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -799,7 +799,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/s/ref/R4.java g1.t.s.ref.R4.qgen_run [Generic<? super RuntimeException>.Member] EQUIVALENT_MATCH",
 			this.resultCollector);
 	}
-	public void testStringNoArgument07() throws CoreException {
+	public void testStringNoArgument07() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
 		search("Generic.MemberGeneric", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -829,7 +829,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/s/ref/R3.java g1.t.s.ref.R3.qgen_run [Generic<? super RuntimeException>.MemberGeneric] EQUIVALENT_MATCH",
 			this.resultCollector);
 	}
-	public void testStringNoArgument08() throws CoreException {
+	public void testStringNoArgument08() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
 		search("NonGeneric.GenericMember", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -861,7 +861,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 	}
 
 	// Parameterized Source type pattern on single type argument
-	public void testParameterizedTypeSingleArgument01() throws CoreException {
+	public void testParameterizedTypeSingleArgument01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit unit = getCompilationUnit("JavaSearch15/src/g1/t/s/ref/R1.java");
 		ResolvedSourceType type = selectParameterizedType(unit, "Generic<Exception>"); //$NON-NLS-1$
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
@@ -908,7 +908,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/s/ref/R4.java g1.t.s.ref.R4.qgen_run [g1.t.s.def.Generic<? super RuntimeException>] EQUIVALENT_MATCH",
 			this.resultCollector);
 	}
-	public void testParameterizedTypeSingleArgument02() throws CoreException {
+	public void testParameterizedTypeSingleArgument02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit unit = getCompilationUnit("JavaSearch15/src/g1/t/s/ref/R4.java");
 		ResolvedSourceType type = selectParameterizedType(unit, "g1.t.s.def.Generic<Exception>.Member"); //$NON-NLS-1$
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
@@ -928,7 +928,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/s/ref/R4.java g1.t.s.ref.R4.qgen_run [g1.t.s.def.Generic<? super RuntimeException>.Member] EQUIVALENT_MATCH",
 			this.resultCollector);
 	}
-	public void testParameterizedTypeSingleArgument03() throws CoreException {
+	public void testParameterizedTypeSingleArgument03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit unit = getCompilationUnit("JavaSearch15/src/g1/t/s/ref/R2.java");
 		ResolvedSourceType type = selectParameterizedType(unit, "NonGeneric.GenericMember<Exception>"); //$NON-NLS-1$
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
@@ -948,7 +948,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/s/ref/R2.java g1.t.s.ref.R2.qgen_run [g1.t.s.def.NonGeneric.GenericMember<? super RuntimeException>] EQUIVALENT_MATCH",
 			this.resultCollector);
 	}
-	public void testParameterizedTypeSingleArgument04() throws CoreException {
+	public void testParameterizedTypeSingleArgument04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit unit = getCompilationUnit("JavaSearch15/src/g1/t/s/ref/R3.java");
 		ResolvedSourceType type = selectParameterizedType(unit,  "g1.t.s.def.Generic<Exception>.MemberGeneric<Exception>"); //$NON-NLS-1$
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
@@ -970,7 +970,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 	}
 
 	// Parameterized Source type pattern on multiple type arguments
-	public void testParameterizedTypeMultipleArguments01() throws CoreException {
+	public void testParameterizedTypeMultipleArguments01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit unit = getCompilationUnit("JavaSearch15/src/g1/t/m/ref/R1.java");
 		ResolvedSourceType type = selectParameterizedType(unit, "g1.t.m.def.Generic<? extends Throwable, ? extends Exception, ? extends RuntimeException>"); //$NON-NLS-1$
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
@@ -1017,7 +1017,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/m/ref/R4.java g1.t.m.ref.R4.qgen_run [g1.t.m.def.Generic<? super RuntimeException, ? super IllegalMonitorStateException, ? super IllegalMonitorStateException>] ERASURE_MATCH",
 			this.resultCollector);
 	}
-	public void testParameterizedTypeMultipleArguments02() throws CoreException {
+	public void testParameterizedTypeMultipleArguments02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit unit = getCompilationUnit("JavaSearch15/src/g1/t/m/ref/R4.java");
 		ResolvedSourceType type = selectParameterizedType(unit, "Generic<? extends Throwable, ? extends Exception, ? extends RuntimeException>.Member"); //$NON-NLS-1$
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
@@ -1037,7 +1037,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/m/ref/R4.java g1.t.m.ref.R4.qgen_run [g1.t.m.def.Generic<? super RuntimeException, ? super IllegalMonitorStateException, ? super IllegalMonitorStateException>.Member] ERASURE_MATCH",
 			this.resultCollector);
 	}
-	public void testParameterizedTypeMultipleArguments03() throws CoreException {
+	public void testParameterizedTypeMultipleArguments03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit unit = getCompilationUnit("JavaSearch15/src/g1/t/m/ref/R2.java");
 		ResolvedSourceType type = selectParameterizedType(unit, "NonGeneric.GenericMember<? super RuntimeException, ? super IllegalMonitorStateException, ? super IllegalMonitorStateException>"); //$NON-NLS-1$
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
@@ -1057,7 +1057,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/m/ref/R2.java g1.t.m.ref.R2.qgen_run [g1.t.m.def.NonGeneric.GenericMember<? super RuntimeException, ? super IllegalMonitorStateException, ? super IllegalMonitorStateException>] EXACT_MATCH",
 			this.resultCollector);
 	}
-	public void testParameterizedTypeMultipleArguments04() throws CoreException {
+	public void testParameterizedTypeMultipleArguments04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit unit = getCompilationUnit("JavaSearch15/src/g1/t/m/ref/R3.java");
 		ResolvedSourceType type = selectParameterizedType(unit,  "g1.t.m.def.Generic<? super RuntimeException, ? super IllegalMonitorStateException, ? super IllegalMonitorStateException>.MemberGeneric<? extends Throwable, ? extends Exception, ? extends RuntimeException>"); //$NON-NLS-1$
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
@@ -1079,7 +1079,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 	}
 
 	// String pattern with Single type argument
-	public void testStringParameterizedSingleArgument01() throws CoreException {
+	public void testStringParameterizedSingleArgument01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
 		search("Generic<?>", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -1133,7 +1133,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/s/ref/R4.java g1.t.s.ref.R4.qgen_run [Generic<? super RuntimeException>] EQUIVALENT_MATCH",
 			this.resultCollector);
 	}
-	public void testStringParameterizedSingleArgument02() throws CoreException {
+	public void testStringParameterizedSingleArgument02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
 		search("Generic<?>.Member", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -1153,7 +1153,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/s/ref/R4.java g1.t.s.ref.R4.qgen_run [Generic<? super RuntimeException>.Member] EQUIVALENT_MATCH",
 			this.resultCollector);
 	}
-	public void testStringParameterizedSingleArgument03() throws CoreException {
+	public void testStringParameterizedSingleArgument03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
 		search("GenericMember<?>", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -1173,7 +1173,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/s/ref/R2.java g1.t.s.ref.R2.qgen_run [GenericMember<? super RuntimeException>] EQUIVALENT_MATCH",
 			this.resultCollector);
 	}
-	public void testStringParameterizedSingleArgument04() throws CoreException {
+	public void testStringParameterizedSingleArgument04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
 		search("MemberGeneric<?>", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -1193,7 +1193,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/s/ref/R3.java g1.t.s.ref.R3.qgen_run [MemberGeneric<? extends Throwable>] EQUIVALENT_MATCH",
 			this.resultCollector);
 	}
-	public void testStringParameterizedSingleArgument05() throws CoreException {
+	public void testStringParameterizedSingleArgument05() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
 		search("Generic<?>.MemberGeneric<?>", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -1215,7 +1215,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 	}
 
 	// Multiple type arguments in string pattern
-	public void testStringParameterizedMultipleArguments01() throws CoreException {
+	public void testStringParameterizedMultipleArguments01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
 		search("Generic<Unresolved1, Unresolved2, Unresolved3>", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -1269,7 +1269,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/s/ref/R4.java g1.t.s.ref.R4.qgen [Generic] EQUIVALENT_RAW_MATCH",
 			this.resultCollector);
 	}
-	public void testStringParameterizedMultipleArguments02() throws CoreException {
+	public void testStringParameterizedMultipleArguments02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
 		search("Generic<Unresolved1, Unresolved2, Unresolved3>.Member", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -1289,7 +1289,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/s/ref/R4.java g1.t.s.ref.R4.qgen [Generic.Member] EQUIVALENT_RAW_MATCH",
 			this.resultCollector);
 	}
-	public void testStringParameterizedMultipleArguments03() throws CoreException {
+	public void testStringParameterizedMultipleArguments03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
 		search("GenericMember<Unresolved1, Unresolved2, Unresolved3>", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -1309,7 +1309,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/s/ref/R2.java g1.t.s.ref.R2.qgen [GenericMember] EQUIVALENT_RAW_MATCH",
 			this.resultCollector);
 	}
-	public void testStringParameterizedMultipleArguments04() throws CoreException {
+	public void testStringParameterizedMultipleArguments04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
 		search("MemberGeneric<Unresolved1, Unresolved2, Unresolved3>", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -1329,7 +1329,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/s/ref/R3.java g1.t.s.ref.R3.qgen [MemberGeneric] EQUIVALENT_RAW_MATCH",
 			this.resultCollector);
 	}
-	public void testStringParameterizedMultipleArguments05() throws CoreException {
+	public void testStringParameterizedMultipleArguments05() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t", true /* add all subpackages */);
 		search("Generic<Unresolved1, Unresolved2, Unresolved3>.MemberGeneric<Unresolved1, Unresolved2, Unresolved3>", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -1351,7 +1351,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 	}
 
 	// String pattern with 	any strings characters ('*' or '?')
-	public void testStringAnyStrings01() throws CoreException {
+	public void testStringAnyStrings01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t.s.ref", false /* only this package */);
 		search("*Generic", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -1409,7 +1409,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/s/ref/R4.java g1.t.s.ref.R4.qgen_run [Generic] EQUIVALENT_MATCH",
 			this.resultCollector);
 	}
-	public void testStringAnyStrings02() throws CoreException {
+	public void testStringAnyStrings02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t.m.ref", false /* only this package */);
 		search("G?ner?c", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -1454,7 +1454,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/m/ref/R4.java g1.t.m.ref.R4.qgen_run [Generic] EQUIVALENT_MATCH",
 			this.resultCollector);
 	}
-	public void testStringAnyStrings03() throws CoreException {
+	public void testStringAnyStrings03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t.s.ref", false /* only this package */);
 		search("*Member*", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -1496,7 +1496,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/s/ref/R4.java g1.t.s.ref.R4.qgen_run [Member] EXACT_MATCH",
 			this.resultCollector);
 	}
-	public void testStringAnyStrings04() throws CoreException {
+	public void testStringAnyStrings04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t.m.ref", false /* only this package */);
 		search("Member*", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -1526,7 +1526,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/m/ref/R4.java g1.t.m.ref.R4.qgen_run [Member] EXACT_MATCH",
 			this.resultCollector);
 	}
-	public void testStringAnyStrings05() throws CoreException {
+	public void testStringAnyStrings05() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t.s.ref", true);
 		search("Generic*<Object>", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -1583,7 +1583,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g1/t/s/ref/R4.java g1.t.s.ref.R4.qgen_run [Generic<? super RuntimeException>] EQUIVALENT_MATCH",
 			this.resultCollector);
 	}
-	public void testStringAnyStrings06() throws CoreException {
+	public void testStringAnyStrings06() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g1.t.s.ref", true);
 		search("Generic<Obj*>", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -1630,7 +1630,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 	}
 
 	// String pattern with nested single type argument
-	public void testStringNestedSingleArgument01() throws CoreException {
+	public void testStringNestedSingleArgument01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchCUScope("JavaSearch15", "g3/t/ref", "R1.java");
 		search("GS<Exception>", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -1667,7 +1667,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g3/t/ref/R1.java g3.t.ref.R1.qgms_obj [GS<? super java.lang.RuntimeException>] EQUIVALENT_MATCH",
 			this.resultCollector);
 	}
-	public void testStringNestedSingleArgument02() throws CoreException {
+	public void testStringNestedSingleArgument02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g3.t", true /* add all subpackages */);
 		search("GS<? extends Exception>.Member", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -1703,7 +1703,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g3/t/ref/R2.java g3.t.ref.R2.qgms_obj [GS<? super java.lang.RuntimeException>.Member] ERASURE_MATCH",
 			this.resultCollector);
 	}
-	public void testStringNestedSingleArgument03() throws CoreException {
+	public void testStringNestedSingleArgument03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g3.t", true /* add all subpackages */);
 		search("GS<?>.Generic<? super RuntimeException>", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -1739,7 +1739,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g3/t/ref/R3.java g3.t.ref.R3.qgms_obj [GS<? super RuntimeException>.Generic<?>] EQUIVALENT_MATCH",
 			this.resultCollector);
 	}
-	public void testStringNestedSingleArgument04() throws CoreException {
+	public void testStringNestedSingleArgument04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g3.t", true /* add all subpackages */);
 		search("NGS.Generic<? extends Throwable>", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -1777,7 +1777,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 	}
 
 	// String pattern with nested multiple type arguments
-	public void testStringNestedMultipleArguments01() throws CoreException {
+	public void testStringNestedMultipleArguments01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchCUScope("JavaSearch15", "g3/t/ref", "R1.java");
 		search("GM<Object, Exception, RuntimeException>", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -1802,7 +1802,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g3/t/ref/R1.java g3.t.ref.R1.qgms_obj [GM<g3.t.def.GS<java.lang.Object>, g3.t.def.GS<? extends java.lang.Throwable>, g3.t.def.GS<? super java.lang.RuntimeException>>] ERASURE_MATCH",
 			this.resultCollector);
 	}
-	public void testStringNestedMultipleArguments02() throws CoreException {
+	public void testStringNestedMultipleArguments02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g3.t", true /* add all subpackages */);
 		search("GM<java.lang.Object, ? extends java.lang.Exception, ? super java.lang.RuntimeException>.Member", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -1826,7 +1826,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g3/t/ref/R2.java g3.t.ref.R2.qgms_obj [GM<g3.t.def.GS<java.lang.Object>.Member, g3.t.def.GS<? extends java.lang.Throwable>.Member, g3.t.def.GS<? super java.lang.RuntimeException>.Member>.Member] ERASURE_MATCH",
 			this.resultCollector);
 	}
-	public void testStringNestedMultipleArguments03() throws CoreException {
+	public void testStringNestedMultipleArguments03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g3.t", true /* add all subpackages */);
 		search("GM<Object, Exception, RuntimeException>.Generic<?, ?, ?>", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -1850,7 +1850,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g3/t/ref/R3.java g3.t.ref.R3.qgms_obj [GM<g3.t.def.GS<Object>.Generic<?>, g3.t.def.GS<? extends Throwable>.Generic<?>, g3.t.def.GS<? super RuntimeException>.Generic<?>>.Generic<?,?,?>] ERASURE_MATCH",
 			this.resultCollector);
 	}
-	public void testStringNestedMultipleArguments04() throws CoreException {
+	public void testStringNestedMultipleArguments04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g3.t", true /* add all subpackages */);
 		search("g3.t.def.GM<?, ?, ?>.Member", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -1874,7 +1874,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g3/t/ref/R2.java g3.t.ref.R2.qgms_obj [g3.t.def.GM<g3.t.def.GS<java.lang.Object>.Member, g3.t.def.GS<? extends java.lang.Throwable>.Member, g3.t.def.GS<? super java.lang.RuntimeException>.Member>.Member] EQUIVALENT_MATCH",
 			this.resultCollector);
 	}
-	public void testStringNestedMultipleArguments05() throws CoreException {
+	public void testStringNestedMultipleArguments05() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g3.t", true /* add all subpackages */);
 		search("NGM.Generic<? extends java.lang.Object, ? extends java.lang.Object, ? extends java.lang.Object>", TYPE, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -1900,7 +1900,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 	}
 
 	// Parameterized array type with single type argument
-	public void testParameterizedArrayTypeSingleArgument01() throws CoreException {
+	public void testParameterizedArrayTypeSingleArgument01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit unit = getCompilationUnit("JavaSearch15/src/g6/t/ref/Single.java");
 		IType type = selectType(unit,  "List", 2 /* 2nd occurence*/); //$NON-NLS-1$
 		IJavaSearchScope scope = getJavaSearchScope15("g6", true /* add all subpackages */);
@@ -1918,7 +1918,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g6/t/ref/Single.java g6.t.ref.Single.exceptionListArrayList [List] EQUIVALENT_MATCH",
 			this.resultCollector);
 	}
-	public void testParameterizedArrayTypeSingleArgument02() throws CoreException {
+	public void testParameterizedArrayTypeSingleArgument02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit unit = getCompilationUnit("JavaSearch15/src/g6/t/ref/Single.java");
 		IType type = selectType(unit,  "List<Exception>"); //$NON-NLS-1$
 		IJavaSearchScope scope = getJavaSearchScope15("g6", true /* add all subpackages */);
@@ -1937,7 +1937,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 
 			this.resultCollector);
 	}
-	public void testParameterizedArrayTypeSingleArgument03() throws CoreException {
+	public void testParameterizedArrayTypeSingleArgument03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit unit = getCompilationUnit("JavaSearch15/src/g6/t/ref/QualifSingle.java");
 		IType type = selectType(unit,  "g6.t.def.List<Exception>", 2 /* 2nd occurence*/); //$NON-NLS-1$
 		IJavaSearchScope scope = getJavaSearchScope15("g6", true /* add all subpackages */);
@@ -1955,7 +1955,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g6/t/ref/Single.java g6.t.ref.Single.exceptionListArrayList [List<Exception>] EXACT_MATCH",
 			this.resultCollector);
 	}
-	public void testParameterizedArrayTypeSingleArgument04() throws CoreException {
+	public void testParameterizedArrayTypeSingleArgument04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit unit = getCompilationUnit("JavaSearch15/src/g6/t/ref/QualifSingle.java");
 		IType type = selectType(unit,  "g6.t.def.List<g6.t.def.List<Exception>[]>"); //$NON-NLS-1$
 		IJavaSearchScope scope = getJavaSearchScope15("g6", true /* add all subpackages */);
@@ -1975,7 +1975,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 	}
 
 	// Parameterized array type with multiple type arguments
-	public void testParameterizedArrayTypeMultipleArguments01() throws CoreException {
+	public void testParameterizedArrayTypeMultipleArguments01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit unit = getCompilationUnit("JavaSearch15/src/g6/t/ref/Multiple.java");
 		IType type = selectType(unit,  "Table.Entry"); //$NON-NLS-1$
 		IJavaSearchScope scope = getJavaSearchScope15("g6", true /* add all subpackages */);
@@ -1994,7 +1994,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g6/t/ref/QualifMultiple.java g6.t.ref.QualifMultiple.tableOfEntryExceptionArray [g6.t.def.Table<String, Exception>.Entry] EQUIVALENT_MATCH",
 			this.resultCollector);
 	}
-	public void testParameterizedArrayTypeMultipleArguments02() throws CoreException {
+	public void testParameterizedArrayTypeMultipleArguments02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit unit = getCompilationUnit("JavaSearch15/src/g6/t/ref/QualifMultiple.java");
 		IType type = selectType(unit,  "Table<String, Exception>.Entry<String, Exception>"); //$NON-NLS-1$
 		IJavaSearchScope scope = getJavaSearchScope15("g6", true /* add all subpackages */);
@@ -2013,7 +2013,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g6/t/ref/QualifMultiple.java g6.t.ref.QualifMultiple.tableOfEntryExceptionArray [g6.t.def.Table<String, Exception>.Entry<String, Exception>] EXACT_MATCH",
 			this.resultCollector);
 	}
-	public void testParameterizedArrayTypeMultipleArguments03() throws CoreException {
+	public void testParameterizedArrayTypeMultipleArguments03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit unit = getCompilationUnit("JavaSearch15/src/g6/t/ref/Multiple.java");
 		IType type = selectType(unit,  "Table<String, Exception>.Entry<String, Exception>", 2); //$NON-NLS-1$
 		IJavaSearchScope scope = getJavaSearchScope15("g6", true /* add all subpackages */);
@@ -2032,7 +2032,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 			"src/g6/t/ref/QualifMultiple.java g6.t.ref.QualifMultiple.tableOfEntryExceptionArray [g6.t.def.Table<String, Exception>.Entry<String, Exception>] EXACT_MATCH",
 			this.resultCollector);
 	}
-	public void testParameterizedArrayTypeMultipleArguments04() throws CoreException {
+	public void testParameterizedArrayTypeMultipleArguments04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit unit = getCompilationUnit("JavaSearch15/src/g6/t/ref/Multiple.java");
 		IType type = selectType(unit,  "Table<String, Table<String, Exception>.Entry<String, Exception>[]>.Entry<String, Table<String, Exception>.Entry<String, Exception>[]>"); //$NON-NLS-1$
 		IJavaSearchScope scope = getJavaSearchScope15("g6", true /* add all subpackages */);
@@ -2056,7 +2056,7 @@ public class JavaSearchGenericTypeTests extends AbstractJavaSearchGenericTests {
 	 * Bug 83713: [search] IAE while searching reference to parameterized type
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=83713"
 	 */
-	public void testParameterizedType_Bug83713() throws CoreException {
+	public void testParameterizedType_Bug83713() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearch15/src/p/X.java",
 			"package p;\n" +

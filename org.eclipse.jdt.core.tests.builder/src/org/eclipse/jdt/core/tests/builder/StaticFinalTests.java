@@ -28,7 +28,7 @@ public class StaticFinalTests extends BuilderTests {
 		return buildTestSuite(StaticFinalTests.class);
 	}
 
-	public void testBoolean() throws JavaModelException {
+	public void testBoolean() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -60,7 +60,7 @@ public class StaticFinalTests extends BuilderTests {
 		executeClass(projectPath, "p1.Main", "false", ""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
-	public void testByte() throws JavaModelException {
+	public void testByte() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -92,7 +92,7 @@ public class StaticFinalTests extends BuilderTests {
 		executeClass(projectPath, "p1.Main", "1", ""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
-	public void testChar() throws JavaModelException {
+	public void testChar() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -124,7 +124,7 @@ public class StaticFinalTests extends BuilderTests {
 		executeClass(projectPath, "p1.Main", "Bye", ""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
-	public void testDouble() throws JavaModelException {
+	public void testDouble() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -156,7 +156,7 @@ public class StaticFinalTests extends BuilderTests {
 		executeClass(projectPath, "p1.Main", "3", ""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
-	public void testFloat() throws JavaModelException {
+	public void testFloat() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -188,7 +188,7 @@ public class StaticFinalTests extends BuilderTests {
 		executeClass(projectPath, "p1.Main", "5", ""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
-	public void testInt() throws JavaModelException {
+	public void testInt() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -220,7 +220,7 @@ public class StaticFinalTests extends BuilderTests {
 		executeClass(projectPath, "p1.Main", "7", ""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
-	public void testLong() throws JavaModelException {
+	public void testLong() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -252,7 +252,7 @@ public class StaticFinalTests extends BuilderTests {
 		executeClass(projectPath, "p1.Main", "9", ""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
-	public void testShort() throws JavaModelException {
+	public void testShort() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -284,7 +284,7 @@ public class StaticFinalTests extends BuilderTests {
 		executeClass(projectPath, "p1.Main", "11", ""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
-	public void testString() throws JavaModelException {
+	public void testString() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 

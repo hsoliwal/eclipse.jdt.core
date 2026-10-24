@@ -46,7 +46,7 @@ public boolean equals(Object o) {
 @Override
 public String getElementName() {
 	if (this.isOnDemand)
-		return this.name + ".*"; //$NON-NLS-1$
+		return this.name + ".*"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	return this.name;
 }
 public String getNameWithoutStar() {
@@ -76,8 +76,8 @@ protected void getHandleMemento(StringBuilder buff) {
 	getParent().getHandleMemento(buff);
 	escapeMementoName(buff, getElementName());
 	if (this.getOccurrenceCount() > 1) {
-		buff.append(JEM_COUNT);
-		buff.append(this.getOccurrenceCount());
+		buff.append(JEM_COUNT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buff.append(this.getOccurrenceCount()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 }
 /**
@@ -118,11 +118,11 @@ public String readableName() {
  */
 @Override
 protected void toStringInfo(int tab, StringBuilder buffer, Object info, boolean showResolvedInfo) {
-	buffer.append(tabString(tab));
-	buffer.append("import "); //$NON-NLS-1$
+	buffer.append(tabString(tab)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append("import "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	toStringName(buffer);
 	if (info == null) {
-		buffer.append(" (not open)"); //$NON-NLS-1$
+		buffer.append(" (not open)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 }
 }

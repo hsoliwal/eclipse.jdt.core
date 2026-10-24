@@ -64,7 +64,7 @@ public class EncodingTests extends ModifyingResourceTests {
 	public void setUpSuite() throws Exception {
 		super.setUpSuite();
 		wkspEncoding = getWorkspaceRoot().getDefaultCharset();
-		System.out.println("Encoding tests using Workspace charset: "+wkspEncoding+" and VM charset: "+vmEncoding);
+		System.out.println("Encoding tests using Workspace charset: "+wkspEncoding+" and VM charset: "+vmEncoding); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		this.encodingJavaProject = setUpJavaProject("Encoding");
 		this.encodingProject = (IProject) this.encodingJavaProject.getResource();
 		this.utf8File = (IFile) this.encodingProject.findMember("src/testUTF8/Test.java");
@@ -99,7 +99,7 @@ public class EncodingTests extends ModifyingResourceTests {
 		compareContents(cu, encoding, false);
 	}
 
-	void compareContents(ICompilationUnit cu, String encoding, boolean bom) throws JavaModelException {
+	void compareContents(ICompilationUnit cu, String encoding, boolean bom) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Compare source strings
 		String source = cu.getSource();
 		String systemSourceRenamed = org.eclipse.jdt.core.tests.util.Util.convertToIndependantLineDelimiter(source);
@@ -114,12 +114,12 @@ public class EncodingTests extends ModifyingResourceTests {
 		}
 		catch (UnsupportedEncodingException uue) {
 		}
-		assertNotNull("Unsupported encoding: "+encoding, renamedSourceBytes);
+		assertNotNull("Unsupported encoding: "+encoding, renamedSourceBytes); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		byte[] renamedEncodedBytes = Util.getResourceContentsAsByteArray(file);
 		int start = bom ? IContentDescription.BOM_UTF_8.length : 0;
 		assertEquals("Wrong size of encoded string", renamedEncodedBytes.length-start, renamedSourceBytes.length);
-		for (int i = 0, max = renamedSourceBytes.length; i < max; i++) {
-			assertTrue("Wrong size of encoded character at " + i, renamedSourceBytes[i] == renamedEncodedBytes[i+start]);
+		for (int i = 0, max = renamedSourceBytes.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			assertTrue("Wrong size of encoded character at " + i, renamedSourceBytes[i] == renamedEncodedBytes[i+start]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -130,7 +130,7 @@ public class EncodingTests extends ModifyingResourceTests {
 	/**
 	 * Check that the compilation unit is saved with the proper encoding.
 	 */
-	public void testCreateCompilationUnitAndImportContainer() throws Exception {
+	public void testCreateCompilationUnitAndImportContainer() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String savedEncoding = null;
 		String resourcesPluginId = ResourcesPlugin.getPlugin().getBundle().getSymbolicName();
 		IEclipsePreferences preferences = InstanceScope.INSTANCE.getNode(resourcesPluginId);
@@ -161,8 +161,8 @@ public class EncodingTests extends ModifyingResourceTests {
 			}
 			byte[] encodedContents = Util.getResourceContentsAsByteArray(newProject.getProject().getWorkspace().getRoot().getFile(cu.getPath()));
 			assertEquals("wrong size of encoded string", tab.length, encodedContents.length);
-			for (int i = 0, max = tab.length; i < max; i++) {
-				assertTrue("wrong size of encoded character at" + i, tab[i] == encodedContents[i]);
+			for (int i = 0, max = tab.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				assertTrue("wrong size of encoded character at" + i, tab[i] == encodedContents[i]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} finally {
 			deleteProject("P");
@@ -180,7 +180,7 @@ public class EncodingTests extends ModifyingResourceTests {
 	 * Verify first that source is the same than file contents read using UTF-8 encoding...
 	 * Also verify that bytes array converted back to UTF-8 is the same than the file bytes array.
 	 */
-	public void test001() throws JavaModelException, CoreException, UnsupportedEncodingException {
+	public void test001() throws JavaModelException, CoreException, UnsupportedEncodingException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Set file encoding
 		String encoding = "UTF-8";
@@ -198,8 +198,8 @@ public class EncodingTests extends ModifyingResourceTests {
 		byte[] sourceBytes = source.getBytes(encoding);
 		byte[] encodedBytes = Util.getResourceContentsAsByteArray(this.utf8File);
 		assertEquals("Wrong size of encoded string", encodedBytes.length, sourceBytes.length);
-		for (int i = 0, max = sourceBytes.length; i < max; i++) {
-			assertTrue("Wrong size of encoded character at " + i, sourceBytes[i] == encodedBytes[i]);
+		for (int i = 0, max = sourceBytes.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			assertTrue("Wrong size of encoded character at " + i, sourceBytes[i] == encodedBytes[i]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -208,7 +208,7 @@ public class EncodingTests extends ModifyingResourceTests {
 	 * Verify first that source is the same than file contents read using UTF-8 encoding...
 	 * Also verify that bytes array converted back to UTF-8 is the same than the file bytes array.
 	 */
-	public void test002() throws JavaModelException, CoreException, UnsupportedEncodingException {
+	public void test002() throws JavaModelException, CoreException, UnsupportedEncodingException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Set project encoding
 		String encoding = "UTF-8";
@@ -226,8 +226,8 @@ public class EncodingTests extends ModifyingResourceTests {
 		byte[] sourceBytes = source.getBytes(encoding);
 		byte[] encodedBytes = Util.getResourceContentsAsByteArray(this.utf8File);
 		assertEquals("Wrong size of encoded string", encodedBytes.length, sourceBytes.length);
-		for (int i = 0, max = sourceBytes.length; i < max; i++) {
-			assertTrue("Wrong size of encoded character at " + i, sourceBytes[i] == encodedBytes[i]);
+		for (int i = 0, max = sourceBytes.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			assertTrue("Wrong size of encoded character at " + i, sourceBytes[i] == encodedBytes[i]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -238,7 +238,7 @@ public class EncodingTests extends ModifyingResourceTests {
 	 * Do not compare array contents in case of VM default encoding equals to "ASCII" as meaningful bit 7 is lost
 	 * during first conversion...
 	 */
-	public void test003() throws JavaModelException, CoreException, UnsupportedEncodingException {
+	public void test003() throws JavaModelException, CoreException, UnsupportedEncodingException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Get source and compare with file contents
 		this.utf8Source = getCompilationUnit(this.utf8File.getFullPath().toString());
@@ -321,7 +321,7 @@ public class EncodingTests extends ModifyingResourceTests {
 	#	Tests with class file
 	##############
 	/* Same config than test001  */
-	public void test011() throws JavaModelException, CoreException, UnsupportedEncodingException {
+	public void test011() throws JavaModelException, CoreException, UnsupportedEncodingException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Set file encoding
 		String encoding = "UTF-8";
@@ -339,13 +339,13 @@ public class EncodingTests extends ModifyingResourceTests {
 		byte[] sourceBytes = source.getBytes(encoding);
 		byte[] encodedBytes = Util.getResourceContentsAsByteArray(this.utf8File);
 		assertEquals("Wrong size of encoded string", encodedBytes.length, sourceBytes.length);
-		for (int i = 0, max = sourceBytes.length; i < max; i++) {
-			assertTrue("Wrong size of encoded character at " + i, sourceBytes[i] == encodedBytes[i]);
+		for (int i = 0, max = sourceBytes.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			assertTrue("Wrong size of encoded character at " + i, sourceBytes[i] == encodedBytes[i]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
 	/* Same config than test002  */
-	public void test012() throws JavaModelException, CoreException, UnsupportedEncodingException {
+	public void test012() throws JavaModelException, CoreException, UnsupportedEncodingException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Set project encoding
 		String encoding = "UTF-8";
@@ -363,13 +363,13 @@ public class EncodingTests extends ModifyingResourceTests {
 		byte[] sourceBytes = source.getBytes(encoding);
 		byte[] encodedBytes = Util.getResourceContentsAsByteArray(this.utf8File);
 		assertEquals("Wrong size of encoded string", encodedBytes.length, sourceBytes.length);
-		for (int i = 0, max = sourceBytes.length; i < max; i++) {
-			assertTrue("Wrong size of encoded character at " + i, sourceBytes[i] == encodedBytes[i]);
+		for (int i = 0, max = sourceBytes.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			assertTrue("Wrong size of encoded character at " + i, sourceBytes[i] == encodedBytes[i]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
 	/* Same config than test003  */
-	public void test013() throws JavaModelException, CoreException, UnsupportedEncodingException {
+	public void test013() throws JavaModelException, CoreException, UnsupportedEncodingException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Get source and compare with file contents
 		this.utf8Source = getClassFile("Encoding" , "bins", "testUTF8", "Test.class"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
@@ -465,7 +465,7 @@ public class EncodingTests extends ModifyingResourceTests {
 	 * Get class file from jar file with an associated source written in UTF-8 charset using specific UTF-8 encoding for project.
 	 * Verification is done by comparing source with file contents read directly with UTF-8 encoding...
 	 */
-	public void test022() throws JavaModelException, CoreException {
+	public void test022() throws JavaModelException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String oldEncoding = this.encodingProject.getDefaultCharset();
 		try{
 			// Set project encoding
@@ -490,7 +490,7 @@ public class EncodingTests extends ModifyingResourceTests {
 	 * Get class file from jar file with an associated source written in UTF-8 charset using specific UTF-8 encoding for file.
 	 * Verification is done by comparing source with file contents read directly with UTF-8 encoding...
 	 */
-	public void test023() throws JavaModelException, CoreException {
+	public void test023() throws JavaModelException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IFile zipFile = (IFile) this.encodingProject.findMember("testUTF8.zip"); //$NON-NLS-1$
 		try {
 			// Set file encoding
@@ -517,7 +517,7 @@ public class EncodingTests extends ModifyingResourceTests {
 	 * Test for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=55930.
 	 * Verify Buffer.save(IProgressMonitor, boolean) method.
 	 */
-	public void test030() throws JavaModelException, CoreException {
+	public void test030() throws JavaModelException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit workingCopy = null;
 		try {
 			String encoding = "UTF-8";
@@ -545,8 +545,8 @@ public class EncodingTests extends ModifyingResourceTests {
 			byte[] sourceBytes = source.getBytes(encoding);
 			byte[] encodedBytes = Util.getResourceContentsAsByteArray(file);
 			assertEquals("Wrong size of encoded string", encodedBytes.length, sourceBytes.length);
-			for (int i = 0, max = sourceBytes.length; i < max; i++) {
-				assertTrue("Wrong size of encoded character at " + i, sourceBytes[i] == encodedBytes[i]);
+			for (int i = 0, max = sourceBytes.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				assertTrue("Wrong size of encoded character at " + i, sourceBytes[i] == encodedBytes[i]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} catch (UnsupportedEncodingException e) {
 		} finally {
@@ -563,7 +563,7 @@ public class EncodingTests extends ModifyingResourceTests {
 	 * Test for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=55930.
 	 * Verify CommitWorkingCopyOperation.executeOperation() method.
 	 */
-	public void test031() throws JavaModelException, CoreException {
+	public void test031() throws JavaModelException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit workingCopy = null;
 		try {
 			String encoding = "UTF-8";
@@ -594,8 +594,8 @@ public class EncodingTests extends ModifyingResourceTests {
 			byte[] sourceBytes = source.getBytes(encoding);
 			byte[] encodedBytes = Util.getResourceContentsAsByteArray(file);
 			assertEquals("Wrong size of encoded string", encodedBytes.length, sourceBytes.length);
-			for (int i = 0, max = sourceBytes.length; i < max; i++) {
-				assertTrue("Wrong size of encoded character at " + i, sourceBytes[i] == encodedBytes[i]);
+			for (int i = 0, max = sourceBytes.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				assertTrue("Wrong size of encoded character at " + i, sourceBytes[i] == encodedBytes[i]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} catch (UnsupportedEncodingException e) {
 		} finally {
@@ -632,11 +632,11 @@ public class EncodingTests extends ModifyingResourceTests {
 	 * Ensures that a file is reindexed when the encoding changes.
 	 * (regression test for bug 68585 index is out of date after encoding change)
 	 */
-	public void test033() throws CoreException {
+	public void test033() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFolder("/Encoding/src/test68585");
 			final String encoding = "UTF-8".equals(wkspEncoding) ? "Cp1252" : "UTF-8";
-			getWorkspace().run(new IWorkspaceRunnable() {
+			getWorkspace().run(new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
 					// use a different encoding to make the file unreadable
 					IFile file = null;
@@ -689,7 +689,7 @@ public class EncodingTests extends ModifyingResourceTests {
 	 * be correctly read.
 	 * (regression test for bug 149028 Limiting number of characters to read with the file size is invalid.)
 	 */
-	public void test034() throws CoreException, IOException {
+	public void test034() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			// Create file
 			IFile file = createFile("/Encoding/Test34.txt", "acegikm");
@@ -731,7 +731,7 @@ public class EncodingTests extends ModifyingResourceTests {
 	 * Bug 66898: refactor-rename: encoding is not preserved
 	 * @see "http://bugs.eclipse.org/bugs/show_bug.cgi?id=66898"
 	 */
-	public void testBug66898() throws JavaModelException, CoreException {
+	public void testBug66898() throws JavaModelException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Set file encoding
 		String encoding = "UTF-8".equals(vmEncoding) ? "Cp1252" : "UTF-8";
@@ -770,7 +770,7 @@ public class EncodingTests extends ModifyingResourceTests {
 			deleteFolder("/Encoding/src/tmp");
 		}
 	}
-	public void testBug66898b() throws JavaModelException, CoreException {
+	public void testBug66898b() throws JavaModelException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Set file encoding
 		final String encoding = "UTF-8".equals(vmEncoding) ? "Cp1252" : "UTF-8";
@@ -783,7 +783,7 @@ public class EncodingTests extends ModifyingResourceTests {
 
 		try {
 			// Copy file
-			IWorkspaceRunnable copy = new IWorkspaceRunnable() {
+			IWorkspaceRunnable copy = new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
 					ICompilationUnit cu = getCompilationUnit(file.getFullPath().toString());
 					cu.copy(tmpFolder, null, null, true, null);
@@ -799,7 +799,7 @@ public class EncodingTests extends ModifyingResourceTests {
 			JavaCore.run(copy, null);
 
 			// Rename file
-			IWorkspaceRunnable rename = new IWorkspaceRunnable() {
+			IWorkspaceRunnable rename = new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
 					ICompilationUnit cu = tmpFolder.getCompilationUnit(fileName);
 					cu.rename("Renamed.java", true, null);
@@ -815,7 +815,7 @@ public class EncodingTests extends ModifyingResourceTests {
 			JavaCore.run(rename, null);
 
 			// Move file
-			IWorkspaceRunnable move = new IWorkspaceRunnable() {
+			IWorkspaceRunnable move = new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
 					ICompilationUnit cu = tmpFolder.getCompilationUnit("Renamed.java");
 					cu.move(srcFolder, null, null, true, null);
@@ -864,11 +864,11 @@ public class EncodingTests extends ModifyingResourceTests {
 	 * Bug 110576: [encoding] Rename CU looses encoding for file which charset is determined by contents
 	 * @see "http://bugs.eclipse.org/bugs/show_bug.cgi?id=110576"
 	 */
-	public void testBug110576() throws JavaModelException, CoreException {
+	public void testBug110576() throws JavaModelException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		String os = System.getProperty("osgi.os");
 		if (!"win32".equals(os)) {
-			System.out.println("Bug 110576 is not tested under "+os+" os...");
+			System.out.println("Bug 110576 is not tested under "+os+" os..."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			return;
 		}
 
@@ -949,7 +949,7 @@ public class EncodingTests extends ModifyingResourceTests {
 	 *
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=303511"
 	 */
-	public void testBug303511() throws JavaModelException, CoreException {
+	public void testBug303511() throws JavaModelException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		try {
 			// Set file encoding
@@ -1024,19 +1024,19 @@ public class EncodingTests extends ModifyingResourceTests {
 	 *
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=303511"
 	 */
-	public void testBug303511a() throws JavaModelException, CoreException {
+	public void testBug303511a() throws JavaModelException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			// Set file encoding
 			String encoding = "Shift-JIS";
 			if (wkspEncoding.equals(encoding))
 				getWorkspaceRoot().setDefaultCharset("UTF-8", null);
-			String externalPath = this.encodingProject.getLocation().toOSString() + File.separator + "testShiftJIS.zip";
+			String externalPath = this.encodingProject.getLocation().toOSString() + File.separator + "testShiftJIS.zip"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IFile sourceFile = (IFile) this.encodingProject.findMember("src/testShiftJIS/A.java");
 			getWorkspaceRoot().setDefaultCharset(encoding, null);
 
 			IClasspathEntry[] entries = this.encodingJavaProject.getRawClasspath();
 			IClasspathEntry oldEntry = null;
-			for (int index = 0; index < entries.length; index++) {
+			for (int index = 0; index < entries.length; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IClasspathEntry entry = entries[index];
 				if (entry.getPath().toOSString().endsWith("testShiftJIS.jar")) {
 					oldEntry = entry;
@@ -1061,8 +1061,8 @@ public class EncodingTests extends ModifyingResourceTests {
 			assertTrue("Sources should be decoded the same way", encodedContents.equals(source));
 
 			entries = this.encodingJavaProject.getRawClasspath();
-			String sourcePath = this.encodingProject.getLocation().toOSString() + File.separator + "src";
-			for (int index = 0; index < entries.length; index++) {
+			String sourcePath = this.encodingProject.getLocation().toOSString() + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			for (int index = 0; index < entries.length; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IClasspathEntry entry = entries[index];
 				if (entry.getPath().toOSString().endsWith("testShiftJIS.jar")) {
 					IClasspathEntry newEntry = JavaCore.newLibraryEntry(entry.getPath(), new Path(sourcePath), null);
@@ -1073,7 +1073,7 @@ public class EncodingTests extends ModifyingResourceTests {
 			this.encodingJavaProject.getResolvedClasspath(true);
 
 			entries = this.encodingJavaProject.getRawClasspath();
-			for (int index = 0; index < entries.length; index++) {
+			for (int index = 0; index < entries.length; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IClasspathEntry entry = entries[index];
 				if (entry.getPath().toOSString().endsWith("testShiftJIS.jar")) {
 					entries[index] = oldEntry;
@@ -1095,7 +1095,7 @@ public class EncodingTests extends ModifyingResourceTests {
 	 *
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=303511"
 	 */
-	public void testBug303511b() throws Exception{
+	public void testBug303511b() throws Exception{ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try{
 			String encoding = "Shift-JIS";
 			if (wkspEncoding.equals(encoding))
@@ -1110,7 +1110,7 @@ public class EncodingTests extends ModifyingResourceTests {
 
 			IClasspathEntry[] entries = this.encodingJavaProject.getRawClasspath();
 			IClasspathEntry newEntry = null;
-			for (int index = 0; index < entries.length; index++) {
+			for (int index = 0; index < entries.length; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IClasspathEntry entry = entries[index];
 				if (entry.getPath().toOSString().endsWith("testShiftJIS.jar")) {
 					newEntry = entries[index];
@@ -1160,7 +1160,7 @@ public class EncodingTests extends ModifyingResourceTests {
 	 *
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=303511"
 	 */
-	public void testBug303511c() throws Exception{
+	public void testBug303511c() throws Exception{ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try{
 			String encoding = "Shift-JIS";
 			if (wkspEncoding.equals(encoding))
@@ -1173,7 +1173,7 @@ public class EncodingTests extends ModifyingResourceTests {
 
 			IClasspathEntry[] entries = this.encodingJavaProject.getRawClasspath();
 			IClasspathEntry newEntry = null;
-			for (int index = 0; index < entries.length; index++) {
+			for (int index = 0; index < entries.length; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IClasspathEntry entry = entries[index];
 				if (entry.getPath().toOSString().endsWith("testShiftJIS.jar")) {
 					newEntry = entries[index];
@@ -1218,7 +1218,7 @@ public class EncodingTests extends ModifyingResourceTests {
 			getWorkspaceRoot().setDefaultCharset(wkspEncoding, null);
 		}
 	}
-	public void testBug361356() throws Exception {
+	public void testBug361356() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String oldEncoding = this.encodingProject.getDefaultCharset();
 		try{
 			String encoding = "Shift-JIS";
@@ -1231,7 +1231,7 @@ public class EncodingTests extends ModifyingResourceTests {
 
 			IClasspathEntry[] entries = this.encodingJavaProject.getRawClasspath();
 			IClasspathEntry newEntry = null;
-			for (int index = 0; index < entries.length; index++) {
+			for (int index = 0; index < entries.length; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IClasspathEntry entry = entries[index];
 				if (entry.getPath().toOSString().endsWith("testShiftJIS.jar")) {
 					newEntry = entries[index];
@@ -1309,7 +1309,7 @@ public class EncodingTests extends ModifyingResourceTests {
 			getWorkspaceRoot().setDefaultCharset(wkspEncoding, null);
 		}
 	}
-	public void testBug361356a() throws Exception {
+	public void testBug361356a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String oldEncoding = this.encodingProject.getDefaultCharset();
 		try{
 			String encoding = "Shift-JIS";
@@ -1322,7 +1322,7 @@ public class EncodingTests extends ModifyingResourceTests {
 
 			IClasspathEntry[] entries = this.encodingJavaProject.getRawClasspath();
 			IClasspathEntry newEntry = null;
-			for (int index = 0; index < entries.length; index++) {
+			for (int index = 0; index < entries.length; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IClasspathEntry entry = entries[index];
 				if (entry.getPath().toOSString().endsWith("testShiftJIS.jar")) {
 					newEntry = entries[index];
@@ -1368,7 +1368,7 @@ public class EncodingTests extends ModifyingResourceTests {
 			getWorkspaceRoot().setDefaultCharset(wkspEncoding, null);
 		}
 	}
-	public void testBug361356b() throws Exception {
+	public void testBug361356b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String oldEncoding = this.encodingProject.getDefaultCharset();
 		File externalSourceZip = null;
 		File externalSource = null;
@@ -1390,7 +1390,7 @@ public class EncodingTests extends ModifyingResourceTests {
 
 			IClasspathEntry[] entries = this.encodingJavaProject.getRawClasspath();
 			IClasspathEntry newEntry = null;
-			for (int index = 0; index < entries.length; index++) {
+			for (int index = 0; index < entries.length; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IClasspathEntry entry = entries[index];
 				if (entry.getPath().toOSString().endsWith("testShiftJIS.jar")) {
 					newEntry = entries[index];
@@ -1461,7 +1461,7 @@ public class EncodingTests extends ModifyingResourceTests {
 			assertFalse("Sources should not be decoded the same way", encodedContents.equals(source));
 		}
 		finally {
-			if (externalSourceZip != null) externalSourceZip.delete();
+			if (externalSourceZip != null) externalSourceZip.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			if (externalSource != null) deleteExternalResource("testShiftJIS");
 			this.encodingProject.setDefaultCharset(oldEncoding, null);
 			deleteProject("Encoding2");

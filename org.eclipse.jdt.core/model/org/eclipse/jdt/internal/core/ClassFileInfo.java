@@ -56,7 +56,7 @@ private void generateAnnotationsInfos(JavaElement member, IBinaryAnnotation[] bi
  */
 private void generateAnnotationsInfos(JavaElement member, char[] parameterName, IBinaryAnnotation[] binaryAnnotations, long tagBits, Map<IJavaElement, IElementInfo> newElements) {
 	if (binaryAnnotations != null) {
-		for (IBinaryAnnotation annotationInfo : binaryAnnotations) {
+		for (IBinaryAnnotation annotationInfo : binaryAnnotations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			generateAnnotationInfo(member, parameterName, newElements, annotationInfo, null);
 		}
 	}
@@ -65,24 +65,24 @@ private void generateAnnotationsInfos(JavaElement member, char[] parameterName, 
 private void generateAnnotationInfo(JavaElement parent, Map<IJavaElement, IElementInfo> newElements, IBinaryAnnotation annotationInfo, String memberValuePairName) {
 	generateAnnotationInfo(parent, null, newElements, annotationInfo, memberValuePairName);
 }
-private void generateAnnotationInfo(JavaElement parent, char[] parameterName, Map<IJavaElement, IElementInfo> newElements, IBinaryAnnotation annotationInfo, String memberValuePairName) {
+private void generateAnnotationInfo(JavaElement parent, char[] parameterName, Map<IJavaElement, IElementInfo> newElements, IBinaryAnnotation annotationInfo, String memberValuePairName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[] typeName = org.eclipse.jdt.core.Signature.toCharArray(CharOperation.replaceOnCopy(annotationInfo.getTypeName(), '/', '.'));
 	int occurrenceCount = 0;
 	Annotation annotation;
-	do {
+	do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		annotation = new Annotation(parent, new String(typeName), memberValuePairName, ++occurrenceCount);
 	} while (newElements.containsKey(annotation));
 
 	newElements.put(annotation, annotationInfo);
 	IBinaryElementValuePair[] pairs = annotationInfo.getElementValuePairs();
-	for (IBinaryElementValuePair pair : pairs) {
+	for (IBinaryElementValuePair pair : pairs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		Object value = pair.getValue();
 		if (value instanceof IBinaryAnnotation) {
 			generateAnnotationInfo(annotation, newElements, (IBinaryAnnotation) value, new String(pair.getName()));
 		} else if (value instanceof Object[]) {
 			// if the value is an array, it can have no more than 1 dimension - no need to recurse
 			Object[] valueArray = (Object[]) value;
-			for (Object nestedValue : valueArray) {
+			for (Object nestedValue : valueArray) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (nestedValue instanceof IBinaryAnnotation) {
 					generateAnnotationInfo(annotation, newElements, (IBinaryAnnotation) nestedValue, new String(pair.getName()));
 				}
@@ -90,7 +90,7 @@ private void generateAnnotationInfo(JavaElement parent, char[] parameterName, Ma
 		}
 	}
 }
-private void generateStandardAnnotationsInfos(JavaElement javaElement, char[] parameterName, long tagBits, Map<IJavaElement, IElementInfo> newElements) {
+private void generateStandardAnnotationsInfos(JavaElement javaElement, char[] parameterName, long tagBits, Map<IJavaElement, IElementInfo> newElements) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if ((tagBits & TagBits.AllStandardAnnotationsMask) == 0)
 		return;
 	if ((tagBits & TagBits.AnnotationRetentionMASK) != 0) {
@@ -121,17 +121,17 @@ private void generateStandardAnnotation(JavaElement javaElement, char[][] typeNa
 	newElements.put(annotation, annotationInfo);
 }
 
-private IMemberValuePair[] getRetentionPolicy(long tagBits) {
+private IMemberValuePair[] getRetentionPolicy(long tagBits) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if ((tagBits & TagBits.AnnotationRetentionMASK) == 0)
 		return Annotation.NO_MEMBER_VALUE_PAIRS;
 	String retention = null;
 	if ((tagBits & TagBits.AnnotationRuntimeRetention) == TagBits.AnnotationRuntimeRetention) {
 		// TagBits.AnnotationRuntimeRetention combines both TagBits.AnnotationClassRetention & TagBits.AnnotationSourceRetention
-		retention = new String(CharOperation.concatWith(TypeConstants.JAVA_LANG_ANNOTATION_RETENTIONPOLICY, '.')) + '.' + new String(TypeConstants.UPPER_RUNTIME);
+		retention = new String(CharOperation.concatWith(TypeConstants.JAVA_LANG_ANNOTATION_RETENTIONPOLICY, '.')) + '.' + new String(TypeConstants.UPPER_RUNTIME); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} else if ((tagBits & TagBits.AnnotationSourceRetention) != 0) {
-		retention = new String(CharOperation.concatWith(TypeConstants.JAVA_LANG_ANNOTATION_RETENTIONPOLICY, '.')) + '.' + new String(TypeConstants.UPPER_SOURCE);
+		retention = new String(CharOperation.concatWith(TypeConstants.JAVA_LANG_ANNOTATION_RETENTIONPOLICY, '.')) + '.' + new String(TypeConstants.UPPER_SOURCE); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} else {
-		retention = new String(CharOperation.concatWith(TypeConstants.JAVA_LANG_ANNOTATION_RETENTIONPOLICY, '.')) + '.' + new String(TypeConstants.UPPER_CLASS);
+		retention = new String(CharOperation.concatWith(TypeConstants.JAVA_LANG_ANNOTATION_RETENTIONPOLICY, '.')) + '.' + new String(TypeConstants.UPPER_CLASS); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	final String value = retention;
 	return
@@ -163,7 +163,7 @@ private void generateFieldInfos(IType type, IBinaryType typeInfo, Map<IJavaEleme
 	if (fields == null) {
 		return;
 	}
-	for (IBinaryField fieldInfo : fields) {
+	for (IBinaryField fieldInfo : fields) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		// If the type is a record and this is an instance field, it can only be a record component
 		// Filter out
 		if (typeInfo.isRecord() && (fieldInfo.getModifiers() & ClassFileConstants.AccStatic) == 0)
@@ -178,13 +178,13 @@ private void generateFieldInfos(IType type, IBinaryType typeInfo, Map<IJavaEleme
  * Creates the handles and infos for the fields of the given binary type.
  * Adds new handles to the given vector.
  */
-private void generateRecordComponentInfos(IType type, IBinaryType typeInfo, Map<IJavaElement, IElementInfo> newElements, ArrayList<JavaElement> childrenHandles) {
+private void generateRecordComponentInfos(IType type, IBinaryType typeInfo, Map<IJavaElement, IElementInfo> newElements, ArrayList<JavaElement> childrenHandles) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Make the fields
 	IRecordComponent[] components = typeInfo.getRecordComponents();
 	if (components == null) {
 		return;
 	}
-	for (IRecordComponent componentInfo : components) {
+	for (IRecordComponent componentInfo : components) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		BinaryField component = new BinaryField((JavaElement)type, DeduplicationUtil.toString(componentInfo.getName())) {
 			@Override
 			public boolean isRecordComponent() throws JavaModelException {
@@ -208,8 +208,8 @@ private void generateInnerClassHandles(IType type, IBinaryType typeInfo, ArrayLi
 	IBinaryNestedType[] innerTypes = typeInfo.getMemberTypes();
 	if (innerTypes != null) {
 		IPackageFragment pkg = (IPackageFragment) type.getAncestor(IJavaElement.PACKAGE_FRAGMENT);
-		for (IBinaryNestedType binaryType : innerTypes) {
-			IClassFile parentClassFile= pkg.getClassFile(new String(ClassFile.unqualifiedName(binaryType.getName())) + SUFFIX_STRING_class);
+		for (IBinaryNestedType binaryType : innerTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			IClassFile parentClassFile= pkg.getClassFile(new String(ClassFile.unqualifiedName(binaryType.getName())) + SUFFIX_STRING_class); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			BinaryType innerType = new BinaryType((JavaElement) parentClassFile, DeduplicationUtil.intern(ClassFile.simpleName(binaryType.getName())));
 			childrenHandles.add(innerType);
 		}
@@ -219,12 +219,12 @@ private void generateInnerClassHandles(IType type, IBinaryType typeInfo, ArrayLi
  * Creates the handles and infos for the methods of the given binary type.
  * Adds new handles to the given vector.
  */
-private void generateMethodInfos(IType type, IBinaryType typeInfo, Map<IJavaElement, IElementInfo> newElements, ArrayList<JavaElement> childrenHandles, ArrayList<ITypeParameter> typeParameterHandles) {
+private void generateMethodInfos(IType type, IBinaryType typeInfo, Map<IJavaElement, IElementInfo> newElements, ArrayList<JavaElement> childrenHandles, ArrayList<ITypeParameter> typeParameterHandles) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IBinaryMethod[] methods = typeInfo.getMethods();
 	if (methods == null) {
 		return;
 	}
-	for (IBinaryMethod methodInfo : methods) {
+	for (IBinaryMethod methodInfo : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		final boolean isConstructor = methodInfo.isConstructor();
 		boolean isEnum = false;
 		try {
@@ -272,19 +272,19 @@ private void generateMethodInfos(IType type, IBinaryType typeInfo, Map<IJavaElem
 			pNames = Signature.getParameterTypes(new String(signature));
 		}
 		char[][] paramNames= new char[pNames.length][];
-		for (int j= 0; j < pNames.length; j++) {
+		for (int j= 0; j < pNames.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			paramNames[j]= pNames[j].toCharArray();
 		}
 		char[][] parameterTypes = ClassFile.translatedNames(paramNames);
 		selector =  DeduplicationUtil.intern(selector);
-		for (int j= 0; j < pNames.length; j++) {
+		for (int j= 0; j < pNames.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			pNames[j]= DeduplicationUtil.toString(parameterTypes[j]);
 		}
 		int occurrenceCount = 0;
 		BinaryMethod method;
 		// ensure that 2 binary methods with the same signature but with different return types have different occurrence counts.
 		// (case of bridge methods in 1.5)
-		do {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			method = new BinaryMethod((JavaElement) type, selector, pNames, ++occurrenceCount);
 		} while (newElements.containsKey(method));
 
@@ -295,8 +295,8 @@ private void generateMethodInfos(IType type, IBinaryType typeInfo, Map<IJavaElem
 		char[][] argumentNames = methodInfo.getArgumentNames();
 		if (argumentNames == null || argumentNames.length < max) {
 			argumentNames = new char[max][];
-			for (int j = 0; j < max; j++) {
-				argumentNames[j] = ("arg" + j).toCharArray(); //$NON-NLS-1$
+			for (int j = 0; j < max; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				argumentNames[j] = ("arg" + j).toCharArray(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		int startIndex = 0;
@@ -312,7 +312,7 @@ private void generateMethodInfos(IType type, IBinaryType typeInfo, Map<IJavaElem
 		} catch(JavaModelException e) {
 			// ignore
 		}
-		for (int j = startIndex; j < max; j++) {
+		for (int j = startIndex; j < max; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IBinaryAnnotation[] parameterAnnotations = methodInfo.getParameterAnnotations(j - startIndex, typeInfo.getFileName());
 			if (parameterAnnotations != null) {
 				LocalVariable localVariable = new LocalVariable(
@@ -341,21 +341,21 @@ private void generateMethodInfos(IType type, IBinaryType typeInfo, Map<IJavaElem
  * Creates the handles and infos for the type parameter of the given binary member.
  * Adds new handles to the given vector.
  */
-private void generateTypeParameterInfos(BinaryMember parent, char[] signature, Map<IJavaElement, IElementInfo> newElements, ArrayList<ITypeParameter> typeParameterHandles) {
+private void generateTypeParameterInfos(BinaryMember parent, char[] signature, Map<IJavaElement, IElementInfo> newElements, ArrayList<ITypeParameter> typeParameterHandles) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (signature == null) return;
 	char[][] typeParameterSignatures = Signature.getTypeParameters(signature);
-	for (char[] typeParameterSignature : typeParameterSignatures) {
+	for (char[] typeParameterSignature : typeParameterSignatures) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		char[] typeParameterName = Signature.getTypeVariable(typeParameterSignature);
 		CharOperation.replace(typeParameterSignature, '/', '.');
 		char[][] typeParameterBoundSignatures = Signature.getTypeParameterBounds(typeParameterSignature);
 		int boundLength = typeParameterBoundSignatures.length;
 		char[][] typeParameterBounds = new char[boundLength][];
-		for (int j = 0; j < boundLength; j++) {
+		for (int j = 0; j < boundLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			typeParameterBounds[j] = Signature.toCharArray(typeParameterBoundSignatures[j]);
 		}
 		int occurrenceCount = 0;
 		TypeParameter typeParameter;
-		do {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			typeParameter = new TypeParameter(parent, new String(typeParameterName), ++occurrenceCount);
 			// ensure that 2 binary methods with the same signature but with different return types have different occurence counts.
 			// (case of bridge methods in 1.5)
@@ -372,10 +372,10 @@ private void generateTypeParameterInfos(BinaryMember parent, char[] signature, M
  * <code>ClassFile</code> and adds them to the
  * <code>JavaModelManager</code>'s cache.
  */
-protected void readBinaryChildren(ClassFile classFile, Map<IJavaElement, IElementInfo> newElements, IBinaryType typeInfo) {
-	ArrayList<JavaElement> childrenHandles = new ArrayList<>();
+protected void readBinaryChildren(ClassFile classFile, Map<IJavaElement, IElementInfo> newElements, IBinaryType typeInfo) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	ArrayList<JavaElement> childrenHandles = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	BinaryType type = (BinaryType) classFile.getType();
-	ArrayList<ITypeParameter> typeParameterHandles = new ArrayList<>();
+	ArrayList<ITypeParameter> typeParameterHandles = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	if (typeInfo != null) { //may not be a valid class file
 		generateAnnotationsInfos(type, typeInfo.getAnnotations(), typeInfo.getTagBits(), newElements);
 		generateTypeParameterInfos(type, typeInfo.getGenericSignature(), newElements, typeParameterHandles);
@@ -399,10 +399,10 @@ protected void readBinaryChildren(ClassFile classFile, Map<IJavaElement, IElemen
  * Removes the binary children handles and remove their infos from
  * the <code>JavaModelManager</code>'s cache.
  */
-void removeBinaryChildren() throws JavaModelException {
+void removeBinaryChildren() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.binaryChildren != null) {
 		JavaModelManager manager = JavaModelManager.getJavaModelManager();
-		for (JavaElement child : this.binaryChildren) {
+		for (JavaElement child : this.binaryChildren) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (child instanceof BinaryType) {
 				manager.removeInfoAndChildren(child.getParent());
 			} else {
@@ -413,7 +413,7 @@ void removeBinaryChildren() throws JavaModelException {
 	}
 	if (this.typeParameters != null) {
 		JavaModelManager manager = JavaModelManager.getJavaModelManager();
-		for (ITypeParameter p : this.typeParameters) {
+		for (ITypeParameter p : this.typeParameters) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeParameter typeParameter = (TypeParameter) p;
 			manager.removeInfoAndChildren(typeParameter);
 		}

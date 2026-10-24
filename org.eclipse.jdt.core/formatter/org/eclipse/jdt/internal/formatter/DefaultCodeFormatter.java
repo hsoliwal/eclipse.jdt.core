@@ -82,7 +82,7 @@ public class DefaultCodeFormatter extends CodeFormatter {
 		| K_MODULE_INFO
 		| K_COMMENTS_MASK;
 
-	private static final Map<Integer, Integer> FORMAT_TO_PARSER_KIND = new HashMap<>();
+	private static final Map<Integer, Integer> FORMAT_TO_PARSER_KIND = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 	static {
 		FORMAT_TO_PARSER_KIND.put(K_COMPILATION_UNIT, ASTParser.K_COMPILATION_UNIT);
 		FORMAT_TO_PARSER_KIND.put(K_MODULE_INFO, ASTParser.K_COMPILATION_UNIT);
@@ -103,7 +103,7 @@ public class DefaultCodeFormatter extends CodeFormatter {
 	private List<IRegion> formatRegions;
 
 	private ASTNode astRoot;
-	private final List<Token> tokens = new ArrayList<>();
+	private final List<Token> tokens = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	private TokenManager tokenManager;
 
 	public DefaultCodeFormatter() {
@@ -122,7 +122,7 @@ public class DefaultCodeFormatter extends CodeFormatter {
 		initOptions(defaultCodeFormatterOptions, options);
 	}
 
-	private void initOptions(DefaultCodeFormatterOptions defaultCodeFormatterOptions, Map<String, String> options) {
+	private void initOptions(DefaultCodeFormatterOptions defaultCodeFormatterOptions, Map<String, String> options) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (options != null) {
 			this.originalOptions = new DefaultCodeFormatterOptions(options);
 			this.workingOptions = new DefaultCodeFormatterOptions(options);
@@ -154,7 +154,7 @@ public class DefaultCodeFormatter extends CodeFormatter {
 			throw new IllegalArgumentException();
 		}
 
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		int indent = indentationLevel * this.originalOptions.indentation_size;
 		TextEditsBuilder.appendIndentationString(sb, this.originalOptions.tab_char, this.originalOptions.tab_size,
 				indent, 0);
@@ -172,7 +172,7 @@ public class DefaultCodeFormatter extends CodeFormatter {
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public TextEdit format(int kind, String source, IRegion[] regions, int indentationLevel, String lineSeparator) {
 		assertRegionPreconditions(regions, source.length());
 		this.formatRegions = Arrays.asList(regions);
@@ -189,7 +189,7 @@ public class DefaultCodeFormatter extends CodeFormatter {
 		TextEditsBuilder resultBuilder = new TextEditsBuilder(this.sourceString, this.formatRegions, this.tokenManager,
 				this.workingOptions);
 		this.tokenManager.traverse(0, resultBuilder);
-		for (TextEdit edit : resultBuilder.getEdits()) {
+		for (TextEdit edit : resultBuilder.getEdits()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			result.addChild(edit);
 		}
 		return result;
@@ -214,7 +214,7 @@ public class DefaultCodeFormatter extends CodeFormatter {
 		return prepareFormattedCode(source, CodeFormatter.K_UNKNOWN);
 	}
 
-	private List<Token> prepareFormattedCode(String source, int kind) {
+	private List<Token> prepareFormattedCode(String source, int kind) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!init(source, kind))
 			return null;
 
@@ -247,7 +247,7 @@ public class DefaultCodeFormatter extends CodeFormatter {
 		}
 	}
 
-	private TextEdit formatComments(String source, int kind) {
+	private TextEdit formatComments(String source, int kind) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		MultiTextEdit result = new MultiTextEdit();
 		if (!init(source, kind))
 			return result;
@@ -257,7 +257,7 @@ public class DefaultCodeFormatter extends CodeFormatter {
 		CommentWrapExecutor commentWrapper = new CommentWrapExecutor(this.tokenManager, this.workingOptions);
 		switch (kind) {
 			case K_JAVA_DOC:
-				for (Token token : this.tokens) {
+				for (Token token : this.tokens) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (token.tokenType == TokenNameCOMMENT_JAVADOC) {
 						CompilationUnit cu = (CompilationUnit) parseSourceCode(ASTParser.K_COMPILATION_UNIT);
 						Javadoc javadoc = (Javadoc) cu.getCommentList().get(0);
@@ -268,7 +268,7 @@ public class DefaultCodeFormatter extends CodeFormatter {
 				}
 				break;
 			case K_MULTI_LINE_COMMENT:
-				for (int i = 0; i < this.tokens.size(); i++) {
+				for (int i = 0; i < this.tokens.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Token token = this.tokens.get(i);
 					if (token.tokenType == TokenNameCOMMENT_BLOCK) {
 						commentsPreparator.handleBlockComment(i);
@@ -278,7 +278,7 @@ public class DefaultCodeFormatter extends CodeFormatter {
 				}
 				break;
 			case K_SINGLE_LINE_COMMENT:
-				for (int i = 0; i < this.tokens.size(); i++) {
+				for (int i = 0; i < this.tokens.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Token token = this.tokens.get(i);
 					if (token.tokenType == TokenNameCOMMENT_LINE) {
 						commentsPreparator.handleLineComment(i);
@@ -301,19 +301,19 @@ public class DefaultCodeFormatter extends CodeFormatter {
 		TextEditsBuilder resultBuilder = new TextEditsBuilder(source, this.formatRegions, this.tokenManager,
 				this.workingOptions);
 		resultBuilder.setAlignChar(DefaultCodeFormatterOptions.SPACE);
-		for (Token token : this.tokens) {
+		for (Token token : this.tokens) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			List<Token> structure = token.getInternalStructure();
 			if (token.isComment() && structure != null && !structure.isEmpty())
 				resultBuilder.processComment(token);
 		}
 
-		for (TextEdit edit : resultBuilder.getEdits()) {
+		for (TextEdit edit : resultBuilder.getEdits()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			result.addChild(edit);
 		}
 		return result;
 	}
 
-	private ASTNode parseSourceCode(int kind) {
+	private ASTNode parseSourceCode(int kind) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		kind = kind & K_MASK;
 		if (kind != K_UNKNOWN) {
 			ASTNode astNode = createParser(kind).createAST(null);
@@ -323,7 +323,7 @@ public class DefaultCodeFormatter extends CodeFormatter {
 		}
 
 		int[] kindsToTry = { K_COMPILATION_UNIT, K_EXPRESSION, K_CLASS_BODY_DECLARATIONS, K_STATEMENTS, K_MODULE_INFO };
-		for (int kindToTry : kindsToTry) {
+		for (int kindToTry : kindsToTry) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ASTNode astNode = createParser(kindToTry).createAST(null);
 			if (!hasErrors(astNode)) {
 				if (kindToTry == K_MODULE_INFO)
@@ -334,7 +334,7 @@ public class DefaultCodeFormatter extends CodeFormatter {
 		return null;
 	}
 
-	private ASTParser createParser(int kind) {
+	private ASTParser createParser(int kind) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ASTParser parser = ASTParser.newParser(AST.JLS23);
 
 		if (kind == K_MODULE_INFO) {
@@ -353,11 +353,11 @@ public class DefaultCodeFormatter extends CodeFormatter {
 		return parser;
 	}
 
-	private ICompilationUnit createDummyModuleInfoCompilationUnit() {
+	private ICompilationUnit createDummyModuleInfoCompilationUnit() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		JavaProject dummyProject = new JavaProject(null, null) {
 			@Override
 			public Map<String, String> getOptions(boolean inheritJavaCoreOptions) {
-				return new HashMap<>();
+				return new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			}
 
 			@Override
@@ -381,27 +381,27 @@ public class DefaultCodeFormatter extends CodeFormatter {
 
 	private boolean hasErrors(ASTNode astNode) {
 		CompilationUnit root = (CompilationUnit) astNode.getRoot();
-		for (IProblem problem : root.getProblems()) {
+		for (IProblem problem : root.getProblems()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (problem.isError())
 				return true;
 		}
 		return false;
 	}
 
-	private void tokenizeSource(int kind) {
+	private void tokenizeSource(int kind) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.tokens.clear();
 		Scanner scanner = new Scanner(true, false, false/* nls */, CompilerOptions.versionToJdkLevel(this.sourceLevel),
 				null/* taskTags */, null/* taskPriorities */, false/* taskCaseSensitive */, this.previewEnabled);
 		scanner.setSource(this.sourceArray);
 		scanner.fakeInModule = (kind & K_MODULE_INFO) != 0;
-		while (true) {
+		while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				TerminalToken tokenType = scanner.getNextToken();
 				if (tokenType == TokenNameEOF)
 					break;
 				Token token = Token.fromCurrent(scanner, tokenType);
 				if (this.workingOptions.put_text_block_quotes_on_new_line && token.tokenType == TerminalToken.TokenNameTextBlock) {
-					for (IRegion region : this.formatRegions) {
+					for (IRegion region : this.formatRegions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (region.getOffset() <= token.originalStart &&
 								region.getOffset() + region.getLength() >= token.originalEnd) {
 							token = new TokenTextBlock(token.originalStart, token.originalEnd,TerminalToken.TokenNameTextBlock);
@@ -434,7 +434,7 @@ public class DefaultCodeFormatter extends CodeFormatter {
 		CommentsPreparator commentsPreparator = new CommentsPreparator(this.tokenManager, this.workingOptions,
 				this.sourceLevel);
 		List<Comment> comments = ((CompilationUnit) this.astRoot.getRoot()).getCommentList();
-		for (Comment comment : comments) {
+		for (Comment comment : comments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			comment.accept(commentsPreparator);
 		}
 		commentsPreparator.finishUp();
@@ -452,8 +452,8 @@ public class DefaultCodeFormatter extends CodeFormatter {
 		this.astRoot.accept(tbrPreparator);
 	}
 
-	private void applyFormatOff() {
-		for (Token[] offPair : this.tokenManager.getDisableFormatTokenPairs()) {
+	private void applyFormatOff() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		for (Token[] offPair : this.tokenManager.getDisableFormatTokenPairs()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final int offStart = offPair[0].originalStart;
 			final int offEnd = offPair[1].originalEnd;
 
@@ -461,8 +461,8 @@ public class DefaultCodeFormatter extends CodeFormatter {
 			offPair[0]
 					.setIndent(Math.min(offPair[0].getIndent(), this.tokenManager.findSourcePositionInLine(offStart)));
 
-			final List<IRegion> result = new ArrayList<>();
-			for (IRegion region : this.formatRegions) {
+			final List<IRegion> result = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			for (IRegion region : this.formatRegions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				final int start = region.getOffset(), end = region.getOffset() + region.getLength() - 1;
 				if (offEnd < start || end < offStart) {
 					result.add(region);
@@ -485,7 +485,7 @@ public class DefaultCodeFormatter extends CodeFormatter {
 	 * <li>2. regions are sorted
 	 * <li>3. regions are not overlapping
 	 */
-	private void assertRegionPreconditions(IRegion[] regions, int maxLength) {
+	private void assertRegionPreconditions(IRegion[] regions, int maxLength) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int regionsLength = regions == null ? 0 : regions.length;
 		if (regionsLength == 0) {
 			throw new IllegalArgumentException("no regions"); //$NON-NLS-1$
@@ -493,19 +493,19 @@ public class DefaultCodeFormatter extends CodeFormatter {
 
 		IRegion first = regions[0];
 		if (first.getOffset() < 0 || first.getLength() < 0 || first.getOffset() + first.getLength() > maxLength) {
-			throw new IllegalArgumentException("range exceeded:"+maxLength+ Arrays.asList(regions).stream().map(r->"[off:"+ r.getOffset()+"length:"+r.getLength()+"]").collect(Collectors.joining(", ")));  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+			throw new IllegalArgumentException("range exceeded:"+maxLength+ Arrays.asList(regions).stream().map(r->"[off:"+ r.getOffset()+"length:"+r.getLength()+"]").collect(Collectors.joining(", ")));  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		int lastOffset = first.getOffset() + first.getLength() - 1;
-		for (int i = 1; i < regionsLength; i++) {
+		for (int i = 1; i < regionsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IRegion current = regions[i];
 			if (lastOffset > current.getOffset()) {
-				throw new IllegalArgumentException("regions not sorted:"+Arrays.asList(regions).stream().map(r->"[off:"+ r.getOffset()+"length:"+r.getLength()+"]").collect(Collectors.joining(", ")));  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+				throw new IllegalArgumentException("regions not sorted:"+Arrays.asList(regions).stream().map(r->"[off:"+ r.getOffset()+"length:"+r.getLength()+"]").collect(Collectors.joining(", ")));  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 
 			if (current.getOffset() < 0 || current.getLength() < 0
 					|| current.getOffset() + current.getLength() > maxLength) {
-				throw new IllegalArgumentException("range exceeded:"+maxLength+ Arrays.asList(regions).stream().map(r->"[off:"+ r.getOffset()+"length:"+r.getLength()+"]").collect(Collectors.joining(", ")));  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+				throw new IllegalArgumentException("range exceeded:"+maxLength+ Arrays.asList(regions).stream().map(r->"[off:"+ r.getOffset()+"length:"+r.getLength()+"]").collect(Collectors.joining(", ")));  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 
 			lastOffset = current.getOffset() + current.getLength() - 1;

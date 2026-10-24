@@ -50,7 +50,7 @@ import org.eclipse.jdt.internal.core.util.Util;
  *  <li>Package fragment's name is taken by a simple (non-folder) resource
  * </ul>
  */
-@SuppressWarnings({"rawtypes", "unchecked"})
+@SuppressWarnings({"rawtypes", "unchecked"}) //FLLDCIM: MARK — T09  IMPLEMENTS
 public class CreatePackageFragmentOperation extends JavaModelOperation {
 	/**
 	 * The fully qualified, dot-delimited, package name.
@@ -72,7 +72,7 @@ public CreatePackageFragmentOperation(IPackageFragmentRoot parentElement, String
  *
  * @exception JavaModelException if the operation is unable to complete
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void executeOperation() throws JavaModelException {
 	try {
 		JavaElementDelta delta = null;
@@ -80,11 +80,11 @@ protected void executeOperation() throws JavaModelException {
 		beginTask(Messages.operation_createPackageFragmentProgress, this.pkgName.length);
 		IContainer parentFolder = (IContainer) root.resource();
 		String[] sideEffectPackageName = CharOperation.NO_STRINGS;
-		ArrayList results = new ArrayList(this.pkgName.length);
+		ArrayList results = new ArrayList(this.pkgName.length); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		char[][] inclusionPatterns = root.fullInclusionPatternChars();
 		char[][] exclusionPatterns = root.fullExclusionPatternChars();
 		int i;
-		for (i = 0; i < this.pkgName.length; i++) {
+		for (i = 0; i < this.pkgName.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String subFolderName = this.pkgName[i];
 			sideEffectPackageName = Util.arrayConcat(sideEffectPackageName, subFolderName);
 			IResource subFolder = parentFolder.findMember(subFolderName);
@@ -137,7 +137,7 @@ protected ISchedulingRule getSchedulingRule() {
  * @see IJavaModelStatus
  * @see JavaConventions
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public IJavaModelStatus verify() {
 	IJavaElement parentElement = getParentElement();
 	if (parentElement == null) {
@@ -155,7 +155,7 @@ public IJavaModelStatus verify() {
 	}
 	IContainer parentFolder = (IContainer) ((JavaElement) root).resource();
 	int i;
-	for (i = 0; i < this.pkgName.length; i++) {
+	for (i = 0; i < this.pkgName.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IResource subFolder = parentFolder.findMember(this.pkgName[i]);
 		if (subFolder != null) {
 			if (subFolder.getType() != IResource.FOLDER) {

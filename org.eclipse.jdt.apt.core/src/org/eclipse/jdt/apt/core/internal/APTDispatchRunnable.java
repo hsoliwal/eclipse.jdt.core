@@ -43,7 +43,7 @@ import org.eclipse.jdt.core.compiler.BuildContext;
 import org.eclipse.jdt.core.compiler.CategorizedProblem;
 import org.eclipse.jdt.core.compiler.ReconcileContext;
 
-public class APTDispatchRunnable implements IWorkspaceRunnable
+public class APTDispatchRunnable implements IWorkspaceRunnable //FLLDCIM: MARK — T09  IMPLEMENTS
 {
 	/**
 	 * This callback method is passed to a ReconcileEnv to be called within
@@ -61,7 +61,7 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 			_gfm = gfm;
 		}
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public void run(AbstractCompilationEnv env) {
 			// This is a ReconcileEnvCallback, so we better be dealing with a ReconcileEnv!
 			ReconcileEnv reconcileEnv = (ReconcileEnv)env;
@@ -118,7 +118,7 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 		SPLIT_FILES = setting == null || setting.equalsIgnoreCase("true"); //$NON-NLS-1$
 	}
 
-	public static Set<AnnotationProcessorFactory> runAPTDuringBuild(
+	public static Set<AnnotationProcessorFactory> runAPTDuringBuild( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			BuildContext[] filesWithAnnotations,
 			BuildContext[] filesWithoutAnnotations,
 			Map<IFile, CategorizedProblem[]> problemRecorder,
@@ -198,12 +198,12 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 		_dispatchedBatchFactories = Collections.emptySet();
 	}
 
-	private void reconcile(final ReconcileContext reconcileContext,
+	private void reconcile(final ReconcileContext reconcileContext, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			   IJavaProject javaProject, boolean test)
 	{
 		if (_factories.size() == 0) {
 			if (AptPlugin.DEBUG)
-				trace("apt leaving project " + javaProject.getProject() +  //$NON-NLS-1$
+				trace("apt leaving project " + javaProject.getProject() +  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						" early because there are no factories", //$NON-NLS-1$
 						null);
 			//TODO: clean up generated working copies here?  I think not necessary. - WSH 10/06
@@ -245,7 +245,7 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 		return totalFiles > 0 || !_dispatchedBatchFactories.isEmpty();
 	}
 
-	private void build(){
+	private void build(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		if ( !shouldBuild() )
 		{
@@ -257,7 +257,7 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 					msg = "no AnnotationProcessoryFactory instances registered."; //$NON-NLS-1$
 				else
 					msg = "no files to dispatch to."; //$NON-NLS-1$
-				trace( "run():  leaving project " + _aptProject.getJavaProject().getProject() +  //$NON-NLS-1$
+				trace( "run():  leaving project " + _aptProject.getJavaProject().getProject() +  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						" early because there are " + msg, //$NON-NLS-1$
 					   null);
 			}
@@ -288,7 +288,7 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 						buildCallback);
 			} else {
 				// https://bugs.eclipse.org/bugs/show_bug.cgi?id=301894
-				for (int index = 0; index < _filesWithAnnotation.length;) {
+				for (int index = 0; index < _filesWithAnnotation.length;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					int numberToProcess = (index + MAX_FILES_PER_ITERATION) > _filesWithAnnotation.length ? _filesWithAnnotation.length - index : MAX_FILES_PER_ITERATION;
 					BuildContext[] filesToProcess = new BuildContext[numberToProcess];
 					System.arraycopy(_filesWithAnnotation, index, filesToProcess, 0, numberToProcess);
@@ -314,7 +314,7 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 	 */
 	private boolean hasBatchFactory()
 	{
-		for( FactoryPath.Attributes attr : _factories.values() ){
+		for( FactoryPath.Attributes attr : _factories.values() ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if( attr.runInBatchMode() )
 				return true;
 		}
@@ -333,12 +333,12 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 		return ( _isFullBuild && processorEnv.getPhase() == Phase.BUILD && hasBatchFactory() );
 	}
 
-	private void runAPTInFileBasedMode(final BuildEnv processorEnv)
+	private void runAPTInFileBasedMode(final BuildEnv processorEnv) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		final BuildContext[] cpResults = processorEnv.getFilesWithAnnotation();
 		final GeneratedFileManager gfm = _aptProject.getGeneratedFileManager(_isTestCode);
 		boolean projectEnablesReconcile = AptConfig.shouldProcessDuringReconcile(_aptProject.getJavaProject());
-		for (BuildContext curResult : cpResults ) {
+		for (BuildContext curResult : cpResults ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			processorEnv.beginFileProcessing(curResult);
 			dispatchToFileBasedProcessor(processorEnv, projectEnablesReconcile, false);
 			reportResult(
@@ -360,7 +360,7 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 	 *        previous run.
 	 * @param problems problems from current apt run.
 	 */
-	private void reportResult(
+	private void reportResult( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			BuildContext curResult,
 			Set<IFile> java5GeneratedFiles,
 			Set<IFile> modifiedGeneratedFiles,
@@ -385,13 +385,13 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 				allGeneratedFiles = java5GeneratedFiles;
 			}
 			else {
-				allGeneratedFiles = new HashSet<>(java6GeneratedFiles);
+				allGeneratedFiles = new HashSet<>(java6GeneratedFiles); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 				allGeneratedFiles.addAll(java5GeneratedFiles);
 			}
 		}
 
 		// figure out exactly what got deleted
-		final List<IFile> deletedFiles = new ArrayList<>();
+		final List<IFile> deletedFiles = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		IFile parentFile = curResult.getFile();
 		cleanupNoLongerGeneratedFiles(
 				parentFile,
@@ -437,11 +437,11 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 	 * @param currentRoundDispatchedBatchFactories output parameter. At return contains the
 	 * set of batch factories that has been dispatched.
 	 */
-	private void runAPTInMixedMode(final BuildEnv processorEnv)
+	private void runAPTInMixedMode(final BuildEnv processorEnv) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		final BuildContext[] cpResults = processorEnv.getFilesWithAnnotation();
 		final Map<BuildContext, Set<AnnotationTypeDeclaration>> file2AnnotationDecls =
-			new HashMap<>(cpResults.length * 4/3 + 1);
+			new HashMap<>(cpResults.length * 4/3 + 1); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		final Map<String, AnnotationTypeDeclaration> annotationDecls =
 			processorEnv.getAllAnnotationTypes(file2AnnotationDecls);
 
@@ -454,17 +454,17 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 		}
 
 		if( AptPlugin.DEBUG )
-			trace( "annotations found " + annotationDecls.keySet(), processorEnv); //$NON-NLS-1$
+			trace( "annotations found " + annotationDecls.keySet(), processorEnv); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		// file based processing factory to the set of annotations that it 'claims'
 		final Map<AnnotationProcessorFactory, Set<AnnotationTypeDeclaration>> fileFactory2Annos =
-			new HashMap<>( _factories.size() * 4/3 + 1 );
+			new HashMap<>( _factories.size() * 4/3 + 1 ); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 		// batch processing factory to the set of annotations that it 'claims'
 		final Map<AnnotationProcessorFactory, Set<AnnotationTypeDeclaration>> batchFactory2Annos =
-			new HashMap<>( _factories.size() * 4/3 + 1 );
+			new HashMap<>( _factories.size() * 4/3 + 1 ); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
-		for( Map.Entry<AnnotationProcessorFactory, FactoryPath.Attributes> entry : _factories.entrySet() ){
+		for( Map.Entry<AnnotationProcessorFactory, FactoryPath.Attributes> entry : _factories.entrySet() ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			AnnotationProcessorFactory factory = entry.getKey();
 			Set<AnnotationTypeDeclaration> annotationTypes = getFactorySupportedAnnotations(factory, annotationDecls);
 			if( annotationTypes != null ){
@@ -474,7 +474,7 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 					batch ? batchFactory2Annos : fileFactory2Annos;
 				if( annotationTypes.size() == 0 ){
 					// this factory is claiming all (remaining) annotations.
-					annotationTypes = new HashSet<>(annotationDecls.values());
+					annotationTypes = new HashSet<>(annotationDecls.values()); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 					factory2Annos.put(factory, annotationTypes);
 					annotationDecls.clear();
 					break;
@@ -503,14 +503,14 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 				// But in order to make things consists between runs, will
 				// dispatch base on factory order.
 				_currentDispatchBatchFactories = new LinkedHashSet<>();
-				for(AnnotationProcessorFactory factory : _factories.keySet() ){
+				for(AnnotationProcessorFactory factory : _factories.keySet() ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					final Set<AnnotationTypeDeclaration> annotationTypes = batchFactory2Annos.get(factory);
 					if( annotationTypes == null ) continue;
 					final AnnotationProcessor processor =
 						factory.getProcessorFor(annotationTypes, processorEnv);
 					if( processor != null ){
 						if ( AptPlugin.DEBUG )
-							trace( "runAPT: invoking batch processor " + processor.getClass().getName(), //$NON-NLS-1$
+							trace( "runAPT: invoking batch processor " + processor.getClass().getName(), //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 									processorEnv);
 						_currentDispatchBatchFactories.add(factory);
 						processorEnv.setCurrentProcessorFactory(factory, false);
@@ -521,14 +521,14 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 			}
 			// We have to dispatch to factories even though we may not have discovered any annotations.
 			// This is a documented APT behavior that we have to observe.
-			for( AnnotationProcessorFactory prevRoundFactory : _dispatchedBatchFactories ){
+			for( AnnotationProcessorFactory prevRoundFactory : _dispatchedBatchFactories ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(_currentDispatchBatchFactories.contains(prevRoundFactory))
 					continue;
 				final AnnotationProcessor processor =
 					prevRoundFactory.getProcessorFor(Collections.<AnnotationTypeDeclaration>emptySet(), processorEnv);
 				if( processor != null ){
 					if ( AptPlugin.DEBUG )
-						trace( "runAPT: invoking batch processor " + processor.getClass().getName(), //$NON-NLS-1$
+						trace( "runAPT: invoking batch processor " + processor.getClass().getName(), //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								processorEnv);
 					processorEnv.setCurrentProcessorFactory(prevRoundFactory, false);
 					processor.process();
@@ -572,11 +572,11 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 		// Now, do the file based dispatch
 		if( !fileFactory2Annos.isEmpty() ){
 			boolean projectEnablesReconcile = AptConfig.shouldProcessDuringReconcile(_aptProject.getJavaProject());
-			for(BuildContext curResult : cpResults ){
+			for(BuildContext curResult : cpResults ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				final Set<AnnotationTypeDeclaration> annotationTypesInFile = file2AnnotationDecls.get(curResult);
 				if( annotationTypesInFile == null || annotationTypesInFile.isEmpty() )
 					continue;
-				for(AnnotationProcessorFactory factory : _factories.keySet() ){
+				for(AnnotationProcessorFactory factory : _factories.keySet() ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					final Set<AnnotationTypeDeclaration> annotationTypesForFactory = fileFactory2Annos.get(factory);
 					if( annotationTypesForFactory == null || annotationTypesForFactory.isEmpty() )
 						continue;
@@ -587,7 +587,7 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 							factory.getProcessorFor(intersect, processorEnv);
 						if( processor != null ){
 							if ( AptPlugin.DEBUG )
-								trace( "runAPT: invoking file-based processor " + processor.getClass().getName(), //$NON-NLS-1$
+								trace( "runAPT: invoking file-based processor " + processor.getClass().getName(), //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 										processorEnv );
 							//TODO in 3.4: also consider factory path attributes
 							boolean willReconcile = projectEnablesReconcile && AbstractCompilationEnv.doesFactorySupportReconcile(factory);
@@ -616,12 +616,12 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 	 * @param projectEnablesReconcile true if reconcile-time processing is enabled in the current project
 	 * @param isReconcile true if this call is during reconcile, e.g., processorEnv is a ReconcileEnv
 	 */
-	private void dispatchToFileBasedProcessor(
+	private void dispatchToFileBasedProcessor( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			final AbstractCompilationEnv processorEnv,
 			boolean projectEnablesReconcile, boolean isReconcile){
 
 		Map<String, AnnotationTypeDeclaration> annotationDecls = processorEnv.getAnnotationTypes();
-		for( Map.Entry<AnnotationProcessorFactory, FactoryPath.Attributes> entry : _factories.entrySet() ){
+		for( Map.Entry<AnnotationProcessorFactory, FactoryPath.Attributes> entry : _factories.entrySet() ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if( entry.getValue().runInBatchMode() ) continue;
 			AnnotationProcessorFactory factory = entry.getKey();
 			//TODO in 3.4: also consider factory path attributes
@@ -632,7 +632,7 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 			Set<AnnotationTypeDeclaration> factoryDecls = getFactorySupportedAnnotations(factory, annotationDecls);
 			if( factoryDecls != null ){
 				if(factoryDecls.size() == 0 ){
-					factoryDecls = new HashSet<>(annotationDecls.values());
+					factoryDecls = new HashSet<>(annotationDecls.values()); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 					annotationDecls.clear();
 				}
 			}
@@ -642,7 +642,7 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 				if (processor != null)
 				{
 					if ( AptPlugin.DEBUG ) {
-						trace( "runAPT: invoking file-based processor " + processor.getClass().getName() + " on " + processorEnv.getFile(), //$NON-NLS-1$ //$NON-NLS-2$
+						trace( "runAPT: invoking file-based processor " + processor.getClass().getName() + " on " + processorEnv.getFile(), //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								processorEnv);
 					}
 					processorEnv.setCurrentProcessorFactory(factory, reconcileSupported);
@@ -662,7 +662,7 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 	/**
 	 * @param result output parameter
 	 */
-	private Set<AnnotationProcessorFactory> build(final BuildEnv processorEnv)
+	private Set<AnnotationProcessorFactory> build(final BuildEnv processorEnv) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		try {
 			boolean mixedModeDispatch = shouldDispatchToBatchProcessor(processorEnv);
@@ -677,7 +677,7 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 			final Set<AnnotationProcessorListener> listeners = processorEnv
 					.getProcessorListeners();
 			EclipseRoundCompleteEvent event = null;
-			for (AnnotationProcessorListener listener : listeners) {
+			for (AnnotationProcessorListener listener : listeners) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (listener instanceof RoundCompleteListener) {
 					if (event == null)
 						event = new EclipseRoundCompleteEvent(processorEnv);
@@ -697,10 +697,10 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 			// testing a processor
 			if (t.getClass().getName().startsWith("junit.framework")) //$NON-NLS-1$
 				throw t;
-			AptPlugin.logWarning(t, "Unexpected failure running APT on the file(s): " + getFileNamesForPrinting(processorEnv)); //$NON-NLS-1$
+			AptPlugin.logWarning(t, "Unexpected failure running APT on the file(s): " + getFileNamesForPrinting(processorEnv)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		catch (Throwable t) {
-			AptPlugin.logWarning(t, "Unexpected failure running APT on the file(s): " + getFileNamesForPrinting(processorEnv)); //$NON-NLS-1$
+			AptPlugin.logWarning(t, "Unexpected failure running APT on the file(s): " + getFileNamesForPrinting(processorEnv)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		finally {
 			processorEnv.close();
@@ -714,10 +714,10 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 	 */
 	private Set<AnnotationTypeDeclaration> setIntersect(Set<AnnotationTypeDeclaration> one, Set<AnnotationTypeDeclaration> two ){
 		Set<AnnotationTypeDeclaration> intersect = null;
-		for( AnnotationTypeDeclaration obj : one ){
+		for( AnnotationTypeDeclaration obj : one ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if( two.contains(obj) ){
 				if( intersect == null )
-					intersect = new HashSet<>();
+					intersect = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 				intersect.add(obj);
 			}
 		}
@@ -729,14 +729,14 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 		cleanupAllGeneratedFilesFrom(_filesWithoutAnnotation);
 	}
 
-	private void cleanupAllGeneratedFilesFrom(BuildContext[] cpResults){
+	private void cleanupAllGeneratedFilesFrom(BuildContext[] cpResults){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (cpResults == null) {
 			return;
 		}
-		final Set<IFile> deleted = new HashSet<>();
+		final Set<IFile> deleted = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		GeneratedFileManager gfm = _aptProject.getGeneratedFileManager(_isTestCode);
 		Set<IFile> java6GeneratedFiles = AptCompilationParticipant.getInstance().getJava6GeneratedFiles();
-		for( BuildContext cpResult : cpResults){
+		for( BuildContext cpResult : cpResults){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final IFile parentFile = cpResult.getFile();
 			cleanupNoLongerGeneratedFiles(
 					parentFile,
@@ -787,7 +787,7 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 	 * This method will destructively modify {@link #declarations}. Entries will be removed from
 	 * {@link #declarations} as the declarations are being added into the returned set.
 	 */
-	private static Set<AnnotationTypeDeclaration> getFactorySupportedAnnotations(
+	private static Set<AnnotationTypeDeclaration> getFactorySupportedAnnotations( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			final AnnotationProcessorFactory factory,
 			final Map<String, AnnotationTypeDeclaration> declarations)
 
@@ -798,22 +798,22 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 		if (supportedTypes == null || supportedTypes.size() == 0)
 			return Collections.emptySet();
 
-		final Set<AnnotationTypeDeclaration> fDecls = new HashSet<>();
+		final Set<AnnotationTypeDeclaration> fDecls = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 
-		for (Iterator<String> it = supportedTypes.iterator(); it.hasNext();) {
+		for (Iterator<String> it = supportedTypes.iterator(); it.hasNext();) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final String typeName = it.next();
 			if (typeName.equals("*")) { //$NON-NLS-1$
 				fDecls.addAll(declarations.values());
 				declarations.clear();
 
 				// Warn that * was claimed, which is non-optimal
-				AptPlugin.logWarning(null, "Processor Factory " + factory +  //$NON-NLS-1$
+				AptPlugin.logWarning(null, "Processor Factory " + factory +  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						" claimed all annotations (*), which prevents any following factories from being dispatched."); //$NON-NLS-1$
 
 			} else if (typeName.endsWith("*")) { //$NON-NLS-1$
 				final String prefix = typeName.substring(0,
 						typeName.length() - 2);
-				for (Iterator<Map.Entry<String, AnnotationTypeDeclaration>> entries = declarations
+				for (Iterator<Map.Entry<String, AnnotationTypeDeclaration>> entries = declarations //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						.entrySet().iterator(); entries.hasNext();) {
 					final Map.Entry<String, AnnotationTypeDeclaration> entry = entries
 							.next();
@@ -840,7 +840,7 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 		if (AptPlugin.DEBUG)
 		{
 			if (processorEnv != null) {
-				s = "[ phase = " + processorEnv.getPhase() + ", file = " + getFileNamesForPrinting(processorEnv) +" ]  " + s; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				s = "[ phase = " + processorEnv.getPhase() + ", file = " + getFileNamesForPrinting(processorEnv) +" ]  " + s; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			AptPlugin.trace( s );
 		}
@@ -859,7 +859,7 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 	 * For debugging statements only!!
 	 * @return the names of the files that we are currently processing.
 	 */
-	private static String getFileNamesForPrinting(final BuildEnv processorEnv){
+	private static String getFileNamesForPrinting(final BuildEnv processorEnv){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final IFile file = processorEnv.getFile();
 		if( file != null )
 			return file.getName();
@@ -872,16 +872,16 @@ public class APTDispatchRunnable implements IWorkspaceRunnable
 		case 1:
 			return results[0].getFile().getName();
 		default:
-			StringBuilder sb = new StringBuilder();
+			StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			boolean firstItem = true;
-			for (BuildContext curResult : results) {
+			for (BuildContext curResult : results) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (firstItem) {
 					firstItem = false;
 				}
 				else {
-					sb.append(", "); //$NON-NLS-1$
+					sb.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				sb.append(curResult.getFile().getName());
+				sb.append(curResult.getFile().getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			return sb.toString();
 		}

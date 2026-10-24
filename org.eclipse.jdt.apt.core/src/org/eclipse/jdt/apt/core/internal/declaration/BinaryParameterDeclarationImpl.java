@@ -53,7 +53,7 @@ public class BinaryParameterDeclarationImpl extends DeclarationImpl implements P
     {
         super(typeBinding, env);
         assert( typeBinding != null ) : "missing type binding"; //$NON-NLS-1$
-        assert( index >= 0 ) : "invalid index " + index; //$NON-NLS-1$
+        assert( index >= 0 ) : "invalid index " + index; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         assert executable != null : "missing executable"; //$NON-NLS-1$
         _type = typeBinding;
         _paramIndex = index;
@@ -84,7 +84,7 @@ public class BinaryParameterDeclarationImpl extends DeclarationImpl implements P
 	public String getSimpleName()
     {
         final SingleVariableDeclaration decl = (SingleVariableDeclaration)getAstNode();
-        if( decl == null ) return ARG + _paramIndex;
+        if( decl == null ) return ARG + _paramIndex; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         final SimpleName name = decl.getName();
         return name == null ? ARG : name.toString();
     }
@@ -163,10 +163,10 @@ public class BinaryParameterDeclarationImpl extends DeclarationImpl implements P
 
     @Override
 	public String toString(){
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getTypeBinding().getName());
-        builder.append(' ');
-        builder.append(getSimpleName());
+        final StringBuilder builder = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        builder.append(getTypeBinding().getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        builder.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        builder.append(getSimpleName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
         return builder.toString();
     }
 }

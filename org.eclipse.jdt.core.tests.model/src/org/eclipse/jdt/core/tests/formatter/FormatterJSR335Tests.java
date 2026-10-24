@@ -133,14 +133,14 @@ public class FormatterJSR335Tests extends AbstractJavaModelTests {
 		assertNotNull(compilationUnitName);
 		int dotIndex = compilationUnitName.indexOf('.');
 		assertTrue(dotIndex != -1);
-		return compilationUnitName.substring(0, dotIndex) + IN + compilationUnitName.substring(dotIndex);
+		return compilationUnitName.substring(0, dotIndex) + IN + compilationUnitName.substring(dotIndex); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	private String getOut(String compilationUnitName) {
 		assertNotNull(compilationUnitName);
 		int dotIndex = compilationUnitName.indexOf('.');
 		assertTrue(dotIndex != -1);
-		return compilationUnitName.substring(0, dotIndex) + OUT + compilationUnitName.substring(dotIndex);
+		return compilationUnitName.substring(0, dotIndex) + OUT + compilationUnitName.substring(dotIndex); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	void assertLineEquals(String actualContents, String originalSource, String expectedContents, boolean checkNull) {
@@ -163,7 +163,7 @@ public class FormatterJSR335Tests extends AbstractJavaModelTests {
 	private void runTest(CodeFormatter codeFormatter, String packageName, String compilationUnitName, int kind, int indentationLevel) {
 		runTest(codeFormatter, packageName, compilationUnitName, kind, indentationLevel, false, 0, -1, null);
 	}
-	private void runTest(CodeFormatter codeFormatter, String packageName, String compilationUnitName, int kind, int indentationLevel, boolean checkNull, int offset, int length, String lineSeparator) {
+	private void runTest(CodeFormatter codeFormatter, String packageName, String compilationUnitName, int kind, int indentationLevel, boolean checkNull, int offset, int length, String lineSeparator) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			ICompilationUnit sourceUnit = getCompilationUnit(PROJECT_NAME , "", packageName, getIn(compilationUnitName)); //$NON-NLS-1$ //$NON-NLS-2$
 			String source = sourceUnit.getSource();

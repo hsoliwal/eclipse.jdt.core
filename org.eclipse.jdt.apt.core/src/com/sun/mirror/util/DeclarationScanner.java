@@ -70,11 +70,11 @@ class DeclarationScanner implements DeclarationVisitor {
 	public void visitPackageDeclaration(PackageDeclaration d) {
 	d.accept(pre);
 
-	for(ClassDeclaration classDecl: d.getClasses()) {
+	for(ClassDeclaration classDecl: d.getClasses()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    classDecl.accept(this);
 	}
 
-	for(InterfaceDeclaration interfaceDecl: d.getInterfaces()) {
+	for(InterfaceDeclaration interfaceDecl: d.getInterfaces()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    interfaceDecl.accept(this);
 	}
 
@@ -86,50 +86,50 @@ class DeclarationScanner implements DeclarationVisitor {
 	visitDeclaration(d);
     }
 
-    @Override
+    @Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void visitTypeDeclaration(TypeDeclaration d) {
 	d.accept(pre);
 
-	for(TypeParameterDeclaration tpDecl: d.getFormalTypeParameters()) {
+	for(TypeParameterDeclaration tpDecl: d.getFormalTypeParameters()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    tpDecl.accept(this);
 	}
 
-	for(FieldDeclaration fieldDecl: d.getFields()) {
+	for(FieldDeclaration fieldDecl: d.getFields()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    fieldDecl.accept(this);
 	}
 
-	for(MethodDeclaration methodDecl: d.getMethods()) {
+	for(MethodDeclaration methodDecl: d.getMethods()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    methodDecl.accept(this);
 	}
 
-	for(TypeDeclaration typeDecl: d.getNestedTypes()) {
+	for(TypeDeclaration typeDecl: d.getNestedTypes()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    typeDecl.accept(this);
 	}
 
 	d.accept(post);
     }
 
-    @Override
+    @Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void visitClassDeclaration(ClassDeclaration d) {
 	d.accept(pre);
 
-	for(TypeParameterDeclaration tpDecl: d.getFormalTypeParameters()) {
+	for(TypeParameterDeclaration tpDecl: d.getFormalTypeParameters()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    tpDecl.accept(this);
 	}
 
-	for(FieldDeclaration fieldDecl: d.getFields()) {
+	for(FieldDeclaration fieldDecl: d.getFields()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    fieldDecl.accept(this);
 	}
 
-	for(MethodDeclaration methodDecl: d.getMethods()) {
+	for(MethodDeclaration methodDecl: d.getMethods()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    methodDecl.accept(this);
 	}
 
-	for(TypeDeclaration typeDecl: d.getNestedTypes()) {
+	for(TypeDeclaration typeDecl: d.getNestedTypes()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    typeDecl.accept(this);
 	}
 
-	for(ConstructorDeclaration ctorDecl: d.getConstructors()) {
+	for(ConstructorDeclaration ctorDecl: d.getConstructors()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    ctorDecl.accept(this);
 	}
 
@@ -165,11 +165,11 @@ class DeclarationScanner implements DeclarationVisitor {
 	public void visitExecutableDeclaration(ExecutableDeclaration d) {
 	d.accept(pre);
 
-	for(TypeParameterDeclaration tpDecl: d.getFormalTypeParameters()) {
+	for(TypeParameterDeclaration tpDecl: d.getFormalTypeParameters()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    tpDecl.accept(this);
 	}
 
-	for(ParameterDeclaration pDecl: d.getParameters()) {
+	for(ParameterDeclaration pDecl: d.getParameters()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    pDecl.accept(this);
 	}
 

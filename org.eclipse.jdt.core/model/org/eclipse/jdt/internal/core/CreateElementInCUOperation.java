@@ -42,7 +42,7 @@ import org.eclipse.text.edits.TextEdit;
  * and <code>#createBefore</code>. By default, the new element is positioned
  * as the last child of its parent element.
  */
-public abstract class CreateElementInCUOperation extends JavaModelOperation {
+public abstract class CreateElementInCUOperation extends JavaModelOperation { //FLLDCIM: MARK — T09  IMPLEMENTS
 	/**
 	 * The compilation unit AST used for this operation
 	 */
@@ -122,7 +122,7 @@ public abstract class CreateElementInCUOperation extends JavaModelOperation {
 	 *
 	 * @exception JavaModelException if the operation is unable to complete
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void executeOperation() throws JavaModelException {
 		try {
 			beginTask(getMainTaskName(), getMainAmountOfWork());
@@ -140,7 +140,7 @@ public abstract class CreateElementInCUOperation extends JavaModelOperation {
 				if (!isWorkingCopy // if unit is working copy, then save will have already fired the delta
 						&& !Util.isExcluded(unit)
 						&& unit.getParent().exists()) {
-					for (IJavaElement resultElement : this.resultElements) {
+					for (IJavaElement resultElement : this.resultElements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						delta.added(resultElement);
 					}
 					addDelta(delta);
@@ -232,7 +232,7 @@ public abstract class CreateElementInCUOperation extends JavaModelOperation {
 	 * @see #createAfter(IJavaElement)
 	 * @see #createBefore(IJavaElement)
 	 */
-	protected void insertASTNode(ASTRewrite rewriter, ASTNode parent, ASTNode child) throws JavaModelException {
+	protected void insertASTNode(ASTRewrite rewriter, ASTNode parent, ASTNode child) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		StructuralPropertyDescriptor propertyDescriptor = getChildPropertyDescriptor(parent);
 		if (propertyDescriptor instanceof ChildListPropertyDescriptor) {
 			ChildListPropertyDescriptor childListPropertyDescriptor = (ChildListPropertyDescriptor) propertyDescriptor;

@@ -39,7 +39,7 @@ public class ASTStructuralPropertyTest extends org.eclipse.jdt.core.tests.junit.
 
 		Class c = ASTStructuralPropertyTest.class;
 		Method[] methods = c.getMethods();
-		for (int i = 0, max = methods.length; i < max; i++) {
+		for (int i = 0, max = methods.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (methods[i].getName().startsWith("test")) { //$NON-NLS-1$
 				suite.addTest(new ASTStructuralPropertyTest(methods[i].getName(), AST.JLS8));
 			}
@@ -78,17 +78,17 @@ public class ASTStructuralPropertyTest extends org.eclipse.jdt.core.tests.junit.
 		return name;
 	}
 
-	public void testLocationInParent() {
+	public void testLocationInParent() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final ASTNode root = SampleASTs.oneOfEach(this.ast);
 		ASTVisitor v = new ASTVisitor(true) {
-			public void postVisit(ASTNode node) {
+			public void postVisit(ASTNode node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				StructuralPropertyDescriptor me = node.getLocationInParent();
 				assertTrue(me != null || (node == root));
                 ASTNode p = node.getParent();
                 if (p != null) {
                     List parentProperties = p.structuralPropertiesForType();
                     boolean foundMe = false;
-                    for (Iterator it = parentProperties.iterator(); it
+                    for (Iterator it = parentProperties.iterator(); it //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
                             .hasNext();) {
                         StructuralPropertyDescriptor prop =
                             (StructuralPropertyDescriptor) it.next();
@@ -107,7 +107,7 @@ public class ASTStructuralPropertyTest extends org.eclipse.jdt.core.tests.junit.
 	/**
 	 * @deprecated since using deprecated constant
 	 */
-	public void testStructuralProperties() {
+	public void testStructuralProperties() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final ASTNode root = SampleASTs.oneOfEach(this.ast);
 
 		final Set simpleProperties = new LinkedHashSet(400);
@@ -117,14 +117,14 @@ public class ASTStructuralPropertyTest extends org.eclipse.jdt.core.tests.junit.
 		final Set nodeClasses = new LinkedHashSet(100);
 
 		ASTVisitor v = new ASTVisitor(true) {
-			public void postVisit(ASTNode node) {
+			public void postVisit(ASTNode node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				StructuralPropertyDescriptor me = node.getLocationInParent();
 				if (me != null) {
 					visitedProperties.add(me);
 				}
 				nodeClasses.add(node.getClass());
 				List ps = node.structuralPropertiesForType();
-				for (Iterator it = ps.iterator(); it.hasNext(); ) {
+				for (Iterator it = ps.iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					StructuralPropertyDescriptor p = (StructuralPropertyDescriptor) it.next();
 					Object o = node.getStructuralProperty(p);
 					if (p.isSimpleProperty()) {
@@ -185,7 +185,7 @@ public class ASTStructuralPropertyTest extends org.eclipse.jdt.core.tests.junit.
 		assertTrue(root.subtreeMatch(new ASTMatcher(), newRoot));
 	}
 
-	public void testProtect() {
+	public void testProtect() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final ASTNode root = SampleASTs.oneOfEach(this.ast);
 
 		// check that all properties are again modifiable
@@ -195,7 +195,7 @@ public class ASTStructuralPropertyTest extends org.eclipse.jdt.core.tests.junit.
 				super(true); // visit doc
 				this.shouldBeProtected = shouldBeProtected;
 			}
-			public void postVisit(ASTNode node) {
+			public void postVisit(ASTNode node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				try {
 					node.setSourceRange(1, 1);
 					assertTrue(!this.shouldBeProtected);
@@ -203,7 +203,7 @@ public class ASTStructuralPropertyTest extends org.eclipse.jdt.core.tests.junit.
 					assertTrue(this.shouldBeProtected);
 				}
 				List ps = node.structuralPropertiesForType();
-				for (Iterator it = ps.iterator(); it.hasNext(); ) {
+				for (Iterator it = ps.iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					StructuralPropertyDescriptor p = (StructuralPropertyDescriptor) it.next();
 					Object o = node.getStructuralProperty(p);
 					if (p.isSimpleProperty()) {
@@ -273,14 +273,14 @@ public class ASTStructuralPropertyTest extends org.eclipse.jdt.core.tests.junit.
 		root.accept(new Slammer(false));
 	}
 
-	public void testDelete() {
+	public void testDelete() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final ASTNode root = SampleASTs.oneOfEach(this.ast);
 
 		// check that nodes can be deleted unless mandatory
 		root.accept(new ASTVisitor(true) {
-			public void postVisit(ASTNode node) {
+			public void postVisit(ASTNode node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				List ps = node.structuralPropertiesForType();
-				for (Iterator it = ps.iterator(); it.hasNext(); ) {
+				for (Iterator it = ps.iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					StructuralPropertyDescriptor p = (StructuralPropertyDescriptor) it.next();
 					if (p.isChildProperty()) {
 						ChildPropertyDescriptor c = (ChildPropertyDescriptor) p;
@@ -297,9 +297,9 @@ public class ASTStructuralPropertyTest extends org.eclipse.jdt.core.tests.junit.
 						// replace child list with copies
 						List list = (List) node.getStructuralProperty(p);
 						// iterate over a copy and try removing all members
-						List copy = new ArrayList();
+						List copy = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 						copy.addAll(list);
-						for (Iterator it2 = copy.iterator(); it2.hasNext(); ) {
+						for (Iterator it2 = copy.iterator(); it2.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							ASTNode n = (ASTNode) it2.next();
 							try {
 								n.delete();
@@ -315,7 +315,7 @@ public class ASTStructuralPropertyTest extends org.eclipse.jdt.core.tests.junit.
 	}
 
 	/** @deprecated using deprecated code */
-	public void testCreateInstance() {
+	public void testCreateInstance() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int maxNodeType;
 		switch (this.ast.apiLevel()) {
 			case AST.JLS2:
@@ -334,7 +334,7 @@ public class ASTStructuralPropertyTest extends org.eclipse.jdt.core.tests.junit.
 				fail();
 				return;
 		}
-		for (int nodeType = 0; nodeType < 100; nodeType++) {
+		for (int nodeType = 0; nodeType < 100; nodeType++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Class nodeClass = null;
 			try {
 				nodeClass = ASTNode.nodeClassForType(nodeType);
@@ -355,11 +355,11 @@ public class ASTStructuralPropertyTest extends org.eclipse.jdt.core.tests.junit.
 		}
 	}
 
-	public void testNodeClassForType() {
-		Set classes = new HashSet(125);
+	public void testNodeClassForType() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		Set classes = new HashSet(125); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		// make sure node types are contiguous starting at 0
 		int hi = 0;
-		for (int nodeType = 1; nodeType < 125; nodeType++) {
+		for (int nodeType = 1; nodeType < 125; nodeType++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				Class nodeClass = ASTNode.nodeClassForType(nodeType);
 				assertTrue(ASTNode.class.isAssignableFrom(nodeClass));

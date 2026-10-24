@@ -97,39 +97,39 @@ public class CompletionOnJavadocFieldReference extends JavadocFieldReference imp
 		return null;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public StringBuilder printExpression(int indent, StringBuilder output) {
-		output.append("<CompleteOnJavadocFieldReference:"); //$NON-NLS-1$
+		output.append("<CompleteOnJavadocFieldReference:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		super.printExpression(indent, output);
 		indent++;
 		if (this.completionFlags > 0) {
-			output.append('\n');
-			for (int i=0; i<indent; i++) output.append('\t');
-			output.append("infos:"); //$NON-NLS-1$
+			output.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (int i=0; i<indent; i++) output.append('\t'); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			output.append("infos:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			char separator = 0;
 			if (completeAnException()) {
-				output.append("exception"); //$NON-NLS-1$
+				output.append("exception"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				separator = ',';
 			}
 			if (completeInText()) {
-				if (separator != 0) output.append(separator);
-				output.append("text"); //$NON-NLS-1$
+				if (separator != 0) output.append(separator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				output.append("text"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				separator = ',';
 			}
 			if (completeBaseTypes()) {
-				if (separator != 0) output.append(separator);
-				output.append("base types"); //$NON-NLS-1$
+				if (separator != 0) output.append(separator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				output.append("base types"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				separator = ',';
 			}
 			if (completeFormalReference()) {
-				if (separator != 0) output.append(separator);
-				output.append("formal reference"); //$NON-NLS-1$
+				if (separator != 0) output.append(separator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				output.append("formal reference"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				separator = ',';
 			}
-			output.append('\n');
+			output.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		indent--;
-		for (int i=0; i<indent; i++) output.append('\t');
-		return output.append('>');
+		for (int i=0; i<indent; i++) output.append('\t'); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		return output.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 }

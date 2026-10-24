@@ -57,7 +57,7 @@ class PackageBinding implements IPackageBinding {
 		this.resolver = resolver;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public IAnnotationBinding[] getAnnotations() {
 		try {
 			INameEnvironment nameEnvironment = this.binding.environment.nameEnvironment;
@@ -71,7 +71,7 @@ class PackageBinding implements IPackageBinding {
 			if (pkgs == null)
 				return AnnotationBinding.NoAnnotations;
 
-			for (IPackageFragment pkg : pkgs) {
+			for (IPackageFragment pkg : pkgs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int fragType = pkg.getKind();
 				switch(fragType) {
 					case IPackageFragmentRoot.K_SOURCE:
@@ -92,7 +92,7 @@ class PackageBinding implements IPackageBinding {
 									return AnnotationBinding.NoAnnotations;
 								IAnnotationBinding[] result = new IAnnotationBinding[annos.size()];
 								int index=0;
-		 						for (Iterator it = annos.iterator(); it.hasNext(); index++) {
+		 						for (Iterator it = annos.iterator(); it.hasNext(); index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 									result[index] = ((Annotation) it.next()).resolveAnnotationBinding();
 									// not resolving bindings
 									if (result[index] == null)
@@ -115,7 +115,7 @@ class PackageBinding implements IPackageBinding {
 								org.eclipse.jdt.internal.compiler.lookup.AnnotationBinding.addStandardAnnotations(binaryInstances, type.getTagBits(), this.binding.environment);
 							int total = allInstances.length;
 							IAnnotationBinding[] domInstances = new AnnotationBinding[total];
-							for (int a = 0; a < total; a++) {
+							for (int a = 0; a < total; a++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								final IAnnotationBinding annotationInstance = this.resolver.getAnnotationInstance(allInstances[a]);
 								if (annotationInstance == null) {// not resolving binding
 									return AnnotationBinding.NoAnnotations;
@@ -190,7 +190,7 @@ class PackageBinding implements IPackageBinding {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public IJavaElement getJavaElement() {
 		INameEnvironment nameEnvironment = this.binding.environment.nameEnvironment; // a package binding always has a LooupEnvironment set
 		if (!(nameEnvironment instanceof SearchableEnvironment)) return null;
@@ -205,7 +205,7 @@ class PackageBinding implements IPackageBinding {
 				new Status(
 						IStatus.WARNING,
 						JavaCore.PLUGIN_ID,
-						"Searching for package " + getName() + " returns an empty array")); //$NON-NLS-1$ //$NON-NLS-2$
+						"Searching for package " + getName() + " returns an empty array")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			return null;
 		}
 		return pkgs[0];
@@ -233,7 +233,7 @@ class PackageBinding implements IPackageBinding {
 		return CharOperation.equals(this.binding.compoundName, packageBinding2.compoundName);
 	}
 
-	private void computeNameAndComponents() {
+	private void computeNameAndComponents() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[][] compoundName = this.binding.compoundName;
 		if (compoundName == CharOperation.NO_CHAR_CHAR || compoundName == null) {
 			this.name = UNNAMED;
@@ -241,13 +241,13 @@ class PackageBinding implements IPackageBinding {
 		} else {
 			int length = compoundName.length;
 			this.components = new String[length];
-			StringBuilder buffer = new StringBuilder();
-			for (int i = 0; i < length - 1; i++) {
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			for (int i = 0; i < length - 1; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.components[i] = new String(compoundName[i]);
-				buffer.append(compoundName[i]).append(PACKAGE_NAME_SEPARATOR);
+				buffer.append(compoundName[i]).append(PACKAGE_NAME_SEPARATOR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			this.components[length - 1] = new String(compoundName[length - 1]);
-			buffer.append(compoundName[length - 1]);
+			buffer.append(compoundName[length - 1]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			this.name = buffer.toString();
 		}
 	}
@@ -265,12 +265,12 @@ class PackageBinding implements IPackageBinding {
 		return this.binding.toString();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public ITypeBinding findTypeBinding(String nameString) {
 		if (nameString == null || nameString.isEmpty()) {
 			return null;
 		}
-		String[] segments = nameString.split("[.]"); //$NON-NLS-1$
+		String[] segments = nameString.split("[.]"); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		int i = 0;
 		org.eclipse.jdt.internal.compiler.lookup.PackageBinding pkgBinding = this.binding;
 		Binding foundBinding = null;
@@ -279,7 +279,7 @@ class PackageBinding implements IPackageBinding {
 		if (foundBinding != null && foundBinding.isValidBinding()
 				&& (foundBinding instanceof org.eclipse.jdt.internal.compiler.lookup.ReferenceBinding refBinding)) {
 			org.eclipse.jdt.internal.compiler.lookup.ReferenceBinding referenceBinding = refBinding;
-			while (i < segments.length) {
+			while (i < segments.length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				segName = segments[i++].toCharArray();
 				foundBinding = referenceBinding.getMemberType(segName);
 				if (foundBinding == null || !foundBinding.isValidBinding()

@@ -74,7 +74,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			JavacTestOptions.forRelease(JavaCore.VERSION_14, javacAdditionalTestOptions);
 		runner.runWarningTest();
 	}
-	public void testBug544073_000() {
+	public void testBug544073_000() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -97,7 +97,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"1");
 	}
-	public void testBug544073_001() {
+	public void testBug544073_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -117,7 +117,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"3");
 	}
-	public void testBug544073_002() {
+	public void testBug544073_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -149,7 +149,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"Got Exception - expected");
 	}
-	public void testBug544073_003() {
+	public void testBug544073_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -177,7 +177,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			"A switch expression should have a default case\n" +
 			"----------\n");
 	}
-	public void testBug544073_004() {
+	public void testBug544073_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -206,7 +206,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			"Case constant of type String is incompatible with switch selector type int\n" +
 			"----------\n");
 	}
-	public void testBug544073_005() {
+	public void testBug544073_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -241,7 +241,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	 *  must contain all the enum constants of that enum type
 	 *  Add a missing enum test case
 	 */
-	public void testBug544073_006() {
+	public void testBug544073_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -279,7 +279,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	 * should compile - test for adding additional nesting in variables
 	 * dev note: ref consumeToken().case Switch
 	 */
-	public void testBug544073_007() {
+	public void testBug544073_007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -305,7 +305,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"100");
 	}
-	public void testBug544073_009() {
+	public void testBug544073_009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -324,7 +324,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"hello");
 	}
-	public void testBug544073_010() {
+	public void testBug544073_010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 				"X.java",
 				"public class X {\n" +
@@ -363,7 +363,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				testFiles,
 				expectedProblemLog);
 	}
-	public void testBug544073_011() {
+	public void testBug544073_011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 				"X.java",
 				"public class X {\n" +
@@ -390,7 +390,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				testFiles,
 				expectedProblemLog);
 	}
-	public void testBug544073_012() {
+	public void testBug544073_012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 				"X.java",
 				"public class X {\n" +
@@ -418,7 +418,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				testFiles,
 				expectedProblemLog);
 	}
-	public void testBug544073_013() {
+	public void testBug544073_013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions();
 		options.put(CompilerOptions.OPTION_EnablePreviews, CompilerOptions.ENABLED);
 		options.put(CompilerOptions.OPTION_ReportPreviewFeatures, CompilerOptions.WARNING);
@@ -457,7 +457,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			options.put(CompilerOptions.OPTION_Source, release);
 		}
 	}
-	public void testBug544073_014() {
+	public void testBug544073_014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String[] testFiles = new String[] {
 					"X.java",
 					"public class X {\n" +
@@ -492,7 +492,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 					testFiles,
 					expectedProblemLog);
 	}
-	public void testBug544073_015() {
+	public void testBug544073_015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// switch expression is not a Primary
 		Runner runner = new Runner();
 		runner.customOptions = getCompilerOptions();
@@ -519,7 +519,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"----------\n";
 		runner.runNegativeTest();
 	}
-	public void testBug544073_016() {
+	public void testBug544073_016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -547,7 +547,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	/*
 	 * A simple multi constant case statement, compiled and run as expected
 	 */
-	public void testBug544073_017() {
+	public void testBug544073_017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 				"X.java",
 				"public class X {\n" +
@@ -576,7 +576,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	/*
 	 * A simple multi constant case statement, compiler reports missing enum constants
 	 */
-	public void testBug544073_018() {
+	public void testBug544073_018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -609,7 +609,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	/*
 	 * A simple multi constant case statement with duplicate enums
 	 */
-	public void testBug544073_019() {
+	public void testBug544073_019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 				"X.java",
 				"public class X {\n" +
@@ -643,7 +643,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	/*
 	 * A simple multi constant case statement with duplicate enums
 	 */
-	public void testBug544073_020() {
+	public void testBug544073_020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 				"X.java",
 				"public class X {\n" +
@@ -684,7 +684,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	/*
 	 */
-	public void testBug544073_021() {
+	public void testBug544073_021() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -715,7 +715,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 		runner.javacTestOptions = Excuse.EclipseHasSomeMoreWarnings;
 		runner.runWarningTest();
 	}
-	public void testBug544073_022() {
+	public void testBug544073_022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 				"X.java",
 				"public class X {\n" +
@@ -748,7 +748,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	/*
 	 * Simple switch case with string literals
 	 */
-	public void testBug544073_023() {
+	public void testBug544073_023() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 				"X.java",
 				"public class X {\n" +
@@ -782,7 +782,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				testFiles,
 				expectedProblemLog);
 	}
-	public void testBug544073_024() {
+	public void testBug544073_024() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 				"X.java",
 				"public class X {\n" +
@@ -819,7 +819,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	 * Switch with multi constant case statements with string literals
 	 * two string literals with same hashcode
 	 */
-	public void testBug544073_025() {
+	public void testBug544073_025() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 				"X.java",
 				"public class X {\n" +
@@ -855,7 +855,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	/*
 	 * Switch with multi constant case statements with integer constants
 	 */
-	public void testBug544073_026() {
+	public void testBug544073_026() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 				"X.java",
 				"public class X {\n" +
@@ -893,7 +893,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	/*
 	 * Switch multi-constant with mixed constant types, reported
 	 */
-	public void testBug544073_027() {
+	public void testBug544073_027() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 				"X.java",
 				"public class X {\n" +
@@ -927,7 +927,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	/*
 	 * Switch multi-constant without break statement, reported
 	 */
-	public void testBug544073_028() {
+	public void testBug544073_028() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions();
 		options.put(CompilerOptions.OPTION_ReportFallthroughCase, CompilerOptions.WARNING);
 		String[] testFiles = new String[] {
@@ -964,7 +964,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	/*
 	 * Switch multi-constant without yield statement, reported
 	 */
-	public void testBug544073_029() {
+	public void testBug544073_029() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions();
 		options.put(CompilerOptions.OPTION_ReportMissingDefaultCase, CompilerOptions.WARNING);
 		String[] testFiles = new String[] {
@@ -997,7 +997,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	/*
 	 * Switch multi-constant with duplicate int constants
 	 */
-	public void testBug544073_030() {
+	public void testBug544073_030() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 				"X.java",
 				"public class X {\n" +
@@ -1027,7 +1027,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	/*
 	 * Switch multi-constant with duplicate String literals
 	 */
-	public void testBug544073_031() {
+	public void testBug544073_031() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 				"X.java",
 				"public class X {\n" +
@@ -1057,7 +1057,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	/*
 	 * Switch multi-constant with illegal qualified enum constant
 	 */
-	public void testBug544073_032() {
+	public void testBug544073_032() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel >= ClassFileConstants.JDK21)
 			return;
 		String[] testFiles = new String[] {
@@ -1085,7 +1085,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				testFiles,
 				expectedProblemLog);
 	}
-	public void testBug544073_033() {
+	public void testBug544073_033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 				"X.java",
 				"public class X {\n" +
@@ -1108,7 +1108,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				testFiles,
 				expectedProblemLog);
 	}
-	public void testBug544073_034() {
+	public void testBug544073_034() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 				"X.java",
 				"public class X {\n" +
@@ -1127,7 +1127,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				testFiles,
 				"");
 	}
-	public void testBug544073_035() {
+	public void testBug544073_035() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// TODO: Fix me
 		this.runNegativeTest(
 			new String[] {
@@ -1168,7 +1168,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			"Breaking out of switch expressions not permitted\n" +
 			"----------\n");
 	}
-	public void testBug544073_036() {
+	public void testBug544073_036() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 				"X.java",
 				"public class X {\n" +
@@ -1193,7 +1193,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				testFiles,
 				expectedProblemLog);
 	}
-	public void testBug544073_037() {
+	public void testBug544073_037() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 			"X.java",
 			"public class X {\n" +
@@ -1214,7 +1214,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 		String expectedOutput = "hello world";
 		runConformTest(testFiles, expectedOutput);
 	}
-	public void testBug544073_038() {
+	public void testBug544073_038() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 			"X.java",
 			"public class X {\n" +
@@ -1235,7 +1235,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 		String expectedOutput = "hello world";
 		runConformTest(testFiles, expectedOutput);
 	}
-	public void testBug544073_039() {
+	public void testBug544073_039() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 			"X.java",
 			"interface I0 { void i(); }\n" +
@@ -1263,7 +1263,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 		String expectedOutput = "NPE as expected";
 		runConformTest(testFiles, expectedOutput);
 	}
-	public void testBug544073_040() {
+	public void testBug544073_040() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 			"X.java",
 			"import java.util.function.Supplier;\n" +
@@ -1292,7 +1292,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 		String expectedOutput = "NPE as expected";
 		runConformTest(testFiles, expectedOutput);
 	}
-	public void testBug544073_041() {
+	public void testBug544073_041() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// require resolving/inferring of poly-switch-expression during ASTNode.resolvePolyExpressionArguments()
 		String[] testFiles = new String[] {
 			"X.java",
@@ -1314,7 +1314,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 		String expectedOutput = "3";
 		runConformTest(testFiles, expectedOutput);
 	}
-	public void testBug544073_042() {
+	public void testBug544073_042() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -1345,7 +1345,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			"inside foo\n"
 			+ "0");
 	}
-	public void testBug544073_043() {
+	public void testBug544073_043() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -1371,7 +1371,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"1");
 	}
-	public void testBug544073_044() {
+	public void testBug544073_044() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 				"X.java",
 				"public class X {\n" +
@@ -1398,7 +1398,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				testFiles,
 				expectedProblemLog);
 	}
-	public void testBug544073_045() {
+	public void testBug544073_045() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -1418,7 +1418,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"1");
 	}
-	public void testBug544073_046() {
+	public void testBug544073_046() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -1438,7 +1438,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"10");
 	}
-	public void testBug544073_047() {
+	public void testBug544073_047() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -1462,7 +1462,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"1");
 	}
-	public void testBug544073_048() {
+	public void testBug544073_048() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1500,7 +1500,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			"A Switch expression should cover all possible values\n" +
 			"----------\n");
 	}
-	public void testBug544073_049() {
+	public void testBug544073_049() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -1519,7 +1519,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"false");
 	}
-	public void testBug544073_050() {
+	public void testBug544073_050() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -1541,7 +1541,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"hello");
 	}
-	public void testBug544073_051() {
+	public void testBug544073_051() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> customOptions = getCompilerOptions();
 		customOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
 		runConformTest(
@@ -1565,7 +1565,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"hello");
 	}
-	public void testBug544073_052() {
+	public void testBug544073_052() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> customOptions = getCompilerOptions();
 		customOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
 		runConformTest(
@@ -1589,7 +1589,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"hello");
 	}
-	public void testBug544073_053() {
+	public void testBug544073_053() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> customOptions = getCompilerOptions();
 		customOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
 		runConformTest(
@@ -1611,7 +1611,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			"",
 			customOptions);
 	}
-	public void testBug544073_054() {
+	public void testBug544073_054() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -1634,7 +1634,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"i:1");
 	}
-	public void testBug544073_055() {
+	public void testBug544073_055() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -1658,7 +1658,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"i:1");
 	}
-	public void testBug544073_056() {
+	public void testBug544073_056() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 				"X.java",
 				"public class X {\n" +
@@ -1690,7 +1690,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				testFiles,
 				expectedProblemLog);
 	}
-	public void testBug544073_057() {
+	public void testBug544073_057() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -1712,7 +1712,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"0");
 	}
-	public void testBug544073_058() {
+	public void testBug544073_058() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -1733,7 +1733,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"1");
 	}
-	public void testBug544073_059() {
+	public void testBug544073_059() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -1752,7 +1752,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"1");
 	}
-	public void testBug544073_060() {
+	public void testBug544073_060() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -1771,7 +1771,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"0");
 	}
-	public void testBug544073_061() {
+	public void testBug544073_061() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -1790,7 +1790,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"0");
 	}
-	public void testBug544073_062() {
+	public void testBug544073_062() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -1809,7 +1809,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"0");
 	}
-	public void testBug544073_063() {
+	public void testBug544073_063() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -1828,7 +1828,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"0");
 	}
-	public void testBug544073_064() {
+	public void testBug544073_064() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -1856,7 +1856,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"1");
 	}
-	public void testBug544073_065() {
+	public void testBug544073_065() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -1879,7 +1879,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 		},
 		"1");
 	}
-	public void testBug544073_066() {
+	public void testBug544073_066() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -1900,7 +1900,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 		},
 		"Success");
 	}
-	public void testBug544073_067() {
+	public void testBug544073_067() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -1925,7 +1925,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 		},
 		"9");
 	}
-	public void testBug544073_068() {
+	public void testBug544073_068() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -1948,7 +1948,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 		"0");
 	}
 	// see comment 12 in the bug
-	public void testBug513766_01() {
+	public void testBug513766_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -1978,7 +1978,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 		runner.javacTestOptions = JavacHasABug.JavacBug8179483_switchExpression;
 		runner.runNegativeTest();
 	}
-	public void testBug544073_070() {
+	public void testBug544073_070() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2011,7 +2011,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			"A switch expression should have at least one result expression\n" +
 			"----------\n");
 	}
-	public void testBug544073_071() {
+	public void testBug544073_071() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String message =
 				"----------\n" +
 				"1. WARNING in X.java (at line 5)\n" +
@@ -2035,7 +2035,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			getCompilerOptions(),
 			"-Xlint:preview");
 	}
-	public void testBug544073_072() {
+	public void testBug544073_072() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String message =
 				"----------\n" +
 				"1. WARNING in X.java (at line 5)\n" +
@@ -2057,7 +2057,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			message);
 	}
-	public void testBug544073_074() {
+	public void testBug544073_074() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -2077,7 +2077,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 		},
 		"5");
 	}
-	public void testBug544073_075() {
+	public void testBug544073_075() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -2097,7 +2097,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 		},
 		"5");
 	}
-	public void testBug544073_076() {
+	public void testBug544073_076() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2134,7 +2134,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			"A switch labeled block in a switch expression must yield a value or throw an an exception\n" +
 			"----------\n");
 	}
-	public void testBug544073_077() {
+	public void testBug544073_077() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2166,7 +2166,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			"Return within switch expressions not permitted\n" +
 			"----------\n");
 	}
-	public void testBug544073_078() {
+	public void testBug544073_078() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2193,7 +2193,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			"Duplicate case\n" +
 			"----------\n");
 	}
-	public void testBug544073_079() {
+	public void testBug544073_079() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2225,7 +2225,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			"Duplicate case\n" +
 			"----------\n");
 	}
-	public void testBug544073_80() {
+	public void testBug544073_80() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -2251,7 +2251,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"2");
 	}
-	public void testBug544073_81() {
+	public void testBug544073_81() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -2284,7 +2284,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2323
 	// [Switch Expression] Internal compiler error: java.lang.ClassCastException while compiling switch expression
-	public void testIssue2323() {
+	public void testIssue2323() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runConformTest(
@@ -2314,7 +2314,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"");
 	}
-	public void testBug547891_01() {
+	public void testBug547891_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -2333,7 +2333,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"restricted identifier yield not allowed here - method calls need to be qualified\n" +
 				"----------\n");
 	}
-	public void testBug547891_02() {
+	public void testBug547891_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 				"X.java",
 				"public class X {\n"+
@@ -2362,7 +2362,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				testFiles,
 				expectedProblemLog);
 	}
-	public void testBug547891_03() {
+	public void testBug547891_03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 				"X.java",
@@ -2386,7 +2386,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"'yield' is not a valid type name; it is a restricted identifier and not allowed as a type identifier in Java 14\n" +
 				"----------\n");
 	}
-	public void testBug547891_04() {
+	public void testBug547891_04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 				"X.java",
 				"public class X {\n"+
@@ -2414,7 +2414,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				testFiles,
 				expectedProblemLog);
 	}
-	public void testBug547891_05() {
+	public void testBug547891_05() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 				"X.java",
@@ -2438,7 +2438,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"'yield' is not a valid type name; it is a restricted identifier and not allowed as a type identifier in Java 14\n" +
 				"----------\n");
 	}
-	public void testBug547891_06() {
+	public void testBug547891_06() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 				"X.java",
 				"public class X {\n"+
@@ -2471,7 +2471,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				testFiles,
 				expectedProblemLog);
 	}
-	public void testBug547891_07() {
+	public void testBug547891_07() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 				"X.java",
@@ -2495,7 +2495,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"'yield' is not a valid type name; it is a restricted identifier and not allowed as a type identifier in Java 14\n" +
 				"----------\n");
 	}
-	public void testBug547891_08() {
+	public void testBug547891_08() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 				"X.java",
 				"public class X {\n"+
@@ -2528,7 +2528,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				testFiles,
 				expectedProblemLog);
 	}
-	public void testBug547891_09() {
+	public void testBug547891_09() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 				"X.java",
@@ -2546,7 +2546,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"'yield' is not a valid type name; it is a restricted identifier and not allowed as a type identifier in Java 14\n" +
 				"----------\n");
 	}
-	public void testBug547891_10() {
+	public void testBug547891_10() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 				"X.java",
 				"public class X {\n"+
@@ -2573,7 +2573,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				testFiles,
 				expectedProblemLog);
 	}
-	public void testBug547891_11() {
+	public void testBug547891_11() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 				"X.java",
@@ -2597,7 +2597,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"'yield' is not a valid type name; it is a restricted identifier and not allowed as a type identifier in Java 14\n" +
 				"----------\n");
 	}
-	public void testBug547891_12() {
+	public void testBug547891_12() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 				"X.java",
 				"public class X {\n"+
@@ -2630,7 +2630,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				testFiles,
 				expectedProblemLog);
 	}
-	public void testBug547891_13() {
+	public void testBug547891_13() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 				"X.java",
@@ -2654,7 +2654,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"'yield' is not a valid type name; it is a restricted identifier and not allowed as a type identifier in Java 14\n" +
 				"----------\n");
 	}
-	public void testBug547891_14() {
+	public void testBug547891_14() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles = new String[] {
 				"X.java",
 				"public class X {\n"+
@@ -2687,7 +2687,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				testFiles,
 				expectedProblemLog);
 	}
-	public void testBug547891_15() {
+	public void testBug547891_15() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String message =
 				"----------\n" +
 				"1. ERROR in X.java (at line 6)\n" +
@@ -2731,7 +2731,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			message);
 	}
-	public void testBug547891_16() {
+	public void testBug547891_16() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String message =
 				"----------\n" +
 				"1. ERROR in X.java (at line 9)\n" +
@@ -2776,7 +2776,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			message);
 	}
-	public void testBug547891_17() {
+	public void testBug547891_17() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -2800,7 +2800,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"99");
 	}
-	public void testBug547891_18() {
+	public void testBug547891_18() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -2824,7 +2824,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"-1");
 	}
-	public void testBug547891_19() {
+	public void testBug547891_19() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -2848,7 +2848,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"99");
 	}
-	public void testBug547891_20() {
+	public void testBug547891_20() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -2872,7 +2872,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"-1");
 	}
-	public void testBug547891_21() {
+	public void testBug547891_21() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String message =
 				"----------\n" +
 				"1. ERROR in X.java (at line 7)\n" +
@@ -2903,7 +2903,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			message);
 	}
-	public void testBug547891_22() {
+	public void testBug547891_22() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -2931,7 +2931,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"256");
 	}
-	public void testBug547891_23() {
+	public void testBug547891_23() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -2960,7 +2960,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"1024");
 	}
-	public void testBug547891_24() {
+	public void testBug547891_24() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -2981,7 +2981,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"101");
 	}
-	public void testBug547891_25() {
+	public void testBug547891_25() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -3002,7 +3002,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"10200");
 	}
-	public void testBug547891_26() {
+	public void testBug547891_26() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -3023,7 +3023,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"10200");
 	}
-	public void testBug547891_27() {
+	public void testBug547891_27() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -3044,7 +3044,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"110");
 	}
-	public void testBug547891_28() {
+	public void testBug547891_28() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -3066,7 +3066,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"100");
 	}
-	public void testBug547891_29() {
+	public void testBug547891_29() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -3088,7 +3088,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"300");
 	}
-	public void testBug550354_01() {
+	public void testBug550354_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -3108,7 +3108,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"1");
 	}
-	public void testBug548418_01() {
+	public void testBug548418_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -3130,7 +3130,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"99");
 	}
-	public void testBug550853_01() {
+	public void testBug550853_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -3152,7 +3152,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"0");
 	}
-	public void testBug550861_01() {
+	public void testBug550861_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -3172,7 +3172,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"1");
 	}
-	public void testBug551030a() {
+	public void testBug551030a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3196,7 +3196,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			"String literal is not properly closed by a double-quote\n" +
 			"----------\n");
 	}
-	public void testBug551030b() {
+	public void testBug551030b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3220,7 +3220,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			"String literal is not properly closed by a double-quote\n" +
 			"----------\n");
 	}
-	public void testBug544943() {
+	public void testBug544943() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -3255,7 +3255,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"1");
 	}
-	public void testBug544943_2() {
+	public void testBug544943_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -3280,7 +3280,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"0");
 	}
-	public void testBug552764_001() {
+	public void testBug552764_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions();
 		options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_13);
 		String[] testFiles = new String[] {
@@ -3317,7 +3317,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				true,
 				options);
 	}
-	public void testBug552764_002() {
+	public void testBug552764_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions();
 		options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_13);
 		String[] testFiles = new String[] {
@@ -3355,7 +3355,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				true,
 				options);
 	}
-	public void testBug552764_003() {
+	public void testBug552764_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions();
 		options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_13);
 		String[] testFiles = new String[] {
@@ -3388,7 +3388,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				true,
 				options);
 	}
-	public void testBug558067_001() {
+	public void testBug558067_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 				"X.java",
@@ -3429,7 +3429,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"Unreachable code\n" +
 				"----------\n");
 	}
-	public void testBug558067_002() {
+	public void testBug558067_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 				"X.java",
@@ -3486,7 +3486,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"Breaking out of switch expressions not permitted\n" +
 				"----------\n");
 	}
-	public void testBug558067_003() {
+	public void testBug558067_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 				"X.java",
@@ -3527,7 +3527,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"Unreachable code\n" +
 				"----------\n");
 	}
-	public void testBug558067_004() {
+	public void testBug558067_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 				"X.java",
@@ -3565,7 +3565,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"Breaking out of switch expressions not permitted\n" +
 				"----------\n");
 	}
-	public void testBug558067_005() {
+	public void testBug558067_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 				"X.java",
@@ -3603,7 +3603,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"Continue out of switch expressions not permitted\n" +
 				"----------\n");
 	}
-		public void testConversion1() {
+		public void testConversion1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -3631,7 +3631,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"int");
 	}
-	public void testConversion2() {
+	public void testConversion2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -3659,7 +3659,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"double");
 	}
-	public void testConversion3() {
+	public void testConversion3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -3687,7 +3687,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"float");
 	}
-	public void testConversion4() {
+	public void testConversion4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -3715,7 +3715,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"int");
 	}
-	public void testConversion5() {
+	public void testConversion5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -3740,7 +3740,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"char");
 	}
-	public void testBug545567_1() {
+	public void testBug545567_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -3764,7 +3764,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"3");
 	}
-	public void testBug545567_2() {
+	public void testBug545567_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -3788,7 +3788,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"3.0");
 	}
-	public void testBug545567_3() {
+	public void testBug545567_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -3812,7 +3812,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"three");
 	}
-	public void testBug545567_4() {
+	public void testBug545567_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -3839,7 +3839,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"three");
 	}
-	public void testBug545567_5() {
+	public void testBug545567_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -3864,7 +3864,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"one");
 	}
 
-	public void testBug545567_5_1() {
+	public void testBug545567_5_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -3899,7 +3899,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"some X");
 	}
 
-	public void testBug545567_6() {
+	public void testBug545567_6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -3925,7 +3925,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"zero");
 	}
-	public void testBug545567_7() {
+	public void testBug545567_7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -3948,7 +3948,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"zero");
 	}
-	public void testBug545567_8() {
+	public void testBug545567_8() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -3974,7 +3974,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"3");
 	}
-	public void testBug545567_9() {
+	public void testBug545567_9() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -4016,7 +4016,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"6");
 	}
-	public void testBug545567_10() {
+	public void testBug545567_10() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -4058,7 +4058,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"33");
 	}
-	public void testBug545567_11() {
+	public void testBug545567_11() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -4097,7 +4097,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"13");
 	}
-	public void testBug545567_12() {
+	public void testBug545567_12() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -4136,7 +4136,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"33");
 	}
-	public void testBug545567_13() {
+	public void testBug545567_13() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -4175,7 +4175,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"33");
 	}
-	public void testBug545567_14() {
+	public void testBug545567_14() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -4213,7 +4213,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"30");
 	}
-	public void testBug545567_15() {
+	public void testBug545567_15() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -4241,7 +4241,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"100\n1");
 	}
-	public void testBug545567_16() {
+	public void testBug545567_16() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -4279,7 +4279,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"3");
 	}
-	public void testBug545567_17() {
+	public void testBug545567_17() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -4319,7 +4319,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			"30\n"+
 			"3");
 	}
-	public void testBug545567_18() {
+	public void testBug545567_18() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -4350,7 +4350,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"3");
 	}
-	public void testBug545567_19() {
+	public void testBug545567_19() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -4388,7 +4388,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			"3");
 	}
 	// test with Autocloseable
-	public void testBug545567_20() {
+	public void testBug545567_20() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -4419,7 +4419,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"3");
 	}
-	public void testBug545567_21() {
+	public void testBug545567_21() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -4450,7 +4450,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	// Disabled until https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3259 and
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3258 are comprehensively
 	// resolved. Same issue, but was "compensated" for earlier
-	public void _testBug545567_22() {
+	public void _testBug545567_22() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -4488,7 +4488,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"3");
 	}
-	public void testBug545567_23() {
+	public void testBug545567_23() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -4522,7 +4522,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"3");
 	}
-	public void testBug545567_24() {
+	public void testBug545567_24() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -4563,7 +4563,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"3");
 	}
-	public void testBug545567_25() {
+	public void testBug545567_25() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -4604,7 +4604,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"3");
 	}
-	public void testBug571929_normal() {
+	public void testBug571929_normal() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -4629,7 +4629,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"true");
 	}
-	public void testBug571929_lambda() {
+	public void testBug571929_lambda() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -4657,7 +4657,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"true");
 	}
-	public void testBug561762_001() {
+	public void testBug561762_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -4693,7 +4693,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"----------\n");
 
 	}
-	public void testBug561766_001() {
+	public void testBug561766_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -4718,7 +4718,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"----------\n");
 
 	}
-	public void testBug561766_002() {
+	public void testBug561766_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -4766,7 +4766,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 
 	}
 
-	public void testBug562129() {
+	public void testBug562129() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14) return;
 		runNegativeTest(
 			new String[] {
@@ -4795,7 +4795,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			"r cannot be resolved to a variable\n" +
 			"----------\n");
 	}
-	public void testBug572121() {
+	public void testBug572121() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions();
 		// must disable this option to trigger compilation restart
 		compilerOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.DISABLED);
@@ -4834,7 +4834,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				compilerOptions
 				);
 	}
-	public void testBug562198_001() {
+	public void testBug562198_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -4862,7 +4862,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"1");
 	}
-	public void testBug562728_001() {
+	public void testBug562728_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -4883,7 +4883,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"default");
 	}
-	public void testBug562728_002() {
+	public void testBug562728_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -4905,7 +4905,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"default");
 	}
-	public void testBug562728_003() {
+	public void testBug562728_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -4933,7 +4933,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"----------\n");
 
 	}
-	public void testBug562728_004() {
+	public void testBug562728_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4965,7 +4965,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 		"The method Zork() is undefined for the type X\n" +
 		"----------\n");
 	}
-	public void testBug562728_005() {
+	public void testBug562728_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4997,7 +4997,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 		"A switch labeled block in a switch expression must yield a value or throw an an exception\n" +
 		"----------\n");
 	}
-	public void testBug562728_006() {
+	public void testBug562728_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -5034,7 +5034,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 		"A switch labeled block in a switch expression must yield a value or throw an an exception\n" +
 		"----------\n");
 	}
-    public void testBug562728_007() {
+    public void testBug562728_007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         this.runNegativeTest(
         new String[] {
                 "X.java",
@@ -5065,7 +5065,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 		"Return within switch expressions not permitted\n" +
         "----------\n");
 }
-	public void testBug563023_001() {
+	public void testBug563023_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -5089,7 +5089,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"0");
 	}
-    public void testBug563023_002() {
+    public void testBug563023_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         this.runNegativeTest(
     		new String[] {
     			"X.java",
@@ -5121,7 +5121,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 		"A switch labeled block in a switch expression must yield a value or throw an an exception\n" +
         "----------\n");
 }
-    public void testBug563023_003() {
+    public void testBug563023_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         this.runNegativeTest(
     		new String[] {
     			"X.java",
@@ -5150,7 +5150,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 		"A switch labeled block in a switch expression must yield a value or throw an an exception\n" +
         "----------\n");
 }
-    public void testBug563023_004() {
+    public void testBug563023_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         this.runNegativeTest(
     		new String[] {
     			"X.java",
@@ -5180,7 +5180,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 		"Syntax error on token \"0\", delete this token\n" +
         "----------\n");
 }
-    public void testBug563023_005() {
+    public void testBug563023_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         this.runNegativeTest(
     		new String[] {
     			"X.java",
@@ -5210,7 +5210,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 		"A switch labeled block in a switch expression must yield a value or throw an an exception\n" +
         "----------\n");
 }
-	public void testBug563023_006() {
+	public void testBug563023_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -5239,7 +5239,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"1");
 	}
-    public void testBug563023_007() {
+    public void testBug563023_007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         this.runNegativeTest(
     		new String[] {
     			"X.java",
@@ -5277,7 +5277,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 		"A switch labeled block in a switch expression must yield a value or throw an an exception\n" +
         "----------\n");
 }
-	public void testBug563147_001() {
+	public void testBug563147_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -5301,7 +5301,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"0");
 	}
-	public void testBug563147_002() {
+	public void testBug563147_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -5338,7 +5338,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"0");
 	}
-	public void testBug563147_003() {
+	public void testBug563147_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -5385,7 +5385,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			"The target type of this expression must be a functional interface\n" +
 			"----------\n");
 	}
-	public void testBug565156_001() {
+	public void testBug565156_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -5410,7 +5410,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"0");
 	}
-	public void testBug565156_002() {
+	public void testBug565156_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -5435,7 +5435,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"0");
 	}
-	public void testBug565156_003() {
+	public void testBug565156_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -5461,7 +5461,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"20");
 	}
-	public void testBug565156_004() {
+	public void testBug565156_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -5495,7 +5495,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"20");
 	}
-	public void testBug565156_005() {
+	public void testBug565156_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -5529,7 +5529,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"100");
 	}
-	public void testBug565156_006() {
+	public void testBug565156_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -5569,7 +5569,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"10");
 	}
-	public void testBug565156_007() {
+	public void testBug565156_007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -5610,7 +5610,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"10");
 	}
-	public void testBug547193_001() {
+	public void testBug547193_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -5628,7 +5628,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 			},
 			"1");
 	}
-	public void testBug565844_01() {
+	public void testBug565844_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -5646,7 +5646,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"false");
 	}
-	public void testBug565844_02() {
+	public void testBug565844_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -5664,7 +5664,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"true");
 	}
-	public void testBug565844_03() {
+	public void testBug565844_03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -5684,7 +5684,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"false");
 	}
-	public void testBug565844_04() {
+	public void testBug565844_04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -5704,7 +5704,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"false");
 	}
-	public void testBug565844_05() {
+	public void testBug565844_05() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -5729,7 +5729,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"case expressions must be constant expressions\n" +
 				"----------\n");
 	}
-	public void testBug565844_06() {
+	public void testBug565844_06() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -5747,7 +5747,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"false");
 	}
-	public void testBug565844_07() {
+	public void testBug565844_07() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -5787,7 +5787,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"Syntax error, insert \":\" to complete SwitchLabel\n" +
 				"----------\n");
 	}
-	public void _testBug565844SwitchConst_07() {
+	public void _testBug565844SwitchConst_07() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -5805,7 +5805,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"false");
 	}
-	public void _testBug565844SwitchConst_08() {
+	public void _testBug565844SwitchConst_08() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -5823,7 +5823,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"false");
 	}
-	public void _testBug565844SwitchConst_09() {
+	public void _testBug565844SwitchConst_09() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -5841,7 +5841,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"false");
 	}
-	public void _testBug565844SwitchConst_10() {
+	public void _testBug565844SwitchConst_10() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 					"X.java",
@@ -5860,7 +5860,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"false");
 	}
-	public void testBug566125_01() {
+	public void testBug566125_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -5889,7 +5889,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 
 	}
 	// Same as above, but with explicit yield
-	public void testBug566125_02() {
+	public void testBug566125_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -5917,7 +5917,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"true");
 
 	}
-	public void testBug566125_03() {
+	public void testBug566125_03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -5946,7 +5946,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 
 	}
 	// Long -> float is accepted
-	public void testBug566125_04() {
+	public void testBug566125_04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -5969,7 +5969,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"true");
 
 	}
-	public void testBug566125_05() {
+	public void testBug566125_05() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -6009,7 +6009,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				);
 
 	}
-	public void testBug566125_06() {
+	public void testBug566125_06() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -6045,7 +6045,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"----------\n"
 				);
 	}
-	public void testBug566125_07() {
+	public void testBug566125_07() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -6082,7 +6082,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				);
 	}
 	// Same as 07() but with explicit yield
-	public void testBug566125_08() {
+	public void testBug566125_08() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -6118,7 +6118,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"----------\n"
 				);
 	}
-	public void testBug567112_001() {
+	public void testBug567112_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -6140,7 +6140,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"Syntax error, insert \";\" to complete BlockStatements\n" +
 				"----------\n");
 	}
-	public void testBug571833_01() {
+	public void testBug571833_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -6163,7 +6163,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 		);
 
 	}
-	public void testBug572382() {
+	public void testBug572382() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -6183,7 +6183,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				);
 
 	}
-	public void testBug576026() {
+	public void testBug576026() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 						"X.java",
@@ -6205,7 +6205,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"Success");
 	}
-	public void testBug576861_001() {
+	public void testBug576861_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 				"X.java",
@@ -6226,7 +6226,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				},
 				"hello");
 	}
-	public void testBug577220_001() {
+	public void testBug577220_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"module-info.java",
@@ -6276,7 +6276,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/53
 	// continue without label is incorrectly handled in a switch expression
-	public void testGHIssue53() {
+	public void testGHIssue53() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -6327,7 +6327,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"----------\n");
 	}
 
-	public void testGH520() throws Exception {
+	public void testGH520() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -6355,7 +6355,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1394
 	// switch statement with yield and try/catch produces EmptyStackException
-	public void testGHI1394() {
+	public void testGHI1394() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions();
 		options.put(CompilerOptions.OPTION_UseStringConcatFactory, CompilerOptions.ENABLED);
 		this.runConformTest(
@@ -6383,7 +6383,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"1",
 				options);
 	}
-	public void testGHI1394_2() {
+	public void testGHI1394_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions();
 		options.put(CompilerOptions.OPTION_UseStringConcatFactory, CompilerOptions.ENABLED);
 		this.runConformTest(
@@ -6419,7 +6419,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1394
 	// switch statement with yield and try/catch produces EmptyStackException
-	public void testGHI1394_min() {
+	public void testGHI1394_min() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions();
 		options.put(CompilerOptions.OPTION_UseStringConcatFactory, CompilerOptions.ENABLED);
 		this.runConformTest(
@@ -6449,7 +6449,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1727
 	// Internal compiler error: java.util.EmptyStackException
-	public void testGHI1727() {
+	public void testGHI1727() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21)
 			return;
 		this.runConformTest(
@@ -6474,7 +6474,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1686
 	// Switch statement with yield in synchronized and try-catch blocks results in ArrayIndexOutOfBoundsException
-	public void testGHI1686() {
+	public void testGHI1686() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 				"X.java",
@@ -6505,7 +6505,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 		}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1686
 	// Switch statement with yield in synchronized and try-catch blocks results in ArrayIndexOutOfBoundsException
-	public void testGHI1686_works() {
+	public void testGHI1686_works() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 				"X.java",
@@ -6531,7 +6531,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1767
 	// NPE in switch with Enum
-	public void testGHI1767() {
+	public void testGHI1767() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21)
 			return;
 		this.runConformTest(
@@ -6602,7 +6602,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1767
 	// NPE in switch with Enum
-	public void testGHI1767_minimal() {
+	public void testGHI1767_minimal() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21)
 			return;
 		this.runConformTest(
@@ -6628,7 +6628,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1820
 	// [switch] Switch expression fails with instanceof + ternary operator combo
-	public void testGHI1820() {
+	public void testGHI1820() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK16)
 			return;
 		this.runConformTest(
@@ -6658,7 +6658,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1820
 	// [switch] Switch expression fails with instanceof + ternary operator combo
-	public void testGHI1820_2() {
+	public void testGHI1820_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK16)
 			return;
 		this.runNegativeTest(
@@ -6694,7 +6694,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1820
 	// [switch] Switch expression fails with instanceof + ternary operator combo
-	public void testGHI1820_3() {
+	public void testGHI1820_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK16)
 			return;
 		this.runConformTest(
@@ -6720,7 +6720,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1820
 	// [switch] Switch expression fails with instanceof + ternary operator combo
-	public void testGHI1820_4() {
+	public void testGHI1820_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK16)
 			return;
 		this.runConformTest(
@@ -6750,7 +6750,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1820
 	// [switch] Switch expression fails with instanceof + ternary operator combo
-	public void testGHI1820_5() {
+	public void testGHI1820_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK16)
 			return;
 		this.runConformTest(
@@ -6783,7 +6783,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/377
 	// [switch-expression] Invalid compiler error with switch expression
-	public void testGH377() {
+	public void testGH377() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK16)
 			return;
 		this.runConformTest(
@@ -6824,7 +6824,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2231
 	// [Switch-Expression] Assertion failure compiling array access + switch expressions with try blocks
-	public void testIssue2231() {
+	public void testIssue2231() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21)
 			return;
 		this.runConformTest(
@@ -6856,7 +6856,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2231
 	// [Switch-Expression] Assertion failure compiling array access + switch expressions with try blocks
-	public void testIssue2231_2() {
+	public void testIssue2231_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21)
 			return;
 		this.runConformTest(
@@ -6888,7 +6888,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2228
 	// [Switch-expression] Internal inconsistency warning at compile time & verify error at runtime
-	public void testIssue2228() {
+	public void testIssue2228() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21)
 			return;
 		this.runConformTest(
@@ -6931,7 +6931,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2228
 	// [Switch-expression] Internal inconsistency warning at compile time & verify error at runtime
-	public void testIssue2228_2() {
+	public void testIssue2228_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21)
 			return;
 		this.runConformTest(
@@ -6973,7 +6973,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2228
 	// [Switch-expression] Internal inconsistency warning at compile time & verify error at runtime
-	public void testIssue2228_3() {
+	public void testIssue2228_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21)
 			return;
 		this.runConformTest(
@@ -7012,7 +7012,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2228
 	// [Switch-expression] Internal inconsistency warning at compile time & verify error at runtime
-	public void testIssue2228_4() {
+	public void testIssue2228_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21)
 			return;
 		this.runConformTest(
@@ -7041,7 +7041,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2228
 	// [Switch-expression] Internal inconsistency warning at compile time & verify error at runtime
-	public void testIssue2228_5() {
+	public void testIssue2228_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21)
 			return;
 		this.runConformTest(
@@ -7085,7 +7085,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2228
 	// [Switch-expression] Internal inconsistency warning at compile time & verify error at runtime
-	public void testIssue2228_6() {
+	public void testIssue2228_6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21)
 			return;
 		this.runConformTest(
@@ -7124,7 +7124,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2233
 	// [Switch-Expression] Assertion failure while compiling enum class that uses switch expression with try block
-	public void testIssue2233() {
+	public void testIssue2233() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK16)
 			return;
 		this.runConformTest(
@@ -7156,7 +7156,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2322
 	// [Switch Expression] Internal compiler error: java.util.EmptyStackException at java.base/java.util.Stack.peek
-	public void testIssue2322() {
+	public void testIssue2322() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runConformTest(
@@ -7187,7 +7187,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2335
 	// [Switch Expression] Internal compiler error: java.lang.ClassCastException: class org.eclipse.jdt.internal.compiler.lookup.BaseTypeBinding cannot be cast to class org.eclipse.jdt.internal.compiler.lookup.ArrayBinding
-	public void testIssue2335() {
+	public void testIssue2335() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runConformTest(
@@ -7234,7 +7234,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2335
 	// [Switch Expression] Internal compiler error: java.lang.ClassCastException: class org.eclipse.jdt.internal.compiler.lookup.BaseTypeBinding cannot be cast to class org.eclipse.jdt.internal.compiler.lookup.ArrayBinding
-	public void testIssue2335_min() {
+	public void testIssue2335_min() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runConformTest(
@@ -7266,7 +7266,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2335
 	// [Switch Expression] Internal compiler error: java.lang.ClassCastException: class org.eclipse.jdt.internal.compiler.lookup.BaseTypeBinding cannot be cast to class org.eclipse.jdt.internal.compiler.lookup.ArrayBinding
-	public void testIssue2335_other() {
+	public void testIssue2335_other() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runConformTest(
@@ -7293,7 +7293,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2349
 	// [Switch Expression] Verify error at runtime with switch expression and exception handling inside lambda expression
-	public void testIssue2349() {
+	public void testIssue2349() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runConformTest(
@@ -7319,7 +7319,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2360
 	// [Switch Expression] Internal compiler error: java.lang.NullPointerException: Cannot read field "binding" because "this.methodDeclaration" is null
-	public void testIssue2360() {
+	public void testIssue2360() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runConformTest(
@@ -7360,7 +7360,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2360
 	// [Switch Expression] Internal compiler error: java.lang.NullPointerException: Cannot read field "binding" because "this.methodDeclaration" is null
-	public void testIssue2360_2() {
+	public void testIssue2360_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runConformTest(
@@ -7392,7 +7392,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2363
 	// [Switch Expressions] Compiler crashes with Switch expressions mixed with exception handling
-	public void testIssue2363() {
+	public void testIssue2363() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runConformTest(
@@ -7420,7 +7420,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2366
 	// [Switch Expression] Assertion fails when IDE is launched with JVM option -ea
-	public void testIssue2366() {
+	public void testIssue2366() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runConformTest(
@@ -7462,7 +7462,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2382
 	// VerifyError in switch expression on double
-	public void testIssue2382() {
+	public void testIssue2382() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runNegativeTest(
@@ -7498,7 +7498,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2382
 	// VerifyError in switch expression on double
-	public void testIssue2382_2() {
+	public void testIssue2382_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runNegativeTest(
@@ -7534,7 +7534,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2382
 	// VerifyError in switch expression on double
-	public void testIssue2382_3() {
+	public void testIssue2382_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runNegativeTest(
@@ -7570,7 +7570,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2382
 	// VerifyError in switch expression on double
-	public void testIssue2382_4() {
+	public void testIssue2382_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runNegativeTest(
@@ -7602,7 +7602,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2382
 	// VerifyError in switch expression on double
-	public void testIssue2382_5() {
+	public void testIssue2382_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runNegativeTest(
@@ -7634,7 +7634,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2382
 	// VerifyError in switch expression on double
-	public void testIssue2382_6() {
+	public void testIssue2382_6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runNegativeTest(
@@ -7667,7 +7667,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2382
 	// VerifyError in switch expression on double
-	public void testIssue2382_7() {
+	public void testIssue2382_7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runNegativeTest(
@@ -7712,7 +7712,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2382
 	// VerifyError in switch expression on double
-	public void testIssue2382_8() {
+	public void testIssue2382_8() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21)
 			return;
 		this.runConformTest(
@@ -7741,7 +7741,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2382
 	// VerifyError in switch expression on double
-	public void testIssue2382_9() {
+	public void testIssue2382_9() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runNegativeTest(
@@ -7791,7 +7791,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2387
 	// [Switch Expression] Empty Stack exception compiling switch expression with exception handling
-	public void testIssue2387() {
+	public void testIssue2387() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runNegativeTest(
@@ -7824,7 +7824,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2423
 	// [Switch-expression] Internal compiler error: java.lang.ClassCastException while compiling switch expression with exception handling
-	public void testIssue2423() {
+	public void testIssue2423() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runConformTest(
@@ -7855,7 +7855,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2447
 	// [Switch-expressions] Internal inconsistency warning at compile time and verify error at runtime
-	public void testIssue2447() {
+	public void testIssue2447() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runConformTest(
@@ -7888,7 +7888,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2451
 	// Internal compiler error: java.lang.AssertionError: Anomalous/Inconsistent operand stack!
-	public void testIssue2451() {
+	public void testIssue2451() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runConformTest(
@@ -7931,7 +7931,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2453
 	// [Switch-expressions] Internal inconsistency warning at compile time and verify error at runtime
-	public void testIssue2453() {
+	public void testIssue2453() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runConformTest(
@@ -7958,7 +7958,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2455
 	// [Switch-expressions] java.lang.VerifyError: Bad type on operand stack
-	public void testIssue2455() {
+	public void testIssue2455() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runConformTest(
@@ -7988,7 +7988,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2485
 	// Empty stack error compiling project with broken classpath
-	public void testIssue2485() {
+	public void testIssue2485() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runConformTest(
@@ -8016,7 +8016,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2476
 	// [Switch expressions] java.lang.VerifyError: Bad type on operand stack
-	public void testIssue2476() {
+	public void testIssue2476() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runConformTest(
@@ -8048,7 +8048,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 
 	// test mixing of -> and : in the same switch
-	public void testMixingCaseStyles() {
+	public void testMixingCaseStyles() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runNegativeTest(
@@ -8076,7 +8076,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3205
 	// [Switch Expressions] ECJ accepts ambiguous method invocation involving switch expressions with poly type result expression
-	public void testIssue3205() {
+	public void testIssue3205() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 				"X.java",
@@ -8132,7 +8132,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3205
 	// [Switch Expressions] ECJ accepts ambiguous method invocation involving switch expressions with poly type result expression
-	public void testIssue3205_2() {
+	public void testIssue3205_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 				"X.java",
@@ -8192,7 +8192,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	}
 
 	// fails when run as org.eclipse.jdt.core.tests.model.JavaSearchBugs14SwitchExpressionTests.testBug542559_0012
-	public void testBug542559_0012() {
+	public void testBug542559_0012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 				"X.java",
@@ -8230,7 +8230,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 	// Disabled until https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3259 and
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3258 are comprehensively
 	// resolved. Same issue, but was "compensated" for earlier
-	public void _testBug545567_22_minimal() {
+	public void _testBug545567_22_minimal() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 				"X.java",
@@ -8259,7 +8259,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 				"3");
 	}
 
-	public void testConditionalSwitchLabel() {
+	public void testConditionalSwitchLabel() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 				"X.java",
@@ -8281,7 +8281,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3283
 	// ECJ fails to recognize "yield" as a contextual keyword when there is a case fall-through
-	public void testIssue3283() {
+	public void testIssue3283() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 				"X.java",
@@ -8306,7 +8306,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=566124
 	// Widening conversions combined with method invocation and switch expressions doesn't work
-	public void testBug566124() {
+	public void testBug566124() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 				"X.java",
@@ -8340,7 +8340,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3481
 	// [Switch Expression] yield does not work with bitwise complement ~
-	public void testIssue3481() {
+	public void testIssue3481() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 				"X.java",
@@ -8379,7 +8379,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3554
 	// [Switch Expressions] ArrayIndexOutOfBoundsException in Scope.leastContainingInvocation for sealed class and switch
-	public void testIssue3554() {
+	public void testIssue3554() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21)
 			return;
 		this.runNegativeTest(
@@ -8419,7 +8419,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3920
 	// Java 24 switch expression and type inference generates wrong/unsecure bytecode
-	public void testIssue3920() {
+	public void testIssue3920() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 				"X.java",
@@ -8445,7 +8445,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4113
 	// ECJ Internal Error when compiling
-	public void testIssue4113() {
+	public void testIssue4113() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 				"X.java",
@@ -8466,7 +8466,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4165
 	// [LVTI][Switch Expressions] ECJ crashes with NPE compiling faulty program
-	public void testIssue4165() {
+	public void testIssue4165() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 						"X.java",
@@ -8499,7 +8499,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4165
 	// [LVTI][Switch Expressions] ECJ crashes with NPE compiling faulty program
-	public void testIssue4165_2() {
+	public void testIssue4165_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 						"X.java",
@@ -8547,7 +8547,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4397
 	// [Switch expression] Compiling causes an ArrayIndexOutOfBoundsException
-	public void testIssue4397() {
+	public void testIssue4397() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21)
 			return;
 		this.runConformTest(
@@ -8607,7 +8607,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5201
 	// VerifyError: Instruction type does not match stack map with for loop in switch
-	public void testIssue5201() {
+	public void testIssue5201() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 						"X.java",
@@ -8631,7 +8631,7 @@ public class SwitchExpressionsYieldTest extends AbstractRegressionTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5201
 	// VerifyError: Instruction type does not match stack map with for loop in switch
-	public void testIssue5201_full() {
+	public void testIssue5201_full() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 						"X.java",

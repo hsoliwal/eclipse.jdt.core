@@ -37,7 +37,7 @@ public class TypeReferencePattern extends IntersectingPattern {
 	private char[][] categories;
 	char typeSuffix = TYPE_SUFFIX;
 
-	public TypeReferencePattern(char[] qualification, char[] simpleName, int matchRule) {
+	public TypeReferencePattern(char[] qualification, char[] simpleName, int matchRule) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this(matchRule);
 
 		this.qualification = this.isCaseSensitive ? qualification : CharOperation.toLowerCase(qualification);
@@ -157,18 +157,18 @@ public class TypeReferencePattern extends IntersectingPattern {
 	@Override
 	protected StringBuilder print(StringBuilder output) {
 		String patternClassName = getClass().getName();
-		output.append(patternClassName.substring(patternClassName.lastIndexOf('.')+1));
-		output.append(": qualification<"); //$NON-NLS-1$
+		output.append(patternClassName.substring(patternClassName.lastIndexOf('.')+1)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append(": qualification<"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (this.qualification != null)
-			output.append(this.qualification);
+			output.append(this.qualification); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		else
-			output.append("*"); //$NON-NLS-1$
-		output.append(">, type<"); //$NON-NLS-1$
+			output.append("*"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append(">, type<"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (this.simpleName != null)
-			output.append(this.simpleName);
+			output.append(this.simpleName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		else
-			output.append("*"); //$NON-NLS-1$
-		output.append(">"); //$NON-NLS-1$
+			output.append("*"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append(">"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return super.print(output);
 	}
 }

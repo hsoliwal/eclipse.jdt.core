@@ -91,7 +91,7 @@ public class ModulePattern extends JavaSearchPattern {
 	public boolean matchesDecodedKey(SearchPattern decodedPattern) {
 		return matchesName(this.name, ((ModulePattern) decodedPattern).name);
 	}
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public EntryResult[] queryIn(Index index) throws IOException {
 		char[] key = this.name; // can be null
 		int matchRule = getMatchRule();
@@ -132,14 +132,14 @@ public class ModulePattern extends JavaSearchPattern {
 	@Override
 	protected StringBuilder print(StringBuilder output) {
 		if (this.findDeclarations) {
-			output.append(this.findReferences
+			output.append(this.findReferences //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				? "ModuleCombinedPattern: " //$NON-NLS-1$
 				: "ModuleDeclarationPattern: "); //$NON-NLS-1$
 		} else {
-			output.append("ModuleReferencePattern: "); //$NON-NLS-1$
+			output.append("ModuleReferencePattern: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		output.append("module "); //$NON-NLS-1$
-		output.append(this.name);
+		output.append("module "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append(this.name); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return super.print(output);
 	}
 }

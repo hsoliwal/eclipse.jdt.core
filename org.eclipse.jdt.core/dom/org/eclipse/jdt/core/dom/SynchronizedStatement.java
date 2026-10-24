@@ -53,7 +53,7 @@ public class SynchronizedStatement extends Statement {
 	private static final List PROPERTY_DESCRIPTORS;
 
 	static {
-		List propertyList = new ArrayList(3);
+		List propertyList = new ArrayList(3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(SynchronizedStatement.class, propertyList);
 		addProperty(EXPRESSION_PROPERTY, propertyList);
 		addProperty(BODY_PROPERTY, propertyList);
@@ -105,7 +105,7 @@ public class SynchronizedStatement extends Statement {
 		return propertyDescriptors(apiLevel);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final ASTNode internalGetSetChildProperty(ChildPropertyDescriptor property, boolean get, ASTNode child) {
 		if (property == EXPRESSION_PROPERTY) {
 			if (get) {

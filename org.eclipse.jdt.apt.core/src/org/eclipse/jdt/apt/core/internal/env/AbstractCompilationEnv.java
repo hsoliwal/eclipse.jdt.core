@@ -57,18 +57,18 @@ public abstract class AbstractCompilationEnv
 	implements EclipseAnnotationProcessorEnvironment {
 
 	// Bugzilla 188185: accept "-AenableTypeGenerationInEditor" as well as "enableTypeGenerationInEditor".
-	private final static String RTTG_ENABLED_DASH_A_OPTION = "-A" + AptPreferenceConstants.RTTG_ENABLED_OPTION; //$NON-NLS-1$
-	private final static String PROCESSING_IN_EDITOR_DISABLED_DASH_A_OPTION = "-A" + AptPreferenceConstants.PROCESSING_IN_EDITOR_DISABLED_OPTION; //$NON-NLS-1$
+	private final static String RTTG_ENABLED_DASH_A_OPTION = "-A" + AptPreferenceConstants.RTTG_ENABLED_OPTION; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	private final static String PROCESSING_IN_EDITOR_DISABLED_DASH_A_OPTION = "-A" + AptPreferenceConstants.PROCESSING_IN_EDITOR_DISABLED_OPTION; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	private Set<AnnotationProcessorListener> _listeners = null;
 
-	protected List<APTProblem> _problems = new ArrayList<>();
+	protected List<APTProblem> _problems = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	private boolean _isClosed = false;
 
 	EnvCallback _callback;
 
-    private Set<IFile> _allGeneratedSourceFiles = new HashSet<>();
-    private Set<IFile> _modifiedGeneratedSourceFiles = new HashSet<>();
+    private Set<IFile> _allGeneratedSourceFiles = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+    private Set<IFile> _modifiedGeneratedSourceFiles = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 
     /**
 	 * Currently open dom pipeline, used to request type bindings.
@@ -154,7 +154,7 @@ public abstract class AbstractCompilationEnv
     {
 		checkValid();
         if(_listeners == null )
-			_listeners = new HashSet<>();
+			_listeners = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		_listeners.add(listener);
     }
 
@@ -172,13 +172,13 @@ public abstract class AbstractCompilationEnv
 			return Collections.emptySet();
 		// Return a copy, to avoid ConcurrentModificationException if a listener
 		// removes itself in response to the callback.
-		return new HashSet<>(_listeners);
+		return new HashSet<>(_listeners); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 	}
 
 	@Override
 	public Map<String, String> getOptions()
     {
-        final HashMap<String, String> options = new HashMap<>(_options);
+        final HashMap<String, String> options = new HashMap<>(_options); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		options.put("phase", getPhase().toString()); //$NON-NLS-1$
 		return options;
     }
@@ -242,7 +242,7 @@ public abstract class AbstractCompilationEnv
 		if (contentsChanged)
 			addedToMod = _modifiedGeneratedSourceFiles.add(f);
 		if (AptPlugin.DEBUG_COMPILATION_ENV) {
-			AptPlugin.trace("add generated file " + f + " to env " + this + //$NON-NLS-1$ //$NON-NLS-2$
+			AptPlugin.trace("add generated file " + f + " to env " + this + //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"; addToAll = " + addedToAll + "; addToMod = " + addedToMod + //$NON-NLS-1$ //$NON-NLS-2$
 					"; contentsChanged = " + contentsChanged); //$NON-NLS-1$
 		}
@@ -270,16 +270,16 @@ public abstract class AbstractCompilationEnv
 	/**
 	 * @return all annotation types in the current compilation unit.
 	 */
-	public Map<String, AnnotationTypeDeclaration> getAnnotationTypes()
+	public Map<String, AnnotationTypeDeclaration> getAnnotationTypes() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     {
     	checkValid();
-    	final List<Annotation> instances = new ArrayList<>();
+    	final List<Annotation> instances = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		final Map<String, AnnotationTypeDeclaration> decls =
-			new HashMap<>();
+			new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		final AnnotationVisitor visitor = new AnnotationVisitor(instances);
 		_astRoot.accept(visitor);
 
-		for (int instanceIndex=0, size = instances.size(); instanceIndex < size; instanceIndex++) {
+		for (int instanceIndex=0, size = instances.size(); instanceIndex < size; instanceIndex++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final Annotation instance = instances.get(instanceIndex);
 			final ITypeBinding annoType = instance.resolveTypeBinding();
 			if (annoType == null)
@@ -320,7 +320,7 @@ public abstract class AbstractCompilationEnv
 		_allGeneratedSourceFiles = null;
 		_modifiedGeneratedSourceFiles = null;
 		if (AptPlugin.DEBUG_COMPILATION_ENV) AptPlugin.trace(
-				"closed env " + this); //$NON-NLS-1$
+				"closed env " + this); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	boolean isClosed(){ return _isClosed; }

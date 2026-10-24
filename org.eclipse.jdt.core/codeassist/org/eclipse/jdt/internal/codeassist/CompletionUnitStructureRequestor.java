@@ -90,7 +90,7 @@ public class CompletionUnitStructureRequestor extends CompilationUnitStructureRe
 		}
 		return field;
 	}
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected SourceField createRecordComponent(JavaElement parent, FieldInfo compInfo) {
 		String compName = DeduplicationUtil.toString(compInfo.name);
 		SourceField comp = new AssistSourceField(parent, compName, this.bindingCache, this.newElements) {
@@ -194,7 +194,7 @@ public class CompletionUnitStructureRequestor extends CompilationUnitStructureRe
 		int membersLength = memberValuePairs.length;
 		int membersCount = 0;
 		IMemberValuePair[] members = new IMemberValuePair[membersLength];
-		next : for (int j = 0; j < membersLength; j++) {
+		next : for (int j = 0; j < membersLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (memberValuePairs[j] instanceof CompletionOnMemberValueName) continue next;
 
 			members[membersCount++] = getMemberValuePair(memberValuePairs[j]);
@@ -206,7 +206,7 @@ public class CompletionUnitStructureRequestor extends CompilationUnitStructureRe
 		return members;
 	}
 
-	protected static boolean hasEmptyName(TypeReference reference, ASTNode assistNode) {
+	protected static boolean hasEmptyName(TypeReference reference, ASTNode assistNode) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (reference == null) return false;
 
 		// https://bugs.eclipse.org/bugs/show_bug.cgi?id=397070
@@ -223,7 +223,7 @@ public class CompletionUnitStructureRequestor extends CompilationUnitStructureRe
 			ParameterizedSingleTypeReference parameterizedReference = (ParameterizedSingleTypeReference) reference;
 			TypeReference[] typeArguments = parameterizedReference.typeArguments;
 			if (typeArguments != null) {
-				for (TypeReference typeArgument : typeArguments) {
+				for (TypeReference typeArgument : typeArguments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (hasEmptyName(typeArgument, assistNode)) return true;
 				}
 			}
@@ -231,9 +231,9 @@ public class CompletionUnitStructureRequestor extends CompilationUnitStructureRe
 			ParameterizedQualifiedTypeReference parameterizedReference = (ParameterizedQualifiedTypeReference) reference;
 			TypeReference[][] typeArguments = parameterizedReference.typeArguments;
 			if (typeArguments != null) {
-				for (TypeReference[] typeArgument : typeArguments) {
+				for (TypeReference[] typeArgument : typeArguments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (typeArgument != null) {
-						for (int j = 0; j < typeArgument.length; j++) {
+						for (int j = 0; j < typeArgument.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (hasEmptyName(typeArgument[j], assistNode)) return true;
 						}
 					}

@@ -118,30 +118,30 @@ void restoreAutobuild(IWorkspaceDescription preferences, boolean autoBuild) thro
 	waitForAutoBuild();
 }
 
-protected void assertCycleMarkers(IJavaProject project, IJavaProject[] p, int[] expectedCycleParticipants, boolean includeAffected) throws CoreException {
+protected void assertCycleMarkers(IJavaProject project, IJavaProject[] p, int[] expectedCycleParticipants, boolean includeAffected) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	waitForAutoBuild();
-	StringBuilder expected = new StringBuilder("{");
+	StringBuilder expected = new StringBuilder("{"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	int expectedCount = 0;
-	StringBuilder computed = new StringBuilder("{");
+	StringBuilder computed = new StringBuilder("{"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	int computedCount = 0;
 	int mask = includeAffected ? 3 : 1;
-	for (int j = 0; j < p.length; j++){
+	for (int j = 0; j < p.length; j++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int markerFlags = cycleMarkerFlags(p[j]);
 		if ((markerFlags & mask) > 0){
-			if (computedCount++ > 0) computed.append(", ");
-			computed.append(p[j].getElementName());
+			if (computedCount++ > 0) computed.append(", "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			computed.append(p[j].getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			//computed.append(" (" + markerCount + ")");
 		}
 		markerFlags = expectedCycleParticipants[j];
 		if ((markerFlags & mask) > 0){
-			if (expectedCount++ > 0) expected.append(", ");
-			expected.append(p[j].getElementName());
+			if (expectedCount++ > 0) expected.append(", "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			expected.append(p[j].getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			//expected.append(" (" + markerCount + ")");
 		}
 	}
-	expected.append("}");
-	computed.append("}");
-	assertEquals("Invalid cycle detection after setting classpath for: "+project.getElementName(), expected.toString(), computed.toString());
+	expected.append("}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	computed.append("}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	assertEquals("Invalid cycle detection after setting classpath for: "+project.getElementName(), expected.toString(), computed.toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 private void assertEncodeDecodeEntry(String projectName, String expectedEncoded, IClasspathEntry entry) {
 	IJavaProject project = getJavaProject(projectName);
@@ -158,7 +158,7 @@ private void assertEncodeDecodeEntry(String projectName, String expectedEncoded,
 }
 protected File createFile(File parent, String name, String content) throws IOException {
 	File file = new File(parent, name);
-	try (FileOutputStream out = new FileOutputStream(file)) {
+	try (FileOutputStream out = new FileOutputStream(file)) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		out.write(content.getBytes());
 	}
 	/*
@@ -171,7 +171,7 @@ protected File createFile(File parent, String name, String content) throws IOExc
 protected int cycleMarkerFlags(IJavaProject javaProject) throws CoreException {
 	IMarker[] markers = javaProject.getProject().findMarkers(IJavaModelMarker.BUILDPATH_PROBLEM_MARKER, false, IResource.DEPTH_ZERO);
 	int result = 0;
-	for (int i = 0, length = markers.length; i < length; i++) {
+	for (int i = 0, length = markers.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IMarker marker = markers[i];
 		String cycleAttr = (String)marker.getAttribute(IJavaModelMarker.CYCLE_DETECTED);
 		if (cycleAttr != null && cycleAttr.equals("true")){ //$NON-NLS-1$
@@ -189,7 +189,7 @@ protected int cycleMarkerFlags(IJavaProject javaProject) throws CoreException {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=171136, ignore class path errors from optional
 // class path entries.
 
-public void test124117() throws CoreException {
+public void test124117() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IJavaProject p = null;
 	try {
@@ -229,7 +229,7 @@ public void test124117() throws CoreException {
  *  errors.
  */
 
-public void test232816() throws Exception {
+public void test232816() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IJavaProject p = null;
 	try {
@@ -249,7 +249,7 @@ public void test232816() throws Exception {
 		IJavaModelStatus status = JavaConventions.validateClasspathEntry(p, newClasspath, true);
 		assertStatus(
 			"should have complained about missing library",
-			"The container \'container/default\' references non existing library \'" + getExternalResourcePath("libjar.jar") + "'",
+			"The container \'container/default\' references non existing library \'" + getExternalResourcePath("libjar.jar") + "'", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			status);
 	} finally {
 		deleteProject("P");
@@ -257,7 +257,7 @@ public void test232816() throws Exception {
 }
 
 
-public void test232816a() throws Exception {
+public void test232816a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IJavaProject p = null;
 	try {
@@ -286,7 +286,7 @@ public void test232816a() throws Exception {
 		IJavaModelStatus status = JavaConventions.validateClasspathEntry(p, newClasspath, true);
 		assertStatus(
 			"should have complained about source attachment",
-			"Invalid source attachment: '/P0/SBlah' for required library \'" + getExternalResourcePath("lib1.jar") + "' in the container 'container/default'",
+			"Invalid source attachment: '/P0/SBlah' for required library \'" + getExternalResourcePath("lib1.jar") + "' in the container 'container/default'", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			status);
 	} finally {
 		deleteProject("P");
@@ -294,7 +294,7 @@ public void test232816a() throws Exception {
 	}
 }
 
-public void test232816b() throws Exception {
+public void test232816b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	try {
 		IJavaProject p = createJavaProject("Project");
@@ -307,11 +307,11 @@ public void test232816b() throws Exception {
 
 		// Modify user library
 		IEclipsePreferences preferences = InstanceScope.INSTANCE.getNode(JavaCore.PLUGIN_ID);
-		String propertyName = JavaModelManager.CP_USERLIBRARY_PREFERENCES_PREFIX+"SomeUserLibrary";
-		StringBuilder propertyValue = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<userlibrary systemlibrary=\"false\" version=\"1\">\r\n<archive");
+		String propertyName = JavaModelManager.CP_USERLIBRARY_PREFERENCES_PREFIX+"SomeUserLibrary"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		StringBuilder propertyValue = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<userlibrary systemlibrary=\"false\" version=\"1\">\r\n<archive"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		//String jarFullPath = getWorkspaceRoot().getLocation().append(jarFile.getFullPath()).toString();
-		propertyValue.append(" path=\"" + getExternalResourcePath("idontexistthereforeiamnot.jar"));
-		propertyValue.append("\"/>\r\n</userlibrary>\r\n");
+		propertyValue.append(" path=\"" + getExternalResourcePath("idontexistthereforeiamnot.jar")); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		propertyValue.append("\"/>\r\n</userlibrary>\r\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		preferences.put(propertyName, propertyValue.toString());
 		preferences.flush();
 
@@ -322,14 +322,14 @@ public void test232816b() throws Exception {
 		entries[length] = JavaCore.newContainerEntry(containerSuggestion.getPath());
 		p.setRawClasspath(entries, null);
 
-		assertBuildPathMarkers("Failed to find marker", "The user library 'SomeUserLibrary' references non existing library \'" + getExternalResourcePath("idontexistthereforeiamnot.jar") + "'", p);
+		assertBuildPathMarkers("Failed to find marker", "The user library 'SomeUserLibrary' references non existing library \'" + getExternalResourcePath("idontexistthereforeiamnot.jar") + "'", p); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} finally {
 		deleteProject("Project");
 	}
 }
 
 
-public void test232816c() throws CoreException {
+public void test232816c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IJavaProject p = null;
 	try {
@@ -360,7 +360,7 @@ public void test232816c() throws CoreException {
 }
 
 
-public void test232816d() throws CoreException {
+public void test232816d() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IJavaProject p = null;
 	try {
@@ -390,7 +390,7 @@ public void test232816d() throws CoreException {
 	}
 }
 
-public void test232816e() throws CoreException {
+public void test232816e() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IJavaProject p = null;
 	try {
@@ -419,7 +419,7 @@ public void test232816e() throws CoreException {
 	}
 }
 
-public void test232816f() throws Exception {
+public void test232816f() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IJavaProject p = null;
 	try {
@@ -445,7 +445,7 @@ public void test232816f() throws Exception {
 		IJavaModelStatus status = JavaConventions.validateClasspathEntry(p, newClasspath, true);
 		assertStatus(
 			"should have complained about jdk level mismatch",
-			"Incompatible .class files version in required binaries. Project 'P' is targeting a " + firstVersion
+			"Incompatible .class files version in required binaries. Project 'P' is targeting a " + firstVersion //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ " runtime, but is compiled against \'" + getExternalJCLPath(latestVersion).makeRelative() + "' (from the container 'container/default') which requires a "+latestVersion+" runtime",
 			status);
 	} finally {
@@ -493,7 +493,7 @@ public void testAddExternalLibFolder3() throws CoreException {
 		setClasspath(p, new IClasspathEntry[] {JavaCore.newLibraryEntry(path, null, null)});
 		assertBuildPathMarkers(
 			"Unexpected markers",
-			"Project \'P\' is missing required library: \'"+ getExternalPath() + "externalLib\'",
+			"Project \'P\' is missing required library: \'"+ getExternalPath() + "externalLib\'", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			p);
 	} finally {
 		deleteProject("P");
@@ -509,7 +509,7 @@ public void testAddExternalLibFolder4() throws CoreException {
 		IJavaProject p = createJavaProject("P", new String[0], new String[] {getExternalResourcePath("externalLib")}, "");
 		assertBuildPathMarkers(
 			"Unexpected markers",
-			"Project \'P\' is missing required library: \'"+ getExternalPath() + "externalLib\'",
+			"Project \'P\' is missing required library: \'"+ getExternalPath() + "externalLib\'", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			p);
 	} finally {
 		deleteProject("P");
@@ -615,7 +615,7 @@ public void testAddZIPArchive3() throws CoreException {
 		setClasspath(p, new IClasspathEntry[] {JavaCore.newLibraryEntry(new Path(getExternalResourcePath("externalLib.abc")), null, null)});
 		assertBuildPathMarkers(
 			"Unexpected markers",
-			"Project \'P\' is missing required library: \'"+ getExternalPath() + "externalLib.abc\'",
+			"Project \'P\' is missing required library: \'"+ getExternalPath() + "externalLib.abc\'", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			p);
 	} finally {
 		deleteProject("P");
@@ -632,7 +632,7 @@ public void testAddZIPArchive4() throws CoreException {
 		IJavaProject p = createJavaProject("P", new String[0], new String[] {getExternalResourcePath("externalLib.abc")}, "");
 		assertBuildPathMarkers(
 			"Unexpected markers",
-			"Project \'P\' is missing required library: \'"+ getExternalPath() + "externalLib.abc\'",
+			"Project \'P\' is missing required library: \'"+ getExternalPath() + "externalLib.abc\'", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			p);
 	} finally {
 		deleteProject("P");
@@ -701,7 +701,7 @@ public void testAddZIPArchive7() throws CoreException, IOException {
  * Ensures that adding a project to a container triggers a classpath delta
  * (regression test for 154071 No notification of change if a project is added or removed from a container)
  */
-public void testAddProjectToContainer() throws CoreException {
+public void testAddProjectToContainer() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1");
 		TestContainer container = new TestContainer(
@@ -731,7 +731,7 @@ public void testAddProjectToContainer() throws CoreException {
  * Add an entry to the classpath for a non-existent root. Then create
  * the root and ensure that it comes alive.
  */
-public void testAddRoot1() throws CoreException {
+public void testAddRoot1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = this.createJavaProject("P", new String[] {"src"}, "bin");
 	IClasspathEntry[] originalCP= project.getRawClasspath();
 
@@ -779,7 +779,7 @@ public void testAddRoot2() throws CoreException {
  * Ensures that changing the raw classpath and the containers so that the resolved classpath doesn't change
  * generates the correct delta.
  */
-public void testChangeRawButNotResolvedClasspath() throws CoreException {
+public void testChangeRawButNotResolvedClasspath() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		final String containerPath1 = "org.eclipse.jdt.core.tests.model.container/con1";
 		final TestContainer container1 = new TestContainer(
@@ -796,7 +796,7 @@ public void testChangeRawButNotResolvedClasspath() throws CoreException {
 		JavaCore.setClasspathContainer(container2.getPath(), new IJavaProject[] {p}, new IClasspathContainer[] {container2}, null);
 
 		startDeltas();
-		IWorkspaceRunnable runnable = new IWorkspaceRunnable() {
+		IWorkspaceRunnable runnable = new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 			public void run(IProgressMonitor monitor) throws CoreException {
 				IClasspathEntry[] newRawClasspath = new IClasspathEntry[] {
 					JavaCore.newContainerEntry(new Path(containerPath2)),
@@ -823,7 +823,7 @@ public void testChangeRawButNotResolvedClasspath() throws CoreException {
  * Ensures that the reordering external resources in the classpath
  * generates the correct deltas.
  */
-public void testClasspathChangeExternalResources() throws CoreException {
+public void testClasspathChangeExternalResources() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj = this.createJavaProject("P", new String[] {"src"}, "bin");
 
@@ -838,7 +838,7 @@ public void testClasspathChangeExternalResources() throws CoreException {
 		setClasspath(proj, swappedEntries);
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n" +
+			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	"+  getExternalJCLPathString() +"[*]: {REORDERED}\n" +
 			"	"+  getExternalJCLSourcePathString() +"[*]: {REORDERED}\n" +
 			"	ResourceDelta(/P/.classpath)[*]"
@@ -852,7 +852,7 @@ public void testClasspathChangeExternalResources() throws CoreException {
 /*
  * Test classpath corruption (23977)
  */
-public void testClasspathCorruption() throws CoreException {
+public void testClasspathCorruption() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		JavaProject p1 = (JavaProject)this.createJavaProject("P1", new String[]{""}, new String[]{}, new String[]{}, "");
 		this.createJavaProject("P2", new String[]{""}, new String[]{}, new String[]{}, "");
@@ -895,7 +895,7 @@ public void testClasspathCorruption() throws CoreException {
 /*
  * Test classpath read for non-java project or java project not opened yet (40658)
  */
-public void testClasspathFileRead() throws CoreException {
+public void testClasspathFileRead() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		final IProject proj = createProject("P1");
 		String newCPContent =
@@ -905,10 +905,10 @@ public void testClasspathFileRead() throws CoreException {
 			+"	<classpathentry kind=\"output\" path=\"bin\"/>	\n"
 			+"</classpath>	\n";
 
-		this.createFile("/P1/"+JavaProject.CLASSPATH_FILENAME, newCPContent);
+		this.createFile("/P1/"+JavaProject.CLASSPATH_FILENAME, newCPContent); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		final IJavaProject jproj = JavaCore.create(proj);
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
-			workspace.run(new IWorkspaceRunnable() {
+			workspace.run(new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor)	{
 
 					IClasspathEntry[] entries = jproj.readRawClasspath(); // force to read classpath
@@ -927,12 +927,12 @@ public void testClasspathFileRead() throws CoreException {
 /*
  * Test classpath forced reload (20931) and new way to read classpath file (40658)
  */
-public void testClasspathForceReload() throws CoreException {
+public void testClasspathForceReload() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		final JavaProject p1 = (JavaProject)this.createJavaProject("P1", new String[]{""}, new String[]{}, new String[]{}, "");
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
-			workspace.run(new IWorkspaceRunnable() {
-				public void run(IProgressMonitor monitor)	throws CoreException {
+			workspace.run(new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
+				public void run(IProgressMonitor monitor)	throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 					p1.getRawClasspath(); // force to read classpath
 					createFolder("P1/src");
@@ -964,7 +964,7 @@ public void testClasspathForceReload() throws CoreException {
  * Ensures that the setting the classpath with a library entry
  * changes the kind of the root from K_SOURCE to K_BINARY.
  */
-public void testClasspathCreateLibraryEntry() throws CoreException {
+public void testClasspathCreateLibraryEntry() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj = this.createJavaProject("P", new String[] {"src"}, "bin");
 		this.createFile("P/src/X.java", "public class X {}");
@@ -1020,7 +1020,7 @@ public void testClasspathCreateLibraryEntry() throws CoreException {
  * Ensures that the setting the classpath with a new library entry for a
  * local jar works and generates the correct deltas.
  */
-public void testClasspathCreateLocalJarLibraryEntry() throws CoreException {
+public void testClasspathCreateLocalJarLibraryEntry() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject proj = this.createJavaProject("P", new String[] {""}, "");
 	IClasspathEntry newEntry= JavaCore.newLibraryEntry(getExternalJCLPath(), null, null, false);
 	IClasspathEntry[] newEntries= new IClasspathEntry[]{newEntry};
@@ -1032,7 +1032,7 @@ public void testClasspathCreateLocalJarLibraryEntry() throws CoreException {
 	try {
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n" +
+			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	<project root>[*]: {REMOVED FROM CLASSPATH}\n" +
 			"	"+ getExternalJCLPathString() + "[+]: {}\n" +
 			"	ResourceDelta(/P/.classpath)[*]"
@@ -1047,7 +1047,7 @@ public void testClasspathCreateLocalJarLibraryEntry() throws CoreException {
 /**
  * Tests the cross project classpath setting
  */
-public void testClasspathCrossProject() throws CoreException {
+public void testClasspathCrossProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = this.createJavaProject("P1", new String[] {""}, "");
 	this.createJavaProject("P2", new String[] {}, "");
 	try {
@@ -1070,7 +1070,7 @@ public void testClasspathCrossProject() throws CoreException {
 /**
  * Delete a root and ensure the classpath is not updated (i.e. entry isn't removed).
  */
-public void testClasspathDeleteNestedRoot() throws CoreException {
+public void testClasspathDeleteNestedRoot() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = this.createJavaProject("P", new String[] {"nested/src"}, new String[] {getExternalJCLPathString()}, "bin");
 	IPackageFragmentRoot root= getPackageFragmentRoot("P", "nested/src");
 	IClasspathEntry[] originalCP= project.getRawClasspath();
@@ -1112,7 +1112,7 @@ public void testClasspathDiamond() throws CoreException {
  * Delete a nested root's parent folder and ensure the classpath is
  * not updated (i.e. entry isn't removed).
  */
-public void testClasspathDeleteNestedRootParent() throws CoreException {
+public void testClasspathDeleteNestedRootParent() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = this.createJavaProject("P", new String[] {"nested/src"}, new String[] {getExternalJCLPathString()}, "bin");
 	IPackageFragmentRoot root= getPackageFragmentRoot("P", "nested/src");
 	IClasspathEntry[] originalCP= project.getRawClasspath();
@@ -1138,12 +1138,12 @@ public void testClasspathDeleteNestedRootParent() throws CoreException {
  * Ensure that a classpath entry for an external jar is externalized
  * properly.
  */
-public void testExternalize1() throws CoreException { // was testClasspathExternalize
+public void testExternalize1() throws CoreException { // was testClasspathExternalize //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project= this.createJavaProject("P", new String[] {}, new String[] {getExternalJCLPathString()}, "");
 		IClasspathEntry[] classpath= project.getRawClasspath();
 		IClasspathEntry jar= null;
-		for (int i= 0; i < classpath.length; i++) {
+		for (int i= 0; i < classpath.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (classpath[i].getEntryKind() == IClasspathEntry.CPE_LIBRARY) {
 				jar= classpath[i];
 				break;
@@ -1153,7 +1153,7 @@ public void testExternalize1() throws CoreException { // was testClasspathExtern
 		project.open(null);
 
 		classpath= project.getRawClasspath();
-		for (int i= 0; i < classpath.length; i++) {
+		for (int i= 0; i < classpath.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (classpath[i].getEntryKind() == IClasspathEntry.CPE_LIBRARY) {
 				assertTrue("Paths must be the same", classpath[i].getPath().equals(jar.getPath()));
 				break;
@@ -1168,14 +1168,14 @@ public void testExternalize1() throws CoreException { // was testClasspathExtern
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=220542 )
  */
 public void testExternalize2() throws CoreException {
-	String externalLibPath = getExternalResourcePath("externalLib") + File.separator;
+	String externalLibPath = getExternalResourcePath("externalLib") + File.separator; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	IClasspathEntry entry = JavaCore.newLibraryEntry(new Path(externalLibPath), null, null);
 	assertEquals("Unexpected external path", externalLibPath, entry.getPath().toOSString());
 }
 /**
  * Move a root and ensure the classpath is not updated (i.e. entry not renamed).
  */
-public void testClasspathMoveNestedRoot() throws CoreException {
+public void testClasspathMoveNestedRoot() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = this.createJavaProject("P", new String[] {"nested/src"}, new String[] {getExternalJCLPathString()}, "bin");
 	IPackageFragmentRoot root= getPackageFragmentRoot("P", "nested/src");
 	IClasspathEntry[] originalCP= project.getRawClasspath();
@@ -1216,7 +1216,7 @@ public void testClasspathMoveNestedRoot() throws CoreException {
 /**
  * Move a parent of a nested root and ensure the classpath is not updated (i.e. entry not renamed).
  */
-public void testClasspathMoveNestedRootParent() throws CoreException {
+public void testClasspathMoveNestedRootParent() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project =this.createJavaProject("P", new String[] {"nested/src"}, new String[] {getExternalJCLPathString()}, "bin");
 		IPackageFragmentRoot root= getPackageFragmentRoot("P", "nested/src");
@@ -1260,13 +1260,13 @@ public void testClasspathNoChanges() throws CoreException {
  * Ensures that the setting the classpath with a reordered classpath generates
  * the correct deltas.
  */
-public void testClasspathReordering() throws CoreException {
+public void testClasspathReordering() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject proj = this.createJavaProject("P", new String[] {"src"}, new String[] {getExternalJCLPathString()}, "bin");
 	IClasspathEntry[] originalCP = proj.getRawClasspath();
 	try {
 		IClasspathEntry[] newEntries = new IClasspathEntry[originalCP.length];
 		int index = originalCP.length - 1;
-		for (int i = 0; i < originalCP.length; i++) {
+		for (int i = 0; i < originalCP.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			newEntries[index] = originalCP[i];
 			index--;
 		}
@@ -1274,7 +1274,7 @@ public void testClasspathReordering() throws CoreException {
 		setClasspath(proj, newEntries);
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n" +
+			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	src[*]: {REORDERED}\n" +
 			"	"+ getExternalJCLPathString() + "[*]: {REORDERED}\n" +
 			"	ResourceDelta(/P/.classpath)[*]"
@@ -1288,7 +1288,7 @@ public void testClasspathReordering() throws CoreException {
 /**
  * Should detect duplicate entries on the classpath
  */
-public void testClasspathValidation01() throws CoreException {
+public void testClasspathValidation01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj = this.createJavaProject("P", new String[] {"src"}, "bin");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -1311,7 +1311,7 @@ public void testClasspathValidation01() throws CoreException {
 /**
  * Should detect nested source folders on the classpath
  */
-public void testClasspathValidation02() throws CoreException {
+public void testClasspathValidation02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {"src"}, "bin");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -1334,7 +1334,7 @@ public void testClasspathValidation02() throws CoreException {
 /**
  * Should detect library folder nested inside source folder on the classpath
  */
-public void testClasspathValidation03() throws CoreException {
+public void testClasspathValidation03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {"src"}, "bin");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -1355,7 +1355,7 @@ public void testClasspathValidation03() throws CoreException {
 	}
 }
 
-public void testClasspathValidation04() throws CoreException {
+public void testClasspathValidation04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IJavaProject[] p = null;
 	try {
@@ -1384,7 +1384,7 @@ public void testClasspathValidation04() throws CoreException {
 	}
 }
 
-public void testClasspathValidation05() throws CoreException {
+public void testClasspathValidation05() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IJavaProject[] p = null;
 	try {
@@ -1429,7 +1429,7 @@ public void testClasspathValidation05() throws CoreException {
 	}
 }
 
-public void testClasspathValidation06() throws CoreException {
+public void testClasspathValidation06() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IJavaProject[] p = null;
 	try {
@@ -1457,7 +1457,7 @@ public void testClasspathValidation06() throws CoreException {
  * Should allow nested source folders on the classpath as long as the outer
  * folder excludes the inner one.
  */
-public void testClasspathValidation07() throws CoreException {
+public void testClasspathValidation07() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {"src"}, "bin");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -1480,7 +1480,7 @@ public void testClasspathValidation07() throws CoreException {
  * Should allow a nested binary folder in a source folder on the classpath as
  * long as the outer folder excludes the inner one.
  */
-public void testClasspathValidation08() throws CoreException {
+public void testClasspathValidation08() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, new String[] {"lib"}, "bin");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -1502,7 +1502,7 @@ public void testClasspathValidation08() throws CoreException {
 /**
  * Should not allow a nested source folder in the project's output folder.
  */
-public void testClasspathValidation09() throws CoreException {
+public void testClasspathValidation09() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "bin");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -1542,7 +1542,7 @@ public void testClasspathValidation10() throws CoreException {
 /**
  * Should allow a nested library folder in the project's output folder if the project's output is not used.
 */
-public void testClasspathValidation11() throws CoreException {
+public void testClasspathValidation11() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -1564,7 +1564,7 @@ public void testClasspathValidation11() throws CoreException {
 /**
  * Should not allow a nested source folder in an output folder.
  */
-public void testClasspathValidation12() throws CoreException {
+public void testClasspathValidation12() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "bin1");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -1590,7 +1590,7 @@ public void testClasspathValidation12() throws CoreException {
 /**
  * Should not allow a nested output folder in a source folder on the classpath.
  */
-public void testClasspathValidation13() throws CoreException {
+public void testClasspathValidation13() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "bin1");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -1616,7 +1616,7 @@ public void testClasspathValidation13() throws CoreException {
 /**
  * Should allow a nested output folder in a source folder that coincidate with the project.
  */
-public void testClasspathValidation14() throws CoreException {
+public void testClasspathValidation14() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "bin");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -1642,7 +1642,7 @@ public void testClasspathValidation14() throws CoreException {
 /**
  * Should not allow nested source folders on the classpath if exclusion filter has no trailing slash.
  */
-public void testClasspathValidation15() throws CoreException {
+public void testClasspathValidation15() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {"src"}, "bin");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -1664,7 +1664,7 @@ public void testClasspathValidation15() throws CoreException {
  * Should allow custom output folder to be nested in default output folder if default output is not used.
  * (regression test for bug 28596 Default output folder cause of validation error even if not used)
  */
-public void testClasspathValidation16() throws CoreException {
+public void testClasspathValidation16() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -1685,7 +1685,7 @@ public void testClasspathValidation16() throws CoreException {
 /**
  * Should not allow source folder to be nested in default output folder if default output is used.
  */
-public void testClasspathValidation17() throws CoreException {
+public void testClasspathValidation17() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {"src1"}, "bin");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -1707,7 +1707,7 @@ public void testClasspathValidation17() throws CoreException {
  * Should not allow custom output folder to be external to project.
  * (regression test for bug 29079 Buildpath validation: No check that output folder is inside project)
  */
-public void testClasspathValidation18() throws CoreException {
+public void testClasspathValidation18() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -1728,7 +1728,7 @@ public void testClasspathValidation18() throws CoreException {
 /**
  * Should detect source folder nested inside library folder on the classpath
  */
-public void testClasspathValidation19() throws CoreException {
+public void testClasspathValidation19() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, new String[] {"lib"}, "bin");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -1751,7 +1751,7 @@ public void testClasspathValidation19() throws CoreException {
 /**
  * Should not allow custom output folder if project preference disallow them
  */
-public void testClasspathValidation20() throws CoreException {
+public void testClasspathValidation20() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -1776,7 +1776,7 @@ public void testClasspathValidation20() throws CoreException {
 /**
  * Should not allow exclusion patterns if project preference disallow them
  */
-public void testClasspathValidation21() throws CoreException {
+public void testClasspathValidation21() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -1801,7 +1801,7 @@ public void testClasspathValidation21() throws CoreException {
 /**
  * 33207 - Reject output folder that coincidate with distinct source folder
  */
-public void testClasspathValidation22() throws CoreException {
+public void testClasspathValidation22() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "");
 		proj.setOption(JavaCore.CORE_OUTPUT_LOCATION_OVERLAPPING_ANOTHER_SOURCE, JavaCore.ERROR);
@@ -1827,7 +1827,7 @@ public void testClasspathValidation22() throws CoreException {
  * but 36465 - Unable to create multiple source folders when not using bin for output
  * default output scenarii is still tolerated
  */
-public void testClasspathValidation23() throws CoreException {
+public void testClasspathValidation23() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "");
 		proj.setOption(JavaCore.CORE_OUTPUT_LOCATION_OVERLAPPING_ANOTHER_SOURCE, JavaCore.IGNORE);
@@ -1854,7 +1854,7 @@ public void testClasspathValidation23() throws CoreException {
 /**
  * Ensure one cannot nest source entry inside default output folder
  */
-public void testClasspathValidation24() throws CoreException {
+public void testClasspathValidation24() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -1876,7 +1876,7 @@ public void testClasspathValidation24() throws CoreException {
 /**
  * Reject output folder that coincidate with library folder
  */
-public void testClasspathValidation25() throws CoreException {
+public void testClasspathValidation25() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -1900,7 +1900,7 @@ public void testClasspathValidation25() throws CoreException {
  * Reject output folder that coincidate with library folder
  * default output scenarii
  */
-public void testClasspathValidation26() throws CoreException {
+public void testClasspathValidation26() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -1947,7 +1947,7 @@ public void testClasspathValidation27() throws CoreException {
  * 	to this value on java project will just remove it instead of putting another string object...
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=159325"
  */
-public void testClasspathValidation27_Bug159325_project() throws CoreException {
+public void testClasspathValidation27_Bug159325_project() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Hashtable javaCoreOptions = JavaCore.getOptions();
 	try {
 		IJavaProject proj1 =  this.createJavaProject("P1", new String[] {}, "");
@@ -1967,7 +1967,7 @@ public void testClasspathValidation27_Bug159325_project() throws CoreException {
 		deleteProjects(new String[]{"P1", "P2"});
 	}
 }
-public void testClasspathValidation27_Bug159325_lib() throws CoreException {
+public void testClasspathValidation27_Bug159325_lib() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Hashtable javaCoreOptions = JavaCore.getOptions();
 	try {
 		IJavaProject proj =  this.createJavaProject("P1", new String[] {}, "");
@@ -1990,7 +1990,7 @@ public void testClasspathValidation27_Bug159325_lib() throws CoreException {
 /**
  * Checks it is legal for an output folder to be an excluded subfolder of some source folder
  */
-public void testClasspathValidation28() throws CoreException {
+public void testClasspathValidation28() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -2013,7 +2013,7 @@ public void testClasspathValidation28() throws CoreException {
 /**
  * Checks it is illegal for an output folder to be a subfolder of some source folder
  */
-public void testClasspathValidation29() throws CoreException {
+public void testClasspathValidation29() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -2035,7 +2035,7 @@ public void testClasspathValidation29() throws CoreException {
 /**
  * Checks it is illegal for a nested output folder (sitting inside excluded range of source folder) to be enclosing another source folder
  */
-public void testClasspathValidation30() throws CoreException {
+public void testClasspathValidation30() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "bin");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -2058,7 +2058,7 @@ public void testClasspathValidation30() throws CoreException {
 /**
  * Checks it is illegal for a nested output folder (sitting inside excluded range of source folder) to be nested in another source folder
  */
-public void testClasspathValidation31() throws CoreException {
+public void testClasspathValidation31() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "bin");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -2081,7 +2081,7 @@ public void testClasspathValidation31() throws CoreException {
 /**
  * Checks it is illegal for a nested output folder (sitting inside excluded range of source folder) to be coincidating with another source folder
  */
-public void testClasspathValidation32() throws CoreException {
+public void testClasspathValidation32() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "bin");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -2104,7 +2104,7 @@ public void testClasspathValidation32() throws CoreException {
 /**
  * Checks it is illegal for a source folder to be nested in an output folder (42579)
  */
-public void testClasspathValidation33() throws CoreException {
+public void testClasspathValidation33() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -2127,7 +2127,7 @@ public void testClasspathValidation33() throws CoreException {
  * Should not allow nested source folders on the classpath if the outer
  * folder includes the inner one.
  */
-public void testClasspathValidation34() throws CoreException {
+public void testClasspathValidation34() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {"src"}, "bin");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -2151,7 +2151,7 @@ public void testClasspathValidation34() throws CoreException {
  * Should not allow a nested binary folder in a source folder on the classpath
  * if the outer folder includes the inner one.
  */
-public void testClasspathValidation35() throws CoreException {
+public void testClasspathValidation35() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, new String[] {"lib"}, "bin");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -2174,7 +2174,7 @@ public void testClasspathValidation35() throws CoreException {
 /**
  * Should allow nested source folders on the classpath if inclusion filter has no trailing slash.
  */
-public void testClasspathValidation36() throws CoreException {
+public void testClasspathValidation36() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {"src"}, "bin");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -2195,7 +2195,7 @@ public void testClasspathValidation36() throws CoreException {
 /**
  * Should not allow inclusion patterns if project preference disallow them
  */
-public void testClasspathValidation37() throws CoreException {
+public void testClasspathValidation37() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -2219,7 +2219,7 @@ public void testClasspathValidation37() throws CoreException {
 /**
  * Checks it is illegal for an output folder to be an included subfolder of some source folder
  */
-public void testClasspathValidation38() throws CoreException {
+public void testClasspathValidation38() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -2241,7 +2241,7 @@ public void testClasspathValidation38() throws CoreException {
 /**
  * 62713 - check nested output folder detection
  */
-public void testClasspathValidation39() throws CoreException {
+public void testClasspathValidation39() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -2263,7 +2263,7 @@ public void testClasspathValidation39() throws CoreException {
 /**
  * 62713 - variation
  */
-public void testClasspathValidation40() throws CoreException {
+public void testClasspathValidation40() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -2285,7 +2285,7 @@ public void testClasspathValidation40() throws CoreException {
 /**
  * 62713 - variation
  */
-public void testClasspathValidation41() throws CoreException {
+public void testClasspathValidation41() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "bin");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -2307,7 +2307,7 @@ public void testClasspathValidation41() throws CoreException {
  * Should detect nested source folders on the classpath and indicate the preference if disabled
  * (regression test for bug 122615 validate classpath propose to exlude a source folder even though exlusion patterns are disabled)
  */
-public void testClasspathValidation42() throws CoreException {
+public void testClasspathValidation42() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {"src"}, "bin");
 		proj.setOption(JavaCore.CORE_ENABLE_CLASSPATH_EXCLUSION_PATTERNS, JavaCore.DISABLED);
@@ -2385,7 +2385,7 @@ public void testClasspathDuplicateExtraAttribute2() throws CoreException {
 		IClasspathEntry library = JavaCore.newLibraryEntry(new Path(getExternalJCLPathString()), null, null, ClasspathEntry.NO_ACCESS_RULES, extraAttributes, false);
 		IJavaModelStatus status = JavaConventions.validateClasspathEntry(proj, library, false);
 		assertStatus(
-			"Duplicate extra attribute: \'javadoc_location\' in classpath entry \'"+getExternalJCLPath()+"\' for project 'P1'",
+			"Duplicate extra attribute: \'javadoc_location\' in classpath entry \'"+getExternalJCLPath()+"\' for project 'P1'", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			status);
 	} finally {
 		deleteProject("P1");
@@ -2396,7 +2396,7 @@ public void testClasspathDuplicateExtraAttribute2() throws CoreException {
  * Bug 94404: [model] Disallow classpath attributes with same key
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=94404"
  */
-public void testClasspathDuplicateExtraAttribute3() throws CoreException {
+public void testClasspathDuplicateExtraAttribute3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P1", new String[] {}, "bin");
 		IClasspathAttribute[] extraAttributes = new IClasspathAttribute[2];
@@ -2421,7 +2421,7 @@ public void testClasspathDuplicateExtraAttribute3() throws CoreException {
  * Bug 94404: [model] Disallow classpath attributes with same key
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=94404"
  */
-public void testClasspathDuplicateExtraAttribute4() throws CoreException {
+public void testClasspathDuplicateExtraAttribute4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P1", new String[] {}, "bin");
 		IClasspathAttribute[] extraAttributes = new IClasspathAttribute[2];
@@ -2456,7 +2456,7 @@ public void testClasspathDuplicateExtraAttribute5() throws CoreException {
 		IClasspathEntry variable = JavaCore.newVariableEntry(new Path("JCL18_LIB"), new Path("JCL18_SRC"), null, ClasspathEntry.NO_ACCESS_RULES, extraAttributes, false);
 		IJavaModelStatus status = JavaConventions.validateClasspathEntry(proj, variable, false);
 		assertStatus(
-			"Duplicate extra attribute: \'javadoc_location\' in classpath entry \'"+getExternalJCLPath()+"\' for project 'P1'",
+			"Duplicate extra attribute: \'javadoc_location\' in classpath entry \'"+getExternalJCLPath()+"\' for project 'P1'", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			status);
 	} finally {
 		deleteProject("P1");
@@ -2467,7 +2467,7 @@ public void testClasspathDuplicateExtraAttribute5() throws CoreException {
  * should not break the model. The classpath should contain the
  * entry, but the root should not appear in the children.
  */
-public void testClasspathWithNonExistentLibraryEntry() throws CoreException {
+public void testClasspathWithNonExistentLibraryEntry() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project=  this.createJavaProject("P", new String[] {"src"}, "bin");
 		IClasspathEntry[] originalPath= project.getRawClasspath();
@@ -2483,13 +2483,13 @@ public void testClasspathWithNonExistentLibraryEntry() throws CoreException {
 
 		IClasspathEntry[] getPath= project.getRawClasspath();
 		assertTrue("should be the same length", getPath.length == newPath.length);
-		for (int i= 0; i < getPath.length; i++) {
+		for (int i= 0; i < getPath.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			assertTrue("entries should be the same", getPath[i].equals(newPath[i]));
 		}
 
 		IPackageFragmentRoot[] newRoots= project.getPackageFragmentRoots();
 		assertTrue("Should be the same number of roots", originalRoots.length == newRoots.length);
-		for (int i= 0; i < newRoots.length; i++) {
+		for (int i= 0; i < newRoots.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			assertTrue("roots should be the same", originalRoots[i].equals(newRoots[i]));
 		}
 	} finally {
@@ -2501,7 +2501,7 @@ public void testClasspathWithNonExistentLibraryEntry() throws CoreException {
  * should not break the model. The classpath should contain the
  * entry, but the root should not appear in the children.
  */
-public void testClasspathWithNonExistentProjectEntry() throws CoreException {
+public void testClasspathWithNonExistentProjectEntry() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project= this.createJavaProject("P", new String[] {"src"}, "bin");
 		IClasspathEntry[] originalPath= project.getRawClasspath();
@@ -2517,13 +2517,13 @@ public void testClasspathWithNonExistentProjectEntry() throws CoreException {
 
 		IClasspathEntry[] getPath= project.getRawClasspath();
 		assertTrue("should be the same length", getPath.length == newPath.length);
-		for (int i= 0; i < getPath.length; i++) {
+		for (int i= 0; i < getPath.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			assertTrue("entries should be the same", getPath[i].equals(newPath[i]));
 		}
 
 		IPackageFragmentRoot[] newRoots= project.getPackageFragmentRoots();
 		assertTrue("Should be the same number of roots", originalRoots.length == newRoots.length);
-		for (int i= 0; i < newRoots.length; i++) {
+		for (int i= 0; i < newRoots.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			assertTrue("roots should be the same", originalRoots[i].equals(newRoots[i]));
 		}
 	} finally {
@@ -2535,7 +2535,7 @@ public void testClasspathWithNonExistentProjectEntry() throws CoreException {
  * should not break the model. The classpath should contain the
  * entry, but the root should not appear in the children.
  */
-public void testClasspathWithNonExistentSourceEntry() throws CoreException {
+public void testClasspathWithNonExistentSourceEntry() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project= this.createJavaProject("P", new String[] {"src"}, "bin");
 		IClasspathEntry[] originalPath= project.getRawClasspath();
@@ -2551,13 +2551,13 @@ public void testClasspathWithNonExistentSourceEntry() throws CoreException {
 
 		IClasspathEntry[] getPath= project.getRawClasspath();
 		assertTrue("should be the same length", getPath.length == newPath.length);
-		for (int i= 0; i < getPath.length; i++) {
+		for (int i= 0; i < getPath.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			assertTrue("entries should be the same", getPath[i].equals(newPath[i]));
 		}
 
 		IPackageFragmentRoot[] newRoots= project.getPackageFragmentRoots();
 		assertTrue("Should be the same number of roots", originalRoots.length == newRoots.length);
-		for (int i= 0; i < newRoots.length; i++) {
+		for (int i= 0; i < newRoots.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			assertTrue("roots should be the same", originalRoots[i].equals(newRoots[i]));
 		}
 	} finally {
@@ -2568,7 +2568,7 @@ public void testClasspathWithNonExistentSourceEntry() throws CoreException {
 /**
  * Ensure that cycle are properly reported.
  */
-public void testCycleReport() throws CoreException {
+public void testCycleReport() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	try {
 		IJavaProject p1 = this.createJavaProject("P1", new String[] {""}, "");
@@ -2578,7 +2578,7 @@ public void testCycleReport() throws CoreException {
 		// Ensure no cycle reported
 		IJavaProject[] projects = { p1, p2, p3 };
 		int cycleMarkerCount = 0;
-		for (int i = 0; i < projects.length; i++){
+		for (int i = 0; i < projects.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			cycleMarkerCount += (cycleMarkerFlags(projects[i]) & 1);
 		}
 		assertTrue("Should have no cycle markers", cycleMarkerCount == 0);
@@ -2603,7 +2603,7 @@ public void testCycleReport() throws CoreException {
 
 		waitForAutoBuild(); // wait for cycle markers to be created
 		cycleMarkerCount = 0;
-		for (int i = 0; i < projects.length; i++){
+		for (int i = 0; i < projects.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			cycleMarkerCount += (cycleMarkerFlags(projects[i]) & 1);
 		}
 		assertEquals("Unexpected number of projects involved in a classpath cycle", 3, cycleMarkerCount);
@@ -2623,9 +2623,9 @@ public void testDefaultClasspathAndOutputLocation() throws CoreException {
 		IJavaProject project = this.createJavaProject("P", new String[] {""}, "bin");
 		IClasspathEntry[] classpath = project.getRawClasspath();
 		assertTrue("Incorrect default classpath; to many entries", classpath.length == 1);
-		assertTrue("Incorrect default classpath: " + classpath[0], classpath[0].getPath().equals(project.getUnderlyingResource().getFullPath()));
+		assertTrue("Incorrect default classpath: " + classpath[0], classpath[0].getPath().equals(project.getUnderlyingResource().getFullPath())); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IPath output = project.getOutputLocation();
-		assertTrue("Incorrect default output location: " + output.toOSString(), output.equals(project.getUnderlyingResource().getFullPath().append("bin")));
+		assertTrue("Incorrect default output location: " + output.toOSString(), output.equals(project.getUnderlyingResource().getFullPath().append("bin"))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} finally {
 		this.deleteProject("P");
 	}
@@ -2634,7 +2634,7 @@ public void testDefaultClasspathAndOutputLocation() throws CoreException {
 /*
  * Ensures that one can point at an external library using a ".." entry in a cp container
  */
-public void testDotDotContainerEntry1() throws Exception {
+public void testDotDotContainerEntry1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String externalJarPath = getWorkspaceRoot().getLocation().removeLastSegments(1).append("external.jar").toOSString();
 	try {
 		IJavaProject p = createJavaProject("P");
@@ -2645,7 +2645,7 @@ public void testDotDotContainerEntry1() throws Exception {
 		setClasspath(p, new IClasspathEntry[] {JavaCore.newContainerEntry(new Path("org.eclipse.jdt.core.tests.model.TEST_CONTAINER"))});
 		assertElementDescendants(
 			"Unexpected project content",
-			"P\n" +
+			"P\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"  "+ getExternalPath() + "external.jar\n" +
 			"    <default> (...)",
 			p
@@ -2667,7 +2667,7 @@ public void testDotDotContainerEntry2() throws Exception {
 		setClasspath(p, new IClasspathEntry[] {JavaCore.newContainerEntry(new Path("org.eclipse.jdt.core.tests.model.TEST_CONTAINER"))});
 		assertBuildPathMarkers(
 			"Unexpected markers",
-			"The container 'Test container' references non existing library \'" + getExternalPath() + "nonExisting.jar\'",
+			"The container 'Test container' references non existing library \'" + getExternalPath() + "nonExisting.jar\'", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			p);
 	} finally {
 		deleteProject("P");
@@ -2678,7 +2678,7 @@ public void testDotDotContainerEntry2() throws Exception {
 /*
  * Ensures that one can point at an external library using a ".." path
  */
-public void testDotDotLibraryEntry1() throws Exception {
+public void testDotDotLibraryEntry1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String externalJarPath = getWorkspaceRoot().getLocation().append("external.jar").toOSString();
 	try {
 		IJavaProject p = createJavaProject("P");
@@ -2688,7 +2688,7 @@ public void testDotDotLibraryEntry1() throws Exception {
 		setClasspath(p, new IClasspathEntry[] {JavaCore.newLibraryEntry(new Path("../external.jar"), null, null)});
 		assertElementDescendants(
 			"Unexpected project content",
-			"P\n" +
+			"P\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"  "+ getWorkspacePath() + "external.jar\n" +
 			"    <default> (...)",
 			p
@@ -2702,7 +2702,7 @@ public void testDotDotLibraryEntry1() throws Exception {
 /*
  * Ensures that one can point at an external library using a ".." path
  */
-public void testDotDotLibraryEntry2() throws Exception {
+public void testDotDotLibraryEntry2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String externalJarPath = getWorkspaceRoot().getLocation().removeLastSegments(1).append("external.jar").toOSString();
 	try {
 		IJavaProject p = createJavaProject("P");
@@ -2712,7 +2712,7 @@ public void testDotDotLibraryEntry2() throws Exception {
 		setClasspath(p, new IClasspathEntry[] {JavaCore.newLibraryEntry(new Path("../../external.jar"), null, null)});
 		assertElementDescendants(
 			"Unexpected project content",
-			"P\n" +
+			"P\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"  "+ getExternalPath() + "external.jar\n" +
 			"    <default> (...)",
 			p
@@ -2726,7 +2726,7 @@ public void testDotDotLibraryEntry2() throws Exception {
 /*
  * Ensures that one can point at an external library using a ".." path
  */
-public void testDotDotLibraryEntry3() throws Exception {
+public void testDotDotLibraryEntry3() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String externalJarPath = getWorkspaceRoot().getLocation().removeLastSegments(1).append("external.jar").toOSString();
 	try {
 		IJavaProject p = createJavaProject("P");
@@ -2736,7 +2736,7 @@ public void testDotDotLibraryEntry3() throws Exception {
 		setClasspath(p, new IClasspathEntry[] {JavaCore.newLibraryEntry(new Path("src/../../../external.jar"), null, null)});
 		assertElementDescendants(
 			"Unexpected project content",
-			"P\n" +
+			"P\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"  "+ getExternalPath() + "external.jar\n" +
 			"    <default> (...)",
 			p
@@ -2750,7 +2750,7 @@ public void testDotDotLibraryEntry3() throws Exception {
 /*
  * Ensures that one can point at an internal library using a ".." path
  */
-public void testDotDotLibraryEntry4() throws Exception {
+public void testDotDotLibraryEntry4() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p1 = createJavaProject("P1");
 		IJavaProject p2 = createJavaProject("P2");
@@ -2803,7 +2803,7 @@ public void testDotDotLibraryEntry6() throws Exception {
 		setClasspath(p, new IClasspathEntry[] {JavaCore.newLibraryEntry(new Path("../external.jar"), null, null)});
 		assertBuildPathMarkers(
 			"Unexpected markers",
-			"Project \'P\' is missing required library: \'"+ getWorkspacePath() + "external.jar\'",
+			"Project \'P\' is missing required library: \'"+ getWorkspacePath() + "external.jar\'", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			p);
 	} finally {
 		deleteProject("P");
@@ -2813,7 +2813,7 @@ public void testDotDotLibraryEntry6() throws Exception {
 /*
  * Ensures that one can point at an external library using a ".." path by editing the .classpath file
  */
-public void testDotDotLibraryEntry7() throws Exception {
+public void testDotDotLibraryEntry7() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String externalJarPath = getWorkspaceRoot().getLocation().append("external.jar").toOSString();
 	try {
 		IJavaProject p = createJavaProject("P");
@@ -2830,7 +2830,7 @@ public void testDotDotLibraryEntry7() throws Exception {
 			"</classpath>");
 		assertElementDescendants(
 			"Unexpected project content",
-			"P\n" +
+			"P\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"  <project root>\n" +
 			"    <default> (...)\n" +
 			"  "+ getWorkspacePath() + "external.jar\n" +
@@ -2846,7 +2846,7 @@ public void testDotDotLibraryEntry7() throws Exception {
 /*
  * Ensures that the raw classpath is correct if pointing at an external library using a ".." path by editing the .classpath file
  */
-public void testDotDotLibraryEntry8() throws Exception {
+public void testDotDotLibraryEntry8() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
 		editFile(
@@ -2870,7 +2870,7 @@ public void testDotDotLibraryEntry8() throws Exception {
 /*
  * Ensures that one can point at an external library using a ".." variable entry
  */
-public void testDotDotVariableEntry1() throws Exception {
+public void testDotDotVariableEntry1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String externalJarPath = getWorkspaceRoot().getLocation().removeLastSegments(1).append("external.jar").toOSString();
 	try {
 		JavaCore.setClasspathVariable("TWO_UP", new Path("../.."), null);
@@ -2881,7 +2881,7 @@ public void testDotDotVariableEntry1() throws Exception {
 		setClasspath(p, new IClasspathEntry[] {JavaCore.newVariableEntry(new Path("TWO_UP/external.jar"), null, null)});
 		assertElementDescendants(
 			"Unexpected project content",
-			"P\n" +
+			"P\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"  "+ getExternalPath() + "external.jar\n" +
 			"    <default> (...)",
 			p
@@ -2903,7 +2903,7 @@ public void testDotDotVariableEntry2() throws Exception {
 		setClasspath(p, new IClasspathEntry[] {JavaCore.newVariableEntry(new Path("TWO_UP/nonExisting.jar"), null, null)});
 		assertBuildPathMarkers(
 			"Unexpected markers",
-			"Project \'P\' is missing required library: \'"+ getExternalPath() + "nonExisting.jar\'",
+			"Project \'P\' is missing required library: \'"+ getExternalPath() + "nonExisting.jar\'", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			p);
 	} finally {
 		deleteProject("P");
@@ -2915,7 +2915,7 @@ public void testDotDotVariableEntry2() throws Exception {
  * Setting the classpath to empty should result in no entries,
  * and a delta with removed roots.
  */
-public void testEmptyClasspath() throws CoreException {
+public void testEmptyClasspath() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = this.createJavaProject("P", new String[] {""}, "");
 	try {
 		startDeltas();
@@ -2939,12 +2939,12 @@ public void testEmptyClasspath() throws CoreException {
  * Ensures that a source folder that contains character that must be encoded can be written.
  * (regression test for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=70193)
  */
-public void testEncoding1() throws CoreException {
+public void testEncoding1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		try {
 			createJavaProject("P", new String[] {"src\u3400"}, "bin");
 		} catch (InvalidPathException e) {
-			System.err.println("File system cannot handle UTF-8 path: "+e.getMessage());
+			System.err.println("File system cannot handle UTF-8 path: "+e.getMessage()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			System.err.println("Skipping ClasspathTests.testEncoding1");
 			return;
 		}
@@ -2966,12 +2966,12 @@ public void testEncoding1() throws CoreException {
  * Ensures that a .classpath encoded with a BOM can be read
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=240034 )
  */
-public void testEncoding2() throws Exception {
+public void testEncoding2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P", new String[] {"src"}, "bin");
 		IFile file = getFile("/P/.classpath");
 		byte[] contents = org.eclipse.jdt.internal.core.util.Util.getResourceContentsAsByteArray(file);
-		try (FileOutputStream output = new FileOutputStream(file.getLocation().toFile())) {
+		try (FileOutputStream output = new FileOutputStream(file.getLocation().toFile())) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			output.write(IContentDescription.BOM_UTF_8); // UTF-8 BOM
 			output.write(contents);
 			output.flush();
@@ -3028,7 +3028,7 @@ public void testEncodeDecodeEntry03() {
 /*
  * Ensures that a library classpath entry can be encoded and decoded.
  */
-public void testEncodeDecodeEntry04() {
+public void testEncodeDecodeEntry04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	assertEncodeDecodeEntry(
 		"P",
 		"<classpathentry exported=\"true\" kind=\"lib\" path=\"lib.jar\" rootpath=\"root\" sourcepath=\"src.zip\">\n" +
@@ -3051,7 +3051,7 @@ public void testEncodeDecodeEntry04() {
 /*
  * Ensures that a library classpath entry can be encoded and decoded.
  */
-public void testEncodeDecodeEntry05() {
+public void testEncodeDecodeEntry05() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	assertEncodeDecodeEntry(
 		"P",
 		"<classpathentry exported=\"true\" kind=\"lib\" path=\"lib.jar\" rootpath=\"root\" sourcepath=\"src.zip\">\n" +
@@ -3075,7 +3075,7 @@ public void testEncodeDecodeEntry05() {
  * Ensures that adding an empty classpath container
  * generates the correct deltas.
  */
-public void testEmptyContainer() throws CoreException {
+public void testEmptyContainer() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj = createJavaProject("P", new String[] {}, "bin");
 
@@ -3110,7 +3110,7 @@ public void testEmptyContainer() throws CoreException {
  * Ensure that a .classpath with an empty inclusion pattern is correctly handled
  * (regression test for bug 105581 Creating a Java project from existing source fails because of "Unhandled event loop exception":)
  */
-public void testEmptyInclusionPattern() throws CoreException {
+public void testEmptyInclusionPattern() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P", new String[] {""}, "bin");
 		project.open(null);
@@ -3138,7 +3138,7 @@ public void testEmptyInclusionPattern() throws CoreException {
  * Exporting a container should make it visible to its dependent project.
  * (regression test for bug 21749 Exported libraries and source folders)
  */
-public void testExportContainer() throws CoreException {
+public void testExportContainer() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p1 = this.createJavaProject("P1", new String[] {""}, "");
 
@@ -3175,8 +3175,8 @@ public void testExportContainer() throws CoreException {
  * Ensures that adding an external jar and refreshing removed the markers
  * (regression test for 185733 Refreshing external jar doesn't update problem marker)
  */
-public void testExternalJarAdd() throws CoreException, IOException {
-	String externalJarPath = getExternalPath() + "test185733.jar";
+public void testExternalJarAdd() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String externalJarPath = getExternalPath() + "test185733.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	try {
 		IJavaProject p = createJavaProject("P", new String[0], new String[] {externalJarPath}, "");
 		waitUntilIndexesReady();
@@ -3200,7 +3200,7 @@ public void testExternalJarAdd() throws CoreException, IOException {
  * Ensures that removing an external jar and refreshing creates the correct markers
  * (regression test for 185733 Refreshing external jar doesn't update problem marker)
  */
-public void testExternalJarRemove() throws CoreException, IOException {
+public void testExternalJarRemove() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		File externalJar = createFile(new File(getExternalPath()), "test185733.jar", "");
 		IJavaProject p = createJavaProject("P", new String[0], new String[] {externalJar.getPath()}, "");
@@ -3212,7 +3212,7 @@ public void testExternalJarRemove() throws CoreException, IOException {
 		refreshExternalArchives(p);
 		assertBuildPathMarkers(
 			"Unexpected markers",
-			"Project \'P\' is missing required library: \'" + externalJar.getPath() + "\'",
+			"Project \'P\' is missing required library: \'" + externalJar.getPath() + "\'", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			p);
 	} finally {
 		deleteProject("P");
@@ -3222,7 +3222,7 @@ public void testExternalJarRemove() throws CoreException, IOException {
 /*
  * Ensures that setting 0 extra classpath attributes generates the correct .classpath file.
  */
-public void testExtraAttributes1() throws CoreException {
+public void testExtraAttributes1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P");
 		IClasspathEntry entry = JavaCore.newSourceEntry(new Path("/P"), new IPath[0], new IPath[0], null, new IClasspathAttribute[] {});
@@ -3243,7 +3243,7 @@ public void testExtraAttributes1() throws CoreException {
 /*
  * Ensures that setting 1 extra classpath attributes generates the correct .classpath file.
  */
-public void testExtraAttributes2() throws CoreException {
+public void testExtraAttributes2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P");
 		IClasspathAttribute attribute = JavaCore.newClasspathAttribute("foo", "some value");
@@ -3269,7 +3269,7 @@ public void testExtraAttributes2() throws CoreException {
 /*
  * Ensures that setting 2 extra classpath attributes generates the correct .classpath file.
  */
-public void testExtraAttributes3() throws CoreException {
+public void testExtraAttributes3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P");
 		IClasspathAttribute attribute1 = JavaCore.newClasspathAttribute("foo", "some value");
@@ -3297,7 +3297,7 @@ public void testExtraAttributes3() throws CoreException {
 /*
  * Ensures that extra classpath attributes in a .classpath file are correctly read.
  */
-public void testExtraAttributes4() throws CoreException {
+public void testExtraAttributes4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P");
 		editFile(
@@ -3323,7 +3323,7 @@ public void testExtraAttributes4() throws CoreException {
 /*
  * Ensures that the extra libraries in the Class-Path: clause of a jar are taken into account.
  */
-public void testExtraLibraries01() throws Exception {
+public void testExtraLibraries01() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
 		addLibrary(p, "lib1.jar", null, new String[0],
@@ -3336,7 +3336,7 @@ public void testExtraLibraries01() throws Exception {
 		createFile("/P/lib2.jar", "");
 		assertClasspathEquals(
 			p.getResolvedClasspath(true),
-			"/P[CPE_SOURCE][K_SOURCE][isExported:false]\n" +
+			"/P[CPE_SOURCE][K_SOURCE][isExported:false]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			""+ getExternalJCLPathString() + "[CPE_LIBRARY][K_BINARY][isExported:false]\n" +
 			"/P/lib2.jar[CPE_LIBRARY][K_BINARY][isExported:true]\n" +
 			"/P/lib1.jar[CPE_LIBRARY][K_BINARY][isExported:true]"
@@ -3348,7 +3348,7 @@ public void testExtraLibraries01() throws Exception {
 /*
  * Ensures that the extra libraries in the Class-Path: clause of a jar are taken into account.
  */
-public void testExtraLibraries02() throws Exception {
+public void testExtraLibraries02() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
 		addLibrary(p, "lib1.jar", null, new String[0],
@@ -3362,7 +3362,7 @@ public void testExtraLibraries02() throws Exception {
 		createFile("/P/lib3.jar", "");
 		assertClasspathEquals(
 			p.getResolvedClasspath(true),
-			"/P[CPE_SOURCE][K_SOURCE][isExported:false]\n" +
+			"/P[CPE_SOURCE][K_SOURCE][isExported:false]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			""+ getExternalJCLPathString() + "[CPE_LIBRARY][K_BINARY][isExported:false]\n" +
 			"/P/lib2.jar[CPE_LIBRARY][K_BINARY][isExported:true]\n" +
 			"/P/lib3.jar[CPE_LIBRARY][K_BINARY][isExported:true]\n" +
@@ -3375,7 +3375,7 @@ public void testExtraLibraries02() throws Exception {
 /*
  * Ensures that the extra libraries in the Class-Path: clause of a jar are taken into account.
  */
-public void testExtraLibraries03() throws Exception {
+public void testExtraLibraries03() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
 		createFile("/P/lib3.jar", "");
@@ -3395,7 +3395,7 @@ public void testExtraLibraries03() throws Exception {
 			CompilerOptions.getFirstSupportedJavaVersion());
 		assertClasspathEquals(
 			p.getResolvedClasspath(true),
-			"/P[CPE_SOURCE][K_SOURCE][isExported:false]\n" +
+			"/P[CPE_SOURCE][K_SOURCE][isExported:false]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			""+ getExternalJCLPathString() + "[CPE_LIBRARY][K_BINARY][isExported:false]\n" +
 			"/P/lib3.jar[CPE_LIBRARY][K_BINARY][isExported:true]\n" +
 			"/P/lib2.jar[CPE_LIBRARY][K_BINARY][isExported:true]\n" +
@@ -3408,7 +3408,7 @@ public void testExtraLibraries03() throws Exception {
 /*
  * Ensures that the extra libraries in the Class-Path: clause of a jar are taken into account.
  */
-public void testExtraLibraries04() throws Exception {
+public void testExtraLibraries04() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
 		addLibrary(p, "lib1.jar", null, new String[0],
@@ -3428,7 +3428,7 @@ public void testExtraLibraries04() throws Exception {
 		createFile("/P/lib3.jar", "");
 		assertClasspathEquals(
 			p.getResolvedClasspath(true),
-			"/P[CPE_SOURCE][K_SOURCE][isExported:false]\n" +
+			"/P[CPE_SOURCE][K_SOURCE][isExported:false]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			""+ getExternalJCLPathString() + "[CPE_LIBRARY][K_BINARY][isExported:false]\n" +
 			"/P/lib3.jar[CPE_LIBRARY][K_BINARY][isExported:true]\n" +
 			"/P/lib2.jar[CPE_LIBRARY][K_BINARY][isExported:true]\n" +
@@ -3441,7 +3441,7 @@ public void testExtraLibraries04() throws Exception {
 /*
  * Ensures that no markers are created for correct extra libraries in the Class-Path: clause of a jar
  */
-public void testExtraLibraries05() throws Exception {
+public void testExtraLibraries05() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
 		addLibrary(p, "lib1.jar", null, new String[0],
@@ -3464,7 +3464,7 @@ public void testExtraLibraries05() throws Exception {
  * Ensures that a marker is not created for incorrect extra libraries in the Class-Path: clause of a jar
  * (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=252392 )
  */
-public void testExtraLibraries06() throws Exception {
+public void testExtraLibraries06() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
 		addLibrary(p, "lib1.jar", null, new String[0],
@@ -3485,7 +3485,7 @@ public void testExtraLibraries06() throws Exception {
 /*
  * Ensures that the extra libraries in the Class-Path: clause of an external jar are taken into account.
  */
-public void testExtraLibraries07() throws Exception {
+public void testExtraLibraries07() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
 		createExternalFile("lib2.jar", "");
@@ -3498,7 +3498,7 @@ public void testExtraLibraries07() throws Exception {
 			CompilerOptions.getFirstSupportedJavaVersion());
 		assertClasspathEquals(
 			p.getResolvedClasspath(true),
-			"/P[CPE_SOURCE][K_SOURCE][isExported:false]\n" +
+			"/P[CPE_SOURCE][K_SOURCE][isExported:false]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			""+ getExternalJCLPathString() + "[CPE_LIBRARY][K_BINARY][isExported:false]\n" +
 			""+ getExternalPath() + "lib2.jar[CPE_LIBRARY][K_BINARY][isExported:true]\n" +
 			""+ getExternalPath() + "lib1.jar[CPE_LIBRARY][K_BINARY][isExported:true]"
@@ -3512,7 +3512,7 @@ public void testExtraLibraries07() throws Exception {
 /*
  * Ensures that no markers are created for correct extra libraries in the Class-Path: clause of an external jar
  */
-public void testExtraLibraries08() throws Exception {
+public void testExtraLibraries08() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
 		addExternalLibrary(p, getExternalResourcePath("lib1.jar"), new String[0],
@@ -3538,7 +3538,7 @@ public void testExtraLibraries08() throws Exception {
  * Ensures that a marker is not created for incorrect extra libraries in the Class-Path: clause of an external jar
  * (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=252392 )
  */
-public void testExtraLibraries09() throws Exception {
+public void testExtraLibraries09() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
 		addExternalLibrary(p, getExternalResourcePath("lib1.jar"), new String[0],
@@ -3562,7 +3562,7 @@ public void testExtraLibraries09() throws Exception {
  * Ensures that a marker is not created for incorrect extra libraries in the Class-Path: clause of an external jar
  * (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=252392 )
  */
-public void testExtraLibraries10() throws Exception {
+public void testExtraLibraries10() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
 		addExternalLibrary(p, getExternalResourcePath("lib1.jar"), new String[0],
@@ -3591,7 +3591,7 @@ public void testExtraLibraries10() throws Exception {
 /*
  * Ensures that the correct delta is reported when editing the Class-Path: clause of a jar
  */
-public void testExtraLibraries11() throws Exception {
+public void testExtraLibraries11() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
 		addLibrary(p, "lib1.jar", null, new String[0],
@@ -3629,7 +3629,7 @@ public void testExtraLibraries11() throws Exception {
 /*
  * Ensures that the correct delta is reported when editing the Class-Path: clause of an external jar
  */
-public void testExtraLibraries12() throws Exception {
+public void testExtraLibraries12() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
 		addExternalLibrary(p, getExternalResourcePath("lib1.jar"), new String[0],
@@ -3654,7 +3654,7 @@ public void testExtraLibraries12() throws Exception {
 		refreshExternalArchives(p);
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN | RESOLVED CLASSPATH CHANGED}\n" +
+			"P[*]: {CHILDREN | RESOLVED CLASSPATH CHANGED}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	"+ getExternalPath() + "lib1.jar[*]: {CONTENT | ARCHIVE CONTENT CHANGED}\n" +
 			"	"+ getExternalPath() + "lib2.jar[*]: {REMOVED FROM CLASSPATH}"
 		);
@@ -3668,7 +3668,7 @@ public void testExtraLibraries12() throws Exception {
 /*
  * Ensures that the correct delta is reported when removing an external jar with a Class-Path: clause
  */
-public void testExtraLibraries13() throws Exception {
+public void testExtraLibraries13() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
 		addExternalLibrary(p, getExternalResourcePath("lib1.jar"), new String[0],
@@ -3686,7 +3686,7 @@ public void testExtraLibraries13() throws Exception {
 		refreshExternalArchives(p);
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN | RESOLVED CLASSPATH CHANGED}\n" +
+			"P[*]: {CHILDREN | RESOLVED CLASSPATH CHANGED}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	"+ getExternalPath() + "lib1.jar[-]: {}\n" +
 			"	"+ getExternalPath() + "lib2.jar[*]: {REMOVED FROM CLASSPATH}"
 		);
@@ -3701,7 +3701,7 @@ public void testExtraLibraries13() throws Exception {
  * Ensures that no marker is created for incorrect extra libraries in the Class-Path: clause of an external jar referenced by a container
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=250946 )
  */
-public void testExtraLibraries14() throws Exception {
+public void testExtraLibraries14() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		Util.createJar(
 			new String[0],
@@ -3727,7 +3727,7 @@ public void testExtraLibraries14() throws Exception {
  * Ensures that the extra libraries in the Class-Path: clause of a jar with a \r\n separator don't cause an exception
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=251079 )
  */
-public void testExtraLibraries15() throws Exception {
+public void testExtraLibraries15() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		Util.createJar(
 			new String[0],
@@ -3743,7 +3743,7 @@ public void testExtraLibraries15() throws Exception {
 		IJavaProject p = createJavaProject("P", new String[0], new String[] {"org.eclipse.jdt.core.tests.model.TEST_CONTAINER"}, "");
 		assertClasspathEquals(
 			p.getResolvedClasspath(true),
-			""+ getExternalPath() + "lib1.jar[CPE_LIBRARY][K_BINARY][isExported:false]"
+			""+ getExternalPath() + "lib1.jar[CPE_LIBRARY][K_BINARY][isExported:false]" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		);
 	} finally {
 		deleteProject("P");
@@ -3754,7 +3754,7 @@ public void testExtraLibraries15() throws Exception {
  * Ensures that an invalid Class-Path: clause of a jar doesn't generate messages in the .log
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=252264 )
  */
-public void testExtraLibraries16() throws Exception {
+public void testExtraLibraries16() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		startLogListening();
 		Util.createJar(
@@ -3779,7 +3779,7 @@ public void testExtraLibraries16() throws Exception {
  * Ensures that nested libraries in the Class-Path: clause of a jar doesn't create a marker.
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=259685 )
  */
-public void testExtraLibraries17() throws Exception {
+public void testExtraLibraries17() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
 		addExternalLibrary(p, getExternalResourcePath("lib.jar"), new String[0],
@@ -3815,7 +3815,7 @@ public void testExtraLibraries17() throws Exception {
  * Ensures that a marker is removed if adding an internal jar that is on the classpath in another project
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=213723 )
  */
-public void testFixClasspath1() throws CoreException, IOException {
+public void testFixClasspath1() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createProject("P1");
 		IJavaProject project = createJavaProject("P2", new String[0], new String[0], "bin");
@@ -3858,7 +3858,7 @@ public void testFixClasspath2() throws CoreException, IOException {
 /**
  * Test IJavaProject.hasClasspathCycle(IClasspathEntry[]).
  */
-public void testHasClasspathCycle() throws CoreException {
+public void testHasClasspathCycle() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p1 = this.createJavaProject("P1", new String[] {""}, "");
 		IJavaProject p2 = this.createJavaProject("P2", new String[] {""}, "");
@@ -3889,7 +3889,7 @@ public void testHasClasspathCycle() throws CoreException {
 		IWorkspace workspace = getJavaModel().getWorkspace();
 		IMarker[] markers = workspace.getRoot().findMarkers(IJavaModelMarker.TRANSIENT_PROBLEM, true, 1);
 		boolean hasCycleMarker = false;
-		for (int i = 0; i < markers.length; i++){
+		for (int i = 0; i < markers.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (markers[i].getAttribute(IJavaModelMarker.CYCLE_DETECTED) != null) {
 				hasCycleMarker = true;
 				break;
@@ -3905,7 +3905,7 @@ public void testHasClasspathCycle() throws CoreException {
 /**
  * Ensures that a marker is created if editing the .classpath results in an invalid classpath.
  */
-public void testInvalidClasspath1() throws CoreException {
+public void testInvalidClasspath1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = this.createJavaProject("P", new String[] {"src"}, "bin");
 		// see 180769 Fatal error in log for java tests N20070403-0010
@@ -3929,7 +3929,7 @@ public void testInvalidClasspath1() throws CoreException {
 /**
  * Ensures that a marker is created if editing the .classpath results in an invalid classpath.
  */
-public void testInvalidClasspath2() throws CoreException {
+public void testInvalidClasspath2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject javaProject = this.createJavaProject("P", new String[] {"src"}, "bin");
 		editFile(
@@ -3964,14 +3964,14 @@ public void testInvalidClasspath2() throws CoreException {
  */
 public void testInvalidExternalClassFolder() throws CoreException {
 	try {
-		String externalPath = getExternalPath() + "nonExisting";
+		String externalPath = getExternalPath() + "nonExisting"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		// remove trailing slash
 		if (Path.fromOSString(externalPath).segmentCount() > 0)
 			externalPath = externalPath.substring(0, externalPath.length()-1);
 		IJavaProject proj =  createJavaProject("P", new String[] {}, new String[] {externalPath}, "bin");
 		assertBuildPathMarkers(
 			"Unexpected markers",
-			"Project \'P\' is missing required library: \'" + externalPath + "\'",
+			"Project \'P\' is missing required library: \'" + externalPath + "\'", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			proj);
 	} finally {
 		deleteProject("P");
@@ -3982,11 +3982,11 @@ public void testInvalidExternalClassFolder() throws CoreException {
  */
 public void testInvalidExternalJar() throws CoreException {
 	try {
-		String jarPath = getExternalPath() + "nonExisting.jar";
+		String jarPath = getExternalPath() + "nonExisting.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IJavaProject proj = createJavaProject("P", new String[] {}, new String[] {jarPath}, "bin");
 		assertBuildPathMarkers(
 			"Unexpected markers",
-			"Project 'P' is missing required library: \'" + jarPath + "\'",
+			"Project 'P' is missing required library: \'" + jarPath + "\'", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			proj);
 	} finally {
 		deleteProject("P");
@@ -3995,10 +3995,10 @@ public void testInvalidExternalJar() throws CoreException {
 /*
  * Ensures that validateClasspathEntry() sees a transition from an invalid/missing jar to a valid jar.
  */
-public void testTransitionFromInvalidToValidJar() throws CoreException, IOException {
+public void testTransitionFromInvalidToValidJar() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String transitioningJarName = "transitioningJar.jar";
-	String transitioningJar = getExternalPath() + transitioningJarName;
-	String invalidJar = getExternalPath() + "invalidJar.jar";
+	String transitioningJar = getExternalPath() + transitioningJarName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	String invalidJar = getExternalPath() + "invalidJar.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	IClasspathEntry transitioningEntry = JavaCore.newLibraryEntry(new Path(transitioningJar), null, null);
 	IClasspathEntry nonExistingEntry = JavaCore.newLibraryEntry(new Path(invalidJar), null, null);
 
@@ -4048,7 +4048,7 @@ public void testInvalidInternalJar1() throws CoreException {
  * Ensures that a file not ending with .jar or .zip can be put on the classpath.
  * (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=182360 )
  */
-public void testInvalidInternalJar2() throws CoreException, IOException {
+public void testInvalidInternalJar2() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  createJavaProject("P1", new String[] {}, new String[0], "bin");
 
@@ -4089,7 +4089,7 @@ public void testInvalidSourceFolder() throws CoreException {
  * missing its .classpath file multiple times.
  * (regression test for bug 39877 Rebuild All generates extra "Unable to read classpath" entry.)
  */
-public void _testMissingClasspath() throws CoreException {
+public void _testMissingClasspath() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject javaProject = createJavaProject("P");
 		IProject project = javaProject.getProject();
@@ -4172,7 +4172,7 @@ public void testMissingPrereq3() throws CoreException {
  * and replaced with a missing prereq marker.
  * (regression test for bug 15168 circular errors not reported)
  */
-public void testMissingPrereq4() throws CoreException {
+public void testMissingPrereq4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject projectA =
 			this.createJavaProject(
@@ -4247,7 +4247,7 @@ public void testNullClasspath() throws CoreException {
  * Ensures that one can set a raw classpath if a pessimistic repository provider is used
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=243692 )
  */
-public void testPessimisticProvider() throws CoreException {
+public void testPessimisticProvider() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject javaProject = createJavaProject("P", new String[] {"src"}, "bin");
 		IProject project = javaProject.getProject();
@@ -4270,7 +4270,7 @@ public void testPessimisticProvider() throws CoreException {
  * Ensure that reading an empty custom output from the .classpath returns a non-null output location.
  * (regression test for 28531 Classpath Entry: Output folder can not be set to project)
  */
-public void testReadEmptyCustomOutput() throws CoreException {
+public void testReadEmptyCustomOutput() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = this.createJavaProject("P", new String[] {}, "");
 		editFile(
@@ -4294,7 +4294,7 @@ public void testReadEmptyCustomOutput() throws CoreException {
  * when .classpath file is read-only
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=245576 )
  */
-public void testReadOnly() throws CoreException {
+public void testReadOnly() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!org.eclipse.jdt.internal.core.util.Util.isReadOnlySupported())
 		return;
 	IJavaProject project = this.createJavaProject("P", new String[] {"src"}, "bin");
@@ -4328,7 +4328,7 @@ public void testReadOnly() throws CoreException {
 /*
  * Ensures that setting the 'combineAccessRules' flag to false on a project entry generates the correct .classpath file.
  */
-public void testCombineAccessRules1() throws CoreException {
+public void testCombineAccessRules1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1");
 		IJavaProject project = createJavaProject("P2");
@@ -4352,7 +4352,7 @@ public void testCombineAccessRules1() throws CoreException {
 /*
  * Ensures that setting the 'combineAccessRules' flag to true on a project entry generates the correct .classpath file.
  */
-public void testCombineAccessRules2() throws CoreException {
+public void testCombineAccessRules2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1");
 		IJavaProject project = createJavaProject("P2");
@@ -4376,7 +4376,7 @@ public void testCombineAccessRules2() throws CoreException {
 /*
  * Ensures that 'combineAccessRules' flag in a .classpath file is correctly read.
  */
-public void testCombineAccessRules3() throws CoreException {
+public void testCombineAccessRules3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P2");
 		editFile(
@@ -4399,7 +4399,7 @@ public void testCombineAccessRules3() throws CoreException {
 /*
  * Ensures that the absence of 'combineAccessRules' flag in a .classpath file is correctly handled.
  */
-public void testCombineAccessRules4() throws CoreException {
+public void testCombineAccessRules4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P2");
 		editFile(
@@ -4422,7 +4422,7 @@ public void testCombineAccessRules4() throws CoreException {
 /*
  * Ensures that the absence of 'combineAccessRules' flag in a .classpath file is correctly handled.
  */
-public void testCombineAccessRules5() throws CoreException {
+public void testCombineAccessRules5() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P2");
 		editFile(
@@ -4442,14 +4442,14 @@ public void testCombineAccessRules5() throws CoreException {
 	}
 }
 
-public void testCycleDetection() throws CoreException {
+public void testCycleDetection() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	int max = 5;
 	IJavaProject[] p = new IJavaProject[max];
 	String[] projectNames = new String[max];
 	try {
-		for (int i = 0; i < max; i++) {
-			projectNames[i] = "P"+i;
+		for (int i = 0; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			projectNames[i] = "P"+i; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			p[i] = this.createJavaProject(projectNames[i], new String[] {""}, "");
 		}
 
@@ -4477,7 +4477,7 @@ public void testCycleDetection() throws CoreException {
 			{ 1, 1, 1, 1, 1 }, // after setting CP p[4]
 		};
 
-		for (int i = 0; i < p.length; i++){
+		for (int i = 0; i < p.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 			// append project references
 			IClasspathEntry[] oldClasspath = p[i].getRawClasspath();
@@ -4499,14 +4499,14 @@ public void testCycleDetection() throws CoreException {
 }
 
 
-public void testCycleDetectionThroughVariables() throws CoreException {
+public void testCycleDetectionThroughVariables() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	int max = 5;
 	IJavaProject[] p = new IJavaProject[max];
 	String[] projectNames = new String[max];
 	try {
-		for (int i = 0; i < max; i++) {
-			projectNames[i] = "P"+i;
+		for (int i = 0; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			projectNames[i] = "P"+i; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			p[i] = this.createJavaProject(projectNames[i], new String[] {""}, "");
 		}
 
@@ -4535,7 +4535,7 @@ public void testCycleDetectionThroughVariables() throws CoreException {
 			{ p[3].getPath(), p[1].getPath(), p[4].getPath() },
 		};
 
-		for (int i = 0; i < p.length; i++){
+		for (int i = 0; i < p.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 			// append project references
 			IClasspathEntry[] oldClasspath = p[i].getRawClasspath();
@@ -4559,14 +4559,14 @@ public void testCycleDetectionThroughVariables() throws CoreException {
 	}
 }
 
-public void testCycleDetectionThroughContainers() throws CoreException {
+public void testCycleDetectionThroughContainers() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	int max = 5;
 	IJavaProject[] p = new IJavaProject[max];
 	String[] projectNames = new String[max];
 	try {
-		for (int i = 0; i < max; i++) {
-			projectNames[i] = "P"+i;
+		for (int i = 0; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			projectNames[i] = "P"+i; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			p[i] = this.createJavaProject(projectNames[i], new String[] {""}, "");
 		}
 
@@ -4598,7 +4598,7 @@ public void testCycleDetectionThroughContainers() throws CoreException {
 			{ 1, 1, 1, 1, 1 }, // after setting CP p[4]
 		};
 
-		for (int i = 0; i < p.length; i++){
+		for (int i = 0; i < p.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 			// append project references
 			IClasspathEntry[] oldClasspath = p[i].getRawClasspath();
@@ -4639,14 +4639,14 @@ public void testCycleDetectionThroughContainers() throws CoreException {
 		deleteProjects(projectNames);
 	}
 }
-public void testCycleDetectionThroughContainerVariants() throws CoreException {
+public void testCycleDetectionThroughContainerVariants() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	int max = 5;
 	IJavaProject[] p = new IJavaProject[max];
 	String[] projectNames = new String[max];
 	try {
-		for (int i = 0; i < max; i++) {
-			projectNames[i] = "P"+i;
+		for (int i = 0; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			projectNames[i] = "P"+i; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			p[i] = this.createJavaProject(projectNames[i], new String[] {""}, "");
 		}
 
@@ -4691,7 +4691,7 @@ public void testCycleDetectionThroughContainerVariants() throws CoreException {
 			{ 1, 1, 1, 1, 1 }, // after setting CP p[4]
 		};
 
-		for (int i = 0; i < p.length; i++){
+		for (int i = 0; i < p.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 			// append project references
 			IClasspathEntry[] oldClasspath = p[i].getRawClasspath();
@@ -4720,14 +4720,14 @@ public void testCycleDetectionThroughContainerVariants() throws CoreException {
 		deleteProjects(projectNames);
 	}
 }
-public void testCycleDetection2() throws CoreException {
+public void testCycleDetection2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	int max = 5;
 	IJavaProject[] p = new IJavaProject[max];
 	String[] projectNames = new String[max];
 	try {
-		for (int i = 0; i < max; i++) {
-			projectNames[i] = "P"+i;
+		for (int i = 0; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			projectNames[i] = "P"+i; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			p[i] = this.createJavaProject(projectNames[i], new String[] {""}, "");
 		}
 
@@ -4747,7 +4747,7 @@ public void testCycleDetection2() throws CoreException {
 			{ 1, 1, 1, 1, 1 }, // after setting CP p[4]
 		};
 
-		for (int i = 0; i < p.length; i++){
+		for (int i = 0; i < p.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 			// append project references
 			IClasspathEntry[] oldClasspath = p[i].getRawClasspath();
@@ -4769,14 +4769,14 @@ public void testCycleDetection2() throws CoreException {
 	}
 }
 
-public void testCycleDetection3() throws CoreException {
+public void testCycleDetection3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	int max = 6;
 	IJavaProject[] p = new IJavaProject[max];
 	String[] projectNames = new String[max];
 	try {
-		for (int i = 0; i < max; i++) {
-			projectNames[i] = "P"+i;
+		for (int i = 0; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			projectNames[i] = "P"+i; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			p[i] = this.createJavaProject(projectNames[i], new String[] {""}, "");
 		}
 
@@ -4798,7 +4798,7 @@ public void testCycleDetection3() throws CoreException {
 			{ 1, 1, 1, 1, 1 ,1 }, // after setting CP p[5]
 		};
 
-		for (int i = 0; i < p.length; i++){
+		for (int i = 0; i < p.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 			// append project references
 			IClasspathEntry[] oldClasspath = p[i].getRawClasspath();
@@ -4831,8 +4831,8 @@ public void testCycleDetection3() throws CoreException {
  * Ensures that a cycle is detected if introduced during a post-change event.
  * (regression test for bug 113051 No classpath marker produced when cycle through PDE container)
  */
-public void testCycleDetection4() throws CoreException {
-	IResourceChangeListener listener = new IResourceChangeListener() {
+public void testCycleDetection4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	IResourceChangeListener listener = new IResourceChangeListener() { //FLLDCIM: MARK — T07  ANONYMOUS
 		boolean containerNeedUpdate = true;
 		public void resourceChanged(IResourceChangeEvent event) {
 			if (this.containerNeedUpdate) {
@@ -4909,7 +4909,7 @@ public void testNoCycleDetection2() throws CoreException {
 /*
  * Ensures that the .classpath file is not written to disk when setting the raw classpath with no resource change.
  */
-public void testNoResourceChange01() throws CoreException {
+public void testNoResourceChange01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P", new String[] {"src1"}, "bin");
 		IClasspathEntry[] newClasspath = createClasspath("P", new String[] {"/P/src2", ""});
@@ -4966,7 +4966,7 @@ public void testNoResourceChange03() throws CoreException {
 /*
  * Ensures that the delta is correct when setting a new raw classpath with no resource change.
  */
-public void testNoResourceChange04() throws CoreException {
+public void testNoResourceChange04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P", new String[] {"src1"}, "bin");
 		createFolder("/P/src2");
@@ -5003,12 +5003,12 @@ public void testNoResourceChange05() throws CoreException {
  * Ensures that no error is reported when deleting a project after setting its raw classpath with no resource change.
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=216895 )
  */
-public void testNoResourceChange06() throws CoreException {
+public void testNoResourceChange06() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ILogListener listener = new ILogListener(){
-		private final StringBuilder buffer = new StringBuilder();
+		private final StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		public void logging(IStatus status, String plugin) {
-			this.buffer.append(status);
-			this.buffer.append('\n');
+			this.buffer.append(status); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			this.buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		public String toString() {
 			return this.buffer.toString();
@@ -5033,7 +5033,7 @@ public void testNoResourceChange06() throws CoreException {
  * Ensures that a duplicate entry created by editing the .classpath is detected.
  * (regression test for bug 24498 Duplicate entries on classpath cause CP marker to no longer refresh)
  */
-public void testDuplicateEntries1() throws CoreException {
+public void testDuplicateEntries1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = this.createJavaProject("P", new String[] {"src"}, "bin");
 		editFile(
@@ -5057,7 +5057,7 @@ public void testDuplicateEntries1() throws CoreException {
  * Ensures that duplicate entries due to resolution are not reported
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=175226 )
  */
-public void testDuplicateEntries2() throws CoreException, IOException {
+public void testDuplicateEntries2() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P");
 		VariablesInitializer.setInitializer(new DefaultVariableInitializer(new String[] {"TEST_LIB", "/P/lib.jar"}));
@@ -5090,7 +5090,7 @@ public void testDuplicateEntries2() throws CoreException, IOException {
  * Ensures that the resolved classpath doesn't contain duplicate entries due to resolution
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=175226 )
  */
-public void testDuplicateEntries3() throws CoreException {
+public void testDuplicateEntries3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P");
 		VariablesInitializer.setInitializer(new DefaultVariableInitializer(new String[] {"TEST_LIB", "/P/lib.jar"}));
@@ -5115,24 +5115,24 @@ public void testDuplicateEntries3() throws CoreException {
 		deleteProject("P");
 	}
 }
-private void denseCycleDetection(final int numberOfParticipants) throws CoreException {
+private void denseCycleDetection(final int numberOfParticipants) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	final IJavaProject[] projects = new IJavaProject[numberOfParticipants];
 	final String[] projectNames  = new String[numberOfParticipants];
 	final int[] allProjectsInCycle = new int[numberOfParticipants];
 
 	try {
-		JavaCore.run(new IWorkspaceRunnable() {
-			public void run(IProgressMonitor monitor) throws CoreException {
-				for (int i = 0; i < numberOfParticipants; i++){
-					projectNames[i] = "P"+i;
+		JavaCore.run(new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
+			public void run(IProgressMonitor monitor) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+				for (int i = 0; i < numberOfParticipants; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					projectNames[i] = "P"+i; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					projects[i] = createJavaProject(projectNames[i], new String[]{""}, "");
 					allProjectsInCycle[i] = 1;
 				}
-				for (int i = 0; i < numberOfParticipants; i++){
+				for (int i = 0; i < numberOfParticipants; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IClasspathEntry[] extraEntries = new IClasspathEntry[numberOfParticipants-1];
 					int index = 0;
-					for (int j = 0; j < numberOfParticipants; j++){
+					for (int j = 0; j < numberOfParticipants; j++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (i == j) continue;
 						extraEntries[index++] = JavaCore.newProjectEntry(projects[j].getPath());
 					}
@@ -5148,7 +5148,7 @@ private void denseCycleDetection(final int numberOfParticipants) throws CoreExce
 		},
 		null);
 
-		for (int i = 0; i < numberOfParticipants; i++){
+		for (int i = 0; i < numberOfParticipants; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// check cycle markers
 			assertCycleMarkers(projects[i], projects, allProjectsInCycle, false);
 		}
@@ -5163,7 +5163,7 @@ private void denseCycleDetection(final int numberOfParticipants) throws CoreExce
  * When no using forward references (i.e. backward refs), all projects prereq projects with smaller index
  * e.g. P0, P1, P2:  P0 prereqs {}, P1 prereqs {P0}, P2 prereqs {P0, P1}
  */
-private void noCycleDetection(final int numberOfParticipants, final boolean useForwardReferences, final boolean createProjectsFirst) throws CoreException {
+private void noCycleDetection(final int numberOfParticipants, final boolean useForwardReferences, final boolean createProjectsFirst) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	final IJavaProject[] projects = new IJavaProject[numberOfParticipants];
 	final String[] projectNames  = new String[numberOfParticipants];
@@ -5171,10 +5171,10 @@ private void noCycleDetection(final int numberOfParticipants, final boolean useF
 
 	try {
 		if (createProjectsFirst) {
-			JavaCore.run(new IWorkspaceRunnable() {
+			JavaCore.run(new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
-					for (int i = 0; i < numberOfParticipants; i++){
-						projectNames[i] = "P"+i;
+					for (int i = 0; i < numberOfParticipants; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+						projectNames[i] = "P"+i; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						projects[i] = createJavaProject(projectNames[i], new String[]{""}, "");
 						allProjectsInCycle[i] = 0;
 					}
@@ -5182,19 +5182,19 @@ private void noCycleDetection(final int numberOfParticipants, final boolean useF
 			},
 			null);
 		}
-		JavaCore.run(new IWorkspaceRunnable() {
-			public void run(IProgressMonitor monitor) throws CoreException {
+		JavaCore.run(new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
+			public void run(IProgressMonitor monitor) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				if (!createProjectsFirst) {
-					for (int i = 0; i < numberOfParticipants; i++){
-						projectNames[i] = "P"+i;
+					for (int i = 0; i < numberOfParticipants; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+						projectNames[i] = "P"+i; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						projects[i] = createJavaProject(projectNames[i], new String[]{""}, "");
 						allProjectsInCycle[i] = 0;
 					}
 				}
-				for (int i = 0; i < numberOfParticipants; i++){
+				for (int i = 0; i < numberOfParticipants; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IClasspathEntry[] extraEntries = new IClasspathEntry[useForwardReferences ? numberOfParticipants - i -1 : i];
 					int index = 0;
-					for (int j = useForwardReferences ? i+1 : 0;
+					for (int j = useForwardReferences ? i+1 : 0; //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						useForwardReferences ? (j < numberOfParticipants) : (j < i);
 						j++){
 						extraEntries[index++] = JavaCore.newProjectEntry(projects[j].getPath());
@@ -5211,7 +5211,7 @@ private void noCycleDetection(final int numberOfParticipants, final boolean useF
 		},
 		null);
 
-		for (int i = 0; i < numberOfParticipants; i++){
+		for (int i = 0; i < numberOfParticipants; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// check cycle markers
 			assertCycleMarkers(projects[i], projects, allProjectsInCycle, false);
 		}
@@ -5225,11 +5225,11 @@ private void noCycleDetection(final int numberOfParticipants, final boolean useF
  * test for bug 32690
  * simulate checkout of project with invalid classpath
  */
-public void testNestedSourceFolders() throws CoreException, IOException {
+public void testNestedSourceFolders() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create project using Platform/Resources API
 		final IProject project = getProject("P");
-		IWorkspaceRunnable create = new IWorkspaceRunnable() {
+		IWorkspaceRunnable create = new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 			public void run(IProgressMonitor monitor) throws CoreException {
 				project.create(null, null);
 				project.open(null);
@@ -5346,11 +5346,11 @@ public void testOptionalEntry3() throws CoreException {
 /*
  * test for bug 32974
  */
-public void testOutputFolder1() throws CoreException, IOException {
+public void testOutputFolder1() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create project using Platform/Resources API
 		final IProject project = getProject("P");
-		IWorkspaceRunnable create = new IWorkspaceRunnable() {
+		IWorkspaceRunnable create = new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 			public void run(IProgressMonitor monitor) throws CoreException {
 				project.create(null, null);
 				project.open(null);
@@ -5409,12 +5409,12 @@ public void testOutputFolder1() throws CoreException, IOException {
 /**
  * Ensure classpath is refreshed when project is replaced (43670)
  */
-public void testReplaceProject() throws CoreException {
+public void testReplaceProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		final IJavaProject javaProject = createJavaProject("P", new String[] {"src"}, "bin");
 
 		ResourcesPlugin.getWorkspace().run(
-			new IWorkspaceRunnable() {
+			new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
 					IProjectDescription descr = javaProject.getProject().getDescription();
 					descr.setComment("dummy"); // ensure it is changed
@@ -5482,7 +5482,7 @@ public void testRemoveExternalLibFolder3() throws CoreException {
 		refresh(p);
 		assertBuildPathMarkers(
 			"Unexpected markers",
-			"Project \'P\' is missing required library: \'"+ getExternalPath() + "externalLib\'",
+			"Project \'P\' is missing required library: \'"+ getExternalPath() + "externalLib\'", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			p);
 	} finally {
 		deleteExternalResource("externalLib");
@@ -5504,7 +5504,7 @@ public void testRemoveExternalLibFolder4() throws CoreException {
 		refresh(p);
 		assertBuildPathMarkers(
 			"Unexpected markers",
-			"Project \'P\' is missing required library: \'"+ getExternalPath() + "externalLib\'",
+			"Project \'P\' is missing required library: \'"+ getExternalPath() + "externalLib\'", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			p);
 	} finally {
 		deleteExternalResource("externalLib");
@@ -5552,7 +5552,7 @@ public void testRemoveZIPArchive2() throws CoreException {
 /*
  * Ensures that removing an external ZIP archive referenced by a library entry creates a marker
  */
-public void testRemoveZIPArchive3() throws CoreException {
+public void testRemoveZIPArchive3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createExternalFile("externalLib.abc", "");
 		IJavaProject p = createJavaProject("P", new String[0], new String[] {getExternalResourcePath("externalLib.abc")}, "");
@@ -5563,7 +5563,7 @@ public void testRemoveZIPArchive3() throws CoreException {
 		refreshExternalArchives(p);
 		assertBuildPathMarkers(
 			"Unexpected markers",
-			"Project \'P\' is missing required library: \'"+ getExternalPath() + "externalLib.abc\'",
+			"Project \'P\' is missing required library: \'"+ getExternalPath() + "externalLib.abc\'", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			p);
 	} finally {
 		deleteExternalResource("externalLib.abc");
@@ -5575,7 +5575,7 @@ public void testRemoveZIPArchive3() throws CoreException {
  * Ensures that removing an external ZIP archive referenced by a library entry and refreshing after a restart
  * creates a marker
  */
-public void testRemoveZIPArchive4() throws CoreException {
+public void testRemoveZIPArchive4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		simulateExitRestart();
 		createExternalFile("externalLib.abc", "");
@@ -5586,7 +5586,7 @@ public void testRemoveZIPArchive4() throws CoreException {
 		refreshExternalArchives(p);
 		assertBuildPathMarkers(
 			"Unexpected markers",
-			"Project \'P\' is missing required library: \'"+ getExternalPath() + "externalLib.abc\'",
+			"Project \'P\' is missing required library: \'"+ getExternalPath() + "externalLib.abc\'", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			p);
 	} finally {
 		deleteExternalResource("externalLib.abc");
@@ -5613,7 +5613,7 @@ public void testRemoveZIPArchive5() throws CoreException {
 /*
  * Ensures that removing an internal ZIP archive referenced by a library entry creates a marker
  */
-public void testRemoveZIPArchive6() throws CoreException, IOException {
+public void testRemoveZIPArchive6() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P", new String[0], new String[0], "");
 
@@ -5638,7 +5638,7 @@ public void testRemoveZIPArchive6() throws CoreException, IOException {
  * Ensures that renaming a .jar file and updating the classpath in a PRE_BUILD event doesn't leave markers
  * (regression test for bug 177922 FlexibleProjectContainer refresh logic sporadically leaves project with "missing library" error on rename/delete)
  */
-public void testRenameJar() throws CoreException, IOException {
+public void testRenameJar() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IResourceChangeListener listener = null;
 	try {
 		final IJavaProject p = createJavaProject("P", new String[0], new String[0], "");
@@ -5650,7 +5650,7 @@ public void testRenameJar() throws CoreException, IOException {
 		// at this point no markers exist
 
 		// register a listener that updates the classpath in a PRE_BUILD event
-		listener = new IResourceChangeListener(){
+		listener = new IResourceChangeListener(){ //FLLDCIM: MARK — T07  ANONYMOUS
 			public void resourceChanged(IResourceChangeEvent event) {
 				try {
 					p.setRawClasspath(new IClasspathEntry[] {JavaCore.newLibraryEntry(new Path("/P/lib/test2.jar"), null, null)}, null);
@@ -5695,7 +5695,7 @@ public void testUpdateProjectReferences() throws CoreException {
  * Ensures that unknown classpath attributes in a .classpath file are not lost when read and rewritten.
  * (regression test for bug 101425 Classpath persistence should be resilient with unknown attributes)
  */
-public void testUnknownAttributes() throws CoreException {
+public void testUnknownAttributes() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P");
 		editFile(
@@ -5735,7 +5735,7 @@ public void testUnknownAttributes() throws CoreException {
  * Ensures that unknown classpath elements in a .classpath file are not lost when read and rewritten.
  * (regression test for bug 101425 Classpath persistence should be resilient with unknown attributes)
  */
-public void testUnknownElements1() throws CoreException {
+public void testUnknownElements1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P");
 		editFile(
@@ -5790,7 +5790,7 @@ public void testUnknownElements1() throws CoreException {
  * Ensures that unknown classpath elements in a .classpath file are not lost when read and rewritten.
  * (regression test for bug 101425 Classpath persistence should be resilient with unknown attributes)
  */
-public void testUnknownElements2() throws CoreException {
+public void testUnknownElements2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P");
 		editFile(
@@ -5852,7 +5852,7 @@ public void testUnknownElements2() throws CoreException {
  * 	a) when verifying a classpath entry
  * 	b) when verifying whole classpath
  */
-public void testBug55992a() throws CoreException {
+public void testBug55992a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "");
 
@@ -5885,7 +5885,7 @@ public void testBug55992a() throws CoreException {
 		this.deleteProject("P");
 	}
 }
-public void testBug55992b() throws CoreException {
+public void testBug55992b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	boolean autoBuild = getWorkspace().isAutoBuilding();
 	IWorkspaceDescription preferences = getWorkspace().getDescription();
@@ -5920,7 +5920,7 @@ public void testBug55992b() throws CoreException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=61214
  */
-public void testRemoveDuplicates() throws CoreException {
+public void testRemoveDuplicates() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p1 = this.createJavaProject("P1", new String[] {""}, "");
 		IClasspathEntry[] p1ClasspathEntries = new IClasspathEntry[]{JavaCore.newLibraryEntry(getExternalJCLPath(), null, null, true)};
@@ -6009,25 +6009,25 @@ public void testForceNullArgumentsToEmptySet5() throws CoreException {
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=276373"
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=280497"
  */
-public void testBug276373() throws Exception {
+public void testBug276373() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File libDir = null;
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "bin");
 		IPath libPath = proj.getResource().getLocation().append("lib");
 		JavaCore.setClasspathVariable("MyVar", libPath, null);
 		libDir = new File(libPath.toPortableString());
-		libDir.mkdirs();
+		libDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		IClasspathEntry[] classpath = new IClasspathEntry[3];
 		File libJar = new File(libDir, "variableLib.jar");
-		libJar.createNewFile();
+		libJar.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		classpath[0] = JavaCore.newVariableEntry(new Path("/MyVar/variableLib.jar"), null, null);
 
 		libJar = new File(libDir, "externalLib.jar");
-		libJar.createNewFile();
+		libJar.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		classpath[1] = JavaCore.newLibraryEntry(new Path(libJar.getAbsolutePath()), null, null);
 
 		libJar = new File(libDir, "userLib.jar");
-		libJar.createNewFile();
+		libJar.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		ClasspathContainerInitializer initializer= JavaCore.getClasspathContainerInitializer(JavaCore.USER_LIBRARY_CONTAINER_ID);
 		String libraryName = "TestUserLibrary";
@@ -6036,10 +6036,10 @@ public void testBug276373() throws Exception {
 		initializer.requestClasspathContainerUpdate(containerPath.append(libraryName), null, containerSuggestion);
 
 		IEclipsePreferences preferences = InstanceScope.INSTANCE.getNode(JavaCore.PLUGIN_ID);
-		String propertyName = JavaModelManager.CP_USERLIBRARY_PREFERENCES_PREFIX+"TestUserLibrary";
-		StringBuilder propertyValue = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<userlibrary systemlibrary=\"false\" version=\"1\">\r\n<archive");
-		propertyValue.append(" path=\"" + libJar.getAbsolutePath());
-		propertyValue.append("\"/>\r\n</userlibrary>\r\n");
+		String propertyName = JavaModelManager.CP_USERLIBRARY_PREFERENCES_PREFIX+"TestUserLibrary"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		StringBuilder propertyValue = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<userlibrary systemlibrary=\"false\" version=\"1\">\r\n<archive"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		propertyValue.append(" path=\"" + libJar.getAbsolutePath()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		propertyValue.append("\"/>\r\n</userlibrary>\r\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		preferences.put(propertyName, propertyValue.toString());
 		preferences.flush();
 
@@ -6079,7 +6079,7 @@ public void testBug276373() throws Exception {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=248661"
  */
-public void testBug248661() throws Exception {
+public void testBug248661() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IFolder folder = null;
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "bin");
@@ -6113,7 +6113,7 @@ public void testBug248661() throws Exception {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=300136"
  */
-public void testBug300136() throws Exception {
+public void testBug300136() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	boolean autoBuild = getWorkspace().isAutoBuilding();
 	IWorkspaceDescription preferences = getWorkspace().getDescription();
 	try {
@@ -6124,7 +6124,7 @@ public void testBug300136() throws Exception {
 				new IPath[] {new Path("/lib/tmp.jar")},
 				null);
 
-		StringBuilder buffer = new StringBuilder(
+		StringBuilder buffer = new StringBuilder( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 				"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
 				"<classpath>\n" +
 				"   <classpathentry  kind=\"var\" path=\"INVALID_LIB\">\n" +
@@ -6168,7 +6168,7 @@ public void testBug300136() throws Exception {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=300136"
  */
-public void testBug300136a() throws Exception {
+public void testBug300136a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	boolean autoBuild = getWorkspace().isAutoBuilding();
 	IWorkspaceDescription preferences = getWorkspace().getDescription();
 	try {
@@ -6180,7 +6180,7 @@ public void testBug300136a() throws Exception {
 				new IPath[] {libPath},
 				null);
 
-		StringBuilder buffer = new StringBuilder(
+		StringBuilder buffer = new StringBuilder( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 				"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
 				"<classpath>\n" +
 				"    <classpathentry  kind=\"var\" path=\"INVALID_LIB\" />\n" +
@@ -6196,7 +6196,7 @@ public void testBug300136a() throws Exception {
 		);
 		assertBuildPathMarkers(
 				"Unexpected markers",
-				"Project \'P\' is missing required library: \'" + libPath.toOSString() + "'\n" +
+				"Project \'P\' is missing required library: \'" + libPath.toOSString() + "'\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"Unbound classpath container: \'org.eclipse.jdt.core.tests.model.TEST_CONTAINER\' in project \'P\'\n" +
 				"Unbound classpath variable: \'UNBOUND_VAR\' in project \'P\'",
 				project);
@@ -6215,7 +6215,7 @@ public void testBug300136a() throws Exception {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=294360"
  */
-public void testBug294360a() throws Exception {
+public void testBug294360a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
 		addExternalLibrary(p, getExternalResourcePath("lib.jar"), new String[0],
@@ -6230,8 +6230,8 @@ public void testBug294360a() throws Exception {
 		classpath[1] = JavaCore.newContainerEntry(new Path("org.eclipse.jdt.core.tests.model.TEST_CONTAINER"));
 		setClasspath(p, classpath);
 
-		StringBuilder buffer = new StringBuilder(
-						"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+		StringBuilder buffer = new StringBuilder( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+						"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"<classpath>\n" +
 						"	<classpathentry kind=\"con\" path=\"org.eclipse.jdt.core.tests.model.TEST_CONTAINER\"/>\n" +
 						"	<classpathentry kind=\"lib\" path=\""+ getExternalResourcePath("lib.jar") + "\">\n" +
@@ -6249,7 +6249,7 @@ public void testBug294360a() throws Exception {
 
 		IClasspathEntry[] resolvedClasspath = p.getResolvedClasspath(true);
 		assertClasspathEquals(resolvedClasspath,
-				""+ getExternalPath() + "lib.jar[CPE_LIBRARY][K_BINARY][isExported:false]");
+				""+ getExternalPath() + "lib.jar[CPE_LIBRARY][K_BINARY][isExported:false]"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} finally {
 		deleteProject("P");
 		deleteExternalResource("lib.jar");
@@ -6265,7 +6265,7 @@ public void testBug294360a() throws Exception {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=252431"
  */
-public void testBug252341a() throws Exception {
+public void testBug252341a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
 		addLibrary(p, "lib1.jar", "abc.zip", new String[0],
@@ -6281,7 +6281,7 @@ public void testBug252341a() throws Exception {
 		// Test referenced entries are included in the right order in the resolved classpath
 		IClasspathEntry[] resolvedClasspath = p.getResolvedClasspath(true);
 		assertClasspathEquals(resolvedClasspath,
-				"/P[CPE_SOURCE][K_SOURCE][isExported:false]\n" +
+				"/P[CPE_SOURCE][K_SOURCE][isExported:false]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				""+ getExternalJCLPathString() + "[CPE_LIBRARY][K_BINARY][isExported:false]\n" +
 				"/P/lib2.jar[CPE_LIBRARY][K_BINARY][isExported:true]\n" +
 				"/P/lib3.jar[CPE_LIBRARY][K_BINARY][isExported:true]\n" +
@@ -6360,7 +6360,7 @@ public void testBug252341a() throws Exception {
 				"/P/lib1.jar[CPE_LIBRARY][K_BINARY][sourcePath:/P/abc.zip][isExported:true]");
 
 		assertClasspathEquals(resolvedClasspath,
-				"/P[CPE_SOURCE][K_SOURCE][isExported:false]\n" +
+				"/P[CPE_SOURCE][K_SOURCE][isExported:false]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				""+ getExternalJCLPathString() + "[CPE_LIBRARY][K_BINARY][isExported:false]\n" +
 				"/P/lib2.jar[CPE_LIBRARY][K_BINARY][sourcePath:/P/efg.zip][rootPath:/src2][isExported:true][attributes:javadoc_location=/P/efg.zip]\n" +
 				"/P/lib3.jar[CPE_LIBRARY][K_BINARY][sourcePath:/P/xyz.zip][rootPath:/src3][isExported:true]\n" +
@@ -6382,7 +6382,7 @@ public void testBug252341a() throws Exception {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=252431"
  */
-public void testBug252341b() throws Exception {
+public void testBug252341b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
 		addLibrary(p, "lib1.jar", null, new String[0],
@@ -6420,7 +6420,7 @@ public void testBug252341b() throws Exception {
 		// Test that the referenced entries are included in the raw classpath and in the right order
 		IClasspathEntry[] resolvedClasspath = p.getResolvedClasspath(true);
 		assertClasspathEquals(resolvedClasspath,
-				"/P[CPE_SOURCE][K_SOURCE][isExported:false]\n" +
+				"/P[CPE_SOURCE][K_SOURCE][isExported:false]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				""+ getExternalJCLPathString() + "[CPE_LIBRARY][K_BINARY][isExported:false]\n" +
 				"/P/lib3.jar[CPE_LIBRARY][K_BINARY][isExported:true]\n" +
 				"/P/lib4.jar[CPE_LIBRARY][K_BINARY][isExported:true]\n" +
@@ -6467,7 +6467,7 @@ public void testBug252341b() throws Exception {
 		resolvedClasspath = p.getResolvedClasspath(true);
 
 		assertClasspathEquals(resolvedClasspath,
-				"/P[CPE_SOURCE][K_SOURCE][isExported:false]\n" +
+				"/P[CPE_SOURCE][K_SOURCE][isExported:false]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				""+ getExternalJCLPathString() + "[CPE_LIBRARY][K_BINARY][isExported:false]\n" +
 				"/P/lib3.jar[CPE_LIBRARY][K_BINARY][sourcePath:/P/efg.zip][rootPath:/src2][isExported:true][attributes:javadoc_location=/P/efg.zip]\n" +
 				"/P/lib4.jar[CPE_LIBRARY][K_BINARY][isExported:true]\n" +
@@ -6484,7 +6484,7 @@ public void testBug252341b() throws Exception {
 		p.setRawClasspath(newRawClasspath, null, p.getOutputLocation(), null);
 		resolvedClasspath = p.getResolvedClasspath(true);
 		assertClasspathEquals(resolvedClasspath,
-				"/P[CPE_SOURCE][K_SOURCE][isExported:false]\n" +
+				"/P[CPE_SOURCE][K_SOURCE][isExported:false]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				""+ getExternalJCLPathString() + "[CPE_LIBRARY][K_BINARY][isExported:false]\n" +
 				"/P/lib3.jar[CPE_LIBRARY][K_BINARY][sourcePath:/P/efg.zip][rootPath:/src2][isExported:true][attributes:javadoc_location=/P/efg.zip]\n" +
 				"/P/lib5.jar[CPE_LIBRARY][K_BINARY][sourcePath:/P/xyz.zip][rootPath:/src3][isExported:true]\n" +
@@ -6494,7 +6494,7 @@ public void testBug252341b() throws Exception {
 		p.setRawClasspath(newRawClasspath, new IClasspathEntry[]{}, p.getOutputLocation(), null);
 		resolvedClasspath = p.getResolvedClasspath(true);
 		assertClasspathEquals(resolvedClasspath,
-				"/P[CPE_SOURCE][K_SOURCE][isExported:false]\n" +
+				"/P[CPE_SOURCE][K_SOURCE][isExported:false]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				""+ getExternalJCLPathString() + "[CPE_LIBRARY][K_BINARY][isExported:false]\n" +
 				"/P/lib3.jar[CPE_LIBRARY][K_BINARY][isExported:true]\n" +
 				"/P/lib5.jar[CPE_LIBRARY][K_BINARY][isExported:true]\n" +
@@ -6512,7 +6512,7 @@ public void testBug252341b() throws Exception {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=252431"
  */
-public void testBug252341c() throws Exception {
+public void testBug252341c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
 		addLibrary(p, "lib1.jar", null, new String[0],
@@ -6576,7 +6576,7 @@ public void testBug252341c() throws Exception {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=304081"
  */
-public void testBug304081() throws Exception {
+public void testBug304081() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File libDir = null;
 	try {
 
@@ -6586,7 +6586,7 @@ public void testBug304081() throws Exception {
 		libDir = new File(libPath.toPortableString());
 		IClasspathEntry[] classpath = new IClasspathEntry[1];
 		File libJar = new File(libDir, "variable.jar");
-		libJar.createNewFile();
+		libJar.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		addLibrary(proj, "variable.jar", null, new String[0],
 				new String[] {
@@ -6626,7 +6626,7 @@ public void testBug304081() throws Exception {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=304081"
  */
-public void testBug304081a() throws Exception {
+public void testBug304081a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject proj = this.createJavaProject("P", new String[] {}, "bin");
@@ -6667,7 +6667,7 @@ public void testBug304081a() throws Exception {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=305122"
  */
-public void testBug305122() throws Exception {
+public void testBug305122() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject proj = this.createJavaProject("P", new String[] {}, "bin");
@@ -6726,7 +6726,7 @@ public void testBug305122() throws Exception {
  *
  *  @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=308150"
  */
-public void testBug308150() throws Exception {
+public void testBug308150() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 
 		IJavaProject proj = this.createJavaProject("P", new String[] {}, "bin");
@@ -6759,7 +6759,7 @@ public void testBug308150() throws Exception {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=305037"
  */
-public void testBug305037() throws Exception {
+public void testBug305037() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	File libDir = null;
 	try {
 
@@ -6769,7 +6769,7 @@ public void testBug305037() throws Exception {
 		libDir = new File(libPath.toPortableString());
 		IClasspathEntry[] classpath = new IClasspathEntry[1];
 		File libJar = new File(libDir, "variable.jar");
-		libJar.createNewFile();
+		libJar.createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		addLibrary(proj, "variable.jar", null, new String[0],
 				new String[] {
@@ -6811,7 +6811,7 @@ public void testBug305037() throws Exception {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=313965"
  */
-public void testBug313965() throws Exception {
+public void testBug313965() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		simulateExit();
 		// Use the literal attribute and not constant. Attribute once documented is not supposed to change.
@@ -6853,7 +6853,7 @@ public void testBug313965() throws Exception {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=313965"
  */
-public void testBug313965a() throws Exception {
+public void testBug313965a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Do not set the resolveReferencedLibrariesForContainers system property (the default value is false)
 		IJavaProject p = this.createJavaProject("P", new String[] {}, "bin");
@@ -6879,7 +6879,7 @@ public void testBug313965a() throws Exception {
 		ContainerInitializer.setInitializer(null);
 	}
 }
-public void testBug321170() throws Exception {
+public void testBug321170() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = this.createJavaProject("P", new String[] {}, "bin");
 
@@ -6906,7 +6906,7 @@ public void testBug321170() throws Exception {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=229042"
  */
-public void testBug229042() throws Exception {
+public void testBug229042() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
 		createFile("/P/library.jar", "");
@@ -6941,7 +6941,7 @@ public void testBug229042() throws Exception {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=274737"
  */
-public void testBug274737() throws Exception {
+public void testBug274737() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createExternalFolder("development/third_party");
 		IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject("ExternalProject");
@@ -6991,12 +6991,12 @@ public void testBug274737() throws Exception {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=338006"
  */
-public void testBug338006() throws Exception {
+public void testBug338006() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = this.createJavaProject("P", new String[] {}, "bin");
 
 		String content = new String(
-				"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+				"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "<classpath>\n"
 				+ "<classpathentry kind=\"src\" path=\"src a\"/>\n"
 				+ "<classpathentry kind=\"src\" path=\"src x\"/>\n"
@@ -7013,7 +7013,7 @@ public void testBug338006() throws Exception {
 
 		IPackageFragmentRoot[] roots = p.getPackageFragmentRoots();
 		assertPackageFragmentRootsEqual(roots,
-				"src a (not open) [in P]\n" +
+				"src a (not open) [in P]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"src x (not open) [in P]\n" +
 				""+ getExternalJCLPathString() + " (not open)");
 
@@ -7027,7 +7027,7 @@ public void testBug338006() throws Exception {
  * of an external jar from not containing a chained jar to containing a chained jar.
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=357425)
  */
-public void testBug357425() throws Exception {
+public void testBug357425() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
 		addExternalLibrary(p, getExternalResourcePath("lib357425_a.jar"), new String[0],
@@ -7052,7 +7052,7 @@ public void testBug357425() throws Exception {
 		refreshExternalArchives(p);
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN | RESOLVED CLASSPATH CHANGED}\n" +
+			"P[*]: {CHILDREN | RESOLVED CLASSPATH CHANGED}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	"+ getExternalPath() + "lib357425_a.jar[*]: {CONTENT | REORDERED | ARCHIVE CONTENT CHANGED}\n" +
 			"	"+ getExternalPath() + "lib357425_b.jar[+]: {}"
 				);
@@ -7068,7 +7068,7 @@ public void testBug357425() throws Exception {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=287164"
  */
-public void testBug287164() throws CoreException {
+public void testBug287164() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj =  this.createJavaProject("P", new String[] {}, "");
 
@@ -7161,7 +7161,7 @@ public void testBug220928a() throws CoreException {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=220928"
  */
-public void testBug220928b() throws CoreException {
+public void testBug220928b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	boolean autoBuild = getWorkspace().isAutoBuilding();
 	IWorkspaceDescription preferences = getWorkspace().getDescription();
 	try {
@@ -7206,7 +7206,7 @@ public void testBug220928b() throws CoreException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=396299
-public void testBug396299() throws Exception {
+public void testBug396299() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	boolean autoBuild = getWorkspace().isAutoBuilding();
 	IWorkspaceDescription preferences = getWorkspace().getDescription();
 	try {
@@ -7256,7 +7256,7 @@ public void testBug396299() throws Exception {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=411423"
  */
-public void testBug411423() throws Exception {
+public void testBug411423() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj = this.createJavaProject("P", new String[] {}, "bin");
 
@@ -7319,7 +7319,7 @@ public void testBug411423() throws Exception {
 	}
 }
 
-public void testClasspathTestSourceValidation1() throws CoreException {
+public void testClasspathTestSourceValidation1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj = this.createJavaProject("P", new String[] {}, "bin");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -7339,7 +7339,7 @@ public void testClasspathTestSourceValidation1() throws CoreException {
 		this.deleteProject("P");
 	}
 }
-public void testClasspathTestSourceValidation2() throws CoreException {
+public void testClasspathTestSourceValidation2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj = this.createJavaProject("P", new String[] {}, "bin");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -7375,7 +7375,7 @@ public void testClasspathTestSourceValidation3() throws CoreException {
 		this.deleteProject("P");
 	}
 }
-public void testClasspathTestSourceValidation4() throws CoreException {
+public void testClasspathTestSourceValidation4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj = this.createJavaProject("P", new String[] {}, "");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -7394,7 +7394,7 @@ public void testClasspathTestSourceValidation4() throws CoreException {
 		this.deleteProject("P");
 	}
 }
-public void testClasspathTestSourceValidation5() throws CoreException {
+public void testClasspathTestSourceValidation5() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj = this.createJavaProject("P", new String[] {}, "bin");
 		IClasspathEntry[] originalCP = proj.getRawClasspath();
@@ -7414,7 +7414,7 @@ public void testClasspathTestSourceValidation5() throws CoreException {
 	}
 }
 
-public void testBug539998() throws CoreException {
+public void testBug539998() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject proj1TestOnly = this.createJavaProject("P1", new String[] {}, "bin-tests");
 		IClasspathEntry[] originalCP1 = proj1TestOnly.getRawClasspath();
@@ -7444,7 +7444,7 @@ public void testBug539998() throws CoreException {
 	}
 }
 
-public void testBug576735a() throws Exception {
+public void testBug576735a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = this.createJavaProject("P1", new String[] {"src"}, new String[] { "JCL18_LIB"}, "bin", "1.8" );
 	try {
 		String projectLocation = project.getProject().getLocation().toOSString();
@@ -7458,12 +7458,12 @@ public void testBug576735a() throws Exception {
 						"}\n"
 				},
 				getDefaultJavaCoreOptions(),
-				projectLocation + File.separator + "libMissing.jar");
+				projectLocation + File.separator + "libMissing.jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		// create another jar depending on libMissing.jar:
 		String[] classpath = getJCLLibrary("1.8");
 		classpath = Arrays.copyOf(classpath, classpath.length+1);
-		classpath[classpath.length-1] = projectLocation + File.separator + "libMissing.jar";
+		classpath[classpath.length-1] = projectLocation + File.separator + "libMissing.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Util.createJar(
 				new String[] {
 						"lib576735a/Lib.java",
@@ -7475,7 +7475,7 @@ public void testBug576735a() throws Exception {
 				new String[0],
 				getDefaultJavaCoreOptions(),
 				classpath,
-				projectLocation + File.separator + "lib576735a.jar");
+				projectLocation + File.separator + "lib576735a.jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		project.getProject().refreshLocal(IResource.DEPTH_INFINITE, null);
 		addLibraryEntry(project, "/P1/lib576735a.jar", false);
 
@@ -7505,7 +7505,7 @@ public void testBug576735a() throws Exception {
  * Test that validates test library classpath entries skip JDK level compatibility checks
  * while non-test library entries still perform the check
  */
-public void testTestLibraryEntrySkipsJdkLevelCheck() throws Exception {
+public void testTestLibraryEntrySkipsJdkLevelCheck() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = null;
 	try {
 		p = createJavaProject("P");

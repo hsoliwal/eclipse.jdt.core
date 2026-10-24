@@ -35,7 +35,7 @@ public class BindingKeyTests extends AbstractJavaModelTests {
 
 	protected void assertBindingKeyEquals(String expected, String key) {
 		if (!(expected.equals(key)))
-			System.out.println(displayString(key, 3) + ",");
+			System.out.println(displayString(key, 3) + ","); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertEquals(expected, key);
 	}
 
@@ -43,7 +43,7 @@ public class BindingKeyTests extends AbstractJavaModelTests {
 		BindingKey bindingKey = new BindingKey(key);
 		String signature = bindingKey.toSignature();
 		if (!(expected.equals(signature)))
-			System.out.println(displayString(signature, 3) + ",");
+			System.out.println(displayString(signature, 3) + ","); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertEquals(expected, signature);
 	}
 

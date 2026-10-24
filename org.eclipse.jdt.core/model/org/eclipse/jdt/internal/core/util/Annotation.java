@@ -36,7 +36,7 @@ public class Annotation extends ClassFileStruct implements IAnnotation {
 	/**
 	 * Constructor for Annotation.
 	 */
-	public Annotation(
+	public Annotation( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			byte[] classFileBytes,
 			IConstantPool constantPool,
 			int offset) throws ClassFormatException {
@@ -57,7 +57,7 @@ public class Annotation extends ClassFileStruct implements IAnnotation {
 		this.readOffset = 4;
 		if (length != 0) {
 			this.components = new IAnnotationComponent[length];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				AnnotationComponent component = new AnnotationComponent(classFileBytes, constantPool, offset + this.readOffset);
 				this.components[i] = component;
 				this.readOffset += component.sizeInBytes();

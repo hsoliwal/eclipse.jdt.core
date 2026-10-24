@@ -86,29 +86,29 @@ public class DeltaProcessor {
 			this.traverseModes = traverseModes;
 			this.outputCount = outputCount;
 		}
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public String toString() {
 			if (this.paths == null) return "<none>"; //$NON-NLS-1$
-			StringBuilder buffer = new StringBuilder();
-			for (int i = 0; i < this.outputCount; i++) {
-				buffer.append("path="); //$NON-NLS-1$
-				buffer.append(this.paths[i].toString());
-				buffer.append("\n->traverse="); //$NON-NLS-1$
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			for (int i = 0; i < this.outputCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append("path="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(this.paths[i].toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append("\n->traverse="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				switch (this.traverseModes[i]) {
 					case BINARY:
-						buffer.append("BINARY"); //$NON-NLS-1$
+						buffer.append("BINARY"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						break;
 					case IGNORE:
-						buffer.append("IGNORE"); //$NON-NLS-1$
+						buffer.append("IGNORE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						break;
 					case SOURCE:
-						buffer.append("SOURCE"); //$NON-NLS-1$
+						buffer.append("SOURCE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						break;
 					default:
-						buffer.append("<unknown>"); //$NON-NLS-1$
+						buffer.append("<unknown>"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				if (i+1 < this.outputCount) {
-					buffer.append('\n');
+					buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
 			return buffer.toString();
@@ -165,39 +165,39 @@ public class DeltaProcessor {
 		boolean isRootOfProject(IPath path) {
 			return this.rootPath.equals(path) && this.project.getProject().getFullPath().isPrefixOf(path);
 		}
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public String toString() {
-			StringBuilder buffer = new StringBuilder("project="); //$NON-NLS-1$
+			StringBuilder buffer = new StringBuilder("project="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			if (this.project == null) {
-				buffer.append("null"); //$NON-NLS-1$
+				buffer.append("null"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				buffer.append(this.project.getElementName());
+				buffer.append(this.project.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buffer.append("\npath="); //$NON-NLS-1$
+			buffer.append("\npath="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (this.rootPath == null) {
-				buffer.append("null"); //$NON-NLS-1$
+				buffer.append("null"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				buffer.append(this.rootPath.toString());
+				buffer.append(this.rootPath.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buffer.append("\nincluding="); //$NON-NLS-1$
+			buffer.append("\nincluding="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (this.inclusionPatterns == null) {
-				buffer.append("null"); //$NON-NLS-1$
+				buffer.append("null"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				for (int i = 0, length = this.inclusionPatterns.length; i < length; i++) {
-					buffer.append(new String(this.inclusionPatterns[i]));
+				for (int i = 0, length = this.inclusionPatterns.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					buffer.append(new String(this.inclusionPatterns[i])); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					if (i < length-1) {
-						buffer.append("|"); //$NON-NLS-1$
+						buffer.append("|"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
 			}
-			buffer.append("\nexcluding="); //$NON-NLS-1$
+			buffer.append("\nexcluding="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (this.exclusionPatterns == null) {
-				buffer.append("null"); //$NON-NLS-1$
+				buffer.append("null"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				for (int i = 0, length = this.exclusionPatterns.length; i < length; i++) {
-					buffer.append(new String(this.exclusionPatterns[i]));
+				for (int i = 0, length = this.exclusionPatterns.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					buffer.append(new String(this.exclusionPatterns[i])); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					if (i < length-1) {
-						buffer.append("|"); //$NON-NLS-1$
+						buffer.append("|"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
 			}
@@ -227,7 +227,7 @@ public class DeltaProcessor {
 	 * Used for detecting external JAR changes
 	 */
 	public static long getTimeStamp(File file) {
-		return file.lastModified() + Long.hashCode(file.length()) * 31;
+		return file.lastModified() + Long.hashCode(file.length()) * 31; //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	/*
@@ -254,13 +254,13 @@ public class DeltaProcessor {
 	 * Queue of deltas created explicily by the Java Model that
 	 * have yet to be fired.
 	 */
-	public List<IJavaElementDelta> javaModelDeltas= new ArrayList<>();
+	public List<IJavaElementDelta> javaModelDeltas= new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 	/*
 	 * Queue of reconcile deltas on working copies that have yet to be fired.
 	 * This is a table form IWorkingCopy to IJavaElementDelta
 	 */
-	public Map<ICompilationUnit, IJavaElementDelta> reconcileDeltas = new HashMap<>();
+	public Map<ICompilationUnit, IJavaElementDelta> reconcileDeltas = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	/*
 	 * Turns delta firing on/off. By default it is on.
@@ -273,7 +273,7 @@ public class DeltaProcessor {
 	private final ModelUpdater modelUpdater = new ModelUpdater();
 
 	/* A set of IJavaProject whose caches need to be reset */
-	public Set<IJavaElement> projectCachesToReset = new HashSet<>();
+	public Set<IJavaElement> projectCachesToReset = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 
 	/* A table from IJavaProject to an array of IPackageFragmentRoot.
 	 * This table contains the pkg fragment roots of the project that are being deleted.
@@ -302,7 +302,7 @@ public class DeltaProcessor {
 	private void addDependentProjects(IJavaProject project, Map<IJavaProject, IJavaProject[]> projectDependencies, Set<IJavaElement> result) {
 		IJavaProject[] dependents = projectDependencies.get(project);
 		if (dependents == null) return;
-		for (IJavaProject dependent : dependents) {
+		for (IJavaProject dependent : dependents) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (result.contains(dependent))
 				continue; // no need to go further as the project is already known
 			result.add(dependent);
@@ -329,7 +329,7 @@ public class DeltaProcessor {
 		}
 	}
 
-	private void addPackageFragmentRoot(OpenableElementInfo parent, IPackageFragmentRoot child)
+	private void addPackageFragmentRoot(OpenableElementInfo parent, IPackageFragmentRoot child) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			throws JavaModelException {
 
 		IJavaElement[] roots = parent.getChildren();
@@ -339,7 +339,7 @@ public class DeltaProcessor {
 			int indexToInsert = -1;
 			int lastComparedIndex = -1;
 			int i = 0, j = 0;
-			for (; i < roots.length && j < resolvedClasspath.length;) {
+			for (; i < roots.length && j < resolvedClasspath.length;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 				IClasspathEntry classpathEntry = resolvedClasspath[j];
 				if (lastComparedIndex != j && currentEntryPath.equals(classpathEntry.getPath())) {
@@ -355,7 +355,7 @@ public class DeltaProcessor {
 					j++;
 			}
 
-			for (; i < roots.length; i++) {
+			for (; i < roots.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				// If the new root is already among the children, no need to proceed further. Just return.
 				if (roots[i].equals(child)) {
 					return;
@@ -389,7 +389,7 @@ public class DeltaProcessor {
 	 * In all cases, add the project's dependents to the list of projects to update
 	 * so that the classpath related markers can be updated.
 	 */
-	private void checkProjectsAndClasspathChanges(IResourceDelta delta) {
+	private void checkProjectsAndClasspathChanges(IResourceDelta delta) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IResource resource = delta.getResource();
 		IResourceDelta[] children = null;
 
@@ -592,19 +592,19 @@ public class DeltaProcessor {
 
 		}
 		if (children != null) {
-			for (IResourceDelta child : children) {
+			for (IResourceDelta child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				checkProjectsAndClasspathChanges(child);
 			}
 		}
 	}
 
-	private IPackageFragmentRoot findContainingPackageFragmentRoot(IResource resource) throws JavaModelException {
+	private IPackageFragmentRoot findContainingPackageFragmentRoot(IResource resource) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject project = resource.getProject();
 		if (JavaProject.hasJavaNature(project)) {
 			IJavaProject javaProject = JavaCore.create(project);
 			IPath path = resource.getProjectRelativePath();
 			IPackageFragmentRoot[] roots = javaProject.getPackageFragmentRoots();
-			for (IPackageFragmentRoot root : roots) {
+			for (IPackageFragmentRoot root : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IResource rootResource = null;
 				try {
 					rootResource = root.getUnderlyingResource();
@@ -643,7 +643,7 @@ public class DeltaProcessor {
 			}
 		}
 	}
-	private void checkSourceAttachmentChange(IResourceDelta delta, IResource res) {
+	private void checkSourceAttachmentChange(IResourceDelta delta, IResource res) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath rootPath = this.state.sourceAttachments.get(externalPath(res));
 		if (rootPath != null) {
 			RootInfo rootInfo = rootInfo(rootPath, delta.getKind());
@@ -693,7 +693,7 @@ public class DeltaProcessor {
 	 * </ul>
 	 * Delta argument could be null if processing an external JAR change
 	 */
-	private void contentChanged(Openable element) {
+	private void contentChanged(Openable element) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		boolean isPrimary = false;
 		boolean isPrimaryWorkingCopy = false;
@@ -725,7 +725,7 @@ public class DeltaProcessor {
 	 * Creates the openables corresponding to this resource.
 	 * Returns null if none was found.
 	 */
-	private Openable createElement(IResource resource, int elementType, RootInfo rootInfo) {
+	private Openable createElement(IResource resource, int elementType, RootInfo rootInfo) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (resource == null) return null;
 
 		IPath path = resource.getFullPath();
@@ -853,14 +853,14 @@ public class DeltaProcessor {
 	 * Check all external archive (referenced by given roots, projects or model) status and issue a corresponding root delta.
 	 * Also triggers index updates
 	 */
-	private void checkExternalArchiveChanges(IJavaElement[] elementsScope, boolean asynchronous, IProgressMonitor monitor) throws JavaModelException {
+	private void checkExternalArchiveChanges(IJavaElement[] elementsScope, boolean asynchronous, IProgressMonitor monitor) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (monitor != null && monitor.isCanceled())
 			throw new OperationCanceledException();
 		try {
 			if (monitor != null) monitor.beginTask("", 1); //$NON-NLS-1$
 
 			boolean hasExternalWorkingCopyProject = false;
-			for (IJavaElement element : elementsScope) {
+			for (IJavaElement element : elementsScope) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.state.addForRefresh(element);
 				if (element.getElementType() == IJavaElement.JAVA_MODEL) {
 					// ensure external working copies' projects' caches are reset
@@ -868,7 +868,7 @@ public class DeltaProcessor {
 					if (projects != null) {
 						hasExternalWorkingCopyProject = true;
 						Iterator<IJavaProject> iterator = projects.iterator();
-						while (iterator.hasNext()) {
+						while (iterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							JavaProject project = (JavaProject) iterator.next();
 							project.resetCaches();
 						}
@@ -881,7 +881,7 @@ public class DeltaProcessor {
 				IJavaElementDelta[] projectDeltas = this.currentDelta.getAffectedChildren();
 				final int length = projectDeltas.length;
 				final IProject[] projectsToTouch = new IProject[length];
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IJavaElementDelta delta = projectDeltas[i];
 					JavaProject javaProject = (JavaProject)delta.getElement();
 					projectsToTouch[i] = javaProject.getProject();
@@ -894,13 +894,13 @@ public class DeltaProcessor {
 						// touch the projects to force them to be recompiled while taking the workspace lock
 						//	 so that there is no concurrency with the Java builder
 						// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=96575
-						IWorkspaceRunnable runnable = new IWorkspaceRunnable() {
+						IWorkspaceRunnable runnable = new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 							@Override
 							public void run(IProgressMonitor progressMonitor) throws CoreException {
-								for (IProject project : projectsToTouch) {
+								for (IProject project : projectsToTouch) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 									// touch to force a build of this project
 									if (JavaBuilder.DEBUG) {
-										trace("Touching project " + project.getName() + " due to external jar file change"); //$NON-NLS-1$ //$NON-NLS-2$
+										trace("Touching project " + project.getName() + " due to external jar file change"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 									}
 									project.touch(progressMonitor);
 								}
@@ -931,14 +931,14 @@ public class DeltaProcessor {
 	 * Check if external archives have changed for the given elements and create the corresponding deltas.
 	 * Returns whether at least one delta was created.
 	 */
-	private boolean createExternalArchiveDelta(Set<IJavaElement> refreshedElements, IProgressMonitor monitor) {
+	private boolean createExternalArchiveDelta(Set<IJavaElement> refreshedElements, IProgressMonitor monitor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
-		Map<IPath, String> externalArchivesStatus = new HashMap<>();
+		Map<IPath, String> externalArchivesStatus = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		boolean hasDelta = false;
 
 		// find JARs to refresh
-		Set<IPath> archivePathsToRefresh = new HashSet<>();
-		for (IJavaElement element : refreshedElements) {
+		Set<IPath> archivePathsToRefresh = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+		for (IJavaElement element : refreshedElements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch(element.getElementType()){
 				case IJavaElement.PACKAGE_FRAGMENT_ROOT :
 					archivePathsToRefresh.add(element.getPath());
@@ -952,7 +952,7 @@ public class DeltaProcessor {
 					IClasspathEntry[] classpath;
 					try {
 						classpath = javaProject.getResolvedClasspath();
-						for (IClasspathEntry cpe : classpath) {
+						for (IClasspathEntry cpe : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (cpe.getEntryKind() == IClasspathEntry.CPE_LIBRARY){
 								archivePathsToRefresh.add(cpe.getPath());
 							}
@@ -962,7 +962,7 @@ public class DeltaProcessor {
 					}
 					break;
 				case IJavaElement.JAVA_MODEL :
-					for (String projectName : this.state.getOldJavaProjecNames()) {
+					for (String projectName : this.state.getOldJavaProjecNames()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
 						if (!JavaProject.hasJavaNature(project)) {
 							// project is not accessible or has lost its Java nature
@@ -971,7 +971,7 @@ public class DeltaProcessor {
 						javaProject = (JavaProject) JavaCore.create(project);
 						try {
 							classpath = javaProject.getResolvedClasspath();
-							for (IClasspathEntry cpe : classpath) {
+							for (IClasspathEntry cpe : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								if (cpe.getEntryKind() == IClasspathEntry.CPE_LIBRARY){
 									archivePathsToRefresh.add(cpe.getPath());
 								}
@@ -988,7 +988,7 @@ public class DeltaProcessor {
 		// perform refresh
 		Iterator<String> projectNames = this.state.getOldJavaProjecNames().iterator();
 		IWorkspaceRoot wksRoot = ResourcesPlugin.getWorkspace().getRoot();
-		while (projectNames.hasNext()) {
+		while (projectNames.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 			if (monitor != null && monitor.isCanceled()) break;
 
@@ -1007,7 +1007,7 @@ public class DeltaProcessor {
 				continue;
 			}
 			boolean deltaContainsModifiedJar = false;
-			for (IClasspathEntry entry : entries) {
+			for (IClasspathEntry entry : entries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (entry.getEntryKind() == IClasspathEntry.CPE_LIBRARY) {
 					final IPath entryPath = entry.getPath();
 
@@ -1080,7 +1080,7 @@ public class DeltaProcessor {
 						if (status == EXTERNAL_JAR_ADDED){
 							PackageFragmentRoot root = (PackageFragmentRoot) javaProject.getPackageFragmentRoot(entryPath.toString());
 							if (VERBOSE){
-								trace("- External JAR ADDED, affecting root: "+root.getElementName()); //$NON-NLS-1$
+								trace("- External JAR ADDED, affecting root: "+root.getElementName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							}
 							elementAdded(root, null, null);
 							deltaContainsModifiedJar = true;
@@ -1089,7 +1089,7 @@ public class DeltaProcessor {
 						} else if (status == EXTERNAL_JAR_CHANGED) {
 							PackageFragmentRoot root = (PackageFragmentRoot) javaProject.getPackageFragmentRoot(entryPath.toString());
 							if (VERBOSE){
-								trace("- External JAR CHANGED, affecting root: "+root.getElementName()); //$NON-NLS-1$
+								trace("- External JAR CHANGED, affecting root: "+root.getElementName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							}
 							// TODO(sxenos): this is causing each change event for an external jar file to be fired twice.
 							// We need to preserve the clearing of cached information in the jar but defer the actual firing of
@@ -1100,7 +1100,7 @@ public class DeltaProcessor {
 						} else if (status == EXTERNAL_JAR_REMOVED) {
 							PackageFragmentRoot root = (PackageFragmentRoot) javaProject.getPackageFragmentRoot(entryPath.toString());
 							if (VERBOSE){
-								trace("- External JAR REMOVED, affecting root: "+root.getElementName()); //$NON-NLS-1$
+								trace("- External JAR REMOVED, affecting root: "+root.getElementName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							}
 							elementRemoved(root, null, null);
 							deltaContainsModifiedJar = true;
@@ -1131,7 +1131,7 @@ public class DeltaProcessor {
 	/*
 	 * Note that the project is about to be deleted.
 	 */
-	private void deleting(IProject project) {
+	private void deleting(IProject project) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		try {
 			// discard indexing jobs that belong to this project so that the project can be
@@ -1142,7 +1142,7 @@ public class DeltaProcessor {
 
 			// remember roots of this project
 			if (this.oldRoots == null) {
-				this.oldRoots = new HashMap<>();
+				this.oldRoots = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			}
 			if (javaProject.isOpen()) {
 				this.oldRoots.put(javaProject, javaProject.getPackageFragmentRoots());
@@ -1180,7 +1180,7 @@ public class DeltaProcessor {
 	 * </ul>
 	 * Delta argument could be null if processing an external JAR change
 	 */
-	private void elementAdded(Openable element, IResourceDelta delta, RootInfo rootInfo) {
+	private void elementAdded(Openable element, IResourceDelta delta, RootInfo rootInfo) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int elementType = element.getElementType();
 
 		if (elementType == IJavaElement.JAVA_PROJECT) {
@@ -1308,7 +1308,7 @@ public class DeltaProcessor {
 	 * </ul>
 	 * Delta argument could be null if processing an external JAR change
 	 */
-	private void elementRemoved(Openable element, IResourceDelta delta, RootInfo rootInfo) {
+	private void elementRemoved(Openable element, IResourceDelta delta, RootInfo rootInfo) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		int elementType = element.getElementType();
 		if (delta == null || (delta.getFlags() & IResourceDelta.MOVED_TO) == 0) {
@@ -1406,7 +1406,7 @@ public class DeltaProcessor {
 	 * Returns the type of the java element the given delta matches to.
 	 * Returns NON_JAVA_RESOURCE if unknown (e.g. a non-java resource or excluded .java file)
 	 */
-	private int elementType(IResource res, int kind, int parentType, RootInfo rootInfo) {
+	private int elementType(IResource res, int kind, int parentType, RootInfo rootInfo) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch (parentType) {
 			case IJavaElement.JAVA_MODEL:
 				// case of a movedTo or movedFrom project (other cases are handled in processResourceDelta(...)
@@ -1474,7 +1474,7 @@ public class DeltaProcessor {
 	 * Flushes all deltas without firing them.
 	 */
 	public void flush() {
-		this.javaModelDeltas = new ArrayList<>();
+		this.javaModelDeltas = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	}
 
 	private SourceElementParser getSourceElementParser(Openable element) {
@@ -1487,7 +1487,7 @@ public class DeltaProcessor {
 	 * Returns null if not found.
 	 */
 	private RootInfo enclosingRootInfo(IPath path, int kind) {
-		while (path != null && path.segmentCount() > 0) {
+		while (path != null && path.segmentCount() > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			RootInfo rootInfo =  rootInfo(path, kind);
 			if (rootInfo != null) return rootInfo;
 			path = path.removeLastSegments(1);
@@ -1506,7 +1506,7 @@ public class DeltaProcessor {
 	 * Fire Java Model delta, flushing them after the fact after post_change notification.
 	 * If the firing mode has been turned off, this has no effect.
 	 */
-	public void fire(IJavaElementDelta customDelta, int eventType) {
+	public void fire(IJavaElementDelta customDelta, int eventType) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!this.isFiring) return;
 
 		if (DEBUG) {
@@ -1522,7 +1522,7 @@ public class DeltaProcessor {
 
 		// Refresh internal scopes
 		if (deltaToNotify != null) {
-			for (AbstractSearchScope scope : this.manager.searchScopes.keySet()) {
+			for (AbstractSearchScope scope : this.manager.searchScopes.keySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				scope.processDelta(deltaToNotify, eventType);
 			}
 			JavaWorkspaceScope workspaceScope = this.manager.workspaceScope;
@@ -1560,7 +1560,7 @@ public class DeltaProcessor {
 
 		// post change deltas
 		if (DEBUG){
-			trace("FIRING POST_CHANGE Delta ["+Thread.currentThread()+"]:"); //$NON-NLS-1$//$NON-NLS-2$
+			trace("FIRING POST_CHANGE Delta ["+Thread.currentThread()+"]:"); //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			trace(deltaToNotify == null ? "<NONE>" : deltaToNotify.toString()); //$NON-NLS-1$
 		}
 		if (deltaToNotify != null) {
@@ -1581,12 +1581,12 @@ public class DeltaProcessor {
 
 		IJavaElementDelta deltaToNotify = mergeDeltas(this.reconcileDeltas.values());
 		if (DEBUG){
-			trace("FIRING POST_RECONCILE Delta ["+Thread.currentThread()+"]:"); //$NON-NLS-1$//$NON-NLS-2$
+			trace("FIRING POST_RECONCILE Delta ["+Thread.currentThread()+"]:"); //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			trace(deltaToNotify == null ? "<NONE>" : deltaToNotify.toString()); //$NON-NLS-1$
 		}
 		if (deltaToNotify != null) {
 			// flush now so as to keep listener reactions to post their own deltas for subsequent iteration
-			this.reconcileDeltas = new HashMap<>();
+			this.reconcileDeltas = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 			notifyListeners(deltaToNotify, ElementChangedEvent.POST_RECONCILE, listeners, listenerMask, listenerCount);
 		}
@@ -1595,7 +1595,7 @@ public class DeltaProcessor {
 	 * Returns whether a given delta contains some information relevant to the JavaModel,
 	 * in particular it will not consider SYNC or MARKER only deltas.
 	 */
-	private boolean isAffectedBy(IResourceDelta rootDelta){
+	private boolean isAffectedBy(IResourceDelta rootDelta){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		//if (rootDelta == null) System.out.println("NULL DELTA");
 		//long start = System.currentTimeMillis();
 		if (rootDelta != null) {
@@ -1605,7 +1605,7 @@ public class DeltaProcessor {
 				// only the class name is used (to differenciate from other RuntimeExceptions)
 			}
 			try {
-				rootDelta.accept(new IResourceDeltaVisitor() {
+				rootDelta.accept(new IResourceDeltaVisitor() { //FLLDCIM: MARK — T07  ANONYMOUS
 					@Override
 					public boolean visit(IResourceDelta delta) /* throws CoreException */ {
 						switch (delta.getKind()){
@@ -1646,13 +1646,13 @@ public class DeltaProcessor {
 	 * Returns whether the given resource is in one of the given output folders and if
 	 * it is filtered out from this output folder.
 	 */
-	private boolean isResFilteredFromOutput(RootInfo rootInfo, OutputsInfo info, IResource res, int elementType) {
+	private boolean isResFilteredFromOutput(RootInfo rootInfo, OutputsInfo info, IResource res, int elementType) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (info != null) {
 			JavaProject javaProject = null;
 			String sourceLevel = null;
 			String complianceLevel = null;
 			IPath resPath = res.getFullPath();
-			for (int i = 0;  i < info.outputCount; i++) {
+			for (int i = 0;  i < info.outputCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (info.paths[i].isPrefixOf(resPath)) {
 					if (info.traverseModes[i] != IGNORE) {
 						// case of bin=src
@@ -1687,18 +1687,18 @@ public class DeltaProcessor {
 	/*
 	 * Merges all awaiting deltas.
 	 */
-	private IJavaElementDelta mergeDeltas(Collection<IJavaElementDelta> deltas) {
+	private IJavaElementDelta mergeDeltas(Collection<IJavaElementDelta> deltas) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (deltas.size() == 0) return null;
 		if (deltas.size() == 1) return deltas.iterator().next();
 
 		if (VERBOSE) {
-			trace("MERGING " + deltas.size() + " DELTAS ["+Thread.currentThread()+"]"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			trace("MERGING " + deltas.size() + " DELTAS ["+Thread.currentThread()+"]"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		Iterator<IJavaElementDelta> iterator = deltas.iterator();
 		JavaElementDelta rootDelta = new JavaElementDelta(this.manager.javaModel);
 		boolean insertedTree = false;
-		while (iterator.hasNext()) {
+		while (iterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JavaElementDelta delta = (JavaElementDelta)iterator.next();
 			if (VERBOSE) {
 				trace(delta.toString());
@@ -1706,14 +1706,14 @@ public class DeltaProcessor {
 			IJavaElement element = delta.getElement();
 			if (this.manager.javaModel.equals(element)) {
 				IJavaElementDelta[] children = delta.getAffectedChildren();
-				for (IJavaElementDelta child : children) {
+				for (IJavaElementDelta child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					JavaElementDelta projectDelta = (JavaElementDelta) child;
 					rootDelta.insertDeltaTree(projectDelta.getElement(), projectDelta);
 					insertedTree = true;
 				}
 				IResourceDelta[] resourceDeltas = delta.getResourceDeltas();
 				if (resourceDeltas != null) {
-					for (IResourceDelta rd : resourceDeltas) {
+					for (IResourceDelta rd : resourceDeltas) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						rootDelta.addResourceDelta(rd);
 						insertedTree = true;
 					}
@@ -1726,14 +1726,14 @@ public class DeltaProcessor {
 		if (insertedTree) return rootDelta;
 		return null;
 	}
-	private void notifyListeners(IJavaElementDelta deltaToNotify, int eventType, IElementChangedListener[] listeners, int[] listenerMask, int listenerCount) {
+	private void notifyListeners(IJavaElementDelta deltaToNotify, int eventType, IElementChangedListener[] listeners, int[] listenerMask, int listenerCount) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final ElementChangedEvent extraEvent = new ElementChangedEvent(deltaToNotify, eventType);
-		for (int i= 0; i < listenerCount; i++) {
+		for (int i= 0; i < listenerCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if ((listenerMask[i] & eventType) != 0){
 				final IElementChangedListener listener = listeners[i];
 				long start = -1;
 				if (VERBOSE) {
-					System.out.print("Listener #" + (i+1) + "=" + listener.toString());//$NON-NLS-1$//$NON-NLS-2$
+					System.out.print("Listener #" + (i+1) + "=" + listener.toString());//$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					start = System.currentTimeMillis();
 				}
 				// wrap callbacks with Safe runnable for subsequent listeners to be called when some are causing grief
@@ -1756,13 +1756,13 @@ public class DeltaProcessor {
 					}
 				});
 				if (VERBOSE) {
-					trace(" -> " + (System.currentTimeMillis()-start) + "ms"); //$NON-NLS-1$ //$NON-NLS-2$
+					trace(" -> " + (System.currentTimeMillis()-start) + "ms"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}
 	}
-	private void notifyTypeHierarchies(IElementChangedListener[] listeners, int listenerCount) {
-		for (int i= 0; i < listenerCount; i++) {
+	private void notifyTypeHierarchies(IElementChangedListener[] listeners, int listenerCount) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		for (int i= 0; i < listenerCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final IElementChangedListener listener = listeners[i];
 			if (!(listener instanceof TypeHierarchy)) continue;
 
@@ -1791,7 +1791,7 @@ public class DeltaProcessor {
 	 * <li>An entry is made in the delta reporting a content change (K_CHANGE with F_CONTENT flag set).
 	 * </ul>
 	 */
-	private void nonJavaResourcesChanged(Openable element, IResourceDelta delta) 	throws JavaModelException {
+	private void nonJavaResourcesChanged(Openable element, IResourceDelta delta) 	throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// reset non-java resources if element was open
 		if (element.isOpen()) {
 			IElementInfo info = element.getElementInfo();
@@ -1841,7 +1841,7 @@ public class DeltaProcessor {
 		List<RootInfo> oldInfos = this.state.oldOtherRoots.get(path);
 		if (oldInfos == null)
 			return null;
-		for (RootInfo rootInfo : oldInfos) {
+		for (RootInfo rootInfo : oldInfos) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (rootInfo.project.equals(project))
 				return rootInfo;
 		}
@@ -1857,7 +1857,7 @@ public class DeltaProcessor {
 		return this.state.otherRoots.get(path);
 	}
 
-	private OutputsInfo outputsInfo(RootInfo rootInfo, IResource res) {
+	private OutputsInfo outputsInfo(RootInfo rootInfo, IResource res) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			JavaProject proj =
 				rootInfo == null ?
@@ -1875,7 +1875,7 @@ public class DeltaProcessor {
 				int outputCount = 1;
 				outputs[0] = projectOutput;
 				traverseModes[0] = traverseMode;
-				for (IClasspathEntry entry : classpath) {
+				for (IClasspathEntry entry : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IPath entryPath = entry.getPath();
 					IPath output = entry.getOutputLocation();
 					if (output != null) {
@@ -1900,8 +1900,8 @@ public class DeltaProcessor {
 		}
 		return null;
 	}
-	private void popUntilPrefixOf(IPath path) {
-		while (this.currentElement != null) {
+	private void popUntilPrefixOf(IPath path) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		while (this.currentElement != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IPath currentElementPath = null;
 			if (this.currentElement instanceof IPackageFragmentRoot) {
 				currentElementPath = this.currentElement.getPath();
@@ -1930,7 +1930,7 @@ public class DeltaProcessor {
 	 * the corresponding set of <code>IJavaElementDelta</code>, rooted in the
 	 * relevant <code>JavaModel</code>s.
 	 */
-	private IJavaElementDelta processResourceDelta(IResourceDelta changes) {
+	private IJavaElementDelta processResourceDelta(IResourceDelta changes) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		try {
 			IJavaModel model = this.manager.getJavaModel();
@@ -1950,7 +1950,7 @@ public class DeltaProcessor {
 
 			// get the workspace delta, and start processing there.
 			IResourceDelta[] deltas = changes.getAffectedChildren(IResourceDelta.ADDED | IResourceDelta.REMOVED | IResourceDelta.CHANGED, IContainer.INCLUDE_HIDDEN);
-			for (IResourceDelta delta : deltas) {
+			for (IResourceDelta delta : deltas) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IResource res = delta.getResource();
 
 				// find out the element type
@@ -1996,7 +1996,7 @@ public class DeltaProcessor {
 	 * Traverse the set of projects which have changed namespace, and reset their
 	 * caches and their dependents
 	 */
-	public void resetProjectCaches() {
+	public void resetProjectCaches() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.projectCachesToReset.isEmpty())
 			return;
 
@@ -2004,15 +2004,15 @@ public class DeltaProcessor {
 
 		Iterator<IJavaElement> iterator = this.projectCachesToReset.iterator();
 		Map<IJavaProject, IJavaProject[]> projectDepencies = this.state.projectDependencies;
-		Set<IJavaElement> affectedDependents = new HashSet<>();
-		while (iterator.hasNext()) {
+		Set<IJavaElement> affectedDependents = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+		while (iterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JavaProject project = (JavaProject)iterator.next();
 			project.resetCaches();
 			addDependentProjects(project, projectDepencies, affectedDependents);
 		}
 		// reset caches of dependent projects
 		iterator = affectedDependents.iterator();
-		while (iterator.hasNext()) {
+		while (iterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JavaProject project = (JavaProject) iterator.next();
 			project.resetCaches();
 		}
@@ -2025,7 +2025,7 @@ public class DeltaProcessor {
 	public void registerJavaModelDelta(IJavaElementDelta delta) {
 		if (VERBOSE && JavaModelManager.isReadOnly()) {
 			ILog.get().warn("JavaModel change during read only operation", new IllegalStateException( //$NON-NLS-1$
-					"JavaModel modified during 'read only' operation. Consider to report this warning to https://github.com/eclipse-jdt/eclipse.jdt.core/issues. delta=" //$NON-NLS-1$
+					"JavaModel modified during 'read only' operation. Consider to report this warning to https://github.com/eclipse-jdt/eclipse.jdt.core/issues. delta=" //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							+ delta));
 		}
 		this.javaModelDeltas.add(delta);
@@ -2056,7 +2056,7 @@ public class DeltaProcessor {
 	 * @see IResourceDelta
 	 * @see IResource
 	 */
-	public void resourceChanged(IResourceChangeEvent event) {
+	public void resourceChanged(IResourceChangeEvent event) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		int eventType = this.overridenEventType == -1 ? event.getType() : this.overridenEventType;
 		IResource resource = event.getResource();
@@ -2084,7 +2084,7 @@ public class DeltaProcessor {
 				JavaModelManager.getExternalManager().refreshReferences(projects, null);
 
 				IJavaProject[] javaElements = new IJavaProject[projects.length];
-				for (int index = 0; index < projects.length; index++) {
+				for (int index = 0; index < projects.length; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					javaElements[index] = JavaCore.create(projects[index]);
 				}
 				try {
@@ -2116,7 +2116,7 @@ public class DeltaProcessor {
 							if (classpathChanges.size() > 0) {
 								boolean hasDelta = this.currentDelta != null;
 								JavaElementDelta javaDelta = currentDelta();
-								for (ClasspathChange change : classpathChanges.values()) {
+								for (ClasspathChange change : classpathChanges.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 									int result = change.generateDelta(javaDelta, false/*don't add classpath change*/);
 									if ((result & ClasspathChange.HAS_DELTA) != 0) {
 										hasDelta = true;
@@ -2181,7 +2181,7 @@ public class DeltaProcessor {
 				// update external folders if necessary
 			    ExternalFolderChange[] folderChanges = this.state.removeExternalFolderChanges();
 				if (folderChanges != null) {
-				    for (ExternalFolderChange folderChange : folderChanges) {
+				    for (ExternalFolderChange folderChange : folderChanges) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				        try {
 					        folderChange.updateExternalFoldersIfNecessary(false/*do not refresh since we are not in the thread that added the external folder to the classpath*/, null);
 				        } catch (JavaModelException e) {
@@ -2194,7 +2194,7 @@ public class DeltaProcessor {
 				// create classpath markers if necessary
 				ClasspathValidation[] validations = this.state.removeClasspathValidations();
 				if (validations != null) {
-					for (ClasspathValidation validation : validations) {
+					for (ClasspathValidation validation : validations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						validation.validate();
 					}
 				}
@@ -2204,7 +2204,7 @@ public class DeltaProcessor {
 				needCycleValidation = needCycleValidation || !referencedProjects.isEmpty();
 
 				if (needCycleValidation) {
-					for (IJavaProject next : referencedProjects) {
+					for (IJavaProject next : referencedProjects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						next.getProject().clearCachedDynamicReferences();
 					}
 					// update all cycle markers since the project references changes may have affected cycles
@@ -2224,7 +2224,7 @@ public class DeltaProcessor {
 						projects = new IProject[] {(IProject) source};
 					} else {
 						Util.log(new Exception(),
-								"Expected to see a workspace or project on the PRE_BUILD resource change but was: " + source.toString()); //$NON-NLS-1$
+								"Expected to see a workspace or project on the PRE_BUILD resource change but was: " + source.toString()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 					if (projects != null) {
 						// If we are about to do a build and a Java project's first builder is not the Java builder,
@@ -2234,7 +2234,7 @@ public class DeltaProcessor {
 						// A possible further optimization for this situation where earlier builders can affect the
 						// Java builder would be to add a new classpath element attribute that identifies whether
 						// or not a library jar is "stable" and needs to be flushed.
-						for (IProject project : projects) {
+						for (IProject project : projects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							try {
 								if (project.isOpen() && project.hasNature(JavaCore.NATURE_ID)) {
 									IBuildConfiguration[] configs = project.getBuildConfigs();
@@ -2298,7 +2298,7 @@ public class DeltaProcessor {
 	 * Converts an <code>IResourceDelta</code> and its children into
 	 * the corresponding <code>IJavaElementDelta</code>s.
 	 */
-	private void traverseDelta(
+	private void traverseDelta( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IResourceDelta delta,
 		int elementType,
 		RootInfo rootInfo,
@@ -2342,7 +2342,7 @@ public class DeltaProcessor {
 			IResourceDelta[] orphanChildren = null;
 			Openable parent = null;
 			boolean isValidParent = true;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IResourceDelta child = children[i];
 				IResource childRes = child.getResource();
 
@@ -2433,7 +2433,7 @@ public class DeltaProcessor {
 				// if the child is a package fragment root of one or several other projects
 				List<RootInfo> rootList;
 				if ((rootList = otherRootsInfo(childPath, childKind)) != null) {
-					for (RootInfo ri : rootList) {
+					for (RootInfo ri : rootList) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						this.currentElement = null; // ensure that 2 roots refering to the same resource don't share the current element (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=210746 )
 						traverseDelta(child, IJavaElement.PACKAGE_FRAGMENT_ROOT, ri, null); // binary output of childRootInfo.project cannot be this root
 					}
@@ -2448,7 +2448,7 @@ public class DeltaProcessor {
 				JavaProject adoptiveProject = (JavaProject)JavaCore.create(rscProject);
 				if (adoptiveProject != null
 						&& JavaProject.hasJavaNature(rscProject)) { // delta iff Java project (18698)
-					for (int i = 0; i < length; i++) {
+					for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (orphanChildren[i] != null) {
 							try {
 								nonJavaResourcesChanged(adoptiveProject, orphanChildren[i]);
@@ -2462,7 +2462,7 @@ public class DeltaProcessor {
 		} // else resource delta will be added by parent
 	}
 
-	private void validateClasspaths(IResourceDelta delta, Set<IPath> affectedProjects) {
+	private void validateClasspaths(IResourceDelta delta, Set<IPath> affectedProjects) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IResource resource = delta.getResource();
 		boolean processChildren = false;
 		switch (resource.getType()) {
@@ -2521,7 +2521,7 @@ public class DeltaProcessor {
 		}
 		if (processChildren) {
 			IResourceDelta[] children = delta.getAffectedChildren();
-			for (IResourceDelta child : children) {
+			for (IResourceDelta child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				validateClasspaths(child, affectedProjects);
 			}
 		}
@@ -2532,8 +2532,8 @@ public class DeltaProcessor {
 	 * Create markers if necessary.
 	 * Returns whether cycle markers should be recomputed.
 	 */
-	private boolean validateClasspaths(IResourceDelta delta) {
-		Set<IPath> affectedProjects = new HashSet<>(5);
+	private boolean validateClasspaths(IResourceDelta delta) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		Set<IPath> affectedProjects = new HashSet<>(5); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		validateClasspaths(delta, affectedProjects);
 		boolean needCycleValidation = false;
 
@@ -2543,13 +2543,13 @@ public class DeltaProcessor {
 			IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
 			IProject[] projects = workspaceRoot.getProjects();
 			int length = projects.length;
-			for (int i = 0; i < length; i++){
+			for (int i = 0; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IProject project = projects[i];
 				JavaProject javaProject = (JavaProject)JavaCore.create(project);
 				try {
 					IPath projectPath = project.getFullPath();
 					IClasspathEntry[] classpath = javaProject.getResolvedClasspath(); // allowed to reuse model cache
-					for (IClasspathEntry entry : classpath) {
+					for (IClasspathEntry entry : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						switch (entry.getEntryKind()) {
 							case IClasspathEntry.CPE_PROJECT:
 								if (affectedProjects.contains(entry.getPath())) {
@@ -2580,7 +2580,7 @@ public class DeltaProcessor {
 	 * Returns whether the children of the given delta must be processed.
 	 * @throws a JavaModelException if the delta doesn't correspond to a java element of the given type.
 	 */
-	@SuppressWarnings("unlikely-arg-type")
+	@SuppressWarnings("unlikely-arg-type") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean updateCurrentDeltaAndIndex(IResourceDelta delta, int elementType, RootInfo rootInfo) {
 		Openable element;
 		switch (delta.getKind()) {
@@ -2613,7 +2613,7 @@ public class DeltaProcessor {
 				if (deltaRes.getType() == IResource.PROJECT){
 					// reset the corresponding project built state, since cannot reuse if added back
 					if (JavaBuilder.DEBUG) {
-						trace("Clearing last state for removed project : " + deltaRes); //$NON-NLS-1$
+						trace("Clearing last state for removed project : " + deltaRes); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 					this.manager.setLastBuiltState((IProject)deltaRes, null /*no state*/);
 
@@ -2692,7 +2692,7 @@ public class DeltaProcessor {
 								this.manager.indexManager.removeIndexFamily(res.getFullPath());
 								// reset the corresponding project built state, since cannot reuse if added back
 								if (JavaBuilder.DEBUG) {
-									trace("Clearing last state for project loosing Java nature: " + res); //$NON-NLS-1$
+									trace("Clearing last state for project loosing Java nature: " + res); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								}
 								this.manager.setLastBuiltState(res, null /*no state*/);
 							}
@@ -2728,7 +2728,7 @@ public class DeltaProcessor {
 		return true;
 	}
 
-	private void updateIndex(Openable element, IResourceDelta delta) {
+	private void updateIndex(Openable element, IResourceDelta delta) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IndexManager indexManager = this.manager.indexManager;
 		if (indexManager == null)
@@ -2800,7 +2800,7 @@ public class DeltaProcessor {
 							rootInfo == null // if null, defaults to source
 							|| rootInfo.entryKind == IClasspathEntry.CPE_SOURCE;
 						IResourceDelta[] children = delta.getAffectedChildren();
-						for (IResourceDelta child : children) {
+						for (IResourceDelta child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							IResource resource = child.getResource();
 							// TODO (philippe) Why do this? Every child is added anyway as the delta is walked
 							if (resource instanceof IFile) {
@@ -2921,7 +2921,7 @@ public class DeltaProcessor {
 	public void updateJavaModel(IJavaElementDelta customDelta) {
 
 		if (customDelta == null){
-			for (IJavaElementDelta delta : this.javaModelDeltas) {
+			for (IJavaElementDelta delta : this.javaModelDeltas) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.modelUpdater.processJavaDelta(delta);
 			}
 		} else {
@@ -2936,7 +2936,7 @@ public class DeltaProcessor {
 		Openable pkg = root.getPackageFragment(pkgName);
 		updateIndex(pkg, delta);
 		IResourceDelta[] children = delta.getAffectedChildren();
-		for (IResourceDelta child : children) {
+		for (IResourceDelta child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IResource resource = child.getResource();
 			if (resource instanceof IFolder) {
 				String[] subpkgName = Util.arrayConcat(pkgName, resource.getName());
@@ -2948,7 +2948,7 @@ public class DeltaProcessor {
 	private static boolean hasRemovedJdtErrorMarker(IResourceDelta delta) {
 		if ((delta.getFlags() & IResourceDelta.MARKERS) != 0) {
 			IMarkerDelta[] markerDeltas = delta.getMarkerDeltas();
-			for (IMarkerDelta markerDelta : markerDeltas) {
+			for (IMarkerDelta markerDelta : markerDeltas) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (markerDelta.getKind() == IResourceDelta.REMOVED) {
 					int severity = markerDelta.getAttribute(IMarker.SEVERITY, IMarker.SEVERITY_INFO);
 					String sourceId = markerDelta.getAttribute(IMarker.SOURCE_ID, ""); //$NON-NLS-1$

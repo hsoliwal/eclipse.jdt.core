@@ -30,7 +30,7 @@ public class ExecutionTests extends BuilderTests {
 		return buildTestSuite(ExecutionTests.class);
 	}
 
-	public void testSuccess() throws JavaModelException {
+	public void testSuccess() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		fullBuild(projectPath);
@@ -55,7 +55,7 @@ public class ExecutionTests extends BuilderTests {
 		executeClass(projectPath, "p1.Hello", "Hello world", ""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
-	public void testFailure() throws JavaModelException {
+	public void testFailure() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		fullBuild(projectPath);

@@ -47,7 +47,7 @@ public class JrtUtilTest extends TestCase {
 		this.javaHome = System.getProperty("java.home", null);
 		assertNotNull("java.home is not defined", this.javaHome);
 		this.image = Paths.get(this.javaHome).toFile();
-		assertTrue("java.home points to invalid path", this.image.isDirectory());
+		assertTrue("java.home points to invalid path", this.image.isDirectory()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		this.jdkRelease = JRTUtil.getJdkRelease(this.image);
 	}
 
@@ -55,10 +55,10 @@ public class JrtUtilTest extends TestCase {
 	public void testGetReleaseVersion() {
 		long expectedLevel = CompilerOptions.versionToJdkLevel(this.javaSpecVersion);
 		long seenLevel = CompilerOptions.versionToJdkLevel(this.jdkRelease);
-		assertEquals("Unexpected version: " + this.jdkRelease + ", not matching " + this.javaSpecVersion, expectedLevel, seenLevel);
+		assertEquals("Unexpected version: " + this.jdkRelease + ", not matching " + this.javaSpecVersion, expectedLevel, seenLevel); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		int sameRelease = JavaCore.compareJavaVersions(this.javaSpecVersion, this.jdkRelease);
-		assertEquals("Unexpected version: " + this.jdkRelease + ", not matching " + this.javaSpecVersion, sameRelease, 0);
+		assertEquals("Unexpected version: " + this.jdkRelease + ", not matching " + this.javaSpecVersion, sameRelease, 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	@Test
@@ -79,7 +79,7 @@ public class JrtUtilTest extends TestCase {
 	 * The JRT file system of a JDK and the file system used for an older release of the same JDK must not share the
 	 * entries of the class file cache, whichever is asked first.
 	 */
-	@Test
+	@Test //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testClassCacheNotSharedWithOlderRelease() throws Exception {
 		int majorVersionSegment = getMajorVersionSegment(this.jdkRelease);
 		String olderRelease = String.valueOf(majorVersionSegment - 2);

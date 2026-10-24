@@ -42,7 +42,7 @@ public class SourceModule extends NamedMember implements AbstractModule {
 	}
 	@Override
 	public String toString(String lineDelimiter) {
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		try {
 			toStringContent(buffer, lineDelimiter);
 		} catch (JavaModelException e) {

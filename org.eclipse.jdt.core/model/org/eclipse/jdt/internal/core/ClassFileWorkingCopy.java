@@ -92,7 +92,7 @@ public IResource resource(PackageFragmentRoot root) {
 	return this.classFile.resource(root);
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected IBuffer openBuffer(IProgressMonitor pm, IElementInfo info) throws JavaModelException {
 
 	// create buffer
@@ -122,7 +122,7 @@ protected IBuffer openBuffer(IProgressMonitor pm, IElementInfo info) throws Java
 
 @Override
 protected void toStringName(StringBuilder buffer) {
-	buffer.append(this.classFile.getElementName());
+	buffer.append(this.classFile.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 }
 
 }

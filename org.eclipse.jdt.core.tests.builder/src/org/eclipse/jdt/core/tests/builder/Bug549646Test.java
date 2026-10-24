@@ -29,7 +29,7 @@ public class Bug549646Test extends BuilderTests {
 		return buildTestSuite(Bug549646Test.class);
 	}
 
-	public void testCompilerRegression() throws JavaModelException, Exception {
+	public void testCompilerRegression() throws JavaModelException, Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Bug549646Test", "10"); //$NON-NLS-1$
 		env.getJavaProject(projectPath).setOption(JavaCore.COMPILER_RELEASE, JavaCore.ENABLED);
 

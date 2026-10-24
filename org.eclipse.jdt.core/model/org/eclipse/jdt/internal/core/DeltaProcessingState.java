@@ -48,7 +48,7 @@ import org.eclipse.jdt.internal.core.util.Util;
 /**
  * Keep the global states used during Java element delta processing.
  */
-public class DeltaProcessingState implements IResourceChangeListener {
+public class DeltaProcessingState implements IResourceChangeListener { //FLLDCIM: MARK — T07  IMPLEMENTS
 
 	/*
 	 * Collection of listeners for Java element deltas
@@ -76,32 +76,32 @@ public class DeltaProcessingState implements IResourceChangeListener {
 	}
 
 	/* A table from IPath (from a classpath entry) to DeltaProcessor.RootInfo */
-	public Map<IPath, RootInfo> roots = new LinkedHashMap<>();
+	public Map<IPath, RootInfo> roots = new LinkedHashMap<>(); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
 
 	/* A table from IPath (from a classpath entry) to ArrayList of DeltaProcessor.RootInfo
 	 * Used when an IPath corresponds to more than one root */
-	public Map<IPath, List<RootInfo>> otherRoots = new HashMap<>();
+	public Map<IPath, List<RootInfo>> otherRoots = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	/* A table from IPath (from a classpath entry) to DeltaProcessor.RootInfo
 	 * from the last time the delta processor was invoked. */
-	public Map<IPath, RootInfo> oldRoots = new LinkedHashMap<>();
+	public Map<IPath, RootInfo> oldRoots = new LinkedHashMap<>(); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
 
 	/* A table from IPath (from a classpath entry) to ArrayList of DeltaProcessor.RootInfo
 	 * from the last time the delta processor was invoked.
 	 * Used when an IPath corresponds to more than one root */
-	public Map<IPath, List<RootInfo>> oldOtherRoots = new HashMap<>();
+	public Map<IPath, List<RootInfo>> oldOtherRoots = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	/* A table from IPath (a source attachment path from a classpath entry) to IPath (a root path) */
-	public Map<IPath, IPath> sourceAttachments = new HashMap<>();
+	public Map<IPath, IPath> sourceAttachments = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	/* A table from IJavaProject to IJavaProject[] (the list of direct dependent of the key) */
-	public Map<IJavaProject, IJavaProject[]> projectDependencies = new HashMap<>();
+	public Map<IJavaProject, IJavaProject[]> projectDependencies = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	/* Whether the roots tables should be recomputed */
 	public boolean rootsAreStale = true;
 
 	/* Threads that are currently running initializeRoots() */
-	private final Set<Thread> initializingThreads = Collections.synchronizedSet(new HashSet<>());
+	private final Set<Thread> initializingThreads = Collections.synchronizedSet(new HashSet<>()); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 
 	/* A table from file system absoulte path (String) to timestamp (Long) */
 	public Hashtable<IPath, Long> externalTimeStamps;
@@ -111,16 +111,16 @@ public class DeltaProcessingState implements IResourceChangeListener {
 	 * Note these changes need to be kept on the delta processing state to ensure we don't loose them
 	 * (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=271102 Java model corrupt after switching target platform)
 	 */
-	private Map<IProject, ClasspathChange> classpathChanges = new LinkedHashMap<>();
+	private Map<IProject, ClasspathChange> classpathChanges = new LinkedHashMap<>(); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
 
 	/* A table from JavaProject to ClasspathValidation */
-	private final Map<JavaProject, ClasspathValidation> classpathValidations = new LinkedHashMap<>();
+	private final Map<JavaProject, ClasspathValidation> classpathValidations = new LinkedHashMap<>(); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
 
 	/* A table from JavaProject to ProjectReferenceChange */
 	private Set<IJavaProject> projectReferenceChanges = new LinkedHashSet<>();
 
 	/* A table from JavaProject to ExternalFolderChange */
-	private final Map<JavaProject, ExternalFolderChange> externalFolderChanges = new LinkedHashMap<>();
+	private final Map<JavaProject, ExternalFolderChange> externalFolderChanges = new LinkedHashMap<>(); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
 
 	/**
 	 * Workaround for bug 15168 circular errors not reported
@@ -139,8 +139,8 @@ public class DeltaProcessingState implements IResourceChangeListener {
 	 * Need to clone defensively the listener information, in case some listener is reacting to some notification iteration by adding/changing/removing
 	 * any of the other (for example, if it deregisters itself).
 	 */
-	public synchronized void addElementChangedListener(IElementChangedListener listener, int eventMask) {
-		for (int i = 0; i < this.elementChangedListenerCount; i++){
+	public synchronized void addElementChangedListener(IElementChangedListener listener, int eventMask) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		for (int i = 0; i < this.elementChangedListenerCount; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (this.elementChangedListeners[i] == listener){
 
 				// only clone the masks, since we could be in the middle of notifications and one listener decide to change
@@ -173,7 +173,7 @@ public class DeltaProcessingState implements IResourceChangeListener {
 	}
 
 	public synchronized void addPreResourceChangedListener(IResourceChangeListener listener, int eventMask) {
-		for (int i = 0; i < this.preResourceChangeListenerCount; i++){
+		for (int i = 0; i < this.preResourceChangeListenerCount; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (this.preResourceChangeListeners[i] == listener) {
 				this.preResourceChangeEventMasks[i] |= eventMask;
 				return;
@@ -225,7 +225,7 @@ public class DeltaProcessingState implements IResourceChangeListener {
 	public Map<IProject, ClasspathChange> removeAllClasspathChanges() {
 		synchronized (this.mutex) {
 			Map<IProject, ClasspathChange> result = this.classpathChanges;
-			this.classpathChanges = new LinkedHashMap<>(result.size());
+			this.classpathChanges = new LinkedHashMap<>(result.size()); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
 			return result;
 		}
 	}
@@ -251,7 +251,7 @@ public class DeltaProcessingState implements IResourceChangeListener {
 		this.projectReferenceChanges.add(project);
 	}
 
-	public void initializeRoots(boolean initAfterLoad) {
+	public void initializeRoots(boolean initAfterLoad) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// recompute root infos only if necessary
 		RootInfos rootInfos = null;
@@ -300,7 +300,7 @@ public class DeltaProcessingState implements IResourceChangeListener {
 		}
 	}
 
-	private RootInfos getRootInfos(boolean usePreviousSession) {
+	private RootInfos getRootInfos(boolean usePreviousSession) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		RootInfos ri = new RootInfos();
 
 		IJavaModel model = JavaModelManager.getJavaModelManager().getJavaModel();
@@ -311,7 +311,7 @@ public class DeltaProcessingState implements IResourceChangeListener {
 			// nothing can be done
 			return null;
 		}
-		for (IJavaProject p : projects) {
+		for (IJavaProject p : projects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JavaProject project = (JavaProject) p;
 			IClasspathEntry[] classpath;
 			try {
@@ -326,7 +326,7 @@ public class DeltaProcessingState implements IResourceChangeListener {
 				// continue with next project
 				continue;
 			}
-			for (IClasspathEntry entry : classpath) {
+			for (IClasspathEntry entry : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (entry.getEntryKind() == IClasspathEntry.CPE_PROJECT) {
 					IJavaProject key = model.getJavaProject(entry.getPath().segment(0)); // TODO (jerome) reuse handle
 					IJavaProject[] dependents = ri.projectDependencies.get(key);
@@ -348,7 +348,7 @@ public class DeltaProcessingState implements IResourceChangeListener {
 				} else {
 					List<RootInfo> rootList = ri.otherRoots.get(path);
 					if (rootList == null) {
-						rootList = new ArrayList<>();
+						rootList = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 						ri.otherRoots.put(path, rootList);
 					}
 					rootList.add(new DeltaProcessor.RootInfo(project, path, ((ClasspathEntry)entry).fullInclusionPatternChars(), ((ClasspathEntry)entry).fullExclusionPatternChars(), entry));
@@ -399,7 +399,7 @@ public class DeltaProcessingState implements IResourceChangeListener {
 
 	public synchronized Set<IJavaProject> removeProjectReferenceChanges() {
 		Set<IJavaProject> result = this.projectReferenceChanges;
-		this.projectReferenceChanges = new HashSet<>();
+		this.projectReferenceChanges = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		return result;
 	}
 
@@ -409,9 +409,9 @@ public class DeltaProcessingState implements IResourceChangeListener {
 		return result;
 	}
 
-	public synchronized void removeElementChangedListener(IElementChangedListener listener) {
+	public synchronized void removeElementChangedListener(IElementChangedListener listener) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
-		for (int i = 0; i < this.elementChangedListenerCount; i++){
+		for (int i = 0; i < this.elementChangedListenerCount; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 			if (this.elementChangedListeners[i] == listener){
 
@@ -439,9 +439,9 @@ public class DeltaProcessingState implements IResourceChangeListener {
 		}
 	}
 
-	public synchronized void removePreResourceChangedListener(IResourceChangeListener listener) {
+	public synchronized void removePreResourceChangedListener(IResourceChangeListener listener) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
-		for (int i = 0; i < this.preResourceChangeListenerCount; i++){
+		for (int i = 0; i < this.preResourceChangeListenerCount; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 			if (this.preResourceChangeListeners[i] == listener){
 
@@ -469,9 +469,9 @@ public class DeltaProcessingState implements IResourceChangeListener {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void resourceChanged(final IResourceChangeEvent event) {
-		for (int i = 0; i < this.preResourceChangeListenerCount; i++) {
+		for (int i = 0; i < this.preResourceChangeListenerCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// wrap callbacks with Safe runnable for subsequent listeners to be called when some are causing grief
 			final IResourceChangeListener listener = this.preResourceChangeListeners[i];
 			if ((this.preResourceChangeEventMasks[i] & event.getType()) != 0)
@@ -501,19 +501,19 @@ public class DeltaProcessingState implements IResourceChangeListener {
 
 	}
 
-	public Hashtable<IPath, Long> getExternalLibTimeStamps() {
+	public Hashtable<IPath, Long> getExternalLibTimeStamps() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.externalTimeStamps == null) {
 			Hashtable<IPath, Long> timeStamps = new Hashtable<>();
 			File timestampsFile = getTimeStampsFile();
-			try (DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(timestampsFile)))) {
+			try (DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(timestampsFile)))) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				int size = in.readInt();
-				while (size-- > 0) {
+				while (size-- > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String key = in.readUTF();
 					long timestamp = in.readLong();
 					timeStamps.put(Path.fromPortableString(key), Long.valueOf(timestamp));
 				}
 			} catch (IOException e) {
-				if (timestampsFile.exists())
+				if (timestampsFile.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					Util.log(e, "Unable to read external time stamps"); //$NON-NLS-1$
 			}
 			this.externalTimeStamps = timeStamps;
@@ -541,7 +541,7 @@ public class DeltaProcessingState implements IResourceChangeListener {
 				return this.javaProjectNamesCache;
 			}
 			HashSet<String> result = new LinkedHashSet<>();
-			for (IJavaProject project : projects) {
+			for (IJavaProject project : projects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				result.add(project.getElementName());
 			}
 			return this.javaProjectNamesCache = result;
@@ -557,14 +557,14 @@ public class DeltaProcessingState implements IResourceChangeListener {
 		return JavaCore.getPlugin().getStateLocation().append("externalLibsTimeStamps").toFile(); //$NON-NLS-1$
 	}
 
-	public void saveExternalLibTimeStamps() throws CoreException {
+	public void saveExternalLibTimeStamps() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.externalTimeStamps == null) return;
 
 		// cleanup to avoid any leak ( https://bugs.eclipse.org/bugs/show_bug.cgi?id=244849 )
-		HashSet<IPath> toRemove = new HashSet<>();
+		HashSet<IPath> toRemove = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		if (this.roots != null) {
 			Enumeration<IPath> keys = this.externalTimeStamps.keys();
-			while (keys.hasMoreElements()) {
+			while (keys.hasMoreElements()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPath key = keys.nextElement();
 				if (this.roots.get(key) == null) {
 					toRemove.add(key);
@@ -573,9 +573,9 @@ public class DeltaProcessingState implements IResourceChangeListener {
 		}
 
 		File timestamps = getTimeStampsFile();
-		try (DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(timestamps)))){
+		try (DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(timestamps)))){ //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			out.writeInt(this.externalTimeStamps.size() - toRemove.size());
-			for (Entry<IPath, Long> entry : this.externalTimeStamps.entrySet()) {
+			for (Entry<IPath, Long> entry : this.externalTimeStamps.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPath key = entry.getKey();
 				if (!toRemove.contains(key)) {
 					out.writeUTF(key.toPortableString());
@@ -592,7 +592,7 @@ public class DeltaProcessingState implements IResourceChangeListener {
 	/*
 	 * Update the roots that are affected by the addition or the removal of the given container resource.
 	 */
-	public synchronized void updateRoots(IPath containerPath, IResourceDelta containerDelta, DeltaProcessor deltaProcessor) {
+	public synchronized void updateRoots(IPath containerPath, IResourceDelta containerDelta, DeltaProcessor deltaProcessor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<IPath, RootInfo> updatedRoots;
 		Map<IPath, List<RootInfo>> otherUpdatedRoots;
 		if (containerDelta.getKind() == IResourceDelta.REMOVED) {
@@ -604,7 +604,7 @@ public class DeltaProcessingState implements IResourceChangeListener {
 		}
 		int containerSegmentCount = containerPath.segmentCount();
 		boolean containerIsProject = containerSegmentCount == 1;
-		for (Entry<IPath, RootInfo> entry : updatedRoots.entrySet()) {
+		for (Entry<IPath, RootInfo> entry : updatedRoots.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IPath path = entry.getKey();
 			if (containerPath.isPrefixOf(path) && !containerPath.equals(path)) {
 				IResourceDelta rootDelta = containerDelta.findMember(path.removeFirstSegments(containerSegmentCount));
@@ -618,7 +618,7 @@ public class DeltaProcessingState implements IResourceChangeListener {
 
 				List<RootInfo> rootList = otherUpdatedRoots.get(path);
 				if (rootList != null) {
-					for (RootInfo ri : rootList) {
+					for (RootInfo ri : rootList) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (!containerIsProject
 								|| !ri.project.getPath().isPrefixOf(path)) { // only consider folder roots that are not included in the container
 							deltaProcessor.updateCurrentDeltaAndIndex(rootDelta, IJavaElement.PACKAGE_FRAGMENT_ROOT, ri);
@@ -636,10 +636,10 @@ public class DeltaProcessingState implements IResourceChangeListener {
 		final Map<IJavaProject, IJavaProject[]> projectDependencies;
 
 		public RootInfos() {
-			this.roots = new LinkedHashMap<>();
-			this.otherRoots = new HashMap<>();
-			this.sourceAttachments = new HashMap<>();
-			this.projectDependencies = new HashMap<>();
+			this.roots = new LinkedHashMap<>(); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
+			this.otherRoots = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+			this.sourceAttachments = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+			this.projectDependencies = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		}
 	}
 }

@@ -48,16 +48,16 @@ class OnDemandComputer {
 	 *            simple names of static single imports which must be preserved as single
 	 *            imports and not reduced into on-demand imports
 	 */
-	Collection<OnDemandReduction> identifyPossibleReductions(
+	Collection<OnDemandReduction> identifyPossibleReductions( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			Set<ImportName> imports,
 			Set<ImportName> touchedContainers,
 			Set<String> typeExplicitSimpleNames,
 			Set<String> staticExplicitSimpleNames) {
-		Collection<OnDemandReduction> candidates = new ArrayList<>();
+		Collection<OnDemandReduction> candidates = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		Map<ImportName, Collection<ImportName>> importsByContainer = mapByContainer(imports);
 
-		for (Map.Entry<ImportName, Collection<ImportName>> containerAndImports : importsByContainer.entrySet()) {
+		for (Map.Entry<ImportName, Collection<ImportName>> containerAndImports : importsByContainer.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ImportName containerOnDemand = containerAndImports.getKey();
 
 			// Imports from an unnamed package should not be reduced (see bug 461863).
@@ -83,15 +83,15 @@ class OnDemandComputer {
 		return candidates;
 	}
 
-	private Map<ImportName, Collection<ImportName>> mapByContainer(Collection<ImportName> imports) {
-		Map<ImportName, Collection<ImportName>> importsByContainer = new HashMap<>();
-		for (ImportName importName : imports) {
+	private Map<ImportName, Collection<ImportName>> mapByContainer(Collection<ImportName> imports) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		Map<ImportName, Collection<ImportName>> importsByContainer = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		for (ImportName importName : imports) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!importName.isModule) {
 				ImportName containerOnDemand = importName.getContainerOnDemand();
 
 				Collection<ImportName> containerImports = importsByContainer.get(containerOnDemand);
 				if (containerImports == null) {
-					containerImports = new ArrayList<>();
+					containerImports = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 					importsByContainer.put(containerOnDemand, containerImports);
 				}
 
@@ -102,15 +102,15 @@ class OnDemandComputer {
 		return importsByContainer;
 	}
 
-	private OnDemandReduction maybeReduce(
+	private OnDemandReduction maybeReduce( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			ImportName containerOnDemand,
 			Collection<ImportName> containerImports,
 			int onDemandThreshold,
 			Set<String> explicitSimpleNames) {
 		boolean containerHasOnDemand = false;
-		Collection<ImportName> reducibleImports = new ArrayList<>();
+		Collection<ImportName> reducibleImports = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
-		for (ImportName currentImport : containerImports) {
+		for (ImportName currentImport : containerImports) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (currentImport.isOnDemand()) {
 				containerHasOnDemand = true;
 			} else {

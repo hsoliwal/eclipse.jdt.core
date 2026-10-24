@@ -50,7 +50,7 @@ protected void setUp() throws Exception {
 /*
  * Write files for self-hosting debug.
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void writeFiles(String[] sources) {
 
 	// Get write directory path
@@ -66,7 +66,7 @@ protected void writeFiles(String[] sources) {
 
 	// Write sources to dir
 	int length = sources.length / 2;
-	for (int i=0; i<length; i++) {
+	for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 		// Get pathes
 		IPath filePath = new Path(sources[2*i]).removeFirstSegments(2); // remove project and source folder
@@ -74,42 +74,42 @@ protected void writeFiles(String[] sources) {
 		String fileDir = dirPath.toString();
 		String typeName = filePath.removeFileExtension().lastSegment();
 		if (i==0 && !typeName.equals("package-info")) {
-			System.err.println("Invalid type name: '"+typeName+"' for test "+testName);
+			System.err.println("Invalid type name: '"+typeName+"' for test "+testName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			continue;
 		}
 
 		// Create package dirs or delete dirs if already exist
 		File packageDir = new File(WRITE_DIR_FILE, fileDir);
 		if (!PACKAGE_FILES.contains(packageDir)) {
-			if (packageDir.exists()) {
+			if (packageDir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				PACKAGE_FILES.add(packageDir);
 				Util.flushDirectoryContent(packageDir);
-			} else if (packageDir.mkdirs()) {
+			} else if (packageDir.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				PACKAGE_FILES.add(packageDir);
 			} else {
-				System.err.println(packageDir+" does not exist and CANNOT be created!!!");
+				System.err.println(packageDir+" does not exist and CANNOT be created!!!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				continue;
 			}
 		}
 
 		// Create test dir
 		File testDir = new File(packageDir, testName);
-		if (!testDir.exists() && !testDir.mkdir()) {
-			System.err.println(testDir+" does not exist and CANNOT be created!!!");
+		if (!testDir.exists() && !testDir.mkdir()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			System.err.println(testDir+" does not exist and CANNOT be created!!!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			continue;
 		}
 
 		// Store names info
-		String fullPathName = testDir.getAbsolutePath()+"\\"+typeName+".java";
-		System.out.println("Write file "+fullPathName);
+		String fullPathName = testDir.getAbsolutePath()+"\\"+typeName+".java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		System.out.println("Write file "+fullPathName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String contents = null;
 		if (i==0) { // package-info
 			contents = sources[2*i+1].substring(0, sources[2*i+1].lastIndexOf(';'));
-			contents += "."+testName+";\n";
+			contents += "."+testName+";\n"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
 			int index = sources[2*i+1].indexOf(';');
 			contents = sources[2*i+1].substring(0, index);
-			contents += "."+testName;
+			contents += "."+testName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			contents += sources[2*i+1].substring(index);
 		}
 		Util.writeToFile(contents, fullPathName);
@@ -119,7 +119,7 @@ protected void writeFiles(String[] sources) {
 /**
  * @category Tests for tag names completion
  */
-public void test001() throws JavaModelException {
+public void test001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"/**\n" +
 		" * Completion on empty tag name:\n" +
@@ -128,7 +128,7 @@ public void test001() throws JavaModelException {
 		"package javadoc;\n";
 	completeInJavadoc("/Completion/src/javadoc/package-info.java", source, true, "@");
 	assertResults(
-		"author[JAVADOC_BLOCK_TAG]{@author, null, null, author, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
+		"author[JAVADOC_BLOCK_TAG]{@author, null, null, author, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"see[JAVADOC_BLOCK_TAG]{@see, null, null, see, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
 		"version[JAVADOC_BLOCK_TAG]{@version, null, null, version, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
 		"category[JAVADOC_BLOCK_TAG]{@category, null, null, category, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
@@ -164,7 +164,7 @@ public void test003() throws JavaModelException {
 		"package javadoc;\n";
 	completeInJavadoc("/Completion/src/javadoc/package-info.java", source, true, "@a");
 	assertResults(
-		"author[JAVADOC_BLOCK_TAG]{@author, null, null, author, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
+		"author[JAVADOC_BLOCK_TAG]{@author, null, null, author, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"apiNote[JAVADOC_BLOCK_TAG]{@apiNote, null, null, apiNote, null, "+this.positions+JAVADOC_RELEVANCE+"}"
 	);
 }
@@ -178,7 +178,7 @@ public void test004() throws JavaModelException {
 		"package javadoc;\n";
 	completeInJavadoc("/Completion/src/javadoc/package-info.java", source, true, "@ser");
 	assertResults(
-		"serial[JAVADOC_BLOCK_TAG]{@serial, null, null, serial, null, "+this.positions+JAVADOC_RELEVANCE+"}"
+		"serial[JAVADOC_BLOCK_TAG]{@serial, null, null, serial, null, "+this.positions+JAVADOC_RELEVANCE+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -191,7 +191,7 @@ public void test005() throws JavaModelException {
 		"package javadoc;\n";
 	completeInJavadoc("/Completion/src/javadoc/package-info.java", source, true, "@since");
 	assertResults(
-		"since[JAVADOC_BLOCK_TAG]{@since, null, null, since, null, "+this.positions+JAVADOC_RELEVANCE+"}"
+		"since[JAVADOC_BLOCK_TAG]{@since, null, null, since, null, "+this.positions+JAVADOC_RELEVANCE+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -203,7 +203,7 @@ public void test006() throws JavaModelException {
 		"package javadoc;\n";
 	completeInJavadoc("/Completion/src/javadoc/package-info.java", source, true, "@");
 	assertResults(
-		"link[JAVADOC_INLINE_TAG]{{@link}, null, null, link, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
+		"link[JAVADOC_INLINE_TAG]{{@link}, null, null, link, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"docRoot[JAVADOC_INLINE_TAG]{{@docRoot}, null, null, docRoot, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
 		"linkplain[JAVADOC_INLINE_TAG]{{@linkplain}, null, null, linkplain, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
 		"value[JAVADOC_INLINE_TAG]{{@value}, null, null, value, null, "+this.positions+JAVADOC_RELEVANCE+"}"
@@ -218,7 +218,7 @@ public void test007() throws JavaModelException {
 		"package javadoc;\n";
 	completeInJavadoc("/Completion/src/javadoc/package-info.java", source, true, "@d");
 	assertResults(
-		"docRoot[JAVADOC_INLINE_TAG]{{@docRoot}, null, null, docRoot, null, "+this.positions+JAVADOC_RELEVANCE+"}"
+		"docRoot[JAVADOC_INLINE_TAG]{{@docRoot}, null, null, docRoot, null, "+this.positions+JAVADOC_RELEVANCE+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -234,7 +234,7 @@ public void test010() throws JavaModelException {
 		"package javadoc.tags;\n";
 	completeInJavadoc("/Completion/src/javadoc/tags/package-info.java", source, true, "Obj");
 	assertResults(
-		"Object[TYPE_REF]{Object, java.lang, Ljava.lang.Object;, null, null, "+this.positions+R_DRICUNRJ+"}"
+		"Object[TYPE_REF]{Object, java.lang, Ljava.lang.Object;, null, null, "+this.positions+R_DRICUNRJ+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -247,7 +247,7 @@ public void test011() throws JavaModelException {
 		"package javadoc.tags;\n";
 	completeInJavadoc("/Completion/src/javadoc/tags/package-info.java", source, true, "BasicTestRef");
 	assertResults(
-		"BasicTestReferences[TYPE_REF]{org.eclipse.jdt.core.tests.BasicTestReferences, org.eclipse.jdt.core.tests, Lorg.eclipse.jdt.core.tests.BasicTestReferences;, null, null, "+this.positions+R_DRICNR+"}"
+		"BasicTestReferences[TYPE_REF]{org.eclipse.jdt.core.tests.BasicTestReferences, org.eclipse.jdt.core.tests, Lorg.eclipse.jdt.core.tests.BasicTestReferences;, null, null, "+this.positions+R_DRICNR+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -261,7 +261,7 @@ public void test012() throws JavaModelException {
 		"package javadoc.tags;\n";
 	completeInJavadoc("/Completion/src/javadoc/tags/package-info.java", source, true, "org.eclipse.jdt.core.tests.BasicTestRef");
 	assertResults(
-		"BasicTestReferences[TYPE_REF]{org.eclipse.jdt.core.tests.BasicTestReferences, org.eclipse.jdt.core.tests, Lorg.eclipse.jdt.core.tests.BasicTestReferences;, null, null, "+this.positions+R_DRICQNR+"}"
+		"BasicTestReferences[TYPE_REF]{org.eclipse.jdt.core.tests.BasicTestReferences, org.eclipse.jdt.core.tests, Lorg.eclipse.jdt.core.tests.BasicTestReferences;, null, null, "+this.positions+R_DRICQNR+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -275,7 +275,7 @@ public void test013() throws JavaModelException {
 		"package javadoc.tags;\n";
 	completeInJavadoc("/Completion/src/javadoc/tags/package-info.java", source, true, "java.la");
 	assertResults(
-		"java.lang.annotation[PACKAGE_REF]{java.lang.annotation, java.lang.annotation, null, null, null, "+this.positions+R_DRICQNR+"}\n" +
+		"java.lang.annotation[PACKAGE_REF]{java.lang.annotation, java.lang.annotation, null, null, null, "+this.positions+R_DRICQNR+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"java.lang[PACKAGE_REF]{java.lang, java.lang, null, null, null, "+this.positions+R_DRICQNR+"}\n" +
 		"java.lang.invoke[PACKAGE_REF]{java.lang.invoke, java.lang.invoke, null, null, null, "+this.positions+R_DRICQNR+"}"
 	);
@@ -290,7 +290,7 @@ public void test014() throws JavaModelException {
 		"package javadoc.tags;\n";
 	completeInJavadoc("/Completion/src/javadoc/tags/package-info.java", source, true, "pack.Bin");
 	assertSortedResults(
-		"Bin1[TYPE_REF]{pack.Bin1, pack, Lpack.Bin1;, null, null, "+this.positions+R_DRICQNR+"}\n" +
+		"Bin1[TYPE_REF]{pack.Bin1, pack, Lpack.Bin1;, null, null, "+this.positions+R_DRICQNR+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Bin2[TYPE_REF]{pack.Bin2, pack, Lpack.Bin2;, null, null, "+this.positions+R_DRICQNR+"}\n" +
 		"Bin3[TYPE_REF]{pack.Bin3, pack, Lpack.Bin3;, null, null, "+this.positions+R_DRICQNR+"}\n" +
 		"Bin4[TYPE_REF]{pack.Bin4, pack, Lpack.Bin4;, null, null, "+this.positions+R_DRICQNR+"}\n" +
@@ -308,7 +308,7 @@ public void test015() throws JavaModelException {
 		"package javadoc.tags;\n";
 	completeInJavadoc("/Completion/src/javadoc/tags/package-info.java", source, true, "I");
 	assertSortedResults(
-		"IllegalMonitorStateException[TYPE_REF]{IllegalMonitorStateException, java.lang, Ljava.lang.IllegalMonitorStateException;, null, null, "+this.positions+R_DRICUNRJ+"}\n" +
+		"IllegalMonitorStateException[TYPE_REF]{IllegalMonitorStateException, java.lang, Ljava.lang.IllegalMonitorStateException;, null, null, "+this.positions+R_DRICUNRJ+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"InterruptedException[TYPE_REF]{InterruptedException, java.lang, Ljava.lang.InterruptedException;, null, null, "+this.positions+R_DRICUNRJ+"}\n" +
 		"Inherited[TYPE_REF]{java.lang.annotation.Inherited, java.lang.annotation, Ljava.lang.annotation.Inherited;, null, null, "+this.positions+R_DRICNRJ+"}\n" +
 		"Iterator[TYPE_REF]{java.util.Iterator, java.util, Ljava.util.Iterator;, null, null, "+this.positions+R_DRICNRJ+"}"
@@ -338,11 +338,11 @@ public void test021() throws JavaModelException {
 		"package javadoc.tags;\n";
 	completeInJavadoc("/Completion/src/javadoc/tags/package-info.java", source, true, "FIE");
 	assertResults(
-		"FIELD[FIELD_REF]{FIELD, Lorg.eclipse.jdt.core.tests.BasicTestReferences;, I, FIELD, null, "+this.positions+R_DRICNR+"}"
+		"FIELD[FIELD_REF]{FIELD, Lorg.eclipse.jdt.core.tests.BasicTestReferences;, I, FIELD, null, "+this.positions+R_DRICNR+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
-public void test022() throws JavaModelException {
+public void test022() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] sources = {
 		"/Completion/src/javadoc/tags/package-info.java",
 			"/**\n" +
@@ -358,7 +358,7 @@ public void test022() throws JavaModelException {
 	};
 	completeInJavadoc(sources, true, "bar");
 	assertResults(
-		"bar[FIELD_REF]{bar, Ljavadoc.tags.OtherTypes;, I, bar, null, "+this.positions+R_DRICENNRNS+"}"
+		"bar[FIELD_REF]{bar, Ljavadoc.tags.OtherTypes;, I, bar, null, "+this.positions+R_DRICENNRNS+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -373,7 +373,7 @@ public void test023() throws JavaModelException {
 	assertResults("");
 }
 
-public void test024() throws JavaModelException {
+public void test024() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"/**\n" +
 		" * Completion after:\n" +
@@ -382,7 +382,7 @@ public void test024() throws JavaModelException {
 		"package javadoc.tags;\n";
 	completeInJavadoc("/Completion/src/javadoc/tags/package-info.java", source, true, "#", 0); // empty token
 	assertResults(
-		"FIELD[FIELD_REF]{FIELD, Lorg.eclipse.jdt.core.tests.BasicTestReferences;, I, FIELD, null, "+this.positions+R_DRICNR+"}\n" +
+		"FIELD[FIELD_REF]{FIELD, Lorg.eclipse.jdt.core.tests.BasicTestReferences;, I, FIELD, null, "+this.positions+R_DRICNR+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"wait[METHOD_REF]{wait(long, int), Ljava.lang.Object;, (JI)V, wait, (millis, nanos), "+this.positions+R_DRICNRNS+"}\n" +
 		"wait[METHOD_REF]{wait(long), Ljava.lang.Object;, (J)V, wait, (millis), "+this.positions+R_DRICNRNS+"}\n" +
 		"wait[METHOD_REF]{wait(), Ljava.lang.Object;, ()V, wait, null, "+this.positions+R_DRICNRNS+"}\n" +
@@ -398,7 +398,7 @@ public void test024() throws JavaModelException {
 	);
 }
 
-public void test025() throws JavaModelException {
+public void test025() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] sources = {
 		"/Completion/src/javadoc/tags/package-info.java",
 			"/**\n" +
@@ -415,7 +415,7 @@ public void test025() throws JavaModelException {
 	};
 	completeInJavadoc(sources, true, "#", 0); // empty token
 	assertResults(
-		"obj[FIELD_REF]{obj, Ljavadoc.tags.OtherTypes;, Ljava.lang.Object;, obj, null, "+this.positions+R_DRICNRNS+"}\n" +
+		"obj[FIELD_REF]{obj, Ljavadoc.tags.OtherTypes;, Ljava.lang.Object;, obj, null, "+this.positions+R_DRICNRNS+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"foo[FIELD_REF]{foo, Ljavadoc.tags.OtherTypes;, I, foo, null, "+this.positions+R_DRICNRNS+"}\n" +
 		"wait[METHOD_REF]{wait(long, int), Ljava.lang.Object;, (JI)V, wait, (millis, nanos), "+this.positions+R_DRICNRNS+"}\n" +
 		"wait[METHOD_REF]{wait(long), Ljava.lang.Object;, (J)V, wait, (millis), "+this.positions+R_DRICNRNS+"}\n" +
@@ -435,7 +435,7 @@ public void test025() throws JavaModelException {
 /**
  * @category Tests for methods completion
  */
-public void test030() throws JavaModelException {
+public void test030() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] sources = {
 		"/Completion/src/javadoc/tags/package-info.java",
 			"/**\n" +
@@ -451,10 +451,10 @@ public void test030() throws JavaModelException {
 	};
 	completeInJavadoc(sources, true, "meth");
 	assertResults(
-		"method[METHOD_REF]{method(), Ljavadoc.tags.OtherTypes;, ()V, method, null, "+this.positions+R_DRICNRNS+"}"
+		"method[METHOD_REF]{method(), Ljavadoc.tags.OtherTypes;, ()V, method, null, "+this.positions+R_DRICNRNS+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
-public void test031() throws JavaModelException {
+public void test031() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] sources = {
 		"/Completion/src/javadoc/tags/package-info.java",
 			"/**\n" +
@@ -471,7 +471,7 @@ public void test031() throws JavaModelException {
 	};
 	completeInJavadoc(sources, true, "#", 0); // empty token
 	assertResults(
-		"method[METHOD_REF]{method(), Ljavadoc.tags.OtherTypes;, ()V, method, null, "+this.positions+R_DRICNRNS+"}\n" +
+		"method[METHOD_REF]{method(), Ljavadoc.tags.OtherTypes;, ()V, method, null, "+this.positions+R_DRICNRNS+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"foo[METHOD_REF]{foo(), Ljavadoc.tags.OtherTypes;, ()V, foo, null, "+this.positions+R_DRICNRNS+"}\n" +
 		"wait[METHOD_REF]{wait(long, int), Ljava.lang.Object;, (JI)V, wait, (millis, nanos), "+this.positions+R_DRICNRNS+"}\n" +
 		"wait[METHOD_REF]{wait(long), Ljava.lang.Object;, (J)V, wait, (millis), "+this.positions+R_DRICNRNS+"}\n" +
@@ -491,7 +491,7 @@ public void test031() throws JavaModelException {
 /**
  * @category Tests for constructors completion
  */
-public void test040() throws JavaModelException {
+public void test040() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] sources = {
 		"/Completion/src/javadoc/tags/package-info.java",
 			"/**\n" +
@@ -508,10 +508,10 @@ public void test040() throws JavaModelException {
 	};
 	completeInJavadoc(sources, true, "O", 2); // 2nd occurence
 	assertResults(
-		"OtherTypes[METHOD_REF<CONSTRUCTOR>]{OtherTypes(), Ljavadoc.tags.OtherTypes;, ()V, OtherTypes, null, "+this.positions+R_DRINR+"}"
+		"OtherTypes[METHOD_REF<CONSTRUCTOR>]{OtherTypes(), Ljavadoc.tags.OtherTypes;, ()V, OtherTypes, null, "+this.positions+R_DRINR+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
-public void test041() throws JavaModelException {
+public void test041() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] sources = {
 		"/Completion/src/javadoc/tags/package-info.java",
 			"/**\n" +
@@ -528,7 +528,7 @@ public void test041() throws JavaModelException {
 	};
 	completeInJavadoc(sources, true, "O", 2); // 2nd occurence
 	assertResults(
-		"OtherTypes[METHOD_REF<CONSTRUCTOR>]{OtherTypes(Object, String), Ljavadoc.tags.OtherTypes;, (Ljava.lang.Object;Ljava.lang.String;)V, OtherTypes, (obj, str), "+this.positions+R_DRINR+"}\n" +
+		"OtherTypes[METHOD_REF<CONSTRUCTOR>]{OtherTypes(Object, String), Ljavadoc.tags.OtherTypes;, (Ljava.lang.Object;Ljava.lang.String;)V, OtherTypes, (obj, str), "+this.positions+R_DRINR+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"OtherTypes[METHOD_REF<CONSTRUCTOR>]{OtherTypes(int), Ljavadoc.tags.OtherTypes;, (I)V, OtherTypes, (x), "+this.positions+R_DRINR+"}"
 	);
 }

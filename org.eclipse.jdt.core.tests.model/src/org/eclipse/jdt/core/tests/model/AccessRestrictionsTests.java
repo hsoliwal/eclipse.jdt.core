@@ -104,7 +104,7 @@ public void tearDownSuite() throws Exception {
  * accessible in a prereq project, even though it is accessed through an intermediate
  * accessible class.
  */
-public void test001() throws CoreException {
+public void test001() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit x1 = null, x2 = null, y =  null, z = null;
 	try {
 		createJavaProject(
@@ -215,7 +215,7 @@ public void test001() throws CoreException {
  * accessible in a prereq project, even though it is accessed through an intermediate
  * accessible class.
  */
-public void test002() throws CoreException {
+public void test002() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit x1 = null, x2 = null, y =  null;
 	try {
 		createJavaProject(
@@ -295,7 +295,7 @@ public void test002() throws CoreException {
  * accessible in a prereq project, even though it is accessed through an intermediate
  * accessible class.
  */
-public void test003() throws CoreException {
+public void test003() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit x1 = null, x2 = null, y =  null;
 	try {
 		createJavaProject(
@@ -413,7 +413,7 @@ public void test003() throws CoreException {
 /*
  * Discouraged access message - type via discouraged rule.
  */
-public void test004() throws CoreException {
+public void test004() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit x1 = null, z = null;
 	try {
 		createJavaProject(
@@ -475,7 +475,7 @@ public void test004() throws CoreException {
  * accessible in a prereq project, even though it implements an interface that defines
  * the same method and the interface being accessible.
  */
-public void test005() throws CoreException {
+public void test005() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit x1 = null, i1 = null, x2 = null, y =  null;
 	try {
 		createJavaProject(
@@ -583,7 +583,7 @@ public void test005() throws CoreException {
  * Missing access restriction violation error on generic type.
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=122995
  */
-public void test006() throws CoreException {
+public void test006() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit x = null, y =  null;
 	try {
 		IJavaProject p1 = createJavaProject(
@@ -672,7 +672,7 @@ public void test006() throws CoreException {
  * More complex type parameter - stretch the erasure.
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=122995
  */
-public void test007() throws CoreException {
+public void test007() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit x = null, y =  null;
 	try {
 		IJavaProject p1 = createJavaProject(
@@ -764,7 +764,7 @@ public void test007() throws CoreException {
  * Method case.
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=122995
  */
-public void test008() throws CoreException {
+public void test008() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit x1 = null, x2 = null, y =  null;
 	try {
 		IJavaProject p1 = createJavaProject(
@@ -866,7 +866,7 @@ public void test008() throws CoreException {
  * Field case.
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=122995
  */
-public void test009() throws CoreException {
+public void test009() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit x1 = null, x2 = null, y =  null;
 	try {
 		IJavaProject p1 = createJavaProject(
@@ -952,7 +952,7 @@ public void test009() throws CoreException {
  * Inner type case.
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=122995
  */
-public void test010() throws CoreException {
+public void test010() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit x1 = null, x2 = null, y =  null;
 	try {
 		IJavaProject p1 = createJavaProject(
@@ -1073,7 +1073,7 @@ public void test010() throws CoreException {
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=122885
  * Checking library messages.
  */
-public void test011() throws CoreException {
+public void test011() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit y = null;
 	try {
 		createJavaProject(
@@ -1138,7 +1138,7 @@ public void test011() throws CoreException {
 		deleteProject("P1");
 	}
 }
-public void testBug545766() throws CoreException {
+public void testBug545766() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit x1 = null, z = null;
 	try {
 		createJavaProject(
@@ -1203,7 +1203,7 @@ public void testBug545766() throws CoreException {
 				"----------\n";
 		this.problemRequestor = new ProblemRequestor(src);
 		z = getWorkingCopy("/P2/src/p2/Z.java", src);
-		assertProblems("Unexpected problems value", "----------\n" + expectedProblems);
+		assertProblems("Unexpected problems value", "----------\n" + expectedProblems); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		int start = src.indexOf("E1");
 		IJavaElement[] elements = z.codeSelect(start, 2);
@@ -1228,7 +1228,7 @@ public void testBug545766() throws CoreException {
 		deleteProjects(new String[] {"P1", "P2"});
 	}
 }
-public void testBug545766_JEP211() throws CoreException {
+public void testBug545766_JEP211() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// no warnings on imports anymore since JDK 9 (deprecation & access restriction)
 	ICompilationUnit x1 = null, z = null;
 	try {
@@ -1289,7 +1289,7 @@ public void testBug545766_JEP211() throws CoreException {
 				"----------\n";
 		this.problemRequestor = new ProblemRequestor(src);
 		z = getWorkingCopy("/P2/src/p2/Z.java", src);
-		assertProblems("Unexpected problems value", "----------\n" + expectedProblems);
+		assertProblems("Unexpected problems value", "----------\n" + expectedProblems); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		int start = src.indexOf("E1");
 		IJavaElement[] elements = z.codeSelect(start, 2);
@@ -1315,7 +1315,7 @@ public void testBug545766_JEP211() throws CoreException {
 	}
 }
 
-public void testGH4333() throws CoreException {
+public void testGH4333() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit x1 = null, z = null;
 	try {
 		createJavaProject(

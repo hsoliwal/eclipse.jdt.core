@@ -44,11 +44,11 @@ public class ASTPositionsTest extends ConverterTestSetup {
 	}
 
 	private void sanityCheck(final String contents, CompilationUnit compilationUnit) {
-		for (int i = 0, max = contents.length(); i < max; i++) {
+		for (int i = 0, max = contents.length(); i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     		final int lineNumber = compilationUnit.getLineNumber(i);
-    		assertTrue("Wrong value for char at " + i, lineNumber >= 1);
+    		assertTrue("Wrong value for char at " + i, lineNumber >= 1); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     		final int columnNumber = compilationUnit.getColumnNumber(i);
-    		assertTrue("Wrong value for char at " + i, columnNumber >= 0);
+    		assertTrue("Wrong value for char at " + i, columnNumber >= 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     		final int position = compilationUnit.getPosition(lineNumber, columnNumber);
     		assertTrue("Wrong value for char at i", position >= 0);
     		if (position == 0) {
@@ -67,7 +67,7 @@ public class ASTPositionsTest extends ConverterTestSetup {
 		}
 	}
 
-	public void test001() throws JavaModelException {
+	public void test001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.workingCopy = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
     	final String contents =
 			"import java.util.Map;\r\n" +

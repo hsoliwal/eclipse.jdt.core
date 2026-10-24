@@ -111,7 +111,7 @@ public class ASTRewriteFlattener extends ASTVisitor {
 
 	public ASTRewriteFlattener(RewriteEventStore store) {
 		this.store= store;
-		this.result= new StringBuilder();
+		this.result= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	}
 
 	/**
@@ -136,45 +136,45 @@ public class ASTRewriteFlattener extends ASTVisitor {
 	 * @param modifiers the modifiers
 	 * @param buf The <code>StringBuilder</code> to write the result to.
 	 */
-	public static void printModifiers(int modifiers, StringBuilder buf) {
+	public static void printModifiers(int modifiers, StringBuilder buf) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (Modifier.isPublic(modifiers)) {
-			buf.append("public "); //$NON-NLS-1$
+			buf.append("public "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (Modifier.isProtected(modifiers)) {
-			buf.append("protected "); //$NON-NLS-1$
+			buf.append("protected "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (Modifier.isPrivate(modifiers)) {
-			buf.append("private "); //$NON-NLS-1$
+			buf.append("private "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (Modifier.isStatic(modifiers)) {
-			buf.append("static "); //$NON-NLS-1$
+			buf.append("static "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (Modifier.isAbstract(modifiers)) {
-			buf.append("abstract "); //$NON-NLS-1$
+			buf.append("abstract "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (Modifier.isFinal(modifiers)) {
-			buf.append("final "); //$NON-NLS-1$
+			buf.append("final "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (Modifier.isSynchronized(modifiers)) {
-			buf.append("synchronized "); //$NON-NLS-1$
+			buf.append("synchronized "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (Modifier.isVolatile(modifiers)) {
-			buf.append("volatile "); //$NON-NLS-1$
+			buf.append("volatile "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (Modifier.isNative(modifiers)) {
-			buf.append("native "); //$NON-NLS-1$
+			buf.append("native "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (Modifier.isStrictfp(modifiers)) {
-			buf.append("strictfp "); //$NON-NLS-1$
+			buf.append("strictfp "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (Modifier.isTransient(modifiers)) {
-			buf.append("transient "); //$NON-NLS-1$
+			buf.append("transient "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (Modifier.isSealed(modifiers)) {
-			buf.append("sealed ");//$NON-NLS-1$
+			buf.append("sealed ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (Modifier.isNonSealed(modifiers)) {
-			buf.append("non-sealed ");//$NON-NLS-1$
+			buf.append("non-sealed ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
@@ -201,9 +201,9 @@ public class ASTRewriteFlattener extends ASTVisitor {
 
 	protected void visitList(ASTNode parent, StructuralPropertyDescriptor childProperty, String separator) {
 		List list= getChildList(parent, childProperty);
-		for (int i= 0; i < list.size(); i++) {
+		for (int i= 0; i < list.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (separator != null && i > 0) {
-				this.result.append(separator);
+				this.result.append(separator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			((ASTNode) list.get(i)).accept(this);
 		}
@@ -212,22 +212,22 @@ public class ASTRewriteFlattener extends ASTVisitor {
 	protected void visitList(ASTNode parent, StructuralPropertyDescriptor childProperty, String separator, String lead, String post) {
 		List list= getChildList(parent, childProperty);
 		if (!list.isEmpty()) {
-			this.result.append(lead);
-			for (int i= 0; i < list.size(); i++) {
+			this.result.append(lead); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (int i= 0; i < list.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (separator != null && i > 0) {
-					this.result.append(separator);
+					this.result.append(separator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				((ASTNode) list.get(i)).accept(this);
 			}
-			this.result.append(post);
+			this.result.append(post); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
 	private void visitExtraDimensions(ASTNode node, SimplePropertyDescriptor dimensions, ChildListPropertyDescriptor dimensionsInfo) {
 		if (node.getAST().apiLevel() < JLS8_INTERNAL) {
 			int extraDimensions= getIntAttribute(node, dimensions);
-			for (int i = 0; i < extraDimensions; i++) {
-				this.result.append("[]"); //$NON-NLS-1$
+			for (int i = 0; i < extraDimensions; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				this.result.append("[]"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		} else {
 			visitList(node, dimensionsInfo, String.valueOf(' '), String.valueOf(' '), Util.EMPTY_STRING);
@@ -236,24 +236,24 @@ public class ASTRewriteFlattener extends ASTVisitor {
 
 	@Override
 	public boolean visit(AnonymousClassDeclaration node) {
-		this.result.append('{');
+		this.result.append('{'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, AnonymousClassDeclaration.BODY_DECLARATIONS_PROPERTY, null);
-		this.result.append('}');
+		this.result.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(ArrayAccess node) {
 		getChildNode(node, ArrayAccess.ARRAY_PROPERTY).accept(this);
-		this.result.append('[');
+		this.result.append('['); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, ArrayAccess.INDEX_PROPERTY).accept(this);
-		this.result.append(']');
+		this.result.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(ArrayCreation node) {
-		this.result.append("new "); //$NON-NLS-1$
+		this.result.append("new "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ArrayType arrayType= (ArrayType) getChildNode(node, ArrayCreation.TYPE_PROPERTY);
 
 		// get the element type and count dimensions
@@ -266,7 +266,7 @@ public class ASTRewriteFlattener extends ASTVisitor {
 		} else {
 			elementType = (Type) getChildNode(arrayType, INTERNAL_ARRAY_COMPONENT_TYPE_PROPERTY);
 			dimensions = 1; // always include this array type
-			while (elementType.isArrayType()) {
+			while (elementType.isArrayType()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				dimensions++;
 				elementType = (Type) getChildNode(elementType, INTERNAL_ARRAY_COMPONENT_TYPE_PROPERTY);
 			}
@@ -277,17 +277,17 @@ public class ASTRewriteFlattener extends ASTVisitor {
 		// add "<annotations> [ <dimension> ]" for each dimension expression
 		List list= getChildList(node, ArrayCreation.DIMENSIONS_PROPERTY);
 		int size = list.size();
-		for (int i= 0; i < size; i++) {
+		for (int i= 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			internalVisitDimensionAnnotations(arrayType, i, astLevelGTE8);
-			this.result.append('[');
+			this.result.append('['); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			((ASTNode) list.get(i)).accept(this);
-			this.result.append(']');
+			this.result.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		// add "<annotations> []" for each extra array dimension
-		for (int i= list.size(); i < dimensions; i++) {
+		for (int i= list.size(); i < dimensions; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			internalVisitDimensionAnnotations(arrayType, i, astLevelGTE8);
-			this.result.append("[]"); //$NON-NLS-1$
+			this.result.append("[]"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		ASTNode initializer= getChildNode(node, ArrayCreation.INITIALIZER_PROPERTY);
@@ -306,9 +306,9 @@ public class ASTRewriteFlattener extends ASTVisitor {
 
 	@Override
 	public boolean visit(ArrayInitializer node) {
-		this.result.append('{');
+		this.result.append('{'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, ArrayInitializer.EXPRESSIONS_PROPERTY, String.valueOf(','));
-		this.result.append('}');
+		this.result.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -316,7 +316,7 @@ public class ASTRewriteFlattener extends ASTVisitor {
 	public boolean visit(ArrayType node) {
 		if (node.getAST().apiLevel() < JLS8_INTERNAL) {
 			getChildNode(node, INTERNAL_ARRAY_COMPONENT_TYPE_PROPERTY).accept(this);
-			this.result.append("[]"); //$NON-NLS-1$
+			this.result.append("[]"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
 			getChildNode(node, ArrayType.ELEMENT_TYPE_PROPERTY).accept(this);
 			visitList(node, ArrayType.DIMENSIONS_PROPERTY, Util.EMPTY_STRING, Util.EMPTY_STRING, Util.EMPTY_STRING);
@@ -326,96 +326,96 @@ public class ASTRewriteFlattener extends ASTVisitor {
 
 	@Override
 	public boolean visit(AssertStatement node) {
-		this.result.append("assert "); //$NON-NLS-1$
+		this.result.append("assert "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, AssertStatement.EXPRESSION_PROPERTY).accept(this);
 
 		ASTNode message= getChildNode(node, AssertStatement.MESSAGE_PROPERTY);
 		if (message != null) {
-			this.result.append(':');
+			this.result.append(':'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			message.accept(this);
 		}
-		this.result.append(';');
+		this.result.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(Assignment node) {
 		getChildNode(node, Assignment.LEFT_HAND_SIDE_PROPERTY).accept(this);
-		this.result.append(getAttribute(node, Assignment.OPERATOR_PROPERTY).toString());
+		this.result.append(getAttribute(node, Assignment.OPERATOR_PROPERTY).toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, Assignment.RIGHT_HAND_SIDE_PROPERTY).accept(this);
 		return false;
 	}
 
 	@Override
 	public boolean visit(Block node) {
-		this.result.append('{');
+		this.result.append('{'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, Block.STATEMENTS_PROPERTY, null);
-		this.result.append('}');
+		this.result.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(BooleanLiteral node) {
 		if (node.booleanValue() == true) {
-			this.result.append("true"); //$NON-NLS-1$
+			this.result.append("true"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
-			this.result.append("false"); //$NON-NLS-1$
+			this.result.append("false"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return false;
 	}
 
 	@Override
 	public boolean visit(BreakStatement node) {
-		this.result.append("break"); //$NON-NLS-1$
+		this.result.append("break"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ASTNode label= getChildNode(node, BreakStatement.LABEL_PROPERTY);
 		if (label != null) {
-			this.result.append(' ');
+			this.result.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			label.accept(this);
 		}
-		this.result.append(';');
+		this.result.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(CaseDefaultExpression node) {
 		if (DOMASTUtil.isPatternSupported(node.getAST())) {
-			this.result.append("default");//$NON-NLS-1$}
+			this.result.append("default");//$NON-NLS-1$} //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return false;
 	}
 
 	@Override
 	public boolean visit(CastExpression node) {
-		this.result.append('(');
+		this.result.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, CastExpression.TYPE_PROPERTY).accept(this);
-		this.result.append(')');
+		this.result.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, CastExpression.EXPRESSION_PROPERTY).accept(this);
 		return false;
 	}
 
 	@Override
 	public boolean visit(CatchClause node) {
-		this.result.append("catch ("); //$NON-NLS-1$
+		this.result.append("catch ("); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, CatchClause.EXCEPTION_PROPERTY).accept(this);
-		this.result.append(')');
+		this.result.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, CatchClause.BODY_PROPERTY).accept(this);
 		return false;
 	}
 
 	@Override
 	public boolean visit(CharacterLiteral node) {
-		this.result.append(getAttribute(node, CharacterLiteral.ESCAPED_VALUE_PROPERTY));
+		this.result.append(getAttribute(node, CharacterLiteral.ESCAPED_VALUE_PROPERTY)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(ClassInstanceCreation node) {
 		ASTNode expression= getChildNode(node, ClassInstanceCreation.EXPRESSION_PROPERTY);
 		if (expression != null) {
 			expression.accept(this);
-			this.result.append('.');
+			this.result.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		this.result.append("new ");//$NON-NLS-1$
+		this.result.append("new ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (node.getAST().apiLevel() == JLS2_INTERNAL) {
 			getChildNode(node, INTERNAL_CIC_NAME_PROPERTY).accept(this);
 		} else {
@@ -423,9 +423,9 @@ public class ASTRewriteFlattener extends ASTVisitor {
 			getChildNode(node, ClassInstanceCreation.TYPE_PROPERTY).accept(this);
 		}
 
-		this.result.append('(');
+		this.result.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, ClassInstanceCreation.ARGUMENTS_PROPERTY, String.valueOf(','));
-		this.result.append(')');
+		this.result.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ASTNode decl= getChildNode(node, ClassInstanceCreation.ANONYMOUS_CLASS_DECLARATION_PROPERTY);
 		if (decl != null) {
 			decl.accept(this);
@@ -454,9 +454,9 @@ public class ASTRewriteFlattener extends ASTVisitor {
 	@Override
 	public boolean visit(ConditionalExpression node) {
 		getChildNode(node, ConditionalExpression.EXPRESSION_PROPERTY).accept(this);
-		this.result.append('?');
+		this.result.append('?'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, ConditionalExpression.THEN_EXPRESSION_PROPERTY).accept(this);
-		this.result.append(':');
+		this.result.append(':'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, ConditionalExpression.ELSE_EXPRESSION_PROPERTY).accept(this);
 		return false;
 	}
@@ -466,80 +466,80 @@ public class ASTRewriteFlattener extends ASTVisitor {
 		if (node.getAST().apiLevel() >= JLS3_INTERNAL) {
 			visitList(node, ConstructorInvocation.TYPE_ARGUMENTS_PROPERTY, String.valueOf(','), String.valueOf('<'), String.valueOf('>'));
 		}
-		this.result.append("this("); //$NON-NLS-1$
+		this.result.append("this("); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, ConstructorInvocation.ARGUMENTS_PROPERTY, String.valueOf(','));
-		this.result.append(");"); //$NON-NLS-1$
+		this.result.append(");"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(ContinueStatement node) {
-		this.result.append("continue"); //$NON-NLS-1$
+		this.result.append("continue"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ASTNode label= getChildNode(node, ContinueStatement.LABEL_PROPERTY);
 		if (label != null) {
-			this.result.append(' ');
+			this.result.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			label.accept(this);
 		}
-		this.result.append(';');
+		this.result.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(CreationReference node) {
 		getChildNode(node, CreationReference.TYPE_PROPERTY).accept(this);
-		this.result.append("::"); //$NON-NLS-1$
+		this.result.append("::"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, CreationReference.TYPE_ARGUMENTS_PROPERTY, Util.EMPTY_STRING, String.valueOf('<'), String.valueOf('>'));
-		this.result.append("new"); //$NON-NLS-1$
+		this.result.append("new"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(Dimension node) {
 		visitList(node, Dimension.ANNOTATIONS_PROPERTY, String.valueOf(' '), String.valueOf(' '), String.valueOf(' '));
-		this.result.append("[]"); //$NON-NLS-1$
+		this.result.append("[]"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(DoStatement node) {
-		this.result.append("do "); //$NON-NLS-1$
+		this.result.append("do "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, DoStatement.BODY_PROPERTY).accept(this);
-		this.result.append(" while ("); //$NON-NLS-1$
+		this.result.append(" while ("); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, DoStatement.EXPRESSION_PROPERTY).accept(this);
-		this.result.append(");"); //$NON-NLS-1$
+		this.result.append(");"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(EmptyStatement node) {
-		this.result.append(';');
+		this.result.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(ExportsDirective node) {
-		this.result.append("exports "); //$NON-NLS-1$
+		this.result.append("exports "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, ExportsDirective.NAME_PROPERTY).accept(this);
 		List<Name> modules = node.modules();
 		if (modules.size() > 0) {
-			this.result.append(" to "); //$NON-NLS-1$
+			this.result.append(" to "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			visitList(node, ExportsDirective.MODULES_PROPERTY, Util.COMMA_SEPARATOR, Util.EMPTY_STRING, Util.EMPTY_STRING);
 		}
-		this.result.append(';');
+		this.result.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(ExpressionStatement node) {
 		getChildNode(node, ExpressionStatement.EXPRESSION_PROPERTY).accept(this);
-		this.result.append(';');
+		this.result.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(FieldAccess node) {
 		getChildNode(node, FieldAccess.EXPRESSION_PROPERTY).accept(this);
-		this.result.append('.');
+		this.result.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, FieldAccess.NAME_PROPERTY).accept(this);
 		return false;
 	}
@@ -556,24 +556,24 @@ public class ASTRewriteFlattener extends ASTVisitor {
 			visitList(node, FieldDeclaration.MODIFIERS2_PROPERTY, String.valueOf(' '), Util.EMPTY_STRING, String.valueOf(' '));
 		}
 		getChildNode(node, FieldDeclaration.TYPE_PROPERTY).accept(this);
-		this.result.append(' ');
+		this.result.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, FieldDeclaration.FRAGMENTS_PROPERTY, String.valueOf(','));
-		this.result.append(';');
+		this.result.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(ForStatement node) {
-		this.result.append("for ("); //$NON-NLS-1$
+		this.result.append("for ("); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, ForStatement.INITIALIZERS_PROPERTY, String.valueOf(','));
-		this.result.append(';');
+		this.result.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ASTNode expression= getChildNode(node, ForStatement.EXPRESSION_PROPERTY);
 		if (expression != null) {
 			expression.accept(this);
 		}
-		this.result.append(';');
+		this.result.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, ForStatement.UPDATERS_PROPERTY, String.valueOf(','));
-		this.result.append(')');
+		this.result.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, ForStatement.BODY_PROPERTY).accept(this);
 		return false;
 	}
@@ -582,7 +582,7 @@ public class ASTRewriteFlattener extends ASTVisitor {
 	public boolean visit(GuardedPattern node) {
 		if (DOMASTUtil.isPatternSupported(node.getAST())) {
 			node.getPattern().accept(this);
-			this.result.append(" when ");//$NON-NLS-1$
+			this.result.append(" when ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			node.getExpression().accept(this);
 		}
 		return false;
@@ -590,50 +590,50 @@ public class ASTRewriteFlattener extends ASTVisitor {
 
 	@Override
 	public boolean visit(IfStatement node) {
-		this.result.append("if ("); //$NON-NLS-1$
+		this.result.append("if ("); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, IfStatement.EXPRESSION_PROPERTY).accept(this);
-		this.result.append(')');
+		this.result.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, IfStatement.THEN_STATEMENT_PROPERTY).accept(this);
 		ASTNode elseStatement= getChildNode(node, IfStatement.ELSE_STATEMENT_PROPERTY);
 		if (elseStatement != null) {
-			this.result.append(" else "); //$NON-NLS-1$
+			this.result.append(" else "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			elseStatement.accept(this);
 		}
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(ImportDeclaration node) {
-		this.result.append("import "); //$NON-NLS-1$
+		this.result.append("import "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (node.getAST().apiLevel() >= JLS23_INTERNAL) {
 			List<Modifier> modifiers = node.modifiers();
-			for (Modifier modifier : modifiers) {
-				this.result.append(modifier.getKeyword().toString()).append(' ');
+			for (Modifier modifier : modifiers) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				this.result.append(modifier.getKeyword().toString()).append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		} else if (node.getAST().apiLevel() >= JLS3_INTERNAL) {
 			if (getBooleanAttribute(node, ImportDeclaration.STATIC_PROPERTY)) {
-				this.result.append("static ");//$NON-NLS-1$
+				this.result.append("static ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		getChildNode(node, ImportDeclaration.NAME_PROPERTY).accept(this);
 		if (getBooleanAttribute(node, ImportDeclaration.ON_DEMAND_PROPERTY)) {
-			this.result.append(".*"); //$NON-NLS-1$
+			this.result.append(".*"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		this.result.append(';');
+		this.result.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(InfixExpression node) {
 		getChildNode(node, InfixExpression.LEFT_OPERAND_PROPERTY).accept(this);
-		this.result.append(' ');
+		this.result.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		String operator= getAttribute(node, InfixExpression.OPERATOR_PROPERTY).toString();
 
-		this.result.append(operator);
-		this.result.append(' ');
+		this.result.append(operator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		this.result.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, InfixExpression.RIGHT_OPERAND_PROPERTY).accept(this);
 
-		String separator= ' ' + operator + ' ';
+		String separator= ' ' + operator + ' '; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		visitList(node, InfixExpression.EXTENDED_OPERANDS_PROPERTY, separator, separator, Util.EMPTY_STRING);
 		return false;
 	}
@@ -656,7 +656,7 @@ public class ASTRewriteFlattener extends ASTVisitor {
 	@Override
 	public boolean visit(InstanceofExpression node) {
 		getChildNode(node, InstanceofExpression.LEFT_OPERAND_PROPERTY).accept(this);
-		this.result.append(" instanceof "); //$NON-NLS-1$
+		this.result.append(" instanceof "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, InstanceofExpression.RIGHT_OPERAND_PROPERTY).accept(this);
 		return false;
 	}
@@ -665,7 +665,7 @@ public class ASTRewriteFlattener extends ASTVisitor {
 	@Override
 	public boolean visit(PatternInstanceofExpression node) {
 		getChildNode(node, PatternInstanceofExpression.LEFT_OPERAND_PROPERTY).accept(this);
-		this.result.append(" instanceof "); //$NON-NLS-1$
+		this.result.append(" instanceof "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (node.getAST().apiLevel() >= AST.JLS20) {
 			getChildNode(node, PatternInstanceofExpression.PATTERN_PROPERTY).accept(this);
 		} else {
@@ -682,25 +682,25 @@ public class ASTRewriteFlattener extends ASTVisitor {
 
 	@Override
 	public boolean visit(Javadoc node) {
-		this.result.append("/**"); //$NON-NLS-1$
+		this.result.append("/**"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		List list= getChildList(node, Javadoc.TAGS_PROPERTY);
-		for (Object child : list) {
-			this.result.append("\n * "); //$NON-NLS-1$
+		for (Object child : list) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			this.result.append("\n * "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			((ASTNode) child).accept(this);
 		}
-		this.result.append("\n */"); //$NON-NLS-1$
+		this.result.append("\n */"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(JavaDocTextElement node) {
-		this.result.append(getAttribute(node, JavaDocTextElement.TEXT_PROPERTY));
+		this.result.append(getAttribute(node, JavaDocTextElement.TEXT_PROPERTY)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 	@Override
 	public boolean visit(LabeledStatement node) {
 		getChildNode(node, LabeledStatement.LABEL_PROPERTY).accept(this);
-		this.result.append(": "); //$NON-NLS-1$
+		this.result.append(": "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, LabeledStatement.BODY_PROPERTY).accept(this);
 		return false;
 	}
@@ -714,16 +714,16 @@ public class ASTRewriteFlattener extends ASTVisitor {
 		}
 
 		if (hasParentheses)
-			this.result.append('(');
+			this.result.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, LambdaExpression.PARAMETERS_PROPERTY, String.valueOf(','));
 		if (hasParentheses)
-			this.result.append(')');
-		this.result.append("->"); //$NON-NLS-1$
+			this.result.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		this.result.append("->"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, LambdaExpression.BODY_PROPERTY).accept(this);
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(MethodDeclaration node) {
 		ASTNode javadoc= getChildNode(node, MethodDeclaration.JAVADOC_PROPERTY);
 		if (javadoc != null) {
@@ -745,34 +745,34 @@ public class ASTRewriteFlattener extends ASTVisitor {
 					returnType.accept(this);
 				} else {
 					// methods really ought to have a return type
-					this.result.append("void");//$NON-NLS-1$
+					this.result.append("void");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
-			this.result.append(' ');
+			this.result.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		getChildNode(node, MethodDeclaration.NAME_PROPERTY).accept(this);
 		if (!(DOMASTUtil.isRecordDeclarationSupported(node.getAST()) && getBooleanAttribute(node, MethodDeclaration.COMPACT_CONSTRUCTOR_PROPERTY))) {
-			this.result.append('(');
+			this.result.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			// receiver parameter
 			if (node.getAST().apiLevel() >= JLS8_INTERNAL) {
 				ASTNode receiverType = getChildNode(node, MethodDeclaration.RECEIVER_TYPE_PROPERTY);
 				if (receiverType != null) {
 					receiverType.accept(this);
-					this.result.append(' ');
+					this.result.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					ASTNode qualifier = getChildNode(node, MethodDeclaration.RECEIVER_QUALIFIER_PROPERTY);
 					if (qualifier != null) {
 						qualifier.accept(this);
-						this.result.append('.');
+						this.result.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
-					this.result.append("this"); //$NON-NLS-1$
+					this.result.append("this"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					if (getChildList(node, MethodDeclaration.PARAMETERS_PROPERTY).size() > 0) {
-						this.result.append(',');
+						this.result.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
 			}
 
 			visitList(node, MethodDeclaration.PARAMETERS_PROPERTY, String.valueOf(','));
-			this.result.append(')');
+			this.result.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		visitExtraDimensions(node, INTERNAL_METHOD_EXTRA_DIMENSIONS_PROPERTY, MethodDeclaration.EXTRA_DIMENSIONS2_PROPERTY);
 
@@ -781,7 +781,7 @@ public class ASTRewriteFlattener extends ASTVisitor {
 		visitList(node, exceptionsProperty, String.valueOf(','), " throws ", Util.EMPTY_STRING); //$NON-NLS-1$
 		ASTNode body= getChildNode(node, MethodDeclaration.BODY_PROPERTY);
 		if (body == null) {
-			this.result.append(';');
+			this.result.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
 			body.accept(this);
 		}
@@ -796,13 +796,13 @@ public class ASTRewriteFlattener extends ASTVisitor {
 		}
 		visitList(node, ModuleDeclaration.ANNOTATIONS_PROPERTY, String.valueOf(' '), Util.EMPTY_STRING, String.valueOf(' '));
 		if (getBooleanAttribute(node, ModuleDeclaration.OPEN_PROPERTY)) {
-			this.result.append("open ");//$NON-NLS-1$
+			this.result.append("open ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		this.result.append("module "); //$NON-NLS-1$
+		this.result.append("module "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, ModuleDeclaration.NAME_PROPERTY).accept(this);
-		this.result.append('{');
+		this.result.append('{'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, ModuleDeclaration.MODULE_DIRECTIVES_PROPERTY, null);
-		this.result.append('}');
+		this.result.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -811,34 +811,34 @@ public class ASTRewriteFlattener extends ASTVisitor {
 		ASTNode expression= getChildNode(node, MethodInvocation.EXPRESSION_PROPERTY);
 		if (expression != null) {
 			expression.accept(this);
-			this.result.append('.');
+			this.result.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (node.getAST().apiLevel() >= JLS3_INTERNAL) {
 			visitList(node, MethodInvocation.TYPE_ARGUMENTS_PROPERTY, String.valueOf(','), String.valueOf('<'), String.valueOf('>'));
 		}
 
 		getChildNode(node, MethodInvocation.NAME_PROPERTY).accept(this);
-		this.result.append('(');
+		this.result.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, MethodInvocation.ARGUMENTS_PROPERTY, String.valueOf(','));
-		this.result.append(')');
+		this.result.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(NullLiteral node) {
-		this.result.append("null"); //$NON-NLS-1$
+		this.result.append("null"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(NullPattern node) {
-		this.result.append("null");//$NON-NLS-1$
+		this.result.append("null");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(NumberLiteral node) {
-		this.result.append(getAttribute(node, NumberLiteral.TOKEN_PROPERTY).toString());
+		this.result.append(getAttribute(node, NumberLiteral.TOKEN_PROPERTY).toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -851,41 +851,41 @@ public class ASTRewriteFlattener extends ASTVisitor {
 			}
 			visitList(node, PackageDeclaration.ANNOTATIONS_PROPERTY, String.valueOf(' '));
 		}
-		this.result.append("package "); //$NON-NLS-1$
+		this.result.append("package "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, PackageDeclaration.NAME_PROPERTY).accept(this);
-		this.result.append(';');
+		this.result.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(ParenthesizedExpression node) {
-		this.result.append('(');
+		this.result.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, ParenthesizedExpression.EXPRESSION_PROPERTY).accept(this);
-		this.result.append(')');
+		this.result.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(PostfixExpression node) {
 		getChildNode(node, PostfixExpression.OPERAND_PROPERTY).accept(this);
-		this.result.append(getAttribute(node, PostfixExpression.OPERATOR_PROPERTY).toString());
+		this.result.append(getAttribute(node, PostfixExpression.OPERATOR_PROPERTY).toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(PrefixExpression node) {
-		this.result.append(getAttribute(node, PrefixExpression.OPERATOR_PROPERTY).toString());
+		this.result.append(getAttribute(node, PrefixExpression.OPERATOR_PROPERTY).toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, PrefixExpression.OPERAND_PROPERTY).accept(this);
 		return false;
 	}
 
 	@Override
 	public boolean visit(ProvidesDirective node) {
-		this.result.append("provides "); //$NON-NLS-1$
+		this.result.append("provides "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, ProvidesDirective.NAME_PROPERTY).accept(this);
-		this.result.append(" with "); //$NON-NLS-1$
+		this.result.append(" with "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, ProvidesDirective.IMPLEMENTATIONS_PROPERTY, Util.EMPTY_STRING, Util.COMMA_SEPARATOR, Util.EMPTY_STRING);
-		this.result.append(';');
+		this.result.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -894,45 +894,45 @@ public class ASTRewriteFlattener extends ASTVisitor {
 		if (node.getAST().apiLevel() >= JLS8_INTERNAL) {
 			visitList(node, PrimitiveType.ANNOTATIONS_PROPERTY, String.valueOf(' '), Util.EMPTY_STRING, String.valueOf(' '));
 		}
-		this.result.append(getAttribute(node, PrimitiveType.PRIMITIVE_TYPE_CODE_PROPERTY).toString());
+		this.result.append(getAttribute(node, PrimitiveType.PRIMITIVE_TYPE_CODE_PROPERTY).toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(QualifiedName node) {
 		getChildNode(node, QualifiedName.QUALIFIER_PROPERTY).accept(this);
-		this.result.append('.');
+		this.result.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, QualifiedName.NAME_PROPERTY).accept(this);
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(RecordDeclaration node) {
 		ASTNode javadoc= getChildNode(node, RecordDeclaration.JAVADOC_PROPERTY);
 		if (javadoc != null) {
 			javadoc.accept(this);
 		}
 		visitList(node, RecordDeclaration.MODIFIERS2_PROPERTY, String.valueOf(' '), Util.EMPTY_STRING, String.valueOf(' '));
-		this.result.append("record ");//$NON-NLS-1$
+		this.result.append("record ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, RecordDeclaration.NAME_PROPERTY).accept(this);
-		this.result.append(' ');
+		this.result.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		visitList(node, RecordDeclaration.TYPE_PARAMETERS_PROPERTY, String.valueOf(','), String.valueOf('<'), String.valueOf('>'));
 
-		this.result.append('(');
+		this.result.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, RecordDeclaration.RECORD_COMPONENTS_PROPERTY, String.valueOf(','));
-		this.result.append(')');
+		this.result.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
-		this.result.append(' ');
+		this.result.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, RecordDeclaration.SUPER_INTERFACE_TYPES_PROPERTY, String.valueOf(','), "implements ", Util.EMPTY_STRING); //$NON-NLS-1$
 
-		this.result.append('{');
+		this.result.append('{'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, RecordDeclaration.BODY_DECLARATIONS_PROPERTY, Util.EMPTY_STRING);
-		this.result.append('}');
+		this.result.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(RecordPattern node) {
 		if (DOMASTUtil.isPatternSupported(node.getAST())) {
 
@@ -941,18 +941,18 @@ public class ASTRewriteFlattener extends ASTVisitor {
 			}
 			boolean addBraces = node.patterns().size() >= 1;
 			if (addBraces) {
-				this.result.append("(");//$NON-NLS-1$
+				this.result.append("(");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			int size = 1;
-			for (Pattern pattern : node.patterns()) {
+			for (Pattern pattern : node.patterns()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					visitPattern(pattern);
 					if (addBraces && size < node.patterns().size()) {
-						this.result.append(", ");//$NON-NLS-1$
+						this.result.append(", ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 					size++;
 			}
 			if (addBraces) {
-				this.result.append(")");//$NON-NLS-1$
+				this.result.append(")");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		return false;
@@ -962,10 +962,10 @@ public class ASTRewriteFlattener extends ASTVisitor {
 	public boolean visit(EitherOrMultiPattern node) {
 		if (DOMASTUtil.isEitherOrMultiPatternSupported(node.getAST())) {
 			int size = 1;
-			for (Pattern pattern : node.patterns()) {
+			for (Pattern pattern : node.patterns()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				visitPattern(pattern);
 				if (size < node.patterns().size()) {
-					this.result.append(", ");//$NON-NLS-1$
+					this.result.append(", ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				size++;
 			}
@@ -988,28 +988,28 @@ public class ASTRewriteFlattener extends ASTVisitor {
 
 	@Override
 	public boolean visit(RequiresDirective node) {
-		this.result.append("requires "); //$NON-NLS-1$
+		this.result.append("requires "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, RequiresDirective.MODIFIERS_PROPERTY, String.valueOf(' '), Util.EMPTY_STRING, String.valueOf(' '));
 		getChildNode(node, RequiresDirective.NAME_PROPERTY).accept(this);
-		this.result.append(';');
+		this.result.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(ReturnStatement node) {
-		this.result.append("return"); //$NON-NLS-1$
+		this.result.append("return"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ASTNode expression= getChildNode(node, ReturnStatement.EXPRESSION_PROPERTY);
 		if (expression != null) {
-			this.result.append(' ');
+			this.result.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			expression.accept(this);
 		}
-		this.result.append(';');
+		this.result.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(SimpleName node) {
-		this.result.append(getAttribute(node, SimpleName.IDENTIFIER_PROPERTY));
+		this.result.append(getAttribute(node, SimpleName.IDENTIFIER_PROPERTY)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -1022,7 +1022,7 @@ public class ASTRewriteFlattener extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(SingleVariableDeclaration node) {
 		if (node.getAST().apiLevel() == JLS2_INTERNAL) {
 			printModifiers(getIntAttribute(node, INTERNAL_VARIABLE_MODIFIERS_PROPERTY), this.result);
@@ -1035,15 +1035,15 @@ public class ASTRewriteFlattener extends ASTVisitor {
 		}
 		if (node.getAST().apiLevel() >= JLS3_INTERNAL) {
 			if (getBooleanAttribute(node, SingleVariableDeclaration.VARARGS_PROPERTY)) {
-				this.result.append("...");//$NON-NLS-1$
+				this.result.append("...");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		this.result.append(' ');
+		this.result.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, SingleVariableDeclaration.NAME_PROPERTY).accept(this);
 		visitExtraDimensions(node, INTERNAL_VARIABLE_EXTRA_DIMENSIONS_PROPERTY, SingleVariableDeclaration.EXTRA_DIMENSIONS2_PROPERTY);
 		ASTNode initializer= getChildNode(node, SingleVariableDeclaration.INITIALIZER_PROPERTY);
 		if (initializer != null) {
-			this.result.append('=');
+			this.result.append('='); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			initializer.accept(this);
 		}
 		return false;
@@ -1051,7 +1051,7 @@ public class ASTRewriteFlattener extends ASTVisitor {
 
 	@Override
 	public boolean visit(StringLiteral node) {
-		this.result.append(getAttribute(node, StringLiteral.ESCAPED_VALUE_PROPERTY));
+		this.result.append(getAttribute(node, StringLiteral.ESCAPED_VALUE_PROPERTY)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -1060,14 +1060,14 @@ public class ASTRewriteFlattener extends ASTVisitor {
 		ASTNode expression= getChildNode(node, SuperConstructorInvocation.EXPRESSION_PROPERTY);
 		if (expression != null) {
 			expression.accept(this);
-			this.result.append('.');
+			this.result.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (node.getAST().apiLevel() >= JLS3_INTERNAL) {
 			visitList(node, SuperConstructorInvocation.TYPE_ARGUMENTS_PROPERTY, String.valueOf(','), String.valueOf('<'), String.valueOf('>'));
 		}
-		this.result.append("super("); //$NON-NLS-1$
+		this.result.append("super("); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, SuperConstructorInvocation.ARGUMENTS_PROPERTY, String.valueOf(','));
-		this.result.append(");"); //$NON-NLS-1$
+		this.result.append(");"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -1076,9 +1076,9 @@ public class ASTRewriteFlattener extends ASTVisitor {
 		ASTNode qualifier= getChildNode(node, SuperFieldAccess.QUALIFIER_PROPERTY);
 		if (qualifier != null) {
 			qualifier.accept(this);
-			this.result.append('.');
+			this.result.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		this.result.append("super."); //$NON-NLS-1$
+		this.result.append("super."); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, SuperFieldAccess.NAME_PROPERTY).accept(this);
 		return false;
 	}
@@ -1088,43 +1088,43 @@ public class ASTRewriteFlattener extends ASTVisitor {
 		ASTNode qualifier= getChildNode(node, SuperMethodInvocation.QUALIFIER_PROPERTY);
 		if (qualifier != null) {
 			qualifier.accept(this);
-			this.result.append('.');
+			this.result.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		this.result.append("super."); //$NON-NLS-1$
+		this.result.append("super."); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (node.getAST().apiLevel() >= JLS3_INTERNAL) {
 			visitList(node, SuperMethodInvocation.TYPE_ARGUMENTS_PROPERTY, String.valueOf(','), String.valueOf('<'), String.valueOf('>'));
 		}
 		getChildNode(node, SuperMethodInvocation.NAME_PROPERTY).accept(this);
-		this.result.append('(');
+		this.result.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, SuperMethodInvocation.ARGUMENTS_PROPERTY, String.valueOf(','));
-		this.result.append(')');
+		this.result.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(SwitchCase node) {
 		if ((node.getAST().apiLevel() >= JLS14_INTERNAL)) {
 			if (node.isDefault()) {
-				this.result.append("default");//$NON-NLS-1$
-				this.result.append(getBooleanAttribute(node, SwitchCase.SWITCH_LABELED_RULE_PROPERTY) ? " ->" : ":");//$NON-NLS-1$ //$NON-NLS-2$
+				this.result.append("default");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				this.result.append(getBooleanAttribute(node, SwitchCase.SWITCH_LABELED_RULE_PROPERTY) ? " ->" : ":");//$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				this.result.append("case ");//$NON-NLS-1$
-				for (Iterator it = node.expressions().iterator(); it.hasNext(); ) {
+				this.result.append("case ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (Iterator it = node.expressions().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Expression t = (Expression) it.next();
 						t.accept(this);
-						this.result.append(it.hasNext() ? ", " : ""); //$NON-NLS-1$ //$NON-NLS-2$
+						this.result.append(it.hasNext() ? ", " : ""); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				this.result.append(getBooleanAttribute(node, SwitchCase.SWITCH_LABELED_RULE_PROPERTY) ? " ->" : ":");//$NON-NLS-1$ //$NON-NLS-2$
+				this.result.append(getBooleanAttribute(node, SwitchCase.SWITCH_LABELED_RULE_PROPERTY) ? " ->" : ":");//$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		} else {
 			ASTNode expression= getChildNode(node, INTERNAL_SWITCH_EXPRESSION_PROPERTY);
 			if (expression == null) {
-				this.result.append("default"); //$NON-NLS-1$
+				this.result.append("default"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				this.result.append("case "); //$NON-NLS-1$
+				this.result.append("case "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				expression.accept(this);
 			}
-			this.result.append(':');
+			this.result.append(':'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return false;
 	}
@@ -1135,16 +1135,16 @@ public class ASTRewriteFlattener extends ASTVisitor {
 		return false;
 	}
 
-	private void visitSwitchNode(ASTNode node) {
-		this.result.append("switch ("); //$NON-NLS-1$
+	private void visitSwitchNode(ASTNode node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		this.result.append("switch ("); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (node instanceof SwitchExpression) {
 			getChildNode(node, SwitchExpression.EXPRESSION_PROPERTY).accept(this);
 		}
 		else if (node instanceof SwitchStatement) {
 			getChildNode(node, SwitchStatement.EXPRESSION_PROPERTY).accept(this);
 		}
-		this.result.append(')');
-		this.result.append('{');
+		this.result.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		this.result.append('{'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (node instanceof SwitchExpression) {
 			visitList(node, SwitchExpression.STATEMENTS_PROPERTY, null);
 		}
@@ -1152,7 +1152,7 @@ public class ASTRewriteFlattener extends ASTVisitor {
 			visitList(node, SwitchStatement.STATEMENTS_PROPERTY, null);
 		}
 
-		this.result.append('}');
+		this.result.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	@Override
@@ -1163,9 +1163,9 @@ public class ASTRewriteFlattener extends ASTVisitor {
 
 	@Override
 	public boolean visit(SynchronizedStatement node) {
-		this.result.append("synchronized ("); //$NON-NLS-1$
+		this.result.append("synchronized ("); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, SynchronizedStatement.EXPRESSION_PROPERTY).accept(this);
-		this.result.append(')');
+		this.result.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, SynchronizedStatement.BODY_PROPERTY).accept(this);
 		return false;
 	}
@@ -1175,35 +1175,35 @@ public class ASTRewriteFlattener extends ASTVisitor {
 		ASTNode qualifier= getChildNode(node, ThisExpression.QUALIFIER_PROPERTY);
 		if (qualifier != null) {
 			qualifier.accept(this);
-			this.result.append('.');
+			this.result.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		this.result.append("this"); //$NON-NLS-1$
+		this.result.append("this"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(ThrowStatement node) {
-		this.result.append("throw "); //$NON-NLS-1$
+		this.result.append("throw "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, ThrowStatement.EXPRESSION_PROPERTY).accept(this);
-		this.result.append(';');
+		this.result.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(TryStatement node) {
-		this.result.append("try "); //$NON-NLS-1$
+		this.result.append("try "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		int level = node.getAST().apiLevel();
 		if (level >= JLS4_INTERNAL) {
 			StructuralPropertyDescriptor desc = level < JLS9_INTERNAL ? INTERNAL_TRY_STATEMENT_RESOURCES_PROPERTY : TryStatement.RESOURCES2_PROPERTY;
 			visitList(node, desc, String.valueOf(';'), String.valueOf('('), String.valueOf(')'));
 		}
-		this.result.append(' ');
+		this.result.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, TryStatement.BODY_PROPERTY).accept(this);
-		this.result.append(' ');
+		this.result.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, TryStatement.CATCH_CLAUSES_PROPERTY, null);
 		ASTNode finallyClause= getChildNode(node, TryStatement.FINALLY_PROPERTY);
 		if (finallyClause != null) {
-			this.result.append(" finally "); //$NON-NLS-1$
+			this.result.append(" finally "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			finallyClause.accept(this);
 		}
 		return false;
@@ -1220,7 +1220,7 @@ public class ASTRewriteFlattener extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(TypeDeclaration node) {
 		int apiLevel= node.getAST().apiLevel();
 
@@ -1236,20 +1236,20 @@ public class ASTRewriteFlattener extends ASTVisitor {
 		}
 
 		boolean isInterface= getBooleanAttribute(node, TypeDeclaration.INTERFACE_PROPERTY);
-		this.result.append(isInterface ? "interface " : "class "); //$NON-NLS-1$ //$NON-NLS-2$
+		this.result.append(isInterface ? "interface " : "class "); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, TypeDeclaration.NAME_PROPERTY).accept(this);
 		if (apiLevel >= JLS3_INTERNAL) {
 			visitList(node, TypeDeclaration.TYPE_PARAMETERS_PROPERTY, String.valueOf(','), String.valueOf('<'), String.valueOf('>'));
 		}
 
-		this.result.append(' ');
+		this.result.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ChildPropertyDescriptor superClassProperty= (apiLevel == JLS2_INTERNAL) ? INTERNAL_TYPE_SUPERCLASS_PROPERTY : TypeDeclaration.SUPERCLASS_TYPE_PROPERTY;
 		ASTNode superclass= getChildNode(node, superClassProperty);
 		if (superclass != null) {
-			this.result.append("extends "); //$NON-NLS-1$
+			this.result.append("extends "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			superclass.accept(this);
-			this.result.append(' ');
+			this.result.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		ChildListPropertyDescriptor superInterfaceProperty= (apiLevel == JLS2_INTERNAL) ? INTERNAL_TYPE_SUPER_INTERFACES_PROPERTY : TypeDeclaration.SUPER_INTERFACE_TYPES_PROPERTY;
@@ -1260,9 +1260,9 @@ public class ASTRewriteFlattener extends ASTVisitor {
 		if (DOMASTUtil.isFeatureSupportedinAST(node.getAST(), Modifier.SEALED) && !node.permittedTypes().isEmpty()) {
 				visitList(node, TypeDeclaration.PERMITS_TYPES_PROPERTY, String.valueOf(','), lead, Util.EMPTY_STRING);
 		}
-		this.result.append('{');
+		this.result.append('{'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, TypeDeclaration.BODY_DECLARATIONS_PROPERTY, null);
-		this.result.append('}');
+		this.result.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -1279,7 +1279,7 @@ public class ASTRewriteFlattener extends ASTVisitor {
 	@Override
 	public boolean visit(TypeLiteral node) {
 		getChildNode(node, TypeLiteral.TYPE_PROPERTY).accept(this);
-		this.result.append(".class"); //$NON-NLS-1$
+		this.result.append(".class"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -1291,9 +1291,9 @@ public class ASTRewriteFlattener extends ASTVisitor {
 
 	@Override
 	public boolean visit(UsesDirective node) {
-		this.result.append("uses "); //$NON-NLS-1$
+		this.result.append("uses "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, UsesDirective.NAME_PROPERTY).accept(this);
-		this.result.append(';');
+		this.result.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -1305,7 +1305,7 @@ public class ASTRewriteFlattener extends ASTVisitor {
 			visitList(node, VariableDeclarationExpression.MODIFIERS2_PROPERTY, String.valueOf(' '), Util.EMPTY_STRING, String.valueOf(' '));
 		}
 		getChildNode(node, VariableDeclarationExpression.TYPE_PROPERTY).accept(this);
-		this.result.append(' ');
+		this.result.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, VariableDeclarationExpression.FRAGMENTS_PROPERTY, String.valueOf(','));
 		return false;
 	}
@@ -1316,7 +1316,7 @@ public class ASTRewriteFlattener extends ASTVisitor {
 		visitExtraDimensions(node, INTERNAL_FRAGMENT_EXTRA_DIMENSIONS_PROPERTY, VariableDeclarationFragment.EXTRA_DIMENSIONS2_PROPERTY);
 		ASTNode initializer= getChildNode(node, VariableDeclarationFragment.INITIALIZER_PROPERTY);
 		if (initializer != null) {
-			this.result.append('=');
+			this.result.append('='); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			initializer.accept(this);
 		}
 		return false;
@@ -1330,17 +1330,17 @@ public class ASTRewriteFlattener extends ASTVisitor {
 			visitList(node, VariableDeclarationStatement.MODIFIERS2_PROPERTY, String.valueOf(' '), Util.EMPTY_STRING, String.valueOf(' '));
 		}
 		getChildNode(node, VariableDeclarationStatement.TYPE_PROPERTY).accept(this);
-		this.result.append(' ');
+		this.result.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, VariableDeclarationStatement.FRAGMENTS_PROPERTY, String.valueOf(','));
-		this.result.append(';');
+		this.result.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(WhileStatement node) {
-		this.result.append("while ("); //$NON-NLS-1$
+		this.result.append("while ("); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, WhileStatement.EXPRESSION_PROPERTY).accept(this);
-		this.result.append(')');
+		this.result.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, WhileStatement.BODY_PROPERTY).accept(this);
 		return false;
 	}
@@ -1361,7 +1361,7 @@ public class ASTRewriteFlattener extends ASTVisitor {
 		if (qualifier != null) {
 			qualifier.accept(this);
 		}
-		this.result.append('#');
+		this.result.append('#'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, MemberRef.NAME_PROPERTY).accept(this);
 		return false;
 	}
@@ -1372,11 +1372,11 @@ public class ASTRewriteFlattener extends ASTVisitor {
 		if (qualifier != null) {
 			qualifier.accept(this);
 		}
-		this.result.append('#');
+		this.result.append('#'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, MethodRef.NAME_PROPERTY).accept(this);
-		this.result.append('(');
+		this.result.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, MethodRef.PARAMETERS_PROPERTY, ","); //$NON-NLS-1$
-		this.result.append(')');
+		this.result.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -1385,33 +1385,33 @@ public class ASTRewriteFlattener extends ASTVisitor {
 		getChildNode(node, MethodRefParameter.TYPE_PROPERTY).accept(this);
 		if (node.getAST().apiLevel() >= JLS3_INTERNAL) {
 			if (getBooleanAttribute(node, MethodRefParameter.VARARGS_PROPERTY)) {
-				this.result.append("..."); //$NON-NLS-1$
+				this.result.append("..."); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		ASTNode name= getChildNode(node, MethodRefParameter.NAME_PROPERTY);
 		if (name != null) {
-			this.result.append(' ');
+			this.result.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			name.accept(this);
 		}
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(TagElement node) {
 		Object tagName= getAttribute(node, TagElement.TAG_NAME_PROPERTY);
 		if (tagName != null) {
-			this.result.append((String) tagName);
+			this.result.append((String) tagName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		List list= getChildList(node, TagElement.FRAGMENTS_PROPERTY);
-		for (int i= 0; i < list.size(); i++) {
+		for (int i= 0; i < list.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (i > 0 || tagName != null) {
-				this.result.append(' ');
+				this.result.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			ASTNode curr= (ASTNode) list.get(i);
 			if (curr instanceof TagElement) {
-				this.result.append('{');
+				this.result.append('{'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				curr.accept(this);
-				this.result.append('}');
+				this.result.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
 				curr.accept(this);
 			}
@@ -1421,13 +1421,13 @@ public class ASTRewriteFlattener extends ASTVisitor {
 
 	@Override
 	public boolean visit(TextBlock node) {
-		this.result.append(getAttribute(node, TextBlock.ESCAPED_VALUE_PROPERTY));
+		this.result.append(getAttribute(node, TextBlock.ESCAPED_VALUE_PROPERTY)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(TextElement node) {
-		this.result.append(getAttribute(node, TextElement.TEXT_PROPERTY));
+		this.result.append(getAttribute(node, TextElement.TEXT_PROPERTY)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -1438,15 +1438,15 @@ public class ASTRewriteFlattener extends ASTVisitor {
 			javadoc.accept(this);
 		}
 		visitList(node, AnnotationTypeDeclaration.MODIFIERS2_PROPERTY, String.valueOf(' '), Util.EMPTY_STRING, String.valueOf(' '));
-		this.result.append("@interface ");//$NON-NLS-1$
+		this.result.append("@interface ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, AnnotationTypeDeclaration.NAME_PROPERTY).accept(this);
-		this.result.append('{');
+		this.result.append('{'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, AnnotationTypeDeclaration.BODY_DECLARATIONS_PROPERTY, Util.EMPTY_STRING);
-		this.result.append('}');
+		this.result.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(AnnotationTypeMemberDeclaration node) {
 		ASTNode javadoc= getChildNode(node, AnnotationTypeMemberDeclaration.JAVADOC_PROPERTY);
 		if (javadoc != null) {
@@ -1454,25 +1454,25 @@ public class ASTRewriteFlattener extends ASTVisitor {
 		}
 		visitList(node, AnnotationTypeMemberDeclaration.MODIFIERS2_PROPERTY, String.valueOf(' '), Util.EMPTY_STRING, String.valueOf(' '));
 		getChildNode(node, AnnotationTypeMemberDeclaration.TYPE_PROPERTY).accept(this);
-		this.result.append(' ');
+		this.result.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, AnnotationTypeMemberDeclaration.NAME_PROPERTY).accept(this);
-		this.result.append("()");//$NON-NLS-1$
+		this.result.append("()");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ASTNode def= getChildNode(node, AnnotationTypeMemberDeclaration.DEFAULT_PROPERTY);
 		if (def != null) {
-			this.result.append(" default ");//$NON-NLS-1$
+			this.result.append(" default ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			def.accept(this);
 		}
-		this.result.append(';');
+		this.result.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(EnhancedForStatement node) {
-		this.result.append("for (");//$NON-NLS-1$
+		this.result.append("for (");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, EnhancedForStatement.PARAMETER_PROPERTY).accept(this);
-		this.result.append(':');
+		this.result.append(':'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, EnhancedForStatement.EXPRESSION_PROPERTY).accept(this);
-		this.result.append(')');
+		this.result.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, EnhancedForStatement.BODY_PROPERTY).accept(this);
 		return false;
 	}
@@ -1500,22 +1500,22 @@ public class ASTRewriteFlattener extends ASTVisitor {
 			javadoc.accept(this);
 		}
 		visitList(node, EnumDeclaration.MODIFIERS2_PROPERTY, String.valueOf(' '), Util.EMPTY_STRING, String.valueOf(' '));
-		this.result.append("enum ");//$NON-NLS-1$
+		this.result.append("enum ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, EnumDeclaration.NAME_PROPERTY).accept(this);
-		this.result.append(' ');
+		this.result.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, EnumDeclaration.SUPER_INTERFACE_TYPES_PROPERTY, String.valueOf(','), "implements ", Util.EMPTY_STRING); //$NON-NLS-1$
 
-		this.result.append('{');
+		this.result.append('{'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, EnumDeclaration.ENUM_CONSTANTS_PROPERTY, String.valueOf(','), Util.EMPTY_STRING, Util.EMPTY_STRING);
 		visitList(node, EnumDeclaration.BODY_DECLARATIONS_PROPERTY, Util.EMPTY_STRING, String.valueOf(';'), Util.EMPTY_STRING);
-		this.result.append('}');
+		this.result.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(ExpressionMethodReference node) {
 		getChildNode(node, ExpressionMethodReference.EXPRESSION_PROPERTY).accept(this);
-		this.result.append("::"); //$NON-NLS-1$
+		this.result.append("::"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, ExpressionMethodReference.TYPE_ARGUMENTS_PROPERTY, Util.EMPTY_STRING, String.valueOf('<'), String.valueOf('>'));
 		node.getName().accept(this);
 		return false;
@@ -1523,7 +1523,7 @@ public class ASTRewriteFlattener extends ASTVisitor {
 
 	@Override
 	public boolean visit(MarkerAnnotation node) {
-		this.result.append('@');
+		this.result.append('@'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, MarkerAnnotation.TYPE_NAME_PROPERTY).accept(this);
 		return false;
 	}
@@ -1531,14 +1531,14 @@ public class ASTRewriteFlattener extends ASTVisitor {
 	@Override
 	public boolean visit(MemberValuePair node) {
 		getChildNode(node, MemberValuePair.NAME_PROPERTY).accept(this);
-		this.result.append('=');
+		this.result.append('='); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, MemberValuePair.VALUE_PROPERTY).accept(this);
 		return false;
 	}
 
 	@Override
 	public boolean visit(Modifier node) {
-		this.result.append(getAttribute(node, Modifier.KEYWORD_PROPERTY).toString());
+		this.result.append(getAttribute(node, Modifier.KEYWORD_PROPERTY).toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -1548,24 +1548,24 @@ public class ASTRewriteFlattener extends ASTVisitor {
 	 * @since 3.14
 	 */
 	public boolean visit(ModuleModifier node) {
-		this.result.append(getAttribute(node, ModuleModifier.KEYWORD_PROPERTY).toString());
+		this.result.append(getAttribute(node, ModuleModifier.KEYWORD_PROPERTY).toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(NormalAnnotation node) {
-		this.result.append('@');
+		this.result.append('@'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, NormalAnnotation.TYPE_NAME_PROPERTY).accept(this);
-		this.result.append('(');
+		this.result.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, NormalAnnotation.VALUES_PROPERTY, ", "); //$NON-NLS-1$
-		this.result.append(')');
+		this.result.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(NameQualifiedType node) {
 		getChildNode(node, NameQualifiedType.QUALIFIER_PROPERTY).accept(this);
-		this.result.append('.');
+		this.result.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (node.getAST().apiLevel() >= JLS8_INTERNAL) {
 			visitList(node, NameQualifiedType.ANNOTATIONS_PROPERTY, String.valueOf(' '), Util.EMPTY_STRING, String.valueOf(' '));
 		}
@@ -1576,16 +1576,16 @@ public class ASTRewriteFlattener extends ASTVisitor {
 	@Override
 	public boolean visit(ParameterizedType node) {
 		getChildNode(node, ParameterizedType.TYPE_PROPERTY).accept(this);
-		this.result.append('<');
+		this.result.append('<'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, ParameterizedType.TYPE_ARGUMENTS_PROPERTY, ", "); //$NON-NLS-1$
-		this.result.append('>');
+		this.result.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(QualifiedType node) {
 		getChildNode(node, QualifiedType.QUALIFIER_PROPERTY).accept(this);
-		this.result.append('.');
+		this.result.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (node.getAST().apiLevel() >= JLS8_INTERNAL) {
 			visitList(node, QualifiedType.ANNOTATIONS_PROPERTY, String.valueOf(' '), Util.EMPTY_STRING, String.valueOf(' '));
 		}
@@ -1595,11 +1595,11 @@ public class ASTRewriteFlattener extends ASTVisitor {
 
 	@Override
 	public boolean visit(SingleMemberAnnotation node) {
-		this.result.append('@');
+		this.result.append('@'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, SingleMemberAnnotation.TYPE_NAME_PROPERTY).accept(this);
-		this.result.append('(');
+		this.result.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		getChildNode(node, SingleMemberAnnotation.VALUE_PROPERTY).accept(this);
-		this.result.append(')');
+		this.result.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -1608,9 +1608,9 @@ public class ASTRewriteFlattener extends ASTVisitor {
 		ASTNode qualifier = getChildNode(node, SuperMethodReference.QUALIFIER_PROPERTY);
 		if (qualifier != null) {
 			qualifier.accept(this);
-			this.result.append('.');
+			this.result.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		this.result.append("super ::"); //$NON-NLS-1$
+		this.result.append("super ::"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, SuperMethodReference.TYPE_ARGUMENTS_PROPERTY, Util.EMPTY_STRING, String.valueOf('<'), String.valueOf('>'));
 		node.getName().accept(this);
 		return false;
@@ -1619,7 +1619,7 @@ public class ASTRewriteFlattener extends ASTVisitor {
 	@Override
 	public boolean visit(TypeMethodReference node) {
 		getChildNode(node, TypeMethodReference.TYPE_PROPERTY).accept(this);
-		this.result.append("::"); //$NON-NLS-1$
+		this.result.append("::"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitList(node, TypeMethodReference.TYPE_ARGUMENTS_PROPERTY, Util.EMPTY_STRING, String.valueOf('<'), String.valueOf('>'));
 		node.getName().accept(this);
 		return false;
@@ -1653,13 +1653,13 @@ public class ASTRewriteFlattener extends ASTVisitor {
 		if (node.getAST().apiLevel() >= JLS8_INTERNAL) {
 			visitList(node, WildcardType.ANNOTATIONS_PROPERTY, String.valueOf(' '), Util.EMPTY_STRING, String.valueOf(' '));
 		}
-		this.result.append('?');
+		this.result.append('?'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ASTNode bound = getChildNode(node, WildcardType.BOUND_PROPERTY);
 		if (bound != null) {
 			if (getBooleanAttribute(node, WildcardType.UPPER_BOUND_PROPERTY)) {
-				this.result.append(" extends ");//$NON-NLS-1$
+				this.result.append(" extends ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				this.result.append(" super ");//$NON-NLS-1$
+				this.result.append(" super ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			bound.accept(this);
 		}
@@ -1669,16 +1669,16 @@ public class ASTRewriteFlattener extends ASTVisitor {
 	@Override
 	public boolean visit(YieldStatement node) {
 		if (!node.isImplicit()) {
-			this.result.append("yield"); //$NON-NLS-1$
+			this.result.append("yield"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		ASTNode expression = getChildNode(node, YieldStatement.EXPRESSION_PROPERTY);
 		if (expression != null) {
 			if (!node.isImplicit()) {
-				this.result.append(' ');
+				this.result.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			expression.accept(this);
 		}
-		this.result.append(';');
+		this.result.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 }

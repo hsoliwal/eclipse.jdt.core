@@ -106,15 +106,15 @@ public class SourcePositionImpl implements SourcePosition
     @Override
 	public String toString()
     {
-    	StringBuilder buffer = new StringBuilder();
-    	buffer.append("offset = "); //$NON-NLS-1$
-    	buffer.append(_startingOffset);
-    	buffer.append(" line = "); //$NON-NLS-1$
-    	buffer.append( _line );
-    	buffer.append(" column = "); //$NON-NLS-1$
-    	buffer.append( _column );
-    	buffer.append(" length = "); //$NON-NLS-1$
-    	buffer.append( _length );
+    	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+    	buffer.append("offset = "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+    	buffer.append(_startingOffset); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+    	buffer.append(" line = "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+    	buffer.append( _line ); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+    	buffer.append(" column = "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+    	buffer.append( _column ); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+    	buffer.append(" length = "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+    	buffer.append( _length ); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
     	return buffer.toString();
     }

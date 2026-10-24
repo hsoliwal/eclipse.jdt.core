@@ -60,7 +60,7 @@ public class EvaluationTest extends AbstractCompilerTest implements StopableTest
 	public class Requestor implements IRequestor {
 		public int resultIndex = -1;
 		public EvaluationResult[] results = new EvaluationResult[5];
-		public boolean acceptClassFiles(ClassFile[] classFiles, char[] codeSnippetClassName) {
+		public boolean acceptClassFiles(ClassFile[] classFiles, char[] codeSnippetClassName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			try {
 				EvaluationTest.this.target.sendClasses(codeSnippetClassName != null, classFiles);
 			} catch (TargetException e) {
@@ -74,13 +74,13 @@ public class EvaluationTest extends AbstractCompilerTest implements StopableTest
 					acceptResult(new EvaluationResult(null, EvaluationResult.T_CODE_SNIPPET, result.displayString, result.typeName));
 				}
 			} else {
-				for (int i = 0, length = classFiles.length; i < length; i++) {
+				for (int i = 0, length = classFiles.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					char[][] compoundName = classFiles[i].getCompoundName();
 					if (new String(compoundName[compoundName.length - 1]).startsWith("GlobalVariable")) {
 						try {
 							IBinaryField[] fields = new ClassFileReader(classFiles[i].getBytes(), null).getFields();
 							if (fields != null) {
-								for (int j = 0; j < fields.length; j++) {
+								for (int j = 0; j < fields.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 									IBinaryField field = fields[j];
 									if (Modifier.isPublic(field.getModifiers())) {
 										TargetInterface.Result result = EvaluationTest.this.target.getResult();
@@ -128,7 +128,7 @@ public class EvaluationTest extends AbstractCompilerTest implements StopableTest
 	}
 
 	public static Test setupSuite(Class clazz) {
-		ArrayList testClasses = new ArrayList();
+		ArrayList testClasses = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		testClasses.add(clazz);
 		return buildAllCompliancesTestSuite(clazz, EvaluationSetup.class, testClasses);
 	}
@@ -148,7 +148,7 @@ public class EvaluationTest extends AbstractCompilerTest implements StopableTest
 	 * @param actual
 	 *                 the actual value of a char array
 	 */
-	public void assertEquals(String message, char[] expected, char[] actual) {
+	public void assertEquals(String message, char[] expected, char[] actual) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (expected == null && actual == null)
 			return;
 		if (expected != null) {
@@ -157,7 +157,7 @@ public class EvaluationTest extends AbstractCompilerTest implements StopableTest
 				return;
 			}
 			if (expected.length == actual.length) {
-				for (int i = 0; i < expected.length; i++) {
+				for (int i = 0; i < expected.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (expected[i] != actual[i]) {
 						failNotEquals(message, expected, actual);
 						return;
@@ -196,16 +196,16 @@ public class EvaluationTest extends AbstractCompilerTest implements StopableTest
 	/**
 	 * Evaluates the given code snippet and makes sure it returns a result with the given display string.
 	 */
-	public void evaluateWithExpectedDisplayString(Map compilerOptions, char[] codeSnippet, char[] displayString) {
+	public void evaluateWithExpectedDisplayString(Map compilerOptions, char[] codeSnippet, char[] displayString) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Requestor requestor = new Requestor();
 		try {
 			this.context.evaluate(codeSnippet, getEnv(), compilerOptions, requestor, getProblemFactory());
 		} catch (InstallException e) {
-			assertTrue("Target exception " + e.getMessage(), false);
+			assertTrue("Target exception " + e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		if (requestor.resultIndex != 0) {
-			for (int i = 0; i < requestor.resultIndex; i++) {
-				System.out.println("unexpected result[" + i + "]: " + requestor.results[i]);
+			for (int i = 0; i < requestor.resultIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				System.out.println("unexpected result[" + i + "]: " + requestor.results[i]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		assertTrue("Unexpected result", requestor.resultIndex == 0);
@@ -225,16 +225,16 @@ public class EvaluationTest extends AbstractCompilerTest implements StopableTest
 	/**
 	 * Evaluates the given code snippet and makes sure it returns a result with the given display string.
 	 */
-	public void evaluateWithExpectedDisplayString(char[] codeSnippet, char[] displayString) {
+	public void evaluateWithExpectedDisplayString(char[] codeSnippet, char[] displayString) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Requestor requestor = new Requestor();
 		try {
 			this.context.evaluate(codeSnippet, getEnv(), getCompilerOptions(), requestor, getProblemFactory());
 		} catch (InstallException e) {
-			assertTrue("Target exception " + e.getMessage(), false);
+			assertTrue("Target exception " + e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		if (requestor.resultIndex != 0) {
-			for (int i = 0; i < requestor.resultIndex; i++) {
-				System.out.println("unexpected result[" + i + "]: " + requestor.results[i]);
+			for (int i = 0; i < requestor.resultIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				System.out.println("unexpected result[" + i + "]: " + requestor.results[i]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		assertTrue("Unexpected result", requestor.resultIndex == 0);
@@ -261,14 +261,14 @@ public class EvaluationTest extends AbstractCompilerTest implements StopableTest
 	/**
 	 * Evaluates the given code snippet and makes sure the evaluation result has at least the given problem on the given import.
 	 */
-	protected void evaluateWithExpectedImportProblem(char[] codeSnippet, char[] importDeclaration, Map options, CategorizedProblem expected) {
+	protected void evaluateWithExpectedImportProblem(char[] codeSnippet, char[] importDeclaration, Map options, CategorizedProblem expected) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Requestor requestor = new Requestor();
 		try {
 			this.context.evaluate(codeSnippet, getEnv(), options, requestor, getProblemFactory());
 		} catch (InstallException e) {
-			assertTrue("Target exception " + e.getMessage(), false);
+			assertTrue("Target exception " + e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		for (int i = 0; i <= requestor.resultIndex; i++) {
+		for (int i = 0; i <= requestor.resultIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			EvaluationResult result = requestor.results[i];
 			assertTrue("Has value", !result.hasValue());
 			assertTrue("Has problem", result.hasProblems());
@@ -285,14 +285,14 @@ public class EvaluationTest extends AbstractCompilerTest implements StopableTest
 	/**
 	 * Evaluates the given code snippet and makes sure the evaluation result has at least the given problem.
 	 */
-	protected void evaluateWithExpectedProblem(char[] codeSnippet, CategorizedProblem expected) {
+	protected void evaluateWithExpectedProblem(char[] codeSnippet, CategorizedProblem expected) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Requestor requestor = new Requestor();
 		try {
 			this.context.evaluate(codeSnippet, getEnv(), getCompilerOptions(), requestor, getProblemFactory());
 		} catch (InstallException e) {
-			assertTrue("Target exception " + e.getMessage(), false);
+			assertTrue("Target exception " + e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		for (int i = 0; i <= requestor.resultIndex; i++) {
+		for (int i = 0; i <= requestor.resultIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			EvaluationResult result = requestor.results[i];
 			assertTrue("Has value", !result.hasValue());
 			assertTrue("Has problem", result.hasProblems());
@@ -309,12 +309,12 @@ public class EvaluationTest extends AbstractCompilerTest implements StopableTest
 	/**
 	 * Evaluates the given code snippet and makes sure the evaluation result has at least the given problem.
 	 */
-	protected void evaluateWithExpectedProblem(char[] codeSnippet, String problemsString) {
+	protected void evaluateWithExpectedProblem(char[] codeSnippet, String problemsString) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Requestor requestor = new Requestor();
 		try {
 			this.context.evaluate(codeSnippet, getEnv(), getCompilerOptions(), requestor, getProblemFactory());
 		} catch (InstallException e) {
-			assertTrue("Target exception " + e.getMessage(), false);
+			assertTrue("Target exception " + e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		assertTrue("Got one result", requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
@@ -322,10 +322,10 @@ public class EvaluationTest extends AbstractCompilerTest implements StopableTest
 		assertTrue("Has problem", result.hasProblems());
 		assertEquals("Evaluation type", EvaluationResult.T_CODE_SNIPPET, result.getEvaluationType());
 		assertEquals("Evaluation id", codeSnippet, result.getEvaluationID());
-		StringBuilder problemBuffer = new StringBuilder(20);
+		StringBuilder problemBuffer = new StringBuilder(20); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		CategorizedProblem[] problems = result.getProblems();
-		for (int i = 0; i < problems.length; i++) {
-			problemBuffer.append(problems[i].getMessage()).append('\n');
+		for (int i = 0; i < problems.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			problemBuffer.append(problems[i].getMessage()).append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		assertEquals("Unexpected problems", problemsString, problemBuffer.toString());
 	}
@@ -333,14 +333,14 @@ public class EvaluationTest extends AbstractCompilerTest implements StopableTest
 	/**
 	 * Evaluates the given variable and makes sure the evaluation result has at least the given problem.
 	 */
-	protected void evaluateWithExpectedProblem(GlobalVariable var, CategorizedProblem expected) {
+	protected void evaluateWithExpectedProblem(GlobalVariable var, CategorizedProblem expected) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Requestor requestor = new Requestor();
 		try {
 			this.context.evaluateVariables(getEnv(), getCompilerOptions(), requestor, getProblemFactory());
 		} catch (InstallException e) {
-			assertTrue("Target exception " + e.getMessage(), false);
+			assertTrue("Target exception " + e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		for (int i = 0; i <= requestor.resultIndex; i++) {
+		for (int i = 0; i <= requestor.resultIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			EvaluationResult result = requestor.results[i];
 			assertTrue("Has value", !result.hasValue());
 			assertTrue("Has problem", result.hasProblems());
@@ -357,16 +357,16 @@ public class EvaluationTest extends AbstractCompilerTest implements StopableTest
 	/**
 	 * Evaluates the given code snippet and makes sure it returns a result with the given type name.
 	 */
-	protected void evaluateWithExpectedType(char[] codeSnippet, char[] expectedTypeName) {
+	protected void evaluateWithExpectedType(char[] codeSnippet, char[] expectedTypeName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Requestor requestor = new Requestor();
 		try {
 			this.context.evaluate(codeSnippet, getEnv(), getCompilerOptions(), requestor, getProblemFactory());
 		} catch (InstallException e) {
-			assertTrue("Target exception " + e.getMessage(), false);
+			assertTrue("Target exception " + e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		if (requestor.resultIndex != 0) {
-			for (int i = 0; i < requestor.resultIndex; i++) {
-				System.out.println("unexpected result[" + i + "]: " + requestor.results[i]);
+			for (int i = 0; i < requestor.resultIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				System.out.println("unexpected result[" + i + "]: " + requestor.results[i]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		assertTrue("Got one result", requestor.resultIndex == 0);
@@ -384,12 +384,12 @@ public class EvaluationTest extends AbstractCompilerTest implements StopableTest
 	/**
 	 * Evaluates the given code snippet and makes sure it returns a result with the given display string and type name.
 	 */
-	protected void evaluateWithExpectedValue(char[] codeSnippet, char[] displayString, char[] typeName) {
+	protected void evaluateWithExpectedValue(char[] codeSnippet, char[] displayString, char[] typeName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Requestor requestor = new Requestor();
 		try {
 			this.context.evaluate(codeSnippet, getEnv(), getCompilerOptions(), requestor, getProblemFactory());
 		} catch (InstallException e) {
-			assertTrue("Target exception " + e.getMessage(), false);
+			assertTrue("Target exception " + e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		assertTrue("Got one result", requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
@@ -407,16 +407,16 @@ public class EvaluationTest extends AbstractCompilerTest implements StopableTest
 	/**
 	 * Evaluates the given variable and makes sure it returns a result with the given display string and type name.
 	 */
-	protected void evaluateWithExpectedValue(GlobalVariable var, char[] displayString, char[] typeName) {
+	protected void evaluateWithExpectedValue(GlobalVariable var, char[] displayString, char[] typeName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Requestor requestor = new Requestor();
 		try {
 			this.context.evaluateVariable(var, getEnv(), getCompilerOptions(), requestor, getProblemFactory());
 		} catch (InstallException e) {
-			assertTrue("Target exception " + e.getMessage(), false);
+			assertTrue("Target exception " + e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		if (requestor.resultIndex != 0) {
-			for (int i = 0; i < requestor.resultIndex; i++) {
-				System.out.println("unexpected result[" + i + "]: " + requestor.results[i]);
+			for (int i = 0; i < requestor.resultIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				System.out.println("unexpected result[" + i + "]: " + requestor.results[i]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		assertTrue("Unexpected result", requestor.resultIndex == 0);
@@ -433,9 +433,9 @@ public class EvaluationTest extends AbstractCompilerTest implements StopableTest
 	/**
 	 * Evaluates the given code snippet and makes sure an evaluation result has at least the given warning, and that another evaluation result has the given display string.
 	 */
-	protected void evaluateWithExpectedWarningAndDisplayString(final char[] codeSnippet, final CategorizedProblem[] expected, final char[] displayString) {
+	protected void evaluateWithExpectedWarningAndDisplayString(final char[] codeSnippet, final CategorizedProblem[] expected, final char[] displayString) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		class ResultRequestor extends Requestor {
-			ArrayList collectedProblems = new ArrayList();
+			ArrayList collectedProblems = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			boolean gotDisplayString = false;
 			@Override
 			public void acceptResult(EvaluationResult result) {
@@ -456,11 +456,11 @@ public class EvaluationTest extends AbstractCompilerTest implements StopableTest
 		try {
 			this.context.evaluate(codeSnippet, getEnv(), getCompilerOptions(), requestor, getProblemFactory());
 		} catch (InstallException e) {
-			assertTrue("Target exception " + e.getMessage(), false);
+			assertTrue("Target exception " + e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		if (expected.length == requestor.collectedProblems.size()) {
-			for (int i = 0; i < expected.length; i++) {
-				assertTrue("Problem mismatch" + requestor.collectedProblems.get(i), this.equals(expected[i], (CategorizedProblem)requestor.collectedProblems.get(i)));
+			for (int i = 0; i < expected.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				assertTrue("Problem mismatch" + requestor.collectedProblems.get(i), this.equals(expected[i], (CategorizedProblem)requestor.collectedProblems.get(i))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} else {
 			assertTrue("Wrong problem count", false);
@@ -471,10 +471,10 @@ public class EvaluationTest extends AbstractCompilerTest implements StopableTest
 	private void failNotEquals(String message, char[] expected, char[] actual) {
 		String formatted = "";
 		if (message != null)
-			formatted = message + " ";
+			formatted = message + " "; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String expectedString = expected == null ? "null" : new String(expected);
 		String actualString = actual == null ? "null" : new String(actual);
-		fail(formatted + "expected:<" + expectedString + "> but was:<" + actualString + ">");
+		fail(formatted + "expected:<" + expectedString + "> but was:<" + actualString + ">"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	@Override
@@ -518,7 +518,7 @@ public class EvaluationTest extends AbstractCompilerTest implements StopableTest
 	/**
 	 * Installs all the variables and check that the number of installed variables is the given number.
 	 */
-	protected void installVariables(final int expectedNumber) {
+	protected void installVariables(final int expectedNumber) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		class InstallRequestor extends Requestor {
 			int count = 0;
 			@Override
@@ -533,7 +533,7 @@ public class EvaluationTest extends AbstractCompilerTest implements StopableTest
 		try {
 			this.context.evaluateVariables(getEnv(), getCompilerOptions(), installRequestor, getProblemFactory());
 		} catch (InstallException e) {
-			assertTrue("Target exception: " + e.getMessage(), false);
+			assertTrue("Target exception: " + e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		assertEquals("Number of installed variables", expectedNumber, installRequestor.count);
 	}
@@ -553,10 +553,10 @@ public class EvaluationTest extends AbstractCompilerTest implements StopableTest
 		String encoding = (String)getCompilerOptions().get(CompilerOptions.OPTION_Encoding);
 		if ("".equals(encoding))
 			encoding = null;
-		this.env = new FileSystem(Util.concatWithClassLibs(EvaluationSetup.EVAL_DIRECTORY + File.separator + LocalVMLauncher.REGULAR_CLASSPATH_DIRECTORY, false), new String[0], encoding);
+		this.env = new FileSystem(Util.concatWithClassLibs(EvaluationSetup.EVAL_DIRECTORY + File.separator + LocalVMLauncher.REGULAR_CLASSPATH_DIRECTORY, false), new String[0], encoding); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void stop() {
 		if (this.target != null) {
 			this.target.disconnect(); // Close the socket first so that the OS resource has a chance to be freed.
@@ -564,7 +564,7 @@ public class EvaluationTest extends AbstractCompilerTest implements StopableTest
 		if (this.launchedVM != null) {
 			try {
 				int retry = 0;
-				while (this.launchedVM.isRunning() && (++retry < 20)) {
+				while (this.launchedVM.isRunning() && (++retry < 20)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					try {
 						Thread.sleep(retry * 100);
 					} catch (InterruptedException e) {
@@ -578,7 +578,7 @@ public class EvaluationTest extends AbstractCompilerTest implements StopableTest
 		}
 	}
 
-	public void waitForAutoBuild() {
+	public void waitForAutoBuild() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (isWorkspaceRuleAlreadyInUse(getWorkspaceRoot())) {
 			// Don't wait holding workspace lock on FAMILY_AUTO_BUILD, because
 			// we might deadlock with AutoBuildOffJob
@@ -586,7 +586,7 @@ public class EvaluationTest extends AbstractCompilerTest implements StopableTest
 			return;
 		}
 		boolean wasInterrupted = false;
-		do {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				Job.getJobManager().wakeUp(ResourcesPlugin.FAMILY_AUTO_BUILD);
 				Job.getJobManager().join(ResourcesPlugin.FAMILY_AUTO_BUILD, null);

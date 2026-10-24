@@ -49,7 +49,7 @@ public class TypesUtil implements Types
         assert env != null : "null environment."; //$NON-NLS-1$
     }
 
-    @Override
+    @Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public ArrayType getArrayType(TypeMirror componentType)
     {
         if( componentType == null ) return null;
@@ -73,7 +73,7 @@ public class TypesUtil implements Types
                     break;
             }
             if( leaf == null || leaf.isParameterizedType() )
-                throw new IllegalArgumentException("illegal component type: " + componentType); //$NON-NLS-1$
+                throw new IllegalArgumentException("illegal component type: " + componentType); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
             final String bindingKey = BindingKey.createArrayTypeBindingKey(leaf.getKey(), dimension);
 			final ITypeBinding arrayType = _env.getTypeBindingFromKey(bindingKey);
@@ -82,7 +82,7 @@ public class TypesUtil implements Types
 			return (ArrayType)Factory.createTypeMirror(arrayType, _env);
         }
 
-        throw new NonEclipseImplementationException("only applicable to eclipse type system objects." + //$NON-NLS-1$
+        throw new NonEclipseImplementationException("only applicable to eclipse type system objects." + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
                                                     " Found " + componentType.getClass().getName()); //$NON-NLS-1$
 
     }
@@ -93,7 +93,7 @@ public class TypesUtil implements Types
      * @return the binding that correspond to <code>outer.getQualifiedName()</code>.<code>inner</code>
      * 		   or null if it cannot be located.
      */
-    private ITypeBinding findMemberType(ITypeBinding outer, String inner )
+    private ITypeBinding findMemberType(ITypeBinding outer, String inner ) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     {
         if( outer == null || inner == null ) return null;
 
@@ -101,7 +101,7 @@ public class TypesUtil implements Types
 
         final ITypeBinding[] nestedTypes = outer.getDeclaredTypes();
         // first we search throw the ones that are directly declared within 'outer'
-        for( ITypeBinding nestedType : nestedTypes ){
+        for( ITypeBinding nestedType : nestedTypes ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
             if( inner.equals(nestedType.getName()) )
                 return nestedType;
         }
@@ -112,7 +112,7 @@ public class TypesUtil implements Types
 
 		// then the super interfaces
 		final ITypeBinding[] interfaces = outer.getInterfaces();
-		for( ITypeBinding interfaceType : interfaces ){
+		for( ITypeBinding interfaceType : interfaces ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			result = findMemberType(interfaceType, inner);
 			if( result != null ) return result;
 		}
@@ -121,7 +121,7 @@ public class TypesUtil implements Types
 		return null;
     }
 
-    @Override
+    @Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public com.sun.mirror.type.DeclaredType getDeclaredType(DeclaredType containing, TypeDeclaration decl, TypeMirror... typeArgs)
     {
 		if( decl == null ) return null;
@@ -133,18 +133,18 @@ public class TypesUtil implements Types
 			memberBinding = getTypeBinding(decl);
 		else{
 			if( outerBinding.isGenericType() )
-	             throw new IllegalArgumentException("[containing], " + containing + ", is a generic type."); //$NON-NLS-1$ //$NON-NLS-2$
+	             throw new IllegalArgumentException("[containing], " + containing + ", is a generic type."); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			 // make sure 'decl' is a valid member of 'outerBinding'
 			memberBinding = findMemberType(outerBinding, decl.getSimpleName() );
 			if( memberBinding == null )
-	            throw new IllegalArgumentException(decl + " is not a member type of " + containing ); //$NON-NLS-1$
+	            throw new IllegalArgumentException(decl + " is not a member type of " + containing ); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		final int numArgs = typeArgs == null ? 0 : typeArgs.length;
 
 		if( memberBinding.isGenericType() ){
 			final String[] argKeys = numArgs == 0 ? NO_ARGS : new String[numArgs];
-			for( int i=0; i<numArgs; i++ ){
+			for( int i=0; i<numArgs; i++ ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				final ITypeBinding binding = getTypeBinding(typeArgs[i]);
 				assert binding != null : "failed to get binding mirror type"; //$NON-NLS-1$
 				argKeys[i] = binding.getKey();
@@ -155,7 +155,7 @@ public class TypesUtil implements Types
 			// if no argument then a raw type will be created, otherwise it's an error when the
 			// number of type parameter and arguments don't agree.
 			if( numTypeParams != numArgs && numArgs != 0 )
-				throw new IllegalArgumentException("type, " + memberBinding.getQualifiedName() + ", require " + numTypeParams + " type arguments " + //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				throw new IllegalArgumentException("type, " + memberBinding.getQualifiedName() + ", require " + numTypeParams + " type arguments " + //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
                         "but found " + numArgs ); //$NON-NLS-1$
 
 			final String typeKey = BindingKey.createParameterizedTypeBindingKey(memberBinding.getKey(), argKeys);
@@ -164,7 +164,7 @@ public class TypesUtil implements Types
 		}
 		else{
 			if( numArgs != 0 )
-				throw new IllegalArgumentException("type, " + memberBinding + " is not a generic type and cannot have type arguments."); //$NON-NLS-1$ //$NON-NLS-2$
+				throw new IllegalArgumentException("type, " + memberBinding + " is not a generic type and cannot have type arguments."); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			// simple case, turning a non-generic TypeDeclaration into a DeclaredType
 			return (DeclaredType)decl;
 		}
@@ -176,7 +176,7 @@ public class TypesUtil implements Types
 		return getDeclaredType(null, decl, typeArgs);
     }
 
-    @Override
+    @Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public TypeMirror getErasure(TypeMirror t)
     {
         if( t == null ) return null;
@@ -202,7 +202,7 @@ public class TypesUtil implements Types
             return m_erasure;
         }
 
-        throw new NonEclipseImplementationException("only applicable to eclipse type system objects." + //$NON-NLS-1$
+        throw new NonEclipseImplementationException("only applicable to eclipse type system objects." + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
                                                     " Found " + t.getClass().getName());	 //$NON-NLS-1$
 	}
 
@@ -221,7 +221,7 @@ public class TypesUtil implements Types
             case LONG:    return _env.getLongType();
             case SHORT:   return _env.getShortType();
 
-            default: throw new IllegalStateException("unknown primitive kind : " + kind); //$NON-NLS-1$
+            default: throw new IllegalStateException("unknown primitive kind : " + kind); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         }
     }
 
@@ -232,7 +232,7 @@ public class TypesUtil implements Types
         if( tparam instanceof TypeParameterDeclarationImpl)
             return (TypeVariable) tparam;
 
-        throw new NonEclipseImplementationException("only applicable to eclipse type system objects." + //$NON-NLS-1$
+        throw new NonEclipseImplementationException("only applicable to eclipse type system objects." + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
                                                     " Found " + tparam.getClass().getName()); //$NON-NLS-1$
     }
 
@@ -242,7 +242,7 @@ public class TypesUtil implements Types
         return _env.getVoidType();
     }
 
-    @Override @Deprecated
+    @Override @Deprecated //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public WildcardType getWildcardType(Collection<ReferenceType> upperBounds, Collection<ReferenceType> lowerBounds)
     {
         final String boundKey;
@@ -305,7 +305,7 @@ public class TypesUtil implements Types
             return ((EclipseMirrorType)type).getTypeBinding();
         }
 
-        throw new NonEclipseImplementationException("only applicable to eclipse type system objects." + //$NON-NLS-1$
+        throw new NonEclipseImplementationException("only applicable to eclipse type system objects." + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
                                                     " Found " + type.getClass().getName()); //$NON-NLS-1$
     }
 
@@ -319,7 +319,7 @@ public class TypesUtil implements Types
         if( type instanceof EclipseMirrorObject ){
             return ((TypeDeclarationImpl)type).getTypeBinding();
         }
-        throw new NonEclipseImplementationException("only applicable to eclipse type system objects." + //$NON-NLS-1$
+        throw new NonEclipseImplementationException("only applicable to eclipse type system objects." + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
                                                     " Found " + type.getClass().getName()); //$NON-NLS-1$
     }
 }

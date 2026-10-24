@@ -68,17 +68,17 @@ private boolean isOnJRE9() {
 	return true;
 }
 protected void checkClassFiles(String[] fileNames) {
-	for (int i = 0, l = fileNames.length; i < l; i++) {
+	for (int i = 0, l = fileNames.length; i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		ClassFileReader reader = null;
 		try {
 			reader = ClassFileReader.read(new File(OUTPUT_DIR, fileNames[i]), true);
 		} catch (ClassFormatException e) {
-			fail("Class format exception for file " + fileNames[i]);
+			fail("Class format exception for file " + fileNames[i]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} catch (IOException e) {
-			fail("IO exception for file " + fileNames[i]);
+			fail("IO exception for file " + fileNames[i]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		assertNotNull("Could not read " + fileNames[i], reader);
-		assertEquals("Wrong Java version for " + fileNames[i], CompilerOptions.getFirstSupportedJdkLevel(), reader.getVersion());
+		assertNotNull("Could not read " + fileNames[i], reader); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertEquals("Wrong Java version for " + fileNames[i], CompilerOptions.getFirstSupportedJdkLevel(), reader.getVersion()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }
 void runTest(
@@ -92,7 +92,7 @@ void runTest(
 		String expectedErrOutputString,
 		boolean shouldFlushOutputDirectory,
 		String[] classFileNames) {
-	List<String> opt = options == null ? new ArrayList<>() : new ArrayList<>(options);
+	List<String> opt = options == null ? new ArrayList<>() : new ArrayList<>(options); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	opt.add("-source");
 	opt.add(source);
 	super.runTest(
@@ -118,7 +118,7 @@ void runTest(
 		String expectedErrOutputString,
 		boolean shouldFlushOutputDirectory,
 		String[] classFileNames) {
-	List<String> opt = options == null ? new ArrayList<>() : new ArrayList<>(options);
+	List<String> opt = options == null ? new ArrayList<>() : new ArrayList<>(options); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	opt.add("-source");
 	opt.add(CompilerOptions.getFirstSupportedJavaVersion());
 	super.runTest(
@@ -176,8 +176,8 @@ abstract class GetJavaFileDetector extends ForwardingStandardJavaFileManager<Sta
 	@Override
 	public Iterable<? extends JavaFileObject> getJavaFileObjectsFromFiles(
 			Iterable<? extends File> files) {
-		ArrayList<JavaFileObject> result = new ArrayList<>();
-		for (JavaFileObject file: super.getJavaFileObjectsFromFiles(files)) {
+		ArrayList<JavaFileObject> result = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (JavaFileObject file: super.getJavaFileObjectsFromFiles(files)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			result.add(detector(file));
 		}
 		return result;
@@ -185,8 +185,8 @@ abstract class GetJavaFileDetector extends ForwardingStandardJavaFileManager<Sta
 	@Override
 	public Iterable<? extends JavaFileObject> getJavaFileObjectsFromStrings(
 			Iterable<String> names) {
-		ArrayList<JavaFileObject> result = new ArrayList<>();
-		for (JavaFileObject file: getJavaFileObjectsFromStrings(names)) {
+		ArrayList<JavaFileObject> result = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (JavaFileObject file: getJavaFileObjectsFromStrings(names)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			result.add(detector(file));
 		}
 		return result;
@@ -194,8 +194,8 @@ abstract class GetJavaFileDetector extends ForwardingStandardJavaFileManager<Sta
 	@Override
 	public Iterable<JavaFileObject> list(Location location, String packageName,
 			Set<Kind> kinds, boolean recurse) throws IOException {
-		ArrayList<JavaFileObject> result = new ArrayList<>();
-		for (JavaFileObject file: super.list(location, packageName, kinds, recurse)) {
+		ArrayList<JavaFileObject> result = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (JavaFileObject file: super.list(location, packageName, kinds, recurse)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			result.add(detector(file));
 		}
 		return result;
@@ -344,7 +344,7 @@ class SubstringDetector extends java.util.logging.Logger {
 }
 protected void compareFileLocations(String[] expected, Iterator<? extends File> actual) {
 	int i = 0;
-	while(actual.hasNext() && i < expected.length) {
+	while(actual.hasNext() && i < expected.length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		assertEquals("Path mismatch", expected[i], actual.next().toString());
 		i++;
 	}
@@ -352,7 +352,7 @@ protected void compareFileLocations(String[] expected, Iterator<? extends File> 
 	assertFalse("Incorrect no of files in path", actual.hasNext());
 }
 // most possibly basic test
-public void test001_basic() {
+public void test001_basic() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		true /* shouldCompileOK */,
 		new String [] { /* sourceFiles */
@@ -373,7 +373,7 @@ public void test001_basic() {
 }
 // exploring -d / FileManager interaction
 // -d changes CLASS_OUTPUT location
-public void test002_dash_d_option() {
+public void test002_dash_d_option() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (JAVAC_COMPILER == null) {
 		System.out.println("No system java compiler available");
 		return;
@@ -400,13 +400,13 @@ public void test002_dash_d_option() {
 }
 // exploring -d / FileManager interaction
 // -d changes CLASS_OUTPUT location (OUTPUT_DIR subdirectory)
-public void test003_dash_d_option() {
+public void test003_dash_d_option() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (JAVAC_COMPILER == null) {
 		System.out.println("No system java compiler available");
 		return;
 	}
 	StandardJavaFileManager javacStandardJavaFileManager =  JAVAC_COMPILER.getStandardFileManager(null, null, null); // will pick defaults up
-	String outputDir = OUTPUT_DIR + File.separator + "bin";
+	String outputDir = OUTPUT_DIR + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runTest(
 		true /* shouldCompileOK */,
 		new String [] { /* sourceFiles */
@@ -429,13 +429,13 @@ public void test003_dash_d_option() {
 // exploring -d / FileManager interaction
 // ecj uses the output location from the javac standard Java file manager if it
 // is set
-public void test004_no_dash_d_option() throws IOException {
+public void test004_no_dash_d_option() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (JAVAC_COMPILER == null) {
 		System.out.println("No system java compiler available");
 		return;
 	}
-	File binDirectory = new File(OUTPUT_DIR + File.separator + "bin");
-	binDirectory.mkdirs();
+	File binDirectory = new File(OUTPUT_DIR + File.separator + "bin"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	binDirectory.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	StandardJavaFileManager javacStandardJavaFileManager =  JAVAC_COMPILER.getStandardFileManager(null, null, null); // will pick defaults up
 	javacStandardJavaFileManager.setLocation(
 			StandardLocation.CLASS_OUTPUT,
@@ -461,7 +461,7 @@ public void test004_no_dash_d_option() throws IOException {
 // exploring -d / FileManager interaction
 // ecj does not call setLocation on standard Java file managers; it uses
 // handleOption instead; javac does the same
-public void test005_dash_d_option_custom_file_manager() {
+public void test005_dash_d_option_custom_file_manager() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (JAVAC_COMPILER == null) {
 		System.out.println("No system java compiler available");
 		return;
@@ -496,19 +496,19 @@ public void test005_dash_d_option_custom_file_manager() {
 		assertTrue(JAVAC_COMPILER.getTask(null, customJavaFileManager, null,
 				Arrays.asList("-d", OUTPUT_DIR), null,
 				customJavaFileManager.getJavaFileObjectsFromFiles(
-						Arrays.asList(new File(OUTPUT_DIR + File.separator + "X.java")))).call());
+						Arrays.asList(new File(OUTPUT_DIR + File.separator + "X.java")))).call()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertFalse(customJavaFileManager.matchFound());
 	}
 }
 // exploring -d / FileManager interaction
 // ecj calls getLocation on a non-javac standard Java file manager
-public void test006_no_dash_d_option_custom_file_manager() throws IOException {
+public void test006_no_dash_d_option_custom_file_manager() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (JAVAC_COMPILER == null) {
 		System.out.println("No system java compiler available");
 		return;
 	}
-	File binDirectory = new File(OUTPUT_DIR + File.separator + "bin");
-	binDirectory.mkdirs();
+	File binDirectory = new File(OUTPUT_DIR + File.separator + "bin"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	binDirectory.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	GetLocationDetector customJavaFileManager =
 		new GetLocationDetector(
 				JAVAC_COMPILER.getStandardFileManager(null, null, null),
@@ -557,22 +557,22 @@ public void test007_options_consumption() throws IOException {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=226918
 // options consumption - check consumption rate on supported zero-args options
-public void test008_options_consumption() throws IOException {
+public void test008_options_consumption() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final String REMAINDER = "remainder";
 	List<String> remainingAsList = Arrays.asList("output", REMAINDER);
 	StandardJavaFileManager ecjStandardJavaFileManager =
 		COMPILER.getStandardFileManager(null /* diagnosticListener */, null /* locale */, null /* charset */);
-	for (String option: CompilerToolTests.ZERO_ARG_OPTIONS) {
+	for (String option: CompilerToolTests.ZERO_ARG_OPTIONS) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (ecjStandardJavaFileManager.isSupportedOption(option) != -1) { // some options that the compiler support could well not be supported by the file manager
 			Iterator<String> remaining = remainingAsList.iterator();
-			assertTrue("does not support " + option + " option", ecjStandardJavaFileManager.handleOption(option, remaining));
+			assertTrue("does not support " + option + " option", ecjStandardJavaFileManager.handleOption(option, remaining)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertEquals("unexpected consumption rate", REMAINDER, remaining.next());
 		}
 	}
-	for (String option: CompilerToolTests.FAKE_ZERO_ARG_OPTIONS) {
+	for (String option: CompilerToolTests.FAKE_ZERO_ARG_OPTIONS) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (ecjStandardJavaFileManager.isSupportedOption(option) != -1) {
 			Iterator<String> remaining = remainingAsList.iterator();
-			assertTrue("does not support " + option + " option", ecjStandardJavaFileManager.handleOption(option, remaining));
+			assertTrue("does not support " + option + " option", ecjStandardJavaFileManager.handleOption(option, remaining)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertEquals("unexpected consumption rate", REMAINDER, remaining.next());
 		}
 	}
@@ -585,12 +585,12 @@ public void test009_options_consumption() throws IOException {
 	List<String> remainingAsList = Arrays.asList("utf-8", REMAINDER);
 	StandardJavaFileManager ecjStandardJavaFileManager =
 		COMPILER.getStandardFileManager(null /* diagnosticListener */, null /* locale */, null /* charset */);
-	for (String option: CompilerToolTests.ONE_ARG_OPTIONS) {
+	for (String option: CompilerToolTests.ONE_ARG_OPTIONS) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (isOnJRE9() && option.equals("-endorseddirs"))
 				continue;
 		if (ecjStandardJavaFileManager.isSupportedOption(option) != -1) { // some options that the compiler support could well not be supported by the file manager
 			Iterator<String> remaining = remainingAsList.iterator();
-			assertTrue("does not support " + option + " option", ecjStandardJavaFileManager.handleOption(option, remaining));
+			assertTrue("does not support " + option + " option", ecjStandardJavaFileManager.handleOption(option, remaining)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertEquals("unexpected consumption rate", REMAINDER, remaining.next());
 		}
 	}
@@ -601,7 +601,7 @@ public void test009_options_consumption() throws IOException {
 // based upon the behavior of the command-line javac for the same level, we
 // would expect an error to be raised in some fashion here, hence we make the
 // tests fail when RUN_JAVAC is on
-public void test010_inappropriate_encoding_diagnosis() throws IOException {
+public void test010_inappropriate_encoding_diagnosis() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	List<String> buggyEncoding = Arrays.asList("dummy");
 	boolean passed = true;
 	try {
@@ -625,7 +625,7 @@ public void test010_inappropriate_encoding_diagnosis() throws IOException {
 		assertFalse("does not catch inappropriate -encoding option", passed);
 	}
 }
-public void test011_inappropriate_encoding_diagnosis() {
+public void test011_inappropriate_encoding_diagnosis() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	List<String> options = Arrays.asList("-d", OUTPUT_DIR, "-encoding", "dummy");
 	boolean passed = true;
 	try {
@@ -655,7 +655,7 @@ public void test011_inappropriate_encoding_diagnosis() {
 		try {
 			passed = JAVAC_COMPILER.getTask(null, null, null, options, null,
 					JAVAC_COMPILER.getStandardFileManager(null, null, null).getJavaFileObjectsFromFiles(
-						Arrays.asList(new File(OUTPUT_DIR + File.separator + "X.java")))).call();
+						Arrays.asList(new File(OUTPUT_DIR + File.separator + "X.java")))).call(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} catch (Throwable t) {
 			passed = false;
 		}
@@ -665,7 +665,7 @@ public void test011_inappropriate_encoding_diagnosis() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=188796
 // files access must happen through the user-specified file manager
 // simplest source read case
-public void test012_files_access_read() throws IOException {
+public void test012_files_access_read() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (JAVAC_COMPILER == null) {
 		System.out.println("No system java compiler available");
 		return;
@@ -696,14 +696,14 @@ public void test012_files_access_read() throws IOException {
 		assertTrue(JAVAC_COMPILER.getTask(null, customJavaFileManager, null,
 				Arrays.asList("-d", OUTPUT_DIR), null,
 				customJavaFileManager.getJavaFileObjectsFromFiles(
-						Arrays.asList(new File(OUTPUT_DIR + File.separator + "X.java")))).call());
+						Arrays.asList(new File(OUTPUT_DIR + File.separator + "X.java")))).call()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertTrue(customJavaFileManager.matchFound);
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=188796
 // files access must happen through the user-specified file manager
 // source file accessed through the sourcepath
-public void _test013_files_access_read() throws IOException {
+public void _test013_files_access_read() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (JAVAC_COMPILER == null) {
 		System.out.println("No system java compiler available");
 		return;
@@ -714,7 +714,7 @@ public void _test013_files_access_read() throws IOException {
 				"Y.java", Kind.SOURCE);
 	List<String> options = Arrays.asList(
 			"-d", OUTPUT_DIR,
-			"-sourcepath", OUTPUT_DIR + File.separator + "src2");
+			"-sourcepath", OUTPUT_DIR + File.separator + "src2"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runTest(
 		true /* shouldCompileOK */,
 		new String [] { /* sourceFiles */
@@ -742,14 +742,14 @@ public void _test013_files_access_read() throws IOException {
 		assertTrue(JAVAC_COMPILER.getTask(null, customJavaFileManager, null,
 				options, null,
 				customJavaFileManager.getJavaFileObjectsFromFiles(
-						Arrays.asList(new File(OUTPUT_DIR + File.separator + "src1/X.java")))).call());
+						Arrays.asList(new File(OUTPUT_DIR + File.separator + "src1/X.java")))).call()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertTrue(customJavaFileManager.matchFound);
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=188796
 // files access must happen through the user-specified file manager
 // class file accessed for read through the classpath
-public void _test014_files_access_read() throws IOException {
+public void _test014_files_access_read() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	GetJavaFileForInputDetector customJavaFileManager =
 		new GetJavaFileForInputDetector(
 				COMPILER.getStandardFileManager(null /* diagnosticListener */, null /* locale */, null /* charset */),
@@ -801,14 +801,14 @@ public void _test014_files_access_read() throws IOException {
 		assertTrue(JAVAC_COMPILER.getTask(null, customJavaFileManager, null,
 				options, null,
 				customJavaFileManager.getJavaFileObjectsFromFiles(
-						Arrays.asList(new File(OUTPUT_DIR + File.separator + "src1/X.java")))).call());
+						Arrays.asList(new File(OUTPUT_DIR + File.separator + "src1/X.java")))).call()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertTrue(customJavaFileManager.matchFound);
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=188796
 // files access must happen through the user-specified file manager
 // class file accessed for write
-public void test015_files_access_write() throws IOException {
+public void test015_files_access_write() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	GetJavaFileForOutputDetector customJavaFileManager =
 		new GetJavaFileForOutputDetector(
 				COMPILER.getStandardFileManager(null /* diagnosticListener */, null /* locale */, null /* charset */),
@@ -838,20 +838,20 @@ public void test015_files_access_write() throws IOException {
 		assertTrue(JAVAC_COMPILER.getTask(null, customJavaFileManager, null,
 				options, null,
 				customJavaFileManager.getJavaFileObjectsFromFiles(
-						Arrays.asList(new File(OUTPUT_DIR + File.separator + "src/X.java")))).call());
+						Arrays.asList(new File(OUTPUT_DIR + File.separator + "src/X.java")))).call()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertTrue(customJavaFileManager.matchFound);
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=188796
 // files access must happen through the user-specified file manager
 // class file accessed for write
-public void test016_files_access_write() throws IOException {
+public void test016_files_access_write() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	GetJavaFileForOutputDetector customJavaFileManager =
 		new GetJavaFileForOutputDetector(
 				COMPILER.getStandardFileManager(null /* diagnosticListener */, null /* locale */, null /* charset */),
 				"Y.class");
 	List<String> options = Arrays.asList(
-			"-sourcepath", OUTPUT_DIR + File.separator + "src2");
+			"-sourcepath", OUTPUT_DIR + File.separator + "src2"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runTest(
 		true /* shouldCompileOK */,
 		new String [] { /* sourceFiles */
@@ -880,12 +880,12 @@ public void test016_files_access_write() throws IOException {
 		assertTrue(JAVAC_COMPILER.getTask(null, customJavaFileManager, null,
 				options, null,
 				customJavaFileManager.getJavaFileObjectsFromFiles(
-						Arrays.asList(new File(OUTPUT_DIR + File.separator + "src/X.java")))).call());
+						Arrays.asList(new File(OUTPUT_DIR + File.separator + "src/X.java")))).call()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertTrue(customJavaFileManager.matchFound);
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=227583
-public void test017_sourcepath_without_destination() throws IOException {
+public void test017_sourcepath_without_destination() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		true /* shouldCompileOK */,
 		new String [] { /* sourceFiles */
@@ -898,8 +898,8 @@ public void test017_sourcepath_without_destination() throws IOException {
 		},
 		null /* standardJavaFileManager */,
 		Arrays.asList(
-				"-d", OUTPUT_DIR + "/bin1", /* options */
-				"-sourcepath", OUTPUT_DIR + "/src2"),
+				"-d", OUTPUT_DIR + "/bin1", /* options */ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				"-sourcepath", OUTPUT_DIR + "/src2"), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		new String[] { /* compileFileNames */
 			"src1/X.java"
 		},
@@ -914,7 +914,7 @@ public void test017_sourcepath_without_destination() throws IOException {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=227583
 // see BatchCompilerTest#68 and following, that show how the option works
 // with jsr199-less ecj
-public void _test018_sourcepath_with_destination() throws IOException {
+public void _test018_sourcepath_with_destination() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		true /* shouldCompileOK */,
 		new String [] { /* sourceFiles */
@@ -927,8 +927,8 @@ public void _test018_sourcepath_with_destination() throws IOException {
 		},
 		null /* standardJavaFileManager */,
 		Arrays.asList(
-				"-d", OUTPUT_DIR + "/bin1", /* options */
-				"-sourcepath", "\"" + OUTPUT_DIR + "/src2\"[-d \"" + OUTPUT_DIR + "/bin2\"]"),
+				"-d", OUTPUT_DIR + "/bin1", /* options */ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				"-sourcepath", "\"" + OUTPUT_DIR + "/src2\"[-d \"" + OUTPUT_DIR + "/bin2\"]"), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		new String[] { /* compileFileNames */
 			"src1/X.java"
 		},
@@ -941,11 +941,11 @@ public void _test018_sourcepath_with_destination() throws IOException {
 		});
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=227583
-public void test019_sourcepath_without_destination() throws IOException {
-	String sourceDirectoryName = OUTPUT_DIR + "/src2";
+public void test019_sourcepath_without_destination() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String sourceDirectoryName = OUTPUT_DIR + "/src2"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	File sourceFolder = new File(sourceDirectoryName);
-	if (!sourceFolder.exists()) {
-		if (!sourceFolder.mkdirs()) {
+	if (!sourceFolder.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		if (!sourceFolder.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			// source folder could not be built
 			return;
 		}
@@ -954,7 +954,7 @@ public void test019_sourcepath_without_destination() throws IOException {
 		COMPILER.getStandardFileManager(null /* diagnosticListener */, null /* locale */, null /* charset */);
 	assertTrue(ecjStandardJavaFileManager.handleOption(
 			"-sourcepath",
-			Arrays.asList(OUTPUT_DIR + "/src2").iterator()));
+			Arrays.asList(OUTPUT_DIR + "/src2").iterator())); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runTest(
 		true /* shouldCompileOK */,
 		new String [] { /* sourceFiles */
@@ -966,7 +966,7 @@ public void test019_sourcepath_without_destination() throws IOException {
 			"public class Y {}",
 		},
 		ecjStandardJavaFileManager /* standardJavaFileManager */,
-		Arrays.asList("-d", OUTPUT_DIR + "/bin1") /* options */,
+		Arrays.asList("-d", OUTPUT_DIR + "/bin1") /* options */, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		new String[] { /* compileFileNames */
 			"src1/X.java"
 		},
@@ -979,12 +979,12 @@ public void test019_sourcepath_without_destination() throws IOException {
 		});
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=227583
-public void _test020_sourcepath_with_destination() throws IOException {
+public void _test020_sourcepath_with_destination() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	StandardJavaFileManager ecjStandardJavaFileManager =
 		COMPILER.getStandardFileManager(null /* diagnosticListener */, null /* locale */, null /* charset */);
 	assertTrue(ecjStandardJavaFileManager.handleOption(
 			"-sourcepath",
-			Arrays.asList("\"" + OUTPUT_DIR + "/src2\"[-d \"" + OUTPUT_DIR + "/bin2\"]").iterator()));
+			Arrays.asList("\"" + OUTPUT_DIR + "/src2\"[-d \"" + OUTPUT_DIR + "/bin2\"]").iterator())); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	runTest(
 		true /* shouldCompileOK */,
 		new String [] { /* sourceFiles */
@@ -996,7 +996,7 @@ public void _test020_sourcepath_with_destination() throws IOException {
 			"public class Y {}",
 		},
 		ecjStandardJavaFileManager /* standardJavaFileManager */,
-		Arrays.asList("-d", OUTPUT_DIR + "/bin1") /* options */,
+		Arrays.asList("-d", OUTPUT_DIR + "/bin1") /* options */, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		new String[] { /* compileFileNames */
 			"src1/X.java"
 		},
@@ -1027,7 +1027,7 @@ public void test021_output_streams() throws IOException {
 	assertTrue(errBuffer.toString().isEmpty());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=236814
-public void test022_output_streams() throws IOException {
+public void test022_output_streams() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ByteArrayOutputStream
 	outBuffer = new ByteArrayOutputStream(),
 	errBuffer = new ByteArrayOutputStream();
@@ -1053,7 +1053,7 @@ public void test022_output_streams() throws IOException {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=236817
 // according to JavaCompiler#getTask, out should receive supplementary compiler
 // output only; errors should be funneled through the diagnostic listener
-public void _test023_output_streams() throws IOException {
+public void _test023_output_streams() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		false /* shouldCompileOK */,
 		new String [] { /* sourceFiles */
@@ -1078,7 +1078,7 @@ public void _test023_output_streams() throws IOException {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=577550
 // check that an empty iterable for the 'classes' argument doesn't result in an exception
-public void test024_bug577550_test_empty_classes_argument() {
+public void test024_bug577550_test_empty_classes_argument() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// create a source file to compile
 	StandardJavaFileManager javacJavaFileManager = JAVAC_COMPILER.getStandardFileManager(null, null, null);
 	runTest(
@@ -1100,16 +1100,16 @@ public void test024_bug577550_test_empty_classes_argument() {
 			});
 	
 	// Bug 577550: supply intentionally empty (and not null) classes iterable
-	Iterable<String> classes = new ArrayList<>();
+	Iterable<String> classes = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	StandardJavaFileManager ecjStandardJavaFileManager = COMPILER.getStandardFileManager(null /* diagnosticListener */,
 			null /* locale */, null /* charset */);
 	assertTrue("Expected compile with empty 'classes' argument to succeed", COMPILER.getTask(null,
 			ecjStandardJavaFileManager, null, Arrays.asList("-d", OUTPUT_DIR), classes,
 			ecjStandardJavaFileManager
-					.getJavaFileObjectsFromFiles(Arrays.asList(new File(OUTPUT_DIR + File.separator + "X.java"))))
+					.getJavaFileObjectsFromFiles(Arrays.asList(new File(OUTPUT_DIR + File.separator + "X.java")))) //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			.call());
 }
-public void test025_extdirs_1() {
+public void test025_extdirs_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		true /* shouldCompileOK */,
 		new String [] { /* sourceFiles */
@@ -1129,7 +1129,7 @@ public void test025_extdirs_1() {
 			"X.class"
 		});
 }
-public void test025_extdirs_2() {
+public void test025_extdirs_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String trace = null;
 	try {
 		runTest(

@@ -60,7 +60,7 @@ public class SourceElementParser extends CommentRecorderParser {
 	boolean reportReferenceInfo;
 	boolean reportLocalDeclarations;
 	HashtableOfObjectToInt sourceEnds = new HashtableOfObjectToInt();
-	HashMap nodesToCategories = new HashMap(); // a map from ASTNode to char[][]
+	HashMap nodesToCategories = new HashMap(); // a map from ASTNode to char[][] //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	boolean useSourceJavadocParser = true;
 
 	SourceElementNotifier notifier;
@@ -74,7 +74,7 @@ public SourceElementParser(
 	this(requestor, problemFactory, options, reportLocalDeclarations, optimizeStringLiterals, true/* use SourceJavadocParser */);
 }
 
-public SourceElementParser(
+public SourceElementParser( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ISourceElementRequestor requestor,
 		IProblemFactory problemFactory,
 		CompilerOptions options,
@@ -142,7 +142,7 @@ public void addUnknownRef(NameReference nameRef) {
 		this.requestor.acceptUnknownReference(((QualifiedNameReference) nameRef).tokens, nameRef.sourceStart, nameRef.sourceEnd);
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void checkComment() {
 	int lastComment = getCommentPtr();
 	// discard obsolete comments while inside methods or fields initializer (see bug 74369)
@@ -153,7 +153,7 @@ public void checkComment() {
 
 	if (this.modifiersSourceStart >= 0 && this.modifiersSourceStart > this.annotationAsModifierSourceStart) {
 		// eliminate comments located after modifierSourceStart if positioned
-		while (lastComment >= 0) {
+		while (lastComment >= 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int commentSourceStart = this.scanner.commentStarts[lastComment];
 			if (commentSourceStart < 0) commentSourceStart = -commentSourceStart;
 			if (commentSourceStart <= this.modifiersSourceStart) break;
@@ -169,7 +169,7 @@ public void checkComment() {
 		}
 
 		// check deprecation in last comment if javadoc (can be followed by non-javadoc comments which are simply ignored)
-		while (lastComment >= 0 && this.scanner.commentStops[lastComment] < 0) lastComment--; // non javadoc comment have negative end positions
+		while (lastComment >= 0 && this.scanner.commentStops[lastComment] < 0) lastComment--; // non javadoc comment have negative end positions //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (lastComment >= 0 && this.javadocParser != null) {
 			int commentEnd = this.scanner.commentStops[lastComment] - 1; //stop is one over
 			// do not report problem before last parsed comment while recovering code...
@@ -190,7 +190,7 @@ public void checkComment() {
 		// Report reference info in javadoc comment @throws/@exception tags
 		TypeReference[] thrownExceptions = this.javadoc.exceptionReferences;
 		if (thrownExceptions != null) {
-			for (TypeReference typeRef : thrownExceptions) {
+			for (TypeReference typeRef : thrownExceptions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (typeRef instanceof JavadocSingleTypeReference) {
 					JavadocSingleTypeReference singleRef = (JavadocSingleTypeReference) typeRef;
 					this.requestor.acceptTypeReference(singleRef.token, singleRef.sourceStart);
@@ -204,7 +204,7 @@ public void checkComment() {
 		// Report reference info in javadoc comment @see tags
 		Expression[] references = this.javadoc.seeReferences;
 		if (references != null) {
-			for (Expression reference : references) {
+			for (Expression reference : references) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				acceptJavadocTypeReference(reference);
 				if (reference instanceof JavadocFieldReference) {
 					JavadocFieldReference fieldRef = (JavadocFieldReference) reference;
@@ -605,7 +605,7 @@ protected void consumeSingleMemberAnnotation(boolean isTypeAnnotation) {
 		this.requestor.acceptMethodReference(TypeConstants.VALUE, 0, member.sourceStart);
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeSingleStaticImportDeclarationName() {
 	// SingleTypeImportDeclarationName ::= 'import' 'static' Name
 	super.consumeSingleStaticImportDeclarationName();
@@ -631,7 +631,7 @@ protected void consumeSingleStaticImportDeclarationName() {
 	}
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeSingleTypeImportDeclarationName() {
 	// SingleTypeImportDeclarationName ::= 'import' Name
 	/* push an ImportRef build from the last name
@@ -677,7 +677,7 @@ protected void consumeStaticImportOnDemandDeclarationName() {
 		this.requestor.acceptTypeReference(impt.tokens, impt.sourceStart, impt.sourceEnd);
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeTypeImportOnDemandDeclarationName() {
 	// TypeImportOnDemandDeclarationName ::= 'import' Name '.' '*'
 	/* push an ImportRef build from the last name
@@ -724,7 +724,7 @@ protected void consumeUsesStatement() {
 protected void consumeWithClause() {
 	super.consumeWithClause();
 	ProvidesStatement service = (ProvidesStatement) this.astStack[this.astPtr];
-		for (TypeReference ref : service.implementations) {
+		for (TypeReference ref : service.implementations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.requestor.acceptTypeReference(ref.getTypeName(), ref.sourceStart, ref.sourceEnd);
 		}
 }
@@ -752,7 +752,7 @@ protected CompilationUnitDeclaration endParse(int act) {
 		return null;
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public TypeReference constructTypeReference(int dim) {
 	/* build a Reference on a variable that may be qualified or not
 	 * This variable is a type reference and dim will be its dimensions
@@ -846,7 +846,7 @@ public TypeReference constructTypeReference(int dim) {
 		}
 	}
 	int levels = ref.getAnnotatableLevels();
-	for (int i = levels - 1; i >= 0; i--) {
+	for (int i = levels - 1; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if ((length = this.typeAnnotationLengthStack[this.typeAnnotationLengthPtr--]) != 0) {
 			if (ref.annotations == null)
 				ref.annotations = new Annotation[levels][];
@@ -864,7 +864,7 @@ public TypeReference constructTypeReference(int dim) {
 	}
 	return ref;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public NameReference getUnspecifiedReference(boolean rejectTypeAnnotations) {
 	/* build a (unspecified) NameReference which may be qualified*/
     if (rejectTypeAnnotations) {
@@ -900,7 +900,7 @@ public NameReference getUnspecifiedReference(boolean rejectTypeAnnotations) {
 		return ref;
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public NameReference getUnspecifiedReferenceOptimized() {
 	/* build a (unspecified) NameReference which may be qualified
 	The optimization occurs for qualified reference while we are
@@ -959,7 +959,7 @@ protected SingleNameReference newSingleNameReference(char[] source, long positio
 	return new SingleNameReference(source, positions);
 }
 
-public CompilationUnitDeclaration parseCompilationUnit(
+public CompilationUnitDeclaration parseCompilationUnit( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit unit,
 	boolean fullParse,
 	IProgressMonitor pm) {
@@ -1015,7 +1015,7 @@ private void rememberCategories() {
 }
 private void reset() {
 	this.sourceEnds = new HashtableOfObjectToInt();
-	this.nodesToCategories = new HashMap();
+	this.nodesToCategories = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 }
 public void setRequestor(ISourceElementRequestor requestor) {
 	this.requestor = requestor;

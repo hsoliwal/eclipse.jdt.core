@@ -55,7 +55,7 @@ public void testCreateBinaryToolObject() throws CoreException {
  * is a Java file.  Ensures that any two model elements created will share
  * the same project.
  */
-public void testCreateCompilationUnits() throws CoreException {
+public void testCreateCompilationUnits() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createJavaProject("P", new String[] {"src"}, "bin");
 		this.createFolder("/P/src/x/y/z");
@@ -91,7 +91,7 @@ public void testCreateCompilationUnits() throws CoreException {
  * Ensures that a Java model element can be created from a IFile that
  * is a Java file. Even if not on the classpath (in this case it should not exist).
  */
-public void testCreateCompilationUnitsNotOnClasspath() throws CoreException {
+public void testCreateCompilationUnitsNotOnClasspath() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createJavaProject("P", new String[] {"src"}, "bin");
 		this.createFolder("/P/other/nested");
@@ -131,7 +131,7 @@ public void testCreateCompilationUnitsNotOnClasspath() throws CoreException {
  * Ensure that the correct Java model element is created based on the
  * classpath.
  */
-public void testCreateFolderToolObjects() throws CoreException {
+public void testCreateFolderToolObjects() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject javaProject = this.createJavaProject("P", new String[] {}, "bin");
 		this.createFolder("/P/src/x/y/z");

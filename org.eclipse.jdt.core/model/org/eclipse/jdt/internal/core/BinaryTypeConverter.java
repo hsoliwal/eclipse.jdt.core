@@ -46,12 +46,12 @@ public class BinaryTypeConverter extends TypeConverter {
 		this.typeNames = typeNames;
 	}
 
-	public ImportReference[] buildImports(ClassFileReader reader) {
+	public ImportReference[] buildImports(ClassFileReader reader) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// add remaining references to the list of type names
 		// (code extracted from BinaryIndexer#extractReferenceFromConstantPool(...))
 		int[] constantPoolOffsets = reader.getConstantPoolOffsets();
 		int constantPoolCount = constantPoolOffsets.length;
-		for (int i = 0; i < constantPoolCount; i++) {
+		for (int i = 0; i < constantPoolCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int tag = reader.u1At(constantPoolOffsets[i]);
 			char[] name = null;
 			switch (tag) {
@@ -76,7 +76,7 @@ public class BinaryTypeConverter extends TypeConverter {
 		ImportReference[] imports = new ImportReference[typeNamesLength];
 		char[][][] set = this.typeNames.set;
 		int index = 0;
-		for (char[][] typeName : set) {
+		for (char[][] typeName : set) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (typeName != null) {
 				imports[index++] = new ImportReference(typeName, new long[typeName.length]/*dummy positions*/, false/*not on demand*/, 0);
 			}
@@ -87,7 +87,7 @@ public class BinaryTypeConverter extends TypeConverter {
 	/**
 	 * Convert a binary type into an AST type declaration and put it in the given compilation unit.
 	 */
-	public TypeDeclaration buildTypeDeclaration(IType type, CompilationUnitDeclaration compilationUnit)  throws JavaModelException {
+	public TypeDeclaration buildTypeDeclaration(IType type, CompilationUnitDeclaration compilationUnit)  throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		PackageFragment pkg = (PackageFragment) type.getPackageFragment();
 		char[][] packageName = Util.toCharArrays(pkg.names);
 
@@ -101,7 +101,7 @@ public class BinaryTypeConverter extends TypeConverter {
 		IType alreadyComputedMember = type;
 		IType parent = type.getDeclaringType();
 		TypeDeclaration previousDeclaration = typeDeclaration;
-		while(parent != null) {
+		while(parent != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeDeclaration declaration = convert(parent, alreadyComputedMember, previousDeclaration);
 
 			alreadyComputedMember = parent;
@@ -126,7 +126,7 @@ public class BinaryTypeConverter extends TypeConverter {
 		return fieldDeclaration;
 	}
 
-	private AbstractMethodDeclaration convert(IMethod method, IType type) throws JavaModelException {
+	private AbstractMethodDeclaration convert(IMethod method, IType type) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		AbstractMethodDeclaration methodDeclaration;
 
@@ -138,7 +138,7 @@ public class BinaryTypeConverter extends TypeConverter {
 		if (typeParameters != null && typeParameters.length > 0) {
 			int parameterCount = typeParameters.length;
 			typeParams = new org.eclipse.jdt.internal.compiler.ast.TypeParameter[parameterCount];
-			for (int i = 0; i < parameterCount; i++) {
+			for (int i = 0; i < parameterCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ITypeParameter typeParameter = typeParameters[i];
 				typeParams[i] =
 					createTypeParameter(
@@ -176,7 +176,7 @@ public class BinaryTypeConverter extends TypeConverter {
 		int startIndex = (method.isConstructor() && type.isMember() && !Flags.isStatic(type.getFlags())) ? 1 : 0;
 		argumentCount -= startIndex;
 		methodDeclaration.arguments = new Argument[argumentCount];
-		for (int i = 0; i < argumentCount; i++) {
+		for (int i = 0; i < argumentCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String argumentTypeName = argumentTypeNames[startIndex+i];
 			TypeReference typeReference = createTypeReference(argumentTypeName);
 			if (typeReference == null) return null;
@@ -196,7 +196,7 @@ public class BinaryTypeConverter extends TypeConverter {
 		int exceptionCount = exceptionTypeNames == null ? 0 : exceptionTypeNames.length;
 		if(exceptionCount > 0) {
 			methodDeclaration.thrownExceptions = new TypeReference[exceptionCount];
-			for (int i = 0; i < exceptionCount; i++) {
+			for (int i = 0; i < exceptionCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				TypeReference typeReference = createTypeReference(exceptionTypeNames[i]);
 				if (typeReference == null) return null;
 				methodDeclaration.thrownExceptions[i] = typeReference;
@@ -205,7 +205,7 @@ public class BinaryTypeConverter extends TypeConverter {
 		return methodDeclaration;
 	}
 
-	private TypeDeclaration convert(IType type, IType alreadyComputedMember,TypeDeclaration alreadyComputedMemberDeclaration) throws JavaModelException {
+	private TypeDeclaration convert(IType type, IType alreadyComputedMember,TypeDeclaration alreadyComputedMemberDeclaration) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		/* create type declaration - can be member type */
 		TypeDeclaration typeDeclaration = new TypeDeclaration(this.compilationResult);
 
@@ -228,7 +228,7 @@ public class BinaryTypeConverter extends TypeConverter {
 		int interfaceCount = interfaceTypes == null ? 0 : interfaceTypes.length;
 		typeDeclaration.superInterfaces = new TypeReference[interfaceCount];
 		int count = 0;
-		for (int i = 0; i < interfaceCount; i++) {
+		for (int i = 0; i < interfaceCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeReference typeReference = createTypeReference(interfaceTypes[i]);
 			if (typeReference != null) {
 				typeDeclaration.superInterfaces[count++] = typeReference;
@@ -245,7 +245,7 @@ public class BinaryTypeConverter extends TypeConverter {
 		if (typeParameters != null && typeParameters.length > 0) {
 			int parameterCount = typeParameters.length;
 			org.eclipse.jdt.internal.compiler.ast.TypeParameter[] typeParams = new org.eclipse.jdt.internal.compiler.ast.TypeParameter[parameterCount];
-			for (int i = 0; i < parameterCount; i++) {
+			for (int i = 0; i < parameterCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ITypeParameter typeParameter = typeParameters[i];
 				typeParams[i] =
 					createTypeParameter(
@@ -262,7 +262,7 @@ public class BinaryTypeConverter extends TypeConverter {
 		IType[] memberTypes = type.getTypes();
 		int memberTypeCount =	memberTypes == null ? 0 : memberTypes.length;
 		typeDeclaration.memberTypes = new TypeDeclaration[memberTypeCount];
-		for (int i = 0; i < memberTypeCount; i++) {
+		for (int i = 0; i < memberTypeCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(alreadyComputedMember != null && alreadyComputedMember.getFullyQualifiedName().equals(memberTypes[i].getFullyQualifiedName())) {
 				typeDeclaration.memberTypes[i] = alreadyComputedMemberDeclaration;
 			} else {
@@ -276,7 +276,7 @@ public class BinaryTypeConverter extends TypeConverter {
 		int fieldCount = fields == null ? 0 : fields.length;
 		typeDeclaration.fields = new FieldDeclaration[fieldCount];
 		count = 0;
-		for (int i = 0; i < fieldCount; i++) {
+		for (int i = 0; i < fieldCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			FieldDeclaration fieldDeclaration = convert(fields[i], type);
 			if (fieldDeclaration != null) {
 				typeDeclaration.fields[count++] = fieldDeclaration;
@@ -293,7 +293,7 @@ public class BinaryTypeConverter extends TypeConverter {
 		/* source type has a constructor ?           */
 		/* by default, we assume that one is needed. */
 		int neededCount = 1;
-		for (int i = 0; i < methodCount; i++) {
+		for (int i = 0; i < methodCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (methods[i].isConstructor()) {
 				neededCount = 0;
 				// Does not need the extra constructor since one constructor already exists.
@@ -308,7 +308,7 @@ public class BinaryTypeConverter extends TypeConverter {
 		}
 		boolean hasAbstractMethods = false;
 		count = 0;
-		for (int i = 0; i < methodCount; i++) {
+		for (int i = 0; i < methodCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			AbstractMethodDeclaration method = convert(methods[i], type);
 			if (method != null) {
 				boolean isAbstract;
@@ -337,7 +337,7 @@ public class BinaryTypeConverter extends TypeConverter {
 		if (length == 0) return CharOperation.NO_CHAR_CHAR;
 
 		char[][] result = new char [length][];
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			result[i] = strings[i].toCharArray();
 		}
 

@@ -33,7 +33,7 @@ public class EncodedFileOutputStream extends BinaryFileOutputStream {
 		_charsetName = charsetName;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void close() throws IOException {
 		super.close();
 		if (_charsetName != null) {
@@ -56,7 +56,7 @@ public class EncodedFileOutputStream extends BinaryFileOutputStream {
 				}
 			}
 			catch (CoreException ce) {
-				throw new IOException("Could not set charset: " + _charsetName, ce); //$NON-NLS-1$
+				throw new IOException("Could not set charset: " + _charsetName, ce); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}

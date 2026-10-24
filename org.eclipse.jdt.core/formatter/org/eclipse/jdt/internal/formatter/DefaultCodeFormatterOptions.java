@@ -575,8 +575,8 @@ public class DefaultCodeFormatterOptions {
 		return Integer.toString(alignment);
 	}
 
-	public Map<String, String> getMap() {
-		Map<String, String> options = new HashMap<>();
+	public Map<String, String> getMap() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		Map<String, String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		options.put(DefaultCodeFormatterConstants.FORMATTER_ALIGNMENT_FOR_ANNOTATIONS_ON_TYPE, getAlignment(this.alignment_for_annotations_on_type));
 		options.put(DefaultCodeFormatterConstants.FORMATTER_ALIGNMENT_FOR_TYPE_ANNOTATIONS, getAlignment(this.alignment_for_type_annotations));
 		options.put(DefaultCodeFormatterConstants.FORMATTER_ALIGNMENT_FOR_ANNOTATIONS_ON_ENUM_CONSTANT, getAlignment(this.alignment_for_annotations_on_enum_constant));
@@ -990,7 +990,7 @@ public class DefaultCodeFormatterOptions {
 				textBlockIndentation = DefaultCodeFormatterConstants.INDENT_ON_COLUMN;
 				break;
 			default:
-				throw new IllegalArgumentException("Invalid text block indentation: " + this.text_block_indentation); //$NON-NLS-1$
+				throw new IllegalArgumentException("Invalid text block indentation: " + this.text_block_indentation); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		options.put(DefaultCodeFormatterConstants.FORMATTER_TEXT_BLOCK_INDENTATION, Integer.toString(textBlockIndentation));
 
@@ -1013,7 +1013,7 @@ public class DefaultCodeFormatterOptions {
 		return options;
 	}
 
-	public void set(Map<String, String> settings) {
+	public void set(Map<String, String> settings) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setInt(settings, DefaultCodeFormatterConstants.FORMATTER_ALIGNMENT_FOR_ANNOTATIONS_ON_TYPE,
 				v -> this.alignment_for_annotations_on_type = v);
 		setInt(settings, DefaultCodeFormatterConstants.FORMATTER_ALIGNMENT_FOR_TYPE_ANNOTATIONS,
@@ -2579,7 +2579,7 @@ public class DefaultCodeFormatterOptions {
 			} else if (DefaultCodeFormatterConstants.INDENT_ON_COLUMN == v) {
 				this.text_block_indentation = Alignment.M_INDENT_ON_COLUMN;
 			} else {
-				throw new IllegalArgumentException("invalid text block setting: " + v); //$NON-NLS-1$
+				throw new IllegalArgumentException("invalid text block setting: " + v); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		});
 		final Object pageWidthOption = settings.get(DefaultCodeFormatterConstants.FORMATTER_LINE_SPLIT);
@@ -2694,7 +2694,7 @@ public class DefaultCodeFormatterOptions {
 			try {
 				setter.accept(Integer.parseInt(value));
 			} catch (NumberFormatException e) {
-				throw new IllegalArgumentException("Expected integer for setting " + key + ", got: " + value); //$NON-NLS-1$ //$NON-NLS-2$
+				throw new IllegalArgumentException("Expected integer for setting " + key + ", got: " + value); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
@@ -2703,7 +2703,7 @@ public class DefaultCodeFormatterOptions {
 		Object value = settings.get(key);
 		if (value != null) {
 			if (!allowedValues.contains(value))
-				throw new IllegalArgumentException("Unrecognized value for setting " + key + ": " + value); //$NON-NLS-1$ //$NON-NLS-2$
+				throw new IllegalArgumentException("Unrecognized value for setting " + key + ": " + value); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			setter.accept((String) value);
 		}
 	}
@@ -2727,7 +2727,7 @@ public class DefaultCodeFormatterOptions {
 	 * @param settings the given map
 	 * @deprecated
 	 */
-	private void setDeprecatedOptions(Map<String, String> settings) {
+	private void setDeprecatedOptions(Map<String, String> settings) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// backward compatibility code
 		final Object commentClearBlankLinesOption = settings.get(DefaultCodeFormatterConstants.FORMATTER_COMMENT_CLEAR_BLANK_LINES);
 		if (commentClearBlankLinesOption != null) {
@@ -2835,7 +2835,7 @@ public class DefaultCodeFormatterOptions {
 		}
 
 		// insert new line between empty braces -> keep braced code on one line
-		HashMap<Boolean, String> insertToOneLine = new HashMap<>();
+		HashMap<Boolean, String> insertToOneLine = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 		insertToOneLine.put(true, DefaultCodeFormatterConstants.ONE_LINE_NEVER);
 		insertToOneLine.put(false, DefaultCodeFormatterConstants.ONE_LINE_IF_EMPTY);
 		if (settings.get(DefaultCodeFormatterConstants.FORMATTER_KEEP_ANNOTATION_DECLARATION_ON_ONE_LINE) == null) {
@@ -2999,7 +2999,7 @@ public class DefaultCodeFormatterOptions {
 		}
 	}
 
-	public void setDefaultSettings() {
+	public void setDefaultSettings() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.alignment_for_annotations_on_type = Alignment.M_FORCE | Alignment.M_ONE_PER_LINE_SPLIT;
 		this.alignment_for_type_annotations = Alignment.M_NO_ALIGNMENT;
 		this.alignment_for_annotations_on_enum_constant = Alignment.M_FORCE | Alignment.M_ONE_PER_LINE_SPLIT;
@@ -3408,7 +3408,7 @@ public class DefaultCodeFormatterOptions {
 		this.tab_size = 4;
 	}
 
-	public void setJavaConventionsSettings() {
+	public void setJavaConventionsSettings() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.alignment_for_annotations_on_type = Alignment.M_FORCE | Alignment.M_ONE_PER_LINE_SPLIT;
 		this.alignment_for_type_annotations = Alignment.M_NO_ALIGNMENT;
 		this.alignment_for_annotations_on_enum_constant = Alignment.M_FORCE | Alignment.M_ONE_PER_LINE_SPLIT;

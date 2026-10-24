@@ -159,7 +159,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		}
 		if (jdkLevel >= ClassFileConstants.JDK9) {
 			isJRE9 = true;
-			System.out.println("Recognized Java version '"+javaVersion+"' with vm.name '"+vmName+"'");
+			System.out.println("Recognized Java version '"+javaVersion+"' with vm.name '"+vmName+"'"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -289,14 +289,14 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		}
 		public void acceptProblem(IProblem problem) {
 			org.eclipse.jdt.core.tests.util.Util.appendProblem(this.problems, problem, this.unitSource, ++this.problemCount);
-			this.problems.append("----------\n");
+			this.problems.append("----------\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		public void beginReporting() {
-			this.problems.append("----------\n");
+			this.problems.append("----------\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		public void endReporting() {
 			if (this.problemCount == 0)
-				this.problems.append("----------\n");
+				this.problems.append("----------\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		public boolean isActive() {
 			return this.isActive;
@@ -306,7 +306,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 			this.unitSource = source;
 		}
 		public void reset() {
-			this.problems = new StringBuilder();
+			this.problems = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			this.problemCount = 0;
 		}
 	}
@@ -314,13 +314,13 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	/**
 	 * Delta listener
 	 */
-	protected class DeltaListener implements IElementChangedListener, IResourceChangeListener {
+	protected class DeltaListener implements IElementChangedListener, IResourceChangeListener { //FLLDCIM: MARK — T31  IMPLEMENTS
 		/**
 		 * Deltas received from the java model. See
 		 * <code>#startDeltas</code> and
 		 * <code>#stopDeltas</code>.
 		 */
-		private ArrayList<IJavaElementDelta> deltas = new ArrayList<>();
+		private ArrayList<IJavaElementDelta> deltas = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		private final int eventType;
 
@@ -340,19 +340,19 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		public synchronized void elementChanged(ElementChangedEvent event) {
 			if (this.eventType == -1 || event.getType() == this.eventType) {
 				this.deltas.add(event.getDelta());
-				StringBuilder message = new StringBuilder();
+				StringBuilder message = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 				Job currentJob = Job.getJobManager().currentJob();
 				if (currentJob != null) {
-					message.append(currentJob.getName()).append(' ');
+					message.append(currentJob.getName()).append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				message.append('[').append(Thread.currentThread().getName());
-				message.append("] Caller of IElementChangedListener#elementChanged with delta ");
-				message.append(event.getDelta());
+				message.append('[').append(Thread.currentThread().getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				message.append("] Caller of IElementChangedListener#elementChanged with delta "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				message.append(event.getDelta()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				new Throwable(message.toString()).printStackTrace(new PrintStream(this.stackTraces));
 			}
 		}
 		public synchronized CompilationUnit getCompilationUnitAST(ICompilationUnit workingCopy) {
-			for (IJavaElementDelta delta: this.deltas) {
+			for (IJavaElementDelta delta: this.deltas) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				CompilationUnit result = getCompilationUnitAST(workingCopy,delta);
 				if (result != null)
 					return result;
@@ -381,7 +381,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 			if (this.deltas == null) waitForResourceDelta();
 			if (this.deltas == null) return null;
 			IJavaElementDelta result = null;
-			for (IJavaElementDelta delta1: this.deltas) {
+			for (IJavaElementDelta delta1: this.deltas) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IJavaElementDelta delta = searchForDelta(element, delta1);
 				if (delta != null) {
 					if (returnFirst) {
@@ -406,9 +406,9 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 			this.stackTraces = new ByteArrayOutputStream();
 			this.gotResourceDelta = false;
 		}
-		protected void sortDeltas(IJavaElementDelta[] elementDeltas) {
+		protected void sortDeltas(IJavaElementDelta[] elementDeltas) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         	org.eclipse.jdt.internal.core.util.Util.Comparer comparer = new org.eclipse.jdt.internal.core.util.Util.Comparer() {
-        		public int compare(Object a, Object b) {
+        		public int compare(Object a, Object b) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         			IJavaElementDelta deltaA = (IJavaElementDelta)a;
         			IJavaElementDelta deltaB = (IJavaElementDelta)b;
         			// Make sure JRT elements and other external JAR elements always
@@ -437,7 +437,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
         		}
         	};
         	org.eclipse.jdt.internal.core.util.Util.sort(elementDeltas, comparer);
-        	for (int i = 0, max = elementDeltas.length; i < max; i++) {
+        	for (int i = 0, max = elementDeltas.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
         		IJavaElementDelta delta = elementDeltas[i];
         		IJavaElementDelta[] children = delta.getAffectedChildren();
         		if (children != null) {
@@ -460,7 +460,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 				return delta;
 			}
 			IJavaElementDelta[] affectedChildren = delta.getAffectedChildren();
-			for (IJavaElementDelta affectedChild : affectedChildren) {
+			for (IJavaElementDelta affectedChild : affectedChildren) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IJavaElementDelta child= searchForDelta(element, affectedChild);
 				if (child != null) {
 					return child;
@@ -472,35 +472,35 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 			return this.stackTraces.toString();
 		}
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public synchronized String toString() {
-			StringBuilder buffer = new StringBuilder();
-			for (IJavaElementDelta delta: this.deltas) {
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			for (IJavaElementDelta delta: this.deltas) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (((JavaElementDelta) delta).ignoreFromTests) {
 					continue;
 				}
 				if (buffer.length() != 0) {
-					buffer.append("\n\n");
+					buffer.append("\n\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				IJavaElementDelta[] children = delta.getAffectedChildren();
 				int childrenLength=children.length;
 				IResourceDelta[] resourceDeltas = delta.getResourceDeltas();
 				int resourceDeltasLength = resourceDeltas == null ? 0 : resourceDeltas.length;
 				if (childrenLength == 0 && resourceDeltasLength == 0) {
-					buffer.append(delta);
+					buffer.append(delta); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else {
 					sortDeltas(children);
-					for (int j = 0; j < childrenLength; j++) {
+					for (int j = 0; j < childrenLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (buffer.length() != 0 && buffer.charAt(buffer.length() - 1) != '\n') {
-							buffer.append('\n');
+							buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
-						buffer.append(children[j]);
+						buffer.append(children[j]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
-					for (int j = 0; j < resourceDeltasLength; j++) {
+					for (int j = 0; j < resourceDeltasLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (buffer.length() != 0 && buffer.charAt(buffer.length() - 1) != '\n') {
-							buffer.append('\n');
+							buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
-						buffer.append(resourceDeltas[j]);
+						buffer.append(resourceDeltas[j]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
 			}
@@ -509,7 +509,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 
 		public void waitForResourceDelta() {
 			long startNanos = System.nanoTime();
-			while (!this.gotResourceDelta) {
+			while (!this.gotResourceDelta) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					Thread.sleep(1);
 				} catch (InterruptedException e) {
@@ -523,13 +523,13 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	protected DeltaListener deltaListener = new DeltaListener();
 
 	public static class LogListenerWithHistory implements ILogListener {
-		private final StringBuilder buffer = new StringBuilder();
-		private final List<IStatus> logs = new ArrayList<>();
+		private final StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		private final List<IStatus> logs = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		public void logging(IStatus status, String plugin) {
 			this.logs.add(status);
-			this.buffer.append(status);
-			this.buffer.append('\n');
+			this.buffer.append(status); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			this.buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public String toString() {
@@ -600,7 +600,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	public static Test buildModelTestSuite(Class evaluationTestClass, long ordering) {
 		TestSuite suite = new Suite(evaluationTestClass.getName());
 		List tests = buildTestsList(evaluationTestClass, 0, ordering);
-		for (int index=0, size=tests.size(); index<size; index++) {
+		for (int index=0, size=tests.size(); index<size; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			suite.addTest((Test)tests.get(index));
 		}
 		return suite;
@@ -624,7 +624,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		assertSearchResults(message, expected, collector, true /* assertion */);
 	}
 	private static String sortLines(String toSplit) {
-		return Arrays.stream(toSplit.split("\n")).sorted().collect(Collectors.joining("\n"));
+		return Arrays.stream(toSplit.split("\n")).sorted().collect(Collectors.joining("\n")); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 	}
 	protected void assertSearchResults(String message, String expectedString, Object collector, boolean assertion) {
 		String expected = sortLines(expectedString);
@@ -643,7 +643,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	protected void assertScopeEquals(String expected, IJavaSearchScope scope) {
 		String actual = scope.toString();
 		if (!expected.equals(actual)) {
-			System.out.println(displayString(actual, 3) + ",");
+			System.out.println(displayString(actual, 3) + ","); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		assertEquals("Unexpected scope", expected, actual);
 	}
@@ -658,21 +658,21 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		IClasspathEntry[] entries = project.getRawClasspath();
 		int length = entries.length;
 		IClasspathEntry[] newEntries = new IClasspathEntry[length + 1];
-		for (int srcIdx = 0, tgtIdx = 0; tgtIdx < length+1; tgtIdx++) {
+		for (int srcIdx = 0, tgtIdx = 0; tgtIdx < length+1; tgtIdx++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			newEntries[tgtIdx] = (tgtIdx == position) ? entry : entries[srcIdx++];
 		}
 		project.setRawClasspath(newEntries, null);
 	}
-	protected void addClassFolder(IJavaProject javaProject, String folderRelativePath, String[] pathAndContents, String compliance) throws CoreException, IOException {
+	protected void addClassFolder(IJavaProject javaProject, String folderRelativePath, String[] pathAndContents, String compliance) throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject project = javaProject.getProject();
 		String projectLocation = project.getLocation().toOSString();
-		String folderPath = projectLocation + File.separator + folderRelativePath;
+		String folderPath = projectLocation + File.separator + folderRelativePath; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     	org.eclipse.jdt.core.tests.util.Util.createClassFolder(pathAndContents, folderPath, compliance);
     	project.refreshLocal(IResource.DEPTH_INFINITE, null);
-		String projectPath = '/' + project.getName() + '/';
+		String projectPath = '/' + project.getName() + '/'; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		addLibraryEntry(
 			javaProject,
-			new Path(projectPath + folderRelativePath),
+			new Path(projectPath + folderRelativePath), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			null,
 			null,
 			null,
@@ -739,11 +739,11 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 			Map options,
 			boolean exported) throws CoreException, IOException {
 		IProject project = createLibrary(javaProject, jarName, sourceZipName, pathAndContents, nonJavaResources, compliance, options);
-		String projectPath = '/' + project.getName() + '/';
+		String projectPath = '/' + project.getName() + '/'; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		addLibraryEntry(
 			javaProject,
-			new Path(projectPath + jarName),
-			sourceZipName == null ? null : new Path(projectPath + sourceZipName),
+			new Path(projectPath + jarName), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			sourceZipName == null ? null : new Path(projectPath + sourceZipName), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			null,
 			toIPathArray(librariesInclusionPatterns),
 			toIPathArray(librariesExclusionPatterns),
@@ -770,11 +770,11 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 			Map options) throws IOException, CoreException {
 		IProject project = javaProject.getProject();
 		String projectLocation = project.getLocation().toOSString();
-		String jarPath = projectLocation + File.separator + jarName;
+		String jarPath = projectLocation + File.separator + jarName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String[] claspath = getJCLLibrary(compliance);
 		org.eclipse.jdt.core.tests.util.Util.createJar(pathAndContents, nonJavaResources, jarPath, claspath, compliance, options);
 		if (pathAndContents != null && pathAndContents.length != 0) {
-			String sourceZipPath = projectLocation + File.separator + sourceZipName;
+			String sourceZipPath = projectLocation + File.separator + sourceZipName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			org.eclipse.jdt.core.tests.util.Util.createSourceZip(pathAndContents, sourceZipPath);
 		}
 		project.refreshLocal(IResource.DEPTH_INFINITE, null);
@@ -796,10 +796,10 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 			Map options) throws CoreException, IOException
 	{
 		createLibrary(javaProject, jarName, "src.zip", pathAndContents, null, compliance, options);
-		String jarPath = '/' + javaProject.getProject().getName() + '/' + jarName;
+		String jarPath = '/' + javaProject.getProject().getName() + '/' + jarName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IClasspathEntry entry = JavaCore.newLibraryEntry(
 				new Path(jarPath),
-				new Path('/'+javaProject.getProject().getName()+"/src.zip"),
+				new Path('/'+javaProject.getProject().getName()+"/src.zip"), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				null/*src attach root*/,
 				null/*access rules*/,
 				externalAnnotationExtraAttributes(externalAnnotationPath),
@@ -877,18 +877,18 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		assertEquals(message, expected, actual);
 	}
 
-	protected void assertResourcesEqual(String message, String expected, Object[] resources) {
+	protected void assertResourcesEqual(String message, String expected, Object[] resources) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		sortResources(resources);
-		StringBuilder buffer = new StringBuilder();
-		for (int i = 0, length = resources.length; i < length; i++) {
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0, length = resources.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (resources[i] instanceof IResource) {
-				buffer.append(((IResource) resources[i]).getFullPath().toString());
+				buffer.append(((IResource) resources[i]).getFullPath().toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else if (resources[i] instanceof IStorage) {
-				buffer.append(((IStorage) resources[i]).getFullPath().toString());
+				buffer.append(((IStorage) resources[i]).getFullPath().toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else if (resources[i] == null) {
-				buffer.append("<null>");
+				buffer.append("<null>"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			if (i != length-1)buffer.append("\n");
+			if (i != length-1)buffer.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (!expected.equals(buffer.toString())) {
 			System.out.print(org.eclipse.jdt.core.tests.util.Util.displayString(buffer.toString(), 2));
@@ -901,18 +901,18 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		);
 	}
 
-	protected void assertResourceNamesEqual(String message, String expected, Object[] resources) {
+	protected void assertResourceNamesEqual(String message, String expected, Object[] resources) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		sortResources(resources);
-		StringBuilder buffer = new StringBuilder();
-		for (int i = 0, length = resources.length; i < length; i++) {
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0, length = resources.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (resources[i] instanceof IResource) {
-				buffer.append(((IResource)resources[i]).getName());
+				buffer.append(((IResource)resources[i]).getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else if (resources[i] instanceof IStorage) {
-				buffer.append(((IStorage) resources[i]).getName());
+				buffer.append(((IStorage) resources[i]).getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else if (resources[i] == null) {
-				buffer.append("<null>");
+				buffer.append("<null>"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			if (i != length-1)buffer.append("\n");
+			if (i != length-1)buffer.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (!expected.equals(buffer.toString())) {
 			System.out.print(org.eclipse.jdt.core.tests.util.Util.displayString(buffer.toString(), 2));
@@ -938,10 +938,10 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 
 	protected void assertResourceTreeEquals(String message, String expected, Object[] resources) throws CoreException {
 		sortResources(resources);
-		StringBuilder buffer = new StringBuilder();
-		for (int i = 0, length = resources.length; i < length; i++) {
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0, length = resources.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			printResourceTree(resources[i], buffer, 0);
-			if (i != length-1) buffer.append("\n");
+			if (i != length-1) buffer.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (!expected.equals(buffer.toString())) {
 			System.out.print(org.eclipse.jdt.core.tests.util.Util.displayString(buffer.toString(), 2));
@@ -954,34 +954,34 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		);
 	}
 
-	private void printResourceTree(Object resource, StringBuilder buffer, int indent) throws CoreException {
-		for (int i = 0; i < indent; i++)
-			buffer.append("  ");
+	private void printResourceTree(Object resource, StringBuilder buffer, int indent) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		for (int i = 0; i < indent; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append("  "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (resource instanceof IResource) {
-			buffer.append(((IResource) resource).getName());
+			buffer.append(((IResource) resource).getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (resource instanceof IContainer) {
 				IResource[] children = ((IContainer) resource).members();
 				int length = children.length;
-				if (length > 0) buffer.append("\n");
-				for (int j = 0; j < length; j++) {
+				if (length > 0) buffer.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (int j = 0; j < length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					printResourceTree(children[j], buffer, indent+1);
-					if (j != length-1) buffer.append("\n");
+					if (j != length-1) buffer.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
 		} else if (resource instanceof IJarEntryResource) {
 			IJarEntryResource jarEntryResource = (IJarEntryResource) resource;
-			buffer.append(jarEntryResource.getName());
+			buffer.append(jarEntryResource.getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (!jarEntryResource.isFile()) {
 				IJarEntryResource[] children = jarEntryResource.getChildren();
 				int length = children.length;
-				if (length > 0) buffer.append("\n");
-				for (int j = 0; j < length; j++) {
+				if (length > 0) buffer.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (int j = 0; j < length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					printResourceTree(children[j], buffer, indent+1);
-					if (j != length-1) buffer.append("\n");
+					if (j != length-1) buffer.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
 		} else if (resource == null) {
-			buffer.append("<null>");
+			buffer.append("<null>"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 	}
@@ -990,14 +990,14 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		String actual = element == null ? "<null>" : ((JavaElement) element).toStringWithAncestors(false/*don't show key*/);
 		if (!expected.equals(actual)) {
 			if (this.displayName) System.out.println(getName()+" actual result is:");
-			System.out.println(displayString(actual, this.tabs) + this.endChar);
+			System.out.println(displayString(actual, this.tabs) + this.endChar); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		assertEquals(message, expected, actual);
 	}
 	protected void assertElementExists(String message, String expected, IJavaElement element) {
 		assertElementEquals(message, expected, element);
 		if (element != null && !element.exists()) {
-			fail(((JavaElement) element).toStringWithAncestors(false/*don't show key*/) + " doesn't exist");
+			fail(((JavaElement) element).toStringWithAncestors(false/*don't show key*/) + " doesn't exist"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	protected void assertElementsEqual(String message, String expected, IJavaElement[] elements) {
@@ -1006,20 +1006,20 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	protected void assertElementsEqual(String message, String expected, IJavaElement[] elements, boolean showResolvedInfo) {
 		assertElementsEqual(message, expected, elements, showResolvedInfo, false);
 	}
-	protected void assertElementsEqual(String message, String expected, IJavaElement[] elements, boolean showResolvedInfo, boolean sorted) {
-		StringBuilder buffer = new StringBuilder();
+	protected void assertElementsEqual(String message, String expected, IJavaElement[] elements, boolean showResolvedInfo, boolean sorted) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		if (elements != null) {
-			for (int i = 0, length = elements.length; i < length; i++){
+			for (int i = 0, length = elements.length; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				JavaElement element = (JavaElement)elements[i];
 				if (element == null) {
-					buffer.append("<null>");
+					buffer.append("<null>"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else {
-					buffer.append(element.toStringWithAncestors(showResolvedInfo));
+					buffer.append(element.toStringWithAncestors(showResolvedInfo)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				if (i != length-1) buffer.append("\n");
+				if (i != length-1) buffer.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		} else {
-			buffer.append("<null>");
+			buffer.append("<null>"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		String actual = buffer.toString();
 		if (sorted) {
@@ -1027,7 +1027,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		}
 		if (!expected.equals(actual)) {
 			if (this.displayName) System.out.println(getName()+" actual result is:");
-			System.out.println(displayString(actual, this.tabs) + this.endChar);
+			System.out.println(displayString(actual, this.tabs) + this.endChar); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		assertEquals(message, expected, actual);
 	}
@@ -1040,7 +1040,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 					exception.toString();
 		if (!expected.equals(actual)) {
 			if (this.displayName) System.out.println(getName()+" actual result is:");
-			System.out.println(displayString(actual, this.tabs) + this.endChar);
+			System.out.println(displayString(actual, this.tabs) + this.endChar); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		assertEquals(message, expected, actual);
 	}
@@ -1048,7 +1048,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		String actual = hierarchy.toString();
 		if (!expected.equals(actual)) {
 			if (this.displayName) System.out.println(getName()+" actual result is:");
-			System.out.println(displayString(actual, this.tabs) + this.endChar);
+			System.out.println(displayString(actual, this.tabs) + this.endChar); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		assertEquals("Unexpected type hierarchy", expected, actual);
 	}
@@ -1074,13 +1074,13 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		assertMarkers(message, expectedMarkers, markers);
 	}
 	protected void assertMarkers(String message, String expectedMarkers, IMarker[] markers) throws CoreException {
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		if (markers != null) {
-			for (int i = 0, length = markers.length; i < length; i++) {
+			for (int i = 0, length = markers.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IMarker marker = markers[i];
-				buffer.append(marker.getAttribute(IMarker.MESSAGE));
+				buffer.append(marker.getAttribute(IMarker.MESSAGE)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (i != length-1) {
-					buffer.append("\n");
+					buffer.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
 		}
@@ -1092,11 +1092,11 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	}
 
 	protected void assertMemberValuePairEquals(String expected, IMemberValuePair member) throws JavaModelException {
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		appendAnnotationMember(buffer, member);
 		String actual = buffer.toString();
 		if (!expected.equals(actual)) {
-			System.out.println(displayString(actual, 2) + this.endChar);
+			System.out.println(displayString(actual, 2) + this.endChar); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		assertEquals("Unexpected member value pair", expected, actual);
 	}
@@ -1104,7 +1104,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	protected void assertProblems(String message, String expected, IProblem[] problems, char[] source) {
 		ProblemRequestor pbRequestor = new ProblemRequestor();
 		pbRequestor.unitSource = source;
-		for (int i = 0, length = problems.length; i < length; i++) {
+		for (int i = 0, length = problems.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			pbRequestor.acceptProblem(problems[i]);
 		}
 		assertProblems(message, expected, pbRequestor);
@@ -1149,128 +1149,128 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		assertEquals(message, expected, actual);
 	}
 	protected void assertAnnotationsEqual(String expected, IAnnotation[] annotations) throws JavaModelException {
-		StringBuilder buffer = new StringBuilder();
-		for (int i = 0; i < annotations.length; i++) {
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0; i < annotations.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IAnnotation annotation = annotations[i];
 			appendAnnotation(buffer, annotation);
-			buffer.append("\n");
+			buffer.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		String actual = buffer.toString();
 		if (!expected.equals(actual)) {
-			System.out.println(displayString(actual, 2) + this.endChar);
+			System.out.println(displayString(actual, 2) + this.endChar); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		assertEquals("Unexpected annotations", expected, actual);
 	}
 
 	protected void appendAnnotation(StringBuilder buffer, IAnnotation annotation) throws JavaModelException {
-		buffer.append('@');
-		buffer.append(annotation.getElementName());
+		buffer.append('@'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(annotation.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		IMemberValuePair[] members = annotation.getMemberValuePairs();
 		int length = members.length;
 		if (length > 0) {
-			buffer.append('(');
-			for (int i = 0; i < length; i++) {
+			buffer.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				appendAnnotationMember(buffer, members[i]);
 				if (i < length-1)
-					buffer.append(", ");
+					buffer.append(", "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buffer.append(')');
+			buffer.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
-	private void appendAnnotationMember(StringBuilder buffer, IMemberValuePair member) throws JavaModelException {
+	private void appendAnnotationMember(StringBuilder buffer, IMemberValuePair member) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (member == null) {
-			buffer.append("<null>");
+			buffer.append("<null>"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return;
 		}
 		String name = member.getMemberName();
 		if (!"value".equals(name)) {
-			buffer.append(name);
-			buffer.append('=');
+			buffer.append(name); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append('='); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		int kind = member.getValueKind();
 		Object value = member.getValue();
 		if (value instanceof Object[]) {
 			if (kind == IMemberValuePair.K_UNKNOWN)
-				buffer.append("[unknown]");
-			buffer.append('{');
+				buffer.append("[unknown]"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append('{'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			Object[] array = (Object[]) value;
-			for (int i = 0, length = array.length; i < length; i++) {
+			for (int i = 0, length = array.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				appendAnnotationMemberValue(buffer, array[i], kind);
 				if (i < length-1)
-					buffer.append(", ");
+					buffer.append(", "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buffer.append('}');
+			buffer.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
 			appendAnnotationMemberValue(buffer, value, kind);
 		}
 	}
 
-	private void appendAnnotationMemberValue(StringBuilder buffer, Object value, int kind) throws JavaModelException {
+	private void appendAnnotationMemberValue(StringBuilder buffer, Object value, int kind) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (value == null) {
-			buffer.append("<null>");
+			buffer.append("<null>"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return;
 		}
 		switch(kind) {
 		case IMemberValuePair.K_INT:
-			buffer.append("(int)");
-			buffer.append(value);
+			buffer.append("(int)"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(value); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case IMemberValuePair.K_BYTE:
-			buffer.append("(byte)");
-			buffer.append(value);
+			buffer.append("(byte)"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(value); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case IMemberValuePair.K_SHORT:
-			buffer.append("(short)");
-			buffer.append(value);
+			buffer.append("(short)"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(value); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case IMemberValuePair.K_CHAR:
-			buffer.append('\'');
-			buffer.append(value);
-			buffer.append('\'');
+			buffer.append('\''); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(value); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append('\''); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case IMemberValuePair.K_FLOAT:
-			buffer.append(value);
-			buffer.append('f');
+			buffer.append(value); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append('f'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case IMemberValuePair.K_DOUBLE:
-			buffer.append("(double)");
-			buffer.append(value);
+			buffer.append("(double)"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(value); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case IMemberValuePair.K_BOOLEAN:
-			buffer.append(value);
+			buffer.append(value); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case IMemberValuePair.K_LONG:
-			buffer.append(value);
-			buffer.append('L');
+			buffer.append(value); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append('L'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case IMemberValuePair.K_STRING:
-			buffer.append('\"');
-			buffer.append(value);
-			buffer.append('\"');
+			buffer.append('\"'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(value); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append('\"'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case IMemberValuePair.K_ANNOTATION:
 			appendAnnotation(buffer, (IAnnotation) value);
 			break;
 		case IMemberValuePair.K_CLASS:
-			buffer.append(value);
-			buffer.append(".class");
+			buffer.append(value); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(".class"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case IMemberValuePair.K_QUALIFIED_NAME:
-			buffer.append(value);
+			buffer.append(value); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case IMemberValuePair.K_SIMPLE_NAME:
-			buffer.append(value);
+			buffer.append(value); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case IMemberValuePair.K_UNKNOWN:
 			appendAnnotationMemberValue(buffer, value, getValueKind(value));
 			break;
 		default:
-			buffer.append("<Unknown value: (" + (value == null ? "" : value.getClass().getName()) + ") " + value + ">");
+			buffer.append("<Unknown value: (" + (value == null ? "" : value.getClass().getName()) + ") " + value + ">"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		}
 	}
-	private int getValueKind(Object value) {
+	private int getValueKind(Object value) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (value instanceof Integer) {
 			return IMemberValuePair.K_INT;
 		} else if (value instanceof Byte) {
@@ -1304,22 +1304,22 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	 * Ensures the elements are present after creation.
 	 */
 	public void assertCreation(IJavaElement[] newElements) {
-		for (int i = 0; i < newElements.length; i++) {
+		for (int i = 0; i < newElements.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IJavaElement newElement = newElements[i];
 			assertTrue("Element should be present after creation", newElement.exists());
 		}
 	}
-	protected void assertClasspathEquals(IClasspathEntry[] classpath, String expected) {
+	protected void assertClasspathEquals(IClasspathEntry[] classpath, String expected) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String actual;
 		if (classpath == null) {
 			actual = "<null>";
 		} else {
-			StringBuilder buffer = new StringBuilder();
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			int length = classpath.length;
-			for (int i=0; i<length; i++) {
-				buffer.append(classpath[i]);
+			for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append(classpath[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (i < length-1)
-					buffer.append('\n');
+					buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			actual = buffer.toString();
 		}
@@ -1328,17 +1328,17 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		}
 		assertEquals(expected, actual);
 	}
-	protected void assertPackageFragmentRootsEqual(IPackageFragmentRoot[] roots, String expected) {
+	protected void assertPackageFragmentRootsEqual(IPackageFragmentRoot[] roots, String expected) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String actual;
 		if (roots == null) {
 			actual = "<null>";
 		} else {
-			StringBuilder buffer = new StringBuilder();
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			int length = roots.length;
-			for (int i=0; i<length; i++) {
-				buffer.append(roots[i]);
+			for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append(roots[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (i < length-1)
-					buffer.append('\n');
+					buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			actual = buffer.toString();
 		}
@@ -1360,16 +1360,16 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	 */
 	public void assertDeletion(IJavaElement[] elementsToDelete) throws JavaModelException {
 		IJavaElement elementToDelete = null;
-		for (int i = 0; i < elementsToDelete.length; i++) {
+		for (int i = 0; i < elementsToDelete.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			elementToDelete = elementsToDelete[i];
 			assertTrue("Element must be present to be deleted", elementToDelete.exists());
 		}
 
 		getJavaModel().delete(elementsToDelete, false, null);
 
-		for (int i = 0; i < elementsToDelete.length; i++) {
+		for (int i = 0; i < elementsToDelete.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			elementToDelete = elementsToDelete[i];
-			assertTrue("Element should not be present after deletion: " + elementToDelete, !elementToDelete.exists());
+			assertTrue("Element should not be present after deletion: " + elementToDelete, !elementToDelete.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	protected void assertDeltas(String message, String expected, DeltaListener listener) {
@@ -1419,16 +1419,16 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 			expected,
 			actual);
 	}
-	private String sortModules(String text) {
-		StringBuilder buf = new StringBuilder();
-		String[] lines = text.split("\n");
+	private String sortModules(String text) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		String[] lines = text.split("\n"); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		int idx = 0;
 
 		// prefix before first module:
-		while (idx < lines.length) {
+		while (idx < lines.length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String line = lines[idx];
 			if (!line.trim().startsWith("<module:")) {
-				buf.append(line).append('\n');
+				buf.append(line).append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				idx++;
 			} else {
 				break;
@@ -1438,7 +1438,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		// extract & sort modules:
 		String[] modules = new String[lines.length-idx];
 		int m = 0;
-		while (idx < lines.length) {
+		while (idx < lines.length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String line = lines[idx];
 			if (line.trim().startsWith("<module:")) {
 				modules[m++] = line;
@@ -1451,13 +1451,13 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 			if (m < modules.length)
 				modules = Arrays.copyOf(modules, m);
 			Arrays.sort(modules);
-			for (String module : modules) {
-				buf.append(module).append('\n');
+			for (String module : modules) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buf.append(module).append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 
 			// suffix:
-			while (idx < lines.length) {
-				buf.append(lines[idx++]).append('\n');
+			while (idx < lines.length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buf.append(lines[idx++]).append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		return buf.toString();
@@ -1479,40 +1479,40 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	}
 	protected void assertTypesEqual(String message, String expected, IType[] types, boolean sort) {
 		if (sort) sortTypes(types);
-		StringBuilder buffer = new StringBuilder();
-		for (int i = 0; i < types.length; i++){
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0; i < types.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (types[i] == null)
-				buffer.append("<null>");
+				buffer.append("<null>"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			else
-				buffer.append(types[i].getFullyQualifiedName());
-			buffer.append("\n");
+				buffer.append(types[i].getFullyQualifiedName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		String actual = buffer.toString();
 		if (!expected.equals(actual)) {
-			System.out.println(displayString(actual, 2) +  this.endChar);
+			System.out.println(displayString(actual, 2) +  this.endChar); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		assertEquals(message, expected, actual);
 	}
-	protected void assertTypeParametersEqual(String expected, ITypeParameter[] typeParameters) throws JavaModelException {
-		StringBuilder buffer = new StringBuilder();
-		for (int i = 0; i < typeParameters.length; i++) {
+	protected void assertTypeParametersEqual(String expected, ITypeParameter[] typeParameters) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0; i < typeParameters.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ITypeParameter typeParameter = typeParameters[i];
-			buffer.append(typeParameter.getElementName());
+			buffer.append(typeParameter.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			String[] bounds = typeParameter.getBounds();
 			int length = bounds.length;
 			if (length > 0)
-				buffer.append(" extends ");
-			for (int j = 0; j < length; j++) {
-				buffer.append(bounds[j]);
+				buffer.append(" extends "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (int j = 0; j < length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append(bounds[j]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (j != length -1) {
-					buffer.append(" & ");
+					buffer.append(" & "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
-			buffer.append("\n");
+			buffer.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		String actual = buffer.toString();
 		if (!expected.equals(actual)) {
-			System.out.println(displayString(actual, 3) + this.endChar);
+			System.out.println(displayString(actual, 3) + this.endChar); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		assertEquals("Unexpected type parameters", expected, actual);
 	}
@@ -1523,7 +1523,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	protected void assertStringsEqual(String message, String expected, String[] strings) {
 		String actual = org.eclipse.jdt.core.tests.util.Util.toString(strings, true/*add extra new lines*/);
 		if (!expected.equals(actual)) {
-			System.out.println(displayString(actual, this.tabs) + this.endChar);
+			System.out.println(displayString(actual, this.tabs) + this.endChar); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		assertEquals(message, expected, actual);
 	}
@@ -1531,7 +1531,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		String expected = org.eclipse.jdt.core.tests.util.Util.toString(expectedStrings, false/*don't add extra new lines*/);
 		String actual = org.eclipse.jdt.core.tests.util.Util.toString(actualStrings, false/*don't add extra new lines*/);
 		if (!expected.equals(actual)) {
-			System.out.println(displayString(actual, this.tabs) + this.endChar);
+			System.out.println(displayString(actual, this.tabs) + this.endChar); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		assertEquals(message, expected, actual);
 	}
@@ -1541,7 +1541,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	protected void attachSource(IPackageFragmentRoot root, String sourcePath, String sourceRoot) throws JavaModelException {
 		IJavaProject javaProject = root.getJavaProject();
 		IClasspathEntry[] entries = javaProject.getRawClasspath().clone();
-		for (int i = 0; i < entries.length; i++){
+		for (int i = 0; i < entries.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IClasspathEntry entry = entries[i];
 			if (entry.getPath().toOSString().toLowerCase().equals(root.getPath().toOSString().toLowerCase())) {
 				entries[i] = JavaCore.newLibraryEntry(
@@ -1605,7 +1605,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		}
 
 		// write bytes to dest
-		try (FileOutputStream out = new FileOutputStream(dest)) {
+		try (FileOutputStream out = new FileOutputStream(dest)) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			out.write(srcBytes);
 		}
 	}
@@ -1617,26 +1617,26 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	/**
 	 * Copy the given source directory (and all its contents) to the given target directory.
 	 */
-	protected void copyDirectory(File source, File target) throws IOException {
-		if (!target.exists()) {
-			Files.createDirectories(target.toPath());
+	protected void copyDirectory(File source, File target) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		if (!target.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			Files.createDirectories(target.toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
-		File[] files = source.listFiles();
+		File[] files = source.listFiles(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		// JavaProjectTests.testBug183923() calls setUpJavaProject()
 		// with invalid data, so ignore that
 		if (files == null) {
 			if (!source.toString().contains("JavaProjectTestsInvalidProject")) {
-				throw new IOException(source + " directory has no files!");
+				throw new IOException(source + " directory has no files!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} else {
-			for (int i = 0; i < files.length; i++) {
+			for (int i = 0; i < files.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				File sourceChild = files[i];
 				String name =  sourceChild.getName();
 				if (name.equals(".git")) {
 					continue;
 				}
 				File targetChild = new File(target, name);
-				if (sourceChild.isDirectory()) {
+				if (sourceChild.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					copyDirectory(sourceChild, targetChild);
 				} else {
 					copy(sourceChild, targetChild);
@@ -1659,7 +1659,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	}
 	protected IFolder createFolder(IPath path) throws CoreException {
 		final IFolder folder = getWorkspaceRoot().getFolder(path);
-		getWorkspace().run(new IWorkspaceRunnable() {
+		getWorkspace().run(new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 			public void run(IProgressMonitor monitor) throws CoreException {
 				IContainer parent = folder.getParent();
 				if (parent instanceof IFolder && !parent.exists()) {
@@ -1726,10 +1726,10 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	protected IJavaProject createJava9ProjectWithJREAttributes(String name, String[] srcFolders, IClasspathAttribute[] attributes) throws CoreException {
 		return createJava9ProjectWithJREAttributes(name, srcFolders, attributes, "9");
 	}
-	protected IJavaProject createJava9ProjectWithJREAttributes(String name, String[] srcFolders, IClasspathAttribute[] attributes, String compliance) throws CoreException {
-		String javaHome = System.getProperty("java.home") + File.separator;
-		Path bootModPath = new Path(javaHome +"/lib/jrt-fs.jar");
-		Path sourceAttachment = new Path(javaHome +"/lib/src.zip");
+	protected IJavaProject createJava9ProjectWithJREAttributes(String name, String[] srcFolders, IClasspathAttribute[] attributes, String compliance) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		String javaHome = System.getProperty("java.home") + File.separator; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		Path bootModPath = new Path(javaHome +"/lib/jrt-fs.jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		Path sourceAttachment = new Path(javaHome +"/lib/src.zip"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IClasspathEntry jrtEntry;
 		String javaVersion = System.getProperty("java.version"); //$NON-NLS-1$
 		if (javaVersion != null && javaVersion.startsWith("1.8")) { //$NON-NLS-1$
@@ -1756,9 +1756,9 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	}
 	protected IClasspathEntry getJRTLibraryEntry() {
 		if (!isJRE9) return null;
-		String javaHome = System.getProperty("java.home") + File.separator;
-		Path bootModPath = new Path(javaHome +"/lib/jrt-fs.jar");
-		Path sourceAttachment = new Path(javaHome +"/lib/src.zip");
+		String javaHome = System.getProperty("java.home") + File.separator; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		Path bootModPath = new Path(javaHome +"/lib/jrt-fs.jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		Path sourceAttachment = new Path(javaHome +"/lib/src.zip"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		return JavaCore.newLibraryEntry(bootModPath, sourceAttachment, null, null, null, false);
 	}
 	/*
@@ -1772,7 +1772,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	 * Creates a Java project with the given source folders an output location.
 	 * Add those on the project's classpath.
 	 */
-	protected IJavaProject createJavaProject(String projectName, String[] sourceFolders, String output) throws CoreException {
+	protected IJavaProject createJavaProject(String projectName, String[] sourceFolders, String output) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		return
 			this.createJavaProject(
 				projectName,
@@ -1795,7 +1795,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	 * Creates a Java project with the given source folders an output location.
 	 * Add those on the project's classpath.
 	 */
-	protected IJavaProject createJavaProject(String projectName, String[] sourceFolders, String output, String[] sourceOutputs) throws CoreException {
+	protected IJavaProject createJavaProject(String projectName, String[] sourceFolders, String output, String[] sourceOutputs) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		return
 			this.createJavaProject(
 				projectName,
@@ -1814,7 +1814,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 				CompilerOptions.getFirstSupportedJavaVersion()
 			);
 	}
-	protected IJavaProject createJavaProject(String projectName, String[] sourceFolders, String[] libraries, String output) throws CoreException {
+	protected IJavaProject createJavaProject(String projectName, String[] sourceFolders, String[] libraries, String output) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		return
 			this.createJavaProject(
 				projectName,
@@ -1835,7 +1835,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 				false/*don't import*/
 			);
 	}
-	protected IJavaProject createJavaProject(String projectName, String[] sourceFolders, String[] libraries, String output, String compliance, boolean useFullJCL) throws CoreException {
+	protected IJavaProject createJavaProject(String projectName, String[] sourceFolders, String[] libraries, String output, String compliance, boolean useFullJCL) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		return
 				this.createJavaProject(
 					projectName,
@@ -1858,7 +1858,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 					false
 				);
 	}
-	protected IJavaProject createJavaProject(String projectName, String[] sourceFolders, String[] libraries, String output, String compliance) throws CoreException {
+	protected IJavaProject createJavaProject(String projectName, String[] sourceFolders, String[] libraries, String output, String compliance) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		return
 			this.createJavaProject(
 				projectName,
@@ -1877,7 +1877,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 				compliance
 			);
 	}
-	protected IJavaProject createJavaProject(String projectName, String[] sourceFolders, String[] libraries, String[] projects, String projectOutput) throws CoreException {
+	protected IJavaProject createJavaProject(String projectName, String[] sourceFolders, String[] libraries, String[] projects, String projectOutput) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		return
 			this.createJavaProject(
 				projectName,
@@ -1906,7 +1906,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		int matchRule = isCaseSensitive ? matchMode | SearchPattern.R_CASE_SENSITIVE : matchMode;
 		return SearchPattern.createPattern(stringPattern, searchFor, limitTo, matchRule);
 	}
-	protected IJavaProject createJavaProject(String projectName, String[] sourceFolders, String[] libraries, String[] projects, boolean[] exportedProject, String projectOutput) throws CoreException {
+	protected IJavaProject createJavaProject(String projectName, String[] sourceFolders, String[] libraries, String[] projects, boolean[] exportedProject, String projectOutput) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		return
 			this.createJavaProject(
 				projectName,
@@ -1925,7 +1925,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 				CompilerOptions.getFirstSupportedJavaVersion()
 			);
 	}
-	protected IJavaProject createJavaProject(String projectName, String[] sourceFolders, String[] libraries, String[] projects, String projectOutput, String compliance) throws CoreException {
+	protected IJavaProject createJavaProject(String projectName, String[] sourceFolders, String[] libraries, String[] projects, String projectOutput, String compliance) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		return
 			createJavaProject(
 				projectName,
@@ -1944,7 +1944,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 				compliance
 			);
 		}
-	protected IJavaProject createJavaProject(final String projectName, final String[] sourceFolders, final String[] libraries, final String[] projects, final boolean[] exportedProjects, final String projectOutput, final String[] sourceOutputs, final String[][] inclusionPatterns, final String[][] exclusionPatterns, final String compliance) throws CoreException {
+	protected IJavaProject createJavaProject(final String projectName, final String[] sourceFolders, final String[] libraries, final String[] projects, final boolean[] exportedProjects, final String projectOutput, final String[] sourceOutputs, final String[][] inclusionPatterns, final String[][] exclusionPatterns, final String compliance) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		return
 		this.createJavaProject(
 			projectName,
@@ -1963,7 +1963,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 			compliance
 		);
 	}
-	protected IJavaProject createJavaProject(
+	protected IJavaProject createJavaProject( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			final String projectName,
 			final String[] sourceFolders,
 			final String[] libraries,
@@ -1996,7 +1996,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 			compliance,
 			false/*don't import*/);
 	}
-	protected IJavaProject createJavaProject(
+	protected IJavaProject createJavaProject( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			final String projectName,
 			final String[] sourceFolders,
 			final String[] libraries,
@@ -2033,7 +2033,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 				false,
 				simulateImport);
 	}
-	protected IJavaProject createJavaProject(
+	protected IJavaProject createJavaProject( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			final String projectName,
 			URI locationURI,
 			final String[] sourceFolders,
@@ -2053,8 +2053,8 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 			final boolean fullJCL,
 			final boolean simulateImport) throws CoreException {
 		final IJavaProject[] result = new IJavaProject[1];
-		IWorkspaceRunnable create = new IWorkspaceRunnable() {
-			public void run(IProgressMonitor monitor) throws CoreException {
+		IWorkspaceRunnable create = new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
+			public void run(IProgressMonitor monitor) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 				// Always delete first, in case there is a leftover from some broken test
 				deleteProject(projectName);
@@ -2075,13 +2075,13 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 				int libLength = libraries == null ? 0 : libraries.length;
 				int projectLength = projects == null ? 0 : projects.length;
 				IClasspathEntry[] entries = new IClasspathEntry[sourceLength+libLength+projectLength];
-				for (int i= 0; i < sourceLength; i++) {
+				for (int i= 0; i < sourceLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IPath sourcePath = new Path(sourceFolders[i]);
 					int segmentCount = sourcePath.segmentCount();
 					if (segmentCount > 0) {
 						// create folder and its parents
 						IContainer container = project;
-						for (int j = 0; j < segmentCount; j++) {
+						for (int j = 0; j < segmentCount; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							IFolder folder = container.getFolder(new Path(sourcePath.segment(j)));
 							if (!folder.exists()) {
 								folder.create(true, true, null);
@@ -2108,7 +2108,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 						String[] patterns = inclusionPatterns[i];
 						int length = patterns.length;
 						inclusionPaths = new IPath[length];
-						for (int j = 0; j < length; j++) {
+						for (int j = 0; j < length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							String inclusionPattern = patterns[j];
 							inclusionPaths[j] = new Path(inclusionPattern);
 						}
@@ -2121,7 +2121,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 						String[] patterns = exclusionPatterns[i];
 						int length = patterns.length;
 						exclusionPaths = new IPath[length];
-						for (int j = 0; j < length; j++) {
+						for (int j = 0; j < length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							String exclusionPattern = patterns[j];
 							exclusionPaths[j] = new Path(exclusionPattern);
 						}
@@ -2135,14 +2135,14 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 							outputPath == null ? null : projectPath.append(outputPath)
 						);
 				}
-				for (int i= 0; i < libLength; i++) {
+				for (int i= 0; i < libLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String lib = libraries[i];
 					if (lib.startsWith("JCL")) {
 						try {
 							// ensure JCL variables are set
 							setUpJCLClasspathVariables(compliance, fullJCL);
 						} catch (IOException e) {
-							throw new CoreException(Status.error("Failed to setup '" + lib + "' library for compliance '" + compliance + "'", e));
+							throw new CoreException(Status.error("Failed to setup '" + lib + "' library for compliance '" + compliance + "'", e)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
 					}
 
@@ -2154,7 +2154,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 						String[] patterns = librariesInclusionPatterns[i];
 						int length = patterns.length;
 						accessibleFiles = new IPath[length];
-						for (int j = 0; j < length; j++) {
+						for (int j = 0; j < length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							String inclusionPattern = patterns[j];
 							accessibleFiles[j] = new Path(inclusionPattern);
 						}
@@ -2167,7 +2167,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 						String[] patterns = librariesExclusionPatterns[i];
 						int length = patterns.length;
 						nonAccessibleFiles = new IPath[length];
-						for (int j = 0; j < length; j++) {
+						for (int j = 0; j < length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							String exclusionPattern = patterns[j];
 							nonAccessibleFiles[j] = new Path(exclusionPattern);
 						}
@@ -2209,7 +2209,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 								false);
 					}
 				}
-				for  (int i= 0; i < projectLength; i++) {
+				for  (int i= 0; i < projectLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					boolean isExported = exportedProjects != null && exportedProjects.length > i && exportedProjects[i];
 
 					// accessible files
@@ -2220,7 +2220,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 						String[] patterns = projectsInclusionPatterns[i];
 						int length = patterns.length;
 						accessibleFiles = new IPath[length];
-						for (int j = 0; j < length; j++) {
+						for (int j = 0; j < length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							String inclusionPattern = patterns[j];
 							accessibleFiles[j] = new Path(inclusionPattern);
 						}
@@ -2233,7 +2233,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 						String[] patterns = projectsExclusionPatterns[i];
 						int length = patterns.length;
 						nonAccessibleFiles = new IPath[length];
-						for (int j = 0; j < length; j++) {
+						for (int j = 0; j < length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							String exclusionPattern = patterns[j];
 							nonAccessibleFiles[j] = new Path(exclusionPattern);
 						}
@@ -2266,91 +2266,91 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 
 				// set compliance level options
 				if ("1.8".equals(compliance)) {
-					Map options = new HashMap();
+					Map options = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 					options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_1_8);
 					options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_1_8);
 					options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_1_8);
 					javaProject.setOptions(options);
 				} else if ("9".equals(compliance)) {
-					Map options = new HashMap();
+					Map options = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 					options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_9);
 					options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_9);
 					options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_9);
 					javaProject.setOptions(options);
 				} else if ("10".equals(compliance)) {
-					Map options = new HashMap();
+					Map options = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 					options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_10);
 					options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_10);
 					options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_10);
 					javaProject.setOptions(options);
 				} else if ("11".equals(compliance)) {
-					Map options = new HashMap();
+					Map options = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 					options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_11);
 					options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 					options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_11);
 					javaProject.setOptions(options);
 				} else if ("12".equals(compliance)) {
-					Map options = new HashMap();
+					Map options = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 					options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_12);
 					options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_12);
 					options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_12);
 					javaProject.setOptions(options);
 				} else if ("13".equals(compliance)) {
-					Map options = new HashMap();
+					Map options = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 					options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_13);
 					options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_13);
 					options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_13);
 					javaProject.setOptions(options);
 				} else if ("14".equals(compliance)) {
-					Map options = new HashMap();
+					Map options = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 					options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_14);
 					options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_14);
 					options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_14);
 					javaProject.setOptions(options);
 				} else if ("15".equals(compliance)) {
-					Map options = new HashMap();
+					Map options = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 					options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_15);
 					options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_15);
 					options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_15);
 					javaProject.setOptions(options);
 				} else if ("16".equals(compliance)) {
-					Map options = new HashMap();
+					Map options = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 					options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_16);
 					options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_16);
 					options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_16);
 					javaProject.setOptions(options);
 				} else if ("17".equals(compliance)) {
-					Map options = new HashMap();
+					Map options = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 					options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_17);
 					options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_17);
 					options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_17);
 					javaProject.setOptions(options);
 				} else if ("21".equals(compliance)) {
-					Map options = new HashMap();
+					Map options = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 					options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_21);
 					options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_21);
 					options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_21);
 					javaProject.setOptions(options);
 				} else if ("22".equals(compliance)) {
-					Map options = new HashMap();
+					Map options = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 					options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_22);
 					options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_22);
 					options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_22);
 					javaProject.setOptions(options);
 				} else if ("23".equals(compliance)) {
-					Map options = new HashMap();
+					Map options = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 					options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_23);
 					options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_23);
 					options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_23);
 					javaProject.setOptions(options);
 				} else if ("24".equals(compliance)) {
-					Map options = new HashMap();
+					Map options = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 					options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_24);
 					options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_24);
 					options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_24);
 					javaProject.setOptions(options);
 				} else if ("25".equals(compliance)) {
-					Map options = new HashMap();
+					Map options = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 					options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_25);
 					options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_25);
 					options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_25);
@@ -2366,12 +2366,12 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 
 		// Trivial validation before we return the result
 		IJavaProject javaProject = result[0];
-		assertNotNull("Failed to create project " + projectName, javaProject);
+		assertNotNull("Failed to create project " + projectName, javaProject); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IProject project = javaProject.getProject();
-		assertTrue("Project is not accessible: " + project, project.isAccessible());
-		assertTrue("Not Java project: " + project, project.hasNature(JavaCore.NATURE_ID));
+		assertTrue("Project is not accessible: " + project, project.isAccessible()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertTrue("Not Java project: " + project, project.hasNature(JavaCore.NATURE_ID)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IProject sameProject = getWorkspaceRoot().getProject(projectName);
-		assertEquals("Returned project doesn't match same project from workspace: " + sameProject + " vs " + project, sameProject, project);
+		assertEquals("Returned project doesn't match same project from workspace: " + sameProject + " vs " + project, sameProject, project); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		boolean isNestedWorkspaceCall = isWorkspaceRuleAlreadyInUse(getWorkspaceRoot());
 		if (!isNestedWorkspaceCall) {
@@ -2388,7 +2388,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 				javaProjects = List.of(getJavaModel().getJavaProjects());
 				foundInModel = javaProjects.stream().anyMatch(p -> projectName.equals(p.getElementName()));
 			}
-			assertTrue("Project '" + projectName + "' should be present in JavaModel, but we found only: " + javaProjects, foundInModel);
+			assertTrue("Project '" + projectName + "' should be present in JavaModel, but we found only: " + javaProjects, foundInModel); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
 			// No assert here, caller has to check it *after* the workspace task
 			// is executed and events are sent / processed by JavaModel
@@ -2403,7 +2403,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		return workspaceRuleActive;
 	}
 
-	protected IJavaProject importJavaProject(String projectName, String[] sourceFolders, String[] libraries, String output) throws CoreException {
+	protected IJavaProject importJavaProject(String projectName, String[] sourceFolders, String[] libraries, String output) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		return
 			createJavaProject(
 				projectName,
@@ -2438,7 +2438,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	protected IProject createProject(String projectName) throws CoreException {
 		assertFalse(isWorkspaceRuleAlreadyInUse(getWorkspaceRoot()));
 		final IProject project = getProject(projectName);
-		getWorkspace().run(m -> createProjectInWorkspaceRunnnable(projectName), null);
+		getWorkspace().run(m -> createProjectInWorkspaceRunnnable(projectName), null); //FLLDCIM: MARK — T09  LAMBDA
 		List<IJavaProject> javaProjects = List.of(getJavaModel().getJavaProjects());
 		boolean foundInModel = javaProjects.stream().anyMatch(p -> projectName.equals(p.getElementName()));
 		if (!foundInModel) {
@@ -2448,7 +2448,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	}
 	protected IProject createExternalProject(final String projectName, URI location) throws CoreException {
 		final IProject project = getProject(projectName);
-		IWorkspaceRunnable create = new IWorkspaceRunnable() {
+		IWorkspaceRunnable create = new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 			public void run(IProgressMonitor monitor) throws CoreException {
 				project.create(projectDescriptionForLocation(projectName, location), null);
 				project.open(null);
@@ -2462,7 +2462,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	}
 	public void deleteResource(File resource) {
 		int retryCount = 0;
-		while (++retryCount <= 60) { // wait 1 minute at most
+		while (++retryCount <= 60) { // wait 1 minute at most //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (org.eclipse.jdt.core.tests.util.Util.delete(resource)) {
 				break;
 			}
@@ -2490,10 +2490,10 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	 * Batch deletion of projects
 	 */
 	protected void deleteProjects(final String[] projectNames) throws CoreException {
-		ResourcesPlugin.getWorkspace().run(new IWorkspaceRunnable() {
+		ResourcesPlugin.getWorkspace().run(new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 			public void run(IProgressMonitor monitor) throws CoreException {
 				if (projectNames != null){
-					for (int i = 0, max = projectNames.length; i < max; i++){
+					for (int i = 0, max = projectNames.length; i < max; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (projectNames[i] != null)
 							deleteProject(projectNames[i]);
 					}
@@ -2508,7 +2508,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	public void deleteResource(IResource resource) throws CoreException {
 		int retryCount = 0; // wait 1 minute at most
 		IStatus status = null;
-		while (++retryCount <= 6) {
+		while (++retryCount <= 6) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			status = org.eclipse.jdt.core.tests.util.Util.delete(resource);
 			if (status.isOK()) {
 				return;
@@ -2553,7 +2553,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		if (sibling != null) {
 			// find the sibling
 			boolean found = false;
-			for (int i = 0; i < children.length; i++) {
+			for (int i = 0; i < children.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (children[i].equals(sibling)) {
 					assertTrue("element should be before sibling", i > 0 && children[i - 1].equals(positioned));
 					found = true;
@@ -2572,13 +2572,13 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		if (child != null) {
 			// find the sibling
 			boolean found = false;
-			for (IJavaElement child2 : children) {
+			for (IJavaElement child2 : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (child2.equals(child)) {
 					found = true;
 					break;
 				}
 			}
-			assertTrue("Did not find child: " + child + " in parent container: " + container, found);
+			assertTrue("Did not find child: " + child + " in parent container: " + container, found); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -2627,7 +2627,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		}
 		return pkg.getCompilationUnits();
 	}
-	protected ICompilationUnit getCompilationUnitFor(IJavaElement element) {
+	protected ICompilationUnit getCompilationUnitFor(IJavaElement element) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		if (element instanceof ICompilationUnit) {
 			return (ICompilationUnit)element;
@@ -2650,7 +2650,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	}
 
 	protected String getExternalResourcePath(String relativePath) {
-		return getExternalPath() + relativePath;
+		return getExternalPath() + relativePath; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/**
@@ -2675,11 +2675,11 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	 * Returns the java.io path to the external java class library (e.g. jclMin.jar)
 	 */
 	protected String getExternalJCLPathString(String compliance) {
-		return getExternalPath() + "jclMin" + compliance + ".jar";
+		return getExternalPath() + "jclMin" + compliance + ".jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	protected String getExternalJCLPathString(String compliance, boolean useFullJCL) {
 		if (useFullJCL) {
-			return getExternalPath() + "jclFull" + compliance + ".jar";
+			return getExternalPath() + "jclFull" + compliance + ".jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
 			return getExternalJCLPathString(compliance);
 		}
@@ -2715,7 +2715,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		return getExternalJCLSourcePathString(compliance, false);
 	}
 	protected String getExternalJCLSourcePathString(String compliance, boolean useFullJcl) {
-		return getExternalPath() + (useFullJcl ? "jclFull" : "jclMin") + compliance + "src.zip";
+		return getExternalPath() + (useFullJcl ? "jclFull" : "jclMin") + compliance + "src.zip"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	/*
 	 * Returns the OS path to the external directory that contains external jar files.
@@ -2728,8 +2728,8 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 				path += File.separatorChar;
 			}
 			EXTERNAL_JAR_DIR_PATH = path;
-			System.out.println("EXTERNAL_JAR_DIR_PATH=" + EXTERNAL_JAR_DIR_PATH);
-			System.out.println("EXTERNAL_JAR_DIR_PATH writable? " + Files.isWritable(Paths.get(EXTERNAL_JAR_DIR_PATH)));
+			System.out.println("EXTERNAL_JAR_DIR_PATH=" + EXTERNAL_JAR_DIR_PATH); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			System.out.println("EXTERNAL_JAR_DIR_PATH writable? " + Files.isWritable(Paths.get(EXTERNAL_JAR_DIR_PATH))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return EXTERNAL_JAR_DIR_PATH;
 	}
@@ -2778,7 +2778,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		ISourceReference cu = getCompilationUnit(cuPath);
 		return getLocalVariable(cu, selectAt, selection);
 	}
-	protected String getNameSource(String cuSource, IJavaElement element) throws JavaModelException {
+	protected String getNameSource(String cuSource, IJavaElement element) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ISourceRange nameRange;
 		switch (element.getElementType()) {
 			case IJavaElement.TYPE_PARAMETER:
@@ -2827,7 +2827,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	 * If absolute, the rootPath refers to either an external jar, or a resource
 	 * internal to the workspace
 	 */
-	public IPackageFragmentRoot getPackageFragmentRoot(
+	public IPackageFragmentRoot getPackageFragmentRoot( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String projectName,
 		String rootPath)
 		throws JavaModelException {
@@ -2854,7 +2854,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 			if (roots == null || roots.length == 0) {
 				return null;
 			}
-			for (int i = 0; i < roots.length; i++) {
+			for (int i = 0; i < roots.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPackageFragmentRoot root = roots[i];
 				if (!root.isExternal()
 					&& root.getUnderlyingResource().getProjectRelativePath().equals(path)) {
@@ -2874,18 +2874,18 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		URL platformURL = Platform.getBundle("org.eclipse.jdt.core.tests.model").getEntry("/");
 		String absolutePath = new File(FileLocator.toFileURL(platformURL).getFile()).getAbsolutePath();
 		java.nio.file.Path rootDir = Paths.get(absolutePath);
-		if (!Files.isDirectory(rootDir)){
-			throw new IOException("Directory for 'org.eclipse.jdt.core.tests.model' bundle is not readable: " + rootDir);
+		if (!Files.isDirectory(rootDir)){ //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			throw new IOException("Directory for 'org.eclipse.jdt.core.tests.model' bundle is not readable: " + rootDir); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		if(Files.list(rootDir).count() == 0){
-			throw new IOException("Directory for 'org.eclipse.jdt.core.tests.model' bundle is empty: " + rootDir);
+		if(Files.list(rootDir).count() == 0){ //FLLDCIM: MARK — M24 M3FILE_STREAMS CALL
+			throw new IOException("Directory for 'org.eclipse.jdt.core.tests.model' bundle is empty: " + rootDir); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return absolutePath;
 	}
 
 	public String getSourceWorkspacePath() {
 		try {
-			return getPluginDirectoryPath() + java.io.File.separator + "workspace";
+			return getPluginDirectoryPath() + java.io.File.separator + "workspace"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} catch (IOException e) {
 			e.printStackTrace(System.out);
 			return null;
@@ -2955,14 +2955,14 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	}
 	protected void discardWorkingCopies(ICompilationUnit[] units) throws JavaModelException {
 		if (units == null) return;
-		for (int i = 0, length = units.length; i < length; i++)
+		for (int i = 0, length = units.length; i < length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (units[i] != null)
 				units[i].discardWorkingCopy();
 	}
 
-	protected String displayString(String toPrint, int indent) {
+	protected String displayString(String toPrint, int indent) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String minJavaVersion = CompilerOptions.getFirstSupportedJavaVersion();
-		String minJavaVersionEncoded = "\"" + minJavaVersion + "\"";
+		String minJavaVersionEncoded = "\"" + minJavaVersion + "\""; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     	char[] toDisplay = toPrint.toCharArray();
     	toDisplay =
     		CharOperation.replace(
@@ -2978,7 +2978,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
     		CharOperation.replace(
     			toDisplay,
     			getExternalJCLPathString(minJavaVersion).toCharArray(),
-    			("getExternalJCLPathString(" + minJavaVersionEncoded + ")").toCharArray());
+    			("getExternalJCLPathString(" + minJavaVersionEncoded + ")").toCharArray()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		toDisplay =
     		CharOperation.replace(
     			toDisplay,
@@ -2994,7 +2994,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
     		CharOperation.replace(
     			toDisplay,
     			org.eclipse.jdt.core.tests.util.Util.displayString(getExternalJCLSourcePathString(minJavaVersion), 0).toCharArray(),
-    			("getExternalJCLSourcePathString(" + minJavaVersionEncoded + ")").toCharArray());
+    			("getExternalJCLSourcePathString(" + minJavaVersionEncoded + ")").toCharArray()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
     	toDisplay = org.eclipse.jdt.core.tests.util.Util.displayString(new String(toDisplay), indent).toCharArray();
 
@@ -3011,8 +3011,8 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
     	toDisplay =
     		CharOperation.replace(
     			toDisplay,
-    			("getExternalJCLPathString(\\\"" + minJavaVersion + "\\\")").toCharArray(),
-    			("\"+ getExternalJCLPathString(" + minJavaVersionEncoded + ") + \"").toCharArray());
+    			("getExternalJCLPathString(\\\"" + minJavaVersion + "\\\")").toCharArray(), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+    			("\"+ getExternalJCLPathString(" + minJavaVersionEncoded + ") + \"").toCharArray()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     	toDisplay =
     		CharOperation.replace(
     			toDisplay,
@@ -3021,8 +3021,8 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
     	toDisplay =
     		CharOperation.replace(
     			toDisplay,
-    			("getExternalJCLSourcePathString(\\\"" + minJavaVersion + "\\\")").toCharArray(),
-    			("\"+ getExternalJCLSourcePathString(" + minJavaVersionEncoded + ") + \"").toCharArray());
+    			("getExternalJCLSourcePathString(\\\"" + minJavaVersion + "\\\")").toCharArray(), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+    			("\"+ getExternalJCLSourcePathString(" + minJavaVersionEncoded + ") + \"").toCharArray()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     	toDisplay =
     		CharOperation.replace(
     			toDisplay,
@@ -3064,7 +3064,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	}
 
 	public byte[] read(java.io.File file) throws IOException {
-		return Files.readAllBytes(file.toPath());
+		return Files.readAllBytes(file.toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	public void refresh(final IJavaProject javaProject) throws CoreException {
@@ -3086,8 +3086,8 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	}
 	protected void removeLibrary(IJavaProject javaProject, String jarName, String sourceZipName) throws CoreException, IOException {
 		IProject project = javaProject.getProject();
-		String projectPath = '/' + project.getName() + '/';
-		removeClasspathEntry(javaProject, new Path(projectPath + jarName));
+		String projectPath = '/' + project.getName() + '/'; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		removeClasspathEntry(javaProject, new Path(projectPath + jarName)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		org.eclipse.jdt.core.tests.util.Util.delete(project.getFile(jarName));
 		if (sourceZipName != null && sourceZipName.length() != 0) {
 			org.eclipse.jdt.core.tests.util.Util.delete(project.getFile(sourceZipName));
@@ -3096,11 +3096,11 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	protected void removeClasspathEntry(IPath path) throws JavaModelException {
 		removeClasspathEntry(this.currentProject, path);
 	}
-	protected void removeClasspathEntry(IJavaProject project, IPath path) throws JavaModelException {
+	protected void removeClasspathEntry(IJavaProject project, IPath path) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IClasspathEntry[] entries = project.getRawClasspath();
 		int length = entries.length;
 		IClasspathEntry[] newEntries = null;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IClasspathEntry entry = entries[i];
 			if (entry.getPath().equals(path)) {
 				newEntries = new IClasspathEntry[length-1];
@@ -3118,7 +3118,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	protected void search(IJavaElement element, int limitTo, IJavaSearchScope scope, SearchRequestor requestor) throws CoreException {
 		search(element, limitTo, SearchPattern.R_EXACT_MATCH|SearchPattern.R_CASE_SENSITIVE, scope, requestor);
 	}
-	protected void search(IJavaElement element, int limitTo, int matchRule, IJavaSearchScope scope, SearchRequestor requestor) throws CoreException {
+	protected void search(IJavaElement element, int limitTo, int matchRule, IJavaSearchScope scope, SearchRequestor requestor) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		boolean indexDisabled = isIndexDisabledForTest();
 		if(indexDisabled) {
 			enableIndexer();
@@ -3142,7 +3142,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	protected void search(String patternString, int searchFor, int limitTo, IJavaSearchScope scope, SearchRequestor requestor) throws CoreException {
 		search(patternString, searchFor, limitTo, SearchPattern.R_EXACT_MATCH|SearchPattern.R_CASE_SENSITIVE, scope, requestor);
 	}
-	protected void search(String patternString, int searchFor, int limitTo, int matchRule, IJavaSearchScope scope, SearchRequestor requestor) throws CoreException {
+	protected void search(String patternString, int searchFor, int limitTo, int matchRule, IJavaSearchScope scope, SearchRequestor requestor) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		boolean indexDisabled = isIndexDisabledForTest();
 		if(indexDisabled) {
 			enableIndexer();
@@ -3178,39 +3178,39 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	 * If occurence is negative, then perform a backward search from the end of file.
 	 * If selection starts or ends with a comment (to help identification in source), it is removed from returned selection info.
 	 */
-	int[] selectionInfo(ICompilationUnit cu, String selection, int occurences) throws JavaModelException {
+	int[] selectionInfo(ICompilationUnit cu, String selection, int occurences) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = cu.getSource();
 		int index = occurences < 0 ? source.lastIndexOf(selection) : source.indexOf(selection);
 		int max = Math.abs(occurences)-1;
-		for (int n=0; index >= 0 && n<max; n++) {
+		for (int n=0; index >= 0 && n<max; n++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			index = occurences < 0 ? source.lastIndexOf(selection, index) : source.indexOf(selection, index+selection.length());
 		}
-		StringBuilder msg = new StringBuilder("Selection '");
-		msg.append(selection);
+		StringBuilder msg = new StringBuilder("Selection '"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		msg.append(selection); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (index >= 0) {
 			if (selection.startsWith("/**")) { // comment is before
 				int start = source.indexOf("*/", index);
 				if (start >=0) {
 					return new int[] { start+2, selection.length()-(start+2-index) };
 				} else {
-					msg.append("' starts with an unterminated comment");
+					msg.append("' starts with an unterminated comment"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			} else if (selection.endsWith("*/")) { // comment is after
 				int end = source.lastIndexOf("/**", index+selection.length());
 				if (end >=0) {
 					return new int[] { index, index-end };
 				} else {
-					msg.append("' ends with an unstartted comment");
+					msg.append("' ends with an unstartted comment"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			} else { // no comment => use whole selection
 				return new int[] { index, selection.length() };
 			}
 		} else {
-			msg.append("' was not found in ");
+			msg.append("' was not found in "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		msg.append(cu.getElementName());
-		msg.append(":\n");
-		msg.append(source);
+		msg.append(cu.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		msg.append(":\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		msg.append(source); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertTrue(msg.toString(), false);
 		return null;
 	}
@@ -3277,7 +3277,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	 */
 	protected ResolvedSourceMethod selectParameterizedMethod(ICompilationUnit unit, String selection, int occurences) throws JavaModelException {
 		IMethod type = selectMethod(unit, selection, occurences);
-		assertTrue("Not a parameterized source type: "+type.getElementName(), type instanceof ResolvedSourceMethod);
+		assertTrue("Not a parameterized source type: "+type.getElementName(), type instanceof ResolvedSourceMethod); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		return (ResolvedSourceMethod) type;
 	}
 
@@ -3295,7 +3295,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	 */
 	protected ResolvedSourceType selectParameterizedType(ICompilationUnit unit, String selection, int occurences) throws JavaModelException {
 		IType type = selectType(unit, selection, occurences);
-		assertTrue("Not a parameterized source type: "+type.getElementName(), type instanceof ResolvedSourceType);
+		assertTrue("Not a parameterized source type: "+type.getElementName(), type instanceof ResolvedSourceType); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		return (ResolvedSourceType) type;
 	}
 
@@ -3344,7 +3344,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 			elements = unit.codeSelect(selectionPositions[0], selectionPositions[1], this.wcOwner);
 		}
 		assertEquals("Invalid selection number", 1, elements.length);
-		assertEquals("Invalid java element type: "+elements[0].getElementName(), elements[0].getElementType(), elementType);
+		assertEquals("Invalid java element type: "+elements[0].getElementName(), elements[0].getElementType(), elementType); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		return elements[0];
 	}
 
@@ -3391,7 +3391,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 
 	protected void createSourceFiles(IJavaProject project, String[] sources) throws CoreException {
 		IProgressMonitor monitor = new NullProgressMonitor();
-		for (int i = 0; i < sources.length; i+= 2) {
+		for (int i = 0; i < sources.length; i+= 2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IPath path = new Path(sources[i]);
 			IPath parentPath = path.removeLastSegments(1);
 			IFolder folder = project.getProject().getFolder(parentPath);
@@ -3406,42 +3406,42 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	 * Check locally for the required JCL files, {@code <jclName>.jar} and {@code <jclName>src.zip}.
 	 * If not available, copy from the project resources.
 	 */
-	public void setupExternalJCL(String jclName) throws IOException {
+	public void setupExternalJCL(String jclName) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String externalPath = getExternalPath();
 		java.nio.file.Path rootPath = Paths.get(externalPath);
-		if(!Files.isDirectory(rootPath)) {
-			Files.deleteIfExists(rootPath);
-			Files.createDirectories(rootPath);
+		if(!Files.isDirectory(rootPath)) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			Files.deleteIfExists(rootPath); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			Files.createDirectories(rootPath); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 		String separator = java.io.File.separator;
-		String resourceJCLDir = getPluginDirectoryPath() + separator + "JCL";
+		String resourceJCLDir = getPluginDirectoryPath() + separator + "JCL"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		java.io.File jclDir = new java.io.File(externalPath);
 		java.io.File jclMin =
-			new java.io.File(externalPath + jclName + ".jar");
+			new java.io.File(externalPath + jclName + ".jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		// Don't keep local jars to be consistent with Jenkins execution
 		jclMin.deleteOnExit();
-		java.io.File jclMinsrc = new java.io.File(externalPath + jclName + "src.zip");
+		java.io.File jclMinsrc = new java.io.File(externalPath + jclName + "src.zip"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		jclMinsrc.deleteOnExit();
-		if (!jclDir.exists()) {
+		if (!jclDir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			Files.createDirectory(jclDir.toPath());
 			//copy the two files to the JCL directory
 			java.io.File resourceJCLMin =
-				new java.io.File(resourceJCLDir + separator + jclName + ".jar");
+				new java.io.File(resourceJCLDir + separator + jclName + ".jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			copy(resourceJCLMin, jclMin);
 			java.io.File resourceJCLMinsrc =
-				new java.io.File(resourceJCLDir + separator + jclName + "src.zip");
+				new java.io.File(resourceJCLDir + separator + jclName + "src.zip"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			copy(resourceJCLMinsrc, jclMinsrc);
 		} else {
 			//check that the two files, jclMin.jar and jclMinsrc.zip are present
 			//copy either file that is missing or less recent than the one in workspace
 			java.io.File resourceJCLMin =
-				new java.io.File(resourceJCLDir + separator + jclName + ".jar");
-			if (!jclMin.exists() || !Files.isSameFile(jclMin.toPath(), resourceJCLMin.toPath())) {
+				new java.io.File(resourceJCLDir + separator + jclName + ".jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			if (!jclMin.exists() || !Files.isSameFile(jclMin.toPath(), resourceJCLMin.toPath())) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				copy(resourceJCLMin, jclMin);
 			}
 			java.io.File resourceJCLMinsrc =
-				new java.io.File(resourceJCLDir + separator + jclName + "src.zip");
-			if (!jclMinsrc.exists() || !Files.isSameFile(jclMinsrc.toPath(), resourceJCLMinsrc.toPath())) {
+				new java.io.File(resourceJCLDir + separator + jclName + "src.zip"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			if (!jclMinsrc.exists() || !Files.isSameFile(jclMinsrc.toPath(), resourceJCLMinsrc.toPath())) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				copy(resourceJCLMinsrc, jclMinsrc);
 			}
 		}
@@ -3454,7 +3454,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		this.currentProject =  setUpJavaProject(projectName, compliance, false);
 		return this.currentProject;
 	}
-	protected IJavaProject setUpJavaProject(final String projectName, String compliance, boolean useFullJCL) throws CoreException, IOException {
+	protected IJavaProject setUpJavaProject(final String projectName, String compliance, boolean useFullJCL) throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// copy files in project from source workspace to target workspace
 		String sourceWorkspacePath = getSourceWorkspacePath();
 		String targetWorkspacePath = getWorkspaceRoot().getLocation().toFile().toPath().normalize().toAbsolutePath().toString();
@@ -3465,7 +3465,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 
 		// create project
 		final IProject project = getWorkspaceRoot().getProject(projectName);
-		IWorkspaceRunnable populate = new IWorkspaceRunnable() {
+		IWorkspaceRunnable populate = new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 			public void run(IProgressMonitor monitor) throws CoreException {
 				project.create(null);
 				project.open(null);
@@ -3490,7 +3490,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	protected void setUpProjectCompliance(IJavaProject javaProject, String compliance) throws JavaModelException, IOException {
 		setUpProjectCompliance(javaProject, compliance, false);
 	}
-	protected void setUpProjectCompliance(IJavaProject javaProject, String compliance, boolean useFullJCL) throws JavaModelException, IOException {
+	protected void setUpProjectCompliance(IJavaProject javaProject, String compliance, boolean useFullJCL) throws JavaModelException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Look for version to set and return if that's already done
 		String version = compliance; // assume that the values of CompilerOptions.VERSION_* are used
 		String newJclLibString;
@@ -3566,9 +3566,9 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		setUpJCLClasspathVariables(compliance, useFullJCL);
 
 		// set options
-		Map options = new HashMap();
+		Map options = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		if(version.startsWith("1.") && !version.equals(CompilerOptions.getFirstSupportedJavaVersion())){
-			throw new IllegalArgumentException("Unsupported compliance: '" + version + "'");
+			throw new IllegalArgumentException("Unsupported compliance: '" + version + "'"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		options.put(CompilerOptions.OPTION_Compliance, version);
 		options.put(CompilerOptions.OPTION_Source, version);
@@ -3577,13 +3577,13 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 
 		IClasspathEntry[] classpath = javaProject.getRawClasspath();
 		boolean jclPathEntrySet = false;
-		for (int i = 0, length = classpath.length; i < length; i++) {
+		for (int i = 0, length = classpath.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IClasspathEntry entry = classpath[i];
 			final IPath path = entry.getPath();
 			// Choose the new JCL path only if the current JCL path is different
 			if (isJCLPath(path) && !path.toString().equals(newJclLibString)) {
 				if(jclPathEntrySet) {
-					throw new IllegalStateException("Duplicated JCL container in class path " + Arrays.toString(classpath));
+					throw new IllegalStateException("Duplicated JCL container in class path " + Arrays.toString(classpath)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				classpath[i] = JavaCore.newVariableEntry(
 						new Path(newJclLibString),
@@ -3603,7 +3603,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	public void setUpJCLClasspathVariables(String compliance) throws JavaModelException, IOException {
 		setUpJCLClasspathVariables(compliance, false);
 	}
-	public void setUpJCLClasspathVariables(String compliance, boolean useFullJCL) throws JavaModelException, IOException {
+	public void setUpJCLClasspathVariables(String compliance, boolean useFullJCL) throws JavaModelException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Set<String> knownVariables = new TreeSet<>(List.of(JavaCore.getClasspathVariableNames()));
 
 		if ("1.8".equals(compliance)) {
@@ -3773,13 +3773,13 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		if(newVariables.isEmpty()) {
 			printout = knownVariables;
 		}
-		for (String variable : printout) {
+		for (String variable : printout) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(!variable.contains("JCL")) {
 				continue;
 			}
 			IPath varPath = JavaCore.getClasspathVariable(variable);
 			if(varPath != null) {
-				System.out.println("Classpath variable '" + variable + "', path: '" + varPath + "', file size: " + varPath.toFile().length());
+				System.out.println("Classpath variable '" + variable + "', path: '" + varPath + "', file size: " + varPath.toFile().length()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			}
 			if(variable.startsWith("CONVERTER_JCL") && variable.endsWith("_SRCROOT")) {
 				// CONVERTER_JCL10_SRCROOT is not properly defined
@@ -3789,11 +3789,11 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 				// JCL_SRCROOT points to "src" !?! which may not exist
 				continue;
 			}
-			assertNotNull("Should have path defined: '" + variable + "'", varPath);
-			assertTrue("Should exist on disk: '" + variable + "' defined as " + varPath, varPath.toFile().exists());
+			assertNotNull("Should have path defined: '" + variable + "'", varPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertTrue("Should exist on disk: '" + variable + "' defined as " + varPath, varPath.toFile().exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void setUpSuite() throws Exception {
 		super.setUpSuite();
 
@@ -3827,22 +3827,22 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	}
 
     private static void printSystemEnv() {
-        Set<Entry<String, String>> set = new TreeMap<>(System.getenv()).entrySet();
-        StringBuilder sb = new StringBuilder("\n###################### System environment ######################\n");
-        for (Entry<String, String> entry : set) {
-            sb.append(" ").append(entry.getKey()).append("=").append(entry.getValue()).append("\n");
+        Set<Entry<String, String>> set = new TreeMap<>(System.getenv()).entrySet(); //FLLDCIM: MARK — M05 M3_SORTED_LANES NEW
+        StringBuilder sb = new StringBuilder("\n###################### System environment ######################\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+        for (Entry<String, String> entry : set) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+            sb.append(" ").append(entry.getKey()).append("=").append(entry.getValue()).append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
         }
 
-        sb.append("\n###################### System properties ######################\n");
+        sb.append("\n###################### System properties ######################\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
         Set<Entry<String, String>> props = getPropertiesSafe();
-        for (Entry<String, String> entry : props) {
-            sb.append(" ").append(entry.getKey()).append("=").append(entry.getValue()).append("\n");
+        for (Entry<String, String> entry : props) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+            sb.append(" ").append(entry.getKey()).append("=").append(entry.getValue()).append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
         }
         String env = sb.toString();
         System.out.println(env);
     }
 
-	@SuppressWarnings("removal")
+	@SuppressWarnings("removal") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     private void printMemoryUse() {
     	System.gc();
     	System.runFinalization();
@@ -3869,7 +3869,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
      */
     private static Set<Entry<String, String>> getPropertiesSafe() {
         try {
-            return new TreeMap<>(System.getProperties().entrySet().stream()
+            return new TreeMap<>(System.getProperties().entrySet().stream() //FLLDCIM: MARK — M05 M3_SORTED_LANES NEW
                     .collect(Collectors.toMap(e -> String.valueOf(e.getKey()),
                             e -> String.valueOf(e.getValue())))).entrySet();
         } catch (Exception e) {
@@ -3877,7 +3877,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
         }
     }
 
-	protected void sortElements(IJavaElement[] elements) {
+	protected void sortElements(IJavaElement[] elements) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Util.Comparer comparer = new Util.Comparer() {
 			public int compare(Object a, Object b) {
 				JavaElement elementA = (JavaElement)a;
@@ -3950,7 +3950,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	 */
 	public void startDeltas(DeltaListener listener) {
 		clearDeltas(listener);
-		JavaCore.addElementChangedListener(listener);
+		JavaCore.addElementChangedListener(listener); //FLLDCIM: MARK — T31 JAVA_ELEMENT_DELTA_ADAPTER CALL
 		getWorkspace().addResourceChangeListener(listener, IResourceChangeEvent.POST_CHANGE);
 	}
 	/**
@@ -3966,7 +3966,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	 */
 	public void startDeltas() {
 		clearDeltas();
-		JavaCore.addElementChangedListener(this.deltaListener);
+		JavaCore.addElementChangedListener(this.deltaListener); //FLLDCIM: MARK — T31 JAVA_ELEMENT_DELTA_ADAPTER CALL
 		getWorkspace().addResourceChangeListener(this.deltaListener, IResourceChangeEvent.POST_CHANGE);
 	}
 	/**
@@ -4012,21 +4012,21 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		if (paths == null) return null;
 		int length = paths.length;
 		IPath[] result = new IPath[length];
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			result[i] = new Path(paths[i]);
 		}
 		return result;
 	}
-	protected void touch(File f) {
+	protected void touch(File f) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final int time = 1000;
-		long lastModified = f.lastModified();
+		long lastModified = f.lastModified(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		org.eclipse.jdt.core.tests.util.Util.waitAtLeast(time);
 		f.setLastModified(lastModified + time);
 		// Loop until the last modified time has really changed on the file
 		// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=295619
 		int n = 1;
-		while (n < 10) { // retry 9 times more if necessary
-			if (f.lastModified() != lastModified) {
+		while (n < 10) { // retry 9 times more if necessary //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			if (f.lastModified() != lastModified) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				// We can leave the loop as the file has been really touched
 				return;
 			}
@@ -4034,13 +4034,13 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 			org.eclipse.jdt.core.tests.util.Util.waitAtLeast(time);
 			n++;
 		}
-		assertFalse("The file "+f.getAbsolutePath()+" was not touched!", lastModified == f.lastModified());
+		assertFalse("The file "+f.getAbsolutePath()+" was not touched!", lastModified == f.lastModified()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	protected String toString(String[] strings) {
 		return org.eclipse.jdt.core.tests.util.Util.toString(strings, false/*don't add extra new line*/);
 	}
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void tearDown() throws Exception {
 		logInfo("TDOWN " + getClass().getSimpleName() + "." + getName());
 		if (this.workingCopies != null) {
@@ -4080,7 +4080,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	}
 
 	protected IPath getJRE9Path() {
-		return new Path(System.getProperty("java.home") + "/lib/jrt-fs.jar");
+		return new Path(System.getProperty("java.home") + "/lib/jrt-fs.jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	@SuppressWarnings("restriction")
@@ -4096,7 +4096,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	/**
 	 * Wait for autobuild notification to occur
 	 */
-	public void waitForAutoBuild() {
+	public void waitForAutoBuild() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (isWorkspaceRuleAlreadyInUse(getWorkspaceRoot())) {
 			// Don't wait holding workspace lock on FAMILY_AUTO_BUILD, because
 			// we might deadlock with AutoBuildOffJob
@@ -4104,7 +4104,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 			return;
 		}
 		boolean wasInterrupted = false;
-		do {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				Job.getJobManager().wakeUp(ResourcesPlugin.FAMILY_AUTO_BUILD);
 				Job.getJobManager().join(ResourcesPlugin.FAMILY_AUTO_BUILD, null);
@@ -4118,7 +4118,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		} while (wasInterrupted);
 	}
 
-	public void waitForManualRefresh() {
+	public void waitForManualRefresh() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		boolean touchRunning = isTouchJobRunning();
 		if (touchRunning && isWorkspaceRuleAlreadyInUse(getWorkspaceRoot())) {
 			// Don't wait holding workspace lock on FAMILY_MANUAL_REFRESH, because
@@ -4128,7 +4128,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		}
 
 		boolean wasInterrupted = false;
-		do {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				Job.getJobManager().wakeUp(ResourcesPlugin.FAMILY_MANUAL_REFRESH);
 				Job.getJobManager().join(ResourcesPlugin.FAMILY_MANUAL_REFRESH, null);
@@ -4154,7 +4154,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 
 	public static boolean isTouchJobRunning() {
 		Job[] jobs = Job.getJobManager().find(JavaModelManager.class);
-		for (Job job : jobs) {
+		for (Job job : jobs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(job.belongsTo(ResourcesPlugin.FAMILY_MANUAL_REFRESH)) {
 				return true;
 			}
@@ -4162,7 +4162,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		return false;
 	}
 
-	public void waitForSnapShot() {
+	public void waitForSnapShot() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (isWorkspaceRuleAlreadyInUse(getWorkspaceRoot())){
 			// Don't wait holding workspace lock on FAMILY_SNAPSHOT, because
 			// we might deadlock with DelayedSnapshotJob
@@ -4170,7 +4170,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 			return;
 		}
 		boolean wasInterrupted = false;
-		do {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				Job.getJobManager().wakeUp(ResourcesPlugin.FAMILY_SNAPSHOT);
 				Job.getJobManager().join(ResourcesPlugin.FAMILY_SNAPSHOT, null);
@@ -4183,7 +4183,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		} while (wasInterrupted);
 	}
 
-	public void waitUntilIndexesReady() {
+	public void waitUntilIndexesReady() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// dummy query for waiting until the indexes are ready
 		SearchEngine engine = new SearchEngine();
 		IJavaSearchScope scope = SearchEngine.createWorkspaceScope();
@@ -4211,9 +4211,9 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		}
 	}
 
-	protected void makeJCLModular(IJavaProject javaProject) throws JavaModelException {
+	protected void makeJCLModular(IJavaProject javaProject) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IClasspathEntry[] classpath = javaProject.getRawClasspath();
-		for (int i = 0, length = classpath.length; i < length; i++) {
+		for (int i = 0, length = classpath.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IClasspathEntry entry = classpath[i];
 			final IPath path = entry.getPath();
 			if (isJCLPath(path)) {
@@ -4230,36 +4230,36 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		javaProject.setRawClasspath(classpath, null);
 	}
 
-	protected static void logDeltaEvent(IResourceChangeEvent event) {
-		StringBuilder s = new StringBuilder();
-		s.append("Logging resource change event");
-		s.append(System.lineSeparator());
-		s.append("thread: ");
-		s.append(Thread.currentThread().getName());
-		s.append(System.lineSeparator());
-		s.append("type: ");
-		s.append(event.getType());
-		s.append(System.lineSeparator());
-		s.append("buildKind: ");
-		s.append(event.getBuildKind());
-		s.append(System.lineSeparator());
-		s.append("resource: ");
-		s.append(event.getResource());
-		s.append(System.lineSeparator());
-		s.append("source: " );
-		s.append(event.getSource());
+	protected static void logDeltaEvent(IResourceChangeEvent event) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder s = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		s.append("Logging resource change event"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		s.append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		s.append("thread: "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		s.append(Thread.currentThread().getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		s.append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		s.append("type: "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		s.append(event.getType()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		s.append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		s.append("buildKind: "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		s.append(event.getBuildKind()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		s.append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		s.append("resource: "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		s.append(event.getResource()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		s.append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		s.append("source: " ); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		s.append(event.getSource()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		IResourceDelta delta = event.getDelta();
 		if (delta != null) {
-			s.append(System.lineSeparator());
-			s.append("Delta:");
-			IResourceDeltaVisitor visitor = new IResourceDeltaVisitor() {
+			s.append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			s.append("Delta:"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			IResourceDeltaVisitor visitor = new IResourceDeltaVisitor() { //FLLDCIM: MARK — T07  ANONYMOUS
 				@Override
 				public boolean visit(IResourceDelta d) throws CoreException {
-					s.append(System.lineSeparator());
-					s.append("\tkind: ");
-					s.append(d.getKind());
-					s.append(", resource: ");
-					s.append(d.getResource());
+					s.append(System.lineSeparator()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					s.append("\tkind: "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					s.append(d.getKind()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					s.append(", resource: "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					s.append(d.getResource()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					return true;
 				}
 			};
@@ -4278,6 +4278,6 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 	}
 
 	protected static void logInfo(String message) {
-		System.out.println(new SimpleDateFormat("HH:mm:ss.SSS").format(new Date()) + " " + message);
+		System.out.println(new SimpleDateFormat("HH:mm:ss.SSS").format(new Date()) + " " + message); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }

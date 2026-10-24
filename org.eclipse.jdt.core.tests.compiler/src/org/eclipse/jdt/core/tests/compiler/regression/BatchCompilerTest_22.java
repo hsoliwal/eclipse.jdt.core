@@ -39,9 +39,9 @@ public class BatchCompilerTest_22 extends AbstractBatchCompilerTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/pull/3055
 	// Add warnings for structurally required but otherwise unused local variables
-	public void testIssue3055() throws IOException {
+	public void testIssue3055() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		createOutputTestDirectory("regression/.settings");
-		Util.createFile(OUTPUT_DIR+"/.settings/org.eclipse.jdt.core.prefs",
+		Util.createFile(OUTPUT_DIR+"/.settings/org.eclipse.jdt.core.prefs", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"eclipse.preferences.version=1\n" +
 				"org.eclipse.jdt.core.compiler.problem.unusedLambdaParameter=error\n");
 		this.runTest(
@@ -66,7 +66,7 @@ public class BatchCompilerTest_22 extends AbstractBatchCompilerTest {
 				}
 				"""
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "bugs" + File.separator + "warning" + File.separator + "ShowBug.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "bugs" + File.separator + "warning" + File.separator + "ShowBug.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -source 22"
 			+ " -properties " + OUTPUT_DIR + File.separator +".settings" + File.separator + "org.eclipse.jdt.core.prefs "
 			+ " -d \"" + OUTPUT_DIR + "\"",
@@ -89,9 +89,9 @@ public class BatchCompilerTest_22 extends AbstractBatchCompilerTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/pull/3055
 	// Add warnings for structurally required but otherwise unused local variables
-	public void testIssue3055_2() throws IOException {
+	public void testIssue3055_2() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		createOutputTestDirectory("regression/.settings");
-		Util.createFile(OUTPUT_DIR+"/.settings/org.eclipse.jdt.core.prefs",
+		Util.createFile(OUTPUT_DIR+"/.settings/org.eclipse.jdt.core.prefs", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"eclipse.preferences.version=1\n" +
 				"org.eclipse.jdt.core.compiler.problem.unusedLambdaParameter=ignore\n");
 		this.runTest(
@@ -116,7 +116,7 @@ public class BatchCompilerTest_22 extends AbstractBatchCompilerTest {
 				}
 				"""
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "bugs" + File.separator + "warning" + File.separator + "ShowBug.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "bugs" + File.separator + "warning" + File.separator + "ShowBug.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -source 22"
 			+ " -properties " + OUTPUT_DIR + File.separator +".settings" + File.separator + "org.eclipse.jdt.core.prefs "
 			+ " -d \"" + OUTPUT_DIR + "\"",

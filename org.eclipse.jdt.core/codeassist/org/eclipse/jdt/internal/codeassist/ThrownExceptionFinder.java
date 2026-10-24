@@ -87,7 +87,7 @@ public class ThrownExceptionFinder extends ASTVisitor {
 	private void endVisitMethodInvocation(MethodBinding methodBinding) {
 		ReferenceBinding[] thrownExceptionBindings = methodBinding.thrownExceptions;
 		int length = thrownExceptionBindings == null ? 0 : thrownExceptionBindings.length;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			acceptException(thrownExceptionBindings[i]);
 		}
 	}
@@ -147,7 +147,7 @@ public class ThrownExceptionFinder extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(TryStatement tryStatement, BlockScope scope) {
 		this.exceptionsStack.push(this.thrownExceptions);
 		SimpleSet exceptionSet = new SimpleSet();
@@ -159,7 +159,7 @@ public class ThrownExceptionFinder extends ASTVisitor {
 		this.thrownExceptions = (SimpleSet)this.exceptionsStack.pop();
 
 		Object[] values = exceptionSet.values;
-		for (Object value : values) {
+		for (Object value : values) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (value != null) {
 				this.thrownExceptions.add(value);
 			}
@@ -167,20 +167,20 @@ public class ThrownExceptionFinder extends ASTVisitor {
 
 		Block[] catchBlocks = tryStatement.catchBlocks;
 		int length = catchBlocks == null ? 0 : catchBlocks.length;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			catchBlocks[i].traverse(this, scope);
 		}
 		return false;
 	}
 
-	private void removeCaughtExceptions(TryStatement tryStatement, boolean recordUncheckedCaughtExceptions) {
+	private void removeCaughtExceptions(TryStatement tryStatement, boolean recordUncheckedCaughtExceptions) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Argument[] catchArguments = tryStatement.catchArguments;
 		int length = catchArguments == null ? 0 : catchArguments.length;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (catchArguments[i].type instanceof UnionTypeReference) {
 				UnionTypeReference unionTypeReference = (UnionTypeReference) catchArguments[i].type;
 				TypeBinding caughtException;
-				for (TypeReference ref : unionTypeReference.typeReferences) {
+				for (TypeReference ref : unionTypeReference.typeReferences) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					caughtException = ref.resolvedType;
 					if ((caughtException instanceof ReferenceBinding) && caughtException.isValidBinding()) {	// might be null when its the completion node
 						if (recordUncheckedCaughtExceptions) {
@@ -217,7 +217,7 @@ public class ThrownExceptionFinder extends ASTVisitor {
 
 	private void removeCaughtException(ReferenceBinding caughtException) {
 		Object[] exceptions = this.thrownExceptions.values;
-		for (Object e : exceptions) {
+		for (Object e : exceptions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ReferenceBinding exception = (ReferenceBinding)e;
 			if (exception != null) {
 				if (TypeBinding.equalsEquals(exception, caughtException)) {

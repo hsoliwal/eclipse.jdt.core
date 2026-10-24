@@ -207,7 +207,7 @@ DOMType() {
  *		type's body, up to the close brace
  * @param isClass - true is the type is a class, false if it is an interface
  */
-DOMType(char[] document, int[] sourceRange, String name, int[] nameRange, int[] commentRange, int flags, int[] modifierRange, int[] typeRange, int[] superclassRange, int[] extendsRange, String[] implementsList, int[] implementsRange, int[] implementsKeywordRange, int[] openBodyRange, int[] closeBodyRange, boolean isClass) {
+DOMType(char[] document, int[] sourceRange, String name, int[] nameRange, int[] commentRange, int flags, int[] modifierRange, int[] typeRange, int[] superclassRange, int[] extendsRange, String[] implementsList, int[] implementsRange, int[] implementsKeywordRange, int[] openBodyRange, int[] closeBodyRange, boolean isClass) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	super(document, sourceRange, name, nameRange, commentRange, flags, modifierRange);
 
 	this.fTypeRange= typeRange;
@@ -284,7 +284,7 @@ protected void appendMemberBodyContents(CharArrayBuffer buffer) {
 /**
  * @see DOMMember#appendMemberDeclarationContents(CharArrayBuffer )
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void appendMemberDeclarationContents(CharArrayBuffer  buffer) {
 
 	if (this.fTypeKeyword != null) {
@@ -504,7 +504,7 @@ protected DOMNode newDOMNode() {
  * the node on the line on which the node starts, and all whitespace after the node up to
  * the next node's start
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 void normalize(ILineStartFinder finder) {
 	// perform final changes to the open and close body ranges
 	int openBodyEnd, openBodyStart, closeBodyStart, closeBodyEnd;
@@ -517,7 +517,7 @@ void normalize(ILineStartFinder finder) {
 
 	try {
 		TerminalToken currentToken = scanner.getNextToken();
-		while(currentToken != TerminalToken.TokenNameLBRACE &&
+		while(currentToken != TerminalToken.TokenNameLBRACE && //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				currentToken != TerminalToken.TokenNameEOF) {
 			currentToken = scanner.getNextToken();
 		}
@@ -543,7 +543,7 @@ void normalize(ILineStartFinder finder) {
 		if (lastNode == null) {
 			lastNode = first;
 		} else {
-			while (lastNode.getNextNode() != null) {
+			while (lastNode.getNextNode() != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				lastNode = (DOMNode) lastNode.getNextNode();
 			}
 		}
@@ -551,7 +551,7 @@ void normalize(ILineStartFinder finder) {
 		scanner.resetTo(lastNode.getEndPosition() + 1, this.fDocument.length);
 		try {
 			TerminalToken currentToken = scanner.getNextToken();
-			while(currentToken != TerminalToken.TokenNameRBRACE &&
+			while(currentToken != TerminalToken.TokenNameRBRACE && //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					currentToken != TerminalToken.TokenNameEOF) {
 				currentToken = scanner.getNextToken();
 			}
@@ -570,7 +570,7 @@ void normalize(ILineStartFinder finder) {
 		scanner.resetTo(openBodyEnd, this.fDocument.length);
 		try {
 			TerminalToken currentToken = scanner.getNextToken();
-			while(currentToken != TerminalToken.TokenNameRBRACE &&
+			while(currentToken != TerminalToken.TokenNameRBRACE && //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					currentToken != TerminalToken.TokenNameEOF) {
 				currentToken = scanner.getNextToken();
 			}
@@ -680,7 +680,7 @@ public void setName(String name) throws IllegalArgumentException {
 	}
 	super.setName(name);
 	Enumeration children= getChildren();
-	while (children.hasMoreElements()) {
+	while (children.hasMoreElements()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IDOMNode child= (IDOMNode)children.nextElement();
 		if (child.getNodeType() == IDOMNode.METHOD && ((IDOMMethod)child).isConstructor()) {
 			((DOMNode)child).fragment();
@@ -712,7 +712,7 @@ public void setSuperclass(String superclassName) {
 /**
  * @see IDOMType#setSuperInterfaces(String[])
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void setSuperInterfaces(String[] names) {
 	becomeDetailed();
 	if (names == null) {
@@ -727,7 +727,7 @@ public void setSuperInterfaces(String[] names) {
 	} else {
 		setMask(MASK_TYPE_HAS_INTERFACES, true);
 		CharArrayBuffer buffer = new CharArrayBuffer();
-		for (int i = 0; i < names.length; i++) {
+		for (int i = 0; i < names.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (i > 0) {
 				buffer.append(", "); //$NON-NLS-1$
 			}
@@ -766,7 +766,7 @@ protected void shareContents(DOMNode node) {
  */
 @Override
 public String toString() {
-	return "TYPE: " + getName(); //$NON-NLS-1$
+	return "TYPE: " + getName(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 /**

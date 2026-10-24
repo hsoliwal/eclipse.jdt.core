@@ -113,7 +113,7 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
 	// This type cache exists for the duration of a single round.
 	// We store positive as well as negative hits. Negative hits are
 	// stored with a value of null
-	protected final Map<String,TypeDeclaration> _typeCache = new HashMap<>();
+	protected final Map<String,TypeDeclaration> _typeCache = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	protected IPackageFragmentRoot[] _packageRootsCache;
 
@@ -127,8 +127,8 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
 		_javaProject = javaProj;
 		_phase = phase;
 		_options = initOptions(javaProj);
-		_modelCompUnit2astCompUnit = new HashMap<>();
-		_typeBinding2ModelCompUnit = new HashMap<>();
+		_modelCompUnit2astCompUnit = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		_typeBinding2ModelCompUnit = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		_aptProject = AptPlugin.getAptProject(javaProj);
 		_isTestCode = isTestCode;
 	}
@@ -149,23 +149,23 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
      * Called from constructor.  A new Env is constructed for each build pass,
      * so this will always be up to date with the latest settings.
 	 */
-	private Map<String, String> initOptions(IJavaProject jproj) {
+	private Map<String, String> initOptions(IJavaProject jproj) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> procOptions = AptConfig.getProcessorOptions(jproj, isTestCode());
 		// options is large enough to include the translated -A options
-		Map<String, String> options = new HashMap<>(procOptions.size() * 2);
+		Map<String, String> options = new HashMap<>(procOptions.size() * 2); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 		// Add configured options
-		for (Map.Entry<String, String> entry : procOptions.entrySet()) {
+		for (Map.Entry<String, String> entry : procOptions.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String value = entry.getValue();
 			String key = entry.getKey();
 			options.put(key, value);
 			if (!AptConfig.isAutomaticProcessorOption(key)) {
 				String sunStyle;
 				if (value != null) {
-					sunStyle = "-A" + entry.getKey() + "=" + value; //$NON-NLS-1$ //$NON-NLS-2$
+					sunStyle = "-A" + entry.getKey() + "=" + value; //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				else {
-					sunStyle = "-A" + entry.getKey(); //$NON-NLS-1$
+					sunStyle = "-A" + entry.getKey(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				options.put(sunStyle, ""); //$NON-NLS-1$
 			}
@@ -208,9 +208,9 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
     	final List<ITypeBinding> bindings = getTypeBindings();
 		if( bindings.isEmpty() )
 			return Collections.emptyList();
-		final List<TypeDeclaration> mirrorDecls = new ArrayList<>(bindings.size());
+		final List<TypeDeclaration> mirrorDecls = new ArrayList<>(bindings.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
-		for( ITypeBinding binding : bindings ){
+		for( ITypeBinding binding : bindings ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final TypeDeclaration mirrorDecl = Factory.createReferenceType(binding, this);
 			if( mirrorDecl != null )
 				mirrorDecls.add(mirrorDecl);
@@ -229,9 +229,9 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
     	final List<AbstractTypeDeclaration> declTypes = searchLocallyForTypeDeclarations();
 		if( declTypes == null || declTypes.isEmpty() )
 			return Collections.emptyList();
-		final List<ITypeBinding> typeBindings = new ArrayList<>(declTypes.size());
+		final List<ITypeBinding> typeBindings = new ArrayList<>(declTypes.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
-		for( AbstractTypeDeclaration decl : declTypes ){
+		for( AbstractTypeDeclaration decl : declTypes ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			getTypeBindings(decl.resolveBinding(), typeBindings);
 		}
 		return typeBindings;
@@ -247,7 +247,7 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
 	{
 		if( type == null ) return;
 		typeBindings.add(type);
-		for( ITypeBinding nestedType : type.getDeclaredTypes() ) {
+		for( ITypeBinding nestedType : type.getDeclaredTypes() ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			//typeBindings.add(nestedType);
 			getTypeBindings(nestedType, typeBindings);
 		}
@@ -273,7 +273,7 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
      */
     protected Map<ASTNode, List<Annotation>> getASTNodesWithAnnotations()
     {
-    	final Map<ASTNode, List<Annotation>> astNode2Anno = new HashMap<>();
+    	final Map<ASTNode, List<Annotation>> astNode2Anno = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
         final AnnotatedNodeVisitor visitor = new AnnotatedNodeVisitor(astNode2Anno);
         _astRoot.accept(visitor);
         return astNode2Anno;
@@ -284,10 +284,10 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
         final Map<ASTNode, List<Annotation>> astNode2Anno = getASTNodesWithAnnotations();
 		if( astNode2Anno.isEmpty() )
 			return Collections.emptyList();
-		final List<Declaration> decls = new ArrayList<>();
-		for(Map.Entry<ASTNode, List<Annotation>> entry : astNode2Anno.entrySet() ){
+		final List<Declaration> decls = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for(Map.Entry<ASTNode, List<Annotation>> entry : astNode2Anno.entrySet() ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final ASTNode node = entry.getKey();
-			for( Annotation anno : entry.getValue() ){
+			for( Annotation anno : entry.getValue() ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				final IBinding resolvedTypeBinding = anno.resolveTypeBinding();
 				if( annotationType.isEqualTo(resolvedTypeBinding) )
 					getDeclarations(node, decls);
@@ -310,7 +310,7 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
 	 * @param decls the list to be populated.
 	 *        adding the declaration(s) corresponding to the ast node to this list.
 	 */
-	protected void getDeclarations(ASTNode node, List<Declaration>decls)
+	protected void getDeclarations(ASTNode node, List<Declaration>decls) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     {
     	if( node == null ) return;
         IBinding binding = null;
@@ -319,7 +319,7 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
 		case ASTNode.FIELD_DECLARATION:
 			final List<VariableDeclarationFragment> fragments =
                 ((org.eclipse.jdt.core.dom.FieldDeclaration)node).fragments();
-			for( VariableDeclarationFragment frag : fragments ){
+			for( VariableDeclarationFragment frag : fragments ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				final IBinding fieldBinding = frag.resolveBinding();
 				final EclipseDeclarationImpl decl;
 				if( fieldBinding != null )
@@ -353,7 +353,7 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
             binding = ((org.eclipse.jdt.core.dom.PackageDeclaration)node).resolveBinding();
             break;
         default:
-            throw new UnsupportedOperationException("unknown node type: " + node.getNodeType()); //$NON-NLS-1$
+            throw new UnsupportedOperationException("unknown node type: " + node.getNodeType()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         }
 
 		final EclipseDeclarationImpl decl;
@@ -387,7 +387,7 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
 	public Map<String, String> getOptions(){ return _options; }
 
     // does not generate dependencies
-    @Override
+    @Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public TypeDeclaration getTypeDeclaration(String name)
     {
     	if( name == null || name.length() == 0 ) return null;
@@ -405,7 +405,7 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
 			// https://bugs.eclipse.org/bugs/show_bug.cgi?id=133947
 			// if the name is invalid, JDT can throw an ArrayIndexOutOfBoundsException
 			// We'll ignore this and return null to the user
-			AptPlugin.log(e, "Unable to get type definition binding for: " + name); //$NON-NLS-1$
+			AptPlugin.log(e, "Unable to get type definition binding for: " + name); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
     	return Factory.createReferenceType(typeBinding, this);
@@ -442,12 +442,12 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
     	// so we need to loop backwards until we find one, in case we have something
     	// like "java.util.Map.Entry", converting it to "java.util.Map$Entry". --jgarms
     	ITypeBinding binding = getTypeDefinitionBindingFromCorrectName(fullyQualifiedName);
-    	while (binding == null) {
+    	while (binding == null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     		int dotIndex = fullyQualifiedName.lastIndexOf('.');
     		if (dotIndex == -1) {
     			break;
     		}
-    		fullyQualifiedName = fullyQualifiedName.substring(0, dotIndex) +
+    		fullyQualifiedName = fullyQualifiedName.substring(0, dotIndex) + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     			"$" +  //$NON-NLS-1$
     			fullyQualifiedName.substring(dotIndex + 1);
     		binding = getTypeDefinitionBindingFromCorrectName(fullyQualifiedName);
@@ -460,7 +460,7 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
      * if <code>key</code> is a wild card, primitive, array type or parameterized type, this should be null.
      * @return return the type binding for the given key or null if none is found.
      */
-    protected IBinding getBindingFromKey(final String key, final ICompilationUnit unit){
+    protected IBinding getBindingFromKey(final String key, final ICompilationUnit unit){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		class BindingRequestor extends ASTRequestor
 		{
@@ -519,7 +519,7 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
 		return getTypeDeclaration(name);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public PackageDeclaration getPackage(String name)
 	{
 		if (name == null)
@@ -535,7 +535,7 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
 			// a special implementation of the package decl that expects
 			// no declarations inside it
 			boolean containsNoJavaResources = true;
-			for (IPackageFragment pkg : pkgFrags) {
+			for (IPackageFragment pkg : pkgFrags) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (pkg.containsJavaResources()) {
 					containsNoJavaResources = false;
 					break;
@@ -553,9 +553,9 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
 			ICompilationUnit pkgInfoUnit = null;
 			IOrdinaryClassFile pkgInfoClassFile = null;
 			OUTER:
-				for (IPackageFragment frag : pkgFrags) {
+				for (IPackageFragment frag : pkgFrags) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (frag.getKind() == IPackageFragmentRoot.K_SOURCE) {
-						for (ICompilationUnit unit : frag.getCompilationUnits()) {
+						for (ICompilationUnit unit : frag.getCompilationUnits()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if ("package-info.java".equals(unit.getElementName())) { //$NON-NLS-1$
 								pkgInfoUnit = unit;
 							}
@@ -566,7 +566,7 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
 						}
 					}
 					else { // K_BINARY
-						for (IOrdinaryClassFile file : frag.getOrdinaryClassFiles()) {
+						for (IOrdinaryClassFile file : frag.getOrdinaryClassFiles()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							String cfName = file.getElementName();
 							if ("package-info.class".equals(cfName)) { //$NON-NLS-1$
 								pkgInfoClassFile = file;
@@ -644,7 +644,7 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
 	 * <code>null</code> if one doesn't exist.
 	 */
 	private ICompilationUnit getICompilationUnitForTopLevelType(final String topTypeQName ){
-		final String pathname = topTypeQName.replace('.', File.separatorChar) + DOT_JAVA;
+		final String pathname = topTypeQName.replace('.', File.separatorChar) + DOT_JAVA; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		final IPath path = Path.fromOSString(pathname);
 		try{
 			final IJavaElement element = _javaProject.findElement(path);
@@ -662,7 +662,7 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
      * @param binding must be correspond to a type, method or field declaration.
      * @return the compilation unit that contains the declaration of the given binding.
      */
-    public CompilationUnit getCompilationUnitForBinding(final IBinding binding)
+    public CompilationUnit getCompilationUnitForBinding(final IBinding binding) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     {
         assert binding.getKind() == IBinding.TYPE ||
                binding.getKind() == IBinding.METHOD ||
@@ -722,7 +722,7 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
 	 * @return the top-level type binding that declares <code>binding</code>
 	 * 	       or itself if it is already one.
 	 */
-	protected static ITypeBinding getDeclaringClass(final IBinding binding)
+	protected static ITypeBinding getDeclaringClass(final IBinding binding) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		assert binding != null : "binding cannot be null"; //$NON-NLS-1$
 		ITypeBinding aTypeBinding = null;
@@ -738,10 +738,10 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
 			aTypeBinding = ((IVariableBinding)binding).getDeclaringClass();
 			break;
 		default:
-			throw new IllegalStateException("unrecognized binding type " +  binding.getKind()); //$NON-NLS-1$
+			throw new IllegalStateException("unrecognized binding type " +  binding.getKind()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		if(aTypeBinding == null ) return null;
-		while( !aTypeBinding.isTopLevel() ){
+		while( !aTypeBinding.isTopLevel() ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			aTypeBinding = aTypeBinding.getDeclaringClass();
 		}
 		return aTypeBinding;
@@ -774,7 +774,7 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
 	 * @param binding must be correspond to a type, method or field declaration
 	 * @return the file that contains the declaration of given binding.
 	 */
-	public IFile getDeclaringFileForBinding(final IBinding binding)
+	public IFile getDeclaringFileForBinding(final IBinding binding) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		assert binding.getKind() == IBinding.TYPE ||
 		       binding.getKind() == IBinding.METHOD ||
@@ -817,7 +817,7 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
 
 		@Override
 		public void acceptAST(ICompilationUnit source, CompilationUnit ast) {
-			for( int i=0, len = asts.length; i<len; i++ ){
+			for( int i=0, len = asts.length; i<len; i++ ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if( source == parseUnits[i] ){
 					asts[i] = ast;
 					break;
@@ -854,7 +854,7 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
 	/**
 	 *  This should create an AST without imports or method-body statements
 	 */
-	public static CompilationUnit createAST(
+	public static CompilationUnit createAST( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			IJavaProject javaProject,
 			final ICompilationUnit compilationUnit)
 	{
@@ -880,7 +880,7 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
 		p.setIgnoreMethodBodies(true);
 		p.createASTs( new ICompilationUnit[]{compilationUnit}, NO_KEYS,  requestor, null);
 		if( AptPlugin.DEBUG ){
-			AptPlugin.trace("created DOM AST for " + compilationUnit.getElementName() ); //$NON-NLS-1$
+			AptPlugin.trace("created DOM AST for " + compilationUnit.getElementName() ); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return requestor.domUnit;
 	}
@@ -892,7 +892,7 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
 		return _astRoot.getAST();
 	}
 
-	private void initPrimitives()
+	private void initPrimitives() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		if(_primitives != null ) return;
 		AST ast = getCurrentDietAST();
@@ -901,47 +901,47 @@ public class BaseProcessorEnv implements AnnotationProcessorEnvironment
 		// boolean
 		ITypeBinding binding = ast.resolveWellKnownType(ITypeConstants.BOOLEAN);
 		if( binding == null )
-			throw new IllegalStateException("fail to locate " + ITypeConstants.BOOLEAN); //$NON-NLS-1$
+			throw new IllegalStateException("fail to locate " + ITypeConstants.BOOLEAN); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		_primitives[BOOLEAN_INDEX] = new PrimitiveTypeImpl(binding);
 		// byte
 		binding = ast.resolveWellKnownType(ITypeConstants.BYTE);
 		if( binding == null )
-			throw new IllegalStateException("fail to locate " + ITypeConstants.BYTE); //$NON-NLS-1$
+			throw new IllegalStateException("fail to locate " + ITypeConstants.BYTE); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		_primitives[BYTE_INDEX] = new PrimitiveTypeImpl(binding);
 		// char
 		binding = ast.resolveWellKnownType(ITypeConstants.CHAR);
 		if( binding == null )
-			throw new IllegalStateException("fail to locate " + ITypeConstants.BYTE); //$NON-NLS-1$
+			throw new IllegalStateException("fail to locate " + ITypeConstants.BYTE); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		_primitives[CHAR_INDEX] = new PrimitiveTypeImpl(binding);
 		// double
 		binding = ast.resolveWellKnownType(ITypeConstants.DOUBLE);
 		if( binding == null )
-			throw new IllegalStateException("fail to locate " + ITypeConstants.BYTE); //$NON-NLS-1$
+			throw new IllegalStateException("fail to locate " + ITypeConstants.BYTE); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		_primitives[DOUBLE_INDEX] = new PrimitiveTypeImpl(binding);
 		// float
 		binding = ast.resolveWellKnownType(ITypeConstants.FLOAT);
 		if( binding == null )
-			throw new IllegalStateException("fail to locate " + ITypeConstants.BYTE); //$NON-NLS-1$
+			throw new IllegalStateException("fail to locate " + ITypeConstants.BYTE); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		_primitives[FLOAT_INDEX] = new PrimitiveTypeImpl(binding);
 		// int
 		binding = ast.resolveWellKnownType(ITypeConstants.INT);
 		if( binding == null )
-			throw new IllegalStateException("fail to locate " + ITypeConstants.BYTE); //$NON-NLS-1$
+			throw new IllegalStateException("fail to locate " + ITypeConstants.BYTE); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		_primitives[INT_INDEX] = new PrimitiveTypeImpl(binding);
 		// long
 		binding = ast.resolveWellKnownType(ITypeConstants.LONG);
 		if( binding == null )
-			throw new IllegalStateException("fail to locate " + ITypeConstants.BYTE); //$NON-NLS-1$
+			throw new IllegalStateException("fail to locate " + ITypeConstants.BYTE); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		_primitives[LONG_INDEX] = new PrimitiveTypeImpl(binding);
 		// short
 		binding = ast.resolveWellKnownType(ITypeConstants.SHORT);
 		if( binding == null )
-			throw new IllegalStateException("fail to locate " + ITypeConstants.BYTE); //$NON-NLS-1$
+			throw new IllegalStateException("fail to locate " + ITypeConstants.BYTE); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		_primitives[SHORT_INDEX] = new PrimitiveTypeImpl(binding);
 		// void
 		binding = ast.resolveWellKnownType(ITypeConstants.VOID);
 		if( binding == null )
-			throw new IllegalStateException("fail to locate " + ITypeConstants.BYTE); //$NON-NLS-1$
+			throw new IllegalStateException("fail to locate " + ITypeConstants.BYTE); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		_voidType = new VoidTypeImpl(binding);
 	}
 

@@ -80,7 +80,7 @@ public class CompilerToolJava9Tests extends TestCase {
 	public CompilerToolJava9Tests(String name) {
 		super(name);
 	}
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void setUp() throws Exception {
 		this.isJREBelow9 = SourceVersion.latest().compareTo(SourceVersion.RELEASE_8) <= 0;
 		if (isJREBelow9)
@@ -89,7 +89,7 @@ public class CompilerToolJava9Tests extends TestCase {
 		this.compilers = new JavaCompiler[2];
 		this.compilerNames = new String[2];
 		ServiceLoader<JavaCompiler> javaCompilerLoader = ServiceLoader.load(JavaCompiler.class, EclipseCompiler.class.getClassLoader());
-		for (JavaCompiler compiler : javaCompilerLoader) {
+		for (JavaCompiler compiler : javaCompilerLoader) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (compiler instanceof EclipseCompiler) {
 				this.compilers[1] = compiler;
 				this.compilerNames[1] = "Eclipse Compiler";
@@ -109,66 +109,66 @@ public class CompilerToolJava9Tests extends TestCase {
 		deleteTree(new File(_tmpFolder));
 		super.tearDown();
 	}
-	protected void initializeLocations() throws IOException {
+	protected void initializeLocations() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Path tempDirectory = Files.createTempDirectory("eclipse-temp");
 		_tmpFolder = tempDirectory.toString();
-		_tmpBinFolderName = _tmpFolder + File.separator + "bin";
+		_tmpBinFolderName = _tmpFolder + File.separator + "bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		_tmpBinDir = new File(_tmpBinFolderName);
 		deleteTree(_tmpBinDir); // remove existing contents
-		Files.createDirectories(_tmpBinDir.toPath());
-		assertTrue("couldn't mkdirs " + _tmpBinFolderName, _tmpBinDir.exists());
+		Files.createDirectories(_tmpBinDir.toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue("couldn't mkdirs " + _tmpBinFolderName, _tmpBinDir.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
-		_tmpGenFolderName = _tmpFolder + File.separator + "gen-src";
+		_tmpGenFolderName = _tmpFolder + File.separator + "gen-src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		_tmpGenDir = new File(_tmpGenFolderName);
 		deleteTree(_tmpGenDir); // remove existing contents
-		Files.createDirectories(_tmpGenDir.toPath());
-		assertTrue("couldn't mkdirs " + _tmpGenFolderName, _tmpGenDir.exists());
+		Files.createDirectories(_tmpGenDir.toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue("couldn't mkdirs " + _tmpGenFolderName, _tmpGenDir.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
-		_tmpSrcFolderName = _tmpFolder + File.separator + "src";
+		_tmpSrcFolderName = _tmpFolder + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		_tmpSrcDir = new File(_tmpSrcFolderName);
 		deleteTree(_tmpSrcDir); // remove existing contents
-		Files.createDirectories(_tmpSrcDir.toPath());
-		assertTrue("couldn't mkdirs " + _tmpSrcFolderName, _tmpSrcDir.exists());
+		Files.createDirectories(_tmpSrcDir.toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue("couldn't mkdirs " + _tmpSrcFolderName, _tmpSrcDir.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
-		modules_directory = getPluginDirectoryPath() + File.separator + RESOURCES_DIR + File.separator + "module_locations";
+		modules_directory = getPluginDirectoryPath() + File.separator + RESOURCES_DIR + File.separator + "module_locations"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		Path moduleInfo = Paths.get(modules_directory, "source", "SimpleModules", "module.one", "module-info.java");
-		assertTrue("File should exist: " + moduleInfo, Files.isReadable(moduleInfo));
+		assertTrue("File should exist: " + moduleInfo, Files.isReadable(moduleInfo)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		moduleInfo = Paths.get(modules_directory, "source", "SimpleModules", "module.two", "module-info.java");
-		assertTrue("File should exist: " + moduleInfo, Files.isReadable(moduleInfo));
+		assertTrue("File should exist: " + moduleInfo, Files.isReadable(moduleInfo)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void testGetLocationForModule1() {
+	public void testGetLocationForModule1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.isJREBelow9) return;
-		for(int i = 0; i < 2; i++) {
+		for(int i = 0; i < 2; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String cName = this.compilerNames[i];
 			JavaCompiler compiler = this.compilers[i];
 			StandardJavaFileManager manager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
 			try {
 	            Location location = manager.getLocationForModule(StandardLocation.SYSTEM_MODULES, "java.base");
-	            assertNotNull(cName + ": Location should not be null", location);
+	            assertNotNull(cName + ": Location should not be null", location); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        } catch (UnsupportedOperationException ex) {
-	            fail(cName + ": Should support getLocationForModule()");
+	            fail(cName + ": Should support getLocationForModule()"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        }
 			catch (IOException e) {
-	        	 fail(cName + ": Should support getLocationForModule()");
+	        	 fail(cName + ": Should support getLocationForModule()"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 
 	}
-	public void testSupportedCompilerVersions() throws IOException {
+	public void testSupportedCompilerVersions() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.isJREBelow9) return;
-		for(int i = 0; i < 2; i++) {
+		for(int i = 0; i < 2; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JavaCompiler compiler = this.compilers[i];
 			Set<SourceVersion> sourceVersions = compiler.getSourceVersions();
 			SourceVersion[] values = SourceVersion.values();
-			for (SourceVersion sourceVersion : values) {
+			for (SourceVersion sourceVersion : values) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				// Javac doesn't appear to have < 3 versions in the supported list, but we do anyway
 				if (!(compiler instanceof EclipseCompiler) &&
 						sourceVersion.compareTo(SourceVersion.RELEASE_3) <= 0) {
 					continue;
 				}
 
-				assertTrue("source version " + sourceVersion + " should be supported"
+				assertTrue("source version " + sourceVersion + " should be supported" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						+ "by compiler " + compiler.getClass().getName(), sourceVersions.contains(sourceVersion));
 			}
 			//	specifically test the last known - 9
@@ -176,54 +176,54 @@ public class CompilerToolJava9Tests extends TestCase {
 			assertTrue("source version 9 should be supported", sourceVersions.contains(obj));
 		}
 	}
-	public void testGetLocationForModule2() throws IOException {
+	public void testGetLocationForModule2() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.isJREBelow9) return;
-		for(int i = 0; i < 2; i++) {
+		for(int i = 0; i < 2; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String cName = this.compilerNames[i];
 			JavaCompiler compiler = this.compilers[i];
 			if (!(compiler instanceof EclipseCompiler))
 				continue;
 			StandardJavaFileManager manager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
-			Path path = Paths.get(modules_directory + File.separator + "source" + File.separator + "SimpleModules");
+			Path path = Paths.get(modules_directory + File.separator + "source" + File.separator + "SimpleModules"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			manager.setLocationFromPaths(StandardLocation.MODULE_SOURCE_PATH, Arrays.asList(path));
 			try {
 				JavaFileManager.Location location = manager.getLocationForModule(StandardLocation.MODULE_SOURCE_PATH, "module.two");
-				Path moduleInfo = path.resolve("module.two" + File.separator + "module-info.java");
-				assertTrue("File should exist: " + moduleInfo, Files.isReadable(moduleInfo));
-				assertNotNull(cName + ": module path location should not be null for path " + path, location);
+				Path moduleInfo = path.resolve("module.two" + File.separator + "module-info.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				assertTrue("File should exist: " + moduleInfo, Files.isReadable(moduleInfo)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				assertNotNull(cName + ": module path location should not be null for path " + path, location); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			} catch (UnsupportedOperationException ex) {
-				fail(cName + ":Should support getLocationForModule()");
+				fail(cName + ":Should support getLocationForModule()"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
 	// Incomplete tests - fails both with Javac and ECJ
-	public void testGetLocationForModule3() throws IOException {
+	public void testGetLocationForModule3() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.isJREBelow9) return;
-		for(int i = 0; i < 2; i++) {
+		for(int i = 0; i < 2; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String cName = this.compilerNames[i];
 			JavaCompiler compiler = this.compilers[i];
 			if (!(compiler instanceof EclipseCompiler))
 				continue;
 			StandardJavaFileManager manager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
-			Path path = Paths.get(modules_directory + File.separator + "source" + File.separator + "SimpleModules");
+			Path path = Paths.get(modules_directory + File.separator + "source" + File.separator + "SimpleModules"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			manager.setLocationFromPaths(StandardLocation.MODULE_SOURCE_PATH, Arrays.asList(path));
 			try {
 				JavaFileManager.Location location = manager.getLocationForModule(StandardLocation.MODULE_SOURCE_PATH, "module.one");
-				Path moduleInfo = path.resolve("module.one" + File.separator + "module-info.java");
-				assertTrue("File should exist: " + moduleInfo, Files.isReadable(moduleInfo));
-				assertNotNull(cName + ": module path location should not be null for path " + path, location);
+				Path moduleInfo = path.resolve("module.one" + File.separator + "module-info.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				assertTrue("File should exist: " + moduleInfo, Files.isReadable(moduleInfo)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				assertNotNull(cName + ": module path location should not be null for path " + path, location); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			} catch (UnsupportedOperationException ex) {
-				fail(cName + ":Should support getLocationForModule()");
+				fail(cName + ":Should support getLocationForModule()"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
-	public ForwardingJavaFileManager<JavaFileManager> getFileManager(JavaFileManager manager) {
+	public ForwardingJavaFileManager<JavaFileManager> getFileManager(JavaFileManager manager) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		return new ForwardingJavaFileManager<>(manager) {
 			@Override
 			public FileObject getFileForInput(Location location, String packageName, String relativeName)
 					throws IOException {
 				if (DEBUG) {
-					System.out.println("Create file for input : " + packageName + " " + relativeName + " in location " + location);
+					System.out.println("Create file for input : " + packageName + " " + relativeName + " in location " + location); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				return super.getFileForInput(location, packageName, relativeName);
 			}
@@ -231,7 +231,7 @@ public class CompilerToolJava9Tests extends TestCase {
 			public JavaFileObject getJavaFileForInput(Location location, String className, Kind kind)
 					throws IOException {
 				if (DEBUG) {
-					System.out.println("Create java file for input : " + className + " in location " + location);
+					System.out.println("Create java file for input : " + className + " in location " + location); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				return super.getJavaFileForInput(location, className, kind);
 			}
@@ -242,7 +242,7 @@ public class CompilerToolJava9Tests extends TestCase {
 					FileObject sibling) throws IOException {
 
 				if (DEBUG) {
-					System.out.println("Create .class file for " + className + " in location " + location + " with sibling " + sibling.toUri());
+					System.out.println("Create .class file for " + className + " in location " + location + " with sibling " + sibling.toUri()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				JavaFileObject javaFileForOutput = super.getJavaFileForOutput(location, className, kind, sibling);
 				if (DEBUG) {
@@ -252,27 +252,27 @@ public class CompilerToolJava9Tests extends TestCase {
 			}
 		};
 	}
-	public void testOptionRelease1() throws IOException {
+	public void testOptionRelease1() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.isJREBelow9) return;
 		JavaCompiler compiler = this.compilers[1];
 		StandardJavaFileManager standardManager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
 		Consumer<JavaFileManager> cons = manager -> {
 			String tmpFolder = _tmpFolder;
 			File inputFile = new File(tmpFolder, "X.java");
-			try (Writer writer = new BufferedWriter(new FileWriter(inputFile))) {
+			try (Writer writer = new BufferedWriter(new FileWriter(inputFile))) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				writer.write(
 					"package p;\n" +
 					"public class X {}");
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-			List<File> files = new ArrayList<>();
+			List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			files.add(inputFile);
 			Iterable<? extends JavaFileObject> units = standardManager.getJavaFileObjectsFromFiles(files);
 			StringWriter stringWriter = new StringWriter();
 			PrintWriter printWriter = new PrintWriter(stringWriter);
 
-			List<String> options = new ArrayList<>();
+			List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			options.add("-d");
 			options.add(tmpFolder);
 			options.add("--release");
@@ -294,7 +294,7 @@ public class CompilerToolJava9Tests extends TestCase {
 			printWriter.flush();
 			printWriter.close();
 	 		if (!result.booleanValue()) {
-	 			System.err.println("Compilation failed: " + stringWriter.getBuffer().toString());
+	 			System.err.println("Compilation failed: " + stringWriter.getBuffer().toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	 	 		assertTrue("Compilation failed ", false);
 	 		}
 	 		ClassFileReader reader = null;
@@ -309,19 +309,19 @@ public class CompilerToolJava9Tests extends TestCase {
 			// This needs fix. This test case by design will produce different output every compiler version.
 	 		assertEquals("Wrong value", ClassFileConstants.JDK1_8, reader.getVersion());
 			// check that the .class file exist for X
-			assertTrue("delete failed", inputFile.delete());
+			assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		};
 		cons.accept(standardManager);
 		cons.accept(getFileManager(standardManager));
 	}
-	public void testOptionRelease2() throws IOException {
+	public void testOptionRelease2() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.isJREBelow9) return;
 		JavaCompiler compiler = this.compilers[1];
 		StandardJavaFileManager standardManager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
 		Consumer<JavaFileManager> cons = manager -> {
 			String tmpFolder = _tmpFolder;
 			File inputFile = new File(tmpFolder, "X.java");
-			try (Writer writer = new BufferedWriter(new FileWriter(inputFile))){
+			try (Writer writer = new BufferedWriter(new FileWriter(inputFile))){ //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				writer.write(
 					"package p;\n" +
 					"public class X {}");
@@ -329,13 +329,13 @@ public class CompilerToolJava9Tests extends TestCase {
 				e1.printStackTrace();
 			}
 			// create new list containing input file
-			List<File> files = new ArrayList<>();
+			List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			files.add(inputFile);
 			Iterable<? extends JavaFileObject> units = standardManager.getJavaFileObjectsFromFiles(files);
 			StringWriter stringWriter = new StringWriter();
 			PrintWriter printWriter = new PrintWriter(stringWriter);
 
-			List<String> options = new ArrayList<>();
+			List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			options.add("-d");
 			options.add(tmpFolder);
 			options.add("--release");
@@ -357,7 +357,7 @@ public class CompilerToolJava9Tests extends TestCase {
 			printWriter.flush();
 			printWriter.close();
 	 		if (!result.booleanValue()) {
-	 			System.err.println("Compilation failed: " + stringWriter.getBuffer().toString());
+	 			System.err.println("Compilation failed: " + stringWriter.getBuffer().toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	 	 		assertTrue("Compilation failed ", false);
 	 		}
 	 		ClassFileReader reader = null;
@@ -372,19 +372,19 @@ public class CompilerToolJava9Tests extends TestCase {
 			// This needs fix. This test case by design will produce different output every compiler version.
 	 		assertEquals("Wrong value", ClassFileConstants.JDK1_8, reader.getVersion());
 			// check that the .class file exist for X
-			assertTrue("delete failed", inputFile.delete());
+			assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		};
 		cons.accept(standardManager);
 		cons.accept(getFileManager(standardManager));
 	}
-	public void testOptionRelease3() throws IOException {
+	public void testOptionRelease3() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.isJREBelow9) return;
 		JavaCompiler compiler = this.compilers[1];
 		StandardJavaFileManager standardManager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
 		Consumer<JavaFileManager> cons = manager -> {
 			String tmpFolder = _tmpFolder;
 			File inputFile = new File(tmpFolder, "X.java");
-			try (Writer writer = new BufferedWriter(new FileWriter(inputFile))){
+			try (Writer writer = new BufferedWriter(new FileWriter(inputFile))){ //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				writer.write(
 					"package p;\n" +
 					"public class X {}");
@@ -394,13 +394,13 @@ public class CompilerToolJava9Tests extends TestCase {
 			
 
 			// create new list containing input file
-			List<File> files = new ArrayList<>();
+			List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			files.add(inputFile);
 			Iterable<? extends JavaFileObject> units = standardManager.getJavaFileObjectsFromFiles(files);
 			StringWriter stringWriter = new StringWriter();
 			PrintWriter printWriter = new PrintWriter(stringWriter);
 
-			List<String> options = new ArrayList<>();
+			List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			options.add("-d");
 			options.add(tmpFolder);
 			options.add("--release");
@@ -427,14 +427,14 @@ public class CompilerToolJava9Tests extends TestCase {
 		cons.accept(standardManager);
 		cons.accept(getFileManager(standardManager));
 	}
-	public void testOptionRelease4() throws IOException {
+	public void testOptionRelease4() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.isJREBelow9) return;
 		JavaCompiler compiler = this.compilers[1];
 		StandardJavaFileManager standardManager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
 		Consumer<JavaFileManager> cons = manager -> {
 			String tmpFolder = _tmpFolder;
 			File inputFile = new File(tmpFolder, "X.java");
-			try (Writer writer = new BufferedWriter(new FileWriter(inputFile))) {
+			try (Writer writer = new BufferedWriter(new FileWriter(inputFile))) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				writer.write(
 					"package p;\n" +
 					"import java.nio.Buffer;\n" +
@@ -450,13 +450,13 @@ public class CompilerToolJava9Tests extends TestCase {
 			}
 
 			// create new list containing input file
-			List<File> files = new ArrayList<>();
+			List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			files.add(inputFile);
 			Iterable<? extends JavaFileObject> units = standardManager.getJavaFileObjectsFromFiles(files);
 			StringWriter stringWriter = new StringWriter();
 			PrintWriter printWriter = new PrintWriter(stringWriter);
 
-			List<String> options = new ArrayList<>();
+			List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			options.add("-d");
 			options.add(tmpFolder);
 			options.add("--release");
@@ -478,7 +478,7 @@ public class CompilerToolJava9Tests extends TestCase {
 			printWriter.flush();
 			printWriter.close();
 	 		if (!result.booleanValue()) {
-	 			System.err.println("Compilation failed: " + stringWriter.getBuffer().toString());
+	 			System.err.println("Compilation failed: " + stringWriter.getBuffer().toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	 	 		assertTrue("Compilation failed ", false);
 	 		}
 	 		ClassFileReader reader = null;
@@ -495,35 +495,35 @@ public class CompilerToolJava9Tests extends TestCase {
 	 		// check that the correct call was generated: must return a Buffer, not a ByteBuffer
 	 		boolean found = false;
 	 		int[] offsets = reader.getConstantPoolOffsets();
-	 		for (int i = 0; i < offsets.length; i++) {
+	 		for (int i = 0; i < offsets.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	 			int tag = reader.u1At(offsets[i]);
 	 			if (tag == ClassFileConstants.MethodRefTag || tag ==  ClassFileConstants.InterfaceMethodRefTag) {
 	 				char[] name = extractName(offsets, reader, i);
 	 				char[] className = extractClassName(offsets, reader, i);
-	 				String fullName = new String(className) + '.' + new String(name);
+	 				String fullName = new String(className) + '.' + new String(name); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	 				char[] typeName = extractType(offsets, reader, i);
 	 				if ("java/nio/ByteBuffer.flip".equals(fullName)) {
 	 					found = true;
-	 					assertEquals(fullName + "()Ljava/nio/Buffer;", fullName + new String(typeName));
+	 					assertEquals(fullName + "()Ljava/nio/Buffer;", fullName + new String(typeName)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	 					break;
 	 				}
 	 			}
 	 		}
 	 		assertTrue("No call to ByteBuffer.flip()", found);
 			// check that the .class file exist for X
-			assertTrue("delete failed", inputFile.delete());
+			assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		};
 		cons.accept(standardManager);
 		cons.accept(getFileManager(standardManager));
 	}
-	public void testOptionRelease5() throws IOException {
+	public void testOptionRelease5() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.isJREBelow12) return;
 		JavaCompiler compiler = this.compilers[1];
 		StandardJavaFileManager standardManager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
 		Consumer<JavaFileManager> cons = manager -> {
 			String tmpFolder = _tmpFolder;
 			File inputFile = new File(tmpFolder, "X.java");
-			try (Writer writer = new BufferedWriter(new FileWriter(inputFile))){
+			try (Writer writer = new BufferedWriter(new FileWriter(inputFile))){ //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				writer.write(
 						"public class X { \n" +
 						"	public Module getModule(String name) {\n" +
@@ -534,12 +534,12 @@ public class CompilerToolJava9Tests extends TestCase {
 				e.printStackTrace();
 			}
 			// create new list containing input file
-			List<File> files = new ArrayList<>();
+			List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			files.add(inputFile);
 			Iterable<? extends JavaFileObject> units = standardManager.getJavaFileObjectsFromFiles(files);
 			StringWriter stringWriter = new StringWriter();
 			PrintWriter printWriter = new PrintWriter(stringWriter);
-			List<String> options = new ArrayList<>();
+			List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			options.add("-d");
 			options.add(tmpFolder);
 			options.add("--release");
@@ -552,21 +552,21 @@ public class CompilerToolJava9Tests extends TestCase {
 			printWriter.flush();
 			printWriter.close();
 			if (result.booleanValue()) {
-				System.err.println("Compilation did not fail as expected: " + stringWriter.getBuffer().toString());
+				System.err.println("Compilation did not fail as expected: " + stringWriter.getBuffer().toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				assertTrue("Compilation did not fail as expected", false);
 			}
 		};
 		cons.accept(standardManager);
 		cons.accept(getFileManager(standardManager));
 	}
-	public void testOptionRelease6() throws IOException {
+	public void testOptionRelease6() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.isJREBelow12) return;
 		JavaCompiler compiler = this.compilers[1];
 		StandardJavaFileManager standardManager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
 		Consumer<JavaFileManager> cons = manager -> {
 			String tmpFolder = _tmpFolder;
 			File inputFile = new File(tmpFolder, "X.java");
-			try (Writer writer = new BufferedWriter(new FileWriter(inputFile))){
+			try (Writer writer = new BufferedWriter(new FileWriter(inputFile))){ //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				writer.write(
 						"public class X { \n" +
 						"	public Module getModule(String name) {\n" +
@@ -577,12 +577,12 @@ public class CompilerToolJava9Tests extends TestCase {
 				e.printStackTrace();
 			}
 			// create new list containing input file
-			List<File> files = new ArrayList<>();
+			List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			files.add(inputFile);
 			Iterable<? extends JavaFileObject> units = standardManager.getJavaFileObjectsFromFiles(files);
 			StringWriter stringWriter = new StringWriter();
 			PrintWriter printWriter = new PrintWriter(stringWriter);
-			List<String> options = new ArrayList<>();
+			List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			options.add("-d");
 			options.add(tmpFolder);
 			options.add("--release");
@@ -595,7 +595,7 @@ public class CompilerToolJava9Tests extends TestCase {
 			printWriter.flush();
 			printWriter.close();
 			if (!result.booleanValue()) {
-				System.err.println("Compilation failed: " + stringWriter.getBuffer().toString());
+				System.err.println("Compilation failed: " + stringWriter.getBuffer().toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				assertTrue("Compilation failed", false);
 			}
 		};
@@ -618,47 +618,47 @@ public class CompilerToolJava9Tests extends TestCase {
 		int utf8Offset = constantPoolOffsets[reader.u2At(constantPoolOffsets[constantPoolIndex] + 3)];
 		return reader.utf8At(utf8Offset + 3, reader.u2At(utf8Offset + 1));
 	}
-	public void testClassOutputLocationForModule_1() throws IOException {
+	public void testClassOutputLocationForModule_1() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.isJREBelow9) return;
-		for(int i = 0; i < 2; i++) {
+		for(int i = 0; i < 2; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String cName = this.compilerNames[i];
 			JavaCompiler compiler = this.compilers[i];
 			if (!(compiler instanceof EclipseCompiler))
 				continue;
 			StandardJavaFileManager manager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
-			Path path = Paths.get(modules_directory + File.separator + "source" + File.separator + "SimpleModules");
+			Path path = Paths.get(modules_directory + File.separator + "source" + File.separator + "SimpleModules"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			manager.setLocationFromPaths(StandardLocation.MODULE_SOURCE_PATH, Arrays.asList(path));
 			manager.setLocation(StandardLocation.CLASS_OUTPUT, Arrays.asList(_tmpBinDir));
 			try {
 				JavaFileManager.Location location = manager.getLocationForModule(StandardLocation.CLASS_OUTPUT, "module.two");
-				assertNotNull(cName + ":module path location should not be null", location);
+				assertNotNull(cName + ":module path location should not be null", location); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				assertTrue("should be output location", location.isOutputLocation());
 			} catch (UnsupportedOperationException ex) {
-				fail(cName + ":Should support getLocationForModule()");
+				fail(cName + ":Should support getLocationForModule()"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
-	public void testClassOutputLocationForModule_2() throws IOException {
+	public void testClassOutputLocationForModule_2() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.isJREBelow9) return;
-		for(int i = 0; i < 2; i++) {
+		for(int i = 0; i < 2; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String cName = this.compilerNames[i];
 			JavaCompiler compiler = this.compilers[i];
 			if (!(compiler instanceof EclipseCompiler))
 				continue;
 			StandardJavaFileManager manager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
-			Path path = Paths.get(modules_directory + File.separator + "source" + File.separator + "SimpleModules" + File.separator + "module.one");
+			Path path = Paths.get(modules_directory + File.separator + "source" + File.separator + "SimpleModules" + File.separator + "module.one"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			manager.setLocationForModule(StandardLocation.MODULE_SOURCE_PATH, "module.one", Arrays.asList(path));
-			path = Paths.get(modules_directory + File.separator + "source" + File.separator + "SimpleModules" + File.separator + "module.two");
+			path = Paths.get(modules_directory + File.separator + "source" + File.separator + "SimpleModules" + File.separator + "module.two"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			manager.setLocationForModule(StandardLocation.MODULE_SOURCE_PATH, "module.two", Arrays.asList(path));
 			manager.setLocation(StandardLocation.CLASS_OUTPUT, Arrays.asList(_tmpBinDir));
 			try {
 				JavaFileManager.Location location = manager.getLocationForModule(StandardLocation.CLASS_OUTPUT, "module.one");
 				assertTrue("should be output location", location.isOutputLocation());
-				assertNotNull(cName + ":module path location should not be null", location);
+				assertNotNull(cName + ":module path location should not be null", location); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				Iterable<? extends Path> locationAsPaths = manager.getLocationAsPaths(location);
 				int count = 0;
 				boolean found = false;
-				for (Path path2 : locationAsPaths) {
+				for (Path path2 : locationAsPaths) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (path2.endsWith("module.one")) {
 						found = true;
 					}
@@ -668,11 +668,11 @@ public class CompilerToolJava9Tests extends TestCase {
 				assertTrue("output location for module.two not found", found);
 				location = manager.getLocationForModule(StandardLocation.CLASS_OUTPUT, "module.two");
 				assertTrue("should be output location", location.isOutputLocation());
-				assertNotNull(cName + ":module path location should not be null", location);
+				assertNotNull(cName + ":module path location should not be null", location); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				locationAsPaths = manager.getLocationAsPaths(location);
 				count = 0;
 				found = false;
-				for (Path path2 : locationAsPaths) {
+				for (Path path2 : locationAsPaths) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (path2.endsWith("module.two")) {
 						found = true;
 					}
@@ -682,33 +682,33 @@ public class CompilerToolJava9Tests extends TestCase {
 				assertTrue("output location for module.two not found", found);
 
 			} catch (UnsupportedOperationException ex) {
-				fail(cName + ":Should support getLocationForModule()");
+				fail(cName + ":Should support getLocationForModule()"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
 	// Test that non-module folders inside module-path are not considered 
 	// to be automatic modules.
-	public void testBug565748() throws IOException {
+	public void testBug565748() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.isJREBelow9) return;
 		JavaCompiler compiler = this.compilers[1];
 		String tmpFolder = _tmpFolder;
 		StandardJavaFileManager manager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
 
 		// create new list containing input file
-		List<File> files = new ArrayList<>();
-		files.add(new File(modules_directory + File.separator + "source" + File.separator + "SimpleModules" +
+		List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		files.add(new File(modules_directory + File.separator + "source" + File.separator + "SimpleModules" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 										File.separator + "module.one" + File.separator + "module-info.java"));
-		files.add(new File(modules_directory + File.separator + "source" + File.separator + "SimpleModules" +
+		files.add(new File(modules_directory + File.separator + "source" + File.separator + "SimpleModules" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				File.separator + "module.two" + File.separator + "module-info.java"));
 		Iterable<? extends JavaFileObject> units = manager.getJavaFileObjectsFromFiles(files);
 		StringWriter stringWriter = new StringWriter();
 		PrintWriter printWriter = new PrintWriter(stringWriter);
 
-		List<String> options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		options.add("-d");
 		options.add(tmpFolder);
 		options.add("--module-source-path");
-		options.add(modules_directory + File.separator + "source" + File.separator + "SimpleModules");
+		options.add(modules_directory + File.separator + "source" + File.separator + "SimpleModules"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		ByteArrayOutputStream errBuffer = new ByteArrayOutputStream();
 		PrintWriter err = new PrintWriter(errBuffer);
 		CompilerInvocationDiagnosticListener listener = new CompilerInvocationDiagnosticListener(err) {
@@ -725,7 +725,7 @@ public class CompilerToolJava9Tests extends TestCase {
 		printWriter.flush();
 		printWriter.close();
  		if (!result.booleanValue()) {
- 			System.err.println("Compilation failed unexpectedly: " + stringWriter.getBuffer().toString());
+ 			System.err.println("Compilation failed unexpectedly: " + stringWriter.getBuffer().toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
  	 		assertTrue("Compilation failed ", false);
  		}
  
@@ -733,20 +733,20 @@ public class CompilerToolJava9Tests extends TestCase {
 		manager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
 
 		// create new list containing input file
-		files = new ArrayList<>();
-		files.add(new File(modules_directory + File.separator + "bug565748" + File.separator + 
+		files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		files.add(new File(modules_directory + File.separator + "bug565748" + File.separator +  //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 									"mod.test" + File.separator + "module-info.java"));
 		units = manager.getJavaFileObjectsFromFiles(files);
 		stringWriter = new StringWriter();
 		printWriter = new PrintWriter(stringWriter);
 
-		options = new ArrayList<>();
+		options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		options.add("-d");
 		options.add(tmpFolder);
 		options.add("--module-path");
 		options.add(tmpFolder);
 		options.add("--module-source-path");
-		options.add(modules_directory + File.separator + "bug565748");
+		options.add(modules_directory + File.separator + "bug565748"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		errBuffer = new ByteArrayOutputStream();
 		err = new PrintWriter(errBuffer);
 		listener = new CompilerInvocationDiagnosticListener(err) {
@@ -762,37 +762,37 @@ public class CompilerToolJava9Tests extends TestCase {
 		printWriter.flush();
 		printWriter.close();
  		if (!result.booleanValue()) {
- 			System.err.println("Compilation failed unexpectedly: " + stringWriter.getBuffer().toString());
+ 			System.err.println("Compilation failed unexpectedly: " + stringWriter.getBuffer().toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
  	 		assertTrue("Compilation failed ", false);
  		}
  
  		// Delete the module-info.class from the previously compiled modules
  		// and try compiling the same module mod.test
- 		File file = new File(tmpFolder + File.separator + "mod.test" + File.separator + "module-info.class");
- 		file.delete();
- 		file = new File(tmpFolder + File.separator + "mod.test");
- 		file.delete();
- 		file = new File(tmpFolder + File.separator + "module.one" + File.separator + "module-info.class");
- 		file.delete();
- 		file = new File(tmpFolder + File.separator + "module.two" + File.separator + "module-info.class");
- 		file.delete();
+ 		File file = new File(tmpFolder + File.separator + "mod.test" + File.separator + "module-info.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+ 		file.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+ 		file = new File(tmpFolder + File.separator + "mod.test"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+ 		file.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+ 		file = new File(tmpFolder + File.separator + "module.one" + File.separator + "module-info.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+ 		file.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+ 		file = new File(tmpFolder + File.separator + "module.two" + File.separator + "module-info.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+ 		file.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
  		manager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
 
  		// create new list containing input file
- 		files = new ArrayList<>();
- 		files.add(new File(modules_directory + File.separator + "bug565748" + File.separator + 
+ 		files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+ 		files.add(new File(modules_directory + File.separator + "bug565748" + File.separator +  //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
  				"mod.test" + File.separator + "module-info.java"));
  		units = manager.getJavaFileObjectsFromFiles(files);
  		stringWriter = new StringWriter();
  		printWriter = new PrintWriter(stringWriter);
 
- 		options = new ArrayList<>();
+ 		options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
  		options.add("-d");
  		options.add(tmpFolder);
  		options.add("--module-path");
  		options.add(tmpFolder);
  		options.add("--module-source-path");
- 		options.add(modules_directory + File.separator + "bug565748");
+ 		options.add(modules_directory + File.separator + "bug565748"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
  		errBuffer = new ByteArrayOutputStream();
  		err = new PrintWriter(errBuffer);
  		listener = new CompilerInvocationDiagnosticListener(err) {
@@ -808,33 +808,33 @@ public class CompilerToolJava9Tests extends TestCase {
  		printWriter.flush();
  		printWriter.close();
  		if (result.booleanValue()) {
- 			System.err.println("Compilation should fail: " + stringWriter.getBuffer().toString());
+ 			System.err.println("Compilation should fail: " + stringWriter.getBuffer().toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
  			assertTrue("Compilation did not fail ", false);
  		}
 	}
-	public void testBug566749() throws IOException {
+	public void testBug566749() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.isJREBelow9) return;
 		JavaCompiler compiler = this.compilers[1];
 		String tmpFolder = _tmpFolder;
 		StandardJavaFileManager manager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
 
 		// create new list containing input file
-		List<File> files = new ArrayList<>();
-		files.add(new File(modules_directory + File.separator + "bug566749" + File.separator + 
+		List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		files.add(new File(modules_directory + File.separator + "bug566749" + File.separator +  //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
  				"mod.test" + File.separator + "module-info.java"));
 		
 		Iterable<? extends JavaFileObject> units = manager.getJavaFileObjectsFromFiles(files);
 		StringWriter stringWriter = new StringWriter();
 		PrintWriter printWriter = new PrintWriter(stringWriter);
 
-		List<String> options = new ArrayList<>();
-		options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
  		options.add("-d");
  		options.add(tmpFolder);
  		options.add("--module-path");
  		options.add(tmpFolder);
  		options.add("--module-source-path");
- 		options.add(modules_directory + File.separator + "bug566749");
+ 		options.add(modules_directory + File.separator + "bug566749"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		ByteArrayOutputStream errBuffer = new ByteArrayOutputStream();
 		PrintWriter err = new PrintWriter(errBuffer);
 		CompilerInvocationDiagnosticListener listener = new CompilerInvocationDiagnosticListener(err) {
@@ -849,37 +849,37 @@ public class CompilerToolJava9Tests extends TestCase {
 		printWriter.flush();
 		printWriter.close();
  		if (result.booleanValue()) {
- 			System.err.println("Compilation did not fail as expected: " + stringWriter.getBuffer().toString());
+ 			System.err.println("Compilation did not fail as expected: " + stringWriter.getBuffer().toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
  	 		assertTrue("Compilation did not fail as expected ", false);
  		}
 	}
-	public void testBug574097() throws IOException {
+	public void testBug574097() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.isJREBelow9) return;
 		JavaCompiler compiler = this.compilers[1];
 		String tmpFolder = _tmpFolder;
 		StandardJavaFileManager manager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
 
 		// create new list containing input file
-		List<File> files = new ArrayList<>();
-		files.add(new File(modules_directory + File.separator + "bug574097" + File.separator + 
+		List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		files.add(new File(modules_directory + File.separator + "bug574097" + File.separator +  //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
  				"mod.one" + File.separator + "module-info.java"));
-		files.add(new File(modules_directory + File.separator + "bug574097" + File.separator + 
+		files.add(new File(modules_directory + File.separator + "bug574097" + File.separator +  //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
  				"mod.one" + File.separator + "abc" + File.separator + "A.java"));
 		
 		Iterable<? extends JavaFileObject> units = manager.getJavaFileObjectsFromFiles(files);
 		StringWriter stringWriter = new StringWriter();
 		PrintWriter printWriter = new PrintWriter(stringWriter);
 
-		List<String> options = new ArrayList<>();
-		options = new ArrayList<>();
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
  		options.add("-d");
  		options.add(tmpFolder);
  		options.add("--module-path");
  		options.add(tmpFolder);
  		options.add("--module-source-path");
- 		options.add(modules_directory + File.separator + "bug574097");
+ 		options.add(modules_directory + File.separator + "bug574097"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
  		options.add("--processor-module-path");
- 		options.add(getPluginDirectoryPath() + File.separator + RESOURCES_DIR + File.separator + "bug574097.jar");
+ 		options.add(getPluginDirectoryPath() + File.separator + RESOURCES_DIR + File.separator + "bug574097.jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		ByteArrayOutputStream errBuffer = new ByteArrayOutputStream();
 		PrintWriter err = new PrintWriter(errBuffer);
 		CompilerInvocationDiagnosticListener listener = new CompilerInvocationDiagnosticListener(err) {
@@ -894,7 +894,7 @@ public class CompilerToolJava9Tests extends TestCase {
 		printWriter.flush();
 		printWriter.close();
  		if (result.booleanValue()) {
- 			System.err.println("Compilation did not fail as expected: " + stringWriter.getBuffer().toString());
+ 			System.err.println("Compilation did not fail as expected: " + stringWriter.getBuffer().toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
  	 		assertTrue("Compilation did not fail as expected ", false);
  		}
 	}
@@ -934,7 +934,7 @@ public class CompilerToolJava9Tests extends TestCase {
 
 	/*-- Code for testing bug 533830 --*/
 
-	public void testBug533830_1() throws IOException {
+	public void testBug533830_1() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.isJREBelow9) return;
 
 		File src = createClassSource(
@@ -991,7 +991,7 @@ public class CompilerToolJava9Tests extends TestCase {
 					);
 		}
 	}
-	public void testGH958() throws Exception {
+	public void testGH958() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File classOutput = new File(_tmpFolder);
 		JavaCompiler compiler = new EclipseCompiler();
 		StandardJavaFileManager standardFileManager = compiler.getStandardFileManager(null, null, null);
@@ -1017,7 +1017,7 @@ public class CompilerToolJava9Tests extends TestCase {
 
 		assertTrue(task.call());
 	}
-	public void testGH958_2modules() throws Exception {
+	public void testGH958_2modules() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File classOutput = new File(_tmpFolder);
 		JavaCompiler compiler = new EclipseCompiler();
 		StandardJavaFileManager standardFileManager = compiler.getStandardFileManager(null, null, null);
@@ -1051,9 +1051,9 @@ public class CompilerToolJava9Tests extends TestCase {
 	private final class CompilerBuilder {
 		private final JavaCompiler compiler;
 
-		private final List<String> options = new ArrayList<>();
+		private final List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
-		private final List<File> files = new ArrayList<>();
+		private final List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		private final StringWriter errorWriter = new StringWriter();
 
@@ -1096,13 +1096,13 @@ public class CompilerToolJava9Tests extends TestCase {
 			return listener;
 		}
 
-		public ForwardingJavaFileManager<StandardJavaFileManager> createFileManager(StandardJavaFileManager manager) {
+		public ForwardingJavaFileManager<StandardJavaFileManager> createFileManager(StandardJavaFileManager manager) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			ForwardingJavaFileManager<StandardJavaFileManager> forwardingJavaFileManager = new ForwardingJavaFileManager<>(manager) {
 				@Override
 				public FileObject getFileForInput(Location location, String packageName, String relativeName)
 						throws IOException {
 					if (DEBUG) {
-						System.out.println("Create file for input : " + packageName + " " + relativeName + " in location " + location);
+						System.out.println("Create file for input : " + packageName + " " + relativeName + " in location " + location); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 					return super.getFileForInput(location, packageName, relativeName);
 				}
@@ -1110,7 +1110,7 @@ public class CompilerToolJava9Tests extends TestCase {
 				public JavaFileObject getJavaFileForInput(Location location, String className, Kind kind)
 						throws IOException {
 					if (DEBUG) {
-						System.out.println("Create java file for input : " + className + " in location " + location);
+						System.out.println("Create java file for input : " + className + " in location " + location); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 					return super.getJavaFileForInput(location, className, kind);
 				}
@@ -1121,7 +1121,7 @@ public class CompilerToolJava9Tests extends TestCase {
 						FileObject sibling) throws IOException {
 
 					if (DEBUG) {
-						System.out.println("Create .class file for " + className + " in location " + location + " with sibling " + sibling.toUri());
+						System.out.println("Create .class file for " + className + " in location " + location + " with sibling " + sibling.toUri()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 					JavaFileObject javaFileForOutput = super.getJavaFileForOutput(location, className, kind, sibling);
 					if (DEBUG) {
@@ -1135,7 +1135,7 @@ public class CompilerToolJava9Tests extends TestCase {
 	}
 
 	static private final class DiagListener extends CompilerInvocationDiagnosticListener {
-		private final List<Diagnostic<? extends JavaFileObject>> errorList = new ArrayList<>();
+		private final List<Diagnostic<? extends JavaFileObject>> errorList = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		DiagListener(PrintWriter err) {
 			super(err);
@@ -1152,7 +1152,7 @@ public class CompilerToolJava9Tests extends TestCase {
 		}
 
 		public boolean hasDiagnostic(String match) {
-			for(Diagnostic<? extends JavaFileObject> d: errorList) {
+			for(Diagnostic<? extends JavaFileObject> d: errorList) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String msg = d.getMessage(Locale.US).toLowerCase();
 				if(msg.contains(match.toLowerCase()))
 					return true;
@@ -1164,7 +1164,7 @@ public class CompilerToolJava9Tests extends TestCase {
 	private File createClassSource(String source) throws IOException {
 		String tmpFolder = _tmpFolder;
 		File inputFile = new File(tmpFolder, "X.java");
-		try (Writer writer = new FileWriter(inputFile)){
+		try (Writer writer = new FileWriter(inputFile)){ //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(source);
 			return inputFile;
 		}
@@ -1183,15 +1183,15 @@ public class CompilerToolJava9Tests extends TestCase {
 		if (null == f) {
 			return;
 		}
-		File[] children = f.listFiles();
+		File[] children = f.listFiles(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		if (null != children) {
 			// if f has any children, (recursively) delete them
-			for (File child : children) {
+			for (File child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				deleteTree(child);
 			}
 		}
 		// At this point f is either a normal file or an empty directory
-		Files.deleteIfExists(f.toPath());
+		Files.deleteIfExists(f.toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 	/**
 	 * Copy a file from one location to another, unless the destination file already exists and has
@@ -1203,10 +1203,10 @@ public class CompilerToolJava9Tests extends TestCase {
 	 * @param dest
 	 *            the full path to the destination location.
 	 */
-	public static void copyResource(File src, File dest) throws IOException {
-		if (dest.exists() &&
-				src.lastModified() < dest.lastModified() &&
-				src.length() == dest.length())
+	public static void copyResource(File src, File dest) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		if (dest.exists() && //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				src.lastModified() < dest.lastModified() && //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				src.length() == dest.length()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		{
 			return;
 		}
@@ -1225,9 +1225,9 @@ public class CompilerToolJava9Tests extends TestCase {
 
 	public static void writeFile(File dest, byte[] srcBytes) throws IOException {
 		File destFolder = dest.getParentFile();
-		Files.createDirectories(destFolder.toPath());
+		Files.createDirectories(destFolder.toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		// write bytes to dest
-		Files.write(dest.toPath(), srcBytes);
+		Files.write(dest.toPath(), srcBytes); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	/**
@@ -1268,23 +1268,23 @@ public class CompilerToolJava9Tests extends TestCase {
 		copyResources(resourceFolder, destFolder);
 	}
 
-	private static void copyResources(File resourceFolder, File destFolder) throws IOException {
+	private static void copyResources(File resourceFolder, File destFolder) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (resourceFolder == null) {
 			return;
 		}
 		// Copy all resources in this folder
-		String[] children = resourceFolder.list();
+		String[] children = resourceFolder.list(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		if (null == children) {
 			return;
 		}
 		// if there are any children, (recursively) copy them
-		for (String child : children) {
+		for (String child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if ("CVS".equals(child)) {
 				continue;
 			}
 			File childRes = new File(resourceFolder, child);
 			File childDest = new File(destFolder, child);
-			if (childRes.isDirectory()) {
+			if (childRes.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				copyResources(childRes, childDest);
 			}
 			else {
@@ -1307,21 +1307,21 @@ public class CompilerToolJava9Tests extends TestCase {
 		return file.getName().endsWith(".java");
 	}
 	public static byte[] read(java.io.File file) throws java.io.IOException {
-		return Files.readAllBytes(file.toPath());
+		return Files.readAllBytes(file.toPath()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	public static String convertToIndependentLineDelimiter(String source) {
 		if (source.indexOf('\n') == -1 && source.indexOf('\r') == -1) return source;
-		StringBuilder buffer = new StringBuilder();
-		for (int i = 0, length = source.length(); i < length; i++) {
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0, length = source.length(); i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char car = source.charAt(i);
 			if (car == '\r') {
-				buffer.append('\n');
+				buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (i < length-1 && source.charAt(i+1) == '\n') {
 					i++; // skip \n after \r
 				}
 			} else {
-				buffer.append(car);
+				buffer.append(car); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		return buffer.toString();

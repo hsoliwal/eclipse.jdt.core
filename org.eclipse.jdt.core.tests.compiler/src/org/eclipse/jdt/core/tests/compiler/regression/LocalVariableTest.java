@@ -90,7 +90,7 @@ public void test004() {
 		"}\n",
 	});
 }
-public void test005() {
+public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"p/X.java",
 		"package p;\n" +
@@ -138,7 +138,7 @@ public void test006() {
 	"SUCCESS");
 }
 
-public void test007() {
+public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"p/A.java",
 		"package p;\n" +
@@ -165,7 +165,7 @@ public void test007() {
 	});
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127078
-public void test008() {
+public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -189,7 +189,7 @@ public void test008() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=127078
-public void test009() {
+public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -210,7 +210,7 @@ public void test009() {
 			"The local variable y may not have been initialized\n" +
 			"----------\n");
 }
-public void test010() {
+public void test010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(
 		CompilerOptions.OPTION_DocCommentSupport,
@@ -236,7 +236,7 @@ public void test010() {
 	null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=144426
-public void test011() {
+public void test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -257,7 +257,7 @@ public void test011() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=144858
-public void test012() {
+public void test012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -290,7 +290,7 @@ public void test012() {
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=144858 - variation
 //check variable collision resiliance (catch argument)
 // variable collision should not interfere with exception collision
-public void test013() {
+public void test013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -318,7 +318,7 @@ public void test013() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=144858 - variation
-public void test014() {
+public void test014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -338,7 +338,7 @@ public void test014() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=157379
-public void test015() {
+public void test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
 	this.runConformTest(
@@ -364,7 +364,7 @@ public void test015() {
 			null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=118217
-public void test016() {
+public void test016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_DocCommentSupport, CompilerOptions.ENABLED);
 	options.put(CompilerOptions.OPTION_ReportUnusedParameter, CompilerOptions.ERROR);
@@ -422,7 +422,7 @@ public void test016() {
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=118217 - variation
-public void test017() {
+public void test017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_DocCommentSupport, CompilerOptions.DISABLED);
 	options.put(CompilerOptions.OPTION_ReportUnusedParameter, CompilerOptions.ERROR);
@@ -490,7 +490,7 @@ public void test017() {
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=118217 - variation
-public void test018() {
+public void test018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_DocCommentSupport, CompilerOptions.ENABLED);
 	options.put(CompilerOptions.OPTION_ReportUnusedParameter, CompilerOptions.ERROR);
@@ -558,7 +558,7 @@ public void test018() {
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=118217 - variation
-public void test019() {
+public void test019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_DocCommentSupport, CompilerOptions.ENABLED);
 	options.put(CompilerOptions.OPTION_ReportUnusedParameter, CompilerOptions.ERROR);
@@ -641,7 +641,7 @@ public void test019() {
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=118217 - variation
-public void test020() {
+public void test020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_DocCommentSupport, CompilerOptions.ENABLED);
 	options.put(CompilerOptions.OPTION_ReportUnusedParameter, CompilerOptions.ERROR);
@@ -739,7 +739,7 @@ public void test412119a() {
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=412119, Optional warning for unused throwable variable in catch block
 //Error message for exception parameter not being used.
-public void test412119b() {
+public void test412119b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportUnusedExceptionParameter, CompilerOptions.ERROR);
@@ -785,7 +785,7 @@ public void test412119b() {
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=412119, Optional warning for unused throwable variable in catch block
 //Multi-catch parameters.
-public void test412119c() {
+public void test412119c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportUnusedExceptionParameter, CompilerOptions.ERROR);
@@ -830,7 +830,7 @@ public void test412119c() {
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=412119, Optional warning for unused throwable variable in catch block
 //Suppress Warnings.
-public void test412119d() {
+public void test412119d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnusedParameter, CompilerOptions.WARNING);
 	options.put(CompilerOptions.OPTION_ReportUnusedExceptionParameter, CompilerOptions.WARNING);
@@ -857,7 +857,7 @@ public void test412119d() {
 			true,
 			options);
 }
-public void testBug537033() {
+public void testBug537033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"ShowBug.java",
@@ -912,7 +912,7 @@ public void testBug537033() {
 // Test for static method in non-static local class accessing outer local variable
 // Per JLS 8.1.3, static methods cannot reference local variables from enclosing methods
 // Note: static methods in local classes are only allowed in Java 16+
-public void testStaticMethodInLocalClassAccessingOuterLocal() {
+public void testStaticMethodInLocalClassAccessingOuterLocal() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -955,7 +955,7 @@ public void testStaticMethodInLocalClassAccessingOuterLocal() {
 		"----------\n");
 }
 // Test for static method in non-static local class accessing outer local variable (field reference)
-public void testStaticMethodInLocalClassAccessingOuterLocal2() {
+public void testStaticMethodInLocalClassAccessingOuterLocal2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -998,7 +998,7 @@ public void testStaticMethodInLocalClassAccessingOuterLocal2() {
 		"----------\n");
 }
 // Test for QualifiedNameReference - static method accessing outer local variable with field access
-public void testStaticMethodInLocalClassAccessingOuterLocalQualified() {
+public void testStaticMethodInLocalClassAccessingOuterLocalQualified() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1042,7 +1042,7 @@ public void testStaticMethodInLocalClassAccessingOuterLocalQualified() {
 		"----------\n");
 }
 // Test for QualifiedNameReference - accessing multiple fields starting with outer local
-public void testStaticMethodInLocalClassAccessingOuterLocalQualified2() {
+public void testStaticMethodInLocalClassAccessingOuterLocalQualified2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1087,7 +1087,7 @@ public void testStaticMethodInLocalClassAccessingOuterLocalQualified2() {
 		"----------\n");
 }
 // Test that non-static methods can still access outer locals (to ensure we didn't break the normal case)
-public void testNonStaticMethodInLocalClassAccessingOuterLocal() {
+public void testNonStaticMethodInLocalClassAccessingOuterLocal() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"X.java",
@@ -1112,7 +1112,7 @@ public void testNonStaticMethodInLocalClassAccessingOuterLocal() {
 // Test for static initializer block in local class accessing outer local variable.
 // This exercises the safety net in CodeStream.generateOuterAccess (line 2218)
 // where mappingSequence is null for a LocalVariableBinding target.
-public void testStaticInitializerInLocalClassAccessingOuterLocal() {
+public void testStaticInitializerInLocalClassAccessingOuterLocal() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK16) return;
 	runNegativeTest(
 		new String[] {
@@ -1137,7 +1137,7 @@ public void testStaticInitializerInLocalClassAccessingOuterLocal() {
 		"----------\n");
 }
 
-public void testStaticInitializerInLocalClassAccessingOuterLocalVariable() {
+public void testStaticInitializerInLocalClassAccessingOuterLocalVariable() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",

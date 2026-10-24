@@ -96,7 +96,7 @@ public class OptionCacheTests extends TestCase {
 		assertEquals(JavaCore.INSERT, JavaCore.getOptions().get(KEY));
 	}
 
-	@SuppressWarnings("unused")
+	@SuppressWarnings("unused") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testCacheIsReused() throws Exception {
 		AtomicInteger reads = new AtomicInteger();
 		Thread testThread = Thread.currentThread();
@@ -109,7 +109,7 @@ public class OptionCacheTests extends TestCase {
 			Hashtable<String, String> first = JavaCore.getOptions();
 			int coldReads = reads.get();
 			assertTrue("The cold read must access the real preferences", coldReads > 0);
-			for (int i = 0; i < 20; i++) {
+			for (int i = 0; i < 20; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Hashtable<String, String> next = JavaCore.getOptions();
 				assertNotSame(first, next);
 				assertEquals(first, next);
@@ -118,7 +118,7 @@ public class OptionCacheTests extends TestCase {
 		}
 	}
 
-	public void testReentrantPreferenceListener() throws Exception {
+	public void testReentrantPreferenceListener() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setOption(JavaCore.DO_NOT_INSERT);
 		AtomicInteger callbacks = new AtomicInteger();
 		AtomicReference<Throwable> callbackFailure = new AtomicReference<>();
@@ -152,7 +152,7 @@ public class OptionCacheTests extends TestCase {
 	private enum Update {
 		SET_OPTIONS, PREFERENCE, REPEATED_INVALIDATION, RESET
 	}
-	@SuppressWarnings("unused")
+	@SuppressWarnings("unused") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	private void assertLaterReadIsCurrent(Update update) throws Exception {
 		String expected = JavaCore.getDefaultOptions().get(KEY);
 		assertNotNull(expected);
@@ -197,7 +197,7 @@ public class OptionCacheTests extends TestCase {
 				resumeReader.countDown();
 				reader.get(TIMEOUT_SECONDS, TimeUnit.SECONDS);
 				// The overlapping read may observe the old value. Only this later read is asserted.
-				assertEquals("A completed " + update + " must not be undone by an older reader",
+				assertEquals("A completed " + update + " must not be undone by an older reader", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						expected, JavaCore.getOptions().get(KEY));
 			} finally {
 				resumeReader.countDown();
@@ -212,7 +212,7 @@ public class OptionCacheTests extends TestCase {
 		}
 	}
 
-	public void testInstanceNodeRemovalInvalidatesCache() throws Exception {
+	public void testInstanceNodeRemovalInvalidatesCache() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable<String, String> preferences = saveInstancePreferences();
 		try {
 			String defaultValue = JavaCore.getDefaultOptions().get(KEY);
@@ -233,14 +233,14 @@ public class OptionCacheTests extends TestCase {
 		}
 	}
 
-	public void testInstanceNodeReplacementKeepsInvalidatingCache() throws Exception {
+	public void testInstanceNodeReplacementKeepsInvalidatingCache() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable<String, String> preferences = saveInstancePreferences();
 		try {
 			String defaultValue = JavaCore.getDefaultOptions().get(KEY);
 			assertNotNull(defaultValue);
 			String newValue = opposite(defaultValue);
 			JavaModelManager manager = JavaModelManager.getJavaModelManager();
-			for (int i = 0; i < 2; i++) {
+			for (int i = 0; i < 2; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IEclipsePreferences removed = manager.getInstancePreferences();
 				removed.removeNode();
 				IEclipsePreferences replacement = manager.getInstancePreferences();
@@ -249,7 +249,7 @@ public class OptionCacheTests extends TestCase {
 				assertEquals(defaultValue, JavaCore.getOptions().get(KEY));
 				replacement.put(KEY, newValue);
 				assertEquals(newValue, JavaCore.getOption(KEY));
-				assertEquals("Preference changes must invalidate the cache after node replacement " + i,
+				assertEquals("Preference changes must invalidate the cache after node replacement " + i, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						newValue, JavaCore.getOptions().get(KEY));
 			}
 		} finally {
@@ -260,7 +260,7 @@ public class OptionCacheTests extends TestCase {
 	private static Hashtable<String, String> saveInstancePreferences() throws Exception {
 		IEclipsePreferences node = JavaModelManager.getJavaModelManager().getInstancePreferences();
 		Hashtable<String, String> preferences = new Hashtable<>();
-		for (String key : node.keys()) {
+		for (String key : node.keys()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			preferences.put(key, node.get(key, ""));
 		}
 		return preferences;
@@ -317,13 +317,13 @@ public class OptionCacheTests extends TestCase {
 		private final IEclipsePreferences[] lookup;
 		private final IEclipsePreferences[] original;
 
-		PreferenceReads(AfterRead afterRead) throws ReflectiveOperationException {
+		PreferenceReads(AfterRead afterRead) throws ReflectiveOperationException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			Field field = JavaModelManager.class.getDeclaredField("preferencesLookup");
 			field.setAccessible(true);
 			this.lookup = (IEclipsePreferences[]) field.get(JavaModelManager.getJavaModelManager());
 			this.original = this.lookup.clone();
 			try {
-				for (int i = 0; i < this.lookup.length; i++) {
+				for (int i = 0; i < this.lookup.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IEclipsePreferences delegate = this.original[i];
 					if (delegate != null) {
 						this.lookup[i] = (IEclipsePreferences) Proxy.newProxyInstance(

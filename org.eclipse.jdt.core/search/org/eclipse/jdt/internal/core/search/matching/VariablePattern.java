@@ -31,7 +31,7 @@ public final static int FINE_GRAIN_MASK =
 	IJavaSearchConstants.THIS_REFERENCE |
 	IJavaSearchConstants.IMPLICIT_THIS_REFERENCE;
 
-public VariablePattern(int patternKind, char[] name, int limitTo, int matchRule) {
+public VariablePattern(int patternKind, char[] name, int limitTo, int matchRule) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	super(patternKind, matchRule);
 
     this.fineGrain = limitTo & FINE_GRAIN_MASK;

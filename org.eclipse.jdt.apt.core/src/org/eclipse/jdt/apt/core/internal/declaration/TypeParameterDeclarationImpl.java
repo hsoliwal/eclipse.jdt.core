@@ -70,8 +70,8 @@ public class TypeParameterDeclarationImpl extends DeclarationImpl implements
         if( bounds == null || bounds.length == 0 )
             return Collections.emptyList();
 
-        final Collection<ReferenceType> result = new ArrayList<>(4);
-        for( ITypeBinding bound : bounds ){
+        final Collection<ReferenceType> result = new ArrayList<>(4); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+        for( ITypeBinding bound : bounds ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
             final ReferenceType type = Factory.createReferenceType(bound, _env);
              if( type != null )
                 result.add(type);
@@ -178,7 +178,7 @@ public class TypeParameterDeclarationImpl extends DeclarationImpl implements
 				getSimpleName().equals(other.getSimpleName());
 		}
 
-		for (ReferenceType bound : getBounds()) {
+		for (ReferenceType bound : getBounds()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (((EclipseMirrorType)bound).isSubTypeCompatible(type))
 				return true;
 		}

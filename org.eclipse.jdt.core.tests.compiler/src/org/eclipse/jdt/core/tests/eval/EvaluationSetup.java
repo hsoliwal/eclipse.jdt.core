@@ -32,7 +32,7 @@ import org.eclipse.jdt.internal.eval.EvaluationContext;
 
 public class EvaluationSetup extends CompilerTestSetup {
 
-	public static final String EVAL_DIRECTORY = Util.getOutputDirectory() + File.separator + "evaluation";
+	public static final String EVAL_DIRECTORY = Util.getOutputDirectory() + File.separator + "evaluation"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	public static final String JRE_PATH = Util.getJREDirectory();
 
 	EvaluationContext context;
@@ -44,7 +44,7 @@ public class EvaluationSetup extends CompilerTestSetup {
 		super(complianceLevel);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void setUp() {
 		if (this.context == null) { // non null if called from subclass
 			try (ServerSocket server = new ServerSocket(0)) {
@@ -86,7 +86,7 @@ public class EvaluationSetup extends CompilerTestSetup {
 
 				assertTrue("Failed to connect VM server", this.target.isConnected());
 
-				System.out.println(getName() + ": connected to target");
+				System.out.println(getName() + ": connected to target"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 				// Create name environment
 				this.env = new FileSystem(Util.getJavaClassLibs(), new String[0], null);
@@ -98,12 +98,12 @@ public class EvaluationSetup extends CompilerTestSetup {
 		super.setUp();
 	}
 
-	protected void startReader(String name, final InputStream in, final PrintStream out) {
+	protected void startReader(String name, final InputStream in, final PrintStream out) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		(new Thread(name) {
 			@Override
 			public void run() {
 				int read = 0;
-				while (read != -1) {
+				while (read != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					try {
 						read = in.read();
 					} catch (java.io.IOException e) {
@@ -117,7 +117,7 @@ public class EvaluationSetup extends CompilerTestSetup {
 		}).start();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final protected void tearDown() {
 		if (this.context != null) {
 			LocalVirtualMachine vm = this.launchedVM;
@@ -127,7 +127,7 @@ public class EvaluationSetup extends CompilerTestSetup {
 						this.target.disconnect(); // Close the socket first so that the OS resource has a chance to be freed.
 					}
 					int retry = 0;
-					while (vm.isRunning() && (++retry < 20)) {
+					while (vm.isRunning() && (++retry < 20)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						try {
 							Thread.sleep(retry * 100);
 						} catch (InterruptedException e) {

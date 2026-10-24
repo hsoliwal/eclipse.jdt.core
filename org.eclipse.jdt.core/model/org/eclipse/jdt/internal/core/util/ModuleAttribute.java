@@ -50,7 +50,7 @@ public class ModuleAttribute extends ClassFileAttribute implements IModuleAttrib
 	private final int providesCount;
 	private IProvidesInfo[] providesInfo;
 
-	ModuleAttribute(byte[] classFileBytes, IConstantPool constantPool, int offset) throws ClassFormatException {
+	ModuleAttribute(byte[] classFileBytes, IConstantPool constantPool, int offset) throws ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		super(classFileBytes, constantPool, offset);
 		int readOffset = 6; // skip attribute_name_index & attribute_length
 		this.moduleNameIndex = u2At(classFileBytes, readOffset, offset);
@@ -78,7 +78,7 @@ public class ModuleAttribute extends ClassFileAttribute implements IModuleAttrib
 		readOffset += 2;
 		if (this.requiresCount != 0) {
 			this.requiresInfo = new RequiresInfo[this.requiresCount];
-			for (int i = 0; i < this.requiresCount; i++) {
+			for (int i = 0; i < this.requiresCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.requiresInfo [i] = new RequiresInfo(classFileBytes, constantPool, offset + readOffset);
 				readOffset += 6;
 			}
@@ -90,7 +90,7 @@ public class ModuleAttribute extends ClassFileAttribute implements IModuleAttrib
 		readOffset += 2;
 		if (this.exportsCount != 0) {
 			this.exportsInfo = new PackageVisibilityInfo[this.exportsCount];
-			for (int i = 0; i < this.exportsCount; i++) {
+			for (int i = 0; i < this.exportsCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.exportsInfo [i] = new PackageVisibilityInfo(classFileBytes, constantPool, offset + readOffset);
 				readOffset += 6 + 2 * this.exportsInfo[i].getTargetsCount();
 			}
@@ -102,7 +102,7 @@ public class ModuleAttribute extends ClassFileAttribute implements IModuleAttrib
 		readOffset += 2;
 		if (this.opensCount != 0) {
 			this.opensInfo = new PackageVisibilityInfo[this.opensCount];
-			for (int i = 0; i < this.opensCount; i++) {
+			for (int i = 0; i < this.opensCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.opensInfo [i] = new PackageVisibilityInfo(classFileBytes, constantPool, offset + readOffset);
 				readOffset += 6 + 2 * this.opensInfo[i].getTargetsCount();
 			}
@@ -115,7 +115,7 @@ public class ModuleAttribute extends ClassFileAttribute implements IModuleAttrib
 		if (this.usesCount != 0) {
 			this.usesIndices = new int[this.usesCount];
 			this.usesNames = new char[this.usesCount][];
-			for (int i = 0; i < this.usesCount; i++) {
+			for (int i = 0; i < this.usesCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.usesIndices[i] = u2At(classFileBytes, readOffset, offset);
 				readOffset += 2;
 				constantPoolEntry = constantPool.decodeEntry(this.usesIndices[i]);
@@ -133,7 +133,7 @@ public class ModuleAttribute extends ClassFileAttribute implements IModuleAttrib
 		readOffset += 2;
 		if (this.providesCount != 0) {
 			this.providesInfo = new ProvidesInfo[this.providesCount];
-			for (int i = 0; i < this.providesCount; i++) {
+			for (int i = 0; i < this.providesCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.providesInfo[i] = new ProvidesInfo(classFileBytes, constantPool, offset + readOffset);
 				readOffset += 4 + 2 * this.providesInfo[i].getImplementationsCount();
 			}

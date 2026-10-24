@@ -26,7 +26,7 @@ public class ProvidesInfo extends ClassFileStruct implements IProvidesInfo {
 	private int[] implementationIndices;
 	private char[][] implementationNames;
 
-	public ProvidesInfo(byte[] classFileBytes, IConstantPool constantPool, int offset) throws ClassFormatException {
+	public ProvidesInfo(byte[] classFileBytes, IConstantPool constantPool, int offset) throws ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int readOffset = 0;
 		this.index = u2At(classFileBytes, readOffset, offset);
 		readOffset += 2;
@@ -41,7 +41,7 @@ public class ProvidesInfo extends ClassFileStruct implements IProvidesInfo {
 		if (this.implementationsCount != 0) {
 			this.implementationIndices = new int[this.implementationsCount];
 			this.implementationNames = new char[this.implementationsCount][];
-			for (int i = 0; i < this.implementationsCount; i++) {
+			for (int i = 0; i < this.implementationsCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.implementationIndices[i] = u2At(classFileBytes, readOffset, offset);
 				readOffset += 2;
 				constantPoolEntry = constantPool.decodeEntry(this.implementationIndices[i]);

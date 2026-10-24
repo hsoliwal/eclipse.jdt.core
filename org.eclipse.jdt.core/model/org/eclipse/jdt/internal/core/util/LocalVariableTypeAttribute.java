@@ -43,7 +43,7 @@ public class LocalVariableTypeAttribute
 		if (length != 0) {
 			int readOffset = 8;
 			this.localVariableTypeTableEntries = new ILocalVariableTypeTableEntry[length];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.localVariableTypeTableEntries[i] = new LocalVariableTypeTableEntry(classFileBytes, constantPool, offset + readOffset);
 				readOffset += 10;
 			}

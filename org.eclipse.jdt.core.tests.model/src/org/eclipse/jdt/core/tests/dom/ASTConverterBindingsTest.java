@@ -33,7 +33,7 @@ public class ASTConverterBindingsTest extends ConverterTestSetup {
 		BindingsCollector() {
 			// visit Javadoc.tags() as well
 			super(true);
-			this.arrayList = new ArrayList();
+			this.arrayList = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		}
 
 		private void collectBindings(
@@ -446,14 +446,14 @@ public class ASTConverterBindingsTest extends ConverterTestSetup {
 		checkBindingEqualityForProject("Converter15");
 	}
 
-	private void checkBindingEqualityForProject(String projectName) throws JavaModelException {
+	private void checkBindingEqualityForProject(String projectName) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject javaProject = getJavaProject(projectName);
 		IPackageFragment[] packageFragments = javaProject.getPackageFragments();
-		ArrayList compilationUnitscollector = new ArrayList();
-		for (int j = 0, max2 = packageFragments.length; j < max2; j++) {
+		ArrayList compilationUnitscollector = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (int j = 0, max2 = packageFragments.length; j < max2; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ICompilationUnit[] units = packageFragments[j].getCompilationUnits();
 			if (units != null) {
-				for (int k = 0, max3 = units.length; k < max3; k++) {
+				for (int k = 0, max3 = units.length; k < max3; k++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					compilationUnitscollector.add(units[k]);
 				}
 			}
@@ -461,7 +461,7 @@ public class ASTConverterBindingsTest extends ConverterTestSetup {
 		final int length = compilationUnitscollector.size();
 		ICompilationUnit[] units = new ICompilationUnit[length];
 		compilationUnitscollector.toArray(units);
-		for (int j = 0; j < length; j++) {
+		for (int j = 0; j < length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ICompilationUnit currentUnit = units[j];
 			ASTNode result = runConversion(currentUnit, true);
 			assertEquals("Not a compilation unit", ASTNode.COMPILATION_UNIT, result.getNodeType());
@@ -471,12 +471,12 @@ public class ASTConverterBindingsTest extends ConverterTestSetup {
 			if (DEBUG) {
 				if (unit.types().size() > 0 ) {
 					AbstractTypeDeclaration typeDeclaration = (AbstractTypeDeclaration) unit.types().get(0);
-					StringBuilder buffer = new StringBuilder();
+					StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 					PackageDeclaration packageDeclaration = unit.getPackage();
 					if (packageDeclaration != null) {
-						buffer.append(unit.getPackage().getName()).append(".").append(typeDeclaration.getName());
+						buffer.append(unit.getPackage().getName()).append(".").append(typeDeclaration.getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					} else {
-						buffer.append(typeDeclaration.getName());
+						buffer.append(typeDeclaration.getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 					System.out.println(String.valueOf(buffer));
 				} else {
@@ -491,7 +491,7 @@ public class ASTConverterBindingsTest extends ConverterTestSetup {
 			unit2.accept(collector2);
 			List bindings2 = collector2.getBindings();
 			assertEquals("Wrong size", bindings1.size(), bindings2.size());
-			for (int i = 0, max = bindings1.size(); i < max; i++) {
+			for (int i = 0, max = bindings1.size(); i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				final Object object = bindings1.get(i);
 				assertTrue("not a binding", object instanceof IBinding);
 				final IBinding binding = (IBinding) object;

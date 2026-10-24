@@ -55,7 +55,7 @@ public class ModuleQualifiedName extends Name {
 	private static final List PROPERTY_DESCRIPTORS;
 
 	static {
-		List propertyList = new ArrayList(3);
+		List propertyList = new ArrayList(3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(ModuleQualifiedName.class, propertyList);
 		addProperty(MODULE_QUALIFIER_PROPERTY, propertyList);
 		addProperty(NAME_PROPERTY, propertyList);
@@ -107,7 +107,7 @@ public class ModuleQualifiedName extends Name {
 		return propertyDescriptors(apiLevel);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final ASTNode internalGetSetChildProperty(ChildPropertyDescriptor property, boolean get, ASTNode child) {
 		if (property == MODULE_QUALIFIER_PROPERTY) {
 			if (get) {
@@ -228,7 +228,7 @@ public class ModuleQualifiedName extends Name {
 	@Override
 	void appendName(StringBuilder buffer) {
 		getModuleQualifier().appendName(buffer);
-		buffer.append('/');
+		buffer.append('/'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (getName() != null) {
 			getName().appendName(buffer);
 		}

@@ -91,14 +91,14 @@ public class AptConfig {
     	}
 		IScopeContext context = (null != jproj) ?
 				new ProjectScope(jproj.getProject()) : InstanceScope.INSTANCE;
-		IEclipsePreferences node = context.getNode(AptPlugin.PLUGIN_ID + "/" +  //$NON-NLS-1$
+		IEclipsePreferences node = context.getNode(AptPlugin.PLUGIN_ID + "/" +  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				AptPreferenceConstants.APT_PROCESSOROPTIONS);
 		String nonNullVal = val == null ? AptPreferenceConstants.APT_NULLVALUE : val;
 		node.put(key, nonNullVal);
 		try {
 			node.flush();
 		} catch (BackingStoreException e) {
-			AptPlugin.log(e, "Unable to save annotation processor option" + key); //$NON-NLS-1$
+			AptPlugin.log(e, "Unable to save annotation processor option" + key); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
     }
 
@@ -114,13 +114,13 @@ public class AptConfig {
     	}
     	IScopeContext context = (null != jproj) ?
 				new ProjectScope(jproj.getProject()) : InstanceScope.INSTANCE;
-		IEclipsePreferences node = context.getNode(AptPlugin.PLUGIN_ID + "/" +  //$NON-NLS-1$
+		IEclipsePreferences node = context.getNode(AptPlugin.PLUGIN_ID + "/" +  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				AptPreferenceConstants.APT_PROCESSOROPTIONS);
 		node.remove(key);
 		try {
 			node.flush();
 		} catch (BackingStoreException e) {
-			AptPlugin.log(e, "Unable to save annotation processor option" + key); //$NON-NLS-1$
+			AptPlugin.log(e, "Unable to save annotation processor option" + key); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
     }
 
@@ -180,13 +180,13 @@ public class AptConfig {
      * The value part may contain spaces.
 	 * @since 3.6
      */
-    public static Map<String, String> getProcessorOptions(IJavaProject jproj, boolean isTestCode) {
+    public static Map<String, String> getProcessorOptions(IJavaProject jproj, boolean isTestCode) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	Map<String,String> rawOptions = getRawProcessorOptions(jproj);
     	// map is large enough to also include the programmatically generated options
-    	Map<String, String> options = new HashMap<>(rawOptions.size() + 6);
+    	Map<String, String> options = new HashMap<>(rawOptions.size() + 6); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
     	// Resolve path metavariables like %ROOT%
-    	for (Map.Entry<String, String> entry : rawOptions.entrySet()) {
+    	for (Map.Entry<String, String> entry : rawOptions.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     		String resolvedValue = resolveVarPath(jproj, entry.getValue());
     		String value = (resolvedValue == null) ? entry.getValue() : resolvedValue;
     		options.put(entry.getKey(), value);
@@ -207,9 +207,9 @@ public class AptConfig {
 
     		// For projects on the classpath, loops can exist; need to make sure we
     		// don't loop forever
-    		Set<IJavaProject> projectsProcessed = new HashSet<>();
+    		Set<IJavaProject> projectsProcessed = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
     		projectsProcessed.add(jproj);
-    		for (IClasspathEntry entry : classpathEntries) {
+    		for (IClasspathEntry entry : classpathEntries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!isTestCode && entry.isTest()) {
 				continue;
 			}
@@ -286,7 +286,7 @@ public class AptConfig {
     		options.put("-source", source); //$NON-NLS-1$
     	}
     	catch (JavaModelException jme) {
-    		AptPlugin.log(jme, "Could not get the classpath for project: " + jproj); //$NON-NLS-1$
+    		AptPlugin.log(jme, "Could not get the classpath for project: " + jproj); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     	}
 
     	return options;
@@ -297,12 +297,12 @@ public class AptConfig {
 	 * the absolute path.
 	 * @param value the value of a -Akey=value command option
 	 */
-	private static String resolveVarPath(IJavaProject jproj, String value) {
+	private static String resolveVarPath(IJavaProject jproj, String value) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (value == null) {
 			return null;
 		}
 		// is there a token to substitute?
-		if (!Pattern.matches(PATHVAR_TOKEN, value)) {
+		if (!Pattern.matches(PATHVAR_TOKEN, value)) { //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			return value;
 		}
 		IPath path = new Path(value);
@@ -344,7 +344,7 @@ public class AptConfig {
 
 	// We need this as a separate method, as we'll put dependent projects' output
     // on the classpath
-    private static void addProjectClasspath(
+    private static void addProjectClasspath( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     		IWorkspaceRoot root,
     		IJavaProject otherJavaProject,
     		Set<IJavaProject> projectsProcessed,
@@ -366,7 +366,7 @@ public class AptConfig {
     		if (binPathResource != null) {
     			IPath binPathLocation = binPathResource.getLocation();
     			if (binPathLocation == null) {
-    				AptPlugin.logWarning(null, "Failed to resolve output location for the following project: " + otherJavaProject); //$NON-NLS-1$
+    				AptPlugin.logWarning(null, "Failed to resolve output location for the following project: " + otherJavaProject); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     				return;
     			}
     			binDirString = binPathLocation.toOSString();
@@ -378,7 +378,7 @@ public class AptConfig {
 
     		// Now the rest of the classpath
     		IClasspathEntry[] classpathEntries = otherJavaProject.getResolvedClasspath(true);
-    		for (IClasspathEntry entry : classpathEntries) {
+    		for (IClasspathEntry entry : classpathEntries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     			if (!isTestCode && entry.isTest()) {
     				continue;
     			}
@@ -408,7 +408,7 @@ public class AptConfig {
     		}
     	}
     	catch (JavaModelException jme) {
-    		AptPlugin.log(jme, "Failed to get the classpath for the following project: " + otherJavaProject); //$NON-NLS-1$
+    		AptPlugin.log(jme, "Failed to get the classpath for the following project: " + otherJavaProject); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     	}
 	}
 
@@ -416,16 +416,16 @@ public class AptConfig {
     	if (paths.size() == 0) {
     		return ""; //$NON-NLS-1$
     	}
-    	StringBuilder sb = new StringBuilder();
+    	StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
     	boolean first = true;
-    	for (String path : paths) {
+    	for (String path : paths) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     		if (first) {
     			first = false;
     		}
     		else {
-    			sb.append(File.pathSeparatorChar);
+    			sb.append(File.pathSeparatorChar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
     		}
-    		sb.append(path);
+    		sb.append(path); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
     	}
     	return sb.toString();
     }
@@ -441,7 +441,7 @@ public class AptConfig {
      * and the value "bar".  Keys cannot contain spaces; values can
      * contain anything at all.  Keys cannot be null, but values can be.
      */
-    public static void setProcessorOptions(Map<String, String> options, IJavaProject jproj) {
+    public static void setProcessorOptions(Map<String, String> options, IJavaProject jproj) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IScopeContext context = (null != jproj) ?
 				new ProjectScope(jproj.getProject()) : InstanceScope.INSTANCE;
 
@@ -450,11 +450,11 @@ public class AptConfig {
 	    // removed.
     	removeOldStyleSettings(context);
 
-		IEclipsePreferences node = context.getNode(AptPlugin.PLUGIN_ID + "/" +  //$NON-NLS-1$
+		IEclipsePreferences node = context.getNode(AptPlugin.PLUGIN_ID + "/" +  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				AptPreferenceConstants.APT_PROCESSOROPTIONS);
 		try {
 			node.clear();
-			for (Entry<String, String> option : options.entrySet()) {
+			for (Entry<String, String> option : options.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String nonNullVal = option.getValue() == null ?
 						AptPreferenceConstants.APT_NULLVALUE : option.getValue();
 				node.put(option.getKey(), nonNullVal);
@@ -504,8 +504,8 @@ public class AptConfig {
      * The value part of a pair may be null (equivalent to "-Akey").
      * The value part can contain spaces, if it is quoted: -Afoo="bar baz".
      */
-	public static Map<String, String> getRawProcessorOptions(IJavaProject jproj) {
-        Map<String, String> options = new HashMap<>();
+	public static Map<String, String> getRawProcessorOptions(IJavaProject jproj) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+        Map<String, String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	    // TODO: this code is needed only for backwards compatibility with
 	    // settings files previous to 2005.11.13.  At some point it should be
@@ -526,14 +526,14 @@ public class AptConfig {
 		else {
 			contexts = new IScopeContext[] { InstanceScope.INSTANCE };
 		}
-		for (IScopeContext context : contexts) {
+		for (IScopeContext context : contexts) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IEclipsePreferences prefs = context.getNode(AptPlugin.PLUGIN_ID);
 			try {
 				if (prefs.childrenNames().length > 0) {
 					IEclipsePreferences procOptionsNode = context.getNode(
-							AptPlugin.PLUGIN_ID + "/" + AptPreferenceConstants.APT_PROCESSOROPTIONS); //$NON-NLS-1$
+							AptPlugin.PLUGIN_ID + "/" + AptPreferenceConstants.APT_PROCESSOROPTIONS); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					if (procOptionsNode != null) {
-						for (String key : procOptionsNode.keys()) {
+						for (String key : procOptionsNode.keys()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							String nonNullVal = procOptionsNode.get(key, null);
 							String val = AptPreferenceConstants.APT_NULLVALUE.equals(nonNullVal) ?
 									null : nonNullVal;
@@ -559,7 +559,7 @@ public class AptConfig {
 		Map<String, String> options;
 		String allOptions = getString(jproj, AptPreferenceConstants.APT_PROCESSOROPTIONS);
 		if (null == allOptions) {
-    		options = new HashMap<>();
+    		options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
     	}
     	else {
     		ProcessorOptionsParser op = new ProcessorOptionsParser(allOptions);
@@ -589,9 +589,9 @@ public class AptConfig {
     	}
 
      	public Map<String, String> parse() {
-        	Map<String, String> options = new HashMap<>();
+        	Map<String, String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
         	String key;
-        	while (null != (key = parseKey())) {
+        	while (null != (key = parseKey())) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
        			options.put(key, parseVal());
         	}
          	return options;
@@ -605,14 +605,14 @@ public class AptConfig {
     	 * whether a value was found.
     	 * @return a key, or null if no well-formed keys can be found.
     	 */
-    	private String parseKey() {
+    	private String parseKey() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     		String key;
     		int spaceAt = -1;
     		int equalsAt = -1;
 
     		_hasVal = false;
 
-    		while (true) {
+    		while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	        	_start = _s.indexOf("-A", _start); //$NON-NLS-1$
 	        	if (_start < 0) {
 	        		return null;
@@ -672,14 +672,14 @@ public class AptConfig {
     	 * the end of the string.  Quotes are returned as part of the value.
     	 * @return the value, up to the next nonquoted space or end of string.
     	 */
-    	private String parseVal() {
+    	private String parseVal() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     		if (!_hasVal || _start < 0 || _start >= _s.length()) {
     			return null;
     		}
     		boolean inQuotedRegion = false;
     		int start = _start;
     		int end = _start;
-    		while (end < _s.length()) {
+    		while (end < _s.length()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     			char c = _s.charAt(end);
     			if (c == '"') {
     				inQuotedRegion = !inQuotedRegion;
@@ -759,7 +759,7 @@ public class AptConfig {
 	 * compatibility.
 	 * @param jproject an IJavaProject, or null to set workspace preferences.
 	 */
-	public static void setEnabled(IJavaProject jproject, boolean enabled) {
+	public static void setEnabled(IJavaProject jproject, boolean enabled) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (jproject == null && enabled == true) {
 			IllegalArgumentException e = new IllegalArgumentException();
 			IStatus status = AptPlugin.createWarningStatus(e,
@@ -885,7 +885,7 @@ public class AptConfig {
 	 * @param optionName a preference constant from @see AptPreferenceConstants.
 	 * @return the string value of the setting.
 	 */
-    public static String getString(IJavaProject jproj, String optionName) {
+    public static String getString(IJavaProject jproj, String optionName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPreferencesService service = Platform.getPreferencesService();
 		IScopeContext[] contexts;
 		if (jproj != null) {
@@ -915,7 +915,7 @@ public class AptConfig {
 
     public static void setGenSrcDir(IJavaProject jproject, String dirString) {
     	if (!GeneratedSourceFolderManager.validate(jproject, dirString)) {
-    		throw new IllegalArgumentException("Illegal name for generated source folder: " + dirString); //$NON-NLS-1$
+    		throw new IllegalArgumentException("Illegal name for generated source folder: " + dirString); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     	}
     	setString(jproject, AptPreferenceConstants.APT_GENSRCDIR, dirString);
     }
@@ -932,7 +932,7 @@ public class AptConfig {
 	 */
     public static void setGenTestSrcDir(IJavaProject jproject, String dirString) {
     	if (!GeneratedSourceFolderManager.validate(jproject, dirString)) {
-    		throw new IllegalArgumentException("Illegal name for generated test source folder: " + dirString); //$NON-NLS-1$
+    		throw new IllegalArgumentException("Illegal name for generated test source folder: " + dirString); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     	}
     	setString(jproject, AptPreferenceConstants.APT_GENTESTSRCDIR, dirString);
     }
@@ -955,7 +955,7 @@ public class AptConfig {
 		flushPreference(optionName, node);
 	}
 
-	private static void setString(IJavaProject jproject, String optionName, String value) {
+	private static void setString(IJavaProject jproject, String optionName, String value) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IScopeContext context = (null != jproject) ?
 				new ProjectScope(jproject.getProject()) : InstanceScope.INSTANCE;
 		IEclipsePreferences node;
@@ -979,7 +979,7 @@ public class AptConfig {
 			node.flush();
 		}
 		catch (BackingStoreException e){
-			AptPlugin.log(e, "Failed to save preference: " + optionName); //$NON-NLS-1$
+			AptPlugin.log(e, "Failed to save preference: " + optionName); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 

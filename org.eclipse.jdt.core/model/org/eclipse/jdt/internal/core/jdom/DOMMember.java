@@ -149,7 +149,7 @@ protected abstract void appendMemberDeclarationContents(CharArrayBuffer buffer);
  * Appends this member's header contents to the given CharArrayBuffer.
  * Header contents include any preceding comments and modifiers.
  */
-protected void appendMemberHeaderFragment(CharArrayBuffer buffer) {
+protected void appendMemberHeaderFragment(CharArrayBuffer buffer) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	int spaceStart, spaceEnd;
 

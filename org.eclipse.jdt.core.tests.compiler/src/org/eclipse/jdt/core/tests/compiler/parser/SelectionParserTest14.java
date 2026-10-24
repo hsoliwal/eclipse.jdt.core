@@ -31,7 +31,7 @@ public SelectionParserTest14(String testName) {
 /*
  * Multi constant case statement with ':', selection node is the string constant
  */
-public void test001() throws JavaModelException {
+public void test001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "public class X {\n" +
 	"static final String ONE=\"One\", TWO = \"Two\", THREE=\"Three\";\n" +
 	"  public static void foo(String num) {\n" +
@@ -45,7 +45,7 @@ public void test001() throws JavaModelException {
 
 	String selection = "ONE";
 	String selectKey = "<SelectOnName:";
-	String expectedSelection = selectKey + selection + ">";
+	String expectedSelection = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String selectionIdentifier = "ONE";
 	String expectedUnitDisplayString =
@@ -77,7 +77,7 @@ public void test001() throws JavaModelException {
 /*
  * Multi constant case statement with ':', selection node is the first enum constant
  */
-public void test002() throws JavaModelException {
+public void test002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "public class X {\n" +
 	"  public static void foo(Num num) {\n" +
 	" 	 switch (num) {\n" +
@@ -91,7 +91,7 @@ public void test002() throws JavaModelException {
 
 	String selection = "ONE";
 	String selectKey = "<SelectOnName:";
-	String expectedSelection = selectKey + selection + ">";
+	String expectedSelection = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String selectionIdentifier = "ONE";
 	String expectedUnitDisplayString =
@@ -127,7 +127,7 @@ public void test002() throws JavaModelException {
 /*
  * Multi constant case statement with ':', selection node is the second string constant
  */
-public void test003() throws JavaModelException {
+public void test003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "public class X {\n" +
 	"static final String ONE=\"One\", TWO = \"Two\", THREE=\"Three\";\n" +
 	"  public static void foo(String num) {\n" +
@@ -141,7 +141,7 @@ public void test003() throws JavaModelException {
 
 	String selection = "TWO";
 	String selectKey = "<SelectOnName:";
-	String expectedSelection = selectKey + selection + ">";
+	String expectedSelection = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String selectionIdentifier = "TWO";
 	String expectedUnitDisplayString =
@@ -173,7 +173,7 @@ public void test003() throws JavaModelException {
 /*
  * Multi constant case statement with ':', selection node is the second enum constant
  */
-public void test004() throws JavaModelException {
+public void test004() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "public class X {\n" +
 	"  public static void foo(Num num) {\n" +
 	" 	 switch (num) {\n" +
@@ -187,7 +187,7 @@ public void test004() throws JavaModelException {
 
 	String selection = "TWO";
 	String selectKey = "<SelectOnName:";
-	String expectedSelection = selectKey + selection + ">";
+	String expectedSelection = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String selectionIdentifier = "TWO";
 	String expectedUnitDisplayString =
@@ -223,7 +223,7 @@ public void test004() throws JavaModelException {
 /*
  * Multi constant case statement with '->', selection node is the string constant
  */
-public void test005() throws JavaModelException {
+public void test005() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "public class X {\n" +
 	"static final String ONE=\"One\", TWO = \"Two\", THREE=\"Three\";\n" +
 	"  public static void foo(String num) {\n" +
@@ -239,7 +239,7 @@ public void test005() throws JavaModelException {
 	 */
 	String selection = "ONE";
 	String selectKey = "<SelectOnName:";
-	String expectedSelection = selectKey + selection + ">";
+	String expectedSelection = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String selectionIdentifier = "ONE";
 	String expectedUnitDisplayString =
 			"public class X {\n" +
@@ -270,7 +270,7 @@ public void test005() throws JavaModelException {
 /*
  * Multi constant case statement with '->', selection node is the first enum constant
  */
-public void test006() throws JavaModelException {
+public void test006() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "public class X {\n" +
 	"  public static void foo(Num num) {\n" +
 	" 	 switch (num) {\n" +
@@ -284,7 +284,7 @@ public void test006() throws JavaModelException {
 
 	String selection = "ONE";
 	String selectKey = "<SelectOnName:";
-	String expectedSelection = selectKey + selection + ">";
+	String expectedSelection = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String selectionIdentifier = "ONE";
 	String expectedUnitDisplayString =
@@ -320,7 +320,7 @@ public void test006() throws JavaModelException {
 /*
  * Multi constant case statement with '->', selection node is the second string constant
  */
-public void test007() throws JavaModelException {
+public void test007() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "public class X {\n" +
 	"static final String ONE=\"One\", TWO = \"Two\", THREE=\"Three\";\n" +
 	"  public static void foo(String num) {\n" +
@@ -334,7 +334,7 @@ public void test007() throws JavaModelException {
 
 	String selection = "TWO";
 	String selectKey = "<SelectOnName:";
-	String expectedSelection = selectKey + selection + ">";
+	String expectedSelection = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String selectionIdentifier = "TWO";
 	String expectedUnitDisplayString =
@@ -366,7 +366,7 @@ public void test007() throws JavaModelException {
 /*
  * Multi constant case statement with '->', selection node is the second enum constant
  */
-public void test008() throws JavaModelException {
+public void test008() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "public class X {\n" +
 	"  public static void foo(Num num) {\n" +
 	" 	 switch (num) {\n" +
@@ -380,7 +380,7 @@ public void test008() throws JavaModelException {
 
 	String selection = "TWO";
 	String selectKey = "<SelectOnName:";
-	String expectedSelection = selectKey + selection + ">";
+	String expectedSelection = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String selectionIdentifier = "TWO";
 	String expectedUnitDisplayString =
@@ -417,7 +417,7 @@ public void test008() throws JavaModelException {
  * Multi constant case statement with '->', selection is a reference in the case block
  * which same as the switch's expression
  */
-public void test009() throws JavaModelException {
+public void test009() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "public class X {\n" +
 	"  public static void foo(Num num_) {\n" +
 	" 	 switch (num_) {\n" +
@@ -431,7 +431,7 @@ public void test009() throws JavaModelException {
 
 	String selection = "num_";
 	String selectKey = "<SelectOnName:";
-	String expectedSelection = selectKey + selection + ">";
+	String expectedSelection = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String selectionIdentifier = "num_";
 	String expectedUnitDisplayString =
@@ -469,7 +469,7 @@ public void test009() throws JavaModelException {
  * Multi constant case statement with '->', selection is a reference in the case block
  * which is referencing a local variable defined in the case block
  */
-public void test010() throws JavaModelException {
+public void test010() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "public class X {\n" +
 	"  public static void foo(Num num_) {\n" +
 	" 	 switch (num_) {\n" +
@@ -485,7 +485,7 @@ public void test010() throws JavaModelException {
 
 	String selection = "i_j";
 	String selectKey = "<SelectOnName:";
-	String expectedSelection = selectKey + selection + ">";
+	String expectedSelection = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String selectionIdentifier = "i_j";
 	String expectedUnitDisplayString =
@@ -525,7 +525,7 @@ public void test010() throws JavaModelException {
 /*
  * Multi constant case statement with '->', selection is a referenced name of type enum in switch expression
  */
-public void test011() throws JavaModelException {
+public void test011() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "public class X {\n" +
 	"  public static void foo(Num num_) {\n" +
 	" 	 switch (num_) {\n" +
@@ -539,7 +539,7 @@ public void test011() throws JavaModelException {
 
 	String selection = "num_";
 	String selectKey = "<SelectOnName:";
-	String expectedSelection = selectKey + selection + ">";
+	String expectedSelection = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String selectionIdentifier = "num_";
 	String expectedUnitDisplayString =
@@ -571,7 +571,7 @@ public void test011() throws JavaModelException {
 /*
  * Multi constant case statement with '->', selection is a referenced name of type int in switch expression
  */
-public void test012() throws JavaModelException {
+public void test012() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "public class X {\n" +
 	"  public static void foo(int num_) {\n" +
 	" 	 switch (num_ + 1) {\n" +
@@ -584,7 +584,7 @@ public void test012() throws JavaModelException {
 
 	String selection = "num_";
 	String selectKey = "<SelectOnName:";
-	String expectedSelection = selectKey + selection + ">";
+	String expectedSelection = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String selectionIdentifier = "num_";
 	String expectedUnitDisplayString =
@@ -607,7 +607,7 @@ public void test012() throws JavaModelException {
 /*
  * Multi constant case statement with '->', selection is a referenced name of type int in switch expression
  */
-public void test013() throws JavaModelException {
+public void test013() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "public class X {\n" +
 	"  public static void foo(int num_) {\n" +
 	" 	 int i = switch (num_) {\n" +
@@ -619,7 +619,7 @@ public void test013() throws JavaModelException {
 
 	String selection = "num_";
 	String selectKey = "<SelectOnName:";
-	String expectedSelection = selectKey + selection + ">";
+	String expectedSelection = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String selectionIdentifier = "num_";
 	String expectedUnitDisplayString =
@@ -645,7 +645,7 @@ public void test013() throws JavaModelException {
 /*
  * Multi constant case statement with '->', selection is a referenced name of type int in switch expression
  */
-public void test014() throws JavaModelException {
+public void test014() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "public class X {\n" +
 	"  public static void foo(int num_) {\n" +
 	" 	 int i = switch (num_) {\n" +
@@ -657,7 +657,7 @@ public void test014() throws JavaModelException {
 
 	String selection = "num_";
 	String selectKey = "<SelectOnName:";
-	String expectedSelection = selectKey + selection + ">";
+	String expectedSelection = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String selectionIdentifier = "num_";
 	String expectedUnitDisplayString =
@@ -685,7 +685,7 @@ public void test014() throws JavaModelException {
 /*
  * Multi constant case statement with '->', selection is a referenced name of type int in switch expression
  */
-public void test015() throws JavaModelException {
+public void test015() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "public class X {\n" +
 	"  public static void foo(int num_) {\n" +
 	" 	 int i = switch (num_) {\n" +
@@ -697,7 +697,7 @@ public void test015() throws JavaModelException {
 
 	String selection = "num_";
 	String selectKey = "<SelectOnName:";
-	String expectedSelection = selectKey + selection + ">";
+	String expectedSelection = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String selectionIdentifier = "num_";
 	String expectedUnitDisplayString =
@@ -725,7 +725,7 @@ public void test015() throws JavaModelException {
 /*
  * Multi constant case statement with '->', selection is a referenced name of type int in switch expression
  */
-public void test016() throws JavaModelException {
+public void test016() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "public class X {\n" +
 			"	public void bar(int s) {\n" +
 			"		int i_j = switch (s) {\n" +
@@ -737,7 +737,7 @@ public void test016() throws JavaModelException {
 
 	String selection = "i_j";
 	String selectKey = "<SelectOnName:";
-	String expectedSelection = selectKey + selection + ">";
+	String expectedSelection = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String selectionIdentifier = "i_j";
 	String expectedUnitDisplayString =
@@ -762,7 +762,7 @@ public void test016() throws JavaModelException {
 	checkMethodParse(string.toCharArray(), selectionStart, selectionEnd, expectedSelection, expectedUnitDisplayString,
 			selectionIdentifier, expectedReplacedSource, testName);
 }
-public void test017() throws JavaModelException {
+public void test017() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "public class X {\n" +
 			"	public void bar(int s) {\n" +
 			"		int i_j = switch (s) {\n" +
@@ -774,7 +774,7 @@ public void test017() throws JavaModelException {
 
 	String selection = "i_j";
 	String selectKey = "<SelectOnName:";
-	String expectedSelection = selectKey + selection + ">";
+	String expectedSelection = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String selectionIdentifier = "i_j";
 	String expectedUnitDisplayString =
@@ -799,7 +799,7 @@ public void test017() throws JavaModelException {
 	checkMethodParse(string.toCharArray(), selectionStart, selectionEnd, expectedSelection, expectedUnitDisplayString,
 			selectionIdentifier, expectedReplacedSource, testName);
 }
-public void test018() throws JavaModelException {
+public void test018() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "import org.eclipse.jdt.annotation.*;\n" +
 			"import java.util.function.*;\n" +
 			"interface IN0 {} \n" +
@@ -818,7 +818,7 @@ public void test018() throws JavaModelException {
 
 	String selection = "n_1";
 	String selectKey = "<SelectionOnReferenceExpressionName:this::";
-	String expectedSelection = selectKey + selection + ">";
+	String expectedSelection = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String selectionIdentifier = "n_1";
 	String expectedUnitDisplayString =
@@ -857,7 +857,7 @@ public void test018() throws JavaModelException {
 	checkMethodParse(string.toCharArray(), selectionStart, selectionEnd, expectedSelection, expectedUnitDisplayString,
 			selectionIdentifier, expectedReplacedSource, testName);
 }
-public void test019() throws JavaModelException {
+public void test019() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "import org.eclipse.jdt.annotation.*;\n" +
 			"import java.util.function.*;\n" +
 			"interface IN0 {} \n" +
@@ -876,7 +876,7 @@ public void test019() throws JavaModelException {
 
 	String selection = "n_1";
 	String selectKey = "<SelectOnMessageSend:";
-	String expectedSelection = selectKey + selection + "()>";
+	String expectedSelection = selectKey + selection + "()>"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String selectionIdentifier = "n_1";
 	String expectedUnitDisplayString =
@@ -915,7 +915,7 @@ public void test019() throws JavaModelException {
 	checkMethodParse(string.toCharArray(), selectionStart, selectionEnd, expectedSelection, expectedUnitDisplayString,
 			selectionIdentifier, expectedReplacedSource, testName);
 }
-public void test020() throws JavaModelException {
+public void test020() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "import org.eclipse.jdt.annotation.*;\n" +
 			"import java.util.function.*;\n" +
 			"interface IN0 {} \n" +
@@ -933,7 +933,7 @@ public void test020() throws JavaModelException {
 
 	String selection = "n_2";
 	String selectKey = "<SelectionOnReferenceExpressionName:this::";
-	String expectedSelection = selectKey + selection + ">";
+	String expectedSelection = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String selectionIdentifier = "n_2";
 	String expectedUnitDisplayString =
@@ -970,7 +970,7 @@ public void test020() throws JavaModelException {
 	checkMethodParse(string.toCharArray(), selectionStart, selectionEnd, expectedSelection, expectedUnitDisplayString,
 			selectionIdentifier, expectedReplacedSource, testName);
 }
-public void test021() throws JavaModelException {
+public void test021() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "import org.eclipse.jdt.annotation.*;\n" +
 			"import java.util.function.*;\n" +
 			"interface IN0 {} \n" +
@@ -988,7 +988,7 @@ public void test021() throws JavaModelException {
 
 	String selection = "n_1";
 	String selectKey = "<SelectOnMessageSend:";
-	String expectedSelection = selectKey + selection + "(ijk)>";
+	String expectedSelection = selectKey + selection + "(ijk)>"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String selectionIdentifier = "n_1";
 	String expectedUnitDisplayString =
@@ -1025,7 +1025,7 @@ public void test021() throws JavaModelException {
 	checkMethodParse(string.toCharArray(), selectionStart, selectionEnd, expectedSelection, expectedUnitDisplayString,
 			selectionIdentifier, expectedReplacedSource, testName);
 }
-public void test022() throws JavaModelException {
+public void test022() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "import org.eclipse.jdt.annotation.*;\n" +
 			"import java.util.function.*;\n" +
 			"interface IN0 {} \n" +
@@ -1043,7 +1043,7 @@ public void test022() throws JavaModelException {
 
 	String selection = "ijk";
 	String selectKey = "<SelectOnName:";
-	String expectedSelection = selectKey + selection + ">";
+	String expectedSelection = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String selectionIdentifier = "ijk";
 	String expectedUnitDisplayString =
@@ -1080,7 +1080,7 @@ public void test022() throws JavaModelException {
 	checkMethodParse(string.toCharArray(), selectionStart, selectionEnd, expectedSelection, expectedUnitDisplayString,
 			selectionIdentifier, expectedReplacedSource, testName);
 }
-public void testIssue708_1() throws JavaModelException {
+public void testIssue708_1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "public class X {\n"
 			+ "	public void test(Type type, String string) {\n"
 			+ "		switch (type) {\n"
@@ -1099,7 +1099,7 @@ public void testIssue708_1() throws JavaModelException {
 
 	String selection = "openDeclarationFails";
 	String selectKey = "<SelectOnName:";
-	String expectedSelection = selectKey + selection + ">";
+	String expectedSelection = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String selectionIdentifier = "openDeclarationFails";
 	String expectedUnitDisplayString =
@@ -1133,7 +1133,7 @@ public void testIssue708_1() throws JavaModelException {
 	checkMethodParse(string.toCharArray(), selectionStart, selectionEnd, expectedSelection, expectedUnitDisplayString,
 			selectionIdentifier, expectedReplacedSource, testName);
 }
-public void testIssue708_2() throws JavaModelException {
+public void testIssue708_2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "public class X {\n"
 			+ "	static public enum Type {\n"
 			+ "		openDeclarationFails, anotherValue;\n"
@@ -1157,7 +1157,7 @@ public void testIssue708_2() throws JavaModelException {
 
 	String selection = "anotherValue";
 	String selectKey = "<SelectOnName:";
-	String expectedSelection = selectKey + "Type." + selection + ">";
+	String expectedSelection = selectKey + "Type." + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String selectionIdentifier = "anotherValue";
 	String expectedUnitDisplayString =

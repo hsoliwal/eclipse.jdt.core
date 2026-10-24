@@ -56,11 +56,11 @@ public class CompletionOnMemberAccess extends FieldReference implements Completi
 	@Override
 	public StringBuilder printExpression(int indent, StringBuilder output) {
 
-		output.append("<CompleteOnMemberAccess:"); //$NON-NLS-1$
+		output.append("<CompleteOnMemberAccess:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return super.printExpression(0, output).append('>');
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public TypeBinding resolveType(BlockScope scope) {
 
 		this.actualReceiverType = this.receiver.resolveType(scope);
@@ -71,7 +71,7 @@ public class CompletionOnMemberAccess extends FieldReference implements Completi
 				Expression[] arguments = messageSend.arguments;
 				int length = arguments == null ? 0 : arguments.length;
 				TypeBinding[] argBindings = new TypeBinding[length];
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					argBindings[i] = arguments[i].resolvedType;
 					if(argBindings[i] == null || !argBindings[i].isValidBinding()) {
 						throw new CompletionNodeFound();

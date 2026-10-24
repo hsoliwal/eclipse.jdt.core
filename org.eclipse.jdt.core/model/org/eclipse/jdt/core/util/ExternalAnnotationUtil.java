@@ -105,27 +105,27 @@ public final class ExternalAnnotationUtil {
 	 * @return a signature in class file format
 	 * @since 3.19
 	 */
-	public static String extractGenericTypeParametersSignature(ITypeBinding type) {
-		StringBuilder signature = new StringBuilder().append('<');
-		for (ITypeBinding typeParameter : type.getTypeParameters()) {
-			signature.append(typeParameter.getName());
+	public static String extractGenericTypeParametersSignature(ITypeBinding type) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder signature = new StringBuilder().append('<'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (ITypeBinding typeParameter : type.getTypeParameters()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			signature.append(typeParameter.getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			// superclass (if relevant, else empty ':'):
-			signature.append(':');
+			signature.append(':'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			ITypeBinding superclass = typeParameter.getSuperclass();
 			if (superclass != null) {
 				String superclassSignature = extractGenericTypeSignature(superclass);
 				boolean superIsRelevant = typeParameter.getInterfaces().length == 0;
 				superIsRelevant |= !superclassSignature.equals(new String(ConstantPool.JavaLangObjectSignature));
 				if (superIsRelevant) {
-					signature.append(superclassSignature);
+					signature.append(superclassSignature); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
 			// superinterfaces:
-			for (ITypeBinding superInterface : typeParameter.getInterfaces()) {
-				signature.append(':').append(extractGenericTypeSignature(superInterface));
+			for (ITypeBinding superInterface : typeParameter.getInterfaces()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				signature.append(':').append(extractGenericTypeSignature(superInterface)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		signature.append('>');
+		signature.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return signature.toString();
 	}
 
@@ -171,7 +171,7 @@ public final class ExternalAnnotationUtil {
 	{
 		SignatureWrapper wrapper = new SignatureWrapper(methodSignature.toCharArray());
 		wrapper.start = 1;
-		for (int i = 0; i < paramIdx; i++)
+		for (int i = 0; i < paramIdx; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			wrapper.start = wrapper.computeEnd() + 1;
 		int start = wrapper.start;
 		switch (methodSignature.charAt(start)) {
@@ -194,7 +194,7 @@ public final class ExternalAnnotationUtil {
 	 * @throws CoreException Signals a problem in accessing any of the relevant elements: the project, the type,
 	 * the containing jar file and finally the sought annotation file.
 	 */
-	public static IFile getAnnotationFile(IJavaProject project, ITypeBinding type, IProgressMonitor monitor) throws CoreException {
+	public static IFile getAnnotationFile(IJavaProject project, ITypeBinding type, IProgressMonitor monitor) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IType targetType = project.findType(type.getErasure().getQualifiedName());
 		if (!targetType.exists())
@@ -349,7 +349,7 @@ public final class ExternalAnnotationUtil {
 		annotateMember(typeName, file, selector, originalSignature, annotatedParameterType, paramIdx, mergeStrategy, monitor);
 	}
 
-	private static void annotateMember(String typeName, IFile file, String selector, String originalSignature, String annotatedSignature,
+	private static void annotateMember(String typeName, IFile file, String selector, String originalSignature, String annotatedSignature, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 										int updatePosition, MergeStrategy mergeStrategy, IProgressMonitor monitor)
 			throws CoreException, IOException, IllegalArgumentException
 	{
@@ -358,26 +358,26 @@ public final class ExternalAnnotationUtil {
 			// assemble full annotatedSignature (don't bother merging since no previous signature exists):
 			annotatedSignature = updateSignature(originalSignature, annotatedSignature, updatePosition, MergeStrategy.REPLACE_SIGNATURE);
 
-			StringBuilder newContent= new StringBuilder();
+			StringBuilder newContent= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			// header:
-			newContent.append(ExternalAnnotationProvider.CLASS_PREFIX);
-			newContent.append(typeName).append('\n');
+			newContent.append(ExternalAnnotationProvider.CLASS_PREFIX); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			newContent.append(typeName).append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			// new entry:
 			if (selector != null) { // otherwise we are annotating a class type parameter
-				newContent.append(selector).append('\n');
+				newContent.append(selector).append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			newContent.append(' ').append(originalSignature).append('\n');
-			newContent.append(' ').append(annotatedSignature).append('\n');
+			newContent.append(' ').append(originalSignature).append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			newContent.append(' ').append(annotatedSignature).append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 			createNewFile(file, newContent.toString(), monitor);
 		} else {
-			StringBuilder newContent = new StringBuilder();
+			StringBuilder newContent = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getContents()))) {
 				// type references get the previous signature from the existing type binding:
 				String previousSignature = originalSignature;
-				newContent.append(reader.readLine()).append('\n'); // skip class name
+				newContent.append(reader.readLine()).append('\n'); // skip class name //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				String line;
-				while ((line = reader.readLine()) != null) {
+				while ((line = reader.readLine()) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (selector == null) { // annotating a type parameter?
 						if (line.trim().startsWith("<")) { //$NON-NLS-1$
 							line = reader.readLine();
@@ -390,11 +390,11 @@ public final class ExternalAnnotationUtil {
 						break;
 					}
 					if (line.isEmpty()) {
-						newContent.append('\n');
+						newContent.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						continue;
 					}
 					if (!Character.isJavaIdentifierStart(line.charAt(0)) && line.charAt(0) != '<') {
-						newContent.append(line).append('\n');
+						newContent.append(line).append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						continue;
 					}
 					// compare selectors:
@@ -403,11 +403,11 @@ public final class ExternalAnnotationUtil {
 						break;
 					}
 					if (relation < 0) {
-						newContent.append(line).append('\n');
+						newContent.append(line).append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						continue;
 					}
 					if (relation == 0) {
-						String pending = line + '\n' + (line = reader.readLine());
+						String pending = line + '\n' + (line = reader.readLine()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						if (line == null) {
 							break; // found only the selector at EOF, append right here, ignoring 'pending'
 						}
@@ -418,7 +418,7 @@ public final class ExternalAnnotationUtil {
 							line = pending; // push back
 							break;
 						}
-						newContent.append(pending).append('\n');
+						newContent.append(pending).append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						if (relation < 0)
 							continue;
 						if (relation == 0) {
@@ -449,16 +449,16 @@ public final class ExternalAnnotationUtil {
 				}
 				// add new entry:
 				if (selector != null)
-					newContent.append(selector).append('\n');
-				newContent.append(' ').append(originalSignature).append('\n');
+					newContent.append(selector).append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				newContent.append(' ').append(originalSignature).append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				annotatedSignature = updateSignature(previousSignature, annotatedSignature, updatePosition, mergeStrategy);
 				writeFile(file, newContent, annotatedSignature, line, reader, monitor);
 			}
 		}
 	}
 
-	private static String updateSignature(String originalSignature, String annotatedSignature, int updatePosition, MergeStrategy mergeStrategy) {
-		StringBuilder buf = new StringBuilder();
+	private static String updateSignature(String originalSignature, String annotatedSignature, int updatePosition, MergeStrategy mergeStrategy) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		String signatureToReplace;
 		String postfix = null;
 		if (updatePosition <= POSITION_TYPE_PARAMETER) {
@@ -467,12 +467,12 @@ public final class ExternalAnnotationUtil {
 			SignatureWrapper wrapper = new SignatureWrapper(originalSignature.toCharArray(), true); // may already contain annotations
 			wrapper.start = 1; // skip '<'
 			// skip preceding type parameters:
-			for (int i = 0; i < (-updatePosition+POSITION_TYPE_PARAMETER); i++) {
+			for (int i = 0; i < (-updatePosition+POSITION_TYPE_PARAMETER); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				wrapper.skipTypeParameter();
 			}
 			int start = wrapper.start;
 			// copy entire prefix:
-			buf.append(originalSignature, 0, start);
+			buf.append(originalSignature, 0, start); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			// process selected type parameter:
 			int end = wrapper.skipTypeParameter();
 			signatureToReplace = originalSignature.substring(start, end);
@@ -487,24 +487,24 @@ public final class ExternalAnnotationUtil {
 				case POSITION_RETURN_TYPE:
 					assert originalSignature.charAt(0) == '(' || originalSignature.charAt(0) == '<': "signature must start with '(' or '<'"; //$NON-NLS-1$
 					int close = originalSignature.indexOf(')');
-					buf.append(originalSignature, 0, close+1);
+					buf.append(originalSignature, 0, close+1); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					signatureToReplace = originalSignature.substring(close+1);
 					break;
 				default: // parameter
 					SignatureWrapper wrapper = new SignatureWrapper(originalSignature.toCharArray(), true); // may already contain annotations
 					wrapper.start = CharOperation.indexOf('(', wrapper.signature) + 1; // possibly skipping type parameters
-					for (int i = 0; i < updatePosition; i++)
+					for (int i = 0; i < updatePosition; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						wrapper.start = wrapper.skipAngleContents(wrapper.computeEnd()) + 1;
 					int start = wrapper.start;
 					int end = wrapper.skipAngleContents(wrapper.computeEnd());
-					buf.append(originalSignature, 0, start);
+					buf.append(originalSignature, 0, start); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					signatureToReplace = originalSignature.substring(start, end+1);
 					postfix = originalSignature.substring(end+1, originalSignature.length());
 			}
 			updateType(buf, signatureToReplace.toCharArray(), annotatedSignature.toCharArray(), mergeStrategy);
 		}
 		if (postfix != null)
-			buf.append(postfix);
+			buf.append(postfix); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return buf.toString();
 	}
 
@@ -514,9 +514,9 @@ public final class ExternalAnnotationUtil {
 	 *   overwrite any existing annotation in the specified location.
 	 */
 	private static String insertAt(String signature, int position, char annotation, MergeStrategy mergeStrategy) {
-		StringBuilder result = new StringBuilder();
-		result.append(signature, 0, position);
-		result.append(annotation);
+		StringBuilder result = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		result.append(signature, 0, position); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		result.append(annotation); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		char next = signature.charAt(position);
 		switch (next) {
 			case NULLABLE: case NONNULL:
@@ -524,7 +524,7 @@ public final class ExternalAnnotationUtil {
 					return signature; // refuse any change
 				position++; // skip old annotation
 		}
-		result.append(signature, position, signature.length());
+		result.append(signature, position, signature.length()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return result.toString();
 	}
 
@@ -532,9 +532,9 @@ public final class ExternalAnnotationUtil {
 	 * Update 'oldType' with annotations from 'newType' guided by 'mergeStrategy'.
 	 * The result is written into 'buf' as we go.
 	 */
-	private static boolean updateType(StringBuilder buf, char[] oldType, char[] newType, MergeStrategy mergeStrategy) {
+	private static boolean updateType(StringBuilder buf, char[] oldType, char[] newType, MergeStrategy mergeStrategy) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (mergeStrategy == MergeStrategy.REPLACE_SIGNATURE) {
-			buf.append(newType);
+			buf.append(newType); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return false;
 		}
 		try {
@@ -544,10 +544,10 @@ public final class ExternalAnnotationUtil {
 				|| match(buf, oWrap, nWrap, 'T', false))
 			{
 				mergeAnnotation(buf, oWrap, nWrap, mergeStrategy);
-				buf.append(oWrap.nextName());
+				buf.append(oWrap.nextName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				nWrap.nextName(); // skip
 				if (match(buf, oWrap, nWrap, '<', false)) {
-					do {
+					do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						int oStart = oWrap.start;
 						int nStart = nWrap.start;
 						oWrap.computeEnd();
@@ -566,10 +566,10 @@ public final class ExternalAnnotationUtil {
 			{
 				return true; // annotation allowed after this (not included in oldType / newType)
 			} else {
-				buf.append(oldType);
+				buf.append(oldType); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		} catch (ArrayIndexOutOfBoundsException aioobe) { // from several locations inside match() or mergeAnnotation().
-			StringBuilder msg = new StringBuilder("Structural mismatch between ").append(oldType).append(" and ").append(newType); //$NON-NLS-1$ //$NON-NLS-2$
+			StringBuilder msg = new StringBuilder("Structural mismatch between ").append(oldType).append(" and ").append(newType); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			throw new IllegalArgumentException(msg.toString(), aioobe);
 		}
 		return false;
@@ -578,9 +578,9 @@ public final class ExternalAnnotationUtil {
 	 * similar to updateType() but for type parameters, syntax:
 	 * 		[Annot] Identifier ClassBound {InterfaceBound}
 	 */
-	private static boolean updateTypeParameter(StringBuilder buf, char[] oldType, char[] newType, MergeStrategy mergeStrategy) {
+	private static boolean updateTypeParameter(StringBuilder buf, char[] oldType, char[] newType, MergeStrategy mergeStrategy) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (mergeStrategy == MergeStrategy.REPLACE_SIGNATURE) {
-			buf.append(newType);
+			buf.append(newType); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return false;
 		}
 		try {
@@ -592,12 +592,12 @@ public final class ExternalAnnotationUtil {
 			char[] oName = oWrap.wordUntil(':');
 			char[] nName = nWrap.wordUntil(':');
 			if (!CharOperation.equals(oName, nName)) {
-				StringBuilder msg = new StringBuilder("Structural mismatch between type parameters ").append(oName).append(" and ").append(nName); //$NON-NLS-1$ //$NON-NLS-2$
+				StringBuilder msg = new StringBuilder("Structural mismatch between type parameters ").append(oName).append(" and ").append(nName); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				throw new IllegalArgumentException(msg.toString());
 			}
-			buf.append(oName);
+			buf.append(oName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			// one or more bounds each starting with ':'
-			while (match(buf, oWrap, nWrap, ':', false)) {
+			while (match(buf, oWrap, nWrap, ':', false)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int oStart = oWrap.start;
 				int nStart = nWrap.start;
 				nWrap.skipAngleContents(nWrap.computeEnd());
@@ -625,7 +625,7 @@ public final class ExternalAnnotationUtil {
 					return false;
 			}
 		} catch (ArrayIndexOutOfBoundsException aioobe) { // from several locations inside match() or mergeAnnotation().
-			StringBuilder msg = new StringBuilder("Structural mismatch between ").append(oldType).append(" and ").append(newType); //$NON-NLS-1$ //$NON-NLS-2$
+			StringBuilder msg = new StringBuilder("Structural mismatch between ").append(oldType).append(" and ").append(newType); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			throw new IllegalArgumentException(msg.toString(), aioobe);
 		}
 		return false;
@@ -635,21 +635,21 @@ public final class ExternalAnnotationUtil {
 	 * If yes, print it into 'buf' and answer true.
 	 * If no, if 'force' raise an exception, else quietly answer false without updating 'buf'.
 	 */
-	private static boolean match(StringBuilder buf, SignatureWrapper sig1, SignatureWrapper sig2, char expected, boolean force) {
+	private static boolean match(StringBuilder buf, SignatureWrapper sig1, SignatureWrapper sig2, char expected, boolean force) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		boolean match1 = sig1.signature[sig1.start] == expected;
 		boolean match2 = sig2.signature[sig2.start] == expected;
 		if (match1 != match2) {
-			StringBuilder msg = new StringBuilder("Mismatching type structures ") //$NON-NLS-1$
+			StringBuilder msg = new StringBuilder("Mismatching type structures ") //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 									.append(sig1.signature).append(" vs ").append(sig2.signature); //$NON-NLS-1$
 			throw new IllegalArgumentException(msg.toString());
 		}
 		if (match1) {
-			buf.append(expected);
+			buf.append(expected); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			sig1.start++;
 			sig2.start++;
 			return true;
 		} else if (force) {
-			throw new IllegalArgumentException("Expected char "+expected+" not found in "+new String(sig1.signature)); //$NON-NLS-1$ //$NON-NLS-2$
+			throw new IllegalArgumentException("Expected char "+expected+" not found in "+new String(sig1.signature)); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
 			return false;
 		}
@@ -659,7 +659,7 @@ public final class ExternalAnnotationUtil {
 	 * If a current char of 'oldS' and/or 'newS' represents a null annotation, insert it into 'buf' guided by 'mergeStrategy'.
 	 * If the new char is NO_ANNOTATION and strategy is OVERWRITE_ANNOTATIONS, silently skip over any null annotations in 'oldS'.
 	 */
-	private static void mergeAnnotation(StringBuilder buf, SignatureWrapper oldS, SignatureWrapper newS, MergeStrategy mergeStrategy) {
+	private static void mergeAnnotation(StringBuilder buf, SignatureWrapper oldS, SignatureWrapper newS, MergeStrategy mergeStrategy) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		 // if atEnd use a char that's different from NULLABLE, NONNULL and NO_ANNOTATION:
 		char oldAnn = !oldS.atEnd() ? oldS.signature[oldS.start] : '\0';
 		char newAnn = !newS.atEnd() ? newS.signature[newS.start] : '\0';
@@ -668,7 +668,7 @@ public final class ExternalAnnotationUtil {
 				switch (oldAnn) {
 					case NULLABLE: case NONNULL:
 						oldS.start++;
-						buf.append(oldAnn); // old exists, so it remains
+						buf.append(oldAnn); // old exists, so it remains //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						switch (newAnn) { case NULLABLE: case NONNULL: newS.start++; } // just skip
 						return;
 				}
@@ -677,7 +677,7 @@ public final class ExternalAnnotationUtil {
 				switch (newAnn) {
 					case NULLABLE: case NONNULL:
 						newS.start++;
-						buf.append(newAnn); // new exists and is not suppressed by "ADD & old exists"
+						buf.append(newAnn); // new exists and is not suppressed by "ADD & old exists" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						switch (oldAnn) { case NULLABLE: case NONNULL: oldS.start++; } // just skip
 						break;
 					case NO_ANNOTATION:
@@ -688,7 +688,7 @@ public final class ExternalAnnotationUtil {
 						switch (oldAnn) {
 							case NULLABLE: case NONNULL:
 								oldS.start++;
-								buf.append(oldAnn); // keep
+								buf.append(oldAnn); // keep //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
 				}
 				break;
@@ -708,12 +708,12 @@ public final class ExternalAnnotationUtil {
 									String nextLines, BufferedReader tailReader, IProgressMonitor monitor)
 			throws CoreException, IOException
 	{
-		head.append(' ').append(annotatedSignature).append('\n');
+		head.append(' ').append(annotatedSignature).append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (nextLines != null)
-			head.append(nextLines).append('\n');
+			head.append(nextLines).append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		String line;
-		while ((line = tailReader.readLine()) != null)
-			head.append(line).append('\n');
+		while ((line = tailReader.readLine()) != null) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			head.append(line).append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		byte[] newContent = head.toString().getBytes(StandardCharsets.UTF_8);
 		annotationFile.setContents(newContent, IResource.KEEP_HISTORY, monitor);
 	}
@@ -725,7 +725,7 @@ public final class ExternalAnnotationUtil {
 
 	private static void ensureExists(IContainer container, IProgressMonitor monitor) throws CoreException {
 		if (container.exists()) return;
-		if (!(container instanceof IFolder)) throw new CoreException(new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, "not a folder: "+container)); //$NON-NLS-1$
+		if (!(container instanceof IFolder)) throw new CoreException(new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, "not a folder: "+container)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IContainer parent= container.getParent();
 		if (parent instanceof IFolder) {
 			ensureExists(parent, monitor);
@@ -741,11 +741,11 @@ public final class ExternalAnnotationUtil {
 	 * @param originalSignature the unannotated signature by which the member is identified
 	 * @return the annotated signature as found in the file, or null.
 	 */
-	public static String getAnnotatedSignature(String typeName, IFile file, String selector, String originalSignature) {
+	public static String getAnnotatedSignature(String typeName, IFile file, String selector, String originalSignature) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (file.exists()) {
 			try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getContents()))) {
 				ExternalAnnotationProvider.assertClassHeader(reader.readLine(), typeName);
-				while (true) {
+				while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String line = reader.readLine();
 					// selector:
 					if (selector != null) {
@@ -792,7 +792,7 @@ public final class ExternalAnnotationUtil {
 	{
 		String[] result = new String[4]; // prefix, orig, replacement, postfix
 		result[0] = ""; //$NON-NLS-1$
-		StringBuilder buf = new StringBuilder();
+		StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		result[1] = originalSignature;
 		updateType(buf, originalSignature.toCharArray(), annotatedType.toCharArray(), mergeStrategy);
 		result[2] = buf.toString();
@@ -820,7 +820,7 @@ public final class ExternalAnnotationUtil {
 		assert originalSignature.charAt(0) == '(' || originalSignature.charAt(0) == '<': "signature must start with '(' or '<'"; //$NON-NLS-1$
 		int close = originalSignature.indexOf(')');
 		result[0] = originalSignature.substring(0, close+1);
-		StringBuilder buf = new StringBuilder();
+		StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		result[1] = originalSignature.substring(close+1);
 		updateType(buf, result[1].toCharArray(), annotatedType.toCharArray(), mergeStrategy);
 		result[2] = buf.toString();
@@ -849,12 +849,12 @@ public final class ExternalAnnotationUtil {
 		String[] result = new String[4]; // prefix, orig, replacement, postfix
 		SignatureWrapper wrapper = new SignatureWrapper(originalSignature.toCharArray(), true); // may already contain annotations
 		wrapper.start = CharOperation.indexOf('(', wrapper.signature) + 1; // possibly skip type parameters
-		for (int i = 0; i < paramIdx; i++)
+		for (int i = 0; i < paramIdx; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			wrapper.start = wrapper.skipAngleContents(wrapper.computeEnd()) + 1;
 		int start = wrapper.start;
 		int end = wrapper.skipAngleContents(wrapper.computeEnd());
 		result[0] = originalSignature.substring(0, start);
-		StringBuilder buf = new StringBuilder();
+		StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		result[1] = originalSignature.substring(start, end+1);
 		updateType(buf, result[1].toCharArray(), annotatedType.toCharArray(), mergeStrategy);
 		result[2] = buf.toString();
@@ -878,14 +878,14 @@ public final class ExternalAnnotationUtil {
 	 * </ul>
 	 * @since 3.19
 	 */
-	public static String[] annotateTypeParameter(String originalSignature, String annotatedType, int rank, MergeStrategy mergeStrategy)
+	public static String[] annotateTypeParameter(String originalSignature, String annotatedType, int rank, MergeStrategy mergeStrategy) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String[] result = new String[4]; // prefix, orig, replacement, postfix
-		StringBuilder buf = new StringBuilder();
+		StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		SignatureWrapper wrapper = new SignatureWrapper(originalSignature.toCharArray(), true); // may already contain annotations
 		wrapper.start = 1; // skip '<'
 		// prefix:
-		for (int i = 0; i < rank; i++) {
+		for (int i = 0; i < rank; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			wrapper.skipTypeParameter();
 		}
 		int start = wrapper.start;

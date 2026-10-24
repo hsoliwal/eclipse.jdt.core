@@ -102,14 +102,14 @@ public class MessagerTests extends TestCase {
 	/**
 	 * Attempt to report errors on various elements.
 	 */
-	private void internalTestMessager(JavaCompiler compiler, DiagnosticListener<? super JavaFileObject> diagnosticListener, String... extraOptions ) throws IOException {
+	private void internalTestMessager(JavaCompiler compiler, DiagnosticListener<? super JavaFileObject> diagnosticListener, String... extraOptions ) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		System.clearProperty(MESSAGERPROCNAME);
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "errors");
 		BatchTestUtils.copyResources("targets/errors", targetFolder);
 
 		// Turn on the MessagerProc - without this, it will just return without doing anything
-		List<String> options = new ArrayList<>();
-		options.add("-A" + MESSAGERPROCNAME);
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		options.add("-A" + MESSAGERPROCNAME); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (extraOptions != null) {
 			options.addAll(Arrays.asList(extraOptions));
 		}

@@ -63,7 +63,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		assertNotNull("Should not be null", annotations);
 		int length = annots.length;
 		assertEquals("Incorrect type use annotations", length, annotations.length);
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			assertEquals("Incorrect annotation", annots[i], (annotations[i] == null) ? null : annotations[i].toString());
 		}
 	}
@@ -73,12 +73,12 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		assertNotNull("Should not be null", annotations);
 		int length = annots.length;
 		assertEquals("Incorrect annotations", length, annotations.length);
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			assertEquals("Incorrect annotation", annots[i], (annotations[i] == null) ? null : annotations[i].toString());
 		}
 	}
 
-	public void test000() throws Exception {
+	public void test000() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 					"public class X extends @Marker @SingleMember(0) @Normal(value = 0) Object {\n" +
 					"}\n" +
@@ -102,7 +102,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 
 		verifyAnnotationOnType(type, new String[]{"@Marker()", "@SingleMember(value = 0)", "@Normal(value = 0)"});
 	}
-	public void test001() throws Exception {
+	public void test001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X {\n" +
 						"    @Marker int x;\n" +
@@ -123,7 +123,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		FieldDeclaration field = fields[0];
 		verifyAnnotationOnType(field.getType(), new String[]{"@Marker()"});
 	}
-	public void test002() throws Exception {
+	public void test002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 						"public class X {\n" +
 						"    @Marker <@Marker2 T> int x() { return 10; };\n" +
@@ -150,7 +150,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		verifyAnnotationsOnBinding(binding, new String[]{"@Marker2()"});
 		verifyAnnotationOnType(method.getReturnType2(), new String[]{"@Marker()"});
 	}
-	public void test003() throws Exception {
+	public void test003() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 						"public class X {\n" +
 						"    int x(@Marker int p) { return 10; };\n" +
@@ -176,7 +176,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		verifyAnnotationsOnBinding(binding, new String[]{"@Marker()"});
 		verifyAnnotationOnType(param.getType(), new String[]{"@Marker()"});
 	}
-	public void test004() throws Exception {
+	public void test004() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X {\n" +
 						"    int x(@Marker int ... p) { return 10; };\n" +
@@ -200,7 +200,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		verifyAnnotationOnType(param.getType(), new String[]{"@Marker()"});
 	}
 
-	public void test005() throws Exception {
+	public void test005() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String contents =
 				"public class X {\n" +
 						"    int x(@Marker int @Marker2 [] @Marker3 ... p) { return 10; };\n" +
@@ -232,7 +232,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		binding = binding.getComponentType();
 		verifyAnnotationsOnBinding(binding, new String[]{"@Marker()"});
 	}
-	public void test006() throws Exception {
+	public void test006() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 						"public class X {\n" +
 						"    int x() {\n" +
@@ -270,7 +270,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		type = (Type) types.get(1);
 		verifyAnnotationOnType(type, new String[]{"@Marker2()"});
 	}
-	public void test007() throws Exception {
+	public void test007() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"package java.lang;\n" +
 				"public class X {\n" +
@@ -319,7 +319,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		assertNotNull("Resource type should not be null", type);
 		verifyAnnotationOnType(type, new String[]{"@Marker3()"});
 	}
-	public void test008() throws Exception {
+	public void test008() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X {\n" +
 						"    int x() {\n" +
@@ -353,7 +353,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		binding = type.resolveBinding();
 		verifyAnnotationsOnBinding(binding, new String[]{"@Marker()"});
 	}
-	public void test009() throws Exception {
+	public void test009() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"interface I {\n" +
 				"    Object copy(int [] ia);\n" +
@@ -390,7 +390,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		binding = binding.getComponentType();
 		verifyAnnotationsOnBinding(binding, new String[]{"@Marker()"});
 	}
-	public void test010() throws Exception {
+	public void test010() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X  {\n" +
 				"    public static void main(String [] args) {\n" +
@@ -437,7 +437,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		binding = binding.getComponentType();
 		verifyAnnotationsOnBinding(binding, new String[]{"@Marker2()"});
 	}
-	public void test011() throws Exception {
+	public void test011() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X  {\n" +
 				"    public static void main(String [] args) {\n" +
@@ -479,7 +479,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		binding = binding.getComponentType();
 		verifyAnnotationsOnBinding(binding, new String[]{"@Marker()"});
 	}
-	public void test012() throws Exception {
+	public void test012() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X  {\n" +
 				"    public static void main(String args) {\n" +
@@ -507,7 +507,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		Type type = instanceOf.getRightOperand();
 		verifyAnnotationOnType(type, new String[]{"@Marker()"});
 	}
-	public void test013() throws Exception {
+	public void test013() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String contents =
 				"public class X extends Y<@Marker(10) Integer, String> {}\n" +
 				"class Y<T, V> {}\n" +
@@ -529,7 +529,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 
 		verifyAnnotationOnType(type, new String[]{"@Marker(value = 10)"});
 	}
-	public void test014() throws Exception {
+	public void test014() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X<T extends Object & Comparable<? super @Marker String>> {}\n" +
 				"class Y<T> {}\n" +
@@ -557,7 +557,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		assertNotNull("Bound should not be null", bound);
 		verifyAnnotationOnType(bound, new String[]{"@Marker()"});
 	}
-	public void test015() throws Exception {
+	public void test015() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X {\n" +
 				"	void foo(Map<@Marker ? super @Marker2 Object, @Marker3 ? extends @Marker4 String> m){}\n" +
@@ -613,7 +613,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		type = wildcard.getBound();
 		verifyAnnotationOnType(type, new String[]{"@Marker()"});
 	}
-	public void test016() throws Exception {
+	public void test016() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X<E> {\n" +
 				"  class Y {\n" +
@@ -645,7 +645,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		verifyAnnotationOnType(type, new String[]{});
 		verifyAnnotationOnType(type.getQualifier(), new String[]{"@Marker()"});
 	}
-	public void test017() throws Exception {
+	public void test017() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X<P, C> {\n" +
 				"  public X() {\n" +
@@ -670,7 +670,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		InstanceofExpression expression = (InstanceofExpression) operand.getExpression();
 		verifyAnnotationOnType(expression.getRightOperand(), new String[]{"@Marker()"});
 	}
-	public void test018() throws Exception {
+	public void test018() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"interface I {\n" +
 				"    void foo(Y<String>.Z z, int x);\n" +
@@ -710,7 +710,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		assertEquals("Should be a qualified type", ASTNode.QUALIFIED_TYPE, type.getNodeType());
 		verifyAnnotationOnType(((QualifiedType) type).getQualifier() , new String[]{});
 	}
-	public void test019() throws Exception {
+	public void test019() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X  {\n" +
 				"    public static void main(String [] args) {\n" +
@@ -757,7 +757,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		binding = binding.getComponentType();
 		verifyAnnotationsOnBinding(binding, new String[]{"@Marker2()"});
 	}
-	public void test020() throws Exception {
+	public void test020() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X  {\n" +
 				"    public static void main(String [] args) {\n" +
@@ -789,7 +789,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		ParameterizedType type = (ParameterizedType) arrayType.getElementType();
 		verifyAnnotationOnType(type.getType(), new String[]{"@Marker()"});
 	}
-	public void test021() throws Exception {
+	public void test021() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"import java.io.Serializable;\n" +
 				"import java.util.List;\n" +
@@ -819,7 +819,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		ParameterizedType bound = (ParameterizedType) wildcard.getBound();
 		verifyAnnotationOnType(bound, new String[]{"@Marker()", "@Marker2()"});
 	}
-	public void test022() throws Exception {
+	public void test022() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X {\n" +
 				"    X x = new @Marker X();\n" +
@@ -849,7 +849,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		creation = (ClassInstanceCreation) fragment.getInitializer();
 		verifyAnnotationOnType(creation.getType(), new String[]{"@Marker()"});
 	}
-	public void test023() throws Exception {
+	public void test023() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X {\n" +
 				"    class Y {\n" +
@@ -887,7 +887,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		creation = (ClassInstanceCreation) creation.getExpression();
 		verifyAnnotationOnType(creation.getType(), new String[]{"@Marker2()"});
 	}
-	public void test024() throws Exception {
+	public void test024() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X {\n" +
 				"    void foo() throws @Marker NullPointerException, @Marker2 ArrayIndexOutOfBoundsException {}\n" +
@@ -913,7 +913,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		type = (Type) thrownTypes.get(1);
 		verifyAnnotationOnType(type, new String[]{"@Marker2()"});
 	}
-	public void test025() throws Exception {
+	public void test025() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"interface I {}\n" +
 				"interface J {}\n" +
@@ -945,7 +945,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		verifyAnnotationOnType((Type) interfaces.get(0), new String[]{"@Marker2()"});
 		verifyAnnotationOnType((Type) interfaces.get(1), new String[]{"@Marker()"});
 	}
-	public void test026() throws Exception {
+	public void test026() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"interface I {\n" +
 				"    void foo(int x);\n" +
@@ -986,7 +986,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 
 		verifyAnnotationOnType(type, new String[]{"@Marker()"});
 	}
-	public void test027() throws Exception {
+	public void test027() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"interface I {\n" +
 				"    Y foo(int x);\n" +
@@ -1038,7 +1038,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		verifyAnnotationOnType((Type) typeArgs.get(0), new String[]{"@Marker3()"});
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=418096
-	public void test028() throws Exception {
+	public void test028() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X {\n" +
 				"    @TypeUseAnnotation(\"a\") String @TypeUseAnnotation(\"a1\") [] @TypeUseAnnotation(\"a2\") [] _field2 @TypeUseAnnotation(\"a3\") [], _field3 @TypeUseAnnotation(\"a4\") [][] = null;\n" +
@@ -1075,7 +1075,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		verifyAnnotationsOnBinding(binding = binding.getComponentType(), new String[]{"@TypeUseAnnotation(value = a)"});
 	}
 
-	public void testAnnotatedBinaryType() throws CoreException, IOException {
+	public void testAnnotatedBinaryType() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String jarName = "TypeBindingTests308.jar";
 		String srcName = "TypeBindingTests308_src.zip";
 		IJavaProject javaProject = getJavaProject("Converter18");
@@ -1095,7 +1095,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 				"}\n"
 			};
 
-			HashMap libraryOptions = new HashMap(javaProject.getOptions(true));
+			HashMap libraryOptions = new HashMap(javaProject.getOptions(true)); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			libraryOptions.put(CompilerOptions.OPTION_Store_Annotations, CompilerOptions.ENABLED);
 			addLibrary(javaProject, jarName, srcName, pathAndContents, JavaCore.VERSION_1_8, libraryOptions);
 
@@ -1128,7 +1128,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 			removeLibrary(javaProject, jarName, srcName);
 		}
 	}
-	public void testAnnotatedBinaryType2() throws CoreException, IOException {
+	public void testAnnotatedBinaryType2() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String jarName = "TypeBindingTests308.jar";
 		String srcName = "TypeBindingTests308_src.zip";
 		IJavaProject javaProject = getJavaProject("Converter18");
@@ -1148,7 +1148,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 				"}\n"
 			};
 
-			HashMap libraryOptions = new HashMap(javaProject.getOptions(true));
+			HashMap libraryOptions = new HashMap(javaProject.getOptions(true)); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			libraryOptions.put(CompilerOptions.OPTION_Store_Annotations, CompilerOptions.ENABLED);
 			addLibrary(javaProject, jarName, srcName, pathAndContents, JavaCore.VERSION_1_8, libraryOptions);
 
@@ -1181,7 +1181,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 			removeLibrary(javaProject, jarName, srcName);
 		}
 	}
-	public void testAnnotatedBinaryType3() throws CoreException, IOException {
+	public void testAnnotatedBinaryType3() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String jarName = "TypeBindingTests308.jar";
 		String srcName = "TypeBindingTests308_src.zip";
 		final IJavaProject javaProject = getJavaProject("Converter18");
@@ -1199,7 +1199,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 				"}\n"
 			};
 
-			HashMap libraryOptions = new HashMap(javaProject.getOptions(true));
+			HashMap libraryOptions = new HashMap(javaProject.getOptions(true)); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			libraryOptions.put(CompilerOptions.OPTION_Store_Annotations, CompilerOptions.ENABLED);
 			addLibrary(javaProject, jarName, srcName, pathAndContents, JavaCore.VERSION_1_8, libraryOptions);
 
@@ -1233,7 +1233,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		}
 	}
 
-	public void testAnnotatedBinaryType4() throws CoreException, IOException {
+	public void testAnnotatedBinaryType4() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String jarName = "TypeBindingTests308.jar";
 		String srcName = "TypeBindingTests308_src.zip";
 		final IJavaProject javaProject = getJavaProject("Converter18");
@@ -1251,7 +1251,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 				"}\n"
 			};
 
-			HashMap libraryOptions = new HashMap(javaProject.getOptions(true));
+			HashMap libraryOptions = new HashMap(javaProject.getOptions(true)); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			libraryOptions.put(CompilerOptions.OPTION_Store_Annotations, CompilerOptions.ENABLED);
 			addLibrary(javaProject, jarName, srcName, pathAndContents, JavaCore.VERSION_1_8, libraryOptions);
 
@@ -1284,7 +1284,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 			removeLibrary(javaProject, jarName, srcName);
 		}
 	}
-	public void testAnnotatedBinaryType5() throws CoreException, IOException {
+	public void testAnnotatedBinaryType5() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String jarName = "TypeBindingTests308.jar";
 		String srcName = "TypeBindingTests308_src.zip";
 		final IJavaProject javaProject = getJavaProject("Converter18");
@@ -1302,7 +1302,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 				"}\n"
 			};
 
-			HashMap libraryOptions = new HashMap(javaProject.getOptions(true));
+			HashMap libraryOptions = new HashMap(javaProject.getOptions(true)); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			libraryOptions.put(CompilerOptions.OPTION_Store_Annotations, CompilerOptions.ENABLED);
 			addLibrary(javaProject, jarName, srcName, pathAndContents, JavaCore.VERSION_1_8, libraryOptions);
 
@@ -1335,7 +1335,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 			removeLibrary(javaProject, jarName, srcName);
 		}
 	}
-	public void testAnnotatedBinaryType6() throws CoreException, IOException {
+	public void testAnnotatedBinaryType6() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String jarName = "TypeBindingTests308.jar";
 		String srcName = "TypeBindingTests308_src.zip";
 		final IJavaProject javaProject = getJavaProject("Converter18");
@@ -1353,7 +1353,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 				"}\n"
 			};
 
-			HashMap libraryOptions = new HashMap(javaProject.getOptions(true));
+			HashMap libraryOptions = new HashMap(javaProject.getOptions(true)); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			libraryOptions.put(CompilerOptions.OPTION_Store_Annotations, CompilerOptions.ENABLED);
 			addLibrary(javaProject, jarName, srcName, pathAndContents, JavaCore.VERSION_1_8, libraryOptions);
 
@@ -1386,7 +1386,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 			removeLibrary(javaProject, jarName, srcName);
 		}
 	}
-	public void testIntersectionCastType() throws CoreException, IOException {
+	public void testIntersectionCastType() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"import java.lang.annotation.ElementType;\n" +
 						"import java.lang.annotation.Target;\n" +
@@ -1432,7 +1432,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		assertEquals("Wrong annotations", "@T1 Object & @T2 Runnable & @T3 Serializable", binding2.toString());
 		assertSame("Should be equal", binding1, binding2);
 	}
-	public void testMemberType() throws CoreException, IOException {
+	public void testMemberType() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String jarName = "TypeBindingTests308.jar";
 		String srcName = "TypeBindingTests308_src.zip";
 		final IJavaProject javaProject = getJavaProject("Converter18");
@@ -1445,7 +1445,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 				"}\n"
 			};
 
-			HashMap libraryOptions = new HashMap(javaProject.getOptions(true));
+			HashMap libraryOptions = new HashMap(javaProject.getOptions(true)); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			libraryOptions.put(CompilerOptions.OPTION_Store_Annotations, CompilerOptions.ENABLED);
 			addLibrary(javaProject, jarName, srcName, pathAndContents, JavaCore.VERSION_1_8, libraryOptions);
 
@@ -1483,7 +1483,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 			removeLibrary(javaProject, jarName, srcName);
 		}
 	}
-	public void testMemberType2() throws CoreException, IOException {
+	public void testMemberType2() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String jarName = "TypeBindingTests308.jar";
 		String srcName = "TypeBindingTests308_src.zip";
 		final IJavaProject javaProject = getJavaProject("Converter18");
@@ -1498,7 +1498,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 				"}\n"
 			};
 
-			HashMap libraryOptions = new HashMap(javaProject.getOptions(true));
+			HashMap libraryOptions = new HashMap(javaProject.getOptions(true)); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			libraryOptions.put(CompilerOptions.OPTION_Store_Annotations, CompilerOptions.ENABLED);
 			addLibrary(javaProject, jarName, srcName, pathAndContents, JavaCore.VERSION_1_8, libraryOptions);
 
@@ -1534,7 +1534,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 			removeLibrary(javaProject, jarName, srcName);
 		}
 	}
-	public void testBinarySuperInterfaces() throws CoreException, IOException {
+	public void testBinarySuperInterfaces() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String jarName = "TypeBindingTests308.jar";
 		String srcName = "TypeBindingTests308_src.zip";
 		final IJavaProject javaProject = getJavaProject("Converter18");
@@ -1550,7 +1550,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 				"}\n"
 			};
 
-			HashMap libraryOptions = new HashMap(javaProject.getOptions(true));
+			HashMap libraryOptions = new HashMap(javaProject.getOptions(true)); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			libraryOptions.put(CompilerOptions.OPTION_Store_Annotations, CompilerOptions.ENABLED);
 			addLibrary(javaProject, jarName, srcName, pathAndContents, JavaCore.VERSION_1_8, libraryOptions);
 
@@ -1582,7 +1582,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 			removeLibrary(javaProject, jarName, srcName);
 		}
 	}
-	public void testMemberTypeSource() throws CoreException, IOException {
+	public void testMemberTypeSource() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"import java.lang.annotation.ElementType;\n" +
 				"import java.lang.annotation.Target;\n" +
@@ -1608,7 +1608,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		assertEquals("Wrong Type", "@T X", (binding = binding.getDeclaringClass()).toString());
 		assertEquals("Wrong Type", "@T X.Y", (binding = binding.getDeclaredTypes()[0]).toString());
 	}
-	public void testAnnotatedTypeIdentity() throws CoreException, IOException {
+	public void testAnnotatedTypeIdentity() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"import java.lang.annotation.ElementType;\n" +
 				"import java.lang.annotation.Target;\n" +
@@ -1637,7 +1637,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		assertEquals("Wrong Type", "@T List<@T String>", binding.toString());
 		assertSame("not Equal", binding, binding2);
 	}
-	public void testAnnotatedTypeIdentity2() throws CoreException, IOException {
+	public void testAnnotatedTypeIdentity2() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String jarName = "TypeBindingTests308.jar";
 		String srcName = "TypeBindingTests308_src.zip";
 		final IJavaProject javaProject = getJavaProject("Converter18");
@@ -1653,7 +1653,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 				"}\n"
 			};
 
-			HashMap libraryOptions = new HashMap(javaProject.getOptions(true));
+			HashMap libraryOptions = new HashMap(javaProject.getOptions(true)); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			libraryOptions.put(CompilerOptions.OPTION_Store_Annotations, CompilerOptions.ENABLED);
 			addLibrary(javaProject, jarName, srcName, pathAndContents, JavaCore.VERSION_1_8, libraryOptions);
 
@@ -1690,7 +1690,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 			removeLibrary(javaProject, jarName, srcName);
 		}
 	}
-	public void testAnnotatedTypeIdentity3() throws CoreException, IOException {
+	public void testAnnotatedTypeIdentity3() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String jarName = "TypeBindingTests308.jar";
 		String srcName = "TypeBindingTests308_src.zip";
 		final IJavaProject javaProject = getJavaProject("Converter18");
@@ -1707,7 +1707,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 				"}\n"
 			};
 
-			HashMap libraryOptions = new HashMap(javaProject.getOptions(true));
+			HashMap libraryOptions = new HashMap(javaProject.getOptions(true)); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			libraryOptions.put(CompilerOptions.OPTION_Store_Annotations, CompilerOptions.ENABLED);
 			addLibrary(javaProject, jarName, srcName, pathAndContents, JavaCore.VERSION_1_8, libraryOptions);
 
@@ -1745,7 +1745,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 			removeLibrary(javaProject, jarName, srcName);
 		}
 	}
-	public void testHybridAnnotations() throws CoreException, IOException {
+	public void testHybridAnnotations() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"import java.lang.annotation.ElementType;\n" +
 				"import java.lang.annotation.Target;\n" +
@@ -1785,7 +1785,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		ITypeBinding type = parameterBinding.getType();
 		verifyAnnotationsOnBinding(type, new String [] { "@AUse()", "@AUseParameter()", "@AUseLocal()" });
 	}
-	public void testGenericMethod() throws CoreException, IOException {
+	public void testGenericMethod() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"import java.lang.annotation.Annotation;\n" +
 				"import java.lang.annotation.ElementType;\n" +
@@ -1814,7 +1814,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		ITypeBinding type = returnType.resolveBinding();
 		verifyAnnotationsOnBinding(type, new String [] { "@T()" });
 	}
-	public void testHybridAnnotations2() throws CoreException, IOException {
+	public void testHybridAnnotations2() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"import java.lang.annotation.Target;\n" +
 				"import java.lang.annotation.ElementType;\n" +
@@ -1906,7 +1906,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		assertEquals("Incorrect annotation", "@SillyAnnotation()", typeAnnotations[0].toString());
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=419918, [1.8][compiler] Annotations are not restored from class files in a few situations.
-	public void testBinaryWithoutGenericSignature() throws CoreException, IOException {
+	public void testBinaryWithoutGenericSignature() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String jarName = "TypeBindingTests308.jar";
 		String srcName = "TypeBindingTests308_src.zip";
 		final IJavaProject javaProject = getJavaProject("Converter18");
@@ -1933,7 +1933,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 				"}\n"
 			};
 
-			HashMap libraryOptions = new HashMap(javaProject.getOptions(true));
+			HashMap libraryOptions = new HashMap(javaProject.getOptions(true)); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			libraryOptions.put(CompilerOptions.OPTION_Store_Annotations, CompilerOptions.ENABLED);
 			addLibrary(javaProject, jarName, srcName, pathAndContents, JavaCore.VERSION_1_8, libraryOptions);
 
@@ -2045,7 +2045,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		}
 	}
 	// Variants where superclass in binary is an annotated inner/nested class
-	public void testBinaryWithoutGenericSignature_b() throws CoreException, IOException {
+	public void testBinaryWithoutGenericSignature_b() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String jarName = "TypeBindingTests308.jar";
 		String srcName = "TypeBindingTests308_src.zip";
 		final IJavaProject javaProject = getJavaProject("Converter18");
@@ -2073,7 +2073,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 				"}\n"
 			};
 
-			HashMap libraryOptions = new HashMap(javaProject.getOptions(true));
+			HashMap libraryOptions = new HashMap(javaProject.getOptions(true)); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			libraryOptions.put(CompilerOptions.OPTION_Store_Annotations, CompilerOptions.ENABLED);
 			addLibrary(javaProject, jarName, srcName, pathAndContents, JavaCore.VERSION_1_8, libraryOptions);
 
@@ -2122,7 +2122,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=419918, [1.8][compiler] Annotations are not restored from class files in a few situations.
-	public void testBinaryAnnotationType() throws CoreException, IOException {
+	public void testBinaryAnnotationType() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String jarName = "TypeBindingTests308.jar";
 		String srcName = "TypeBindingTests308_src.zip";
 		final IJavaProject javaProject = getJavaProject("Converter18");
@@ -2138,7 +2138,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 				"}\n"
 			};
 
-			HashMap libraryOptions = new HashMap(javaProject.getOptions(true));
+			HashMap libraryOptions = new HashMap(javaProject.getOptions(true)); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			libraryOptions.put(CompilerOptions.OPTION_Store_Annotations, CompilerOptions.ENABLED);
 			addLibrary(javaProject, jarName, srcName, pathAndContents, JavaCore.VERSION_1_8, libraryOptions);
 
@@ -2175,7 +2175,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=420320, [1.8] Bad AST recovery with type annotation and a syntax error in secondary type
-	public void testAnnotationRecovery() throws CoreException, IOException {
+	public void testAnnotationRecovery() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"import java.lang.annotation.ElementType;\n" +
 				"import java.lang.annotation.Target;\n" +
@@ -2211,7 +2211,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		assertEquals("AST mismatch", expected, node.toString());
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=427337
-	public void testBug427337() throws CoreException, IOException {
+	public void testBug427337() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"public class X implements I {\n" +
 				"}\n";
@@ -2240,7 +2240,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		assertEquals("Incorrect type binding", "@NonNull List<@NonNull String>", binding.toString());
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=426515
-	public void testBug426515() throws CoreException {
+	public void testBug426515() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String contents =
 					"public class X {\n" +
@@ -2277,7 +2277,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=425599, [1.8][compiler] ISE when trying to compile qualified and annotated class instance creation
-	public void test425599() throws CoreException, IOException {
+	public void test425599() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"import java.lang.annotation.ElementType;\n" +
 				"import java.lang.annotation.Target;\n" +
@@ -2303,7 +2303,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		assertEquals("Object ax=new @A(1) Outer().new @A(2) Middle<@A(3) String>();\n", field.toString());
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=425216, Bug 425216 - [1.8][dom ast] Binding for 'this' should have type annotations when receiver is annotated
-	public void test425216() throws CoreException, IOException {
+	public void test425216() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"import static java.lang.annotation.ElementType.TYPE_USE;\n" +
 				"import java.lang.annotation.Target;\n" +
@@ -2332,7 +2332,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		assertEquals("@NonNull X", type.toString());
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=425216, Bug 425216 - [1.8][dom ast] Binding for 'this' should have type annotations when receiver is annotated
-	public void test425216a() throws CoreException, IOException {
+	public void test425216a() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"import java.lang.annotation.*;\n" +
 				"@Target(ElementType.TYPE_USE)\n" +
@@ -2381,7 +2381,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		assertTrue(type.getName().equals("Inner"));
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=425216, Bug 425216 - [1.8][dom ast] Binding for 'this' should have type annotations when receiver is annotated
-	public void test425216b() throws CoreException, IOException {
+	public void test425216b() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"import java.lang.annotation.*;\n" +
 				"@Target(ElementType.TYPE_USE)\n" +
@@ -2411,7 +2411,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		assertEquals("@A((int)2) Outer.@A((int)3) Middle", type.toString());
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=427320
-	public void testBug427320() throws Exception {
+	public void testBug427320() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String contents =
 					"public class X {\n" +
@@ -2460,7 +2460,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=431810
-	public void testBug431810() throws Exception {
+	public void testBug431810() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String contents =
 				"import java.lang.annotation.ElementType; \n" +
@@ -2507,7 +2507,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=431810
 	// Incorrect use of annotations on constructors
-	public void testBug431810a() throws Exception {
+	public void testBug431810a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String contents =
 				"import java.lang.annotation.ElementType; \n" +
@@ -2549,7 +2549,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=487716
-	public void testBug487716() throws Exception {
+	public void testBug487716() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String contents =
 				"import java.lang.annotation.ElementType; \n" +
@@ -2587,7 +2587,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=487716
-	public void testBug487716a() throws Exception {
+	public void testBug487716a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String contents =
 				"package p;\n" +
@@ -2631,7 +2631,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 			deleteFile("/Converter18/src/X.java");
 		}
 	}
-	public void testBug460491_comment30() throws CoreException {
+	public void testBug460491_comment30() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// placed in this suite because we need type annotations enabled
 		IPackageFragmentRoot srcRoot = this.currentProject.getPackageFragmentRoots()[0];
 		assertFalse(srcRoot.isReadOnly());
@@ -2675,7 +2675,7 @@ public class TypeBindingTests308 extends ConverterTestSetup {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4219
 	// Type annotations on type variables in the header of a class declaration are not preserved in the corresponding type bindings.
-	public void testIssue4219() throws CoreException, IOException {
+	public void testIssue4219() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents =
 				"""
 				import java.lang.annotation.*;

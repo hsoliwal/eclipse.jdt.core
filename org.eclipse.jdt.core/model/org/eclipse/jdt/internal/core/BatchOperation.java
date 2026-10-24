@@ -23,7 +23,7 @@ import org.eclipse.jdt.core.JavaModelException;
  * An operation created as a result of a call to JavaCore.run(IWorkspaceRunnable, IProgressMonitor)
  * that encapsulates a user defined IWorkspaceRunnable.
  */
-public class BatchOperation extends JavaModelOperation {
+public class BatchOperation extends JavaModelOperation { //FLLDCIM: MARK — T09  IMPLEMENTS
 	protected IWorkspaceRunnable runnable;
 	public BatchOperation(IWorkspaceRunnable runnable) {
 		this.runnable = runnable;

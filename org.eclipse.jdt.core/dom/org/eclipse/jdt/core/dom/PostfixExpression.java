@@ -82,12 +82,12 @@ public class PostfixExpression extends Expression {
 		 */
 		private static final Map CODES;
 		static {
-			CODES = new HashMap(20);
+			CODES = new HashMap(20); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			Operator[] ops = {
 					INCREMENT,
 					DECREMENT,
 				};
-			for (Operator op : ops) {
+			for (Operator op : ops) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				CODES.put(op.toString(), op);
 			}
 		}
@@ -131,7 +131,7 @@ public class PostfixExpression extends Expression {
 	private static final List PROPERTY_DESCRIPTORS;
 
 	static {
-		List propertyList = new ArrayList(3);
+		List propertyList = new ArrayList(3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(PostfixExpression.class, propertyList);
 		addProperty(OPERAND_PROPERTY, propertyList);
 		addProperty(OPERATOR_PROPERTY, propertyList);

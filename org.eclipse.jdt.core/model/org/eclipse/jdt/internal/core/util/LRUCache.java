@@ -92,7 +92,7 @@ public class LRUCache<K, V> implements Cloneable {
 		 */
 		@Override
 		public String toString() {
-			return "LRUCacheEntry [" + this.key + "-->" + this.value + "]"; //$NON-NLS-3$ //$NON-NLS-1$ //$NON-NLS-2$
+			return "LRUCacheEntry [" + this.key + "-->" + this.value + "]"; //$NON-NLS-3$ //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -102,7 +102,7 @@ public class LRUCache<K, V> implements Cloneable {
 		private int counterIndex = -1;
 
 		private void add(int counter) {
-			for (int i = 0; i <= this.counterIndex; i++) {
+			for (int i = 0; i <= this.counterIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (this.counters[i] == counter)
 					return;
 			}
@@ -116,7 +116,7 @@ public class LRUCache<K, V> implements Cloneable {
 			this.timestamps[this.counterIndex] = System.currentTimeMillis();
 		}
 
-		private String getAverageAge(long totalTime, int numberOfElements, long currentTime) {
+		private String getAverageAge(long totalTime, int numberOfElements, long currentTime) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			if (numberOfElements == 0)
 				return "N/A"; //$NON-NLS-1$
 			long time = totalTime / numberOfElements;
@@ -145,86 +145,86 @@ public class LRUCache<K, V> implements Cloneable {
 			} else {
 				seconds = (int) ageInSeconds;
 			}
-			StringBuilder buffer = new StringBuilder();
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			if (days > 0) {
-				buffer.append(days);
-				buffer.append(" days "); //$NON-NLS-1$
+				buffer.append(days); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(" days "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			if (hours > 0) {
-				buffer.append(hours);
-				buffer.append(" hours "); //$NON-NLS-1$
+				buffer.append(hours); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(" hours "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			if (minutes > 0) {
-				buffer.append(minutes);
-				buffer.append(" minutes "); //$NON-NLS-1$
+				buffer.append(minutes); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(" minutes "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buffer.append(seconds);
-			buffer.append(" seconds"); //$NON-NLS-1$
+			buffer.append(seconds); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(" seconds"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return buffer.toString();
 		}
 
 		private long getTimestamps(int counter) {
-			for (int i = 0; i <= this.counterIndex; i++) {
+			for (int i = 0; i <= this.counterIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (this.counters[i] >= counter)
 					return this.timestamps[i];
 			}
 			return -1;
 		}
 
-		public synchronized String printStats() {
+		public synchronized String printStats() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			int numberOfElements = LRUCache.this.currentSpace;
 			if (numberOfElements == 0) {
 				return "No elements in cache"; //$NON-NLS-1$
 			}
-			StringBuilder buffer = new StringBuilder();
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
-			buffer.append("Number of elements in cache: "); //$NON-NLS-1$
-			buffer.append(numberOfElements);
+			buffer.append("Number of elements in cache: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(numberOfElements); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 			final int numberOfGroups = 5;
 			int numberOfElementsPerGroup = numberOfElements / numberOfGroups;
-			buffer.append("\n("); //$NON-NLS-1$
-			buffer.append(numberOfGroups);
-			buffer.append(" groups of "); //$NON-NLS-1$
-			buffer.append(numberOfElementsPerGroup);
-			buffer.append(" elements)"); //$NON-NLS-1$
-			buffer.append("\n\nAverage age:"); //$NON-NLS-1$
+			buffer.append("\n("); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(numberOfGroups); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(" groups of "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(numberOfElementsPerGroup); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(" elements)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("\n\nAverage age:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			int groupNumber = 1;
 			int elementCounter = 0;
 			LRUCacheEntry<K, V> entry = LRUCache.this.entryQueueTail;
 			long currentTime = System.currentTimeMillis();
 			long accumulatedTime = 0;
-			while (entry != null) {
+			while (entry != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				long timeStamps = getTimestamps(entry.timestamp);
 				if (timeStamps > 0) {
 					accumulatedTime += timeStamps;
 					elementCounter++;
 				}
 				if (elementCounter >= numberOfElementsPerGroup && (groupNumber < numberOfGroups)) {
-					buffer.append("\nGroup "); //$NON-NLS-1$
-					buffer.append(groupNumber);
+					buffer.append("\nGroup "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(groupNumber); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					if (groupNumber == 1) {
-						buffer.append(" (oldest)\t: "); //$NON-NLS-1$
+						buffer.append(" (oldest)\t: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					} else {
-						buffer.append("\t\t: "); //$NON-NLS-1$
+						buffer.append("\t\t: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 					groupNumber++;
-					buffer.append(getAverageAge(accumulatedTime, elementCounter, currentTime));
+					buffer.append(getAverageAge(accumulatedTime, elementCounter, currentTime)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					elementCounter = 0;
 					accumulatedTime = 0;
 				}
 				entry = entry.previous;
 			}
-			buffer.append("\nGroup "); //$NON-NLS-1$
-			buffer.append(numberOfGroups);
-			buffer.append(" (youngest)\t: "); //$NON-NLS-1$
-			buffer.append(getAverageAge(accumulatedTime, elementCounter, currentTime));
+			buffer.append("\nGroup "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(numberOfGroups); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(" (youngest)\t: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(getAverageAge(accumulatedTime, elementCounter, currentTime)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 			return buffer.toString();
 		}
 
 		private void removeCountersOlderThan(int counter) {
-			for (int i = 0; i <= this.counterIndex; i++) {
+			for (int i = 0; i <= this.counterIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (this.counters[i] >= counter) {
 					if (i > 0) {
 						int length = this.counterIndex-i+1;
@@ -317,7 +317,7 @@ public class LRUCache<K, V> implements Cloneable {
 
 		/* Preserve order of entries by copying from oldest to newest */
 		qEntry = this.entryQueueTail;
-		while (qEntry != null) {
+		while (qEntry != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			newCache.privateAdd (qEntry.key, qEntry.value, qEntry.space);
 			qEntry = qEntry.previous;
 		}
@@ -336,7 +336,7 @@ public class LRUCache<K, V> implements Cloneable {
 		LRUCacheEntry<K, V> entry = this.entryQueueTail; // Remember last entry
 		this.entryTable = new Hashtable<>();  // Clear it out
 		this.entryQueue = this.entryQueueTail = null;
-		while (entry != null) {  // send deletion notifications in LRU order
+		while (entry != null) {  // send deletion notifications in LRU order //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			entry = entry.previous;
 		}
 	}
@@ -432,7 +432,7 @@ public class LRUCache<K, V> implements Cloneable {
 	 * Returns an enumeration that iterates over all the keys and values
 	 * currently in the cache.
 	 */
-	public ICacheEnumeration<K, V> keysAndValues() {
+	public ICacheEnumeration<K, V> keysAndValues() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		return new ICacheEnumeration<>() {
 
 			Enumeration<LRUCacheEntry<K, V>> values = LRUCache.this.entryTable.elements();
@@ -466,7 +466,7 @@ public class LRUCache<K, V> implements Cloneable {
 	 *
 	 * @param space Amount of space to free up
 	 */
-	protected boolean makeSpace (int space) {
+	protected boolean makeSpace (int space) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		int limit;
 
@@ -483,7 +483,7 @@ public class LRUCache<K, V> implements Cloneable {
 		}
 
 		/* Free up space by removing oldest entries */
-		while (this.currentSpace + space > limit && this.entryQueueTail != null) {
+		while (this.currentSpace + space > limit && this.entryQueueTail != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			privateRemoveEntry (this.entryQueueTail, false);
 		}
 		return true;
@@ -524,7 +524,7 @@ public class LRUCache<K, V> implements Cloneable {
 	 * @param shuffle Indicates whether we are just shuffling the queue
 	 * (in which case, the entry table is not modified).
 	 */
-	protected void privateAddEntry (LRUCacheEntry<K, V> entry, boolean shuffle) {
+	protected void privateAddEntry (LRUCacheEntry<K, V> entry, boolean shuffle) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!shuffle) {
 			this.entryTable.put (entry.key, entry);
 			this.currentSpace += entry.space;
@@ -549,7 +549,7 @@ public class LRUCache<K, V> implements Cloneable {
 	 * @param shuffle indicates whether we are just shuffling the queue
 	 * (in which case, the entry table is not modified).
 	 */
-	protected void privateRemoveEntry (LRUCacheEntry<K, V> entry, boolean shuffle) {
+	protected void privateRemoveEntry (LRUCacheEntry<K, V> entry, boolean shuffle) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		LRUCacheEntry<K, V> previous, next;
 
 		previous = entry.previous;
@@ -582,7 +582,7 @@ public class LRUCache<K, V> implements Cloneable {
 	 * @param value Value of object to add.
 	 * @return added value.
 	 */
-	public V put(K key, V value) {
+	public V put(K key, V value) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int newSpace, oldSpace, newTotal;
 		LRUCacheEntry<K, V> entry;
 
@@ -662,7 +662,7 @@ public class LRUCache<K, V> implements Cloneable {
 	@Override
 	public String toString() {
 		return
-			toStringFillingRation("LRUCache") + //$NON-NLS-1$
+			toStringFillingRation("LRUCache") + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			toStringContents();
 	}
 
@@ -671,27 +671,27 @@ public class LRUCache<K, V> implements Cloneable {
 	 * is for debugging purposes only.
 	 */
 	protected String toStringContents() {
-		StringBuilder result = new StringBuilder();
+		StringBuilder result = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		ToStringSorter<K> sorter = new ToStringSorter<>(o -> o instanceof JavaElement ? ((JavaElement) o).getElementName() : o.toString());
 		List<Pair<K>> sortedObjects = sorter.sort(this.entryTable.keySet());
-		for (Pair<K> pair : sortedObjects) {
+		for (Pair<K> pair : sortedObjects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String toString = pair.string;
 			V value = get(pair.object);
-			result.append(toString);
-			result.append(" -> "); //$NON-NLS-1$
-			result.append(value);
-			result.append("\n"); //$NON-NLS-1$
+			result.append(toString); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			result.append(" -> "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			result.append(value); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			result.append("\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return result.toString();
 	}
 
 	public String toStringFillingRation(String cacheName) {
-		StringBuilder buffer = new StringBuilder(cacheName);
-		buffer.append('[');
-		buffer.append(getSpaceLimit());
-		buffer.append("]: "); //$NON-NLS-1$
-		buffer.append(NumberFormat.getInstance().format(fillingRatio()));
-		buffer.append("% full"); //$NON-NLS-1$
+		StringBuilder buffer = new StringBuilder(cacheName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append('['); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(getSpaceLimit()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("]: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(NumberFormat.getInstance().format(fillingRatio())); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("% full"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return buffer.toString();
 	}
 

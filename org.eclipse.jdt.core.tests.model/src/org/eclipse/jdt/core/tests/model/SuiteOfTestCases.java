@@ -52,11 +52,11 @@ public class SuiteOfTestCases extends org.eclipse.jdt.core.tests.junit.extension
 		public Suite(String name) {
 			super(name);
 		}
-		private void initialize(SuiteOfTestCases test) {
+		private void initialize(SuiteOfTestCases test) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			Class currentClass = test.getClass();
-			while (currentClass != null && !currentClass.equals(SuiteOfTestCases.class)) {
+			while (currentClass != null && !currentClass.equals(SuiteOfTestCases.class)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Field[] fields = currentClass.getDeclaredFields();
-				for (int i = 0, length = fields.length; i < length; i++) {
+				for (int i = 0, length = fields.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Field field = fields[i];
 
 					// skip static and final fields
@@ -96,7 +96,7 @@ public class SuiteOfTestCases extends org.eclipse.jdt.core.tests.junit.extension
 		public void superRun(TestResult result) {
 			super.run(result);
 		}
-		public void runTest(Test test, TestResult result) {
+		public void runTest(Test test, TestResult result) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			SuiteOfTestCases current = (SuiteOfTestCases)test;
 			if (this.currentTestCase == null) {
 				// setup suite
@@ -162,7 +162,7 @@ public class SuiteOfTestCases extends org.eclipse.jdt.core.tests.junit.extension
 	 * Decorate an individual test with setUpSuite/tearDownSuite, so that the test can be run standalone.
 	 * This method is called by the Eclipse JUnit test runner when a test is re-run from the JUnit view's context menu.
 	 */
-	public static Test setUpTest(Test test) {
+	public static Test setUpTest(Test test) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!(test instanceof SuiteOfTestCases))
 			return test;
 

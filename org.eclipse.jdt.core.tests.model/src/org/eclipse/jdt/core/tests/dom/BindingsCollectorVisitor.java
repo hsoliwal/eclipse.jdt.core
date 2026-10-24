@@ -33,8 +33,8 @@ class BindingsCollectorVisitor extends ASTVisitor {
 	BindingsCollectorVisitor() {
 		// visit Javadoc.tags() as well
 		super(true);
-		this.hashMap = new HashMap();
-		this.set = new HashSet();
+		this.hashMap = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		this.set = new HashSet(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 	}
 
 	private void collectBindings(

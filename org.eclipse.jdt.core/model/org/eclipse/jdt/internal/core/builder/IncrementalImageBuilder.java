@@ -96,7 +96,7 @@ protected IncrementalImageBuilder(BatchImageBuilder batchBuilder, CompilationGro
 	resetCollections();
 }
 
-public boolean build(Map<IProject, IResourceDelta> deltas) {
+public boolean build(Map<IProject, IResourceDelta> deltas) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if(this.sourceLocations.length == 0) {
 		if (this.testImageBuilder != null) {
 			return this.testImageBuilder.build(deltas);
@@ -141,7 +141,7 @@ public boolean build(Map<IProject, IResourceDelta> deltas) {
 			}
 			this.notifier.updateProgressDelta(0.10f);
 
-			for (Entry<IProject, IResourceDelta> entry : deltas.entrySet()) {
+			for (Entry<IProject, IResourceDelta> entry : deltas.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IResourceDelta delta = entry.getValue();
 				if (delta != null) {
 					IProject p = entry.getKey();
@@ -172,7 +172,7 @@ public boolean build(Map<IProject, IResourceDelta> deltas) {
 	} catch (AbortIncrementalBuildException e) {
 		// abort the incremental build and let the batch builder handle the problem
 		if (JavaBuilder.DEBUG)
-			System.out.println("ABORTING incremental build... problem with " + e.qualifiedTypeName + //$NON-NLS-1$
+			System.out.println("ABORTING incremental build... problem with " + e.qualifiedTypeName + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				". Likely renamed inside its existing source file."); //$NON-NLS-1$
 		return false;
 	} catch (CoreException e) {
@@ -186,10 +186,10 @@ public boolean build(Map<IProject, IResourceDelta> deltas) {
 	return true;
 }
 
-private boolean incrementalBuildLoop() throws CoreException {
+private boolean incrementalBuildLoop() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int compileLoop = 0;
 	float increment = 0.40f;
-	while (this.sourceFiles.size() > 0) { // added to in acceptResult
+	while (this.sourceFiles.size() > 0) { // added to in acceptResult //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (++compileLoop > MaxCompileLoop) {
 			if (JavaBuilder.DEBUG)
 				System.out.println("ABORTING incremental build... exceeded loop count"); //$NON-NLS-1$
@@ -211,17 +211,17 @@ private boolean incrementalBuildLoop() throws CoreException {
 	return true;
 }
 
-protected void buildAfterBatchBuild() {
+protected void buildAfterBatchBuild() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// called from a batch builder once all source files have been compiled AND some changes
 	// need to be propagated incrementally (annotations, missing secondary types)
 
 	if (JavaBuilder.DEBUG)
-		System.out.println("INCREMENTAL build after batch build @ " + new Date(System.currentTimeMillis())); //$NON-NLS-1$
+		System.out.println("INCREMENTAL build after batch build @ " + new Date(System.currentTimeMillis())); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	// this is a copy of the incremental build loop
 	try {
 		addAffectedSourceFiles();
-		while (this.sourceFiles.size() > 0) {
+		while (this.sourceFiles.size() > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.notifier.checkCancel();
 			SourceFile[] allSourceFiles = new SourceFile[this.sourceFiles.size()];
 			this.sourceFiles.toArray(allSourceFiles);
@@ -247,7 +247,7 @@ protected void addAffectedSourceFiles() {
 	addAffectedSourceFiles(this.qualifiedStrings, this.simpleStrings, this.rootStrings, null);
 }
 
-protected void addAffectedSourceFiles(Set<String> qualifiedSet, Set<String> simpleSet, Set<String> rootSet, Set<String> affectedTypes) {
+protected void addAffectedSourceFiles(Set<String> qualifiedSet, Set<String> simpleSet, Set<String> rootSet, Set<String> affectedTypes) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// the qualifiedStrings are of the form 'p1/p2' & the simpleStrings are just 'X'
 	char[][][] internedQualifiedNames = ReferenceCollection.internQualifiedNames(qualifiedSet);
 	// if a well known qualified name was found then we can skip over these
@@ -259,7 +259,7 @@ protected void addAffectedSourceFiles(Set<String> qualifiedSet, Set<String> simp
 		internedSimpleNames = null;
 	char[][] internedRootNames = ReferenceCollection.internSimpleNames(rootSet, false);
 
-	next: for (Entry<String, ReferenceCollection> entry : this.newState.references.entrySet()) {
+	next: for (Entry<String, ReferenceCollection> entry : this.newState.references.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String typeLocator = entry.getKey();
 		if (affectedTypes != null && !affectedTypes.contains(typeLocator)) continue next;
 		ReferenceCollection refs = entry.getValue();
@@ -272,7 +272,7 @@ protected void addAffectedSourceFiles(Set<String> qualifiedSet, Set<String> simp
 				continue next; // can skip previously compiled files since already saw hierarchy related problems
 
 			if (JavaBuilder.DEBUG)
-				System.out.println("  adding affected source file " + typeLocator); //$NON-NLS-1$
+				System.out.println("  adding affected source file " + typeLocator); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			this.sourceFiles.add(sourceFile);
 		}
 	}
@@ -282,7 +282,7 @@ protected void addDependentsOf(IPath path, boolean isStructuralChange) {
 	addDependentsOf(path, isStructuralChange, this.qualifiedStrings, this.simpleStrings, this.rootStrings);
 }
 
-protected void addDependentsOf(IPath path, boolean isStructuralChange, Set<String> qualifiedNames, Set<String> simpleNames, Set<String> rootNames) {
+protected void addDependentsOf(IPath path, boolean isStructuralChange, Set<String> qualifiedNames, Set<String> simpleNames, Set<String> rootNames) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	path = path.setDevice(null);
 	if (isStructuralChange) {
 		String last = path.lastSegment();
@@ -313,11 +313,11 @@ protected void addDependentsOf(IPath path, boolean isStructuralChange, Set<Strin
 		typeName = typeName.substring(0, memberIndex);
 	wasNew = simpleNames.add(typeName) || wasNew;
 	if (wasNew && JavaBuilder.DEBUG)
-		System.out.println("  will look for dependents of " //$NON-NLS-1$
+		System.out.println("  will look for dependents of " //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ typeName + " in " + packageName); //$NON-NLS-1$
 }
 
-protected boolean checkForClassFileChanges(IResourceDelta binaryDelta, ClasspathMultiDirectory md, int segmentCount) throws CoreException {
+protected boolean checkForClassFileChanges(IResourceDelta binaryDelta, ClasspathMultiDirectory md, int segmentCount) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IResource resource = binaryDelta.getResource();
 	// remember that if inclusion & exclusion patterns change then a full build is done
 	boolean isExcluded = (md.exclusionPatterns != null || md.inclusionPatterns != null)
@@ -328,7 +328,7 @@ protected boolean checkForClassFileChanges(IResourceDelta binaryDelta, Classpath
 		        return true; // no need to go further with this delta since its children cannot be included
 
 			IResourceDelta[] children = binaryDelta.getAffectedChildren();
-			for (IResourceDelta child : children)
+			for (IResourceDelta child : children) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (!checkForClassFileChanges(child, md, segmentCount))
 					return false;
 			return true;
@@ -338,7 +338,7 @@ protected boolean checkForClassFileChanges(IResourceDelta binaryDelta, Classpath
 				IPath typePath = resource.getFullPath().removeFirstSegments(segmentCount).removeFileExtension();
 				if (this.newState.isKnownType(typePath.toString())) {
 					if (JavaBuilder.DEBUG)
-						System.out.println("MUST DO FULL BUILD. Found change to class file " + typePath); //$NON-NLS-1$
+						System.out.println("MUST DO FULL BUILD. Found change to class file " + typePath); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					return false;
 				}
 				return true;
@@ -360,19 +360,19 @@ protected void cleanUp() {
 	this.hasStructuralChanges = false;
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void compile(SourceFile[] units, SourceFile[] additionalUnits, boolean compilingFirstGroup) {
 	if (compilingFirstGroup && additionalUnits != null) {
 		// add any source file from additionalUnits to units if it defines secondary types
 		// otherwise its possible during testing with MAX_AT_ONCE == 1 that a secondary type
 		// can cause an infinite loop as it alternates between not found and defined, see bug 146324
 		List<SourceFile> extras = null;
-		for (SourceFile unit : additionalUnits) {
+		for (SourceFile unit : additionalUnits) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (unit != null && this.newState.getDefinedTypeNamesFor(unit.typeLocator()) != null) {
 				if (JavaBuilder.DEBUG)
-					System.out.println("About to compile file with secondary types "+ unit.typeLocator()); //$NON-NLS-1$
+					System.out.println("About to compile file with secondary types "+ unit.typeLocator()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				if (extras == null)
-					extras = new ArrayList<>(3);
+					extras = new ArrayList<>(3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				extras.add(unit);
 			}
 		}
@@ -380,18 +380,18 @@ protected void compile(SourceFile[] units, SourceFile[] additionalUnits, boolean
 			int oldLength = units.length;
 			int toAdd = extras.size();
 			System.arraycopy(units, 0, units = new SourceFile[oldLength + toAdd], 0, oldLength);
-			for (int i = 0; i < toAdd; i++)
+			for (int i = 0; i < toAdd; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				units[oldLength++] = extras.get(i);
 		}
 	}
 	super.compile(units, additionalUnits, compilingFirstGroup);
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void deleteGeneratedFiles(IFile[] deletedGeneratedFiles) {
 	// delete generated files and recompile any affected source files
 	try {
-		for (int j = deletedGeneratedFiles.length; --j >= 0;) {
+		for (int j = deletedGeneratedFiles.length; --j >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IFile deletedFile = deletedGeneratedFiles[j];
 			if (deletedFile.exists()) continue; // only delete .class files for source files that were actually deleted
 
@@ -407,7 +407,7 @@ protected void deleteGeneratedFiles(IFile[] deletedGeneratedFiles) {
 			} else {
 				if (definedTypeNames.length > 0) { // skip it if it failed to successfully define a type
 					IPath packagePath = typePath.removeLastSegments(1);
-					for (char[] definedTypeName : definedTypeNames)
+					for (char[] definedTypeName : definedTypeNames) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						removeClassFile(packagePath.append(new String(definedTypeName)), sourceFile.sourceLocation.binaryFolder);
 				}
 			}
@@ -419,8 +419,8 @@ protected void deleteGeneratedFiles(IFile[] deletedGeneratedFiles) {
 	}
 }
 
-protected boolean findAffectedSourceFiles(IResourceDelta delta, ClasspathLocation[] classFoldersAndJars, IProject prereqProject) {
-	for (ClasspathLocation bLocation : classFoldersAndJars) {
+protected boolean findAffectedSourceFiles(IResourceDelta delta, ClasspathLocation[] classFoldersAndJars, IProject prereqProject) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	for (ClasspathLocation bLocation : classFoldersAndJars) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		// either a .class file folder or a zip/jar file
 		if (bLocation != null) { // skip unchanged output folder
 			IPath p = bLocation.getProjectRelativePath();
@@ -442,7 +442,7 @@ protected boolean findAffectedSourceFiles(IResourceDelta delta, ClasspathLocatio
 					StringSet structurallyChangedTypes = null;
 					if (bLocation.isOutputFolder())
 						structurallyChangedTypes = this.newState.getStructurallyChangedTypes(this.javaBuilder.getLastState(prereqProject));
-					for (IResourceDelta child : children)
+					for (IResourceDelta child : children) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						findAffectedSourceFiles(child, segmentCount, structurallyChangedTypes);
 					this.notifier.checkCancel();
 				}
@@ -452,7 +452,7 @@ protected boolean findAffectedSourceFiles(IResourceDelta delta, ClasspathLocatio
 	return true;
 }
 
-protected void findAffectedSourceFiles(IResourceDelta binaryDelta, int segmentCount, StringSet structurallyChangedTypes) {
+protected void findAffectedSourceFiles(IResourceDelta binaryDelta, int segmentCount, StringSet structurallyChangedTypes) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// When a package becomes a type or vice versa, expect 2 deltas,
 	// one on the folder & one on the class file
 	IResource resource = binaryDelta.getResource();
@@ -467,27 +467,27 @@ protected void findAffectedSourceFiles(IResourceDelta binaryDelta, int segmentCo
 						// see if any known source file is from the same package... classpath already includes new package
 						if (!this.newState.isKnownPackage(packageName)) {
 							if (JavaBuilder.DEBUG)
-								System.out.println("Found added package " + packageName); //$NON-NLS-1$
+								System.out.println("Found added package " + packageName); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							addDependentsOf(packagePath, false);
 							return;
 						}
 						if (JavaBuilder.DEBUG)
-							System.out.println("Skipped dependents of added package " + packageName); //$NON-NLS-1$
+							System.out.println("Skipped dependents of added package " + packageName); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					} else {
 						// see if the package still exists on the classpath
 						if (!this.nameEnvironment.isPackage(packageName, ModuleBinding.ANY)) {
 							if (JavaBuilder.DEBUG)
-								System.out.println("Found removed package " + packageName); //$NON-NLS-1$
+								System.out.println("Found removed package " + packageName); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							addDependentsOf(packagePath, false);
 							return;
 						}
 						if (JavaBuilder.DEBUG)
-							System.out.println("Skipped dependents of removed package " + packageName); //$NON-NLS-1$
+							System.out.println("Skipped dependents of removed package " + packageName); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 					//$FALL-THROUGH$ traverse the sub-packages and .class files
 				case IResourceDelta.CHANGED :
 					IResourceDelta[] children = binaryDelta.getAffectedChildren();
-					for (IResourceDelta child : children)
+					for (IResourceDelta child : children) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						findAffectedSourceFiles(child, segmentCount, structurallyChangedTypes);
 			}
 			return;
@@ -498,7 +498,7 @@ protected void findAffectedSourceFiles(IResourceDelta binaryDelta, int segmentCo
 					case IResourceDelta.ADDED :
 					case IResourceDelta.REMOVED :
 						if (JavaBuilder.DEBUG)
-							System.out.println("Found added/removed class file " + typePath); //$NON-NLS-1$
+							System.out.println("Found added/removed class file " + typePath); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						addDependentsOf(typePath, false);
 						return;
 					case IResourceDelta.CHANGED :
@@ -507,7 +507,7 @@ protected void findAffectedSourceFiles(IResourceDelta binaryDelta, int segmentCo
 						if (structurallyChangedTypes != null && !structurallyChangedTypes.includes(typePath.toString()))
 							return; // skip since it wasn't a structural change
 						if (JavaBuilder.DEBUG)
-							System.out.println("Found changed class file " + typePath); //$NON-NLS-1$
+							System.out.println("Found changed class file " + typePath); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						addDependentsOf(typePath, false);
 				}
 				return;
@@ -515,9 +515,9 @@ protected void findAffectedSourceFiles(IResourceDelta binaryDelta, int segmentCo
 	}
 }
 
-protected boolean findSourceFiles(IResourceDelta delta) throws CoreException {
-	ArrayList<IContainer> visited = this.makeOutputFolderConsistent ? new ArrayList<>(this.sourceLocations.length) : null;
-	for (ClasspathMultiDirectory md : this.sourceLocations) {
+protected boolean findSourceFiles(IResourceDelta delta) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	ArrayList<IContainer> visited = this.makeOutputFolderConsistent ? new ArrayList<>(this.sourceLocations.length) : null; //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	for (ClasspathMultiDirectory md : this.sourceLocations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (this.makeOutputFolderConsistent && md.hasIndependentOutputFolder && !visited.contains(md.binaryFolder)) {
 			// even a project which acts as its own source folder can have an independent/nested output folder
 			visited.add(md.binaryFolder);
@@ -525,7 +525,7 @@ protected boolean findSourceFiles(IResourceDelta delta) throws CoreException {
 			if (binaryDelta != null) {
 				int segmentCount = binaryDelta.getFullPath().segmentCount();
 				IResourceDelta[] children = binaryDelta.getAffectedChildren();
-				for (IResourceDelta child : children)
+				for (IResourceDelta child : children) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (!checkForClassFileChanges(child, md, segmentCount))
 						return false;
 			}
@@ -534,7 +534,7 @@ protected boolean findSourceFiles(IResourceDelta delta) throws CoreException {
 			// skip nested source & output folders when the project is a source folder
 			int segmentCount = delta.getFullPath().segmentCount();
 			IResourceDelta[] children = delta.getAffectedChildren();
-			for (IResourceDelta child : children)
+			for (IResourceDelta child : children) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (!isExcludedFromProject(child.getFullPath()))
 					if (!findSourceFiles(child, md, segmentCount))
 						return false;
@@ -549,7 +549,7 @@ protected boolean findSourceFiles(IResourceDelta delta) throws CoreException {
 				int segmentCount = sourceDelta.getFullPath().segmentCount();
 				IResourceDelta[] children = sourceDelta.getAffectedChildren();
 				try {
-					for (IResourceDelta child : children)
+					for (IResourceDelta child : children) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (!findSourceFiles(child, md, segmentCount))
 							return false;
 				} catch (CoreException e) {
@@ -568,7 +568,7 @@ protected boolean findSourceFiles(IResourceDelta delta) throws CoreException {
 	return true;
 }
 
-protected boolean findSourceFiles(IResourceDelta sourceDelta, ClasspathMultiDirectory md, int segmentCount) throws CoreException {
+protected boolean findSourceFiles(IResourceDelta sourceDelta, ClasspathMultiDirectory md, int segmentCount) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// When a package becomes a type or vice versa, expect 2 deltas,
 	// one on the folder & one on the source file
 	IResource resource = sourceDelta.getResource();
@@ -588,17 +588,17 @@ protected boolean findSourceFiles(IResourceDelta sourceDelta, ClasspathMultiDire
 						// see if any known source file is from the same package... classpath already includes new package
 						if (this.sourceLocations.length > 1 && this.newState.isKnownPackage(addedPackagePath.toString())) {
 							if (JavaBuilder.DEBUG)
-								System.out.println("Skipped dependents of added package " + addedPackagePath); //$NON-NLS-1$
+								System.out.println("Skipped dependents of added package " + addedPackagePath); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						} else {
 							if (JavaBuilder.DEBUG)
-								System.out.println("Found added package " + addedPackagePath); //$NON-NLS-1$
+								System.out.println("Found added package " + addedPackagePath); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							addDependentsOf(addedPackagePath, true);
 						}
 				    }
 					//$FALL-THROUGH$ collect all the source files
 				case IResourceDelta.CHANGED :
 					IResourceDelta[] children = sourceDelta.getAffectedChildren();
-					for (IResourceDelta child : children)
+					for (IResourceDelta child : children) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (!findSourceFiles(child, md, segmentCount))
 							return false;
 					return true;
@@ -606,20 +606,20 @@ protected boolean findSourceFiles(IResourceDelta sourceDelta, ClasspathMultiDire
 				    if (isExcluded) {
 				    	// since this folder is excluded then there is nothing to delete (from this md), but must walk any included subfolders
 						children = sourceDelta.getAffectedChildren();
-						for (IResourceDelta child : children)
+						for (IResourceDelta child : children) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (!findSourceFiles(child, md, segmentCount))
 								return false;
 						return true;
 				    }
 					IPath removedPackagePath = resource.getFullPath().removeFirstSegments(segmentCount);
 					if (this.sourceLocations.length > 1) {
-						for (ClasspathMultiDirectory sourceLocation : this.sourceLocations) {
+						for (ClasspathMultiDirectory sourceLocation : this.sourceLocations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (sourceLocation.sourceFolder.getFolder(removedPackagePath).exists()) {
 								// only a package fragment was removed, same as removing multiple source files
 								if (md.hasIndependentOutputFolder)
 									createFolder(removedPackagePath, md.binaryFolder); // ensure package exists in the output folder
 								IResourceDelta[] removedChildren = sourceDelta.getAffectedChildren();
-								for (IResourceDelta removedChild : removedChildren)
+								for (IResourceDelta removedChild : removedChildren) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 									if (!findSourceFiles(removedChild, md, segmentCount))
 										return false;
 								return true;
@@ -637,9 +637,9 @@ protected boolean findSourceFiles(IResourceDelta sourceDelta, ClasspathMultiDire
 						removedPackageFolder.delete(IResource.FORCE, null);
 					// add dependents even when the package thinks it does not exist to be on the safe side
 					if (JavaBuilder.DEBUG)
-						System.out.println("Found removed package " + removedPackagePath); //$NON-NLS-1$
+						System.out.println("Found removed package " + removedPackagePath); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					addDependentsOf(removedPackagePath, true);
-					for (ClasspathMultiDirectory sourceLocation : this.sourceLocations) {
+					for (ClasspathMultiDirectory sourceLocation : this.sourceLocations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						this.newState.removePackage(sourceDelta, sourceLocation.release);
 					}
 			}
@@ -654,12 +654,12 @@ protected boolean findSourceFiles(IResourceDelta sourceDelta, ClasspathMultiDire
 				switch (sourceDelta.getKind()) {
 					case IResourceDelta.ADDED :
 						if (JavaBuilder.DEBUG)
-							System.out.println("Compile this added source file " + typeLocator); //$NON-NLS-1$
+							System.out.println("Compile this added source file " + typeLocator); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						this.sourceFiles.add(new SourceFile((IFile) resource, md, true));
 						String typeName = typePath.toString();
 						if (!this.newState.isDuplicateLocator(typeName, typeLocator, md.release)) { // adding dependents results in 2 duplicate errors
 							if (JavaBuilder.DEBUG)
-								System.out.println("Found added source file " + typeName); //$NON-NLS-1$
+								System.out.println("Found added source file " + typeName); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							addDependentsOf(typePath, true);
 						}
 						return true;
@@ -677,11 +677,11 @@ protected boolean findSourceFiles(IResourceDelta sourceDelta, ClasspathMultiDire
 							}
 						} else {
 							if (JavaBuilder.DEBUG)
-								System.out.println("Found removed source file " + typePath.toString()); //$NON-NLS-1$
+								System.out.println("Found removed source file " + typePath.toString()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							addDependentsOf(typePath, true); // add dependents of the source file since it may be involved in a name collision
 							if (definedTypeNames.length > 0) { // skip it if it failed to successfully define a type
 								IPath packagePath = typePath.removeLastSegments(1);
-								for (char[] definedTypeName : definedTypeNames)
+								for (char[] definedTypeName : definedTypeNames) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 									removeClassFile(packagePath.append(new String(definedTypeName)), md.binaryFolder);
 							}
 						}
@@ -692,7 +692,7 @@ protected boolean findSourceFiles(IResourceDelta sourceDelta, ClasspathMultiDire
 								&& (sourceDelta.getFlags() & IResourceDelta.ENCODING) == 0)
 							return true; // skip it since it really isn't changed
 						if (JavaBuilder.DEBUG)
-							System.out.println("Compile this changed source file " + typeLocator); //$NON-NLS-1$
+							System.out.println("Compile this changed source file " + typeLocator); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						SourceFile unit = new SourceFile((IFile) resource, md, true);
 						this.sourceFiles.add(unit);
 				}
@@ -703,7 +703,7 @@ protected boolean findSourceFiles(IResourceDelta sourceDelta, ClasspathMultiDire
 					IPath typePath = resource.getFullPath().removeFirstSegments(segmentCount).removeFileExtension();
 					if (this.newState.isKnownType(typePath.toString())) {
 						if (JavaBuilder.DEBUG)
-							System.out.println("MUST DO FULL BUILD. Found change to class file " + typePath); //$NON-NLS-1$
+							System.out.println("MUST DO FULL BUILD. Found change to class file " + typePath); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						return false;
 					}
 				}
@@ -718,18 +718,18 @@ protected boolean findSourceFiles(IResourceDelta sourceDelta, ClasspathMultiDire
 					case IResourceDelta.ADDED :
 						if (outputFile.exists()) {
 							if (JavaBuilder.DEBUG)
-								System.out.println("Deleting existing file " + resourcePath); //$NON-NLS-1$
+								System.out.println("Deleting existing file " + resourcePath); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							outputFile.delete(IResource.FORCE, null);
 						}
 						if (JavaBuilder.DEBUG)
-							System.out.println("Copying added file " + resourcePath); //$NON-NLS-1$
+							System.out.println("Copying added file " + resourcePath); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						createFolder(resourcePath.removeLastSegments(1), md.binaryFolder); // ensure package exists in the output folder
 						copyResource(resource, outputFile);
 						return true;
 					case IResourceDelta.REMOVED :
 						if (outputFile.exists()) {
 							if (JavaBuilder.DEBUG)
-								System.out.println("Deleting removed file " + resourcePath); //$NON-NLS-1$
+								System.out.println("Deleting removed file " + resourcePath); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							outputFile.delete(IResource.FORCE, null);
 						}
 						return true;
@@ -739,11 +739,11 @@ protected boolean findSourceFiles(IResourceDelta sourceDelta, ClasspathMultiDire
 							return true; // skip it since it really isn't changed
 						if (outputFile.exists()) {
 							if (JavaBuilder.DEBUG)
-								System.out.println("Deleting existing file " + resourcePath); //$NON-NLS-1$
+								System.out.println("Deleting existing file " + resourcePath); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							outputFile.delete(IResource.FORCE, null);
 						}
 						if (JavaBuilder.DEBUG)
-							System.out.println("Copying changed file " + resourcePath); //$NON-NLS-1$
+							System.out.println("Copying changed file " + resourcePath); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						createFolder(resourcePath.removeLastSegments(1), md.binaryFolder); // ensure package exists in the output folder
 						copyResource(resource, outputFile);
 				}
@@ -753,14 +753,14 @@ protected boolean findSourceFiles(IResourceDelta sourceDelta, ClasspathMultiDire
 	return true;
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void finishedWith(String sourceLocator, CompilationResult result, char[] mainTypeName, ArrayList definedTypeNames, ArrayList duplicateTypeNames) {
 	char[][] previousTypeNames = this.newState.getDefinedTypeNamesFor(sourceLocator);
 	if (previousTypeNames == null)
 		previousTypeNames = new char[][] {mainTypeName};
 	IPath packagePath = null;
-	next : for (char[] previous : previousTypeNames) {
-		for (Object definedTypeName : definedTypeNames)
+	next : for (char[] previous : previousTypeNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		for (Object definedTypeName : definedTypeNames) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (CharOperation.equals(previous, (char[]) definedTypeName))
 				continue next;
 
@@ -770,19 +770,19 @@ protected void finishedWith(String sourceLocator, CompilationResult result, char
 			packagePath = sourceFile.resource.getFullPath().removeFirstSegments(count).removeLastSegments(1);
 		}
 		if (this.secondaryTypesToRemove == null)
-			this.secondaryTypesToRemove = new HashMap<>();
+			this.secondaryTypesToRemove = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		List<IPath> types = this.secondaryTypesToRemove.get(sourceFile.sourceLocation.binaryFolder);
 		if (types == null)
-			types = new ArrayList<>(definedTypeNames.size());
+			types = new ArrayList<>(definedTypeNames.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		types.add(packagePath.append(new String(previous)));
 		this.secondaryTypesToRemove.put(sourceFile.sourceLocation.binaryFolder, types);
 	}
 	super.finishedWith(sourceLocator, result, mainTypeName, definedTypeNames, duplicateTypeNames);
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void processAnnotationResults(CompilationParticipantResult[] results) {
-	for (int i = results.length; --i >= 0;) {
+	for (int i = results.length; --i >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		CompilationParticipantResult result = results[i];
 		if (result == null) continue;
 
@@ -792,7 +792,7 @@ protected void processAnnotationResults(CompilationParticipantResult[] results) 
 
 		IFile[] addedGeneratedFiles = result.addedFiles;
 		if (addedGeneratedFiles != null) {
-			for (int j = addedGeneratedFiles.length; --j >= 0;) {
+			for (int j = addedGeneratedFiles.length; --j >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				SourceFile sourceFile = findSourceFile(addedGeneratedFiles[j], true);
 				if (sourceFile != null && !this.sourceFiles.contains(sourceFile))
 					this.sourceFiles.add(sourceFile);
@@ -808,24 +808,24 @@ protected void removeClassFile(IPath typePath, IContainer outputFolder) throws C
 		this.newState.removeQualifiedTypeName(typePath.toString());
 		// add dependents even when the type thinks it does not exist to be on the safe side
 		if (JavaBuilder.DEBUG)
-			System.out.println("Found removed type " + typePath); //$NON-NLS-1$
+			System.out.println("Found removed type " + typePath); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		addDependentsOf(typePath, true); // when member types are removed, their enclosing type is structurally changed
 	}
 	IFile classFile = outputFolder.getFile(typePath.addFileExtension(SuffixConstants.EXTENSION_class));
 	if (classFile.exists()) {
 		if (JavaBuilder.DEBUG)
-			System.out.println("Deleting class file of removed type " + typePath); //$NON-NLS-1$
+			System.out.println("Deleting class file of removed type " + typePath); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		classFile.delete(IResource.FORCE, null);
 	}
 }
 
 protected void removeSecondaryTypes() throws CoreException {
 	if (this.secondaryTypesToRemove != null) { // delayed deleting secondary types until the end of the compile loop
-		for (Entry<IContainer, List<IPath>> entry:  this.secondaryTypesToRemove.entrySet()) {
+		for (Entry<IContainer, List<IPath>> entry:  this.secondaryTypesToRemove.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IContainer outputFolder = entry.getKey();
 			if (outputFolder != null) {
 				List<IPath> paths = entry.getValue();
-				for (IPath path : paths)
+				for (IPath path : paths) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					removeClassFile(path, outputFolder);
 			}
 		}
@@ -839,9 +839,9 @@ protected void resetCollections() {
 	if (this.sourceFiles == null) {
 		this.sourceFiles = new LinkedHashSet<>(33);
 		this.previousSourceFiles = null;
-		this.qualifiedStrings = new HashSet<>(3);
-		this.simpleStrings = new HashSet<>(3);
-		this.rootStrings = new HashSet<>(3);
+		this.qualifiedStrings = new HashSet<>(3); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+		this.simpleStrings = new HashSet<>(3); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+		this.rootStrings = new HashSet<>(3); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		this.hasStructuralChanges = false;
 	} else {
 		this.previousSourceFiles = this.sourceFiles.isEmpty() ? null : new LinkedHashSet<>(this.sourceFiles);
@@ -853,7 +853,7 @@ protected void resetCollections() {
 	}
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void updateProblemsFor(SourceFile sourceFile, CompilationResult result) throws CoreException {
 	if (CharOperation.equals(sourceFile.getMainTypeName(), TypeConstants.PACKAGE_INFO_NAME)) {
 		IResource pkgResource = sourceFile.resource.getParent();
@@ -887,7 +887,7 @@ protected void updateTasksFor(SourceFile sourceFile, CompilationResult result) t
 /**
  * @see org.eclipse.jdt.internal.core.builder.AbstractImageBuilder#writeClassFileContents(org.eclipse.jdt.internal.compiler.ClassFile, org.eclipse.core.resources.IFile, java.lang.String, boolean, org.eclipse.jdt.internal.core.builder.SourceFile)
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void writeClassFileContents(ClassFile classfile, IFile file, String qualifiedFileName, boolean isTopLevelType, SourceFile compilationUnit) throws CoreException {
 	// Before writing out the class file, compare it to the previous file
 	// If structural changes occurred then add dependent source files
@@ -895,18 +895,18 @@ protected void writeClassFileContents(ClassFile classfile, IFile file, String qu
 	if (file.exists()) {
 		if (classFileChanged(file, qualifiedFileName, bytes) || compilationUnit.updateClassFile) { // see 46093
 			if (JavaBuilder.DEBUG)
-				System.out.println("Writing changed class file " + file.getName());//$NON-NLS-1$
+				System.out.println("Writing changed class file " + file.getName());//$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			if (!file.isDerived())
 				file.setDerived(true, null);
 			file.setContents(bytes, true, false, null);
 		} else if (JavaBuilder.DEBUG) {
-			System.out.println("Skipped over unchanged class file " + file.getName());//$NON-NLS-1$
+			System.out.println("Skipped over unchanged class file " + file.getName());//$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	} else {
 		if (isTopLevelType)
 			addDependentsOf(new Path(qualifiedFileName), true); // new type
 		if (JavaBuilder.DEBUG)
-			System.out.println("Writing new class file " + file.getName());//$NON-NLS-1$
+			System.out.println("Writing new class file " + file.getName());//$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try {
 			file.create(bytes, IResource.FORCE | IResource.DERIVED, null);
 		} catch (CoreException e) {
@@ -920,7 +920,7 @@ protected void writeClassFileContents(ClassFile classfile, IFile file, String qu
 					if (previousTypeNames == null) {
 						fromSameFile = CharOperation.equals(compilationUnit.getMainTypeName(), oldTypeName);
 					} else {
-						for (char[] previousTypeName : previousTypeNames) {
+						for (char[] previousTypeName : previousTypeNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (CharOperation.equals(previousTypeName, oldTypeName)) {
 								fromSameFile = true;
 								break;
@@ -949,7 +949,7 @@ protected void writeClassFileContents(ClassFile classfile, IFile file, String qu
 	}
 }
 
-protected boolean classFileChanged(IFile file, String fileName, byte[] newBytes) throws CoreException {
+protected boolean classFileChanged(IFile file, String fileName, byte[] newBytes) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		byte[] oldBytes = Util.getResourceContentsAsByteArray(file);
 		if (Arrays.equals(oldBytes, newBytes))  {
@@ -962,7 +962,7 @@ protected boolean classFileChanged(IFile file, String fileName, byte[] newBytes)
 		// ignore local types since they're only visible inside a single method
 		if (!(reader.isLocal() || reader.isAnonymous()) && reader.hasStructuralChanges(newBytes)) {
 			if (JavaBuilder.DEBUG)
-				System.out.println("Type has structural changes " + fileName); //$NON-NLS-1$
+				System.out.println("Type has structural changes " + fileName); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			addDependentsOf(new Path(fileName), true);
 			this.newState.wasStructurallyChanged(fileName);
 		}
@@ -984,7 +984,7 @@ protected boolean classFileChanged(IFile file, String fileName, byte[] newBytes)
 
 @Override
 public String toString() {
-	return "incremental image builder for:\n\tnew state: " + this.newState; //$NON-NLS-1$
+	return "incremental image builder for:\n\tnew state: " + this.newState; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 

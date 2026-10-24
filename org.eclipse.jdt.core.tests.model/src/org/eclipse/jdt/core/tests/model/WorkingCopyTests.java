@@ -46,7 +46,7 @@ public class WorkingCopyTests extends ModifyingResourceTests {
 public static Test suite() {
 	return buildModelTestSuite(WorkingCopyTests.class);
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void setUp() throws Exception {
 	super.setUp();
 
@@ -112,7 +112,7 @@ public void testCancelMakeConsistent() throws JavaModelException {
 	assertTrue("Working copy should be opened", this.copy.isOpen());
 }
 
-public void testChangeContent() throws CoreException {
+public void testChangeContent() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String newContents =
 		"package x.y;\n" +
 		"public class A {\n" +
@@ -136,7 +136,7 @@ public void testChangeContent() throws CoreException {
 /*
  * Ensures that one cannot commit the contents of a working copy on a read only cu.
  */
-public void testChangeContentOfReadOnlyCU1() throws CoreException {
+public void testChangeContentOfReadOnlyCU1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!Util.isReadOnlySupported()) {
 		// Do not test if file system does not support read-only attribute
 		return;
@@ -161,7 +161,7 @@ public void testChangeContentOfReadOnlyCU1() throws CoreException {
  * Ensures that one can commit the contents of a working copy on a read only cu if a pessimistic repository
  * provider allows it.
  */
-public void testChangeContentOfReadOnlyCU2() throws CoreException {
+public void testChangeContentOfReadOnlyCU2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!Util.isReadOnlySupported()) {
 		// Do not test if file system does not support read-only attribute
 		return;
@@ -263,11 +263,11 @@ public void testCustomizedBuffer2() throws JavaModelException {
  * Test that deleting 2 fields in a JavaCore.run() operation reports the correct delta.
  * (regression test for bug 32225 incorrect delta after deleting 2 fields)
  */
-public void testDelete2Fields() throws CoreException {
+public void testDelete2Fields() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		startDeltas();
 		JavaCore.run(
-			new IWorkspaceRunnable() {
+			new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
 					IType type = WorkingCopyTests.this.copy.getType("A");
 					IField field1 = type.getField("field1");
@@ -296,7 +296,7 @@ public void testDelete2Fields() throws CoreException {
  * <li>ensures committing changes from working copies
  * </ul>
  */
-public void testGeneral() throws JavaModelException, CoreException {
+public void testGeneral() throws JavaModelException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	assertTrue("copy and actual should not be equal", !this.copy.equals(this.cu));
 
@@ -456,9 +456,9 @@ public void testGetPrimaryInnerType() {
 	assertTrue("Element is not a method", primary instanceof IType);
 	assertTrue("Element should exist", primary.exists());
 
-	List<IJavaElement> hierarchy = new ArrayList<>(5);
+	List<IJavaElement> hierarchy = new ArrayList<>(5); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	IJavaElement parent= primary.getParent();
-	while (parent.getElementType() > IJavaElement.COMPILATION_UNIT) {
+	while (parent.getElementType() > IJavaElement.COMPILATION_UNIT) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		hierarchy.add(parent);
 		parent = parent.getParent();
 	}
@@ -507,7 +507,7 @@ public void testGetPrimaryType() {
  * Ensures that a type can be moved to another working copy.
  * (regression test for bug 7881 IType.move() clobbers editing buffer of destination element)
  */
-public void testMoveTypeToAnotherWorkingCopy() throws CoreException {
+public void testMoveTypeToAnotherWorkingCopy() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"P/src/x/y/B.java",
 		"package x.y;\n" +
@@ -589,7 +589,7 @@ public void testShared2() throws JavaModelException {
 /**
  * Tests that multiple commits are possible with the same working copy.
  */
-public void testMultipleCommit() {
+public void testMultipleCommit() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Add a method to the working copy
 	IType gp = this.copy.getType("A");
@@ -632,7 +632,7 @@ public void testMultipleCommit() {
  * Creates a working copy on a non-existing compilation unit.
  * (regression test for bug 8921  DCR - Need a way to create a working copy ignoring existing files)
  */
-public void testNonExistingCU() throws JavaModelException {
+public void testNonExistingCU() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit nonExistingCU = this.getCompilationUnit("P/src/x/y/NonExisting.java");
 	ICompilationUnit workingCopy = null;
 	try {
@@ -706,7 +706,7 @@ public void testNonExistingCU() throws JavaModelException {
  * <li>ensures that the copy can be copied to a different location as the primary cu</li>
  * </ul>
  */
-public void testOperations() throws JavaModelException {
+public void testOperations() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// rename working copy
 	boolean ex= false;
 	try {

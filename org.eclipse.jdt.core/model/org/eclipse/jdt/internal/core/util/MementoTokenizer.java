@@ -36,7 +36,7 @@ public class MementoTokenizer {
 	public static final String LAMBDA_EXPRESSION = Character.toString(JavaElement.JEM_LAMBDA_EXPRESSION);
 	public static final String LAMBDA_METHOD = Character.toString(JavaElement.JEM_LAMBDA_METHOD);
 	public static final String STRING = Character.toString(JavaElement.JEM_STRING);
-	public static final String CLASSPATH_ATTRIBUTE = JAVAPROJECT+PACKAGEFRAGMENTROOT;
+	public static final String CLASSPATH_ATTRIBUTE = JAVAPROJECT+PACKAGEFRAGMENTROOT; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	private final char[] memento;
 	private final int length;
@@ -52,13 +52,13 @@ public class MementoTokenizer {
 	}
 
 	public static String escape( String mementoName) {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		escape(sb,mementoName);
 		return sb.toString();
 	}
 
-	public static void escape(StringBuilder buffer, String mementoName) {
-		for (int i = 0, length = mementoName.length(); i < length; i++) {
+	public static void escape(StringBuilder buffer, String mementoName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		for (int i = 0, length = mementoName.length(); i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char character = mementoName.charAt(i);
 			switch (character) {
 				case JavaElement.JEM_MODULE:
@@ -79,19 +79,19 @@ public class MementoTokenizer {
 				case JavaElement.JEM_LOCALVARIABLE:
 				case JavaElement.JEM_TYPE_PARAMETER:
 				case JavaElement.JEM_ANNOTATION:
-					buffer.append(JavaElement.JEM_ESCAPE);
+					buffer.append(JavaElement.JEM_ESCAPE); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buffer.append(character);
+			buffer.append(character); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
-	public String nextToken() {
+	public String nextToken() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int start = this.index;
 		StringBuilder buffer = null;
 		switch (this.memento[this.index++]) {
 			case JavaElement.JEM_ESCAPE:
-				buffer = new StringBuilder();
-				buffer.append(this.memento[this.index]);
+				buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				buffer.append(this.memento[this.index]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				start = ++this.index;
 				break;
 			case JavaElement.JEM_COUNT:
@@ -149,11 +149,11 @@ public class MementoTokenizer {
 			case JavaElement.JEM_ANNOTATION:
 				return ANNOTATION;
 		}
-		loop: while (this.index < this.length) {
+		loop: while (this.index < this.length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch (this.memento[this.index]) {
 				case JavaElement.JEM_ESCAPE:
-					if (buffer == null) buffer = new StringBuilder();
-					buffer.append(this.memento, start, this.index - start);
+					if (buffer == null) buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+					buffer.append(this.memento, start, this.index - start); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					start = ++this.index;
 					break;
 				case JavaElement.JEM_COUNT:
@@ -177,7 +177,7 @@ public class MementoTokenizer {
 			this.index++;
 		}
 		if (buffer != null) {
-			buffer.append(this.memento, start, this.index - start);
+			buffer.append(this.memento, start, this.index - start); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return buffer.toString();
 		} else {
 			return new String(this.memento, start, this.index - start);

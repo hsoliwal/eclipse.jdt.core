@@ -29,7 +29,7 @@ import org.eclipse.jdt.core.JavaModelException;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class ModelUpdater {
 
-	HashSet projectsToUpdate = new HashSet();
+	HashSet projectsToUpdate = new HashSet(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 
 	/**
 	 * Adds the given child handle to its parent's cache of children.
@@ -68,7 +68,7 @@ public class ModelUpdater {
 	 * <code>basicElementAdded</code>.
 	 * </ul>
 	 */
-	protected void elementAdded(Openable element) {
+	protected void elementAdded(Openable element) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		int elementType = element.getElementType();
 		if (elementType == IJavaElement.JAVA_PROJECT) {
@@ -122,7 +122,7 @@ public class ModelUpdater {
 	 * <li>Add a REMOVED entry in the delta
 	 * </ul>
 	 */
-	protected void elementRemoved(Openable element) {
+	protected void elementRemoved(Openable element) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		if (element.isOpen()) {
 			close(element);
@@ -162,12 +162,12 @@ public class ModelUpdater {
 
 			// reset project caches of projects that were affected
 			Iterator iterator = this.projectsToUpdate.iterator();
-			while (iterator.hasNext()) {
+			while (iterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				JavaProject project = (JavaProject) iterator.next();
 				project.resetCaches();
 			}
 		} finally {
-			this.projectsToUpdate = new HashSet();
+			this.projectsToUpdate = new HashSet(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		}
 	}
 
@@ -196,7 +196,7 @@ public class ModelUpdater {
 	 * If it is not a resource on the classpath, it will be added as a non-java
 	 * resource by the sender of this method.
 	 */
-	protected void traverseDelta(
+	protected void traverseDelta( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaElementDelta delta,
 		IPackageFragmentRoot root,
 		IJavaProject project) {
@@ -238,7 +238,7 @@ public class ModelUpdater {
 		}
 		if (processChildren) {
 			IJavaElementDelta[] children = delta.getAffectedChildren();
-			for (IJavaElementDelta childDelta : children) {
+			for (IJavaElementDelta childDelta : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				traverseDelta(childDelta, root, project);
 			}
 		}

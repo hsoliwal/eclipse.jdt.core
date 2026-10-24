@@ -49,7 +49,7 @@ public class ResolveTests10 extends AbstractJavaModelTests {
 
 		IJavaProject project = setUpJavaProject("Resolve", "10", true);
 
-		String bootModPath = System.getProperty("java.home") + File.separator +"jrt-fs.jar";
+		String bootModPath = System.getProperty("java.home") + File.separator +"jrt-fs.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IClasspathEntry jrtEntry = JavaCore.newLibraryEntry(new Path(bootModPath), null, null, null, null, false);
 		IClasspathEntry[] old = project.getRawClasspath();
 		IClasspathEntry[] newPath = new IClasspathEntry[old.length +1];
@@ -79,7 +79,7 @@ public class ResolveTests10 extends AbstractJavaModelTests {
 		}
 		super.tearDown();
 	}
-	public void testVarWithIntersectionType() throws CoreException {
+	public void testVarWithIntersectionType() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.wc = getWorkingCopy(
 				"/Resolve/src/Hey.java",
 				"interface Cloneable {}\n" +
@@ -125,7 +125,7 @@ public class ResolveTests10 extends AbstractJavaModelTests {
 				Signature.getUnionTypeBounds(typeSignature) // method name is wrong, it actually means: getIntersectionTypeBounds
 			);
 	}
-	public void testBug562382() throws CoreException {
+	public void testBug562382() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.wc = getWorkingCopy("/Resolve/src/X.java",
 				"class X {\n" +
 				"	class Number {};\n" +
@@ -155,7 +155,7 @@ public class ResolveTests10 extends AbstractJavaModelTests {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4216
 	// NPE: Cannot invoke org.eclipse.jdt.internal.compiler.lookup.TypeBinding.isAnonymousType() because binding.type is null" on hyperlink request
-	public void testIssue4216() throws CoreException {
+	public void testIssue4216() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.wc = getWorkingCopy("/Resolve/src/X.java",
 		"""
 		public class Hover {
@@ -182,7 +182,7 @@ public class ResolveTests10 extends AbstractJavaModelTests {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4218
 	// IAE at org.eclipse.jdt.core.Signature.encodeQualifiedName" on hyperlink request
-	public void testIssue4218() throws CoreException {
+	public void testIssue4218() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.wc = getWorkingCopy("/Resolve/src/Test.java",
 		"""
 		@FunctionalInterface

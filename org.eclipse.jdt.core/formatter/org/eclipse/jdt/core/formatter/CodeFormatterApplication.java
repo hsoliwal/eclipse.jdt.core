@@ -195,12 +195,12 @@ public class CodeFormatterApplication implements IApplication {
 	 */
 	private void formatDirTree(File dir, CodeFormatter codeFormatter) {
 
-		File[] files = dir.listFiles();
+		File[] files = dir.listFiles(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		if (files == null)
 			return;
 
-		for (File file : files) {
-			if (file.isDirectory()) {
+		for (File file : files) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			if (file.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				formatDirTree(file, codeFormatter);
 			} else if (Util.isJavaLikeFileName(file.getPath())) {
 				formatFile(file, codeFormatter);
@@ -211,7 +211,7 @@ public class CodeFormatterApplication implements IApplication {
 	/**
 	 * Format the given Java source file.
 	 */
-	private void formatFile(File file, CodeFormatter codeFormatter) {
+	private void formatFile(File file, CodeFormatter codeFormatter) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IDocument doc = new Document();
 		try {
 			// read the file
@@ -232,7 +232,7 @@ public class CodeFormatterApplication implements IApplication {
 			}
 
 			// write the file
-			try (BufferedWriter out = new BufferedWriter(new FileWriter(file))) {
+			try (BufferedWriter out = new BufferedWriter(new FileWriter(file))) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				out.write(doc.get());
 				out.flush();
 			}
@@ -247,7 +247,7 @@ public class CodeFormatterApplication implements IApplication {
 		}
 	}
 
-	private File[] processCommandLine(String[] argsArray) {
+	private File[] processCommandLine(String[] argsArray) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		int index = 0;
 		final int argCount = argsArray.length;
@@ -261,7 +261,7 @@ public class CodeFormatterApplication implements IApplication {
 
 		File[] filesToFormat = new File[INITIAL_SIZE];
 
-		loop: while (index < argCount) {
+		loop: while (index < argCount) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String currentArg = argsArray[index++];
 
 			switch(mode) {
@@ -287,7 +287,7 @@ public class CodeFormatterApplication implements IApplication {
 					}
 					// the current arg should be a file or a directory name
 					File file = new File(currentArg);
-					if (file.exists()) {
+					if (file.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 						if (filesToFormat.length == fileCounter) {
 							System.arraycopy(filesToFormat, 0, (filesToFormat = new File[fileCounter * 2]), 0, fileCounter);
 						}
@@ -295,7 +295,7 @@ public class CodeFormatterApplication implements IApplication {
 					} else {
 						String canonicalPath;
 						try {
-							canonicalPath = file.getCanonicalPath();
+							canonicalPath = file.getCanonicalPath(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 						} catch(IOException e2) {
 							canonicalPath = file.getAbsolutePath();
 						}
@@ -344,21 +344,21 @@ public class CodeFormatterApplication implements IApplication {
 	 * Return a Java Properties file representing the options that are in the
 	 * specified configuration file.
 	 */
-	private Properties readConfig(String filename) {
+	private Properties readConfig(String filename) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File configFile = new File(filename);
-		try (BufferedInputStream stream = new BufferedInputStream(new FileInputStream(configFile))) {
+		try (BufferedInputStream stream = new BufferedInputStream(new FileInputStream(configFile))) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			final Properties formatterOptions = new Properties();
 			formatterOptions.load(stream);
 			return formatterOptions;
 		} catch (IOException e) {
 			String canonicalPath = null;
 			try {
-				canonicalPath = configFile.getCanonicalPath();
+				canonicalPath = configFile.getCanonicalPath(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			} catch(IOException e2) {
 				canonicalPath = configFile.getAbsolutePath();
 			}
 			String errorMessage;
-			if (!configFile.exists() && !configFile.isAbsolute()) {
+			if (!configFile.exists() && !configFile.isAbsolute()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				errorMessage = Messages.bind(Messages.ConfigFileNotFoundErrorTryFullPath, new Object[] {
 					canonicalPath,
 					System.getProperty("user.dir") //$NON-NLS-1$
@@ -376,7 +376,7 @@ public class CodeFormatterApplication implements IApplication {
 	/**
 	 * Runs the Java code formatter application
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public Object start(IApplicationContext context) throws Exception {
 		File[] filesToFormat = processCommandLine((String[]) context.getArguments().get(IApplicationContext.APPLICATION_ARGS));
 
@@ -394,8 +394,8 @@ public class CodeFormatterApplication implements IApplication {
 		final CodeFormatter codeFormatter = ToolFactory.createCodeFormatter(this.options,
 				ToolFactory.M_FORMAT_EXISTING);
 		// format the list of files and/or directories
-		for (final File file : filesToFormat) {
-			if (file.isDirectory()) {
+		for (final File file : filesToFormat) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			if (file.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				formatDirTree(file, codeFormatter);
 			} else if (Util.isJavaLikeFileName(file.getPath())) {
 				formatFile(file, codeFormatter);

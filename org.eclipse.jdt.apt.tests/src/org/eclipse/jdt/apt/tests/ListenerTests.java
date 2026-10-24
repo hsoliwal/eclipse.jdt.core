@@ -32,7 +32,7 @@ public class ListenerTests extends APTTestBase
 		return new TestSuite(ListenerTests.class);
 	}
 
-	public void testListenerCalled() throws Exception
+	public void testListenerCalled() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		clearProcessorResult(ListenerProcessor.class);
 		IProject project = env.getProject( getProjectName() );

@@ -89,16 +89,16 @@ public class ProfilingASTConvertionTest extends AbstractJavaModelTests {
 		if ((value % 10) == 0) {
 			numberOfFigures = (int) (Math.log(value + 1)/ Math.log(10));
 		}
-		StringBuilder buffer = new StringBuilder();
-		while(numberOfFigures < numberOfFiguresForRange) {
-			buffer.append(" ");
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		while(numberOfFigures < numberOfFiguresForRange) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(" "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			numberOfFigures++;
 		}
-		buffer.append(value);
+		buffer.append(value); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return String.valueOf(buffer);
 	}
 
-	private void printDistribution(long[] array, int increment) {
+	private void printDistribution(long[] array, int increment) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int bound = increment;
 		int counter = 0;
 		int totalCounter = 0;
@@ -112,7 +112,7 @@ public class ProfilingASTConvertionTest extends AbstractJavaModelTests {
 		if ((length % increment) == 0) {
 			numberOfFiguresForCounter = (int) (Math.log(length + 1)/ Math.log(10));
 		}
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (array[i] < bound) {
 				counter++;
 			} else {
@@ -127,15 +127,15 @@ public class ProfilingASTConvertionTest extends AbstractJavaModelTests {
 		printRange(counter, bound, increment, totalCounter, length, numberOfFiguresForRange, numberOfFiguresForCounter);
 	}
 
-	private void printRange(int counter, int bound, int increment, int totalCounter, int length, int numberOfFiguresForRange, int numberOfFiguresForCounters) {
+	private void printRange(int counter, int bound, int increment, int totalCounter, int length, int numberOfFiguresForRange, int numberOfFiguresForCounters) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (counter != 0) {
-			StringBuilder buffer = new StringBuilder();
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			int low = bound - increment;
 			if (low != 0) {
 				low++;
 			}
 			DecimalFormat format = new DecimalFormat("###.##");
-			buffer
+			buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				.append(display(low, numberOfFiguresForRange))
 				.append(" - ")
 				.append(display(bound, numberOfFiguresForRange))
@@ -150,7 +150,7 @@ public class ProfilingASTConvertionTest extends AbstractJavaModelTests {
 	/**
 	 * @deprecated using deprecated code
 	 */
-	private void reportResults(int apiLevel, long totalTime, int length, long[] times, ArrayList arrayList) {
+	private void reportResults(int apiLevel, long totalTime, int length, long[] times, ArrayList arrayList) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		System.out.println("===============================================================================");
 		System.out.print("================================ ");
 		switch(apiLevel) {
@@ -167,20 +167,20 @@ public class ProfilingASTConvertionTest extends AbstractJavaModelTests {
 		System.out.println("===============================================================================");
 		Arrays.sort(times);
 		System.out.println("===================================== TIMES ===================================");
-		System.out.println("Fastest = " + times[0] + "ms");
+		System.out.println("Fastest = " + times[0] + "ms"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		long maxTime = times[length - 1];
-		System.out.println("Slowest = " + maxTime + "ms");
-		System.out.println("Total = " + totalTime + "ms");
+		System.out.println("Slowest = " + maxTime + "ms"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		System.out.println("Total = " + totalTime + "ms"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		System.out.println("================================== DISTRIBUTION ===============================");
 		printDistribution(times, INCREMENTS);
 		System.out.println("================================= SORTED BY TIME ==============================");
-		Collections.sort(arrayList);
-		for (Iterator iterator = arrayList.iterator(); iterator.hasNext(); ) {
+		Collections.sort(arrayList); //FLLDCIM: MARK — M16 SORT_LANE CALL
+		for (Iterator iterator = arrayList.iterator(); iterator.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final Result next = (Result) iterator.next();
-			System.out.println(next.unitName + "(" + next.length + "KB) - " + next.time + "ms");
+			System.out.println(next.unitName + "(" + next.length + "KB) - " + next.time + "ms"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		System.out.println("================================ SORTED BY LENGTH =============================");
-		Collections.sort(arrayList, new Comparator() {
+		Collections.sort(arrayList, new Comparator() { //FLLDCIM: MARK — M16 SORT_LANE CALL
 			/* (non-Javadoc)
 			 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
 			 */
@@ -196,13 +196,13 @@ public class ProfilingASTConvertionTest extends AbstractJavaModelTests {
 				return 1;
 			}
 		});
-		for (Iterator iterator = arrayList.iterator(); iterator.hasNext(); ) {
+		for (Iterator iterator = arrayList.iterator(); iterator.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final Result next = (Result) iterator.next();
-			System.out.println(next.unitName + "(" + next.length + "KB) - " + next.time + "ms");
+			System.out.println(next.unitName + "(" + next.length + "KB) - " + next.time + "ms"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void setUpSuite() throws Exception {
 		super.setUpSuite();
 
@@ -211,7 +211,7 @@ public class ProfilingASTConvertionTest extends AbstractJavaModelTests {
 			setupExternalJCL("converterJclMin");
 			JavaCore.setClasspathVariables(
 				new String[] {"CONVERTER_JCL_LIB", "CONVERTER_JCL_SRC", "CONVERTER_JCL_SRCROOT"}, //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				new Path[] {new Path(getExternalPath() + "converterJclMin.jar"), new Path(getExternalPath() + "converterJclMinsrc.zip"), new Path("")},
+				new Path[] {new Path(getExternalPath() + "converterJclMin.jar"), new Path(getExternalPath() + "converterJclMinsrc.zip"), new Path("")}, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				null);
 		}
 
@@ -219,11 +219,11 @@ public class ProfilingASTConvertionTest extends AbstractJavaModelTests {
 		assertNotNull("No java project", javaProject);
 		IPackageFragment[] packageFragments = javaProject.getPackageFragments();
 		assertNotNull("No package fragments", packageFragments);
-		ArrayList collector = new ArrayList();
-		for (int i = 0, max = packageFragments.length; i < max; i++) {
+		ArrayList collector = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (int i = 0, max = packageFragments.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ICompilationUnit[] units = packageFragments[i].getCompilationUnits();
 			if (units != null) {
-				for (int j = 0, max2 = units.length; j < max2; j++) {
+				for (int j = 0, max2 = units.length; j < max2; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					collector.add(units[j]);
 				}
 			}
@@ -232,7 +232,7 @@ public class ProfilingASTConvertionTest extends AbstractJavaModelTests {
 		collector.toArray(this.compilationUnits);
 	}
 
-	public void test0000() throws JavaModelException {
+	public void test0000() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			RESOLVE_BINDINGS = true;
 			final int apiLevel = JLS3_INTERNAL;
@@ -240,8 +240,8 @@ public class ProfilingASTConvertionTest extends AbstractJavaModelTests {
 			parser.setResolveBindings(RESOLVE_BINDINGS);
 			int length = this.compilationUnits.length;
 			long[] times = new long[length];
-			ArrayList arrayList = new ArrayList(length);
-			for (int i = 0; i < length; i++) {
+			ArrayList arrayList = new ArrayList(length); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				parser.setSource(this.compilationUnits[i]);
 				parser.setResolveBindings(RESOLVE_BINDINGS);
 				long time = System.currentTimeMillis();
@@ -252,14 +252,14 @@ public class ProfilingASTConvertionTest extends AbstractJavaModelTests {
 				CompilationUnit unit = (CompilationUnit) node;
 				assertEquals("Has problem", 0, unit.getProblems().length);
 				TypeDeclaration typeDeclaration = (TypeDeclaration) unit.types().get(0);
-				StringBuilder buffer = new StringBuilder();
-				buffer.append(unit.getPackage().getName()).append(".").append(typeDeclaration.getName());
+				StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				buffer.append(unit.getPackage().getName()).append(".").append(typeDeclaration.getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				IResource resource = this.compilationUnits[i].getResource();
 				if (resource instanceof IFile) {
 					IFile file = (IFile) resource;
 					File f = new File(file.getLocation().toOSString());
-					if (f.exists()) {
-						arrayList.add(new Result(String.valueOf(buffer), times[i], f.length()));
+					if (f.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+						arrayList.add(new Result(String.valueOf(buffer), times[i], f.length())); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					}
 				}
 			}
@@ -268,7 +268,7 @@ public class ProfilingASTConvertionTest extends AbstractJavaModelTests {
 		}
 	}
 
-	public void test0001() throws JavaModelException {
+	public void test0001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			RESOLVE_BINDINGS = true;
 			final int apiLevel = JLS3_INTERNAL;
@@ -277,8 +277,8 @@ public class ProfilingASTConvertionTest extends AbstractJavaModelTests {
 			long totalTime = 0;
 			int length = this.compilationUnits.length;
 			long[] times = new long[length];
-			ArrayList arrayList = new ArrayList(length);
-			for (int i = 0; i < length; i++) {
+			ArrayList arrayList = new ArrayList(length); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				parser.setSource(this.compilationUnits[i]);
 				parser.setResolveBindings(RESOLVE_BINDINGS);
 				long time = System.currentTimeMillis();
@@ -290,53 +290,14 @@ public class ProfilingASTConvertionTest extends AbstractJavaModelTests {
 				CompilationUnit unit = (CompilationUnit) node;
 				assertEquals("Has problem", 0, unit.getProblems().length);
 				TypeDeclaration typeDeclaration = (TypeDeclaration) unit.types().get(0);
-				StringBuilder buffer = new StringBuilder();
-				buffer.append(unit.getPackage().getName()).append(".").append(typeDeclaration.getName());
+				StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				buffer.append(unit.getPackage().getName()).append(".").append(typeDeclaration.getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				IResource resource = this.compilationUnits[i].getResource();
 				if (resource instanceof IFile) {
 					IFile file = (IFile) resource;
 					File f = new File(file.getLocation().toOSString());
-					if (f.exists()) {
-						arrayList.add(new Result(String.valueOf(buffer), times[i], f.length()));
-					}
-				}
-			}
-			reportResults(apiLevel, totalTime, length, times, arrayList);
-		} finally {
-			RESOLVE_BINDINGS = false;
-		}
-	}
-
-	public void test0002() throws JavaModelException {
-		try {
-			RESOLVE_BINDINGS = false;
-			final int apiLevel = JLS3_INTERNAL;
-			ASTParser parser = ASTParser.newParser(apiLevel);
-			parser.setResolveBindings(RESOLVE_BINDINGS);
-			long totalTime = 0;
-			int length = this.compilationUnits.length;
-			long[] times = new long[length];
-			ArrayList arrayList = new ArrayList(length);
-			for (int i = 0; i < length; i++) {
-				parser.setSource(this.compilationUnits[i]);
-				parser.setResolveBindings(RESOLVE_BINDINGS);
-				long time = System.currentTimeMillis();
-				ASTNode node = parser.createAST(null);
-				times[i] = System.currentTimeMillis() - time;
-				totalTime += times[i];
-				assertNotNull("No node", node);
-				assertEquals("Wrong type", ASTNode.COMPILATION_UNIT, node.getNodeType());
-				CompilationUnit unit = (CompilationUnit) node;
-				assertEquals("Has problem", 0, unit.getProblems().length);
-				TypeDeclaration typeDeclaration = (TypeDeclaration) unit.types().get(0);
-				StringBuilder buffer = new StringBuilder();
-				buffer.append(unit.getPackage().getName()).append(".").append(typeDeclaration.getName());
-				IResource resource = this.compilationUnits[i].getResource();
-				if (resource instanceof IFile) {
-					IFile file = (IFile) resource;
-					File f = new File(file.getLocation().toOSString());
-					if (f.exists()) {
-						arrayList.add(new Result(String.valueOf(buffer), times[i], f.length()));
+					if (f.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+						arrayList.add(new Result(String.valueOf(buffer), times[i], f.length())); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					}
 				}
 			}
@@ -346,18 +307,17 @@ public class ProfilingASTConvertionTest extends AbstractJavaModelTests {
 		}
 	}
 
-	/** @deprecated using deprecated code */
-	public void test0003() throws JavaModelException {
+	public void test0002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
-			RESOLVE_BINDINGS = true;
-			final int apiLevel = AST.JLS2;
+			RESOLVE_BINDINGS = false;
+			final int apiLevel = JLS3_INTERNAL;
 			ASTParser parser = ASTParser.newParser(apiLevel);
 			parser.setResolveBindings(RESOLVE_BINDINGS);
 			long totalTime = 0;
 			int length = this.compilationUnits.length;
 			long[] times = new long[length];
-			ArrayList arrayList = new ArrayList(length);
-			for (int i = 0; i < length; i++) {
+			ArrayList arrayList = new ArrayList(length); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				parser.setSource(this.compilationUnits[i]);
 				parser.setResolveBindings(RESOLVE_BINDINGS);
 				long time = System.currentTimeMillis();
@@ -369,14 +329,14 @@ public class ProfilingASTConvertionTest extends AbstractJavaModelTests {
 				CompilationUnit unit = (CompilationUnit) node;
 				assertEquals("Has problem", 0, unit.getProblems().length);
 				TypeDeclaration typeDeclaration = (TypeDeclaration) unit.types().get(0);
-				StringBuilder buffer = new StringBuilder();
-				buffer.append(unit.getPackage().getName()).append(".").append(typeDeclaration.getName());
+				StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				buffer.append(unit.getPackage().getName()).append(".").append(typeDeclaration.getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				IResource resource = this.compilationUnits[i].getResource();
 				if (resource instanceof IFile) {
 					IFile file = (IFile) resource;
 					File f = new File(file.getLocation().toOSString());
-					if (f.exists()) {
-						arrayList.add(new Result(String.valueOf(buffer), times[i], f.length()));
+					if (f.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+						arrayList.add(new Result(String.valueOf(buffer), times[i], f.length())); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					}
 				}
 			}
@@ -387,17 +347,17 @@ public class ProfilingASTConvertionTest extends AbstractJavaModelTests {
 	}
 
 	/** @deprecated using deprecated code */
-	public void test0004() throws JavaModelException {
+	public void test0003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
-			RESOLVE_BINDINGS = false;
+			RESOLVE_BINDINGS = true;
 			final int apiLevel = AST.JLS2;
 			ASTParser parser = ASTParser.newParser(apiLevel);
 			parser.setResolveBindings(RESOLVE_BINDINGS);
 			long totalTime = 0;
 			int length = this.compilationUnits.length;
 			long[] times = new long[length];
-			ArrayList arrayList = new ArrayList(length);
-			for (int i = 0; i < length; i++) {
+			ArrayList arrayList = new ArrayList(length); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				parser.setSource(this.compilationUnits[i]);
 				parser.setResolveBindings(RESOLVE_BINDINGS);
 				long time = System.currentTimeMillis();
@@ -409,14 +369,54 @@ public class ProfilingASTConvertionTest extends AbstractJavaModelTests {
 				CompilationUnit unit = (CompilationUnit) node;
 				assertEquals("Has problem", 0, unit.getProblems().length);
 				TypeDeclaration typeDeclaration = (TypeDeclaration) unit.types().get(0);
-				StringBuilder buffer = new StringBuilder();
-				buffer.append(unit.getPackage().getName()).append(".").append(typeDeclaration.getName());
+				StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				buffer.append(unit.getPackage().getName()).append(".").append(typeDeclaration.getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				IResource resource = this.compilationUnits[i].getResource();
 				if (resource instanceof IFile) {
 					IFile file = (IFile) resource;
 					File f = new File(file.getLocation().toOSString());
-					if (f.exists()) {
-						arrayList.add(new Result(String.valueOf(buffer), times[i], f.length()));
+					if (f.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+						arrayList.add(new Result(String.valueOf(buffer), times[i], f.length())); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+					}
+				}
+			}
+			reportResults(apiLevel, totalTime, length, times, arrayList);
+		} finally {
+			RESOLVE_BINDINGS = false;
+		}
+	}
+
+	/** @deprecated using deprecated code */
+	public void test0004() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		try {
+			RESOLVE_BINDINGS = false;
+			final int apiLevel = AST.JLS2;
+			ASTParser parser = ASTParser.newParser(apiLevel);
+			parser.setResolveBindings(RESOLVE_BINDINGS);
+			long totalTime = 0;
+			int length = this.compilationUnits.length;
+			long[] times = new long[length];
+			ArrayList arrayList = new ArrayList(length); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				parser.setSource(this.compilationUnits[i]);
+				parser.setResolveBindings(RESOLVE_BINDINGS);
+				long time = System.currentTimeMillis();
+				ASTNode node = parser.createAST(null);
+				times[i] = System.currentTimeMillis() - time;
+				totalTime += times[i];
+				assertNotNull("No node", node);
+				assertEquals("Wrong type", ASTNode.COMPILATION_UNIT, node.getNodeType());
+				CompilationUnit unit = (CompilationUnit) node;
+				assertEquals("Has problem", 0, unit.getProblems().length);
+				TypeDeclaration typeDeclaration = (TypeDeclaration) unit.types().get(0);
+				StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				buffer.append(unit.getPackage().getName()).append(".").append(typeDeclaration.getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				IResource resource = this.compilationUnits[i].getResource();
+				if (resource instanceof IFile) {
+					IFile file = (IFile) resource;
+					File f = new File(file.getLocation().toOSString());
+					if (f.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+						arrayList.add(new Result(String.valueOf(buffer), times[i], f.length())); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 					}
 				}
 			}

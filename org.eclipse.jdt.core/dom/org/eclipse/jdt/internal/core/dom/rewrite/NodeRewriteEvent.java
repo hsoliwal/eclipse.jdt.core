@@ -76,29 +76,29 @@ public class NodeRewriteEvent extends RewriteEvent {
 		return null;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public String toString() {
-		StringBuilder buf= new StringBuilder();
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		switch (getChangeKind()) {
 		case INSERTED:
-			buf.append(" [inserted: "); //$NON-NLS-1$
-			buf.append(getNewValue());
-			buf.append(']');
+			buf.append(" [inserted: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append(getNewValue()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case REPLACED:
-			buf.append(" [replaced: "); //$NON-NLS-1$
-			buf.append(getOriginalValue());
-			buf.append(" -> "); //$NON-NLS-1$
-			buf.append(getNewValue());
-			buf.append(']');
+			buf.append(" [replaced: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append(getOriginalValue()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append(" -> "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append(getNewValue()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case REMOVED:
-			buf.append(" [removed: "); //$NON-NLS-1$
-			buf.append(getOriginalValue());
-			buf.append(']');
+			buf.append(" [removed: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append(getOriginalValue()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		default:
-			buf.append(" [unchanged]"); //$NON-NLS-1$
+			buf.append(" [unchanged]"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return buf.toString();
 	}

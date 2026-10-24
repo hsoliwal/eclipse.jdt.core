@@ -60,7 +60,7 @@ public class IdeFilerImpl implements Filer {
 	/* (non-Javadoc)
 	 * @see javax.annotation.processing.Filer#createClassFile(java.lang.CharSequence, javax.lang.model.element.Element[])
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public JavaFileObject createClassFile(CharSequence name, Element... originatingElements)
 			throws IOException {
 
@@ -88,9 +88,9 @@ public class IdeFilerImpl implements Filer {
     	} else {
     		pkg = "";
     	}
-    	file = getFileFromOutputLocation(StandardLocation.CLASS_OUTPUT, pkg, name + ".class");
+    	file = getFileFromOutputLocation(StandardLocation.CLASS_OUTPUT, pkg, name + ".class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		path = path.append(nameAsString);
-		path = new Path(path.toString() + ".class");
+		path = new Path(path.toString() + ".class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		return new IdeOutputClassFileObject(_env, file, nameAsString);
 	}
@@ -100,7 +100,7 @@ public class IdeFilerImpl implements Filer {
 	 * In the IDE implementation, we support only two Locations: SOURCE_OUTPUT, which means the APT generated source folder,
 	 * and CLASS_OUTPUT, which means the binary output folder associated with the APT generated source folder.
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public FileObject createResource(Location location, CharSequence pkg,
 			CharSequence relativeName, Element... originatingElements) throws IOException
 	{
@@ -109,7 +109,7 @@ public class IdeFilerImpl implements Filer {
 			throw new IllegalArgumentException("Location is null");
 		}
 		if (!location.isOutputLocation()) {
-			throw new IllegalArgumentException("Location " + location.getName() + " is not an output location");
+			throw new IllegalArgumentException("Location " + location.getName() + " is not an output location"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		if (null == pkg) {
@@ -123,13 +123,13 @@ public class IdeFilerImpl implements Filer {
 		}
 		IFile file = getFileFromOutputLocation(location, pkg, relativeName);
 		if (AptCompilationParticipant.getInstance().getJava6GeneratedFiles().contains(file)) {
-			throw new FilerException("Source file already created: " + file.getFullPath()); //$NON-NLS-1$
+			throw new FilerException("Source file already created: " + file.getFullPath()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		Set<IFile> parentFiles;
 		if (originatingElements != null && originatingElements.length > 0) {
-			parentFiles = new HashSet<>(originatingElements.length);
-			for (Element elem : originatingElements) {
+			parentFiles = new HashSet<>(originatingElements.length); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+			for (Element elem : originatingElements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IFile enclosing = _env.getEnclosingIFile(elem);
 				if (null != enclosing) {
 					parentFiles.add(enclosing);
@@ -146,7 +146,7 @@ public class IdeFilerImpl implements Filer {
 	 * will be ignored.
 	 * @see javax.annotation.processing.Filer#createSourceFile(java.lang.CharSequence, javax.lang.model.element.Element[])
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public JavaFileObject createSourceFile(CharSequence name, Element... originatingElements)
 			throws IOException
 	{
@@ -156,7 +156,7 @@ public class IdeFilerImpl implements Filer {
 		}
 		IFile file = _env.getAptProject().getGeneratedFileManager(_env.isTestCode()).getIFileForTypeName(name.toString());
 		if (AptCompilationParticipant.getInstance().getJava6GeneratedFiles().contains(file)) {
-			throw new FilerException("Source file already created: " + file.getFullPath()); //$NON-NLS-1$
+			throw new FilerException("Source file already created: " + file.getFullPath()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		// TODO: is the following correct?
 		// JDK 9's createSourceFile API mentions '/' as separator for a module prefix.
@@ -179,8 +179,8 @@ public class IdeFilerImpl implements Filer {
 //		}
 		Set<IFile> parentFiles = Collections.emptySet();
 		if (originatingElements != null && originatingElements.length > 0) {
-			parentFiles = new HashSet<>(originatingElements.length);
-			for (Element elem : originatingElements) {
+			parentFiles = new HashSet<>(originatingElements.length); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+			for (Element elem : originatingElements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IFile enclosing = _env.getEnclosingIFile(elem);
 				if (null != enclosing) {
 					parentFiles.add(enclosing);
@@ -210,7 +210,7 @@ public class IdeFilerImpl implements Filer {
      * @param relPath must be non-null and non-empty.
      * @throws IOException if the path is not valid.
      */
-    protected IFile getFileFromOutputLocation( Location loc, CharSequence pkg, CharSequence relPath )
+    protected IFile getFileFromOutputLocation( Location loc, CharSequence pkg, CharSequence relPath ) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	throws IOException
     {
     	GeneratedSourceFolderManager gsfm = _env.getAptProject().getGeneratedSourceFolderManager(_env.isTestCode());
@@ -231,7 +231,7 @@ public class IdeFilerImpl implements Filer {
     		path = gsfm.getFolder().getProjectRelativePath();
     	}
     	else {
-    		throw new IllegalArgumentException("Unsupported location: " + loc);
+    		throw new IllegalArgumentException("Unsupported location: " + loc); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     	}
 
         if( pkg.length() > 0 )
@@ -255,7 +255,7 @@ public class IdeFilerImpl implements Filer {
     	IStatus status = _env.getProject().getWorkspace().validatePath(file.getFullPath().toOSString(), IResource.FILE);
     	if (!status.isOK()) {
         	CoreException ce = new CoreException(status);
-        	throw new IOException("Invalid path: " + file.toString(), ce); //$NON-NLS-1$
+        	throw new IOException("Invalid path: " + file.toString(), ce); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         }
 	}
 

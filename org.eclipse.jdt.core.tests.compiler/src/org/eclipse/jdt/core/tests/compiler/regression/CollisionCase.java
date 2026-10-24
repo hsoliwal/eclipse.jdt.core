@@ -28,7 +28,7 @@ public static Class testClass() {
 	return CollisionCase.class;
 }
 
-public void test001() {
+public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -49,7 +49,7 @@ public void test001() {
 		"SUCCESS");
 }
 
-public void test002() {
+public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -71,7 +71,7 @@ public void test002() {
 		"----------\n");
 }
 // http://bugs.eclipse.org/bugs/show_bug.cgi?id=84886
-public void test003() {
+public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",

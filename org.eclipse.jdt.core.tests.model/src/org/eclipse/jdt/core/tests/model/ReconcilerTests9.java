@@ -76,7 +76,7 @@ public void setUp() throws Exception {
 	this.problemRequestor.initialize(this.workingCopy.getSource().toCharArray());
 	startDeltas();
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void setUpSuite() throws Exception {
 	super.setUpSuite();
 
@@ -130,14 +130,14 @@ public void tearDownSuite() throws Exception {
 }
 private String deprecatedForRemoval(String element) {
 	if (isJRE9)
-		return element + " has been deprecated and marked for removal\n";
+		return element + " has been deprecated and marked for removal\n"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	else
-		return element + " is deprecated\n";
+		return element + " is deprecated\n"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 /*
  * Ensures that the delta is correct when adding an annotation
  */
-public void testAnnotations1() throws JavaModelException {
+public void testAnnotations1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setWorkingCopyContents(
 		"/**\n" +
 		"  * @category before\n" +
@@ -175,7 +175,7 @@ public void testAnnotations2deprecated() throws JavaModelException {
 /*
  * Ensures that the delta is correct when removing an annotation
  */
-public void testAnnotations2() throws JavaModelException {
+public void testAnnotations2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setWorkingCopyContents(
 		"/**\n" +
 		"  * @category before\n" +
@@ -201,7 +201,7 @@ public void testAnnotations2() throws JavaModelException {
 /*
  * Ensures that the delta is correct when changing an annotation
  */
-public void testAnnotations3() throws JavaModelException {
+public void testAnnotations3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setWorkingCopyContents(
 		"/**\n" +
 		"  * @category before\n" +
@@ -282,7 +282,7 @@ public void testCategories3() throws JavaModelException {
 		"mod.one[*]: {CATEGORIES}"
 	);
 }
-public void testTerminalDeprecation1() throws CoreException {
+public void testTerminalDeprecation1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJava9Project("P1");
 		createFolder("/P1/src/p");
@@ -329,7 +329,7 @@ public void testTerminalDeprecation1() throws CoreException {
 		deleteProject("P1");
 	}
 }
-public void testTerminalDeprecation2() throws CoreException, IOException {
+public void testTerminalDeprecation2() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p1 = createJava9Project("P1");
 		String x1Source = "package p;\n" +
@@ -377,7 +377,7 @@ public void testTerminalDeprecation2() throws CoreException, IOException {
 				"}\n");
 		assertProblems(
 			"Unexpected problems",
-			"----------\n" +
+			"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"1. WARNING in /P1/src/Y.java (at line 1)\n" +
 			"	public class Y extends p.X1 {\n" +
 			"	                         ^^\n" +
@@ -402,7 +402,7 @@ public void testTerminalDeprecation2() throws CoreException, IOException {
 		deleteProject("P1");
 	}
 }
-public void testBug540541() throws CoreException, IOException {
+public void testBug540541() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9) return;
 	IJavaProject project1 = null;
 	IJavaProject project2 = null;
@@ -451,7 +451,7 @@ public void testBug540541() throws CoreException, IOException {
 		JavaCore.setOptions(options);
 	}
 }
-public void testBug543092() throws Exception {
+public void testBug543092() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9) {
 		System.err.println("Test "+getName()+" requires a JRE 9");
 		return;
@@ -462,7 +462,7 @@ public void testBug543092() throws Exception {
 		//      - has log4j on the module path
 		p = createJava9ProjectWithJREAttributes("p", new String[] {"src"},
 				new IClasspathAttribute[] {JavaCore.newClasspathAttribute(IClasspathAttribute.MODULE, "true")});
-		String jarAbsPath = p.getProject().getLocation()+"/lib-modular.jar";
+		String jarAbsPath = p.getProject().getLocation()+"/lib-modular.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createJar(new String[] {
 				"module-info.java",
 				"module lib {\n" +
@@ -477,7 +477,7 @@ public void testBug543092() throws Exception {
 			"9");
 		addLibraryEntry(p, new Path(jarAbsPath), false);
 
-		String jarAbsPath2 = p.getProject().getLocation()+"/lib-nonmodular.jar";
+		String jarAbsPath2 = p.getProject().getLocation()+"/lib-nonmodular.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createJar(new String[] {
 				"lib/lab/Lib.java",
 				"package lib.lab;\n" +
@@ -510,7 +510,7 @@ public void testBug543092() throws Exception {
 		deleteProject(p);
 	}
 }
-public void testBug543092b() throws Exception {
+public void testBug543092b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9) {
 		System.err.println("Test "+getName()+" requires a JRE 9");
 		return;
@@ -521,7 +521,7 @@ public void testBug543092b() throws Exception {
 		//      - has log4j on the module path
 		IClasspathAttribute[] moduleAttributes = new IClasspathAttribute[] {JavaCore.newClasspathAttribute(IClasspathAttribute.MODULE, "true")};
 		p = createJava9ProjectWithJREAttributes("p", new String[] {"src"}, moduleAttributes);
-		String jarAbsPath = p.getProject().getLocation()+"/lib-modular.jar";
+		String jarAbsPath = p.getProject().getLocation()+"/lib-modular.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createJar(new String[] {
 				"module-info.java",
 				"module lib {\n" +
@@ -536,7 +536,7 @@ public void testBug543092b() throws Exception {
 			"9");
 		addLibraryEntry(p, new Path(jarAbsPath), null, null, null, null, moduleAttributes, false);
 
-		String jarAbsPath2 = p.getProject().getLocation()+"/lib-nonmodular.jar";
+		String jarAbsPath2 = p.getProject().getLocation()+"/lib-nonmodular.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createJar(new String[] {
 				"lib/lab/Lib.java",
 				"package lib.lab;\n" +
@@ -572,7 +572,7 @@ public void testBug543092b() throws Exception {
 		deleteProject(p);
 	}
 }
-public void testBug544017() throws CoreException {
+public void testBug544017() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9) {
 		System.err.println("Test "+getName()+" requires a JRE 9");
 		return;
@@ -639,7 +639,7 @@ public void testBug544017() throws CoreException {
 
 		ICompilationUnit wc = getCompilationUnit(pathExample).getWorkingCopy(this.wcOwner, null);
 		wc.getBuffer().append(" ");
-		this.problemRequestor.initialize((sourceExample+" ").toCharArray());
+		this.problemRequestor.initialize((sourceExample+" ").toCharArray()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		wc.reconcile(JLS_LATEST, true, this.wcOwner, null);
 		assertProblems("Expecting no problems",
 						"----------\n" +
@@ -652,7 +652,7 @@ public void testBug544017() throws CoreException {
 	}
 }
 
-public void testBug545687() throws CoreException, IOException {
+public void testBug545687() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9)
 		return;
 	IJavaProject p = null;
@@ -686,7 +686,7 @@ public void testBug545687() throws CoreException, IOException {
 		JavaCore.setOptions(options);
 	}
 }
-public void testBug546315() throws Exception {
+public void testBug546315() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9)
 		return;
 	IJavaProject p = null;
@@ -702,7 +702,7 @@ public void testBug546315() throws Exception {
 					"}",
 				},
 				null,
-				new HashMap<>(),
+				new HashMap<>(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				null,
 				getExternalResourcePath(fooPath));
 
@@ -716,7 +716,7 @@ public void testBug546315() throws Exception {
 					"}",
 				},
 				null,
-				new HashMap<>(),
+				new HashMap<>(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				null,
 				getExternalResourcePath(fooBarPath));
 
@@ -730,7 +730,7 @@ public void testBug546315() throws Exception {
 					"}",
 				},
 				null,
-				new HashMap<>(),
+				new HashMap<>(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				null,
 				getExternalResourcePath(fooBar2Path));
 
@@ -800,11 +800,11 @@ public void testBug546315() throws Exception {
 		deleteExternalResource("externalLib");
 		deleteProject(p);
 		File outputDir = new File(outputDirectory);
-		if (outputDir.exists())
+		if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			Util.flushDirectoryContent(outputDir);
 	}
 }
-public void testBug544306() throws Exception {
+public void testBug544306() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9)
 		return;
 	IJavaProject p1 = createJava9Project("p1");
@@ -850,7 +850,7 @@ public void testBug544306() throws Exception {
 		deleteProject(p2);
 	}
 }
-public void testBug547113() throws CoreException {
+public void testBug547113() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9)
 		return;
 	IJavaProject unnamed = createJava9Project("unnamed");
@@ -945,7 +945,7 @@ public void testBug547113() throws CoreException {
 		deleteProject(c);
 	}
 }
-public void testBug564289_001() throws Exception {
+public void testBug564289_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9)
 		return;
 	IJavaProject p = null;
@@ -1004,7 +1004,7 @@ public void testBug564289_001() throws Exception {
 		this.workingCopy = getCompilationUnit("p/src/X.java").getWorkingCopy(this.wcOwner, null);
 		this.problemRequestor.initialize(this.workingCopy.getSource().toCharArray());
 		this.workingCopy.reconcile(JLS_LATEST, true, this.wcOwner, null);
-		String expectedErrorMessage = 		"----------\n" +
+		String expectedErrorMessage = 		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in /p/src/X.java (at line 1)\n" +
 				"	import net.openhft.chronicle.bytes.BytesMarshallable; \n" +
 				"	^\n" +
@@ -1018,7 +1018,7 @@ public void testBug564289_001() throws Exception {
 		deleteExternalResource("externalLib");
 		deleteProject(p);
 		File outputDir = new File(outputDirectory);
-		if (outputDir.exists())
+		if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			Util.flushDirectoryContent(outputDir);
 	}
 }

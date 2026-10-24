@@ -81,18 +81,18 @@ public class Javadoc extends Comment {
 	private static final List PROPERTY_DESCRIPTORS_23;
 
 	static {
-		List properyList = new ArrayList(3);
+		List properyList = new ArrayList(3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(Javadoc.class, properyList);
 		addProperty(COMMENT_PROPERTY, properyList);
 		addProperty(TAGS_PROPERTY, properyList);
 		PROPERTY_DESCRIPTORS_2_0 = reapPropertyList(properyList);
 
-		properyList = new ArrayList(2);
+		properyList = new ArrayList(2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(Javadoc.class, properyList);
 		addProperty(TAGS_PROPERTY, properyList);
 		PROPERTY_DESCRIPTORS_3_0 = reapPropertyList(properyList);
 
-		properyList = new ArrayList(3);
+		properyList = new ArrayList(3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(Javadoc.class, properyList);
 		addProperty(TAGS_PROPERTY, properyList);
 		addProperty(MARKDOWN_PROPERTY, properyList);
@@ -263,7 +263,7 @@ public class Javadoc extends Comment {
 	 * by a representation of the structure of the doc comment.
 	 * See {@link #tags() tags}.
 	 */
-	public void setComment(String docComment) {
+	public void setComment(String docComment) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	    supportedOnlyIn2();
 		if (docComment == null) {
 			throw new IllegalArgumentException();
@@ -275,7 +275,7 @@ public class Javadoc extends Comment {
 		try {
 			TerminalToken token;
 			boolean onlyOneComment = false;
-			while ((token = scanner.getNextToken()) != TerminalToken.TokenNameEOF) {
+			while ((token = scanner.getNextToken()) != TerminalToken.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				switch(token) {
 					case TokenNameCOMMENT_JAVADOC :
 						if (onlyOneComment) {

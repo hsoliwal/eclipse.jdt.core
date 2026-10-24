@@ -45,18 +45,18 @@ public class SelectionOnMessageSend extends MessageSend {
 	 * Cannot answer default abstract match, iterate in superinterfaces of declaring class
 	 * for a better match (default abstract match came from scope lookups).
 	 */
-	private MethodBinding findNonDefaultAbstractMethod(MethodBinding methodBinding) {
+	private MethodBinding findNonDefaultAbstractMethod(MethodBinding methodBinding) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		ReferenceBinding[] itsInterfaces = methodBinding.declaringClass.superInterfaces();
 		if (itsInterfaces != Binding.NO_SUPERINTERFACES) {
 			ReferenceBinding[] interfacesToVisit = itsInterfaces;
 			int nextPosition = interfacesToVisit.length;
 
-			for (int i = 0; i < nextPosition; i++) {
+			for (int i = 0; i < nextPosition; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ReferenceBinding currentType = interfacesToVisit[i];
 				MethodBinding[] methods = currentType.getMethods(methodBinding.selector);
 				if(methods != null) {
-					for (MethodBinding method : methods) {
+					for (MethodBinding method : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if(methodBinding.areParametersEqual(method))
 							return method;
 					}
@@ -66,9 +66,9 @@ public class SelectionOnMessageSend extends MessageSend {
 					int itsLength = itsInterfaces.length;
 					if (nextPosition + itsLength >= interfacesToVisit.length)
 						System.arraycopy(interfacesToVisit, 0, interfacesToVisit = new ReferenceBinding[nextPosition + itsLength + 5], 0, nextPosition);
-					nextInterface : for (int a = 0; a < itsLength; a++) {
+					nextInterface : for (int a = 0; a < itsLength; a++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ReferenceBinding next = itsInterfaces[a];
-						for (int b = 0; b < nextPosition; b++)
+						for (int b = 0; b < nextPosition; b++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (TypeBinding.equalsEquals(next, interfacesToVisit[b])) continue nextInterface;
 						interfacesToVisit[nextPosition++] = next;
 					}
@@ -81,19 +81,19 @@ public class SelectionOnMessageSend extends MessageSend {
 	@Override
 	public StringBuilder printExpression(int indent, StringBuilder output) {
 
-		output.append("<SelectOnMessageSend:"); //$NON-NLS-1$
+		output.append("<SelectOnMessageSend:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (!this.receiver.isImplicitThis()) this.receiver.printExpression(0, output).append('.');
-		output.append(this.selector).append('(');
+		output.append(this.selector).append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (this.arguments != null) {
-			for (int i = 0; i < this.arguments.length; i++) {
-				if (i > 0) output.append(", "); //$NON-NLS-1$
+			for (int i = 0; i < this.arguments.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				if (i > 0) output.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				this.arguments[i].printExpression(0, output);
 			}
 		}
-		return output.append(")>"); //$NON-NLS-1$
+		return output.append(")>"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public TypeBinding resolveType(BlockScope scope) {
 
 		TypeBinding type = super.resolveType(scope);

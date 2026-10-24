@@ -80,7 +80,7 @@ public class ASTRewritingTest extends AbstractJavaModelTests {
 		this.apiLevel = apiLevel;
 	}
 
-	public static Test suite() {
+	public static Test suite() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TestSuite suite= new TestSuite(ASTRewritingTest.class.getName());
 
 
@@ -136,20 +136,20 @@ public class ASTRewritingTest extends AbstractJavaModelTests {
 	 * @param classSince smallest supported AST level for this test class, or -1 to support all levels
 	 * @return test suite that runs all tests with all supported AST levels
 	 */
-	protected static TestSuite createSuite(Class testClass, int classSince) {
+	protected static TestSuite createSuite(Class testClass, int classSince) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TestSuite suite = new TestSuite(testClass.getName());
 		try {
 			Method[] methods = testClass.getMethods();
 			Constructor cons = testClass.getConstructor(new Class[]{String.class, int.class});
-			for (int i = 0, max = methods.length; i < max; i++) {
+			for (int i = 0, max = methods.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String name = methods[i].getName();
 				if (name.startsWith("test")) { //$NON-NLS-1$
 
 					int index = name.indexOf(ONLY_AST_STRING);
 					if (index != -1) {
 						String suffix = name.substring(index + ONLY_AST_STRING.length() + 1);
-						String[] levels = suffix.split(STRING_);
-						for (int l= 0; l < levels.length; l++) {
+						String[] levels = suffix.split(STRING_); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+						for (int l= 0; l < levels.length; l++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
                             int level = Integer.valueOf(levels[l]);
                             if (AST.isSupportedVersion(level)) {
                                 suite.addTest((Test) cons.newInstance(name, level));
@@ -163,7 +163,7 @@ public class ASTRewritingTest extends AbstractJavaModelTests {
 							String suffix = name.substring(index + SINCE_AST_STRING.length() + 1);
 							since = Integer.parseInt(suffix);
 						}
-						for (int level :AST.getAllSupportedVersions()) {
+						for (int level :AST.getAllSupportedVersions()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (level >= since && level >= classSince) {
 								suite.addTest((Test) cons.newInstance(new Object[]{name, Integer.valueOf(level)}));
 							}
@@ -385,7 +385,7 @@ public class ASTRewritingTest extends AbstractJavaModelTests {
 
 	public static AbstractTypeDeclaration findAbstractTypeDeclaration(CompilationUnit astRoot, String simpleTypeName) {
 		List types= astRoot.types();
-		for (int i= 0; i < types.size(); i++) {
+		for (int i= 0; i < types.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			AbstractTypeDeclaration elem= (AbstractTypeDeclaration) types.get(i);
 			if (simpleTypeName.equals(elem.getName().getIdentifier())) {
 				return elem;
@@ -396,7 +396,7 @@ public class ASTRewritingTest extends AbstractJavaModelTests {
 
 	public static MethodDeclaration findMethodDeclaration(TypeDeclaration typeDecl, String methodName) {
 		MethodDeclaration[] methods= typeDecl.getMethods();
-		for (int i= 0; i < methods.length; i++) {
+		for (int i= 0; i < methods.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (methodName.equals(methods[i].getName().getIdentifier())) {
 				return methods[i];
 			}
@@ -406,7 +406,7 @@ public class ASTRewritingTest extends AbstractJavaModelTests {
 
 	public static MethodDeclaration findMethodDeclaration(RecordDeclaration typeDecl, String methodName) {
 		MethodDeclaration[] methods= typeDecl.getMethods();
-		for (int i= 0; i < methods.length; i++) {
+		for (int i= 0; i < methods.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (methodName.equals(methods[i].getName().getIdentifier())) {
 				return methods[i];
 			}
@@ -448,7 +448,7 @@ public class ASTRewritingTest extends AbstractJavaModelTests {
 
 	public static ImplicitTypeDeclaration findImplicitDeclaration(CompilationUnit astRoot, String simpleTypeName) {
 		List types= astRoot.types();
-		for (int i= 0; i < types.size(); i++) {
+		for (int i= 0; i < types.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ImplicitTypeDeclaration elem= (ImplicitTypeDeclaration) types.get(i);
 			if (simpleTypeName.equals(elem.getName().getIdentifier())) {
 				return elem;

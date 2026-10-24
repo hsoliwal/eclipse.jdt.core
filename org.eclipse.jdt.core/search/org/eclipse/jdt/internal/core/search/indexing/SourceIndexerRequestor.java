@@ -54,7 +54,7 @@ public SourceIndexerRequestor(SourceIndexer indexer) {
 @Override
 public void acceptAnnotationTypeReference(char[][] typeName, int sourceStart, int sourceEnd) {
 	int length = typeName.length;
-	for (int i = 0; i < length - 1; i++)
+	for (int i = 0; i < length - 1; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		acceptUnknownReference(typeName[i], 0);
 	acceptAnnotationTypeReference(typeName[length - 1], 0);
 }
@@ -77,7 +77,7 @@ public void acceptConstructorReference(char[] typeName, int argCount, int source
 	int lastDot = CharOperation.lastIndexOf('.', typeName);
 	if (lastDot != -1) {
 		char[][] qualification = CharOperation.splitOn('.', CharOperation.subarray(typeName, 0, lastDot));
-		for (char[] name : qualification) {
+		for (char[] name : qualification) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.indexer.addNameReference(name);
 		}
 	}
@@ -133,7 +133,7 @@ public void acceptProblem(CategorizedProblem problem) {
 @Override
 public void acceptTypeReference(char[][] typeName, int sourceStart, int sourceEnd) {
 	int length = typeName.length;
-	for (int i = 0; i < length - 1; i++)
+	for (int i = 0; i < length - 1; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		acceptUnknownReference(typeName[i], 0); // ?
 	acceptTypeReference(typeName[length - 1], 0);
 }
@@ -149,7 +149,7 @@ public void acceptTypeReference(char[] simpleTypeName, int sourcePosition) {
  */
 @Override
 public void acceptUnknownReference(char[][] name, int sourceStart, int sourceEnd) {
-	for (char[] element : name) {
+	for (char[] element : name) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		acceptUnknownReference(element, 0);
 	}
 }
@@ -162,14 +162,14 @@ public void acceptUnknownReference(char[] name, int sourcePosition) {
 	this.indexer.addIndexMetaQualification(name, false);
 }
 
-private void addDefaultConstructorIfNecessary(TypeInfo typeInfo) {
+private void addDefaultConstructorIfNecessary(TypeInfo typeInfo) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	TypeDeclaration typeDeclaration = typeInfo.node;
 	boolean needDefaultConstructor = !typeDeclaration.isRecord();
 	boolean needCanonicalConstructor = typeDeclaration.isRecord();
 
 	AbstractMethodDeclaration[] methods = typeDeclaration.methods;
 	int methodCounter = methods == null ? 0 : methods.length;
-	for (int i = 0; i < methodCounter; i++) {
+	for (int i = 0; i < methodCounter; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		AbstractMethodDeclaration method = methods[i];
 		if (method.isConstructor()) {
 			if (!method.isDefaultConstructor() && !typeDeclaration.isRecord()) {
@@ -187,7 +187,7 @@ private void addDefaultConstructorIfNecessary(TypeInfo typeInfo) {
 		int argCount = typeDeclaration.recordComponents.length;
 		char [][] parameterTypes = new char[argCount][];
 		char [][] parameterNames = new char[argCount][];
-		for (int i = 0; i < argCount; i++) {
+		for (int i = 0; i < argCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final TypeReference type = typeDeclaration.recordComponents[i].type;
 			parameterTypes[i] = type instanceof SingleTypeReference str ? str.token : CharOperation.concatWith(((QualifiedTypeReference)type).tokens, '.');
 			parameterNames[i] = typeDeclaration.recordComponents[i].name;
@@ -242,7 +242,7 @@ private void enterRecord(TypeInfo typeInfo) {
 	enterClass(typeInfo);
 }
 
-private void enterClass(TypeInfo typeInfo) {
+private void enterClass(TypeInfo typeInfo) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// eliminate possible qualifications, given they need to be fully resolved again
 	if (typeInfo.superclass != null) {
@@ -252,7 +252,7 @@ private void enterClass(TypeInfo typeInfo) {
 		this.indexer.addConstructorReference(typeInfo.superclass, 0);
 	}
 	if (typeInfo.superinterfaces != null){
-		for (int i = 0, length = typeInfo.superinterfaces.length; i < length; i++) {
+		for (int i = 0, length = typeInfo.superinterfaces.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			typeInfo.superinterfaces[i] = getSimpleName(typeInfo.superinterfaces[i]);
 		}
 	}
@@ -267,7 +267,7 @@ private void enterClass(TypeInfo typeInfo) {
 	if (typeInfo.typeParameters != null) {
 		int typeParametersLength = typeInfo.typeParameters.length;
 		typeParameterSignatures = new char[typeParametersLength][];
-		for (int i = 0; i < typeParametersLength; i++) {
+		for (int i = 0; i < typeParametersLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ISourceElementRequestor.TypeParameterInfo typeParameterInfo = typeInfo.typeParameters[i];
 			typeParameterSignatures[i] = Signature.createTypeParameterSignature(typeParameterInfo.name, typeParameterInfo.bounds == null ? CharOperation.NO_CHAR_CHAR : typeParameterInfo.bounds);
 		}
@@ -302,10 +302,10 @@ public void enterConstructor(MethodInfo methodInfo) {
 			getMoreExtraFlags(methodInfo.extraFlags));
 	this.methodDepth++;
 }
-private void enterEnum(TypeInfo typeInfo) {
+private void enterEnum(TypeInfo typeInfo) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// eliminate possible qualifications, given they need to be fully resolved again
 	if (typeInfo.superinterfaces != null){
-		for (int i = 0, length = typeInfo.superinterfaces.length; i < length; i++){
+		for (int i = 0, length = typeInfo.superinterfaces.length; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			typeInfo.superinterfaces[i] = getSimpleName(typeInfo.superinterfaces[i]);
 		}
 	}
@@ -335,10 +335,10 @@ public void enterField(FieldInfo fieldInfo) {
 public void enterInitializer(int declarationSourceStart, int modifiers) {
 	this.methodDepth++;
 }
-private void enterInterface(TypeInfo typeInfo) {
+private void enterInterface(TypeInfo typeInfo) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// eliminate possible qualifications, given they need to be fully resolved again
 	if (typeInfo.superinterfaces != null){
-		for (int i = 0, length = typeInfo.superinterfaces.length; i < length; i++){
+		for (int i = 0, length = typeInfo.superinterfaces.length; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			typeInfo.superinterfaces[i] = getSimpleName(typeInfo.superinterfaces[i]);
 		}
 	}
@@ -352,7 +352,7 @@ private void enterInterface(TypeInfo typeInfo) {
 	if (typeInfo.typeParameters != null) {
 		int typeParametersLength = typeInfo.typeParameters.length;
 		typeParameterSignatures = new char[typeParametersLength][];
-		for (int i = 0; i < typeParametersLength; i++) {
+		for (int i = 0; i < typeParametersLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ISourceElementRequestor.TypeParameterInfo typeParameterInfo = typeInfo.typeParameters[i];
 			typeParameterSignatures[i] = Signature.createTypeParameterSignature(typeParameterInfo.name, typeParameterInfo.bounds);
 		}
@@ -366,7 +366,7 @@ private void enterInterface(TypeInfo typeInfo) {
 public void enterModule(ModuleInfo moduleInfo) {
 	this.indexer.addModuleDeclaration(moduleInfo.moduleName);
 	if (moduleInfo.requires != null) {
-		for (ISourceElementRequestor.RequiresInfo req : moduleInfo.requires) {
+		for (ISourceElementRequestor.RequiresInfo req : moduleInfo.requires) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (req == null || req.moduleName == null || req.moduleName == CharOperation.NO_CHAR) continue;
 			this.indexer.addModuleReference(req.moduleName);
 		}
@@ -378,12 +378,12 @@ public void enterModule(ModuleInfo moduleInfo) {
 private void enterPackageVisibilityInfo(ISourceElementRequestor.PackageExportInfo[] packInfos) {
 	if (packInfos == null)
 		return;
-	for (ISourceElementRequestor.PackageExportInfo packInfo : packInfos) {
+	for (ISourceElementRequestor.PackageExportInfo packInfo : packInfos) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (packInfo == null || packInfo.pkgName == null || packInfo.pkgName == CharOperation.NO_CHAR) continue;
 		this.indexer.addModuleExportedPackages(packInfo.pkgName);
 		char[][] tgts = packInfo.targets;
 		if (tgts == null || tgts == CharOperation.NO_CHAR_CHAR) continue;
-		for (char[] tgt : tgts) {
+		for (char[] tgt : tgts) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (tgt != null && tgt != CharOperation.NO_CHAR)
 				this.indexer.addModuleReference(tgt);
 		}
@@ -392,7 +392,7 @@ private void enterPackageVisibilityInfo(ISourceElementRequestor.PackageExportInf
 /**
  * @see ISourceElementRequestor#enterMethod(ISourceElementRequestor.MethodInfo)
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void enterMethod(MethodInfo methodInfo) {
 	this.indexer.addMethodDeclaration(methodInfo.name, methodInfo.parameterTypes, methodInfo.returnType, methodInfo.exceptionTypes);
 	int argCount = methodInfo.parameterTypes == null ? 0 : methodInfo.parameterTypes.length;
@@ -418,14 +418,14 @@ public void enterMethod(MethodInfo methodInfo) {
 	this.methodDepth++;
 }
 
-private static char[] getDeclaringQualification(TypeDeclaration typeDecl) {
+private static char[] getDeclaringQualification(TypeDeclaration typeDecl) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (typeDecl.name == null) return null;
 	TypeDeclaration enclosingType = typeDecl.enclosingType;
 
-	List<char[]> nlist = new ArrayList<>();
+	List<char[]> nlist = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	char[] name = null;
 	int size = 0;
-	while (enclosingType != null && (name = enclosingType.name) != null) {
+	while (enclosingType != null && (name = enclosingType.name) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		nlist.add(0, name);
 		size += name.length + 1;
 		enclosingType = enclosingType.enclosingType;
@@ -437,7 +437,7 @@ private static char[] getDeclaringQualification(TypeDeclaration typeDecl) {
 
 	name = new char[size];
 	int index = 0;
-	for (int i = 0; i < l - 1; ++i) {
+	for (int i = 0; i < l - 1; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		char[] e = nlist.get(i);
 		System.arraycopy(e, 0, name, index, e.length);
 		index += e.length;
@@ -450,7 +450,7 @@ private static char[] getDeclaringQualification(TypeDeclaration typeDecl) {
 /**
  * @see ISourceElementRequestor#enterType(ISourceElementRequestor.TypeInfo)
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void enterType(TypeInfo typeInfo) {
 	// TODO (jerome) might want to merge the 4 methods
 	switch (TypeDeclaration.kind(typeInfo.modifiers)) {
@@ -518,11 +518,11 @@ public void exitType(int declarationEnd) {
 /*
  * Returns the unqualified name without parameters from the given type name.
  */
-private char[] getSimpleName(char[] typeName) {
+private char[] getSimpleName(char[] typeName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int lastDot = -1, lastGenericStart = -1;
 	int depthCount = 0;
 	int length = typeName.length;
-	lastDotLookup: for (int i = length -1; i >= 0; i--) {
+	lastDotLookup: for (int i = length -1; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		switch (typeName[i]) {
 			case '.':
 				if (depthCount == 0) {

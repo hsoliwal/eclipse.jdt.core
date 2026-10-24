@@ -33,7 +33,7 @@ import org.eclipse.jdt.core.dom.SimpleName;
      * We will only walk the ast once to determine the ending
      * offsets of all the problems that do not have the information set.
      */
-    static void updateProblemLength(List<APTProblem> problems, CompilationUnit astUnit)
+    static void updateProblemLength(List<APTProblem> problems, CompilationUnit astUnit) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     {
     	// for those problems that doesn't have an ending offset, figure it out by
     	// traversing the ast.
@@ -41,7 +41,7 @@ import org.eclipse.jdt.core.dom.SimpleName;
     	// once.
     	int count = 0;
     	int[] classNameRange = null;
-    	for(IProblem problem : problems ){
+    	for(IProblem problem : problems ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if( problem.getSourceStart() < 0 ){
 				if( classNameRange == null )
 					classNameRange = getClassNameRange(astUnit);
@@ -58,7 +58,7 @@ import org.eclipse.jdt.core.dom.SimpleName;
 			if( astUnit != null ){
 				final int[] startingOffsets = new int[count];
 		    	int index = 0;
-    			for( IProblem problem : problems ){
+    			for( IProblem problem : problems ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     				if( problem.getSourceEnd() < 0 )
     					startingOffsets[index++] = problem.getSourceStart();
     			}
@@ -67,7 +67,7 @@ import org.eclipse.jdt.core.dom.SimpleName;
 
     			astUnit.accept( lfinder );
 
-    	    	for(IProblem problem : problems ){
+    	    	for(IProblem problem : problems ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     				if( problem.getSourceEnd() < 0 ){
     					int startingOffset = problem.getSourceStart();
     					int endingOffset = lfinder.getEndingOffset(startingOffset);
@@ -78,7 +78,7 @@ import org.eclipse.jdt.core.dom.SimpleName;
     			}
 			}
 			else{
-    			for(IProblem problem : problems){
+    			for(IProblem problem : problems){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     				// set the -1 source end to be the same as the source start.
     				if( problem.getSourceEnd() < problem.getSourceStart() )
     					problem.setSourceEnd(problem.getSourceStart());
@@ -93,7 +93,7 @@ import org.eclipse.jdt.core.dom.SimpleName;
      * at index 1: contains the ending offset, may be a negative number.
      * at index 2: the line number
      */
-    private static int[] getClassNameRange(final CompilationUnit astUnit){
+    private static int[] getClassNameRange(final CompilationUnit astUnit){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	int[] startAndEnd = null;
     	if( astUnit != null){
     		final List<AbstractTypeDeclaration> topTypes = astUnit.types();
@@ -145,7 +145,7 @@ import org.eclipse.jdt.core.dom.SimpleName;
     	 * @param offsets the array of offsets which will be sorted.
     	 * @throws IllegalArgumentException if <code>offsets</code> is <code>null</code>.
     	 */
-    	private EndingOffsetFinder(int[] offsets)
+    	private EndingOffsetFinder(int[] offsets) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	{
     		if(offsets == null)
     			throw new IllegalArgumentException("argument cannot be null."); //$NON-NLS-1$
@@ -154,7 +154,7 @@ import org.eclipse.jdt.core.dom.SimpleName;
 
     		// look for duplicates.
     		int count = 0;
-    		for( int i=0, len=offsets.length; i<len; i++){
+    		for( int i=0, len=offsets.length; i<len; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     			if( i > 0 && offsets[i-1] == offsets[i] )
     				continue;
     			count ++;
@@ -164,7 +164,7 @@ import org.eclipse.jdt.core.dom.SimpleName;
     			_sortedStartingOffset = new int[count];
 
     			int index = 0;
-    			for( int i=0, len=offsets.length; i<len; i++){
+    			for( int i=0, len=offsets.length; i<len; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     				if( i > 0 && offsets[i-1] == offsets[i] )
     					continue;
     				_sortedStartingOffset[index++] = offsets[i];
@@ -175,11 +175,11 @@ import org.eclipse.jdt.core.dom.SimpleName;
     		}
 
     		_endingOffsets = new int[count];
-    		for( int i=0; i<count; i++ )
+    		for( int i=0; i<count; i++ ) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     			_endingOffsets[i] = 0;
     	}
 
-    	@Override
+    	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public void preVisit(ASTNode node)
     	{
     		final int startingOffset = node.getStartPosition();
@@ -199,7 +199,7 @@ import org.eclipse.jdt.core.dom.SimpleName;
     		if( startIndex >= _sortedStartingOffset.length )
     			return;
 
-    		for( int i=startIndex; i<endIndex; i++ ){
+    		for( int i=startIndex; i<endIndex; i++ ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     			if( _endingOffsets[i] == 0 )
     				_endingOffsets[i] = endingOffset;
     			else if( endingOffset < _endingOffsets[i] )

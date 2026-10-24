@@ -31,7 +31,7 @@ public class AnnotationTest_9 extends AbstractComparableTest {
         return AnnotationTest_9.class;
     }
 
-    public void testBug532913() throws Exception {
+    public void testBug532913() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	    runConformTest(
 	        new String[] {
 	                "p/A.java",
@@ -66,7 +66,7 @@ public class AnnotationTest_9 extends AbstractComparableTest {
     		"----------\n",
     		null, true);
     }
-    public void testBug521054b() throws Exception {
+    public void testBug521054b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.runNegativeTest(
     		new String[] {
     				"X.java",
@@ -86,7 +86,7 @@ public class AnnotationTest_9 extends AbstractComparableTest {
     		"----------\n",
     		null, true);
     }
-    public void testBug521054c() throws Exception {
+    public void testBug521054c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	this.runNegativeTest(
     		new String[] {
     				"X.java",
@@ -106,7 +106,7 @@ public class AnnotationTest_9 extends AbstractComparableTest {
     		"----------\n",
     		null, true);
     }
-	public void testGH1654() {
+	public void testGH1654() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"p1/Anno.java",

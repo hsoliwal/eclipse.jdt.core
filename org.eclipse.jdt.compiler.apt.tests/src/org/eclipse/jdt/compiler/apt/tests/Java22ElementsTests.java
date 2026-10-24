@@ -54,7 +54,7 @@ public class Java22ElementsTests extends TestCase {
 		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
 		internalTestWithBinary(compiler, MODULE_PROC, "22", "testGetEnumConstantBody03", null, "java22", false);
 	}
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({ "rawtypes", "unchecked" }) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void internalTestWithBinary(JavaCompiler compiler, String processor, String compliance, String testMethod, String testClass, String resourceArea,
 				boolean processBinariesAgain) throws IOException {
 		if (!canRunJava22()) {
@@ -63,19 +63,19 @@ public class Java22ElementsTests extends TestCase {
 		System.clearProperty(processor);
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "mod_locations", resourceArea);
 		if (testClass == null || testClass.equals("")) {
-			BatchTestUtils.copyResources("mod_locations/" + resourceArea, targetFolder);
+			BatchTestUtils.copyResources("mod_locations/" + resourceArea, targetFolder); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
-			BatchTestUtils.copyResource("mod_locations/" + resourceArea + "/" + testClass, targetFolder);
+			BatchTestUtils.copyResource("mod_locations/" + resourceArea + "/" + testClass, targetFolder); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
-		List<String> options = new ArrayList<>();
-		options.add("-A" + processor);
-		options.add("-A" + testMethod);
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		options.add("-A" + processor); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		options.add("-A" + testMethod); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		options.add("-processor");
 		options.add(processor);
 		// Javac 1.8 doesn't (yet?) support the -1.8 option
 		if (compiler instanceof EclipseCompiler) {
-			options.add("-" + compliance);
+			options.add("-" + compliance); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
 			options.add("-source");
 			options.add(compliance);
@@ -84,7 +84,7 @@ public class Java22ElementsTests extends TestCase {
 			@Override
 			public void report(Diagnostic d) {
 				if (d.getKind() == Diagnostic.Kind.ERROR) {
-					System.out.println("Compilation error: " + d.getMessage(Locale.getDefault()));
+					System.out.println("Compilation error: " + d.getMessage(Locale.getDefault())); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}, true, processBinariesAgain);

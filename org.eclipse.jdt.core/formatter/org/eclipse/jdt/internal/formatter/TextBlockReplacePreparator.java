@@ -40,7 +40,7 @@ public class TextBlockReplacePreparator extends ASTVisitor {
 	}
 
 	public boolean needFormat(Token block) {
-		for (int i = block.originalEnd-3; i > block.originalStart; i--) {
+		for (int i = block.originalEnd-3; i > block.originalStart; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char ch = this.tokenManager.charAt(i);
 			if ( ch == ' ' || ch == '\t') continue;
 			if ( ch == '\n' ) {

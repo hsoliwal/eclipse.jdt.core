@@ -74,7 +74,7 @@ public class Aligner {
 		Optional<Integer> findIndex(N node);
 	}
 
-	private final List<List<? extends ASTNode>> alignGroups = new ArrayList<>();
+	private final List<List<? extends ASTNode>> alignGroups = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 	private final DefaultCodeFormatterOptions options;
 
@@ -140,7 +140,7 @@ public class Aligner {
 		variableGroups.forEach(vg -> alignNodes(vg, assignFinder));
 	}
 
-	private void alignAssignmentStatements(List<Statement> statements) {
+	private void alignAssignmentStatements(List<Statement> statements) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		List<List<ExpressionStatement>> assignmentGroups = toAlignGroups(statements,
 				n -> optionalCast(n, ExpressionStatement.class)
 						.filter(es -> es.getExpression() instanceof Assignment));
@@ -149,7 +149,7 @@ public class Aligner {
 		AlignIndexFinder<ExpressionStatement> assignFinder = es -> {
 			Assignment a = (Assignment) es.getExpression();
 			int operatorIndex = this.tm.firstIndexBefore(a.getRightHandSide(), ANY);
-			while (this.tm.get(operatorIndex).isComment())
+			while (this.tm.get(operatorIndex).isComment()) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				operatorIndex--;
 			return Optional.of(operatorIndex);
 		};
@@ -157,14 +157,14 @@ public class Aligner {
 
 		if (this.options.align_with_spaces || this.options.tab_char != DefaultCodeFormatterOptions.TAB) {
 			// align assign operators on their right side (e.g. +=, >>=)
-			for (List<ExpressionStatement> group : assignmentGroups) {
+			for (List<ExpressionStatement> group : assignmentGroups) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				List<Token> assignTokens = group.stream()
 						.map(assignFinder::findIndex)
 						.filter(Optional::isPresent)
 						.map(o -> this.tm.get(o.get()))
 						.collect(toList());
 				int maxWidth = assignTokens.stream().mapToInt(Token::countChars).max().orElse(0);
-				for (Token token : assignTokens)
+				for (Token token : assignTokens) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					token.setAlign(token.getAlign() + maxWidth - token.countChars());
 			}
 		}
@@ -184,17 +184,17 @@ public class Aligner {
 				.map(i -> this.tm.firstIndexBefore(i, TokenNameEQUAL));
 	}
 
-	private <N extends ASTNode> List<List<N>> toAlignGroups(List<? extends ASTNode> nodes,
+	private <N extends ASTNode> List<List<N>> toAlignGroups(List<? extends ASTNode> nodes, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			Function<ASTNode, Optional<N>> nodeConverter) {
-		List<List<N>> result = new ArrayList<>();
-		List<N> alignGroup = new ArrayList<>();
+		List<List<N>> result = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		List<N> alignGroup = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		N previous = null;
-		for (ASTNode node : nodes) {
+		for (ASTNode node : nodes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Optional<N> converted = nodeConverter.apply(node);
 			if (converted.isPresent()) {
 				if (isNewGroup(node, previous)) {
 					result.add(alignGroup);
-					alignGroup = new ArrayList<>();
+					alignGroup = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				}
 				alignGroup.add(converted.get());
 			}
@@ -205,14 +205,14 @@ public class Aligner {
 		return result;
 	}
 
-	private boolean isNewGroup(ASTNode node, ASTNode previousNode) {
+	private boolean isNewGroup(ASTNode node, ASTNode previousNode) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (previousNode == null)
 			return true;
 		int totalLineBreaks = 0;
 		int from = this.tm.lastIndexIn(previousNode, ANY);
 		int to = this.tm.firstIndexIn(node, ANY);
 		Token previousToken = this.tm.get(from);
-		for (int i = from + 1; i <= to; i++) {
+		for (int i = from + 1; i <= to; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Token token = this.tm.get(i);
 			int lineBreaks = Math.max(previousToken.getLineBreaksAfter(), token.getLineBreaksBefore());
 			if (previousToken.isPreserveLineBreaksAfter() && token.isPreserveLineBreaksBefore()) {
@@ -233,18 +233,18 @@ public class Aligner {
 		OptionalInt maxPosition = IntStream.of(tokenIndexes).map(this.tm::getPositionInLine).max();
 		if (maxPosition.isPresent()) {
 			int align = normalizedAlign(maxPosition.getAsInt());
-			for (int tokenIndex : tokenIndexes)
+			for (int tokenIndex : tokenIndexes) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.tm.get(tokenIndex).setAlign(align);
 		}
 	}
 
-	public void alignComments() {
+	public void alignComments() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		boolean alignLineComments = !this.options.comment_preserve_white_space_between_code_and_line_comments;
 		PositionCounter positionCounter = new PositionCounter();
 		// align comments after field declarations
-		for (List<? extends ASTNode> alignGroup : this.alignGroups) {
+		for (List<? extends ASTNode> alignGroup : this.alignGroups) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int maxCommentAlign = 0;
-			for (ASTNode node : alignGroup) {
+			for (ASTNode node : alignGroup) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int firstIndexInLine = findFirstTokenInLine(node);
 				int lastIndex = this.tm.lastIndexIn(node, ANY) + 1;
 				maxCommentAlign = Math.max(maxCommentAlign,
@@ -252,11 +252,11 @@ public class Aligner {
 			}
 			maxCommentAlign = normalizedAlign(maxCommentAlign);
 
-			for (ASTNode node : alignGroup) {
+			for (ASTNode node : alignGroup) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int firstIndexInLine = findFirstTokenInLine(node);
 				int lastIndex = this.tm.lastIndexIn(node, ANY);
 				lastIndex = Math.min(lastIndex, this.tm.size() - 2);
-				for (int i = firstIndexInLine; i <= lastIndex; i++) {
+				for (int i = firstIndexInLine; i <= lastIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Token token = this.tm.get(i);
 					Token next = this.tm.get(i + 1);
 					boolean lineBreak = token.getLineBreaksAfter() > 0 || next.getLineBreaksBefore() > 0;

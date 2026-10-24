@@ -92,7 +92,7 @@ public class WorkingCopySearchTests extends JavaSearchTests {
 	 * Type declaration in a working copy test.
 	 * A new type is added in the working copy only.
 	 */
-	public void testAddNewType() throws CoreException {
+	public void testAddNewType() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy.createType(
 			"class NewType {\n" +
 			"}",
@@ -124,7 +124,7 @@ public class WorkingCopySearchTests extends JavaSearchTests {
 	 * Search all type names in working copies test.
 	 * (Regression test for bug 40793 Primary working copies: Type search does not find type in modified CU)
 	 */
-	public void testAllTypeNames1() throws CoreException {
+	public void testAllTypeNames1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy.getBuffer().setContents(
 			"package wc;\n" +
 			"public class Y {\n" +
@@ -157,7 +157,7 @@ public class WorkingCopySearchTests extends JavaSearchTests {
 	 * Search all type names in working copies test (without reconciling working copies).
 	 * (Regression test for bug 40793 Primary working copies: Type search does not find type in modified CU)
 	 */
-	public void testAllTypeNames2() throws CoreException {
+	public void testAllTypeNames2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy.getBuffer().setContents(
 			"package wc;\n" +
 			"public class Y {\n" +
@@ -189,7 +189,7 @@ public class WorkingCopySearchTests extends JavaSearchTests {
 	 * Search all type names with a prefix in a primary working copy.
 	 * (regression test for bug 44884 Wrong list displayed while code completion)
 	 */
-	public void testAllTypeNames3() throws CoreException {
+	public void testAllTypeNames3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit wc = getCompilationUnit("/JavaSearch/wc3/X44884.java");
 		try {
 			wc.becomeWorkingCopy(null);
@@ -228,7 +228,7 @@ public class WorkingCopySearchTests extends JavaSearchTests {
 	 * Search all type names with a prefix in a primary working copy (without reconciling it).
 	 * (regression test for bug 44884 Wrong list displayed while code completion)
 	 */
-	public void testAllTypeNames4() throws CoreException {
+	public void testAllTypeNames4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit wc = getCompilationUnit("/JavaSearch/wc3/X44884.java");
 		try {
 			wc.becomeWorkingCopy(null);
@@ -266,7 +266,7 @@ public class WorkingCopySearchTests extends JavaSearchTests {
 	 * Bug 99915: [search] Open Type: not yet saved types not found if case-sensitve name is entered
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=99915"
 	 */
-	public void testAllTypeNamesBug99915() throws CoreException {
+	public void testAllTypeNamesBug99915() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy.getBuffer().setContents(
 			"package wc;\n" +
 			"public class X {\n" +
@@ -298,7 +298,7 @@ public class WorkingCopySearchTests extends JavaSearchTests {
 	 * Bug 98684: [search] Code assist shown inner types of unreleated project
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=98684"
 	 */
-	public void testAllTypeNamesBug98684() throws CoreException {
+	public void testAllTypeNamesBug98684() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject[] projects = new IJavaProject[2];
 			projects[0] = createJavaProject("P1");
@@ -371,7 +371,7 @@ public class WorkingCopySearchTests extends JavaSearchTests {
 	 * Type declaration in a working copy test.
 	 * A type is moved from one working copy to another.
 	 */
-	public void testMoveType() throws CoreException {
+	public void testMoveType() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// move type X from working copy in one package to a working copy in another package
 		ICompilationUnit workingCopy1 = getCompilationUnit("JavaSearch", "src", "wc1", "X.java").getWorkingCopy(null);
@@ -423,7 +423,7 @@ public class WorkingCopySearchTests extends JavaSearchTests {
 	 * Type declaration in a working copy test.
 	 * A type is removed from the working copy only.
 	 */
-	public void testRemoveType() throws CoreException {
+	public void testRemoveType() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy.getType("X").delete(true, null);
 
 		IJavaSearchScope scope =
@@ -463,7 +463,7 @@ public class WorkingCopySearchTests extends JavaSearchTests {
 	/*
 	 * Search all method names in working copies test (without reconciling working copies).
 	 */
-	public void testBug478042_dirtyWC_001() throws CoreException {
+	public void testBug478042_dirtyWC_001() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy.getBuffer().setContents(
 				"package p478042;\n" +
 				"public class AllMethodDeclarations01 {\n" +
@@ -491,7 +491,7 @@ public class WorkingCopySearchTests extends JavaSearchTests {
 	/*
 	 * Search all method names in working copies test (without reconciling working copies).
 	 */
-	public void testBug478042_dirtyWC_002() throws CoreException {
+	public void testBug478042_dirtyWC_002() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy.getBuffer().setContents(
 				"package p478042;\n" +
 				"public class AllMethodDeclarations01 {\n" +
@@ -521,7 +521,7 @@ public class WorkingCopySearchTests extends JavaSearchTests {
 	/*
 	 * Search all method names in working copies test (without reconciling working copies).
 	 */
-	public void testBug478042_dirtyWC_003() throws CoreException {
+	public void testBug478042_dirtyWC_003() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy.getBuffer().setContents(
 				"package p478042;\n" +
 				"public class AllMethodDeclarations01 {\n" +
@@ -553,7 +553,7 @@ public class WorkingCopySearchTests extends JavaSearchTests {
 	/*
 	 * Search all method names in working copies test (without reconciling working copies).
 	 */
-	public void testBug478042_dirtyWC_004() throws CoreException {
+	public void testBug478042_dirtyWC_004() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy.getBuffer().setContents(
 				"package p478042;\n" +
 				"public class AllMethodDeclarations01 {\n" +
@@ -576,7 +576,7 @@ public class WorkingCopySearchTests extends JavaSearchTests {
 				requestor
 		);
 	}
-	public void testBug483650_dirtyWC_001() throws CoreException {
+	public void testBug483650_dirtyWC_001() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy.getBuffer().setContents(
 				"package p478042;\n" +
 				"public class AllMethodDeclarations01 {\n" +
@@ -602,7 +602,7 @@ public class WorkingCopySearchTests extends JavaSearchTests {
 	/*
 	 * Search all method names in working copies test (without reconciling working copies).
 	 */
-	public void testBug483650_dirtyWC_002() throws CoreException {
+	public void testBug483650_dirtyWC_002() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy.getBuffer().setContents(
 				"package p478042;\n" +
 				"public class AllMethodDeclarations01 {\n" +
@@ -630,7 +630,7 @@ public class WorkingCopySearchTests extends JavaSearchTests {
 	/*
 	 * Search all method names in working copies test (without reconciling working copies).
 	 */
-	public void testBug483650_dirtyWC_003() throws CoreException {
+	public void testBug483650_dirtyWC_003() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy.getBuffer().setContents(
 				"package p478042;\n" +
 				"public class AllMethodDeclarations01 {\n" +
@@ -660,7 +660,7 @@ public class WorkingCopySearchTests extends JavaSearchTests {
 	/*
 	 * Search all method names in working copies test (without reconciling working copies).
 	 */
-	public void testBug483650_dirtyWC_004() throws CoreException {
+	public void testBug483650_dirtyWC_004() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy.getBuffer().setContents(
 				"package p478042;\n" +
 				"public class AllMethodDeclarations01 {\n" +

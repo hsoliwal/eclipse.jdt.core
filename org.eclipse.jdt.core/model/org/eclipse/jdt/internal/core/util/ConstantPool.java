@@ -35,7 +35,7 @@ public class ConstantPool extends ClassFileStruct implements IConstantPool {
 	/**
 	 * @see IConstantPool#decodeEntry(int)
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public IConstantPoolEntry decodeEntry(int index) {
 		ConstantPoolEntry constantPoolEntry = null;
 		int kind = getEntryKind(index);

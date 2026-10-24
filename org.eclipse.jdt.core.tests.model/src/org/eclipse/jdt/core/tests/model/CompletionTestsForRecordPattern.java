@@ -44,7 +44,7 @@ public class CompletionTestsForRecordPattern extends AbstractJavaModelCompletion
 		return buildModelTestSuite(CompletionTestsForRecordPattern.class);
 	}
 	//content assist just record pattern usage
-	public void test001() throws JavaModelException {
+	public void test001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/X.java",
@@ -81,7 +81,7 @@ public class CompletionTestsForRecordPattern extends AbstractJavaModelCompletion
 
 	}
 	//content assist in record pattern switch case just after case
-	public void test002() throws JavaModelException {
+	public void test002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/X.java",
@@ -117,7 +117,7 @@ public class CompletionTestsForRecordPattern extends AbstractJavaModelCompletion
 
 	}
 	//content assist in record pattern switch case - 1st level nested
-	public void test003() throws JavaModelException {
+	public void test003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/X.java",
@@ -153,7 +153,7 @@ public class CompletionTestsForRecordPattern extends AbstractJavaModelCompletion
 
 	}
 	//content assist in record pattern switch case - 2nd level nested
-	public void test004() throws JavaModelException {
+	public void test004() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/X.java",
@@ -189,7 +189,7 @@ public class CompletionTestsForRecordPattern extends AbstractJavaModelCompletion
 
 	}
 	//content assist in record pattern switch case - 2nd param in nested
-	public void test005() throws JavaModelException {
+	public void test005() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/X.java",
@@ -226,7 +226,7 @@ public class CompletionTestsForRecordPattern extends AbstractJavaModelCompletion
 
 	}
 	//content assist in record pattern switch case - use the variable in case statement
-	public void test006() throws JavaModelException {
+	public void test006() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/X.java",
@@ -263,7 +263,7 @@ public class CompletionTestsForRecordPattern extends AbstractJavaModelCompletion
 
 	}
 	//content assist in record pattern -instanceof record pattern - 2nd param in nested
-	public void test007() throws JavaModelException {
+	public void test007() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/X.java",
@@ -296,7 +296,7 @@ public class CompletionTestsForRecordPattern extends AbstractJavaModelCompletion
 
 	}
 	//content assist in record pattern -instanceof record pattern - record creation
-		public void test008() throws JavaModelException {
+		public void test008() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy(
 					"/Completion/src/X.java",
@@ -329,7 +329,7 @@ public class CompletionTestsForRecordPattern extends AbstractJavaModelCompletion
 
 		}
 		//content assist in record pattern -check for when
-		public void test009() throws JavaModelException {
+		public void test009() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy(
 					"/Completion/src/X.java",
@@ -372,7 +372,7 @@ public class CompletionTestsForRecordPattern extends AbstractJavaModelCompletion
 
 		}
 		//content assist in record pattern switch case - use the variable in case statement - CCE
-		public void test010() throws JavaModelException {
+		public void test010() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy(
 					"/Completion/src/X.java",
@@ -421,7 +421,7 @@ public class CompletionTestsForRecordPattern extends AbstractJavaModelCompletion
 		}
 		//content assist ArrayStoreException fix
 		//https://github.com/eclipse-jdt/eclipse.jdt.core/issues/345
-		public void test011() throws JavaModelException {
+		public void test011() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy(
 					"/Completion/src/X.java",
@@ -458,7 +458,7 @@ public class CompletionTestsForRecordPattern extends AbstractJavaModelCompletion
 					requestor.getResults());
 
 		}
-		public void test012() throws JavaModelException {
+		public void test012() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy(
 					"/Completion/src/X.java",
@@ -484,7 +484,7 @@ public class CompletionTestsForRecordPattern extends AbstractJavaModelCompletion
 			assertResults("x_1[LOCAL_VARIABLE_REF]{x_1, null, I, x_1, null, 82}",
 					requestor.getResults());
 		}
-		public void test013() throws JavaModelException {
+		public void test013() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy(
 					"/Completion/src/X.java",
@@ -509,7 +509,7 @@ public class CompletionTestsForRecordPattern extends AbstractJavaModelCompletion
 			assertResults("x_1[LOCAL_VARIABLE_REF]{x_1, null, I, x_1, null, 82}",
 					requestor.getResults());
 		}
-		public void test014() throws JavaModelException {
+		public void test014() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy(
 					"/Completion/src/X.java",
@@ -534,7 +534,7 @@ public class CompletionTestsForRecordPattern extends AbstractJavaModelCompletion
 			assertResults("y_1[LOCAL_VARIABLE_REF]{y_1, null, I, y_1, null, 82}",
 					requestor.getResults());
 		}
-		public void test015() throws JavaModelException {
+		public void test015() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[1];
 			this.workingCopies[0] = getWorkingCopy(
 					"/Completion/src/X.java",
@@ -560,7 +560,7 @@ public class CompletionTestsForRecordPattern extends AbstractJavaModelCompletion
 					requestor.getResults());
 		}
 
-		public void testGH2299_SwitchStatement() throws JavaModelException {
+		public void testGH2299_SwitchStatement() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[2];
 			this.workingCopies[0] = getWorkingCopy("/Completion/src/SwitchRecordPattern.java", """
 					public class SwitchRecordPattern {
@@ -582,11 +582,11 @@ public class CompletionTestsForRecordPattern extends AbstractJavaModelCompletion
 			String completeBehind = "/*here*/nam";
 			int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 			this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-			assertResults("name[LOCAL_VARIABLE_REF]{name, null, Ljava.lang.String;, name, null, " + UNQUALIFIED_REL + "}",
+			assertResults("name[LOCAL_VARIABLE_REF]{name, null, Ljava.lang.String;, name, null, " + UNQUALIFIED_REL + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					requestor.getResults());
 		}
 
-		public void testGH2299_SwitchExpression() throws JavaModelException {
+		public void testGH2299_SwitchExpression() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[2];
 			this.workingCopies[0] = getWorkingCopy("/Completion/src/SwitchRecordPattern.java", """
 					public class SwitchRecordPattern {
@@ -608,11 +608,11 @@ public class CompletionTestsForRecordPattern extends AbstractJavaModelCompletion
 			String completeBehind = "/*here*/nam";
 			int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 			this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-			assertResults("name[LOCAL_VARIABLE_REF]{name, null, Ljava.lang.String;, name, null, " + UNQUALIFIED_REL + "}",
+			assertResults("name[LOCAL_VARIABLE_REF]{name, null, Ljava.lang.String;, name, null, " + UNQUALIFIED_REL + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					requestor.getResults());
 		}
 
-		public void testGH2299_Switch_StatementsBeforeCompletion() throws JavaModelException {
+		public void testGH2299_Switch_StatementsBeforeCompletion() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[2];
 			this.workingCopies[0] = getWorkingCopy("/Completion/src/SwitchRecordPattern.java", """
 					public class SwitchRecordPattern {
@@ -635,11 +635,11 @@ public class CompletionTestsForRecordPattern extends AbstractJavaModelCompletion
 			String completeBehind = "/*here*/nam";
 			int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 			this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-			assertResults("name[LOCAL_VARIABLE_REF]{name, null, Ljava.lang.String;, name, null, " + UNQUALIFIED_REL + "}",
+			assertResults("name[LOCAL_VARIABLE_REF]{name, null, Ljava.lang.String;, name, null, " + UNQUALIFIED_REL + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					requestor.getResults());
 		}
 
-		public void testGH2299_Switch_CompletionInSideDifferentControlBlock() throws JavaModelException {
+		public void testGH2299_Switch_CompletionInSideDifferentControlBlock() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[2];
 			this.workingCopies[0] = getWorkingCopy("/Completion/src/SwitchRecordPattern.java", """
 					public class SwitchRecordPattern {
@@ -663,11 +663,11 @@ public class CompletionTestsForRecordPattern extends AbstractJavaModelCompletion
 			String completeBehind = "/*here*/nam";
 			int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 			this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-			assertResults("name[LOCAL_VARIABLE_REF]{name, null, Ljava.lang.String;, name, null, " + UNQUALIFIED_REL + "}",
+			assertResults("name[LOCAL_VARIABLE_REF]{name, null, Ljava.lang.String;, name, null, " + UNQUALIFIED_REL + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					requestor.getResults());
 		}
 
-		public void testGH2299_Switch_CompletionInsideLambda() throws JavaModelException {
+		public void testGH2299_Switch_CompletionInsideLambda() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[2];
 			this.workingCopies[0] = getWorkingCopy("/Completion/src/SwitchRecordPattern.java", """
 					interface List<T> { Stream<T> stream(); }
@@ -692,11 +692,11 @@ public class CompletionTestsForRecordPattern extends AbstractJavaModelCompletion
 			String completeBehind = "/*here*/nam";
 			int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 			this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-			assertResults("name[LOCAL_VARIABLE_REF]{name, null, Ljava.lang.String;, name, null, " + (UNQUALIFIED_REL + R_PACKAGE_EXPECTED_TYPE) + "}",
+			assertResults("name[LOCAL_VARIABLE_REF]{name, null, Ljava.lang.String;, name, null, " + (UNQUALIFIED_REL + R_PACKAGE_EXPECTED_TYPE) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					requestor.getResults());
 		}
 
-		public void testGH2299_Switch_SwitchInsideLambda() throws JavaModelException {
+		public void testGH2299_Switch_SwitchInsideLambda() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[2];
 			this.workingCopies[0] = getWorkingCopy("/Completion/src/SwitchRecordPattern.java", """
 					interface List<T> { Stream<T> stream(); }
@@ -723,11 +723,11 @@ public class CompletionTestsForRecordPattern extends AbstractJavaModelCompletion
 			String completeBehind = "/*here*/nam";
 			int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 			this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-			assertResults("name[LOCAL_VARIABLE_REF]{name, null, Ljava.lang.String;, name, null, " + UNQUALIFIED_REL + "}",
+			assertResults("name[LOCAL_VARIABLE_REF]{name, null, Ljava.lang.String;, name, null, " + UNQUALIFIED_REL + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					requestor.getResults());
 		}
 
-		public void testGH2299_SwitchInsideAnotherControlStatement() throws JavaModelException {
+		public void testGH2299_SwitchInsideAnotherControlStatement() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[2];
 			this.workingCopies[0] = getWorkingCopy("/Completion/src/SwitchRecordPattern.java", """
 					public class SwitchRecordPattern {
@@ -751,11 +751,11 @@ public class CompletionTestsForRecordPattern extends AbstractJavaModelCompletion
 			String completeBehind = "/*here*/nam";
 			int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 			this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-			assertResults("name[LOCAL_VARIABLE_REF]{name, null, Ljava.lang.String;, name, null, " + UNQUALIFIED_REL + "}",
+			assertResults("name[LOCAL_VARIABLE_REF]{name, null, Ljava.lang.String;, name, null, " + UNQUALIFIED_REL + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					requestor.getResults());
 		}
 
-		public void testGH2299_NestedSwitchRecordPatternsCompletionVariableOnParentSwitch() throws JavaModelException {
+		public void testGH2299_NestedSwitchRecordPatternsCompletionVariableOnParentSwitch() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[2];
 			this.workingCopies[0] = getWorkingCopy("/Completion/src/SwitchRecordPattern.java", """
 					public class SwitchRecordPattern {
@@ -781,11 +781,11 @@ public class CompletionTestsForRecordPattern extends AbstractJavaModelCompletion
 			String completeBehind = "/*here*/nam";
 			int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 			this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-			assertResults("name[LOCAL_VARIABLE_REF]{name, null, Ljava.lang.String;, name, null, " + UNQUALIFIED_REL + "}",
+			assertResults("name[LOCAL_VARIABLE_REF]{name, null, Ljava.lang.String;, name, null, " + UNQUALIFIED_REL + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					requestor.getResults());
 		}
 
-		public void testGH2299_NestedSwitchRecordPatternsCompletionVariableOnChildSwitch() throws JavaModelException {
+		public void testGH2299_NestedSwitchRecordPatternsCompletionVariableOnChildSwitch() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.workingCopies = new ICompilationUnit[2];
 			this.workingCopies[0] = getWorkingCopy("/Completion/src/SwitchRecordPattern.java", """
 					public class SwitchRecordPattern {
@@ -811,7 +811,7 @@ public class CompletionTestsForRecordPattern extends AbstractJavaModelCompletion
 			String completeBehind = "/*here*/childNa";
 			int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 			this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-			assertResults("childName[LOCAL_VARIABLE_REF]{childName, null, Ljava.lang.String;, childName, null, " + UNQUALIFIED_REL + "}",
+			assertResults("childName[LOCAL_VARIABLE_REF]{childName, null, Ljava.lang.String;, childName, null, " + UNQUALIFIED_REL + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					requestor.getResults());
 		}
 }

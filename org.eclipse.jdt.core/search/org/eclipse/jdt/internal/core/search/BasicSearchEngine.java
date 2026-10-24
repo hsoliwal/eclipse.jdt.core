@@ -180,15 +180,15 @@ public class BasicSearchEngine {
 	/**
 	 * @see SearchEngine#createJavaSearchScope(boolean, IJavaElement[], int) for detailed comment.
 	 */
-	public static IJavaSearchScope createJavaSearchScope(boolean excludeTestCode, IJavaElement[] elements, int includeMask) {
-		Set<JavaProject> projectsToBeAdded = new HashSet<>(2);
-		for (IJavaElement element : elements) {
+	public static IJavaSearchScope createJavaSearchScope(boolean excludeTestCode, IJavaElement[] elements, int includeMask) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		Set<JavaProject> projectsToBeAdded = new HashSet<>(2); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+		for (IJavaElement element : elements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (element instanceof JavaProject p) {
 				projectsToBeAdded.add(p);
 			}
 		}
 		JavaSearchScope scope = new JavaSearchScope(excludeTestCode);
-		for (IJavaElement element : elements) {
+		for (IJavaElement element : elements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (element != null) {
 				try {
 					if (projectsToBeAdded.contains(element)) {
@@ -233,10 +233,10 @@ public class BasicSearchEngine {
 	 * @param scope the search result has to be limited to the given scope
 	 * @param requestor a callback object to which each match is reported
 	 */
-	void findMatches(SearchPattern pattern, SearchParticipant[] participants, IJavaSearchScope scope, SearchRequestor requestor, IProgressMonitor monitor) throws CoreException {
+	void findMatches(SearchPattern pattern, SearchParticipant[] participants, IJavaSearchScope scope, SearchRequestor requestor, IProgressMonitor monitor) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			if (VERBOSE) {
-				trace("Searching for pattern: " + pattern.toString()); //$NON-NLS-1$
+				trace("Searching for pattern: " + pattern.toString()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				trace(scope.toString());
 			}
 			if (participants == null) {
@@ -251,7 +251,7 @@ public class BasicSearchEngine {
 			SubMonitor loopMonitor = SubMonitor.convert(monitor, Messages.engine_searching, length);
 			IndexManager indexManager = JavaModelManager.getIndexManager();
 			requestor.beginReporting();
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				SubMonitor iterationMonitor = loopMonitor.split(1).setWorkRemaining(100);
 
 				SearchParticipant participant = participants[i];
@@ -272,7 +272,7 @@ public class BasicSearchEngine {
 						pathCollector = null; // release
 						int indexMatchLength = indexMatchPaths.length;
 						SearchDocument[] indexMatches = new SearchDocument[indexMatchLength];
-						for (int j = 0; j < indexMatchLength; j++) {
+						for (int j = 0; j < indexMatchLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							indexMatches[j] = participant.getDocument(indexMatchPaths[j]);
 						}
 						SearchDocument[] matches = MatchLocator.addWorkingCopies(pattern, indexMatches, getWorkingCopies(), participant);
@@ -315,41 +315,41 @@ public class BasicSearchEngine {
 		return result;
 	}
 
-	public static String getMatchRuleString(final int matchRule) {
+	public static String getMatchRuleString(final int matchRule) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (matchRule == 0) {
 			return "R_EXACT_MATCH"; //$NON-NLS-1$
 		}
-		StringBuilder buffer = new StringBuilder();
-		for (int i=1; i<=16; i++) {
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i=1; i<=16; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int bit = matchRule & (1<<(i-1));
-			if (bit != 0 && buffer.length()>0) buffer.append(" | "); //$NON-NLS-1$
+			if (bit != 0 && buffer.length()>0) buffer.append(" | "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			switch (bit) {
 				case SearchPattern.R_PREFIX_MATCH:
-					buffer.append("R_PREFIX_MATCH"); //$NON-NLS-1$
+					buffer.append("R_PREFIX_MATCH"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case SearchPattern.R_CASE_SENSITIVE:
-					buffer.append("R_CASE_SENSITIVE"); //$NON-NLS-1$
+					buffer.append("R_CASE_SENSITIVE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case SearchPattern.R_EQUIVALENT_MATCH:
-					buffer.append("R_EQUIVALENT_MATCH"); //$NON-NLS-1$
+					buffer.append("R_EQUIVALENT_MATCH"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case SearchPattern.R_ERASURE_MATCH:
-					buffer.append("R_ERASURE_MATCH"); //$NON-NLS-1$
+					buffer.append("R_ERASURE_MATCH"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case SearchPattern.R_FULL_MATCH:
-					buffer.append("R_FULL_MATCH"); //$NON-NLS-1$
+					buffer.append("R_FULL_MATCH"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case SearchPattern.R_PATTERN_MATCH:
-					buffer.append("R_PATTERN_MATCH"); //$NON-NLS-1$
+					buffer.append("R_PATTERN_MATCH"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case SearchPattern.R_REGEXP_MATCH:
-					buffer.append("R_REGEXP_MATCH"); //$NON-NLS-1$
+					buffer.append("R_REGEXP_MATCH"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case SearchPattern.R_CAMELCASE_MATCH:
-					buffer.append("R_CAMELCASE_MATCH"); //$NON-NLS-1$
+					buffer.append("R_CAMELCASE_MATCH"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case SearchPattern.R_CAMELCASE_SAME_PART_COUNT_MATCH:
-					buffer.append("R_CAMELCASE_SAME_PART_COUNT_MATCH"); //$NON-NLS-1$
+					buffer.append("R_CAMELCASE_SAME_PART_COUNT_MATCH"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 			}
 		}
@@ -359,7 +359,7 @@ public class BasicSearchEngine {
 	/**
 	 * Return kind of search corresponding to given value.
 	 */
-	public static String getSearchForString(final int searchFor) {
+	public static String getSearchForString(final int searchFor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch (searchFor) {
 			case IJavaSearchConstants.TYPE:
 				return ("TYPE"); //$NON-NLS-1$
@@ -406,7 +406,7 @@ public class BasicSearchEngine {
 	 * Returns the list of working copies used by this search engine.
 	 * Returns null if none.
 	 */
-	private ICompilationUnit[] getWorkingCopies() {
+	private ICompilationUnit[] getWorkingCopies() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit[] copies;
 		if (this.workingCopies != null) {
 			if (this.workingCopyOwner == null) {
@@ -414,11 +414,11 @@ public class BasicSearchEngine {
 				if (copies == null) {
 					copies = this.workingCopies;
 				} else {
-					Map<IPath, ICompilationUnit> pathToCUs = new HashMap<>();
-					for (ICompilationUnit unit : copies) {
+					Map<IPath, ICompilationUnit> pathToCUs = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+					for (ICompilationUnit unit : copies) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						pathToCUs.put(unit.getPath(), unit);
 					}
-					for (ICompilationUnit unit : this.workingCopies) {
+					for (ICompilationUnit unit : this.workingCopies) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						pathToCUs.put(unit.getPath(), unit);
 					}
 					int length = pathToCUs.size();
@@ -439,7 +439,7 @@ public class BasicSearchEngine {
 		ICompilationUnit[] result = null;
 		int length = copies.length;
 		int index = 0;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			CompilationUnit copy = (CompilationUnit)copies[i];
 			try {
 				if (!copy.isPrimary()
@@ -476,7 +476,7 @@ public class BasicSearchEngine {
 		return null;
 	}
 
-	boolean match(char patternTypeSuffix, int modifiers) {
+	boolean match(char patternTypeSuffix, int modifiers) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch(patternTypeSuffix) {
 			case IIndexConstants.CLASS_SUFFIX :
 				return (modifiers & (Flags.AccAnnotation | Flags.AccInterface | Flags.AccEnum)) == 0;
@@ -496,7 +496,7 @@ public class BasicSearchEngine {
 		return true;
 	}
 
-	boolean match(char patternTypeSuffix, char[] patternPkg, int matchRulePkg, char[] patternTypeName, int matchRuleType, int typeKind, char[] pkg, char[] typeName) {
+	boolean match(char patternTypeSuffix, char[] patternPkg, int matchRulePkg, char[] patternTypeName, int matchRuleType, int typeKind, char[] pkg, char[] typeName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch(patternTypeSuffix) {
 			case IIndexConstants.CLASS_SUFFIX :
 				if (typeKind != TypeDeclaration.CLASS_DECL) return false;
@@ -548,7 +548,7 @@ public class BasicSearchEngine {
 				case SearchPattern.R_PATTERN_MATCH :
 					return CharOperation.match(patternTypeName, typeName, isCaseSensitive);
 				case SearchPattern.R_REGEXP_MATCH :
-					return Pattern.matches(new String(patternTypeName), new String(typeName));
+					return Pattern.matches(new String(patternTypeName), new String(typeName)); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 				case SearchPattern.R_CAMELCASE_MATCH:
 					if (matchFirstChar && CharOperation.camelCaseMatch(patternTypeName, typeName, false)) {
 						return true;
@@ -562,7 +562,7 @@ public class BasicSearchEngine {
 
 	}
 
-	boolean match(char[] patternName, int matchRule, char[] name) {
+	boolean match(char[] patternName, int matchRule, char[] name) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		boolean isCaseSensitive = (matchRule & SearchPattern.R_CASE_SENSITIVE) != 0;
 		if (patternName != null) {
 			boolean isCamelCase = (matchRule & (SearchPattern.R_CAMELCASE_MATCH | SearchPattern.R_CAMELCASE_SAME_PART_COUNT_MATCH)) != 0;
@@ -579,7 +579,7 @@ public class BasicSearchEngine {
 				case SearchPattern.R_PATTERN_MATCH :
 					return CharOperation.match(patternName, name, isCaseSensitive);
 				case SearchPattern.R_REGEXP_MATCH :
-					return Pattern.matches(new String(patternName), new String(name));
+					return Pattern.matches(new String(patternName), new String(name)); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 				case SearchPattern.R_CAMELCASE_MATCH:
 					if (matchFirstChar && CharOperation.camelCaseMatch(patternName, name, false)) {
 						return true;
@@ -664,7 +664,7 @@ public class BasicSearchEngine {
 	 * @param resolveDocumentName used to tell SearchEngine whether to resolve
 	 *                            the document name for each result entry.
 	 */
-	public void searchAllConstructorDeclarations(
+	public void searchAllConstructorDeclarations( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final char[] packageName,
 		final char[] typeName,
 		final int typeMatchRule,
@@ -684,13 +684,13 @@ public class BasicSearchEngine {
 			// Debug
 			if (VERBOSE) {
 				trace("BasicSearchEngine.searchAllConstructorDeclarations(char[], char[], int, IJavaSearchScope, IRestrictedAccessConstructorRequestor, int, IProgressMonitor)"); //$NON-NLS-1$
-				trace("	- package name: "+(packageName==null?"null":new String(packageName))); //$NON-NLS-1$ //$NON-NLS-2$
-				trace("	- type name: "+(typeName==null?"null":new String(typeName))); //$NON-NLS-1$ //$NON-NLS-2$
-				trace("	- type match rule: "+getMatchRuleString(typeMatchRule)); //$NON-NLS-1$
+				trace("	- package name: "+(packageName==null?"null":new String(packageName))); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				trace("	- type name: "+(typeName==null?"null":new String(typeName))); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				trace("	- type match rule: "+getMatchRuleString(typeMatchRule)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				if (validatedTypeMatchRule != typeMatchRule) {
-					trace("	- validated type match rule: "+getMatchRuleString(validatedTypeMatchRule)); //$NON-NLS-1$
+					trace("	- validated type match rule: "+getMatchRuleString(validatedTypeMatchRule)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
-				trace("	- scope: "+scope); //$NON-NLS-1$
+				trace("	- scope: "+scope); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			if (validatedTypeMatchRule == -1) return; // invalid match rule => return no results
 
@@ -702,7 +702,7 @@ public class BasicSearchEngine {
 					validatedTypeMatchRule);
 
 			// Get working copy path(s). Store in a single string in case of only one to optimize comparison in requestor
-			final Set<String> workingCopyPaths = new HashSet<>();
+			final Set<String> workingCopyPaths = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			String workingCopyPath = null;
 			ICompilationUnit[] copies = getWorkingCopies();
 			final int copiesLength = copies == null ? 0 : copies.length;
@@ -710,7 +710,7 @@ public class BasicSearchEngine {
 				if (copiesLength == 1) {
 					workingCopyPath = copies[0].getPath().toString();
 				} else {
-					for (int i = 0; i < copiesLength; i++) {
+					for (int i = 0; i < copiesLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ICompilationUnit workingCopy = copies[i];
 						workingCopyPaths.add(workingCopy.getPath().toString());
 					}
@@ -720,7 +720,7 @@ public class BasicSearchEngine {
 
 			// Index requestor
 			IndexQueryRequestor searchRequestor = new IndexQueryRequestor(){
-				@Override
+				@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				public boolean acceptIndexMatch(String documentPath, SearchPattern indexRecord, SearchParticipant participant, AccessRuleSet access) {
 					// Filter unexpected types
 					ConstructorDeclarationPattern record = (ConstructorDeclarationPattern)indexRecord;
@@ -800,7 +800,7 @@ public class BasicSearchEngine {
 
 			// add type names from working copies
 			if (copies != null) {
-				for (int i = 0; i < copiesLength; i++) {
+				for (int i = 0; i < copiesLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					SubMonitor iterationMonitor = subMonitor.split(1);
 					final ICompilationUnit workingCopy = copies[i];
 					if (scope instanceof HierarchyScope) {
@@ -814,7 +814,7 @@ public class BasicSearchEngine {
 						IPackageDeclaration[] packageDeclarations = workingCopy.getPackageDeclarations();
 						char[] packageDeclaration = packageDeclarations.length == 0 ? CharOperation.NO_CHAR : packageDeclarations[0].getElementName().toCharArray();
 						IType[] allTypes = workingCopy.getAllTypes();
-						for (IType type : allTypes) {
+						for (IType type : allTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							char[] simpleName = type.getElementName().toCharArray();
 							if (match(NoSuffix, packageName, pkgMatchRule, typeName, validatedTypeMatchRule, 0/*no kind*/, packageDeclaration, simpleName) && !type.isMember()) {
 
@@ -824,7 +824,7 @@ public class BasicSearchEngine {
 								boolean needCanonicalConstructor = type.isRecord();
 
 								IMethod[] methods = type.getMethods();
-								for (IMethod method : methods) {
+								for (IMethod method : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 									if (method.isConstructor()) {
 										needDefaultConstructor = false;
 										if (needCanonicalConstructor) {
@@ -839,7 +839,7 @@ public class BasicSearchEngine {
 										int length = stringParameterNames.length;
 										char[][] parameterNames = new char[length][];
 										char[][] parameterTypes = new char[length][];
-										for (int l = 0; l < length; l++) {
+										for (int l = 0; l < length; l++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 											parameterNames[l] = stringParameterNames[l].toCharArray();
 											parameterTypes[l] = Signature.toCharArray(Signature.getTypeErasure(stringParameterTypes[l]).toCharArray());
 										}
@@ -878,7 +878,7 @@ public class BasicSearchEngine {
 
 									char[][] parameterNames = new char[length][];
 									char[][] parameterTypes = new char[length][];
-									for (int l = 0; l < length; l++) {
+									for (int l = 0; l < length; l++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 										parameterNames[l] = components[l].getElementName().toCharArray();
 										parameterTypes[l] = Signature.toCharArray(Signature.getTypeErasure(components[l].getTypeSignature()).toCharArray());
 									}
@@ -908,7 +908,7 @@ public class BasicSearchEngine {
 								private TypeDeclaration[] declaringTypes = new TypeDeclaration[0];
 								private int declaringTypesPtr = -1;
 
-								private void endVisit(TypeDeclaration typeDeclaration) {
+								private void endVisit(TypeDeclaration typeDeclaration) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 									if (!hasConstructor(typeDeclaration) && typeDeclaration.enclosingType == null) {
 
 										if (match(NoSuffix, packageName, pkgMatchRule, typeName, validatedTypeMatchRule, 0/*no kind*/, packageDeclaration, typeDeclaration.name)) {
@@ -944,7 +944,7 @@ public class BasicSearchEngine {
 								private boolean hasConstructor(TypeDeclaration typeDeclaration) {
 									AbstractMethodDeclaration[] methods = typeDeclaration.methods;
 									int length = methods == null ? 0 : methods.length;
-									for (int j = 0; j < length; j++) {
+									for (int j = 0; j < length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 										if (methods[j].isConstructor()) {
 											return true;
 										}
@@ -952,7 +952,7 @@ public class BasicSearchEngine {
 
 									return false;
 								}
-								@Override
+								@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 								public boolean visit(ConstructorDeclaration constructorDeclaration, ClassScope classScope) {
 									TypeDeclaration typeDeclaration = this.declaringTypes[this.declaringTypesPtr];
 									if (match(NoSuffix, packageName, pkgMatchRule, typeName, validatedTypeMatchRule, 0/*no kind*/, packageDeclaration, typeDeclaration.name)) {
@@ -960,7 +960,7 @@ public class BasicSearchEngine {
 										int length = arguments == null ? 0 : arguments.length;
 										char[][] parameterNames = new char[length][];
 										char[][] parameterTypes = new char[length][];
-										for (int l = 0; l < length; l++) {
+										for (int l = 0; l < length; l++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 											AbstractVariableDeclaration argument = arguments[l];
 											parameterNames[l] = argument.name;
 											if (argument.type instanceof SingleTypeReference) {
@@ -972,7 +972,7 @@ public class BasicSearchEngine {
 
 										TypeDeclaration enclosing = typeDeclaration.enclosingType;
 										char[][] enclosingTypeNames = CharOperation.NO_CHAR_CHAR;
-										while (enclosing != null) {
+										while (enclosing != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 											enclosingTypeNames = CharOperation.arrayConcat(new char[][] {enclosing.name}, enclosingTypeNames);
 											if ((enclosing.bits & ASTNode.IsMemberType) != 0) {
 												enclosing = enclosing.enclosingType;
@@ -1042,7 +1042,7 @@ public class BasicSearchEngine {
 	 * @see SearchEngine#searchAllMethodNames(char[], int, char[], int, IJavaSearchScope, MethodNameMatchRequestor, int, IProgressMonitor)
 	 * for detailed comments
 	 */
-	public void searchAllMethodNames(
+	public void searchAllMethodNames( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			final char[] qualifier,
 			final int qualifierMatchRule,
 			final char[] methodName,
@@ -1058,13 +1058,13 @@ public class BasicSearchEngine {
 			if (VERBOSE) {
 				trace("BasicSearchEngine.searchAllMethodDeclarations(char[] qualifier,  "//$NON-NLS-1$
 						+ "char[] methodName, int methodMatchRule, IJavaSearchScope, IRestrictedAccessConstructorRequestor, int waitingPolicy, IProgressMonitor)"); //$NON-NLS-1$
-				trace("	- qualifier name: "+(qualifier==null?"null":new String(qualifier))); //$NON-NLS-1$ //$NON-NLS-2$
-				trace("	- method name: "+(methodName==null?"null":new String(methodName))); //$NON-NLS-1$ //$NON-NLS-2$
-				trace("	- method match rule: "+getMatchRuleString(methodMatchRule)); //$NON-NLS-1$
+				trace("	- qualifier name: "+(qualifier==null?"null":new String(qualifier))); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				trace("	- method name: "+(methodName==null?"null":new String(methodName))); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				trace("	- method match rule: "+getMatchRuleString(methodMatchRule)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				if (validatedMethodMatchRule != methodMatchRule) {
-					trace("	- validated method match rule: "+getMatchRuleString(validatedMethodMatchRule)); //$NON-NLS-1$
+					trace("	- validated method match rule: "+getMatchRuleString(validatedMethodMatchRule)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
-				trace("	- scope: "+scope); //$NON-NLS-1$
+				trace("	- scope: "+scope); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			if (validatedMethodMatchRule == -1) return; // invalid match rule => return no results
 
@@ -1073,7 +1073,7 @@ public class BasicSearchEngine {
 			final MethodDeclarationPattern pattern = new MethodDeclarationPattern(qualifier, methodName, methodMatchRule);
 
 			// Get working copy path(s). Store in a single string in case of only one to optimize comparison in requestor
-			Set<String> workingCopyPaths = new HashSet<>();
+			Set<String> workingCopyPaths = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			String workingCopyPath = null;
 			ICompilationUnit[] copies = getWorkingCopies();
 			final int copiesLength = copies == null ? 0 : copies.length;
@@ -1081,7 +1081,7 @@ public class BasicSearchEngine {
 				if (copiesLength == 1) {
 					workingCopyPath = copies[0].getPath().toString();
 				} else {
-					for (int i = 0; i < copiesLength; i++) {
+					for (int i = 0; i < copiesLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ICompilationUnit workingCopy = copies[i];
 						workingCopyPaths.add(workingCopy.getPath().toString());
 					}
@@ -1091,7 +1091,7 @@ public class BasicSearchEngine {
 
 			// Index requestor
 			IndexQueryRequestor searchRequestor = new IndexQueryRequestor(){
-				@Override
+				@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				public boolean acceptIndexMatch(String documentPath, SearchPattern indexRecord, SearchParticipant participant, AccessRuleSet access) {
 					MethodDeclarationPattern record = (MethodDeclarationPattern)indexRecord;
 
@@ -1175,7 +1175,7 @@ public class BasicSearchEngine {
 
 			// add type names from working copies
 			if (copies != null) {
-				for (int i = 0; i < copiesLength; i++) {
+				for (int i = 0; i < copiesLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					SubMonitor iterationMonitor = subMonitor.split(1);
 					final ICompilationUnit workingCopy = copies[i];
 					if (scope instanceof HierarchyScope) {
@@ -1190,7 +1190,7 @@ public class BasicSearchEngine {
 						char[] packageDeclaration = packageDeclarations.length == 0 ? CharOperation.NO_CHAR : packageDeclarations[0].getElementName().toCharArray();
 
 						IType[] allTypes = workingCopy.getAllTypes();
-						for (IType type : allTypes) {
+						for (IType type : allTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							IJavaElement parent = type.getParent();
 							char[] rDeclaringQualification = parent instanceof IType ? ((IType) parent).getTypeQualifiedName('.').toCharArray() : CharOperation.NO_CHAR;
 							char[] rSimpleName = type.getElementName().toCharArray();
@@ -1223,7 +1223,7 @@ public class BasicSearchEngine {
 									}
 								}
 								Stack<TypeInfo> typeInfoStack = new Stack<>();
-								IType getCurrentType() {
+								IType getCurrentType() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 									int l = this.typeInfoStack.size();
 									if (l <= 0) return null;
 									TypeInfo typeInfo = this.typeInfoStack.get(0);
@@ -1232,7 +1232,7 @@ public class BasicSearchEngine {
 										TypeInfo ti = this.typeInfoStack.get(0);
 										ti.type = ti.type == null ? workingCopy.getType(new String(ti.typeDecl.name)) : ti.type;
 										type = ti.type;
-										for (int j = 1; j < l && type != null; ++j) {
+										for (int j = 1; j < l && type != null; ++j) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 											ti = this.typeInfoStack.get(j);
 											if (ti.type == null) {
 												ti.type = type.getType(new String(ti.typeDecl.name));
@@ -1305,7 +1305,7 @@ public class BasicSearchEngine {
 	 * @see SearchEngine#searchAllMethodNames(char[], int, char[], int, char[], int, char[], int, IJavaSearchScope, MethodNameMatchRequestor, int, IProgressMonitor)
 	 * for detailed comments
 	 */
-	public void searchAllMethodNames(
+	public void searchAllMethodNames( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			final char[] packageName,
 			final int pkgMatchRule,
 			final char[] declaringQualification,
@@ -1325,15 +1325,15 @@ public class BasicSearchEngine {
 			if (VERBOSE) {
 				trace("BasicSearchEngine.searchAllMethodDeclarations(char[] packageName, char[] declaringQualification, char[] declaringSimpleName, "//$NON-NLS-1$
 						+ "char[] methodName, int methodMatchRule, IJavaSearchScope, IRestrictedAccessConstructorRequestor, int waitingPolicy, IProgressMonitor)"); //$NON-NLS-1$
-				trace("	- package name: "+(packageName==null?"null":new String(packageName))); //$NON-NLS-1$ //$NON-NLS-2$
-				trace("	- declaringQualification name: "+(declaringQualification==null?"null":new String(declaringQualification))); //$NON-NLS-1$ //$NON-NLS-2$
-				trace("	- declaringSimple name: "+(declaringSimpleName==null?"null":new String(declaringSimpleName))); //$NON-NLS-1$ //$NON-NLS-2$
-				trace("	- method name: "+(methodName==null?"null":new String(methodName))); //$NON-NLS-1$ //$NON-NLS-2$
-				trace("	- method match rule: "+getMatchRuleString(methodMatchRule)); //$NON-NLS-1$
+				trace("	- package name: "+(packageName==null?"null":new String(packageName))); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				trace("	- declaringQualification name: "+(declaringQualification==null?"null":new String(declaringQualification))); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				trace("	- declaringSimple name: "+(declaringSimpleName==null?"null":new String(declaringSimpleName))); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				trace("	- method name: "+(methodName==null?"null":new String(methodName))); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				trace("	- method match rule: "+getMatchRuleString(methodMatchRule)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				if (validatedMethodMatchRule != methodMatchRule) {
-					trace("	- validated method match rule: "+getMatchRuleString(validatedMethodMatchRule)); //$NON-NLS-1$
+					trace("	- validated method match rule: "+getMatchRuleString(validatedMethodMatchRule)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
-				trace("	- scope: "+scope); //$NON-NLS-1$
+				trace("	- scope: "+scope); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			if (validatedMethodMatchRule == -1) return; // invalid match rule => return no results
 
@@ -1342,7 +1342,7 @@ public class BasicSearchEngine {
 			final MethodDeclarationPattern pattern = new MethodDeclarationPattern(packageName, declaringQualification, declaringSimpleName, methodName, methodMatchRule);
 
 			// Get working copy path(s). Store in a single string in case of only one to optimize comparison in requestor
-			Set<String> workingCopyPaths = new HashSet<>();
+			Set<String> workingCopyPaths = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			String workingCopyPath = null;
 			ICompilationUnit[] copies = getWorkingCopies();
 			final int copiesLength = copies == null ? 0 : copies.length;
@@ -1350,7 +1350,7 @@ public class BasicSearchEngine {
 				if (copiesLength == 1) {
 					workingCopyPath = copies[0].getPath().toString();
 				} else {
-					for (int i = 0; i < copiesLength; i++) {
+					for (int i = 0; i < copiesLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ICompilationUnit workingCopy = copies[i];
 						workingCopyPaths.add(workingCopy.getPath().toString());
 					}
@@ -1360,7 +1360,7 @@ public class BasicSearchEngine {
 
 			// Index requestor
 			IndexQueryRequestor searchRequestor = new IndexQueryRequestor(){
-				@Override
+				@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				public boolean acceptIndexMatch(String documentPath, SearchPattern indexRecord, SearchParticipant participant, AccessRuleSet access) {
 					MethodDeclarationPattern record = (MethodDeclarationPattern)indexRecord;
 
@@ -1445,7 +1445,7 @@ public class BasicSearchEngine {
 			// add type names from working copies
 			if (copies != null) {
 				boolean isPkgCaseSensitive = (pkgMatchRule & SearchPattern.R_CASE_SENSITIVE) != 0;
-				for (int i = 0; i < copiesLength; i++) {
+				for (int i = 0; i < copiesLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					SubMonitor iterationMonitor = subMonitor.split(1);
 					final ICompilationUnit workingCopy = copies[i];
 					if (scope instanceof HierarchyScope) {
@@ -1462,7 +1462,7 @@ public class BasicSearchEngine {
 							continue;
 
 						IType[] allTypes = workingCopy.getAllTypes();
-						for (IType type : allTypes) {
+						for (IType type : allTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							IJavaElement parent = type.getParent();
 							char[] rDeclaringQualification = parent instanceof IType ? ((IType) parent).getTypeQualifiedName('.').toCharArray() : CharOperation.NO_CHAR;
 							char[] rSimpleName = type.getElementName().toCharArray();
@@ -1495,7 +1495,7 @@ public class BasicSearchEngine {
 									}
 								}
 								Stack<TypeInfo> typeInfoStack = new Stack<>();
-								IType getCurrentType() {
+								IType getCurrentType() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 									int l = this.typeInfoStack.size();
 									if (l <= 0) return null;
 									TypeInfo typeInfo = this.typeInfoStack.get(0);
@@ -1504,7 +1504,7 @@ public class BasicSearchEngine {
 										TypeInfo ti = this.typeInfoStack.get(0);
 										ti.type = ti.type == null ? workingCopy.getType(new String(ti.typeDecl.name)) : ti.type;
 										type = ti.type;
-										for (int j = 1; j < l && type != null; ++j) {
+										for (int j = 1; j < l && type != null; ++j) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 											ti = this.typeInfoStack.get(j);
 											if (ti.type == null) {
 												ti.type = type.getType(new String(ti.typeDecl.name));
@@ -1568,7 +1568,7 @@ public class BasicSearchEngine {
 			}
 		}
 
-	void reportMatchingMethod(
+	void reportMatchingMethod( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			final String path,
 			final char[] packageDeclaration,
 			final char[] declaringQualifier,
@@ -1586,7 +1586,7 @@ public class BasicSearchEngine {
 			parameterTypes = new char[argsLength][];
 			parameterNames = new char[argsLength][];
 		}
-		for (int i = 0; i < argsLength; ++i) {
+		for (int i = 0; i < argsLength; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			AbstractVariableDeclaration argument = arguments[i];
 			parameterNames[i] = argument.name;
 			parameterTypes[i] = CharOperation.concatWith(argument.type.getTypeName(), '.');
@@ -1613,13 +1613,13 @@ public class BasicSearchEngine {
 					-1 /* method index */);
 		}
 	}
-	void reportMatchingMethods(final char[] methodName, final int methodMatchRule,
+	void reportMatchingMethods(final char[] methodName, final int methodMatchRule, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			final IRestrictedAccessMethodRequestor nameRequestor, final String path, char[] packageDeclaration,
 			IType type, char[] rDeclaringQualification, char[] rSimpleName)
 					throws JavaModelException {
 		IMethod[] methods = type.getMethods();
 
-		for (int k = 0; k < methods.length; k++) {
+		for (int k = 0; k < methods.length; k++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IMethod method = methods[k];
 			if (method.isConstructor()) continue;
 
@@ -1634,7 +1634,7 @@ public class BasicSearchEngine {
 					int length = stringParameterNames.length;
 					char[][] parameterNames = new char[length][];
 					char[][] parameterTypes = new char[length][];
-					for (int l = 0; l < length; l++) {
+					for (int l = 0; l < length; l++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						parameterNames[l] = stringParameterNames[l].toCharArray();
 						parameterTypes[l] = Signature.toCharArray(Signature.getTypeErasure(stringParameterTypes[l]).toCharArray());
 					}
@@ -1669,7 +1669,7 @@ public class BasicSearchEngine {
 	 * The search can be selecting specific types (given a package or a type name
 	 * prefix and match modes).
 	 */
-	public void searchAllSecondaryTypeNames(
+	public void searchAllSecondaryTypeNames( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			IPackageFragmentRoot[] sourceFolders,
 			final IRestrictedAccessTypeRequestor nameRequestor,
 			boolean waitForIndexes,
@@ -1678,18 +1678,18 @@ public class BasicSearchEngine {
 		try {
 			if (VERBOSE) {
 				trace("BasicSearchEngine.searchAllSecondaryTypeNames(IPackageFragmentRoot[], IRestrictedAccessTypeRequestor, boolean, IProgressMonitor)"); //$NON-NLS-1$
-				StringBuilder buffer = new StringBuilder("	- source folders: "); //$NON-NLS-1$
+				StringBuilder buffer = new StringBuilder("	- source folders: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 				int length = sourceFolders.length;
-				for (int i=0; i<length; i++) {
+				for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (i==0) {
-						buffer.append('[');
+						buffer.append('['); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					} else {
-						buffer.append(',');
+						buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
-					buffer.append(sourceFolders[i].getElementName());
+					buffer.append(sourceFolders[i].getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				buffer.append("]\n	- waitForIndexes: "); //$NON-NLS-1$
-				buffer.append(waitForIndexes);
+				buffer.append("]\n	- waitForIndexes: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(waitForIndexes); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				trace(buffer.toString());
 			}
 
@@ -1697,7 +1697,7 @@ public class BasicSearchEngine {
 			final TypeDeclarationPattern pattern = new SecondaryTypeDeclarationPattern();
 
 			// Get working copy path(s). Store in a single string in case of only one to optimize comparison in requestor
-			Set<String> workingCopyPaths = new HashSet<>();
+			Set<String> workingCopyPaths = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			String workingCopyPath = null;
 			ICompilationUnit[] copies = getWorkingCopies();
 			final int copiesLength = copies == null ? 0 : copies.length;
@@ -1705,7 +1705,7 @@ public class BasicSearchEngine {
 				if (copiesLength == 1) {
 					workingCopyPath = copies[0].getPath().toString();
 				} else {
-					for (int i = 0; i < copiesLength; i++) {
+					for (int i = 0; i < copiesLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ICompilationUnit workingCopy = copies[i];
 						workingCopyPaths.add(workingCopy.getPath().toString());
 					}
@@ -1715,7 +1715,7 @@ public class BasicSearchEngine {
 
 			// Index requestor
 			IndexQueryRequestor searchRequestor = new IndexQueryRequestor(){
-				@Override
+				@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				public boolean acceptIndexMatch(String documentPath, SearchPattern indexRecord, SearchParticipant participant, AccessRuleSet access) {
 					// Filter unexpected types
 					TypeDeclarationPattern record = (TypeDeclarationPattern)indexRecord;
@@ -1833,7 +1833,7 @@ public class BasicSearchEngine {
 	 * @see SearchEngine#searchAllTypeNames(char[], int, char[], int, int, IJavaSearchScope, TypeNameRequestor, int, IProgressMonitor)
 	 * 	for detailed comment
 	 */
-	public void searchAllTypeNames(
+	public void searchAllTypeNames( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final char[] packageName,
 		final int packageMatchRule,
 		final char[] typeName,
@@ -1852,15 +1852,15 @@ public class BasicSearchEngine {
 			// Debug
 			if (VERBOSE) {
 				trace("BasicSearchEngine.searchAllTypeNames(char[], char[], int, int, IJavaSearchScope, IRestrictedAccessTypeRequestor, int, IProgressMonitor)"); //$NON-NLS-1$
-				trace("	- package name: "+(packageName==null?"null":new String(packageName))); //$NON-NLS-1$ //$NON-NLS-2$
-				trace("	- package match rule: "+getMatchRuleString(packageMatchRule)); //$NON-NLS-1$
-				trace("	- type name: "+(typeName==null?"null":new String(typeName))); //$NON-NLS-1$ //$NON-NLS-2$
-				trace("	- type match rule: "+getMatchRuleString(typeMatchRule)); //$NON-NLS-1$
+				trace("	- package name: "+(packageName==null?"null":new String(packageName))); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				trace("	- package match rule: "+getMatchRuleString(packageMatchRule)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				trace("	- type name: "+(typeName==null?"null":new String(typeName))); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				trace("	- type match rule: "+getMatchRuleString(typeMatchRule)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				if (validatedTypeMatchRule != typeMatchRule) {
-					trace("	- validated type match rule: "+getMatchRuleString(validatedTypeMatchRule)); //$NON-NLS-1$
+					trace("	- validated type match rule: "+getMatchRuleString(validatedTypeMatchRule)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
-				trace("	- search for: "+searchFor); //$NON-NLS-1$
-				trace("	- scope: "+scope); //$NON-NLS-1$
+				trace("	- search for: "+searchFor); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				trace("	- scope: "+scope); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			if (validatedTypeMatchRule == -1) return; // invalid match rule => return no results
 
@@ -1908,7 +1908,7 @@ public class BasicSearchEngine {
 					validatedTypeMatchRule);
 
 			// Get working copy path(s). Store in a single string in case of only one to optimize comparison in requestor
-			Set<String> workingCopyPaths = new HashSet<>();
+			Set<String> workingCopyPaths = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			String workingCopyPath = null;
 			ICompilationUnit[] copies = getWorkingCopies();
 			final int copiesLength = copies == null ? 0 : copies.length;
@@ -1916,7 +1916,7 @@ public class BasicSearchEngine {
 				if (copiesLength == 1) {
 					workingCopyPath = copies[0].getPath().toString();
 				} else {
-					for (int i = 0; i < copiesLength; i++) {
+					for (int i = 0; i < copiesLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ICompilationUnit workingCopy = copies[i];
 						workingCopyPaths.add(workingCopy.getPath().toString());
 					}
@@ -1926,7 +1926,7 @@ public class BasicSearchEngine {
 
 			// Index requestor
 			IndexQueryRequestor searchRequestor = new IndexQueryRequestor(){
-				@Override
+				@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				public boolean acceptIndexMatch(String documentPath, SearchPattern indexRecord, SearchParticipant participant, AccessRuleSet access) {
 					// Filter unexpected types
 					TypeDeclarationPattern record = (TypeDeclarationPattern)indexRecord;
@@ -1994,7 +1994,7 @@ public class BasicSearchEngine {
 
 			// add type names from working copies
 			if (copies != null) {
-				for (int i = 0; i < copiesLength; i++) {
+				for (int i = 0; i < copiesLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					SubMonitor iterationMonitor = subMonitor.split(i);
 					final ICompilationUnit workingCopy = copies[i];
 					if (scope instanceof HierarchyScope) {
@@ -2007,7 +2007,7 @@ public class BasicSearchEngine {
 						IPackageDeclaration[] packageDeclarations = workingCopy.getPackageDeclarations();
 						char[] packageDeclaration = packageDeclarations.length == 0 ? CharOperation.NO_CHAR : packageDeclarations[0].getElementName().toCharArray();
 						IType[] allTypes = workingCopy.getAllTypes();
-						for (IType type : allTypes) {
+						for (IType type : allTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							IJavaElement parent = type.getParent();
 							char[][] enclosingTypeNames;
 							if (parent instanceof IType) {
@@ -2059,13 +2059,13 @@ public class BasicSearchEngine {
 									}
 									return true;
 								}
-								@Override
+								@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 								public boolean visit(TypeDeclaration memberTypeDeclaration, ClassScope classScope) {
 									if (match(typeSuffix, packageName, packageMatchRule, typeName, validatedTypeMatchRule, TypeDeclaration.kind(memberTypeDeclaration.modifiers), packageDeclaration, memberTypeDeclaration.name)) {
 										// compute enclosing type names
 										TypeDeclaration enclosing = memberTypeDeclaration.enclosingType;
 										char[][] enclosingTypeNames = CharOperation.NO_CHAR_CHAR;
-										while (enclosing != null) {
+										while (enclosing != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 											enclosingTypeNames = CharOperation.arrayConcat(new char[][] {enclosing.name}, enclosingTypeNames);
 											if ((enclosing.bits & ASTNode.IsMemberType) != 0) {
 												enclosing = enclosing.enclosingType;
@@ -2076,7 +2076,7 @@ public class BasicSearchEngine {
 										// report
 										if (nameRequestor instanceof TypeNameMatchRequestorWrapper) {
 											IType type = workingCopy.getType(new String(enclosingTypeNames[0]));
-											for (int j=1, l=enclosingTypeNames.length; j<l; j++) {
+											for (int j=1, l=enclosingTypeNames.length; j<l; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 												type = type.getType(new String(enclosingTypeNames[j]));
 											}
 											((TypeNameMatchRequestorWrapper)nameRequestor).requestor.acceptTypeNameMatch(new JavaSearchTypeNameMatch(type, 0));
@@ -2106,7 +2106,7 @@ public class BasicSearchEngine {
 	 * @see SearchEngine#searchAllTypeNames(char[][], char[][], IJavaSearchScope, TypeNameRequestor, int, IProgressMonitor)
 	 * 	for detailed comment
 	 */
-	public void searchAllTypeNames(
+	public void searchAllTypeNames( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final char[][] qualifications,
 		final char[][] typeNames,
 		final int matchRule,
@@ -2120,11 +2120,11 @@ public class BasicSearchEngine {
 			// Debug
 			if (VERBOSE) {
 				trace("BasicSearchEngine.searchAllTypeNames(char[][], char[][], int, int, IJavaSearchScope, IRestrictedAccessTypeRequestor, int, IProgressMonitor)"); //$NON-NLS-1$
-				trace("	- package name: "+(qualifications==null?"null":new String(CharOperation.concatWith(qualifications, ',')))); //$NON-NLS-1$ //$NON-NLS-2$
-				trace("	- type name: "+(typeNames==null?"null":new String(CharOperation.concatWith(typeNames, ',')))); //$NON-NLS-1$ //$NON-NLS-2$
-				trace("	- match rule: "+getMatchRuleString(matchRule)); //$NON-NLS-1$
-				trace("	- search for: "+searchFor); //$NON-NLS-1$
-				trace("	- scope: "+scope); //$NON-NLS-1$
+				trace("	- package name: "+(qualifications==null?"null":new String(CharOperation.concatWith(qualifications, ',')))); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				trace("	- type name: "+(typeNames==null?"null":new String(CharOperation.concatWith(typeNames, ',')))); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				trace("	- match rule: "+getMatchRuleString(matchRule)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				trace("	- search for: "+searchFor); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				trace("	- scope: "+scope); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			IndexManager indexManager = JavaModelManager.getIndexManager();
 
@@ -2159,7 +2159,7 @@ public class BasicSearchEngine {
 			final MultiTypeDeclarationPattern pattern = new MultiTypeDeclarationPattern(qualifications, typeNames, typeSuffix, matchRule);
 
 			// Get working copy path(s). Store in a single string in case of only one to optimize comparison in requestor
-			Set<String> workingCopyPaths = new HashSet<>();
+			Set<String> workingCopyPaths = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			String workingCopyPath = null;
 			ICompilationUnit[] copies = getWorkingCopies();
 			final int copiesLength = copies == null ? 0 : copies.length;
@@ -2167,7 +2167,7 @@ public class BasicSearchEngine {
 				if (copiesLength == 1) {
 					workingCopyPath = copies[0].getPath().toString();
 				} else {
-					for (int i = 0; i < copiesLength; i++) {
+					for (int i = 0; i < copiesLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ICompilationUnit workingCopy = copies[i];
 						workingCopyPaths.add(workingCopy.getPath().toString());
 					}
@@ -2177,7 +2177,7 @@ public class BasicSearchEngine {
 
 			// Index requestor
 			IndexQueryRequestor searchRequestor = new IndexQueryRequestor(){
-				@Override
+				@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				public boolean acceptIndexMatch(String documentPath, SearchPattern indexRecord, SearchParticipant participant, AccessRuleSet access) {
 					// Filter unexpected types
 					QualifiedTypeDeclarationPattern record = (QualifiedTypeDeclarationPattern) indexRecord;
@@ -2243,13 +2243,13 @@ public class BasicSearchEngine {
 
 			// add type names from working copies
 			if (copies != null) {
-				for (ICompilationUnit workingCopy : copies) {
+				for (ICompilationUnit workingCopy : copies) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					final String path = workingCopy.getPath().toString();
 					if (workingCopy.isConsistent()) {
 						IPackageDeclaration[] packageDeclarations = workingCopy.getPackageDeclarations();
 						char[] packageDeclaration = packageDeclarations.length == 0 ? CharOperation.NO_CHAR : packageDeclarations[0].getElementName().toCharArray();
 						IType[] allTypes = workingCopy.getAllTypes();
-						for (IType type : allTypes) {
+						for (IType type : allTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							IJavaElement parent = type.getParent();
 							char[][] enclosingTypeNames;
 							char[] qualification = packageDeclaration;
@@ -2298,13 +2298,13 @@ public class BasicSearchEngine {
 									}
 									return true;
 								}
-								@Override
+								@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 								public boolean visit(TypeDeclaration memberTypeDeclaration, ClassScope classScope) {
 									// compute enclosing type names
 									char[] qualification = packageDeclaration;
 									TypeDeclaration enclosing = memberTypeDeclaration.enclosingType;
 									char[][] enclosingTypeNames = CharOperation.NO_CHAR_CHAR;
-									while (enclosing != null) {
+									while (enclosing != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 										qualification = CharOperation.concat(qualification, enclosing.name, '.');
 										enclosingTypeNames = CharOperation.arrayConcat(new char[][] {enclosing.name}, enclosingTypeNames);
 										if ((enclosing.bits & ASTNode.IsMemberType) != 0) {
@@ -2333,10 +2333,10 @@ public class BasicSearchEngine {
 		}
 	}
 
-	public void searchDeclarations(IJavaElement enclosingElement, SearchRequestor requestor, SearchPattern pattern, IProgressMonitor monitor) throws JavaModelException {
+	public void searchDeclarations(IJavaElement enclosingElement, SearchRequestor requestor, SearchPattern pattern, IProgressMonitor monitor) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			if (VERBOSE) {
-				trace("	- java element: "+enclosingElement); //$NON-NLS-1$
+				trace("	- java element: "+enclosingElement); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			IJavaSearchScope scope = createJavaSearchScope(new IJavaElement[] {enclosingElement});
 			IResource resource = ((JavaElement) enclosingElement).resource();
@@ -2356,7 +2356,7 @@ public class BasicSearchEngine {
 					try {
 						requestor.beginReporting();
 						if (VERBOSE) {
-							trace("Searching for " + pattern + " in " + resource.getFullPath()); //$NON-NLS-1$//$NON-NLS-2$
+							trace("Searching for " + pattern + " in " + resource.getFullPath()); //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
 						SearchParticipant participant = getDefaultSearchParticipant();
 						SearchDocument[] documents = MatchLocator.addWorkingCopies(
@@ -2401,7 +2401,7 @@ public class BasicSearchEngine {
 	 * @see SearchEngine#searchDeclarationsOfAccessedFields(IJavaElement, SearchRequestor, IProgressMonitor)
 	 * 	for detailed comment
 	 */
-	public void searchDeclarationsOfAccessedFields(IJavaElement enclosingElement, SearchRequestor requestor, IProgressMonitor monitor) throws JavaModelException {
+	public void searchDeclarationsOfAccessedFields(IJavaElement enclosingElement, SearchRequestor requestor, IProgressMonitor monitor) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (VERBOSE) {
 			trace("BasicSearchEngine.searchDeclarationsOfAccessedFields(IJavaElement, SearchRequestor, SearchPattern, IProgressMonitor)"); //$NON-NLS-1$
 		}
@@ -2428,7 +2428,7 @@ public class BasicSearchEngine {
 	 * @see SearchEngine#searchDeclarationsOfReferencedTypes(IJavaElement, SearchRequestor, IProgressMonitor)
 	 * 	for detailed comment
 	 */
-	public void searchDeclarationsOfReferencedTypes(IJavaElement enclosingElement, SearchRequestor requestor, IProgressMonitor monitor) throws JavaModelException {
+	public void searchDeclarationsOfReferencedTypes(IJavaElement enclosingElement, SearchRequestor requestor, IProgressMonitor monitor) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (VERBOSE) {
 			trace("BasicSearchEngine.searchDeclarationsOfReferencedTypes(IJavaElement, SearchRequestor, SearchPattern, IProgressMonitor)"); //$NON-NLS-1$
 		}
@@ -2455,7 +2455,7 @@ public class BasicSearchEngine {
 	 * @see SearchEngine#searchDeclarationsOfSentMessages(IJavaElement, SearchRequestor, IProgressMonitor)
 	 * 	for detailed comment
 	 */
-	public void searchDeclarationsOfSentMessages(IJavaElement enclosingElement, SearchRequestor requestor, IProgressMonitor monitor) throws JavaModelException {
+	public void searchDeclarationsOfSentMessages(IJavaElement enclosingElement, SearchRequestor requestor, IProgressMonitor monitor) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (VERBOSE) {
 			trace("BasicSearchEngine.searchDeclarationsOfSentMessages(IJavaElement, SearchRequestor, SearchPattern, IProgressMonitor)"); //$NON-NLS-1$
 		}

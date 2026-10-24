@@ -23,7 +23,7 @@ class NewImportEntry extends ImportEntry {
 
 	@Override
 	public String toString() {
-		return String.format("NewImportEntry(%s)", this.importName); //$NON-NLS-1$
+		return String.format("NewImportEntry(%s)", this.importName); //$NON-NLS-1$ //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
 	}
 
 	@Override

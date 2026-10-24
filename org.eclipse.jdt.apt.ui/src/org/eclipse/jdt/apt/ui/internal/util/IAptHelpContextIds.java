@@ -23,13 +23,13 @@ import org.eclipse.jdt.apt.ui.internal.AptUIPlugin;
  * or extended.
  */
 public interface IAptHelpContextIds {
-	public static final String PREFIX= AptUIPlugin.PLUGIN_ID + '.';
+	public static final String PREFIX= AptUIPlugin.PLUGIN_ID + '.'; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	// Dialogs
-	public static final String ADVANCED_FACTORYPATH_OPTIONS_DIALOG= 	PREFIX + "advanced_factory_path_options_dialog_context"; //$NON-NLS-1$
-	public static final String PROCESSOR_OPTION_INPUT_DIALOG= 			PREFIX + "processor_option_input_dialog_context"; //$NON-NLS-1$
+	public static final String ADVANCED_FACTORYPATH_OPTIONS_DIALOG= 	PREFIX + "advanced_factory_path_options_dialog_context"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	public static final String PROCESSOR_OPTION_INPUT_DIALOG= 			PREFIX + "processor_option_input_dialog_context"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	// Preference/Property pages
-	public static final String APTCONFIGURATION_PREFERENCE_PAGE=		PREFIX + "apt_configuration_preference_page_context"; //$NON-NLS-1$
-	public static final String FACTORYPATH_PREFERENCE_PAGE= 			PREFIX + "factory_path_preference_page_context"; //$NON-NLS-1$
+	public static final String APTCONFIGURATION_PREFERENCE_PAGE=		PREFIX + "apt_configuration_preference_page_context"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	public static final String FACTORYPATH_PREFERENCE_PAGE= 			PREFIX + "factory_path_preference_page_context"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }

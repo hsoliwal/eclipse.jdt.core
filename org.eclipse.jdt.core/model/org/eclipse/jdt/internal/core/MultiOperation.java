@@ -35,7 +35,7 @@ import org.eclipse.jdt.core.JavaModelException;
  * <code>JavaModelStatus</code>. Otherwise, a simple <code>JavaModelStatus</code>
  * is thrown.
  */
-@SuppressWarnings({"rawtypes", "unchecked"})
+@SuppressWarnings({"rawtypes", "unchecked"}) //FLLDCIM: MARK — T09  IMPLEMENTS
 public abstract class MultiOperation extends JavaModelOperation {
 	/**
 	 * Table specifying insertion positions for elements being
@@ -43,7 +43,7 @@ public abstract class MultiOperation extends JavaModelOperation {
 	 * values are the corresponding insertion point.
 	 * @see #processElements()
 	 */
-	protected Map insertBeforeElements = new HashMap(1);
+	protected Map insertBeforeElements = new HashMap(1); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	/**
 	 * Table specifying the new parent for elements being
 	 * copied/moved/renamed.
@@ -71,13 +71,13 @@ public abstract class MultiOperation extends JavaModelOperation {
 	 */
 	protected MultiOperation(IJavaElement[] elementsToProcess, IJavaElement[] parentElements, boolean force) {
 		super(elementsToProcess, parentElements, force);
-		this.newParents = new HashMap(elementsToProcess.length);
+		this.newParents = new HashMap(elementsToProcess.length); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		if (elementsToProcess.length == parentElements.length) {
-			for (int i = 0; i < elementsToProcess.length; i++) {
+			for (int i = 0; i < elementsToProcess.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.newParents.put(elementsToProcess[i], parentElements[i]);
 			}
 		} else { //same destination for all elements to be moved/copied/renamed
-			for (IJavaElement element : elementsToProcess) {
+			for (IJavaElement element : elementsToProcess) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.newParents.put(element, parentElements[0]);
 			}
 		}
@@ -129,8 +129,8 @@ public abstract class MultiOperation extends JavaModelOperation {
 	 */
 	private void initializeRenamings() {
 		if (this.renamingsList != null && this.renamingsList.length == this.elementsToProcess.length) {
-			this.renamings = new HashMap(this.renamingsList.length);
-			for (int i = 0; i < this.renamingsList.length; i++) {
+			this.renamings = new HashMap(this.renamingsList.length); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+			for (int i = 0; i < this.renamingsList.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (this.renamingsList[i] != null) {
 					this.renamings.put(this.elementsToProcess[i], this.renamingsList[i]);
 				}
@@ -164,12 +164,12 @@ public abstract class MultiOperation extends JavaModelOperation {
 	 * @exception JavaModelException if one or several operation(s) was unable to
 	 * be completed.
 	 */
-	protected void processElements() throws JavaModelException {
+	protected void processElements() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			beginTask(getMainTaskName(), this.elementsToProcess.length);
 			IJavaModelStatus[] errors = new IJavaModelStatus[3];
 			int errorsCounter = 0;
-			for (IJavaElement element : this.elementsToProcess) {
+			for (IJavaElement element : this.elementsToProcess) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					verify(element);
 					processElement(element);
@@ -232,7 +232,7 @@ public abstract class MultiOperation extends JavaModelOperation {
 	 * Verifies that the <code>destination</code> specified for the <code>element</code> is valid for the types of the
 	 * <code>element</code> and <code>destination</code>.
 	 */
-	protected void verifyDestination(IJavaElement element, IJavaElement destination) throws JavaModelException {
+	protected void verifyDestination(IJavaElement element, IJavaElement destination) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (destination == null || !destination.exists())
 			error(IJavaModelStatusConstants.ELEMENT_DOES_NOT_EXIST, destination);
 
@@ -278,7 +278,7 @@ public abstract class MultiOperation extends JavaModelOperation {
 	 * Verify that the new name specified for <code>element</code> is
 	 * valid for that type of Java element.
 	 */
-	protected void verifyRenaming(IJavaElement element) throws JavaModelException {
+	protected void verifyRenaming(IJavaElement element) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String newName = getNewNameFor(element);
 		boolean isValid = true;
 	    IJavaProject project = element.getJavaProject();

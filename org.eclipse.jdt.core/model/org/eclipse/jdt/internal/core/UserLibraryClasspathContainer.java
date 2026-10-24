@@ -65,7 +65,7 @@ public class UserLibraryClasspathContainer implements IClasspathContainer {
 
 	private void verbose_no_user_library_found(String userLibraryName) {
 		JavaModelManager.trace(
-			"UserLibrary INIT - FAILED (no user library found)\n" + //$NON-NLS-1$
+			"UserLibrary INIT - FAILED (no user library found)\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	userLibraryName: " + userLibraryName); //$NON-NLS-1$
 	}
 }

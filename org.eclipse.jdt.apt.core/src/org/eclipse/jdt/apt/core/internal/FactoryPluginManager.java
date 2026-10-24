@@ -42,7 +42,7 @@ public class FactoryPluginManager {
 	 * To support lazy initialization, this should only be accessed by calling
 	 * @see #getJava5PluginFactoryMap() .
 	 */
-	private static final HashMap<String, AnnotationProcessorFactory> PLUGIN_JAVA5_FACTORY_MAP = new HashMap<>();
+	private static final HashMap<String, AnnotationProcessorFactory> PLUGIN_JAVA5_FACTORY_MAP = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	/**
 	 * Map of factory names -> factories.  A single plugin factory container may
@@ -50,7 +50,7 @@ public class FactoryPluginManager {
 	 * To support lazy initialization, this should only be accessed by calling
 	 * @see #getJava5PluginFactoryMap() .
 	 */
-	private static final HashMap<String, IServiceFactory> PLUGIN_JAVA6_FACTORY_MAP = new HashMap<>();
+	private static final HashMap<String, IServiceFactory> PLUGIN_JAVA6_FACTORY_MAP = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	/**
 	 * Map of plugin names -> plugin factory containers, sorted by plugin name.
@@ -59,7 +59,7 @@ public class FactoryPluginManager {
 	 * To support lazy initialization, this should only be accessed by calling
 	 * @see #getPluginFactoryContainerMap() .
 	 */
-	private static final TreeMap<String, PluginFactoryContainer> PLUGIN_CONTAINER_MAP = new TreeMap<>();
+	private static final TreeMap<String, PluginFactoryContainer> PLUGIN_CONTAINER_MAP = new TreeMap<>(); //FLLDCIM: MARK — M05 M3_SORTED_LANES NEW
 
 	/**
 	 * true if PLUGIN_FACTORY_MAP and PLUGIN_CONTAINER_MAP have been initialized,
@@ -78,8 +78,8 @@ public class FactoryPluginManager {
 	public static synchronized Map<FactoryContainer, FactoryPath.Attributes> getAllPluginFactoryContainers()
 	{
 		Map<FactoryContainer, FactoryPath.Attributes> map =
-			new LinkedHashMap<>(getPluginContainerMap().size());
-		for (PluginFactoryContainer pfc : getPluginContainerMap().values()) {
+			new LinkedHashMap<>(getPluginContainerMap().size()); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
+		for (PluginFactoryContainer pfc : getPluginContainerMap().values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			FactoryPath.Attributes a = new FactoryPath.Attributes(pfc.getEnableDefault(), false);
 			map.put(pfc, a);
 		}
@@ -91,7 +91,7 @@ public class FactoryPluginManager {
 		AnnotationProcessorFactory apf = getJava5PluginFactoryMap().get( factoryName );
 		if ( apf == null )
 		{
-			String s = "could not find AnnotationProcessorFactory " +  //$NON-NLS-1$
+			String s = "could not find AnnotationProcessorFactory " +  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				factoryName + " from available factories defined by plugins"; //$NON-NLS-1$
 			AptPlugin.log(new Status(IStatus.WARNING, AptPlugin.PLUGIN_ID, AptPlugin.STATUS_NOTOOLSJAR, s, null));
 		}
@@ -103,7 +103,7 @@ public class FactoryPluginManager {
 		IServiceFactory isf = getJava6PluginFactoryMap().get( factoryName );
 		if ( isf == null )
 		{
-			String s = "could not find annotation processor " +  //$NON-NLS-1$
+			String s = "could not find annotation processor " +  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				factoryName + " from available factories defined by plugins"; //$NON-NLS-1$
 			AptPlugin.log(new Status(IStatus.WARNING, AptPlugin.PLUGIN_ID, AptPlugin.STATUS_NOTOOLSJAR, s, null));
 		}
@@ -154,7 +154,7 @@ public class FactoryPluginManager {
 	 * The first time this method is called, it will load all the plugin factories.
 	 * Subsequent calls will be ignored.
 	 */
-	private static synchronized void loadFactoryPlugins() {
+	private static synchronized void loadFactoryPlugins() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (mapsInitialized) {
 			return;
 		}
@@ -164,10 +164,10 @@ public class FactoryPluginManager {
 
 		// Iterate over all declared extensions of this extension point.
 		// A single plugin may extend the extension point more than once, although it's not recommended.
-		for (IExtension extension : extensionPoint.getExtensions())
+		for (IExtension extension : extensionPoint.getExtensions()) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		{
 			// Iterate over the children of the extension to find one named "factories".
-			for(IConfigurationElement factories : extension.getConfigurationElements())
+			for(IConfigurationElement factories : extension.getConfigurationElements()) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			{
 				if ("factories".equals(factories.getName())) { //$NON-NLS-1$ - name of configElement
 					loadJava5Factories(extension, factories);
@@ -181,7 +181,7 @@ public class FactoryPluginManager {
 		mapsInitialized = true;
 	}
 
-	private static void loadJava6Factories(IExtension extension, IConfigurationElement factories) {
+	private static void loadJava6Factories(IExtension extension, IConfigurationElement factories) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!AptPlugin.canRunJava6Processors()) {
 			return;
 		}
@@ -200,7 +200,7 @@ public class FactoryPluginManager {
 		PLUGIN_CONTAINER_MAP.put(pluginId, pfc);
 
 		// Iterate over the children of the "java6processors" element to find all the ones named "java6processor".
-		for (IConfigurationElement factory : factories.getChildren()) {
+		for (IConfigurationElement factory : factories.getChildren()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!"java6processor".equals(factory.getName())) { //$NON-NLS-1$
 				continue;
 			}
@@ -224,7 +224,7 @@ public class FactoryPluginManager {
 		}
 	}
 
-	private static void loadJava5Factories(IExtension extension, IConfigurationElement factories) {
+	private static void loadJava5Factories(IExtension extension, IConfigurationElement factories) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Get enableDefault.  If the attribute is missing, default to true.
 		String enableDefaultStr = factories.getAttribute("enableDefault"); //$NON-NLS-1$
 		boolean enableDefault = true;
@@ -238,7 +238,7 @@ public class FactoryPluginManager {
 		PLUGIN_CONTAINER_MAP.put(pluginId, pfc);
 
 		// Iterate over the children of the "factories" element to find all the ones named "factory".
-		for (IConfigurationElement factory : factories.getChildren()) {
+		for (IConfigurationElement factory : factories.getChildren()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!"factory".equals(factory.getName())) { //$NON-NLS-1$
 				continue;
 			}
@@ -261,7 +261,7 @@ public class FactoryPluginManager {
 	}
 
 	private static void reportFailureToLoadProcessor(Exception e, String factoryName, String pluginId) {
-		AptPlugin.log(e, "Unable to load annotation processor "+ factoryName + //$NON-NLS-1$
+		AptPlugin.log(e, "Unable to load annotation processor "+ factoryName + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				" from plug-in " + pluginId); //$NON-NLS-1$
 	}
 

@@ -36,14 +36,14 @@ public class BatchCompilerTest_16 extends AbstractBatchCompilerTest {
         public BatchCompilerTest_16(String name) {
                 super(name);
         }
-        public void testBug571454_001(){
+        public void testBug571454_001(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         		if (!AbstractBatchCompilerTest.isJREVersionEqualTo(CompilerOptions.VERSION_16))
         			return;
                 String currentWorkingDirectoryPath = System.getProperty("user.dir");
                 if (currentWorkingDirectoryPath == null) {
-                        System.err.println("BatchCompilerTest#testBug564047_001 could not access the current working directory " + currentWorkingDirectoryPath);
-                } else if (!new File(currentWorkingDirectoryPath).isDirectory()) {
-                        System.err.println("BatchCompilerTest#testBug564047_001 current working directory is not a directory " + currentWorkingDirectoryPath);
+                        System.err.println("BatchCompilerTest#testBug564047_001 could not access the current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+                } else if (!new File(currentWorkingDirectoryPath).isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+                        System.err.println("BatchCompilerTest#testBug564047_001 current working directory is not a directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
                 } else {
                         try {
                         this.runNegativeTest(
@@ -64,7 +64,7 @@ public class BatchCompilerTest_16 extends AbstractBatchCompilerTest {
                                                         "       }\n"+
                                                         "}",
                                                 },
-                                    "\"" + OUTPUT_DIR +  File.separator + "src/X.java\""
+                                    "\"" + OUTPUT_DIR +  File.separator + "src/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
                                     + " \"" + OUTPUT_DIR +  File.separator + "src/R.java\""
                                         + " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
                                 + " --release 16 -g -preserveAllLocals"
@@ -83,7 +83,7 @@ public class BatchCompilerTest_16 extends AbstractBatchCompilerTest {
                         }
                 }
         }
-        public void testBug570399(){
+        public void testBug570399(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         	this.runConformTest(
         		new String[] {
                     "src/X.java",
@@ -100,7 +100,7 @@ public class BatchCompilerTest_16 extends AbstractBatchCompilerTest {
                     "       }\n"+
                     "}",
                 },
-                "\"" + OUTPUT_DIR +  File.separator + "src/X.java\""
+                "\"" + OUTPUT_DIR +  File.separator + "src/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
                 + " \"" + OUTPUT_DIR +  File.separator + "src/R.java\""
                     + " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
             + " --release 16 -g -preserveAllLocals"

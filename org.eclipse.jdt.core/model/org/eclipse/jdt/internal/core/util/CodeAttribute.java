@@ -38,7 +38,7 @@ public class CodeAttribute extends ClassFileAttribute implements ICodeAttribute 
 	private final int maxLocals;
 	private final int maxStack;
 
-	CodeAttribute(byte[] classFileBytes, IConstantPool constantPool, int offset) throws ClassFormatException {
+	CodeAttribute(byte[] classFileBytes, IConstantPool constantPool, int offset) throws ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		super(classFileBytes, constantPool, offset);
 		this.classFileBytes = classFileBytes;
 		this.constantPool = constantPool;
@@ -52,7 +52,7 @@ public class CodeAttribute extends ClassFileAttribute implements ICodeAttribute 
 		this.exceptionTableEntries = NO_EXCEPTION_TABLE;
 		if (this.exceptionTableLength != 0) {
 			this.exceptionTableEntries = new ExceptionTableEntry[this.exceptionTableLength];
-			for (int i = 0; i < this.exceptionTableLength; i++) {
+			for (int i = 0; i < this.exceptionTableLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.exceptionTableEntries [i] = new ExceptionTableEntry(classFileBytes, constantPool, offset + readOffset);
 				readOffset += 8;
 			}
@@ -64,7 +64,7 @@ public class CodeAttribute extends ClassFileAttribute implements ICodeAttribute 
 		}
 		int attributesIndex = 0;
 		readOffset += 2;
-		for (int i = 0; i < this.attributesCount; i++) {
+		for (int i = 0; i < this.attributesCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IConstantPoolEntry constantPoolEntry = constantPool.decodeEntry(u2At(classFileBytes, readOffset, offset));
 			if (constantPoolEntry.getKind() != IConstantPoolConstant.CONSTANT_Utf8) {
 				throw new ClassFormatException(ClassFormatException.INVALID_CONSTANT_POOL_ENTRY);
@@ -178,12 +178,12 @@ public class CodeAttribute extends ClassFileAttribute implements ICodeAttribute 
 	/**
 	 * @see ICodeAttribute#traverse(IBytecodeVisitor visitor)
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void traverse(IBytecodeVisitor visitor) throws ClassFormatException {
 		int pc = this.codeOffset;
 		int opcode, index, _const, branchOffset;
 		IConstantPoolEntry constantPoolEntry;
-		while (true) {
+		while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			opcode = u1At(this.classFileBytes, 0, pc);
 			switch(opcode) {
 				case IOpcodeMnemonics.NOP :
@@ -910,7 +910,7 @@ public class CodeAttribute extends ClassFileAttribute implements ICodeAttribute 
 				case IOpcodeMnemonics.TABLESWITCH :
 					int startpc = pc;
 					pc++;
-					while (((pc - this.codeOffset) & 0x03) != 0) { // faster than % 4
+					while (((pc - this.codeOffset) & 0x03) != 0) { // faster than % 4 //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						pc++;
 					}
 					int defaultOffset = i4At(this.classFileBytes, 0, pc);
@@ -921,7 +921,7 @@ public class CodeAttribute extends ClassFileAttribute implements ICodeAttribute 
 					pc += 4;
 					int length = high - low + 1;
 					int[] jumpOffsets = new int[length];
-					for (int i = 0; i < length; i++) {
+					for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						jumpOffsets[i] = i4At(this.classFileBytes, 0, pc);
 						pc += 4;
 					}
@@ -930,7 +930,7 @@ public class CodeAttribute extends ClassFileAttribute implements ICodeAttribute 
 				case IOpcodeMnemonics.LOOKUPSWITCH :
 					startpc = pc;
 					pc++;
-					while (((pc - this.codeOffset) & 0x03) != 0) {
+					while (((pc - this.codeOffset) & 0x03) != 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						pc++;
 					}
 					defaultOffset = i4At(this.classFileBytes, 0, pc);
@@ -938,7 +938,7 @@ public class CodeAttribute extends ClassFileAttribute implements ICodeAttribute 
 					int npairs = u4At(this.classFileBytes, 0, pc);
 					int[][] offset_pairs = new int[npairs][2];
 					pc += 4;
-					for (int i = 0; i < npairs; i++) {
+					for (int i = 0; i < npairs; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						offset_pairs[i][0] = i4At(this.classFileBytes, 0, pc);
 						pc += 4;
 						offset_pairs[i][1] = i4At(this.classFileBytes, 0, pc);

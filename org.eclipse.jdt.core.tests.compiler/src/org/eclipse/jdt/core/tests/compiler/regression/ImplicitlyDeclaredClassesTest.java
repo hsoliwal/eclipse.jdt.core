@@ -138,7 +138,7 @@ public class ImplicitlyDeclaredClassesTest extends AbstractRegressionTest9 {
 		assertEquals(1, res.types[0].memberTypes.length);
 	}
 	// Test that no reference to the implicit type name can be made within the same CU
-	@Test
+	@Test //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testImplicitType001() {
 		runNegativeTest(
 					new String[] {"X.java",
@@ -311,7 +311,7 @@ public class ImplicitlyDeclaredClassesTest extends AbstractRegressionTest9 {
 						}"""},
 					"true");
 	}
-	@Test
+	@Test //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testImplicitImport() {
 		// the explicit class must be given first to trigger https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2952
 		// the test is made as negative because we can't execute the second class
@@ -354,7 +354,7 @@ public class ImplicitlyDeclaredClassesTest extends AbstractRegressionTest9 {
 		"Hello1\n" +
 		"Hello2");
 	}
-	public void testGH3137a2() {
+	public void testGH3137a2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -437,7 +437,7 @@ public class ImplicitlyDeclaredClassesTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5135
 	// Verify that the constructor-name warning is still reported for regular compilation units
-	public void testGH5135_regularClass() {
+	public void testGH5135_regularClass() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"main.java",

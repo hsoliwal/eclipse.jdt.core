@@ -35,7 +35,7 @@ public class ReadAnnotationProcessor extends BaseProcessor
 		super(env);
 	}
 
-	public void process()
+	public void process() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		ProcessorTestStatus.setProcessorRan();
 		try{
@@ -60,8 +60,8 @@ public class ReadAnnotationProcessor extends BaseProcessor
 
 				int counter = 0;
 				junit.framework.TestCase.assertEquals(5, fieldDecls.size());
-				for(FieldDeclaration fieldDecl : fieldDecls ){
-					final String name = "field" + counter;
+				for(FieldDeclaration fieldDecl : fieldDecls ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					final String name = "field" + counter; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 					junit.framework.TestCase.assertEquals("field name mismatch", name, fieldDecl.getSimpleName());
 					final String[] expected;
@@ -95,8 +95,8 @@ public class ReadAnnotationProcessor extends BaseProcessor
 				final Collection<? extends MethodDeclaration> methodDecls = typeDecl.getMethods();
 				counter = 0;
 				junit.framework.TestCase.assertEquals(8, methodDecls.size());
-				for(MethodDeclaration methodDecl : methodDecls ){
-					final String name = "method" + counter;
+				for(MethodDeclaration methodDecl : methodDecls ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					final String name = "method" + counter; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 					junit.framework.TestCase.assertEquals("method name mismatch", name, methodDecl.getSimpleName());
 					final String[] expected;
@@ -136,7 +136,7 @@ public class ReadAnnotationProcessor extends BaseProcessor
 					if( counter == 5 ){
 						Collection<ParameterDeclaration> paramDecls = methodDecl.getParameters();
 						int pCounter = 0;
-						for( ParameterDeclaration paramDecl : paramDecls ){
+						for( ParameterDeclaration paramDecl : paramDecls ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							final String[] expectedParamAnnotations;
 							switch( pCounter )
 							{
@@ -173,27 +173,27 @@ public class ReadAnnotationProcessor extends BaseProcessor
 		}
 	}
 
-	private void assertAnnotation(final String[] expected, Collection<AnnotationMirror> annotations)
+	private void assertAnnotation(final String[] expected, Collection<AnnotationMirror> annotations) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		final int expectedLen = expected.length;
 		junit.framework.TestCase.assertEquals("annotation number mismatch", expected.length, annotations.size()); //$NON-NLS-1$
 
-		final HashSet<String> expectedSet = new HashSet<>(expectedLen * 4 / 3 + 1);
-		for( int i=0; i<expectedLen; i++ )
+		final HashSet<String> expectedSet = new HashSet<>(expectedLen * 4 / 3 + 1); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+		for( int i=0; i<expectedLen; i++ ) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			expectedSet.add(expected[i]);
 
 		int counter = 0;
-		for( AnnotationMirror mirror : annotations ){
+		for( AnnotationMirror mirror : annotations ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String mirrorString = ProcessorUtil.annoMirrorToString(mirror);
 			if( counter >= expectedLen )
 				junit.framework.TestCase.assertEquals("", mirrorString); //$NON-NLS-1$
 			else{
 				final boolean contains = expectedSet.contains(mirrorString);
 				if( !contains ){
-					System.err.println("found unexpected: " + mirrorString);
-					System.err.println("expected set: " + expectedSet);
+					System.err.println("found unexpected: " + mirrorString); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+					System.err.println("expected set: " + expectedSet); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
-				junit.framework.TestCase.assertTrue("unexpected annotation " + mirrorString, contains); //$NON-NLS-1$
+				junit.framework.TestCase.assertTrue("unexpected annotation " + mirrorString, contains); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				expectedSet.remove(mirrorString);
 			}
 			counter ++;

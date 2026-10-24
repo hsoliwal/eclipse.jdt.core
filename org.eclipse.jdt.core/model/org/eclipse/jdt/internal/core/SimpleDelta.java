@@ -81,39 +81,39 @@ public class SimpleDelta {
 		changed(IJavaElementDelta.F_SUPER_TYPES);
 	}
 
-	protected void toDebugString(StringBuilder buffer) {
-		buffer.append("["); //$NON-NLS-1$
+	protected void toDebugString(StringBuilder buffer) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		buffer.append("["); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		switch (getKind()) {
 			case IJavaElementDelta.ADDED :
-				buffer.append('+');
+				buffer.append('+'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case IJavaElementDelta.REMOVED :
-				buffer.append('-');
+				buffer.append('-'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case IJavaElementDelta.CHANGED :
-				buffer.append('*');
+				buffer.append('*'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			default :
-				buffer.append('?');
+				buffer.append('?'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 		}
-		buffer.append("]: {"); //$NON-NLS-1$
+		buffer.append("]: {"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		toDebugString(buffer, getFlags());
-		buffer.append("}"); //$NON-NLS-1$
+		buffer.append("}"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	protected boolean toDebugString(StringBuilder buffer, int flags) {
 		boolean prev = false;
 		if ((flags & IJavaElementDelta.F_MODIFIERS) != 0) {
 			if (prev)
-				buffer.append(" | "); //$NON-NLS-1$
-			buffer.append("MODIFIERS CHANGED"); //$NON-NLS-1$
+				buffer.append(" | "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("MODIFIERS CHANGED"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			prev = true;
 		}
 		if ((flags & IJavaElementDelta.F_SUPER_TYPES) != 0) {
 			if (prev)
-				buffer.append(" | "); //$NON-NLS-1$
-			buffer.append("SUPER TYPES CHANGED"); //$NON-NLS-1$
+				buffer.append(" | "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("SUPER TYPES CHANGED"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			prev = true;
 		}
 		return prev;
@@ -121,7 +121,7 @@ public class SimpleDelta {
 
 	@Override
 	public String toString() {
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		toDebugString(buffer);
 		return buffer.toString();
 	}

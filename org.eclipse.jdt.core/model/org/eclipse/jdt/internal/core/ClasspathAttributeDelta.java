@@ -36,7 +36,7 @@ public class ClasspathAttributeDelta implements IClasspathAttributeDelta {
 	private final String attributeValue;
 
 	private ClasspathAttributeDelta(int kind, String attributeName, String attributeValue) {
-		Assert.isTrue(kind == ADDED || kind == REMOVED || kind == CHANGED, "Unexpected delta kind: " + kind); //$NON-NLS-1$
+		Assert.isTrue(kind == ADDED || kind == REMOVED || kind == CHANGED, "Unexpected delta kind: " + kind); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		this.kind = kind;
 		this.attributeName = attributeName;
 		this.attributeValue = attributeValue;
@@ -57,36 +57,36 @@ public class ClasspathAttributeDelta implements IClasspathAttributeDelta {
 		return this.attributeValue;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public String toString() {
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("attribute name="); //$NON-NLS-1$
-		buffer.append(getAttributeName());
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("attribute name="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(getAttributeName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		int deltaKind = getKind();
 		if (deltaKind != REMOVED) {
-			buffer.append(", value="); //$NON-NLS-1$
-			buffer.append(getAttributeValue());
+			buffer.append(", value="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(getAttributeValue()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		buffer.append("["); //$NON-NLS-1$
+		buffer.append("["); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		switch (deltaKind) {
 			case ADDED :
-				buffer.append('+');
+				buffer.append('+'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case REMOVED :
-				buffer.append('-');
+				buffer.append('-'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CHANGED :
-				buffer.append('*');
+				buffer.append('*'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			default :
-				buffer.append('?');
+				buffer.append('?'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 		}
-		buffer.append("]"); //$NON-NLS-1$
+		buffer.append("]"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return buffer.toString();
 	}
 
-	static List<IClasspathAttributeDelta> getAttributeDeltas(IClasspathEntry oldClasspathEntry, IClasspathEntry newClasspathEntry) {
+	static List<IClasspathAttributeDelta> getAttributeDeltas(IClasspathEntry oldClasspathEntry, IClasspathEntry newClasspathEntry) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> oldAttributes = getAttributes(oldClasspathEntry);
 		Map<String, String> newAttributes = getAttributes(newClasspathEntry);
 
@@ -98,13 +98,13 @@ public class ClasspathAttributeDelta implements IClasspathAttributeDelta {
 		Set<String> removedAttributes = new LinkedHashSet<>();
 		Set<String> changedAttributes = new LinkedHashSet<>();
 
-		for (Entry<String, String> newAttribute : newAttributes.entrySet()) {
+		for (Entry<String, String> newAttribute : newAttributes.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String name = newAttribute.getKey();
 			if (!oldAttributes.containsKey(name)) {
 				addedAttributes.add(name);
 			}
 		}
-		for (Entry<String, String> oldAttribute : oldAttributes.entrySet()) {
+		for (Entry<String, String> oldAttribute : oldAttributes.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String name = oldAttribute.getKey();
 			String oldValue = oldAttribute.getValue();
 			String newValue = newAttributes.get(name);
@@ -117,18 +117,18 @@ public class ClasspathAttributeDelta implements IClasspathAttributeDelta {
 			}
 		}
 
-		List<IClasspathAttributeDelta> attributeDeltas = new ArrayList<>();
-		for (String name : addedAttributes) {
+		List<IClasspathAttributeDelta> attributeDeltas = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (String name : addedAttributes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String value = newAttributes.get(name);
 			IClasspathAttributeDelta attributeDelta = new ClasspathAttributeDelta(IClasspathAttributeDelta.ADDED, name, value);
 			attributeDeltas.add(attributeDelta);
 		}
-		for (String name : removedAttributes) {
+		for (String name : removedAttributes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String noValue = NO_VALUE;
 			IClasspathAttributeDelta attributeDelta = new ClasspathAttributeDelta(IClasspathAttributeDelta.REMOVED, name, noValue);
 			attributeDeltas.add(attributeDelta);
 		}
-		for (String name : changedAttributes) {
+		for (String name : changedAttributes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String value = newAttributes.get(name);
 			IClasspathAttributeDelta attributeDelta = new ClasspathAttributeDelta(IClasspathAttributeDelta.CHANGED, name, value);
 			attributeDeltas.add(attributeDelta);
@@ -138,8 +138,8 @@ public class ClasspathAttributeDelta implements IClasspathAttributeDelta {
 
 	private static Map<String, String> getAttributes(IClasspathEntry classpathEntry) {
 		IClasspathAttribute[] extraAttributes = classpathEntry.getExtraAttributes();
-		Map<String, String> attributes = new LinkedHashMap<>();
-		for (IClasspathAttribute attribute : extraAttributes) {
+		Map<String, String> attributes = new LinkedHashMap<>(); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
+		for (IClasspathAttribute attribute : extraAttributes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String name = attribute.getName();
 			String value = attribute.getValue();
 			if (value == null) {

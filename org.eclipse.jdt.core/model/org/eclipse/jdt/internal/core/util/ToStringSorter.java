@@ -52,9 +52,9 @@ public class ToStringSorter <T> {
 	public List<Pair<T>> sort(Collection<T> unSorted) {
 		int size = unSorted.size();
 		//copy the list so can return a new sorted collection
-		List<Pair <T>> sortedObjects = new ArrayList<>(size);
+		List<Pair <T>> sortedObjects = new ArrayList<>(size); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		unSorted.forEach(k -> sortedObjects.add(new Pair<>(k, this.toString.apply(k))));
-		Collections.sort(sortedObjects);
+		Collections.sort(sortedObjects); //FLLDCIM: MARK — M16 SORT_LANE CALL
 		return sortedObjects;
 	}
 }

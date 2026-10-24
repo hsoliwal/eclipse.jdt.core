@@ -47,15 +47,15 @@ public class TestPessimisticProvider extends RepositoryProvider {
 	public void deconfigure() {
 	}
 
-	public FileModificationValidator getFileModificationValidator2() {
+	public FileModificationValidator getFileModificationValidator2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		return new FileModificationValidator() {
-			public IStatus validateEdit(final IFile[] files, FileModificationValidationContext context) {
+			public IStatus validateEdit(final IFile[] files, FileModificationValidationContext context) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				if (TestPessimisticProvider.markWritableOnEdit) {
 					try {
 						ResourcesPlugin.getWorkspace().run(
-							new IWorkspaceRunnable() {
+							new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 								public void run(IProgressMonitor monitor)	{
-									for (int i = 0, length = files.length; i < length; i++) {
+									for (int i = 0, length = files.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 										try {
 											setReadOnly(files[i], false);
 										} catch (CoreException e) {

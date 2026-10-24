@@ -166,7 +166,7 @@ public IJavaElement getJavaElement(IJavaElement parent) throws IllegalArgumentEx
 	if (parent.getElementType() == IJavaElement.TYPE) {
 		int count = 1;
 		IDOMNode previousNode = getPreviousNode();
-		while (previousNode != null) {
+		while (previousNode != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (previousNode instanceof DOMInitializer) {
 				count++;
 			}

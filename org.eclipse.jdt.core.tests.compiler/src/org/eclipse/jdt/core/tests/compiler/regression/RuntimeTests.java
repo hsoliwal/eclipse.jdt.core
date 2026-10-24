@@ -48,7 +48,7 @@ public static Class testClass() {
 // series (the OOME potentially causing grief to others)
 // see https://bugs.eclipse.org/bugs/show_bug.cgi?id=217078
 // memory exhaustion - try to allocate too big an instance
-public void _test0001_memory_exhaustion() {
+public void _test0001_memory_exhaustion() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		new String[] { /* testFiles */
 			"X.java",
@@ -85,7 +85,7 @@ public void _test0001_memory_exhaustion() {
 
 // synchronization - concurrent access to a resource with explicit and
 // implicit locks
-public void test0500_synchronization() {
+public void test0500_synchronization() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -142,7 +142,7 @@ public void test0500_synchronization() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=126712
 // reflection - access to a public method of a package visible
 // class through a public extending class
-public void test0600_reflection() {
+public void test0600_reflection() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		true,
 		new String[] {
@@ -187,7 +187,7 @@ public void test0600_reflection() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=126712
 // reflection - access to a public field of a package visible
 // class through a public extending class
-public void test0601_reflection() {
+public void test0601_reflection() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -223,7 +223,7 @@ public void test0601_reflection() {
 }
 
 // partial rebuild - method signature changed (return type)
-public void test1000_partial_rebuild() {
+public void test1000_partial_rebuild() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -281,7 +281,7 @@ public void test1000_partial_rebuild() {
 }
 
 // partial rebuild - method signature changed (parameter type)
-public void test1001_partial_rebuild() {
+public void test1001_partial_rebuild() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -337,7 +337,7 @@ public void test1001_partial_rebuild() {
 }
 
 // partial rebuild - method signature changed (visibility)
-public void test1002_partial_rebuild() {
+public void test1002_partial_rebuild() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -403,7 +403,7 @@ public void test1002_partial_rebuild() {
 }
 
 // partial rebuild - method signature changed (visibility)
-public void test1003_partial_rebuild() {
+public void test1003_partial_rebuild() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -472,7 +472,7 @@ public void test1003_partial_rebuild() {
 // partial rebuild - extending class now redefines extended class fields and
 //                   methods
 // was Compliance_1_x#test009
-public void test1004_partial_rebuild() {
+public void test1004_partial_rebuild() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p1/Z.java",

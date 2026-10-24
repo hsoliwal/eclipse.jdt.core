@@ -249,7 +249,7 @@ public class SearchEngine {
 	public static IJavaSearchScope createJavaSearchScope(IResource[] resources) {
 		int length = resources.length;
 		IJavaElement[] elements = new IJavaElement[length];
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			elements[i] = JavaCore.create(resources[i]);
 		}
 		return createJavaSearchScope(elements);

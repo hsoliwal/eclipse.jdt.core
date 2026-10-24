@@ -300,7 +300,7 @@ protected void appendContents(CharArrayBuffer buffer) {
  * <p>This algorithm used minimizes String generation by merging
  * adjacent unfragmented children into one substring operation.
  */
-protected void appendContentsOfChildren(CharArrayBuffer buffer) {
+protected void appendContentsOfChildren(CharArrayBuffer buffer) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	DOMNode child= this.fFirstChild;
 	DOMNode sibling;
 
@@ -309,7 +309,7 @@ protected void appendContentsOfChildren(CharArrayBuffer buffer) {
 		start= child.getStartPosition();
 		end= child.getEndPosition();
 	}
-	while (child != null) {
+	while (child != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		sibling= child.fNextNode;
 		if (sibling != null) {
 			if (sibling.isContentMergableWith(child)) {
@@ -345,7 +345,7 @@ protected abstract void appendFragmentedContents(CharArrayBuffer buffer);
  * method is only used by the <code>DOMBuilder</code> when creating a new DOM such
  * that a new DOM is unfragmented.
  */
-void basicAddChild(IDOMNode child) throws IllegalArgumentException, DOMException {
+void basicAddChild(IDOMNode child) throws IllegalArgumentException, DOMException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// verify child may be added
 	if (!canHaveChildren()) {
 		throw new DOMException(Messages.dom_unableAddChild);
@@ -419,7 +419,7 @@ public boolean canHaveChildren() {
 /**
  * @see IDOMNode#clone()
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public Object clone() {
 
 	// create a new buffer with all my contents and children contents
@@ -443,7 +443,7 @@ public Object clone() {
 	// clone my children
 	if (canHaveChildren()) {
 		Enumeration children= getChildren();
-		while (children.hasMoreElements()) {
+		while (children.hasMoreElements()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			DOMNode child= (DOMNode)children.nextElement();
 			if (child.fDocument == this.fDocument) {
 				DOMNode childClone= child.cloneSharingDocument(buffer, offset);
@@ -458,7 +458,7 @@ public Object clone() {
 
 	return clone;
 }
-private DOMNode cloneSharingDocument(char[] document, int rootOffset) {
+private DOMNode cloneSharingDocument(char[] document, int rootOffset) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	DOMNode clone = newDOMNode();
 	clone.shareContents(this);
@@ -469,7 +469,7 @@ private DOMNode cloneSharingDocument(char[] document, int rootOffset) {
 
 	if (canHaveChildren()) {
 		Enumeration children = getChildren();
-		while (children.hasMoreElements()) {
+		while (children.hasMoreElements()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			DOMNode child = (DOMNode) children.nextElement();
 			if (child.fDocument == this.fDocument) {
 				DOMNode childClone= child.cloneSharingDocument(document, rootOffset);
@@ -512,7 +512,7 @@ public char[] getCharacters() {
 @Override
 public IDOMNode getChild(String name) {
 	DOMNode child = this.fFirstChild;
-	while (child != null) {
+	while (child != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String n = child.getName();
 		if (name == null) {
 			if (n == null) {
@@ -680,7 +680,7 @@ public int getStartPosition() {
 /**
  * @see IDOMNode#insertSibling(IDOMNode)
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void insertSibling(IDOMNode sibling) throws IllegalArgumentException, DOMException {
 	// verify sibling may be added
 	if (sibling == null) {
@@ -810,7 +810,7 @@ void normalize(ILineStartFinder finder) {
 	// Set the children's position
 	if (canHaveChildren()) {
 		Enumeration children = getChildren();
-		while(children.hasMoreElements())
+		while(children.hasMoreElements()) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			((DOMNode)children.nextElement()).normalize(finder);
 	}
 
@@ -819,7 +819,7 @@ void normalize(ILineStartFinder finder) {
 /**
  * Normalizes this <code>DOMNode</code>'s end position.
  */
-void normalizeEndPosition(ILineStartFinder finder, DOMNode next) {
+void normalizeEndPosition(ILineStartFinder finder, DOMNode next) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (next == null) {
 		// this node's end position includes all of the characters up
 		// to the end of the enclosing node
@@ -860,7 +860,7 @@ protected void offset(int offset) {
  * Offsets the source range by the given amount
  */
 protected void offsetRange(int[] range, int offset) {
-	for (int i= 0; i < range.length; i++) {
+	for (int i= 0; i < range.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		range[i]+=offset;
 		if (range[i] < 0) {
 			range[i]= -1;
@@ -884,7 +884,7 @@ protected int[] rangeCopy(int[] range) {
  *
  * @see IDOMNode#remove()
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void remove() {
 
 	if (this.fParent != null) {
@@ -963,7 +963,7 @@ protected void setStartPosition(int start) {
  * only the contents of this node. This is used only to localize
  * the contents of this node.
  */
-protected void shareContents(DOMNode node) {
+protected void shareContents(DOMNode node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.fDocument= node.fDocument;
 	this.fIsFragmented= node.fIsFragmented;
 	this.fName= node.fName;
@@ -976,7 +976,7 @@ protected void shareContents(DOMNode node) {
 		Enumeration myChildren= getChildren();
 		Enumeration otherChildren= node.getChildren();
 		DOMNode myChild, otherChild;
-		while (myChildren.hasMoreElements()) {
+		while (myChildren.hasMoreElements()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			myChild= (DOMNode)myChildren.nextElement();
 			otherChild= (DOMNode)otherChildren.nextElement();
 			myChild.shareContents(otherChild);

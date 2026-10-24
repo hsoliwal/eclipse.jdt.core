@@ -39,7 +39,7 @@ import org.eclipse.jdt.internal.core.util.Util;
  *      performed.
  * </ul>
  */
-@SuppressWarnings("rawtypes")
+@SuppressWarnings("rawtypes") //FLLDCIM: MARK — T09  IMPLEMENTS
 public class CreateMethodOperation extends CreateTypeMemberOperation {
 
 	protected String[] parameterTypes;
@@ -55,7 +55,7 @@ public CreateMethodOperation(IType parentElement, String source, boolean force) 
  * Returns the type signatures of the parameter types of the
  * current <code>MethodDeclaration</code>
  */
-protected String[] convertASTMethodTypesToSignatures() {
+protected String[] convertASTMethodTypesToSignatures() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.parameterTypes == null) {
 		if (this.createdNode != null) {
 			MethodDeclaration methodDeclaration = (MethodDeclaration) this.createdNode;
@@ -64,7 +64,7 @@ protected String[] convertASTMethodTypesToSignatures() {
 			this.parameterTypes = new String[size];
 			Iterator iterator = parameters.iterator();
 			// convert the AST types to signatures
-			for (int i = 0; i < size; i++) {
+			for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				SingleVariableDeclaration parameter = (SingleVariableDeclaration) iterator.next();
 				String typeSig = Util.getSignature(parameter.getType());
 				int extraDimensions = parameter.getExtraDimensions();

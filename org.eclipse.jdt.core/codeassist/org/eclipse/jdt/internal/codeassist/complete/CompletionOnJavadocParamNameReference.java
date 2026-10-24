@@ -42,9 +42,9 @@ public class CompletionOnJavadocParamNameReference extends JavadocSingleNameRefe
 
 	@Override
 	public StringBuilder printExpression(int indent, StringBuilder output) {
-		output.append("<CompletionOnJavadocParamNameReference:"); //$NON-NLS-1$
+		output.append("<CompletionOnJavadocParamNameReference:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (this.token != null) super.printExpression(indent, output);
-		return output.append('>');
+		return output.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	@Override

@@ -45,7 +45,7 @@ public abstract class EclipseDeclarationImpl implements Declaration, EclipseMirr
         visitor.visitDeclaration(this);
     }
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	<A extends Annotation> A _getAnnotation(Class<A> annotationClass,
                                             IAnnotationBinding[] annoInstances)
     {
@@ -55,7 +55,7 @@ public abstract class EclipseDeclarationImpl implements Declaration, EclipseMirr
         String annoTypeName = annotationClass.getName();
 		if( annoTypeName == null ) return null;
         annoTypeName = annoTypeName.replace('$', '.');
-		for( IAnnotationBinding annoInstance :  annoInstances){
+		for( IAnnotationBinding annoInstance :  annoInstances){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
         	if (annoInstance == null)
         		continue;
             final ITypeBinding binding = annoInstance.getAnnotationType();
@@ -77,8 +77,8 @@ public abstract class EclipseDeclarationImpl implements Declaration, EclipseMirr
     {
         if( annoInstances == null || annoInstances.length == 0 )
         	return Collections.emptyList();
-        final List<AnnotationMirror> result = new ArrayList<>(annoInstances.length);
-        for(IAnnotationBinding annoInstance : annoInstances){
+        final List<AnnotationMirror> result = new ArrayList<>(annoInstances.length); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+        for(IAnnotationBinding annoInstance : annoInstances){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
         	if (annoInstance != null) {
 	            final AnnotationMirrorImpl annoMirror =
                         (AnnotationMirrorImpl)Factory.createAnnotationMirror(annoInstance, this, _env);
@@ -91,8 +91,8 @@ public abstract class EclipseDeclarationImpl implements Declaration, EclipseMirr
 	Collection<AnnotationMirror> _getAnnotationMirrors(List<org.eclipse.jdt.core.dom.Annotation> annoInstances)
 	{
 		if( annoInstances == null || annoInstances.size() == 0 ) return Collections.emptyList();
-		final List<AnnotationMirror> result = new ArrayList<>(annoInstances.size());
-		for( org.eclipse.jdt.core.dom.Annotation annoInstance : annoInstances){
+		final List<AnnotationMirror> result = new ArrayList<>(annoInstances.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for( org.eclipse.jdt.core.dom.Annotation annoInstance : annoInstances){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (annoInstance != null) {
 				final AnnotationMirrorImpl annoMirror =
 					(AnnotationMirrorImpl)Factory.createAnnotationMirror(annoInstance.resolveAnnotationBinding(), this, _env);
@@ -137,7 +137,7 @@ public abstract class EclipseDeclarationImpl implements Declaration, EclipseMirr
 	 *         The default is to find the name of the node and if that fails, return the
 	 *         node with the smallest range that contains the declaration.
 	 */
-	protected ASTNode getRangeNode()
+	protected ASTNode getRangeNode() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		final ASTNode node = getAstNode();
 		if( node == null ) return null;
@@ -161,7 +161,7 @@ public abstract class EclipseDeclarationImpl implements Declaration, EclipseMirr
 		case ASTNode.FIELD_DECLARATION:
 			final String declName = getSimpleName();
 			if( declName == null ) return node;
-			for(Object obj : ((FieldDeclaration)node).fragments() ){
+			for(Object obj : ((FieldDeclaration)node).fragments() ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				 VariableDeclarationFragment frag = (VariableDeclarationFragment)obj;
 				 if( declName.equals(frag.getName().toString()) ){
 					 name = frag.getName();

@@ -32,7 +32,7 @@ import org.eclipse.jdt.internal.core.util.Messages;
  *      performed.
  * </ul>
  */
-public class CreateInitializerOperation extends CreateTypeMemberOperation {
+public class CreateInitializerOperation extends CreateTypeMemberOperation { //FLLDCIM: MARK — T09  IMPLEMENTS
 	/**
 	 * The current number of initializers in the parent type.
 	 * Used to retrieve the handle of the newly created initializer.
@@ -59,7 +59,7 @@ protected ASTNode generateElementAST(ASTRewrite rewriter, ICompilationUnit cu) t
 /**
  * @see CreateElementInCUOperation#generateResultHandle
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected IJavaElement generateResultHandle() {
 	try {
 		//update the children to be current
@@ -69,7 +69,7 @@ protected IJavaElement generateResultHandle() {
 		} else {
 			IJavaElement[] children = getType().getChildren();
 			int count = 0;
-			for (IJavaElement child : children) {
+			for (IJavaElement child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (child.equals(this.anchorElement)) {
 					if (child .getElementType() == IJavaElement.INITIALIZER && this.insertionPolicy == CreateElementInCUOperation.INSERT_AFTER) {
 						count++;

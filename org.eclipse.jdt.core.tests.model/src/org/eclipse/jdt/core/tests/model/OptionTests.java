@@ -80,7 +80,7 @@ public void tearDownSuite() throws Exception {
 /**
  * Test persistence of project custom options
  */
-public void test01() throws CoreException {
+public void test01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject projectA =
 			this.createJavaProject(
@@ -135,7 +135,7 @@ public void test01() throws CoreException {
 /**
  * Test custom encoding
  */
-public void test02() throws CoreException {
+public void test02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject projectA =
 			this.createJavaProject(
@@ -179,7 +179,7 @@ public void test02() throws CoreException {
 /**
  * Test custom project option (if not considering JavaCore options)
  */
-public void test03() throws CoreException {
+public void test03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject projectA =
 			this.createJavaProject(
@@ -233,7 +233,7 @@ public void test03() throws CoreException {
 /**
  * Test persistence of project custom options - using getOptions()
  */
-public void test04() throws CoreException {
+public void test04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject projectA =
 			this.createJavaProject(
@@ -288,7 +288,7 @@ public void test04() throws CoreException {
 /**
  * Test custom encoding - using getOptions()
  */
-public void test05() throws CoreException {
+public void test05() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject projectA =
 			this.createJavaProject(
@@ -332,7 +332,7 @@ public void test05() throws CoreException {
 /**
  * Test custom project option (if not considering JavaCore options) - using getOptions()
  */
-public void test06() throws CoreException {
+public void test06() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject projectA =
 			this.createJavaProject(
@@ -388,7 +388,7 @@ public void test06() throws CoreException {
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26255
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=49691
  */
-public void test07() throws CoreException {
+public void test07() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.eventCount = 0;
 		JavaProject projectA = (JavaProject)
@@ -436,7 +436,7 @@ public void test07() throws CoreException {
  * Empty custom option must not be ignored
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26251
  */
-public void test08() throws CoreException {
+public void test08() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject projectA =
 			this.createJavaProject(
@@ -482,7 +482,7 @@ public void test08() throws CoreException {
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=59258
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=60896
  */
-public void test09() throws CoreException {
+public void test09() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.eventCount = 0;
 		JavaProject projectA = (JavaProject) this.createJavaProject("A", new String[] {}, new String[] {}, "",
@@ -526,7 +526,7 @@ public void test10() throws CoreException {
 	assertEquals(
 		"Should find variable TEST in preferences",
 		"testing",
-		preferences.get(JavaModelManager.CP_VARIABLE_PREFERENCES_PREFIX+"TEST", "null"));
+		preferences.get(JavaModelManager.CP_VARIABLE_PREFERENCES_PREFIX+"TEST", "null")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 /*
@@ -541,7 +541,7 @@ public void test11() throws CoreException {
 	assertEquals(
 		"Should not find variable TEST in preferences",
 		"null",
-		preferences.get(JavaModelManager.CP_VARIABLE_PREFERENCES_PREFIX+"TEST", "null"));
+		preferences.get(JavaModelManager.CP_VARIABLE_PREFERENCES_PREFIX+"TEST", "null")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 /*
@@ -554,11 +554,11 @@ public void test12() throws Exception {
 		IJavaProject project = createJavaProject("P", new String[0], new String[] {"TEST"}, "");
 		waitForAutoBuild();
 		setupExternalJCL("jclMin" + CompilerOptions.getFirstSupportedJavaVersion());
-		preferences.put(JavaModelManager.CP_VARIABLE_PREFERENCES_PREFIX+"TEST", getExternalJCLPathString(CompilerOptions.getFirstSupportedJavaVersion()));
+		preferences.put(JavaModelManager.CP_VARIABLE_PREFERENCES_PREFIX+"TEST", getExternalJCLPathString(CompilerOptions.getFirstSupportedJavaVersion())); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertBuildPathMarkers("Unexpected markers", "", project);
 	} finally {
 		deleteProject("P");
-		preferences.remove(JavaModelManager.CP_VARIABLE_PREFERENCES_PREFIX+"TEST");
+		preferences.remove(JavaModelManager.CP_VARIABLE_PREFERENCES_PREFIX+"TEST"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=217443
@@ -566,7 +566,7 @@ public void test13() {
 	Hashtable options = JavaCore.getDefaultOptions();
 	String immutableValue = (String) options.get(JavaCore.CORE_ENCODING);
 	assertEquals(ResourcesPlugin.getEncoding(), immutableValue);
-	options.put(JavaCore.CORE_ENCODING, immutableValue + "_extra_tail");
+	options.put(JavaCore.CORE_ENCODING, immutableValue + "_extra_tail"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	JavaCore.setOptions(options);
 	assertEquals(immutableValue, JavaCore.getOptions().get(JavaCore.CORE_ENCODING));
 }
@@ -574,7 +574,7 @@ public void test13() {
  * Bug 68993: [Preferences] IAE when opening project preferences
  * @see "http://bugs.eclipse.org/bugs/show_bug.cgi?id=68993"
  */
-public void testBug68993() throws CoreException, BackingStoreException {
+public void testBug68993() throws CoreException, BackingStoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		JavaProject projectA = (JavaProject) this.createJavaProject(
 			"A",
@@ -626,10 +626,10 @@ public void testBug100393() throws CoreException, BackingStoreException {
 	Map options = new CompilerOptions().getMap();
 
 	// verify that CompilerOptions default preferences for modified options
-	assertEquals("Invalid default for "+CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.WARNING, options.get(CompilerOptions.OPTION_ReportUnusedLocal));
-	assertEquals("Invalid default for "+CompilerOptions.OPTION_ReportUnusedPrivateMember, CompilerOptions.WARNING, options.get(CompilerOptions.OPTION_ReportUnusedPrivateMember));
-	assertEquals("Invalid default for "+CompilerOptions.OPTION_ReportFieldHiding, CompilerOptions.IGNORE, options.get(CompilerOptions.OPTION_ReportFieldHiding));
-	assertEquals("Invalid default for "+CompilerOptions.OPTION_ReportLocalVariableHiding, CompilerOptions.IGNORE, options.get(CompilerOptions.OPTION_ReportLocalVariableHiding));
+	assertEquals("Invalid default for "+CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.WARNING, options.get(CompilerOptions.OPTION_ReportUnusedLocal)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertEquals("Invalid default for "+CompilerOptions.OPTION_ReportUnusedPrivateMember, CompilerOptions.WARNING, options.get(CompilerOptions.OPTION_ReportUnusedPrivateMember)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertEquals("Invalid default for "+CompilerOptions.OPTION_ReportFieldHiding, CompilerOptions.IGNORE, options.get(CompilerOptions.OPTION_ReportFieldHiding)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertEquals("Invalid default for "+CompilerOptions.OPTION_ReportLocalVariableHiding, CompilerOptions.IGNORE, options.get(CompilerOptions.OPTION_ReportLocalVariableHiding)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 public void testBug100393b() throws CoreException, BackingStoreException {
 	// Get JavaCore default preferences
@@ -637,10 +637,10 @@ public void testBug100393b() throws CoreException, BackingStoreException {
 	IEclipsePreferences preferences = manager.getDefaultPreferences();
 
 	// verify that JavaCore default preferences for modified options
-	assertEquals("Invalid default for "+JavaCore.COMPILER_PB_UNUSED_LOCAL, "warning", preferences.get(JavaCore.COMPILER_PB_UNUSED_LOCAL, "null"));
-	assertEquals("Invalid default for "+JavaCore.COMPILER_PB_UNUSED_PRIVATE_MEMBER, "warning", preferences.get(JavaCore.COMPILER_PB_UNUSED_PRIVATE_MEMBER, "null"));
-	assertEquals("Invalid default for "+JavaCore.COMPILER_PB_FIELD_HIDING, "ignore", preferences.get(JavaCore.COMPILER_PB_FIELD_HIDING, "null"));
-	assertEquals("Invalid default for "+JavaCore.COMPILER_PB_LOCAL_VARIABLE_HIDING, "ignore", preferences.get(JavaCore.COMPILER_PB_LOCAL_VARIABLE_HIDING, "null"));
+	assertEquals("Invalid default for "+JavaCore.COMPILER_PB_UNUSED_LOCAL, "warning", preferences.get(JavaCore.COMPILER_PB_UNUSED_LOCAL, "null")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertEquals("Invalid default for "+JavaCore.COMPILER_PB_UNUSED_PRIVATE_MEMBER, "warning", preferences.get(JavaCore.COMPILER_PB_UNUSED_PRIVATE_MEMBER, "null")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertEquals("Invalid default for "+JavaCore.COMPILER_PB_FIELD_HIDING, "ignore", preferences.get(JavaCore.COMPILER_PB_FIELD_HIDING, "null")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertEquals("Invalid default for "+JavaCore.COMPILER_PB_LOCAL_VARIABLE_HIDING, "ignore", preferences.get(JavaCore.COMPILER_PB_LOCAL_VARIABLE_HIDING, "null")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 /**
@@ -668,13 +668,13 @@ public void testBug125360() throws CoreException, BackingStoreException {
  * bug 131707: Cannot add classpath variables when starting with -pluginCustomization option
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=131707"
  */
-public void testBug131707() throws CoreException {
+public void testBug131707() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IEclipsePreferences defaultPreferences = DefaultScope.INSTANCE.getNode(JavaCore.PLUGIN_ID);
 	try {
 		defaultPreferences.put("org.eclipse.jdt.core.classpathVariable.MY_DEFAULT_LIB", "c:\\temp\\lib.jar");
 		simulateExitRestart();
 		String[] variableNames = JavaCore.getClasspathVariableNames();
-		for (int i = 0, length = variableNames.length; i < length; i++) {
+		for (int i = 0, length = variableNames.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if ("MY_DEFAULT_LIB".equals(variableNames[i])) {
 				assertEquals(
 					"Unexpected value for MY_DEFAULT_LIB",
@@ -702,7 +702,7 @@ public void testBug152562() throws CoreException {
 		project.setOption(JavaCore.COMPILER_SOURCE, compilerSource);
 		String option = project.getOption(JavaCore.COMPILER_SOURCE, true);
 		if (!option.equals(compilerSource)) {
-			System.err.println("Unexpected option value: "+option+" instead of: "+compilerSource);
+			System.err.println("Unexpected option value: "+option+" instead of: "+compilerSource); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		project.setOption(JavaCore.COMPILER_SOURCE, null);
 		option = project.getOption(JavaCore.COMPILER_SOURCE, true);
@@ -717,7 +717,7 @@ public void testBug152562() throws CoreException {
  * test Verify that setting an option to workspace value does not remove it from project preferences
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=152578"
  */
-public void testBug152578() throws CoreException {
+public void testBug152578() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Hashtable wkspOptions = JavaCore.getOptions();
 	String wkspCompilerSource = (String) wkspOptions.get(JavaCore.COMPILER_SOURCE);
 	String compilerSource = wkspCompilerSource.equals(JavaCore.VERSION_1_5) ? JavaCore.VERSION_1_6 : JavaCore.VERSION_1_5;
@@ -726,7 +726,7 @@ public void testBug152578() throws CoreException {
 		project.setOption(JavaCore.COMPILER_SOURCE, wkspCompilerSource);
 		String option = project.getOption(JavaCore.COMPILER_SOURCE, true);
 		if (!option.equals(wkspCompilerSource)) {
-			System.err.println("Unexpected option value: "+option+" instead of: "+wkspCompilerSource);
+			System.err.println("Unexpected option value: "+option+" instead of: "+wkspCompilerSource); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		Hashtable newOptions = JavaCore.getOptions();
 		newOptions.put(JavaCore.COMPILER_SOURCE, compilerSource);
@@ -746,7 +746,7 @@ public void testBug152578() throws CoreException {
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=324987"
  * @deprecated As using deprecated constants
  */
-public void testBug324987_Project01() throws CoreException {
+public void testBug324987_Project01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Set the obsolete option using the IJavaProject API
 		JavaProject project = (JavaProject) createJavaProject("P");
@@ -772,7 +772,7 @@ public void testBug324987_Project01() throws CoreException {
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=324987"
  * @deprecated As using deprecated constants
  */
-public void testBug324987_Project02() throws CoreException {
+public void testBug324987_Project02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Set the obsolete option using the IJavaProject API
 		JavaProject project = (JavaProject) createJavaProject("P");
@@ -799,7 +799,7 @@ public void testBug324987_Project02() throws CoreException {
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=346010"
  * @deprecated As using deprecated constants
  */
-public void testBug346010() throws CoreException {
+public void testBug346010() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	class ForcedOrderMap extends Hashtable {
 		private static final long serialVersionUID = 8012963985718522218L;
 		Map original;
@@ -819,7 +819,7 @@ public void testBug346010() throws CoreException {
 				@Override
 				public Iterator iterator() {
 					List orderedEntries;
-					orderedEntries = new ArrayList(ForcedOrderMap.this.original.entrySet());
+					orderedEntries = new ArrayList(ForcedOrderMap.this.original.entrySet()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 					orderedEntries.add(ForcedOrderMap.this.additionalEntry);
 					return orderedEntries.iterator();
 				}
@@ -859,7 +859,7 @@ public void testBug346010() throws CoreException {
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=324987"
  * @deprecated As using deprecated constants
  */
-public void testBug324987_Project03() throws CoreException {
+public void testBug324987_Project03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Set the obsolete preference simulating a project coming from an older version workspace
 		JavaProject project = (JavaProject) createJavaProject("P");
@@ -886,7 +886,7 @@ public void testBug324987_Project03() throws CoreException {
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=324987"
  * @deprecated As using deprecated constants
  */
-public void testBug324987_Workspace01() throws CoreException {
+public void testBug324987_Workspace01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Set the obsolete option using the JavaCore API
 		final String obsoleteOption = DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_AFTER_ANNOTATION_ON_MEMBER;
@@ -913,7 +913,7 @@ public void testBug324987_Workspace01() throws CoreException {
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=324987"
  * @deprecated As using deprecated constants
  */
-public void testBug324987_Workspace02() throws CoreException {
+public void testBug324987_Workspace02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Set the obsolete preference simulating an older version workspace
 		final String obsoleteOption = DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_AFTER_ANNOTATION_ON_MEMBER;
@@ -940,7 +940,7 @@ public void testBug324987_Workspace02() throws CoreException {
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=324987"
  * @deprecated As using deprecated constants
  */
-public void testBug324987_Workspace03() throws CoreException {
+public void testBug324987_Workspace03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Set the obsolete option using the JavaCore API
 		final String obsoleteOption = DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_AFTER_ANNOTATION_ON_MEMBER;
@@ -967,7 +967,7 @@ public void testBug324987_Workspace03() throws CoreException {
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=324987"
  * @deprecated As using deprecated constants
  */
-public void testBug324987_Workspace04() throws CoreException {
+public void testBug324987_Workspace04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Set the obsolete preference simulating an older version workspace
 		final String obsoleteOption = DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_AFTER_ANNOTATION_ON_MEMBER;
@@ -998,10 +998,10 @@ public void testBug550081() {
 }
 
 public void testReleasePersistedInOptions() {
-	for (String value : List.of(CompilerOptions.ENABLED, CompilerOptions.DISABLED)) {
+	for (String value : List.of(CompilerOptions.ENABLED, CompilerOptions.DISABLED)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		CompilerOptions options = new CompilerOptions(Map.of(CompilerOptions.OPTION_Release, value));
-		assertEquals("OPTION_Release=" + value + " ignored when building CompilerOptions", CompilerOptions.ENABLED.equals(value), options.release);
-		assertEquals("OPTION_Release=" + value + " incorectly returned in map", value, options.getMap().get(CompilerOptions.OPTION_Release));
+		assertEquals("OPTION_Release=" + value + " ignored when building CompilerOptions", CompilerOptions.ENABLED.equals(value), options.release); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertEquals("OPTION_Release=" + value + " incorectly returned in map", value, options.getMap().get(CompilerOptions.OPTION_Release)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }
 }

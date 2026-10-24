@@ -117,7 +117,7 @@ public class TypeVisitorTests extends APTTestBase {
 	class TypeVisitorProc extends AbstractGenericProcessor {
 		boolean called;
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public void _process() {
 			called = true;
 			assertTrue(decls.size() == 1);
@@ -136,7 +136,7 @@ public class TypeVisitorTests extends APTTestBase {
 			switch (testCaseIdentifier) {
 
 			case PrimitiveType :
-				for(FieldDeclaration tempDecl : fieldDecls) {
+				for(FieldDeclaration tempDecl : fieldDecls) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if(tempDecl.getSimpleName().equals("j")) {
 						fieldDecl = tempDecl;
 					}
@@ -156,7 +156,7 @@ public class TypeVisitorTests extends APTTestBase {
 				break;
 
 			case ClassType :
-				for(TypeDeclaration tempDecl : nestedTypes) {
+				for(TypeDeclaration tempDecl : nestedTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if(tempDecl.getSimpleName().equals("C")) {
 						classDecl = (ClassDeclaration)tempDecl;
 					}
@@ -168,7 +168,7 @@ public class TypeVisitorTests extends APTTestBase {
 				break;
 
 			case EnumType :
-				for(FieldDeclaration tempDecl : fieldDecls) {
+				for(FieldDeclaration tempDecl : fieldDecls) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if(tempDecl.getSimpleName().equals("s")) {
 						fieldDecl = tempDecl;
 					}
@@ -181,7 +181,7 @@ public class TypeVisitorTests extends APTTestBase {
 				break;
 
 			case InterfaceType :
-				for(TypeDeclaration tempDecl : nestedTypes) {
+				for(TypeDeclaration tempDecl : nestedTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if(tempDecl.getSimpleName().equals("D")) {
 						classDecl = (ClassDeclaration)tempDecl;
 					}
@@ -193,7 +193,7 @@ public class TypeVisitorTests extends APTTestBase {
 				break;
 
 			case AnnotationType :
-				for(FieldDeclaration tempDecl : fieldDecls) {
+				for(FieldDeclaration tempDecl : fieldDecls) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if(tempDecl.getSimpleName().equals("s")) {
 						fieldDecl = tempDecl;
 					}
@@ -206,7 +206,7 @@ public class TypeVisitorTests extends APTTestBase {
 				break;
 
 			case ArrayType :
-				for(FieldDeclaration tempDecl : fieldDecls) {
+				for(FieldDeclaration tempDecl : fieldDecls) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if(tempDecl.getSimpleName().equals("k")) {
 						fieldDecl = tempDecl;
 					}
@@ -218,7 +218,7 @@ public class TypeVisitorTests extends APTTestBase {
 				break;
 
 			case TypeVariable :
-				for(TypeDeclaration tempDecl : nestedTypes) {
+				for(TypeDeclaration tempDecl : nestedTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if(tempDecl.getSimpleName().equals("P")) {
 						classDecl = (ClassDeclaration)tempDecl;
 					}
@@ -231,7 +231,7 @@ public class TypeVisitorTests extends APTTestBase {
 				break;
 
 			case WildcardType :
-				for(FieldDeclaration tempDecl : fieldDecls) {
+				for(FieldDeclaration tempDecl : fieldDecls) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if(tempDecl.getSimpleName().equals("ln")) {
 						fieldDecl = tempDecl;
 					}
@@ -253,7 +253,7 @@ public class TypeVisitorTests extends APTTestBase {
 	class TypeVisitorImpl implements TypeVisitor {
 
 		public void visitTypeMirror(TypeMirror t) {
-			fail("Should never visit a TypeMirror, only a subclass: " + t);
+			fail("Should never visit a TypeMirror, only a subclass: " + t); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		public void visitPrimitiveType(PrimitiveType t) {
@@ -265,11 +265,11 @@ public class TypeVisitorTests extends APTTestBase {
 		}
 
 		public void visitReferenceType(ReferenceType t) {
-			fail("Should never visit a ReferenceType, only a subclass: " + t);
+			fail("Should never visit a ReferenceType, only a subclass: " + t); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		public void visitDeclaredType(DeclaredType t) {
-			fail("Should never visit a DeclaredType, only a subclass: " + t);
+			fail("Should never visit a DeclaredType, only a subclass: " + t); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		public void visitClassType(ClassType t) {
@@ -320,7 +320,7 @@ public class TypeVisitorTests extends APTTestBase {
 
 	Cases testCaseIdentifier;
 
-	ArrayList<TypeMirror> typesVisited = new ArrayList<>();
+	ArrayList<TypeMirror> typesVisited = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 	void typeVisited(TypeMirror t) {
 			typesVisited.add(t);

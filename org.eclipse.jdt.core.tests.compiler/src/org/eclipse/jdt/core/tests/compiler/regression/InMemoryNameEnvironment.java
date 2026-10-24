@@ -22,9 +22,9 @@ import org.eclipse.jdt.internal.compiler.util.HashtableOfObject;
 public class InMemoryNameEnvironment implements INameEnvironment {
 	INameEnvironment[] classLibs;
 	HashtableOfObject compilationUnits = new HashtableOfObject();
-public InMemoryNameEnvironment(String[] compilationUnits, INameEnvironment[] classLibs) {
+public InMemoryNameEnvironment(String[] compilationUnits, INameEnvironment[] classLibs) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.classLibs = classLibs;
-	for (int i = 0, length = compilationUnits.length - 1; i < length; i += 2) {
+	for (int i = 0, length = compilationUnits.length - 1; i < length; i += 2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String fileName = compilationUnits[i];
 		char[] contents = compilationUnits[i + 1].toCharArray();
 		String dirName = "";
@@ -60,7 +60,7 @@ public NameEnvironmentAnswer findType(char[] typeName, char[][] packageName) {
 	return new NameEnvironmentAnswer(unit, null /*no access restriction*/);
 }
 private NameEnvironmentAnswer findTypeFromClassLibs(char[] typeName, char[][] packageName) {
-	for (int i = 0; i < this.classLibs.length; i++) {
+	for (int i = 0; i < this.classLibs.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		NameEnvironmentAnswer answer = this.classLibs[i].findType(typeName, packageName);
 		if (answer != null) {
 			return answer;
@@ -75,7 +75,7 @@ public boolean isPackage(char[][] parentPackageName, char[] packageName) {
 		isPackageFromClassLibs(parentPackageName, packageName);
 }
 public boolean isPackageFromClassLibs(char[][] parentPackageName, char[] packageName) {
-	for (int i = 0; i < this.classLibs.length; i++) {
+	for (int i = 0; i < this.classLibs.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (this.classLibs[i].isPackage(parentPackageName, packageName)) {
 			return true;
 		}
@@ -83,7 +83,7 @@ public boolean isPackageFromClassLibs(char[][] parentPackageName, char[] package
 	return false;
 }
 public void cleanup() {
-	for (int i = 0, max = this.classLibs.length; i < max; i++) {
+	for (int i = 0, max = this.classLibs.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		this.classLibs[i].cleanup();
 	}
 	this.compilationUnits = new HashtableOfObject();

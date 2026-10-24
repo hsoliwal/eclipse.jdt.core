@@ -70,7 +70,7 @@ protected PackageFragmentRoot(IResource resource, JavaProject project) {
 /**
  * @see IPackageFragmentRoot
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void attachSource(IPath sourcePath, IPath rootPath, IProgressMonitor monitor) throws JavaModelException {
 	try {
 		verifyAttachSource(sourcePath);
@@ -133,8 +133,8 @@ public void attachSource(IPath sourcePath, IPath rootPath, IProgressMonitor moni
 			//set the property to the path of the mapped source
 			Util.setSourceAttachmentProperty(
 				getPath(),
-				sourcePath.toString()
-				+ (rootPath == null ? "" : (ATTACHMENT_PROPERTY_DELIMITER + rootPath.toString()))); //$NON-NLS-1$
+				sourcePath.toString() //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				+ (rootPath == null ? "" : (ATTACHMENT_PROPERTY_DELIMITER + rootPath.toString()))); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		if (rootNeedsToBeClosed) {
 			if (oldMapper != null) {
@@ -142,7 +142,7 @@ public void attachSource(IPath sourcePath, IPath rootPath, IProgressMonitor moni
 			}
 			BufferManager manager= BufferManager.getDefaultBufferManager();
 			Enumeration openBuffers= manager.getOpenBuffers();
-			while (openBuffers.hasMoreElements()) {
+			while (openBuffers.hasMoreElements()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IBuffer buffer= (IBuffer) openBuffers.nextElement();
 				IOpenable possibleMember= buffer.getOwner();
 				if (isAncestorOf((IJavaElement) possibleMember)) {
@@ -200,14 +200,14 @@ public void delete(
  *
  * @exception JavaModelException  The resource associated with this package fragment root does not exist
  */
-protected boolean computeChildren(OpenableElementInfo info, IResource underlyingResource) throws JavaModelException {
+protected boolean computeChildren(OpenableElementInfo info, IResource underlyingResource) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Note the children are not opened (so not added to newElements) for a regular package fragment root
 	// However they are opened for a Jar package fragment root (see JarPackageFragmentRoot#computeChildren)
 	try {
 		// the underlying resource may be a folder or a project (in the case that the project folder
 		// is actually the package fragment root)
 		if (underlyingResource.getType() == IResource.FOLDER || underlyingResource.getType() == IResource.PROJECT) {
-			ArrayList vChildren = new ArrayList(5);
+			ArrayList vChildren = new ArrayList(5); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			IContainer rootFolder = (IContainer) underlyingResource;
 			char[][] inclusionPatterns = fullInclusionPatternChars();
 			char[][] exclusionPatterns = fullExclusionPatternChars();
@@ -240,7 +240,7 @@ protected boolean computeChildren(OpenableElementInfo info, IResource underlying
  *
  * @exception JavaModelException  The resource associated with this package fragment does not exist
  */
-protected void computeFolderChildren(IContainer folder, boolean isIncluded, String[] pkgName, ArrayList vChildren, char[][] inclusionPatterns, char[][] exclusionPatterns) throws JavaModelException {
+protected void computeFolderChildren(IContainer folder, boolean isIncluded, String[] pkgName, ArrayList vChildren, char[][] inclusionPatterns, char[][] exclusionPatterns) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	if (isIncluded) {
 	    IPackageFragment pkg = getPackageFragment(pkgName);
@@ -258,7 +258,7 @@ protected void computeFolderChildren(IContainer folder, boolean isIncluded, Stri
 			String sourceLevel = otherJavaProject.getOption(JavaCore.COMPILER_SOURCE, true);
 			String complianceLevel = otherJavaProject.getOption(JavaCore.COMPILER_COMPLIANCE, true);
 			JavaProject javaProject = getJavaProject();
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IResource member = members[i];
 				String memberName = member.getName();
 
@@ -363,7 +363,7 @@ protected int calculateHashCode() {
 	return Util.combineHashCodes(this.getParent().hashCode(), resource().hashCode());
 }
 
-private IClasspathEntry findSourceAttachmentRecommendation() {
+private IClasspathEntry findSourceAttachmentRecommendation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IPath rootPath = getPath();
 		IClasspathEntry entry;
@@ -385,7 +385,7 @@ private IClasspathEntry findSourceAttachmentRecommendation() {
 		// iterate over all projects
 		IJavaModel model = getJavaModel();
 		IJavaProject[] jProjects = model.getJavaProjects();
-		for (IJavaProject p : jProjects) {
+		for (IJavaProject p : jProjects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JavaProject jProject = (JavaProject) p;
 			if (jProject == parentProject) continue; // already done
 			try {
@@ -464,7 +464,7 @@ protected char getHandleMementoDelimiter() {
 /*
  * @see JavaElement
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public IJavaElement getHandleFromMemento(String token, MementoTokenizer memento, WorkingCopyOwner owner) {
 	switch (token.charAt(0)) {
 		case JEM_PACKAGEFRAGMENT:
@@ -494,7 +494,7 @@ public IJavaElement getHandleFromMemento(String token, MementoTokenizer memento,
 /**
  * @see JavaElement#getHandleMemento(StringBuilder)
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void getHandleMemento(StringBuilder buff) {
 	IPath path;
 	IResource underlyingResource = getResource();
@@ -510,16 +510,16 @@ protected void getHandleMemento(StringBuilder buff) {
 		path = getPath();
 	}
 	getParent().getHandleMemento(buff);
-	buff.append(getHandleMementoDelimiter());
+	buff.append(getHandleMementoDelimiter()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	escapeMementoName(buff, path.toString());
 	if (org.eclipse.jdt.internal.compiler.util.Util.isJrt(path.toOSString())) {
-		buff.append(JavaElement.JEM_MODULE);
+		buff.append(JavaElement.JEM_MODULE); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		escapeMementoName(buff, getElementName());
 	}
 	try {
 		IClasspathEntry entry = getJavaProject().getClasspathEntryFor(getPath());
 		if (entry != null) {
-			for (IClasspathAttribute attribute : entry.getExtraAttributes()) {
+			for (IClasspathAttribute attribute : entry.getExtraAttributes()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				appendEscapedDelimiter(buff, JavaElement.JEM_PACKAGEFRAGMENTROOT);
 				escapeMementoName(buff, attribute.getName());
 				appendEscapedDelimiter(buff, JavaElement.JEM_PACKAGEFRAGMENTROOT);
@@ -584,12 +584,12 @@ protected String getPackageName(IFolder folder) {
 	IPath pkgPath= folder.getFullPath();
 	int mySegmentCount= myPath.segmentCount();
 	int pkgSegmentCount= pkgPath.segmentCount();
-	StringBuilder pkgName = new StringBuilder(IPackageFragment.DEFAULT_PACKAGE_NAME);
-	for (int i= mySegmentCount; i < pkgSegmentCount; i++) {
+	StringBuilder pkgName = new StringBuilder(IPackageFragment.DEFAULT_PACKAGE_NAME); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	for (int i= mySegmentCount; i < pkgSegmentCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (i > mySegmentCount) {
-			pkgName.append('.');
+			pkgName.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		pkgName.append(pkgPath.segment(i));
+		pkgName.append(pkgPath.segment(i)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	return pkgName.toString();
 }
@@ -657,7 +657,7 @@ public IResource resource(PackageFragmentRoot root) {
 /**
  * @see IPackageFragmentRoot
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public IPath getSourceAttachmentPath() throws JavaModelException {
 	if (getKind() != K_BINARY) return null;
 
@@ -703,7 +703,7 @@ public void setSourceMapper(SourceMapper mapper) throws JavaModelException {
 /**
  * @see IPackageFragmentRoot
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public IPath getSourceAttachmentRootPath() throws JavaModelException {
 	if (getKind() != K_BINARY) return null;
 
@@ -737,7 +737,7 @@ public IPath getSourceAttachmentRootPath() throws JavaModelException {
 /**
  * @see JavaElement
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public SourceMapper getSourceMapper() {
 	SourceMapper mapper;
 	try {
@@ -839,23 +839,23 @@ public void move(
 /**
  * for debugging only
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void toStringInfo(int tab, StringBuilder buffer, Object info, boolean showResolvedInfo) {
-	buffer.append(tabString(tab));
+	buffer.append(tabString(tab)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	IPath path = getPath();
 	if (isExternal()) {
-		buffer.append(path.toOSString());
+		buffer.append(path.toOSString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	} else if (getJavaProject().getElementName().equals(path.segment(0))) {
 	    if (path.segmentCount() == 1) {
-			buffer.append("<project root>"); //$NON-NLS-1$
+			buffer.append("<project root>"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	    } else {
-			buffer.append(path.removeFirstSegments(1).makeRelative());
+			buffer.append(path.removeFirstSegments(1).makeRelative()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	    }
 	} else {
-		buffer.append(path);
+		buffer.append(path); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	if (info == null) {
-		buffer.append(" (not open)"); //$NON-NLS-1$
+		buffer.append(" (not open)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 }
 
@@ -907,10 +907,10 @@ public IModuleDescription getModuleDescription() {
 	return null;
 }
 
-private IModuleDescription getSourceModuleDescription() {
+private IModuleDescription getSourceModuleDescription() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaElement[] pkgs = getChildren();
-		for (IJavaElement pkg : pkgs) {
+		for (IJavaElement pkg : pkgs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// only look in the default package
 			if (pkg.getElementName().length() == 0) {
 				OpenableElementInfo info = null;
@@ -944,7 +944,7 @@ public IModuleDescription getAutomaticModuleDescription() throws JavaModelExcept
 	return getAutomaticModuleDescription(getResolvedClasspathEntry());
 }
 
-IModuleDescription getAutomaticModuleDescription(IClasspathEntry classpathEntry) {
+IModuleDescription getAutomaticModuleDescription(IClasspathEntry classpathEntry) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String elementName = getElementName();
 	Manifest manifest = null;
 	switch (classpathEntry.getEntryKind()) {

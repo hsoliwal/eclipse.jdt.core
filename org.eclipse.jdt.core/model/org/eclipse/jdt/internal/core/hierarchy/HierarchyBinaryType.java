@@ -66,7 +66,7 @@ public HierarchyBinaryType(int modifiers, char[] binaryName, char[] sourceName, 
 	this.typeParameterSignatures = typeParameterSignatures;
 
 	if (typeParameterSignatures != null) {
-		for (char[] next : typeParameterSignatures) {
+		for (char[] next : typeParameterSignatures) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (next == null) {
 				throw new IllegalArgumentException("Parameter's type signature must not be null"); //$NON-NLS-1$
 			}
@@ -117,22 +117,22 @@ public IBinaryField[] getFields() {
 public char[] getFileName() {
 	return null;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public char[] getGenericSignature() {
 	if (this.typeParameterSignatures != null && this.genericSignature == null) {
-		StringBuilder buffer = new StringBuilder();
-		buffer.append('<');
-		for (char[] typeParameterSignature : this.typeParameterSignatures) {
-			buffer.append(typeParameterSignature);
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append('<'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (char[] typeParameterSignature : this.typeParameterSignatures) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(typeParameterSignature); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		buffer.append('>');
+		buffer.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (this.superclass == null)
-			buffer.append(Signature.createTypeSignature("java.lang.Object", true/*resolved*/)); //$NON-NLS-1$
+			buffer.append(Signature.createTypeSignature("java.lang.Object", true/*resolved*/)); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		else
-			buffer.append(Signature.createTypeSignature(this.superclass, true/*resolved*/));
+			buffer.append(Signature.createTypeSignature(this.superclass, true/*resolved*/)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (this.superInterfaces != null)
-			for (char[] superInterface : this.superInterfaces)
-				buffer.append(Signature.createTypeSignature(superInterface, true/*resolved*/));
+			for (char[] superInterface : this.superInterfaces) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append(Signature.createTypeSignature(superInterface, true/*resolved*/)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		this.genericSignature = buffer.toString().toCharArray();
 		CharOperation.replace(this.genericSignature, '.', '/');
 	}
@@ -243,7 +243,7 @@ public boolean isMember() {
 }
 
 
-public void recordSuperType(char[] superTypeName, char[] superQualification, char superClassOrInterface){
+public void recordSuperType(char[] superTypeName, char[] superQualification, char superClassOrInterface){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// index encoding of p.A$B was B/p.A$, rebuild the proper name
 	if (superQualification != null){
@@ -290,40 +290,40 @@ public void recordInterface(char[] binaryName) {
 public char[] sourceFileName() {
 	return null;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public String toString() {
-	StringBuilder buffer = new StringBuilder();
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	if (this.modifiers == ClassFileConstants.AccPublic) {
-		buffer.append("public "); //$NON-NLS-1$
+		buffer.append("public "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	switch (TypeDeclaration.kind(this.modifiers)) {
 		case TypeDeclaration.CLASS_DECL :
-			buffer.append("class "); //$NON-NLS-1$
+			buffer.append("class "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case TypeDeclaration.INTERFACE_DECL :
-			buffer.append("interface "); //$NON-NLS-1$
+			buffer.append("interface "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case TypeDeclaration.ENUM_DECL :
-			buffer.append("enum "); //$NON-NLS-1$
+			buffer.append("enum "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case TypeDeclaration.RECORD_DECL :
-			buffer.append("record "); //$NON-NLS-1$
+			buffer.append("record "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 	}
 	if (this.name != null) {
-		buffer.append(this.name);
+		buffer.append(this.name); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	if (this.superclass != null) {
-		buffer.append("\n  extends "); //$NON-NLS-1$
-		buffer.append(this.superclass);
+		buffer.append("\n  extends "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(this.superclass); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	int length;
 	if (this.superInterfaces != null && (length = this.superInterfaces.length) != 0) {
-		buffer.append("\n implements "); //$NON-NLS-1$
-		for (int i = 0; i < length; i++) {
-			buffer.append(this.superInterfaces[i]);
+		buffer.append("\n implements "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(this.superInterfaces[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (i != length - 1) {
-				buffer.append(", "); //$NON-NLS-1$
+				buffer.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 	}

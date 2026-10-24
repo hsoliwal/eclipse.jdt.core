@@ -91,7 +91,7 @@ public void acceptImport(int declarationStart, int declarationEnd, int[] javaDoc
 /**
  * @see IDocumentElementRequestor#acceptInitializer(int declarationStart, int declarationEnd, int[] javaDocPositions, int modifiers, int modifiersStart, int bodyStart, int bodyEnd)
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void acceptInitializer(int declarationStart, int declarationEnd, int[] javaDocPositions, int modifiers,
 	int modifiersStart, int bodyStart, int bodyEnd) {
 	int[] sourceRange = {declarationStart, declarationEnd};
@@ -197,16 +197,16 @@ public IDOMField createField(char[] sourceCode) {
 	this.fNode.normalize(this);
 	return (IDOMField)this.fNode;
 }
-public IDOMField[] createFields(char[] sourceCode) {
+public IDOMField[] createFields(char[] sourceCode) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	initializeBuild(sourceCode, false, false, false);
-	this.fFields= new ArrayList();
+	this.fFields= new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	getParser(this.options).parseField(sourceCode);
 	if (this.fAbort) {
 		return null;
 	}
 	IDOMField[] fields= new IDOMField[this.fFields.size()];
 	this.fFields.toArray(fields);
-	for (int i= 0; i < fields.length; i++) {
+	for (int i= 0; i < fields.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		DOMNode node= (DOMNode)fields[i];
 		if (i < (fields.length - 1)) {
 			DOMNode next= (DOMNode)fields[i + 1];
@@ -332,7 +332,7 @@ public IDOMType createType(char[] sourceCode) {
  * @param bodyStart - a source position corresponding to the start of this
  *		constructor's body
  */
-protected void enterAbstractMethod(int declarationStart, int[] javaDocPositions, int modifiers, int modifiersStart,
+protected void enterAbstractMethod(int declarationStart, int[] javaDocPositions, int modifiers, int modifiersStart, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[] returnType, int returnTypeStart, int returnTypeEnd, int returnTypeDimensionCount,
 	char[] name, int nameStart, int nameEnd, char[][] parameterTypes, int[] parameterTypeStarts,
 	int[] parameterTypeEnds, char[][] parameterNames, int[] parameterNameStarts,
@@ -472,7 +472,7 @@ public void enterConstructor(int declarationStart, int[] javaDocPositions, int m
 	int extendedTypeDimensionCount,
 	int extendedTypeDimensionEnd)
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void enterField(int declarationStart, int[] javaDocPositions, int modifiers, int modifiersStart,
 	char[] type, int typeStart, int typeEnd, int typeDimensionCount, char[] name,
 	int nameStart, int nameEnd, int extendedTypeDimensionCount,
@@ -574,7 +574,7 @@ public void enterMethod(int declarationStart, int[] javaDocPositions, int modifi
 		exceptionTypeEnds, bodyStart,false);
 }
 
-protected void enterType(int declarationStart, int[] javaDocPositions,
+protected void enterType(int declarationStart, int[] javaDocPositions, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int modifiers, int modifiersStart, int keywordStart, char[] name,
 	int nameStart, int nameEnd, char[] superclass, int superclassStart,
 	int superclassEnd, char[][] superinterfaces, int[] superinterfaceStarts,
@@ -677,7 +677,7 @@ public void exitConstructor(int bodyEnd, int declarationEnd) {
  *
  * @see IDocumentElementRequestor#exitField(int, int)
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void exitField(int bodyEnd, int declarationEnd) {
 	DOMField field = (DOMField)this.fStack.pop();
 	if (field.getEndPosition() < declarationEnd) {

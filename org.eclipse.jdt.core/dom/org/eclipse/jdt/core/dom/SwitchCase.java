@@ -72,12 +72,12 @@ public class SwitchCase extends Statement {
 	private static final List PROPERTY_DESCRIPTORS_13;
 
 	static {
-		List propertyList = new ArrayList(2);
+		List propertyList = new ArrayList(2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(SwitchCase.class, propertyList);
 		addProperty(EXPRESSION_PROPERTY, propertyList);
 		PROPERTY_DESCRIPTORS = reapPropertyList(propertyList);
 
-		propertyList = new ArrayList(2);
+		propertyList = new ArrayList(2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(SwitchCase.class, propertyList);
 		addProperty(EXPRESSIONS2_PROPERTY , propertyList);
 		addProperty(SWITCH_LABELED_RULE_PROPERTY, propertyList);

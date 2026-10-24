@@ -52,7 +52,7 @@ protected void assertResults(String expected, String actual) {
 		throw c;
 	}
 }
-public void testCodeSnippetAssistForClassFile() throws JavaModelException {
+public void testCodeSnippetAssistForClassFile() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionTestsRequestor2 requestor = new CompletionTestsRequestor2(false,false,true);
 	IOrdinaryClassFile cf = getClassFile("SnippetCompletion", "class-folder", "aa.bb.cc", "AClass.class");
 	IType type = cf.getType();
@@ -71,7 +71,7 @@ public void testCodeSnippetAssistForClassFile() throws JavaModelException {
 	int tokenStart = snippet.lastIndexOf("var");
 	int tokenEnd = tokenStart + "var".length();
 	assertResults(
-		"var[LOCAL_VARIABLE_REF]{var, null, I, var, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
+		"var[LOCAL_VARIABLE_REF]{var, null, I, var, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"varX[LOCAL_VARIABLE_REF]{varX, null, I, varX, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
 		"varY[LOCAL_VARIABLE_REF]{varY, null, I, varY, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
 		"varsc[LOCAL_VARIABLE_REF]{varsc, null, Laa.bb.cc.SuperClass;, varsc, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}",
@@ -79,7 +79,7 @@ public void testCodeSnippetAssistForClassFile() throws JavaModelException {
 }
 
 
-public void testCodeSnippetAssistForCompilationUnit() throws JavaModelException {
+public void testCodeSnippetAssistForCompilationUnit() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionTestsRequestor2 requestor = new CompletionTestsRequestor2(false,false,true);
 	ICompilationUnit cu = getCompilationUnit("SnippetCompletion", "src", "aa.bb.cc", "BClass.java");
 	IType type = cu.getTypes()[0];
@@ -103,7 +103,7 @@ public void testCodeSnippetAssistForCompilationUnit() throws JavaModelException 
 	int tokenStart = snippet.lastIndexOf("var");
 	int tokenEnd = tokenStart + "var".length();
 	assertResults(
-		"Victory[TYPE_REF]{Victory, aa.bb.cc, LVictory;, null, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
+		"Victory[TYPE_REF]{Victory, aa.bb.cc, LVictory;, null, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"var[LOCAL_VARIABLE_REF]{var, null, I, var, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
 		"varX[LOCAL_VARIABLE_REF]{varX, null, I, varX, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
 		"varY[LOCAL_VARIABLE_REF]{varY, null, I, varY, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
@@ -111,7 +111,7 @@ public void testCodeSnippetAssistForCompilationUnit() throws JavaModelException 
 		requestor.getResults());
 }
 
-public void testCodeSnippetAssistForClassFileWithSource() throws JavaModelException {
+public void testCodeSnippetAssistForClassFileWithSource() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionTestsRequestor2 requestor = new CompletionTestsRequestor2(false,false,true);
 	IOrdinaryClassFile cf = getClassFile("SnippetCompletion", "class-folder", "aa.bb.cc", "CClass.class");
 	IType type = cf.getType();
@@ -136,7 +136,7 @@ public void testCodeSnippetAssistForClassFileWithSource() throws JavaModelExcept
 	int tokenStart = snippet.lastIndexOf("var");
 	int tokenEnd = tokenStart + "var".length();
 	assertResults(
-		"Victory[TYPE_REF]{Victory, aa.bb.cc, LVictory;, null, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
+		"Victory[TYPE_REF]{Victory, aa.bb.cc, LVictory;, null, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"var[LOCAL_VARIABLE_REF]{var, null, I, var, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
 		"varX[LOCAL_VARIABLE_REF]{varX, null, I, varX, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
 		"varY[LOCAL_VARIABLE_REF]{varY, null, I, varY, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
@@ -145,7 +145,7 @@ public void testCodeSnippetAssistForClassFileWithSource() throws JavaModelExcept
 }
 
 
-public void testCodeSnippetAssistForCompilationUnitWithoutSource() throws JavaModelException {
+public void testCodeSnippetAssistForCompilationUnitWithoutSource() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionTestsRequestor2 requestor = new CompletionTestsRequestor2(false,false,true);
 	ICompilationUnit cu = getCompilationUnit("SnippetCompletion", "src", "aa.bb.cc", "BClass.java");
 	IType type = cu.getTypes()[0];
@@ -166,7 +166,7 @@ public void testCodeSnippetAssistForCompilationUnitWithoutSource() throws JavaMo
 	int tokenStart = snippet.lastIndexOf("var");
 	int tokenEnd = tokenStart + "var".length();
 	assertResults(
-		"var[LOCAL_VARIABLE_REF]{var, null, I, var, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
+		"var[LOCAL_VARIABLE_REF]{var, null, I, var, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"varX[LOCAL_VARIABLE_REF]{varX, null, I, varX, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
 		"varY[LOCAL_VARIABLE_REF]{varY, null, I, varY, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
 		"varsc[LOCAL_VARIABLE_REF]{varsc, null, Laa.bb.cc.SuperClass;, varsc, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}",
@@ -174,7 +174,7 @@ public void testCodeSnippetAssistForCompilationUnitWithoutSource() throws JavaMo
 }
 
 
-public void testCodeSnippetAssistForClassFileInInnerClass() throws JavaModelException {
+public void testCodeSnippetAssistForClassFileInInnerClass() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionTestsRequestor2 requestor = new CompletionTestsRequestor2(false,false,true);
 	IOrdinaryClassFile cf = getClassFile("SnippetCompletion", "class-folder", "aa.bb.cc", "AClass$Inner.class");
 	IType type = cf.getType();
@@ -199,7 +199,7 @@ public void testCodeSnippetAssistForClassFileInInnerClass() throws JavaModelExce
 	int tokenStart = snippet.lastIndexOf("var");
 	int tokenEnd = tokenStart + "var".length();
 	assertResults(
-		"var[LOCAL_VARIABLE_REF]{var, null, I, var, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
+		"var[LOCAL_VARIABLE_REF]{var, null, I, var, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"varX[LOCAL_VARIABLE_REF]{varX, null, I, varX, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
 		"varY[LOCAL_VARIABLE_REF]{varY, null, I, varY, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
 		"varsc[LOCAL_VARIABLE_REF]{varsc, null, Laa.bb.cc.SuperClass;, varsc, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}",
@@ -208,7 +208,7 @@ public void testCodeSnippetAssistForClassFileInInnerClass() throws JavaModelExce
 /*
  * bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=50686
  */
-public void testCodeSnippetAssistForClassFileInInterface() throws JavaModelException {
+public void testCodeSnippetAssistForClassFileInInterface() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionTestsRequestor2 requestor = new CompletionTestsRequestor2(false,false,true);
 	IOrdinaryClassFile cf = getClassFile("SnippetCompletion", "class-folder", "xx.yy", "MyInterface.class");
 	IType type = cf.getType();
@@ -227,7 +227,7 @@ public void testCodeSnippetAssistForClassFileInInterface() throws JavaModelExcep
 	int tokenStart = snippet.lastIndexOf("var");
 	int tokenEnd = tokenStart + "var".length();
 	assertResults(
-		"var[LOCAL_VARIABLE_REF]{var, null, I, var, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
+		"var[LOCAL_VARIABLE_REF]{var, null, I, var, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"varX[LOCAL_VARIABLE_REF]{varX, null, I, varX, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
 		"varY[LOCAL_VARIABLE_REF]{varY, null, I, varY, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
 		"varsc[LOCAL_VARIABLE_REF]{varsc, null, LSuperClass;, varsc, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}",
@@ -236,7 +236,7 @@ public void testCodeSnippetAssistForClassFileInInterface() throws JavaModelExcep
 /*
  * bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=62201
  */
-public void testCodeSnippetAssistForClassFileInInterface2() throws JavaModelException {
+public void testCodeSnippetAssistForClassFileInInterface2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionTestsRequestor2 requestor = new CompletionTestsRequestor2(false,false,true);
 	IOrdinaryClassFile cf = getClassFile("SnippetCompletion", "class-folder", "xx.yy", "MyInterface2.class");
 	IType type = cf.getType();
@@ -255,14 +255,14 @@ public void testCodeSnippetAssistForClassFileInInterface2() throws JavaModelExce
 	int tokenStart = snippet.lastIndexOf("var");
 	int tokenEnd = tokenStart + "var".length();
 	assertResults(
-		"var[LOCAL_VARIABLE_REF]{var, null, I, var, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
+		"var[LOCAL_VARIABLE_REF]{var, null, I, var, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"varFoo[METHOD_REF]{varFoo(), Lxx.yy.MyInterface2;, ()V, varFoo, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
 		"varX[LOCAL_VARIABLE_REF]{varX, null, I, varX, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
 		"varY[LOCAL_VARIABLE_REF]{varY, null, I, varY, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
 		"varsc[LOCAL_VARIABLE_REF]{varsc, null, LSuperClass;, varsc, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}",
 		requestor.getResults());
 }
-public void testCodeSnippetAssistForClassFileWithDollar() throws JavaModelException {
+public void testCodeSnippetAssistForClassFileWithDollar() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionTestsRequestor2 requestor = new CompletionTestsRequestor2(false,false,true);
 	IOrdinaryClassFile cf = getClassFile("SnippetCompletion", "class-folder", "test00XX", "Test.class");
 	IType type = cf.getType();
@@ -281,12 +281,12 @@ public void testCodeSnippetAssistForClassFileWithDollar() throws JavaModelExcept
 	int tokenStart = snippet.lastIndexOf("var");
 	int tokenEnd = tokenStart + "var".length();
 	assertResults(
-		"varX[LOCAL_VARIABLE_REF]{varX, null, I, varX, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
+		"varX[LOCAL_VARIABLE_REF]{varX, null, I, varX, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"varY[LOCAL_VARIABLE_REF]{varY, null, I, varY, ["+tokenStart+", "+tokenEnd+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}",
 		requestor.getResults());
 }
 
-public void testCodeSnippetAssistInsideNumber() throws JavaModelException {
+public void testCodeSnippetAssistInsideNumber() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionTestsRequestor2 requestor = new CompletionTestsRequestor2(false,false,true);
 	IOrdinaryClassFile cf = getClassFile("SnippetCompletion", "class-folder", "aa.bb.cc", "AClass.class");
 	IType type = cf.getType();

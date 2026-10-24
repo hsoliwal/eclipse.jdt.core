@@ -39,7 +39,7 @@ public static Class testClass() {
 /**
  * Test a variable that has a problem in its initializer.
  */
-public void testInitializerProblem() {
+public void testInitializerProblem() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Problem in first variable
 	GlobalVariable var = null;
 	try {
@@ -80,7 +80,7 @@ public void testInitializerProblem() {
  * Test a variable that has a problem in its name.
  * TODO (david) investigate why changes in enum recovery caused this test to fail
  */
-public void _testInvalidName() {
+public void _testInvalidName() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Problem in first variable
 	GlobalVariable var = null;
 	try {
@@ -115,7 +115,7 @@ public void _testInvalidName() {
 /**
  * Test a variable that has a problem in its type declaration.
  */
-public void testUnknownType() {
+public void testUnknownType() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Problem in first variable
 	GlobalVariable var = null;
 	try {

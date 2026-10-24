@@ -40,7 +40,7 @@ public class SelectionOnPackageVisibilityReference extends ImportReference {
 	public StringBuilder print(int indent, StringBuilder output) {
 
 		printIndent(indent, output).append("<SelectOnPackageVisibility:"); //$NON-NLS-1$
-		output.append(new String(CharOperation.concatWith(this.tokens, '.')));
-		return output.append('>');
+		output.append(new String(CharOperation.concatWith(this.tokens, '.'))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		return output.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 }

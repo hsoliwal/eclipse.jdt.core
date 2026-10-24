@@ -205,7 +205,7 @@ public class InternalCompletionProposal extends CompletionProposal {
 	 */
 	private int arrayDimensions = 0;
 
-	protected char[][] findConstructorParameterNames(char[] declaringTypePackageName, char[] declaringTypeName, char[] selector, char[][] paramTypeNames){
+	protected char[][] findConstructorParameterNames(char[] declaringTypePackageName, char[] declaringTypeName, char[] selector, char[][] paramTypeNames){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if(paramTypeNames == null || declaringTypeName == null) return null;
 
 		char[][] parameters = null;
@@ -279,7 +279,7 @@ public class InternalCompletionProposal extends CompletionProposal {
 
 					parameters = new char[length][];
 					String[] params = method.getParameterNames();
-					for(int i = 0;	i< length ; i++){
+					for(int i = 0;	i< length ; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						parameters[i] = params[i].toCharArray();
 					}
 				}
@@ -312,7 +312,7 @@ public class InternalCompletionProposal extends CompletionProposal {
 		return this.completionEngine.typeCache.get(tName);
 	}
 
-	protected char[][] findMethodParameterNames(char[] declaringTypePackageName, char[] declaringTypeName, char[] selector, char[][] paramTypeNames){
+	protected char[][] findMethodParameterNames(char[] declaringTypePackageName, char[] declaringTypeName, char[] selector, char[][] paramTypeNames){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if(paramTypeNames == null || declaringTypeName == null) return null;
 
 		char[][] parameters = null;
@@ -352,7 +352,7 @@ public class InternalCompletionProposal extends CompletionProposal {
 				IMethod method = findMethod(type, selector, paramTypeNames);
 				parameters = new char[length][];
 				String[] params = method.getParameterNames();
-				for(int i = 0;	i< length ; i++){
+				for(int i = 0;	i< length ; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					parameters[i] = params[i].toCharArray();
 				}
 			} catch(JavaModelException e){
@@ -368,7 +368,7 @@ public class InternalCompletionProposal extends CompletionProposal {
 		return parameters;
 	}
 
-	private IMethod findMethod(IType type, char[] selector, char[][] paramTypeNames) throws JavaModelException {
+	private IMethod findMethod(IType type, char[] selector, char[][] paramTypeNames) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IMethod method = null;
 		int startingIndex = 0;
 		String[] args;
@@ -385,7 +385,7 @@ public class InternalCompletionProposal extends CompletionProposal {
 			args = new String[paramTypeNames.length];
 		}
 		int length = args.length;
-		for(int i = startingIndex;	i< length ; i++){
+		for(int i = startingIndex;	i< length ; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			args[i] = new String(paramTypeNames[i-startingIndex]);
 		}
 		method = type.getMethod(new String(selector), args);
@@ -548,7 +548,7 @@ public class InternalCompletionProposal extends CompletionProposal {
 		return getCompletion();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public char[] getCompletion() {
 		if(this.completionKind == METHOD_DECLARATION) {
 			findParameterNames(null);
@@ -557,21 +557,21 @@ public class InternalCompletionProposal extends CompletionProposal {
 
 				if(this.parameterNames != null) {
 					int length = this.parameterNames.length;
-					StringBuilder completionBuffer = new StringBuilder(this.completion.length);
+					StringBuilder completionBuffer = new StringBuilder(this.completion.length); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
 					int start = 0;
 					int end = CharOperation.indexOf('%', this.completion);
 
-					completionBuffer.append(this.completion, start, end - start);
+					completionBuffer.append(this.completion, start, end - start); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
-					for(int i = 0 ; i < length ; i++){
-						completionBuffer.append(this.parameterNames[i]);
+					for(int i = 0 ; i < length ; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+						completionBuffer.append(this.parameterNames[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						start = end + 1;
 						end = CharOperation.indexOf('%', this.completion, start);
 						if(end > -1){
-							completionBuffer.append(this.completion, start, end - start);
+							completionBuffer.append(this.completion, start, end - start); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						} else {
-							completionBuffer.append(this.completion, start, this.completion.length - start);
+							completionBuffer.append(this.completion, start, this.completion.length - start); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
 					}
 					int nameLength = completionBuffer.length();
@@ -615,7 +615,7 @@ public class InternalCompletionProposal extends CompletionProposal {
 	@Override
 	public void setRelevance(int rating) {
 		if (rating <= 0) {
-			throw new IllegalArgumentException("rating <=0: " + rating); //$NON-NLS-1$
+			throw new IllegalArgumentException("rating <=0: " + rating); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		this.relevance = rating;
 	}
@@ -937,7 +937,7 @@ public class InternalCompletionProposal extends CompletionProposal {
 		this.requiredProposals = proposals;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public char[][] findParameterNames(IProgressMonitor monitor) {
 		if (!this.parameterNamesComputed) {
 			this.parameterNamesComputed = true;
@@ -1083,142 +1083,142 @@ public class InternalCompletionProposal extends CompletionProposal {
 		this.receiverEnd = endIndex;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public String toString() {
-		StringBuilder buffer = new StringBuilder();
-		buffer.append('[');
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append('['); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		switch(this.completionKind) {
 			case CompletionProposal.ANONYMOUS_CLASS_DECLARATION :
-				buffer.append("ANONYMOUS_CLASS_DECLARATION"); //$NON-NLS-1$
+				buffer.append("ANONYMOUS_CLASS_DECLARATION"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.FIELD_REF :
-				buffer.append("FIELD_REF"); //$NON-NLS-1$
+				buffer.append("FIELD_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.KEYWORD :
-				buffer.append("KEYWORD"); //$NON-NLS-1$
+				buffer.append("KEYWORD"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.LABEL_REF :
-				buffer.append("LABEL_REF"); //$NON-NLS-1$
+				buffer.append("LABEL_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.LOCAL_VARIABLE_REF :
-				buffer.append("LOCAL_VARIABLE_REF"); //$NON-NLS-1$
+				buffer.append("LOCAL_VARIABLE_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.METHOD_DECLARATION :
-				buffer.append("METHOD_DECLARATION"); //$NON-NLS-1$
+				buffer.append("METHOD_DECLARATION"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if(this.isConstructor) {
-					buffer.append("<CONSTRUCTOR>"); //$NON-NLS-1$
+					buffer.append("<CONSTRUCTOR>"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				break;
 			case CompletionProposal.METHOD_REF :
-				buffer.append("METHOD_REF"); //$NON-NLS-1$
+				buffer.append("METHOD_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if(this.isConstructor) {
-					buffer.append("<CONSTRUCTOR>"); //$NON-NLS-1$
+					buffer.append("<CONSTRUCTOR>"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				break;
 			case CompletionProposal.MODULE_DECLARATION :
-				buffer.append("MODULE_DECLARATION"); //$NON-NLS-1$
+				buffer.append("MODULE_DECLARATION"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.MODULE_REF :
-				buffer.append("MODULE_REF"); //$NON-NLS-1$
+				buffer.append("MODULE_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.PACKAGE_REF :
-				buffer.append("PACKAGE_REF"); //$NON-NLS-1$
+				buffer.append("PACKAGE_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.TYPE_REF :
-				buffer.append("TYPE_REF"); //$NON-NLS-1$
+				buffer.append("TYPE_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (this.arrayDimensions > 0) {
-					buffer.append("<ARRAY>"); //$NON-NLS-1$
+					buffer.append("<ARRAY>"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				break;
 			case CompletionProposal.VARIABLE_DECLARATION :
-				buffer.append("VARIABLE_DECLARATION"); //$NON-NLS-1$
+				buffer.append("VARIABLE_DECLARATION"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.POTENTIAL_METHOD_DECLARATION :
-				buffer.append("POTENTIAL_METHOD_DECLARATION"); //$NON-NLS-1$
+				buffer.append("POTENTIAL_METHOD_DECLARATION"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.METHOD_NAME_REFERENCE :
-				buffer.append("METHOD_NAME_REFERENCE"); //$NON-NLS-1$
+				buffer.append("METHOD_NAME_REFERENCE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.ANNOTATION_ATTRIBUTE_REF :
-				buffer.append("ANNOTATION_ATTRIBUTE_REF"); //$NON-NLS-1$
+				buffer.append("ANNOTATION_ATTRIBUTE_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.JAVADOC_BLOCK_TAG :
-				buffer.append("JAVADOC_BLOCK_TAG"); //$NON-NLS-1$
+				buffer.append("JAVADOC_BLOCK_TAG"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.JAVADOC_INLINE_TAG :
-				buffer.append("JAVADOC_INLINE_TAG"); //$NON-NLS-1$
+				buffer.append("JAVADOC_INLINE_TAG"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.JAVADOC_FIELD_REF:
-				buffer.append("JAVADOC_FIELD_REF"); //$NON-NLS-1$
+				buffer.append("JAVADOC_FIELD_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.JAVADOC_METHOD_REF :
-				buffer.append("JAVADOC_METHOD_REF"); //$NON-NLS-1$
+				buffer.append("JAVADOC_METHOD_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.JAVADOC_TYPE_REF :
-				buffer.append("JAVADOC_TYPE_REF"); //$NON-NLS-1$
+				buffer.append("JAVADOC_TYPE_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.JAVADOC_PARAM_REF :
-				buffer.append("JAVADOC_PARAM_REF"); //$NON-NLS-1$
+				buffer.append("JAVADOC_PARAM_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.JAVADOC_VALUE_REF :
-				buffer.append("JAVADOC_VALUE_REF"); //$NON-NLS-1$
+				buffer.append("JAVADOC_VALUE_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.FIELD_IMPORT :
-				buffer.append("FIELD_IMPORT"); //$NON-NLS-1$
+				buffer.append("FIELD_IMPORT"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.METHOD_IMPORT :
-				buffer.append("METHOD_IMPORT"); //$NON-NLS-1$
+				buffer.append("METHOD_IMPORT"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.TYPE_IMPORT :
-				buffer.append("TYPE_IMPORT"); //$NON-NLS-1$
+				buffer.append("TYPE_IMPORT"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.METHOD_REF_WITH_CASTED_RECEIVER :
-				buffer.append("METHOD_REF_WITH_CASTED_RECEIVER"); //$NON-NLS-1$
+				buffer.append("METHOD_REF_WITH_CASTED_RECEIVER"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.FIELD_REF_WITH_CASTED_RECEIVER :
-				buffer.append("FIELD_REF_WITH_CASTED_RECEIVER"); //$NON-NLS-1$
+				buffer.append("FIELD_REF_WITH_CASTED_RECEIVER"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.CONSTRUCTOR_INVOCATION :
-				buffer.append("CONSTRUCTOR_INVOCATION"); //$NON-NLS-1$
+				buffer.append("CONSTRUCTOR_INVOCATION"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.ANONYMOUS_CLASS_CONSTRUCTOR_INVOCATION :
-				buffer.append("ANONYMOUS_CLASS_CONSTRUCTOR_INVOCATION"); //$NON-NLS-1$
+				buffer.append("ANONYMOUS_CLASS_CONSTRUCTOR_INVOCATION"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.LAMBDA_EXPRESSION :
-				buffer.append("LAMBDA_EXPRESSION"); //$NON-NLS-1$
+				buffer.append("LAMBDA_EXPRESSION"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			default :
-				buffer.append("PROPOSAL"); //$NON-NLS-1$
+				buffer.append("PROPOSAL"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 
 		}
-		buffer.append("]{completion:"); //$NON-NLS-1$
-		if (this.completion != null) buffer.append(this.completion);
-		buffer.append(", declSign:"); //$NON-NLS-1$
-		if (this.declarationSignature != null) buffer.append(this.declarationSignature);
-		buffer.append(", sign:"); //$NON-NLS-1$
-		if (this.signature != null) buffer.append(this.signature);
-		buffer.append(", declKey:"); //$NON-NLS-1$
-		if (this.declarationKey != null) buffer.append(this.declarationKey);
-		buffer.append(", key:"); //$NON-NLS-1$
-		if (this.key != null) buffer.append(this.key);
-		buffer.append(", name:"); //$NON-NLS-1$
-		if (this.name != null) buffer.append(this.name);
-		buffer.append(", replace:["); //$NON-NLS-1$
-		buffer.append(this.replaceStart);
-		buffer.append(',');
-		buffer.append(this.replaceEnd);
-		buffer.append("], token:["); //$NON-NLS-1$
-		buffer.append(this.tokenStart);
-		buffer.append(',');
-		buffer.append(this.tokenEnd);
-		buffer.append("], relevance:"); //$NON-NLS-1$
-		buffer.append(this.relevance);
-		buffer.append('}');
+		buffer.append("]{completion:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		if (this.completion != null) buffer.append(this.completion); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(", declSign:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		if (this.declarationSignature != null) buffer.append(this.declarationSignature); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(", sign:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		if (this.signature != null) buffer.append(this.signature); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(", declKey:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		if (this.declarationKey != null) buffer.append(this.declarationKey); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(", key:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		if (this.key != null) buffer.append(this.key); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(", name:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		if (this.name != null) buffer.append(this.name); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(", replace:["); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(this.replaceStart); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(this.replaceEnd); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("], token:["); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(this.tokenStart); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(this.tokenEnd); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("], relevance:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(this.relevance); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return buffer.toString();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean canUseDiamond(CompletionContext coreContext) {
 		if (this.getKind() != CONSTRUCTOR_INVOCATION) return false;
 		if (coreContext instanceof InternalCompletionContext) {
@@ -1237,7 +1237,7 @@ public class InternalCompletionProposal extends CompletionProposal {
 			}
 			char[][] types= Signature.getParameterTypes(sign);
 			String[] paramTypeNames= new String[types.length];
-			for (int i= 0; i < types.length; i++) {
+			for (int i= 0; i < types.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				paramTypeNames[i]= new String(Signature.toCharArray(types[i]));
 			}
 			if (this.declarationTypeVariables != null) {

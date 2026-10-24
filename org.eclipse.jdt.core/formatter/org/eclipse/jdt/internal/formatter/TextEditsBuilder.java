@@ -45,8 +45,8 @@ public class TextEditsBuilder extends TokenTraverser {
 	private final DefaultCodeFormatterOptions options;
 	private final StringBuilder buffer;
 
-	private final List<Token> stringLiteralsInLine = new ArrayList<>();
-	private final List<TextEdit> edits = new ArrayList<>();
+	private final List<Token> stringLiteralsInLine = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	private final List<TextEdit> edits = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 	private final List<IRegion> regions;
 	private int currentRegion = 0;
@@ -68,7 +68,7 @@ public class TextEditsBuilder extends TokenTraverser {
 		this.sourceLimit = source.length();
 		this.parent = null;
 
-		this.buffer = new StringBuilder();
+		this.buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	}
 
 	private TextEditsBuilder(TextEditsBuilder parent) {
@@ -80,11 +80,11 @@ public class TextEditsBuilder extends TokenTraverser {
 		this.alignChar = DefaultCodeFormatterOptions.SPACE;
 	}
 
-	private List<IRegion> adaptRegions(List<IRegion> givenRegions) {
+	private List<IRegion> adaptRegions(List<IRegion> givenRegions) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// make sure regions don't begin or end inside multiline comments
-		ArrayList<IRegion> result = new ArrayList<>();
+		ArrayList<IRegion> result = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		IRegion previous = null;
-		for (IRegion region : givenRegions) {
+		for (IRegion region : givenRegions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int start = region.getOffset();
 			int end = start + region.getLength() - 1;
 			int sourceStart = this.tm.get(0).originalStart;
@@ -120,7 +120,7 @@ public class TextEditsBuilder extends TokenTraverser {
 		return result;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected boolean token(Token token, int index) {
 
 		bufferWhitespaceBefore(token, index);
@@ -133,7 +133,7 @@ public class TextEditsBuilder extends TokenTraverser {
 		} else {
 			flushBuffer(token.originalStart);
 			if (token.isToEscape()) {
-				this.buffer.append(this.tm.toString(token));
+				this.buffer.append(this.tm.toString(token)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				flushBuffer(token.originalEnd + 1);
 			} else {
 				this.counter = token.originalEnd + 1;
@@ -144,7 +144,7 @@ public class TextEditsBuilder extends TokenTraverser {
 			this.stringLiteralsInLine.add(token);
 
 		if (getNext() == null) {
-			for (int i = 0; i < token.getLineBreaksAfter(); i++)
+			for (int i = 0; i < token.getLineBreaksAfter(); i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				bufferLineSeparator(null, i + 1 == token.getLineBreaksAfter());
 			char lastChar = this.source.charAt(this.sourceLimit - 1);
 			if (token.getLineBreaksAfter() == 0 && (lastChar == '\r' || lastChar == '\n'))
@@ -154,7 +154,7 @@ public class TextEditsBuilder extends TokenTraverser {
 		return true;
 	}
 
-	private void bufferWhitespaceBefore(Token token, int index) {
+	private void bufferWhitespaceBefore(Token token, int index) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (getLineBreaksBefore() > 0) {
 			this.stringLiteralsInLine.clear();
 			if (getLineBreaksBefore() > 1) {
@@ -169,7 +169,7 @@ public class TextEditsBuilder extends TokenTraverser {
 						indentToken = (token.getIndent() > previous.getIndent()) ? token : previous;
 					}
 				}
-				for (int i = 1; i < getLineBreaksBefore(); i++) {
+				for (int i = 1; i < getLineBreaksBefore(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					bufferLineSeparator(token, true);
 					if (indentToken != null)
 						bufferIndent(indentToken, index);
@@ -182,13 +182,13 @@ public class TextEditsBuilder extends TokenTraverser {
 			bufferIndent(token, index);
 		} else {
 			if (!bufferAlign(token, index) && isSpaceBefore())
-				this.buffer.append(' ');
+				this.buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
-	private void bufferLineSeparator(Token token, boolean emptyLine) {
+	private void bufferLineSeparator(Token token, boolean emptyLine) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.parent == null) {
-			this.buffer.append(this.options.line_separator);
+			this.buffer.append(this.options.line_separator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return;
 		}
 
@@ -207,7 +207,7 @@ public class TextEditsBuilder extends TokenTraverser {
 			return; // this is an unformatted block comment, don't force asterisk
 		if (getNext() == null && !emptyLine) {
 			if (isMarkdown) {
-				this.buffer.append("/// "); //$NON-NLS-1$
+				this.buffer.append("/// "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			return;
 		}
@@ -215,18 +215,18 @@ public class TextEditsBuilder extends TokenTraverser {
 		int searchLimit = token != null ? token.originalStart : this.sourceLimit;
 
 		char markerChar = isMarkdown ? '/' : '*';
-		for (int i = this.counter; i < searchLimit; i++) {
+		for (int i = this.counter; i < searchLimit; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char c = this.source.charAt(i);
 			if (c == markerChar) {
 				if (!isMarkdown)
-					this.buffer.append(' ');
+					this.buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				flushBuffer(i);
-				while (i + 1 < this.sourceLimit && this.source.charAt(i + 1) == markerChar)
+				while (i + 1 < this.sourceLimit && this.source.charAt(i + 1) == markerChar) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					i++;
 				this.counter = i + 1;
 				c = this.source.charAt(i + 1);
 				if ((c != '\r' && c != '\n') || !emptyLine)
-					this.buffer.append(' ');
+					this.buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				markerCharFound = true;
 				break;
 			}
@@ -235,12 +235,12 @@ public class TextEditsBuilder extends TokenTraverser {
 		}
 
 		if (!markerCharFound) {
-			this.buffer.append(isMarkdown ? "/// " : " * "); //$NON-NLS-1$ //$NON-NLS-2$
+			this.buffer.append(isMarkdown ? "/// " : " * "); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 	}
 
-	private void bufferIndent(Token token, int index) {
+	private void bufferIndent(Token token, int index) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int indent = token.getIndent();
 		if (getCurrent() != null && getCurrent() != token)
 			indent += getCurrent().getEmptyLineIndentAdjustment();
@@ -255,7 +255,7 @@ public class TextEditsBuilder extends TokenTraverser {
 				token = lineStart;
 				wrapPolicy = token.getWrapPolicy();
 			}
-			while (wrapPolicy != null) {
+			while (wrapPolicy != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Token parentLineStart = this.tm.get(this.tm.findFirstTokenInLine(wrapPolicy.wrapParentIndex));
 				if (wrapPolicy.wrapMode != WrapMode.BLOCK_INDENT)
 					spaces += token.getIndent() - parentLineStart.getIndent();
@@ -270,7 +270,7 @@ public class TextEditsBuilder extends TokenTraverser {
 		appendIndentationString(this.buffer, this.options.tab_char, this.options.tab_size, indent - spaces, spaces);
 	}
 
-	public static void appendIndentationString(StringBuilder target, int tabChar, int tabSize, int indent,
+	public static void appendIndentationString(StringBuilder target, int tabChar, int tabSize, int indent, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			int additionalSpaces) {
 		int spacesCount = additionalSpaces;
 		int tabsCount = 0;
@@ -294,16 +294,16 @@ public class TextEditsBuilder extends TokenTraverser {
 				}
 				break;
 			default:
-				throw new IllegalStateException("Unrecognized tab char: " + tabChar); //$NON-NLS-1$
+				throw new IllegalStateException("Unrecognized tab char: " + tabChar); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		char[] indentChars = new char[tabsCount + spacesCount];
 		Arrays.fill(indentChars, 0, tabsCount, '\t');
 		Arrays.fill(indentChars, tabsCount, indentChars.length, ' ');
-		target.append(indentChars);
+		target.append(indentChars); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
-	private boolean bufferAlign(Token token, int index) {
+	private boolean bufferAlign(Token token, int index) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int align = token.getAlign();
 		int alignmentChar = this.alignChar;
 		if (align == 0 && getLineBreaksBefore() == 0 && this.parent != null) {
@@ -328,36 +328,36 @@ public class TextEditsBuilder extends TokenTraverser {
 		final int tabSize = this.options.tab_size;
 		switch (alignmentChar) {
 			case DefaultCodeFormatterOptions.SPACE:
-				while (currentPositionInLine++ < align) {
-					this.buffer.append(' ');
+				while (currentPositionInLine++ < align) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					this.buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				break;
 			case DefaultCodeFormatterOptions.TAB:
-				while (currentPositionInLine < align && tabSize > 0) {
-					this.buffer.append('\t');
+				while (currentPositionInLine < align && tabSize > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					this.buffer.append('\t'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					currentPositionInLine += tabSize - currentPositionInLine % tabSize;
 				}
 				break;
 			case DefaultCodeFormatterOptions.MIXED:
-				while (tabSize > 0 && currentPositionInLine + tabSize - currentPositionInLine % tabSize <= align) {
-					this.buffer.append('\t');
+				while (tabSize > 0 && currentPositionInLine + tabSize - currentPositionInLine % tabSize <= align) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					this.buffer.append('\t'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					currentPositionInLine += tabSize - currentPositionInLine % tabSize;
 				}
-				while (currentPositionInLine++ < align) {
-					this.buffer.append(' ');
+				while (currentPositionInLine++ < align) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					this.buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				break;
 			default:
-				throw new IllegalStateException("Unrecognized align char: " + alignmentChar); //$NON-NLS-1$
+				throw new IllegalStateException("Unrecognized align char: " + alignmentChar); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return true;
 	}
 
-	private void flushBuffer(int currentPosition) {
+	private void flushBuffer(int currentPosition) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String buffered = this.buffer.toString();
 		boolean sourceMatch = this.source.startsWith(buffered, this.counter)
 				&& this.counter + buffered.length() == currentPosition;
-		while (!sourceMatch && this.currentRegion < this.regions.size()) {
+		while (!sourceMatch && this.currentRegion < this.regions.size()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IRegion region = this.regions.get(this.currentRegion);
 			if (currentPosition < region.getOffset())
 				break;
@@ -381,7 +381,7 @@ public class TextEditsBuilder extends TokenTraverser {
 			IRegion nextRegion = this.regions.get(this.currentRegion + 1);
 			int bestSplit = 0;
 			int bestSplitScore = Integer.MAX_VALUE;
-			for (int i = 0; i < buffered.length(); i++) {
+			for (int i = 0; i < buffered.length(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ReplaceEdit edit1 = getReplaceEdit(this.counter, regionEnd, buffered.substring(0, i), region);
 				ReplaceEdit edit2 = getReplaceEdit(regionEnd, currentPosition, buffered.substring(i), nextRegion);
 				int score = edit1.getLength() + edit1.getText().length() + edit2.getLength() + edit2.getText().length();
@@ -401,7 +401,7 @@ public class TextEditsBuilder extends TokenTraverser {
 		this.counter = currentPosition;
 	}
 
-	private void checkTextBlockClosingQuotes(int position, IRegion region) {
+	private void checkTextBlockClosingQuotes(int position, IRegion region) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Token token = this.getCurrent();
 		if (token == null) return;
 		if (position < region.getOffset() || position >= (region.getOffset() + region.getLength())) return;
@@ -420,7 +420,7 @@ public class TextEditsBuilder extends TokenTraverser {
 				// There is no new line because it is already present in the buffer field.
 				String newBuffer = getClosingQuotesBuffer(this.buffer.toString());
 				this.edits.add(getReplaceEdit(position + splitPlace, position + splitPlace,
-						'\\' + newBuffer, region));
+						'\\' + newBuffer, region)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		return;
@@ -430,11 +430,11 @@ public class TextEditsBuilder extends TokenTraverser {
 		// FOr the closing quote buffer, we want to ensure that there is only a single newline.
 		// But this can't be the case if the line before the last contains an extra newline (one or more).
 		// So we need to strip any extra newline.
-		StringBuilder newBuffer = new StringBuilder (this.options.line_separator + curBuffer.replace(this.options.line_separator, "")); //$NON-NLS-1$
+		StringBuilder newBuffer = new StringBuilder (this.options.line_separator + curBuffer.replace(this.options.line_separator, "")); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		return newBuffer.toString();
 	}
 
-	private ReplaceEdit getReplaceEdit(int editStart, int editEnd, String text, IRegion region) {
+	private ReplaceEdit getReplaceEdit(int editStart, int editEnd, String text, IRegion region) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int regionEnd = region.getOffset() + region.getLength();
 		if (editStart < region.getOffset() && regionEnd < editEnd) {
 			int breaksInReplacement = this.tm.countLineBreaksBetween(text, 0, text.length());
@@ -464,17 +464,17 @@ public class TextEditsBuilder extends TokenTraverser {
 	}
 
 	private boolean isOnlyWhitespace(String text) {
-		for (int i = 0; i < text.length(); i++)
+		for (int i = 0; i < text.length(); i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!ScannerHelper.isWhitespace(text.charAt(i)))
 				return false;
 		return true;
 	}
 
-	private String adaptReplaceText(String text, int breaksToPreserve, boolean isRegionEnd, int regionEdge) {
+	private String adaptReplaceText(String text, int breaksToPreserve, boolean isRegionEnd, int regionEdge) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int i = isRegionEnd ? 0 : text.length() - 1;
 		int direction = isRegionEnd ? 1 : -1;
 		int preservedBreaks = 0;
-		for (; i >= 0 && i < text.length(); i += direction) {
+		for (; i >= 0 && i < text.length(); i += direction) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			assert ScannerHelper.isWhitespace(text.charAt(i));
 			char c1 = text.charAt(i);
 			if (c1 == '\r' || c1 == '\n') {
@@ -494,14 +494,14 @@ public class TextEditsBuilder extends TokenTraverser {
 		// cut out text if the source outside region is a matching whitespace
 		int textPos = isRegionEnd ? text.length() - 1 : 0;
 		int sourcePos = regionEdge;
-		theLoop: while (textPos >= 0 && textPos < text.length() && sourcePos >= 0 && sourcePos < this.source.length()) {
+		theLoop: while (textPos >= 0 && textPos < text.length() && sourcePos >= 0 && sourcePos < this.source.length()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char c1 = text.charAt(textPos);
 			char c2 = this.source.charAt(sourcePos);
 			if (c1 == c2 && (c1 == ' ' || c1 == '\t')) {
 				textPos -= direction;
 				sourcePos += direction;
 			} else if (c1 == '\t' && c2 == ' ') {
-				for (i = 0; i < this.options.tab_size; i++) {
+				for (i = 0; i < this.options.tab_size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					sourcePos += direction;
 					if (i < this.options.tab_size - 1 && (sourcePos < 0 || sourcePos >= this.source.length()
 							|| this.source.charAt(sourcePos) != ' '))
@@ -509,7 +509,7 @@ public class TextEditsBuilder extends TokenTraverser {
 				}
 				textPos -= direction;
 			} else if (c2 == '\t' && c1 == ' ') {
-				for (i = 0; i < this.options.tab_size; i++) {
+				for (i = 0; i < this.options.tab_size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					textPos -= direction;
 					if (i < this.options.tab_size - 1
 							&& (textPos < 0 || textPos >= text.length() || text.charAt(textPos) != ' '))
@@ -529,7 +529,7 @@ public class TextEditsBuilder extends TokenTraverser {
 		return text;
 	}
 
-	private void handleSingleLineComment(Token lineComment, int index) {
+	private void handleSingleLineComment(Token lineComment, int index) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		List<Token> structure = lineComment.getInternalStructure();
 		if (structure == null) {
 			flushBuffer(lineComment.originalStart);
@@ -542,7 +542,7 @@ public class TextEditsBuilder extends TokenTraverser {
 			flushBuffer(lineComment.originalStart);
 		}
 
-		for (int i = 0; i < structure.size(); i++) {
+		for (int i = 0; i < structure.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Token fragment = structure.get(i);
 
 			if (fragment.getLineBreaksBefore() > 0) {
@@ -551,16 +551,16 @@ public class TextEditsBuilder extends TokenTraverser {
 					bufferAlign(lineComment, index);
 				bufferIndent(fragment, index);
 			} else if (fragment.isSpaceBefore() && i > 0) {
-				this.buffer.append(' ');
+				this.buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 
 			if (fragment.hasNLSTag()) {
 				int tagNumber = this.stringLiteralsInLine.indexOf(fragment.getNLSTag());
 				assert tagNumber >= 0;
-				this.buffer.append("//$NON-NLS-").append(tagNumber + 1).append("$"); //$NON-NLS-1$ //$NON-NLS-2$
+				this.buffer.append("//$NON-NLS-").append(tagNumber + 1).append("$"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else if (fragment.originalStart < this.counter) {
 				// Comment line prefix may be a copy of earlier code
-				this.buffer.append(this.tm.toString(fragment));
+				this.buffer.append(this.tm.toString(fragment)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
 				flushBuffer(fragment.originalStart);
 				this.counter = fragment.originalEnd + 1;

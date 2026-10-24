@@ -37,16 +37,16 @@ void addDocumentNames(String substring, SimpleSet results) {
 	Object[] paths = this.docsToReferences.keyTable;
 	Object[] referenceTables = this.docsToReferences.valueTable;
 	if (substring == null) { // add all new/changed documents
-		for (int i = 0, l = referenceTables.length; i < l; i++)
+		for (int i = 0, l = referenceTables.length; i < l; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (referenceTables[i] != null)
 				results.add(paths[i]);
 	} else {
-		for (int i = 0, l = referenceTables.length; i < l; i++)
+		for (int i = 0, l = referenceTables.length; i < l; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (referenceTables[i] != null && ((String) paths[i]).startsWith(substring, 0))
 				results.add(paths[i]);
 	}
 }
-void addIndexEntry(char[] category, char[] key, String documentName) {
+void addIndexEntry(char[] category, char[] key, String documentName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	HashtableOfObject referenceTable;
 	if (documentName.equals(this.lastDocumentName))
 		referenceTable = this.lastReferenceTable;
@@ -65,16 +65,16 @@ void addIndexEntry(char[] category, char[] key, String documentName) {
 
 	existingWords.add(this.allWords.add(key));
 }
-HashtableOfObject addQueryResults(char[][] categories, char[] key, int matchRule, HashtableOfObject results) {
+HashtableOfObject addQueryResults(char[][] categories, char[] key, int matchRule, HashtableOfObject results) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// assumed the disk index already skipped over documents which have been added/changed/deleted
 	// results maps a word -> EntryResult
 	Object[] paths = this.docsToReferences.keyTable;
 	Object[] referenceTables = this.docsToReferences.valueTable;
 	if (matchRule == (SearchPattern.R_EXACT_MATCH | SearchPattern.R_CASE_SENSITIVE) && key != null) {
-		nextPath : for (int i = 0, l = referenceTables.length; i < l; i++) {
+		nextPath : for (int i = 0, l = referenceTables.length; i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			HashtableOfObject categoryToWords = (HashtableOfObject) referenceTables[i];
 			if (categoryToWords != null) {
-				for (char[] category : categories) {
+				for (char[] category : categories) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					SimpleWordSet wordSet = (SimpleWordSet) categoryToWords.get(category);
 					if (wordSet != null && wordSet.includes(key)) {
 						if (results == null)
@@ -89,14 +89,14 @@ HashtableOfObject addQueryResults(char[][] categories, char[] key, int matchRule
 			}
 		}
 	} else {
-		for (int i = 0, l = referenceTables.length; i < l; i++) {
+		for (int i = 0, l = referenceTables.length; i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			HashtableOfObject categoryToWords = (HashtableOfObject) referenceTables[i];
 			if (categoryToWords != null) {
-				for (char[] category : categories) {
+				for (char[] category : categories) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					SimpleWordSet wordSet = (SimpleWordSet) categoryToWords.get(category);
 					if (wordSet != null) {
 						char[][] words = wordSet.words;
-						for (char[] word : words) {
+						for (char[] word : words) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (word != null && Index.isMatch(key, word, matchRule)) {
 								if (results == null)
 									results = new HashtableOfObject(13);

@@ -54,7 +54,7 @@ class DocCommentParser extends AbstractCommentParser {
 	public Javadoc parse(int[] positions) {
 		return parse(positions[0], positions[1]-positions[0]);
 	}
-	public Javadoc parse(int start, int length) {
+	public Javadoc parse(int start, int length) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Init
 		this.source = this.scanner.source;
@@ -90,13 +90,13 @@ class DocCommentParser extends AbstractCommentParser {
 
 	@Override
 	public String toString() {
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("javadoc: ").append(this.docComment).append("\n");	//$NON-NLS-1$ //$NON-NLS-2$
-		buffer.append(super.toString());
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("javadoc: ").append(this.docComment).append("\n");	//$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(super.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return buffer.toString();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected Object createArgumentReference(char[] name, int dim, boolean isVarargs, Object typeRef, long[] dimPositions, long argNamePos) throws InvalidInputException {
 		try {
 			MethodRefParameter argument = this.ast.newMethodRefParameter();
@@ -122,7 +122,7 @@ class DocCommentParser extends AbstractCommentParser {
 			}
 			if (dim > 0 && !isVarargs) {
 				if (this.ast.apiLevel <= AST.JLS4_INTERNAL) {
-					for (int i=0; i<dim; i++) {
+					for (int i=0; i<dim; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						argType = this.ast.newArrayType(argType);
 						argType.setSourceRange(argStart, ((int) dimPositions[i])-argStart+1);
 					}
@@ -130,7 +130,7 @@ class DocCommentParser extends AbstractCommentParser {
 					ArrayType argArrayType = this.ast.newArrayType(argType, 0);
 					argType = argArrayType;
 					argType.setSourceRange(argStart, ((int) dimPositions[dim-1])-argStart+1);
-					for (int i=0; i<dim; i++) {
+					for (int i=0; i<dim; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						Dimension dimension = this.ast.newDimension();
 						int dimStart = (int) (dimPositions[i] >>> 32);
 						int dimEnd = (int) dimPositions[i];
@@ -151,7 +151,7 @@ class DocCommentParser extends AbstractCommentParser {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected Object createFieldReference(Object receiver) throws InvalidInputException {
 		try {
 			MemberRef fieldRef = this.ast.newMemberRef();
@@ -178,7 +178,7 @@ class DocCommentParser extends AbstractCommentParser {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected Object createMethodReference(Object receiver, List arguments) throws InvalidInputException {
 		try {
 			// Create method ref
@@ -202,7 +202,7 @@ class DocCommentParser extends AbstractCommentParser {
 			// Add arguments
 			if (arguments != null) {
 				Iterator parameters = arguments.listIterator();
-				while (parameters.hasNext()) {
+				while (parameters.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					MethodRefParameter param = (MethodRefParameter) parameters.next();
 					methodRef.parameters().add(param);
 				}
@@ -215,15 +215,15 @@ class DocCommentParser extends AbstractCommentParser {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void createTag() {
 		int position = this.scanner.currentPosition;
 		this.scanner.resetTo(this.tagSourceStart, this.tagSourceEnd);
-		StringBuilder tagName = new StringBuilder();
+		StringBuilder tagName = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		int start = this.tagSourceStart;
 		this.scanner.getNextChar();
-		while (this.scanner.currentPosition <= (this.tagSourceEnd+1)) {
-			tagName.append(this.scanner.currentCharacter);
+		while (this.scanner.currentPosition <= (this.tagSourceEnd+1)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			tagName.append(this.scanner.currentCharacter); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			this.scanner.getNextChar();
 		}
 		if (TagElement.TAG_SNIPPET.equals(tagName.toString())) {
@@ -254,16 +254,16 @@ class DocCommentParser extends AbstractCommentParser {
 		this.markdownHelper.resetLineStart();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected Object createSnippetTag() {
 		TagElement tagElement = this.ast.newTagElement();
 		int position = this.scanner.currentPosition;
 		this.scanner.resetTo(this.tagSourceStart, this.tagSourceEnd);
-		StringBuilder tagName = new StringBuilder();
+		StringBuilder tagName = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		int start = this.tagSourceStart;
 		this.scanner.getNextChar();
-		while (this.scanner.currentPosition <= (this.tagSourceEnd+1)) {
-			tagName.append(this.scanner.currentCharacter);
+		while (this.scanner.currentPosition <= (this.tagSourceEnd+1)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			tagName.append(this.scanner.currentCharacter); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			this.scanner.getNextChar();
 		}
 		tagElement.setTagName(tagName.toString());
@@ -309,17 +309,17 @@ class DocCommentParser extends AbstractCommentParser {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected Object createSnippetRegion(String name, List<Object> tags, Object snippetTag, boolean isDummyRegion, boolean considerPrevTag) {
 		if (!isDummyRegion) {
 			return createSnippetOriginalRegion(name, tags);
 		}
-		List<TagElement> tagsToBeProcessed = new ArrayList<>();
+		List<TagElement> tagsToBeProcessed = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		Object toBeReturned = null;
 		if (tags != null && tags.size() > 0) {
 			int start = -1;
 			int end = -1;
-			for (Object tag : tags) {
+			for (Object tag : tags) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (tag instanceof TagElement) {
 					TagElement tagElem = (TagElement) tag;
 					tagsToBeProcessed.add(tagElem);
@@ -373,12 +373,12 @@ class DocCommentParser extends AbstractCommentParser {
 		return toBeReturned;
 	}
 
-	private Object createSnippetOriginalRegion(String name, List<Object> tags) {
+	private Object createSnippetOriginalRegion(String name, List<Object> tags) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		JavaDocRegion region = this.ast.newJavaDocRegion();
 		if (tags != null && tags.size() > 0) {
 			int start = -1;
 			int end = -1;
-			for (Object tag : tags) {
+			for (Object tag : tags) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (tag instanceof TagElement) {
 					TagElement tagElem = (TagElement) tag;
 					region.tags().add(tagElem);
@@ -415,14 +415,14 @@ class DocCommentParser extends AbstractCommentParser {
 		return null;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void closeJavaDocRegion(String name, Object snippetTag, int end) {
 		if (snippetTag instanceof TagElement) {
 			TagElement snippet = (TagElement) snippetTag;
 			List<JavaDocRegion> regions = snippet.tagRegions();
 			JavaDocRegion regionToClose = null;
 			if (name != null) {
-				for (JavaDocRegion region : regions) {
+				for (JavaDocRegion region : regions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (name.equals(region.getTagName())) {
 						if (!this.isRegionToBeEnded(region)
 								&& !this.hasRegionEnded(region)) {
@@ -432,7 +432,7 @@ class DocCommentParser extends AbstractCommentParser {
 					}
 				}
 			} else {
-				for (int i= regions.size()-1; i >-1; i--) {
+				for (int i= regions.size()-1; i >-1; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					JavaDocRegion region = regions.get(i);
 					if (!this.isRegionToBeEnded(region)
 							&& !this.hasRegionEnded(region)) {
@@ -471,7 +471,7 @@ class DocCommentParser extends AbstractCommentParser {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void addSnippetInnerTag(Object obj, Object snippetTag) {
 		boolean isNotDummyRegion = false;
 		if (obj instanceof JavaDocRegion) {
@@ -483,7 +483,7 @@ class DocCommentParser extends AbstractCommentParser {
 					isNotDummyRegion = true;
 				} else {
 					Iterator<Object> itr = region.tags().iterator();
-					while (itr.hasNext()) {
+					while (itr.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						Object tag = itr.next();
 						if (tag instanceof JavaDocRegion) {
 							JavaDocRegion reg = (JavaDocRegion) tag;
@@ -533,12 +533,12 @@ class DocCommentParser extends AbstractCommentParser {
 		return createTypeReference(primitiveToken);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected Object createTypeReference(TerminalToken primitiveToken) {
 		int size = this.identifierLengthStack[this.identifierLengthPtr];
 		String[] identifiers = new String[size];
 		int pos = this.identifierPtr - size + 1;
-		for (int i = 0; i < size; i++) {
+		for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			identifiers[i] = new String(this.identifierStack[pos+i]);
 		}
 		ASTNode typeRef = null;
@@ -586,7 +586,7 @@ class DocCommentParser extends AbstractCommentParser {
 		if (size > 1) {
 			Name name = (Name)typeRef;
 			int nameIndex = size;
-			for (int i=this.identifierPtr; i>pos; i--, nameIndex--) {
+			for (int i=this.identifierPtr; i>pos; i--, nameIndex--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int s = (int) (this.identifierPositionStack[i] >>> 32);
 				int e = (int) this.identifierPositionStack[i];
 				name.index = nameIndex;
@@ -606,9 +606,9 @@ class DocCommentParser extends AbstractCommentParser {
 		return typeRef;
 	}
 
-	private ModuleQualifiedName createModuleReference(int moduleRefTokenCount) {
+	private ModuleQualifiedName createModuleReference(int moduleRefTokenCount) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] identifiers = new String[moduleRefTokenCount];
-		for (int i = 0; i < moduleRefTokenCount; i++) {
+		for (int i = 0; i < moduleRefTokenCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			identifiers[i] = new String(this.identifierStack[i]);
 		}
 		ModuleQualifiedName moduleRef = new ModuleQualifiedName(this.ast);
@@ -619,7 +619,7 @@ class DocCommentParser extends AbstractCommentParser {
 		if (moduleRefTokenCount > 1) {
 			Name name = (Name)typeRef;
 			int nameIndex = moduleRefTokenCount;
-			for (int i=moduleRefTokenCount-1; i>0; i--, nameIndex--) {
+			for (int i=moduleRefTokenCount-1; i>0; i--, nameIndex--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int s = (int) (this.identifierPositionStack[i] >>> 32);
 				int e = (int) this.identifierPositionStack[i];
 				name.index = nameIndex;
@@ -642,7 +642,7 @@ class DocCommentParser extends AbstractCommentParser {
 		return moduleRef;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected Object createModuleTypeReference(TerminalToken primitiveToken, int  moduleRefTokenCount) {
 		int size = this.identifierLengthStack[this.identifierLengthPtr];
 		ModuleQualifiedName moduleRef= null;
@@ -654,7 +654,7 @@ class DocCommentParser extends AbstractCommentParser {
 			String[] moduleIdentifiers = new String[moduleRefTokenCount];
 			String[] identifiers = new String[size- moduleRefTokenCount];
 			int pos = this.identifierPtr - size + 1;
-			for (int i = 0; i < size; i++) {
+			for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (i < moduleRefTokenCount) {
 					moduleIdentifiers[i] =  new String(this.identifierStack[pos+i]);
 				} else {
@@ -674,7 +674,7 @@ class DocCommentParser extends AbstractCommentParser {
 				if (size-moduleRefTokenCount > 1) {
 					Name name = typeRef;
 					int nameIndex = size-moduleRefTokenCount;
-					for (int i=this.identifierPtr; i>pos; i--, nameIndex--) {
+					for (int i=this.identifierPtr; i>pos; i--, nameIndex--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						int s = (int) (this.identifierPositionStack[i] >>> 32);
 						int e = (int) this.identifierPositionStack[i];
 						name.index = nameIndex;
@@ -717,7 +717,7 @@ class DocCommentParser extends AbstractCommentParser {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected boolean parseMarkdownLinks(int previousPosition) throws InvalidInputException {
 		boolean valid = false;
 		// The markdown links can come in single [] or pair of [] with no space between them
@@ -731,7 +731,7 @@ class DocCommentParser extends AbstractCommentParser {
 		char currentChar = readChar();
 		int tStart = previousPosition;
 		int tEnd = -1;
-		loop: while (this.index < this.scanner.eofPosition) {
+		loop: while (this.index < this.scanner.eofPosition) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch(currentChar) {
 				case '\\':
 					char c = peekChar();
@@ -768,7 +768,7 @@ class DocCommentParser extends AbstractCommentParser {
 		return valid;
 	}
 
-	private boolean parseMarkdownLinkTags(boolean refFlag, int start, int previousPosition, int tStart, int tEnd ) throws InvalidInputException {
+	private boolean parseMarkdownLinkTags(boolean refFlag, int start, int previousPosition, int tStart, int tEnd ) throws InvalidInputException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		boolean valid = false;
 		int eofBkup = this.scanner.eofPosition;
 		this.scanner.eofPosition = this.index - 1;
@@ -822,7 +822,7 @@ class DocCommentParser extends AbstractCommentParser {
 		return valid;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected boolean parseTag(int previousPosition) throws InvalidInputException {
 		this.markdownHelper.resetLineStart();
 
@@ -841,7 +841,7 @@ class DocCommentParser extends AbstractCommentParser {
 		// Try to get tag name other than java identifier
 		// (see bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=51660)
 		if (this.scanner.currentCharacter != ' ' && !ScannerHelper.isWhitespace(this.scanner.currentCharacter)) {
-			tagNameToken: while (token != TerminalToken.TokenNameEOF && this.index < this.scanner.eofPosition) {
+			tagNameToken: while (token != TerminalToken.TokenNameEOF && this.index < this.scanner.eofPosition) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int length = tagName.length;
 				// !, ", #, %, &, ', -, :, <, >, * chars and spaces are not allowed in tag names
 				switch (this.scanner.currentCharacter) {
@@ -1075,7 +1075,7 @@ class DocCommentParser extends AbstractCommentParser {
 		return valid;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected boolean pushParamName(boolean isTypeParam) {
 		int idIndex = isTypeParam ? 1 : 0;
 		final SimpleName name = new SimpleName(this.ast);
@@ -1112,7 +1112,7 @@ class DocCommentParser extends AbstractCommentParser {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected boolean pushSeeRef(Object statement) {
 		TagElement seeTag = this.ast.newTagElement();
 		ASTNode node = (ASTNode) statement;
@@ -1158,7 +1158,7 @@ class DocCommentParser extends AbstractCommentParser {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void pushText(int start, int end) {
 		start = this.markdownHelper.getTextStart(start);
 
@@ -1222,7 +1222,7 @@ class DocCommentParser extends AbstractCommentParser {
 		pushSnippetText(text, start, end, addNewLine, snippetTag, isExternalSnippet, false);
 	}
 
-	private void pushSnippetText(char[] text, int start, int end, boolean addNewLine, Object snippetTag, boolean isExternalSnippet, boolean isMarkdown) {
+	private void pushSnippetText(char[] text, int start, int end, boolean addNewLine, Object snippetTag, boolean isExternalSnippet, boolean isMarkdown) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Create text element
 		String textToBeAdded= new String( text, start, end-start).stripTrailing();
 		AbstractTextElement textElem= null;
@@ -1317,7 +1317,7 @@ class DocCommentParser extends AbstractCommentParser {
 
 		if (snippetTag instanceof TagElement) {
 			fragments =  ((TagElement) snippetTag).fragments();
-			for (Object frag : fragments) {
+			for (Object frag : fragments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (frag instanceof JavaDocRegion) {
 					JavaDocRegion region = (JavaDocRegion) frag;
 					if (!region.isDummyRegion() && !hasRegionEnded(region)) {
@@ -1424,7 +1424,7 @@ class DocCommentParser extends AbstractCommentParser {
 	 */
 	@Override
 	protected void updateDocComment() {
-		for (int idx = 0; idx <= this.astPtr; idx++) {
+		for (int idx = 0; idx <= this.astPtr; idx++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.docComment.tags().add(this.astStack[idx]);
 		}
 	}

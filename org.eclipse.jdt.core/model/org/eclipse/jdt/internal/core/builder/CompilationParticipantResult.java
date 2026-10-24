@@ -77,7 +77,7 @@ public boolean hasAnnotations() {
 @Override
 public boolean hasAnnotations(String fqn) {
 	if (this.annotations != null) {
-		for (AnnotationBinding binding : this.annotations) {
+		for (AnnotationBinding binding : this.annotations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (binding == null) {
 				continue;
 			}

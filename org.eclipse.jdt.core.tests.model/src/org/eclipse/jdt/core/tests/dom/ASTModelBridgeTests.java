@@ -133,7 +133,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 		setUpJavaProject();
 	}
 
-	private void setUpJavaProject() throws CoreException, IOException, JavaModelException {
+	private void setUpJavaProject() throws CoreException, IOException, JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB,JCL18_SRC", "/P/lib"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		project.setOption(JavaCore.COMPILER_PB_UNUSED_LOCAL, JavaCore.IGNORE);
 		project.setOption(JavaCore.COMPILER_PB_UNUSED_PRIVATE_MEMBER, JavaCore.IGNORE);
@@ -224,7 +224,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	/*
 	 * Ensures that the IJavaElement of an IBinding representing an annotation is correct.
 	 */
-	public void testAnnotation1() throws JavaModelException {
+	public void testAnnotation1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ASTNode node = buildAST(
 			"public class X {\n" +
 			"  /*start*/@MyAnnot/*end*/\n" +
@@ -287,7 +287,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	/*
 	 * Ensures that the IJavaElement of an IBinding representing an annotation is correct.
 	 */
-	public void testAnnotation4() throws JavaModelException {
+	public void testAnnotation4() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit myAnnot = null;
 		ICompilationUnit packageInfo = null;
 		try {
@@ -323,7 +323,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	/*
 	 * Ensures that the IJavaElement of an IBinding representing an annotation is correct.
 	 */
-	public void testAnnotation5() throws JavaModelException {
+	public void testAnnotation5() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ASTNode node = buildAST(
 			"public class X {\n" +
 			"  void foo() {\n" +
@@ -434,7 +434,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 		assertNull("Got a java element", binding.getJavaElement());
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=328969
-	public void testAnnotation11() throws JavaModelException {
+	public void testAnnotation11() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ASTNode node = buildAST(
 			"public class X {\n" +
 			"/*start*/@MyAnnot/*end*/ void foo() throws MissingException {}\n" +
@@ -455,7 +455,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 		);
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=328969
-	public void testAnnotation12() throws JavaModelException {
+	public void testAnnotation12() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ASTNode node = buildAST(
 			"public class X {\n" +
 			"/*start*/@MyAnnot/*end*/ MissingType foo;\n" +
@@ -494,7 +494,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 		assertNull("Got a java element", binding.getJavaElement());
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=328969
-	public void testAnnotation14() throws JavaModelException {
+	public void testAnnotation14() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ASTNode node = buildAST(
 			"public class X {\n" +
 			"	void bar() {\n" +
@@ -521,7 +521,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	 * Ensures that the correct IBindings can be retrieved from an AST
 	 * (parameter annotation)
 	 */
-	public void testAnnotation15() throws Exception {
+	public void testAnnotation15() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		createFolder("/P/src/lib");
 		createFile("/P/src/lib/NonNull.java",
 				"package lib;\n" +
@@ -579,7 +579,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 		);
 	}
 
-	public void testAnonymousType2() throws JavaModelException {
+	public void testAnonymousType2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ASTNode node = buildAST(
 			"public class X {\n" +
 			"	public void foo() {\n" +
@@ -700,7 +700,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	 * after searching for references to this type.
 	 * (regression test for bug 136016 [refactoring] CCE during Use Supertype refactoring)
 	 */
-	public void testBinaryType2() throws CoreException {
+	public void testBinaryType2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IOrdinaryClassFile classFile = getClassFile("P", "lib.jar", "p", "ABC.class"); // class with no references
 
 		// ensure classfile is open
@@ -738,7 +738,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	 * Ensures that the IJavaElement of an IBinding representing a type in a jar is correct after deleting the first project
 	 * referencing it.
 	 */
-	public void testBinaryType3() throws CoreException, IOException {
+	public void testBinaryType3() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// force String to be put in the jar cache
 		buildAST(
 			"public class X {\n" +
@@ -805,7 +805,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	 * Ensures that the correct IBindings are created for a given set of IJavaElement
 	 * (test several kinds of elements)
 	 */
-	public void testCreateBindings01() throws JavaModelException {
+	public void testCreateBindings01() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ASTParser parser = ASTParser.newParser(AST.getAllSupportedVersions().getFirst());
 		parser.setResolveBindings(true);
 		parser.setProject(getJavaProject("P"));
@@ -856,7 +856,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=297757
 	 */
-	public void testCreateBindings23() throws JavaModelException {
+	public void testCreateBindings23() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ASTParser parser = ASTParser.newParser(AST.getAllSupportedVersions().getFirst());
 		parser.setProject(getJavaProject("P"));
 		WorkingCopyOwner owner = new WorkingCopyOwner() {};
@@ -1303,7 +1303,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	/*
 	 * Ensures that the correct IBinding is created for package-info.class's IType
 	 */
-	public void testCreateBindings24() throws CoreException {
+	public void testCreateBindings24() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		createClassFile(
 			"/P/lib",
 			"pack/package-info.class",
@@ -1368,7 +1368,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	 * Ensures that the correct IBindings are created for a given set of IJavaElement
 	 * (invocation of a generic method - binary)
 	 */
-	public void testCreateBinding27() throws Exception {
+	public void testCreateBinding27() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		createClassFile("/P/lib", "p/A.class",
 				"package p;\n" +
 				"public class A {\n" +
@@ -1406,7 +1406,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	 * Ensures that the correct IBindings are created for a given set of IJavaElement
 	 * (method parameter - binary)
 	 */
-	public void testCreateBinding28() throws Exception {
+	public void testCreateBinding28() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject javaProject = getJavaProject("P");
 		String codeGenOption = javaProject.getOption(JavaCore.COMPILER_LOCAL_VARIABLE_ATTR, true);
 		try {
@@ -1460,7 +1460,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	/*
 	 * Ensures that the IJavaElement of an IBinding representing a field is correct.
 	 */
-	public void testField2() throws JavaModelException {
+	public void testField2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ASTNode node = buildAST(
 			"public class X {\n" +
 			"  Object foo() {\n" +
@@ -1696,7 +1696,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	 * Ensures that the IJavaElement of an IBinding representing a local type
 	 * and coming from a binding key resolution is correct.
 	 */
-	public void testLocalType2() throws CoreException {
+	public void testLocalType2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String filePath = "/P/src/Z.java";
 		try {
 			String contents =
@@ -1807,7 +1807,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	 * in a discarded working copy is null.
 	 * (regression test for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=212096 )
 	 */
-	public void testLocalVariable4() throws JavaModelException {
+	public void testLocalVariable4() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			ASTNode node = buildAST(
 				"public class X {\n" +
@@ -1858,7 +1858,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=48420
 	 */
-	public void testLocalVariable6() throws JavaModelException {
+	public void testLocalVariable6() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ASTNode node = buildAST(
 			"public class X {\n" +
 			"	{\n" +
@@ -1888,8 +1888,8 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 				assertTrue("Invalid", typeRoot.exists());
 				assertNotNull("No declaring element", variable.getDeclaringMember());
 				int flags = variable.getFlags();
-				assertFalse("wrong modifier for " + variable.getElementName(), Flags.isFinal(flags));
-				assertFalse("wrong value for isParameter" + variable.getElementName(), variable.isParameter());
+				assertFalse("wrong modifier for " + variable.getElementName(), Flags.isFinal(flags)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				assertFalse("wrong value for isParameter" + variable.getElementName(), variable.isParameter()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return true;
 			}
 			public boolean visit(SingleVariableDeclaration variableDeclaration) {
@@ -1904,8 +1904,8 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 				assertTrue("Invalid", typeRoot.exists());
 				assertNotNull("No declaring element", variable.getDeclaringMember());
 				int flags = variable.getFlags();
-				assertTrue("wrong modifier for " + variable.getElementName(), Flags.isFinal(flags));
-				assertTrue("wrong value for isParameter" + variable.getElementName(), variable.isParameter());
+				assertTrue("wrong modifier for " + variable.getElementName(), Flags.isFinal(flags)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				assertTrue("wrong value for isParameter" + variable.getElementName(), variable.isParameter()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return true;
 			}
 		});
@@ -1914,7 +1914,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=368646
 	 */
-	public void testLocalVariable7() throws JavaModelException {
+	public void testLocalVariable7() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String source = "public class X {\n" +
 				"	public void m(String strX) {\n" +
 				"		String strB = strX;\n" +
@@ -1923,7 +1923,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 		ASTNode node = buildAST(source);
 		final boolean[] checked = new boolean[1];
 		node.accept(new ASTVisitor() {
-			public boolean visit(VariableDeclarationFragment fragment) {
+			public boolean visit(VariableDeclarationFragment fragment) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				final IVariableBinding binding = fragment.resolveBinding();
 				final IJavaElement javaElement = binding.getJavaElement();
 				assertNotNull("No java element", javaElement);
@@ -2007,7 +2007,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	 * Ensures that the IJavaElement of an IBinding representing a method is correct.
 	 * (regression test for bug 78757 MethodBinding.getJavaElement() returns null)
 	 */
-	public void testMethod03() throws JavaModelException {
+	public void testMethod03() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit otherWorkingCopy = null;
 		try {
 			otherWorkingCopy = getWorkingCopy(
@@ -2042,7 +2042,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	 * Ensures that the IJavaElement of an IBinding representing a method is correct.
 	 * (regression test for bug 81258 IMethodBinding#getJavaElement() is null with inferred method parameterization)
 	 */
-	public void testMethod04() throws JavaModelException {
+	public void testMethod04() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ASTNode node = buildAST(
 			"public class X {\n" +
 			"	void foo() {\n" +
@@ -2069,7 +2069,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	 * Ensures that the IJavaElement of an IBinding representing a parameterized method is correct.
 	 * (regression test for bug 82382 IMethodBinding#getJavaElement() for method m(T t) in parameterized type Gen<T> is null)
 	 */
-	public void testMethod05() throws JavaModelException {
+	public void testMethod05() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ASTNode node = buildAST(
 			"public class X<T> {\n" +
 			"    void m(T t) { }\n" +
@@ -2178,7 +2178,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	 * doesn't throw a ClassCastException if there is a syntax error.
 	 * (regression test for bug 149853 CCE in IMethodBinding#getJavaElement() for recovered anonymous type)
 	 */
-	public void testMethod10() throws CoreException {
+	public void testMethod10() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			// use a compilation unit instead of a working copy to use the ASTParser instead of reconcile
 			createFile(
@@ -2213,7 +2213,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	 * which is inside the initializer of another anonymous.
 	 * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=208013)
 	 */
-	public void testMethod11() throws JavaModelException {
+	public void testMethod11() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ASTNode node = buildAST(
 			"public class X {\n" +
 			"  public void foo() {\n" +
@@ -2242,7 +2242,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	 * Ensures that the IJavaElement of an IBinding representing a method is correct.
 	 * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=249567 )
 	 */
-	public void testMethod12() throws Exception {
+	public void testMethod12() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFolder("/P/src/p1");
 			createFile(
@@ -2281,7 +2281,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	 * Ensures that the IJavaElement of an IBinding representing a method is correct.
 	 * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=249567 )
 	 */
-	public void testMethod13() throws Exception {
+	public void testMethod13() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFolder("/P/src/p1");
 			createFile(
@@ -2313,7 +2313,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	 * Ensures that the IJavaElement of an IBinding representing a method is correct.
 	 * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=249567 )
 	 */
-	public void testMethod14() throws Exception {
+	public void testMethod14() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFolder("/P/src/p1");
 			createFile(
@@ -2441,7 +2441,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	 * Ensures that the IJavaElement of an IBinding representing a recovered type is correct.
 	 * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=232037 )
 	 */
-	public void testRecoveredTypeBinding1() throws Exception {
+	public void testRecoveredTypeBinding1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject p = createJavaProject("P15", new String[] {""}, new String[] {"JCL18_LIB", "/P15/util.jar"}, "", CompilerOptions.getFirstSupportedJavaVersion());
 			org.eclipse.jdt.core.tests.util.Util.createJar(new String[] {
@@ -2449,7 +2449,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 				"package java.util;\n" +
 				"public class List<T> {\n" +
 				"}"
-			}, p.getProject().getLocation() + File.separator + "util.jar",
+			}, p.getProject().getLocation() + File.separator + "util.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			CompilerOptions.getFirstSupportedJavaVersion());
 			p.getProject().refreshLocal(IResource.DEPTH_INFINITE, null);
 			createFile("/P15/X.java", "");
@@ -2476,7 +2476,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	 * Ensures that the IJavaElement of an IBinding representing a recovered type is correct.
 	 * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=232037 )
 	 */
-	public void testRecoveredTypeBinding2() throws Exception {
+	public void testRecoveredTypeBinding2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createJavaProject("P15", new String[] {""}, new String[] {"JCL18_LIB"}, "", CompilerOptions.getFirstSupportedJavaVersion());
 			createFile("/P15/X.java", "");
@@ -2520,7 +2520,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	 * Ensures that the IJavaElement of an IBinding representing a top level type is correct
 	 * (the top level type being in another compilation unit)
 	 */
-	public void testTopLevelType2() throws CoreException {
+	public void testTopLevelType2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile(
 				"/P/src/Y.java",
@@ -2566,7 +2566,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	 * Ensures that the IJavaElement of an IBinding representing a parameter type is correct.
 	 * (regression test for bug 78930 ITypeBinding#getJavaElement() throws NPE for type variable)
 	 */
-	public void testTypeParameter() throws JavaModelException {
+	public void testTypeParameter() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ASTNode node = buildAST(
 			"public class X</*start*/T/*end*/> {\n" +
 			"}"
@@ -2589,7 +2589,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	 * Ensures that we can create a binding for an IJavaElement representing a type parameter (source type)
 	 * Bug 466279 - [hovering] IAE on hover when annotation-based null analysis is enabled
 	 */
-	public void testTypeParameter2() throws CoreException {
+	public void testTypeParameter2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit cu = null;
 		try {
 			ASTParser parser = ASTParser.newParser(AST.getAllSupportedVersions().getFirst());
@@ -2636,7 +2636,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	 * Ensures that we can create a binding for an IJavaElement representing a type parameter (binary type)
 	 * Bug 466279 - [hovering] IAE on hover when annotation-based null analysis is enabled
 	 */
-	public void testTypeParameter3() throws CoreException {
+	public void testTypeParameter3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createClassFile("/P/lib", "A.class",
 				"package lib;\n" +
@@ -2667,7 +2667,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	 * Ensures that we can create a binding for an IJavaElement representing a type parameter (binary method)
 	 * Bug 466279 - [hovering] IAE on hover when annotation-based null analysis is enabled
 	 */
-	public void testTypeParameter4() throws CoreException {
+	public void testTypeParameter4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFolder("P/lib");
 			createClassFile("/P/lib", "A.class",
@@ -2718,7 +2718,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	 * Test behavior when the binding key denotes a non existent type.
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=157847"
 	 */
-	public void test157847a() throws CoreException {
+	public void test157847a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String filePath = "/P/src/Bug157847A.java";
 		try {
 			String contents =
@@ -2748,7 +2748,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	 * bindings of the form {@code '? extends <null>'} or {@code '? super <null>'}
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=157847"
 	 */
-	public void test157847b() throws CoreException {
+	public void test157847b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String filePath = "/P/src/Bug157847B.java";
 		try {
 			String contents =
@@ -2778,7 +2778,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 	 * bindings of the form {@code '? extends <null>' or '? super <null>'}
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=157847"
 	 */
-	public void test157847c() throws CoreException {
+	public void test157847c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String filePath = "/P/src/Bug157847C.java";
 		try {
 			String contents =
@@ -2803,7 +2803,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 			deleteFile(filePath);
 		}
 	}
-	public void test320802() throws CoreException {
+	public void test320802() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String filePath = "/P/src/X.java";
 		String filePathY = "/P/src/p/Y.java";
 		try {
@@ -2881,7 +2881,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 		}
 	}
 
-	public void testCorrectMethodFoundWithEqualSimpleName() throws CoreException {
+	public void testCorrectMethodFoundWithEqualSimpleName() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearchBugs/src/MyIF.java",
 			"""
@@ -2903,7 +2903,7 @@ public class ASTModelBridgeTests extends AbstractASTTests {
 		assertArrayEquals(new IMethod[] { secondMethod }, matchingMethods);
 	}
 
-	public void testSimilarMethodQualifiedInner() throws CoreException {
+	public void testSimilarMethodQualifiedInner() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/P/src/p1/CreateOverride.java",
 			"""

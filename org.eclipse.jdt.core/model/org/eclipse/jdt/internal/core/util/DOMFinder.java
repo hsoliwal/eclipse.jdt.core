@@ -80,7 +80,7 @@ public class DOMFinder extends ASTVisitor {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(AnonymousClassDeclaration node) {
 		ASTNode name;
 		ASTNode parent = node.getParent();

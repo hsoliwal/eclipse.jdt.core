@@ -135,12 +135,12 @@ public class Token {
 		this.internalStructure = tokenToCopy.internalStructure;
 	}
 
-	public static Token fromCurrent(Scanner scanner, TerminalToken currentToken) {
+	public static Token fromCurrent(Scanner scanner, TerminalToken currentToken) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int start = scanner.getCurrentTokenStartPosition();
 		int end = scanner.getCurrentTokenEndPosition();
 		if (currentToken == TerminalToken.TokenNameCOMMENT_LINE || currentToken == TerminalToken.TokenNameCOMMENT_MARKDOWN) {
 			// don't include line separator, but set break-after
-			while (end > start) {
+			while (end > start) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				char c = scanner.source[end];
 				if (c != '\r' && c != '\n')
 					break;
@@ -351,6 +351,6 @@ public class Token {
 	public String toString() {
 //		if (source != null)  // see comment above
 //			return toString(source);
-		return "[" + this.originalStart + "-" + this.originalEnd + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return "[" + this.originalStart + "-" + this.originalEnd + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }

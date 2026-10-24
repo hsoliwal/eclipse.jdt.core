@@ -54,7 +54,7 @@ public static Test suite() {
 private boolean checkSwitchAllowedLevel() {
 	return this.complianceLevel >= ClassFileConstants.JDK14;
 }
-public void test001() {
+public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 		"X.java", // =================
 		"public class X {\n" +
@@ -85,7 +85,7 @@ public void test001() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127255
 // Compiler incorrectly reports "variable may not have been initialized"
-public void test002() {
+public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportParameterAssignment, CompilerOptions.ERROR);
 	this.runNegativeTest(
@@ -111,7 +111,7 @@ public void test002() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127255
 // Compiler incorrectly reports "variable may not have been initialized"
-public void test003() {
+public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportParameterAssignment, CompilerOptions.ERROR);
 	this.runNegativeTest(
@@ -137,7 +137,7 @@ public void test003() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127255
 // Compiler incorrectly reports "variable may not have been initialized"
-public void test004() {
+public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportParameterAssignment, CompilerOptions.ERROR);
 	this.runNegativeTest(
@@ -163,7 +163,7 @@ public void test004() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127255
 // Compiler incorrectly reports "variable may not have been initialized"
-public void test005() {
+public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportParameterAssignment, CompilerOptions.ERROR);
 	this.runNegativeTest(
@@ -190,7 +190,7 @@ public void test005() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=67836
 // [compiler] warning on fall through
 // basic scenario
-public void test006() {
+public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportFallthroughCase, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -233,7 +233,7 @@ public void test006() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=67836
 // [compiler] warning on fall through
 // SuppressWarnings effect - explicit fallthrough token
-public void test007() {
+public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportFallthroughCase, CompilerOptions.WARNING);
 	this.runNegativeTest(
@@ -266,7 +266,7 @@ public void test007() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=67836
 // [compiler] warning on fall through
 // deep return (1) - fake reachable is seen as reachable
-public void test008() {
+public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportFallthroughCase, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -304,7 +304,7 @@ public void test008() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=67836
 // [compiler] warning on fall through
 // deep return (2)
-public void test009() {
+public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportFallthroughCase, CompilerOptions.ERROR);
 	this.runConformTest(
@@ -334,7 +334,7 @@ public void test009() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=67836
 // [compiler] warning on fall through
 // deep return (3), limit: cannot recognize that we won't return
-public void test010() {
+public void test010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportFallthroughCase, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -369,7 +369,7 @@ public void test010() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=67836
 // [compiler] warning on fall through
 // SuppressWarnings effect - implicit, using all token
-public void test011() {
+public void test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportFallthroughCase, CompilerOptions.WARNING);
 	this.runNegativeTest(
@@ -400,7 +400,7 @@ public void test011() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127730
 // [compiler] skip fall-through case warning when the fall-through is documented
 // skip because of comment
-public void _test012() {
+public void _test012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportFallthroughCase, CompilerOptions.ERROR);
 	this.runConformTest(
@@ -425,7 +425,7 @@ public void _test012() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127730
 // [compiler] skip fall-through case warning when the fall-through is documented
 // skip because of comment - default label
-public void _test013() {
+public void _test013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportFallthroughCase, CompilerOptions.ERROR);
 	this.runConformTest(
@@ -450,7 +450,7 @@ public void _test013() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=67836
 // [compiler] warning on fall through
 // basic scenario: default label
-public void test014() {
+public void test014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportFallthroughCase, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -487,7 +487,7 @@ public void test014() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=67836
 // [compiler] warning on fall through
 // skip because of comment - variants
-public void test015() {
+public void test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportFallthroughCase, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -524,7 +524,7 @@ public void test015() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=67836
 // [compiler] warning on fall through
 // skip because of comment - variants
-public void test016() {
+public void test016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportFallthroughCase, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -561,7 +561,7 @@ public void test016() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127730
 // [compiler] skip fall-through case warning when the fall-through is documented
 // skip because of comment - variants
-public void _test017() {
+public void _test017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportFallthroughCase, CompilerOptions.ERROR);
 	this.runConformTest(
@@ -586,7 +586,7 @@ public void _test017() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127730
 // [compiler] skip fall-through case warning when the fall-through is documented
 // skip because of comment - variants
-public void _test018() {
+public void _test018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportFallthroughCase, CompilerOptions.ERROR);
 	this.runConformTest(
@@ -611,7 +611,7 @@ public void _test018() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=67836
 // [compiler] warning on fall through
 // conditioned break
-public void test019() {
+public void test019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportFallthroughCase, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -648,7 +648,7 @@ public void test019() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=67836
 // [compiler] warning on fall through
 // default reporting is ignore
-public void test020() {
+public void test020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -682,7 +682,7 @@ public void test021() {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=128840
-public void test022() {
+public void test022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportEmptyStatement, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportDeadCode, CompilerOptions.IGNORE);
@@ -717,7 +717,7 @@ public void test022() {
 		// javac options
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
-public void test023() {
+public void test023() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -750,7 +750,7 @@ public void test023() {
 		JavacTestOptions.JavacHasABug.JavacBugFixed_6_10);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=132974
-public void test024() {
+public void test024() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -775,7 +775,7 @@ public void test024() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=135602
-public void test025() {
+public void test025() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -808,7 +808,7 @@ public void test025() {
 		"[starting][Loop 0][finished]");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=137298
-public void test026() {
+public void test026() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -840,7 +840,7 @@ public void test026() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=102728
 // Non-recursive approach for deep binary expressions. Check that the
 // flow analysis doesn't break.
-public void test027() {
+public void test027() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -863,7 +863,7 @@ public void test027() {
 		"s-s-s-s-s-s-s-s-s-s-s-s-s-s-s-");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=155423
-public void test028() throws Exception {
+public void test028() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -889,7 +889,7 @@ public void test028() throws Exception {
 		"      Local variable table:\n" +
 		"        [pc: 0, pc: 12] local: this index: 0 type: X\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -902,7 +902,7 @@ public void test028() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=155423 - variation
-public void test029() throws Exception {
+public void test029() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -933,7 +933,7 @@ public void test029() throws Exception {
 		"      Local variable table:\n" +
 		"        [pc: 0, pc: 12] local: this index: 0 type: X\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -946,7 +946,7 @@ public void test029() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=155423 - variation
-public void test030() throws Exception {
+public void test030() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1000,7 +1000,7 @@ public void test030() throws Exception {
 		"      Local variable table:\n" +
 		"        [pc: 0, pc: 19] local: this index: 0 type: X\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -1013,7 +1013,7 @@ public void test030() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=155423 - variation
-public void test031() {
+public void test031() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1037,7 +1037,7 @@ public void test031() {
 		"");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=155423 - variation
-public void test032() {
+public void test032() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1069,7 +1069,7 @@ public void test032() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=155423 - variation
-public void test033() {
+public void test033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1092,7 +1092,7 @@ public void test033() {
 		"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=162918
-public void test034() {
+public void test034() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1121,7 +1121,7 @@ public void test034() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=162918
 // variant
-public void test035() {
+public void test035() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1145,7 +1145,7 @@ public void test035() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=162918
 // variant - not a flow analysis issue per se, contrast with 34 and 35 above
-public void test036() {
+public void test036() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String src =
 		"public class X {\n" +
 		"  void foo3() {\n" +
@@ -1172,7 +1172,7 @@ public void test036() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=166641
-public void test037() {
+public void test037() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1219,7 +1219,7 @@ public void test038() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=166641
 // variant with deeper nesting
-public void test039() {
+public void test039() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1253,7 +1253,7 @@ public void test039() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=166641
 // variant - checking duplicate initialization of final variables
-public void test040() {
+public void test040() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1300,7 +1300,7 @@ public void test041() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=166641
 // variant - checking duplicate initialization of final variables
-public void test042() {
+public void test042() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1329,7 +1329,7 @@ public void test042() {
 		"----------\n");
 }
 // switch and definite assignment
-public void test043() {
+public void test043() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1354,7 +1354,7 @@ public void test043() {
 		"011\n22");
 }
 // switch and definite assignment
-public void test044() {
+public void test044() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1384,7 +1384,7 @@ public void test044() {
 }
 // switch and definite assignment
 // **
-public void test045() {
+public void test045() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1409,7 +1409,7 @@ public void test045() {
 		"----------\n");
 }
 // for and definite assignment
-public void test046() {
+public void test046() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		true,
 		new String[] {
@@ -1454,7 +1454,7 @@ public void test047() {
 // labeled loop
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=200158
 // contrast this with test049
-public void test048() {
+public void test048() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		new String[] {
 			"X.java",
@@ -1493,7 +1493,7 @@ public void test048() {
 // labeled loop
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=200158
 // variant: this one passes
-public void test049() {
+public void test049() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		new String[] {
 			"X.java",
@@ -1560,7 +1560,7 @@ public void test051_definite_assigment_and_if_true() {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=48399
-public void test052() {
+public void test052() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] { /* test files */
 			"X.java",
@@ -1591,7 +1591,7 @@ public void test052() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=48399 - variation
-public void test053() {
+public void test053() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] { /* test files */
 			"X.java",
@@ -1627,7 +1627,7 @@ public void test053() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=48399 - variation
-public void test054() {
+public void test054() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] { /* test files */
 			"X.java",
@@ -1655,7 +1655,7 @@ public void test054() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=48399 - variation
-public void test055() {
+public void test055() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] { /* test files */
 			"X.java",
@@ -1688,7 +1688,7 @@ public void test055() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=48399 - variation
-public void test056() {
+public void test056() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 			new String[] { /* test files */
 				"X.java",
@@ -1731,7 +1731,7 @@ public void test056() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=110544
-public void test057() {
+public void test057() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] { /* test files */
 			"X.java",
@@ -1761,7 +1761,7 @@ public void test057() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=48399 - variation
-public void test058() {
+public void test058() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] { /* test files */
 			"X.java",
@@ -1816,7 +1816,7 @@ public void test058() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=48399 - variation
-public void test059() {
+public void test059() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] { /* test files */
 			"X.java",
@@ -1856,7 +1856,7 @@ public void test059() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=48399 - variation
-public void test060() {
+public void test060() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] { /* test files */
 			"X.java",
@@ -1925,7 +1925,7 @@ public void test060() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=265962
-public void test061() throws Exception {
+public void test061() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1950,7 +1950,7 @@ public void test061() throws Exception {
 		"      Local variable table:\n" +
 		"        [pc: 0, pc: 1] local: args index: 0 type: java.lang.String[]\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -1964,7 +1964,7 @@ public void test061() throws Exception {
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=265962 - variation
-public void test062() {
+public void test062() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] { /* test files */
 			"X.java",
@@ -1989,7 +1989,7 @@ public void test062() {
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=236385
-public void test063() {
+public void test063() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportUnusedObjectAllocation, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -2015,7 +2015,7 @@ public void test063() {
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=236385
 // non-throwable type
-public void test064() {
+public void test064() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportUnusedObjectAllocation, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -2041,7 +2041,7 @@ public void test064() {
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=236385
 // warning suppressed
-public void test065() {
+public void test065() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportUnusedObjectAllocation, CompilerOptions.WARNING);
 	runConformTest(
@@ -2083,7 +2083,7 @@ public void test066() {
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=236385
 // instance is assigned
-public void test067() {
+public void test067() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportUnusedObjectAllocation, CompilerOptions.ERROR);
 	runConformTest(
@@ -2107,7 +2107,7 @@ public void test067() {
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=236385
 // method invoked
-public void test068() {
+public void test068() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportUnusedObjectAllocation, CompilerOptions.ERROR);
 	runConformTest(
@@ -2130,7 +2130,7 @@ public void test068() {
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=236385
 //anonymous type
-public void test069() {
+public void test069() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportUnusedObjectAllocation, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -2155,7 +2155,7 @@ public void test069() {
 		compilerOptions);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=322154
-public void test070() {
+public void test070() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportUnusedObjectAllocation, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -2181,7 +2181,7 @@ public void test070() {
 		compilerOptions);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=324154
-public void test071() {
+public void test071() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2217,7 +2217,7 @@ public void test071() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=338234
 // Warn uninitialized variable in deadcode if deadcode has been inferred
 // by null analysis
-public void testBug338234a() {
+public void testBug338234a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2246,7 +2246,7 @@ public void testBug338234a() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=338234
 // Don't warn uninitialized variable in deadcode if deadcode has not been inferred
 // by null analysis
-public void testBug338234b() {
+public void testBug338234b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2268,7 +2268,7 @@ public void testBug338234b() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=338234
 // Warn uninitialized field in deadcode if deadcode has been inferred
 // by null analysis
-public void testBug338234c() {
+public void testBug338234c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2302,7 +2302,7 @@ public void testBug338234c() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=338234
 // Warn uninitialized field in deadcode if deadcode has been inferred
 // by null analysis
-public void testBug338234d() {
+public void testBug338234d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2329,7 +2329,7 @@ public void testBug338234d() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // variant < 1.7 using Closeable: not closed
-public void testCloseable1() {
+public void testCloseable1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.WARNING);
 	this.runNegativeTest(
@@ -2357,7 +2357,7 @@ public void testCloseable1() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // variant < 1.7 using Closeable: resource is closed, cannot suggest try-with-resources < 1.7
-public void testCloseable2() {
+public void testCloseable2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.WARNING);
 	this.runConformTest(
@@ -2381,7 +2381,7 @@ public void testCloseable2() {
 }
 // Bug 360328 - [compiler][null] detect null problems in nested code (local class inside a loop)
 // return/break/continue inside anonymous class inside try-catch inside initializer
-public void testLocalClassInInitializer1() {
+public void testLocalClassInInitializer1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2410,7 +2410,7 @@ public void testLocalClassInInitializer1() {
 }
 // Bug 360328 - [compiler][null] detect null problems in nested code (local class inside a loop)
 // break/continue illegally inside anonymous class inside loop (loop is out of scope for break/continue)
-public void testLocalClassInInitializer2() {
+public void testLocalClassInInitializer2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2461,7 +2461,7 @@ public void testLocalClassInInitializer2() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=380313
 // Verify that the code runs fine with all compliance levels.
-public void testBug380313() {
+public void testBug380313() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2505,7 +2505,7 @@ public void testBug380313() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=380313
 // try with resources
 // Verify that the code runs fine with all compliance levels.
-public void testBug380313b() {
+public void testBug380313b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2540,7 +2540,7 @@ public void testBug380313b() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=380750
 // verify that s0 is not reported as uninitialized
-public void testBug380750() {
+public void testBug380750() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2561,7 +2561,7 @@ public void testBug380750() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=391517
 // java.lang.VerifyError on code that runs correctly in Eclipse 3.7 and eclipse 3.6
-public void testBug391517() {
+public void testBug391517() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2627,7 +2627,7 @@ public void testBug415997b() {
 		},
 		"");
 }
-public void testBug415997c() {
+public void testBug415997c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2655,7 +2655,7 @@ public void testBug415997c() {
 		},
 		"test");
 }
-public void testBug499809() {
+public void testBug499809() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Foo.java",
@@ -2676,7 +2676,7 @@ public void testBug499809() {
 		},
 		"Done");
 }
-public void testBug499809a() {
+public void testBug499809a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Foo.java",
@@ -2700,7 +2700,7 @@ public void testBug499809a() {
 		"Done");
 }
 //Bug 506315 - ASTParser.createASTs() in StackMapFrame.addStackItem throws IllegalArgumentException
-public void testBug506315() {
+public void testBug506315() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"Test.java",
@@ -2727,7 +2727,7 @@ public void testBug506315() {
 		"Local variable str defined in an enclosing scope must be final or effectively final\n" +
 		"----------\n");
 }
-public void _testBug533435() {
+public void _testBug533435() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2746,7 +2746,7 @@ public void _testBug533435() {
             }
         });
 }
-public void testBug537804_comment0() {
+public void testBug537804_comment0() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"Test.java",
@@ -2785,7 +2785,7 @@ public void testBug537804_comment0() {
 			"}\n"
 		});
 }
-public void testBug537804_comment5() {
+public void testBug537804_comment5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"Test.java",
@@ -2839,7 +2839,7 @@ public void testBug537804_comment5() {
 		"The local variable action may not have been initialized\n" +
 		"----------\n");
 }
-public void testBug548318_001() {
+public void testBug548318_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -2888,7 +2888,7 @@ public void testBug548318_001() {
 			true);
 
 }
-public void testBug548318_002() {
+public void testBug548318_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -2939,7 +2939,7 @@ public void testBug548318_002() {
 /*
  * k is definitely assigned - no errors on that front.
  */
-public void testBug548318_003() {
+public void testBug548318_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -2988,7 +2988,7 @@ public void testBug548318_003() {
 			null,
 			true);
 }
-public void testBug548318_004() {
+public void testBug548318_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -3052,7 +3052,7 @@ public void testBug548318_004() {
 			null,
 			true);
 }
-public void testBug548318_005() {
+public void testBug548318_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -3118,7 +3118,7 @@ public void testBug548318_005() {
  * V is definitely assigned after a switch expression when false iff for every value yield statement with
  * expression e in the switch block that may exit the switch expression, V is definitely assigned after e when false.
  */
-public void testBug548318_006() {
+public void testBug548318_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -3176,7 +3176,7 @@ public void testBug548318_006() {
  * e in the switch block that may exit the switch expression, V is definitely unassigned before the value yield
  * statement and V is definitely unassigned after e when false.
  */
-public void testBug548318_007() {
+public void testBug548318_007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -3234,7 +3234,7 @@ public void testBug548318_007() {
  * which are boolean-valued.
  * V is [un]assigned before the selector expression iff V is [un]assigned before the switch statement.
  */
-public void testBug548318_008() {
+public void testBug548318_008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	String expectedProblemLog =
@@ -3286,7 +3286,7 @@ public void testBug548318_008() {
  * which are boolean-valued.
  * V is [un]assigned before the selector expression iff V is [un]assigned before the switch statement.
  */
-public void testBug548318_009() {
+public void testBug548318_009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -3345,7 +3345,7 @@ public void testBug548318_009() {
  * V is [un]assigned before the first statement of the first switch labeled statement group in the switch block
  * iff V is [un]assigned after the selector expression.
  */
-public void testBug548318_010() {
+public void testBug548318_010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -3399,7 +3399,7 @@ public void testBug548318_010() {
  * V is [un]assigned before the first statement of the first switch labeled statement group in the switch block
  * iff V is [un]assigned after the selector expression.
  */
-public void testBug548318_011() {
+public void testBug548318_011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -3459,7 +3459,7 @@ public void testBug548318_011() {
  * V is [un]assigned after the selector expression and V is [un]assigned after the preceding statement.
  * and V is [un]assigned after the preceding statement
  */
-public void testBug548318_012() {
+public void testBug548318_012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -3514,7 +3514,7 @@ public void testBug548318_012() {
  * V is [un]assigned after the selector expression and V is [un]assigned after the preceding statement.
  * and V is [un]assigned after the preceding statement"
  */
-public void testBug548318_012b() {
+public void testBug548318_012b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -3571,7 +3571,7 @@ public void testBug548318_012b() {
  * V is [un]assigned after the selector expression and V is [un]assigned after the preceding statement.
  * and V is [un]assigned after the preceding statement" needs to be checked
  */
-public void testBug548318_013() {
+public void testBug548318_013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -3640,7 +3640,7 @@ public void testBug548318_013() {
  * 		V is definitely assigned after e when false.
  * 		It is a switch labeled throw statement.
  */
-public void testBug548318_014() {
+public void testBug548318_014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -3711,7 +3711,7 @@ public void testBug548318_014() {
  * 			after e when false.
  * 		It is a switch labeled throw statement.
  */
-public void testBug548318_015() {
+public void testBug548318_015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -3773,7 +3773,7 @@ public void testBug548318_015() {
  * V is [un]assigned before any switch labeled expression or statement in the switch
  * block iff V is [un]assigned after the selector expression.
  */
-public void testBug548318_016() {
+public void testBug548318_016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -3824,7 +3824,7 @@ public void testBug548318_016() {
  * V is [un]assigned before any switch labeled expression or statement in the switch
  * block iff V is [un]assigned after the selector expression.
  */
-public void testBug548318_017() {
+public void testBug548318_017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -3884,7 +3884,7 @@ public void testBug548318_017() {
  * 	For each switch labeled rule (14.11.1) in the switch block, V is [un]assigned after the
  *          expression, block, or throw statement of the switch labeled rule.
  */
-public void testBug548318_018() {
+public void testBug548318_018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -3936,7 +3936,7 @@ public void testBug548318_018() {
  * 	For each switch labeled rule (14.11.1) in the switch block, V is [un]assigned after the
  *          expression, block, or throw statement of the switch labeled rule.
  */
-public void testBug548318_019() {
+public void testBug548318_019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -3991,7 +3991,7 @@ public void testBug548318_019() {
  * which are boolean-valued.
  * V is [un]assigned before the selector expression iff V is [un]assigned before the switch statement.
  */
-public void testBug548318_020() {
+public void testBug548318_020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -4041,7 +4041,7 @@ public void testBug548318_020() {
  * which are boolean-valued.
  * V is [un]assigned before the selector expression iff V is [un]assigned before the switch statement.
  */
-public void testBug548318_021() {
+public void testBug548318_021() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -4100,7 +4100,7 @@ public void testBug548318_021() {
  * If the switch labeled statement group is not the first in the switch block,
  * V is [un]assigned after the last block statement of the preceding switch labeled statement group.
  */
-public void testBug548318_022() {
+public void testBug548318_022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -4154,7 +4154,7 @@ public void testBug548318_022() {
  * If the switch labeled statement group is not the first in the switch block,
  * V is [un]assigned after the last block statement of the preceding switch labeled statement group.
  */
-public void testBug548318_023() {
+public void testBug548318_023() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -4213,7 +4213,7 @@ public void testBug548318_023() {
  * If the switch labeled statement group is not the first in the switch block,
  * V is [un]assigned after the last block statement of the preceding switch labeled statement group.
  */
-public void testBug548318_024() {
+public void testBug548318_024() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -4269,7 +4269,7 @@ public void testBug548318_024() {
  * 	For each switch labeled rule (14.11.1) in the switch block, V is [un]assigned after the
  *          expression, block, or throw statement of the switch labeled rule.
  */
-public void testBug548318_025() {
+public void testBug548318_025() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -4326,7 +4326,7 @@ public void testBug548318_025() {
  * 	For each switch labeled rule (14.11.1) in the switch block, V is [un]assigned after the
  *          expression, block, or throw statement of the switch labeled rule.
  */
-public void testBug548318_026() {
+public void testBug548318_026() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -4388,7 +4388,7 @@ public void testBug548318_026() {
  * V is [un]assigned before the expression, block, or throw statement of a switch labeled rule of a
  * switch expression iff V is [un]assigned after the selector expression of the switch expression.
  */
-public void testBug548318_027() {
+public void testBug548318_027() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -4445,7 +4445,7 @@ public void testBug548318_027() {
  * V is [un]assigned before the expression, block, or throw statement of a switch labeled rule of a
  * switch expression iff V is [un]assigned after the selector expression of the switch expression.
  */
-public void testBug548318_028() {
+public void testBug548318_028() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -4512,7 +4512,7 @@ public void testBug548318_028() {
  *     If there is no default label in the switch block, or if the switch block ends with a switch label
  *        followed by }, then V is [un]assigned after the selector expression
  */
-public void testBug548318_029() {
+public void testBug548318_029() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();
@@ -4578,7 +4578,7 @@ public void testBug548318_029() {
  *     If there is no default label in the switch block, or if the switch block ends with a switch label
  *        followed by }, then V is [un]assigned after the selector expression
  */
-public void testBug548318_030() {
+public void testBug548318_030() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!checkSwitchAllowedLevel())
 		return;
 	setPresetPreviewOptions();

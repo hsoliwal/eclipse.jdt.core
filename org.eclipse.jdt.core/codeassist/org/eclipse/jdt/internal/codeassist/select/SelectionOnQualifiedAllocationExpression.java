@@ -55,14 +55,14 @@ public class SelectionOnQualifiedAllocationExpression extends QualifiedAllocatio
 	@Override
 	public StringBuilder printExpression(int indent, StringBuilder output) {
 		if (this.enclosingInstance == null)
-			output.append("<SelectOnAllocationExpression:");  //$NON-NLS-1$
+			output.append("<SelectOnAllocationExpression:");  //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		else
-			output.append("<SelectOnQualifiedAllocationExpression:"); //$NON-NLS-1$
+			output.append("<SelectOnQualifiedAllocationExpression:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		return super.printExpression(indent, output).append('>');
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public TypeBinding resolveType(BlockScope scope) {
 		super.resolveType(scope);
 

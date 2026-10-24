@@ -37,7 +37,7 @@ static {
 public JavaCoreOptionsTests(String name) {
 	super(name);
 }
-public void test1() {
+public void test1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Hashtable options = JavaCore.getOptions();
 	try {
 		Hashtable currentOptions = new Hashtable(options);
@@ -108,7 +108,7 @@ public void test4() {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=464845
-public void test5() {
+public void test5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	assertTrue(JavaCore.compareJavaVersions("1.1", "1.3") < 0);
 	assertTrue(JavaCore.compareJavaVersions("1.4", "1.1") > 0);
 	assertTrue(JavaCore.compareJavaVersions("1.8", "cldc1.1") > 0);
@@ -122,7 +122,7 @@ public void test5() {
 	assertTrue(JavaCore.compareJavaVersions("12", "11") > 0);
 	assertTrue(JavaCore.compareJavaVersions("12", "1.8") > 0);
 	String latest = JavaCore.latestSupportedJavaVersion();
-	String latestPlus = "" + (Integer.parseInt(latest) + 1);
+	String latestPlus = "" + (Integer.parseInt(latest) + 1); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	assertTrue(JavaCore.compareJavaVersions(latest, latestPlus) == 0);
 	String first = CompilerOptions.getFirstSupportedJavaVersion();
 	assertTrue(JavaCore.compareJavaVersions(first, latest) == -1);

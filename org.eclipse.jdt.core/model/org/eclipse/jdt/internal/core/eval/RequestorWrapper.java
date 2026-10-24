@@ -41,13 +41,13 @@ public boolean acceptClassFiles(ClassFile[] classFiles, char[] codeSnippetClassN
 	int length = classFiles.length;
 	byte[][] classFileBytes = new byte[length][];
 	String[][] compoundNames = new String[length][];
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		ClassFile classFile = classFiles[i];
 		classFileBytes[i] = classFile.getBytes();
 		char[][] classFileCompundName = classFile.getCompoundName();
 		int length2 = classFileCompundName.length;
 		String[] compoundName = new String[length2];
-		for (int j = 0; j < length2; j++){
+		for (int j = 0; j < length2; j++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			compoundName[j] = new String(classFileCompundName[j]);
 		}
 		compoundNames[i] = compoundName;
@@ -57,10 +57,10 @@ public boolean acceptClassFiles(ClassFile[] classFiles, char[] codeSnippetClassN
 /**
  * @see ICodeSnippetRequestor
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void acceptProblem(CategorizedProblem problem, char[] fragmentSource, int fragmentKind) {
 	try {
-		Map<String, Object> attributes = new HashMap<>();
+		Map<String, Object> attributes = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		attributes.put(IJavaModelMarker.ID, problem.getID());
 		attributes.put(IMarker.CHAR_START, problem.getSourceStart());
 		attributes.put(IMarker.CHAR_END, problem.getSourceEnd() + 1);

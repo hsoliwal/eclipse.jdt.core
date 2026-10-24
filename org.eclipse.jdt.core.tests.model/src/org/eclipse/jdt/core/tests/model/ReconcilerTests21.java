@@ -114,7 +114,7 @@ public void tearDownSuite() throws Exception {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2108
 // [Sealed classes] Inconsistent type hierarchy on sealed interface when used with other from different level in class hierarchy
-public void testIssue2108() throws Exception {
+public void testIssue2108() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE21)
 		return;
 	IJavaProject p = createJava21Project("p");
@@ -152,7 +152,7 @@ public void testIssue2108() throws Exception {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/62
 // [Reconciler][Sealed types] Inconsistent type hierarchy with sealed classes
-public void testIssue62() throws Exception {
+public void testIssue62() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE21)
 		return;
 	IJavaProject p = createJava21Project("p");
@@ -190,7 +190,7 @@ public void testIssue62() throws Exception {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1998
 // [Sealed classes] Incorrect Reconciler error: The type A that implements a sealed interface I should be a permitted subtype of I
-public void testIssue1998() throws Exception {
+public void testIssue1998() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE21)
 		return;
 	IJavaProject p = createJava21Project("p");
@@ -243,7 +243,7 @@ public void testIssue1998() throws Exception {
 		deleteProject(p);
 	}
 }
-public void testGH2782() throws CoreException {
+public void testGH2782() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject p = createJava21Project("p");
 	try {
 		createFolder("p/src/test");

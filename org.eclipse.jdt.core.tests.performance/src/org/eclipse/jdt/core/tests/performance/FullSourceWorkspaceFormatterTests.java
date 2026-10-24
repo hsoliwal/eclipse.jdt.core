@@ -67,10 +67,10 @@ protected void setUp() throws Exception {
 
 	long startNanos = System.nanoTime();
 	FORMAT_TYPE_SOURCE = Util.fileContent(sourceFilePath);
-	System.out.println("(" + (System.nanoTime() - startNanos) / 1_000_000L + "ms)");
+	System.out.println("(" + (System.nanoTime() - startNanos) / 1_000_000L + "ms)"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void tearDown() throws Exception {
 
 	// End of execution => one test less
@@ -94,17 +94,17 @@ protected void tearDown() throws Exception {
 /**
  * Format file (Parser.java - 225176 chars) using code formatter default options.
  */
-public void testFormatDefault() throws JavaModelException {
+public void testFormatDefault() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	tagAsSummary("Format file with default options", false); // do NOT put in fingerprint
 
 	// Warm up
 	String source = PARSER_WORKING_COPY.getSource();
 	int warmup = WARMUP_COUNT;
-	for (int i=0; i<warmup; i++) {
+	for (int i=0; i<warmup; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		long startNanos = System.nanoTime();
 		new DefaultCodeFormatter().format(CodeFormatter.K_COMPILATION_UNIT, source, 0, source.length(), 0, null);
 		if (i==0) {
-			System.out.println("	Time to format file (" + source.length() + " chars) = "
+			System.out.println("	Time to format file (" + source.length() + " chars) = " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ (System.nanoTime() - startNanos) / 1_000_000L + "ms");
 		}
 	}
@@ -112,10 +112,10 @@ public void testFormatDefault() throws JavaModelException {
 	// Measures
 	resetCounters();
 	int measures = MEASURES_COUNT;
-	for (int i=0; i<measures; i++) {
+	for (int i=0; i<measures; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		runGc();
 		startMeasuring();
-		for (int j=1; j<10; j++)
+		for (int j=1; j<10; j++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			new DefaultCodeFormatter().format(CodeFormatter.K_COMPILATION_UNIT, source, 0, source.length(), 0, null);
 		stopMeasuring();
 	}
@@ -128,17 +128,17 @@ public void testFormatDefault() throws JavaModelException {
 /**
  * Format big file (GenericTypeTest.java - 1297242 chars) using code formatter default options.
  */
-public void testFormatDefaultBigFile() {
+public void testFormatDefaultBigFile() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	tagAsSummary("Format big file with default options", false); // do NOT put in fingerprint yet...
 
 	// Warm up
 	String source = FORMAT_TYPE_SOURCE;
 	int warmup = WARMUP_COUNT;
-	for (int i=0; i<warmup; i++) {
+	for (int i=0; i<warmup; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		long startNanos = System.nanoTime();
 		new DefaultCodeFormatter().format(CodeFormatter.K_COMPILATION_UNIT, source, 0, source.length(), 0, null);
 		if (i==0) {
-			System.out.println("	Time to format big file (" + source.length() + " chars) = "
+			System.out.println("	Time to format big file (" + source.length() + " chars) = " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ (System.nanoTime() - startNanos) / 1_000_000L + "ms");
 		}
 	}
@@ -146,7 +146,7 @@ public void testFormatDefaultBigFile() {
 	// Measures
 	resetCounters();
 	int measures = MEASURES_COUNT;
-	for (int i=0; i<measures; i++) {
+	for (int i=0; i<measures; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		runGc();
 		startMeasuring();
 		new DefaultCodeFormatter().format(CodeFormatter.K_COMPILATION_UNIT, source, 0, source.length(), 0, null);

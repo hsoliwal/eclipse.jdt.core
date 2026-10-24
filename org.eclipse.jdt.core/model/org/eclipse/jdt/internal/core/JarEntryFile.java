@@ -46,7 +46,7 @@ public class JarEntryFile  extends JarEntryResource {
 		return file;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public InputStream getContents() throws CoreException {
 		IPackageFragmentRoot root = getPackageFragmentRoot();
 		if (Util.isJrt(root.getPath().toOSString())) {
@@ -64,7 +64,7 @@ public class JarEntryFile  extends JarEntryResource {
 			try {
 				zipFile = getZipFile();
 				if (JavaModelManager.ZIP_ACCESS_VERBOSE) {
-					JavaModelManager.trace("(" + Thread.currentThread() + ") [JarEntryFile.getContents()] Creating ZipFile on " +zipFile.getName()); //$NON-NLS-1$	//$NON-NLS-2$
+					JavaModelManager.trace("(" + Thread.currentThread() + ") [JarEntryFile.getContents()] Creating ZipFile on " +zipFile.getName()); //$NON-NLS-1$	//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				String entryName = getEntryName();
 				ZipEntry zipEntry = zipFile.getEntry(entryName);
@@ -94,6 +94,6 @@ public class JarEntryFile  extends JarEntryResource {
 
 	@Override
 	public String toString() {
-		return "JarEntryFile["+getEntryName()+"]"; //$NON-NLS-2$ //$NON-NLS-1$
+		return "JarEntryFile["+getEntryName()+"]"; //$NON-NLS-2$ //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }

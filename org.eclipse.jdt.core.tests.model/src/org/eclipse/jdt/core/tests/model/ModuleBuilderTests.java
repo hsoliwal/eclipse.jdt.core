@@ -107,7 +107,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	}
 
 	// Test that the java.base found as a module package fragment root in the project
-	public void test001() throws CoreException {
+	public void test001() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJava9Project("Test01", new String[]{"src"});
 			this.createFile("Test01/src/module-info.java", "");
@@ -118,7 +118,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			project.getProject().build(IncrementalProjectBuilder.FULL_BUILD, null);
 			IPackageFragmentRoot[] roots = project.getPackageFragmentRoots();
 			IPackageFragmentRoot base = null;
-			for (IPackageFragmentRoot iRoot : roots) {
+			for (IPackageFragmentRoot iRoot : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IModuleDescription moduleDescription = iRoot.getModuleDescription();
 				if (moduleDescription != null && moduleDescription.getElementName().equals("java.base")) {
 					base = iRoot;
@@ -149,7 +149,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	}
 	// Test that types from java.base module are seen by the compiler
 	// even without an explicit 'requires java.base' declaration.
-	public void test003() throws CoreException {
+	public void test003() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			this.editFile("P1/src/module-info.java",
 					"module M1 {\n" +
@@ -170,7 +170,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	}
 	// Test that a type that is present in the JDK, but not observable to the source module,
 	// is reported as a compilation error.
-	public void test004() throws CoreException {
+	public void test004() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			this.editFile("P1/src/module-info.java",
 					"module M1 {\n" +
@@ -195,7 +195,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	}
 	// Test that a type that is outside java.base module is available to the compiler
 	// when the module is specified as 'requires'.
-	public void test005() throws CoreException {
+	public void test005() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			this.editFile("P1/src/module-info.java",
 					"module M1 {\n" +
@@ -215,7 +215,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	}
 	// Test that a module that doesn't exist but specified as requires in module-info
 	// doesn't affect rest of the compilation.
-	public void _test006() throws CoreException {
+	public void _test006() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			this.editFile("P1/src/module-info.java",
 					"module M1 {\n" +
@@ -235,7 +235,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		} finally {
 		}
 	}
-	private IJavaProject setupP2() throws CoreException {
+	private IJavaProject setupP2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = createJava9Project("P2");
 		IClasspathAttribute modAttr = new ClasspathAttribute("module", "true");
 		IClasspathEntry projectEntry = JavaCore.newProjectEntry(new Path("/P1"), null, false,
@@ -277,7 +277,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	 * Two Java projects, each with one module. P2 has P1 in its build path but
 	 * module M2 has no 'requires' M1. Should report unresolved type, import etc.
 	 */
-	public void test007() throws Exception {
+	public void test007() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = setupP2();
 			this.editFile("P1/src/module-info.java",
@@ -307,7 +307,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	 * does not export the package that is used by M2. Test that M2 does not see
 	 * the types in unexported packages.
 	 */
-	public void test008() throws Exception {
+	public void test008() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = setupP2();
 			this.editFile("P1/src/module-info.java",
@@ -336,7 +336,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	 * Module M2 has "requires M1" in module-info and all packages used by M2
 	 * are exported by M1. No errors expected.
 	 */
-	public void test009() throws Exception {
+	public void test009() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = setupP2();
 			this.editFile("P1/src/module-info.java",
@@ -362,7 +362,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	 * Module M1 exports a package to a specific module, which is not M2.
 	 * Usage of types from M1 in M2 should be reported.
 	 */
-	public void _test010() throws Exception {
+	public void _test010() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = setupP2();
 			this.editFile("P1/src/module-info.java",
@@ -386,7 +386,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("P2");
 		}
 	}
-	private IJavaProject setupP3() throws CoreException {
+	private IJavaProject setupP3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = createJava9Project("P3");
 		IClasspathAttribute modAttr = new ClasspathAttribute("module", "true");
 		IClasspathEntry projectEntry = JavaCore.newProjectEntry(new Path("/P2"), null, false,
@@ -418,7 +418,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	 * Module M1 exports a package (to all), M2 requires M1 and M3 requires M2. Usage of types from
 	 * M1 in M3 should be reported as errors.
 	 */
-	public void test011() throws Exception {
+	public void test011() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			this.editFile("P1/src/module-info.java",
 					"module M1 {\n" +
@@ -444,7 +444,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	 * Module M1 exports a package only to M2, M2 requires M1 and M3 requires M2. Usage of types from
 	 * M1 in M3 should not be allowed.
 	 */
-	public void test012() throws Exception {
+	public void test012() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			this.editFile("P1/src/module-info.java",
 					"module M1 {\n" +
@@ -477,7 +477,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	 * Module M1 exports a package (to all), M2 requires 'transitive' M1 and M3 requires M2. Usage of types from
 	 * M1 in M3 should be allowed.
 	 */
-	public void test013() throws Exception {
+	public void test013() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject p2 = setupP2();
 			IJavaProject p3 = setupP3();
@@ -500,7 +500,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	 * Module M1 exports a package only to M2, M2 requires 'public' M1 and M3 requires M2. Usage of types from
 	 * M1 in M3 should be allowed. And no errors reported on M2.
 	 */
-	public void test014() throws Exception {
+	public void test014() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			this.editFile("P1/src/module-info.java",
 					"module M1 {\n" +
@@ -524,7 +524,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("P3");
 		}
 	}
-	public void test015() throws CoreException, IOException {
+	public void test015() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			this.editFile("P1/src/module-info.java",
 					"module M1 {\n" +
@@ -545,7 +545,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			IPath jarPath = p2.getResource().getLocation().append("m0.jar");
 			org.eclipse.jdt.core.tests.util.Util.zip(new File(folder.getLocation().toOSString()), jarPath.toOSString());
 			IClasspathEntry[] old = p2.getRawClasspath();
-			for (int i = 0; i < old.length; i++) {
+			for (int i = 0; i < old.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (old[i].isExported()) {
 					old[i] = JavaCore.newLibraryEntry(new Path("/P2/m0.jar"), null, null);
 					break;
@@ -564,7 +564,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	 * Change the module-info and wait for autobuild to
 	 * report expected errors.
 	 */
-	public void test016() throws CoreException, IOException {
+	public void test016() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject p2 = setupP2();
 			this.editFile("P2/src/module-info.java",
@@ -596,7 +596,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	 * Change the module-info of a required module and wait for autobuild to
 	 * report expected errors.
 	 */
-	public void test017() throws CoreException, IOException {
+	public void test017() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject p2 = setupP2();
 			this.editFile("P2/src/module-info.java",
@@ -633,7 +633,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	 * Change the module-info of a required module and wait for autobuild to
 	 * report expected errors.
 	 */
-	public void test018() throws CoreException, IOException {
+	public void test018() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String wkspEncoding = System.getProperty("file.encoding");
 			final String encoding = "UTF-8".equals(wkspEncoding) ? "Cp1252" : "UTF-8";
@@ -667,7 +667,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	 * Test that adding or removing java.base does not result in
 	 * re-compilation of module.
 	 */
-	public void _test019() throws CoreException, IOException {
+	public void _test019() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			this.editFile("P1/src/module-info.java",
 					"module M1 {\n" +
@@ -697,12 +697,12 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 					"}");
 		}
 	}
-	public void testConvertToModule() throws CoreException, IOException {
+	public void testConvertToModule() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable<String, String> javaCoreOptions = JavaCore.getOptions();
 		IVMInstall vm = prepareExecutionEnvironment(JAVASE_9);
 		try {
 			IJavaProject project = setUpJavaProject("ConvertToModule");
-			Map<String, String> options = new HashMap<>();
+			Map<String, String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			// Make sure the new options map doesn't reset.
 			options.put(CompilerOptions.OPTION_Compliance, "10");
 			options.put(CompilerOptions.OPTION_Source, "10");
@@ -712,7 +712,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			project.getProject().build(IncrementalProjectBuilder.FULL_BUILD, null);
 			IPackageFragmentRoot[] roots = project.getPackageFragmentRoots();
 			IPackageFragmentRoot theRoot = null;
-			for (IPackageFragmentRoot root : roots) {
+			for (IPackageFragmentRoot root : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (root.getElementName().equals("jdt.test")) {
 					theRoot = root;
 					break;
@@ -734,12 +734,12 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			 JavaCore.setOptions(javaCoreOptions);
 		}
 	}
-	public void testConvertToModuleWithRelease9() throws CoreException, IOException {
+	public void testConvertToModuleWithRelease9() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IVMInstall vm = prepareExecutionEnvironment(JAVASE_9);
 		Hashtable<String, String> javaCoreOptions = JavaCore.getOptions();
 		try {
 			IJavaProject project = setUpJavaProject("ConvertToModule");
-			Map<String, String> options = new HashMap<>();
+			Map<String, String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			// Make sure the new options map doesn't reset.
 			options.put(CompilerOptions.OPTION_Compliance, "9");
 			options.put(CompilerOptions.OPTION_Source, "9");
@@ -749,7 +749,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			project.getProject().build(IncrementalProjectBuilder.FULL_BUILD, null);
 			IPackageFragmentRoot[] roots = project.getPackageFragmentRoots();
 			IPackageFragmentRoot theRoot = null;
-			for (IPackageFragmentRoot root : roots) {
+			for (IPackageFragmentRoot root : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (root.getElementName().equals("jdt.test")) {
 					theRoot = root;
 					break;
@@ -771,7 +771,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			 JavaCore.setOptions(javaCoreOptions);
 		}
 	}
-	public void test_services_abstractImpl() throws CoreException {
+	public void test_services_abstractImpl() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 					"src/module-info.java",
@@ -811,7 +811,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_services_invalidImpl() throws CoreException {
+	public void test_services_invalidImpl() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 					"src/module-info.java",
@@ -850,7 +850,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_services_NoDefaultConstructor() throws CoreException {
+	public void test_services_NoDefaultConstructor() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -895,7 +895,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_services_DefaultConstructorNotVisible() throws CoreException {
+	public void test_services_DefaultConstructorNotVisible() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -940,7 +940,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_services_DuplicateEntries() throws CoreException {
+	public void test_services_DuplicateEntries() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -985,7 +985,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_services_NestedClass() throws CoreException {
+	public void test_services_NestedClass() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -1030,7 +1030,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_services_NonStatic_NestedClass() throws CoreException {
+	public void test_services_NonStatic_NestedClass() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -1076,7 +1076,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_services_ImplDefinedInAnotherModule() throws CoreException {
+	public void test_services_ImplDefinedInAnotherModule() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -1115,7 +1115,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_services_ProviderMethod() throws CoreException {
+	public void test_services_ProviderMethod() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -1166,7 +1166,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_services_ProviderMethod_ReturnTypeFromAnotherModule() throws CoreException {
+	public void test_services_ProviderMethod_ReturnTypeFromAnotherModule() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -1223,7 +1223,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_services_ProviderMethod_ReturnTypeInvisible() throws CoreException {
+	public void test_services_ProviderMethod_ReturnTypeInvisible() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -1279,7 +1279,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_services_ProviderMethod_InvalidReturnType() throws CoreException {
+	public void test_services_ProviderMethod_InvalidReturnType() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -1329,7 +1329,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_services_DuplicateImplEntries() throws CoreException {
+	public void test_services_DuplicateImplEntries() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -1373,7 +1373,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_services_InvalidIntfType() throws CoreException {
+	public void test_services_InvalidIntfType() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] src = new String[] {
 				"src/module-info.java",
@@ -1396,7 +1396,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_services_InvalidImplType() throws CoreException {
+	public void test_services_InvalidImplType() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -1435,7 +1435,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_services_nonPublicImpl() throws CoreException {
+	public void test_services_nonPublicImpl() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -1513,7 +1513,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_Exports_foreign_package2() throws CoreException {
+	public void test_Exports_foreign_package2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] src = new String[] {
 				"src/module-info.java",
@@ -1535,7 +1535,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_DuplicateExports() throws CoreException {
+	public void test_DuplicateExports() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -1558,7 +1558,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("org.astro");
 		}
 	}
-	public void test_TargetedExports_Duplicates() throws CoreException {
+	public void test_TargetedExports_Duplicates() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -1600,7 +1600,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	}
 	// Types from source module should be resolved in target module
 	// when package is exported specifically to the target module
-	public void test_TargetedExports() throws CoreException {
+	public void test_TargetedExports() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -1645,7 +1645,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	// Types in one module should not be visible in target module when
 	// source module exports packages to a specific module which is not
 	// the same as the target module
-	public void test_TargetedExports_Error() throws CoreException {
+	public void test_TargetedExports_Error() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -1699,7 +1699,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	}
 	// It is permitted for the to clause of an exports or opens statement to
 	// specify a module which is not observable
-	public void test_TargetedExports_Unresolved() throws CoreException {
+	public void test_TargetedExports_Unresolved() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -1722,7 +1722,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	}
 	// Target module of an exports statement should be resolved without having an explicit
 	// dependency to the project that defines the module
-	public void test_TargetedExports_Resolution() throws CoreException {
+	public void test_TargetedExports_Resolution() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -1752,7 +1752,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	}
 	// Make sure modules in the workspace are resolved via the module source path container
 	// without needing to add a dependency to the project explicitly
-	public void test_ModuleSourcePathContainer() throws CoreException {
+	public void test_ModuleSourcePathContainer() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -1792,7 +1792,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 	// Make sure module path container picks up changes to module-info
-	public void _test_ModuleSourcePath_update() throws CoreException {
+	public void _test_ModuleSourcePath_update() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -1846,7 +1846,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	}
 	// Implicit module dependencies via the 'requires transitive' directive should be
 	// resolved via the module path container
-	public void test_ModuleSourcePath_implicitdeps() throws CoreException {
+	public void test_ModuleSourcePath_implicitdeps() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -1895,7 +1895,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 	// Changes to implicit dependencies should be reflected // FIXME: container JavaCore.MODULE_PATH_CONTAINER_ID is unreliable
-	public void _test_ModuleSourcePath_implicitdeps2() throws CoreException {
+	public void _test_ModuleSourcePath_implicitdeps2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -1952,7 +1952,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	}
 	// Changes to implicit dependencies should be reflected
 	//TODO enable once we know how to update project cache
-	public void _test_ModuleSourcePath_implicitdeps3() throws CoreException {
+	public void _test_ModuleSourcePath_implicitdeps3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -2004,7 +2004,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_Cycle_In_Module_Dependency() throws CoreException {
+	public void test_Cycle_In_Module_Dependency() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -2049,7 +2049,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_Cycle_In_Implicit_Module_Dependency() throws CoreException {
+	public void test_Cycle_In_Implicit_Module_Dependency() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -2093,7 +2093,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_bug506479() throws CoreException {
+	public void test_bug506479() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 					"src/module-info.java",
@@ -2122,7 +2122,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("org.astro");
 		}
 	}
-	public void test_Multiple_SourceFolders() throws CoreException {
+	public void test_Multiple_SourceFolders() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -2177,7 +2177,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_Multiple_SourceFolders_WithModuleInfo() throws CoreException {
+	public void test_Multiple_SourceFolders_WithModuleInfo() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -2241,7 +2241,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_Multiple_SourceFolders_addModuleInfo() throws CoreException {
+	public void test_Multiple_SourceFolders_addModuleInfo() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -2278,7 +2278,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("org.astro");
 		}
 	}
-	public void test_Multiple_SourceFolders_removeModuleInfo() throws CoreException {
+	public void test_Multiple_SourceFolders_removeModuleInfo() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -2314,7 +2314,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("org.astro");
 		}
 	}
-	public void test_services_multipleImpl() throws CoreException {
+	public void test_services_multipleImpl() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 					"src/module-info.java",
@@ -2367,7 +2367,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_imports_in_moduleinfo() throws CoreException {
+	public void test_imports_in_moduleinfo() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 					"src/module-info.java",
@@ -2427,7 +2427,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_Opens_Alien_Package() throws CoreException {
+	public void test_Opens_Alien_Package() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] src = new String[] {
 				"src/module-info.java",
@@ -2465,7 +2465,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_DuplicateOpens() throws CoreException {
+	public void test_DuplicateOpens() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -2488,7 +2488,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("org.astro");
 		}
 	}
-	public void test_TargetedOpens_Duplicates() throws CoreException {
+	public void test_TargetedOpens_Duplicates() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -2530,7 +2530,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	}
 	// It is permitted for the to clause of an exports or opens statement to
 	// specify a module which is not observable
-	public void test_TargetedOpens_Unresolved() throws CoreException {
+	public void test_TargetedOpens_Unresolved() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -2552,7 +2552,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 	// It is a compile-time error if an opens statement appears in the declaration of an open module.
-	public void test_OpensStatment_in_OpenModule() throws CoreException {
+	public void test_OpensStatment_in_OpenModule() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -2574,7 +2574,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("org.astro");
 		}
 	}
-	public void test_uses_DuplicateEntries() throws CoreException {
+	public void test_uses_DuplicateEntries() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -2598,7 +2598,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("org.astro");
 		}
 	}
-	public void test_uses_InvalidIntfType() throws CoreException {
+	public void test_uses_InvalidIntfType() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] src = new String[] {
 				"src/module-info.java",
@@ -2620,7 +2620,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_ReconcilerModuleLookup1() throws CoreException {
+	public void test_ReconcilerModuleLookup1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] src = new String[] {
 				"src/module-info.java",
@@ -2641,7 +2641,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_ReconcilerModuleLookup2() throws CoreException {
+	public void test_ReconcilerModuleLookup2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] src = new String[] {
 				"src/module-info.java",
@@ -2666,15 +2666,15 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void testSystemLibAsJMod() throws CoreException {
+	public void testSystemLibAsJMod() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJava9Project("Test01", new String[]{"src"});
 			IClasspathEntry[] rawClasspath = project.getRawClasspath();
-			for (int i = 0; i < rawClasspath.length; i++) {
+			for (int i = 0; i < rawClasspath.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPath path = rawClasspath[i].getPath();
 				if (path.lastSegment().equals("jrt-fs.jar")) {
 					path = path.removeLastSegments(2).append("jmods").append("java.base.jmod");
-					if (!path.toFile().exists()) {
+					if (!path.toFile().exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 						// No jmod? Then this test is not applicable.
 						return;
 					}
@@ -2691,7 +2691,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			project.getProject().build(IncrementalProjectBuilder.FULL_BUILD, null);
 			IPackageFragmentRoot[] roots = project.getPackageFragmentRoots();
 			IPackageFragmentRoot base = null;
-			for (IPackageFragmentRoot iRoot : roots) {
+			for (IPackageFragmentRoot iRoot : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IModuleDescription moduleDescription = iRoot.getModuleDescription();
 				if (moduleDescription != null) {
 					base = iRoot;
@@ -2704,17 +2704,17 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("Test01");
 		}
 	}
-	public void testSystemLibAsJMod_2() throws CoreException {
+	public void testSystemLibAsJMod_2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJava9Project("Test01", new String[]{"src"});
 			IClasspathEntry[] rawClasspath = project.getRawClasspath();
 			IClasspathEntry[] newClasspath = new IClasspathEntry[rawClasspath.length + 1];
 			IClasspathEntry desktop = null;
-			for (int i = 0; i < rawClasspath.length; i++) {
+			for (int i = 0; i < rawClasspath.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPath path = rawClasspath[i].getPath();
 				if (path.lastSegment().equals("jrt-fs.jar")) {
 					path = path.removeLastSegments(2).append("jmods").append("java.base.jmod");
-					if (!path.toFile().exists()) {
+					if (!path.toFile().exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 						// No jmod? Then this test is not applicable.
 						return;
 					}
@@ -2760,7 +2760,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("Test01");
 		}
 	}
-	public void testBug510617() throws CoreException {
+	public void testBug510617() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] src = new String[] {
 				"src/module-info.java",
@@ -2825,7 +2825,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("Test");
 		}
 	}
-	public void test_annotations_in_moduleinfo() throws CoreException {
+	public void test_annotations_in_moduleinfo() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 					"src/module-info.java",
@@ -2874,7 +2874,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_unresolved_annotations() throws CoreException {
+	public void test_unresolved_annotations() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 					"src/module-info.java",
@@ -2924,7 +2924,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_illegal_modifiers() throws CoreException {
+	public void test_illegal_modifiers() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 					"src/module-info.java",
@@ -2974,7 +2974,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_annotations_with_target() throws CoreException {
+	public void test_annotations_with_target() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 					"src/module-info.java",
@@ -3026,7 +3026,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void test_annotations_with_wrong_target() throws CoreException {
+	public void test_annotations_with_wrong_target() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 					"src/module-info.java",
@@ -3079,7 +3079,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void testBug518334() throws CoreException, IOException {
+	public void testBug518334() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 					"src/module-info.java",
@@ -3090,7 +3090,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			IJavaProject p1 = setupModuleProject("org.astro", sources);
 			waitForAutoBuild();
 			// set options
-			Map<String, String> options = new HashMap<>();
+			Map<String, String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			options.put(CompilerOptions.OPTION_Compliance, "1.8");
 			options.put(CompilerOptions.OPTION_Source, "1.8");
 			options.put(CompilerOptions.OPTION_TargetPlatform, "1.8");
@@ -3103,7 +3103,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("org.astro");
 		}
 	}
-	public void testBug518334a() throws CoreException {
+	public void testBug518334a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 					"src/module-info.java",
@@ -3127,7 +3127,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			IJavaProject p2 = setupModuleProject("com.greetings", src, new IClasspathEntry[] { dep });
 			waitForAutoBuild();
 			// set options
-			Map<String, String> options = new HashMap<>();
+			Map<String, String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			options.put(CompilerOptions.OPTION_Compliance, "1.8");
 			options.put(CompilerOptions.OPTION_Source, "1.8");
 			options.put(CompilerOptions.OPTION_TargetPlatform, "1.8");
@@ -3143,7 +3143,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 
-	public void test_api_leak_1() throws CoreException {
+	public void test_api_leak_1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources1 = {
 								"src/module-info.java",
@@ -3204,7 +3204,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	 * Same-named classes should not conflict, since one is not accessible.
 	 * Still a sub class of the inaccessible class can be accessed and used for a method argument.
 	 */
-	public void test_api_leak_2() throws CoreException {
+	public void test_api_leak_2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources1 = {
 						"src/module-info.java",
@@ -3271,7 +3271,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 
-	public void testNonPublic1() throws CoreException {
+	public void testNonPublic1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources1 = {
 					"src/module-info.java",
@@ -3348,7 +3348,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	}
 	// test that two packages with the same name result in conflict if they are both
 	// accessible to a module
-	public void test_conflicting_packages() throws CoreException {
+	public void test_conflicting_packages() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -3410,7 +3410,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 
 	// test that the compilation of a class using same package defined in the java.util module
 	// works if a special option is given
-	public void test_no_conflicting_packages_for_debugger_global() throws CoreException {
+	public void test_no_conflicting_packages_for_debugger_global() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable<String, String> javaCoreOptions = JavaCore.getOptions();
 		try {
 			Hashtable<String, String> newOptions=new Hashtable<>(javaCoreOptions);
@@ -3440,7 +3440,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 
-	public void test_no_conflicting_packages_for_debugger_both_named() throws CoreException {
+	public void test_no_conflicting_packages_for_debugger_both_named() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// the current project is modular, hence we need to suppress a conflict between 2 named modules
 		Hashtable<String, String> javaCoreOptions = JavaCore.getOptions();
 		try {
@@ -3483,7 +3483,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	}
 
 	// test that the special OPTION_JdtDebugCompileMode cannot be persisted on a project
-	public void test_no_conflicting_packages_for_debugger_project() throws CoreException {
+	public void test_no_conflicting_packages_for_debugger_project() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 					"src/java/util/Map___.java",
@@ -3516,7 +3516,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 
 	// test that a package declared in a module conflicts with an accessible package
 	// of the same name declared in another required module
-	public void test_conflicting_packages_declaredvsaccessible() throws CoreException {
+	public void test_conflicting_packages_declaredvsaccessible() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IClasspathEntry dep = JavaCore.newContainerEntry(new Path(JavaCore.MODULE_PATH_CONTAINER_ID));
 			String[] sources = new String[] {
@@ -3569,7 +3569,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	// accessible package bundle.org.astro contains type World
 	// Type bundle.org.astro.World should not be resolved, because type
 	// bundle.org.astro trumps package bundle.org.astro
-	public void test_conflict_packagevstype() throws CoreException {
+	public void test_conflict_packagevstype() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IClasspathEntry dep = JavaCore.newContainerEntry(new Path(JavaCore.MODULE_PATH_CONTAINER_ID));
 			String[] sources = new String[] {
@@ -3625,7 +3625,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	// type bundle.org.astro.World should be resolved because type bundle.org.astro
 	// cannot be seen
 	// TODO - to be confirmed with spec
-	public void test_noconflict_concealedtype_accessiblepackage() throws CoreException {
+	public void test_noconflict_concealedtype_accessiblepackage() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IClasspathEntry dep = JavaCore.newContainerEntry(new Path(JavaCore.MODULE_PATH_CONTAINER_ID));
 			String[] sources = new String[] {
@@ -3676,7 +3676,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	}
 	// test that two packages of the same name exported by two named modules result in
 	// a conflict in the context of a non-modular project
-	public void test_conflicting_packages_unnamed() throws CoreException {
+	public void test_conflicting_packages_unnamed() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -3734,7 +3734,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	}
 	// test that a package declared in a non-modular project conflicts with a package with the same name
 	// exported by a named module on it's build path
-	public void test_conflict_unnamed_declaredvsexported() throws CoreException {
+	public void test_conflict_unnamed_declaredvsexported() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IClasspathEntry dep = JavaCore.newContainerEntry(new Path(JavaCore.MODULE_PATH_CONTAINER_ID));
 			String[] sources = new String[] {
@@ -3784,7 +3784,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	}
 	// test that a type in an accessible package trumps an accessible package with the same name
 	// in the context of a non-modular project
-	public void test_conflict_packagevstype_unnamed() throws CoreException {
+	public void test_conflict_packagevstype_unnamed() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IClasspathEntry dep = JavaCore.newContainerEntry(new Path(JavaCore.MODULE_PATH_CONTAINER_ID));
 			String[] sources = new String[] {
@@ -3838,7 +3838,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	}
 	// test that a conflicting package does not cause an error when resolving a sub package name
 	// when the sub package is accessible in the context of a non-modular project
-	public void test_noconflict_subpkg_unnamed() throws CoreException {
+	public void test_noconflict_subpkg_unnamed() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IClasspathEntry dep = JavaCore.newContainerEntry(new Path(JavaCore.MODULE_PATH_CONTAINER_ID));
 			String[] sources = new String[] {
@@ -3898,7 +3898,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	}
 	// test that a type in a non-accessible package does not conflict with an accessible package
 	// in the context of a non-modular project
-	public void test_noconflict_concealedtype_accessiblepackage_unnamed() throws CoreException {
+	public void test_noconflict_concealedtype_accessiblepackage_unnamed() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IClasspathEntry dep = JavaCore.newContainerEntry(new Path(JavaCore.MODULE_PATH_CONTAINER_ID));
 			String[] sources = new String[] {
@@ -3948,9 +3948,9 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void testBug512053() throws CoreException, IOException {
+	public void testBug512053() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable<String, String> javaCoreOptions = JavaCore.getOptions();
-		this.sourceWorkspacePath = super.getSourceWorkspacePath() + java.io.File.separator + "bug512053";
+		this.sourceWorkspacePath = super.getSourceWorkspacePath() + java.io.File.separator + "bug512053"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try {
 			setUpJavaProject("bundle.test.a.callable", "9");
 			setUpJavaProject("bundle.test.a", "9");
@@ -3971,7 +3971,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 	// basic test for automatic modules - external jars
-	public void testBug518280() throws CoreException, IOException {
+	public void testBug518280() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String libPath = "externalLib/test.jar";
 			Util.createJar(
@@ -3983,7 +3983,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 						"}",
 					},
 					null,
-					new HashMap<>(),
+					new HashMap<>(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 					null,
 					getExternalResourcePath(libPath));
 			String[] src = new String[] {
@@ -4031,7 +4031,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	}
 	// Only the project using a jar as an automatic module should be able to
 	// resolve one as such
-	public void testBug518282a() throws CoreException, IOException {
+	public void testBug518282a() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable<String, String> javaCoreOptions = JavaCore.getOptions();
 		try {
 			IJavaProject p1 = setUpJavaProject("test_automodules", "9");
@@ -4070,7 +4070,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	}
 	// A modular jar on the module path of a project should behave as a regular module and not
 	// as an automatic module
-	public void testBug518282b() throws CoreException, IOException {
+	public void testBug518282b() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable<String, String> javaCoreOptions = JavaCore.getOptions();
 		String libPath = "externalLib/test.jar";
 		try {
@@ -4123,7 +4123,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	}
 	// A modular jar on the class path of a module project - shouldn't be
 	// treated as a module and shouldn't be readable
-	public void testBug518282c() throws CoreException, IOException {
+	public void testBug518282c() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable<String, String> javaCoreOptions = JavaCore.getOptions();
 		String libPath = "externalLib/test.jar";
 		try {
@@ -4175,7 +4175,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 	// An automatic module grants implied readability to all other automatic modules
-	public void testBug518282d() throws CoreException, IOException {
+	public void testBug518282d() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable<String, String> javaCoreOptions = JavaCore.getOptions();
 		String libPath = "externalLib/test.jar";
 		try {
@@ -4241,7 +4241,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	}
 	// Automatic module should not allow access to other explicit modules without
 	// requires
-	public void testBug518282e() throws CoreException, IOException {
+	public void testBug518282e() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable<String, String> javaCoreOptions = JavaCore.getOptions();
 		String libPath = "externalLib/test.jar";
 		try {
@@ -4314,7 +4314,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 	// An automatic module shouldn't allow access to classpath
-	public void testBug518282f() throws CoreException, IOException {
+	public void testBug518282f() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable<String, String> javaCoreOptions = JavaCore.getOptions();
 		String libPath = "externalLib/test.jar";
 		try {
@@ -4382,7 +4382,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 
-	public void testUnnamedModule_bug519674() throws CoreException {
+	public void testUnnamedModule_bug519674() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject p1 = createJava9Project("Project1");
 			createFolder("/Project1/src/pack1");
@@ -4412,7 +4412,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 
 	}
-	public void testBug520246() throws CoreException {
+	public void testBug520246() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] src = new String[] {
 				"src/module-info.java",
@@ -4435,7 +4435,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 
 	}
-	public void testBug520147() throws CoreException, IOException {
+	public void testBug520147() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable<String, String> javaCoreOptions = JavaCore.getOptions();
 		try {
 			String[] src = new String[] {
@@ -4501,7 +4501,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(javaCoreOptions);
 		}
 	}
-	public void testBug520147a() throws CoreException, IOException {
+	public void testBug520147a() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable<String, String> javaCoreOptions = JavaCore.getOptions();
 		try {
 			String[] src = new String[] {
@@ -4567,7 +4567,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(javaCoreOptions);
 		}
 	}
-	public void testBug520147b() throws CoreException, IOException {
+	public void testBug520147b() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable<String, String> javaCoreOptions = JavaCore.getOptions();
 		try {
 			String[] src = new String[] {
@@ -4640,7 +4640,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(javaCoreOptions);
 		}
 	}
-	public void testSourceFolders_Bug519673() throws CoreException {
+	public void testSourceFolders_Bug519673() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			// Setup project PSources1:
 			String[] src = new String[] {
@@ -4715,7 +4715,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("PClient2");
 		}
 	}
-	public void testPrivateMethod_Bug515985() throws CoreException {
+	public void testPrivateMethod_Bug515985() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] src = new String[] {
 					"src/module-info.java",
@@ -4761,7 +4761,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("mod.two");
 		}
 	}
-	public void testAddExports() throws CoreException {
+	public void testAddExports() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 					"src/module-info.java",
@@ -4804,7 +4804,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void testAddExports2() throws CoreException {
+	public void testAddExports2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 					"src/module-info.java",
@@ -4853,7 +4853,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void testAddExportsIllegal() throws CoreException {
+	public void testAddExportsIllegal() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			// need to simulate a system library container (provided otherwise by jdt.launching)
 			ContainerInitializer.setInitializer(new TestContainerInitializer(IClasspathContainer.K_SYSTEM));
@@ -4899,7 +4899,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void testAddReads() throws CoreException, IOException {
+	public void testAddReads() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			// org.astro defines the "real" org.astro.World:
 			String[] sources = new String[] {
@@ -4945,8 +4945,8 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			// jar-up without the private copy:
 			deleteFile("/mod.one/src/org/astro/World.java");
 			deleteFile("/mod.one/bin/org/astro/World.class");
-			String modOneJarPath = getWorkspacePath()+File.separator+"mod.one.jar";
-			Util.zip(new File(getWorkspacePath()+"/mod.one/bin"), modOneJarPath);
+			String modOneJarPath = getWorkspacePath()+File.separator+"mod.one.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			Util.zip(new File(getWorkspacePath()+"/mod.one/bin"), modOneJarPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 			// com.greetings depends on both other modules:
 			String[] src2 = new String[] {
@@ -4994,7 +4994,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void testBug520147c() throws CoreException, IOException {
+	public void testBug520147c() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable<String, String> javaCoreOptions = JavaCore.getOptions();
 		try {
 			String[] src = new String[] {
@@ -5054,7 +5054,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(javaCoreOptions);
 		}
 	}
-	@Deprecated
+	@Deprecated //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testBug519935() throws CoreException, IOException {
 		Hashtable<String, String> javaCoreOptions = JavaCore.getOptions();
 		try {
@@ -5122,7 +5122,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(javaCoreOptions);
 		}
 	}
-	@Deprecated
+	@Deprecated //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testBug520310() throws CoreException, IOException {
 		try {
 			String[] src = new String[] {
@@ -5192,7 +5192,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			this.deleteProject("mod.two");
 		}
 	}
-	public void testBug521346() throws CoreException, IOException {
+	public void testBug521346() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject javaProject = null;
 		try {
 			String src =
@@ -5218,7 +5218,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 				deleteProject(javaProject);
 		}
 	}
-	public void testAutoModule1() throws Exception {
+	public void testAutoModule1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject javaProject = null;
 		try {
 			String[] sources = {
@@ -5228,7 +5228,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			};
 			String outputDirectory = Util.getOutputDirectory();
 
-			String jarPath = outputDirectory + File.separator + "lib-x.jar";
+			String jarPath = outputDirectory + File.separator + "lib-x.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			Util.createJar(sources, jarPath, "1.8");
 
 			javaProject = createJava9Project("mod.one", new String[] {"src"});
@@ -5274,7 +5274,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 				deleteProject(javaProject);
 		}
 	}
-	public void testAutoModule2() throws Exception {
+	public void testAutoModule2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject javaProject = null;
 		try {
 			String[] sources = {
@@ -5289,7 +5289,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			};
 			String outputDirectory = Util.getOutputDirectory();
 
-			String jarPath = outputDirectory + File.separator + "lib-x.jar";
+			String jarPath = outputDirectory + File.separator + "lib-x.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			Util.createJar(sources, mfSource, jarPath, "1.8");
 
 			javaProject = createJava9Project("mod.one", new String[] {"src"});
@@ -5331,7 +5331,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 				deleteProject(javaProject);
 		}
 	}
-	public void testAutoModule3() throws Exception {
+	public void testAutoModule3() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject javaProject = null, auto = null;
 		try {
 			auto = createJava9Project("auto", new String[] {"src"});
@@ -5387,7 +5387,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 
-	public void testAutoModule4() throws Exception {
+	public void testAutoModule4() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject javaProject = null;
 		IJavaProject javaProject2 = null;
 		try {
@@ -5404,7 +5404,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			};
 			String outputDirectory = Util.getOutputDirectory();
 
-			String jarPath = outputDirectory + File.separator + "lib-x.jar";
+			String jarPath = outputDirectory + File.separator + "lib-x.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			Util.createJar(sources, mfSource, jarPath, "1.8");
 
 			// first source module:
@@ -5481,7 +5481,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 	// like testAutoModule3 without name derived from project, not manifest - warning suppressed
-	public void testAutoModule5() throws Exception {
+	public void testAutoModule5() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject javaProject = null, auto = null;
 		try {
 			auto = createJava9Project("auto", new String[] {"src"});
@@ -5534,7 +5534,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 	// like testAutoModule5, warning configured as ERROR
-	public void testAutoModule6() throws Exception {
+	public void testAutoModule6() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject javaProject = null, auto = null;
 		try {
 			auto = createJava9Project("auto", new String[] {"src"});
@@ -5575,7 +5575,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	}
 
 	// patch can see unexported type from host (and package accessible method), but not vice versa
-	public void testPatch1() throws CoreException, IOException {
+	public void testPatch1() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject mainProject = createJava9Project("org.astro");
 			String[] sources = {
@@ -5650,11 +5650,11 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	}
 
 	// patch can see unexported type from host - JRE patched from two source folders
-	public void testPatch2() throws CoreException, IOException {
+	public void testPatch2() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IClasspathAttribute[] attributes = {
 					JavaCore.newClasspathAttribute(IClasspathAttribute.MODULE, "true"),
-					JavaCore.newClasspathAttribute(IClasspathAttribute.PATCH_MODULE, "java.desktop=/missing.path::java.base=/org.astro.patch/src"+File.pathSeparator+"/org.astro.patch/src2")
+					JavaCore.newClasspathAttribute(IClasspathAttribute.PATCH_MODULE, "java.desktop=/missing.path::java.base=/org.astro.patch/src"+File.pathSeparator+"/org.astro.patch/src2") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			};
 			IJavaProject patchProject = createJava9ProjectWithJREAttributes("org.astro.patch", new String[]{"src", "src2"}, attributes);
 
@@ -5692,7 +5692,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	}
 
 	// patch can share a package with its host - jar
-	public void testPatch3() throws CoreException, IOException {
+	public void testPatch3() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = {
 				"p/a/X.java",
@@ -5704,7 +5704,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			};
 			String outputDirectory = Util.getOutputDirectory();
 
-			String jarPath = outputDirectory + File.separator + "mod-one.jar";
+			String jarPath = outputDirectory + File.separator + "mod-one.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			Util.createJar(sources, jarPath, "9");
 
 			IJavaProject patchProject = createJava9Project("mod.one.patch");
@@ -5738,7 +5738,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			this.deleteProject("mod.one.patch");
 		}
 	}
-	public void testLimitModules1() throws CoreException, IOException {
+	public void testLimitModules1() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IClasspathAttribute[] attributes = {
 					JavaCore.newClasspathAttribute(IClasspathAttribute.MODULE, "true"),
@@ -5806,7 +5806,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			this.deleteProject("org.astro");
 		}
 	}
-	public void testLimitModules2() throws CoreException, IOException {
+	public void testLimitModules2() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IClasspathAttribute[] attributes = {
 					JavaCore.newClasspathAttribute(IClasspathAttribute.MODULE, "true"),
@@ -5872,7 +5872,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			this.deleteProject("org.astro");
 		}
 	}
-	public void testDefaultRootModules() throws CoreException, IOException {
+	public void testDefaultRootModules() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 
 			IJavaProject project = createJava9Project("org.astro", new String[]{"src"});
@@ -5913,7 +5913,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			this.deleteProject("org.astro");
 		}
 	}
-	public void testBug522398() throws CoreException {
+	public void testBug522398() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 
 			String[] sources = new String[] {
@@ -5959,7 +5959,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("nonmodular2");
 		}
 	}
-	public void testBug522330() throws CoreException, IOException {
+	public void testBug522330() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/javax/net/ServerSocketFactory1.java",
@@ -6001,7 +6001,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 
-	public void testBug522503() throws Exception {
+	public void testBug522503() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject p1 = setupModuleProject("mod.one",
 				new String[] {
@@ -6044,7 +6044,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("mod.two");
 		}
 	}
-	public void testBug522671() throws Exception {
+	public void testBug522671() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 		IJavaProject p1 = setupModuleProject("util",
 			new String[] {
@@ -6134,7 +6134,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("test");
 		}
 	}
-	public void testBug522671b() throws CoreException {
+	public void testBug522671b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/nonmodular1/HasConstructorWithProperties.java",
@@ -6216,7 +6216,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 
-	public void testBug525522() throws Exception {
+	public void testBug525522() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			// non-modular substitute for java.jnlp:
 			IClasspathAttribute[] jreAttribs = { JavaCore.newClasspathAttribute(IClasspathAttribute.LIMIT_MODULES, "java.base,java.desktop,java.rmi,java.sql") };
@@ -6272,7 +6272,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 
-	public void testBug525603() throws Exception {
+	public void testBug525603() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject javaProject = null;
 		try {
 			String[] sources = {
@@ -6282,7 +6282,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			};
 			String outputDirectory = Util.getOutputDirectory();
 
-			String jarPath = outputDirectory + File.separator + "automod.jar";
+			String jarPath = outputDirectory + File.separator + "automod.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			Util.createJar(sources, jarPath, "1.8");
 
 			javaProject = createJava9Project("mod1", new String[] {"src"});
@@ -6329,7 +6329,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 
-	public void testBug522670() throws Exception {
+	public void testBug522670() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable<String, String> javaCoreOptions = JavaCore.getOptions();
 		try {
 			Hashtable<String, String> newOptions=new Hashtable<>(javaCoreOptions);
@@ -6427,7 +6427,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 
-	public void testBug526054() throws Exception {
+	public void testBug526054() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// JDK 15 has removed the only module that was not part of module default root module jdk.rmic.
 		// Hence, we no longer need this test for JDK 15 and above.
 		if (!isJRE9 || isJRE15) return;
@@ -6479,7 +6479,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 
-	public void testBug526054b() throws Exception {
+	public void testBug526054b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// JDK 15 has removed the only module that was not part of module default root module jdk.rmic.
 		// Hence, we no longer need this test for JDK 15 and above.
 		if (!isJRE9 || isJRE15) return;
@@ -6567,7 +6567,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 
-	public void testBug525918() throws CoreException {
+	public void testBug525918() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] sources = new String[] {
 				"src/module-info.java",
@@ -6616,7 +6616,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 
-	public void testBug527576() throws Exception {
+	public void testBug527576() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject javaProject = null;
 		try {
 
@@ -6627,7 +6627,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 					"public class Assert {}\n;"
 				};
 
-			Path jarPath = new Path('/' + javaProject.getProject().getName() + '/' + "localjunit.jar");
+			Path jarPath = new Path('/' + javaProject.getProject().getName() + '/' + "localjunit.jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			Util.createJar(sources, javaProject.getProject().getWorkspace().getRoot().getFile(jarPath).getRawLocation().toOSString(), "1.8");
 			javaProject.getProject().refreshLocal(IResource.DEPTH_INFINITE, null);
 
@@ -6681,12 +6681,12 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 				deleteProject(javaProject);
 		}
 	}
-	public void testBug528467a() throws CoreException {
+	public void testBug528467a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject p1 = createJava9Project("mod.one");
 		try {
 			IClasspathEntry[] rawClasspath = p1.getRawClasspath();
 			String jrtPath = null;
-			for (int i = 0; i < rawClasspath.length; i++) {
+			for (int i = 0; i < rawClasspath.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IClasspathEntry iClasspathEntry = rawClasspath[i];
 				if (iClasspathEntry.getEntryKind() == IClasspathEntry.CPE_LIBRARY &&
 						iClasspathEntry.getPath().toString().endsWith("jrt-fs.jar")) {
@@ -6721,18 +6721,18 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			p1.getProject().build(IncrementalProjectBuilder.FULL_BUILD, null);
 			IMarker[] markers = p1.getProject().findMarkers(null, true, IResource.DEPTH_INFINITE);
 
-			assertMarkers("Unexpected markers", "Access restriction: The type 'Image' is not accessible (restriction on required library '"+
+			assertMarkers("Unexpected markers", "Access restriction: The type 'Image' is not accessible (restriction on required library '"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 																							jrtPath + "')", markers);
 		} finally {
 			deleteProject(p1);
 		}
 	}
-	public void testBug528467b() throws CoreException {
+	public void testBug528467b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject p1 = createJava9Project("mod.one");
 		try {
 			IClasspathEntry[] rawClasspath = p1.getRawClasspath();
 			String jrtPath = null;
-			for (int i = 0; i < rawClasspath.length; i++) {
+			for (int i = 0; i < rawClasspath.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IClasspathEntry iClasspathEntry = rawClasspath[i];
 				if (iClasspathEntry.getEntryKind() == IClasspathEntry.CPE_LIBRARY &&
 						iClasspathEntry.getPath().toString().endsWith("jrt-fs.jar")) {
@@ -6772,19 +6772,19 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			sortMarkers(markers);
 
 			assertMarkers("Unexpected markers",
-					"Access restriction: The type \'Image\' is not accessible (restriction on required library '"+ jrtPath + "')\n" +
+					"Access restriction: The type \'Image\' is not accessible (restriction on required library '"+ jrtPath + "')\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"The type Graphics from module java.desktop may not be accessible to clients due to missing \'requires transitive\'"
 					, markers);
 		} finally {
 			deleteProject(p1);
 		}
 	}
-	public void testBug528467c() throws CoreException {
+	public void testBug528467c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject p1 = createJava9Project("unnamed");
 		try {
 			IClasspathEntry[] rawClasspath = p1.getRawClasspath();
 			String jrtPath = null;
-			for (int i = 0; i < rawClasspath.length; i++) {
+			for (int i = 0; i < rawClasspath.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IClasspathEntry iClasspathEntry = rawClasspath[i];
 				if (iClasspathEntry.getEntryKind() == IClasspathEntry.CPE_LIBRARY &&
 						iClasspathEntry.getPath().toString().endsWith("jrt-fs.jar")) {
@@ -6814,17 +6814,17 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			p1.getProject().build(IncrementalProjectBuilder.FULL_BUILD, null);
 			IMarker[] markers = p1.getProject().findMarkers(null, true, IResource.DEPTH_INFINITE);
 
-			assertMarkers("Unexpected markers", "Access restriction: The type 'Image' is not accessible (restriction on required library '"+
+			assertMarkers("Unexpected markers", "Access restriction: The type 'Image' is not accessible (restriction on required library '"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 																							jrtPath + "')", markers);
 		} finally {
 			deleteProject(p1);
 		}
 	}
 	// Bug 520713: allow test code to access code on the classpath
-	public void testWithTestAttributeAndTestDependencyOnClassPath() throws CoreException, IOException {
+	public void testWithTestAttributeAndTestDependencyOnClassPath() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String outputDirectory = Util.getOutputDirectory();
 
-		String jarPath = outputDirectory + File.separator + "mytestlib.jar";
+		String jarPath = outputDirectory + File.separator + "mytestlib.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IJavaProject project1 = null;
 		IJavaProject project2 = null;
 		try {
@@ -6961,14 +6961,14 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 				deleteProject(project1);
 			if (project2 != null)
 				deleteProject(project2);
-			new File(jarPath).delete();
+			new File(jarPath).delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 
-	public void testBug531579() throws Exception {
+	public void testBug531579() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String outputDirectory = Util.getOutputDirectory();
 
-		String jarPath = outputDirectory + File.separator + "jaxb-api.jar";
+		String jarPath = outputDirectory + File.separator + "jaxb-api.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IJavaProject project1 = null;
 		try {
 			// these types replace inaccessible types from JRE/javax.xml.bind:
@@ -7016,10 +7016,10 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		} finally {
 			if (project1 != null)
 				deleteProject(project1);
-			new File(jarPath).delete();
+			new File(jarPath).delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
-	public void testBug527569a() throws CoreException {
+	public void testBug527569a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE19) return;
 		IJavaProject p1 = createJava9Project("Bug527569", "17");
 		try {
@@ -7041,7 +7041,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject(p1);
 		}
 	}
-	public void testBug527569b() throws CoreException {
+	public void testBug527569b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE19) return;
 		IJavaProject p1 = createJava9Project("Bug527569", "17");
 		try {
@@ -7063,10 +7063,10 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject(p1);
 		}
 	}
-	public void testBug527569c() throws CoreException {
+	public void testBug527569c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE19) return;
 		IJavaProject p1 = createJava9Project("Bug527569", "17");
-		Map<String, String> options = new HashMap<>();
+		Map<String, String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		// Make sure the new options map doesn't reset.
 		options.put(CompilerOptions.OPTION_Compliance, "17");
 		options.put(CompilerOptions.OPTION_Source, "17");
@@ -7092,7 +7092,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject(p1);
 		}
 	}
-	public void testBug527569d() throws CoreException {
+	public void testBug527569d() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject p1 = createJava9Project("Bug527569", "9");
 		String problem = isJRE21 ?
 				"java.lang.Compiler cannot be resolved to a type" :
@@ -7116,10 +7116,10 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject(p1);
 		}
 	}
-	public void testBug527569e() throws CoreException {
+	public void testBug527569e() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE9 || isJRE12) return;
 		IJavaProject p1 = createJava9Project("Bug527569", CompilerOptions.getFirstSupportedJavaVersion());
-		Map<String, String> options = new HashMap<>();
+		Map<String, String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		// Make sure the new options map doesn't reset.
 		options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 		options.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -7162,7 +7162,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 	// automatic modules export all their packages
-	public void testBug532724() throws CoreException, IOException {
+	public void testBug532724() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String libPath = "externalLib/test.jar";
 			Util.createJar(
@@ -7174,7 +7174,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 						"}",
 					},
 					null,
-					new HashMap<>(),
+					new HashMap<>(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 					null,
 					getExternalResourcePath(libPath));
 			String[] src = new String[] {
@@ -7208,14 +7208,14 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			this.deleteProject("com.greetings");
 		}
 	}
-	public void testBug534624a() throws CoreException, IOException {
+	public void testBug534624a() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		Hashtable<String, String> options = JavaCore.getOptions();
 		try {
 			project = setUpJavaProject("bug.test.b534624");
 			IClasspathEntry[] rawClasspath = project.getRawClasspath();
 			IClasspathEntry jrtEntry = getJRTLibraryEntry();
-			for(int i = 0; i < rawClasspath.length; i++) {
+			for(int i = 0; i < rawClasspath.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (rawClasspath[i].getEntryKind() == IClasspathEntry.CPE_CONTAINER)
 					rawClasspath[i] = jrtEntry;
 			}
@@ -7232,14 +7232,14 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(options);
 		}
 	}
-	public void testBug534624b() throws CoreException, IOException {
+	public void testBug534624b() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project = null;
 		Hashtable<String, String> options = JavaCore.getOptions();
 		try {
 			project = setUpJavaProject("bug.test.b534624");
 			IClasspathEntry[] rawClasspath = project.getRawClasspath();
 			IClasspathEntry jrtEntry = getJRTLibraryEntry();
-			for(int i = 0; i < rawClasspath.length; i++) {
+			for(int i = 0; i < rawClasspath.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (rawClasspath[i].getEntryKind() == IClasspathEntry.CPE_CONTAINER)
 					rawClasspath[i] = jrtEntry;
 			}
@@ -7264,7 +7264,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 	// missing linked jar must not cause NPE
-	public void testBug540904() throws CoreException, IOException {
+	public void testBug540904() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String[] src = new String[] {
 					"src/test/Test.java",
@@ -7289,7 +7289,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			this.deleteProject("Bug540904");
 		}
 	}
-	public void testBug540788() throws Exception {
+	public void testBug540788() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			// project common:
 			IJavaProject common = createJava9Project("Bug540788.common", new String[] { "src/main/java" });
@@ -7302,7 +7302,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 						"}\n"
 					});
 			IFolder libs = createFolder("/Bug540788.common/libs");
-			String emfCommonLocation = libs.getLocation()+"/org.eclipse.emf.common.jar";
+			String emfCommonLocation = libs.getLocation()+"/org.eclipse.emf.common.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			Path emfCommonPath = new Path(emfCommonLocation);
 			Util.createJar(
 					new String[] {
@@ -7312,12 +7312,12 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 							"}",
 					},
 					null,
-					new HashMap<>(),
+					new HashMap<>(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 					null,
 					emfCommonLocation);
 			addModularLibraryEntry(common, emfCommonPath, null);
 
-			String ecoreLocation = libs.getLocation()+"/org.eclipse.emf.ecore.jar";
+			String ecoreLocation = libs.getLocation()+"/org.eclipse.emf.ecore.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			Path ecorePath = new Path(ecoreLocation);
 			Util.createJar(
 					new String[] {
@@ -7327,7 +7327,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 						"}",
 					},
 					null,
-					new HashMap<>(),
+					new HashMap<>(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 					null,
 					ecoreLocation);
 			addModularLibraryEntry(common, ecorePath, null);
@@ -7382,7 +7382,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("Bug540788.vulkan.demo");
 		}
 	}
-	public void testBug541015() throws Exception {
+	public void testBug541015() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject m1 = createJava9Project("m1", new String[] { "src" });
 			createSourceFiles(m1,
@@ -7458,7 +7458,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("unnamed");
 		}
 	}
-	public void testBug536928_comment22() throws CoreException, IOException {
+	public void testBug536928_comment22() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJava9Project("ztest", new String[] { "src" });
 			createFolder("/ztest/lib");
@@ -7470,7 +7470,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 					"package javax.xml.transform;\n" +
 					"public class Result {}\n"
 				},
-				project.getProject().getLocation().toString() + "/lib/xml-apis.jar",
+				project.getProject().getLocation().toString() + "/lib/xml-apis.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1.8");
 			project.getProject().refreshLocal(IResource.DEPTH_INFINITE, null);
 			IClasspathEntry libraryEntry = JavaCore.newLibraryEntry(new Path("/ztest/lib/xml-apis.jar"), null, null);
@@ -7548,7 +7548,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("ztest");
 		}
 	}
-	public void testBug536928_comment22b() throws CoreException, IOException {
+	public void testBug536928_comment22b() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJava9Project("ztest", new String[] { "src" });
 			createFolder("/ztest/lib");
@@ -7560,7 +7560,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 					"package javax.xml.transform;\n" +
 					"public class Result {}\n"
 				},
-				project.getProject().getLocation().toString() + "/lib/xml-apis.jar",
+				project.getProject().getLocation().toString() + "/lib/xml-apis.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1.8");
 			project.getProject().refreshLocal(IResource.DEPTH_INFINITE, null);
 			IClasspathEntry libraryEntry = JavaCore.newLibraryEntry(new Path("/ztest/lib/xml-apis.jar"), null, null);
@@ -7638,7 +7638,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("ztest");
 		}
 	}
-	public void testBug536928_comment22_limited() throws CoreException, IOException {
+	public void testBug536928_comment22_limited() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IClasspathAttribute[] limitModules = {
 				JavaCore.newClasspathAttribute(IClasspathAttribute.LIMIT_MODULES, "java.base")
@@ -7653,7 +7653,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 					"package javax.xml.transform;\n" +
 					"public class Result {}\n"
 				},
-				project.getProject().getLocation().toString() + "/lib/xml-apis.jar",
+				project.getProject().getLocation().toString() + "/lib/xml-apis.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1.8");
 			project.getProject().refreshLocal(IResource.DEPTH_INFINITE, null);
 			IClasspathEntry libraryEntry = JavaCore.newLibraryEntry(new Path("/ztest/lib/xml-apis.jar"), null, null);
@@ -7699,7 +7699,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("ztest");
 		}
 	}
-	public void testBug542896() throws CoreException {
+	public void testBug542896() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject java10Project = createJava10Project("bug", new String[] { "src" });
 		try {
 			createFolder("/bug/src/test/platform");
@@ -7796,7 +7796,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		IClasspathAttribute[] attrs = { JavaCore.newClasspathAttribute(IClasspathAttribute.MODULE, "true") };
 		bug543392(attrs);
 	}
-	void bug543392(IClasspathAttribute[] dependencyAttrs) throws Exception {
+	void bug543392(IClasspathAttribute[] dependencyAttrs) throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject other = createJava9Project("other");
 		IJavaProject current = createJava9Project("current");
 		try {
@@ -7864,7 +7864,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject(current);
 		}
 	}
-	public void testBug541328() throws Exception {
+	public void testBug541328() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject pa = createJava9Project("m.a");
 		IJavaProject pb = createJava9Project("m.b");
 		IJavaProject test = createJava9Project("test");
@@ -7917,7 +7917,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject(test);
 		}
 	}
-	public void testBug543195() throws CoreException {
+	public void testBug543195() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject pj1 = createJava9Project("pj1");
 		IJavaProject pj2 = createJava9Project("pj2");
 		IJavaProject ptest = createJava9Project("ptest");
@@ -7995,7 +7995,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 
-	public void testBug543701() throws Exception {
+	public void testBug543701() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject p = createJava9Project("p");
 		String outputDirectory = Util.getOutputDirectory();
 		class Counter implements Consumer<SplitPackageBinding> {
@@ -8008,14 +8008,14 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		Counter counter = new Counter();
 		SplitPackageBinding.instanceListener = counter;
 		try {
-			String jar1Path = outputDirectory + File.separator + "lib1.jar";
+			String jar1Path = outputDirectory + File.separator + "lib1.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			Util.createJar(new String[] {
 						"javax/xml/transform/Result.java",
 						"package javax.xml.transform;\n" +
 						"public class Result {}\n"
-					}, new HashMap<>(), jar1Path);
+					}, new HashMap<>(), jar1Path); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
-			String jar2Path = outputDirectory + File.separator + "lib2.jar";
+			String jar2Path = outputDirectory + File.separator + "lib2.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			Util.createJar(new String[] {
 						"p2/C2.java",
 						"package p2;\n" +
@@ -8024,7 +8024,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 						"	public void m(Number n) {}\n" +
 						"	public void m(Result r) {}\n" + // Result will be ambiguous looking from project 'p', but should not break compilation
 						"}\n"
-					}, new HashMap<>(), jar2Path);
+					}, new HashMap<>(), jar2Path); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 			addLibraryEntry(p, jar1Path, false);
 			addLibraryEntry(p, jar2Path, false);
@@ -8050,29 +8050,29 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 					"----------\n" +
 					"----------\n",
 					this.problemRequestor);
-			assertTrue("Number of SplitPackageBinding created: "+counter.count, counter.count <= 80);
+			assertTrue("Number of SplitPackageBinding created: "+counter.count, counter.count <= 80); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} finally {
 			SplitPackageBinding.instanceListener = null;
 			deleteProject(p);
 			// clean up output dir
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
 
-	public void testBug543441() throws Exception {
+	public void testBug543441() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// unsuccessful attempt at triggering NPE on null required module
 		IJavaProject p = createJava9Project("p");
 		String outputDirectory = Util.getOutputDirectory();
 		try {
-			String jar1Path = outputDirectory + File.separator + "lib1.jar";
+			String jar1Path = outputDirectory + File.separator + "lib1.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			Util.createJar(new String[] {
 						"module-info.java",
 						"module lib1 {}\n"
 					}, jar1Path, "9");
 
-			String jar2Path = outputDirectory + File.separator + "lib2.jar";
+			String jar2Path = outputDirectory + File.separator + "lib2.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			Util.createJar(new String[] {
 						"module-info.java",
 						"module lib2 {\n" +
@@ -8086,7 +8086,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 					null, jar2Path, new String[] { jar1Path }, "9");
 
 			File jar1File = new File(jar1Path);
-			jar1File.delete();
+			jar1File.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 			addModularLibraryEntry(p, new Path(jar2Path), null);
 			createFile("p/src/module-info.java",
@@ -8107,12 +8107,12 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		} finally {
 			deleteProject(p);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
 
-	public void testBug543765() throws CoreException, IOException {
+	public void testBug543765() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// failure never seen in this test
 		IJavaProject m = createJava9Project("M");
 		IJavaProject n = createJava9Project("N");
@@ -8121,7 +8121,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		String outputDirectory = Util.getOutputDirectory();
 		try {
 			// ------ W ------
-			String wJarLocation = outputDirectory + File.separator + "w-0.0.1-SNAPSHOT.jar";
+			String wJarLocation = outputDirectory + File.separator + "w-0.0.1-SNAPSHOT.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IPath wJarPath = new Path(wJarLocation);
 			Util.createJar(new String[] {
 						"external/W.java",
@@ -8225,16 +8225,16 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject(x);
 			deleteProject(y);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
 
-	public void testBug544126() throws CoreException, IOException {
+	public void testBug544126() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String outputDirectory = Util.getOutputDirectory();
 		IJavaProject p = createJava9Project("p");
 		try {
-			String jar1Path = outputDirectory + File.separator + "auto1Lib.jar";
+			String jar1Path = outputDirectory + File.separator + "auto1Lib.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			createJar(
 					new String[] {
 						"org/test/Root.java",
@@ -8242,7 +8242,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 						"public class Root {}\n"
 					},
 					jar1Path);
-			String jar2Path = outputDirectory + File.separator + "auto2Lib.jar";
+			String jar2Path = outputDirectory + File.separator + "auto2Lib.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			createJar(
 					new String[] {
 						"org/test/ext/Ext.java",
@@ -8280,12 +8280,12 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		} finally {
 			deleteProject(p);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
 
-	public void testBug544432() throws CoreException {
+	public void testBug544432() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject prjA = createJava9Project("A");
 		IJavaProject prjB = createJava9Project("B");
 		try {
@@ -8332,7 +8332,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 
-	public void testReleaseOption1() throws Exception {
+	public void testReleaseOption1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable<String, String> options = JavaCore.getOptions();
 		IJavaProject p = createJava9Project("p");
 		p.setOption(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_11);
@@ -8356,11 +8356,11 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(options);
 			deleteProject(p);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
-	public void testReleaseOption2() throws Exception {
+	public void testReleaseOption2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE12)
 			return;
 		Hashtable<String, String> options = JavaCore.getOptions();
@@ -8390,11 +8390,11 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(options);
 			deleteProject(p);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
-	public void testReleaseOption3() throws Exception {
+	public void testReleaseOption3() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (isJRE12)
 			return;
 		Hashtable<String, String> options = JavaCore.getOptions();
@@ -8423,11 +8423,11 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(options);
 			deleteProject(p);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
-	public void testReleaseOption4() throws Exception {
+	public void testReleaseOption4() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable<String, String> options = JavaCore.getOptions();
 		IJavaProject p = createJava9Project("p");
 		p.setOption(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_1_8);
@@ -8454,11 +8454,11 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(options);
 			deleteProject(p);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
-	public void testReleaseOption5() throws Exception {
+	public void testReleaseOption5() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE19) return;
 		Hashtable<String, String> options = JavaCore.getOptions();
 		IJavaProject p = createJava9Project("p");
@@ -8486,12 +8486,12 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(options);
 			deleteProject(p);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
 
-	public void testReleaseOption8() throws Exception {
+	public void testReleaseOption8() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable<String, String> options = JavaCore.getOptions();
 		IJavaProject p = createJava9Project("p");
 		p.setOption(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_9);
@@ -8516,11 +8516,11 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(options);
 			deleteProject(p);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
-	public void testReleaseOption9() throws Exception {
+	public void testReleaseOption9() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE10) return;
 		Hashtable<String, String> options = JavaCore.getOptions();
 		IJavaProject p = createJava9Project("p");
@@ -8546,11 +8546,11 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(options);
 			deleteProject(p);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
-	public void testReleaseOption10() throws Exception {
+	public void testReleaseOption10() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable<String, String> options = JavaCore.getOptions();
 		IJavaProject p = createJava9Project("p");
 		p.setOption(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_1_8);
@@ -8582,11 +8582,11 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(options);
 			deleteProject(p);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
-	public void testReleaseOption11() throws Exception {
+	public void testReleaseOption11() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable<String, String> options = JavaCore.getOptions();
 		IJavaProject p = createJava9Project("p");
 		p.setOption(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_1_8);
@@ -8618,18 +8618,18 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(options);
 			deleteProject(p);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
-	public void testReleaseOption12() throws Exception {
+	public void testReleaseOption12() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE16)
 			return;
 		Hashtable<String, String> options = JavaCore.getOptions();
 		IJavaProject p = createJava16Project("p");
 		IClasspathEntry[] rawClasspath = p.getRawClasspath();
 		IClasspathEntry jrtEntry = getJRTLibraryEntry();
-		for(int i = 0; i < rawClasspath.length; i++) {
+		for(int i = 0; i < rawClasspath.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (rawClasspath[i].getEntryKind() == IClasspathEntry.CPE_CONTAINER)
 				rawClasspath[i] = jrtEntry;
 		}
@@ -8659,11 +8659,11 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(options);
 			deleteProject(p);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
-	public void testReleaseOption13() throws Exception {
+	public void testReleaseOption13() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE12)
 			return;
 		Hashtable<String, String> options = JavaCore.getOptions();
@@ -8693,13 +8693,13 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			JavaCore.setOptions(options);
 			deleteProject(p);
 			File outputDir = new File(outputDirectory);
-			if (outputDir.exists())
+			if (outputDir.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(outputDir);
 		}
 	}
-	public void testBug547114a() throws CoreException, IOException {
+	public void testBug547114a() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String outputDirectory = Util.getOutputDirectory();
-		String jarPath = outputDirectory + File.separator + "lib.jar";
+		String jarPath = outputDirectory + File.separator + "lib.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try {
 			// focus project has no module-info, to trigger path where LE#knownPackages is not empty when processing add-reads
 			String[] sources = new String[] {
@@ -8744,7 +8744,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteFile(jarPath);
 		}
 	}
-	public void testBug547114b() throws CoreException, IOException {
+	public void testBug547114b() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject p = setupModuleProject("org.astro", new String[] {
 					"src/module-info.java",
@@ -8790,7 +8790,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 
-	public void testBug558004() throws CoreException {
+	public void testBug558004() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject prj = createJava9Project("A");
 		try {
 			String moduleinfopath = "A/src/module-info.java";
@@ -8814,7 +8814,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 
-	public void testBug547479() throws CoreException {
+	public void testBug547479() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int max = org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.MAX_AT_ONCE;
 
 		IJavaProject prjA = createJava9Project("A");
@@ -8870,7 +8870,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject(prjB);
 		}
 	}
-	public void testBug547181() throws CoreException {
+	public void testBug547181() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject prjA = createJava9Project("A");
 		IJavaProject prjB = createJava9Project("B");
 		IJavaProject prjC = createJava9Project("C");
@@ -8944,7 +8944,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject(prjD);
 		}
 	}
-	public void testBug547181Comment104() throws CoreException {
+	public void testBug547181Comment104() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IJavaProject prjA = createJava9Project("A");
 		IJavaProject prjB = createJava9Project("B");
@@ -8973,7 +8973,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject(prjB);
 		}
 	}
-	public void testBug538512_comment9() throws CoreException, IOException {
+	public void testBug538512_comment9() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJava9Project("ztest", new String[] { "src" });
 			createFolder("/ztest/lib");
@@ -8982,7 +8982,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 					"package org.xml.sax;\n" +
 					"public class Parser {}\n"
 				},
-				project.getProject().getLocation().toString() + "/lib/xml-apis.jar", // conflicts with module 'java.xml'
+				project.getProject().getLocation().toString() + "/lib/xml-apis.jar", // conflicts with module 'java.xml' //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1.8");
 			IClasspathEntry libraryEntry = JavaCore.newLibraryEntry(new Path("/ztest/lib/xml-apis.jar"), null, null);
 			addClasspathEntry(project, libraryEntry, 1); // right after src and before jrt-fs.jar
@@ -8991,7 +8991,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 					"package org.apache.xerces.parsers;\n" +
 					"public abstract class SAXParser implements org.xml.sax.Parser, java.io.Serializable {}\n"
 				},
-				project.getProject().getLocation().toString() + "/lib/xercesImpl.jar",
+				project.getProject().getLocation().toString() + "/lib/xercesImpl.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1.8");
 			project.getProject().refreshLocal(IResource.DEPTH_INFINITE, null);
 			libraryEntry = JavaCore.newLibraryEntry(new Path("/ztest/lib/xercesImpl.jar"), null, null);
@@ -9026,9 +9026,9 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject("ztest");
 		}
 	}
-	public void testIssue23() throws CoreException {
+	public void testIssue23() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject p1 = createJava9Project("Issue23", "18");
-		Map<String, String> options = new HashMap<>();
+		Map<String, String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		// Make sure the new options map doesn't reset.
 		options.put(CompilerOptions.OPTION_Compliance, "16.8");
 		options.put(CompilerOptions.OPTION_Source, "16.8");
@@ -9054,7 +9054,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject(p1);
 		}
 	}
-	public void testIssue2786_10() throws CoreException {
+	public void testIssue2786_10() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// module java.smartcardio is not in default root modules according to old rules of JEP 261
 		IJavaProject p10 = createJava10Project("J10", new String[] {"src"});
 		p10.setOption(JavaCore.COMPILER_RELEASE, JavaCore.ENABLED);
@@ -9080,7 +9080,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 			deleteProject(p10);
 		}
 	}
-	public void testIssue2786_11() throws CoreException {
+	public void testIssue2786_11() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// since JDK-8205169 module java.smartcardio is indeed in default root modules
 		IJavaProject p11 = createJava11Project("J11", new String[] {"src"});
 		p11.setOption(JavaCore.COMPILER_RELEASE, JavaCore.ENABLED);
@@ -9105,7 +9105,7 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		}
 	}
 
-	public void testIssue3797() throws Exception {
+	public void testIssue3797() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject p1 = null, p2 = null;
 		try {
 			p1 = createJava21Project("AutoMod");
@@ -9133,13 +9133,13 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 	}
 
 	protected void assertNoErrors() throws CoreException {
-		for (IProject p : getWorkspace().getRoot().getProjects()) {
+		for (IProject p : getWorkspace().getRoot().getProjects()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int maxSeverity = p.findMaxProblemSeverity(null, true, IResource.DEPTH_INFINITE);
 			if (maxSeverity == IMarker.SEVERITY_ERROR) {
-				for (IMarker marker : p.findMarkers(null, true, IResource.DEPTH_INFINITE))
-					System.err.println("Marker "+ marker.toString());
+				for (IMarker marker : p.findMarkers(null, true, IResource.DEPTH_INFINITE)) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					System.err.println("Marker "+ marker.toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
-			assertFalse("Unexpected errors in project " + p.getName(), maxSeverity == IMarker.SEVERITY_ERROR);
+			assertFalse("Unexpected errors in project " + p.getName(), maxSeverity == IMarker.SEVERITY_ERROR); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	// sort by CHAR_START then MESSAGE
@@ -9160,14 +9160,14 @@ public class ModuleBuilderTests extends ModifyingResourceTests {
 		IExecutionEnvironment environment = getExecutionEnvironment(environmentId);
 		IVMInstall defaultVM9 = environment.getDefaultVM();
 		environment.setDefaultVM(vm);
-		JavaCore.getPlugin().getLog().log(Status.info("Set VM \"" + vm.getName() + "\" for execution environments: " + environment.getId()));
+		JavaCore.getPlugin().getLog().log(Status.info("Set VM \"" + vm.getName() + "\" for execution environments: " + environment.getId())); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		return defaultVM9;
 	}
 
 	private void restoreExecutionEnvironment(String environmentId, IVMInstall defaultVM) {
 		IExecutionEnvironment environment = getExecutionEnvironment(environmentId);
 		environment.setDefaultVM(defaultVM);
-		JavaCore.getPlugin().getLog().log(Status.info("Restored default VM for execution environment: " + environment.getId()));
+		JavaCore.getPlugin().getLog().log(Status.info("Restored default VM for execution environment: " + environment.getId())); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	private static IExecutionEnvironment getExecutionEnvironment(String id) {

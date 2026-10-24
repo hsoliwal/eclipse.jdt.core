@@ -35,7 +35,7 @@ public final class ProcessorUtil
 	 * Represent an annotation mirror and its explicit values as a String.  Use this,
 	 * rather than toString(), in order to have reliable and stable results.
 	 */
-	public static String annoMirrorToString(AnnotationMirror mirror) {
+	public static String annoMirrorToString(AnnotationMirror mirror) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		AnnotationType type = mirror.getAnnotationType();
 		if (type == null) {
 			return "[Annotation of unknown (null) type]";
@@ -44,20 +44,20 @@ public final class ProcessorUtil
 		if (decl == null) {
 			return "[Annotation with null type declaration]";
 		}
-		StringBuilder sb = new StringBuilder();
-		sb.append('@');
-		sb.append(decl.getSimpleName());
-		sb.append('(');
+		StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		sb.append('@'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		sb.append(decl.getSimpleName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		sb.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		Map<AnnotationTypeElementDeclaration, AnnotationValue> values = mirror.getElementValues();
 		boolean first = true;
-		for (Map.Entry<AnnotationTypeElementDeclaration, AnnotationValue> entry : values.entrySet()) {
+		for (Map.Entry<AnnotationTypeElementDeclaration, AnnotationValue> entry : values.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!first) {
-				sb.append(", ");
+				sb.append(", "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			first = false;
-			sb.append(annoValuePairToString(entry.getKey(), entry.getValue()));
+			sb.append(annoValuePairToString(entry.getKey(), entry.getValue())); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		sb.append(')');
+		sb.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return sb.toString();
 	}
 
@@ -66,14 +66,14 @@ public final class ProcessorUtil
 		if (key == null) {
 			return "[Null annotation value declaration]";
 		}
-		StringBuilder sb = new StringBuilder();
-		sb.append(key.getSimpleName());
-		sb.append(" = ");
-		sb.append(annoValueToString(value));
+		StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		sb.append(key.getSimpleName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		sb.append(" = "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		sb.append(annoValueToString(value)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return sb.toString();
 	}
 
-	private static String annoValueToString(AnnotationValue value) {
+	private static String annoValueToString(AnnotationValue value) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (value == null) {
 			return "null";
 		}
@@ -93,17 +93,17 @@ public final class ProcessorUtil
 		}
 		else if (v instanceof Collection<?>) {
 			// Collection<AnnotationValue>, for an array value
-			StringBuilder sb = new StringBuilder();
-			sb.append('{');
+			StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			sb.append('{'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			boolean first = true;
-			for (Object item : (Collection<?>)v) {
+			for (Object item : (Collection<?>)v) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (!first) {
-					sb.append(", ");
+					sb.append(", "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				first = false;
-				sb.append(annoValueToString((AnnotationValue)item));
+				sb.append(annoValueToString((AnnotationValue)item)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			sb.append('}');
+			sb.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return sb.toString();
 		}
 		// boxed primitive or String

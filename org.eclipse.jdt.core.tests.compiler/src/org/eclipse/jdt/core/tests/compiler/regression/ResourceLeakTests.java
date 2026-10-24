@@ -106,13 +106,13 @@ protected void runLeakWarningTest(String[] testFiles, String expectedCompileErro
 // === hooks for ResourceLeaksAnnotatedTests: ===
 /** Problem message originally complaining about a potential leak. */
 protected String potentialLeakOrCloseNotShown(String resourceName) {
-	return "Potential resource leak: '"+resourceName+"' may not be closed\n";
+	return "Potential resource leak: '"+resourceName+"' may not be closed\n"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 protected String potentialLeakOrCloseNotShownAtExit(String resourceName) {
-	return "Potential resource leak: '"+resourceName+"' may not be closed at this location\n";
+	return "Potential resource leak: '"+resourceName+"' may not be closed at this location\n"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 protected String potentialOrDefiniteLeak(String string) {
-	return "Potential resource leak: '"+string+"' may not be closed\n";
+	return "Potential resource leak: '"+string+"' may not be closed\n"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 /** prefix for a field declaration that should be seen as a resource owner */
 protected String fieldDeclPrefix() {
@@ -121,7 +121,7 @@ protected String fieldDeclPrefix() {
 
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // a method uses an AutoCloseable without ever closing it.
-public void test056() {
+public void test056() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.WARNING);
@@ -154,7 +154,7 @@ public void test056() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // a method uses an AutoCloseable and closes it but not protected by t-w-r nor regular try-finally
-public void test056a() {
+public void test056a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -185,7 +185,7 @@ public void test056a() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // a method uses an AutoCloseable and closes it properly in a finally block
-public void test056b() {
+public void test056b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -224,7 +224,7 @@ public void test056b() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // a method uses an AutoCloseable properly within try-with-resources.
-public void test056c() {
+public void test056c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.WARNING);
@@ -262,7 +262,7 @@ public void test056c() {
 // a method uses two AutoCloseables (testing independent analysis)
 //- one closeable may be unclosed at a conditional return
 //- the other is only conditionally closed
-public void test056d() {
+public void test056d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.WARNING);
@@ -310,7 +310,7 @@ public void test056d() {
 // a method uses two AutoCloseables (testing independent analysis)
 //- one closeable may be unclosed at a conditional return
 //- the other is only conditionally closed
-public void test056d_suppress() {
+public void test056d_suppress() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	enableAllWarningsForIrritants(options, IrritantSet.RESOURCE);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -366,7 +366,7 @@ public void test056d_suppress() {
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // Bug 362332 - Only report potential leak when closeable not created in the local scope
 // one method returns an AutoCleasble, a second method uses this object without ever closing it.
-public void test056e() {
+public void test056e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -405,7 +405,7 @@ protected String getTest056e_log() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // a method explicitly closes its AutoCloseable rather than using t-w-r
-public void test056f() {
+public void test056f() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.WARNING);
@@ -440,7 +440,7 @@ public void test056f() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // an AutoCloseable local is re-assigned
-public void test056g() {
+public void test056g() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
 	options.put(JavaCore.COMPILER_PB_POTENTIALLY_UNCLOSED_CLOSEABLE, CompilerOptions.WARNING);
@@ -477,7 +477,7 @@ public void test056g() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // an AutoCloseable local is re-assigned after null-assigned
-public void test056g2() {
+public void test056g2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
 	options.put(JavaCore.COMPILER_PB_POTENTIALLY_UNCLOSED_CLOSEABLE, CompilerOptions.WARNING);
@@ -514,7 +514,7 @@ public void test056g2() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // two AutoCloseables at different nesting levels (anonymous local type)
-public void test056h() {
+public void test056h() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
 	options.put(JavaCore.COMPILER_PB_POTENTIALLY_UNCLOSED_CLOSEABLE, CompilerOptions.WARNING);
@@ -559,7 +559,7 @@ public void test056h() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // three AutoCloseables in different blocks of the same method
-public void test056i() {
+public void test056i() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
 	options.put(JavaCore.COMPILER_PB_POTENTIALLY_UNCLOSED_CLOSEABLE, CompilerOptions.WARNING);
@@ -608,7 +608,7 @@ public void test056i() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // three AutoCloseables in different blocks of the same method - problems ignored
-public void test056i_ignore() {
+public void test056i_ignore() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNCLOSED_CLOSEABLE, CompilerOptions.IGNORE);
 	options.put(JavaCore.COMPILER_PB_POTENTIALLY_UNCLOSED_CLOSEABLE, CompilerOptions.IGNORE);
@@ -648,7 +648,7 @@ public void test056i_ignore() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // three AutoCloseables in different blocks of the same method
-public void test056i2() {
+public void test056i2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
 	options.put(JavaCore.COMPILER_PB_POTENTIALLY_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
@@ -693,7 +693,7 @@ public void test056i2() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // a method uses an AutoCloseable without closing it locally but passing as arg to another method
-public void test056j() {
+public void test056j() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -715,7 +715,7 @@ public void test056j() {
 			"    }\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 7)\n" +
 		"	FileReader fileReader = new FileReader(file);\n" +
 		"	           ^^^^^^^^^^\n" +
@@ -725,7 +725,7 @@ public void test056j() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // a method uses an AutoCloseable without closing it locally but passing as arg to another method
-public void test056jconditional() {
+public void test056jconditional() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -749,7 +749,7 @@ public void test056jconditional() {
 			"    }\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 7)\n" +
 		"	FileReader fileReader = new FileReader(file);\n" +
 		"	           ^^^^^^^^^^\n" +
@@ -761,7 +761,7 @@ public void test056jconditional() {
 // many locals, some are AutoCloseable.
 // Unfortunately analysis cannot respect how exception exits may affect ra3 and rb3,
 // doing so would create false positives.
-public void test056k() {
+public void test056k() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.WARNING);
@@ -848,13 +848,13 @@ public void test056k() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // various non-problems
-public void test056l() {
+public void test056l() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportExplicitlyClosedAutoCloseable, CompilerOptions.ERROR);
 	String expectedProblems =
-				"----------\n" +
+				"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in X.java (at line 8)\n" +
 				"	FileReader fileReader = getReader();\n" +
 				"	           ^^^^^^^^^^\n" +
@@ -911,7 +911,7 @@ public void test056l() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // nested try with early exit
-public void test056m() {
+public void test056m() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -951,7 +951,7 @@ public void test056m() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // nested try should not interfere with earlier analysis.
-public void test056n() {
+public void test056n() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -997,7 +997,7 @@ public void test056n() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // if close is guarded by null check this should still be recognized as definitely closed
-public void test056o() {
+public void test056o() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -1040,7 +1040,7 @@ public void test056o() {
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // Bug 362332 - Only report potential leak when closeable not created in the local scope
 // a method uses an AutoCloseable without ever closing it, type from a type variable
-public void test056p() {
+public void test056p() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -1066,7 +1066,7 @@ public void test056p() {
 			"    }\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 8)\n" +
 		"	T fileReader = newReader(file);\n" +
 		"	  ^^^^^^^^^^\n" +
@@ -1076,7 +1076,7 @@ public void test056p() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // closed in dead code
-public void test056q() {
+public void test056q() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
 	options.put(JavaCore.COMPILER_PB_POTENTIALLY_UNCLOSED_CLOSEABLE, CompilerOptions.WARNING);
@@ -1122,7 +1122,7 @@ public void test056q() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // properly closed, dead code in between
-public void test056r() {
+public void test056r() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
 	options.put(JavaCore.COMPILER_PB_POTENTIALLY_UNCLOSED_CLOSEABLE, CompilerOptions.WARNING);
@@ -1173,7 +1173,7 @@ public void test056r() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // resource inside t-w-r is re-assigned, shouldn't even record an errorLocation
-public void test056s() {
+public void test056s() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
 	options.put(JavaCore.COMPILER_PB_POTENTIALLY_UNCLOSED_CLOSEABLE, CompilerOptions.WARNING);
@@ -1211,7 +1211,7 @@ public void test056s() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // resource is closed, dead code follows
-public void test056t() {
+public void test056t() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
 	options.put(JavaCore.COMPILER_PB_POTENTIALLY_UNCLOSED_CLOSEABLE, CompilerOptions.WARNING);
@@ -1248,7 +1248,7 @@ public void test056t() {
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // resource is reassigned within t-w-r with different resource
 // was initially broken due to https://bugs.eclipse.org/358827
-public void test056u() {
+public void test056u() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
 	options.put(JavaCore.COMPILER_PB_POTENTIALLY_UNCLOSED_CLOSEABLE, CompilerOptions.WARNING);
@@ -1300,7 +1300,7 @@ public void test056u() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // scope-related pbs reported in https://bugs.eclipse.org/349326#c70 and https://bugs.eclipse.org/349326#c82
-public void test056v() {
+public void test056v() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
 	options.put(JavaCore.COMPILER_PB_POTENTIALLY_UNCLOSED_CLOSEABLE, CompilerOptions.WARNING);
@@ -1380,7 +1380,7 @@ public void test056v() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // end of method is dead end, but before we have both a close() and an early return
-public void test056w() {
+public void test056w() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
 	options.put(JavaCore.COMPILER_PB_POTENTIALLY_UNCLOSED_CLOSEABLE, CompilerOptions.WARNING);
@@ -1418,7 +1418,7 @@ public void test056w() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // different early exits, if no close seen report as definitely unclosed
-public void test056x() {
+public void test056x() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
 	options.put(JavaCore.COMPILER_PB_POTENTIALLY_UNCLOSED_CLOSEABLE, CompilerOptions.WARNING);
@@ -1457,7 +1457,7 @@ public void test056x() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // nested method passes the resource to outside code
-public void test056y() {
+public void test056y() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
 	options.put(JavaCore.COMPILER_PB_POTENTIALLY_UNCLOSED_CLOSEABLE, CompilerOptions.WARNING);
@@ -1507,7 +1507,7 @@ protected String getTest056y_log() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // resource assigned to second local and is (potentially) closed on the latter
-public void test056z() {
+public void test056z() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
 	options.put(JavaCore.COMPILER_PB_POTENTIALLY_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
@@ -1531,7 +1531,7 @@ public void test056z() {
 			"    void bar(FileReader r) {}\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 9)\n" +
 		"	FileReader reader17a = new FileReader(\"file\");\n" +
 		"	           ^^^^^^^^^\n" +
@@ -1541,7 +1541,7 @@ public void test056z() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // multiple early exists from nested scopes (always closed)
-public void test056zz() {
+public void test056zz() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
 	options.put(JavaCore.COMPILER_PB_POTENTIALLY_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
@@ -1577,7 +1577,7 @@ public void test056zz() {
 }
 // Bug 349326 - [1.7] new warning for missing try-with-resources
 // multiple early exists from nested scopes (never closed)
-public void test056zzz() {
+public void test056zzz() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
 	options.put(JavaCore.COMPILER_PB_POTENTIALLY_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
@@ -1612,7 +1612,7 @@ public void test056zzz() {
 }
 // Bug 359334 - Analysis for resource leak warnings does not consider exceptions as method exit points
 // explicit throw is a true method exit here
-public void test056throw1() {
+public void test056throw1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
 	options.put(JavaCore.COMPILER_PB_POTENTIALLY_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
@@ -1650,7 +1650,7 @@ public void test056throw1() {
 }
 // Bug 359334 - Analysis for resource leak warnings does not consider exceptions as method exit points
 // close() within finally provides protection for throw
-public void test056throw2() {
+public void test056throw2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
 	options.put(JavaCore.COMPILER_PB_POTENTIALLY_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
@@ -1716,7 +1716,7 @@ public void test056throw2() {
 }
 // Bug 359334 - Analysis for resource leak warnings does not consider exceptions as method exit points
 // close() nested within finally provides protection for throw
-public void test056throw3() {
+public void test056throw3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
 	options.put(JavaCore.COMPILER_PB_POTENTIALLY_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
@@ -1753,7 +1753,7 @@ public void test056throw3() {
 }
 // Bug 359334 - Analysis for resource leak warnings does not consider exceptions as method exit points
 // additional boolean should shed doubt on whether we reach the close() call
-public void test056throw4() {
+public void test056throw4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
 	options.put(JavaCore.COMPILER_PB_POTENTIALLY_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
@@ -1795,7 +1795,7 @@ public void test056throw4() {
 }
 // Bug 359334 - Analysis for resource leak warnings does not consider exceptions as method exit points
 // similar to test056throw3() but indirectly calling close(), so doubts remain.
-public void test056throw5() {
+public void test056throw5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
 	options.put(JavaCore.COMPILER_PB_POTENTIALLY_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
@@ -1820,7 +1820,7 @@ public void test056throw5() {
 			"    void doClose(FileReader r) { try { r.close(); } catch (java.io.IOException ex) {}}\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 7)\n" +
 		"	throw new Exception(); // should warn \'may not\' here\n" +
 		"	^^^^^^^^^^^^^^^^^^^^^^\n" +
@@ -1836,7 +1836,7 @@ public void test056throw5() {
 // Bug 358903 - Filter practically unimportant resource leak warnings
 // Bug 360908 - Avoid resource leak warning when the underlying/chained resource is closed explicitly
 // a resource wrapper is not closed but the underlying resource is
-public void test061a() {
+public void test061a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -1881,7 +1881,7 @@ public void test061a() {
 }
 // Bug 358903 - Filter practically unimportant resource leak warnings
 // a closeable without OS resource is not closed
-public void test061b() {
+public void test061b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -1909,7 +1909,7 @@ public void test061b() {
 }
 // Bug 358903 - Filter practically unimportant resource leak warnings
 // a resource wrapper is not closed but the underlying closeable is resource-free
-public void test061c() {
+public void test061c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -1944,7 +1944,7 @@ public void test061c() {
 }
 // Bug 358903 - Filter practically unimportant resource leak warnings
 // a resource wrapper is not closed neither is the underlying resource
-public void test061d() {
+public void test061d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.WARNING);
@@ -1993,14 +1993,14 @@ public void test061d() {
 // Bug 358903 - Filter practically unimportant resource leak warnings
 // Bug 361073 - Avoid resource leak warning when the top level resource is closed explicitly
 // a resource wrapper is closed closing also the underlying resource
-public void test061e() {
+public void test061e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	this.runConformTest(
 		new String[] {
 			"X.java",
-			"import java.io.File;\n" +
+			"import java.io.File;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"import java.io.BufferedInputStream;\n" +
 			"import java.io.FileInputStream;\n" +
 			"import java.io.IOException;\n" +
@@ -2040,7 +2040,7 @@ public void test061e() {
 // Bug 358903 - Filter practically unimportant resource leak warnings
 // Bug 361073 - Avoid resource leak warning when the top level resource is closed explicitly
 // a resource wrapper is closed closing also the underlying resource - original test case
-public void test061f() throws IOException {
+public void test061f() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -2048,7 +2048,7 @@ public void test061f() throws IOException {
 	this.runConformTest(
 		new String[] {
 			"X.java",
-			"import java.io.InputStream;\n" +
+			"import java.io.InputStream;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"import java.io.InputStreamReader;\n" +
 			"import java.io.BufferedReader;\n" +
 			"import java.io.IOException;\n" +
@@ -2089,7 +2089,7 @@ public void test061f() throws IOException {
 // Bug 358903 - Filter practically unimportant resource leak warnings
 // Bug 361073 - Avoid resource leak warning when the top level resource is closed explicitly
 // a resource wrapper is closed closing also the underlying resource - from a real-world example
-public void test061f2() throws IOException {
+public void test061f2() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -2127,7 +2127,7 @@ public void test061f2() throws IOException {
 // Bug 358903 - Filter practically unimportant resource leak warnings
 // Bug 361073 - Avoid resource leak warning when the top level resource is closed explicitly
 // a resource wrapper is sent to another method affecting also the underlying resource - from a real-world example
-public void test061f3() throws IOException {
+public void test061f3() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -2154,7 +2154,7 @@ public void test061f3() throws IOException {
 			"	}\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 10)\n" +
 		"	return loadProfile(stream);\n" +
 		"	^^^^^^^^^^^^^^^^^^^^^^^^^^^\n" +
@@ -2165,7 +2165,7 @@ public void test061f3() throws IOException {
 // Bug 358903 - Filter practically unimportant resource leak warnings
 // Bug 360908 - Avoid resource leak warning when the underlying/chained resource is closed explicitly
 // Different points in a resource chain are closed
-public void test061g() {
+public void test061g() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -2213,7 +2213,7 @@ public void test061g() {
 // Bug 358903 - Filter practically unimportant resource leak warnings
 // Bug 360908 - Avoid resource leak warning when the underlying/chained resource is closed explicitly
 // Different points in a resource chain are potentially closed
-public void test061h() {
+public void test061h() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -2270,7 +2270,7 @@ public void test061h() {
 }
 // Bug 358903 - Filter practically unimportant resource leak warnings
 // local var is re-used for two levels of wrappers
-public void test061i() {
+public void test061i() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -2319,7 +2319,7 @@ public void test061i() {
 }
 // Bug 358903 - Filter practically unimportant resource leak warnings
 // self-wrapping a method argument (caused NPE UnconditionalFlowInfo.markAsDefinitelyNull(..)).
-public void test061j() {
+public void test061j() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -2350,7 +2350,7 @@ public void test061j() {
 }
 // Bug 358903 - Filter practically unimportant resource leak warnings
 // a wrapper is created in a return statement
-public void test061k() throws IOException {
+public void test061k() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -2377,14 +2377,14 @@ public void test061k() throws IOException {
 }
 // Bug 358903 - Filter practically unimportant resource leak warnings
 // a closeable is assigned to a field
-public void test061l() throws IOException {
+public void test061l() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	this.runConformTest(
 		new String[] {
 			"X.java",
-			"import java.io.File;\n" +
+			"import java.io.File;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"import java.io.FileInputStream;\n" +
 			"import java.io.BufferedInputStream;\n" +
 			"import java.io.IOException;\n" +
@@ -2402,7 +2402,7 @@ public void test061l() throws IOException {
 }
 // Bug 361407 - Resource leak warning when resource is assigned to a field outside of constructor
 // a closeable is assigned to a field - constructor vs. method
-public void test061l2() throws IOException {
+public void test061l2() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -2460,7 +2460,7 @@ protected String getTest061l2_log() {
 
 // Bug 361407 - Resource leak warning when resource is assigned to a field outside of constructor
 // a closeable is not assigned to a field - constructor vs. method
-public void test061l3() throws IOException {
+public void test061l3() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -2489,7 +2489,7 @@ public void test061l3() throws IOException {
 			"    static int hashCode(Object o) { return 13; }\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in xy\\Leaks.java (at line 9)\n" +
 		"	FileInputStream fileInputStream= new FileInputStream(name);\n" +
 		"	                ^^^^^^^^^^^^^^^\n" +
@@ -2505,7 +2505,7 @@ public void test061l3() throws IOException {
 // Bug 358903 - Filter practically unimportant resource leak warnings
 // a closeable is passed to another method in a return statement
 // example constructed after org.eclipse.equinox.internal.p2.artifact.repository.simple.SimpleArtifactRepository#getArtifact(..)
-public void test061m() throws IOException {
+public void test061m() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -2535,7 +2535,7 @@ public void test061m() throws IOException {
 			"}\n"
 		},
 		// TODO: also these warnings *might* be avoidable by detecting check(s) as a wrapper creation??
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 10)\n" +
 		"	return check(new BufferedInputStream(s));\n" +
 		"	             ^^^^^^^^^^^^^^^^^^^^^^^^^^\n" +
@@ -2555,7 +2555,7 @@ public void test061m() throws IOException {
 }
 // Bug 358903 - Filter practically unimportant resource leak warnings
 // a resource wrapper does not wrap any provided resource
-public void test061n() {
+public void test061n() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -2581,7 +2581,7 @@ public void test061n() {
 }
 // Bug 358903 - Filter practically unimportant resource leak warnings
 // a resource wrapper is closed only in its local block, underlying resource may leak
-public void test061o() {
+public void test061o() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -2614,7 +2614,7 @@ public void test061o() {
 }
 // Bug 358903 - Filter practically unimportant resource leak warnings
 // a resource wrapper is conditionally allocated but not closed - from a real-world example
-public void test061f4() throws IOException {
+public void test061f4() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -2646,7 +2646,7 @@ public void test061f4() throws IOException {
 }
 // Bug 358903 - Filter practically unimportant resource leak warnings
 // a t-w-r wraps an existing resource
-public void test061p() {
+public void test061p() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -2675,7 +2675,7 @@ public void test061p() {
 // Bug 358903 - Filter practically unimportant resource leak warnings
 // a t-w-r potentially wraps an existing resource
 // DISABLED, fails because we currently don't include t-w-r managed resources in the analysis
-public void _test061q() {
+public void _test061q() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -2705,7 +2705,7 @@ public void _test061q() {
 }
 // Bug 358903 - Filter practically unimportant resource leak warnings
 // the inner from a wrapper is returned
-public void test061r() {
+public void test061r() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -2734,7 +2734,7 @@ public void test061r() {
 }
 // Bug 358903 - Filter practically unimportant resource leak warnings
 // a wrapper is forgotten, the inner is closed afterwards
-public void test061s() {
+public void test061s() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -2764,7 +2764,7 @@ public void test061s() {
 }
 // Bug 362331 - Resource leak not detected when closeable not assigned to variable
 // a resource is never assigned
-public void test062a() throws IOException {
+public void test062a() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -2790,7 +2790,7 @@ public void test062a() throws IOException {
 }
 // Bug 362331 - Resource leak not detected when closeable not assigned to variable
 // a freshly allocated resource is immediately closed
-public void test062b() throws IOException {
+public void test062b() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -2815,7 +2815,7 @@ public void test062b() throws IOException {
 }
 // Bug 362331 - Resource leak not detected when closeable not assigned to variable
 // a resource is directly passed to another method
-public void test062c() throws IOException {
+public void test062c() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -2835,7 +2835,7 @@ public void test062c() throws IOException {
 			"    }\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 6)\n" +
 		"	writeIt(new FileOutputStream(new File(\"C:\\temp\\foo.txt\")));\n" +
 		"	        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n" +
@@ -2845,7 +2845,7 @@ public void test062c() throws IOException {
 }
 // Bug 362331 - Resource leak not detected when closeable not assigned to variable
 // a resource is not used
-public void test062d() throws IOException {
+public void test062d() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -2871,7 +2871,7 @@ public void test062d() throws IOException {
 }
 // Bug 362332 - Only report potential leak when closeable not created in the local scope
 // a wrapper is obtained from another method
-public void test063a() throws IOException {
+public void test063a() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -2895,7 +2895,7 @@ public void test063a() throws IOException {
 			"    }\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 7)\n" +
 		"	FileInputStream stream = new FileInputStream(file);\n" +
 		"	                ^^^^^^\n" +
@@ -2915,7 +2915,7 @@ public void test063a() throws IOException {
 }
 // Bug 362332 - Only report potential leak when closeable not created in the local scope
 // a wrapper is obtained from a field read
-public void test063b() throws IOException {
+public void test063b() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -2943,7 +2943,7 @@ public void test063b() throws IOException {
 }
 // Bug 362332 - Only report potential leak when closeable not created in the local scope
 // a wrapper is assigned to a field
-public void test063c() throws IOException {
+public void test063c() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -2970,7 +2970,7 @@ protected String getTest063c_log() {
 }
 // Bug 362332 - Only report potential leak when closeable not created in the local scope
 // a resource is obtained as a method argument and/or assigned with a cast
-public void test063d() throws IOException {
+public void test063d() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -3012,7 +3012,7 @@ public void test063d() throws IOException {
 }
 // Bug 362332 - Only report potential leak when closeable not created in the local scope
 // a resource is obtained from a field read, then re-assigned
-public void test063e() {
+public void test063e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -3039,9 +3039,9 @@ public void test063e() {
 }
 // Bug 368709 - Endless loop in FakedTrackingVariable.markPassedToOutside
 // original test case from jgit
-public void testBug368709a() {
+public void testBug368709a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String JDK8225763_Fix = isJRE25Plus ?
-			"2. ERROR in X.java (at line 17)\n" +
+			"2. ERROR in X.java (at line 17)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	in = new BufferedInputStream(new InflaterInputStream(in, wc.inflater(), 8192), 8192);\n" +
 			"	                                                         ^^^^^^^^^^^^^\n" +
 			potentialOrDefiniteLeak("<unassigned Closeable value>") +
@@ -3097,7 +3097,7 @@ public void testBug368709a() {
 			"    public int read() { return 0; }\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 15)\n" +
 		"	return wc.open(getObjectId(), type).openStream();\n" +
 		"	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n" +
@@ -3113,9 +3113,9 @@ public void testBug368709a() {
 }
 // Bug 368709 - Endless loop in FakedTrackingVariable.markPassedToOutside
 // minimal test case: constructing an indirect self-wrapper
-public void testBug368709b() {
+public void testBug368709b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String JDK8225763_Fix = isJRE25Plus ?
-			"2. ERROR in X.java (at line 6)\n" +
+			"2. ERROR in X.java (at line 6)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	in = new BufferedInputStream(new InflaterInputStream(in, inflater(), 8192), 8192);\n" +
 			"	                                                         ^^^^^^^^^^\n" +
 			potentialOrDefiniteLeak("<unassigned Closeable value>") +
@@ -3139,7 +3139,7 @@ public void testBug368709b() {
 			"  void process(InputStream is) { }\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 5)\n" +
 		"	InputStream in = new FileInputStream(\"somefile\");\n" +
 		"	            ^^\n" +
@@ -3151,7 +3151,7 @@ public void testBug368709b() {
 
 // Bug 368546 - [compiler][resource] Avoid remaining false positives found when compiling the Eclipse SDK
 // example from comment 3
-public void test064() {
+public void test064() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -3185,7 +3185,7 @@ public void test064() {
 // example from comment 10
 // disabled, because basic null-analysis machinery doesn't support this pattern
 // see also Bug 370424 - [compiler][null] throw-catch analysis for null flow could be more precise
-public void _test065() {
+public void _test065() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -3225,7 +3225,7 @@ public void _test065() {
 
 // Bug 368546 - [compiler][resource] Avoid remaining false positives found when compiling the Eclipse SDK
 // example from comment 11
-public void test066() {
+public void test066() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -3258,7 +3258,7 @@ public void test066() {
 }
 // Bug 368546 - [compiler][resource] Avoid remaining false positives found when compiling the Eclipse SDK
 // example from comment 11 - variant with closing top-level resource
-public void test066b() {
+public void test066b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -3294,7 +3294,7 @@ public void test066b() {
 // example from comment 12
 // Red herring (disabled): warning says "potential" because in the exception case no resource
 // would actually be allocated.
-public void _test067() {
+public void _test067() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -3322,7 +3322,7 @@ public void _test067() {
 
 // Bug 368546 - [compiler][resource] Avoid remaining false positives found when compiling the Eclipse SDK
 // example from comment 12
-public void test067b() {
+public void test067b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -3350,7 +3350,7 @@ public void test067b() {
 
 // Bug 368546 - [compiler][resource] Avoid remaining false positives found when compiling the Eclipse SDK
 // example from comment 13
-public void test068() {
+public void test068() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -3386,7 +3386,7 @@ public void test068() {
 
 // Bug 368546 - [compiler][resource] Avoid remaining false positives found when compiling the Eclipse SDK
 // example from comment 16
-public void test069() {
+public void test069() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -3425,7 +3425,7 @@ public void test069() {
 
 // Bug 368546 - [compiler][resource] Avoid remaining false positives found when compiling the Eclipse SDK
 // referenced in array initializer
-public void test070() {
+public void test070() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -3452,7 +3452,7 @@ public void test070() {
 
 // Bug 368546 - [compiler][resource] Avoid remaining false positives found when compiling the Eclipse SDK
 // referenced in array initializer
-public void test071() {
+public void test071() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -3497,7 +3497,7 @@ public void test071() {
 // referenced in array initializer
 // disabled because it would require correlation analysis between the tracking variable and its original
 // need to pass to downstream: either (nonnull & open) or (null)
-public void _test071b() {
+public void _test071b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -3539,7 +3539,7 @@ public void _test071b() {
 
 // Bug 368546 - [compiler][resource] Avoid remaining false positives found when compiling the Eclipse SDK
 // throw inside loop inside try - while closed in finally
-public void test072() {
+public void test072() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -3578,7 +3578,7 @@ public void test072() {
 
 // Bug 368546 - [compiler][resource] Avoid remaining false positives found when compiling the Eclipse SDK
 // unspecific parameter is casted into a resource, yet need to mark as OWNED_BY_OUTSIDE
-public void test073() {
+public void test073() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -3606,7 +3606,7 @@ public void test073() {
 
 // Bug 368546 - [compiler][resource] Avoid remaining false positives found when compiling the Eclipse SDK
 // status after nested try-finally
-public void test074() {
+public void test074() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -3641,7 +3641,7 @@ public void test074() {
 }
 // Bug 370639 - [compiler][resource] restore the default for resource leak warnings
 // check that the default is warning
-public void test075() {
+public void test075() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runLeakWarningTest(
 		new String[] {
 			"X.java",
@@ -3664,7 +3664,7 @@ public void test075() {
 		getCompilerOptions());
 }
 // Bug 385415 - Incorrect resource leak detection
-public void testBug385415() {
+public void testBug385415() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	runConformTest(
@@ -3694,7 +3694,7 @@ public void testBug385415() {
 // Bug 361073 - Avoid resource leak warning when the top level resource is closed explicitly
 // test case from comment 7
 // Duplicate of Bug 385415 - Incorrect resource leak detection
-public void testBug361073c7() {
+public void testBug361073c7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	runConformTest(
@@ -3732,7 +3732,7 @@ public void testBug361073c7() {
 
 // Bug 386534 - "Potential resource leak" false positive warning
 // DISABLED
-public void _testBug386534() {
+public void _testBug386534() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	runConformTest(
@@ -3785,7 +3785,7 @@ public void _testBug386534() {
 }
 
 // https://bugs.eclipse.org/388996 - [compiler][resource] Incorrect 'potential resource leak'
-public void testBug388996() {
+public void testBug388996() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	runConformTest(
@@ -3827,7 +3827,7 @@ public void testBug388996() {
 }
 
 // https://bugs.eclipse.org/386534 -  [compiler][resource] "Potential resource leak" false positive warning
-public void testBug386534() {
+public void testBug386534() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	runConformTest(
@@ -3880,7 +3880,7 @@ public void testBug386534() {
 }
 
 //https://bugs.eclipse.org/386534 -  [compiler][resource] "Potential resource leak" false positive warning
-public void testBug394768() {
+public void testBug394768() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -3923,7 +3923,7 @@ public void testBug394768() {
 
 // https://bugs.eclipse.org/386534 -  [compiler][resource] "Potential resource leak" false positive warning
 // variation: 2nd branch closes and nulls the newly acquired resource
-public void testBug394768_1() {
+public void testBug394768_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -3969,7 +3969,7 @@ public void testBug394768_1() {
 
 // Bug 381445 - [compiler][resource] Can the resource leak check be made aware of Closeables.closeQuietly?
 // A resource is closed using various known close helpers
-public void testBug381445_1() {
+public void testBug381445_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -4012,7 +4012,7 @@ public void testBug381445_1() {
 			"	public static void closeQuietly(java.io.Closeable closeable) {}\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in Bug381445.java (at line 11)\n" +
 		"	InputStream stream4 = new FileInputStream(path);\n" +
 		"	            ^^^^^^^\n" +
@@ -4023,7 +4023,7 @@ public void testBug381445_1() {
 
 // Bug 405569 - Resource leak check false positive when using DbUtils.closeQuietly
 // A resource is closed using more known close helpers
-public void testBug381445_1b() {
+public void testBug381445_1b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -4064,7 +4064,7 @@ public void testBug381445_1b() {
 			"	public static void closeQuietly(java.lang.AutoCloseable closeable) {}\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in Bug381445.java (at line 8)\n" +
 		"	ResultSet rset2 = stat.executeQuery(q2);\n" +
 		"	          ^^^^^\n" +
@@ -4075,7 +4075,7 @@ public void testBug381445_1b() {
 
 // Bug 381445 - [compiler][resource] Can the resource leak check be made aware of Closeables.closeQuietly?
 // A resource is closed in different places of the flow
-public void testBug381445_2() {
+public void testBug381445_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -4120,7 +4120,7 @@ public void testBug381445_2() {
 
 // Bug 381445 - [compiler][resource] Can the resource leak check be made aware of Closeables.closeQuietly?
 // A close helper is referenced in various ways:
-public void testBug381445_3() {
+public void testBug381445_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -4175,14 +4175,14 @@ public void testBug381445_3() {
 
 // Bug 395977 - Resource leak warning behavior possibly incorrect for anonymous inner class
 // original test case
-public void testBug395977() {
+public void testBug395977() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	runConformTest(
 		new String[] {
 			"WriterTest.java",
-			"import java.io.*;\n" +
+			"import java.io.*;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"\n" +
 			"public class WriterTest implements Runnable\n" +
 			"{\n" +
@@ -4234,14 +4234,14 @@ public void testBug395977() {
 
 //Bug 395977 - Resource leak warning behavior possibly incorrect for anonymous inner class
 //variant with named local class - accept as a secure resource wrapper since no close method
-public void testBug395977_1() {
+public void testBug395977_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	runConformTest(
 		new String[] {
 			"WriterTest.java",
-			"import java.io.*;\n" +
+			"import java.io.*;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"\n" +
 			"public class WriterTest implements Runnable\n" +
 			"{\n" +
@@ -4294,14 +4294,14 @@ public void testBug395977_1() {
 }
 //Bug 395977 - Resource leak warning behavior possibly incorrect for anonymous inner class
 //variant with named local class - don't accept as a secure resource wrapper since close() method exist
-public void testBug395977_1a() {
+public void testBug395977_1a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	runLeakTest(
 		new String[] {
 			"WriterTest.java",
-			"import java.io.*;\n" +
+			"import java.io.*;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"\n" +
 			"public class WriterTest implements Runnable\n" +
 			"{\n" +
@@ -4350,7 +4350,7 @@ public void testBug395977_1a() {
 			"   }\n" +
 			"}"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in WriterTest.java (at line 38)\n" +
 		"	};      m_Writer = new MyBufferedWriter(new OutputStreamWriter(new FileOutputStream(\"file\"), \"UTF-8\"));\n" +
 		"	                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n" +
@@ -4361,14 +4361,14 @@ public void testBug395977_1a() {
 
 // Bug 395977 - Resource leak warning behavior possibly incorrect for anonymous inner class
 // anonymous class tries to "cheat" by overriding close()
-public void testBug395977_2() {
+public void testBug395977_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	runLeakTest(
 		new String[] {
 			"WriterTest.java",
-			"import java.io.*;\n" +
+			"import java.io.*;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"\n" +
 			"public class WriterTest implements Runnable\n" +
 			"{\n" +
@@ -4408,7 +4408,7 @@ public void testBug395977_2() {
 			"   }\n" +
 			"}"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in WriterTest.java (at line 27)\n" +
 		"	m_Writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(\"file\"), \"UTF-8\"))\n" +
 		"	                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n" +
@@ -4421,7 +4421,7 @@ public void testBug395977_2() {
 // include line number when reporting against <unassigned Closeable value>
 // UPDATE: never complain 'at this location' against unassigned Closeable,
 // hence no line number is needed.
-public void testBug376053() {
+public void testBug376053() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -4445,7 +4445,7 @@ public void testBug376053() {
 			"    }\n" +
 			"}"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in Try.java (at line 8)\n" +
 		"	System.setOut(new PrintStream(\"log.txt\"));\n" +
 		"	              ^^^^^^^^^^^^^^^^^^^^^^^^^^\n" +
@@ -4455,7 +4455,7 @@ public void testBug376053() {
 }
 
 // https://bugs.eclipse.org/411098 - [compiler][resource] Invalid Resource Leak Warning using ternary operator inside try-with-resource
-public void testBug411098_test1() {
+public void testBug411098_test1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -4475,7 +4475,7 @@ public void testBug411098_test1() {
 }
 
 // https://bugs.eclipse.org/411098 - [compiler][resource] Invalid Resource Leak Warning using ternary operator inside try-with-resource
-public void testBug411098_test2() {
+public void testBug411098_test2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -4492,7 +4492,7 @@ public void testBug411098_test2() {
 			"  }\n" +
 			"}"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in A.java (at line 4)\n" +
 		"	try(FileInputStream in = create(new FileInputStream(\"a\"))){}\n" +
 		"	                                ^^^^^^^^^^^^^^^^^^^^^^^^\n" +
@@ -4503,7 +4503,7 @@ public void testBug411098_test2() {
 }
 
 // https://bugs.eclipse.org/411098 - [compiler][resource] Invalid Resource Leak Warning using ternary operator inside try-with-resource
-public void testBug411098_test3() {
+public void testBug411098_test3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -4532,7 +4532,7 @@ public void testBug411098_test3() {
 }
 
 // https://bugs.eclipse.org/411098 - [compiler][resource] Invalid Resource Leak Warning using ternary operator inside try-with-resource
-public void testBug411098_test4() {
+public void testBug411098_test4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -4556,7 +4556,7 @@ public void testBug411098_test4() {
 }
 
 // https://bugs.eclipse.org/411098 - [compiler][resource] Invalid Resource Leak Warning using ternary operator inside try-with-resource
-public void testBug411098_test5() {
+public void testBug411098_test5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -4576,7 +4576,7 @@ public void testBug411098_test5() {
 }
 
 // https://bugs.eclipse.org/411098 - [compiler][resource] Invalid Resource Leak Warning using ternary operator inside try-with-resource
-public void testBug411098_test6() {
+public void testBug411098_test6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -4597,7 +4597,7 @@ public void testBug411098_test6() {
 
 // https://bugs.eclipse.org/411098 - [compiler][resource] Invalid Resource Leak Warning using ternary operator inside try-with-resource
 // challenge nested resource allocations
-public void testBug411098_test7() {
+public void testBug411098_test7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -4618,7 +4618,7 @@ public void testBug411098_test7() {
 
 // https://bugs.eclipse.org/411098 - [compiler][resource] Invalid Resource Leak Warning using ternary operator inside try-with-resource
 // field read should not trigger a warning.
-public void testBug411098_comment19() {
+public void testBug411098_comment19() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -4639,7 +4639,7 @@ public void testBug411098_comment19() {
 		);
 }
 // normal java.util.stream.Stream doesn't hold on to any resources
-public void testStream1() {
+public void testStream1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -4659,7 +4659,7 @@ public void testStream1() {
 		);
 }
 // normal java.util.stream.IntStream doesn't hold on to any resources
-public void testStream1_Int() {
+public void testStream1_Int() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -4680,7 +4680,7 @@ public void testStream1_Int() {
 		);
 }
 // normal java.util.stream.{Double,Long}Stream doesn't hold on to any resources
-public void testStream1_Double_Long() {
+public void testStream1_Double_Long() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -4701,7 +4701,7 @@ public void testStream1_Double_Long() {
 		);
 }
 // normal java.util.stream.{Double,Long}Stream doesn't hold on to any resources
-public void testStreamEx_572707() {
+public void testStreamEx_572707() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -4720,7 +4720,7 @@ public void testStreamEx_572707() {
 		},
 		options);
 }
-public void testStreamEx_GH2919() {
+public void testStreamEx_GH2919() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -4740,7 +4740,7 @@ public void testStreamEx_GH2919() {
 		options);
 }
 // Functions java.nio.file.Files.x() returning *Stream* do produce a resource needing closing
-public void testStream2() {
+public void testStream2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -4766,7 +4766,7 @@ public void testStream2() {
 		);
 }
 // closeable, but Stream, but produced by Files.m, but only potentially closed:
-public void testStream3() {
+public void testStream3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -4793,7 +4793,7 @@ public void testStream3() {
 		);
 }
 // special stream from Files.m is properly handled by t-w-r
-public void testStream4() {
+public void testStream4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -4813,7 +4813,7 @@ public void testStream4() {
 		options
 		);
 }
-public void testBug415790_ex2() {
+public void testBug415790_ex2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -4842,7 +4842,7 @@ public void testBug415790_ex2() {
 		},
 		options);
 }
-public void testBug415790_ex4() {
+public void testBug415790_ex4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -4872,7 +4872,7 @@ public void testBug415790_ex4() {
 		},
 		options);
 }
-public void testBug371614_comment0() {
+public void testBug371614_comment0() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -4915,7 +4915,7 @@ public void testBug371614_comment0() {
 			"}\n" +
 			"\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in C.java (at line 14)\n" +
 		"	return;\n" +
 		"	^^^^^^^\n" +
@@ -4923,7 +4923,7 @@ public void testBug371614_comment0() {
 		"----------\n",
 		options);
 }
-public void testBug371614_comment2() {
+public void testBug371614_comment2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -4967,7 +4967,7 @@ public void testBug371614_comment2() {
 		},
 		options);
 }
-public void testBug371614_comment8() {
+public void testBug371614_comment8() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -4991,7 +4991,7 @@ public void testBug371614_comment8() {
 		},
 		options);
 }
-public void testBug462371_orig() {
+public void testBug462371_orig() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -5032,7 +5032,7 @@ public void testBug462371_orig() {
 		},
 		options);
 }
-public void _testBug462371_shouldWarn() {
+public void _testBug462371_shouldWarn() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -5080,7 +5080,7 @@ public void _testBug462371_shouldWarn() {
 		"----------\n",
 		options);
 }
-public void testBug421035() {
+public void testBug421035() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -5106,7 +5106,7 @@ public void testBug421035() {
 		},
 		options);
 }
-public void testBug444964() {
+public void testBug444964() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -5137,7 +5137,7 @@ public void testBug444964() {
 		},
 		options);
 }
-public void testBug397204() {
+public void testBug397204() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -5197,7 +5197,7 @@ public void testBug397204() {
 		},
 		options);
 }
-public void testBug397204_comment4() {
+public void testBug397204_comment4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -5219,7 +5219,7 @@ public void testBug397204_comment4() {
 		},
 		options);
 }
-public void testBug433510() {
+public void testBug433510() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -5243,7 +5243,7 @@ public void testBug433510() {
 		},
 		options);
 }
-public void testBug440282() {
+public void testBug440282() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -5332,7 +5332,7 @@ protected String getTestBug440282_log() {
 		"Resource leak: \'<unassigned Closeable value>\' is never closed\n" +
 		"----------\n";
 }
-public void testBug390064() {
+public void testBug390064() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -5387,7 +5387,7 @@ public void testBug390064() {
 		"----------\n",
 		options);
 }
-public void testBug396575() {
+public void testBug396575() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -5446,7 +5446,7 @@ public void testBug396575() {
 		"----------\n",
 		options);
 }
-public void testBug473317() {
+public void testBug473317() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> compilerOptions = getCompilerOptions();
 	compilerOptions.put(JavaCore.COMPILER_PB_SYNTHETIC_ACCESS_EMULATION, JavaCore.IGNORE);
 	Runner runner = new Runner();
@@ -5530,7 +5530,7 @@ public void testBug473317() {
 	runner.customOptions = compilerOptions;
 	runner.runWarningTest(); // javac warns about exception thrown from close() method
 }
-public void testBug541705() {
+public void testBug541705() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportExplicitlyClosedAutoCloseable, CompilerOptions.ERROR);
@@ -5559,7 +5559,7 @@ public void testBug541705() {
 	};
 	runner.runConformTest();
 }
-public void testBug541705b() {
+public void testBug541705b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK9) return; // variable used in t-w-r
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
@@ -5588,7 +5588,7 @@ public void testBug541705b() {
 	};
 	runner.runConformTest();
 }
-public void testBug542707_001() {
+public void testBug542707_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14) // switch expression
 		return;
 	Map options = getCompilerOptions();
@@ -5639,7 +5639,7 @@ public void testBug542707_001() {
 		"----------\n",
 		options);
 }
-public void testBug542707_002() {
+public void testBug542707_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14) return; // uses switch expression
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
@@ -5707,7 +5707,7 @@ public void testBug542707_002() {
 		"----------\n",
 		options);
 }
-public void testBug542707_003() {
+public void testBug542707_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14)
 		return;  // uses switch expression
 	Map options = getCompilerOptions();
@@ -5768,7 +5768,7 @@ public void testBug542707_003() {
 		"----------\n",
 		options);
 }
-public void testBug486506() {
+public void testBug486506() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
 	options.put(JavaCore.COMPILER_PB_POTENTIALLY_UNCLOSED_CLOSEABLE, CompilerOptions.ERROR);
@@ -5802,7 +5802,7 @@ public void testBug486506() {
 		"----------\n",
 		options);
 }
-public void testBug463320() {
+public void testBug463320() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -5831,7 +5831,7 @@ public void testBug463320() {
 			"    }\n" +
 			"}"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in Try17.java (at line 5)\n" +
 		"	String name= getZipFile().getName();\n" +
 		"	             ^^^^^^^^^^^^\n" +
@@ -5849,7 +5849,7 @@ public void testBug463320() {
 		"----------\n",
 		options);
 }
-public void testBug463320_comment8() {
+public void testBug463320_comment8() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -5875,7 +5875,7 @@ public void testBug463320_comment8() {
 			"	}\n" +
 			"}"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in Try17.java (at line 7)\n" +
 		"	System.out.println(FileSystems.getFileSystem(uri));\n" +
 		"	                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n" +
@@ -5883,7 +5883,7 @@ public void testBug463320_comment8() {
 		"----------\n",
 		options);
 }
-public void testBug558574() {
+public void testBug558574() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -5930,7 +5930,7 @@ public void testBug560460() {
 		},
 		options);
 }
-public void testBug463320_comment19() {
+public void testBug463320_comment19() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -5956,7 +5956,7 @@ public void testBug463320_comment19() {
 		},
 		options);
 }
-public void testBug552521() {
+public void testBug552521() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.WARNING);
@@ -6100,7 +6100,7 @@ public void testBug552521() {
 		"----------\n",
 		options);
 }
-public void testBug552521_comment14() {
+public void testBug552521_comment14() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -6125,7 +6125,7 @@ public void testBug552521_comment14() {
 			"	}\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 9)\n" +
 		"	for (String string : process(new FileInputStream(fileName))) {\n" +
 		"	                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n" +
@@ -6138,7 +6138,7 @@ public void testBug552521_comment14() {
 		"----------\n",
 		options);
 }
-public void testBug552521_comment14b() {
+public void testBug552521_comment14b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -6166,7 +6166,7 @@ public void testBug552521_comment14b() {
 			"	}\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 8)\n" +
 		"	while (check(new FileInputStream(fileName)))\n" +
 		"	             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n" +
@@ -6184,7 +6184,7 @@ public void testBug552521_comment14b() {
 		"----------\n",
 		options);
 }
-public void testBug519740() {
+public void testBug519740() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -6203,7 +6203,7 @@ public void testBug519740() {
 		},
 		options);
 }
-public void testBug552441() {
+public void testBug552441() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -6266,7 +6266,7 @@ public void testBug552441() {
 		},
 		options);
 }
-public void testBug400523() {
+public void testBug400523() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -6318,7 +6318,7 @@ public void testBug400523() {
 		},
 		options);
 }
-public void testBug527761() {
+public void testBug527761() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -6336,7 +6336,7 @@ public void testBug527761() {
 		},
 		options);
 }
-public void testBug527761_otherClose() {
+public void testBug527761_otherClose() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -6363,7 +6363,7 @@ public void testBug527761_otherClose() {
 			new String[] { "X.java", xSource },
 			"", "", "", null);
 }
-public void testBug527761_neg() {
+public void testBug527761_neg() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -6390,7 +6390,7 @@ public void testBug527761_neg() {
 		options);
 }
 // regression caused by Bug 527761
-public void testBug558759() {
+public void testBug558759() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -6422,7 +6422,7 @@ public void testBug558759() {
 			new String[] { "Y.java", ySource },
 			"", "", "", null);
 }
-public void testBug559119() {
+public void testBug559119() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.WARNING);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.WARNING);
@@ -6446,7 +6446,7 @@ public void testBug559119() {
 			"	}\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. WARNING in SequencerControl.java (at line 7)\n" +
 		"	return ((SequencerControl)obj).getSequencer().equals(getSequencer());\n" +
 		"	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n" +
@@ -6459,7 +6459,7 @@ public void testBug559119() {
 		"----------\n",
 		options);
 }
-public void testBug560610() {
+public void testBug560610() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.WARNING);
@@ -6484,7 +6484,7 @@ public void testBug560610() {
 		"",
 		options);
 }
-public void testBug560671() {
+public void testBug560671() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.WARNING);
@@ -6502,7 +6502,7 @@ public void testBug560671() {
 		},
 		options);
 }
-public void testBug560671b() {
+public void testBug560671b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.WARNING);
@@ -6524,7 +6524,7 @@ public void testBug560671b() {
 		},
 		options);
 }
-public void testBug561259() {
+public void testBug561259() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.WARNING);
@@ -6550,7 +6550,7 @@ public void testBug561259() {
 		},
 		options);
 }
-public void testBug560076() {
+public void testBug560076() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"org/sqlite/database/sqlite/SQLiteOpenHelper.java",
@@ -6590,7 +6590,7 @@ public void testBug560076() {
 		"The type SQLiteDatabase must implement the inherited abstract method Closeable.close()\n" +
 		"----------\n");
 }
-public void testBug499037_001_since_9() {
+public void testBug499037_001_since_9() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK9) return;
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -6625,7 +6625,7 @@ public void testBug499037_001_since_9() {
 		"",
 		options);
 }
-public void testBug499037_002_since_9() {
+public void testBug499037_002_since_9() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK9) return;
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -6660,7 +6660,7 @@ public void testBug499037_002_since_9() {
 		"",
 		options);
 }
-public void testBug499037_003_since_9() {
+public void testBug499037_003_since_9() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK9) return;
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -6692,7 +6692,7 @@ public void testBug499037_003_since_9() {
 		"",
 		options);
 }
-public void testBug499037_004_since_9() {
+public void testBug499037_004_since_9() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK9) return;
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -6732,7 +6732,7 @@ public void testBug499037_004_since_9() {
 		"",
 		options);
 }
-public void testBug499037_005_since_9() {
+public void testBug499037_005_since_9() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK9) return;
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -6768,7 +6768,7 @@ public void testBug499037_005_since_9() {
 		options);
 }
 // non-empty finally block - takes a different route
-public void testBug499037_006_since_9() {
+public void testBug499037_006_since_9() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK9) return;
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -6806,7 +6806,7 @@ public void testBug499037_006_since_9() {
 		"----------\n",
 		options);
 }
-public void testBug499037_007_since_9() {
+public void testBug499037_007_since_9() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK9) return;
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -6841,7 +6841,7 @@ public void testBug499037_007_since_9() {
 		"",
 		options);
 }
-public void testBug499037_008_since_9() {
+public void testBug499037_008_since_9() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK9) return;
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -6880,7 +6880,7 @@ public void testBug499037_008_since_9() {
 		"----------\n",
 		options);
 }
-public void testBug499037_009_since_9() {
+public void testBug499037_009_since_9() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK9) return;
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -6921,7 +6921,7 @@ public void testBug499037_009_since_9() {
 		"----------\n",
 		options);
 }
-public void testBug499037_010_since_9() {
+public void testBug499037_010_since_9() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK9) return;
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -6968,7 +6968,7 @@ public void testBug499037_010_since_9() {
 		"----------\n",
 		options);
 }
-public void testGH1762() {
+public void testGH1762() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runLeakTest(
 		new String[] {
 			"X.java",
@@ -6987,7 +6987,7 @@ public void testGH1762() {
 		null);
 
 }
-public void testGH1867() {
+public void testGH1867() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -7022,7 +7022,7 @@ public void testGH1867() {
 			}
 			"""
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 11)\n" +
 		"	get().m();\n" +
 		"	^^^^^\n" +
@@ -7040,7 +7040,7 @@ public void testGH1867() {
 		"----------\n",
 		options);
 }
-public void testGH1867_dupes() {
+public void testGH1867_dupes() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -7091,7 +7091,7 @@ public void testGH1867_dupes() {
 			}
 			"""
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in GH1867.java (at line 26)\n" +
 		"	if (current == null || !current.getFs().isOpen()) {\n" +
 		"	                        ^^^^^^^^^^^^^^^\n" +
@@ -7099,7 +7099,7 @@ public void testGH1867_dupes() {
 		"----------\n",
 		options);
 }
-public void testGH2207_1() {
+public void testGH2207_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// relevant only since 19, where ExecutorService implements AutoCloseable
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
@@ -7125,7 +7125,7 @@ public void testGH2207_1() {
 		"",
 		options);
 }
-public void testGH2129() {
+public void testGH2129() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -7133,7 +7133,7 @@ public void testGH2129() {
 	runLeakTest(
 		new String[] {
 			"ExampleResourceLeakWarningInternalResource.java",
-			"import java.io.IOException;\n" +
+			"import java.io.IOException;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"import java.net.InetSocketAddress;\n" +
 			"import java.net.SocketAddress;\n" +
 			"\n" +
@@ -7168,7 +7168,7 @@ public void testGH2129() {
 		"",
 		options);
 }
-public void testGH2642() {
+public void testGH2642() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -7198,7 +7198,7 @@ public void testGH2642() {
 		""",
 		options);
 }
-public void testBug561334() {
+public void testBug561334() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.INFO);
 	runLeakWarningTest(
@@ -7246,7 +7246,7 @@ String getBug561334_log() {
 	----------
 	""";
 }
-public void testGH3328() {
+public void testGH3328() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14) return;
 	runConformTest(
 		new String[] {
@@ -7336,7 +7336,7 @@ public void testGH3328() {
 			"""
 		});
 }
-public void testGH3328_2() {
+public void testGH3328_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14) return;
 	runConformTest(
 		new String[] {
@@ -7392,7 +7392,7 @@ public void testGH3328_2() {
 			"""
 		});
 }
-public void testGH4486() {
+public void testGH4486() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	runLeakTest(new String[] {
@@ -7424,7 +7424,7 @@ public void testGH4486() {
 	"",
 	compilerOptions);
 }
-public void testGH4511() {
+public void testGH4511() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
 	runLeakTest(new String[] {

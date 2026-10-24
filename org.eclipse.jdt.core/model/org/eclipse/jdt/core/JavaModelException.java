@@ -167,22 +167,22 @@ public void printStackTrace(PrintWriter output) {
  * Returns a printable representation of this exception suitable for debugging
  * purposes only.
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public String toString() {
-	StringBuilder buffer= new StringBuilder();
-	buffer.append("Java Model Exception: "); //$NON-NLS-1$
+	StringBuilder buffer= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	buffer.append("Java Model Exception: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (getException() != null) {
 		if (getException() instanceof CoreException) {
 			CoreException c= (CoreException)getException();
-			buffer.append("Core Exception [code "); //$NON-NLS-1$
-			buffer.append(c.getStatus().getCode());
-			buffer.append("] "); //$NON-NLS-1$
-			buffer.append(c.getStatus().getMessage());
+			buffer.append("Core Exception [code "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(c.getStatus().getCode()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("] "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(c.getStatus().getMessage()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
-			buffer.append(getException().toString());
+			buffer.append(getException().toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	} else {
-		buffer.append(getStatus().toString());
+		buffer.append(getStatus().toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	return buffer.toString();
 }

@@ -66,7 +66,7 @@ public void checkDietParse(
 /*
  * DietParse with completionNode check
  */
-public void checkDietParse(
+public void checkDietParse( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[] source,
 	int cursorLocation,
 	String expectedCompletion,
@@ -103,7 +103,7 @@ public void checkDietParse(
 /*
  * Parse a method with completionNode check
  */
-public void checkMethodParse(
+public void checkMethodParse( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] source,
 		int cursorLocation,
 		String expectedCompletion,
@@ -130,7 +130,7 @@ public void checkMethodParse(
 
 	ASTNode foundMethod = null;
 	if (unit.types != null) {
-		for (int i = 0; i < unit.types.length; i++) {
+		for (int i = 0; i < unit.types.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeDeclaration type = unit.types[i];
 			ASTNode method = findMethod(type, cursorLocation);
 			if (method != null) {
@@ -147,7 +147,7 @@ public void checkMethodParse(
 			TypeDeclaration type = (TypeDeclaration)foundMethod;
 			FieldDeclaration[] fields = type.fields;
 			if (fields != null) {
-				done : for (int i = 0; i < fields.length; i++) {
+				done : for (int i = 0; i < fields.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					FieldDeclaration field = fields[i];
 					if (field.declarationSourceStart <= cursorLocation && (cursorLocation <= field.declarationSourceEnd || field.declarationSourceEnd == 0)) {
 						if (field instanceof Initializer) {
@@ -242,7 +242,7 @@ public void checkMethodParse(
 		expectedLabels,
 		testName);
 }
-private void checkParse(
+private void checkParse( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String expectedCompletion,
 		String expectedParentCompletion,
 		String expectedUnitToString,
@@ -336,17 +336,17 @@ private String concatResults(
 		String unitToString,
 		String completionIdentifier,
 		String replacedSource) {
-	StringBuilder buffer = new StringBuilder();
-	buffer.append("### Completion node ###\n");
-	buffer.append(completionNode);
-	buffer.append("\n### Parent completion node ###\n");
-	buffer.append(parentCompletionNode);
-	buffer.append("\n### Completed identifier ###\n");
-	buffer.append(completionIdentifier);
-	buffer.append("\n### Replaced source ###\n");
-	buffer.append(replacedSource);
-	buffer.append("\n### Completed unit ###\n");
-	buffer.append(unitToString);
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	buffer.append("### Completion node ###\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(completionNode); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append("\n### Parent completion node ###\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(parentCompletionNode); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append("\n### Completed identifier ###\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(completionIdentifier); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append("\n### Replaced source ###\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(replacedSource); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append("\n### Completed unit ###\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(unitToString); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return buffer.toString();
 }
 /*
@@ -354,9 +354,9 @@ private String concatResults(
  * at the cursor location in the given type.
  * Returns null if not found.
  */
-private ASTNode findMethod(TypeDeclaration type, int cursorLocation) {
+private ASTNode findMethod(TypeDeclaration type, int cursorLocation) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (type.methods != null) {
-		for (int i = 0; i < type.methods.length; i++) {
+		for (int i = 0; i < type.methods.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			AbstractMethodDeclaration method = type.methods[i];
 			if (method.declarationSourceStart <= cursorLocation && (cursorLocation <= method.declarationSourceEnd || method.declarationSourceEnd == 0)) {
 				return method;
@@ -364,7 +364,7 @@ private ASTNode findMethod(TypeDeclaration type, int cursorLocation) {
 		}
 	}
 	if (type.memberTypes != null) {
-		for (int i = 0; i < type.memberTypes.length; i++) {
+		for (int i = 0; i < type.memberTypes.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeDeclaration memberType = type.memberTypes[i];
 			ASTNode method = findMethod(memberType, cursorLocation);
 			if (method != null) {
@@ -374,7 +374,7 @@ private ASTNode findMethod(TypeDeclaration type, int cursorLocation) {
 	}
 	FieldDeclaration[] fields = type.fields;
 	if (fields != null) {
-		for (int i = 0; i < fields.length; i++) {
+		for (int i = 0; i < fields.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			FieldDeclaration field = fields[i];
 			if (field instanceof Initializer && field.declarationSourceStart <= cursorLocation && (cursorLocation <= field.declarationSourceEnd || field.declarationSourceEnd == 0)) {
 				return type;

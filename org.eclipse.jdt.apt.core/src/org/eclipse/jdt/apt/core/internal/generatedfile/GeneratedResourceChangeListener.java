@@ -42,17 +42,17 @@ import org.eclipse.jdt.core.JavaCore;
  * sometimes they fail to send out deletion notifications for files in pre-build,
  * but they do send them out in post-change.
  */
-public class GeneratedResourceChangeListener implements IResourceChangeListener
+public class GeneratedResourceChangeListener implements IResourceChangeListener //FLLDCIM: MARK — T07  IMPLEMENTS
 {
 	// Synchronized collection, as post-change notifications could come in
 	// simultaneously. Note that pre-build will not though, as it holds the
 	// workspace lock
 	private final Set<IResource> deletedResources =
-		Collections.synchronizedSet(new HashSet<IResource>());
+		Collections.synchronizedSet(new HashSet<IResource>()); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 
 	public GeneratedResourceChangeListener(){}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void resourceChanged(IResourceChangeEvent event)
 	{
 		if ( event.getType() == IResourceChangeEvent.PRE_CLOSE )
@@ -60,7 +60,7 @@ public class GeneratedResourceChangeListener implements IResourceChangeListener
 			IProject p = (IProject)event.getResource();
 			if( AptPlugin.DEBUG_GFM )
 				AptPlugin.trace(
-						"generated resource change listener got a pre-close event: project = " + p.getName()); //$NON-NLS-1$
+						"generated resource change listener got a pre-close event: project = " + p.getName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IJavaProject jp = JavaCore.create(p);
 			AptPlugin.getAptProject(jp).projectClosed();
 		}
@@ -71,7 +71,7 @@ public class GeneratedResourceChangeListener implements IResourceChangeListener
 			IProject p = (IProject)event.getResource();
 			if( AptPlugin.DEBUG_GFM )
 				AptPlugin.trace(
-						"generated resource change listener got a pre-delete event: project = " + p.getName()); //$NON-NLS-1$
+						"generated resource change listener got a pre-delete event: project = " + p.getName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IJavaProject jp = JavaCore.create(p);
 			AptPlugin.getAptProject(jp).projectDeleted();
 			AptPlugin.deleteAptProject(jp);
@@ -87,7 +87,7 @@ public class GeneratedResourceChangeListener implements IResourceChangeListener
 
 				// First we need to handle previously deleted resources (from the post-change event),
 				// because we could not perform file i/o during that event
-				for (IResource resource : deletedResources) {
+				for (IResource resource : deletedResources) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					pbv.handleDeletion(resource);
 				}
 
@@ -120,7 +120,7 @@ public class GeneratedResourceChangeListener implements IResourceChangeListener
 
 	private void addGeneratedSrcFolderTo(final Set<IProject> projs, boolean isTestCode){
 
-		for(IProject proj : projs ){
+		for(IProject proj : projs ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final IJavaProject javaProj = JavaCore.create(proj);
 			if(javaProj.getProject().isOpen() && AptConfig.isEnabled(javaProj)){
 				final GeneratedSourceFolderManager gsfm = AptPlugin.getAptProject(javaProj).getGeneratedSourceFolderManager(isTestCode);
@@ -135,13 +135,13 @@ public class GeneratedResourceChangeListener implements IResourceChangeListener
 	 * resource change notification -- some items will be reported *only* in the post-change event,
 	 * so we keep track of them here and handle them in the pre-build
 	 */
-	private class PostChangeVisitor implements IResourceDeltaVisitor {
+	private class PostChangeVisitor implements IResourceDeltaVisitor { //FLLDCIM: MARK — T07  IMPLEMENTS
 
 		@Override
 		public boolean visit(IResourceDelta delta) throws CoreException {
 			if( delta.getKind() == IResourceDelta.REMOVED ){
 				if (AptPlugin.DEBUG_GFM) {
-					AptPlugin.trace("generated resource post-change listener adding to deletedResources:" +  //$NON-NLS-1$
+					AptPlugin.trace("generated resource post-change listener adding to deletedResources:" +  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							delta.getResource().getName());
 				}
 				deletedResources.add(delta.getResource());
@@ -152,15 +152,15 @@ public class GeneratedResourceChangeListener implements IResourceChangeListener
 
 	}
 
-	private class PreBuildVisitor implements IResourceDeltaVisitor
+	private class PreBuildVisitor implements IResourceDeltaVisitor //FLLDCIM: MARK — T07  IMPLEMENTS
 	{
 		// projects that we need to add the generated source folder to.
-		private final Set<IProject> _addGenFolderTo = new HashSet<>();
+		private final Set<IProject> _addGenFolderTo = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		// projects that we need to add the generated test source folder to.
-		private final Set<IProject> _addGenTestFolderTo = new HashSet<>();
+		private final Set<IProject> _addGenTestFolderTo = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		// any projects that is closed or about to be deleted
-		private final Set<IProject> _removedProjects = new HashSet<>();
-		@Override
+		private final Set<IProject> _removedProjects = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public boolean visit(IResourceDelta delta) throws CoreException
 		{
 			IResource r = delta.getResource();
@@ -187,9 +187,9 @@ public class GeneratedResourceChangeListener implements IResourceChangeListener
 			return true;
 		}
 
-		private void handleDeletion(IResource resource) throws CoreException {
+		private void handleDeletion(IResource resource) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			if (AptPlugin.DEBUG_GFM) {
-				AptPlugin.trace("handleDeletion: resource = " + resource.getName()); //$NON-NLS-1$
+				AptPlugin.trace("handleDeletion: resource = " + resource.getName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			IProject project = resource.getProject();
 			final IJavaProject javaProj = JavaCore.create(project);

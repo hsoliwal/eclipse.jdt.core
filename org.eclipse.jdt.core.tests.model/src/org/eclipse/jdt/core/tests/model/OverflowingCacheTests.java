@@ -294,39 +294,39 @@ public class OverflowingCacheTests extends ModifyingResourceTests {
 	/*
 	 * Ensures that the Java model cache adapts its size for a project with a number of roots greater than the default max.
 	 */
-	public void testBigNumberOfRoots() throws CoreException {
+	public void testBigNumberOfRoots() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("P");
 			int rootSize = JavaModelCache.DEFAULT_ROOT_SIZE * 2;
-			for (int i = 0; i < rootSize; i++) {
+			for (int i = 0; i < rootSize; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (i < 10)
-					createFolder("/P/src00" + i);
+					createFolder("/P/src00" + i); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				else if (i < 100)
-					createFolder("/P/src0" + i);
+					createFolder("/P/src0" + i); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				else
-					createFolder("/P/src" + i);
+					createFolder("/P/src" + i); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			IClasspathEntry[] classpath = new IClasspathEntry[rootSize+1];
-			for (int i = 0; i < rootSize; i++) {
+			for (int i = 0; i < rootSize; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (i < 10)
-					classpath[i] = JavaCore.newSourceEntry(new Path("/P/src00" + i));
+					classpath[i] = JavaCore.newSourceEntry(new Path("/P/src00" + i)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				else if (i < 100)
-					classpath[i] = JavaCore.newSourceEntry(new Path("/P/src0" + i));
+					classpath[i] = JavaCore.newSourceEntry(new Path("/P/src0" + i)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				else
-					classpath[i] = JavaCore.newSourceEntry(new Path("/P/src" + i));
+					classpath[i] = JavaCore.newSourceEntry(new Path("/P/src" + i)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			classpath[rootSize] = JavaCore.newVariableEntry(new Path("JCL18_LIB"), null, null);
 			project.setRawClasspath(classpath, new Path("/P/bin"), null);
 
 			// Open all roots
 			IJavaElement[] roots = project.getChildren();
-			for (int i = 0; i < rootSize; i++) {
+			for (int i = 0; i < rootSize; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				((IOpenable) roots[i]).open(null);
 			}
 
 			// Ensure that all roots remained opened
-			for (int i = 0; i < rootSize; i++) {
-				assertTrue("Root should be opened " + roots[i], ((IOpenable) roots[i]).isOpen());
+			for (int i = 0; i < rootSize; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				assertTrue("Root should be opened " + roots[i], ((IOpenable) roots[i]).isOpen()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} finally {
 			deleteProject("P");
@@ -358,7 +358,7 @@ public class OverflowingCacheTests extends ModifyingResourceTests {
 	 * Creates an empty BufferCache of size 20, inserts 20 buffers
 	 * and ensures that it is full, with zero overflow.
 	 */
-	public void testBufferCacheFill() {
+	public void testBufferCacheFill() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int spaceLimit = 20, actualSpaceLimit;
 		int overflow = 0, actualOverflow;
 		int current = 0, actualCurrent;
@@ -366,7 +366,7 @@ public class OverflowingCacheTests extends ModifyingResourceTests {
 		BufferCache<IOpenable> cache = new BufferCache<>(spaceLimit);
 		OverflowingTestBuffer[] buffers= new OverflowingTestBuffer[spaceLimit];
 		OverflowingTestOpenable[] openables= new OverflowingTestOpenable[spaceLimit];
-		for(int i = 0; i < spaceLimit; i++) {
+		for(int i = 0; i < spaceLimit; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			buffers[i] = new OverflowingTestBuffer(false, cache);
 			openables[i]= new OverflowingTestOpenable(buffers[i], null);
 			cache.put(openables[i], buffers[i]);
@@ -382,9 +382,9 @@ public class OverflowingCacheTests extends ModifyingResourceTests {
 		actualOverflow = cache.getOverflow();
 		assertEquals("overflow space incorrect ", overflow, actualOverflow);
 
-		for(int i = spaceLimit - 1; i >= 0; i--) {
+		for(int i = spaceLimit - 1; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Object value = cache.get(openables[i]);
-			assertEquals("wrong value ("+i+")", buffers[i], value);
+			assertEquals("wrong value ("+i+")", buffers[i], value); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -397,7 +397,7 @@ public class OverflowingCacheTests extends ModifyingResourceTests {
 	 * shrink to 167 entries. The remaining 167 buffers will be added
 	 * the cache, leaving it with 334 entries.
 	 */
-	public void testBufferCacheUseNoOverflow() {
+	public void testBufferCacheUseNoOverflow() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int spaceLimit = 500, actualSpaceLimit;
 		int overflow = 0, actualOverflow;
 		int actualCurrent, predictedCurrent = 334;
@@ -406,7 +406,7 @@ public class OverflowingCacheTests extends ModifyingResourceTests {
 		BufferCache<IOpenable> cache = new BufferCache<>(spaceLimit);
 		OverflowingTestOpenable[] openables = new OverflowingTestOpenable[entryCount];
 		OverflowingTestBuffer[] buffers= new OverflowingTestBuffer[entryCount];
-		for(int i = 0; i < entryCount; i++) {
+		for(int i = 0; i < entryCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			buffers[i]= new OverflowingTestBuffer(false, cache);
 			openables[i] = new OverflowingTestOpenable(buffers[i], null);
 			cache.put(openables[i], buffers[i]);
@@ -422,13 +422,13 @@ public class OverflowingCacheTests extends ModifyingResourceTests {
 		assertEquals("overflow space incorrect ", overflow, actualOverflow);
 
 
-		for(int i = entryCount - 1; i >= entryCount - predictedCurrent; i--) {
+		for(int i = entryCount - 1; i >= entryCount - predictedCurrent; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Object value = cache.get(openables[i]);
-			assertEquals("wrong value ("+i+")", buffers[i], value);
+			assertEquals("wrong value ("+i+")", buffers[i], value); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		// ensure first 500 entries swaped out
-		for(int i = 0; i < spaceLimit; i++) {
+		for(int i = 0; i < spaceLimit; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Object value = cache.get(openables[i]);
 			assertEquals("entry should not be present", null, value);
 		}
@@ -442,14 +442,14 @@ public class OverflowingCacheTests extends ModifyingResourceTests {
 	 *
 	 * @see #hasUnsavedChanges(int)
 	 */
-	public void testBufferCacheUseOverflow() {
+	public void testBufferCacheUseOverflow() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int spaceLimit = 500;
 		int entryCount = 1000;
 
 		BufferCache<IOpenable> cache = new BufferCache<>(spaceLimit);
 		OverflowingTestOpenable[] openables = new OverflowingTestOpenable[entryCount];
 		OverflowingTestBuffer[] buffers= new OverflowingTestBuffer[entryCount];
-		for (int i = 0; i < entryCount; i++) {
+		for (int i = 0; i < entryCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			boolean hasUnsavedChanges = hasUnsavedChanges(i);
 			buffers[i]= new OverflowingTestBuffer(hasUnsavedChanges, cache);
 			openables[i] = new OverflowingTestOpenable(buffers[i], null);
@@ -465,15 +465,15 @@ public class OverflowingCacheTests extends ModifyingResourceTests {
 		int actualOverflow = cache.getOverflow();
 		assertEquals("overflow space incorrect", 400, actualOverflow);
 
-		for (int i = entryCount - 1; i >= 0; i--) {
+		for (int i = entryCount - 1; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (hasUnsavedChanges(i)) {
 				Object value = cache.get(openables[i]);
-				assertEquals("wrong value (" + i + ")", buffers[i], value);
+				assertEquals("wrong value (" + i + ")", buffers[i], value); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 
 		// the cache should shrink back to the spaceLimit as we save entries with unsaved changes
-		for (int i= 0; i < entryCount; i++) {
+		for (int i= 0; i < entryCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			buffers[i].save(null, false);
 		}
 		// now add another entry to remove saved openables.
@@ -495,9 +495,9 @@ public class OverflowingCacheTests extends ModifyingResourceTests {
 	 *
 	 * <p>60 compilation units are opened to fill the cache.
 	 */
-	public void testBufferRecycling() throws CoreException {
+	public void testBufferRecycling() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Enumeration<IBuffer> openBuffers= BufferManager.getDefaultBufferManager().getOpenBuffers();
-		while (openBuffers.hasMoreElements()) {
+		while (openBuffers.hasMoreElements()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IBuffer buf= openBuffers.nextElement();
 			buf.close();
 		}
@@ -506,10 +506,10 @@ public class OverflowingCacheTests extends ModifyingResourceTests {
 
 		try {
 			createJavaProject("P");
-			for (int i = 0; i < 61; i++) {
+			for (int i = 0; i < 61; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				createFile(
-					"P/X" + i + ".java",
-					"public class X" + i + " {\n" +
+					"P/X" + i + ".java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+					"public class X" + i + " {\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"}"
 				);
 			}
@@ -518,14 +518,14 @@ public class OverflowingCacheTests extends ModifyingResourceTests {
 
 			// fill the cache - open 60 buffers
 			int max = 60;
-			for (int i= 0; i < max; i++) {
+			for (int i= 0; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				cus[i].getBuffer();
 			}
 
 			// should be 60 buffers now
 			openBuffers= BufferManager.getDefaultBufferManager().getOpenBuffers();
 			int count= 0;
-			while (openBuffers.hasMoreElements()) {
+			while (openBuffers.hasMoreElements()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				openBuffers.nextElement();
 				count++;
 			}
@@ -537,7 +537,7 @@ public class OverflowingCacheTests extends ModifyingResourceTests {
 			cus[max].getBuffer();
 			openBuffers= BufferManager.getDefaultBufferManager().getOpenBuffers();
 			count= 0;
-			while (openBuffers.hasMoreElements()) {
+			while (openBuffers.hasMoreElements()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				openBuffers.nextElement();
 				count++;
 			}
@@ -547,7 +547,7 @@ public class OverflowingCacheTests extends ModifyingResourceTests {
 			cus[0].getBuffer();
 			openBuffers= BufferManager.getDefaultBufferManager().getOpenBuffers();
 			count= 0;
-			while (openBuffers.hasMoreElements()) {
+			while (openBuffers.hasMoreElements()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				openBuffers.nextElement();
 				count++;
 			}
@@ -581,14 +581,14 @@ public class OverflowingCacheTests extends ModifyingResourceTests {
 	 * Creates an empty ElementCache of size 500, inserts 500 elements
 	 * and ensures that it is full, with zero overflow.
 	 */
-	public void testElementCacheFill() {
+	public void testElementCacheFill() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int spaceLimit = 500, actualSpaceLimit;
 		int overflow = 0, actualOverflow;
 		int current = 0, actualCurrent;
 
 		ElementCache<OverflowingTestOpenable> cache = new ElementCache<>(spaceLimit);
 		OverflowingTestOpenable[] openables = new OverflowingTestOpenable[spaceLimit];
-		for(int i = 0; i < spaceLimit; i++) {
+		for(int i = 0; i < spaceLimit; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			openables[i] = new OverflowingTestOpenable(new OverflowingTestBuffer(false, null), cache);
 			cache.put(openables[i], new MockInfo(i));
 			current++;
@@ -603,9 +603,9 @@ public class OverflowingCacheTests extends ModifyingResourceTests {
 		actualOverflow = cache.getOverflow();
 		assertEquals("overflow space incorrect ", overflow, actualOverflow);
 
-		for(int i = spaceLimit - 1; i >= 0; i--) {
+		for(int i = spaceLimit - 1; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JavaElementInfo value = cache.get(openables[i]);
-			assertEquals("wrong value (" + i + ")", new MockInfo(i), value);
+			assertEquals("wrong value (" + i + ")", new MockInfo(i), value); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -618,7 +618,7 @@ public class OverflowingCacheTests extends ModifyingResourceTests {
 	 * shrink to 167 entries. The remaining 167 elements will be added
 	 * the cache, leaving it with 334 entries.
 	 */
-	public void testElementCacheUseNoOverflow() {
+	public void testElementCacheUseNoOverflow() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int spaceLimit = 500, actualSpaceLimit;
 		int overflow = 0, actualOverflow;
 		int actualCurrent, predictedCurrent = 334;
@@ -626,7 +626,7 @@ public class OverflowingCacheTests extends ModifyingResourceTests {
 
 		ElementCache<OverflowingTestOpenable> cache = new ElementCache<>(spaceLimit);
 		OverflowingTestOpenable[] openables = new OverflowingTestOpenable[entryCount];
-		for(int i = 0; i < entryCount; i++) {
+		for(int i = 0; i < entryCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			openables[i] = new OverflowingTestOpenable(new OverflowingTestBuffer(false, null), cache);
 			cache.put(openables[i], new MockInfo(i));
 		}
@@ -640,13 +640,13 @@ public class OverflowingCacheTests extends ModifyingResourceTests {
 		actualOverflow = cache.getOverflow();
 		assertEquals("overflow space incorrect ", overflow, actualOverflow);
 
-		for(int i = entryCount - 1; i >= entryCount - predictedCurrent; i--) {
+		for(int i = entryCount - 1; i >= entryCount - predictedCurrent; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JavaElementInfo value = cache.get(openables[i]);
-			assertEquals("wrong value (" + i + ")", new MockInfo(i), value);
+			assertEquals("wrong value (" + i + ")", new MockInfo(i), value); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		// ensure first 500 entries swaped out
-		for(int i = 0; i < spaceLimit; i++) {
+		for(int i = 0; i < spaceLimit; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Object value = cache.get(openables[i]);
 			assertEquals("entry should not be present", null, value);
 		}
@@ -660,13 +660,13 @@ public class OverflowingCacheTests extends ModifyingResourceTests {
 	 *
 	 * @see #hasUnsavedChanges(int)
 	 */
-	public void testElementCacheUseOverflow() {
+	public void testElementCacheUseOverflow() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int spaceLimit = 500;
 		int entryCount = 1000;
 
 		ElementCache<OverflowingTestOpenable> cache = new ElementCache<>(spaceLimit);
 		OverflowingTestOpenable[] openables = new OverflowingTestOpenable[entryCount];
-		for (int i = 0; i < entryCount; i++) {
+		for (int i = 0; i < entryCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			openables[i] = new OverflowingTestOpenable(new OverflowingTestBuffer(hasUnsavedChanges(i), null), cache);
 			cache.put(openables[i], new MockInfo(i));
 		}
@@ -678,15 +678,15 @@ public class OverflowingCacheTests extends ModifyingResourceTests {
 		int actualOverflow = cache.getOverflow();
 		assertEquals("overflow space incorrect", 400, actualOverflow);
 
-		for (int i = entryCount - 1; i >= 0; i--) {
+		for (int i = entryCount - 1; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (hasUnsavedChanges(i)) {
 				Object value = cache.get(openables[i]);
-				assertEquals("wrong value (" + i + ")", new MockInfo(i), value);
+				assertEquals("wrong value (" + i + ")", new MockInfo(i), value); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 
 		// the cache should shrink back to the spaceLimit as we save entries with unsaved changes
-		for (int i= 0; i < entryCount; i++) {
+		for (int i= 0; i < entryCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			openables[i].save(null, false);
 		}
 		// now add another entry to remove saved openables.

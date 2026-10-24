@@ -58,7 +58,7 @@ public abstract class TypeConverter {
 		long[] positions = new long[length];
 		long position = ((long) start << 32) + end;
 		char[][] qImportName = new char[length][];
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			qImportName[i] = importName[i].toCharArray();
 			positions[i] = position; // dummy positions
 		}
@@ -69,7 +69,7 @@ public abstract class TypeConverter {
 			modifiers);
 	}
 
-	protected TypeParameter createTypeParameter(char[] typeParameterName, char[][] typeParameterBounds, int start, int end) {
+	protected TypeParameter createTypeParameter(char[] typeParameterName, char[][] typeParameterBounds, int start, int end) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		TypeParameter parameter = new TypeParameter();
 		parameter.name = typeParameterName;
@@ -81,7 +81,7 @@ public abstract class TypeConverter {
 				parameter.type = createTypeReference(typeParameterBounds[0], start, end);
 				if (length > 1) {
 					parameter.bounds = new TypeReference[length-1];
-					for (int i = 1; i < length; i++) {
+					for (int i = 1; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						TypeReference bound = createTypeReference(typeParameterBounds[i], start, end);
 						parameter.bounds[i-1] = bound;
 					}
@@ -131,13 +131,13 @@ public abstract class TypeConverter {
 		return decodeType(typeSignature, length, start, end);
 	}
 
-	private TypeReference decodeType(String typeSignature, int length, int start, int end) {
+	private TypeReference decodeType(String typeSignature, int length, int start, int end) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int identCount = 1;
 		int dim = 0;
 		int nameFragmentStart = this.namePos, nameFragmentEnd = -1;
 		boolean nameStarted = false;
 		ArrayList fragments = null;
-		typeLoop: while (this.namePos < length) {
+		typeLoop: while (this.namePos < length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char currentChar = typeSignature.charAt(this.namePos);
 			switch (currentChar) {
 				case Signature.C_BOOLEAN :
@@ -268,7 +268,7 @@ public abstract class TypeConverter {
 				case Signature.C_GENERIC_START :
 					nameFragmentEnd = this.namePos-1;
 					// convert 1.5 specific constructs
-					if (fragments == null) fragments = new ArrayList(2);
+					if (fragments == null) fragments = new ArrayList(2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 					addIdentifiers(typeSignature, nameFragmentStart, nameFragmentEnd + 1, identCount, fragments);
 					this.namePos++; // skip '<'
 					TypeReference[] arguments = decodeTypeArguments(typeSignature, length, start, end); // positionned on '>' at end
@@ -295,7 +295,7 @@ public abstract class TypeConverter {
 			} else { // qualified type reference
 				long[] positions = new long[identCount];
 				long pos = ((long) start << 32) + end;
-				for (int i = 0; i < identCount; i++) {
+				for (int i = 0; i < identCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					positions[i] = pos;
 				}
 				char[][] identifiers = extractIdentifiers(typeSignature, nameFragmentStart, nameFragmentEnd, identCount);
@@ -321,7 +321,7 @@ public abstract class TypeConverter {
 			}
 			// parameterized qualified type
 			identCount = 0;
-			for (int i = 0; i < fragmentLength; i ++) {
+			for (int i = 0; i < fragmentLength; i ++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Object element = fragments.get(i);
 				if (element instanceof char[][]) {
 					identCount += ((char[][])element).length;
@@ -331,7 +331,7 @@ public abstract class TypeConverter {
 			char[][] tokens = new char[identCount][];
 			TypeReference[][] arguments = new TypeReference[identCount][];
 			int index = 0;
-			for (int i = 0; i < fragmentLength; i ++) {
+			for (int i = 0; i < fragmentLength; i ++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Object element = fragments.get(i);
 				if (element instanceof char[][]) {
 					char[][] fragmentTokens = (char[][]) element;
@@ -346,29 +346,29 @@ public abstract class TypeConverter {
 			}
 			long[] positions = new long[identCount];
 			long pos = ((long) start << 32) + end;
-			for (int i = 0; i < identCount; i++) {
+			for (int i = 0; i < identCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				positions[i] = pos;
 			}
 			return new ParameterizedQualifiedTypeReference(tokens, arguments, dim, positions);
 		}
 	}
 
-	private TypeReference decodeType2(char[] typeName, int length, int start, int end, boolean includeGenericsAnyway) {
+	private TypeReference decodeType2(char[] typeName, int length, int start, int end, boolean includeGenericsAnyway) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int identCount = 1;
 		int dim = 0;
 		int nameFragmentStart = this.namePos, nameFragmentEnd = -1;
 		ArrayList fragments = null;
-		typeLoop: while (this.namePos < length) {
+		typeLoop: while (this.namePos < length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char currentChar = typeName[this.namePos];
 			switch (currentChar) {
 				case '?' :
 					this.namePos++; // skip '?'
-					while (typeName[this.namePos] == ' ') this.namePos++;
+					while (typeName[this.namePos] == ' ') this.namePos++; //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					switch(typeName[this.namePos]) {
 						case 's' :
 							checkSuper: {
 								int max = TypeConstants.WILDCARD_SUPER.length-1;
-								for (int ahead = 1; ahead < max; ahead++) {
+								for (int ahead = 1; ahead < max; ahead++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 									if (typeName[this.namePos+ahead] != TypeConstants.WILDCARD_SUPER[ahead+1]) {
 										break checkSuper;
 									}
@@ -384,7 +384,7 @@ public abstract class TypeConverter {
 						case 'e' :
 							checkExtends: {
 								int max = TypeConstants.WILDCARD_EXTENDS.length-1;
-								for (int ahead = 1; ahead < max; ahead++) {
+								for (int ahead = 1; ahead < max; ahead++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 									if (typeName[this.namePos+ahead] != TypeConstants.WILDCARD_EXTENDS[ahead+1]) {
 										break checkExtends;
 									}
@@ -417,7 +417,7 @@ public abstract class TypeConverter {
 					break;
 				case '<' :
 
-					if (fragments == null) fragments = new ArrayList(2);
+					if (fragments == null) fragments = new ArrayList(2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 					nameFragmentEnd = this.namePos-1;
 
@@ -447,7 +447,7 @@ public abstract class TypeConverter {
 	 * Only extracted to work around https://bugs.eclipse.org/471835 :
 	 * Random crashes in PhaseIdealLoop::build_loop_late_post when C2 JIT tries to compile TypeConverter::decodeType
 	 */
-	private TypeReference decodeType3(char[] typeName, int length, int start, int end, int identCount, int dim,
+	private TypeReference decodeType3(char[] typeName, int length, int start, int end, int identCount, int dim, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			int nameFragmentStart, int nameFragmentEnd, ArrayList fragments) {
 		if (nameFragmentEnd < 0) nameFragmentEnd = this.namePos-1;
 		if (fragments == null) { // non parameterized
@@ -478,7 +478,7 @@ public abstract class TypeConverter {
 			} else { // qualified type reference
 				long[] positions = new long[identCount];
 				long pos = ((long) start << 32) + end;
-				for (int i = 0; i < identCount; i++) {
+				for (int i = 0; i < identCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					positions[i] = pos;
 				}
 				char[][] identifiers = CharOperation.splitOn('.', typeName, nameFragmentStart, nameFragmentEnd+1);
@@ -505,7 +505,7 @@ public abstract class TypeConverter {
 			}
 			// parameterized qualified type
 			identCount = 0;
-			for (int i = 0; i < fragmentLength; i ++) {
+			for (int i = 0; i < fragmentLength; i ++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Object element = fragments.get(i);
 				if (element instanceof char[][]) {
 					identCount += ((char[][])element).length;
@@ -514,7 +514,7 @@ public abstract class TypeConverter {
 			char[][] tokens = new char[identCount][];
 			TypeReference[][] arguments = new TypeReference[identCount][];
 			int index = 0;
-			for (int i = 0; i < fragmentLength; i ++) {
+			for (int i = 0; i < fragmentLength; i ++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Object element = fragments.get(i);
 				if (element instanceof char[][]) {
 					char[][] fragmentTokens = (char[][]) element;
@@ -527,7 +527,7 @@ public abstract class TypeConverter {
 			}
 			long[] positions = new long[identCount];
 			long pos = ((long) start << 32) + end;
-			for (int i = 0; i < identCount; i++) {
+			for (int i = 0; i < identCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				positions[i] = pos;
 			}
 			return new ParameterizedQualifiedTypeReference(tokens, arguments, dim, positions);
@@ -535,9 +535,9 @@ public abstract class TypeConverter {
 	}
 
 	private TypeReference[] decodeTypeArguments(char[] typeName, int length, int start, int end, boolean includeGenericsAnyway) {
-		ArrayList argumentList = new ArrayList(1);
+		ArrayList argumentList = new ArrayList(1); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		int count = 0;
-		argumentsLoop: while (this.namePos < length) {
+		argumentsLoop: while (this.namePos < length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeReference argument = decodeType2(typeName, length, start, end, includeGenericsAnyway);
 			count++;
 			argumentList.add(argument);
@@ -553,9 +553,9 @@ public abstract class TypeConverter {
 	}
 
 	private TypeReference[] decodeTypeArguments(String typeSignature, int length, int start, int end) {
-		ArrayList argumentList = new ArrayList(1);
+		ArrayList argumentList = new ArrayList(1); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		int count = 0;
-		argumentsLoop: while (this.namePos < length) {
+		argumentsLoop: while (this.namePos < length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeReference argument = decodeType(typeSignature, length, start, end);
 			count++;
 			argumentList.add(argument);
@@ -573,7 +573,7 @@ public abstract class TypeConverter {
 		char[][] result = new char[identCount][];
 		int charIndex = start;
 		int i = 0;
-		while (charIndex < endInclusive) {
+		while (charIndex < endInclusive) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char currentChar;
 			if ((currentChar = typeSignature.charAt(charIndex)) == this.memberTypeSeparator || currentChar == Signature.C_DOT) {
 				typeSignature.getChars(start, charIndex, result[i++] = new char[charIndex - start], 0);

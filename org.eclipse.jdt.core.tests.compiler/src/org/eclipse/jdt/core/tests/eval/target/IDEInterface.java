@@ -82,7 +82,7 @@ void disconnect() {
 /**
  * Returns the class definitions of the classes that compose the next code snippet to evaluate.
  */
-protected byte[][] getNextClasses() {
+protected byte[][] getNextClasses() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.socket == null) {
 		return new byte[0][];
 	}
@@ -93,11 +93,11 @@ protected byte[][] getNextClasses() {
 		DataInputStream in = new DataInputStream(this.socket.getInputStream());
 		int numberOfClasses = in.readInt();
 		byte[][] result = new byte[numberOfClasses][];
-		for (int i = 0; i < numberOfClasses; i++) {
+		for (int i = 0; i < numberOfClasses; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int lengthOfClassFile = in.readInt();
 			byte[] classFile = new byte[lengthOfClassFile];
 			int read = 0;
-			while (read < lengthOfClassFile && read != -1) {
+			while (read < lengthOfClassFile && read != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				read += in.read(classFile, read, lengthOfClassFile - read);
 			}
 			result[i] = classFile;
@@ -137,7 +137,7 @@ boolean isConnected() {
 /**
  * Sends the result of the evaluation to the IDE.
  */
-protected void sendResult(Class resultType, Object resultValue) {
+protected void sendResult(Class resultType, Object resultValue) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.socket == null) {
 		return;
 	}
@@ -155,7 +155,7 @@ protected void sendResult(Class resultType, Object resultValue) {
 		disconnect();
 	}
 	if (TIMING) {
-		System.out.println("Time to run on target is " + (System.nanoTime() - this.startNanos) / 1_000_000L + "ms");
+		System.out.println("Time to run on target is " + (System.nanoTime() - this.startNanos) / 1_000_000L + "ms"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }
 }

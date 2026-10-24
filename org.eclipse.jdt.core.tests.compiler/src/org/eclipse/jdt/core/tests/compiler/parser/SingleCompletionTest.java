@@ -28,7 +28,7 @@ public class SingleCompletionTest extends AbstractCompletionTest {
 public SingleCompletionTest(String testName) {
 	super(testName);
 }
-private void run(Class testClass, String methodName) {
+private void run(Class testClass, String methodName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		java.lang.reflect.Constructor constructor = testClass.getDeclaredConstructor(new Class[] {String.class});
 		TestCase test = (TestCase)constructor.newInstance(new Object[] {"single completion test"});

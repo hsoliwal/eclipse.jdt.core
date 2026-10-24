@@ -112,10 +112,10 @@ public final class RewriteEventStore {
 
 		@Override
 		public String toString() {
-			StringBuilder buf= new StringBuilder();
-			buf.append(this.parent).append(" - "); //$NON-NLS-1$
-			buf.append(this.childProperty.getId()).append(": "); //$NON-NLS-1$
-			buf.append(this.event).append('\n');
+			StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			buf.append(this.parent).append(" - "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append(this.childProperty.getId()).append(": "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append(this.event).append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return buf.toString();
 		}
 	}
@@ -152,13 +152,13 @@ public final class RewriteEventStore {
 
 		@Override
 		public String toString() {
-			StringBuilder buf= new StringBuilder();
+			StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			if (this.isMove) {
-				buf.append("move source: "); //$NON-NLS-1$
+				buf.append("move source: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				buf.append("copy source: "); //$NON-NLS-1$
+				buf.append("copy source: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buf.append(this.node);
+			buf.append(this.node); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return buf.toString();
 		}
 	}
@@ -224,18 +224,18 @@ public final class RewriteEventStore {
 
 		@Override
 		public String toString() {
-			StringBuilder buf= new StringBuilder();
+			StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			if (this.first != this.last) {
-				buf.append("range ");  //$NON-NLS-1$
+				buf.append("range ");  //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			if (isMove()) {
-				buf.append("move source: "); //$NON-NLS-1$
+				buf.append("move source: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				buf.append("copy source: "); //$NON-NLS-1$
+				buf.append("copy source: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buf.append(this.first);
-			buf.append(" - "); //$NON-NLS-1$
-			buf.append(this.last);
+			buf.append(this.first); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append(" - "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append(this.last); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return buf.toString();
 		}
 
@@ -252,7 +252,7 @@ public final class RewriteEventStore {
 		private Iterator rangeNodeIter;
 		private Iterator trackedNodeIter;
 
-		public ParentIterator() {
+		public ParentIterator() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.eventIter= RewriteEventStore.this.eventLookup.keySet().iterator();
 			if (RewriteEventStore.this.nodeCopySources != null) {
 				this.sourceNodeIter= RewriteEventStore.this.nodeCopySources.iterator();
@@ -329,7 +329,7 @@ public final class RewriteEventStore {
 	private static final String INTERNAL_PLACEHOLDER_PROPERTY= "rewrite_internal_placeholder"; //$NON-NLS-1$
 
 	public RewriteEventStore() {
-		this.eventLookup= new HashMap();
+		this.eventLookup= new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		this.lastEvent= null;
 
 		this.editGroups= null; // lazy initialization
@@ -361,7 +361,7 @@ public final class RewriteEventStore {
 		this.nodeCopySources= null;
 	}
 
-	public void addEvent(ASTNode parent, StructuralPropertyDescriptor childProperty, RewriteEvent event) {
+	public void addEvent(ASTNode parent, StructuralPropertyDescriptor childProperty, RewriteEvent event) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		validateHasChildProperty(parent, childProperty);
 
 		if (event.isListRewrite()) {
@@ -372,7 +372,7 @@ public final class RewriteEventStore {
 
 		List entriesList = (List) this.eventLookup.get(parent);
 		if (entriesList != null) {
-			for (int i= 0; i < entriesList.size(); i++) {
+			for (int i= 0; i < entriesList.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				EventHolder curr= (EventHolder) entriesList.get(i);
 				if (curr.childProperty == childProperty) {
 					entriesList.set(i, holder);
@@ -381,13 +381,13 @@ public final class RewriteEventStore {
 				}
 			}
 		} else {
-			entriesList= new ArrayList(3);
+			entriesList= new ArrayList(3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			this.eventLookup.put(parent, entriesList);
 		}
 		entriesList.add(holder);
 	}
 
-	public RewriteEvent getEvent(ASTNode parent, StructuralPropertyDescriptor property) {
+	public RewriteEvent getEvent(ASTNode parent, StructuralPropertyDescriptor property) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		validateHasChildProperty(parent, property);
 
 		if (this.lastEvent != null && this.lastEvent.parent == parent && this.lastEvent.childProperty == property) {
@@ -396,7 +396,7 @@ public final class RewriteEventStore {
 
 		List entriesList = (List) this.eventLookup.get(parent);
 		if (entriesList != null) {
-			for (Object element : entriesList) {
+			for (Object element : entriesList) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				EventHolder holder= (EventHolder) element;
 				if (holder.childProperty == property) {
 					this.lastEvent= holder;
@@ -437,7 +437,7 @@ public final class RewriteEventStore {
 	public boolean hasChangedProperties(ASTNode parent) {
 		List entriesList = (List) this.eventLookup.get(parent);
 		if (entriesList != null) {
-			for (Object element : entriesList) {
+			for (Object element : entriesList) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				EventHolder holder= (EventHolder) element;
 				if (holder.event.getChangeKind() != RewriteEvent.UNCHANGED) {
 					return true;
@@ -447,10 +447,10 @@ public final class RewriteEventStore {
 		return false;
 	}
 
-	public PropertyLocation getPropertyLocation(Object value, int kind) {
-		for (Object element : this.eventLookup.values()) {
+	public PropertyLocation getPropertyLocation(Object value, int kind) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		for (Object element : this.eventLookup.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			List events= (List) element;
-			for (Object e : events) {
+			for (Object e : events) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				EventHolder holder= (EventHolder) e;
 				RewriteEvent event= holder.event;
 				if (isNodeInEvent(event, value, kind)) {
@@ -458,7 +458,7 @@ public final class RewriteEventStore {
 				}
 				if (event.isListRewrite()) {
 					RewriteEvent[] children= event.getChildren();
-					for (RewriteEvent child : children) {
+					for (RewriteEvent child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (isNodeInEvent(child, value, kind)) {
 							return new PropertyLocation(holder.parent, holder.childProperty);
 						}
@@ -478,17 +478,17 @@ public final class RewriteEventStore {
 	 * Kind is either ORIGINAL, NEW, or BOTH
 	 * @return Returns the event with the given value of <code>null</code>.
 	 */
-	public RewriteEvent findEvent(Object value, int kind) {
-		for (Object element : this.eventLookup.values()) {
+	public RewriteEvent findEvent(Object value, int kind) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		for (Object element : this.eventLookup.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			List events= (List) element;
-			for (Object event2 : events) {
+			for (Object event2 : events) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				RewriteEvent event= ((EventHolder) event2).event;
 				if (isNodeInEvent(event, value, kind)) {
 					return event;
 				}
 				if (event.isListRewrite()) {
 					RewriteEvent[] children= event.getChildren();
-					for (RewriteEvent child : children) {
+					for (RewriteEvent child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (isNodeInEvent(child, value, kind)) {
 							return child;
 						}
@@ -527,11 +527,11 @@ public final class RewriteEventStore {
 	}
 
 	public List getChangedPropertieEvents(ASTNode parent) {
-		List changedPropertiesEvent = new ArrayList();
+		List changedPropertiesEvent = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		List entriesList = (List) this.eventLookup.get(parent);
 		if (entriesList != null) {
-			for (int i= 0; i < entriesList.size(); i++) {
+			for (int i= 0; i < entriesList.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				EventHolder holder= (EventHolder) entriesList.get(i);
 				if (holder.event.getChangeKind() != RewriteEvent.UNCHANGED) {
 					changedPropertiesEvent.add(holder.event);
@@ -570,7 +570,7 @@ public final class RewriteEventStore {
 
 	public void setEventEditGroup(RewriteEvent event, TextEditGroup editGroup) {
 		if (this.editGroups == null) {
-			this.editGroups= new IdentityHashMap(5);
+			this.editGroups= new IdentityHashMap(5); //FLLDCIM: MARK — M06 M3_IDENTITY_WEAK_LANES NEW
 		}
 		this.editGroups.put(event, editGroup);
 	}
@@ -585,7 +585,7 @@ public final class RewriteEventStore {
 
 	public void setTrackedNodeData(ASTNode node, TextEditGroup editGroup) {
 		if (this.trackedNodes == null) {
-			this.trackedNodes= new IdentityHashMap();
+			this.trackedNodes= new IdentityHashMap(); //FLLDCIM: MARK — M06 M3_IDENTITY_WEAK_LANES NEW
 		}
 		this.trackedNodes.put(node, editGroup);
 	}
@@ -607,7 +607,7 @@ public final class RewriteEventStore {
 		CopySourceInfo copySource= new CopySourceInfo(location, node, isMove);
 
 		if (this.nodeCopySources == null) {
-			this.nodeCopySources= new ArrayList();
+			this.nodeCopySources= new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		}
 		this.nodeCopySources.add(copySource);
 		return copySource;
@@ -621,7 +621,7 @@ public final class RewriteEventStore {
 		return node.getProperty(INTERNAL_PLACEHOLDER_PROPERTY) != null;
 	}
 
-	public final CopySourceInfo createRangeCopy(ASTNode parent, StructuralPropertyDescriptor childProperty, ASTNode first, ASTNode last, boolean isMove, ASTNode internalPlaceholder, ASTNode replacingNode, TextEditGroup editGroup) {
+	public final CopySourceInfo createRangeCopy(ASTNode parent, StructuralPropertyDescriptor childProperty, ASTNode first, ASTNode last, boolean isMove, ASTNode internalPlaceholder, ASTNode replacingNode, TextEditGroup editGroup) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		CopySourceInfo copyInfo= createCopySourceInfo(null, internalPlaceholder, isMove);
 		internalPlaceholder.setProperty(INTERNAL_PLACEHOLDER_PROPERTY, internalPlaceholder);
 
@@ -643,12 +643,12 @@ public final class RewriteEventStore {
 		}
 
 		if (this.nodeRangeInfos == null) {
-			this.nodeRangeInfos= new HashMap();
+			this.nodeRangeInfos= new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		}
 		PropertyLocation loc= new PropertyLocation(parent, childProperty);
 		List innerList= (List) this.nodeRangeInfos.get(loc);
 		if (innerList == null) {
-			innerList= new ArrayList(2);
+			innerList= new ArrayList(2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			this.nodeRangeInfos.put(loc, innerList);
 		} else {
 			assertNoOverlap(listEvent, indexFirst, indexLast, innerList);
@@ -668,8 +668,8 @@ public final class RewriteEventStore {
 
 
 	public CopySourceInfo[] internalGetCopySources(List copySources, ASTNode node) {
-		ArrayList res= new ArrayList(3);
-		for (Object element : copySources) {
+		ArrayList res= new ArrayList(3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (Object element : copySources) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			CopySourceInfo curr= (CopySourceInfo) element;
 			if (curr.getNode() == node) {
 				res.add(curr);
@@ -686,7 +686,7 @@ public final class RewriteEventStore {
 
 
 	private void assertNoOverlap(ListRewriteEvent listEvent, int indexFirst, int indexLast, List innerList) {
-		for (Object element : innerList) {
+		for (Object element : innerList) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			NodeRangeInfo curr= (NodeRangeInfo) element;
 			int currStart= listEvent.getIndex(curr.getStartNode(), ListRewriteEvent.BOTH);
 			int currEnd= listEvent.getIndex(curr.getEndNode(), ListRewriteEvent.BOTH);
@@ -713,19 +713,19 @@ public final class RewriteEventStore {
 		}
 	}
 
-	private void removeMoveRangePlaceholders() {
-		for (Object element : this.nodeRangeInfos.entrySet()) {
+	private void removeMoveRangePlaceholders() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		for (Object element : this.nodeRangeInfos.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Map.Entry entry= (Map.Entry) element;
-			Set placeholders= new HashSet(); // collect all placeholders
+			Set placeholders= new HashSet(); // collect all placeholders //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			List rangeInfos= (List) entry.getValue(); // list of CopySourceRange
-			for (Object e : rangeInfos) {
+			for (Object e : rangeInfos) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				placeholders.add(((NodeRangeInfo) e).getInternalPlaceholder());
 			}
 
 			PropertyLocation loc= (PropertyLocation) entry.getKey();
 
 			RewriteEvent[] children= getListEvent(loc.getParent(), loc.getProperty(), true).getChildren();
-			List revertedChildren= new ArrayList();
+			List revertedChildren= new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			revertListWithRanges(children, placeholders, revertedChildren);
 			RewriteEvent[] revertedChildrenArr= (RewriteEvent[]) revertedChildren.toArray(new RewriteEvent[revertedChildren.size()]);
 			addEvent(loc.getParent(), loc.getProperty(), new ListRewriteEvent(revertedChildrenArr)); // replace the current edits
@@ -733,7 +733,7 @@ public final class RewriteEventStore {
 	}
 
 	private void revertListWithRanges(RewriteEvent[] childEvents, Set placeholders, List revertedChildren) {
-		for (RewriteEvent event : childEvents) {
+		for (RewriteEvent event : childEvents) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ASTNode node= (ASTNode) event.getOriginalValue();
 			if (placeholders.contains(node)) {
 				RewriteEvent[] placeholderChildren= getListEvent(node, Block.STATEMENTS_PROPERTY, false).getChildren();
@@ -745,10 +745,10 @@ public final class RewriteEventStore {
 	}
 
 	private void prepareNodeRangeCopies(TargetSourceRangeComputer sourceRangeComputer) {
-		for (Object element : this.nodeRangeInfos.entrySet()) {
+		for (Object element : this.nodeRangeInfos.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Map.Entry entry= (Map.Entry) element;
 			List rangeInfos= (List) entry.getValue(); // list of CopySourceRange
-			Collections.sort(rangeInfos); // sort by start index, length, move or copy
+			Collections.sort(rangeInfos); // sort by start index, length, move or copy //FLLDCIM: MARK — M16 SORT_LANE CALL
 
 			PropertyLocation loc= (PropertyLocation) entry.getKey();
 			RewriteEvent[] children= getListEvent(loc.getParent(), loc.getProperty(), true).getChildren();
@@ -758,8 +758,8 @@ public final class RewriteEventStore {
 		}
 	}
 
-	private RewriteEvent[] processListWithRanges(List rangeInfos, RewriteEvent[] childEvents, TargetSourceRangeComputer sourceRangeComputer) {
-		List newChildEvents= new ArrayList(childEvents.length);
+	private RewriteEvent[] processListWithRanges(List rangeInfos, RewriteEvent[] childEvents, TargetSourceRangeComputer sourceRangeComputer) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		List newChildEvents= new ArrayList(childEvents.length); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		NodeRangeInfo topInfo= null;
 		Stack newChildrenStack= new Stack();
 		Stack topInfoStack= new Stack();
@@ -767,10 +767,10 @@ public final class RewriteEventStore {
 		Iterator rangeInfoIterator= rangeInfos.iterator();
 		NodeRangeInfo nextInfo= (NodeRangeInfo) rangeInfoIterator.next();
 
-		for (RewriteEvent event : childEvents) {
+		for (RewriteEvent event : childEvents) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ASTNode node= (ASTNode) event.getOriginalValue();
 			// check for ranges and add a placeholder for them
-			while (nextInfo != null && node == nextInfo.getStartNode()) { // is this child the beginning of a range?
+			while (nextInfo != null && node == nextInfo.getStartNode()) { // is this child the beginning of a range? //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				nextInfo.updatePlaceholderSourceRanges(sourceRangeComputer);
 
 				Block internalPlaceholder= nextInfo.getInternalPlaceholder();
@@ -788,7 +788,7 @@ public final class RewriteEventStore {
 				newChildrenStack.push(newChildEvents);
 				topInfoStack.push(topInfo);
 
-				newChildEvents= new ArrayList(childEvents.length);
+				newChildEvents= new ArrayList(childEvents.length); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				topInfo= nextInfo;
 
 				nextInfo= rangeInfoIterator.hasNext() ? (NodeRangeInfo) rangeInfoIterator.next() : null;
@@ -796,7 +796,7 @@ public final class RewriteEventStore {
 
 			newChildEvents.add(event);
 
-			while (topInfo != null && node == topInfo.getEndNode()) {
+			while (topInfo != null && node == topInfo.getEndNode()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				RewriteEvent[] placeholderChildEvents= (RewriteEvent[]) newChildEvents.toArray(new RewriteEvent[newChildEvents.size()]);
 				Block internalPlaceholder= topInfo.getInternalPlaceholder();
 				addEvent(internalPlaceholder, Block.STATEMENTS_PROPERTY, new ListRewriteEvent(placeholderChildEvents));
@@ -812,7 +812,7 @@ public final class RewriteEventStore {
 	 * Make sure all moved nodes are marked as removed or replaced.
 	 */
 	private void prepareSingleNodeCopies() {
-		for (Object element : this.nodeCopySources) {
+		for (Object element : this.nodeCopySources) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			CopySourceInfo curr= (CopySourceInfo) element;
 			if (curr.isMove && curr.location != null) {
 				doMarkMovedAsRemoved(curr, curr.location.getParent(), curr.location.getProperty());
@@ -845,39 +845,39 @@ public final class RewriteEventStore {
 
 	public void setInsertBoundToPrevious(ASTNode node) {
 		if (this.insertBoundToPrevious == null) {
-			this.insertBoundToPrevious= new HashSet();
+			this.insertBoundToPrevious= new HashSet(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		}
 		this.insertBoundToPrevious.add(node);
 	}
 
 	private void validateIsListProperty(StructuralPropertyDescriptor property) {
 		if (!property.isChildListProperty()) {
-			String message= property.getId() + " is not a list property"; //$NON-NLS-1$
+			String message= property.getId() + " is not a list property"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			throw new IllegalArgumentException(message);
 		}
 	}
 
 	private void validateHasChildProperty(ASTNode parent, StructuralPropertyDescriptor property) {
 		if (!parent.structuralPropertiesForType().contains(property)) {
-			String message= Signature.getSimpleName(parent.getClass().getName()) + " has no property " + property.getId(); //$NON-NLS-1$
+			String message= Signature.getSimpleName(parent.getClass().getName()) + " has no property " + property.getId(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			throw new IllegalArgumentException(message);
 		}
 	}
 
 	private void validateIsNodeProperty(StructuralPropertyDescriptor property) {
 		if (property.isChildListProperty()) {
-			String message= property.getId() + " is not a node property"; //$NON-NLS-1$
+			String message= property.getId() + " is not a node property"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			throw new IllegalArgumentException(message);
 		}
 	}
 
 	@Override
 	public String toString() {
-		StringBuilder buf= new StringBuilder();
-		for (Object element : this.eventLookup.values()) {
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (Object element : this.eventLookup.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			List events = (List) element;
-			for (Object event : events) {
-				buf.append(event.toString()).append('\n');
+			for (Object event : events) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buf.append(event.toString()).append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		return buf.toString();

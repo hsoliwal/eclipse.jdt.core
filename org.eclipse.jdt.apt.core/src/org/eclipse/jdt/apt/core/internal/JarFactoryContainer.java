@@ -45,7 +45,7 @@ public abstract class JarFactoryContainer extends FactoryContainer
 			final File jarFile = getJarFile();
 			if(jarFile == null)
 				return false;
-			return getJarFile().exists();
+			return getJarFile().exists(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		} catch (SecurityException e) {
 			return false;
 		}
@@ -70,26 +70,26 @@ public abstract class JarFactoryContainer extends FactoryContainer
      * @param jar the jar file.
      * @return a list, possibly empty, of fully qualified classnames to be instantiated.
      */
-    protected static Map<String, String> getServiceClassnamesFromJar(File jar) throws IOException
+    protected static Map<String, String> getServiceClassnamesFromJar(File jar) throws IOException //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     {
-        Map<String, String> classNames = new LinkedHashMap<>();
+        Map<String, String> classNames = new LinkedHashMap<>(); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
         JarFile jarFile = null;
         try {
             jarFile = new JarFile(jar);
 
-            for (String serviceName : AUTOLOAD_SERVICES) {
-            	String providerName = "META-INF/services/" + serviceName; //$NON-NLS-1$
+            for (String serviceName : AUTOLOAD_SERVICES) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+            	String providerName = "META-INF/services/" + serviceName; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             	// Get the service provider def file out of the jar.
                 JarEntry provider = jarFile.getJarEntry(providerName);
                 if (provider == null) {
                     continue;
                 }
                 // Extract classnames from the service provider def file.
-                InputStream is = jarFile.getInputStream(provider);
+                InputStream is = jarFile.getInputStream(provider); //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
                 readServiceProvider(is, serviceName, classNames);
             }
         } catch (IOException ioe) {
-        	AptPlugin.log(ioe, Messages.AnnotationProcessorFactoryLoader_ioError + jar.getAbsolutePath());
+        	AptPlugin.log(ioe, Messages.AnnotationProcessorFactoryLoader_ioError + jar.getAbsolutePath()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         } finally {
         	try {if (jarFile != null) jarFile.close();} catch (IOException ioe) {}
         }
@@ -102,18 +102,18 @@ public abstract class JarFactoryContainer extends FactoryContainer
      * definition file, e.g., one of the files named in AUTOLOAD_SERVICES.
      * @param classNames a list to which the classes named in is will be added.
      */
-    protected static void readServiceProvider(InputStream is, String serviceName, Map<String, String> classNames) throws IOException {
+    protected static void readServiceProvider(InputStream is, String serviceName, Map<String, String> classNames) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	BufferedReader rd = null;
     	try {
 	        rd = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
-	        for (String line = rd.readLine(); line != null; line = rd.readLine()) {
+	        for (String line = rd.readLine(); line != null; line = rd.readLine()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	            // hack off any comments
 	            int iComment = line.indexOf('#');
 	            if (iComment >= 0) {
 	                line = line.substring(0, iComment);
 	            }
 	            // add the first non-whitespace token to the list
-	            final String[] tokens = line.split("\\s", 2); //$NON-NLS-1$
+	            final String[] tokens = line.split("\\s", 2); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 	            if (tokens[0].length() > 0) {
 	                classNames.put(tokens[0], serviceName);
 	            }

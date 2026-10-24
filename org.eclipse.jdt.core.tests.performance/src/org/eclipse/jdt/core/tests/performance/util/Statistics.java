@@ -38,17 +38,17 @@ public final class Statistics {
 		InternalDimensions.USED_JAVA_HEAP,
 	};
 
-public Statistics(DataPoint[] dataPoints) {
+public Statistics(DataPoint[] dataPoints) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.session = new StatisticsSession(dataPoints);
 	this.count = dataPoints.length / 2;
 	int dimLength = DIMENSIONS.length;
 	this.measures = new long[dimLength][this.count];
 	this.min = new long[dimLength];
 	this.max = new long[dimLength];
-	for (int i = 0; i < DIMENSIONS.length; i++) {
+	for (int i = 0; i < DIMENSIONS.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		this.min[i] = Long.MAX_VALUE;
 		this.max[i] = 0;
-		for (int j = 0; j < this.count; j++) {
+		for (int j = 0; j < this.count; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			long measure = dataPoints[2 * j + 1].getScalar(DIMENSIONS[i]).getMagnitude()
 				- dataPoints[2 * j].getScalar(DIMENSIONS[i]).getMagnitude();
 			this.measures[i][j] = measure;
@@ -64,46 +64,46 @@ public Statistics(DataPoint[] dataPoints) {
 
 @Override
 public String toString() {
-	StringBuilder buffer = new StringBuilder();
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	int length = DIMENSIONS.length;
-	for (int idx=0; idx<length; idx++) {
+	for (int idx=0; idx<length; idx++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		dimToString(idx, buffer);
 	}
 	return buffer.toString();
 }
 
 public String toString(int dimIndex) {
-	StringBuilder buffer = new StringBuilder();
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	dimToString(dimIndex, buffer);
 	return buffer.toString();
 }
 
 public String elapsedProcessToString() {
-	StringBuilder buffer = new StringBuilder();
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	dimToString(1, buffer);
 	return buffer.toString();
 }
 
-void dimToString(int idx, StringBuilder buffer) {
+void dimToString(int idx, StringBuilder buffer) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Dim dim = DIMENSIONS[idx];
-	buffer.append(dim.getName());
-	buffer.append(": n=");
+	buffer.append(dim.getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(": n="); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	// long count = this.session.getCount(dim);
-	buffer.append(this.count);
-	buffer.append(", sum=");
-	buffer.append(this.session.getSum(dim));
-	buffer.append(", av=");
-	buffer.append(this.session.getAverage(dim));
-	buffer.append(", dev=");
+	buffer.append(this.count); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(", sum="); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(this.session.getSum(dim)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(", av="); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(this.session.getAverage(dim)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(", dev="); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	double stddev = this.session.getStddev(dim);
-	buffer.append(DOUBLE_FORMAT.format(stddev));
-	buffer.append(", err=");
-	buffer.append(DOUBLE_FORMAT.format(stddev / Math.sqrt(this.count)));
-	buffer.append(", interval=[");
+	buffer.append(DOUBLE_FORMAT.format(stddev)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(", err="); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(DOUBLE_FORMAT.format(stddev / Math.sqrt(this.count))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(", interval=["); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	double[] interval = this.session.getConfidenceInterval(dim, StatisticsUtil.T90);
-	buffer.append(DOUBLE_FORMAT.format(interval[0]));
-	buffer.append('-');
-	buffer.append(DOUBLE_FORMAT.format(interval[1]));
+	buffer.append(DOUBLE_FORMAT.format(interval[0])); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append('-'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(DOUBLE_FORMAT.format(interval[1])); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 //	buffer.append("], smoothed: {n=");
 //	smoothValues();
 //	buffer.append(this.smoothedCounts[idx]);
@@ -112,16 +112,16 @@ void dimToString(int idx, StringBuilder buffer) {
 //	buffer.append(", a=");
 //	buffer.append(this.smoothedAverages[idx]);
 //	buffer.append("}, measures: {");
-	buffer.append("], measures: {");
-	for (int i = 0; i < this.count; i++) {
+	buffer.append("], measures: {"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	for (int i = 0; i < this.count; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (i > 0)
-			buffer.append(',');
-		buffer.append(this.measures[idx][i]);
+			buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(this.measures[idx][i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	buffer.append("}, min=");
-	buffer.append(this.min[idx]);
-	buffer.append(", max=");
-	buffer.append(this.max[idx]);
+	buffer.append("}, min="); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(this.min[idx]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(", max="); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(this.max[idx]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 }
 
 public long getSum(int dimIndex) {

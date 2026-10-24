@@ -34,7 +34,7 @@ public class CharArrayUtils {
 		int h = 0;
 		int end = start + length;
 
-		for (int curr = start; curr < end; ++curr) {
+		for (int curr = start; curr < end; ++curr) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			h = 31 * h + str[curr];
 		}
 
@@ -59,7 +59,7 @@ public class CharArrayUtils {
 		if (strarr1.length != strarr2.length) {
 			return false;
 		}
-		for (int i = 0; i < strarr2.length; i++) {
+		for (int i = 0; i < strarr2.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!Arrays.equals(strarr1[i], strarr2[i])) {
 				return false;
 			}
@@ -77,7 +77,7 @@ public class CharArrayUtils {
         if (str2.length() != length)
             return false;
 
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
             if (str1[i] != str2.charAt(i))
                 return false;
         }
@@ -103,7 +103,7 @@ public class CharArrayUtils {
 	public static final boolean equals(char[] str1, int start1, int length1, String str2) {
 		if (length1 != str2.length() || str1.length < length1 + start1)
 			return false;
-		for (int i = 0; i < length1; ++i) {
+		for (int i = 0; i < length1; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (str1[start1++] != str2.charAt(i))
 				return false;
 		}
@@ -119,7 +119,7 @@ public class CharArrayUtils {
 		int len = str2.length();
 		if (str1.length < len)
 			return false;
-		for (int i = 0; i < len; i++) {
+		for (int i = 0; i < len; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
             if (str1[i] != str2.charAt(i)) {
                 return false;
             }
@@ -144,7 +144,7 @@ public class CharArrayUtils {
 			return 0;
 
 		int end= Math.min(str1.length, str2.length);
-		for (int i = 0; i < end; ++i) {
+		for (int i = 0; i < end; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int diff= str1[i] - str2[i];
 			if (diff != 0)
 				return diff;
@@ -162,7 +162,7 @@ public class CharArrayUtils {
 			return false;
 		if (str1 == str2 && start1 == 0)
 		    return true;
-		for (int i = 0; i < length1; ++i) {
+		for (int i = 0; i < length1; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (str1[start1++] != str2[i])
 				return false;
 		}
@@ -177,7 +177,7 @@ public class CharArrayUtils {
 		if (length1 != str2.length || str1.length < start1 + length1)
 			return false;
 
-		for (int i = 0; i < length1; ++i) {
+		for (int i = 0; i < length1; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (Character.toLowerCase(str1[start1++]) != Character.toLowerCase(str2[i]))
 				return false;
 		}
@@ -225,7 +225,7 @@ public class CharArrayUtils {
 		return result;
 	}
 
-	public static final char[] concat(char[] first, char[] second, char[] third, char[] fourth) {
+	public static final char[] concat(char[] first, char[] second, char[] third, char[] fourth) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (first == null)
 			return concat(second, third, fourth);
 		if (second == null)
@@ -254,13 +254,13 @@ public class CharArrayUtils {
 	 */
 	public static char[] concat(char[]... toCatenate) {
 		int totalSize = 0;
-		for (char[] next: toCatenate) {
+		for (char[] next: toCatenate) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			totalSize += next.length;
 		}
 
 		char[] result = new char[totalSize];
 		int writeIndex = 0;
-		for (char[] next: toCatenate) {
+		for (char[] next: toCatenate) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (next == null) {
 				continue;
 			}
@@ -270,7 +270,7 @@ public class CharArrayUtils {
 		return result;
 	}
 
-	public static final char[] replace(char[] array, char[] toBeReplaced, char[] replacementChars) {
+	public static final char[] replace(char[] array, char[] toBeReplaced, char[] replacementChars) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int max = array.length;
 		int replacedLength = toBeReplaced.length;
 		int replacementLength = replacementChars.length;
@@ -279,9 +279,9 @@ public class CharArrayUtils {
 		int occurrenceCount = 0;
 
 		if (!equals(toBeReplaced, replacementChars)) {
-			next: for (int i = 0; i < max; i++) {
+			next: for (int i = 0; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int j = 0;
-				while (j < replacedLength) {
+				while (j < replacedLength) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (i + j == max)
 						continue next;
 					if (array[i + j] != toBeReplaced[j++])
@@ -298,7 +298,7 @@ public class CharArrayUtils {
 			return array;
 		char[] result = new char[max + occurrenceCount * (replacementLength - replacedLength)];
 		int inStart = 0, outStart = 0;
-		for (int i = 0; i < occurrenceCount; i++) {
+		for (int i = 0; i < occurrenceCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int offset = starts[i] - inStart;
 			System.arraycopy(array, inStart, result, outStart, offset);
 			inStart += offset;
@@ -347,7 +347,7 @@ public class CharArrayUtils {
 	}
 
 	public static final int indexOf(char toBeFound, char[] array) {
-		for (int i = 0; i < array.length; i++) {
+		for (int i = 0; i < array.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (toBeFound == array[i])
 				return i;
 		}
@@ -358,7 +358,7 @@ public class CharArrayUtils {
         if (start < 0 || start > buffer.length || end > buffer.length)
             return -1;
 
-        for (int i = start; i < end; i++) {
+        for (int i = start; i < end; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (toBeFound == buffer[i])
 				return i;
         }
@@ -370,7 +370,7 @@ public class CharArrayUtils {
 	        return -1;
 
 	    int j = 0;
-	    for (int i = 0; i < array.length; i++) {
+	    for (int i = 0; i < array.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	        if (toBeFound[j] == array[i]) {
 	            if (++j == toBeFound.length)
 	                return i - j + 1;
@@ -396,7 +396,7 @@ public class CharArrayUtils {
 	 * @since 5.11
 	 */
 	public static int lastIndexOf(char toBeFound, char[] array, int fromIndex) {
-		for (int i = array.length; --i >= fromIndex;) {
+		for (int i = array.length; --i >= fromIndex;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (array[i] == toBeFound) {
 				return i;
 			}
@@ -410,7 +410,7 @@ public class CharArrayUtils {
 	public static int lastIndexOf(char[] toBeFound, char[] array, int fromIndex) {
 		int i = array.length;
 		int j = toBeFound.length;
-		while (true) {
+		while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (--j < 0)
 				return i;
 			if (--i < fromIndex)
@@ -422,20 +422,20 @@ public class CharArrayUtils {
 		}
 	}
 
-	static final public char[] trim(char[] chars) {
+	static final public char[] trim(char[] chars) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (chars == null)
 			return null;
 
 		int length = chars.length;
 		int start = 0;
-		while (start < length && chars[start] == ' ') {
+		while (start < length && chars[start] == ' ') { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			start++;
 		}
 		if (start == length)
 			return EMPTY_CHAR_ARRAY;
 
 		int end = length;
-		while (--end > start && chars[end] == ' ') {
+		while (--end > start && chars[end] == ' ') { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// Nothing to do
 		}
 		end++;
@@ -463,7 +463,7 @@ public class CharArrayUtils {
      * @return offset where the array was found or {@code -1}
      */
     public static int indexOf(final char[] searchFor, final char[][] searchIn) {
-		for (int i = 0; i < searchIn.length; i++) {
+		for (int i = 0; i < searchIn.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (equals(searchIn[i], searchFor)) {
 				return i;
 			}

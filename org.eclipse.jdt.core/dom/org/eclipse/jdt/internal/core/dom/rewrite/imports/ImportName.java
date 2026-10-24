@@ -60,13 +60,13 @@ public final class ImportName {
 		this.containerName = containerName;
 		this.simpleName = simpleName;
 
-		this.qualifiedName = containerName.isEmpty() ? simpleName : containerName + "." + simpleName; //$NON-NLS-1$;
+		this.qualifiedName = containerName.isEmpty() ? simpleName : containerName + "." + simpleName; //$NON-NLS-1$; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	@Override
 	public String toString() {
 		String template = this.isStatic ? "staticImport(%s)" : this.isModule ? "moduleImport(%s)" : "typeImport(%s)"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		return String.format(template, this.qualifiedName);
+		return String.format(template, this.qualifiedName); //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
 	}
 
 	@Override

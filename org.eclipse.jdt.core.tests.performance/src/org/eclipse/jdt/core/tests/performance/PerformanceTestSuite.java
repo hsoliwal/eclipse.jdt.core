@@ -28,31 +28,31 @@ public class PerformanceTestSuite extends TestSuite {
 	 * Constructs a TestSuite from the given class. Adds all the methods
 	 * starting with "testPerf" as test cases to the suite.
 	 */
-	 public PerformanceTestSuite(final Class theClass) {
+	 public PerformanceTestSuite(final Class theClass) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setName(theClass.getName());
 		try {
 			getTestConstructor(theClass); // Avoid generating multiple error messages
 		} catch (NoSuchMethodException e) {
-			addTest(addWarningTest("Class "+theClass.getName()+" has no public constructor TestCase(String name) or TestCase()"));
+			addTest(addWarningTest("Class "+theClass.getName()+" has no public constructor TestCase(String name) or TestCase()")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			return;
 		}
 
 		if (!Modifier.isPublic(theClass.getModifiers())) {
-			addTest(addWarningTest("Class "+theClass.getName()+" is not public"));
+			addTest(addWarningTest("Class "+theClass.getName()+" is not public")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			return;
 		}
 
 		Class superClass= theClass;
-		List<String> names= new ArrayList<>();
-		while (Test.class.isAssignableFrom(superClass)) {
+		List<String> names= new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		while (Test.class.isAssignableFrom(superClass)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Method[] methods= superClass.getDeclaredMethods();
-			for (int i= 0; i < methods.length; i++) {
+			for (int i= 0; i < methods.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				addTestMethod(methods[i], names, theClass);
 			}
 			superClass= superClass.getSuperclass();
 		}
 		if (countTestCases() == 0)
-			addTest(addWarningTest("No tests found in "+theClass.getName()));
+			addTest(addWarningTest("No tests found in "+theClass.getName())); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public PerformanceTestSuite(String name) {
@@ -65,7 +65,7 @@ public class PerformanceTestSuite extends TestSuite {
 			return;
 		if (! isPublicTestMethod(m)) {
 			if (isTestMethod(m))
-				addTest(addWarningTest("Test method isn't public: "+m.getName()));
+				addTest(addWarningTest("Test method isn't public: "+m.getName())); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			return;
 		}
 		names.add(name);

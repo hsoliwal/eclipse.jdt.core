@@ -86,7 +86,7 @@ class AddJarFileToIndex extends BinaryContainer {
 			return this.containerPath.hashCode();
 		return -1;
 	}
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean execute(IProgressMonitor progressMonitor) {
 
 		if (this.isCancelled || progressMonitor != null && progressMonitor.isCanceled()) return true;
@@ -103,20 +103,20 @@ class AddJarFileToIndex extends BinaryContainer {
 			Index index = this.manager.getIndexForUpdate(this.containerPath, false, /*do not reuse index file*/ false /*do not create if none*/);
 			if (index != null) {
 				if (JobManager.VERBOSE)
-					trace("-> no indexing required (index already exists) for " + this.containerPath); //$NON-NLS-1$
+					trace("-> no indexing required (index already exists) for " + this.containerPath); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return true;
 			}
 
 			index = this.manager.getIndexForUpdate(this.containerPath, true, /*reuse index file*/ true /*create if none*/);
 			if (index == null) {
 				if (JobManager.VERBOSE)
-					trace("-> index could not be created for " + this.containerPath); //$NON-NLS-1$
+					trace("-> index could not be created for " + this.containerPath); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return true;
 			}
 			ReadWriteMonitor monitor = index.monitor;
 			if (monitor == null) {
 				if (JobManager.VERBOSE)
-					trace("-> index for " + this.containerPath + " just got deleted"); //$NON-NLS-1$//$NON-NLS-2$
+					trace("-> index for " + this.containerPath + " just got deleted"); //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return true; // index got deleted since acquired
 			}
 			index.separator = JAR_SEPARATOR;
@@ -132,41 +132,41 @@ class AddJarFileToIndex extends BinaryContainer {
 					URI location = this.resource.getLocationURI();
 					if (location == null) return false;
 					if (JavaModelManager.ZIP_ACCESS_VERBOSE)
-						trace("(" + Thread.currentThread() + ") [AddJarFileToIndex.execute()] Creating ZipFile on " + location.getPath()); //$NON-NLS-1$	//$NON-NLS-2$
+						trace("(" + Thread.currentThread() + ") [AddJarFileToIndex.execute()] Creating ZipFile on " + location.getPath()); //$NON-NLS-1$	//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					File file = null;
 					try {
 						file = org.eclipse.jdt.internal.core.util.Util.toLocalFile(location, progressMonitor);
 					} catch (CoreException e) {
 						if (JobManager.VERBOSE) {
-							trace("-> failed to index " + location.getPath() + " because of the following exception:", e); //$NON-NLS-1$ //$NON-NLS-2$
+							trace("-> failed to index " + location.getPath() + " because of the following exception:", e); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
 					}
 					if (file == null) {
 						if (JobManager.VERBOSE)
-							trace("-> failed to index " + location.getPath() + " because the file could not be fetched"); //$NON-NLS-1$ //$NON-NLS-2$
+							trace("-> failed to index " + location.getPath() + " because the file could not be fetched"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						return false;
 					}
 					if (JavaModelManager.ZIP_ACCESS_VERBOSE)
-						trace("(" + Thread.currentThread() + ") [AddJarFileToIndex.execute()] Creating ZipFile on " + this.containerPath); //$NON-NLS-1$	//$NON-NLS-2$
-					zip = new ZipFile(file);
+						trace("(" + Thread.currentThread() + ") [AddJarFileToIndex.execute()] Creating ZipFile on " + this.containerPath); //$NON-NLS-1$	//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+					zip = new ZipFile(file); //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM NEW
 					zipFilePath = (Path) this.resource.getFullPath().makeRelative();
 					// absolute path relative to the workspace
 				} else {
 					if (JavaModelManager.ZIP_ACCESS_VERBOSE)
-						trace("(" + Thread.currentThread() + ") [AddJarFileToIndex.execute()] Creating ZipFile on " + this.containerPath); //$NON-NLS-1$	//$NON-NLS-2$
+						trace("(" + Thread.currentThread() + ") [AddJarFileToIndex.execute()] Creating ZipFile on " + this.containerPath); //$NON-NLS-1$	//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					// external file -> it is ok to use toFile()
-					zip = new ZipFile(this.containerPath.toFile());
+					zip = new ZipFile(this.containerPath.toFile()); //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM NEW
 					zipFilePath = (Path) this.containerPath;
 				}
 
 				if (this.isCancelled) {
 					if (JobManager.VERBOSE)
-						trace("-> indexing of " + zip.getName() + " has been cancelled"); //$NON-NLS-1$ //$NON-NLS-2$
+						trace("-> indexing of " + zip.getName() + " has been cancelled"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					return false;
 				}
 
 				if (JobManager.VERBOSE)
-					trace("-> indexing " + zip.getName()); //$NON-NLS-1$
+					trace("-> indexing " + zip.getName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				long initialTime = System.currentTimeMillis();
 
 				String[] paths = index.queryDocumentNames(""); // all file names //$NON-NLS-1$
@@ -180,9 +180,9 @@ class AddJarFileToIndex extends BinaryContainer {
 					String EXISTS = "OK"; //$NON-NLS-1$
 					String DELETED = "DELETED"; //$NON-NLS-1$
 					SimpleLookupTable indexedFileNames = new SimpleLookupTable(max == 0 ? 33 : max + 11);
-					for (int i = 0; i < max; i++)
+					for (int i = 0; i < max; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						indexedFileNames.put(paths[i], DELETED);
-					for (Enumeration<? extends ZipEntry> e = zip.entries(); e.hasMoreElements();) {
+					for (Enumeration<? extends ZipEntry> e = zip.entries(); e.hasMoreElements();) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 						// iterate each entry to index it
 						ZipEntry ze = e.nextElement();
 						String zipEntryName = ze.getName();
@@ -193,7 +193,7 @@ class AddJarFileToIndex extends BinaryContainer {
 					boolean needToReindex = indexedFileNames.elementSize != max; // a new file was added
 					if (!needToReindex) {
 						Object[] valueTable = indexedFileNames.valueTable;
-						for (Object v : valueTable) {
+						for (Object v : valueTable) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (v == DELETED) {
 								needToReindex = true; // a file was deleted so re-index
 								break;
@@ -201,7 +201,7 @@ class AddJarFileToIndex extends BinaryContainer {
 						}
 						if (!needToReindex) {
 							if (JobManager.VERBOSE)
-								trace("-> no indexing required (index is consistent with library) for " //$NON-NLS-1$
+								trace("-> no indexing required (index is consistent with library) for " //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								+ zip.getName() + " (" //$NON-NLS-1$
 								+ (System.currentTimeMillis() - initialTime) + "ms)"); //$NON-NLS-1$
 							this.manager.saveIndex(index); // to ensure its placed into the saved state
@@ -225,10 +225,10 @@ class AddJarFileToIndex extends BinaryContainer {
 					indexPath = indexLocation.getIndexPath();
 				}
 				boolean hasModuleInfoClass = false;
-				for (Enumeration<? extends ZipEntry> e = zip.entries(); e.hasMoreElements();) {
+				for (Enumeration<? extends ZipEntry> e = zip.entries(); e.hasMoreElements();) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 					if (this.isCancelled) {
 						if (JobManager.VERBOSE)
-							trace("-> indexing of " + zip.getName() + " has been cancelled"); //$NON-NLS-1$ //$NON-NLS-2$
+							trace("-> indexing of " + zip.getName() + " has been cancelled"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						return false;
 					}
 
@@ -268,13 +268,13 @@ class AddJarFileToIndex extends BinaryContainer {
 					this.manager.saveIndex(index);
 				}
 				if (JobManager.VERBOSE)
-					trace("-> done indexing of " //$NON-NLS-1$
+					trace("-> done indexing of " //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						+ zip.getName() + " (" //$NON-NLS-1$
 						+ (System.currentTimeMillis() - initialTime) + "ms)"); //$NON-NLS-1$
 			} finally {
 				if (zip != null) {
 					if (JavaModelManager.ZIP_ACCESS_VERBOSE) {
-						trace("(" + Thread.currentThread() + ") [AddJarFileToIndex.execute()] Closing ZipFile " + this.containerPath); //$NON-NLS-1$	//$NON-NLS-2$
+						trace("(" + Thread.currentThread() + ") [AddJarFileToIndex.execute()] Closing ZipFile " + this.containerPath); //$NON-NLS-1$	//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 					zip.close();
 				}
@@ -282,11 +282,11 @@ class AddJarFileToIndex extends BinaryContainer {
 			}
 		} catch (IOException e) {
 			if (e instanceof NoSuchFileException) {
-				org.eclipse.jdt.internal.core.util.Util.log(Status.info("Can not index not existing zip " + this.containerPath)); //$NON-NLS-1$
+				org.eclipse.jdt.internal.core.util.Util.log(Status.info("Can not index not existing zip " + this.containerPath)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			} else if ("zip file is empty".equals(e.getMessage())) { //$NON-NLS-1$
-				org.eclipse.jdt.internal.core.util.Util.log(Status.info("Can not index empty zip " + this.containerPath)); //$NON-NLS-1$
+				org.eclipse.jdt.internal.core.util.Util.log(Status.info("Can not index empty zip " + this.containerPath)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			} else {
-				org.eclipse.jdt.internal.core.util.Util.log(e, "Failed to index " + this.containerPath); //$NON-NLS-1$
+				org.eclipse.jdt.internal.core.util.Util.log(e, "Failed to index " + this.containerPath); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			this.manager.removeIndex(this.containerPath);
 			return false;
@@ -313,7 +313,7 @@ class AddJarFileToIndex extends BinaryContainer {
 	}
 	@Override
 	public String toString() {
-		return "indexing " + this.containerPath.toString(); //$NON-NLS-1$
+		return "indexing " + this.containerPath.toString(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	protected boolean hasPreBuiltIndex() {

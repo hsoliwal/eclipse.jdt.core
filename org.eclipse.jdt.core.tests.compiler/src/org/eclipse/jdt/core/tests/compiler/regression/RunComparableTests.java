@@ -28,7 +28,7 @@ public class RunComparableTests extends junit.framework.TestCase {
 
 	public static ArrayList ALL_CLASSES = null;
 	static {
-		ALL_CLASSES = new ArrayList();
+		ALL_CLASSES = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		ALL_CLASSES.add(AmbiguousMethodTest.class);
 		ALL_CLASSES.add(AutoBoxingTest.class);
 		ALL_CLASSES.add(SuppressWarningsTest.class);
@@ -54,9 +54,9 @@ public class RunComparableTests extends junit.framework.TestCase {
 		super(testName);
 	}
 
-	public static Test suite() {
+	public static Test suite() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TestSuite ts = new TestSuite(RunComparableTests.class.getName());
-		for (int i = 0, size=ALL_CLASSES.size(); i < size; i++) {
+		for (int i = 0, size=ALL_CLASSES.size(); i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Class testClass = (Class) ALL_CLASSES.get(i);
 			try {
 				Method suiteMethod = testClass.getDeclaredMethod("suite", new Class[0]); //$NON-NLS-1$

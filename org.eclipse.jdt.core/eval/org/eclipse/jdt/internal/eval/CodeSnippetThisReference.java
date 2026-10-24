@@ -106,15 +106,15 @@ public class CodeSnippetThisReference extends ThisReference implements Evaluatio
 	public StringBuilder printExpression(int indent, StringBuilder output){
 
 		char[] declaringType = this.evaluationContext.declaringTypeName;
-		output.append('(');
+		output.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (declaringType == null)
-			output.append("<NO DECLARING TYPE>"); //$NON-NLS-1$
+			output.append("<NO DECLARING TYPE>"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		else
-			output.append(declaringType);
-		return output.append(")this"); //$NON-NLS-1$
+			output.append(declaringType); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		return output.append(")this"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public TypeBinding resolveType(BlockScope scope) {
 		// implicit this
 		this.constant = Constant.NotAConstant;

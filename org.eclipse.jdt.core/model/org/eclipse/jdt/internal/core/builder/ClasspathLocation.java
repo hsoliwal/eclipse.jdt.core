@@ -80,7 +80,7 @@ public abstract class ClasspathLocation {
 	public IModule getModule() {
 		return this.module;
 	}
-	protected boolean areAllModuleOptionsEqual(ClasspathLocation other) {
+	protected boolean areAllModuleOptionsEqual(ClasspathLocation other) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.patchModuleName != null) {
 			if (other.patchModuleName == null)
 				return false;
@@ -165,7 +165,7 @@ public static ClasspathJrt forJrtSystem(String jrtPath, AccessRuleSet accessRule
 		try {
 			jrtVersion = JRTUtil.getJdkRelease(new File(jrtPath));
 		} catch (IOException e) {
-			throw new CoreException(new Status(IStatus.ERROR, ClasspathLocation.class, "Failed to detect JDK release for: " + jrtPath, e)); //$NON-NLS-1$
+			throw new CoreException(new Status(IStatus.ERROR, ClasspathLocation.class, "Failed to detect JDK release for: " + jrtPath, e)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		boolean sameOrHigherRelease = JavaCore.compareJavaVersions(release, jrtVersion) >= 0;
 		if(sameOrHigherRelease) {
@@ -232,7 +232,7 @@ protected IBinaryType decorateWithExternalAnnotations(IBinaryType reader, String
 	return reader; // default: don't decorate. Subclasses to override.
 }
 
-protected NameEnvironmentAnswer createAnswer(String fileNameWithoutExtension, IBinaryType reader, char[] moduleName) {
+protected NameEnvironmentAnswer createAnswer(String fileNameWithoutExtension, IBinaryType reader, char[] moduleName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.externalAnnotationPath != null) {
 		try {
 			if (this.annotationZipFile == null) {
@@ -248,7 +248,7 @@ protected NameEnvironmentAnswer createAnswer(String fileNameWithoutExtension, IB
 		}
 	} else if (this.allLocationsForEEA != null) {
 		boolean isAnnotated = false;
-		for (ClasspathLocation annotationLocation : this.allLocationsForEEA) {
+		for (ClasspathLocation annotationLocation : this.allLocationsForEEA) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			reader = annotationLocation.decorateWithExternalAnnotations(reader, fileNameWithoutExtension);
 			if (reader.getExternalAnnotationStatus() == ExternalAnnotationStatus.TYPE_IS_ANNOTATED) {
 				isAnnotated = true;
@@ -285,6 +285,6 @@ public boolean externalAnnotationsEquals(ClasspathLocation other) {
 	}
 	if (this.allLocationsForEEA == null)
 		return other.allLocationsForEEA == null;
-	return Objects.deepEquals(new HashSet<>(this.allLocationsForEEA), new HashSet<>(other.allLocationsForEEA));
+	return Objects.deepEquals(new HashSet<>(this.allLocationsForEEA), new HashSet<>(other.allLocationsForEEA)); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 }
 }

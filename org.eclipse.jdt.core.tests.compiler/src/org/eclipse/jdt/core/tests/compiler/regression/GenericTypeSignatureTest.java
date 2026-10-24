@@ -46,7 +46,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		Logger(InputStream inputStream, String type) {
 			this.inputStream = inputStream;
 			this.type = type;
-			this.buffer = new StringBuilder();
+			this.buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		}
 
 		@Override
@@ -54,8 +54,8 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 			try {
 				BufferedReader reader = new BufferedReader(new InputStreamReader(this.inputStream));
 				String line = null;
-				while ((line = reader.readLine()) != null) {
-					this.buffer.append(this.type).append("->").append(line);
+				while ((line = reader.readLine()) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					this.buffer.append(this.type).append("->").append(line); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				reader.close();
 			} catch (IOException e) {
@@ -97,7 +97,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		int length = testFiles.length;
 		int max = length / 2;
 		String[] fileNames = new String[max];
-		for (int i=0; i < max; i++) {
+		for (int i=0; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			fileNames[i] = testFiles[i*2];
 		}
 		return fileNames;
@@ -110,7 +110,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 	 * to perform it. Otherwise abort the process and log in console.
 	 */
 	// WORK unify with AbstractRegressionTest
-	protected void runJavac(final String testName, String[] testFiles) {
+	protected void runJavac(final String testName, String[] testFiles) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			// Write files in dir
 			writeFiles(testFiles);
@@ -120,15 +120,15 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 			try {
 				// Compute classpath
 				String[] classpath = getDefaultClassPaths();
-				StringBuilder cp = new StringBuilder();
+				StringBuilder cp = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 				int length = classpath.length;
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (classpath[i].indexOf(" ") != -1) {
-						cp.append("\"" + classpath[i] + "\"");
+						cp.append("\"" + classpath[i] + "\""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					} else {
-						cp.append(classpath[i]);
+						cp.append(classpath[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
-					if (i<(length-1)) cp.append(";");
+					if (i<(length-1)) cp.append(";"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				// Compute command line
 				IPath jdkDir = (new Path(Util.getJREDirectory())).removeLastSegments(1);
@@ -139,24 +139,24 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 				} else {
 					javacPath = jdkDir.append("bin").append("javac.exe");
 				}
-				StringBuilder cmdLine = new StringBuilder(javacPath.toString());
-				cmdLine.append(" -classpath ");
-				cmdLine.append(cp);
-				cmdLine.append(" -source 1.5 -deprecation -g -Xlint "); // enable recommended warnings
-				for (int i = 0, length2 = fileNames.length; i < length2; i++) {
-					cmdLine.append(fileNames[i] + " ");
+				StringBuilder cmdLine = new StringBuilder(javacPath.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				cmdLine.append(" -classpath "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				cmdLine.append(cp); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				cmdLine.append(" -source 1.5 -deprecation -g -Xlint "); // enable recommended warnings //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (int i = 0, length2 = fileNames.length; i < length2; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					cmdLine.append(fileNames[i] + " "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 //				System.out.println(testName+": "+cmdLine.toString());
 //				System.out.println(GenericTypeTest.this.dirPath.toFile().getAbsolutePath());
 				String cmdLineAsString;
 				// WORK improve double-quotes management on Linux
 				if ("Linux".equals(System.getProperty("os.name"))) {
-					cmdLineAsString = cmdLine.toString().replaceAll("\"", "");
+					cmdLineAsString = cmdLine.toString().replaceAll("\"", ""); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 				} else {
 					cmdLineAsString = cmdLine.toString();
 				}
 				// Launch process
-				process = Runtime.getRuntime().exec(cmdLineAsString.split("\\s"), null, GenericTypeSignatureTest.this.dirPath.toFile());
+				process = Runtime.getRuntime().exec(cmdLineAsString.split("\\s"), null, GenericTypeSignatureTest.this.dirPath.toFile()); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 	            // Log errors
 	            Logger errorLogger = new Logger(process.getErrorStream(), "ERROR");
 
@@ -169,13 +169,13 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 
 	            // Wait for end of process
 				if (process.waitFor() != 0) {
-					System.out.println(testName+": javac has found error(s)!");
+					System.out.println(testName+": javac has found error(s)!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			} catch (IOException ioe) {
-				System.out.println(testName+": Not possible to launch OpenJDK javac compilation!");
+				System.out.println(testName+": Not possible to launch OpenJDK javac compilation!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			} catch (InterruptedException e1) {
 				if (process != null) process.destroy();
-				System.out.println(testName+": OpenJDK javac compilation was aborted!");
+				System.out.println(testName+": OpenJDK javac compilation was aborted!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} catch (Exception e) {
 			// fails silently...
@@ -183,7 +183,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void test001() {
+	public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String[] testsSource = new String[] {
 				"X.java",
 				"public class X <T> extends p.A<T> {\n" +
@@ -211,7 +211,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 			"SUCCESS");
 
 		try {
-			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class");
+			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertEquals("Wrong signature", "<T:Ljava/lang/Object;>Lp/A<TT;>;", new String(classFileReader.getGenericSignature()));
 		} catch (ClassFormatException e) {
 			assertTrue(false);
@@ -219,7 +219,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 			assertTrue(false);
 		}
 
-		IClassFileReader classFileReader = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "X.class", IClassFileReader.ALL);
+		IClassFileReader classFileReader = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "X.class", IClassFileReader.ALL); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertNotNull(classFileReader);
 		IClassFileAttribute classFileAttribute = org.eclipse.jdt.internal.core.util.Util.getAttribute(classFileReader, IAttributeNamesConstants.SIGNATURE);
 		assertNotNull(classFileAttribute);
@@ -231,7 +231,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		int length = methodInfos.length;
 		assertEquals("Wrong size", 2, length);
 		IMethodInfo mainMethod = null;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IMethodInfo methodInfo = methodInfos[i];
 			if ("main".equals(new String(methodInfo.getName()))) {
 				mainMethod = methodInfo;
@@ -248,7 +248,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		ILocalVariableTypeTableAttribute localVariableTypeTableAttribute = (ILocalVariableTypeTableAttribute) classFileAttribute;
 		ILocalVariableTypeTableEntry[] entries = localVariableTypeTableAttribute.getLocalVariableTypeTable();
 		ILocalVariableTypeTableEntry xsEntry = null;
-		for (int i = 0, max = entries.length; i < max; i++) {
+		for (int i = 0, max = entries.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ILocalVariableTypeTableEntry entry = entries[i];
 			if ("xs".equals(new String(entry.getName()))) {
 				xsEntry = entry;
@@ -264,7 +264,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		assertEquals("Wrong signature", "LX<LX<Ljava/lang/String;>;>;", new String(signature));
 
 		IMethodInfo constructorMethod = null;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IMethodInfo methodInfo = methodInfos[i];
 			if ("<init>".equals(new String(methodInfo.getName()))) {
 				constructorMethod = methodInfo;
@@ -281,7 +281,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		localVariableTypeTableAttribute = (ILocalVariableTypeTableAttribute) classFileAttribute;
 		entries = localVariableTypeTableAttribute.getLocalVariableTypeTable();
 		ILocalVariableTypeTableEntry thisEntry = null;
-		for (int i = 0, max = entries.length; i < max; i++) {
+		for (int i = 0, max = entries.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ILocalVariableTypeTableEntry entry = entries[i];
 			if ("this".equals(new String(entry.getName()))) {
 				thisEntry = entry;
@@ -296,7 +296,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		assertNotNull("no signature", signature);
 		assertEquals("Wrong signature", "LX<TT;>;", new String(signature));
 		ILocalVariableTypeTableEntry tEntry = null;
-		for (int i = 0, max = entries.length; i < max; i++) {
+		for (int i = 0, max = entries.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ILocalVariableTypeTableEntry entry = entries[i];
 			if ("t".equals(new String(entry.getName()))) {
 				tEntry = entry;
@@ -317,7 +317,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		cleanUp();
 		runJavac("test001", testsSource);
 
-		classFileReader = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "X.class", IClassFileReader.ALL);
+		classFileReader = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "X.class", IClassFileReader.ALL); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertNotNull(classFileReader);
 		classFileAttribute = org.eclipse.jdt.internal.core.util.Util.getAttribute(classFileReader, IAttributeNamesConstants.SIGNATURE);
 		assertNotNull(classFileAttribute);
@@ -329,7 +329,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		length = methodInfos.length;
 		assertEquals("Wrong size", 2, length);
 		mainMethod = null;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IMethodInfo methodInfo = methodInfos[i];
 			if ("main".equals(new String(methodInfo.getName()))) {
 				mainMethod = methodInfo;
@@ -346,7 +346,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		localVariableTypeTableAttribute = (ILocalVariableTypeTableAttribute) classFileAttribute;
 		entries = localVariableTypeTableAttribute.getLocalVariableTypeTable();
 		xsEntry = null;
-		for (int i = 0, max = entries.length; i < max; i++) {
+		for (int i = 0, max = entries.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ILocalVariableTypeTableEntry entry = entries[i];
 			if ("xs".equals(new String(entry.getName()))) {
 				xsEntry = entry;
@@ -362,7 +362,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		assertEquals("Wrong signature", "LX<LX<Ljava/lang/String;>;>;", new String(signature));
 
 		constructorMethod = null;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IMethodInfo methodInfo = methodInfos[i];
 			if ("<init>".equals(new String(methodInfo.getName()))) {
 				constructorMethod = methodInfo;
@@ -379,7 +379,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		localVariableTypeTableAttribute = (ILocalVariableTypeTableAttribute) classFileAttribute;
 		entries = localVariableTypeTableAttribute.getLocalVariableTypeTable();
 		thisEntry = null;
-		for (int i = 0, max = entries.length; i < max; i++) {
+		for (int i = 0, max = entries.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ILocalVariableTypeTableEntry entry = entries[i];
 			if ("this".equals(new String(entry.getName()))) {
 				thisEntry = entry;
@@ -394,7 +394,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		assertNotNull("no signature", signature);
 		assertEquals("Wrong signature", "LX<TT;>;", new String(signature));
 		tEntry = null;
-		for (int i = 0, max = entries.length; i < max; i++) {
+		for (int i = 0, max = entries.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ILocalVariableTypeTableEntry entry = entries[i];
 			if ("t".equals(new String(entry.getName()))) {
 				tEntry = entry;
@@ -410,7 +410,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		assertEquals("Wrong signature", "TT;", new String(signature));
 	}
 
-	public void test002() {
+	public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String[] testsSource = new String[] {
 				"X.java",
 				"class X extends p.A<String> {\n" +
@@ -427,14 +427,14 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 			};
 		this.runConformTest(testsSource);
 
-		IClassFileReader classFileReader = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "X.class", IClassFileReader.ALL);
+		IClassFileReader classFileReader = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "X.class", IClassFileReader.ALL); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertNotNull(classFileReader);
 		IClassFileAttribute classFileAttribute = org.eclipse.jdt.internal.core.util.Util.getAttribute(classFileReader, IAttributeNamesConstants.SIGNATURE);
 		assertNotNull(classFileAttribute);
 		ISignatureAttribute signatureAttribute = (ISignatureAttribute) classFileAttribute;
 		assertEquals("Wrong signature", "Lp/A<Ljava/lang/String;>;", new String(signatureAttribute.getSignature()));
 
-		classFileReader = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "p/A.class", IClassFileReader.ALL);
+		classFileReader = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "p/A.class", IClassFileReader.ALL); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertNotNull(classFileReader);
 		classFileAttribute = org.eclipse.jdt.internal.core.util.Util.getAttribute(classFileReader, IAttributeNamesConstants.SIGNATURE);
 		assertNotNull(classFileAttribute);
@@ -453,7 +453,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		ILocalVariableTypeTableAttribute localVariableTypeTableAttribute = (ILocalVariableTypeTableAttribute) classFileAttribute;
 		ILocalVariableTypeTableEntry[] entries = localVariableTypeTableAttribute.getLocalVariableTypeTable();
 		ILocalVariableTypeTableEntry thisEntry = null;
-		for (int i = 0, max = entries.length; i < max; i++) {
+		for (int i = 0, max = entries.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ILocalVariableTypeTableEntry entry = entries[i];
 			if ("this".equals(new String(entry.getName()))) {
 				thisEntry = entry;
@@ -466,7 +466,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		}
 		assertEquals("Wrong signature", "Lp/A<TP;>;", new String(thisEntry.getSignature()));
 		ILocalVariableTypeTableEntry tEntry = null;
-		for (int i = 0, max = entries.length; i < max; i++) {
+		for (int i = 0, max = entries.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ILocalVariableTypeTableEntry entry = entries[i];
 			if ("p".equals(new String(entry.getName()))) {
 				tEntry = entry;
@@ -487,14 +487,14 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		cleanUp();
 		runJavac("test002", testsSource);
 
-		classFileReader = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "X.class", IClassFileReader.ALL);
+		classFileReader = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "X.class", IClassFileReader.ALL); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertNotNull(classFileReader);
 		classFileAttribute = org.eclipse.jdt.internal.core.util.Util.getAttribute(classFileReader, IAttributeNamesConstants.SIGNATURE);
 		assertNotNull(classFileAttribute);
 		signatureAttribute = (ISignatureAttribute) classFileAttribute;
 		assertEquals("Wrong signature", "Lp/A<Ljava/lang/String;>;", new String(signatureAttribute.getSignature()));
 
-		classFileReader = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "p/A.class", IClassFileReader.ALL);
+		classFileReader = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "p/A.class", IClassFileReader.ALL); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertNotNull(classFileReader);
 		classFileAttribute = org.eclipse.jdt.internal.core.util.Util.getAttribute(classFileReader, IAttributeNamesConstants.SIGNATURE);
 		assertNotNull(classFileAttribute);
@@ -513,7 +513,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		localVariableTypeTableAttribute = (ILocalVariableTypeTableAttribute) classFileAttribute;
 		entries = localVariableTypeTableAttribute.getLocalVariableTypeTable();
 		thisEntry = null;
-		for (int i = 0, max = entries.length; i < max; i++) {
+		for (int i = 0, max = entries.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ILocalVariableTypeTableEntry entry = entries[i];
 			if ("this".equals(new String(entry.getName()))) {
 				thisEntry = entry;
@@ -528,7 +528,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		assertNotNull("No signature", signature);
 		assertEquals("Wrong signature", "Lp/A<TP;>;", new String(signature));
 		tEntry = null;
-		for (int i = 0, max = entries.length; i < max; i++) {
+		for (int i = 0, max = entries.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ILocalVariableTypeTableEntry entry = entries[i];
 			if ("p".equals(new String(entry.getName()))) {
 				tEntry = entry;
@@ -544,7 +544,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		assertEquals("Wrong signature", "TP;", new String(signature));
 	}
 
-	public void test003() {
+	public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String[] testsSource = new String[] {
 			"X.java",
 			"public class X <T extends Object & p.B<? super T>> extends p.A<T> {\n" +
@@ -569,7 +569,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		};
 		this.runConformTest(testsSource);
 
-		IClassFileReader classFileReader = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "X.class", IClassFileReader.ALL);
+		IClassFileReader classFileReader = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "X.class", IClassFileReader.ALL); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertNotNull(classFileReader);
 		IClassFileAttribute classFileAttribute = org.eclipse.jdt.internal.core.util.Util.getAttribute(classFileReader, IAttributeNamesConstants.SIGNATURE);
 		assertNotNull(classFileAttribute);
@@ -582,7 +582,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		cleanUp();
 		runJavac("test003", testsSource);
 
-		classFileReader = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "X.class", IClassFileReader.ALL);
+		classFileReader = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "X.class", IClassFileReader.ALL); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertNotNull(classFileReader);
 		classFileAttribute = org.eclipse.jdt.internal.core.util.Util.getAttribute(classFileReader, IAttributeNamesConstants.SIGNATURE);
 		assertNotNull(classFileAttribute);
@@ -590,7 +590,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		assertEquals("Wrong signature", "<T:Ljava/lang/Object;:Lp/B<-TT;>;>Lp/A<TT;>;", new String(signatureAttribute.getSignature()));
 	}
 
-	public void test004() {
+	public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String[] testsSource = new String[] {
 			"X.java",
 			"public class X <T extends Object & p.B> extends p.A<T> {\n" +
@@ -615,7 +615,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		};
 		this.runConformTest(testsSource);
 
-		IClassFileReader classFileReader = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "X.class", IClassFileReader.ALL);
+		IClassFileReader classFileReader = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "X.class", IClassFileReader.ALL); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertNotNull(classFileReader);
 		IClassFileAttribute classFileAttribute = org.eclipse.jdt.internal.core.util.Util.getAttribute(classFileReader, IAttributeNamesConstants.SIGNATURE);
 		assertNotNull(classFileAttribute);
@@ -628,7 +628,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		cleanUp();
 		runJavac("test004", testsSource);
 
-		classFileReader = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "X.class", IClassFileReader.ALL);
+		classFileReader = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "X.class", IClassFileReader.ALL); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertNotNull(classFileReader);
 		classFileAttribute = org.eclipse.jdt.internal.core.util.Util.getAttribute(classFileReader, IAttributeNamesConstants.SIGNATURE);
 		assertNotNull(classFileAttribute);
@@ -636,7 +636,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		assertEquals("Wrong signature", "<T:Ljava/lang/Object;:Lp/B;>Lp/A<TT;>;", new String(signatureAttribute.getSignature()));
 	}
 
-	public void test005() {
+	public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String[] testsSource = new String[] {
 			"X.java",
 			"public class X <T extends Object & p.B & p.C> extends p.A<T> {\n" +
@@ -665,7 +665,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		};
 		this.runConformTest(testsSource);
 
-		IClassFileReader classFileReader = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "X.class", IClassFileReader.ALL);
+		IClassFileReader classFileReader = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "X.class", IClassFileReader.ALL); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertNotNull(classFileReader);
 		IClassFileAttribute classFileAttribute = org.eclipse.jdt.internal.core.util.Util.getAttribute(classFileReader, IAttributeNamesConstants.SIGNATURE);
 		assertNotNull(classFileAttribute);
@@ -680,7 +680,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		cleanUp();
 		runJavac("test005", testsSource);
 
-		classFileReader = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "X.class", IClassFileReader.ALL);
+		classFileReader = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "X.class", IClassFileReader.ALL); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertNotNull(classFileReader);
 		classFileAttribute = org.eclipse.jdt.internal.core.util.Util.getAttribute(classFileReader, IAttributeNamesConstants.SIGNATURE);
 		assertNotNull(classFileAttribute);
@@ -690,7 +690,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		assertEquals("Wrong signature", "<T:Ljava/lang/Object;:Lp/B;:Lp/C;>Lp/A<TT;>;", new String(signature));
 	}
 
-	public void test006() {
+	public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String[] testsSource = new String[] {
 			"X.java",
 			"public class X <T> {\n" +
@@ -712,7 +712,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 			"SUCCESS");
 
 		try {
-			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class");
+			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertEquals("Wrong signature", "<T:Ljava/lang/Object;>Ljava/lang/Object;", new String(classFileReader.getGenericSignature()));
 
 			IBinaryField[] fields = classFileReader.getFields();
@@ -737,7 +737,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void test007() {
+	public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String[] testsSource = new String[] {
 			"X.java",
 			"public class X <T> {\n" +
@@ -759,7 +759,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 			"SUCCESS");
 
 		try {
-			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class");
+			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertEquals("Wrong signature", "<T:Ljava/lang/Object;>Ljava/lang/Object;", new String(classFileReader.getGenericSignature()));
 
 			IBinaryField[] fields = classFileReader.getFields();
@@ -784,7 +784,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void test008() {
+	public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String[] testsSource = new String[] {
 			"X.java",
 			"public class X  <T> {\n" +
@@ -801,7 +801,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 			"SUCCESS");
 
 		try {
-			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class");
+			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IBinaryMethod[] methods = classFileReader.getMethods();
 			assertNotNull("No methods", methods);
 			assertEquals("Wrong size", 3, methods.length);
@@ -816,7 +816,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void test009() {
+	public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String[] testsSource = new String[] {
 			"X.java",
 			"public class X<T> {\n" +
@@ -836,7 +836,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 			"SUCCESS");
 
 		try {
-			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class");
+			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IBinaryMethod[] methods = classFileReader.getMethods();
 			assertNotNull("No methods", methods);
 			assertEquals("Wrong size", 3, methods.length);
@@ -851,7 +851,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void test010() {
+	public void test010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String[] testsSource = new String[] {
 			"X.java",
 			"public class X<T> {\n" +
@@ -871,7 +871,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 			"SUCCESS");
 
 		try {
-			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class");
+			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IBinaryMethod[] methods = classFileReader.getMethods();
 			assertNotNull("No methods", methods);
 			assertEquals("Wrong size", 3, methods.length);
@@ -885,7 +885,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void test011() {
+	public void test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String[] testsSource = new String[] {
 			"X.java",
 			"public class X<T> {\n" +
@@ -905,7 +905,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 			"SUCCESS");
 
 		try {
-			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class");
+			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IBinaryMethod[] methods = classFileReader.getMethods();
 			assertNotNull("No methods", methods);
 			assertEquals("Wrong size", 3, methods.length);
@@ -925,17 +925,17 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 	 * Write given source test files in current output sub-directory.
 	 * Use test name for this sub-directory name (ie. test001, test002, etc...)
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void writeFiles(String[] testFiles) {
 		// Compute and create specific dir
 		IPath dirFilePath = (IPath) this.dirPath.clone();
 		File dir = dirFilePath.toFile();
-		if (!dir.exists()) {
-			dir.mkdirs();
+		if (!dir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			dir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 
 		// For each given test files
-		for (int i=0, length=testFiles.length; i<length; i++) {
+		for (int i=0, length=testFiles.length; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			dirFilePath = (IPath) this.dirPath.clone();
 			String contents = testFiles[i+1];
 			String fileName = testFiles[i++];
@@ -943,15 +943,15 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 			if (fileName.lastIndexOf('/') >= 0) {
 				dirFilePath = filePath.removeLastSegments(1);
 				dir = dirFilePath.toFile();
-				if (!dir.exists()) {
-					dir.mkdirs();
+				if (!dir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+					dir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				}
 			}
 			Util.writeToFile(contents, filePath.toString());
 		}
 	}
 
-	public void test012() {
+	public void test012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String[] testsSource = new String[] {
 			"X.java",
 			"public class X<T> {\n" +
@@ -971,7 +971,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 			"SUCCESS");
 
 		try {
-			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class");
+			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IBinaryMethod[] methods = classFileReader.getMethods();
 			assertNotNull("No methods", methods);
 			assertEquals("Wrong size", 3, methods.length);
@@ -984,7 +984,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void test013() {
+	public void test013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String[] testsSource = new String[] {
 			"X.java",
 			"import java.util.ArrayList;\n" +
@@ -1006,7 +1006,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 			"SUCCESS");
 
 		try {
-			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class");
+			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IBinaryMethod[] methods = classFileReader.getMethods();
 			assertNotNull("No methods", methods);
 			assertEquals("Wrong size", 3, methods.length);
@@ -1021,7 +1021,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		}
 	}
 	// 59983 - incorrect signature for List<X>
-	public void test014() {
+	public void test014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String[] testsSource = new String[] {
 			"X.java",
 			"import java.util.ArrayList;\n" +
@@ -1038,7 +1038,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 			"SUCCESS");
 
 		try {
-			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class");
+			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IBinaryField[] fields = classFileReader.getFields();
 			assertNotNull("No fields", fields);
 			assertEquals("Wrong size", 1, fields.length);
@@ -1053,7 +1053,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		}
 	}
 	// 65953 - incorrect signature for generic interface
-	public void test015() {
+	public void test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String[] testsSource = new String[] {
 			"X.java",
 			"public interface X<T> {\n" +
@@ -1064,7 +1064,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 			"");
 
 		try {
-			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class");
+			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			char[] signature = classFileReader.getGenericSignature();
 			assertNotNull("No signature", signature);
 			assertEquals("Wrong signature", "<T:Ljava/lang/Object;>Ljava/lang/Object;", new String(signature));
@@ -1075,7 +1075,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		}
 	}
 	// 70975 - invalid signature for method with array of type variables
-	public void test016() {
+	public void test016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String[] testsSource = new String[] {
 			"X.java",
 			"import java.util.ArrayList;\n" +
@@ -1094,7 +1094,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 			"SUCCESS");
 
 		try {
-			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class");
+			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IBinaryMethod[] methods = classFileReader.getMethods();
 			assertNotNull("No methods", methods);
 			assertEquals("Wrong size", 3, methods.length);
@@ -1108,7 +1108,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 			assertTrue(false);
 		}
 	}
-	public void test017() {
+	public void test017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String[] testsSource = new String[] {
 			"X.java",
 			"public class X<T> {\n" +
@@ -1128,7 +1128,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 			"SUCCESS");
 
 		try {
-			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class");
+			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IBinaryMethod[] methods = classFileReader.getMethods();
 			assertNotNull("No methods", methods);
 			assertEquals("Wrong size", 3, methods.length);
@@ -1143,7 +1143,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		}
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=98322
-	public void test018() {
+	public void test018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String[] testsSource = new String[] {
 			"X.java",
 			"public class X<K extends X.Key> {\n" +
@@ -1162,7 +1162,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 			"");
 
 		try {
-			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class");
+			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IBinaryMethod[] methods = classFileReader.getMethods();
 			assertNotNull("No methods", methods);
 			assertEquals("Wrong size", 4, methods.length);
@@ -1187,7 +1187,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		}
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=100293
-	public void test019() {
+	public void test019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String[] testsSource = new String[] {
 			"X.java",
 			"public class X<K extends X.Key> {\n" +
@@ -1214,7 +1214,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 			"");
 
 		try {
-			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X$1Local.class");
+			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X$1Local.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IBinaryField[] fields = classFileReader.getFields();
 			assertNotNull("No fields", fields);
 			assertEquals("Wrong size", 1, fields.length);
@@ -1248,7 +1248,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		}
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=160132 - variation
-	public void test020() {
+	public void test020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String[] testsSource = new String[] {
 			"X.java",
 			"public interface X<E extends Object & X.Entry> {\n" +
@@ -1264,7 +1264,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 			"");
 
 		try {
-			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X$Entry$Internal.class");
+			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X$Entry$Internal.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IBinaryMethod[] methods = classFileReader.getMethods();
 			assertNotNull("No methods", methods);
 			assertEquals("Wrong size", 1, methods.length);
@@ -1278,7 +1278,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void testBug460491() {
+	public void testBug460491() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String[] testsSource = new String[] {
 				"C.java",
 				"public class C<E> {\n" +
@@ -1295,7 +1295,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 				"");
 
 		try {
-			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "C.class");
+			ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "C.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IBinaryMethod[] methods = classFileReader.getMethods();
 			assertNotNull("No methods", methods);
 			assertEquals("Wrong size", 4, methods.length); // incl ctor
@@ -1322,7 +1322,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void testGenericVarargsMethodReferenceLambdasHaveNoSignature() {
+	public void testGenericVarargsMethodReferenceLambdasHaveNoSignature() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String[] testsSource = new String[] {
 				"X.java",
 				"import java.util.Optional;\n" +
@@ -1342,7 +1342,7 @@ public class GenericTypeSignatureTest extends AbstractRegressionTest {
 				"");
 
 			try {
-				ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class");
+				ClassFileReader classFileReader = ClassFileReader.read(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				IBinaryMethod[] methods = classFileReader.getMethods();
 				assertNotNull("No methods", methods);
 				assertEquals("Wrong size", 4, methods.length);

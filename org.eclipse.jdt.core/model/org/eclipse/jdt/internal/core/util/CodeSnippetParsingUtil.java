@@ -63,7 +63,7 @@ public class CodeSnippetParsingUtil {
 		return parseClassBodyDeclarations(source, 0, source.length, settings, recordParsingInformation, false);
 	}
 
-	public ASTNode[] parseClassBodyDeclarations(
+	public ASTNode[] parseClassBodyDeclarations( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			char[] source,
 			int offset,
 			int length,
@@ -100,7 +100,7 @@ public class CodeSnippetParsingUtil {
 		return result;
 	}
 
-	public CompilationUnitDeclaration parseCompilationUnit(char[] source, Map<String, String> settings, boolean recordParsingInformation) {
+	public CompilationUnitDeclaration parseCompilationUnit(char[] source, Map<String, String> settings, boolean recordParsingInformation) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (source == null) {
 			throw new IllegalArgumentException();
 		}
@@ -137,7 +137,7 @@ public class CodeSnippetParsingUtil {
 		parser.scanner.setSource(compilationResult);
 		org.eclipse.jdt.internal.compiler.ast.TypeDeclaration[] types = compilationUnitDeclaration.types;
 		if (types != null) {
-			for (TypeDeclaration type : types) {
+			for (TypeDeclaration type : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				type.parseMethods(parser, compilationUnitDeclaration);
 			}
 		}
@@ -152,7 +152,7 @@ public class CodeSnippetParsingUtil {
 		return parseExpression(source, 0, source.length, settings, recordParsingInformation);
 	}
 
-	public Expression parseExpression(char[] source, int offset, int length, Map<String, String> settings, boolean recordParsingInformation) {
+	public Expression parseExpression(char[] source, int offset, int length, Map<String, String> settings, boolean recordParsingInformation) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		if (source == null) {
 			throw new IllegalArgumentException();
@@ -186,7 +186,7 @@ public class CodeSnippetParsingUtil {
 		return parseStatements(source, 0, source.length, settings, recordParsingInformation, enabledStatementRecovery);
 	}
 
-	public ConstructorDeclaration parseStatements(
+	public ConstructorDeclaration parseStatements( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			char[] source,
 			int offset,
 			int length,

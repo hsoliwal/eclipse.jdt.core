@@ -41,7 +41,7 @@ public static Test suite() {
 	return buildAllCompliancesTestSuite(testClass());
 }
 
-public void test001() {
+public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"p/X.java",
 		"package p;\n" +
@@ -61,7 +61,7 @@ public void test001() {
 	});
 }
 
-public void test002() {
+public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"p/X.java",
 		"package p;\n" +
@@ -80,7 +80,7 @@ public void test002() {
 	});
 }
 
-public void test003() {
+public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"p/X.java",
 		"package p;\n" +
@@ -100,7 +100,7 @@ public void test003() {
 	});
 }
 
-public void test004() {
+public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"p/ATC.java",
 		"package p;\n" +
@@ -122,7 +122,7 @@ public void test004() {
 	});
 }
 
-public void test005() {
+public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"p/A.java",
 		"package p;\n" +
@@ -147,7 +147,7 @@ public void test005() {
 	});
 }
 
-public void test006() {
+public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"p/T.java",
 		"package p;\n" +
@@ -170,7 +170,7 @@ public void test006() {
 		"}\n",
 	});
 }
-public void test007() {
+public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"TryFinally.java",
 		"class TryFinally {	\n"+
@@ -197,7 +197,7 @@ public void test007() {
 /*
  * 1FZR1TO: IVJCOM:WIN - Class does not compile in VAJava 3.02-Java2
  */
-public void test008() {
+public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"RedundantException.java",
@@ -233,7 +233,7 @@ public void test008() {
 		"Caught.\n" +
 		"SUCCESS");
 }
-public void test009() {
+public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Test.java",
@@ -267,7 +267,7 @@ public void test009() {
 		"null\n" +
 		"#save -> 43");
 }
-public void test010() {
+public void test010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Test.java",
@@ -308,7 +308,7 @@ public void test010() {
 		"#save -> 43");
 }
 
-public void test011() {
+public void test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Test.java",
@@ -351,7 +351,7 @@ public void test011() {
 /*
  * 4943  Verification error
  */
-public void test012() {
+public void test012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -389,7 +389,7 @@ public void test012() {
 /*
  * 4943  Verification error
  */
-public void test013() {
+public void test013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -424,7 +424,7 @@ public void test013() {
 		},
 		"success");
 }
-public void test014() {
+public void test014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Test.java",
@@ -466,7 +466,7 @@ public void test014() {
 		"#save -> 43");
 }
 
-public void test015() {
+public void test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p1/X.java",
@@ -490,7 +490,7 @@ public void test015() {
 		},
 		"SUCCESS");
 }
-public void test016() {
+public void test016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p1/X.java",
@@ -518,7 +518,7 @@ public void test016() {
 		},
 		"SUCCESS");
 }
-public void test017() {
+public void test017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p1/X.java",
@@ -547,7 +547,7 @@ public void test017() {
 }
 
 // 8773 verification error
-public void test018() {
+public void test018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"VerifyEr.java",
@@ -578,7 +578,7 @@ public void test018() {
 /*
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=16279
  */
-public void test019() {
+public void test019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -615,7 +615,7 @@ public void test019() {
  * shifting of finaly scopes against try/catch ones makes the custom ret address shifting
  * unnecessary.
  */
-public void test020() {
+public void test020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -674,7 +674,7 @@ public void test020() {
  * http://dev.eclipse.org/bugs/show_bug.cgi?id=21116
  * protected type visibility check
  */
-public void test021() {
+public void test021() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"pa/A.java",
@@ -707,7 +707,7 @@ public void test021() {
  * http://dev.eclipse.org/bugs/show_bug.cgi?id=19916
  * nested try/synchronized statements (local var index alloc)
  */
-public void test022() {
+public void test022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"pa/A.java",
@@ -738,7 +738,7 @@ public void test022() {
 		"SUCCESS");
 }
 
-public void test023() {
+public void test023() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportHiddenCatchBlock, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -786,7 +786,7 @@ public void test023() {
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=21203
  * NPE in ExceptionFlowContext
  */
-public void test024() {
+public void test024() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.runNegativeTest(
 		new String[] {
@@ -830,7 +830,7 @@ public void test024() {
 		"----------\n");
 }
 // 60081
-public void test025() {
+public void test025() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.runConformTest(
 		new String[] {
@@ -876,7 +876,7 @@ public void test025() {
 		"SUCCESS");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=89710
-public void test026() throws Exception {
+public void test026() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.PRESERVE);
@@ -915,7 +915,7 @@ public void test026() throws Exception {
 		"        [pc: 6, pc: 20] local: i index: 0 type: int\n" +
 		"        [pc: 16, pc: 20] local: e index: 1 type: java.lang.Throwable\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -928,7 +928,7 @@ public void test026() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=89710 - variation
-public void test027() throws Exception {
+public void test027() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.PRESERVE);
@@ -966,7 +966,7 @@ public void test027() throws Exception {
 		"        [pc: 0, pc: 20] local: b index: 1 type: boolean\n" +
 		"        [pc: 10, pc: 14] local: e index: 2 type: java.lang.Exception\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -979,7 +979,7 @@ public void test027() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=98892
-public void test028() {
+public void test028() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.runConformTest(
 		new String[] {
@@ -1010,7 +1010,7 @@ public void test028() {
 		"ONCE:SUCCESS");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=98892 - variation
-public void test029() {
+public void test029() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.runConformTest(
 		new String[] {
@@ -1042,7 +1042,7 @@ public void test029() {
 		"ONCE:SUCCESS");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=98892 - variation
-public void test030() {
+public void test030() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.runConformTest(
 		new String[] {
@@ -1080,7 +1080,7 @@ public void test030() {
 /*
  * Try block is never reached
  */
-public void test031() {
+public void test031() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedPrivateMember, CompilerOptions.IGNORE);
 	runNegativeTest(
@@ -1124,7 +1124,7 @@ public void test031() {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=114855
  */
-public void test032() {
+public void test032() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1341,7 +1341,7 @@ public void test032() {
 		},
 		"true");
 }
-public void test033() throws Exception {
+public void test033() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1470,7 +1470,7 @@ public void test033() throws Exception {
 		"    133  astore_3\n" +
 		"    134  return\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -1483,12 +1483,12 @@ public void test033() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=124853
-public void test034() throws Exception {
+public void test034() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String builder = "StringBuilder";
 	this.runConformTest(
 			new String[] {
 				"X.java",
-				"public class X {\n" +
+				"public class X {\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"	private static int scenario(){\n" +
 				"		try {\n" +
 				"			int i = 1;\n" +
@@ -1620,7 +1620,7 @@ public void test034() throws Exception {
 			"        [pc: 89, pc: 98] -> 123 when : any\n" +
 			"        [pc: 132, pc: 138] -> 138 when : any\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -1633,7 +1633,7 @@ public void test034() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=124853 - variation
-public void test035() {
+public void test035() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1665,7 +1665,7 @@ public void test035() {
 			"[try][finally][end]");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=124853 - variation
-public void test036() {
+public void test036() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1697,7 +1697,7 @@ public void test036() {
 			"[try][catch][finally][end]");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=124853 - variation
-public void test037() {
+public void test037() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1739,7 +1739,7 @@ public void test037() {
 			"[try1][try2][finally2][catch1][finally1][end]");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=87423
-public void test038() {
+public void test038() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1780,7 +1780,7 @@ public void test038() {
 			"Loaded fine");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=127603
-public void test039() {
+public void test039() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1820,7 +1820,7 @@ public void test039() {
 			"[Try:1;-1][Finally1;0][Outering[Return:1;0]");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=128705
-public void test040() throws Exception {
+public void test040() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1892,7 +1892,7 @@ public void test040() throws Exception {
 		"        [pc: 15, same]\n" +
 		"        [pc: 26, same_locals_1_stack_item, stack: {java.lang.Throwable}]\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -1905,7 +1905,7 @@ public void test040() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=128705 - variation
-public void test041() throws Exception {
+public void test041() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1971,7 +1971,7 @@ public void test041() throws Exception {
 		"        [pc: 11, same_locals_1_stack_item, stack: {java.lang.Exception}]\n" +
 		"        [pc: 21, same_locals_1_stack_item, stack: {java.lang.Throwable}]\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -1985,7 +1985,7 @@ public void test041() throws Exception {
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=404146 - variation without sharing of inlined escaping finally-blocks
-public void test042_not_shared() throws Exception {
+public void test042_not_shared() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ShareCommonFinallyBlocks, CompilerOptions.DISABLED);
 
@@ -2089,7 +2089,7 @@ public void test042_not_shared() throws Exception {
 			"        [pc: 0, pc: 103] local: this index: 0 type: X\n" +
 			"        [pc: 0, pc: 103] local: args index: 1 type: java.lang.String[]\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -2105,12 +2105,12 @@ public void test042_not_shared() throws Exception {
 
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=128705 - variation
-public void test043() throws Exception {
+public void test043() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String builder = "StringBuilder";
 	this.runConformTest(
 			new String[] {
 				"X.java",
-				"public class X {\n" +
+				"public class X {\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"	public void save() {\n" +
 				"		int a = 3;\n" +
 				"		try {\n" +
@@ -2290,7 +2290,7 @@ public void test043() throws Exception {
 		"        [pc: 145, full, stack: {java.lang.Exception}, locals: {X, int}]\n" +
 		"        [pc: 172, same_locals_1_stack_item, stack: {java.lang.Throwable}]\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -2303,7 +2303,7 @@ public void test043() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=129305
-public void test044() throws Exception {
+public void test044() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2336,7 +2336,7 @@ public void test044() throws Exception {
 		"      Line numbers:\n" +
 		"        [pc: 0, line: 11]\n" +
 		"        [pc: 8, line: 7]\n";
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -2349,7 +2349,7 @@ public void test044() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=129306
-public void test045() throws Exception {
+public void test045() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2516,7 +2516,7 @@ public void test045() throws Exception {
 		"        [pc: 77, full, stack: {java.lang.Exception}, locals: {X}]\n" +
 		"        [pc: 107, same_locals_1_stack_item, stack: {java.lang.Throwable}]\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -2529,7 +2529,7 @@ public void test045() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=108180
-public void test046() throws Exception {
+public void test046() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2583,7 +2583,7 @@ public void test046() throws Exception {
 		"        [pc: 8, pc: 14] local: obj index: 0 type: java.lang.Object\n" +
 		"        [pc: 17, pc: 19] local: obj index: 0 type: java.lang.Object\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -2595,7 +2595,7 @@ public void test046() throws Exception {
 		assertEquals("Wrong contents", expectedOutput, result);
 	}
 }
-public void test047() {
+public void test047() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2622,7 +2622,7 @@ public void test047() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=114894
-public void test048() throws Exception {
+public void test048() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2840,7 +2840,7 @@ public void test048() throws Exception {
 			"        [pc: 29, same]\n" +
 			"        [pc: 32, same]\n" +
 			"        [pc: 37, same]\n";
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -2854,7 +2854,7 @@ public void test048() throws Exception {
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=114894 - variation
-public void test049() throws Exception {
+public void test049() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -3082,7 +3082,7 @@ public void test049() throws Exception {
 			"        [pc: 36, same]\n" +
 			"        [pc: 39, same]\n" +
 			"        [pc: 44, same]\n";
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -3095,7 +3095,7 @@ public void test049() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=114894 - variation
-public void test050() throws Exception {
+public void test050() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -3293,7 +3293,7 @@ public void test050() throws Exception {
 			"        [pc: 34, same]\n" +
 			"        [pc: 39, same]\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -3306,12 +3306,12 @@ public void test050() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=114894 - variation
-public void test051() throws Exception {
+public void test051() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String builder = "StringBuilder";
 	this.runConformTest(
 			new String[] {
 				"X.java",
-				"public class X {\n" +
+				"public class X {\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"	public static void main(String argv[]) {\n" +
 				"		System.out.print(new " + builder + "(\"[count=\").append(count()).append(\"]\").toString());\n" +
 				"	}\n" +
@@ -3365,7 +3365,7 @@ public void test051() throws Exception {
 			"        [pc: 19, full, stack: {java.lang.Exception}, locals: {int}]\n" +
 			"        [pc: 20, same]\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -3378,7 +3378,7 @@ public void test051() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=114894 - variation
-public void test052() throws Exception {
+public void test052() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -3420,7 +3420,7 @@ public void test052() throws Exception {
 			"        [pc: 9, full, stack: {java.lang.Exception}, locals: {java.lang.String[]}]\n" +
 			"        [pc: 10, same]\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -3433,7 +3433,7 @@ public void test052() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=114894 - variation
-public void test053() throws Exception {
+public void test053() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -3479,7 +3479,7 @@ public void test053() throws Exception {
 			"        [pc: 17, full, stack: {java.lang.Exception}, locals: {java.lang.String[]}]\n" +
 			"        [pc: 18, same]\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -3492,7 +3492,7 @@ public void test053() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=114894 - variation
-public void test054() throws Exception {
+public void test054() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -3570,7 +3570,7 @@ public void test054() throws Exception {
 			"        [pc: 38, same]\n" +
 			"        [pc: 46, same]\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -3583,7 +3583,7 @@ public void test054() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=114894 - variation
-public void test055() throws Exception {
+public void test055() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -3610,7 +3610,7 @@ public void test055() throws Exception {
 			"      Stack map table: number of frames 1\n" +
 			"        [pc: 0, same]\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -3622,7 +3622,7 @@ public void test055() throws Exception {
 		assertEquals("Wrong contents", expectedOutput, result);
 	}
 }
-public void _test056() {
+public void _test056() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"p/BytecodeA.java",
@@ -3806,7 +3806,7 @@ public void _test056() {
 }
 
 // was Compliance_1_x#test007
-public void test057() {
+public void test057() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] sources = new String[] {
 		"p1/Test.java",
 		"package p1; \n"+
@@ -3825,7 +3825,7 @@ public void test057() {
 		"SUCCESS");
 }
 //https://bugs.eclpse.org/bugs/show_bug.cgi?id=3184
-public void test058() throws Exception {
+public void test058() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -3891,7 +3891,7 @@ public void test058() throws Exception {
 			"      Local variable table:\n" +
 			"        [pc: 0, pc: 53] local: args index: 0 type: java.lang.String[]\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -3904,7 +3904,7 @@ public void test058() throws Exception {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=183395
-public void test059() {
+public void test059() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3926,7 +3926,7 @@ public void test059() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=183395
-public void test060() {
+public void test060() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3948,7 +3948,7 @@ public void test060() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=190209 - variation
-public void test062() throws Exception {
+public void test062() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -4015,7 +4015,7 @@ public void test062() throws Exception {
 			"        [pc: 0, pc: 15] -> 40 when : any\n" +
 			"        [pc: 18, pc: 37] -> 40 when : any\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -4028,7 +4028,7 @@ public void test062() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=190209 - variation
-public void test063() throws Exception {
+public void test063() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -4077,7 +4077,7 @@ public void test063() throws Exception {
 			"      Exception Table:\n" +
 			"        [pc: 0, pc: 9] -> 11 when : any\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -4090,7 +4090,7 @@ public void test063() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=190209 - variation
-public void test064() throws Exception {
+public void test064() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -4141,7 +4141,7 @@ public void test064() throws Exception {
 			"      Exception Table:\n" +
 			"        [pc: 0, pc: 9] -> 13 when : any\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -4154,7 +4154,7 @@ public void test064() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=191865
-public void test065() {
+public void test065() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4194,7 +4194,7 @@ public void test065() {
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=196653
-public void test066() {
+public void test066() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4222,7 +4222,7 @@ public void test066() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=248319
-public void test067() throws Exception {
+public void test067() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -4253,7 +4253,7 @@ public void test067() throws Exception {
 			"null");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=340485
-public void test068() {
+public void test068() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4287,7 +4287,7 @@ public void test068() {
 		"caught a daughter of foo");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=340484
-public void test069() {
+public void test069() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4333,7 +4333,7 @@ public void test069() {
 				"----------\n");
 }
 // precise throw computation should also take care of throws clause in 1.7. 1.6- should continue to behave as it always has.
-public void test070() {
+public void test070() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4379,7 +4379,7 @@ public void test070() {
 				"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=348369
-public void test071() {
+public void test071() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4399,7 +4399,7 @@ public void test071() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=348369
-public void test072() {
+public void test072() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4419,7 +4419,7 @@ public void test072() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=348369
-public void test073() {
+public void test073() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4440,7 +4440,7 @@ public void test073() {
 }
 // test for regression during work on bug 345305
 // saw "The local variable name may not have been initialized" against last code line
-public void test074() {
+public void test074() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"X.java",
@@ -4467,18 +4467,18 @@ public void test074() {
 
 // Bug 387612 - Unreachable catch block...exception is never thrown from the try
 // redundant exception in throws must not confuse downstream analysis
-public void testBug387612() {
+public void testBug387612() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String serialUID = "private static final long serialVersionUID=1L;";
 	runNegativeTest(
 		new String[] {
 			"E.java",
-			"public class E extends Exception {"+serialUID+"}\n",
+			"public class E extends Exception {"+serialUID+"}\n", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"E1.java",
-			"public class E1 extends E {"+serialUID+"}\n",
+			"public class E1 extends E {"+serialUID+"}\n", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"E2.java",
-			"public class E2 extends E {"+serialUID+"}\n",
+			"public class E2 extends E {"+serialUID+"}\n", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"E3.java",
-			"public class E3 extends E {"+serialUID+"}\n",
+			"public class E3 extends E {"+serialUID+"}\n", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"A.java",
 			"interface A {\n" +
 			"    void foo(String a1, String a2) throws E1, E;\n" +
@@ -4511,18 +4511,18 @@ public void testBug387612() {
 
 // Bug 387612 - Unreachable catch block...exception is never thrown from the try
 // - changed order in redundant 'throws' clause.
-public void testBug387612b() {
+public void testBug387612b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String serialUID = "private static final long serialVersionUID=1L;";
 	runNegativeTest(
 		new String[] {
 			"E.java",
-			"public class E extends Exception {"+serialUID+"}\n",
+			"public class E extends Exception {"+serialUID+"}\n", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"E1.java",
-			"public class E1 extends E {"+serialUID+"}\n",
+			"public class E1 extends E {"+serialUID+"}\n", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"E2.java",
-			"public class E2 extends E {"+serialUID+"}\n",
+			"public class E2 extends E {"+serialUID+"}\n", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"E3.java",
-			"public class E3 extends E {"+serialUID+"}\n",
+			"public class E3 extends E {"+serialUID+"}\n", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"A.java",
 			"interface A {\n" +
 			"    void foo(String a1, String a2) throws E, E1;\n" +
@@ -4555,16 +4555,16 @@ public void testBug387612b() {
 
 // Bug 387612 - Unreachable catch block...exception is never thrown from the try
 // interface with redundant exceptions in throws is read from class file.
-public void testBug387612c() {
+public void testBug387612c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String serialUID = "private static final long serialVersionUID=1L;";
 	runConformTest(
 		new String[] {
 			"E.java",
-			"public class E extends Exception {"+serialUID+"}\n",
+			"public class E extends Exception {"+serialUID+"}\n", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"E1.java",
-			"public class E1 extends E {"+serialUID+"}\n",
+			"public class E1 extends E {"+serialUID+"}\n", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"E2.java",
-			"public class E2 extends E {"+serialUID+"}\n",
+			"public class E2 extends E {"+serialUID+"}\n", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"A.java",
 			"interface A {\n" +
 			"    void foo(String a1, String a2) throws E1, E;\n" +
@@ -4600,7 +4600,7 @@ public void testBug387612c() {
 		false/*shouldFlush*/);
 }
 
-public void testGH2726() {
+public void testGH2726() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"ExceptionTest.java",
@@ -4628,7 +4628,7 @@ public void testGH2726() {
 		};
 	runner.runConformTest();
 }
-public void testGH2726b() {
+public void testGH2726b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"ExceptionTest.java",

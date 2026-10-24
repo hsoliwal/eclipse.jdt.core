@@ -39,7 +39,7 @@ public abstract class LocalVMLauncher implements RuntimeConstants {
 
 	static final String[] env = System.getenv().entrySet().stream()
 		.filter(e -> !"JAVA_TOOL_OPTIONS".equals(e.getKey()))
-		.map(e -> e.getKey() + "=" + e.getValue())
+		.map(e -> e.getKey() + "=" + e.getValue()) //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		.toArray(String[]::new);
 
 	/**
@@ -58,14 +58,14 @@ public abstract class LocalVMLauncher implements RuntimeConstants {
 	protected String evalTargetPath;
 	protected String[] programArguments;
 	protected String programClass;
-	protected List<LocalVirtualMachine> runningVMs = new ArrayList<>(); // a Vector of LocalVirtualMachine
+	protected List<LocalVirtualMachine> runningVMs = new ArrayList<>(); // a Vector of LocalVirtualMachine //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	protected String[] vmArguments;
 	protected String vmPath;
 
 /**
  * Returns a launcher that will launch the same kind of VM that is currently running
  */
-public static LocalVMLauncher getLauncher() {
+public static LocalVMLauncher getLauncher() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final String vmName = System.getProperty("java.vm.name");
 	if ("J9".equals(vmName)) {
 		return new J9VMLauncher();
@@ -79,8 +79,8 @@ public static LocalVMLauncher getLauncher() {
 	}
 	String javaVersion = System.getProperty("java.version");
 	boolean isJrt = javaVersion != null && javaVersion.length() > 0 && JavaCore.compareJavaVersions(javaVersion, "9") >= 0;
-	File file = new File(Util.getJREDirectory() + (isJrt ?	"/lib/jrt-fs.jar" :  "/lib/rt.jar"));
-	if (file.exists()) {
+	File file = new File(Util.getJREDirectory() + (isJrt ?	"/lib/jrt-fs.jar" :  "/lib/rt.jar")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	if (file.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		return new StandardVMLauncher();
 	}
 	if ("IBM J9SE VM".equals(vmName)) {
@@ -94,30 +94,30 @@ public static LocalVMLauncher getLauncher() {
 /**
  * Builds the actual class path that is going to be passed to the VM.
  */
-protected String buildClassPath() {
-	StringBuilder classPathString = new StringBuilder();
+protected String buildClassPath() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	StringBuilder classPathString = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	char pathSeparator = File.pathSeparatorChar;
 
 	// Add jar support if in evaluation mode
 	if (this.evalPort != -1) {
-		classPathString.append(new File(this.evalTargetPath, SUPPORT_ZIP_FILE_NAME).getPath());
-		classPathString.append(pathSeparator);
+		classPathString.append(new File(this.evalTargetPath, SUPPORT_ZIP_FILE_NAME).getPath()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classPathString.append(pathSeparator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	// Add class path given by client
 	if (this.classPath != null) {
 		int length = this.classPath.length;
-		for (int i = 0; i < length; i++){
-			classPathString.append(this.classPath[i]);
-			classPathString.append(pathSeparator);
+		for (int i = 0; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			classPathString.append(this.classPath[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			classPathString.append(pathSeparator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
 	// Add regular classpath directory if needed
 	if (this.evalPort != -1 && TARGET_HAS_FILE_SYSTEM) {
-		classPathString.append(this.evalTargetPath);
-		classPathString.append(File.separatorChar);
-		classPathString.append(REGULAR_CLASSPATH_DIRECTORY);
+		classPathString.append(this.evalTargetPath); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classPathString.append(File.separatorChar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		classPathString.append(REGULAR_CLASSPATH_DIRECTORY); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	return classPathString.toString();
@@ -139,7 +139,7 @@ private void addDebugOptions(List<String> commandLine, long vmVersion) {
 /**
  * Launches the VM by exec'ing the command line and returns the resulting Process.
  */
-protected Process execCommandLine() throws TargetException {
+protected Process execCommandLine() throws TargetException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Check that the VM path has been specified
 	if (this.vmPath == null) {
 		throw new TargetException("Path to the VM has not been specified");
@@ -158,7 +158,7 @@ protected Process execCommandLine() throws TargetException {
 		String[] commandLine = getCommandLine();
 		vmProcess= Runtime.getRuntime().exec(commandLine, env);
 	} catch (IOException e) {
-		throw new TargetException("Error launching VM at " + this.vmPath);
+		throw new TargetException("Error launching VM at " + this.vmPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	return vmProcess;
 }
@@ -243,8 +243,8 @@ public String getProgramClass() {
  */
 public LocalVirtualMachine[] getRunningVirtualMachines() {
 	// Select the VMs that are actually running
-	List<LocalVirtualMachine> actuallyRunning = new ArrayList<>();
-	for (LocalVirtualMachine vm : this.runningVMs) {
+	List<LocalVirtualMachine> actuallyRunning = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	for (LocalVirtualMachine vm : this.runningVMs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (vm.isRunning())
 			actuallyRunning.add(vm);
 	}
@@ -253,7 +253,7 @@ public LocalVirtualMachine[] getRunningVirtualMachines() {
 	// Return the running VMs
 	int size = actuallyRunning.size();
 	LocalVirtualMachine[] result = new LocalVirtualMachine[size];
-	for (int i=0; i<size; i++)
+	for (int i=0; i<size; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		result[i] = actuallyRunning.get(i);
 	return result;
 }
@@ -293,23 +293,23 @@ public String getVMPath() {
  *
  * @throws TargetException if the path could not be initialized with the code snippet support
  */
-protected void initTargetPath() throws TargetException {
+protected void initTargetPath() throws TargetException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// create directories
 	File directory = new File(this.evalTargetPath);
-	directory.mkdirs();
-	if (!directory.exists()) {
-		throw new TargetException("Could not create directory " + this.evalTargetPath);
+	directory.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+	if (!directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		throw new TargetException("Could not create directory " + this.evalTargetPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	if (TARGET_HAS_FILE_SYSTEM) {
 		File classesDirectory = new File(directory, REGULAR_CLASSPATH_DIRECTORY);
-		classesDirectory.mkdir();
-		if (!classesDirectory.exists()) {
-			throw new TargetException("Could not create directory " + classesDirectory.getPath());
+		classesDirectory.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		if (!classesDirectory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			throw new TargetException("Could not create directory " + classesDirectory.getPath()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		File bootDirectory = new File(directory, BOOT_CLASSPATH_DIRECTORY);
-		bootDirectory.mkdir();
-		if (!bootDirectory.exists()) {
-			throw new TargetException("Could not create directory " + bootDirectory.getPath());
+		bootDirectory.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		if (!bootDirectory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			throw new TargetException("Could not create directory " + bootDirectory.getPath()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		/*
 		// add the code snippet root class to the boot path directory
@@ -369,23 +369,23 @@ protected void initTargetPath() throws TargetException {
 	InputStream in = null;
 	FileOutputStream out = null;
 	try {
-		in = getClass().getResourceAsStream("/" + SUPPORT_ZIP_FILE_NAME);
+		in = getClass().getResourceAsStream("/" + SUPPORT_ZIP_FILE_NAME); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (in == null) {
-			throw new TargetException("Could not find resource /" + SUPPORT_ZIP_FILE_NAME);
+			throw new TargetException("Could not find resource /" + SUPPORT_ZIP_FILE_NAME); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		int bufferLength = 1024;
 		byte[] buffer = new byte[bufferLength];
 		File file = new File(directory, SUPPORT_ZIP_FILE_NAME);
-		out = new FileOutputStream(file);
+		out = new FileOutputStream(file); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		int read = 0;
-		while (read != -1) {
+		while (read != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			read = in.read(buffer, 0, bufferLength);
 			if (read != -1) {
 				out.write(buffer, 0, read);
 			}
 		}
 	} catch (IOException e) {
-		throw new TargetException("IOException while copying " + SUPPORT_ZIP_FILE_NAME + ": " + e.getMessage());
+		throw new TargetException("IOException while copying " + SUPPORT_ZIP_FILE_NAME + ": " + e.getMessage()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} finally {
 		if (in != null) {
 			try {
@@ -407,7 +407,7 @@ protected void initTargetPath() throws TargetException {
  *
  * @exception TargetException if the target VM could not be launched.
  */
-public LocalVirtualMachine launch() throws TargetException {
+public LocalVirtualMachine launch() throws TargetException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// evaluation mode
 	if (this.evalTargetPath != null) {
 		// init target path
