@@ -163,10 +163,6 @@ public class BinaryParameterDeclarationImpl extends DeclarationImpl implements P
 
     @Override
 	public String toString(){
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getTypeBinding().getName());
-        builder.append(' ');
-        builder.append(getSimpleName());
-        return builder.toString();
+        return getTypeBinding().getName() + ' ' + getSimpleName();
     }
 }

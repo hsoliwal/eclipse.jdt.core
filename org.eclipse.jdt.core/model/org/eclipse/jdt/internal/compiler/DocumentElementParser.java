@@ -1603,9 +1603,6 @@ private char[] returnTypeName(TypeReference type) {
 }
 @Override
 public String toString() {
-	StringBuilder buffer = new StringBuilder();
-	buffer.append("intArrayPtr = " + this.intArrayPtr + "\n"); //$NON-NLS-1$ //$NON-NLS-2$
-	buffer.append(super.toString());
-	return buffer.toString();
+	return ("intArrayPtr = " + this.intArrayPtr + "\n") + super.toString(); //$NON-NLS-1$ //$NON-NLS-2$
 }
 }

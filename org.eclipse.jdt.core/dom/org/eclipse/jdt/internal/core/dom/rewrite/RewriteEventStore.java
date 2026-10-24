@@ -112,11 +112,7 @@ public final class RewriteEventStore {
 
 		@Override
 		public String toString() {
-			StringBuilder buf= new StringBuilder();
-			buf.append(this.parent).append(" - "); //$NON-NLS-1$
-			buf.append(this.childProperty.getId()).append(": "); //$NON-NLS-1$
-			buf.append(this.event).append('\n');
-			return buf.toString();
+			return "" + this.parent + " - " + this.childProperty.getId() + ": " + this.event + '\n'; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		}
 	}
 

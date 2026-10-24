@@ -4383,14 +4383,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			PerProjectInfo info= this.perProjectInfos.get(project);
 			if (info != null) {
 				if (VERBOSE) {
-					StringBuilder buffer = new StringBuilder();
-					buffer.append('(');
-					buffer.append(Thread.currentThread());
-					buffer.append(')');
-					buffer.append(" JavaModelManager.resetProjectPreferences("); //$NON-NLS-1$
-					buffer.append(project.getName());
-					buffer.append(')');
-					trace(buffer.toString());
+					trace("" + '(' + Thread.currentThread() + ')' + " JavaModelManager.resetProjectPreferences(" + project.getName() + ')'); //$NON-NLS-1$ //$NON-NLS-2$
 				}
 				info.preferences = null;
 			}
@@ -4916,16 +4909,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 */
 	public void secondaryTypeAdding(String path, char[] typeName, char[] packageName) {
 		if (VERBOSE) {
-			StringBuilder buffer = new StringBuilder("JavaModelManager.addSecondaryType("); //$NON-NLS-1$
-			buffer.append(path);
-			buffer.append(',');
-			buffer.append('[');
-			buffer.append(new String(packageName));
-			buffer.append('.');
-			buffer.append(new String(typeName));
-			buffer.append(']');
-			buffer.append(')');
-			trace(buffer.toString());
+			trace("JavaModelManager.addSecondaryType(" + path + ',' + '[' + new String(packageName) + '.' + new String(typeName) + ']' + ')'); //$NON-NLS-1$
 		}
 		IWorkspaceRoot wRoot = ResourcesPlugin.getWorkspace().getRoot();
 		IResource resource = wRoot.findMember(path);
@@ -5011,9 +4995,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 */
 	public Map<String, Map<String, IType>> secondaryTypes(IJavaProject project, boolean waitForIndexes, IProgressMonitor monitor) throws JavaModelException {
 		if (VERBOSE) {
-			StringBuilder buffer = new StringBuilder("JavaModelManager.secondaryTypes("); //$NON-NLS-1$
-			buffer.append(project.getElementName()).append(',').append(waitForIndexes).append(')');
-			trace(buffer.toString());
+			trace("JavaModelManager.secondaryTypes(" + project.getElementName() + ',' + waitForIndexes + ')'); //$NON-NLS-1$
 		}
 
 		// Return cache if not empty and there's no new secondary types created during indexing
@@ -5137,12 +5119,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 */
 	private static Map<String, Map<String, IType>> secondaryTypesSearching(IJavaProject project, boolean waitForIndexes, IProgressMonitor monitor, final PerProjectInfo projectInfo) throws JavaModelException {
 		if (VERBOSE || BasicSearchEngine.VERBOSE) {
-			StringBuilder buffer = new StringBuilder("JavaModelManager.secondaryTypesSearch("); //$NON-NLS-1$
-			buffer.append(project.getElementName());
-			buffer.append(',');
-			buffer.append(waitForIndexes);
-			buffer.append(')');
-			trace(buffer.toString());
+			trace("JavaModelManager.secondaryTypesSearch(" + project.getElementName() + ',' + waitForIndexes + ')'); //$NON-NLS-1$
 		}
 
 		final Hashtable<String, Map<String, String>> secondaryTypesSearch = new Hashtable<>(3);
@@ -5217,10 +5194,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 */
 	public void secondaryTypesRemoving(IFile file, boolean cleanIndexCache) {
 		if (VERBOSE) {
-			StringBuilder buffer = new StringBuilder("JavaModelManager.removeFromSecondaryTypesCache("); //$NON-NLS-1$
-			buffer.append(file.getName());
-			buffer.append(')');
-			trace(buffer.toString());
+			trace("JavaModelManager.removeFromSecondaryTypesCache(" + file.getName() + ')'); //$NON-NLS-1$
 		}
 		if (file != null) {
 			PerProjectInfo projectInfo = getPerProjectInfo(file.getProject(), false);
@@ -5263,9 +5237,7 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 */
 	private static void secondaryTypesRemoving(Map<String, Map<String, IType>> secondaryTypesMap, IFile file) {
 		if (VERBOSE) {
-			StringBuilder buffer = new StringBuilder("JavaModelManager.removeSecondaryTypesFromMap("); //$NON-NLS-1$
-			buffer.append(',').append(file.getFullPath()).append(')');
-			trace(buffer.toString());
+			trace("JavaModelManager.removeSecondaryTypesFromMap(" + ',' + file.getFullPath() + ')'); //$NON-NLS-1$
 			dumpSecondaryTypes(secondaryTypesMap);
 		}
 		Set<Entry<String, Map<String, IType>>> packageEntries = secondaryTypesMap.entrySet();

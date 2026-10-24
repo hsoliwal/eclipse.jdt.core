@@ -485,10 +485,7 @@ private void removeElementInfo(IJavaElement element) {
 }
 @Override
 public String toString() {
-	StringBuilder buffer = new StringBuilder();
-	buffer.append("Built delta:\n"); //$NON-NLS-1$
-	buffer.append(this.delta == null ? "<null>" : this.delta.toString()); //$NON-NLS-1$
-	return buffer.toString();
+	return "Built delta:\n" + (this.delta == null ? "<null>" : this.delta.toString()); //$NON-NLS-1$ //$NON-NLS-2$
 }
 /**
  * Trims deletion deltas to only report the highest level of deletion

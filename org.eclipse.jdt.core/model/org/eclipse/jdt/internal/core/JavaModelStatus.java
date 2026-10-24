@@ -527,11 +527,6 @@ public class JavaModelStatus extends Status implements IJavaModelStatus, IJavaMo
 		if (this == VERIFIED_OK){
 			return "JavaModelStatus[OK]"; //$NON-NLS-1$
 		}
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("Error in Java Model (code "); //$NON-NLS-1$
-		buffer.append(this.getCode());
-		buffer.append("): "); //$NON-NLS-1$
-		buffer.append(getMessage());
-		return buffer.toString();
+		return "Error in Java Model (code " + this.getCode() + "): " + getMessage(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 }

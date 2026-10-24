@@ -106,16 +106,6 @@ public class SourcePositionImpl implements SourcePosition
     @Override
 	public String toString()
     {
-    	StringBuilder buffer = new StringBuilder();
-    	buffer.append("offset = "); //$NON-NLS-1$
-    	buffer.append(_startingOffset);
-    	buffer.append(" line = "); //$NON-NLS-1$
-    	buffer.append( _line );
-    	buffer.append(" column = "); //$NON-NLS-1$
-    	buffer.append( _column );
-    	buffer.append(" length = "); //$NON-NLS-1$
-    	buffer.append( _length );
-
-    	return buffer.toString();
+    	return "offset = " + _startingOffset + " line = " + _line + " column = " + _column + " length = " + _length; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
     }
 }

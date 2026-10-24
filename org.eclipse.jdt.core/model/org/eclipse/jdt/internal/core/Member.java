@@ -468,10 +468,7 @@ public String readableName() {
 	IJavaElement declaringType = getDeclaringType();
 	if (declaringType != null) {
 		String declaringName = ((JavaElement) getDeclaringType()).readableName();
-		StringBuilder buffer = new StringBuilder(declaringName);
-		buffer.append('.');
-		buffer.append(getElementName());
-		return buffer.toString();
+		return declaringName + '.' + getElementName();
 	} else {
 		return super.readableName();
 	}

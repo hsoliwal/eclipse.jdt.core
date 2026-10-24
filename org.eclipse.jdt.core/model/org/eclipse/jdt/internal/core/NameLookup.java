@@ -111,10 +111,7 @@ public class NameLookup implements SuffixConstants {
 		}
 		@Override
 		public String toString() {
-			StringBuilder builder = new StringBuilder(this.type.toString());
-			builder.append("from ") //$NON-NLS-1$
-			.append(this.module);
-			return builder.toString();
+			return this.type.toString() + "from " + this.module;
 		}
 	}
 
