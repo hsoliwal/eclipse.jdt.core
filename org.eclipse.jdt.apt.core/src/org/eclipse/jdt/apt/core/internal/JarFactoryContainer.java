@@ -33,7 +33,9 @@ import org.eclipse.jdt.apt.core.internal.util.FactoryContainer;
  * a file named com.sun.mirror.apt.AnnotationProcessorFactory.
  */
 public abstract class JarFactoryContainer extends FactoryContainer
-{\n    private static final Pattern TOKENS_PATTERN = Pattern.compile("\\s"); //$NON-NLS-1$\n
+{
+    private static final Pattern TOKENS_PATTERN = Pattern.compile("\\s"); //$NON-NLS-1$
+
 
 	/**
 	 * @return a java.io.File.  The file is not guaranteed to exist.
