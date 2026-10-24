@@ -77,13 +77,13 @@ public class JavadocContents17 extends JavadocContents {
 		return methodName;
 	}
 
-	private static final Pattern ANCHOR_PATTERN = Pattern.compile(" ");
+	private static final Pattern ANCHOR_PATTERN = Pattern.compile(" "); //$NON-NLS-1$
 
 	@Override
 	protected String createSignatureAnchor(BinaryMethod method, String methodName, IBinaryMethod info)
 			throws JavaModelException {
 		String anchor = super.createSignatureAnchor(method, methodName, info);
-		anchor = ANCHOR_PATTERN.matcher(anchor).replaceAll("");  //$NON-NLS-1$//$NON-NLS-2$
+		anchor = ANCHOR_PATTERN.matcher(anchor).replaceAll("");  //$NON-NLS-1$
 		return anchor;
 	}
 
