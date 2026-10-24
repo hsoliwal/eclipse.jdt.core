@@ -22,6 +22,7 @@ import static org.eclipse.jdt.internal.formatter.TokenManager.ANY;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import org.eclipse.jdt.core.dom.*;
 import org.eclipse.jdt.core.formatter.DefaultCodeFormatterConstants;
@@ -98,6 +99,9 @@ public class OneLineEnforcer extends ASTVisitor {
 		}
 	}
 
+	private static final Pattern END_VISIT_PATTERN = Pattern.compile("(is|get)\\p{Lu}.*");
+	private static final Pattern END_VISIT_PATTERN_2 = Pattern.compile("set\\p{Lu}.*");
+
 	@Override
 	public void endVisit(Block node) {
 		ASTNode parent = node.getParent();
@@ -114,10 +118,10 @@ public class OneLineEnforcer extends ASTVisitor {
 				Type returnType = method.getReturnType2();
 				boolean returnsVoid = returnType instanceof PrimitiveType
 						&& ((PrimitiveType) returnType).getPrimitiveTypeCode() == PrimitiveType.VOID;
-				boolean isGetter = name.matches("(is|get)\\p{Lu}.*") //$NON-NLS-1$
+				boolean isGetter = END_VISIT_PATTERN.matcher(name).matches() //$NON-NLS-1$
 						&& !method.isConstructor() && !returnsVoid && method.parameters().isEmpty()
 						&& statements.size() == 1 && statements.get(0) instanceof ReturnStatement;
-				boolean isSetter = name.matches("set\\p{Lu}.*") //$NON-NLS-1$
+				boolean isSetter = END_VISIT_PATTERN_2.matcher(name).matches() //$NON-NLS-1$
 						&& !method.isConstructor() && returnsVoid && method.parameters().size() == 1
 						&& statements.size() == 1 && statements.get(0) instanceof ExpressionStatement
 						&& ((ExpressionStatement) statements.get(0)).getExpression() instanceof Assignment;

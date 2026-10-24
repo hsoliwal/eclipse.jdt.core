@@ -11,6 +11,7 @@
 package org.eclipse.jdt.internal.core;
 
 import java.util.*;
+import java.util.regex.Pattern;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
@@ -1217,6 +1218,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 		this.alternativeDeprecated = false;
 		return this.alternativeDeprecated;
 	}
+	private static final Pattern GET_CATEGORIES_PATTERN = Pattern.compile("\\s+");
 	private char[][] getCategories(ASTNode node) {
 		Javadoc javadoc = javadoc(node);
 		if (javadoc != null) {
@@ -1233,7 +1235,7 @@ public class DOMToModelPopulator extends ASTVisitor {
 						int firstAsterix = fragmentString.indexOf('*');
 						return fragmentString.substring(0, firstAsterix != -1 ? firstAsterix : fragmentString.length());
 					}) //
-					.flatMap(fragment -> (Stream<String>)Stream.of(fragment.split("\\s+"))) // //$NON-NLS-1$
+					.flatMap(fragment -> (Stream<String>)Stream.of(GET_CATEGORIES_PATTERN.split(fragment))) // //$NON-NLS-1$
 					.filter(category -> category.length() > 0) //
 					.map(category -> (category).toCharArray()) //
 					.toArray(char[][]::new);
