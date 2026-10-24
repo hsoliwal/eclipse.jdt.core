@@ -42,7 +42,9 @@ import org.eclipse.jdt.internal.core.SearchableEnvironment;
  * Internal implementation of package bindings.
  */
 @SuppressWarnings("rawtypes")
-class PackageBinding implements IPackageBinding {\n    private static final Pattern SEGMENTS_PATTERN = Pattern.compile("[.]"); //$NON-NLS-1$\n
+class PackageBinding implements IPackageBinding {
+    private static final Pattern SEGMENTS_PATTERN = Pattern.compile("[.]"); //$NON-NLS-1$
+
 
 	private static final String[] NO_NAME_COMPONENTS = CharOperation.NO_STRINGS;
 	private static final String UNNAMED = Util.EMPTY_STRING;
