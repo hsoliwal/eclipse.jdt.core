@@ -3960,9 +3960,9 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 		    String spaceDelim = JavaCore.INSERT.equals(ASTRewriteAnalyzer.this.options.get(DefaultCodeFormatterConstants.FORMATTER_INSERT_SPACE_AFTER_ARROW_IN_SWITCH_CASE))? " ":""; //$NON-NLS-1$ //$NON-NLS-2$
 		    String lineDelim = isSwitchLabelRule ? spaceDelim : getLineDelimiter();
 
-			StringBuilder buf= new StringBuilder(lineDelim); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-			buf.append(createIndentString(getNodeIndent(nextNodeIndex))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			return buf.toString();
+			return lineDelim + createIndentString(getNodeIndent(nextNodeIndex));
+			// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		}
 
 		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
@@ -4167,10 +4167,9 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 				}
 
 				ParagraphListRewriter listRewriter= new SwitchListLabeledRuleRewriter(insertIndent);
-				StringBuilder leadString= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-				leadString.append(getLineDelimiter()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-				leadString.append(createIndentString(insertIndent)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-				listRewriter.rewriteList(node, property, pos, leadString.toString());
+				listRewriter.rewriteList(node, property, pos, getLineDelimiter() + createIndentString(insertIndent));
+				// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			} catch (CoreException e) {
 				handleException(e);
 			}
@@ -4202,10 +4201,9 @@ public final class ASTRewriteAnalyzer extends ASTVisitor {
 				} else {
 					listRewriter= new SwitchListRewriter(insertIndent);
 				}
-				StringBuilder leadString= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-				leadString.append(getLineDelimiter()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-				leadString.append(createIndentString(insertIndent)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-				listRewriter.rewriteList(node, property, pos, leadString.toString());
+				listRewriter.rewriteList(node, property, pos, getLineDelimiter() + createIndentString(insertIndent));
+				// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			} catch (CoreException e) {
 				handleException(e);
 			}
