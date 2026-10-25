@@ -106,16 +106,8 @@ public class SourcePositionImpl implements SourcePosition
     @Override
 	public String toString()
     {
-    	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-    	buffer.append("offset = "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-    	buffer.append(_startingOffset); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-    	buffer.append(" line = "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-    	buffer.append( _line ); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-    	buffer.append(" column = "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-    	buffer.append( _column ); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-    	buffer.append(" length = "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-    	buffer.append( _length ); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-
-    	return buffer.toString();
+    	return "offset = " + _startingOffset + " line = " + _line + " column = " + _column + " length = " + _length; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+    	// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+    	// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
     }
 }
