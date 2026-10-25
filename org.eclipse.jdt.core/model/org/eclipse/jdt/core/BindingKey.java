@@ -139,13 +139,9 @@ public final class BindingKey {
 	 */
 	public static String createTypeVariableBindingKey(String typeVariableName, String declaringKey) {
 		// Note this implementation is heavily dependent on TypeVariableBinding#computeUniqueKey()
-		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-		buffer.append(declaringKey); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-		buffer.append(':'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-		buffer.append('T'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-		buffer.append(typeVariableName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-		buffer.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-		return buffer.toString();
+		return declaringKey + ':' + 'T' + typeVariableName + ';';
+		// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	}
 
 	/**
