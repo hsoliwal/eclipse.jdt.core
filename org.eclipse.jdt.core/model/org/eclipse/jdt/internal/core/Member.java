@@ -468,10 +468,9 @@ public String readableName() {
 	IJavaElement declaringType = getDeclaringType();
 	if (declaringType != null) {
 		String declaringName = ((JavaElement) getDeclaringType()).readableName();
-		StringBuilder buffer = new StringBuilder(declaringName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-		buffer.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-		buffer.append(getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-		return buffer.toString();
+		return declaringName + '.' + getElementName();
+		// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	} else {
 		return super.readableName();
 	}
