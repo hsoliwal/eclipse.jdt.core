@@ -164,10 +164,9 @@ class InternalASTRewrite extends NodeEventHandler {
 
 	@Override
 	public String toString() {
-		StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-		buf.append("Events:\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-		buf.append(this.eventStore.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-		return buf.toString();
+		return "Events:\n" + this.eventStore.toString(); //$NON-NLS-1$
+		// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	}
 
 	@Override
