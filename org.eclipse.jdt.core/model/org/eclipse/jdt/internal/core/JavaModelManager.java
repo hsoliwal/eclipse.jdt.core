@@ -4383,14 +4383,9 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 			PerProjectInfo info= this.perProjectInfos.get(project);
 			if (info != null) {
 				if (VERBOSE) {
-					StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-					buffer.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-					buffer.append(Thread.currentThread()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-					buffer.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-					buffer.append(" JavaModelManager.resetProjectPreferences("); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-					buffer.append(project.getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-					buffer.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-					trace(buffer.toString());
+					trace("" + '(' + Thread.currentThread() + ')' + " JavaModelManager.resetProjectPreferences(" + project.getName() + ')'); //$NON-NLS-1$ //$NON-NLS-2$
+					// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 				}
 				info.preferences = null;
 			}
@@ -4916,16 +4911,9 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 */
 	public void secondaryTypeAdding(String path, char[] typeName, char[] packageName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (VERBOSE) {
-			StringBuilder buffer = new StringBuilder("JavaModelManager.addSecondaryType("); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-			buffer.append(path); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			buffer.append('['); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			buffer.append(new String(packageName)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			buffer.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			buffer.append(new String(typeName)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			buffer.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			buffer.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			trace(buffer.toString());
+			trace("JavaModelManager.addSecondaryType(" + path + ',' + '[' + new String(packageName) + '.' + new String(typeName) + ']' + ')'); //$NON-NLS-1$
+			// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		}
 		IWorkspaceRoot wRoot = ResourcesPlugin.getWorkspace().getRoot();
 		IResource resource = wRoot.findMember(path);
@@ -5011,9 +4999,9 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 */
 	public Map<String, Map<String, IType>> secondaryTypes(IJavaProject project, boolean waitForIndexes, IProgressMonitor monitor) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (VERBOSE) {
-			StringBuilder buffer = new StringBuilder("JavaModelManager.secondaryTypes("); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-			buffer.append(project.getElementName()).append(',').append(waitForIndexes).append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			trace(buffer.toString());
+			trace("JavaModelManager.secondaryTypes(" + project.getElementName() + ',' + waitForIndexes + ')'); //$NON-NLS-1$
+			// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		}
 
 		// Return cache if not empty and there's no new secondary types created during indexing
@@ -5137,12 +5125,9 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 */
 	private static Map<String, Map<String, IType>> secondaryTypesSearching(IJavaProject project, boolean waitForIndexes, IProgressMonitor monitor, final PerProjectInfo projectInfo) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (VERBOSE || BasicSearchEngine.VERBOSE) {
-			StringBuilder buffer = new StringBuilder("JavaModelManager.secondaryTypesSearch("); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-			buffer.append(project.getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			buffer.append(waitForIndexes); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			buffer.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			trace(buffer.toString());
+			trace("JavaModelManager.secondaryTypesSearch(" + project.getElementName() + ',' + waitForIndexes + ')'); //$NON-NLS-1$
+			// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		}
 
 		final Hashtable<String, Map<String, String>> secondaryTypesSearch = new Hashtable<>(3);
@@ -5217,10 +5202,9 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 */
 	public void secondaryTypesRemoving(IFile file, boolean cleanIndexCache) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (VERBOSE) {
-			StringBuilder buffer = new StringBuilder("JavaModelManager.removeFromSecondaryTypesCache("); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-			buffer.append(file.getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			buffer.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			trace(buffer.toString());
+			trace("JavaModelManager.removeFromSecondaryTypesCache(" + file.getName() + ')'); //$NON-NLS-1$
+			// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		}
 		if (file != null) {
 			PerProjectInfo projectInfo = getPerProjectInfo(file.getProject(), false);
@@ -5263,9 +5247,9 @@ public class JavaModelManager implements ISaveParticipant, IContentTypeChangeLis
 	 */
 	private static void secondaryTypesRemoving(Map<String, Map<String, IType>> secondaryTypesMap, IFile file) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (VERBOSE) {
-			StringBuilder buffer = new StringBuilder("JavaModelManager.removeSecondaryTypesFromMap("); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-			buffer.append(',').append(file.getFullPath()).append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			trace(buffer.toString());
+			trace("JavaModelManager.removeSecondaryTypesFromMap(" + ',' + file.getFullPath() + ')'); //$NON-NLS-1$
+			// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			dumpSecondaryTypes(secondaryTypesMap);
 		}
 		Set<Entry<String, Map<String, IType>>> packageEntries = secondaryTypesMap.entrySet();
