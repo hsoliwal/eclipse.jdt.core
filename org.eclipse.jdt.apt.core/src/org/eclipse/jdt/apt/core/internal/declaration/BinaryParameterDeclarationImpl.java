@@ -163,10 +163,8 @@ public class BinaryParameterDeclarationImpl extends DeclarationImpl implements P
 
     @Override
 	public String toString(){
-        final StringBuilder builder = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-        builder.append(getTypeBinding().getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-        builder.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-        builder.append(getSimpleName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-        return builder.toString();
+        return getTypeBinding().getName() + ' ' + getSimpleName();
+        // preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        // preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
     }
 }
