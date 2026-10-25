@@ -319,23 +319,8 @@ public String toString() {
 	return toStringFillingRation(""); //$NON-NLS-1$
 }
 public String toStringFillingRation(String prefix) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-	buffer.append(prefix); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-	buffer.append("Project cache: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-	buffer.append(this.projectCache.size()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-	buffer.append(" projects\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-	buffer.append(prefix); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-	buffer.append(this.rootCache.toStringFillingRation("Root cache")); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-	buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-	buffer.append(prefix); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-	buffer.append(this.pkgCache.toStringFillingRation("Package cache")); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-	buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-	buffer.append(prefix); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-	buffer.append(this.openableCache.toStringFillingRation("Openable cache")); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-	buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-	buffer.append(prefix); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-	buffer.append(this.jarTypeCache.toStringFillingRation("Jar type cache")); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-	buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-	return buffer.toString();
+	return prefix + "Project cache: " + this.projectCache.size() + " projects\n" + prefix + this.rootCache.toStringFillingRation("Root cache") + '\n' + prefix + this.pkgCache.toStringFillingRation("Package cache") + '\n' + prefix + this.openableCache.toStringFillingRation("Openable cache") + '\n' + prefix + this.jarTypeCache.toStringFillingRation("Jar type cache") + '\n'; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$
+	// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 }
 }
